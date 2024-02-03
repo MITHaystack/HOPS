@@ -217,8 +217,8 @@ MHO_MK4StationInterface::GetFreqGroupPolInfo(int n309, type_309** t309, const st
         if( ExtractChannelInfo(ch_name, fgroup, sb, pol, idx ) && fgroup == fg)
         {
             pol_set.insert(pol);
-            int ntones = t309[0]->ntones;
-            for(int ti=0; ti < ntones; ti++)
+            //int ntones = t309[0]->ntones;
+            for(int ti=0; ti < T309_MAX_PHASOR; ti++)
             {
                 if(t309[0]->chan[ch].acc[ti][0] != 0 || t309[0]->chan[ch].acc[ti][1] != 0)
                 {
@@ -254,8 +254,7 @@ MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
     if(nfg == 0){return;}
 
     //pcal data for each frequency group
-    std::vector< multitone_pcal_type > fgroup_pcal; //multitone_pcal_type dims = pol x time x freq
-    fgroup_pcal.resize(nfg);
+    fFreqGroupPCal.resize(nfg);
 
     //for each freq group
     for(std::size_t n=0; n<nfg; n++)
@@ -268,8 +267,8 @@ MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
         {
             std::size_t total_ntones = pol_info.begin()->second;
             //resize the pcal data array 
-            fgroup_pcal[n].Resize(npols, naps, total_ntones);
-            fgroup_pcal[n].ZeroArray();
+            fFreqGroupPCal[n].Resize(npols, naps, total_ntones);
+            fFreqGroupPCal[n].ZeroArray();
 
             std::cout<<"PCAL DATA ARRAY SIZE = ("<<npols<<", "<<naps<<", "<<total_ntones<<")"<<std::endl;
 
@@ -277,10 +276,10 @@ MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
             for(std::size_t p=0; p<pol_info.size(); p++)
             {
                 std::string pol = pol_info[p].first;
-                std::get<MTPCAL_POL_AXIS>(fgroup_pcal[n]).at(p) = pol; //label pol axis
-                FillPCalArray(fgroups[n], pol, p, &(fgroup_pcal[n]), n309, t309);
-                std::cout<<"PC ARR = "<< fgroup_pcal[n] << std::endl;
+                std::get<MTPCAL_POL_AXIS>(fFreqGroupPCal[n]).at(p) = pol; //label pol axis
+                FillPCalArray(fgroups[n], pol, p, &(fFreqGroupPCal[n]), n309, t309);
             }
+            std::cout<<"PC ARR = "<< fFreqGroupPCal[n] << std::endl;
         }
         else 
         {
@@ -298,6 +297,7 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
     //channel index -> <channel location, ntones>
     std::map< int, std::pair< int, int > > chan2ntones;
     std::map< int, std::pair< int, int > > chan2start;
+    std::map< int, std::string > chan2name;
     std::set< int > channel_idx_set;
     //just use first AP
     int ap = 0;
@@ -313,7 +313,7 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
             int count = 0;
             int start = 0;
             bool first = true;
-            for(int ti=0; ti < ntones; ti++)
+            for(int ti=0; ti < T309_MAX_PHASOR; ti++)
             {
                 if(t309[ap]->chan[ch].acc[ti][0] != 0 || t309[ap]->chan[ch].acc[ti][1] != 0)
                 {
@@ -323,6 +323,7 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
             }
             chan2ntones[idx] = std::make_pair(ch, count);
             chan2start[idx] = std::make_pair(ch, start);
+            chan2name[idx] = ch_name;
         }
     }
     
@@ -340,6 +341,7 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
         int ch_loc = chan2start[ch].first;
         int start = chan2start[ch].second;
         int stop = start + chan2ntones[ch].second;
+        int channel_start = tone_idx;
         for(int ti=start; ti < stop; ti++)
         {
             for(ap=0; ap<naps; ap++)
@@ -349,10 +351,16 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
                 auto ph = ComputePhasor(rc, ic, 1.0, 1.0);
                 pc->at(pol_idx, ap, tone_idx) = ph;
                 std::get<MTPCAL_TIME_AXIS>(*pc).at(ap) = ap;
+                
             }
             std::get<MTPCAL_FREQ_AXIS>(*pc).at(tone_idx) = tone_idx;
             tone_idx++;
         }
+        int channel_stop = tone_idx;
+        //std::cout<<"filled tones for pol: "<<pol<<" channel: "<<chan2name[ch]<<" start/stop: "<<channel_start<<"/"<<channel_stop<<std::endl;
+        std::string name_key = "channel_mk4id_";
+        name_key += pol;
+        std::get<MTPCAL_FREQ_AXIS>(*pc).InsertIntervalLabelKeyValue(channel_start, channel_stop, name_key, chan2name[ch]);
     }
 }
 
