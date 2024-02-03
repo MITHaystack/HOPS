@@ -292,6 +292,9 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         std::string rem_freq_table = mk4IDToFreqTableName[rem_st];
 
         //get the channel information of the reference station
+        //Note: we could probably just parse the polarization information from the mk4 channel IDs 
+        //instead of walking the insanely convoluted vex-tree
+
         for(std::size_t nch=0; nch < fVex["$FREQ"][ref_freq_table]["chan_def"].size(); nch++)
         {
             std::string chan_name = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["channel_name"].get<std::string>();

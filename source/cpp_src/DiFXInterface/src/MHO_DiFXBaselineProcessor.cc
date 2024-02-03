@@ -24,6 +24,7 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
     fCorrDate = "";
     fRescale = true;
     fScaleFactor = 1.0;
+    fFreqGroup = "X"; //TODO FIXME -- this is the default (but we should implement d2m4 style grouping)
 
     /* The following coefficients are taken directly from difx2mark4 new_type1.c */
 
@@ -227,6 +228,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fV->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
         fV->Insert(std::string("correlation_date"), fCorrDate);
         fV->Insert(std::string("root_code"), fRootCode);
+        fV->Insert(std::string("origin"), "difx");
 
         //tags for the weights
         fW->Resize(fNPolPairs, fNChannels, fNAPs, 1); //fNSpectralPoints -- we only have 1 weight value for each AP, so set dimension along the spectral point axis to 1
@@ -241,6 +243,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fW->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
         fW->Insert(std::string("correlation_date"), fCorrDate);
         fW->Insert(std::string("root_code"), fRootCode);
+        fW->Insert(std::string("origin"), "difx");
 
         //polarization product axis
         auto* polprod_axis = &(std::get<POLPROD_AXIS>(*fV));
@@ -299,10 +302,15 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                     ch_label["net_sideband"] = sideband;
                     ch_label["difx_freqindex"] = freqidx; //probably ought to be more systematic about creating channel names
                     ch_label["channel"] = chidx; //channel position index
+
                      //TODO FIXME need to construct difx2mark4-style chan_id --
                     //or rather need to construct the chan_id which corresponds to the reference and remote station for this chunk
                     //this also needs to be able to support zoom bands
-                    ch_label["chan_id"] = "placeholder";
+
+                    std::string ref_chan_id = ConstructMK4ChannelID(fFreqGroup, chidx, sideband, pp[0]);
+                    std::string rem_chan_id = ConstructMK4ChannelID(fFreqGroup, chidx, sideband, pp[1]);
+
+                    ch_label["mk4_channel_id"] = ref_chan_id + ":" + rem_chan_id;
 
                     ch_axis->at(chidx) = sky_freq; //channel axis is now sky frequency not chidx;
                     wch_axis->at(chidx) = sky_freq;
@@ -426,6 +434,18 @@ MHO_DiFXBaselineProcessor::DeleteDiFXVisRecords()
     malloc_trim(0); //for lots of small objects this may be helpful to flush pages back to OS
 }
 
+
+std::string 
+MHO_DiFXBaselineProcessor::ConstructMK4ChannelID(std::string fgroup, int index, std::string sideband, char pol)
+{
+    std::stringstream ss;
+    ss << fgroup;
+    if(index < 10 ){ss << "0";} //pad with leading zero if less than 10 
+    ss << index;
+    ss << sideband;
+    ss << pol;
+    return ss.str();
+}
 
 
 }//end namespace
