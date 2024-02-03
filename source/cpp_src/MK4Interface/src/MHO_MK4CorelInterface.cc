@@ -382,7 +382,9 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
                 ch->second["sky_freq"] = ref_sky_freq;
                 ch->second["bandwidth"] = ref_bw;
                 ch->second["net_sideband"] = ref_net_sb;
-                //these channel ids aren't quite right (this only grabs the last pol-product combo)
+                //these channel ids aren't quite right (this only grabs the last see pol-product combo)
+                //it is sort of pointless to track these anyways because all they do is indicate:
+                //freq-group, channel-index, sideband, and pol, and these are already tracked by the axis labels.
                 ch->second["mk4_channel_id"] = ref_chan_id + ":" + rem_chan_id;
             }
             else
