@@ -703,6 +703,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     bl_data->Insert(std::string("correlation_date"), corrdate_string);
     bl_data->Insert(std::string("start"), start_string);
     bl_data->Insert(std::string("stop"), stop_string);
+    bl_data->Insert(std::string("origin"), std::string("mark4")); //add tag to indicate this was converted from mark4 data
     bl_data->Insert(std::string("root_code"), fRootCode);
 
     bl_wdata->Insert(std::string("name"), std::string("weights"));
@@ -715,6 +716,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     bl_wdata->Insert(std::string("correlation_date"), corrdate_string);
     bl_wdata->Insert(std::string("start"), start_string);
     bl_wdata->Insert(std::string("stop"), stop_string);
+    bl_wdata->Insert(std::string("origin"), std::string("mark4")); //add tag to indicate this was converted from mark4 data
     bl_wdata->Insert(std::string("root_code"), fRootCode);
 
 
