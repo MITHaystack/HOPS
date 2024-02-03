@@ -67,7 +67,7 @@ MHO_MK4StationInterface::ExtractStationFile()
         //(1) delay spline polynomial coeff (type_301)
         //(2) parallatic angle spline coeff (type_303)
         //(3) uvw-coords spline coeff (type_303)
-        //(4) phase-cal data (type_309) -- no yet supported here
+        //(4) phase-cal data (type_309)
 
         //determine the root code;
         std::size_t last_dot = fStationFile.find_last_of('.');
