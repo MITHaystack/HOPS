@@ -382,6 +382,8 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
                 ch->second["sky_freq"] = ref_sky_freq;
                 ch->second["bandwidth"] = ref_bw;
                 ch->second["net_sideband"] = ref_net_sb;
+                //these channel ids aren't quite right (this only grabs the last pol-product combo)
+                ch->second["mk4_channel_id"] = ref_chan_id + ":" + rem_chan_id;
             }
             else
             {
@@ -519,12 +521,14 @@ MHO_MK4CorelInterface::ExtractCorelFile()
             int ch_count = 0;
             double sky_freq, bw;
             std::string net_sb;
+            std::string mk4_channel_id;
             for(auto it = fPPSortedChannelInfo[*ppit].begin();
                 it != fPPSortedChannelInfo[*ppit].end();
                 it++)
             {
                 sky_freq = (*(*it))["sky_freq"].get<double>();
                 bw = (*(*it))["bandwidth"].get<double>();
+                mk4_channel_id =  (*(*it))["mk4_channel_id"].get<std::string>();
                 //net_sb = (*(*it))["net_sideband"];
                 net_sb = (*(*it))["net_sideband"].get<std::string>();
                 //add the freq-axis bounds info for this channel
@@ -536,7 +540,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                 ch_count = (*(*it))["channel"] = ch_count;
 
                 //ought to add mk4 style channel ids, e.g. X08LX:X08LY?
-                (*(*it))["chan_id"] = "placeholder";//placeholder for now
+                (*(*it))["chan_id"] = mk4_channel_id; //"placeholder";//placeholder for now
 
                 //if not present, insert a clean channel label on this axis
                 auto indicator = inserted_channel_labels.insert(ch_count);
@@ -549,7 +553,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                     ch_label["channel"] = ch_count;
                     ch_label["lower_index"] = freq_count;
                     ch_label["upper_index"] = freq_count + fNSpectral;
-                    ch_label["chan_id"] = "placeholder";
+                    ch_label["chan_id"] = mk4_channel_id;
                     //ch_label.SetBounds(freq_count, freq_count + fNSpectral);
                     std::get<UCH_FREQ_AXIS>(*bl_data).SetIntervalLabelObject(ch_label, freq_count, freq_count+fNSpectral);
                     std::get<UCH_FREQ_AXIS>(*bl_wdata).SetIntervalLabelObject(ch_label, freq_count, freq_count+fNSpectral);
