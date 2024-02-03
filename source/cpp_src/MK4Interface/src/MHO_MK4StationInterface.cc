@@ -312,7 +312,9 @@ MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
             for(std::size_t p=0; p<pol_info.size(); p++)
             {
                 std::string pol = pol_info[p].first;
-                FillPCalArray(fgroups[n], pol, &(fgroup_pcal[n]), n309, t309);
+                std::get<MTPCAL_POL_AXIS>(fgroup_pcal[n]).at(p) = pol; //label pol axis
+                FillPCalArray(fgroups[n], pol, p, &(fgroup_pcal[n]), n309, t309);
+                std::cout<<"PC ARR = "<< fgroup_pcal[n] << std::endl;
             }
         }
         else 
@@ -323,12 +325,70 @@ MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
 }
 
 void 
-MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::string& pol, multitone_pcal_type* pc, int n309, type_309** t309)
+MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::string& pol, int pol_idx, multitone_pcal_type* pc, int n309, type_309** t309)
 {
+    //loop over all channels that match this freq group and pol
+    //count the number of tones they each have and then order them by index
 
+    //channel index -> <channel location, ntones>
+    std::map< int, std::pair< int, int > > chan2ntones;
+    std::map< int, std::pair< int, int > > chan2start;
+    std::set< int > channel_idx_set;
+    //just use first AP
+    int ap = 0;
+    std::string fg, sb, p;
+    int idx;
+    for(int ch=0; ch < T309_MAX_CHAN; ch++)
+    {
+        std::string ch_name = getstr(&(t309[ap]->chan[ch].chan_name[0]), 8);
+        if( ExtractChannelInfo(ch_name, fg, sb, p, idx ) && fgroup == fg && pol == p )
+        {
+            channel_idx_set.insert(idx);
+            int ntones = t309[ap]->ntones;
+            int count = 0;
+            int start = 0;
+            bool first = true;
+            for(int ti=0; ti < ntones; ti++)
+            {
+                if(t309[ap]->chan[ch].acc[ti][0] != 0 || t309[ap]->chan[ch].acc[ti][1] != 0)
+                {
+                    if(first){start = ti; first = false;}
+                    count++;
+                }
+            }
+            chan2ntones[idx] = std::make_pair(ch, count);
+            chan2start[idx] = std::make_pair(ch, start);
+        }
+    }
+    
+    //sort the channels by mk4 index
+    std::vector<int> channel_idx;
+    for(auto it = channel_idx_set.begin(); it != channel_idx_set.end(); it++){channel_idx.push_back(*it);}
+    std::sort(channel_idx.begin(), channel_idx.end());
 
-
-
+    //now loop over channels and AP's collecting tone phasors 
+    int naps = pc->GetDimension(MTPCAL_TIME_AXIS);
+    int tone_idx = 0;
+    for(std::size_t i=0; i<channel_idx.size(); i++)
+    {
+        int ch = channel_idx[i];
+        int ch_loc = chan2start[ch].first;
+        int start = chan2start[ch].second;
+        int stop = start + chan2ntones[ch].second;
+        for(int ti=start; ti < stop; ti++)
+        {
+            for(ap=0; ap<naps; ap++)
+            {
+                uint32_t rc = t309[ap]->chan[ch_loc].acc[ti][0];
+                uint32_t ic = t309[ap]->chan[ch_loc].acc[ti][1];
+                auto ph = ComputePhasor(rc, ic, 1.0, 1.0);
+                pc->at(pol_idx, ap, tone_idx) = ph;
+                std::get<MTPCAL_TIME_AXIS>(*pc).at(ap) = ap;
+            }
+            std::get<MTPCAL_FREQ_AXIS>(*pc).at(tone_idx) = tone_idx;
+            tone_idx++;
+        }
+    }
 }
 
 
