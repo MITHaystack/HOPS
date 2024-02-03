@@ -53,6 +53,13 @@ class MHO_MK4StationInterface
 
         station_coord_type* ExtractStationFile();
 
+        std::size_t GetNPCalObjects(){return fFreqGroupPCal.size();}
+        multitone_pcal_type* GetPCalObject(std::size_t index)
+        {
+            if(index < fFreqGroupPCal.size() ){ return &(fFreqGroupPCal[index]); }
+            else{ return nullptr; }
+        };
+
     private:
 
         std::string
@@ -85,6 +92,9 @@ class MHO_MK4StationInterface
 
         bool fHaveStation;
         struct mk4_sdata* fStation;
+
+        //pcal data 
+        std::vector< multitone_pcal_type > fFreqGroupPCal; //multitone_pcal_type dims = pol x time x freq
 
         std::string fStationFile;
         std::size_t fNCoeffs;

@@ -109,6 +109,8 @@ void ConvertStation(const std::string root_file, const std::string& input_file, 
     // mk4inter.SetVexFile(root_file);
     station_coord_type* st_data = mk4inter.ExtractStationFile();
 
+    std::size_t n_pcal_obj = mk4inter.GetNPCalObjects();
+
     MHO_BinaryFileInterface inter;
     //std::string index_file = output_file + ".index";
     //bool status = inter.OpenToWrite(output_file, index_file);
@@ -117,7 +119,12 @@ void ConvertStation(const std::string root_file, const std::string& input_file, 
     if(status)
     {
         uint32_t label = 0xFFFFFFFF;
-        inter.Write(*st_data, "sta", label);
+        inter.Write(*st_data, "sta", label); //write out station data
+        //write out pcal objects
+        for(std::size_t i=0; i<n_pcal_obj; i++)
+        {
+            inter.Write( *(mk4inter.GetPCalObject(i)), "pcal", label);
+        }
         inter.Close();
     }
     else
