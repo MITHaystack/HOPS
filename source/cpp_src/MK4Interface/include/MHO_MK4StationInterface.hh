@@ -83,11 +83,6 @@ class MHO_MK4StationInterface
         std::vector< std::pair< std::string, int>  > GetFreqGroupPolInfo(int n309, type_309** t309, const std::string& fg, bool& same_size);
 
 
-        // 
-        // std::vector< std::string > GetFreqGroupPolChannels(int n309, type_309** t309, std::string fg, std::string p);
-        // 
-
-
         bool fHaveStation;
         struct mk4_sdata* fStation;
 
