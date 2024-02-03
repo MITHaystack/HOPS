@@ -178,124 +178,280 @@ void MHO_MK4StationInterface::ReadStationFile()
     }
 }
 
+
+
+
+std::vector< std::string > 
+MHO_MK4StationInterface::GetFreqGroups(int n309, type_309** t309)
+{
+    //assume data is the same for all APs
+    //first determine the set of polarizations and freq groups which are present
+    int ap = 0;
+    std::set< std::string > fgroup_set;
+    std::string fgroup, sb, pol;
+    int idx;
+    for(int ch=0; ch < T309_MAX_CHAN; ch++)
+    {
+        std::string ch_name = getstr(&(t309[ap]->chan[ch].chan_name[0]), 8);
+        if( ExtractChannelInfo(ch_name, fgroup, sb, pol, idx ) ){fgroup_set.insert(fgroup);}
+    }
+    std::vector< std::string > fgroups;
+    for(auto it = fgroup_set.begin(); it != fgroup_set.end(); it++){fgroups.push_back(*it);}
+    return fgroups;
+}
+
+std::vector< std::pair< std::string, int>  > 
+MHO_MK4StationInterface::GetFreqGroupPolInfo(int n309, type_309** t309, const std::string& fg, bool& same_size)
+{
+    same_size = false;
+    //just use first AP
+    int ap = 0;
+    //first determine the set of polarizations and how many tones 
+    std::set< std::string > pol_set;
+    std::map< std::string, int> pol_count;
+    std::string fgroup, sb, pol;
+    int idx;
+    for(int ch=0; ch < T309_MAX_CHAN; ch++)
+    {
+        std::string ch_name = getstr(&(t309[ap]->chan[ch].chan_name[0]), 8);
+        if( ExtractChannelInfo(ch_name, fgroup, sb, pol, idx ) && fgroup == fg)
+        {
+            pol_set.insert(pol);
+            int ntones = t309[0]->ntones;
+            for(int ti=0; ti < ntones; ti++)
+            {
+                if(t309[0]->chan[ch].acc[ti][0] != 0 || t309[0]->chan[ch].acc[ti][1] != 0)
+                {
+                    pol_count[pol] += 1;
+                }
+            }
+        }
+    }
+
+    std::vector< std::pair<std::string, int> > pol_info;
+    if(pol_set.size() == 0){return pol_info;}
+
+    same_size = true;
+    int ntones = pol_count.begin()->second;
+    for(auto it = pol_set.begin(); it != pol_set.end(); it++)
+    {
+        int count =  pol_count[*it];
+        if(count != ntones){same_size = false;}
+        pol_info.push_back( std::make_pair( *it, count ) );
+    }
+    return pol_info;
+}
+
+// 
+// std::vector< std::string > 
+// MHO_MK4StationInterface::GetFreqGroupPolChannels(int n309, type_309** t309, std::string fg, std::string p)
+// {
+//     //first determine the set of polarizations and freq groups which are present
+//     std::set< std::string > chan_set;
+//     for(int i=0; i < n309; i++)
+//     {
+//         for(int ch=0; ch < T309_MAX_CHAN; ch++)
+//         {
+//             std::string ch_name = getstr(&(t309[i]->chan[ch].chan_name[0]), 8);
+//             if(ch_name != "")
+//             {
+//                 std::string fgroup = FreqGroupFromMK4ChannelID(ch_name);
+//                 std::string pol = PolFromMK4ChannelID(ch_name);
+//                 if(fgroup = fg && pol = p)
+//                 {
+//                     std::string sb = SidebandFromMK4ChannelId(ch_name);
+//                     int idx = IndexFromMK4ChannelId(ch_name);
+//                     if(ChannelInfoOK(fgroup, sb, pol, idx)){chan_set.insert(ch_name);}
+//                 }
+//             }
+//         }
+//     }
+// 
+//     std::vector< std::string > chans;
+//     for(auto it = chan_set.begin(); it != chan_set.end(); it++)
+//     {
+//         chans.push_back(*it);
+//     }
+//     return chans;
+// }
+
+
+
+
 void 
 MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
 {
     if(n309 == 0){return;}
 
-    multitone_pcal_type pcal; //pol x time x freq
+    std::size_t naps = n309; //number of APs
+    auto fgroups = GetFreqGroups(n309, t309); //determine the frequency groups
+    std::size_t nfg = fgroups.size();
+    if(nfg == 0){return;}
 
-    //determine polarizations which are present
-    std::set< std::string > pol_set;
-    std::set< std::string > chanids;
-    std::map< std::string, int> chan2idx;     //map mk4 channel id to 'order' index
-    std::map< std::string, std::string> chan2pol; //map mk4 channel id to pol string
+    //pcal data for each frequency group
+    std::vector< multitone_pcal_type > fgroup_pcal; //multitone_pcal_type dims = pol x time x freq
+    fgroup_pcal.resize(nfg);
 
-    //needed to determine the number of tones
-    std::map< std::string, int> chan2ntones; //count tones per each channel
-    std::map< std::string, int> chan2start; //the start index of the each channel
-    std::map< std::string, int > pol2ntones; //count tones per each pol
-
-    //loop over all records and extract info from the mk4 names
-    int n_channels = 0;
-    int max_tones_per_channel = 0;
-
-    for(int i=0; i < n309; i++)
+    //for each freq group
+    for(std::size_t n=0; n<nfg; n++)
     {
-        for(int ch=0; ch < T309_MAX_CHAN; ch++)
+        //grab the pols and number of tones for each pol
+        bool same_size = false;
+        auto pol_info = GetFreqGroupPolInfo(n309, t309, fgroups[n], same_size);
+        std::size_t npols = pol_info.size();
+        if(npols != 0 && same_size)
         {
-            std::string ch_name = getstr(&(t309[i]->chan[ch].chan_name[0]), 8);
-            if(ch_name != "")
+            std::size_t total_ntones = pol_info.begin()->second;
+            //resize the pcal data array 
+            fgroup_pcal[n].Resize(npols, naps, total_ntones);
+            fgroup_pcal[n].ZeroArray();
+
+            std::cout<<"PCAL DATA ARRAY SIZE = ("<<npols<<", "<<naps<<", "<<total_ntones<<")"<<std::endl;
+
+            //fill the pcal data with the tone phasors
+            for(std::size_t p=0; p<pol_info.size(); p++)
             {
-                chanids.insert(ch_name);
-                std::string fgroup = FreqGroupFromMK4ChannelID(ch_name);
-                std::string sb = SidebandFromMK4ChannelId(ch_name);
-                std::string pol = PolFromMK4ChannelID(ch_name);
-                int idx = IndexFromMK4ChannelId(ch_name);
-                
-                if(ChannelInfoOK(fgroup, sb, pol, idx))
-                {
-                    chan2pol[ch_name] = pol;
-                    auto ib_pair = pol_set.insert(pol);
-                    if(ib_pair.second == true){pol2ntones[pol] = 0;} //insertion was successful, so init count to zero
-                    int count = 0; 
-                    int ntones = t309[i]->ntones;
-                    bool first = true;
-                    for(int ti=0; ti < ntones; ti++)
-                    {
-                        if(t309[i]->chan[ch].acc[ti][0] != 0 || t309[i]->chan[ch].acc[ti][1] != 0)
-                        {
-                            if(first){ chan2start[ch_name] = ti; first = false;}
-                            count++;
-                        }
-                    }
-                    chan2ntones[ch_name] = count;
-                    pol2ntones[pol] += count; //this is ok because mapped int value has already been initialized to zero
-                    if(count > max_tones_per_channel){max_tones_per_channel = count;}
-                }
+                std::string pol = pol_info[p].first;
+                FillPCalArray(fgroups[n], pol, &(fgroup_pcal[n]), n309, t309);
             }
         }
-    }
-    
-    n_channels = chanids.size(); //total count of channels *(includes both polarizations)
-    std::size_t nap = n309;
-    std::size_t npol = pol_set.size();
-    std::size_t ntotal_tones = 0;
-    std::set<int> tmp;
-    for(auto it = pol2ntones.begin(); it != pol2ntones.end(); it++)
-    {
-        tmp.insert(it->second);
-    }
-    
-    //error out if number of tones for each pol do not match! 
-    //will not create a pcal object for this station
-    if(tmp.size() == 1)
-    {
-        ntotal_tones = *(tmp.begin())/nap; 
-    }
-    else{msg_error("mk4interface", "cannot create pcal object, number of tones per polarization do no match.");}
-
-    
-    std::cout<<"NAP = "<<nap<<std::endl;
-    std::cout<<"NPOL = "<<npol<<std::endl;
-    std::cout<<"NCHAN = "<<n_channels<<std::endl;
-    std::cout<<"MAXTONES PER CHAN = "<<max_tones_per_channel<<std::endl;
-    std::cout<<"N TOTAL TONES = "<<ntotal_tones<<std::endl;
-
-    for(auto it = pol_set.begin(); it != pol_set.end(); it++)
-    {
-        std::cout<<"pcal pol present = "<<*it<<std::endl;
-    }
-
-    //resize the pcal array 
-    pcal.Resize(npol,nap,ntotal_tones);
-    pcal.ZeroArray();
-
-    for(int i=0; i < n309; i++)
-    {
-        std::size_t ap = (std::size_t) i;
-        int su = t309[i]->su;
-        int ntones = t309[i]->ntones;
-        double rot = t309[i]->rot;
-        double acc_period = t309[i]->acc_period;
-
-        for(int ch=0; ch < T309_MAX_CHAN; ch++)
+        else 
         {
-            std::string ch_name = getstr(&(t309[i]->chan[ch].chan_name[0]), 8);
-            std::string pol = PolFromMK4ChannelID(ch_name);  
-            int channel_idx = chan2idx[ch_name];
-            int start_idx = chan2start[ch_name];
-            int n_chan_tones = chan2ntones[ch_name];
-            for(int ti=0; ti < n_chan_tones ; ti++)
-            {
-                int idx = ti+start_idx;
-                std::complex<double> ph = ComputePhasor(t309[i]->chan[ch].acc[idx][0], t309[i]->chan[ch].acc[idx][1], 1.0, 1.0);
-            }
-
+            msg_error("mk4interface", "differing number of pcal tones for each polaization in frequency group: "<< fgroups[n] << eom);
         }
     }
+}
+
+void 
+MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::string& pol, multitone_pcal_type* pc, int n309, type_309** t309)
+{
+
+
+
 
 }
+
+
+
+
+
+
+
+// 
+// 
+// 
+// 
+// 
+// 
+//     std::set< std::string > chanids;
+//     std::map< std::string, int> chan2idx; //map mk4 channel id to 'order' index
+//     std::map< std::string, std::string> chan2pol; //map mk4 channel id to pol string
+// 
+//     //needed to determine the number of tones
+//     std::map< std::string, int> chan2ntones; //count tones per each channel
+//     std::map< std::string, int> chan2start; //the start index of the each channel
+//     std::map< std::string, int > pol2ntones; //count tones per each pol
+// 
+//     //loop over all records and extract info from the mk4 names
+//     int n_channels = 0;
+//     int max_tones_per_channel = 0;
+// 
+//     for(int i=0; i < n309; i++)
+//     {
+//         for(int ch=0; ch < T309_MAX_CHAN; ch++)
+//         {
+//             std::string ch_name = getstr(&(t309[i]->chan[ch].chan_name[0]), 8);
+//             if(ch_name != "")
+//             {
+//                 chanids.insert(ch_name);
+//                 std::string fgroup = FreqGroupFromMK4ChannelID(ch_name);
+//                 std::string sb = SidebandFromMK4ChannelId(ch_name);
+//                 std::string pol = PolFromMK4ChannelID(ch_name);
+//                 int idx = IndexFromMK4ChannelId(ch_name);
+// 
+//                 if(ChannelInfoOK(fgroup, sb, pol, idx))
+//                 {
+//                     chan2pol[ch_name] = pol;
+//                     auto ib_pair = pol_set.insert(pol);
+//                     if(ib_pair.second == true){pol2ntones[pol] = 0;} //insertion was successful, so init count to zero
+//                     int count = 0; 
+//                     int ntones = t309[i]->ntones;
+//                     bool first = true;
+//                     for(int ti=0; ti < ntones; ti++)
+//                     {
+//                         if(t309[i]->chan[ch].acc[ti][0] != 0 || t309[i]->chan[ch].acc[ti][1] != 0)
+//                         {
+//                             if(first){ chan2start[ch_name] = ti; first = false;}
+//                             count++;
+//                         }
+//                     }
+//                     chan2ntones[ch_name] = count;
+//                     pol2ntones[pol] += count; //this is ok because mapped int value has already been initialized to zero
+//                     if(count > max_tones_per_channel){max_tones_per_channel = count;}
+//                 }
+//             }
+//         }
+//     }
+// 
+//     n_channels = chanids.size(); //total count of channels *(includes both polarizations)
+//     std::size_t nap = n309;
+//     std::size_t npol = pol_set.size();
+//     std::size_t ntotal_tones = 0;
+//     std::set<int> tmp;
+//     for(auto it = pol2ntones.begin(); it != pol2ntones.end(); it++)
+//     {
+//         tmp.insert(it->second);
+//     }
+// 
+//     //error out if number of tones for each pol do not match! 
+//     //will not create a pcal object for this station
+//     if(tmp.size() == 1)
+//     {
+//         ntotal_tones = *(tmp.begin())/nap; 
+//     }
+//     else{msg_error("mk4interface", "cannot create pcal object, number of tones per polarization do no match.");}
+// 
+// 
+//     std::cout<<"NAP = "<<nap<<std::endl;
+//     std::cout<<"NPOL = "<<npol<<std::endl;
+//     std::cout<<"NCHAN = "<<n_channels<<std::endl;
+//     std::cout<<"MAXTONES PER CHAN = "<<max_tones_per_channel<<std::endl;
+//     std::cout<<"N TOTAL TONES = "<<ntotal_tones<<std::endl;
+// 
+//     for(auto it = pol_set.begin(); it != pol_set.end(); it++)
+//     {
+//         std::cout<<"pcal pol present = "<<*it<<std::endl;
+//     }
+// 
+//     //resize the pcal array 
+//     pcal.Resize(npol,nap,ntotal_tones);
+//     pcal.ZeroArray();
+// 
+//     for(int i=0; i < n309; i++)
+//     {
+//         std::size_t ap = (std::size_t) i;
+//         int su = t309[i]->su;
+//         int ntones = t309[i]->ntones;
+//         double rot = t309[i]->rot;
+//         double acc_period = t309[i]->acc_period;
+// 
+//         for(int ch=0; ch < T309_MAX_CHAN; ch++)
+//         {
+//             std::string ch_name = getstr(&(t309[i]->chan[ch].chan_name[0]), 8);
+//             std::string pol = PolFromMK4ChannelID(ch_name);  
+//             int channel_idx = chan2idx[ch_name];
+//             int start_idx = chan2start[ch_name];
+//             int n_chan_tones = chan2ntones[ch_name];
+//             for(int ti=0; ti < n_chan_tones ; ti++)
+//             {
+//                 int idx = ti+start_idx;
+//                 std::complex<double> ph = ComputePhasor(t309[i]->chan[ch].acc[idx][0], t309[i]->chan[ch].acc[idx][1], 1.0, 1.0);
+//             }
+// 
+//         }
+//     }
+// 
+// }
 
 // std::set< std::string > 
 // MHO_MK4StationInterface::DeterminePCalPols(int n309, type_309** t309) const
@@ -387,16 +543,21 @@ MHO_MK4StationInterface::IndexFromMK4ChannelId(std::string id) const
 
 }
 
-
 bool 
-MHO_MK4StationInterface::ChannelInfoOK(std::string fgroup, std::string sb, std::string pol, int index)
+MHO_MK4StationInterface::ExtractChannelInfo(const std::string& ch_name, std::string& fgroup, std::string& sb, std::string& pol, int& index)
 {
+    fgroup = FreqGroupFromMK4ChannelID(ch_name);
     if(fgroup == ""){return false;}
+    sb = SidebandFromMK4ChannelId(ch_name);
     if(sb == ""){return false;}
+    pol = PolFromMK4ChannelID(ch_name);
     if(pol == ""){return false;}
+    index = IndexFromMK4ChannelId(ch_name);
     if(index < 0){return false;}
     return true;
 }
+
+
 
 std::complex< double > 
 MHO_MK4StationInterface::ComputePhasor(uint32_t real, uint32_t imag, double acc_period, double sample_period)

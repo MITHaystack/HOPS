@@ -65,14 +65,27 @@ class MHO_MK4StationInterface
 
         //pcal stuff
         void ExtractPCal(int n309, type_309** t309);
+        void FillPCalArray(const std::string& fgroup, const std::string& pol, multitone_pcal_type* pc, int n309, type_309** t309);
+
+        //converts a mk4 channel id into its components, returns true if successful
+        bool ExtractChannelInfo(const std::string& ch_name, std::string& fgroup, std::string& sb, std::string& pol, int& index);
         std::string FreqGroupFromMK4ChannelID(std::string id) const;
         std::string PolFromMK4ChannelID(std::string id) const;
         std::string SidebandFromMK4ChannelId(std::string id) const;
         int IndexFromMK4ChannelId(std::string id) const;
-        bool ChannelInfoOK(std::string fgroup, std::string sb, std::string pol, int index);
 
+        //converts uint32_t counts to complex double
         std::complex< double > ComputePhasor(uint32_t real, uint32_t imag, double acc_period, double sample_period);
-        
+
+        //returns a vector of freq group codes found in the 309 data
+        std::vector< std::string > GetFreqGroups(int n309, type_309** t309);
+        //returns a vector of pols and tone-count for each pol found in 309 data
+        std::vector< std::pair< std::string, int>  > GetFreqGroupPolInfo(int n309, type_309** t309, const std::string& fg, bool& same_size);
+
+
+        // 
+        // std::vector< std::string > GetFreqGroupPolChannels(int n309, type_309** t309, std::string fg, std::string p);
+        // 
 
 
         bool fHaveStation;
