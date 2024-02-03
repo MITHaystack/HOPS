@@ -571,4 +571,20 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
 }
 
 
+
+void MHO_MultitonePhaseCorrection::RepairMK4PCData()
+{
+    std::string data_origin;
+    fPCData->Retrieve("origin", data_origin);
+    if(data_origin == "mark4")
+    {
+        //fix the tone frequency axis (deduce this from the channel boundaries and pcal tone spacing)
+
+        //rescale all the phasors by the sample_period
+
+
+
+    }
+}
+
 }//end of namespace
