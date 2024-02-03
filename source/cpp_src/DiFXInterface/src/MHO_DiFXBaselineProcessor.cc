@@ -24,6 +24,7 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
     fCorrDate = "";
     fRescale = true;
     fScaleFactor = 1.0;
+
     fFreqGroup = "X"; //TODO FIXME -- this is the default (but we should implement d2m4 style grouping)
 
     /* The following coefficients are taken directly from difx2mark4 new_type1.c */
