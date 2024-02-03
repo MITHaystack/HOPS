@@ -65,7 +65,7 @@ class MHO_MK4StationInterface
 
         //pcal stuff
         void ExtractPCal(int n309, type_309** t309);
-        void FillPCalArray(const std::string& fgroup, const std::string& pol, multitone_pcal_type* pc, int n309, type_309** t309);
+        void FillPCalArray(const std::string& fgroup, const std::string& pol, int pol_idx, multitone_pcal_type* pc, int n309, type_309** t309);
 
         //converts a mk4 channel id into its components, returns true if successful
         bool ExtractChannelInfo(const std::string& ch_name, std::string& fgroup, std::string& sb, std::string& pol, int& index);
