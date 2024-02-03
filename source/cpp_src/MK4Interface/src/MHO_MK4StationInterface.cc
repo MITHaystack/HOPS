@@ -69,6 +69,16 @@ MHO_MK4StationInterface::ExtractStationFile()
         //(3) uvw-coords spline coeff (type_303)
         //(4) phase-cal data (type_309) -- no yet supported here
 
+        //determine the root code;
+        std::size_t last_dot = fStationFile.find_last_of('.');
+        fRootCode = "";
+        if(last_dot != std::string::npos && last_dot < fStationFile.length() - 1)
+        {
+            fRootCode = fStationFile.substr(last_dot + 1);
+            //trim to 6 chars if too long (this shouldn't happen)
+            if(fRootCode.size() > 6){fRootCode.resize(6);}
+        } 
+
         //we do not export the channel-dependent phase spline data e.g.
         //phase spline polynomial coeff (type_302)
         //as this can be constructed from the channel freq * delay spline
@@ -104,18 +114,20 @@ MHO_MK4StationInterface::ExtractStationFile()
         std::string model_start_date = MHO_LegacyDateConverter::ConvertToVexFormat(ldate);
 
         //retrieve the station name/id
-        std::string mk4_id = getstr(&(t300->id), 1);
-        std::string station_id = getstr(t300->intl_id, 2);
-        std::string station_name = getstr(t300->name, 32);
+        fStationName = getstr(&(t300->id), 1);
+        fStationCode = getstr(t300->intl_id, 2);
+        fStationMK4ID = getstr(t300->name, 32);
 
         //tag the station data structure with all the meta data from the type_300
         st_data->Insert(std::string("name"), std::string("station_data"));
-        st_data->Insert(std::string("station_name"), station_name);
-        st_data->Insert(std::string("station_mk4id"), mk4_id);
-        st_data->Insert(std::string("station_code"), station_id);
+        st_data->Insert(std::string("station_name"), fStationName);
+        st_data->Insert(std::string("station_mk4id"), fStationMK4ID);
+        st_data->Insert(std::string("station_code"), fStationCode);
         st_data->Insert(std::string("model_start"), model_start_date);
         st_data->Insert(std::string("nsplines"), fStation->t300->nsplines);
         st_data->Insert(std::string("model_interval"), spline_interval);
+        st_data->Insert(std::string("origin"), std::string("mark4")); //add tag to indicate this was converted from mark4 data
+        st_data->Insert(std::string("root_code"), fRootCode);
 
         //with the exception of the type_302s, the spline data is the same from each channel, so just use ch=0
         std::size_t ch = 0;
@@ -279,12 +291,30 @@ MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
                 std::get<MTPCAL_POL_AXIS>(fFreqGroupPCal[n]).at(p) = pol; //label pol axis
                 FillPCalArray(fgroups[n], pol, p, &(fFreqGroupPCal[n]), n309, t309);
             }
-            std::cout<<"PC ARR = "<< fFreqGroupPCal[n] << std::endl;
         }
         else 
         {
             msg_error("mk4interface", "differing number of pcal tones for each polaization in frequency group: "<< fgroups[n] << eom);
         }
+
+        std::get<MTPCAL_POL_AXIS>(fFreqGroupPCal[n]).Insert(std::string("name"), std::string("polarization"));
+
+        std::get<MTPCAL_TIME_AXIS>(fFreqGroupPCal[n]).Insert(std::string("name"), std::string("time"));
+        std::get<MTPCAL_TIME_AXIS>(fFreqGroupPCal[n]).Insert(std::string("units"), std::string("s"));
+
+        //indicate this is not frequency! no units
+        std::get<MTPCAL_FREQ_AXIS>(fFreqGroupPCal[n]).Insert(std::string("name"), std::string("tone_index"));
+
+
+        //tag this pcal data 
+        fFreqGroupPCal[n].Insert(std::string("name"), std::string("pcal"));
+        fFreqGroupPCal[n].Insert(std::string("frequency_group"), fgroups[n]);
+        fFreqGroupPCal[n].Insert(std::string("station_name"), fStationName);
+        fFreqGroupPCal[n].Insert(std::string("station_mk4id"), fStationMK4ID);
+        fFreqGroupPCal[n].Insert(std::string("station_code"), fStationCode);
+        fFreqGroupPCal[n].Insert(std::string("origin"), std::string("mark4")); //add tag to indicate this was converted from mark4 data
+        fFreqGroupPCal[n].Insert(std::string("sample_period_used"), 1.0); //indicate the sample_period needs rescaling
+        fFreqGroupPCal[n].Insert(std::string("root_code"), fRootCode);
     }
 }
 
@@ -346,11 +376,14 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
         {
             for(ap=0; ap<naps; ap++)
             {
+                double acc_period = t309[ap]->acc_period;
                 uint32_t rc = t309[ap]->chan[ch_loc].acc[ti][0];
                 uint32_t ic = t309[ap]->chan[ch_loc].acc[ti][1];
-                auto ph = ComputePhasor(rc, ic, 1.0, 1.0);
+                //use 1.0 as sample_period since this data is not stored in the station data files 
+                //will have to re-scal this later
+                auto ph = ComputePhasor(rc, ic, acc_period, 1.0); 
                 pc->at(pol_idx, ap, tone_idx) = ph;
-                std::get<MTPCAL_TIME_AXIS>(*pc).at(ap) = ap;
+                std::get<MTPCAL_TIME_AXIS>(*pc).at(ap) = ap*acc_period;
                 
             }
             std::get<MTPCAL_FREQ_AXIS>(*pc).at(tone_idx) = tone_idx;

@@ -92,11 +92,15 @@ class MHO_MK4StationInterface
 
         bool fHaveStation;
         struct mk4_sdata* fStation;
+        std::string fStationName;
+        std::string fStationCode;
+        std::string fStationMK4ID;
 
         //pcal data 
         std::vector< multitone_pcal_type > fFreqGroupPCal; //multitone_pcal_type dims = pol x time x freq
 
         std::string fStationFile;
+        std::string fRootCode;
         std::size_t fNCoeffs;
         std::size_t fNIntervals;
         std::size_t fNCoord;
