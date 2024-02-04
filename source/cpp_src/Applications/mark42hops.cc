@@ -141,7 +141,7 @@ void ConvertStation(const std::string root_file, const std::string& input_file, 
 
 int main(int argc, char** argv)
 {
-    std::string usage = "ConvertMk4Data -i <input_directory> -o <output_directory>";
+    std::string usage = "mark42hops -i <input_directory> -o <output_directory>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
