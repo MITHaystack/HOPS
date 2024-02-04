@@ -370,17 +370,23 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
         int start = chan2start[ch].second;
         int stop = start + chan2ntones[ch].second;
         int channel_start = tone_idx;
-        for(int ti=start; ti < stop; ti++)
+
+        int nt = stop - start;
+        // for(int ti=start; ti < stop; ti++)
+        for(int ti=0; ti < nt; ti++)
         {
             for(ap=0; ap<naps; ap++)
             {
+                #pragma message("TODO FIXME -- tone order switches depending on sideband! must handle this, using LSB ordering.")
                 double acc_period = t309[ap]->acc_period;
-                uint32_t rc = t309[ap]->chan[ch_loc].acc[ti][0];
-                uint32_t ic = t309[ap]->chan[ch_loc].acc[ti][1];
+                uint32_t rc = t309[ap]->chan[ch_loc].acc[ (stop-1) - ti ][0];
+                uint32_t ic = t309[ap]->chan[ch_loc].acc[ (stop-1) - ti ][1];
                 //use 1.0 as sample_period since this data is not stored in the station data files 
-                //will have to re-scal this later
-                auto ph = ComputePhasor(rc, ic, acc_period, 1.0); 
-                pc->at(pol_idx, ap, tone_idx) = ph;
+                //will have to re-scale this later
+                #pragma message("TODO FIXME, sample period is hard coded!!")
+                auto ph = ComputePhasor(rc, ic, acc_period, 1.0/(2.0*32.0*1e6) ); 
+                #pragma message("TODO FIXME, tone phasor conjugation is sideband dependent, this is LSB hardcoded.")
+                pc->at(pol_idx, ap, tone_idx) = -1.0*std::conj(ph);
                 std::get<MTPCAL_TIME_AXIS>(*pc).at(ap) = ap*acc_period;
                 
             }
@@ -489,12 +495,24 @@ MHO_MK4StationInterface::ExtractChannelInfo(const std::string& ch_name, std::str
 std::complex< double > 
 MHO_MK4StationInterface::ComputePhasor(uint32_t real, uint32_t imag, double acc_period, double sample_period)
 {
-    double u, v;
-    if( u < TWO31){u = real;}
-    else{u = real - TWO32;}
+    double u = real;
+    double v = imag;
 
-    if( v < TWO31){v = imag;}
-    else{v = imag - TWO32;}
+    // if( u < TWO31){u = real;}
+    // else{u = real - TWO32;}
+    // 
+    // if( v < TWO31){v = imag;}
+    // else{v = imag - TWO32;}
+
+    if(u > TWO31)
+    {   
+        u -= TWO32;
+    }
+
+    if(v > TWO31)
+    {
+        v -= TWO32;
+    }
 
     //scale such that 1000 = 100% correlation
     //and match SU phase by shifting 180 degrees
