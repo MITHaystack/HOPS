@@ -169,13 +169,15 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
 
             double navg;
             std::size_t seg_start_ap, seg_end_ap;
-
             std::vector< double > pc_mag_segs;
             std::vector< double > pc_phase_segs;
             std::vector< double > pc_delay_segs;
             std::vector< int > seg_start_aps;
             std::vector< int > seg_end_aps;
-            for(std::size_t ap=0; ap < vis_ap_ax->GetSize(); ap++)
+
+            std::size_t ap_start = 0;
+            std::size_t ap_stop = std::min(vis_ap_ax->GetSize(), fPCData->GetDimension(1) );
+            for(std::size_t ap=0; ap < ap_stop; ap++)
             {
                 if(ap % fPCPeriod == 0)
                 {
@@ -199,12 +201,16 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                     {
                         wght = fWeights->at(vis_pp, ch, ap, 0);
                     }
+                    std::cout<<"NTONES, STARTIDX, I = "<<ntones<<", "<<start_idx<<", "<<i<<std::endl;
+                    std::cout<<"pcpol, ap ="<< pc_pol <<", "<<ap<<std::endl;
+                    std::cout<<"PC dims = "<<fPCData->GetDimension(0)<<", "<<fPCData->GetDimension(1)<<","<<fPCData->GetDimension(2)<<std::endl;
+                    std::cout<<"vis dims = "<<in->GetDimension(0)<<", "<<in->GetDimension(1)<<","<<in->GetDimension(2)<<","<<in->GetDimension(3)<<std::endl;
                     fPCWorkspace(i) += wght*( fPCData->at(pc_pol, ap, start_idx+i) ); 
                 }
                 navg += wght; 
 
                 //finish the average, do delay fit on last ap of segment or last ap and append to list
-                if(ap % fPCPeriod == fPCPeriod-1 || ap == vis_ap_ax->GetSize()-1 )
+                if(ap % fPCPeriod == fPCPeriod-1 || (ap == ap_stop-1) )
                 {
                     seg_end_ap = ap+1;
                     for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) /= navg;}
