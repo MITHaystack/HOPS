@@ -593,9 +593,6 @@ void MHO_MultitonePhaseCorrection::RepairMK4PCData(visibility_type* vis)
             std::size_t channel_idx = interval_objs[i]["channel_index"].get<int>();
             std::size_t low = interval_objs[i]["lower_index"].get<int>();
             std::size_t high = interval_objs[i]["upper_index"].get<int>();
-            // std::string key = it.key();
-            // auto range_pair = MHO_IntervalLabelInterface::ExtractIndexesFromKey(key);
-            // int idx_value = it.value().get<int>();
             chanidx2range[channel_idx] = std::make_pair(low, high);
             std::cout<<"CH: "<<channel_idx<<" = ("<<low<<", "<<high<<")"<<std::endl;
         }
@@ -645,9 +642,9 @@ void MHO_MultitonePhaseCorrection::RepairMK4PCData(visibility_type* vis)
             // //which are multiples of the pcal spacing within the channel
         }
 
-        //rescale all the phasors by the sample_period
-        double sample_period = 1.0/(2*bandwidth*1e6);
-        (*fPCData) *= sample_period;
+        // //rescale all the phasors by the sample_period
+        // double sample_period = 1.0/(2*bandwidth*1e6);
+        // (*fPCData) *= sample_period;
 
 
     }
