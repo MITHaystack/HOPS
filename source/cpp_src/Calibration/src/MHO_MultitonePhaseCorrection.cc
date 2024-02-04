@@ -55,6 +55,8 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
         return false;
     }
 
+    RepairMK4PCData();
+
     //loop over polarization in pcal data and pol-products
     //so we can apply the phase-cal to the appropriate pol/channel/ap
     auto pcal_pol_ax = &(std::get<MTPCAL_POL_AXIS>(*fPCData));
@@ -135,78 +137,85 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             std::exit(1);
         }
 
-        //grab the sampler delay associated with this channel
-        std::size_t sampler_delay_index;
-        double sampler_delay = 0.0;
-        bool sd_ok = false;
-        std::string sd_key;
-        if(fStationIndex == 0){sd_key = "ref_sampler_index";}
-        if(fStationIndex == 1){sd_key = "rem_sampler_index";}
-
-        sd_ok = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, sd_key, sampler_delay_index);
-        if(sd_ok && sampler_delay_index < sampler_delays.size())
+        if(ntones == 0)
         {
-            //TODO FIXME -- document units!
-            sampler_delay = 1e-9*(sampler_delays[sampler_delay_index]); //sampler delays are specified in ns
+            msg_error("calibration", "no pcal tones found for channel with sky_freq: "<<sky_freq << eom);
         }
-        else
+        else 
         {
-            sampler_delay = 0.0;
-            msg_warn("calibration", "failed to retrieve sampler delay for station: "<< fMk4ID <<" channel: "<<ch<<"."<<eom);
-        }
+            //grab the sampler delay associated with this channel
+            std::size_t sampler_delay_index;
+            double sampler_delay = 0.0;
+            bool sd_ok = false;
+            std::string sd_key;
+            if(fStationIndex == 0){sd_key = "ref_sampler_index";}
+            if(fStationIndex == 1){sd_key = "rem_sampler_index";}
 
-        //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
-        //TODO FIXME -- make sure the stop/start parameters are accounted for
-        //this should be fine, provided if we trim the pcal data appropriately ahead use here
-
-        double navg;
-        std::size_t seg_start_ap, seg_end_ap;
-
-        std::vector< double > pc_mag_segs;
-        std::vector< double > pc_phase_segs;
-        std::vector< double > pc_delay_segs;
-        std::vector< int > seg_start_aps;
-        std::vector< int > seg_end_aps;
-        for(std::size_t ap=0; ap < vis_ap_ax->GetSize(); ap++)
-        {
-            if(ap % fPCPeriod == 0)
+            sd_ok = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, sd_key, sampler_delay_index);
+            if(sd_ok && sampler_delay_index < sampler_delays.size())
             {
-                //start, clear accumulation, and set tone frequencies
-                navg = 0.0;
-                fPCWorkspace.ZeroArray();
-                for(std::size_t i=0; i<ntones; i++){ workspace_freq_ax->at(i) = tone_freq_ax->at(start_idx + i); }
-                seg_start_ap = ap;
-                seg_end_ap = ap;
+                //TODO FIXME -- document units!
+                sampler_delay = 1e-9*(sampler_delays[sampler_delay_index]); //sampler delays are specified in ns
+            }
+            else
+            {
+                sampler_delay = 0.0;
+                msg_warn("calibration", "failed to retrieve sampler delay for station: "<< fMk4ID <<" channel: "<<ch<<"."<<eom);
             }
 
-            //sum the tone phasors
-            #pragma message("TODO FIXME -- fix the phase cal phasor weights and implement pc_tonemask.")
-            //TODO FIXME -- NOTE!! This implementation assumes all tones are sequential and there are no missing tones!
-            //true for now...but may not be once we add pc_tonemask support
-            double wght;
-            for(std::size_t i=0; i<ntones; i++)
+            //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
+            //TODO FIXME -- make sure the stop/start parameters are accounted for
+            //this should be fine, provided if we trim the pcal data appropriately ahead use here
+
+            double navg;
+            std::size_t seg_start_ap, seg_end_ap;
+
+            std::vector< double > pc_mag_segs;
+            std::vector< double > pc_phase_segs;
+            std::vector< double > pc_delay_segs;
+            std::vector< int > seg_start_aps;
+            std::vector< int > seg_end_aps;
+            for(std::size_t ap=0; ap < vis_ap_ax->GetSize(); ap++)
             {
-                wght = 1.0; //pc weights default to 1
-                if(fWeights != nullptr)
+                if(ap % fPCPeriod == 0)
                 {
-                    wght = fWeights->at(vis_pp, ch, ap, 0);
+                    //start, clear accumulation, and set tone frequencies
+                    navg = 0.0;
+                    fPCWorkspace.ZeroArray();
+                    for(std::size_t i=0; i<ntones; i++){ workspace_freq_ax->at(i) = tone_freq_ax->at(start_idx + i); }
+                    seg_start_ap = ap;
+                    seg_end_ap = ap;
                 }
-                fPCWorkspace(i) += wght*( fPCData->at(pc_pol, ap, start_idx+i) ); 
-            }
-            navg += wght; 
 
-            //finish the average, do delay fit on last ap of segment or last ap and append to list
-            if(ap % fPCPeriod == fPCPeriod-1 || ap == vis_ap_ax->GetSize()-1 )
-            {
-                seg_end_ap = ap+1;
-                for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) /= navg;}
-                double pcal_model[3];
-                FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model);
-                seg_start_aps.push_back(seg_start_ap);
-                seg_end_aps.push_back(seg_end_ap);
-                pc_mag_segs.push_back(pcal_model[0]);
-                pc_phase_segs.push_back(pcal_model[1]);
-                pc_delay_segs.push_back(pcal_model[2]);
+                //sum the tone phasors
+                #pragma message("TODO FIXME -- fix the phase cal phasor weights and implement pc_tonemask.")
+                //TODO FIXME -- NOTE!! This implementation assumes all tones are sequential and there are no missing tones!
+                //true for now...but may not be once we add pc_tonemask support
+                double wght;
+                for(std::size_t i=0; i<ntones; i++)
+                {
+                    wght = 1.0; //pc weights default to 1
+                    if(fWeights != nullptr)
+                    {
+                        wght = fWeights->at(vis_pp, ch, ap, 0);
+                    }
+                    fPCWorkspace(i) += wght*( fPCData->at(pc_pol, ap, start_idx+i) ); 
+                }
+                navg += wght; 
+
+                //finish the average, do delay fit on last ap of segment or last ap and append to list
+                if(ap % fPCPeriod == fPCPeriod-1 || ap == vis_ap_ax->GetSize()-1 )
+                {
+                    seg_end_ap = ap+1;
+                    for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) /= navg;}
+                    double pcal_model[3];
+                    FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model);
+                    seg_start_aps.push_back(seg_start_ap);
+                    seg_end_aps.push_back(seg_end_ap);
+                    pc_mag_segs.push_back(pcal_model[0]);
+                    pc_phase_segs.push_back(pcal_model[1]);
+                    pc_delay_segs.push_back(pcal_model[2]);
+                }
             }
 
             //Now attach the multi-tone phase cal data to each channel
@@ -226,18 +235,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             vis_chan_ax->InsertIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -582,7 +579,7 @@ void MHO_MultitonePhaseCorrection::RepairMK4PCData()
 
         //rescale all the phasors by the sample_period
 
-
+        std::cout<<"MUST REPAIR MK4 PCAL DATA"<<std::endl;
 
     }
 }
