@@ -571,16 +571,37 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
 
 void MHO_MultitonePhaseCorrection::RepairMK4PCData(visibility_type* vis)
 {
+    
+    std::cout<<"MUST REPAIR MK4 PCAL DATA"<<std::endl;
     //only perform this operation if the pcal data originated from mark4 type309s
     std::string data_origin;
     fPCData->Retrieve("origin", data_origin);
     if(data_origin == "mark4")
     {
+        std::cout<<"REPAIRING MK4 PCAL"<<std::endl;
+        //first loop over the pcal freq axis and extract the channel indexes and ranges 
+        auto pc_tone_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCData));
+        std::map< std::size_t, std::pair<std::size_t, std::size_t> > chanidx2range;
+        
+        auto interval_objs = pc_tone_ax->GetMatchingIntervalLabels("channel_index");
+        std::cout<<"n interval objs = "<<interval_objs.size()<<std::endl;
+        for(std::size_t i=0; i<interval_objs.size(); i++) 
+        {
+            std::size_t channel_idx = interval_objs[i]["channel_index"].get<int>();
+            std::size_t low = interval_objs[i]["lower_index"].get<int>();
+            std::size_t high = interval_objs[i]["upper_index"].get<int>();
+            // std::string key = it.key();
+            // auto range_pair = MHO_IntervalLabelInterface::ExtractIndexesFromKey(key);
+            // int idx_value = it.value().get<int>();
+            chanidx2range[channel_idx] = std::make_pair(low, high);
+            std::cout<<"CH: "<<channel_idx<<" = ("<<low<<", "<<high<<")"<<std::endl;
+        }
+
+
         //fix the tone frequency axis (deduce this from the channel boundaries and pcal tone spacing)
 
         //rescale all the phasors by the sample_period
 
-        std::cout<<"MUST REPAIR MK4 PCAL DATA"<<std::endl;
 
     }
 }
