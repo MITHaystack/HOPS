@@ -211,16 +211,25 @@ class MHO_SelectRepack:
                 {
                     if( fSelection.size() != 0 )
                     {
-                        //it doesn't make sense to copy the interval labels
-                        //since we have changed the organization of this axis
+                        //copy all of the axis meta data
+                        axis2.CopyTags(axis1);
+
+                        // //then remove the index and interval labels
+                        axis2.ClearIndexLabels();
+                        axis2.ClearIntervalLabels();
+
                         for(std::size_t i=0; i<fSelection.size();i++)
                         {
+                            std::cout<<"copy index labels for index remap: "<<fSelection[i]<<" -> "<<i<<std::endl;
                             axis2(i) = axis1( fSelection[i] );
+                            mho_json obj = axis1.GetLabelObject( fSelection[i] );
+                            axis2.SetLabelObject(obj, i);
                         }
-                        axis2.CopyTags(axis1); //copy the axis tags
 
-                        #pragma message("TODO FIXME -- ensure that only the proper index tags are selected/copied here.")
-                        //axis2.CopyIntervalLabels(axis1); //copy labels
+                        #pragma message("TODO FIXME -- ensure that only the proper interval tags are selected/copied here.")
+                        //it doesn't make sense to copy the original interval labels since we have changed the organization of this axis
+                        //what ought to do is figure out the overlap between previous interval labels and items of the new axis 
+                        //and create new overlapping intervals with the appropriate tags.
                     }
                     else
                     {
