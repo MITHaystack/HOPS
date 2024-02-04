@@ -292,14 +292,14 @@ class MHO_IntervalLabelInterface
 
         MHO_IntervalLabelInterface():fIntervalLabelObjectPtr(nullptr)
         {
-            fTokenizer.SetDelimiter(",");
+            // fTokenizer.SetDelimiter(",");
             fDummy["lower_index"] = -1; //dummy object for invalid returns, always has an invalid index
             fDummy["upper_index"] = -1; //dummy object for invalid returns, always has an invalid index
         };
 
         MHO_IntervalLabelInterface(const MHO_IntervalLabelInterface& copy)
         {
-            fTokenizer.SetDelimiter(",");
+            // fTokenizer.SetDelimiter(",");
             fDummy["lower_index"] = -1; //dummy object for invalid returns, always has an invalid index
             fDummy["upper_index"] = -1; //dummy object for invalid returns, always has an invalid index
             fIntervalLabelObjectPtr = copy.fIntervalLabelObjectPtr;
@@ -316,6 +316,8 @@ class MHO_IntervalLabelInterface
         {
             std::string ikey = ConstructKey(lower_index, upper_index);
             (*fIntervalLabelObjectPtr)[ikey][key] = value;
+            (*fIntervalLabelObjectPtr)[ikey]["lower_index"] = lower_index;
+            (*fIntervalLabelObjectPtr)[ikey]["upper_index"] = upper_index;
         }
 
         template< typename XValueType >
@@ -395,7 +397,7 @@ class MHO_IntervalLabelInterface
             return obj;
         }
 
-        std::string ConstructKey(std::size_t lower_index, std::size_t upper_index) const
+        static std::string ConstructKey(std::size_t lower_index, std::size_t upper_index)
         {
             if(lower_index <= upper_index)
             {
@@ -410,45 +412,40 @@ class MHO_IntervalLabelInterface
 
         bool ExtractIndexesFromKey(const std::string& key, std::size_t& lower_index, std::size_t& upper_index)
         {
-            fTokens.clear();
-            fTokenizer.SetString(&key);
-            fTokenizer.GetTokens(&fTokens);
-            if(fTokens.size() != 2 ){return false;}
-            lower_index = std::stoul(fTokens[0]);
-            upper_index = std::stoul(fTokens[1]);
+            lower_index = 0;
+            upper_index = 0;
+            if(key.find(',') == std::string::npos){return false;}
+            auto idx_pair = ExtractIndexesFromKey(key);
+            lower_index = idx_pair.first;
+            upper_index = idx_pair.second;
             if(upper_index < lower_index)
             {
-                //flip them
-                lower_index = upper_index;
-                upper_index = std::stoul(fTokens[0]);
+                lower_index = idx_pair.second;
+                upper_index = idx_pair.first; 
             }
             return true;
         }
 
-        std::pair< std::size_t, std::size_t> ExtractIndexesFromKey(const std::string& key)
+        static std::pair< std::size_t, std::size_t> ExtractIndexesFromKey(const std::string& key)
         {
             std::size_t lower_index = 0;
             std::size_t upper_index = 0;
-            fTokens.clear();
-            fTokenizer.SetString(&key);
-            fTokenizer.GetTokens(&fTokens);
-            if(fTokens.size() != 2 ){std::make_pair(0,0);}
-            lower_index = std::stoul(fTokens[0]);
-            upper_index = std::stoul(fTokens[1]);
+            size_t pos = key.find(',');
+            if(pos == std::string::npos){return std::make_pair(lower_index,upper_index);}
+            std::string first = key.substr(0, pos);
+            std::string second = key.substr(pos + 1);
+            lower_index = std::stoul(first);
+            upper_index = std::stoul(second);
             if(upper_index < lower_index)
             {
                 //flip them
-                lower_index = upper_index;
-                upper_index = std::stoul(fTokens[0]);
+                std::make_pair(upper_index, lower_index);
             }
             return std::make_pair(lower_index, upper_index);
         }
 
     private:
 
-        MHO_Tokenizer fTokenizer;
-        std::vector< std::string > fTokens;
-        std::size_t fCurrentSize;
         mho_json* fIntervalLabelObjectPtr; //array of mho_json objects holding key:value pairs
         mho_json fDummy;
 };
