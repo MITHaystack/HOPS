@@ -55,7 +55,7 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
         return false;
     }
 
-    RepairMK4PCData();
+    RepairMK4PCData(in);
 
     //loop over polarization in pcal data and pol-products
     //so we can apply the phase-cal to the appropriate pol/channel/ap
@@ -118,9 +118,9 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         std::string net_sideband;
 
         bool key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
-        if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch << "." << eom); }
+        if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch << " with sky_freq: "<<sky_freq << eom); }
         key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, fBandwidthKey, bandwidth);
-        if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch << "." << eom);}
+        if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch << " with sky_freq: "<<sky_freq << eom);}
 
         //figure out the upper/lower frequency limits for this channel
         double lower_freq, upper_freq;
@@ -139,7 +139,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
 
         if(ntones == 0)
         {
-            msg_error("calibration", "no pcal tones found for channel with sky_freq: "<<sky_freq << eom);
+            msg_error("calibration", "no pcal tones found for channel: " << ch << " with sky_freq: "<<sky_freq << eom);
         }
         else 
         {
@@ -569,8 +569,9 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
 
 
 
-void MHO_MultitonePhaseCorrection::RepairMK4PCData()
+void MHO_MultitonePhaseCorrection::RepairMK4PCData(visibility_type* vis)
 {
+    //only perform this operation if the pcal data originated from mark4 type309s
     std::string data_origin;
     fPCData->Retrieve("origin", data_origin);
     if(data_origin == "mark4")

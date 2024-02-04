@@ -86,7 +86,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
 
         //mk4 converted pcal data does not have tone-frequencies
         //so we have to repair the data first (also rescale by sample period)
-        void RepairMK4PCData();
+        void RepairMK4PCData(visibility_type* vis);
 
         //constants
         std::complex<double> fImagUnit;
