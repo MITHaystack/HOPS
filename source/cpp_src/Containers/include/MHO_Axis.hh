@@ -15,9 +15,8 @@
 #include "MHO_Meta.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_VectorContainer.hh"
-// #include "MHO_Interval.hh"
-// #include "MHO_IntervalLabel.hh"
-// #include "MHO_IntervalLabelTree.hh"
+#include "MHO_IndexLabelInterface.hh"
+#include "MHO_IntervalLabelInterface.hh"
 
 namespace hops
 {
@@ -90,6 +89,16 @@ class MHO_Axis:
         //      MHO_VectorContainer<XValueType>::Resize(&dim);
         //      MHO_IndexLabelInterface::ResizeIndexLabels(dim);
         // }
+
+        virtual void CopyTags(const MHO_Axis& rhs)
+        {
+            if(this != &rhs && !(rhs.fObject.empty()) )
+            {
+                this->fObject = rhs.fObject;
+                if( this->fObject.contains("index_labels") ){this->SetIndexLabelObject( &(this->fObject["index_labels"]) ); }
+                if( this->fObject.contains("interval_labels") ){this->SetIntervalLabelObject( &(this->fObject["interval_labels"]) ); }
+            }
+        }
 
 
         using MHO_VectorContainer<XValueType>::Resize;

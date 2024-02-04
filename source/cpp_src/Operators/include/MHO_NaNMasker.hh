@@ -37,7 +37,7 @@ class MHO_NaNMasker: public MHO_UnaryFunctor< XArrayType >
             if( MHO_CheckForNaN< typename XArrayType::value_type >::isnan(*input) )
             {
                 *input = 0.0; //zero out
-                msg_debug("calibration", "Replacing NaN with 0.0." << eom); //TODO more debug?
+                //msg_debug("calibration", "Replacing NaN with 0.0." << eom); //TODO more debug?
             }
         }
 
@@ -47,7 +47,7 @@ class MHO_NaNMasker: public MHO_UnaryFunctor< XArrayType >
             if( MHO_CheckForNaN< typename XArrayType::value_type >::isnan(*input) )
             {
                 *output = 0.0; //zero out
-                msg_debug("calibration", "Replacing NaN with 0.0." << eom); //TODO more debug?
+                //msg_debug("calibration", "Replacing NaN with 0.0." << eom); //TODO more debug?
             }
             else{ *output = *input; } //pass through
         }

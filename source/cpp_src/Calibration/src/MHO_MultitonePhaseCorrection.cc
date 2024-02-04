@@ -606,37 +606,55 @@ void MHO_MultitonePhaseCorrection::RepairMK4PCData(visibility_type* vis)
             std::size_t start = it->second.first; //tone start index
             std::size_t stop = it->second.second; //tone stop index
 
-            //get the channel frequency infor and range
-            sky_freq = (*chan_ax)(ch); //get the sky frequency of this channel
-            bandwidth = 0;
-            net_sideband;
-            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
-            if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch << " with sky_freq: "<<sky_freq << eom); }
-            key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fBandwidthKey, bandwidth);
-            if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch << " with sky_freq: "<<sky_freq << eom);}
-
-            //figure out the upper/lower frequency limits for this channel
-            double lower_freq, upper_freq;
-            std::size_t start_idx, ntones;
-            DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
-
-            //figure out the number of tones in this channel (better match stop-start)
-            int c = std::floor(lower_freq/pcal_spacing); 
-            if( (lower_freq - c*pcal_spacing) > 0 ){c += 1;} //first tone in channel is c*pcal_spacing
-            int d = std::floor(upper_freq/pcal_spacing);
-            if( (upper_freq - d*pcal_spacing) > 0 ){d += 1;} //d is first tone just beyond the channel
-
-            if( (d - c) == (stop - start) ) //number of tones matches
+            //make sure to grab the channel that matches the channel index
+            //we need to do this in case the 'freqs' command has been applied to sub-select channels
+            std::size_t ch_idx = 0;
+            for(ch_idx=0; ch_idx<chan_ax->GetSize(); ch_idx++)
             {
-                std::size_t ntones = stop - start;
-                for(std::size_t ti=0; ti < ntones; ti++)
+                int chid = -1;
+                chan_ax->RetrieveIndexLabelKeyValue(ch_idx, "channel", chid);
+                if(chid == ch)
                 {
-                    //loop over the tone indexes and figure out the tone frequencies 
-                    //which are multiples of the pcal spacing within the channel
-                    pc_tone_ax->at(start+ti) = (c+ti)*pcal_spacing; 
+                    std::string channel_label;
+                    chan_ax->RetrieveIndexLabelKeyValue(ch_idx, "channel_label", channel_label);
+                    std::cout<<"channel index = "<<ch<<" = "<<chid<<" physical array index = "<<ch_idx<<" with chan label = "<<channel_label<<std::endl;
+                    break;
                 }
             }
 
+            if( ch_idx < chan_ax->GetSize() ) //will be equal to size if channel not found
+            {
+                //get the channel frequency info and range
+                sky_freq = (*chan_ax)(ch_idx); //get the sky frequency of this channel
+                bandwidth = 0;
+                net_sideband;
+                bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch_idx, fSidebandLabelKey, net_sideband);
+                if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch_idx << " with sky_freq: "<<sky_freq << eom); }
+                key_present = chan_ax->RetrieveIndexLabelKeyValue(ch_idx, fBandwidthKey, bandwidth);
+                if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch_idx << " with sky_freq: "<<sky_freq << eom);}
+
+                //figure out the upper/lower frequency limits for this channel
+                double lower_freq, upper_freq;
+                std::size_t start_idx, ntones;
+                DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
+
+                //figure out the number of tones in this channel (better match stop-start)
+                int c = std::floor(lower_freq/pcal_spacing); 
+                if( (lower_freq - c*pcal_spacing) > 0 ){c += 1;} //first tone in channel is c*pcal_spacing
+                int d = std::floor(upper_freq/pcal_spacing);
+                if( (upper_freq - d*pcal_spacing) > 0 ){d += 1;} //d is first tone just beyond the channel
+
+                if( (d - c) == (stop - start) ) //number of tones matches
+                {
+                    std::size_t ntones = stop - start;
+                    for(std::size_t ti=0; ti < ntones; ti++)
+                    {
+                        //loop over the tone indexes and figure out the tone frequencies 
+                        //which are multiples of the pcal spacing within the channel
+                        pc_tone_ax->at(start+ti) = (c+ti)*pcal_spacing; 
+                    }
+                }
+            }
         }
 
         //rescale all the phasors by the sample_period
