@@ -201,10 +201,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                     {
                         wght = fWeights->at(vis_pp, ch, ap, 0);
                     }
-                    std::cout<<"NTONES, STARTIDX, I = "<<ntones<<", "<<start_idx<<", "<<i<<std::endl;
-                    std::cout<<"pcpol, ap ="<< pc_pol <<", "<<ap<<std::endl;
-                    std::cout<<"PC dims = "<<fPCData->GetDimension(0)<<", "<<fPCData->GetDimension(1)<<","<<fPCData->GetDimension(2)<<std::endl;
-                    std::cout<<"vis dims = "<<in->GetDimension(0)<<", "<<in->GetDimension(1)<<","<<in->GetDimension(2)<<","<<in->GetDimension(3)<<std::endl;
                     fPCWorkspace(i) += wght*( fPCData->at(pc_pol, ap, start_idx+i) ); 
                 }
                 navg += wght; 
@@ -577,8 +573,7 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
 
 void MHO_MultitonePhaseCorrection::RepairMK4PCData(visibility_type* vis)
 {
-    std::cout<<"MUST REPAIR MK4 PCAL DATA"<<std::endl;
-
+    #pragma message("TODO FIXME -- fix hardcoded pcal spacing!!")
     double pcal_spacing = 5.0; //TODO FIXME HARDCODED PCAL SPACING
 
     //only perform this operation if the pcal data originated from mark4 type309s
@@ -586,21 +581,18 @@ void MHO_MultitonePhaseCorrection::RepairMK4PCData(visibility_type* vis)
     fPCData->Retrieve("origin", data_origin);
     if(data_origin == "mark4")
     {
-        std::cout<<"REPAIRING MK4 PCAL"<<std::endl;
         //first loop over the pcal freq axis and extract the channel indexes and ranges 
         auto pc_tone_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCData));
         auto chan_ax = &(std::get<CHANNEL_AXIS>(*vis));
         std::map< std::size_t, std::pair<std::size_t, std::size_t> > chanidx2range;
         
         auto interval_objs = pc_tone_ax->GetMatchingIntervalLabels("channel_index");
-        std::cout<<"n interval objs = "<<interval_objs.size()<<std::endl;
         for(std::size_t i=0; i<interval_objs.size(); i++) 
         {
             std::size_t channel_idx = interval_objs[i]["channel_index"].get<int>();
             std::size_t low = interval_objs[i]["lower_index"].get<int>();
             std::size_t high = interval_objs[i]["upper_index"].get<int>();
             chanidx2range[channel_idx] = std::make_pair(low, high);
-            std::cout<<"CH: "<<channel_idx<<" = ("<<low<<", "<<high<<")"<<std::endl;
         }
 
         double sky_freq = 0;
@@ -634,24 +626,22 @@ void MHO_MultitonePhaseCorrection::RepairMK4PCData(visibility_type* vis)
             int d = std::floor(upper_freq/pcal_spacing);
             if( (upper_freq - d*pcal_spacing) > 0 ){d += 1;} //d is first tone just beyond the channel
 
-            std::cout<<"C = "<<c<<" D = "<<d<<std::endl;
-            std::cout<<"NTONES = "<<d-c<<" =? "<<stop - start<<std::endl;
             if( (d - c) == (stop - start) ) //number of tones matches
             {
                 std::size_t ntones = stop - start;
                 for(std::size_t ti=0; ti < ntones; ti++)
                 {
+                    //loop over the tone indexes and figure out the tone frequencies 
+                    //which are multiples of the pcal spacing within the channel
                     pc_tone_ax->at(start+ti) = (c+ti)*pcal_spacing; 
                 }
             }
-            // //loop over the tone indexes and figure out the tone frequencies 
-            // //which are multiples of the pcal spacing within the channel
+
         }
 
-        // //rescale all the phasors by the sample_period
-        // double sample_period = 1.0/(2*bandwidth*1e6);
-        // (*fPCData) *= sample_period;
-
+        //rescale all the phasors by the sample_period
+        double sample_period = 1.0/(2.0*bandwidth*1e6);
+        (*fPCData) *= sample_period;
 
     }
 }

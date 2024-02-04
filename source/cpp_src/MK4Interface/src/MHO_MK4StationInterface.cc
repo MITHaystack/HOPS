@@ -326,6 +326,7 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
     std::map< int, std::pair< int, int > > chan2ntones;
     std::map< int, std::pair< int, int > > chan2start;
     std::map< int, std::string > chan2name;
+    std::map< int, std::string > chan2sideband;
     std::set< int > channel_idx_set;
     //just use first AP
     int ap = 0;
@@ -352,6 +353,7 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
             chan2ntones[idx] = std::make_pair(ch, count);
             chan2start[idx] = std::make_pair(ch, start);
             chan2name[idx] = ch_name;
+            chan2sideband[idx] = sb;
         }
     }
     
@@ -370,23 +372,27 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
         int start = chan2start[ch].second;
         int stop = start + chan2ntones[ch].second;
         int channel_start = tone_idx;
+        std::string sb = chan2sideband[ch];
 
         int nt = stop - start;
-        // for(int ti=start; ti < stop; ti++)
         for(int ti=0; ti < nt; ti++)
         {
+            #pragma message("TODO FIXME -- check 309 tone order and conjugation for USB data.")
+            int acc_idx = start + ti;  //USB should be: start + ti?
+            if(sb == "L"){acc_idx = (stop-1) - ti;} //tone order for LSB channels
             for(ap=0; ap<naps; ap++)
             {
-                #pragma message("TODO FIXME -- tone order switches depending on sideband! must handle this, using LSB ordering.")
                 double acc_period = t309[ap]->acc_period;
-                uint32_t rc = t309[ap]->chan[ch_loc].acc[ (stop-1) - ti ][0];
-                uint32_t ic = t309[ap]->chan[ch_loc].acc[ (stop-1) - ti ][1];
+                uint32_t rc = t309[ap]->chan[ch_loc].acc[ acc_idx ][0];
+                uint32_t ic = t309[ap]->chan[ch_loc].acc[ acc_idx ][1];
                 //use 1.0 as sample_period since this data is not stored in the station data files 
-                //will have to re-scale this later
-                #pragma message("TODO FIXME, sample period is hard coded!!")
-                auto ph = ComputePhasor(rc, ic, acc_period, 1.0/(2.0*32.0*1e6) ); 
-                #pragma message("TODO FIXME, tone phasor conjugation is sideband dependent, this is LSB hardcoded.")
-                pc->at(pol_idx, ap, tone_idx) = -1.0*std::conj(ph);
+                //will have to re-scale this later (when we have access to channel bandwidth in multitone pcal application)
+                // auto ph = ComputePhasor(rc, ic, acc_period, 1.0/(2.0*32.0*1e6) );
+                auto ph = ComputePhasor(rc, ic, acc_period, 1.0 );
+
+                //LSB tone's are flipped and conjugated (we ignore 2012 sign flip)
+                if(sb == "L"){ph = -1.0*std::conj(ph);}
+                pc->at(pol_idx, ap, tone_idx) = ph;
                 std::get<MTPCAL_TIME_AXIS>(*pc).at(ap) = ap*acc_period;
                 
             }
