@@ -291,11 +291,13 @@ void MHO_BasicFringeFitter::Initialize()
         //configure the fringe-peak interpolator
         bool optimize_closure_flag = false;
         bool is_oc_set = fParameterStore.Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag );
+        double frt_offset = fParameterStore.GetAs<double>("/config/frt_offset");
         //NOTE: the optimize_closure_flag has no effect on fringe-phase when 
         //using the 'simul' algorithm, which is currently the only one implemented
         //This is also true of the legacy code 'simul' implementation.
         if(optimize_closure_flag){fPeakInterpolator.EnableOptimizeClosure();}
         fPeakInterpolator.SetReferenceFrequency(ref_freq);
+        fPeakInterpolator.SetReferenceTimeOffset(frt_offset);
         fPeakInterpolator.SetSBDArray(sbd_data);
         fPeakInterpolator.SetWeights(wt_data);
 

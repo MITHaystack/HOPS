@@ -282,7 +282,7 @@ MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
             fFreqGroupPCal[n].Resize(npols, naps, total_ntones);
             fFreqGroupPCal[n].ZeroArray();
 
-            std::cout<<"PCAL DATA ARRAY SIZE = ("<<npols<<", "<<naps<<", "<<total_ntones<<")"<<std::endl;
+            msg_debug("mk4interface", "constructing a pcal data from type_309s with dimensions ("<<npols<<", "<<naps<<", "<<total_ntones<<")"<< eom );
 
             //fill the pcal data with the tone phasors
             for(std::size_t p=0; p<pol_info.size(); p++)
@@ -396,7 +396,8 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
                 std::get<MTPCAL_TIME_AXIS>(*pc).at(ap) = ap*acc_period;
                 
             }
-            std::get<MTPCAL_FREQ_AXIS>(*pc).at(tone_idx) = tone_idx;
+            //values are meaningless because the type309s do not carry tone frequency information;
+            std::get<MTPCAL_FREQ_AXIS>(*pc).at(tone_idx) = 0; 
             tone_idx++;
         }
         int channel_stop = tone_idx;
@@ -503,22 +504,8 @@ MHO_MK4StationInterface::ComputePhasor(uint32_t real, uint32_t imag, double acc_
 {
     double u = real;
     double v = imag;
-
-    // if( u < TWO31){u = real;}
-    // else{u = real - TWO32;}
-    // 
-    // if( v < TWO31){v = imag;}
-    // else{v = imag - TWO32;}
-
-    if(u > TWO31)
-    {   
-        u -= TWO32;
-    }
-
-    if(v > TWO31)
-    {
-        v -= TWO32;
-    }
+    if(u > TWO31){u -= TWO32;}
+    if(v > TWO31){v -= TWO32;}
 
     //scale such that 1000 = 100% correlation
     //and match SU phase by shifting 180 degrees

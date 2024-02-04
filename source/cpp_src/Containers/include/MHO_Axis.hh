@@ -75,21 +75,7 @@ class MHO_Axis:
 
         virtual ~MHO_Axis(){};
 
-        //have to make base class functions visible
-
-        // //resize functions
-        // virtual void Resize(const std::size_t* dim)
-        // {
-        //     MHO_VectorContainer<XValueType>::Resize(dim);
-        //     MHO_IndexLabelInterface::ResizeIndexLabels(dim[0]);
-        // }
-        //
-        // virtual void Resize(std::size_t dim)
-        // {
-        //      MHO_VectorContainer<XValueType>::Resize(&dim);
-        //      MHO_IndexLabelInterface::ResizeIndexLabels(dim);
-        // }
-
+        //overload the CopyTags function to get special treatment of the index/interval labels
         virtual void CopyTags(const MHO_Axis& rhs)
         {
             if(this != &rhs && !(rhs.fObject.empty()) )
@@ -164,79 +150,6 @@ class MHO_Axis:
             }
             return false;
         }
-
-        //index selection from matching label values (e.g. gets the indices for
-        //which column is tagged with "channel_label":"a" etc.)
-        //extra dumb brute force, TODO make me smarter
-        // template< typename XLabelValueType >
-        // std::vector< std::size_t >
-        // SelectMatchingIndexesByLabelValue(const std::string& label_key, const XLabelValueType& label_value)
-        // {
-        //     std::vector< std::size_t > matching_idx;
-        //     for(std::size_t i=0; i < this->GetSize(); i++)
-        //     {
-        //         std::vector< MHO_IntervalLabel > labels;
-        //         labels = this->GetIntervalsWhichIntersect(i);
-        //         for(std::size_t j=0; j < labels.size(); j++)
-        //         {
-        //             XLabelValueType value;
-        //             if(labels[j].HasKey(label_key))
-        //             {
-        //                 labels[j].Retrieve(label_key, value);
-        //                 if(value == label_value){matching_idx.push_back(i);}
-        //             }
-        //         }
-        //     }
-        //     return matching_idx;
-        // }
-
-        //collect all indices which match any value in the set
-        // template< typename XLabelValueType >
-        // std::vector< std::size_t >
-        // SelectMatchingIndexesByLabelValue(const std::string& label_key, const std::set<XLabelValueType>& label_values)
-        // {
-        //     std::vector< std::size_t > matching_idx;
-        //     std::set< std::size_t > idx;
-        //     for(std::size_t i=0; i < this->GetSize(); i++)
-        //     {
-        //         std::vector< MHO_IntervalLabel > labels;
-        //         labels = this->GetIntervalsWhichIntersect(i);
-        //         for(std::size_t j=0; j<labels.size(); j++)
-        //         {
-        //             XLabelValueType value;
-        //             if(labels[j].HasKey(label_key))
-        //             {
-        //                 labels[j].Retrieve(label_key, value);
-        //                 if( label_values.find(value) != label_values.end() ){idx.insert(i);}
-        //             }
-        //         }
-        //     }
-        //     std::copy(idx.begin(), idx.end(), std::inserter(matching_idx, matching_idx.end()));
-        //     return matching_idx;
-        // }
-
-
-        // template< typename XLabelValueType >
-        // void CollectAxisElementLabelValues(const std::string& label_key, std::vector< XLabelValueType >& label_values )
-        // {
-        //     label_values.clear();
-        //     for(std::size_t i=0; i < this->GetSize(); i++)
-        //     {
-        //         std::vector< MHO_IntervalLabel > labels;
-        //         labels = this->GetIntervalsWhichIntersect(i);
-        //         for(std::size_t j=0; j < labels.size(); j++)
-        //         {
-        //             XLabelValueType value;
-        //             if(labels[j].HasKey(label_key))
-        //             {
-        //                 labels[j].Retrieve(label_key, value);
-        //                 label_values.push_back(value);
-        //                 break;
-        //             }
-        //         }
-        //     }
-        // }
-
 
         virtual uint64_t GetSerializedSize() const override
         {

@@ -617,12 +617,11 @@ void MHO_MultitonePhaseCorrection::RepairMK4PCData(visibility_type* vis)
                 {
                     std::string channel_label;
                     chan_ax->RetrieveIndexLabelKeyValue(ch_idx, "channel_label", channel_label);
-                    std::cout<<"channel index = "<<ch<<" = "<<chid<<" physical array index = "<<ch_idx<<" with chan label = "<<channel_label<<std::endl;
                     break;
                 }
             }
 
-            if( ch_idx < chan_ax->GetSize() ) //will be equal to size if channel not found
+            if( ch_idx < chan_ax->GetSize() ) //will be equal to chan_ax size if channel not found
             {
                 //get the channel frequency info and range
                 sky_freq = (*chan_ax)(ch_idx); //get the sky frequency of this channel

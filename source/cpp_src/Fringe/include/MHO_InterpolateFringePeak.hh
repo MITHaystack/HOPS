@@ -33,6 +33,7 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         void DisableOptimizeClosure(){fRot.SetOptimizeClosureFalse();}
         
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
+        void SetReferenceTimeOffset(double frt_offset){fFRTOffset = frt_offset;}
         void SetMaxBins(int sbd_max, int mbd_max, int dr_max);
 
         void SetSBDArray(const visibility_type* sbd_arr){fSBDArray = sbd_arr;}
@@ -57,6 +58,7 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         int fSBDMaxBin;
 
         double fRefFreq;
+        double fFRTOffset;
         double fTotalSummedWeights;
         const visibility_type* fSBDArray;
         const weight_type* fWeights;
