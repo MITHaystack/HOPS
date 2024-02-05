@@ -1,7 +1,6 @@
 #ifndef MHO_BasicFringeFitter_HH__
 #define MHO_BasicFringeFitter_HH__
 
-#include "MHO_Tokenizer.hh"
 #include "MHO_FringeFitter.hh"
 
 #include "MHO_ContainerDefinitions.hh"
@@ -59,17 +58,11 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         weight_type* wt_data;
         visibility_type* sbd_data;
 
+        //ovex info
         mho_json fVexInfo;
-        // mho_json fControlFormat;
-        // mho_json fControlStatements;
 
-        //control hacks
-        mho_json fDataSelectFormat;
+        //plot data for output
         mho_json fPlotData;
-
-        //utility 
-        MHO_Tokenizer fTokenizer;
-
 
         //ionosphere fitting functionality 
         int rjc_ion_search();
