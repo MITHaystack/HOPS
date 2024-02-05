@@ -21,12 +21,6 @@
 #include "MHO_VexInfoExtractor.hh"
 #include "MHO_InterpolateFringePeak.hh"
 
-
-//experimental ion phase correction
-#include "MHO_IonosphericPhaseCorrection.hh"
-#include "MHO_MathUtilities.hh"
-//#define ION_EXP
-
 namespace hops
 {
 
@@ -207,39 +201,21 @@ void MHO_BasicFringeFitter::PreRun()
 
 void MHO_BasicFringeFitter::Run()
 {
-
-    bool do_ion = false;
-    // #ifdef ION_EXP 
-    //     do_ion = true;
-    // #endif
-
     bool is_finished = fParameterStore->GetAs<bool>("/status/is_finished");
     bool skipped = fParameterStore->GetAs<bool>("/status/skipped");
     if( !is_finished  && !skipped) //execute if we are not finished and are not skipping
     {
-        if(!do_ion)
-        {
-            //execute the basic fringe search algorithm
-            //basic_fringe_search();
-            coarse_fringe_search();
-            interpolate_peak();
-            
-            // MHO_BasicFringeUtilities::basic_fringe_search(fContainerStore, fParameterStore);
-            fParameterStore->Set("/status/is_finished", true);
-            //have sampled all grid points, find the solution and finalize
-            //calculate the fringe properties
-            MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
-        }
-        // else 
-        // {
-        //     rjc_ion_search();
-        //     fParameterStore->Set("/status/is_finished", true);
-        //     //have sampled all grid points, find the solution and finalize
-        //     //calculate the fringe properties
-        //     MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
-        // }
+        //execute the basic fringe search algorithm
+        //basic_fringe_search();
+        coarse_fringe_search();
+        interpolate_peak();
+        
+        // MHO_BasicFringeUtilities::basic_fringe_search(fContainerStore, fParameterStore);
+        fParameterStore->Set("/status/is_finished", true);
+        //have sampled all grid points, find the solution and finalize
+        //calculate the fringe properties
+        MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
     }
-
 }
 
 void MHO_BasicFringeFitter::PostRun()
