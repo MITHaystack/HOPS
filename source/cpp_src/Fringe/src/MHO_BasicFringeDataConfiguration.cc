@@ -400,6 +400,13 @@ MHO_BasicFringeDataConfiguration::sanity_check(MHO_ParameterStore* paramStore)
 }
 
 
+bool 
+MHO_BasicFringeDataConfiguration::need_ion_search(std::string control_file)
+{
+    return false;
+}
+
+
 //more helper functions
 void
 MHO_BasicFringeDataConfiguration::configure_visibility_data(MHO_ContainerStore* store)

@@ -47,6 +47,16 @@ int main(int argc, char** argv)
     int parse_status = MHO_BasicFringeDataConfiguration::parse_command_line(argc, argv, fringeData.GetParameterStore() );
     if(parse_status != 0){msg_fatal("main", "could not parse command line options." << eom); std::exit(1);}
 
+    //Unlike hops3 we don't want to default to using the ionospheric fringe fitter unless it is actually needed.
+    //So in order to detect if ionospheric fitting is required we have to do a quick pre-pass/parse of the control 
+    //file to look for any 'ion' keywords.
+    std::string control_file = fringeData.GetParameterStore()->GetAs<std::string>("/cmdline/control_file");
+    bool do_ion = MHO_BasicFringeDataConfiguration::need_ion_search(control_file);
+
+
+
+    
+
     MHO_FringeFitter* ffit;
     ffit = new MHO_BasicFringeFitter(fringeData);
     //ffit = new MHO_IonosphericFringeFitter();
