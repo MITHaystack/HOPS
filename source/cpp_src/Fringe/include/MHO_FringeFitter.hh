@@ -35,12 +35,6 @@ class MHO_FringeFitter
 {
     public:
 
-
-        // MHO_FringeFitter()
-        // {
-        //     fOperatorBuildManager = nullptr;
-        // };
-
         MHO_FringeFitter(MHO_FringeData* data):
             fFringeData(data)
         {
