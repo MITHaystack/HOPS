@@ -42,15 +42,14 @@ int main(int argc, char** argv)
     MHO_Snapshot::GetInstance().AcceptAllKeys();
     MHO_Snapshot::GetInstance().SetExecutableName(std::string("ffit"));
     
-    MHO_FringeData data;
-    MHO_FringeFitter* ffit;
-    
-    ffit = new MHO_BasicFringeFitter(data);
+    MHO_FringeData fringeData;
 
-    //ffit = new MHO_IonosphericFringeFitter();
-    
-    int parse_status = MHO_BasicFringeDataConfiguration::parse_command_line(argc, argv, ffit->GetParameterStore() );
+    int parse_status = MHO_BasicFringeDataConfiguration::parse_command_line(argc, argv, fringeData.GetParameterStore() );
     if(parse_status != 0){msg_fatal("main", "could not parse command line options." << eom); std::exit(1);}
+
+    MHO_FringeFitter* ffit;
+    ffit = new MHO_BasicFringeFitter(fringeData);
+    //ffit = new MHO_IonosphericFringeFitter();
     
     #ifdef USE_PYBIND11
     // start the interpreter and keep it alive, need this or we segfault
