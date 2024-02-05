@@ -47,6 +47,9 @@ int main(int argc, char** argv)
     int parse_status = MHO_BasicFringeDataConfiguration::parse_command_line(argc, argv, fringeData.GetParameterStore() );
     if(parse_status != 0){msg_fatal("main", "could not parse command line options." << eom); std::exit(1);}
 
+    //populate a few necessary parameters and  initialize the scan data store
+    MHO_BasicFringeDataConfiguration::populate_initial_parameters(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
+
     //Unlike hops3 we don't want to default to using the ionospheric fringe fitter unless it is actually needed.
     //So in order to detect if ionospheric fitting is required we have to do a quick pre-pass/parse of the control 
     //file to look for any 'ion' keywords.
@@ -54,13 +57,19 @@ int main(int argc, char** argv)
     bool do_ion = MHO_BasicFringeDataConfiguration::need_ion_search(control_file);
 
 
-
-    
-
     MHO_FringeFitter* ffit;
-    ffit = new MHO_BasicFringeFitter(fringeData);
-    //ffit = new MHO_IonosphericFringeFitter();
-    
+    //TODO FIXME...replace this logic with a factory method based on the parameter store 
+    //but for the time being we only have two choices
+    if(do_ion)
+    {
+        ffit = new MHO_BasicFringeFitter(fringeData);
+        //ffit = new MHO_IonosphericFringeFitter();
+    }
+    else 
+    {
+        ffit = new MHO_BasicFringeFitter(fringeData);
+    }
+
     #ifdef USE_PYBIND11
     // start the interpreter and keep it alive, need this or we segfault
     py::scoped_interpreter guard{}; 

@@ -46,48 +46,15 @@ void MHO_BasicFringeFitter::Configure()
     fParameterStore->Set("/status/is_finished", false);
     fParameterStore->Set("/status/skipped", false);
 
-    //these should all be present and ok at this point
-    std::string directory = fParameterStore->GetAs<std::string>("/cmdline/directory");
-    std::string control_file = fParameterStore->GetAs<std::string>("/cmdline/control_file");
-    std::string baseline = fParameterStore->GetAs<std::string>("/cmdline/baseline");
-    std::string polprod = fParameterStore->GetAs<std::string>("/cmdline/polprod");
+    // //these should all be present and ok at this point
+    std::string directory = fParameterStore->GetAs<std::string>("/files/directory");
+    std::string control_file = fParameterStore->GetAs<std::string>("/files/control_file");
+    std::string baseline = fParameterStore->GetAs<std::string>("/config/baseline");
+    std::string polprod = fParameterStore->GetAs<std::string>("/config/polprod");
+    std::vector< std::string > pp_vec = fParameterStore->GetAs< std::vector< std::string > >("/config/polprod_set");
 
-    ////////////////////////////////////////////////////////////////////////////
-    //INITIALIZE PARAMETERS
-    ////////////////////////////////////////////////////////////////////////////
-
-    //set up the file section of the parameter store to record the directory, root file, and control file
-    fParameterStore->Set("/files/control_file", control_file);
-    fParameterStore->Set("/files/directory", directory);
-    fParameterStore->Set("/files/output_file", fParameterStore->GetAs<std::string>("/cmdline/output_file"));
-
-    //put the baseline and pol product selection into the parameter store
-    fParameterStore->Set("/config/polprod", polprod);
-    fParameterStore->Set("/config/baseline", baseline);
-
-    //parse the polprod string in order to determine which pol-products are needed (if more than one)
-    std::vector< std::string > pp_vec = DetermineRequiredPolProducts(polprod);
-    fParameterStore->Set("/config/polprod_set", pp_vec);
-
-    ////////////////////////////////////////////////////////////////////////////
-    //INITIALIZE SCAN DIRECTORY
-    ////////////////////////////////////////////////////////////////////////////
-
-    //initialize the scan store from this directory
-    fScanStore->SetDirectory(directory);
-    fScanStore->Initialize();
-    if( !fScanStore->IsValid() )
-    {
-        msg_fatal("fringe", "cannot initialize a valid scan store from this directory: " << directory << eom);
-        std::exit(1);
-    }
-
-    //set the root file name
-    fParameterStore->Set("/files/root_file", fScanStore->GetRootFileBasename() );
-
-    //load root file and extract useful vex info
+    //load root file and keep around (eventually eliminate this in favor of param store only)
     fVexInfo = fScanStore->GetRootFileData();
-    MHO_VexInfoExtractor::extract_vex_info(fVexInfo, fParameterStore);
 
     ////////////////////////////////////////////////////////////////////////////
     //CONTROL CONSTRUCTION
@@ -113,6 +80,9 @@ void MHO_BasicFringeFitter::Configure()
     //TODO FIXME -- we may want to move this elsewhere 
     std::string parsed_control = cparser.GetProcessedControlFileText();
     fParameterStore->Set("/control/control_file_contents", parsed_control);
+
+
+
     //TODO -- where should frequency group information get stashed/retrieved?
     std::string srcName = fParameterStore->GetAs<std::string>("/vex/scan/source/name");
     std::string scnName = fParameterStore->GetAs<std::string>("/vex/scan/name");
@@ -534,52 +504,52 @@ MHO_BasicFringeFitter::AddPolProductSummationOperator(std::string& polprod, std:
     statements.push_back(pp_sum_hack);
 }
 
-std::vector< std::string > 
-MHO_BasicFringeFitter::DetermineRequiredPolProducts(std::string polprod)
-{
-    std::set<std::string> pp_set;
-    std::vector<std::string> pp_vec;
-    //first we parse the polprod string to see what individual pol-products we need 
-    if( polprod.find("+") != std::string::npos)
-    {
-        //we have a pol-product summation like (RR+LL) or XX+YY, or RX+RY
-        //so split on all '+' symbols (currently we only support '+' not '-')
-        fTokenizer.SetDelimiter("+");
-        fTokenizer.SetString(&polprod);
-        //fTokenizer.SetUseMulticharacterDelimiterFalse();
-        fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
-        fTokenizer.SetIncludeEmptyTokensFalse();
-        fTokenizer.GetTokens(&pp_vec);
-    }
-    else if(polprod == "I") //special pseudo-Stokes-I mode (linear pol only)
-    {
-        pp_vec.push_back("XX");
-        pp_vec.push_back("YY");
-        pp_vec.push_back("XY");
-        pp_vec.push_back("YX");
-    }
-    else 
-    {
-        pp_vec.push_back(polprod); //polprod is just a single value
-    }
-
-    //push the values into a set, so we don't have any duplicates
-    pp_set.insert( pp_vec.begin(), pp_vec.end() );
-
-    //push the set values into the vector for return
-    pp_vec.clear();
-    pp_vec.insert(pp_vec.begin(), pp_set.begin(), pp_set.end() );
-
-    std::stringstream ss;
-    for(std::size_t i=0; i<pp_vec.size(); i++)
-    {
-        ss << pp_vec[i];
-        if(i != pp_vec.size() - 1){ss <<", "; }
-    }
-    msg_debug("fringe", "required pol-products are: {" << ss.str() << "}." << eom );
-
-    return pp_vec;
-}
+// std::vector< std::string > 
+// MHO_BasicFringeFitter::DetermineRequiredPolProducts(std::string polprod)
+// {
+//     std::set<std::string> pp_set;
+//     std::vector<std::string> pp_vec;
+//     //first we parse the polprod string to see what individual pol-products we need 
+//     if( polprod.find("+") != std::string::npos)
+//     {
+//         //we have a pol-product summation like (RR+LL) or XX+YY, or RX+RY
+//         //so split on all '+' symbols (currently we only support '+' not '-')
+//         fTokenizer.SetDelimiter("+");
+//         fTokenizer.SetString(&polprod);
+//         //fTokenizer.SetUseMulticharacterDelimiterFalse();
+//         fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+//         fTokenizer.SetIncludeEmptyTokensFalse();
+//         fTokenizer.GetTokens(&pp_vec);
+//     }
+//     else if(polprod == "I") //special pseudo-Stokes-I mode (linear pol only)
+//     {
+//         pp_vec.push_back("XX");
+//         pp_vec.push_back("YY");
+//         pp_vec.push_back("XY");
+//         pp_vec.push_back("YX");
+//     }
+//     else 
+//     {
+//         pp_vec.push_back(polprod); //polprod is just a single value
+//     }
+// 
+//     //push the values into a set, so we don't have any duplicates
+//     pp_set.insert( pp_vec.begin(), pp_vec.end() );
+// 
+//     //push the set values into the vector for return
+//     pp_vec.clear();
+//     pp_vec.insert(pp_vec.begin(), pp_set.begin(), pp_set.end() );
+// 
+//     std::stringstream ss;
+//     for(std::size_t i=0; i<pp_vec.size(); i++)
+//     {
+//         ss << pp_vec[i];
+//         if(i != pp_vec.size() - 1){ss <<", "; }
+//     }
+//     msg_debug("fringe", "required pol-products are: {" << ss.str() << "}." << eom );
+// 
+//     return pp_vec;
+// }
 
 
 void

@@ -44,6 +44,10 @@ class MHO_BasicFringeDataConfiguration
         //sanity check of parameters after command line parsing
         static int sanity_check(MHO_ParameterStore* paramStore);
 
+        static void populate_initial_parameters(MHO_ParameterStore* paramStore, MHO_ScanDataStore* scanStore);
+        
+        static std::vector< std::string > determine_required_pol_products(std::string polprod);
+
         static bool need_ion_search(std::string control_file);
 
         static void configure_visibility_data(MHO_ContainerStore* store);
