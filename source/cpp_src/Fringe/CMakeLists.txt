@@ -8,6 +8,7 @@ set (FRINGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayModel.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationModel.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeDataConfiguration.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeControlInitialization.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeInfo.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexInfoExtractor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InitialFringeInfo.hh
@@ -29,6 +30,7 @@ set( FRINGE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayModel.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationModel.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeDataConfiguration.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeControlInitialization.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeInfo.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexInfoExtractor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InitialFringeInfo.cc

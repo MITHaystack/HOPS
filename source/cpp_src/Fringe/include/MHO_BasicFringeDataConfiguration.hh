@@ -34,28 +34,29 @@ class MHO_BasicFringeDataConfiguration
         virtual ~MHO_BasicFringeDataConfiguration(){};
     
     public:
-        //helper functions
+
+        //takes care of command line parsing/initialization
         static int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore);
+
         //functions for consuming command line arguments
         static void set_message_level(int message_level);
         static void parse_baseline_freqgrp(std::string baseline_freqgrp, std::string& baseline, std::string& freqgrp);
         static std::string parse_set_string(const std::vector< std::string >& arglist, int& set_arg_index);
         static std::string sanitize_directory(std::string dir);
+
         //sanity check of parameters after command line parsing
         static int sanity_check(MHO_ParameterStore* paramStore);
 
+        //some post-command line parse initialization (populates the scan store)
         static void populate_initial_parameters(MHO_ParameterStore* paramStore, MHO_ScanDataStore* scanStore);
-        
         static std::vector< std::string > determine_required_pol_products(std::string polprod);
 
-        static bool need_ion_search(std::string control_file);
-
+        //functions that are called within the fringe fitter class
         static void configure_visibility_data(MHO_ContainerStore* store);
         static void configure_station_data(MHO_ScanDataStore* scanStore, 
                                            MHO_ContainerStore* containerStore,
                                            std::string ref_station_mk4id, 
                                            std::string rem_station_mk4id);
-
         static void init_and_exec_operators(MHO_OperatorBuilderManager* build_manager, MHO_OperatorToolbox* opToolbox, const char* category);
 
 };

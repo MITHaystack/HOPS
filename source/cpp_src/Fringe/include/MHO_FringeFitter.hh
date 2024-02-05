@@ -41,11 +41,12 @@ class MHO_FringeFitter
         //     fOperatorBuildManager = nullptr;
         // };
 
-        MHO_FringeFitter(MHO_FringeData& data)
+        MHO_FringeFitter(MHO_FringeData* data):
+            fFringeData(data)
         {
-            fParameterStore = data.GetParameterStore();
-            fScanStore = data.GetScanDataStore();
-            fContainerStore = data.GetContainerStore();
+            fParameterStore = data->GetParameterStore();
+            fScanStore = data->GetScanDataStore();
+            fContainerStore = data->GetContainerStore();
             fOperatorBuildManager = nullptr;
         };
 
@@ -78,6 +79,8 @@ class MHO_FringeFitter
     protected:
 
         //data objects
+        MHO_FringeData* fFringeData;
+
         MHO_ParameterStore* fParameterStore; //stores various parameters using string keys
         MHO_ScanDataStore* fScanStore; //provides access to data associated with this scan
         MHO_ContainerStore* fContainerStore; //stores data containers for in-use data

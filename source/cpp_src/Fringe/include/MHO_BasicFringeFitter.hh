@@ -27,7 +27,7 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
 {
 
     public:
-        MHO_BasicFringeFitter(MHO_FringeData& data);
+        MHO_BasicFringeFitter(MHO_FringeData* data);
         virtual ~MHO_BasicFringeFitter();
 
         //basic run scheme: configure, init, then while(!IsFinished() ){ pre-run, run, post-run }
@@ -44,9 +44,9 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
 
     protected:
 
-        void AddPolProductSummationOperator(std::string& polprod, std::vector< std::string >& pp_vec, mho_json& statements);
-        void AddDefaultOperatorFormatDef(mho_json& format);
-        void AddDefaultOperators(mho_json& statements);
+        //void AddPolProductSummationOperator(std::string& polprod, std::vector< std::string >& pp_vec, mho_json& statements);
+        // void AddDefaultOperatorFormatDef(mho_json& format);
+        // void AddDefaultOperators(mho_json& statements);
 
         //main work functions, operators and works space for basic fringe search function 
         void coarse_fringe_search();
@@ -59,10 +59,9 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         weight_type* wt_data;
         visibility_type* sbd_data;
 
-
         mho_json fVexInfo;
-        mho_json fControlFormat;
-        mho_json fControlStatements;
+        // mho_json fControlFormat;
+        // mho_json fControlStatements;
 
         //control hacks
         mho_json fDataSelectFormat;

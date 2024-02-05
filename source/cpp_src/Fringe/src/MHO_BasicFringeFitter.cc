@@ -30,7 +30,7 @@
 namespace hops
 {
 
-MHO_BasicFringeFitter::MHO_BasicFringeFitter(MHO_FringeData& data):MHO_FringeFitter(data)
+MHO_BasicFringeFitter::MHO_BasicFringeFitter(MHO_FringeData* data):MHO_FringeFitter(data)
 {
     vis_data = nullptr;
     wt_data = nullptr;
@@ -46,83 +46,87 @@ void MHO_BasicFringeFitter::Configure()
     fParameterStore->Set("/status/is_finished", false);
     fParameterStore->Set("/status/skipped", false);
 
-    // //these should all be present and ok at this point
-    std::string directory = fParameterStore->GetAs<std::string>("/files/directory");
-    std::string control_file = fParameterStore->GetAs<std::string>("/files/control_file");
-    std::string baseline = fParameterStore->GetAs<std::string>("/config/baseline");
-    std::string polprod = fParameterStore->GetAs<std::string>("/config/polprod");
-    std::vector< std::string > pp_vec = fParameterStore->GetAs< std::vector< std::string > >("/config/polprod_set");
-
     //load root file and keep around (eventually eliminate this in favor of param store only)
     fVexInfo = fScanStore->GetRootFileData();
 
-    ////////////////////////////////////////////////////////////////////////////
-    //CONTROL CONSTRUCTION
-    ////////////////////////////////////////////////////////////////////////////
-    MHO_ControlFileParser cparser;
-    MHO_ControlConditionEvaluator ceval;
+    // MHO_FringeControlInitialization::process_control_file(fParameterStore, fFringeData.GetControlFormat(), fFringeData.GetControlStatements() );
+    // 
+    // // //these should all be present and ok at this point
+    // std::string directory = fParameterStore->GetAs<std::string>("/files/directory");
+    // std::string control_file = fParameterStore->GetAs<std::string>("/files/control_file");
+    // std::string baseline = fParameterStore->GetAs<std::string>("/config/baseline");
+    // std::string polprod = fParameterStore->GetAs<std::string>("/config/polprod");
+    // std::vector< std::string > pp_vec = fParameterStore->GetAs< std::vector< std::string > >("/config/polprod_set");
+    // 
 
-    //specify the control format
-    fControlFormat = MHO_ControlDefinitions::GetControlFormat();
-    
-    //add default operations to the control format, so we can later trigger them
-    AddDefaultOperatorFormatDef(fControlFormat);
-
-    //add the set string info if it is available 
-    std::string set_string = fParameterStore->GetAs<std::string>("/cmdline/set_string");
-    if(set_string != ""){cparser.PassSetString(set_string);}
-
-    //now parse the control file and collect the applicable statements 
-    cparser.SetControlFile(control_file);
-    auto control_contents = cparser.ParseControl();
-    
-    //stash the processed text in the parameter store
-    //TODO FIXME -- we may want to move this elsewhere 
-    std::string parsed_control = cparser.GetProcessedControlFileText();
-    fParameterStore->Set("/control/control_file_contents", parsed_control);
-
-
-
-    //TODO -- where should frequency group information get stashed/retrieved?
-    std::string srcName = fParameterStore->GetAs<std::string>("/vex/scan/source/name");
-    std::string scnName = fParameterStore->GetAs<std::string>("/vex/scan/name");
-    ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
-    fControlStatements = ceval.GetApplicableStatements(control_contents);
-
-    //tack on default-operations to the control statements, so we can trigger
-    //the build of these operators at the proper step (e.g. coarse selection, multitone pcal etc.)
-    AddDefaultOperators( (*(fControlStatements.begin()))["statements"] );
-
-    //add the pol-product summation operator into the execution stream if we were passed 
-    //such a thing on the command line (e.g. RR+LL or I)
-    std::size_t npp = pp_vec.size();
-    if(npp > 1)
-    {
-        AddPolProductSummationOperator(polprod, pp_vec, (*(fControlStatements.begin()))["statements"] );
-    }
-
-    //set some intiail/default parameters (polprod, ref_freq)
-    MHO_InitialFringeInfo::set_default_parameters_minimal(fParameterStore);
-    //configure parameter store from control statements
-    MHO_ParameterManager paramManager(fParameterStore, fControlFormat);
-    paramManager.SetControlStatements(&fControlStatements);
-    paramManager.ConfigureAll();
-
-    //the control statement 'skip' is special because we want to bail out
-    //as soon as possible (before reading in data) in order to save time
-    if( fParameterStore->IsPresent("skip") )
-    {
-        bool do_skip = fParameterStore->GetAs<bool>("skip");
-        if(do_skip)
-        {
-            //set "is_finished" to true, since we are skipping this data
-            fParameterStore->Set("/status/skipped", true);
-            fParameterStore->Set("/status/is_finished", true);
-        }
-    }
+    // 
+    // ////////////////////////////////////////////////////////////////////////////
+    // //CONTROL CONSTRUCTION
+    // ////////////////////////////////////////////////////////////////////////////
+    // MHO_ControlFileParser cparser;
+    // MHO_ControlConditionEvaluator ceval;
+    // 
+    // //specify the control format
+    // fControlFormat = MHO_ControlDefinitions::GetControlFormat();
+    // 
+    // //add default operations to the control format, so we can later trigger them
+    // AddDefaultOperatorFormatDef(fControlFormat);
+    // 
+    // //add the set string info if it is available 
+    // std::string set_string = fParameterStore->GetAs<std::string>("/cmdline/set_string");
+    // if(set_string != ""){cparser.PassSetString(set_string);}
+    // 
+    // //now parse the control file and collect the applicable statements 
+    // cparser.SetControlFile(control_file);
+    // auto control_contents = cparser.ParseControl();
+    // 
+    // //stash the processed text in the parameter store
+    // //TODO FIXME -- we may want to move this elsewhere 
+    // std::string parsed_control = cparser.GetProcessedControlFileText();
+    // fParameterStore->Set("/control/control_file_contents", parsed_control);
+    // 
+    // 
+    // 
+    // //TODO -- where should frequency group information get stashed/retrieved?
+    // std::string srcName = fParameterStore->GetAs<std::string>("/vex/scan/source/name");
+    // std::string scnName = fParameterStore->GetAs<std::string>("/vex/scan/name");
+    // ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
+    // fControlStatements = ceval.GetApplicableStatements(control_contents);
+    // 
+    // //tack on default-operations to the control statements, so we can trigger
+    // //the build of these operators at the proper step (e.g. coarse selection, multitone pcal etc.)
+    // AddDefaultOperators( (*(fControlStatements.begin()))["statements"] );
+    // 
+    // //add the pol-product summation operator into the execution stream if we were passed 
+    // //such a thing on the command line (e.g. RR+LL or I)
+    // std::size_t npp = pp_vec.size();
+    // if(npp > 1)
+    // {
+    //     AddPolProductSummationOperator(polprod, pp_vec, (*(fControlStatements.begin()))["statements"] );
+    // }
+    // 
+    // //set some intiail/default parameters (polprod, ref_freq)
+    // MHO_InitialFringeInfo::set_default_parameters_minimal(fParameterStore);
+    // //configure parameter store from control statements
+    // MHO_ParameterManager paramManager(fParameterStore, fControlFormat);
+    // paramManager.SetControlStatements(&fControlStatements);
+    // paramManager.ConfigureAll();
+    // 
+    // //the control statement 'skip' is special because we want to bail out
+    // //as soon as possible (before reading in data) in order to save time
+    // if( fParameterStore->IsPresent("skip") )
+    // {
+    //     bool do_skip = fParameterStore->GetAs<bool>("skip");
+    //     if(do_skip)
+    //     {
+    //         //set "is_finished" to true, since we are skipping this data
+    //         fParameterStore->Set("/status/skipped", true);
+    //         fParameterStore->Set("/status/is_finished", true);
+    //     }
+    // }
 
     //now build the operator build manager
-    fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, fContainerStore, fParameterStore, fControlFormat);
+    fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, fContainerStore, fParameterStore, fFringeData->GetControlFormat() );
 }
 
 void MHO_BasicFringeFitter::Initialize()
@@ -203,7 +207,7 @@ void MHO_BasicFringeFitter::Initialize()
         //CONFIGURE THE OPERATOR BUILD MANAGER
         ////////////////////////////////////////////////////////////////////////////
         fOperatorBuildManager->CreateDefaultBuilders();
-        fOperatorBuildManager->SetControlStatements(&fControlStatements);
+        fOperatorBuildManager->SetControlStatements( &(fFringeData->GetControlStatements()) );
 
         //take a snapshot if enabled
         take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
@@ -386,123 +390,123 @@ void MHO_BasicFringeFitter::Finalize()
 }
 
 
-void 
-MHO_BasicFringeFitter::AddDefaultOperatorFormatDef(mho_json& format)
-{
-    //this is bit of a hack to get these operators
-    //(which cannot be triggered via control file statements)
-    //into the initialization stream (part 1)
-    
-    //add the data selection operator
-    fDataSelectFormat =
-    {
-        {"name", "coarse_selection"},
-        {"statement_type", "operator"},
-        {"operator_category" , "selection"},
-        {"type" , "empty"},
-        {"priority", 1.01}
-    };
-    format["coarse_selection"] = fDataSelectFormat;
+// void 
+// MHO_BasicFringeFitter::AddDefaultOperatorFormatDef(mho_json& format)
+// {
+//     //this is bit of a hack to get these operators
+//     //(which cannot be triggered via control file statements)
+//     //into the initialization stream (part 1)
+// 
+//     //add the data selection operator
+//     fDataSelectFormat =
+//     {
+//         {"name", "coarse_selection"},
+//         {"statement_type", "operator"},
+//         {"operator_category" , "selection"},
+//         {"type" , "empty"},
+//         {"priority", 1.01}
+//     };
+//     format["coarse_selection"] = fDataSelectFormat;
+// 
+//     mho_json sampler_labeler =
+//     {
+//         {"name", "sampler_labeler"},
+//         {"statement_type", "operator"},
+//         {"operator_category" , "labeling"},
+//         {"type" , "empty"},
+//         {"priority", 0.9}
+//     };
+//     format["sampler_labeler"] = sampler_labeler;
+// 
+//     //add a multitone pcal op for the reference station
+//     mho_json ref_multitone_pcal_format =
+//     {
+//         {"name", "ref_multitone_pcal"},
+//         {"statement_type", "operator"},
+//         {"operator_category" , "calibration"},
+//         {"type" , "empty"},
+//         {"priority", 3.1}
+//     };
+//     fControlFormat["ref_multitone_pcal"] = ref_multitone_pcal_format;
+// 
+//     //add a multitone pcal op for the remote station
+//     mho_json rem_multitone_pcal_format =
+//     {
+//         {"name", "rem_multitone_pcal"},
+//         {"statement_type", "operator"},
+//         {"operator_category" , "calibration"},
+//         {"type" , "empty"},
+//         {"priority", 3.1}
+//     };
+//     fControlFormat["rem_multitone_pcal"] = rem_multitone_pcal_format;
+// 
+//     mho_json polprod_sum_format =
+//     {
+//         {"name", "polproduct_sum"},
+//         {"statement_type", "operator"},
+//         {"operator_category" , "calibration"},
+//         {"type" , "empty"},
+//         {"priority", 3.99}
+//     };
+//     fControlFormat["polproduct_sum"] = polprod_sum_format;
+// 
+// }
 
-    mho_json sampler_labeler =
-    {
-        {"name", "sampler_labeler"},
-        {"statement_type", "operator"},
-        {"operator_category" , "labeling"},
-        {"type" , "empty"},
-        {"priority", 0.9}
-    };
-    format["sampler_labeler"] = sampler_labeler;
-
-    //add a multitone pcal op for the reference station
-    mho_json ref_multitone_pcal_format =
-    {
-        {"name", "ref_multitone_pcal"},
-        {"statement_type", "operator"},
-        {"operator_category" , "calibration"},
-        {"type" , "empty"},
-        {"priority", 3.1}
-    };
-    fControlFormat["ref_multitone_pcal"] = ref_multitone_pcal_format;
-
-    //add a multitone pcal op for the remote station
-    mho_json rem_multitone_pcal_format =
-    {
-        {"name", "rem_multitone_pcal"},
-        {"statement_type", "operator"},
-        {"operator_category" , "calibration"},
-        {"type" , "empty"},
-        {"priority", 3.1}
-    };
-    fControlFormat["rem_multitone_pcal"] = rem_multitone_pcal_format;
-
-    mho_json polprod_sum_format =
-    {
-        {"name", "polproduct_sum"},
-        {"statement_type", "operator"},
-        {"operator_category" , "calibration"},
-        {"type" , "empty"},
-        {"priority", 3.99}
-    };
-    fControlFormat["polproduct_sum"] = polprod_sum_format;
-
-}
-
-void 
-MHO_BasicFringeFitter::AddDefaultOperators(mho_json& statements)
-{
-    //this is the rest of the default operators hack 
-    //in part 2 (here) we actually define control statements that trigger 
-    //these operators to be built and exectuted
-    
-    mho_json coarse_selection_hack =
-    {
-       {"name", "coarse_selection"},
-       {"statement_type", "operator"},
-       {"operator_category" , "selection"}
-    };
-    statements.push_back(coarse_selection_hack);
-    
-    mho_json sampler_hack =
-    {
-       {"name", "sampler_labeler"},
-       {"statement_type", "operator"},
-       {"operator_category" , "labeling"}
-    };
-    statements.push_back(sampler_hack);
-
-    //add default ops for multi-tone pcal 
-    //note: this operator checks if the pcal data is available and if pc_mode != manual
-    //if either condition fails, it does not get inserted into the execution stream
-    mho_json ref_multitone_pcal_hack =
-    {
-        {"name", "ref_multitone_pcal"},
-        {"statement_type", "operator"},
-        {"operator_category" , "calibration"}
-    };
-
-    mho_json rem_multitone_pcal_hack =
-    {
-        {"name", "rem_multitone_pcal"},
-        {"statement_type", "operator"},
-        {"operator_category" , "calibration"}
-    };
-
-    statements.push_back(ref_multitone_pcal_hack);
-    statements.push_back(rem_multitone_pcal_hack);
-}
-
-void 
-MHO_BasicFringeFitter::AddPolProductSummationOperator(std::string& polprod, std::vector< std::string >& pp_vec, mho_json& statements)
-{
-    mho_json pp_sum_hack = 
-    {
-       {"name", "polproduct_sum"},
-       {"statement_type", "operator"},
-       {"operator_category" , "calibration"}
-    };
-    statements.push_back(pp_sum_hack);
-}
+// void 
+// MHO_BasicFringeFitter::AddDefaultOperators(mho_json& statements)
+// {
+//     //this is the rest of the default operators hack 
+//     //in part 2 (here) we actually define control statements that trigger 
+//     //these operators to be built and exectuted
+// 
+//     mho_json coarse_selection_hack =
+//     {
+//        {"name", "coarse_selection"},
+//        {"statement_type", "operator"},
+//        {"operator_category" , "selection"}
+//     };
+//     statements.push_back(coarse_selection_hack);
+// 
+//     mho_json sampler_hack =
+//     {
+//        {"name", "sampler_labeler"},
+//        {"statement_type", "operator"},
+//        {"operator_category" , "labeling"}
+//     };
+//     statements.push_back(sampler_hack);
+// 
+//     //add default ops for multi-tone pcal 
+//     //note: this operator checks if the pcal data is available and if pc_mode != manual
+//     //if either condition fails, it does not get inserted into the execution stream
+//     mho_json ref_multitone_pcal_hack =
+//     {
+//         {"name", "ref_multitone_pcal"},
+//         {"statement_type", "operator"},
+//         {"operator_category" , "calibration"}
+//     };
+// 
+//     mho_json rem_multitone_pcal_hack =
+//     {
+//         {"name", "rem_multitone_pcal"},
+//         {"statement_type", "operator"},
+//         {"operator_category" , "calibration"}
+//     };
+// 
+//     statements.push_back(ref_multitone_pcal_hack);
+//     statements.push_back(rem_multitone_pcal_hack);
+// }
+// 
+// void 
+// MHO_BasicFringeFitter::AddPolProductSummationOperator(std::string& polprod, std::vector< std::string >& pp_vec, mho_json& statements)
+// {
+//     mho_json pp_sum_hack = 
+//     {
+//        {"name", "polproduct_sum"},
+//        {"statement_type", "operator"},
+//        {"operator_category" , "calibration"}
+//     };
+//     statements.push_back(pp_sum_hack);
+// }
 
 // std::vector< std::string > 
 // MHO_BasicFringeFitter::DetermineRequiredPolProducts(std::string polprod)
