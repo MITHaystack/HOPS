@@ -38,9 +38,6 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         virtual void Finalize() override;
         virtual bool IsFinished() override;
 
-        //TODO remove this hack in favor of 'plotting'/'output' visitors
-        mho_json GetPlotData(){return fPlotData;}
-
     protected:
 
         //void AddPolProductSummationOperator(std::string& polprod, std::vector< std::string >& pp_vec, mho_json& statements);
@@ -61,12 +58,7 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         //ovex info
         mho_json fVexInfo;
 
-        //plot data for output
-        mho_json fPlotData;
 
-        //ionosphere fitting functionality 
-        int rjc_ion_search();
-        void sort_tecs(int nion, double dtec[][2]);
 
 
 

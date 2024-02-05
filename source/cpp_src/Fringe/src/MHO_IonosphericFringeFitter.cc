@@ -23,15 +23,13 @@
 //experimental ion phase correction
 #include "MHO_IonosphericPhaseCorrection.hh"
 #include "MHO_MathUtilities.hh"
-#define ION_EXP
-
 
 
 namespace hops
 {
 
 
-MHO_IonosphericFringeFitter::MHO_IonosphericFringeFitter(MHO_FringeData& data):
+MHO_IonosphericFringeFitter::MHO_IonosphericFringeFitter(MHO_FringeData* data):
     MHO_BasicFringeFitter(data)
 {};
 
@@ -45,6 +43,7 @@ void MHO_IonosphericFringeFitter::Run()
     fParameterStore->Dump();
 
     bool do_ion = true;
+
     bool is_finished = fParameterStore->GetAs<bool>("/status/is_finished");
     bool skipped = fParameterStore->GetAs<bool>("/status/skipped");
     if( !is_finished  && !skipped) //execute if we are not finished and are not skipping
@@ -52,8 +51,11 @@ void MHO_IonosphericFringeFitter::Run()
         if(!do_ion)
         {
             //execute the basic fringe search algorithm
-            basic_fringe_search();
-            // MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
+            //basic_fringe_search();
+            coarse_fringe_search();
+            interpolate_peak();
+            
+            // MHO_BasicFringeUtilities::basic_fringe_search(fContainerStore, fParameterStore);
             fParameterStore->Set("/status/is_finished", true);
             //have sampled all grid points, find the solution and finalize
             //calculate the fringe properties
@@ -68,6 +70,8 @@ void MHO_IonosphericFringeFitter::Run()
             MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
         }
     }
+
+
 }
 
 
@@ -87,6 +91,14 @@ void MHO_IonosphericFringeFitter::Run()
 //         MHO_FringePlotInfo::fill_plot_data(&fParameterStore, fPlotData);
 //     }
 // }
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 
 int 
@@ -334,8 +346,8 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             iono.Execute();
             last_ion_diff = ion_diff;
 
-            // MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
-            basic_fringe_search();
+            // MHO_BasicFringeUtilities::basic_fringe_search(fContainerStore, fParameterStore);
+            coarse_fringe_search();
 
             if(ionloop==0)
             {
@@ -367,6 +379,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             // // interpolate via direct counter-rotation for
             // // more precise results
             // interp (pass);
+            interpolate_peak();
 
             // save values for iterative search
             double delres_max = fParameterStore->GetAs<double>("/fringe/famp");
@@ -414,7 +427,6 @@ MHO_IonosphericFringeFitter::sort_tecs(int nion, double dtec[][2])
         }
     }
 };
-
 
 
 

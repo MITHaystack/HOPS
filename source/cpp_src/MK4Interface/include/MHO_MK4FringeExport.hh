@@ -78,18 +78,12 @@ class MHO_MK4FringeExport
             fPlotData.FillData(plot_data);
         }
 
-        void SetFilename(std::string filename){fFilename = filename;}
-
-        void ExportFringeFile()
-        {
-            output(fFilename);
-        }
+        void ExportFringeFile(){ output(); }
 
     private:
         
         std::string CreateFringeFileName(std::string directory, int seq_no);
 
-        std::string fFilename;
         MHO_ParameterStore* fPStore;
         MHO_ContainerStore* fCStore;
         MHO_ParameterStore fPlotData;
@@ -132,7 +126,7 @@ class MHO_MK4FringeExport
         int fill_222( struct type_222** t222);
         int fill_230( int fr, int ap, struct type_230 *t230);
 
-        int output(std::string filename2);
+        int output();
 
 };
 
