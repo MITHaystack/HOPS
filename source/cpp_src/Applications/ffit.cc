@@ -15,6 +15,9 @@
 
 //for command line parsing
 #include "MHO_BasicFringeDataConfiguration.hh"
+//for control intialization
+#include "MHO_FringeControlInitialization.hh"
+
 
 //pybind11 stuff to interface with python
 #ifdef USE_PYBIND11
@@ -50,11 +53,12 @@ int main(int argc, char** argv)
     //populate a few necessary parameters and  initialize the scan data store
     MHO_BasicFringeDataConfiguration::populate_initial_parameters(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
 
-    //Unlike hops3 we don't want to default to using the ionospheric fringe fitter unless it is actually needed.
-    //So in order to detect if ionospheric fitting is required we have to do a quick pre-pass/parse of the control 
-    //file to look for any 'ion' keywords.
-    std::string control_file = fringeData.GetParameterStore()->GetAs<std::string>("/cmdline/control_file");
-    bool do_ion = MHO_BasicFringeDataConfiguration::need_ion_search(control_file);
+    //parse the control file and form the control statements
+    MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(), fringeData.GetControlFormat(), fringeData.GetControlStatements() );
+
+    //Unlike hops3 we don't want to default to using the ionospheric fringe fitter always, only when it is actually needed.
+    //So in order to detect if ionospheric fitting is required we have to do a quick pre-pass/parse of the control statements
+    bool do_ion = MHO_FringeControlInitialization::need_ion_search(fringeData.GetControlStatements());
 
 
     MHO_FringeFitter* ffit;
@@ -62,12 +66,12 @@ int main(int argc, char** argv)
     //but for the time being we only have two choices
     if(do_ion)
     {
-        ffit = new MHO_BasicFringeFitter(fringeData);
+        ffit = new MHO_BasicFringeFitter(&fringeData);
         //ffit = new MHO_IonosphericFringeFitter();
     }
     else 
     {
-        ffit = new MHO_BasicFringeFitter(fringeData);
+        ffit = new MHO_BasicFringeFitter(&fringeData);
     }
 
     #ifdef USE_PYBIND11

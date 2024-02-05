@@ -7,7 +7,7 @@
 *Author:
 *Email:
 *Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: class to contain fringe data objects
+*Description: simple class to contain fringe data objects
 */
 
 //global messaging util
@@ -36,13 +36,17 @@ class MHO_FringeData
         
         MHO_ParameterStore* GetParameterStore(){return &fParameterStore;}
         MHO_ContainerStore* GetContainerStore(){return &fContainerStore;}
+        MHO_ScanDataStore* GetScanDataStore(){return &fScanStore;}
 
         //should we expose these?
         mho_json GetVex(){return fScanStore.GetRootFileData();} 
-        MHO_ScanDataStore* GetScanDataStore(){return &fScanStore;}
+
+        //access to the control format and parsed control statements
+        mho_json& GetControlFormat(){return fControlFormat;}
+        mho_json& GetControlStatements(){return fControlStatements;}
 
         //TODO remove this hack in favor of 'plotting'/'output' visitors
-        mho_json GetPlotData(){return fPlotData;}
+        mho_json& GetPlotData(){return fPlotData;}
 
     protected:
 
@@ -51,7 +55,13 @@ class MHO_FringeData
         MHO_ScanDataStore fScanStore; //provides access to data associated with this scan
         MHO_ContainerStore fContainerStore; //stores data containers for in-use data
 
+        // mho_json fVexInfo;
+        mho_json fControlFormat;
+        mho_json fControlStatements;
+
+        //plot data storage
         mho_json fPlotData;
+
 };
 
 }

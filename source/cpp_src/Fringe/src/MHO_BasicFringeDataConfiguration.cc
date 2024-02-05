@@ -402,11 +402,6 @@ MHO_BasicFringeDataConfiguration::sanity_check(MHO_ParameterStore* paramStore)
 }
 
 
-bool 
-MHO_BasicFringeDataConfiguration::need_ion_search(std::string control_file)
-{
-    return false;
-}
 
 
 void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_ParameterStore* paramStore, MHO_ScanDataStore* scanStore)
