@@ -13,6 +13,7 @@ set (FRINGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InitialFringeInfo.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringePlotInfo.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeUtilities.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeData.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeFitter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeFitter.hh
     #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IonosphericFringeFitter.hh
