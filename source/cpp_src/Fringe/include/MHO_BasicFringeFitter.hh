@@ -44,9 +44,7 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
 
     protected:
 
-        std::vector< std::string > DetermineRequiredPolProducts(std::string polprod);
         void AddPolProductSummationOperator(std::string& polprod, std::vector< std::string >& pp_vec, mho_json& statements);
-
         void AddDefaultOperatorFormatDef(mho_json& format);
         void AddDefaultOperators(mho_json& statements);
 
