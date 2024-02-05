@@ -15,8 +15,25 @@ namespace hops
 {
 
 bool 
-MHO_FringeControlInitialization::need_ion_search(mho_json& control_statements)
+MHO_FringeControlInitialization::need_ion_search(MHO_ParameterStore* paramStore)
 {
+    //retrieve processed control file text (with comments removed)
+    std::string control_text;
+    bool ok = paramStore->Get("/control/control_file_contents", control_text);
+    
+    //TODO FIXME -- may want to figure out a way to cache this result
+    //in some cases this may be very costly (~MB scale control files over many baselines)
+    if(ok)
+    {
+        //simple heuristic to determine if we need to do an ionosphere fit. Just look 
+        //for the presence of the 'ion' string in the control text 
+        //if no ion related parameters are set, then assume no ion fit is needed
+        if(control_text.find("ion") != std::string::npos)
+        {
+            return true;
+        }
+    }
+
     return false;
 }
 
@@ -77,7 +94,9 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
 
     //set some intiail/default parameters (polprod, ref_freq)
     MHO_InitialFringeInfo::set_default_parameters_minimal(paramStore);
+
     //configure parameter store from control statements
+    //note that this class consumes relevant control statements (and removes them upon use)
     MHO_ParameterManager paramManager(paramStore, control_format);
     paramManager.SetControlStatements(&control_statements);
     paramManager.ConfigureAll();

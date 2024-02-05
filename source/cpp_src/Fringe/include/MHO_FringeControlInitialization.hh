@@ -42,7 +42,7 @@ class MHO_FringeControlInitialization
         static void add_polprod_sum_operator(mho_json& statements);
 
         //checks if the special ionospheric fringe fitter is needed
-        static bool need_ion_search(mho_json& control_statements);
+        static bool need_ion_search(MHO_ParameterStore* paramStore);
 
 
 };
