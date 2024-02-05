@@ -31,8 +31,8 @@ namespace hops
 {
 
 
-MHO_IonosphericFringeFitter::MHO_IonosphericFringeFitter():
-    MHO_BasicFringeFitter()
+MHO_IonosphericFringeFitter::MHO_IonosphericFringeFitter(MHO_FringeData& data):
+    MHO_BasicFringeFitter(data)
 {};
 
 MHO_IonosphericFringeFitter::~MHO_IonosphericFringeFitter(){};
@@ -42,11 +42,11 @@ MHO_IonosphericFringeFitter::~MHO_IonosphericFringeFitter(){};
 void MHO_IonosphericFringeFitter::Run()
 {
     std::cout<<"dumping parameter store = "<<std::endl;
-    fParameterStore.Dump();
+    fParameterStore->Dump();
 
     bool do_ion = true;
-    bool is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
-    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
+    bool is_finished = fParameterStore->GetAs<bool>("/status/is_finished");
+    bool skipped = fParameterStore->GetAs<bool>("/status/skipped");
     if( !is_finished  && !skipped) //execute if we are not finished and are not skipping
     {
         if(!do_ion)
@@ -54,18 +54,18 @@ void MHO_IonosphericFringeFitter::Run()
             //execute the basic fringe search algorithm
             basic_fringe_search();
             // MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
-            fParameterStore.Set("/status/is_finished", true);
+            fParameterStore->Set("/status/is_finished", true);
             //have sampled all grid points, find the solution and finalize
             //calculate the fringe properties
-            MHO_BasicFringeUtilities::calculate_fringe_solution_info(&fContainerStore, &fParameterStore, fVexInfo);
+            MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
         }
         else 
         {
             rjc_ion_search();
-            fParameterStore.Set("/status/is_finished", true);
+            fParameterStore->Set("/status/is_finished", true);
             //have sampled all grid points, find the solution and finalize
             //calculate the fringe properties
-            MHO_BasicFringeUtilities::calculate_fringe_solution_info(&fContainerStore, &fParameterStore, fVexInfo);
+            MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
         }
     }
 }
@@ -79,8 +79,8 @@ void MHO_IonosphericFringeFitter::Run()
 //     ////////////////////////////////////////////////////////////////////////////
 //     //TODO may want to reorg the way this is done
 // 
-//     bool is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
-//     bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
+//     bool is_finished = fParameterStore->GetAs<bool>("/status/is_finished");
+//     bool skipped = fParameterStore->GetAs<bool>("/status/skipped");
 //     if( is_finished  && !skipped ) //have to be finished and not-skipped
 //     {
 //         fPlotData = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
@@ -135,7 +135,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     double win_sb[2];
 
 
-    visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
+    visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
     if( vis_data == nullptr )
     {
         msg_fatal("fringe", "could not find visibility object with names (vis)." << eom);
@@ -342,7 +342,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 //cache the full SBD search window for later
                 fMBDSearch.GetSBDWindow(win_sb_save[0], win_sb_save[1]);
                 //then just limit the SBD window to bin where the max was located
-                // double sbdelay = fParameterStore.GetAs<double>("/fringe/sbdelay");
+                // double sbdelay = fParameterStore->GetAs<double>("/fringe/sbdelay");
                 // fMBDSearch.SetSBDWindow(sbdelay, sbdelay);
                 first_pass = false;
             }
@@ -369,7 +369,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             // interp (pass);
 
             // save values for iterative search
-            double delres_max = fParameterStore.GetAs<double>("/fringe/famp");
+            double delres_max = fParameterStore->GetAs<double>("/fringe/famp");
             values[ionloop] = delres_max;
             printf("ion search differential TEC %f amp %f \n", ion_diff, delres_max);
         }
