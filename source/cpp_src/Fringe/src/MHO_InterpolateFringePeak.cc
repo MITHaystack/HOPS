@@ -11,6 +11,7 @@ MHO_InterpolateFringePeak::MHO_InterpolateFringePeak()
     fSBDMaxBin = 0;
 
     fRefFreq = 1.0;
+    fFRTOffset = 0.0;
     fTotalSummedWeights = 1.0;
     fSBDArray = nullptr;
     fWeights = nullptr;
@@ -84,8 +85,8 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     double mbd_delta = fMBDAxis.at(1) - fMBDAxis.at(0);
 
     //use the fourfit reference time
-    double midpoint_time = fFRTOffset;//( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    // std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+    //double fFRTOffset = fFRTOffset;//( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    // std::cout<<"time midpoint = "<<fFRTOffset<<std::endl;
     // std::cout<<"dr delta = "<<dr_delta<<std::endl;
     // std::cout<<"ref freq = "<<fRefFreq<<std::endl;
     // printf("max bin (sbd, mbd, dr) = %d, %d, %d\n", fSBDMaxBin, fMBDMaxBin, fDRMaxBin );
@@ -144,7 +145,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
                     double freq = (*chan_ax)(fr);//sky freq of this channel
                     for(std::size_t ap = 0; ap < nap; ap++)
                     {
-                        double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+                        double tdelta = ap_ax->at(ap) + ap_delta/2.0 - fFRTOffset; //time diff w.r.t FRT
                         visibility_element_type vis = (*fSBDArray)(0,fr,ap,sbd_bin);
                         
                         //std::cout<<"fr, ap ="<<fr<<", "<<ap<<" vrot input( "<<tdelta<<", "<<freq<<", "<<fRefFreq<<", "<<dr<<", "<<mbd<<")"<<std::endl;
