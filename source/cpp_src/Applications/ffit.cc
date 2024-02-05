@@ -11,7 +11,7 @@
 
 //fringe finding library helper functions
 #include "MHO_BasicFringeFitter.hh"
-//#include "MHO_IonosphericFringeFitter.hh"
+#include "MHO_IonosphericFringeFitter.hh"
 
 //for command line parsing
 #include "MHO_BasicFringeDataConfiguration.hh"
@@ -66,8 +66,8 @@ int main(int argc, char** argv)
     //but for the time being we only have two choices
     if(do_ion)
     {
-        ffit = new MHO_BasicFringeFitter(&fringeData);
-        //ffit = new MHO_IonosphericFringeFitter();
+        //ffit = new MHO_BasicFringeFitter(&fringeData);
+        ffit = new MHO_IonosphericFringeFitter(&fringeData);
     }
     else 
     {
@@ -111,58 +111,54 @@ int main(int argc, char** argv)
 
     // std::cout<<"param store = "<<std::endl;
     // ffit->GetParameterStore()->Dump();
-    
-    MHO_BasicFringeFitter* bffit = dynamic_cast< MHO_BasicFringeFitter* >(ffit);
-    if(bffit != nullptr)
+
+    mho_json plot_data = fringeData.GetPlotData();
+    // std::cout<<"plot data = "<<plot_data.dump(2)<<std::endl;
+    //open and dump to file
+    if(!test_mode)
     {
-        mho_json plot_data = bffit->GetPlotData(); //function only available in MHO_BasicFringeFitter
-        // std::cout<<"plot data = "<<plot_data.dump(2)<<std::endl;
-        //open and dump to file
-        if(!test_mode)
-        {
-            std::string output_file = bffit->GetParameterStore()->GetAs<std::string>("/cmdline/output_file");
-            std::ofstream fdumpFile(output_file.c_str(), std::ofstream::out);
-            fdumpFile << plot_data;
-            fdumpFile.close();
+        std::string output_file = fringeData.GetParameterStore()->GetAs<std::string>("/cmdline/output_file");
+        std::ofstream fdumpFile(output_file.c_str(), std::ofstream::out);
+        fdumpFile << plot_data;
+        fdumpFile.close();
 
-            #ifdef EXPORT_MK4
-            MHO_MK4FringeExport fexporter;
-            fexporter.SetParameterStore(ffit->GetParameterStore());
-            fexporter.SetPlotData(plot_data);
-            fexporter.SetContainerStore(ffit->GetContainerStore());
-            fexporter.SetFilename("/home/barrettj/work/projects/hops-git/build/test_data/vt9105/GE.X.1.ABCDEF");
-            fexporter.ExportFringeFile();
-            #endif
-        }
-        
-        #ifdef USE_PYBIND11
-        if(show_plot)
-        {
-            // MHO_Timer timer;
-            // double current_time;
-            // timer.Start();
-
-            msg_debug("main", "python plot generation enabled." << eom );
-            py::dict plot_obj = plot_data;
-            
-            //load our interface module -- this is extremely slow!
-            auto vis_module = py::module::import("hops_visualization");
-            auto plot_lib = vis_module.attr("fourfit_plot");
-            //call a python function on the interface class instance
-            //TODO, pass filename to save plot if needed
-            plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
-            
-            // current_time = timer.GetTimeSinceStart();
-            // std::cout<<"time to plot = "<<current_time<<std::endl;
-            
-        }
-        #else //USE_PYBIND11
-        if(show_plot)
-        {
-            msg_warn("main", "plot output requested, but not enabled since HOPS was built without pybind11 support, ignoring." << eom);
-        }
+        #ifdef EXPORT_MK4
+        MHO_MK4FringeExport fexporter;
+        fexporter.SetParameterStore(fringeData.GetParameterStore());
+        fexporter.SetPlotData(plot_data);
+        fexporter.SetContainerStore(fringeData.GetContainerStore());
+        fexporter.ExportFringeFile();
         #endif
     }
+    
+    #ifdef USE_PYBIND11
+    if(show_plot)
+    {
+        // MHO_Timer timer;
+        // double current_time;
+        // timer.Start();
+
+        msg_debug("main", "python plot generation enabled." << eom );
+        py::dict plot_obj = plot_data;
+        
+        //load our interface module -- this is extremely slow!
+        auto vis_module = py::module::import("hops_visualization");
+        auto plot_lib = vis_module.attr("fourfit_plot");
+        //call a python function on the interface class instance
+        //TODO, pass filename to save plot if needed
+        plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
+        
+        // current_time = timer.GetTimeSinceStart();
+        // std::cout<<"time to plot = "<<current_time<<std::endl;
+        
+    }
+    #else //USE_PYBIND11
+    if(show_plot)
+    {
+        msg_warn("main", "plot output requested, but not enabled since HOPS was built without pybind11 support, ignoring." << eom);
+    }
+    #endif
+
 
     return 0;
 }
