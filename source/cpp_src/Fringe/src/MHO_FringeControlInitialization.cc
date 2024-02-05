@@ -20,9 +20,7 @@ MHO_FringeControlInitialization::need_ion_search(MHO_ParameterStore* paramStore)
     //retrieve processed control file text (with comments removed)
     std::string control_text;
     bool ok = paramStore->Get("/control/control_file_contents", control_text);
-    
-    //TODO FIXME -- may want to figure out a way to cache this result
-    //in some cases this may be very costly (~MB scale control files over many baselines)
+
     if(ok)
     {
         //simple heuristic to determine if we need to do an ionosphere fit. Just look 
@@ -30,6 +28,10 @@ MHO_FringeControlInitialization::need_ion_search(MHO_ParameterStore* paramStore)
         //if no ion related parameters are set, then assume no ion fit is needed
         if(control_text.find("ion") != std::string::npos)
         {
+            //TODO FIXME -- may want to figure out a way to cache this result in 
+            //the parameter store or otherwise. In some cases doing this check 
+            //may be very costly (e.g. ~MB scale control files repeatedly done 
+            //over many scan-baselines)
             return true;
         }
     }
