@@ -36,7 +36,6 @@ class MHO_FringeData
         
         MHO_ParameterStore* GetParameterStore(){return &fParameterStore;}
         MHO_ContainerStore* GetContainerStore(){return &fContainerStore;}
-        MHO_OperatorToolbox* GetOperatorToolbox(){return &fOperatorToolbox;}
 
         //should we expose these?
         mho_json GetVex(){return fScanStore.GetRootFileData();} 

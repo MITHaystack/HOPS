@@ -20,7 +20,7 @@ class MHO_IonosphericFringeFitter: public MHO_BasicFringeFitter
 {
 
     public:
-        MHO_IonosphericFringeFitter();
+        MHO_IonosphericFringeFitter(MHO_FringeData& data);
         virtual ~MHO_IonosphericFringeFitter();
 
         virtual void Run() override;

@@ -42,9 +42,10 @@ int main(int argc, char** argv)
     MHO_Snapshot::GetInstance().AcceptAllKeys();
     MHO_Snapshot::GetInstance().SetExecutableName(std::string("ffit"));
     
+    MHO_FringeData data;
     MHO_FringeFitter* ffit;
     
-    ffit = new MHO_BasicFringeFitter();
+    ffit = new MHO_BasicFringeFitter(data);
 
     //ffit = new MHO_IonosphericFringeFitter();
     

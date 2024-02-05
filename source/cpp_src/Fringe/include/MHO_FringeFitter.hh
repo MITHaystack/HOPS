@@ -14,6 +14,7 @@
 #include "MHO_Message.hh"
 
 //data/config passing classes
+#include "MHO_FringeData.hh"
 #include "MHO_ParameterStore.hh"
 #include "MHO_ContainerStore.hh"
 #include "MHO_OperatorToolbox.hh"
@@ -33,23 +34,33 @@ namespace hops
 class MHO_FringeFitter 
 {
     public:
-        MHO_FringeFitter()
+
+
+        // MHO_FringeFitter()
+        // {
+        //     fOperatorBuildManager = nullptr;
+        // };
+
+        MHO_FringeFitter(MHO_FringeData& data)
         {
+            fParameterStore = data.GetParameterStore();
+            fScanStore = data.GetScanDataStore();
+            fContainerStore = data.GetContainerStore();
             fOperatorBuildManager = nullptr;
         };
-        
+
         virtual ~MHO_FringeFitter()
         {
             delete fOperatorBuildManager;
         };
         
-        MHO_ParameterStore* GetParameterStore(){return &fParameterStore;}
-        MHO_ContainerStore* GetContainerStore(){return &fContainerStore;}
+        MHO_ParameterStore* GetParameterStore(){return fParameterStore;}
+        MHO_ContainerStore* GetContainerStore(){return fContainerStore;}
         MHO_OperatorToolbox* GetOperatorToolbox(){return &fOperatorToolbox;}
 
         //should we expose these?
-        mho_json GetVex(){return fScanStore.GetRootFileData();} 
-        MHO_ScanDataStore* GetScanDataStore(){return &fScanStore;}
+        mho_json GetVex(){return fScanStore->GetRootFileData();} 
+        MHO_ScanDataStore* GetScanDataStore(){return fScanStore;}
         
         //only valid after 'Configure' is called
         MHO_OperatorBuilderManager* GetOperatorBuildManager(){return fOperatorBuildManager;}
@@ -67,9 +78,10 @@ class MHO_FringeFitter
     protected:
 
         //data objects
-        MHO_ParameterStore fParameterStore; //stores various parameters using string keys
-        MHO_ScanDataStore fScanStore; //provides access to data associated with this scan
-        MHO_ContainerStore fContainerStore; //stores data containers for in-use data
+        MHO_ParameterStore* fParameterStore; //stores various parameters using string keys
+        MHO_ScanDataStore* fScanStore; //provides access to data associated with this scan
+        MHO_ContainerStore* fContainerStore; //stores data containers for in-use data
+
         MHO_OperatorToolbox fOperatorToolbox; //stores the data operator objects
 
         //configuration/initialization managers 

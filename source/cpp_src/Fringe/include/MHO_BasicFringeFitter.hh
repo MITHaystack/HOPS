@@ -27,7 +27,7 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
 {
 
     public:
-        MHO_BasicFringeFitter();
+        MHO_BasicFringeFitter(MHO_FringeData& data);
         virtual ~MHO_BasicFringeFitter();
 
         //basic run scheme: configure, init, then while(!IsFinished() ){ pre-run, run, post-run }
