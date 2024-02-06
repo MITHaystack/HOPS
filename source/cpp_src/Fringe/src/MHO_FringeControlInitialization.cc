@@ -15,27 +15,31 @@ namespace hops
 {
 
 bool 
-MHO_FringeControlInitialization::need_ion_search(MHO_ParameterStore* paramStore)
+MHO_FringeControlInitialization::need_ion_search(mho_json* control)
 {
-    //retrieve processed control file text (with comments removed)
-    std::string control_text;
-    bool ok = paramStore->Get("/control/control_file_contents", control_text);
-
-    if(ok)
+    std::vector< std::string > ion_keywords;
+    ion_keywords.push_back("ion_win");
+    ion_keywords.push_back("ion_npts");
+    ion_keywords.push_back("ionosphere");
+    ion_keywords.push_back("ion_smooth");
+    //loop over control statements, find statements which contain ionospheric 
+    //search related settings, return true on first one encountered
+    for(auto ctrl_iter = control->begin(); ctrl_iter != control->end(); ctrl_iter++)
     {
-        //simple heuristic to determine if we need to do an ionosphere fit. Just look 
-        //for the presence of the 'ion' string in the control text 
-        //if no ion related parameters are set, then assume no ion fit is needed
-        if(control_text.find("ion") != std::string::npos)
+        auto ctrl_item = *(ctrl_iter);
+        if( ctrl_iter->contains("statements") )
         {
-            //TODO FIXME -- may want to figure out a way to cache this result in 
-            //the parameter store or otherwise. In some cases doing this check 
-            //may be very costly (e.g. ~MB scale control files repeatedly done 
-            //over many scan-baselines)
-            return true;
+            auto statements = &( (*ctrl_iter)["statements"] );
+            for(auto stmt_iter = statements->begin(); stmt_iter != statements->end(); stmt_iter++)
+            {
+                std::string name = (*stmt_iter)["name"];
+                for(std::size_t i=0;i<ion_keywords.size(); i++)
+                {
+                    if(name == ion_keywords[i]){return true;}
+                }
+            }
         }
     }
-
     return false;
 }
 
@@ -96,6 +100,12 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
 
     //set some intiail/default parameters (polprod, ref_freq)
     MHO_InitialFringeInfo::set_default_parameters_minimal(paramStore);
+
+    //Unlike hops3 we don't want to default to using the ionospheric fringe fitter always, only when it is actually needed.
+    //So in order to detect if ionospheric fitting is required we have to do a quick pre-pass of the control statements
+    //to check for ion keywords before processing/consuming them
+    bool do_ion = MHO_FringeControlInitialization::need_ion_search(&control_statements);
+    paramStore->Set("/config/do_ion", do_ion);
 
     //configure parameter store from control statements
     //note that this class consumes relevant control statements (and removes them upon use)

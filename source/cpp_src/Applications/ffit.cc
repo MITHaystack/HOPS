@@ -56,10 +56,8 @@ int main(int argc, char** argv)
     //parse the control file and form the control statements
     MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(), fringeData.GetControlFormat(), fringeData.GetControlStatements() );
 
-    //Unlike hops3 we don't want to default to using the ionospheric fringe fitter always, only when it is actually needed.
-    //So in order to detect if ionospheric fitting is required we have to do a quick pre-pass/parse of the control statements
-    bool do_ion = MHO_FringeControlInitialization::need_ion_search( fringeData.GetParameterStore() );
-
+    bool do_ion = false;
+    fringeData.GetParameterStore()->Get("/config/do_ion", do_ion);
 
     MHO_FringeFitter* ffit;
     //TODO FIXME...replace this logic with a factory method based on the parameter store 
