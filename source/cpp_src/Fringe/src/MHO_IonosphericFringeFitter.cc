@@ -188,7 +188,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
         switch (level)
         {
             case 0:                     // set up for coarse ion search
-                std::cout<<"CASE 0 "<<std::endl;
+                //std::cout<<"CASE 0 "<<std::endl;
                 ilmax = ion_pts;
                 step = coarse_spacing;
                 bottom = center - (ilmax - 1) / 2.0 * step;
@@ -198,7 +198,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 }
             break;
             case 1:                     // set up for medium ion search 
-                std::cout<<"CASE 1 "<<std::endl;
+                //std::cout<<"CASE 1 "<<std::endl;
                 // find maximum from coarse search
                 // should do parabolic interpolation here
                 valmax = -1.0;
@@ -231,7 +231,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 bottom = center - (ilmax - 1) / 2.0 * step;
             break;
             case 2:                     // set up for fine ion search 
-                std::cout<<"CASE 2 "<<std::endl;
+                //std::cout<<"CASE 2 "<<std::endl;
                 // find maximum from medium search
                 // should do parabolic interpolation here
                 valmax = -1.0;
@@ -264,7 +264,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 bottom = center - (ilmax - 1) / 2.0 * step;
             break;
             case 3:                     // final evaluation
-                std::cout<<"CASE 3 "<<std::endl;
+                //std::cout<<"CASE 3 "<<std::endl;
                 // find maximum from fine search
                 valmax = -1.0;
                 for (k=0; k<ilmax; k++)
@@ -298,7 +298,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                     xlo = bottom + (kmax - 1 + koff) * step;
                 }
         
-                std::cout<<"calling parabola"<<std::endl;
+                //std::cout<<"calling parabola"<<std::endl;
                 rc = MHO_MathUtilities::parabola (y, -1.0, 1.0, &xmax, &ampmax, q);
 
                 if (rc == 1)
@@ -331,12 +331,12 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             //apply the dTEC correction here:
 
             //remove the effects of the last application
-            std::cout<<"Applying inverse dTEC of: "<<last_ion_diff<<std::endl;
+            //std::cout<<"Applying inverse dTEC of: "<<last_ion_diff<<std::endl;
             iono.SetDifferentialTEC(last_ion_diff);
             iono.Execute();
 
             //apply the current ionospheric phase
-            std::cout<<"Applying dTEC of: "<<ion_diff<<std::endl;
+            //std::cout<<"Applying dTEC of: "<<ion_diff<<std::endl;
             iono.SetDifferentialTEC(-1.0*ion_diff);
             iono.Execute();
             last_ion_diff = ion_diff;
@@ -344,13 +344,13 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             // MHO_BasicFringeUtilities::basic_fringe_search(fContainerStore, fParameterStore);
             coarse_fringe_search();
 
-            if(ionloop==0)
+            if(first_pass)
             {
                 //cache the full SBD search window for later
                 fMBDSearch.GetSBDWindow(win_sb_save[0], win_sb_save[1]);
                 //then just limit the SBD window to bin where the max was located
-                // double sbdelay = fParameterStore->GetAs<double>("/fringe/sbdelay");
-                // fMBDSearch.SetSBDWindow(sbdelay, sbdelay);
+                double sbdelay = fParameterStore->GetAs<double>("/fringe/sbdelay");
+                fMBDSearch.SetSBDWindow(sbdelay, sbdelay);
                 first_pass = false;
             }
 
@@ -526,18 +526,8 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     win_ion[0] = iwin[0];
     win_ion[1] = iwin[1];
 
-
-    // extern int do_accounting;
-    // extern struct type_status status;
-    // extern struct type_param param;
-
     double values[MAX_ION_PTS];
     double smoothed_values[4*MAX_ION_PTS];
-    // int parabola (double *, double, double, double *, double *, double *);
-    // void sort_tecs (void);
-    // void smoother (double *, double *, double *, int *);
-    // extern void interp (struct type_pass*);
-    // extern int search (struct type_pass*);
 
                                         // prepare for ionospheric search
     center = (win_ion[0] + win_ion[1]) / 2.0;
@@ -676,13 +666,13 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
             // MHO_BasicFringeUtilities::basic_fringe_search(fContainerStore, fParameterStore);
             coarse_fringe_search();
 
-            if(ionloop==0)
+            if(first_pass)
             {
                 //cache the full SBD search window for later
                 fMBDSearch.GetSBDWindow(win_sb_save[0], win_sb_save[1]);
                 //then just limit the SBD window to bin where the max was located
-                // double sbdelay = fParameterStore->GetAs<double>("/fringe/sbdelay");
-                // fMBDSearch.SetSBDWindow(sbdelay, sbdelay);
+                double sbdelay = fParameterStore->GetAs<double>("/fringe/sbdelay");
+                fMBDSearch.SetSBDWindow(sbdelay, sbdelay);
                 first_pass = false;
             }
 
