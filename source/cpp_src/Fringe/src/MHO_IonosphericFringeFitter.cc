@@ -316,6 +316,9 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             // offset ionosphere by search offset
             ion_diff = bottom + ionloop * step;
 
+            fParameterStore->Set("/fringe/ion_diff", ion_diff);
+
+
             // do 3-D grid search using FFT's
             rc = 0; //search(pass);
             //execute the basic fringe search algorithm

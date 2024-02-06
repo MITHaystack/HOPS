@@ -81,7 +81,10 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["ResidSbd(us)"] = paramStore->GetAs<double>("/fringe/sbdelay");
     plot_dict["ResidMbd(us)"] = paramStore->GetAs<double>("/fringe/mbdelay");
     plot_dict["FringeRate(Hz)"]  = paramStore->GetAs<double>("/fringe/frate");
-    plot_dict["IonTEC(TEC)"] = "-";
+    double ion_diff;
+    bool ok = paramStore->Get("/fringe/ion_diff", ion_diff);
+    if(!ok){ion_diff = 0;}
+    plot_dict["IonTEC(TEC)"] = ion_diff;
     plot_dict["RefFreq(MHz)"] = paramStore->GetAs<double>("/control/config/ref_freq");
     plot_dict["AP(sec)"] = paramStore->GetAs<double>("/config/ap_period");
     plot_dict["ExperName"] = paramStore->GetAs<std::string>("/vex/experiment_name");
