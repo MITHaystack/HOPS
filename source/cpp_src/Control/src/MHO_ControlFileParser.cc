@@ -62,21 +62,19 @@ MHO_ControlFileParser::ReadFile()
     //'if' statement which does not apply. So, what we have to do is check if the 
     //set string contains an 'if' and if so, we need to split its contents on the first 
     //instance of 'if'. Anything before this if statement should be prepended to the 
-    //control file, while anything after it should be append to the end of the control file
+    //control file, while anything after it should be appended to the end of the control file
     
     std::string prepend = "";
     std::string append = "";
     SplitSetString(fSetString, prepend, append);
     
     //prepend applicable portion of the set string (give it line #0)
-    if(prepend != "")
-    {
-        MHO_ControlLine line;
-        line.fLineNumber = 0;
-        line.fContents = prepend;
-        fLines.push_back(line);
-    }
-    
+    //appends empty string "" if nothing in set string
+    MHO_ControlLine tmp_line;
+    tmp_line.fLineNumber = 0;
+    tmp_line.fContents = prepend;
+    fLines.push_back(tmp_line);
+
     //nothing special, just read in the entire file line by line and stash in memory
     bool status = false;
     std::size_t line_count = 1;
@@ -105,14 +103,12 @@ MHO_ControlFileParser::ReadFile()
         }
     }
     
-    //append applicable portion of the set string
-    if(append != "")
-    {
-        MHO_ControlLine line;
-        line.fLineNumber = line_count;
-        line.fContents = append;
-        fLines.push_back(line);
-    }
+    //append applicable portion of the set string 
+    //this append an empty string "" if  there is nothing in the set string
+    tmp_line.fLineNumber = line_count;
+    tmp_line.fContents = append;
+    fLines.push_back(tmp_line);
+
     
     return status;
 }
@@ -125,7 +121,8 @@ MHO_ControlFileParser::RemoveComments()
     for(auto it = fLines.begin(); it != fLines.end();)
     {
         std::size_t com_pos = it->fContents.find_first_of(flag);
-        if(com_pos != std::string::npos || it->fContents.size() == 0)
+        // if(com_pos != std::string::npos || it->fContents.size() == 0)
+        if(com_pos != std::string::npos ) //this allows empty lines to pass through
         {
             if(com_pos == 0){it = fLines.erase(it);} //this entire line is a comment
             else
@@ -205,11 +202,20 @@ void
 MHO_ControlFileParser::MergeTokens()
 {
     fFileTokens.clear();
+    fLegacyFileTokens.clear();
     auto it = fLines.begin();
+    line_itr it2;
     while(it != fLines.end())
     {
         fFileTokens.insert( fFileTokens.end(), it->fTokens.begin(), it->fTokens.end() );
-        it++;
+        it2 = it;
+        it2++;
+        //exclude the very first and last lines (set string lines) from the legacy tokens
+        if(it != fLines.begin() && it2 != fLines.end() )
+        {
+            fLegacyFileTokens.insert( fLegacyFileTokens.end(), it->fTokens.begin(), it->fTokens.end() );
+        }
+        it = it2;
     }
 }
 
@@ -217,6 +223,7 @@ void
 MHO_ControlFileParser::ExportTokens()
 {
     fProcessedControlFileText = "";
+
     for(auto it = fFileTokens.begin(); it != fFileTokens.end(); )
     {
         fProcessedControlFileText += it->fValue;
@@ -224,6 +231,17 @@ MHO_ControlFileParser::ExportTokens()
         if(it != fFileTokens.end())
         {
             fProcessedControlFileText += " ";
+        }
+    }
+    
+    fLegacyProcessedControlFileText = "";
+    for(auto it = fLegacyFileTokens.begin(); it != fLegacyFileTokens.end(); )
+    {
+        fLegacyProcessedControlFileText += it->fValue;
+        it++;
+        if(it != fLegacyFileTokens.end())
+        {
+            fLegacyProcessedControlFileText += " ";
         }
     }
 }

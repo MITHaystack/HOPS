@@ -335,6 +335,9 @@ MHO_BasicFringeFitter::coarse_fringe_search()
     fParameterStore->Set("/fringe/max_mbd_bin", c_mbdmax);
     fParameterStore->Set("/fringe/max_sbd_bin", c_sbdmax);
     fParameterStore->Set("/fringe/max_dr_bin", c_drmax);
+    
+    double coarse_sbdelay = fMBDSearch.GetCoarseSBD();
+    fParameterStore->Set("/fringe/sbdelay", coarse_sbdelay);
 }
 
 void

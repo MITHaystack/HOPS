@@ -23,6 +23,10 @@ MHO_MBDelaySearch::MHO_MBDelaySearch()
     fMBDWin[1] = -1e30;
     fDRWin[0] = 1e30;
     fDRWin[1] = -1e30;
+    
+    fCoarseSBD = 0;
+    fCoarseMBD = 0;
+    fCoarseDR = 0;
 }
 
 MHO_MBDelaySearch::~MHO_MBDelaySearch(){};
@@ -206,6 +210,11 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "fringe", "MBD search cyclic rotation execution." << eom );
         fMBDAxis = std::get<0>(fMBDWorkspace);
+        
+        
+        fCoarseMBD = fMBDAxis(fMBDMaxBin);
+        fCoarseSBD = fSBDAxis(fSBDMaxBin);
+        fCoarseDR = fDRAxis(fDRMaxBin);
 
         fMax = std::sqrt(fMax);
         return true;

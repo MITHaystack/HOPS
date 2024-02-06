@@ -76,13 +76,14 @@ MHO_ManualPolDelayCorrection::DetermineStationIndex(const visibility_type* in)
 {
     //determine if the p-cal corrections are being applied to the remote or reference station
     std::string val;
+    std::string rem, ref;
 
     if(fMk4ID != "") //selection by mk4 id
     {
-        in->Retrieve(fRemStationMk4IDKey, val);
-        if(fMk4ID == val){return 1;}
-        in->Retrieve(fRefStationMk4IDKey, val);
-        if(fMk4ID == val){return 0;}
+        in->Retrieve(fRemStationMk4IDKey, rem);
+        in->Retrieve(fRefStationMk4IDKey, ref);
+        if(fMk4ID == rem){return 1;}
+        if(fMk4ID == ref){return 0;}
     }
 
     if(fStationCode != "")//seletion by 2-char station code
@@ -92,8 +93,9 @@ MHO_ManualPolDelayCorrection::DetermineStationIndex(const visibility_type* in)
         in->Retrieve(fRefStationKey, val);
         if(fStationCode == val){return 0;}
     }
-
-    msg_warn("calibration", "manual pcal, remote/reference station do not match selection."<< eom );
+    
+    msg_warn("calibration", "manual per-pol delay correction, (remote,reference) " <<
+        "stations: ("<<ref<<", "<<rem<<") do not match selection "<<fMk4ID<<"."<< eom );
     return 2;
 }
 

@@ -80,7 +80,8 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
 
     //stash the processed text in the parameter store
     //TODO FIXME -- we may want to move this elsewhere 
-    std::string parsed_control = cparser.GetProcessedControlFileText();
+    // std::string parsed_control = cparser.GetProcessedControlFileText();
+    std::string parsed_control = cparser.GetLegacyProcessedControlFileText();
     paramStore->Set("/control/control_file_contents", parsed_control);
 
     //TODO -- where should frequency group information get stashed/retrieved?

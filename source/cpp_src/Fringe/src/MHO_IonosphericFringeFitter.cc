@@ -58,6 +58,9 @@ void MHO_IonosphericFringeFitter::Run()
         bool ok = fParameterStore->Get("/control/fit/ion_smooth", do_smoothing);
         if(!ok){do_smoothing = false;}
         
+        //do bare bones first-pass (no iono) to set the sbd
+        coarse_fringe_search();
+        
         if(do_smoothing){ion_search_smooth();}
         else{ rjc_ion_search();}
         
