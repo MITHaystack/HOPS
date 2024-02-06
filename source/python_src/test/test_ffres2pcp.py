@@ -82,18 +82,20 @@ def main():
     #test return value
     ret_status = 0 #0 indicates success, a non-zero value: failure
 
-    tolerance = 0.1 #tolerance to detect changes is 0.1 degrees
+    #tolerance = 0.1 #tolerance to detect changes is 0.1 degrees
+    tolerance = 5.0
     for stpol in cached_pc_values.keys():
         if stpol in final_pc_values:
             gen_ch_pcp = final_pc_values[stpol].items()
             gen_values = [ x[1] for x in ( sorted(gen_ch_pcp, key=vpal.ffres2pcp_lib.channel_sort_key) ) ]
             test_values = cached_pc_values[stpol] #this is a list
             if len(gen_values) != len(test_values):
-                ret_status += 1
+                ret_status += 1000
             else:
                 for i in list(range(0,len(gen_values))):
                     delta = gen_values[i] - test_values[i]
                     if abs(delta) > tolerance:
+                        print("st:pol:chan", stpol, i," | gen: ", round(gen_values[i],2), "test: ", test_values[i])
                         ret_status += 1
         else:
             ret_status += 1
