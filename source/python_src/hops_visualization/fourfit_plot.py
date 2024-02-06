@@ -88,7 +88,9 @@ def make_sbd_dtec_plot(plot_dict):
     plt.yticks(fontsize=8,rotation=90)
     ax3.yaxis.label.set_color('g')
     ax3.minorticks_on()
-    ax3.tick_params(axis='both', direction='in', which='both', right=True, bottom=True, left=True, top=True)
+    ax3.tick_params(axis='y', direction='in', which='both', right=False, left=True, labelleft=True, labelright=False)
+    ax3.tick_params(axis='x', direction='in', which='both', right=False, top=False, bottom=True, labeltop=False, labelbottom=True)
+    #ax3.tick_params(axis='both', direction='in', which='both', right=False, bottom=True, left=True, top=False, labelbottom=True, labeltop=False, labelleft=True, labelright=False)
     #TODO -- when dtec search is implemented and this data is present, twin axes and plot it here
 
     if "extra" in plot_dict:
@@ -102,11 +104,16 @@ def make_sbd_dtec_plot(plot_dict):
             ax4.set_xlim(dtec_x[0],dtec_x[-1])
             ax4.set_ylim(bottom=0)
             ax4.set_xlabel(r'ion. TEC',fontsize=9)
-            ax4.xaxis.set_major_formatter(FormatStrFormatter('%.3f'))
+            # ax4.xaxis.set_major_formatter(FormatStrFormatter('%.3f'))
             plt.xticks(fontsize=8)
-            ax4.xaxis.label.set_color('r')
+            # ax4.xaxis.label.set_color('r')
             ax4.minorticks_on()
-            ax4.tick_params(axis='both', direction='in', which='both', top=True, right=True)
+            ax4.tick_params(axis='y', direction='in', which='both', right=False, left=False, labelleft=False, labelright=False)
+            ax4.tick_params(axis='x', direction='in', which='both', right=False, top=True, bottom=False, labeltop=True, labelbottom=False)
+            ax3a.tick_params(axis='y', direction='in', which='both', right=False, left=False, labelleft=False, labelright=False)
+            ax3a.tick_params(axis='x', direction='in', which='both', right=False, top=True, bottom=False, labeltop=True, labelbottom=False)
+            # ax4.tick_params(axis='both', direction='in', which='both', top=True, right=False)
+            # ax3.tick_params(axis='both', direction='in', which='both', top=False, right=False, left=False, bottom=False)
 
 def make_xpower_plot(plot_dict):
 
