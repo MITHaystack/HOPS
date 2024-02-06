@@ -37,7 +37,12 @@ class MHO_ControlFileParser
 
         mho_json ParseControl();
         
-        std::string GetProcessedControlFileText(){return fProcessedControlFileText;}
+        //all of the tokens that make it into the control flow
+        std::string GetProcessedControlFileText() const {return fProcessedControlFileText;}
+        
+        //just the control file tokens without set-string additions
+        //needed for backwards compatible type_222 records
+        std::string GetLegacyProcessedControlFileText() const {return fLegacyProcessedControlFileText;}
 
     private:
 
@@ -75,14 +80,16 @@ class MHO_ControlFileParser
 
         //token processing
         MHO_Tokenizer fTokenizer;
-        std::vector< MHO_Token > fFileTokens; //all tokens from file
+        std::vector< MHO_Token > fFileTokens; //all tokens from file and set string
         std::vector< std::size_t > fKeywordLocations; //index of each keyword token
         std::vector< MHO_ControlStatement > fStatements; //collection of tokens for each logical statement
 
         MHO_ControlElementParser fElementParser;
 
-        //output (the parsed text of the control file with comments removes )
+        //output (the parsed text of the control file + set_string with comments removed )
         std::string fProcessedControlFileText;
+        std::string fLegacyProcessedControlFileText;
+        std::vector< MHO_Token > fLegacyFileTokens; //only tokens from file
 };
 
 }//end namespace

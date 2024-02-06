@@ -360,6 +360,38 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     ok = fPStore->Get("/fringe/error_code", errcode);     //TODO implement the error code calc!
     errcode = " ";
     t208->errcode = errcode[0];
+    
+    //don't forget the "provisional" pol product indicator
+    #define POLCHAR_OFFSET 64
+    // polarization values in pass array structure
+    #define POL_LL 0
+    #define POL_RR 1
+    #define POL_LR 2
+    #define POL_RL 3
+    // polarization values in param array structure
+    #define POL_ALL 0
+    #define POLMASK_LL 1
+    #define POLMASK_RR 2
+    #define POLMASK_LR 4
+    #define POLMASK_RL 8
+    #define POL_IXY 31
+    
+    char passpol;
+    char parampol;
+    std::string polprod = fPStore->GetAs<std::string>("/config/polprod");
+    if(polprod == "I"){parampol = POL_IXY;}
+    if(polprod == "XX"){parampol = POLMASK_LL; passpol = POL_LL;}
+    if(polprod == "XY"){parampol = POLMASK_LR; passpol = POL_LR;}
+    if(polprod == "YX"){parampol = POLMASK_RL; passpol = POL_RL;}
+    if(polprod == "YY"){parampol = POLMASK_RR; passpol = POL_RR;}
+    if(polprod == "LL"){parampol = POLMASK_LL; passpol = POL_LL;}
+    if(polprod == "LR"){parampol = POLMASK_LR; passpol = POL_LR;}
+    if(polprod == "RL"){parampol = POLMASK_RL; passpol = POL_RL;}
+    if(polprod == "RR"){parampol = POLMASK_RR; passpol = POL_RR;}
+    
+    t208->unused1[0] = passpol + POLCHAR_OFFSET; 
+    t208->unused1[1] = parampol + POLCHAR_OFFSET;
+    t208->unused1[2] = '\0';
 
     //not used
     strncpy(t208->tape_qcode, "99999?", 6);
@@ -458,6 +490,10 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
     std::string control_contents;
     bool ok = fPStore->Get("/control/control_file_contents", control_contents);
     if(!ok){control_contents = "";}
+    
+    //legacy type_222 always has an extra space at front and back
+    //of the control file string, so add it here.
+    control_contents = ' ' + control_contents + ' ';
 
     unsigned char set_string_buff[1] = {' '};
     int setstr_len, cf_len, setstr_pad, cf_pad, full_size, i;
