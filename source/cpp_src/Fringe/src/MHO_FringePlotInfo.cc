@@ -217,6 +217,19 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     if(pp_vec.size()  > 2 ){eff_npols = 2;}
     int data_rate = (int)( nchan*eff_npols*srate_MHz* std::sqrt(ref_bits*rem_bits) + 0.5 );
     plot_dict["extra"]["data_rate"] = data_rate;
+
+
+    //if ionospheric fit was done then pass that data too 
+    if(paramStore->IsPresent("/fringe/dtec_array") && paramStore->IsPresent("/fringe/dtec_amp_array"))
+    {
+        std::vector<double> dtec_array;
+        std::vector<double> dtec_amp_array;
+        paramStore->Get("/fringe/dtec_array", dtec_array);
+        paramStore->Get("/fringe/dtec_amp_array", dtec_amp_array);
+        plot_dict["extra"]["dtec_array"] = dtec_array;
+        plot_dict["extra"]["dtec_amp_array"] = dtec_amp_array;
+    }
+
 }
 
 
