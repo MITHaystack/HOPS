@@ -53,7 +53,14 @@ void MHO_IonosphericFringeFitter::Run()
     bool skipped = fParameterStore->GetAs<bool>("/status/skipped");
     if( !is_finished  && !skipped) //execute if we are not finished and are not skipping
     {
-        rjc_ion_search();
+        //determine if we use the smoothed algorithm or not 
+        bool do_smoothing;
+        bool ok = fParameterStore->Get("/control/fit/ion_smooth", do_smoothing);
+        if(!ok){do_smoothing = false;}
+        
+        if(do_smoothing){ion_search_smooth();}
+        else{ rjc_ion_search();}
+        
         fParameterStore->Set("/status/is_finished", true);
         //have sampled all grid points, find the solution and finalize
         //calculate the fringe properties
@@ -129,7 +136,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     double last_ion_diff = 0.0;
     double win_dr[2];
     double win_sb[2];
-
+    double max_so_far = 0.0;
 
     visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
     if( vis_data == nullptr )
@@ -316,8 +323,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             // offset ionosphere by search offset
             ion_diff = bottom + ionloop * step;
 
-            fParameterStore->Set("/fringe/ion_diff", ion_diff);
-
+            // fParameterStore->Set("/fringe/ion_diff", ion_diff);
 
             // do 3-D grid search using FFT's
             rc = 0; //search(pass);
@@ -374,6 +380,12 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             double delres_max = fParameterStore->GetAs<double>("/fringe/famp");
             values[ionloop] = delres_max;
             printf("ion search differential TEC %f amp %f \n", ion_diff, delres_max);
+            
+            if(delres_max > max_so_far)
+            {
+                max_so_far = delres_max;
+                fParameterStore->Set("/fringe/ion_diff", ion_diff);
+            }
         }
     }
     
@@ -450,7 +462,7 @@ MHO_IonosphericFringeFitter::sort_tecs(int nion, double dtec[][2])
 // the coarse points, then goes immediately to a fine search
 // around the maximum
 
-int MHO_IonosphericFringeFitter::ion_search_smooth ()
+int MHO_IonosphericFringeFitter::ion_search_smooth()
     {
     int i,
         k,
@@ -487,7 +499,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth ()
     double last_ion_diff = 0.0;
     double win_dr[2];
     double win_sb[2];
-
+    double max_so_far = 0.0;
 
     visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
     if( vis_data == nullptr )
@@ -623,16 +635,16 @@ int MHO_IonosphericFringeFitter::ion_search_smooth ()
                     xlo = bottom + (kmax - 1 + koff) * step;
                     }
 
-                rc = //msg (y, -1.0, 1.0, &xmax, &ampmax, q);
+                rc = MHO_MathUtilities::parabola(y, -1.0, 1.0, &xmax, &ampmax, q);
 
-                // if (rc == 1)
-                // {
-                //     msg ("TEC fine interpolation error; peak out of search range",1);
-                // }
-                // else if (rc == 2)
-                // {
-                //     msg ("TEC fine interpolation error; positive curvature",1);
-                // }
+                if (rc == 1)
+                {
+                    msg_error("fringe", "TEC fine interpolation error; peak out of search range" << eom);
+                }
+                else if (rc == 2)
+                {
+                    msg_error("fringe", "TEC fine interpolation error; positive curvature" << eom);
+                }
 
                 center = xlo + (xmax + 1.0) * step;
 
@@ -702,6 +714,11 @@ int MHO_IonosphericFringeFitter::ion_search_smooth ()
             values[ionloop] = delres_max;
             printf("ion search differential TEC %f amp %f \n", ion_diff, delres_max);
 
+            if(delres_max > max_so_far)
+            {
+                max_so_far = delres_max;
+                fParameterStore->Set("/fringe/ion_diff", ion_diff);
+            }
             //values[ionloop] = status.delres_max;
             //msg ("ion search differential TEC %f amp %f", 1, ion_diff, status.delres_max);
             }
