@@ -91,6 +91,22 @@ def make_sbd_dtec_plot(plot_dict):
     ax3.tick_params(axis='both', direction='in', which='both', right=True, bottom=True, left=True, top=True)
     #TODO -- when dtec search is implemented and this data is present, twin axes and plot it here
 
+    if "extra" in plot_dict:
+        if "dtec_array" in plot_dict["extra"] and "dtec_amp_array" in plot_dict["extra"]:
+            dtec_x = plot_dict["extra"]["dtec_array"]
+            dtec_y = plot_dict["extra"]['dtec_amp_array']
+            ax3a = ax3.twinx()
+            plt.yticks(fontsize=8,rotation=90)
+            ax4 = ax3a.twiny()
+            ax4.plot(dtec_x, dtec_y,'r-',linewidth=0.5)
+            ax4.set_xlim(dtec_x[0],dtec_x[-1])
+            ax4.set_ylim(bottom=0)
+            ax4.set_xlabel(r'ion. TEC',fontsize=9)
+            ax4.xaxis.set_major_formatter(FormatStrFormatter('%.3f'))
+            plt.xticks(fontsize=8)
+            ax4.xaxis.label.set_color('r')
+            ax4.minorticks_on()
+            ax4.tick_params(axis='both', direction='in', which='both', top=True, right=True)
 
 def make_xpower_plot(plot_dict):
 

@@ -408,6 +408,21 @@ MHO_IonosphericFringeFitter::sort_tecs(int nion, double dtec[][2])
             }
         }
     }
+
+    //ok now stuff these into the parameter store for now:
+    std::vector< double > dtec_values;
+    std::vector< double > dtec_amp_values;
+
+    for(i=0; i<nion; i++)
+    {
+        std::cout<<"ion: "<<i<<" : "<<dtec[i][0]<<", "<<dtec[i][1]<<std::endl;
+        dtec_values.push_back(dtec[i][0]);
+        dtec_amp_values.push_back(dtec[i][1]);
+    }
+    
+    fParameterStore->Set("/fringe/dtec_array", dtec_values);
+    fParameterStore->Set("/fringe/dtec_amp_array/", dtec_amp_values);
+
 };
 
 
