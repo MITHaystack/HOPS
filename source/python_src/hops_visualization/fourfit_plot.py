@@ -459,7 +459,7 @@ def make_info_text_box(plot_dict):
         str( format( float(plot_dict['ResidMbd(us)']), '.6f') )  + '\n' + \
         '\n' + \
         str( format( float(plot_dict['FringeRate(Hz)']), '.6f') ) + '\n' + \
-        plot_dict['IonTEC(TEC)'] + '\n\n' + \
+        str( format( float(plot_dict['IonTEC(TEC)']), '.3f') )  + '\n\n' + \
         str( format( float(plot_dict['RefFreq(MHz)']), '.4f') ) + '\n' + \
         str( format( float(plot_dict['AP(sec)']), '.3f') ) + '\n' + \
         plot_dict['ExperName'] + '\n' + \
