@@ -98,7 +98,7 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     std::size_t npp = pp_vec.size();
     if(npp > 1){add_polprod_sum_operator( (*(control_statements.begin()))["statements"] );}
 
-    //set some intiail/default parameters (polprod, ref_freq)
+    //set some initial/default parameters (polprod, ref_freq)
     MHO_InitialFringeInfo::set_default_parameters_minimal(paramStore);
 
     //Unlike hops3 we don't want to default to using the ionospheric fringe fitter always, only when it is actually needed.

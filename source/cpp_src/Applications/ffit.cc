@@ -62,15 +62,8 @@ int main(int argc, char** argv)
     MHO_FringeFitter* ffit;
     //TODO FIXME...replace this logic with a factory method based on the parameter store 
     //but for the time being we only have two choices
-    if(do_ion)
-    {
-        //ffit = new MHO_BasicFringeFitter(&fringeData);
-        ffit = new MHO_IonosphericFringeFitter(&fringeData);
-    }
-    else 
-    {
-        ffit = new MHO_BasicFringeFitter(&fringeData);
-    }
+    if(do_ion){ ffit = new MHO_IonosphericFringeFitter(&fringeData);}
+    else{ ffit = new MHO_BasicFringeFitter(&fringeData);}
 
     #ifdef USE_PYBIND11
     // start the interpreter and keep it alive, need this or we segfault
