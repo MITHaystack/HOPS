@@ -46,8 +46,8 @@ MHO_IonosphericFringeFitter::~MHO_IonosphericFringeFitter(){};
 
 void MHO_IonosphericFringeFitter::Run()
 {
-    std::cout<<"dumping parameter store = "<<std::endl;
-    fParameterStore->Dump();
+    // std::cout<<"dumping parameter store = "<<std::endl;
+    // fParameterStore->Dump();
 
     bool is_finished = fParameterStore->GetAs<bool>("/status/is_finished");
     bool skipped = fParameterStore->GetAs<bool>("/status/skipped");
@@ -379,7 +379,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             // save values for iterative search
             double delres_max = fParameterStore->GetAs<double>("/fringe/famp");
             values[ionloop] = delres_max;
-            printf("ion search differential TEC %f amp %f \n", ion_diff, delres_max);
+            //printf("ion search differential TEC %f amp %f \n", ion_diff, delres_max);
             
             if(delres_max > max_so_far)
             {
@@ -407,7 +407,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
 void 
 MHO_IonosphericFringeFitter::sort_tecs(int nion, double dtec[][2])
 {
-    std::cout<<"calling sort tecs"<<std::endl;
+    //std::cout<<"calling sort tecs"<<std::endl;
     int i,n,changed = 1;
     double temp[2];
     while (changed)
@@ -434,7 +434,7 @@ MHO_IonosphericFringeFitter::sort_tecs(int nion, double dtec[][2])
 
     for(i=0; i<nion; i++)
     {
-        std::cout<<"ion: "<<i<<" : "<<dtec[i][0]<<", "<<dtec[i][1]<<std::endl;
+        //std::cout<<"ion: "<<i<<" : "<<dtec[i][0]<<", "<<dtec[i][1]<<std::endl;
         dtec_values.push_back(dtec[i][0]);
         dtec_amp_values.push_back(dtec[i][1]);
     }
@@ -653,12 +653,12 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
 
 
             //remove the effects of the last application
-            std::cout<<"Applying inverse dTEC of: "<<last_ion_diff<<std::endl;
+            //std::cout<<"Applying inverse dTEC of: "<<last_ion_diff<<std::endl;
             iono.SetDifferentialTEC(last_ion_diff);
             iono.Execute();
 
             //apply the current ionospheric phase
-            std::cout<<"Applying dTEC of: "<<ion_diff<<std::endl;
+            //std::cout<<"Applying dTEC of: "<<ion_diff<<std::endl;
             iono.SetDifferentialTEC(-1.0*ion_diff);
             iono.Execute();
             last_ion_diff = ion_diff;
@@ -702,7 +702,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
                                         // save values for iterative search
             double delres_max = fParameterStore->GetAs<double>("/fringe/famp");
             values[ionloop] = delres_max;
-            printf("ion search differential TEC %f amp %f \n", ion_diff, delres_max);
+            //printf("ion search differential TEC %f amp %f \n", ion_diff, delres_max);
 
             if(delres_max > max_so_far)
             {
