@@ -41,6 +41,7 @@ export CMAKE_PREFIX_PATH=$HOPS_INSTALL:${CMAKE_PREFIX_PATH//${OLD_CMAKE_PREF}/}
 export PYTHONPATH=${HOPSSYSPY}:${PYTHONPATH//${OLD_HOPSSYSPY}}
 export PROGDOC=@CMAKE_INSTALL_PREFIX@/share/vhelp
 export DEF_CONTROL=/dev/null
+export HOPS_VPAL_FRINGE_FITTER="ffit"
 
 echo -e "HOPS install directory set to ${HOPS_INSTALL}"
 

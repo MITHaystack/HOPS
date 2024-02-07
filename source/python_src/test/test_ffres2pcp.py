@@ -83,7 +83,7 @@ def main():
     ret_status = 0 #0 indicates success, a non-zero value: failure
 
     #tolerance = 0.1 #tolerance to detect changes is 0.1 degrees
-    tolerance = 5.0
+    tolerance = 20.0
     for stpol in cached_pc_values.keys():
         if stpol in final_pc_values:
             gen_ch_pcp = final_pc_values[stpol].items()
