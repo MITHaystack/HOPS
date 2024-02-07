@@ -39,7 +39,8 @@ class MHO_MultitonePhaseCorrectionBuilder:
 
         std::string ExtractStationMk4ID(std::string op_name); //op_name indicates reference or remote station
         int ExtractPCPeriod(std::string mk4id); //pulls the appropriate pc_period out of parameter store
-        void ExtractSamplerDelays(multitone_pcal_type* pcal_data, std::string mk4id); //attaches sampler delays to pcal data
+        void AttachSamplerDelays(multitone_pcal_type* pcal_data, std::string mk4id); //attaches sampler delays to pcal data
+        void AttachPCToneMask(multitone_pcal_type* pcal_data, std::string mk4id); //attaches pc_tonemask infor to pcal data (if present)
         std::string GetSamplerDelayKey(std::string pol);
         
         std::string fRefOpName;

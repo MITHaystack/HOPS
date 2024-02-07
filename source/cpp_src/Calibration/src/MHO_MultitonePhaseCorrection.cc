@@ -57,6 +57,9 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
 
     RepairMK4PCData(in);
 
+    std::cout<<"PCDATA TAGS = "<<std::endl;
+    fPCData->DumpMap();
+
     //loop over polarization in pcal data and pol-products
     //so we can apply the phase-cal to the appropriate pol/channel/ap
     auto pcal_pol_ax = &(std::get<MTPCAL_POL_AXIS>(*fPCData));
