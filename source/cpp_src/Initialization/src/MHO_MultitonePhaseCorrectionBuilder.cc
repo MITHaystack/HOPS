@@ -213,10 +213,10 @@ void MHO_MultitonePhaseCorrectionBuilder::AttachPCToneMask(multitone_pcal_type* 
         pcal_data->Insert("pc_tonemask_channels", channel_names);
         pcal_data->Insert("pc_tonemask_bitmasks", tone_masks);
     }
-    else 
-    {
-        msg_warn("initialization", "could not configure pc_tonemask for station: "<< mk4id<< ", assuming no pc tone masks." << eom);
-    }
+    // else 
+    // {
+    //     msg_warn("initialization", "could not configure pc_tonemask for station: "<< mk4id<< ", assuming no pc tone masks." << eom);
+    // }
 
 }
 

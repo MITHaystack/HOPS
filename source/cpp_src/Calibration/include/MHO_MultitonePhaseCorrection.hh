@@ -124,6 +124,14 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         std::string fLowerSideband;
         std::string fUpperSideband;
 
+        //need for pc_tonemask
+        std::string fPCToneMaskChannelsKey;
+        std::string fPCToneMaskBitmasksKey;
+        bool fHavePCToneMask;
+        std::string fPCToneMaskChannels;
+        std::vector< int > fPCToneMaskBitmasks; 
+
+
         //minor helper function to make sure all strings are compared as upper-case only
         void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
     }
