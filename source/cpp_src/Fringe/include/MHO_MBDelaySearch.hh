@@ -65,6 +65,8 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         double GetCoarseMBD() const {return fCoarseMBD;}
         double GetCoarseSBD() const {return fCoarseSBD;}
         double GetCoarseDR() const {return fCoarseDR;}
+        
+        double GetSBDBinSeparation() const {return fSBDBinSep;}
 
         int GetNMBDBins(){return fNGridPoints;};
         int GetNSBDBins(){return fNSBD;};
@@ -110,6 +112,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         double fRefFreq;
         int fSBDStart;
         int fSBDStop;
+        double fSBDBinSep;
 
         //the window limits 
         double fSBDWin[2];

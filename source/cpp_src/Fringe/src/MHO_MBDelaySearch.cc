@@ -27,6 +27,7 @@ MHO_MBDelaySearch::MHO_MBDelaySearch()
     fCoarseSBD = 0;
     fCoarseMBD = 0;
     fCoarseDR = 0;
+    fSBDBinSep = 0;
 }
 
 MHO_MBDelaySearch::~MHO_MBDelaySearch(){};
@@ -105,9 +106,10 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 {
     bool ok;
 
-    if(fInitialized)
+    if(fInitialized && fNSBD > 1)
     {
         fSBDAxis = std::get<FREQ_AXIS>(*in);
+        fSBDBinSep = fSBDAxis.at(1) - fSBDAxis.at(0);
         //loop over the single-band delay 'lags', computing the MBD/DR function
         //find the max for each SBD, and globally
         fMax = -0.0;
@@ -218,6 +220,10 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
         fMax = std::sqrt(fMax);
         return true;
+    }
+    else 
+    {
+        msg_error("fringe", "MHO_MBDelaySearch could not execute, intialization failure." << eom);
     }
 
     return false;

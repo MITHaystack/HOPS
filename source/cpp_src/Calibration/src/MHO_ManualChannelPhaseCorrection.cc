@@ -68,7 +68,8 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                         visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
 
                         //conjugate phases for LSB data, but not for USB - TODO what about DSB?
-                        if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
+                        // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
+                        if(st_idx == 1){pc_phasor = std::conj(pc_phasor);}
                         #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
 
                         //retrieve and multiply the appropriate sub view of the visibility array
