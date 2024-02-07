@@ -1,5 +1,16 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
-    "type": "unknown"
+    "name": "pc_tonemask",
+    "statement_type": "parameter",
+    "parameter_type" : "station",
+    "type" : "compound",
+    "parameters":
+    {
+        "channel_names": {"type": "string"},
+        "tone_masks": {"type": "list_int"}
+    },
+    "fields": 
+    [
+        "channel_names", 
+        "tone_masks"
+    ]
 }

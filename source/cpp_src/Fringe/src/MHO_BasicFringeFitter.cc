@@ -188,6 +188,9 @@ void MHO_BasicFringeFitter::Initialize()
         fPeakInterpolator.SetWeights(wt_data);
 
     }
+
+    std::cout<<"PARAMETERS = "<<std::endl;
+    fParameterStore->Dump();
 }
 
 void MHO_BasicFringeFitter::PreRun()

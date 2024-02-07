@@ -12,6 +12,13 @@ MHO_ParameterConfigurator::Configure()
 
     if(statement_type == "parameter")
     {
+    
+        if( !(fAttributes.contains("value")) )
+        {
+            msg_error("initialization", "could not parse a parameter with name: " << name << " missing value." << eom );
+            return false;
+        }
+
         std::string parameter_type = "config"; //default type is config
         if(fFormat[name].contains("parameter_type")){ parameter_type = fFormat[name]["parameter_type"].get<std::string>(); }
         param_t param_type = DetermineParamType(parameter_type);
@@ -120,6 +127,15 @@ MHO_ParameterConfigurator::Configure()
                 }
             }
             break;
+            case ParamValueType::compound_type:
+            {
+                auto values = fAttributes["value"];
+                for(std::size_t nst = 0; nst<explicit_paths.size(); nst++)
+                {
+                    SetCompoundParameter(explicit_paths[nst], values);
+                }
+            }
+            break;
             default:
                 msg_debug("initialization", "could not determine the parameter: " <<name <<"'s value type: "<< value_type << eom);
             return false;
@@ -138,6 +154,7 @@ MHO_ParameterConfigurator::DetermineParamValueType(const std::string& par_value_
     if(par_value_type == "list_int"){return ParamValueType::list_int_type;}
     if(par_value_type == "list_real"){return ParamValueType::list_real_type;}
     if(par_value_type == "list_string" || par_value_type == "fixed_length_list_string" ){return ParamValueType::list_string_type;}
+    if(par_value_type == "compound"){return ParamValueType::compound_type;}
     return ParamValueType::unknown;
 }
 
@@ -153,5 +170,10 @@ MHO_ParameterConfigurator::DetermineParamType(const std::string& par_type) const
     return ParamType::unknown;
 }
 
+void MHO_ParameterConfigurator::SetCompoundParameter(std::string path, const mho_json& values)
+{
+    bool ok = fParameterStore->Set(path, values);
+    if(!ok){msg_warn("initialization", "could not set compound parameter: " << path << eom);}
+}
 
 }

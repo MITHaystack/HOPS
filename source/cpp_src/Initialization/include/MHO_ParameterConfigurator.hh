@@ -52,6 +52,7 @@ class MHO_ParameterConfigurator
             list_int_type, //list of ints with arbitrary length
             list_real_type, //list of floats with arbitrary length
             list_string_type, //list of strings with arbitrary length
+            compound_type, //multiple elements of different types
             unknown
         };
 
@@ -67,6 +68,8 @@ class MHO_ParameterConfigurator
 
         template< typename XValueType >
         void SetVectorParameter(std::string path, const std::vector<XValueType>& values);
+
+        void SetCompoundParameter(std::string path, const mho_json& values);
 
         MHO_ParameterStore* fParameterStore;
         mho_json fFormat; //format description for each parameter
@@ -92,6 +95,7 @@ void MHO_ParameterConfigurator::SetVectorParameter(std::string path, const std::
     bool ok = fParameterStore->Set(path, values);
     if(!ok){msg_warn("initialization", "could not set parameter vector: " << path << eom);}
 }
+
 
 
 
