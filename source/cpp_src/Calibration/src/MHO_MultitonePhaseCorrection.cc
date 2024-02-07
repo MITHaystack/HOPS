@@ -19,6 +19,9 @@ MHO_MultitonePhaseCorrection::MHO_MultitonePhaseCorrection()
     fLowerSideband = "L";
     fUpperSideband = "U";
 
+    fPCToneMaskChannelsKey = "pc_tonemask_channels";
+    fPCToneMaskBitmasksKey = "pc_tonemask_bitmasks";
+
     fStationCode = "";
     fMk4ID = "";
     fStationIndex = 2;
@@ -55,10 +58,12 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
         return false;
     }
 
-    RepairMK4PCData(in);
+    RepairMK4PCData(in); //need to rebuild tone frequencies if imported from type_309s
 
-    std::cout<<"PCDATA TAGS = "<<std::endl;
-    fPCData->DumpMap();
+    //grab the pc_tonemask data (if present)
+    bool ok1 = fPCData->Retrieve(fPCToneMaskChannelsKey, fPCToneMaskChannels);
+    bool ok2 = fPCData->Retrieve(fPCToneMaskBitmasksKey, fPCToneMaskBitmasks);
+    fHavePCToneMask = (ok1 && ok2);
 
     //loop over polarization in pcal data and pol-products
     //so we can apply the phase-cal to the appropriate pol/channel/ap
@@ -119,11 +124,14 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         double sky_freq = (*vis_chan_ax)(ch); //get the sky frequency of this channel
         double bandwidth = 0;
         std::string net_sideband;
+        std::string ch_label; //fourfit channel label (e.g 'a')
 
-        bool key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
-        if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch << " with sky_freq: "<<sky_freq << eom); }
+        bool key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, fChannelLabelKey, ch_label);
+        if(!key_present){msg_error("calibration", "missing channel label for channel "<< ch_label << ", with sky_freq: "<<sky_freq << eom);}
+        key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+        if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch_label << ", with sky_freq: "<<sky_freq << eom); }
         key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, fBandwidthKey, bandwidth);
-        if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch << " with sky_freq: "<<sky_freq << eom);}
+        if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch_label << ", with sky_freq: "<<sky_freq << eom);}
 
         //figure out the upper/lower frequency limits for this channel
         double lower_freq, upper_freq;
@@ -166,6 +174,17 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 msg_warn("calibration", "failed to retrieve sampler delay for station: "<< fMk4ID <<" channel: "<<ch<<"."<<eom);
             }
 
+            //figure out tone masks for this channel (if present)
+            int tone_mask = 0;
+            if(fHavePCToneMask)
+            {
+                std::size_t mask_idx = fPCToneMaskChannels.find(ch_label);
+                if( mask_idx != std::string::npos && mask_idx < fPCToneMaskBitmasks.size() )
+                {
+                    tone_mask = fPCToneMaskBitmasks[mask_idx];
+                }
+            }
+
             //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
             //TODO FIXME -- make sure the stop/start parameters are accounted for
             //this should be fine, provided if we trim the pcal data appropriately ahead use here
@@ -197,13 +216,18 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 //TODO FIXME -- NOTE!! This implementation assumes all tones are sequential and there are no missing tones!
                 //true for now...but may not be once we add pc_tonemask support
                 double wght;
+                int mask = tone_mask;
                 for(std::size_t i=0; i<ntones; i++)
                 {
                     wght = 1.0; //pc weights default to 1
-                    if(fWeights != nullptr)
+                    if(fWeights != nullptr){wght = fWeights->at(vis_pp, ch, ap, 0);}
+                    if(mask & 1)
                     {
-                        wght = fWeights->at(vis_pp, ch, ap, 0);
+                        std::cout<<"channel: "<<ch_label<<"freq bounds: ("<<lower_freq<<", "<<upper_freq<<")"<<std::endl;;
+                        std::cout<<"dropping channel "<<ch_label<<", mask: "<<tone_mask<<", tone @ "<<i<<" freq: "<<workspace_freq_ax->at(i)<<std::endl;
+                        wght = 0.0;
                     }
+                    mask >>= 1; //shift to next bit
                     fPCWorkspace(i) += wght*( fPCData->at(pc_pol, ap, start_idx+i) ); 
                 }
                 navg += wght; 
@@ -212,9 +236,12 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 if(ap % fPCPeriod == fPCPeriod-1 || (ap == ap_stop-1) )
                 {
                     seg_end_ap = ap+1;
-                    for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) /= navg;}
-                    double pcal_model[3];
-                    FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model);
+                    double pcal_model[3] = {0,0,0};
+                    if( navg > 0.0 )
+                    {
+                        for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) /= navg;}
+                        FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model);
+                    }
                     seg_start_aps.push_back(seg_start_ap);
                     seg_end_aps.push_back(seg_end_ap);
                     pc_mag_segs.push_back(pcal_model[0]);
