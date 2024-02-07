@@ -1,6 +1,20 @@
 #include "MHO_MultitonePhaseCorrection.hh"
 #include "MHO_MathUtilities.hh"
 
+#include <bitset>
+
+template<std::size_t N>
+void 
+reverse_bits(std::bitset<N> &b)
+{
+    for(std::size_t i = 0; i < N/2; ++i)
+    {
+        bool t = b[i];
+        b[i] = b[N-i-1];
+        b[N-i-1] = t;
+    }
+}
+
 namespace hops
 {
 
@@ -175,6 +189,8 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             }
 
             //figure out tone masks for this channel (if present)
+            std::bitset<32> bit_mask;
+            std::bitset<32> bit_one = 1;
             int tone_mask = 0;
             if(fHavePCToneMask)
             {
@@ -184,6 +200,20 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                     tone_mask = fPCToneMaskBitmasks[mask_idx];
                 }
             }
+            bit_mask = tone_mask;
+            if(tone_mask != 0)
+            {
+                std::cout<<"channel: "<<ch_label<<"initial bitmask = "<<bit_mask<<std::endl;
+                if(net_sideband == "L")
+                {
+                    bit_mask <<= (32-ntones); 
+                    std::cout<<"shifted bitmask = "<<bit_mask<<std::endl;
+                    reverse_bits(bit_mask);
+                    std::cout<<"reverse_bits = "<<bit_mask<<std::endl;
+                }
+            }
+
+            
 
             //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
             //TODO FIXME -- make sure the stop/start parameters are accounted for
@@ -216,21 +246,22 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 //TODO FIXME -- NOTE!! This implementation assumes all tones are sequential and there are no missing tones!
                 //true for now...but may not be once we add pc_tonemask support
                 double wght;
-                int mask = tone_mask;
+                std::bitset<32> mask = bit_mask;
                 for(std::size_t i=0; i<ntones; i++)
                 {
                     wght = 1.0; //pc weights default to 1
                     if(fWeights != nullptr){wght = fWeights->at(vis_pp, ch, ap, 0);}
-                    if(mask & 1)
+                    
+                    if( (mask & bit_one).count() == 1 )
                     {
                         std::cout<<"channel: "<<ch_label<<"freq bounds: ("<<lower_freq<<", "<<upper_freq<<")"<<std::endl;;
-                        std::cout<<"dropping channel "<<ch_label<<", mask: "<<tone_mask<<", tone @ "<<i<<" freq: "<<workspace_freq_ax->at(i)<<std::endl;
+                        std::cout<<"dropping channel "<<ch_label<<", tone_mask: "<<tone_mask<<", mask: "<<mask<<", tone @ "<<i<<" freq: "<<workspace_freq_ax->at(i)<<std::endl;
                         wght = 0.0;
                     }
                     mask >>= 1; //shift to next bit
-                    fPCWorkspace(i) += wght*( fPCData->at(pc_pol, ap, start_idx+i) ); 
+                    fPCWorkspace(i) += wght*( fPCData->at(pc_pol, ap, start_idx+i) );
+                    navg += wght; 
                 }
-                navg += wght; 
 
                 //finish the average, do delay fit on last ap of segment or last ap and append to list
                 if(ap % fPCPeriod == fPCPeriod-1 || (ap == ap_stop-1) )
