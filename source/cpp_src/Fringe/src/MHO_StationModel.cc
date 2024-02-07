@@ -37,7 +37,7 @@ MHO_StationModel::ComputeModel()
 
         //get the station code
         std::string code = RetrieveTag<std::string>(fData, "station_code");
-        msg_debug("fringe", "staion code: " << code << eom );
+        msg_debug("fringe", "station code: " << code << eom );
 
         //get the ref/rem station delay model start times
         std::string model_start = RetrieveTag<std::string>(fData, "model_start");
