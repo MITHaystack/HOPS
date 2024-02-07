@@ -31,7 +31,13 @@ def get_fourfit_cmd():
         return default_ff
     else:
         return "fourfit"
-        #return "ffit"
+
+def get_fourfit_return_prefix():
+    default_ff = os.environ.get('HOPS_VPAL_FRINGE_FITTER')
+    if default_ff != None:
+        return default_ff + ":"
+    else:
+        return "fourfit:"
 
 def check_thread_is_alive( a_thread ):
     if sys.version_info[0] == 3 and sys.version_info[1] >= 10:
@@ -202,7 +208,7 @@ def fourfit_generate_fringe(options, baseline, control_file_path, root_file_path
     for x in file_lines:
         tokens = x.decode().split()
         if len(tokens) == 2:
-            if tokens[0] == "fourfit:":
+            if tokens[0] == get_fourfit_return_prefix():
                 if os.path.isfile(tokens[1]):
                     generated_file_list.append(tokens[1])
     return generated_file_list# generated_file_list
