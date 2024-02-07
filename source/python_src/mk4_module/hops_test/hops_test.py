@@ -31,6 +31,7 @@ hops_test_default_fringe_fitter = None
 
 
 def get_fourfit_cmd():
+    global hops_test_default_fringe_fitter
     if hops_test_default_fringe_fitter is None:
         default_ff = os.environ.get('HOPS_VPAL_FRINGE_FITTER')
         if default_ff != None:
