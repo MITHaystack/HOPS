@@ -26,8 +26,12 @@ import mk4io
 import afio
 
 def get_fourfit_cmd():
-    #return "fourfit"
-    return "ffit"
+    default_ff = os.environ.get('HOPS_VPAL_FRINGE_FITTER')
+    if default_ff != None:
+        return default_ff
+    else:
+        return "fourfit"
+        #return "ffit"
 
 def check_thread_is_alive( a_thread ):
     if sys.version_info[0] == 3 and sys.version_info[1] >= 10:

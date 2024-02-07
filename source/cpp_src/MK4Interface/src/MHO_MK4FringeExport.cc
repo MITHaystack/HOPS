@@ -491,9 +491,9 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
     bool ok = fPStore->Get("/control/control_file_contents", control_contents);
     if(!ok){control_contents = "";}
     
-    //legacy type_222 always has an extra space at front and back
-    //of the control file string, so add it here.
-    control_contents = ' ' + control_contents + ' ';
+    // //legacy type_222 always has an extra space at front and back
+    // //of the control file string, so add it here.
+    // control_contents = ' ' + control_contents + ' ';
 
     unsigned char set_string_buff[1] = {' '};
     int setstr_len, cf_len, setstr_pad, cf_pad, full_size, i;
@@ -523,11 +523,33 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
         msg_error("mk4interface", "memory allocation failure in fill_222" << eom);
         return -1;
     }
-        
+    
+    //figure out the stop/stop of the cf leading/trailing white space:
+    int j;
+    int cf_start = 0;
+    int cf_stop = cf_len;
+    for(j=0; j<cf_len;j++)
+    {
+        cf_start = j;
+        if( (temp_buf[j] != ' ') && (temp_buf[j] != '\t') && (temp_buf[j] != '\n') )
+        { break; }
+    }
+    for(j=cf_len-1; j>=0; j--)
+    {
+        cf_stop = j;
+        if( (temp_buf[j] != ' ') && (temp_buf[j] != '\t') && (temp_buf[j] != '\n') )
+        { break; }
+    }
+
     //now do the hashing
     setstr_hash = adler32_checksum( (unsigned char*) &(set_string_buff[0]), setstr_len);
-    cf_hash = adler32_checksum( (unsigned char*) temp_buf, cf_len);
-    
+    cf_hash = adler32_checksum( (unsigned char*) &(temp_buf[cf_start]), cf_stop-cf_start);
+
+    printf("cf len param = %d, %d, %d\n", cf_start, cf_stop, cf_len);
+    printf("hash %u\n", cf_hash);
+
+    // cf_hash = adler32_checksum( (unsigned char*) temp_buf, cf_len);
+    // 
     strncpy ( (*t222)->record_id, "222", 3);
     strncpy ( (*t222)->version_no, "00", 2);
     (*t222)->unused1 = ' ';
