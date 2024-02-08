@@ -137,24 +137,32 @@ MHO_MultitonePhaseCorrectionBuilder::AttachSamplerDelays(multitone_pcal_type* pc
     {
         std::string pol = pol_ax->at(p);
         std::string sampler_delay_key = GetSamplerDelayKey(pol);
+        std::string sampler_groups_key = "samplers";
         if(sampler_delay_key != "")
         {
             //generic path
             std::vector<double> delays;
             std::string sd_path = std::string("/control/station/") + sampler_delay_key;
-            //station specific path
             std::string station_sd_path = std::string("/control/station/") + mk4id + "/" + sampler_delay_key;
             if(fParameterStore->IsPresent(sd_path)){fParameterStore->Get(sd_path, delays);}
             if(fParameterStore->IsPresent(station_sd_path)){fParameterStore->Get(station_sd_path, delays);}
-            if(delays.size() != 0)
+
+            std::vector< std::string > sampler_groups;
+            std::string sg_path = std::string("/control/station/") + sampler_groups_key;
+            std::string station_sg_path = std::string("/control/station/") + mk4id + "/" + sampler_groups_key;
+            if(fParameterStore->IsPresent(sg_path)){fParameterStore->Get(sg_path, sampler_groups);}
+            if(fParameterStore->IsPresent(station_sg_path)){fParameterStore->Get(station_sg_path, sampler_groups);}
+
+            if(delays.size() != 0 && delays.size() == sampler_groups.size())
             {
                 pol_ax->InsertIndexLabelKeyValue(p, "sampler_delays", delays);
             }
-            else 
+            else if( sampler_groups.size() != 0)
             {
-                delays.push_back(0.0);
+                msg_warn("initialization", "number of sampler delays specified for station: "<< mk4id << "(" <<delays.size() <<
+                    ") does not match the number of samplers defined ("<<sampler_groups.size()<<"), assuming delays are all zero." << eom);
+                delays.resize(sampler_groups.size(), 0.0);
                 pol_ax->InsertIndexLabelKeyValue(p, "sampler_delays", delays);
-                msg_warn("initialization", "sampler delays not specified, assuming a single sampler with delay of zero." << eom);
             }
         }
     }
