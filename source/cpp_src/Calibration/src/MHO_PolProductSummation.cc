@@ -113,25 +113,25 @@ MHO_PolProductSummation::GetPrefactor(std::string pp_label)
     if(pp_label == "XX")
     {
         if(fPolProductSet.size() > 1){factor = std::cos(dpar); }
-        else{factor =  signum(dpar); }
+        else{factor =  signum( std::cos(dpar) ); }
     }
 
     if(pp_label == "YY")
     {
         if(fPolProductSet.size() > 1){factor = std::cos(dpar); }
-        else{factor =  signum(dpar); }
+        else{factor =  signum( std::cos(dpar) ); }
     }
 
     if(pp_label == "YX")
     {
         if(fPolProductSet.size() > 1){factor = std::sin(dpar); }
-        else{factor =  signum( dpar); }
+        else{factor =  signum( std::sin(dpar) ); }
     }
 
     if(pp_label == "XY")
     {
         if(fPolProductSet.size() > 1){factor = std::sin(-1.*dpar); }
-        else{factor =  signum(-1.*dpar); }
+        else{factor =  signum( std::sin(-1.*dpar) ); }
     }
 
     //this needs to compute the pol-product dependent scaling/rotation factor 

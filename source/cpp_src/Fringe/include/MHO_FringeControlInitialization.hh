@@ -41,6 +41,9 @@ class MHO_FringeControlInitialization
         static void add_default_operators(mho_json& statements);
         static void add_polprod_sum_operator(mho_json& statements);
 
+        static bool is_linear_polprod(std::string pp);
+        static void add_dpar_sign_correction_operator(mho_json& statements);
+
         //checks if the special ionospheric fringe fitter is needed
         static bool need_ion_search(mho_json* control);
 

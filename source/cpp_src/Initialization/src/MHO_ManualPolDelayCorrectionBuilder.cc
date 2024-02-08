@@ -12,7 +12,7 @@ MHO_ManualPolDelayCorrectionBuilder::Build()
 {
     if( IsConfigurationOk() )
     {
-        msg_debug("initialization", "building a manual per-channel phase correction operator."<< eom);
+        msg_debug("initialization", "building a manual per-pol delay correction operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
 
         std::string op_name = fAttributes["name"].get<std::string>();

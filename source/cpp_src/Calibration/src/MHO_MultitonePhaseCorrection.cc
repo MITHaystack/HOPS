@@ -203,13 +203,13 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             bit_mask = tone_mask;
             if(tone_mask != 0)
             {
-                std::cout<<"channel: "<<ch_label<<"initial bitmask = "<<bit_mask<<std::endl;
+                //std::cout<<"channel: "<<ch_label<<" initial bitmask = "<<bit_mask<<std::endl;
                 if(net_sideband == "L")
                 {
                     bit_mask <<= (32-ntones); 
-                    std::cout<<"shifted bitmask = "<<bit_mask<<std::endl;
+                    //std::cout<<"shifted bitmask = "<<bit_mask<<std::endl;
                     reverse_bits(bit_mask);
-                    std::cout<<"reverse_bits = "<<bit_mask<<std::endl;
+                    //std::cout<<"reverse_bits = "<<bit_mask<<std::endl;
                 }
             }
 
@@ -254,8 +254,8 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                     
                     if( (mask & bit_one).count() == 1 )
                     {
-                        std::cout<<"channel: "<<ch_label<<"freq bounds: ("<<lower_freq<<", "<<upper_freq<<")"<<std::endl;;
-                        std::cout<<"dropping channel "<<ch_label<<", tone_mask: "<<tone_mask<<", mask: "<<mask<<", tone @ "<<i<<" freq: "<<workspace_freq_ax->at(i)<<std::endl;
+                        //std::cout<<"channel: "<<ch_label<<"freq bounds: ("<<lower_freq<<", "<<upper_freq<<")"<<std::endl;;
+                        //std::cout<<"dropping channel "<<ch_label<<", tone_mask: "<<tone_mask<<", mask: "<<mask<<", tone @ "<<i<<" freq: "<<workspace_freq_ax->at(i)<<std::endl;
                         wght = 0.0;
                     }
                     mask >>= 1; //shift to next bit

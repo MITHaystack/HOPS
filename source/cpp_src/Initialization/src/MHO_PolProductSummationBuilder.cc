@@ -12,7 +12,7 @@ MHO_PolProductSummationBuilder::Build()
 {
     if( IsConfigurationOk() )
     {
-        msg_debug("initialization", "building a manual per-channel phase correction operator."<< eom);
+        msg_debug("initialization", "building a pol-product summation operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
 
         std::string op_name = fAttributes["name"].get<std::string>();
