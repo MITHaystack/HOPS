@@ -8,8 +8,8 @@ int main(int argc, char** argv)
 {
     std::string usage = "mark42hops -i <input_directory> -o <output_directory>";
 
-    MHO_Message::GetInstance().AcceptAllKeys();
-    MHO_Message::GetInstance().SetMessageLevel(eDebug);
+    // MHO_Message::GetInstance().AcceptAllKeys();
+    // MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
     std::string in_dir;
     std::string out_dir;
@@ -66,9 +66,32 @@ int main(int argc, char** argv)
     
     if(dir_type == MK4_EXPDIR)
     {
-        msg_debug("main", "will process one or more scans from experiment directory: "<< in_dir << eom);
+        //directory interface
+        MHO_DirectoryInterface dirInterface;
+        std::string exp_dir = dirInterface.GetDirectoryFullPath(in_dir);
+        std::string output_dir = dirInterface.GetDirectoryFullPath(out_dir);
         //we need to get a list of all the scan directories and process them one-by-one
-        // MHO_MK4ScanConverter::ProcessScan(in_dir, out_dir);
+        std::vector< std::string > allDirs;
+        dirInterface.SetCurrentDirectory(exp_dir);
+        dirInterface.ReadCurrentDirectory();
+        dirInterface.GetSubDirectoryList(allDirs);
+        msg_debug("main", "will process "<< allDirs.size() <<" scans from experiment directory: "<< exp_dir << eom);
+
+        std::vector< std::string > scanOutputDirs;
+        for(std::size_t i=0; i<allDirs.size(); i++)
+        {
+            std::string scan_dir = allDirs[i];
+            std::string scan_name = MHO_DirectoryInterface::GetBasename(scan_dir); // last char cannot be '/' 
+            std::string scan_output_dir = output_dir + "/" + scan_name ;
+            scanOutputDirs.push_back(scan_output_dir);
+        }
+
+        //TODO PARALLELIZE THIS with std::threads
+        for(std::size_t i=0; i<allDirs.size(); i++)
+        {
+            MHO_MK4ScanConverter::ProcessScan(allDirs[i], scanOutputDirs[i]);
+        }
+
         return 0;
     }
     
