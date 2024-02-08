@@ -25,24 +25,15 @@ hops_test_logger = logging.getLogger(__name__)
 import mk4io
 import afio
 
-#global string to cache fringe fitter command we are using from the environment
-hops_test_default_fringe_fitter = None
-
 
 
 def get_fourfit_cmd():
-    global hops_test_default_fringe_fitter
-    if hops_test_default_fringe_fitter is None:
-        default_ff = os.environ.get('HOPS_VPAL_FRINGE_FITTER')
-        if default_ff != None:
-            print("CACHING FF NAME = ", hops_test_default_fringe_fitter)
-            hops_test_default_fringe_fitter = default_ff
-        else:
-            print("FAILED!  NOW CACHING FF NAME = ", hops_test_default_fringe_fitter)
-            hops_test_default_fringe_fitter = "fourfit"
+    default_ff = os.environ.get('HOPS_VPAL_FRINGE_FITTER')
+    if default_ff != None:
+        return default_ff
     else:
-        print("RETURNING CACHED FF NAME = ", hops_test_default_fringe_fitter)
-        return hops_test_default_fringe_fitter
+        return "fourfit"
+
 
 def get_fourfit_return_prefix():
     return get_fourfit_cmd() + ":"
