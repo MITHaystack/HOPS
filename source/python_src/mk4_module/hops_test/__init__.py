@@ -41,3 +41,4 @@ from .hops_test import filter_alist_fringe_field_pairs
 from .hops_test import pairwise_difference
 from .hops_test import ignore_files
 from .hops_test import mirror_directory_with_symlinks
+from .hops_test import get_fourfit_cmd
