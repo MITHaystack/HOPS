@@ -29,7 +29,7 @@ struct type_222 **t222)
     int setstr_len, cf_len, setstr_pad, cf_pad, full_size, i;
     unsigned int setstr_hash = 0;
     unsigned int cf_hash = 0;
-    //needed to strip leading and trailing whitespace when computing cf hash
+    //needed for stripping leading and trailing whitespace before computing cf hash
     int j, cf_start, cf_stop;  
     
     //now allocate the necessary amount of memory
@@ -64,7 +64,10 @@ struct type_222 **t222)
         return (-1);
         }
 
-    //figure out the stop/stop of the cf leading/trailing white space:
+    //figure out the stop/stop of the cf tokens without the
+    //leading/trailing white space since the control file parser
+    //is not consistent about how many whitespace tokens may appear
+    //at the beginning or end of the processed text
     cf_start = 0;
     cf_stop = cf_len;
     for(j=0; j<cf_len;j++)
@@ -79,19 +82,11 @@ struct type_222 **t222)
         if( (param->control_file_buff[j] != ' ') && (param->control_file_buff[j] != '\t') && (param->control_file_buff[j] != '\n') )
         { break; }
     }
-    
-
-    // cf_hash = adler32_checksum( (unsigned char*) &(param->control_file_buff[cf_start]), cf_stop-cf_start);
 
     //now do the hashing
     setstr_hash = adler32_checksum( (unsigned char*) param->set_string_buff, setstr_len);
-    //cf_hash = adler32_checksum( (unsigned char*) param->control_file_buff, cf_len);
     cf_hash = adler32_checksum( (unsigned char*) &(param->control_file_buff[cf_start]), cf_stop-cf_start);
-    
-    printf("cf len param = %d, %d, %d\n", cf_start, cf_stop, cf_len);
-    printf("hash %u\n", cf_hash);
 
-    
     /* Fill it in */
     strncpy ( (*t222)->record_id, "222", 3);
     strncpy ( (*t222)->version_no, "00", 2);

@@ -22,7 +22,6 @@ unsigned int compute_control_file_hash(char* filename)
 
     if(retval == 0)
     {
-        //figure out the stop/stop of the cf leading/trailing white space:
         cf_start = 0;
         cf_stop = cf_len;
         for(j=0; j<cf_len;j++)
@@ -37,11 +36,9 @@ unsigned int compute_control_file_hash(char* filename)
             if( (control_file_buff[j] != ' ') && (control_file_buff[j] != '\t') && (control_file_buff[j] != '\n') )
             { break; }
         }
-        
-        // cf_hash = adler32_checksum( (unsigned char*) control_file_buff, strlen(control_file_buff) );
+
+        //now do the hashing
         cf_hash = adler32_checksum( (unsigned char*) &(control_file_buff[cf_start]), cf_stop-cf_start);
-        printf("cf len param = %d, %d, %d\n", cf_start, cf_stop, cf_len);
-        printf("hash %u\n", cf_hash);
         if(control_file_buff != NULL){free(control_file_buff);};
     }
     return cf_hash;

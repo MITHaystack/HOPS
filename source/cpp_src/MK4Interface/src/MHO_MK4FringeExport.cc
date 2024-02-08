@@ -491,10 +491,6 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
     bool ok = fPStore->Get("/control/control_file_contents", control_contents);
     if(!ok){control_contents = "";}
     
-    // //legacy type_222 always has an extra space at front and back
-    // //of the control file string, so add it here.
-    // control_contents = ' ' + control_contents + ' ';
-
     unsigned char set_string_buff[1] = {' '};
     int setstr_len, cf_len, setstr_pad, cf_pad, full_size, i;
     unsigned int setstr_hash = 0;
@@ -525,6 +521,8 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
     }
     
     //figure out the stop/stop of the cf leading/trailing white space:
+    //this is probably uncessary since the new parser strips this already
+    //but legacy type_222 sometimes has an extra space at front or back
     int j;
     int cf_start = 0;
     int cf_stop = cf_len;
@@ -544,12 +542,7 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
     //now do the hashing
     setstr_hash = adler32_checksum( (unsigned char*) &(set_string_buff[0]), setstr_len);
     cf_hash = adler32_checksum( (unsigned char*) &(temp_buf[cf_start]), cf_stop-cf_start);
-
-    printf("cf len param = %d, %d, %d\n", cf_start, cf_stop, cf_len);
-    printf("hash %u\n", cf_hash);
-
-    // cf_hash = adler32_checksum( (unsigned char*) temp_buf, cf_len);
-    // 
+ 
     strncpy ( (*t222)->record_id, "222", 3);
     strncpy ( (*t222)->version_no, "00", 2);
     (*t222)->unused1 = ' ';
