@@ -108,10 +108,10 @@ int main(int argc, char** argv)
     //open and dump to file
     if(!test_mode)
     {
-        std::string output_file = fringeData.GetParameterStore()->GetAs<std::string>("/cmdline/output_file");
-        std::ofstream fdumpFile(output_file.c_str(), std::ofstream::out);
-        fdumpFile << plot_data;
-        fdumpFile.close();
+        // std::string output_file = fringeData.GetParameterStore()->GetAs<std::string>("/cmdline/output_file");
+        // std::ofstream fdumpFile(output_file.c_str(), std::ofstream::out);
+        // fdumpFile << plot_data;
+        // fdumpFile.close();
 
         #ifdef EXPORT_MK4
         MHO_MK4FringeExport fexporter;

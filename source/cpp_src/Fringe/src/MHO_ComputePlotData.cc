@@ -786,7 +786,7 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         {
             ph += phasors(i,j);
             phsum += phasors(i,j);
-            if(j % apseg == apseg-1 ) //push the last one back
+            if(j % apseg == apseg-1 || j == naps-1) //push the last one back
             {
                 ph *= 1.0/(double)apseg; //average
                 seg_amp[i].push_back( std::abs(ph) );
@@ -805,6 +805,10 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
     std::size_t xsize = seg_amp.size();
     std::size_t ysize = seg_amp[0].size();
+    
+    std::cout<<"nplot = "<<nplot<<std::endl;
+    std::cout<<"nseg = "<<nseg<<std::endl;
+    std::cout<<"Xsize = "<<xsize<<" Ysize = "<<ysize<<std::endl;
 
     for(std::size_t j=0; j<ysize; j++)
     {

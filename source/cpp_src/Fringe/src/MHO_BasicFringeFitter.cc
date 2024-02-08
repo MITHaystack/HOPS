@@ -189,8 +189,8 @@ void MHO_BasicFringeFitter::Initialize()
 
     }
 
-    std::cout<<"PARAMETERS = "<<std::endl;
-    fParameterStore->Dump();
+    // std::cout<<"PARAMETERS = "<<std::endl;
+    // fParameterStore->Dump();
 }
 
 void MHO_BasicFringeFitter::PreRun()
