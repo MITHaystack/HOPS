@@ -57,12 +57,12 @@ MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_Parame
     plot_dict["PolStr"] = ref_name + " - " + rem_name +", " + freq_group + ", " + "pol " + polprod;
     plot_dict["extra"]["pol_product"] = polprod;
 
-    //DEBUG! open and dump to file
-    std::string output_file = "fdump.json"; //for testing
-    std::string fdump = output_file;
-    std::ofstream fdumpFile(fdump.c_str(), std::ofstream::out);
-    fdumpFile << plot_dict;
-    fdumpFile.close();
+    // //DEBUG! open and dump to file
+    // std::string output_file = "fdump.json"; //for testing
+    // std::string fdump = output_file;
+    // std::ofstream fdumpFile(fdump.c_str(), std::ofstream::out);
+    // fdumpFile << plot_dict;
+    // fdumpFile.close();
 
     return plot_dict;
 }
