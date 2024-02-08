@@ -5,6 +5,7 @@ set (MK4INTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4VexInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4StationInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4FringeExport.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4ScanConverter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LegacyDateConverter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type200Converter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type201Converter.hh
@@ -27,6 +28,7 @@ set( MK4INTERFACE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4VexInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4StationInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4FringeExport.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4ScanConverter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LegacyDateConverter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type200Converter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type201Converter.cc
@@ -60,7 +62,7 @@ set_property( SOURCE ${MK4INTERFACE_SOURCEFILES}
 
 #compile and install library ###################################################
 
-set(MK4INTERFACE_LIBS mk4util dfio vex MHO_Vex2JSON MHO_Message MHO_Utilities MHO_Containers date-tz)
+set(MK4INTERFACE_LIBS mk4util dfio vex MHO_Vex2JSON MHO_Message MHO_Utilities MHO_Containers MHO_Operators MHO_Calibration date-tz)
 
 add_library (MHO_MK4Interface SHARED ${MK4INTERFACE_SOURCEFILES})
 target_link_libraries (MHO_MK4Interface ${MK4INTERFACE_LIBS})
