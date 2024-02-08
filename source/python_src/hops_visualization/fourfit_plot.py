@@ -166,7 +166,6 @@ def make_channel_segment_plots(plot_dict):
 
     if "ChannelsPlotted" in plot_dict:
         seg_chan_labels = plot_dict["ChannelsPlotted"]
-        print("seg chan labels = ", seg_chan_labels)
     else:
         #if this info is missing use the default fourfit channel names
         seg_chan_labels =  [chr for chr in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"]
