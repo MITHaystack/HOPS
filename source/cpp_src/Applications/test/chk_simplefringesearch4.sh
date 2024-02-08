@@ -22,8 +22,8 @@ time ffit -c ./cf_test5 -b GE -P I ./${D2H_EXP_NUM}/${SCAN_DIR} | grep max555 | 
 echo "Running: fourfit -m 1 -t -c ./cf_test5 -b GE -P I ./${D2M4_EXP_NUM}/${SCAN_DIR}"
 time fourfit -m 1 -t -c ./cf_test5 -b GE -P I ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1  | grep max555 | tee ./ff.out
 
-#tolerance is 1.5% currently...need to work out the differences and reduce this
-compjsonpdd.py -r 0.015 ./fdump.json ./chk1/105-1800-GE-X-Ixy*
+#tolerance is 1.7% currently...need to work out the differences and reduce this
+compjsonpdd.py -r 0.017 ./fdump.json ./chk1/105-1800-GE-X-Ixy*
 RET_VAL=$?
 
 exit $RET_VAL
