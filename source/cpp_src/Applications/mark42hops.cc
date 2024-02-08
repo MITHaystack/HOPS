@@ -215,7 +215,7 @@ int main(int argc, char** argv)
         //std::cout<<ovex.dump(2)<<std::endl; //dump the json to terminal
 
         //write out to a json file
-        std::string output_file = output_dir + "/" + dirInterface.GetBasename(root_file) + ".json";
+        std::string output_file = output_dir + "/" + dirInterface.GetBasename(root_file) + ".root.json";
 
         //open file for binary writing
         std::fstream jfile;

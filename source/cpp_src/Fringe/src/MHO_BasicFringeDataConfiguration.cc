@@ -448,6 +448,8 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     }
     //set the root file name
     paramStore->Set("/files/root_file", scanStore->GetRootFileBasename() );
+    
+    msg_debug("fringe", "loading root file: "<< scanStore->GetRootFileBasename() << eom);
 
      // //load root file and extract useful vex info into parameter store
     auto vexInfo = scanStore->GetRootFileData();
