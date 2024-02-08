@@ -805,10 +805,6 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
     std::size_t xsize = seg_amp.size();
     std::size_t ysize = seg_amp[0].size();
-    
-    std::cout<<"nplot = "<<nplot<<std::endl;
-    std::cout<<"nseg = "<<nseg<<std::endl;
-    std::cout<<"Xsize = "<<xsize<<" Ysize = "<<ysize<<std::endl;
 
     for(std::size_t j=0; j<ysize; j++)
     {
