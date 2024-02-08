@@ -46,6 +46,10 @@
 
 #include "MHO_DirectoryInterface.hh"
 
+//distinguish directory types
+#define MK4_SCANDIR 0
+#define MK4_EXPDIR 1
+#define MK4_UNKNOWNDIR 2
 
 namespace hops
 {
@@ -57,6 +61,7 @@ class MHO_MK4ScanConverter
         MHO_MK4ScanConverter();
         virtual ~MHO_MK4ScanConverter();
         
+        static int DetermineDirectoryType(const std::string& in_dir);
         static void ProcessScan(const std::string& input_dir, const std::string& output_dir);
 
     private:
