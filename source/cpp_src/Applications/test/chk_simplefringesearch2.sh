@@ -48,6 +48,7 @@ echo "fourfit mbd: $ff_mbd"
 echo "fourfit sbd: $ff_sbd"
 echo "fourfit dr: $ff_dr"
 
+#make this test more sophisticated...relative tolerance is not a great choice
 mbd_delta=$(echo "scale=14; 100.0*(($sfs_mbd - $ff_mbd)/$ff_mbd)" | bc)
 dr_delta=$(echo "scale=14; 100.0*(($sfs_dr - $ff_dr)/$ff_dr)" | bc)
 sbd_delta=$(echo "scale=14; 100.0*(($sfs_sbd - $ff_sbd)/$ff_sbd)" | bc)
