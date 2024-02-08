@@ -159,8 +159,6 @@ def make_channel_segment_plots(plot_dict):
     n_seg = int(plot_dict["NSeg"])
     n_seg_plots = int(plot_dict["NPlots"])
     colw = 6
-    
-    print("nseg = ", n_seg, " n_seg_plots = ", n_seg_plots)
 
     #grab the segment amplitudes
     seg_amp_arr = np.array( plot_dict['SEG_AMP'] )
@@ -175,10 +173,7 @@ def make_channel_segment_plots(plot_dict):
 
     # convert SEG_PHS to deg
     seg_phs_arr = np.array( [xx*180/np.pi for xx in plot_dict['SEG_PHS']] )
-    
-    print("seg phase array len = ", len(seg_phs_arr))
-    print("nseg * n_seg_plots = ", n_seg*n_seg_plots)
-    
+
     seg_amp_arr1 = seg_amp_arr.reshape(n_seg, n_seg_plots)
     seg_phs_arr1 = seg_phs_arr.reshape(n_seg, n_seg_plots)
 
