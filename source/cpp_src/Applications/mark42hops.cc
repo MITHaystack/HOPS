@@ -9,7 +9,7 @@ int main(int argc, char** argv)
     std::string usage = "mark42hops -i <input_directory> -o <output_directory>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
-    MHO_Message::GetInstance().SetMessageLevel(eInfo);
+    MHO_Message::GetInstance().SetMessageLevel(eStatus);
 
     std::string in_dir;
     std::string out_dir;
@@ -59,7 +59,7 @@ int main(int argc, char** argv)
 
     if(dir_type == MK4_SCANDIR)
     {
-        msg_info("main", "will process a single scan from directory: "<< in_dir << eom);
+        msg_status("main", "will process a single scan from directory: "<< in_dir << eom);
         MHO_MK4ScanConverter::ProcessScan(in_dir, out_dir);
         return 0;
     }
@@ -75,7 +75,7 @@ int main(int argc, char** argv)
         dirInterface.SetCurrentDirectory(exp_dir);
         dirInterface.ReadCurrentDirectory();
         dirInterface.GetSubDirectoryList(allDirs);
-        msg_info("main", "will process "<< allDirs.size() <<" scans from experiment directory: "<< exp_dir << eom);
+        msg_status("main", "will process "<< allDirs.size() <<" scans from experiment directory: "<< exp_dir << eom);
 
         //make sure output parent directory exists
         if( !dirInterface.DoesDirectoryExist(output_dir) )

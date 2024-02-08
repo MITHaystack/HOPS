@@ -62,7 +62,7 @@ MHO_MK4ScanConverter::ConvertCorel(const std::string& root_file,
 {
     MHO_MK4CorelInterface mk4inter;
 
-    msg_info("mk4interface", "converting corel input file: " << input_file << eom);
+    msg_status("mk4interface", "converting corel input file: " << input_file << eom);
     mk4inter.SetCorelFile(input_file);
     mk4inter.SetVexFile(root_file);
     mk4inter.ExtractCorelFile();
@@ -122,7 +122,7 @@ MHO_MK4ScanConverter::ConvertStation(const std::string& root_file,
 {
     MHO_MK4StationInterface mk4inter;
 
-    msg_info("mk4interface", "Converting station input file: " << input_file << eom);
+    msg_status("mk4interface", "Converting station input file: " << input_file << eom);
     mk4inter.SetStationFile(input_file);
     // mk4inter.SetVexFile(root_file);
     station_coord_type* st_data = mk4inter.ExtractStationFile();
@@ -162,7 +162,7 @@ MHO_MK4ScanConverter::ProcessScan(const std::string& in_dir, const std::string& 
     std::string output_dir = dirInterface.GetDirectoryFullPath(out_dir);
     std::string input_dir = dirInterface.GetDirectoryFullPath(in_dir);
 
-    msg_info("mk4interface", "processing scan from input directory: " << input_dir <<
+    msg_status("mk4interface", "processing scan from input directory: " << input_dir <<
         " to output directory: "<< output_dir << eom );
 
     if( !dirInterface.DoesDirectoryExist(output_dir) )

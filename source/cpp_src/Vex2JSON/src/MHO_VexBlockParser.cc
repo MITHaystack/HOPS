@@ -73,7 +73,7 @@ MHO_VexBlockParser::ParseBlockLines(std::string block_name, const std::vector< M
             if(fBlockFormat["block_type"].get<std::string>() == "unsupported")
             {
                 std::string version = fBlockFormat["version"].get<std::string>();
-                msg_warn("vex", "block type: "<<block_name<<" is not supported in vex version: "<< version<< ", skipping."<<eom);
+                msg_info("vex", "block type: "<<block_name<<" is not supported in vex version: "<< version<< ", skipping."<<eom);
                 mho_json empty;
                 return empty;
             }
@@ -126,7 +126,7 @@ MHO_VexBlockParser::ParseBlock()
                 {
                     success = ProcessLine(*it, path, file_node.top(), format_node.top());
                 }
-                if(!success){msg_warn("vex", "failed to process line: "<< it->fLineNumber << eom);}
+                if(!success){msg_info("vex", "failed to process line: "<< it->fLineNumber << eom);}
             }
         }
     }
@@ -306,7 +306,7 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
         //verify that the element name is present in the current format node 
         if(!(format.contains(element_name)))
         {
-            msg_warn("vex", "could not locate element with name: "<<element_name<<" under "<<fBlockName<< " block format."<<eom);
+            msg_info("vex", "could not locate element with name: "<<element_name<<" under "<<fBlockName<< " block format."<<eom);
             return false;
         }
         vex_element_type etype = MHO_VexDefinitions::DetermineType( format[element_name]["type"].get<std::string>() );
@@ -385,7 +385,7 @@ MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line,
                 element_block_name = ref_tokens[1];
                 if(!(format_node.contains(element_block_name)))
                 {
-                    msg_warn("vex", "could not locate element with name: "<<element_block_name<<" under "<<fBlockName<< " block format."<<eom);
+                    msg_info("vex", "could not locate element with name: "<<element_block_name<<" under "<<fBlockName<< " block format."<<eom);
                     return false;
                 }
 
