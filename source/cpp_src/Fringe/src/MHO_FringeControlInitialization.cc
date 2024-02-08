@@ -103,11 +103,9 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     }
     else if( npp == 1)
     {
-        std::cout<<"NPP=1"<<std::endl;
-        //single polarization product, if it is linear
+        //single polarization product, check if it is linear
         if( is_linear_polprod(pp_vec[0]) )
         {
-            std::cout<<"IS LIN"<<std::endl;
             add_dpar_sign_correction_operator( (*(control_statements.begin()))["statements"] );
         }
     }
@@ -274,7 +272,6 @@ MHO_FringeControlInitialization::add_polprod_sum_operator(mho_json& statements)
 void 
 MHO_FringeControlInitialization::add_dpar_sign_correction_operator(mho_json& statements)
 {
-    std::cout<<"ADDING DPAR SIGN CORR"<<std::endl;
     mho_json dpar_corr_hack = 
     {
        {"name", "dpar_corr"},

@@ -163,7 +163,7 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
         gen.GenerateVex(vex_root);
 
         //we also write out the 'ovex'/'vex' json object as a json file
-        output_file = fOutputDirectory + "/" + src_name + "." + fRootCode + ".json";
+        output_file = fOutputDirectory + "/" + src_name + "." + fRootCode + ".root.json";
         //open and dump to file
         std::ofstream outFile(output_file.c_str(), std::ofstream::out);
         outFile << vex_root.dump(2);
