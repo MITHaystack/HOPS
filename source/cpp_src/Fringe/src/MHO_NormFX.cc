@@ -70,6 +70,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         fZeroPadder.SetArgs(in1, &fWorkspace);
         fZeroPadder.DeselectAllAxes();
+        //fZeroPadder.EnableNormFXMode(); //doesnt seem to make any difference
         fZeroPadder.SelectAxis(FREQ_AXIS); //only pad on the frequency (to lag) axis
         fZeroPadder.SetPaddingFactor(8);
         fZeroPadder.SetEndPadded(); //for both LSB and USB (what about DSB?)

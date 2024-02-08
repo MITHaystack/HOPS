@@ -10,6 +10,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualPolDelayCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultitonePhaseCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolProductSummation.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LinearDParCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IonosphericPhaseCorrection.hh
 )
 
@@ -23,6 +24,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualPolDelayCorrection.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MultitonePhaseCorrection.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PolProductSummation.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LinearDParCorrection.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IonosphericPhaseCorrection.cc
 )
 

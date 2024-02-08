@@ -97,7 +97,20 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     //add the pol-product summation operator into the execution stream if we were passed 
     //such a thing on the command line (e.g. RR+LL or I)
     std::size_t npp = pp_vec.size();
-    if(npp > 1){add_polprod_sum_operator( (*(control_statements.begin()))["statements"] );}
+    if(npp > 1)
+    {
+        add_polprod_sum_operator( (*(control_statements.begin()))["statements"] );
+    }
+    else if( npp == 1)
+    {
+        std::cout<<"NPP=1"<<std::endl;
+        //single polarization product, if it is linear
+        if( is_linear_polprod(pp_vec[0]) )
+        {
+            std::cout<<"IS LIN"<<std::endl;
+            add_dpar_sign_correction_operator( (*(control_statements.begin()))["statements"] );
+        }
+    }
 
     //set some initial/default parameters (polprod, ref_freq)
     MHO_InitialFringeInfo::set_default_parameters_minimal(paramStore);
@@ -189,6 +202,16 @@ MHO_FringeControlInitialization::add_default_operator_format_def(mho_json& forma
         {"priority", 3.99}
     };
     format["polproduct_sum"] = polprod_sum_format;
+
+    mho_json dpar_corr_format =
+    {
+        {"name", "dpar_corr"},
+        {"statement_type", "operator"},
+        {"operator_category" , "calibration"},
+        {"type" , "empty"},
+        {"priority", 3.99}
+    };
+    format["dpar_corr"] = dpar_corr_format;
 }
 
 
@@ -246,6 +269,33 @@ MHO_FringeControlInitialization::add_polprod_sum_operator(mho_json& statements)
        {"operator_category" , "calibration"}
     };
     statements.push_back(pp_sum_hack);
+}
+
+void 
+MHO_FringeControlInitialization::add_dpar_sign_correction_operator(mho_json& statements)
+{
+    std::cout<<"ADDING DPAR SIGN CORR"<<std::endl;
+    mho_json dpar_corr_hack = 
+    {
+       {"name", "dpar_corr"},
+       {"statement_type", "operator"},
+       {"operator_category" , "calibration"}
+    };
+    statements.push_back(dpar_corr_hack);
+}
+
+bool MHO_FringeControlInitialization::is_linear_polprod(std::string pp)
+{
+    if(pp == "XX"){return true;}
+    if(pp == "XY"){return true;}
+    if(pp == "YY"){return true;}
+    if(pp == "YX"){return true;}
+
+    if(pp == "HH"){return true;}
+    if(pp == "HV"){return true;}
+    if(pp == "VV"){return true;}
+    if(pp == "VH"){return true;}
+    return false;
 }
 
 }//end namespace

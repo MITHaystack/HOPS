@@ -11,6 +11,7 @@
 #include "MHO_MultitonePhaseCorrectionBuilder.hh"
 #include "MHO_PolProductSummationBuilder.hh"
 #include "MHO_SamplerLabelerBuilder.hh"
+#include "MHO_LinearDParCorrectionBuilder.hh"
 
 namespace hops
 {
@@ -192,6 +193,12 @@ void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
     polprod_sum["operator_category"] = "calibration";
     polprod_sum["priority"] = 3.99;
     AddBuilderTypeWithFormat<MHO_PolProductSummationBuilder>("polproduct_sum", polprod_sum);
+
+    mho_json dpar_corr;
+    dpar_corr["name"] = "dpar_corr";
+    dpar_corr["operator_category"] = "calibration";
+    dpar_corr["priority"] = 3.99;
+    AddBuilderTypeWithFormat<MHO_LinearDParCorrectionBuilder>("dpar_corr", dpar_corr);
 
 }
 
