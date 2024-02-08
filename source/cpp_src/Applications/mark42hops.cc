@@ -8,8 +8,8 @@ int main(int argc, char** argv)
 {
     std::string usage = "mark42hops -i <input_directory> -o <output_directory>";
 
-    // MHO_Message::GetInstance().AcceptAllKeys();
-    // MHO_Message::GetInstance().SetMessageLevel(eDebug);
+    MHO_Message::GetInstance().AcceptAllKeys();
+    MHO_Message::GetInstance().SetMessageLevel(eInfo);
 
     std::string in_dir;
     std::string out_dir;
@@ -59,7 +59,7 @@ int main(int argc, char** argv)
 
     if(dir_type == MK4_SCANDIR)
     {
-        msg_debug("main", "will process a single scan from directory: "<< in_dir << eom);
+        msg_info("main", "will process a single scan from directory: "<< in_dir << eom);
         MHO_MK4ScanConverter::ProcessScan(in_dir, out_dir);
         return 0;
     }
@@ -75,13 +75,23 @@ int main(int argc, char** argv)
         dirInterface.SetCurrentDirectory(exp_dir);
         dirInterface.ReadCurrentDirectory();
         dirInterface.GetSubDirectoryList(allDirs);
-        msg_debug("main", "will process "<< allDirs.size() <<" scans from experiment directory: "<< exp_dir << eom);
+        msg_info("main", "will process "<< allDirs.size() <<" scans from experiment directory: "<< exp_dir << eom);
+
+        //make sure output parent directory exists
+        if( !dirInterface.DoesDirectoryExist(output_dir) )
+        {
+            dirInterface.CreateDirectory(output_dir);
+        }
+        
+        //TODO we may want to sanitize the sub directory list (to make sure we only have scan directories for sure)
 
         std::vector< std::string > scanOutputDirs;
         for(std::size_t i=0; i<allDirs.size(); i++)
         {
             std::string scan_dir = allDirs[i];
-            std::string scan_name = MHO_DirectoryInterface::GetBasename(scan_dir); // last char cannot be '/' 
+            std::string scan_name = MHO_DirectoryInterface::GetBasename(scan_dir);
+            //last char cannot be '/', strip just in case
+            if( scan_name.back() == '/'){scan_name.erase(scan_name.size()-1);}
             std::string scan_output_dir = output_dir + "/" + scan_name ;
             scanOutputDirs.push_back(scan_output_dir);
         }
