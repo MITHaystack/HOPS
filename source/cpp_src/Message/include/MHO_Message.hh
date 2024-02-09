@@ -8,6 +8,7 @@
 #include <iostream>
 #include <set>
 #include <mutex>
+#include <stdio.h>
 
 #include "MHO_TestAssertions.hh"
 
@@ -22,6 +23,14 @@
 
 namespace hops
 {
+
+//needed for stripping the path prefix from __FILE__ macro contents
+//see https://stackoverflow.com/questions/31050113
+constexpr const char* str_end(const char *str){ return *str ? str_end(str + 1) : str; }
+constexpr bool str_slash(const char *str){ return *str == '/' ? true : (*str ? str_slash(str + 1) : false); }
+constexpr const char* r_slash(const char* str){ return *str == '/' ? (str + 1) : r_slash(str - 1); }
+constexpr const char* file_base_name(const char* str) { return str_slash(str) ? r_slash(str_end(str)) : str; }
+
 
 class MHO_MessageNewline {};
 class MHO_MessageEndline {};
@@ -133,7 +142,14 @@ class MHO_Message
         bool fAcceptAllKeys;
         std::stringstream fMessageStream; //the message container to be filled/flushed
 
-
+        static std::string fRed; //fatal
+        static std::string fYellow; //error
+        static std::string fOrange; //orange
+        static std::string fBlue; //status
+        static std::string fGreen; //info
+        static std::string fCyan; //debug
+        static std::string fWhite; //default
+        static std::string fColorSuffix; //color close
 };
 
 
@@ -152,65 +168,144 @@ MHO_Message::operator<<(const XStreamableItemType& item)
 
 //FATAL/////////////////////////////////////////////////////////////////////////
 
-#define msg_fatal(xKEY, xCONTENT) \
-do { \
-    MHO_Message::GetInstance().Lock(); \
-    MHO_Message::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT; \
-    MHO_Message::GetInstance().Unlock(); \
-} \
-while(0)
+#ifndef HOPS_EXTRA_VERBOSE_MSG
 
-//ERROR/////////////////////////////////////////////////////////////////////////
-#define msg_error(xKEY, xCONTENT) \
-do { \
-    MHO_Message::GetInstance().Lock(); \
-    MHO_Message::GetInstance().SendMessage(eError,xKEY) << xCONTENT; \
-    MHO_Message::GetInstance().Unlock(); \
-} \
-while(0)
-
-//WARNING///////////////////////////////////////////////////////////////////////
-#define msg_warn(xKEY, xCONTENT) \
-do { \
-    MHO_Message::GetInstance().Lock(); \
-    MHO_Message::GetInstance().SendMessage(eWarning,xKEY) << xCONTENT; \
-    MHO_Message::GetInstance().Unlock(); \
-} \
-while(0)
-
-//STATUS////////////////////////////////////////////////////////////////////////
-#define msg_status(xKEY, xCONTENT) \
-do { \
-    MHO_Message::GetInstance().Lock(); \
-    MHO_Message::GetInstance().SendMessage(eStatus,xKEY) << xCONTENT; \
-    MHO_Message::GetInstance().Unlock(); \
-} \
-while(0)
-
-//INFO//////////////////////////////////////////////////////////////////////////
-#define msg_info(xKEY, xCONTENT) \
-do { \
-    MHO_Message::GetInstance().Lock(); \
-    MHO_Message::GetInstance().SendMessage(eInfo,xKEY) << xCONTENT; \
-    MHO_Message::GetInstance().Unlock(); \
-} \
-while(0)
-
-//allow debug messages when debug flag is active
-#ifdef HOPS_ENABLE_DEBUG_MSG  //this is defined as a compiler flag via build system
-
-//DEBUG/////////////////////////////////////////////////////////////////////////
-#define msg_debug(xKEY, xCONTENT) \
+    #define msg_fatal(xKEY, xCONTENT) \
     do { \
         MHO_Message::GetInstance().Lock(); \
-        MHO_Message::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT; \
+        MHO_Message::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT; \
         MHO_Message::GetInstance().Unlock(); \
     } \
     while(0)
-#else
-//debug is not enabled, so we remove them from compilation
-#define msg_debug(xKEY, xCONTENT)
+
+    //ERROR/////////////////////////////////////////////////////////////////////////
+    #define msg_error(xKEY, xCONTENT) \
+    do { \
+        MHO_Message::GetInstance().Lock(); \
+        MHO_Message::GetInstance().SendMessage(eError,xKEY) << xCONTENT; \
+        MHO_Message::GetInstance().Unlock(); \
+    } \
+    while(0)
+
+    //WARNING///////////////////////////////////////////////////////////////////////
+    #define msg_warn(xKEY, xCONTENT) \
+    do { \
+        MHO_Message::GetInstance().Lock(); \
+        MHO_Message::GetInstance().SendMessage(eWarning,xKEY) << xCONTENT; \
+        MHO_Message::GetInstance().Unlock(); \
+    } \
+    while(0)
+
+    //STATUS////////////////////////////////////////////////////////////////////////
+    #define msg_status(xKEY, xCONTENT) \
+    do { \
+        MHO_Message::GetInstance().Lock(); \
+        MHO_Message::GetInstance().SendMessage(eStatus,xKEY) << xCONTENT; \
+        MHO_Message::GetInstance().Unlock(); \
+    } \
+    while(0)
+
+    //INFO//////////////////////////////////////////////////////////////////////////
+    #define msg_info(xKEY, xCONTENT) \
+    do { \
+        MHO_Message::GetInstance().Lock(); \
+        MHO_Message::GetInstance().SendMessage(eInfo,xKEY) << xCONTENT; \
+        MHO_Message::GetInstance().Unlock(); \
+    } \
+    while(0)
+
+    //allow debug messages when debug flag is active
+    #ifdef HOPS_ENABLE_DEBUG_MSG  //this is defined as a compiler flag via build system
+
+    //DEBUG/////////////////////////////////////////////////////////////////////////
+    #define msg_debug(xKEY, xCONTENT) \
+        do { \
+            MHO_Message::GetInstance().Lock(); \
+            MHO_Message::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT; \
+            MHO_Message::GetInstance().Unlock(); \
+        } \
+        while(0)
+    #else
+    //debug is not enabled, so we remove them from compilation
+    #define msg_debug(xKEY, xCONTENT)
+    #endif
+
+#else //HOPS_EXTRA_VERBOSE_MSG is defined
+
+    #define msg_fatal(xKEY, xCONTENT) \
+    do { \
+        MHO_Message::GetInstance().Lock(); \
+        MHO_Message::GetInstance().SendMessage(eFatal,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
+        MHO_Message::GetInstance().Unlock(); \
+    } \
+    while(0)
+
+    //ERROR/////////////////////////////////////////////////////////////////////////
+    #define msg_error(xKEY, xCONTENT) \
+    do { \
+        MHO_Message::GetInstance().Lock(); \
+        MHO_Message::GetInstance().SendMessage(eError,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
+        MHO_Message::GetInstance().Unlock(); \
+    } \
+    while(0)
+
+    //WARNING///////////////////////////////////////////////////////////////////////
+    #define msg_warn(xKEY, xCONTENT) \
+    do { \
+        MHO_Message::GetInstance().Lock(); \
+        MHO_Message::GetInstance().SendMessage(eWarning,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
+        MHO_Message::GetInstance().Unlock(); \
+    } \
+    while(0)
+
+    //STATUS////////////////////////////////////////////////////////////////////////
+    #define msg_status(xKEY, xCONTENT) \
+    do { \
+        MHO_Message::GetInstance().Lock(); \
+        MHO_Message::GetInstance().SendMessage(eStatus,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
+        MHO_Message::GetInstance().Unlock(); \
+    } \
+    while(0)
+
+    //INFO//////////////////////////////////////////////////////////////////////////
+    #define msg_info(xKEY, xCONTENT) \
+    do { \
+        MHO_Message::GetInstance().Lock(); \
+        MHO_Message::GetInstance().SendMessage(eInfo,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
+        MHO_Message::GetInstance().Unlock(); \
+    } \
+    while(0)
+
+    //allow debug messages when debug flag is active
+    #ifdef HOPS_ENABLE_DEBUG_MSG  //this is defined as a compiler flag via build system
+
+    //DEBUG/////////////////////////////////////////////////////////////////////////
+    #define msg_debug(xKEY, xCONTENT) \
+        do { \
+            MHO_Message::GetInstance().Lock(); \
+            MHO_Message::GetInstance().SendMessage(eDebug,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
+            MHO_Message::GetInstance().Unlock(); \
+        } \
+        while(0)
+    #else
+    //debug is not enabled, so we remove them from compilation
+    #define msg_debug(xKEY, xCONTENT)
+    #endif
+
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #ifdef HOPS_ENABLE_STEPWISE_CHECK  //this is defined as a compiler flag via build system

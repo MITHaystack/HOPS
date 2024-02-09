@@ -48,6 +48,9 @@ class MHO_FringeData
         //TODO remove this hack in favor of 'plotting'/'output' visitors
         mho_json& GetPlotData(){return fPlotData;}
 
+        //write data objects to output file...perhaps we may want to move this elsewhere?
+        int WriteOutput();
+
     protected:
 
         //data objects

@@ -93,7 +93,7 @@ MHO_StationModel::ComputeModel()
             fParAngle <<", "<<
             fU <<", "<<
             fV <<", "<<
-            fW <<", "<< eom);
+            fW <<")."<< eom);
 
     }
     else
