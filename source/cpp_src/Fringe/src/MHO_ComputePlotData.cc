@@ -3,6 +3,8 @@
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_EndZeroPadder.hh"
 
+#include "MHO_Constants.hh"
+
 namespace hops
 {
 
@@ -14,6 +16,7 @@ MHO_ComputePlotData::MHO_ComputePlotData()
     fVisibilities = nullptr;
     fWeights = nullptr;
     fSBDArray = nullptr;
+    fImagUnit = MHO_Constants::imag_unit;
 };
 
 
@@ -1156,18 +1159,22 @@ void MHO_ComputePlotData::dump_multitone_pcmodel
     std::vector< double > pc_mag_segs;
     std::vector< double > pc_phase_segs;
     std::vector< double > pc_delay_segs;
+    double man_pc_phase;
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
 
     std::string pc_mag_key;
     std::string pc_phase_key;
     std::string pc_delay_key;
+
+    std::string manual_pc_phase_key;
     
     if(station_flag == 0)
     {
         pc_mag_key = "ref_mtpc_mag_";
         pc_phase_key = "ref_mtpc_phase_";
         pc_delay_key = "ref_mtpc_delays_";
+        manual_pc_phase_key = "ref_pcphase_";
     }
     
     if(station_flag == 1)
@@ -1175,25 +1182,26 @@ void MHO_ComputePlotData::dump_multitone_pcmodel
         pc_mag_key = "rem_mtpc_mag_";
         pc_phase_key = "rem_mtpc_phase_";
         pc_delay_key = "rem_mtpc_delays_";
+        manual_pc_phase_key = "rem_pcphase_";
     }
     
     pc_mag_key += pol;
     pc_phase_key += pol;
     pc_delay_key += pol;
+    manual_pc_phase_key += pol;
 
-    std::cout<<"KEY = "<<pc_mag_key<<std::endl;
-    
+    double sgn = 1.0; //does these need to flip depending on LSB/USB?
+
     //extract the multitone pcal model attached to the visibilities
     for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
     {
         bool b1 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
         bool b2 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_phase_key, pc_phase_segs);
         bool b3 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
+        bool b4 = chan_ax->RetrieveIndexLabelKeyValue(ch, manual_pc_phase_key, man_pc_phase);
 
         if(b1)
         {
-            std::cout<<"channel: "<<ch<<" NPCAL SEGS = "<<pc_mag_segs.size()<<std::endl;
-
             double ave_pc_mag = MHO_MathUtilities::average(pc_mag_segs);
             if(station_flag == 0)
             {
@@ -1208,6 +1216,19 @@ void MHO_ComputePlotData::dump_multitone_pcmodel
         if(b2)
         {
             double ave_pc_phase = MHO_MathUtilities::angular_average(pc_phase_segs);
+
+            if(b4) //rotate all of the multitone phases by the manual applied phase
+            {
+                std::complex<double> man_phasor = std::exp(sgn*fImagUnit*man_pc_phase);
+                // std::cout<<"ch:"<<ch<<" phase = "<<manual_pc_phase_key<<" = "<<man_pc_phase<<std::endl;
+                for(std::size_t j=0; j<pc_phase_segs.size(); j++)
+                {
+                    std::complex<double> phasor = std::exp(fImagUnit*pc_phase_segs[j]);
+                    phasor *= man_phasor;
+                    pc_phase_segs[j] = std::arg(phasor); 
+                }
+            }
+
             if(station_flag == 0)
             {
                 //convert to degrees
