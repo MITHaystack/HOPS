@@ -641,6 +641,7 @@ MHO_MK4FringeExport::output()
     struct type_000 t2_id;
     
     //wait until we are the next process allowed to write an output file
+    MHO_LockFileHandler::GetInstance().EnableLegacyMode();
     lock_retval = MHO_LockFileHandler::GetInstance().WaitForWriteLock(directory, the_seq_no);
 
     if(lock_retval == LOCK_STATUS_OK && the_seq_no > 0)

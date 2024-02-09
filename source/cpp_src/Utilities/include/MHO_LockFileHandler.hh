@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <csignal>
 #include <unistd.h>
+
+#include "MHO_Tokenizer.hh"
 #include "MHO_DirectoryInterface.hh"
 
 //return error codes
@@ -65,8 +67,17 @@ class MHO_LockFileHandler
             return *fInstance;
         }
 
-        //the only two functions user needs to call via the instance: 
-        //(1) wait for lock (2) remove lock
+        //configure the lock handler to write legacy type_2xx files (e.g. GE.X.1.ABCDEF)
+        //or to use the new file naming convention (.frng extension)
+        //legacy mode is enabled by default
+        void EnableLegacyMode(){fEnableLegacyMode = true;};
+        void DisableLegacyMode(){fEnableLegacyMode = false;};
+
+        //the only three functions user needs to call via the instance: 
+        //(1) enable/disable legacy mode
+        //(2) wait for lock 
+        // write out the data file
+        //(3) remove lock
         int WaitForWriteLock(std::string directory, int& next_seq_no);
         void RemoveWriteLock();
 
@@ -80,8 +91,11 @@ class MHO_LockFileHandler
         static int check_stale(lockfile_data* other);
         static int lock_has_priority(lockfile_data* ours, lockfile_data* other);
         static int at_front(const char* directory, char* lockfile_name, lockfile_data* lock_data, int cand_seq_no);
-        int wait_for_write_lock(int& next_seq_no);
         static void remove_lockfile(lockfile_data* other);
+
+
+        int wait_for_write_lock(int& next_seq_no);
+        int get_max_seq_number(std::string dir);
 
         void SetDirectory(std::string dir);
 
@@ -96,6 +110,9 @@ class MHO_LockFileHandler
             std::signal(SIGHUP, &HandleSignal);
             std::signal(SIGABRT, &HandleSignal);
             fDirectory = "./";
+            fEnableLegacyMode = true;
+            fTokenizer.SetDelimiter(".");
+            fTokenizer.SetIncludeEmptyTokensFalse();
             init_lockfile_data(&fProcessLockFileData);
         };
         virtual ~MHO_LockFileHandler(){};
@@ -107,6 +124,9 @@ class MHO_LockFileHandler
         //directory interface 
         std::string fDirectory;
         MHO_DirectoryInterface fDirInterface;
+        MHO_Tokenizer fTokenizer;
+
+        bool fEnableLegacyMode;
 
 };
 
