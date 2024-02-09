@@ -112,6 +112,7 @@ int main(int argc, char** argv)
         // std::ofstream fdumpFile(output_file.c_str(), std::ofstream::out);
         // fdumpFile << plot_data;
         // fdumpFile.close();
+        fringeData.WriteOutput();
 
         #ifdef EXPORT_MK4
         MHO_MK4FringeExport fexporter;
