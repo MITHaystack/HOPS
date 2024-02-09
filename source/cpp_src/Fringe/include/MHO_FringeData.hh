@@ -53,6 +53,8 @@ class MHO_FringeData
 
     protected:
 
+        int WriteDataObjects(std::string filename);
+
         //data objects
         MHO_ParameterStore fParameterStore; //stores various parameters using string keys
         MHO_ScanDataStore fScanStore; //provides access to data associated with this scan

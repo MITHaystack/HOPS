@@ -4,6 +4,8 @@
 #include "MHO_BinaryFileInterface.hh"
 #include "MHO_LockFileHandler.hh"
 
+#include <cstdio>
+
 namespace hops 
 {
 
@@ -14,8 +16,8 @@ MHO_FringeData::WriteOutput()
     std::string directory = fParameterStore.GetAs<std::string>("/files/directory");
     directory = MHO_DirectoryInterface::GetDirectoryFullPath(directory);
 
-    // MHO_UUIDGenerator gen;
-    // std::string temp_id = gen.GenerateUUIDAsString();
+    MHO_UUIDGenerator gen;
+    std::string temp_id = gen.GenerateUUIDAsString();
 
     //grab the name info
     std::string baseline;
@@ -33,16 +35,52 @@ MHO_FringeData::WriteOutput()
     if(!ok3){frequency_group = "X";}
     if(!ok4){polprod = "?";}
 
-    //TODO REPLACE THIS WITH:
-    //(1) The full visibilities (with spectral information) with the fringe solution applied 
-    //(2) The time/frequency averaged visibilities with the fringe solution applied (e.g. AP x CH)
-    visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
-    if( vis_data == nullptr)
-    {
-        msg_fatal("fringe", "could not find visibility object to write output." << eom);
-        std::exit(1);
-    }
+    //write out the data to disk (don't bother waiting for a directory write lock)
+    //because we are going to write it to a unique temporary name 
+    //once it is complete, we will then get a write lock in order to rename it 
+    //to the properly sequenced ID
+    //ideally this should reduce the amount of time each independent process waits to access the directory 
+    //since they can write in parallel and only need to queue up to rename their files
+
+    std::string temp_name;
+    std::string output_file;
+
+    std::stringstream ss;
+    // ss << directory << "/" << baseline << "." << frequency_group << "." << temp_id << "." << root_code << ".frng";
+    ss << directory << "/" << baseline << "." << frequency_group << "." << polprod << "." << root_code << ".frng." << temp_id;
+    temp_name = ss.str();
+    int write_ok = WriteDataObjects(temp_name);
+
+    // for locking
+    int lock_retval = LOCK_PROCESS_NO_PRIORITY;
+    int the_seq_no; //the fringe file sequence number
     
+    //wait until we are the next process allowed to write an output file
+    MHO_LockFileHandler::GetInstance().DisableLegacyMode();
+    lock_retval = MHO_LockFileHandler::GetInstance().WaitForWriteLock(directory, the_seq_no);
+
+    if(lock_retval == LOCK_STATUS_OK && the_seq_no > 0)
+    {
+        std::stringstream ss2;
+        ss2 << directory << "/" << baseline << "." << frequency_group << "." << polprod<< "." << root_code << "." << the_seq_no << ".frng";
+        output_file = ss2.str();
+        
+        //rename the temp file to the proper output name
+        if(write_ok == 0)
+        {
+            std::rename(temp_name.c_str(), output_file.c_str());    
+        }
+    }
+
+    usleep(5);
+    MHO_LockFileHandler::GetInstance().RemoveWriteLock();
+
+    return write_ok;
+}
+
+
+int MHO_FringeData::WriteDataObjects(std::string filename)
+{
     //now we attach the parameter store and plot data as object tags
     MHO_ObjectTags tags;
     tags.SetTagValue("plot_data", fPlotData);
@@ -52,47 +90,34 @@ MHO_FringeData::WriteOutput()
     tags.SetTagValue("parameters", params);
     //TODO what other information should be tagged/included?
 
-
-    // for locking
-    int lock_retval = LOCK_PROCESS_NO_PRIORITY;
-    char lockfile_name[MAX_LOCKNAME_LEN] = {'\0'};
-    int the_seq_no; //the fringe file sequence number
-    
-    //wait until we are the next process allowed to write an output file
-    MHO_LockFileHandler::GetInstance().DisableLegacyMode();
-    lock_retval = MHO_LockFileHandler::GetInstance().WaitForWriteLock(directory, the_seq_no);
-
-    if(lock_retval == LOCK_STATUS_OK && the_seq_no > 0)
+    //TODO REPLACE THIS WITH:
+    //(1) The full visibilities (with spectral information) with the fringe solution applied 
+    //(2) The time/frequency averaged visibilities with the fringe solution applied (e.g. AP x CH)
+    visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
+    if( vis_data == nullptr)
     {
-
-        std::stringstream ss;
-        // ss << directory << "/" << baseline << "." << frequency_group << "." << temp_id << "." << root_code << ".frng";
-        ss << directory << "/" << baseline << "." << frequency_group << "." << polprod << "." << root_code << "." << the_seq_no << ".frng";
-        std::string output_file = ss.str();
-
-        MHO_BinaryFileInterface inter;
-        bool status = inter.OpenToWrite(output_file);
-        if(status)
-        {
-            uint32_t label = 0xFFFFFFFF; //someday make this mean something
-            tags.AddObjectUUID(vis_data->GetObjectUUID());
-            inter.Write(tags, "tags", label);
-            inter.Write(*vis_data, "vis", label);
-            inter.Close();
-        }
-        else
-        {
-            msg_error("file", "error opening fringe output file for write: " << output_file << eom);
-        }
-
-        inter.Close();
+        msg_fatal("fringe", "could not find visibility object to write output." << eom);
+        std::exit(1);
     }
 
-    usleep(5);
-    MHO_LockFileHandler::GetInstance().RemoveWriteLock();
+    MHO_BinaryFileInterface inter;
+    bool status = inter.OpenToWrite(filename);
+    if(status)
+    {
+        uint32_t label = 0xFFFFFFFF; //someday make this mean something
+        tags.AddObjectUUID(vis_data->GetObjectUUID());
+        inter.Write(tags, "tags", label);
+        inter.Write(*vis_data, "vis", label);
+        inter.Close();
+    }
+    else
+    {
+        msg_error("file", "error opening fringe output file for write: " << filename << eom);
+        inter.Close();
+        return 1;
+    }
 
     return 0;
 }
-
 
 }//end namespace

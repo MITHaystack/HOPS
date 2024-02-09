@@ -93,7 +93,6 @@ class MHO_LockFileHandler
         static int at_front(const char* directory, char* lockfile_name, lockfile_data* lock_data, int cand_seq_no);
         static void remove_lockfile(lockfile_data* other);
 
-
         int wait_for_write_lock(int& next_seq_no);
         int get_max_seq_number(std::string dir);
 
