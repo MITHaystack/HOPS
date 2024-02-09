@@ -24,8 +24,17 @@ MHO_LegacyDateConverter::ConvertToVexFormat(legacy_hops_date a_date)
 legacy_hops_date 
 MHO_LegacyDateConverter::ConvertFromVexFormat(std::string vex_date)
 {
-    auto mstart = hops_clock::from_vex_format(vex_date);
-    return hops_clock::to_legacy_hops_date(mstart);
+    if(vex_date != "")
+    {
+        auto mstart = hops_clock::from_vex_format(vex_date);
+        return hops_clock::to_legacy_hops_date(mstart);
+    }
+    else 
+    {
+        //return dummy value (start of epoch)
+        auto mstart = hops_clock::get_hops_epoch();
+        return hops_clock::to_legacy_hops_date(mstart);
+    }
 }
 
 

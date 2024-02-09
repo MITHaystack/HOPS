@@ -593,7 +593,7 @@ hops_clock::extract_vex_date(const std::string& timestamp)
     vex_date vdate;
     if(timestamp.size() == 0 )
     {
-        msg_error("utilities", "cannot extract vex data from empty string." << eom);
+        msg_error("utilities", "cannot extract vex date from empty string." << eom);
         return vdate;
     }
 
