@@ -1190,11 +1190,29 @@ void MHO_ComputePlotData::dump_multitone_pcmodel
     pc_delay_key += pol;
     manual_pc_phase_key += pol;
 
-    double sgn = 1.0; //does these need to flip depending on LSB/USB?
+    double sgn = 1.0; //does this need to flip depending on LSB/USB?
 
+    //fourfit applies the ion dTEC to the multitone pc-phase cal
+    //so we need to rotate them all by an appropriate amount 
+    //otherwise the fringe plots won't match 
+    //TODO FIXME -- decide if this is the behavior that we actually want
+    double ion_diff = 0;
+    double ion_k = MHO_Constants::ion_k;
+    bool bion = fParamStore->Get("/fringe/ion_diff", ion_diff);
+    if(!bion){ion_diff = 0.0;}
+
+    //split ion differential phase between both ref and rem stations
+    //note the sign is opposite the typical convention (see pcalibrate.c line 144)
+    if(station_flag == 0){ion_diff = 0.0*ion_diff;}
+    if(station_flag == 1){ion_diff = 1.0*ion_diff;}
+    
     //extract the multitone pcal model attached to the visibilities
     for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
     {
+        double freq = chan_ax->at(ch); //not quite right, we want channel center freq!!
+
+        //double bw = chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bw);
+
         bool b1 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
         bool b2 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_phase_key, pc_phase_segs);
         bool b3 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
@@ -1220,11 +1238,15 @@ void MHO_ComputePlotData::dump_multitone_pcmodel
             if(b4) //rotate all of the multitone phases by the manual applied phase
             {
                 std::complex<double> man_phasor = std::exp(sgn*fImagUnit*man_pc_phase);
+                double theta_ion = theta_ion = ion_k*ion_diff/(1e6*freq);
+                std::complex<double> ion_phasor = std::exp(fImagUnit*theta_ion);
+
                 // std::cout<<"ch:"<<ch<<" phase = "<<manual_pc_phase_key<<" = "<<man_pc_phase<<std::endl;
                 for(std::size_t j=0; j<pc_phase_segs.size(); j++)
                 {
                     std::complex<double> phasor = std::exp(fImagUnit*pc_phase_segs[j]);
                     phasor *= man_phasor;
+                    phasor *= ion_phasor;
                     pc_phase_segs[j] = std::arg(phasor); 
                 }
             }
