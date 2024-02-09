@@ -1266,7 +1266,7 @@ void MHO_ComputePlotData::dump_multitone_pcmodel
                 {
                     std::complex<double> phasor = std::exp(fImagUnit*pc_phase_segs[j]);
                     phasor *= man_phasor;
-                    phasor *= ion_phasor;
+                    //phasor *= ion_phasor;
                     pc_phase_segs[j] = std::arg(phasor); 
                 }
             }
