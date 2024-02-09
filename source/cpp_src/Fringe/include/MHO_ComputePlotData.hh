@@ -143,6 +143,8 @@ class MHO_ComputePlotData
         std::vector< int > fNUSBAP;
         std::vector< int > fNLSBAP;
 
+        //constants 
+        std::complex<double> fImagUnit;
 };
 
 }
