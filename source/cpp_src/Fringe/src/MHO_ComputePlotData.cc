@@ -1201,17 +1201,37 @@ void MHO_ComputePlotData::dump_multitone_pcmodel
     bool bion = fParamStore->Get("/fringe/ion_diff", ion_diff);
     if(!bion){ion_diff = 0.0;}
 
-    //split ion differential phase between both ref and rem stations
-    //note the sign is opposite the typical convention (see pcalibrate.c line 144)
-    if(station_flag == 0){ion_diff = 0.0*ion_diff;}
-    if(station_flag == 1){ion_diff = 1.0*ion_diff;}
-    
+    // //split ion differential phase between both ref and rem stations
+    // //note the sign is opposite the typical convention (see pcalibrate.c line 144)
+    if(station_flag == 0){ion_diff = -0.5*ion_diff;}
+    if(station_flag == 1){ion_diff = 0.5*ion_diff;}
+
     //extract the multitone pcal model attached to the visibilities
     for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
     {
-        double freq = chan_ax->at(ch); //not quite right, we want channel center freq!!
+        //get channel's frequency info
+        double sky_freq = chan_ax->at(ch); //not quite right, we want channel center freq!!
+        double bandwidth = 0;
+        std::string net_sideband;
 
-        //double bw = chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bw);
+        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+        if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom); }
+        key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bandwidth);
+        if(!key_present){msg_error("fringe", "missing bandwidth label for channel "<< ch << "." << eom);}
+
+        double lower_freq;
+        double upper_freq;
+        if(net_sideband == "U")
+        {
+            lower_freq = sky_freq;
+            upper_freq = sky_freq + bandwidth;
+        }
+        else //lower sideband
+        {
+            upper_freq = sky_freq;
+            lower_freq = sky_freq - bandwidth;
+        }
+        double center_freq = 0.5*(upper_freq+lower_freq);
 
         bool b1 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
         bool b2 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_phase_key, pc_phase_segs);
@@ -1238,7 +1258,7 @@ void MHO_ComputePlotData::dump_multitone_pcmodel
             if(b4) //rotate all of the multitone phases by the manual applied phase
             {
                 std::complex<double> man_phasor = std::exp(sgn*fImagUnit*man_pc_phase);
-                double theta_ion = theta_ion = ion_k*ion_diff/(1e6*freq);
+                double theta_ion = theta_ion = ion_k*ion_diff/(1e6*center_freq);
                 std::complex<double> ion_phasor = std::exp(fImagUnit*theta_ion);
 
                 // std::cout<<"ch:"<<ch<<" phase = "<<manual_pc_phase_key<<" = "<<man_pc_phase<<std::endl;
