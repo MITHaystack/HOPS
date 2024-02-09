@@ -1,5 +1,5 @@
 #include "MHO_IonosphericPhaseCorrection.hh"
-
+#include "MHO_Constants.hh"
 
 namespace hops
 {
@@ -13,8 +13,8 @@ MHO_IonosphericPhaseCorrection::MHO_IonosphericPhaseCorrection()
     fUpperSideband = "U";
 
     fdTEC = 0.0;
-    fIonoK = -8.448e9;
 
+    fIonoK = MHO_Constants::ion_k;
     fImagUnit = MHO_Constants::imag_unit;
     fDegToRad = MHO_Constants::deg_to_rad;
 
