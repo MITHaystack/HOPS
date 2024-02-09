@@ -446,6 +446,13 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
         msg_fatal("fringe", "cannot initialize a valid scan store from this directory: " << directory << eom);
         std::exit(1);
     }
+
+    if( !scanStore->IsBaselinePresent(baseline) )
+    {
+        msg_fatal("fringe", "cannot find the specified baseline: " << baseline << " in " << directory << eom);
+        std::exit(1);
+    }
+
     //set the root file name
     paramStore->Set("/files/root_file", scanStore->GetRootFileBasename() );
     

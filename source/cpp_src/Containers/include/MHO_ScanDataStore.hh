@@ -36,6 +36,7 @@ class MHO_ScanDataStore
         void SetDirectory(std::string dir){fDirectory = dir;};
         void Initialize(); //load the directory
         bool IsValid(); //scan dir contains root file, and data
+        bool IsBaselinePresent(std::string bl); //check if a particular baseline is present in this scan
 
         std::size_t GetNBaselines(){return fBaselineCodes.size();};
         std::size_t GetNStations(){return fStationCodes.size();};

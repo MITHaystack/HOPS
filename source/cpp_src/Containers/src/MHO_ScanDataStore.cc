@@ -40,6 +40,16 @@ MHO_ScanDataStore::IsValid()
     return true;
 }
 
+bool 
+MHO_ScanDataStore::IsBaselinePresent(std::string bl)
+{
+    for(auto it = fBaselineCodes.begin(); it != fBaselineCodes.end(); it++)
+    {
+        if( bl == *it){return true;}
+    }
+    return false;
+}
+
 void
 MHO_ScanDataStore::DetermineRootFile()
 {
