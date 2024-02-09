@@ -46,7 +46,6 @@ MHO_FringeData::WriteOutput()
     std::string output_file;
 
     std::stringstream ss;
-    // ss << directory << "/" << baseline << "." << frequency_group << "." << temp_id << "." << root_code << ".frng";
     ss << directory << "/" << baseline << "." << frequency_group << "." << polprod << "." << root_code << ".frng." << temp_id;
     temp_name = ss.str();
     int write_ok = WriteDataObjects(temp_name);
