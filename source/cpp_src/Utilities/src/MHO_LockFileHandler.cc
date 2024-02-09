@@ -414,46 +414,9 @@ int MHO_LockFileHandler::wait_for_write_lock(int& next_seq_no)
     int is_at_front = 0;
     int n_checks = 0;
     int max_seq_no = 0;
-    std::vector< std::string > files;
-    std::vector< std::string > fringe_files;
-    std::vector< std::string > tokens;
     do
     {
         max_seq_no = get_max_seq_number(fDirectory);
-        // ///check for max sequence number on disk
-        // //point the directory interface to where we plan to write the file
-        // //and check for the max sequency number seen in fringe files
-        // fDirInterface.SetCurrentDirectory(fDirectory);
-        // fDirInterface.ReadCurrentDirectory();
-        // 
-        // if(fEnableLegacyMode)
-        // {
-        //     //look for old-style finge files (legacy mode)
-        //     max_seq_no = 0;
-        //     fDirInterface.GetFileList(files);
-        //     fDirInterface.GetFringeFiles(files, fringe_files, max_seq_no); 
-        // }
-        // else 
-        // {
-        //     //look for new style fringe files
-        //     max_seq_no = 0;
-        //     fDirInterface.GetFilesMatchingExtention(fringe_files, "frng");
-        //     for(auto it = fringe_files.begin(); it != fringe_files.end(); it++)
-        //     {
-        //         std::string basename = MHO_DirectoryInterface::GetBasename(*it);
-        //         std::cout<<"looking at basename = "<<basename<<std::endl;
-        //         //format looks like "GE.X.XY.0VSI1M.1.frng"
-        //         tokens.clear();
-        //         fTokenizer.SetString(&basename);
-        //         fTokenizer.GetTokens(&tokens);
-        //         if(tokens.size() >= 6) 
-        //         {
-        //             int seq_no = std::atoi(tokens[ tokens.size()-2 ].c_str()); //2nd to last token is extent no.
-        //             if(seq_no > max_seq_no){max_seq_no = seq_no;}
-        //         }
-        //         std::cout<<"max sequence number = "<<max_seq_no<<std::endl;
-        //     }
-        // }
         if(n_checks == 0)
         {
             msg_debug("utilities", "detected max sequence number of: "<< max_seq_no << ", in: " << fDirectory << eom);
@@ -478,39 +441,7 @@ int MHO_LockFileHandler::wait_for_write_lock(int& next_seq_no)
         //some other error has occurred
         return is_at_front;
     }
-    
-    // //made it here, so we have write priority now, just need to
-    // //check/update the extent number for type-2 files and return it
-    // fDirInterface.SetCurrentDirectory(fDirectory);
-    // fDirInterface.ReadCurrentDirectory();
-    // if(fEnableLegacyMode)
-    // {
-    //     //look for old-style finge files (legacy mode)
-    //     max_seq_no = 0;
-    //     fDirInterface.GetFileList(files);
-    //     fDirInterface.GetFringeFiles(files, fringe_files, max_seq_no); 
-    // }
-    // else 
-    // {
-    //     //look for new style fringe files
-    //     max_seq_no = 0;
-    //     fDirInterface.GetFilesMatchingExtention(fringe_files, "frng");
-    //     for(auto it = fringe_files.begin(); it != fringe_files.end(); it++)
-    //     {
-    //         std::string basename = MHO_DirectoryInterface::GetBasename(*it);
-    //         std::cout<<"looking at basename = "<<basename<<std::endl;
-    //         //format looks like "GE.X.XY.0VSI1M.1.frng"
-    //         tokens.clear();
-    //         fTokenizer.SetString(&basename);
-    //         fTokenizer.GetTokens(&tokens);
-    //         if(tokens.size() >= 6) 
-    //         {
-    //             int seq_no = std::atoi(tokens[ tokens.size()-2 ].c_str()); //2nd to last token is extent no.
-    //             if(seq_no > max_seq_no){max_seq_no = seq_no;}
-    //         }
-    //         std::cout<<"max sequence number = "<<max_seq_no<<std::endl;
-    //     }
-    // }
+
     max_seq_no = get_max_seq_number(fDirectory);
     next_seq_no = max_seq_no+1;
 
@@ -548,7 +479,6 @@ MHO_LockFileHandler::get_max_seq_number(std::string dir)
         for(auto it = fringe_files.begin(); it != fringe_files.end(); it++)
         {
             std::string basename = MHO_DirectoryInterface::GetBasename(*it);
-            std::cout<<"looking at basename = "<<basename<<std::endl;
             //format looks like "GE.X.XY.0VSI1M.1.frng"
             tokens.clear();
             fTokenizer.SetString(&basename);
@@ -558,7 +488,6 @@ MHO_LockFileHandler::get_max_seq_number(std::string dir)
                 int seq_no = std::atoi(tokens[ tokens.size()-2 ].c_str()); //2nd to last token is extent no.
                 if(seq_no > max_seq_no){max_seq_no = seq_no;}
             }
-            std::cout<<"max sequence number = "<<max_seq_no<<std::endl;
         }
     }
     return max_seq_no;
