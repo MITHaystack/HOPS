@@ -888,13 +888,15 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     
     //export reference pcal stuff
     station_flag = 0;
-    pol = std::string(1, polprod[station_flag]);
+    pol = polprod;
+    if(polprod.size() == 2){ pol = std::string(1, polprod[station_flag]); }
     dump_multitone_pcmodel(plot_dict, station_flag, pol);
     dump_manual_pcmodel(plot_dict, station_flag, pol);
 
     //export remote pcal stuff
     station_flag = 1;
-    pol = std::string(1, polprod[station_flag]);
+    pol = polprod;
+    if(polprod.size() == 2){ pol = std::string(1, polprod[station_flag]); }
     dump_multitone_pcmodel(plot_dict, station_flag, pol);
     dump_manual_pcmodel(plot_dict, station_flag, pol);
 
@@ -1178,6 +1180,8 @@ void MHO_ComputePlotData::dump_multitone_pcmodel
     pc_mag_key += pol;
     pc_phase_key += pol;
     pc_delay_key += pol;
+
+    std::cout<<"KEY = "<<pc_mag_key<<std::endl;
     
     //extract the multitone pcal model attached to the visibilities
     for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
@@ -1188,6 +1192,8 @@ void MHO_ComputePlotData::dump_multitone_pcmodel
 
         if(b1)
         {
+            std::cout<<"channel: "<<ch<<" NPCAL SEGS = "<<pc_mag_segs.size()<<std::endl;
+
             double ave_pc_mag = MHO_MathUtilities::average(pc_mag_segs);
             if(station_flag == 0)
             {
@@ -1204,11 +1210,16 @@ void MHO_ComputePlotData::dump_multitone_pcmodel
             double ave_pc_phase = MHO_MathUtilities::angular_average(pc_phase_segs);
             if(station_flag == 0)
             {
-                plot_dict["PLOT_INFO"]["PCPhsRf"][ch] = ave_pc_phase*(180./M_PI); //convert to degrees
+                //convert to degrees
+                plot_dict["PLOT_INFO"]["PCPhsRf"][ch] = ave_pc_phase*(180./M_PI);
+                for(std::size_t j=0; j<pc_phase_segs.size(); j++){ pc_phase_segs[j] *= (180./M_PI); }
+                plot_dict["extra"]["ref_mtpc_phase_segs"].push_back( pc_phase_segs );
             }
             if(station_flag == 1)
             {
                 plot_dict["PLOT_INFO"]["PCPhsRm"][ch] = ave_pc_phase*(180./M_PI);
+                for(std::size_t j=0; j<pc_phase_segs.size(); j++){ pc_phase_segs[j] *= (180./M_PI); }
+                plot_dict["extra"]["rem_mtpc_phase_segs"].push_back( pc_phase_segs );
             }
         }
         

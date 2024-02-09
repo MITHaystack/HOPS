@@ -267,37 +267,83 @@ def make_channel_segment_validity_plots(plot_dict):
             
             
 def make_pcal_plots(plot_dict):
-    #TODO FIXME - This is a dummy implementation (zeros)
-    #construct the phase-cal segment plots
 
-    n_seg = int(plot_dict["NSeg"])
-    n_seg_plots = int(plot_dict["NPlots"])
-    colw = 6
+    if "extra" in plot_dict:
+        #TODO FIXME ONLY APPLY IF MULTITONE IS ON AND PRESET
+        ref_pcal_channel_segs = plot_dict["extra"]["ref_mtpc_phase_segs"]
+        rem_pcal_channel_segs = plot_dict["extra"]["rem_mtpc_phase_segs"]
+        #TODO FIXME - This is a dummy implementation (zeros)
+        #construct the phase-cal segment plots
+        colw = 6
+    
+        n_ref_pcal_chans = len(ref_pcal_channel_segs)
+        n_rem_pcal_chans = len(rem_pcal_channel_segs)
 
-    #PCAL PLOTS
-    for ch in range(0,n_seg_plots-1):
-        ax8 = plt.subplot2grid((255,colw*n_seg_plots),(160,colw*ch),rowspan=16,colspan=colw)
-        plt.subplots_adjust(wspace=0, hspace=0)
-        ax8.plot(range(n_seg), np.zeros(n_seg),'co-',markersize=2, markerfacecolor='m', linewidth=0.5, markeredgewidth=0.0)
-        ax8.set_xlim(0,n_seg)
-        ax8.set_ylim(-180,180)
-        ax8.xaxis.set_major_locator(plt.LinearLocator(numticks=3))
-        ax8.xaxis.set_minor_locator(AutoMinorLocator(2))
-        ax8.set_xticklabels(labels=[],visible=True)
-        ax8.tick_params(axis='both', direction='in', which='both')
+        n_channel_seg_plots = int(plot_dict["NPlots"])
 
-        if ch == 0:
-            ax8.set_ylabel(r"pcal $\theta$",fontsize=9)
-            ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
-            ax8.tick_params(axis='y', left = False,  right=False, bottom = False, labelleft=False)
-        elif ch == (n_seg_plots-2):
-            ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
-            ax8.set_yticklabels(ax8.get_yticks(), fontsize=5)
-            ax8.tick_params(axis='y', left=False, right=True, labelleft=False, labelright=True)
-        else:
-            ax8.yaxis.set_major_locator(plt.NullLocator())
-            ax8.set_yticklabels(labels=[],visible=False)
-            plt.yticks(visible=False)
+        n_seg_plots = 0
+        if n_ref_pcal_chans == n_rem_pcal_chans:
+            n_seg_plots = n_ref_pcal_chans
+
+        #PCAL PLOTS
+        for ch in range(0,n_seg_plots):
+            n_seg = len(ref_pcal_channel_segs[ch])
+
+            ax8 = plt.subplot2grid((255,colw*n_channel_seg_plots),(160,colw*ch),rowspan=16,colspan=colw)
+            plt.subplots_adjust(wspace=0, hspace=0)
+            ax8.plot(range(n_seg), ref_pcal_channel_segs[ch],'co',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
+            ax8.plot(range(n_seg), rem_pcal_channel_segs[ch],'co',markersize=2, markerfacecolor='m', linewidth=0.5, markeredgewidth=0.0)
+            ax8.set_xlim(0,n_seg)
+            ax8.set_ylim(-180,180)
+            ax8.xaxis.set_major_locator(plt.LinearLocator(numticks=3))
+            ax8.xaxis.set_minor_locator(AutoMinorLocator(2))
+            ax8.set_xticklabels(labels=[],visible=True)
+            ax8.tick_params(axis='both', direction='in', which='both')
+
+            if ch == 0:
+                ax8.set_ylabel(r"pcal $\theta$",fontsize=9)
+                ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
+                ax8.tick_params(axis='y', left = False,  right=False, bottom = False, labelleft=False)
+            elif ch == (n_seg_plots-1):
+                ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
+                ax8.set_yticklabels(ax8.get_yticks(), fontsize=5)
+                ax8.tick_params(axis='y', left=False, right=True, labelleft=False, labelright=True)
+            else:
+                ax8.yaxis.set_major_locator(plt.NullLocator())
+                ax8.set_yticklabels(labels=[],visible=False)
+                plt.yticks(visible=False)
+
+    else:
+        #TODO FIXME - This is a dummy implementation (zeros)
+        #construct the phase-cal segment plots
+        n_seg = int(plot_dict["NSeg"])
+        n_seg_plots = int(plot_dict["NPlots"])
+        colw = 6
+
+        #PCAL PLOTS
+        for ch in range(0,n_seg_plots-1):
+            ax8 = plt.subplot2grid((255,colw*n_seg_plots),(160,colw*ch),rowspan=16,colspan=colw)
+            plt.subplots_adjust(wspace=0, hspace=0)
+            ax8.plot(range(n_seg), np.zeros(n_seg),'co',markersize=2, markerfacecolor='m', linewidth=0.5, markeredgewidth=0.0)
+            ax8.set_xlim(0,n_seg)
+            ax8.set_ylim(-180,180)
+            ax8.xaxis.set_major_locator(plt.LinearLocator(numticks=3))
+            ax8.xaxis.set_minor_locator(AutoMinorLocator(2))
+            ax8.set_xticklabels(labels=[],visible=True)
+            ax8.tick_params(axis='both', direction='in', which='both')
+
+            if ch == 0:
+                ax8.set_ylabel(r"pcal $\theta$",fontsize=9)
+                ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
+                ax8.tick_params(axis='y', left = False,  right=False, bottom = False, labelleft=False)
+            elif ch == (n_seg_plots-2):
+                ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
+                ax8.set_yticklabels(ax8.get_yticks(), fontsize=5)
+                ax8.tick_params(axis='y', left=False, right=True, labelleft=False, labelright=True)
+            else:
+                ax8.yaxis.set_major_locator(plt.NullLocator())
+                ax8.set_yticklabels(labels=[],visible=False)
+                plt.yticks(visible=False)
 
     #TODO FIXME -- make these station labels part of the p-cal y-axis title so their placement is done properly no matter the number of channels
     if 'extra' in plot_dict:
