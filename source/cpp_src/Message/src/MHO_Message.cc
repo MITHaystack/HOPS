@@ -5,8 +5,17 @@ namespace hops
 
 
 
-//initialization to nullptr
+//static initialization to nullptr
 MHO_Message* MHO_Message::fInstance = nullptr;
+
+std::string MHO_Message::fRed = "\33[31;1m"; //fatal
+std::string MHO_Message::fYellow = "\33[93;1m"; //error
+std::string MHO_Message::fOrange = "\33[33;1m"; //warning
+std::string MHO_Message::fBlue = "\33[34;1m"; //status
+std::string MHO_Message::fGreen = "\33[32;1m"; //info
+std::string MHO_Message::fCyan = "\33[36;1m"; //debug
+std::string MHO_Message::fWhite = "\33[37;1m"; //default
+std::string MHO_Message::fColorSuffix = "\33[0m"; //color close
 
 void
 MHO_Message::AddKey(const std::string& key)
@@ -102,7 +111,12 @@ MHO_Message::operator<<(const MHO_MessageNewline&)
 MHO_Message&
 MHO_Message::operator<<(const MHO_MessageEndline&)
 {
+    #ifdef HOPS_COLOR_MSG
+    fMessageStream << fColorSuffix << std::endl;
+    #else 
     fMessageStream << std::endl;
+    #endif
+
     Flush();
     return *fInstance;
 }
@@ -119,6 +133,32 @@ MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& 
 {
 
     std::stringstream ss;
+    #ifdef HOPS_COLOR_MSG
+
+    switch (level)
+    {
+        case eFatal:
+            ss << fRed << "FATAL[" << key << "] ";
+            break;
+        case eError:
+            ss << fYellow << "ERROR[" << key << "] ";
+            break;
+        case eWarning:
+            ss << fOrange << "WARNING["  << key << "] ";
+            break;
+        case eStatus:
+            ss << fBlue << "STATUS[" << key << "] ";
+            break;
+        case eInfo:
+            ss << fGreen << "INFO[" << key << "] ";
+            break;
+        case eDebug:
+            ss << fCyan << "DEBUG[" << key << "] ";
+            break;
+    }
+
+    #else // HOPS_COLOR_MSG is disabled
+
     switch (level)
     {
         case eFatal:
@@ -140,6 +180,9 @@ MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& 
             ss << "DEBUG[" << key << "] ";
             break;
     }
+    #endif //end of HOPS_COLOR_MSG
+
+
     return ss.str();
 }
 

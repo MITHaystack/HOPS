@@ -36,6 +36,7 @@ set( FRINGE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InitialFringeInfo.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringePlotInfo.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeUtilities.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeData.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeFitter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IonosphericFringeFitter.cc
 )

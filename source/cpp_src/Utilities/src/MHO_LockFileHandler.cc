@@ -79,7 +79,7 @@ void MHO_LockFileHandler::remove_lockfile(lockfile_data* data)
 {
     if(data->validity == LOCK_VALID)
     {
-        msg_debug("mk4interface", "removing write lock file: "<< std::string(data->lockfile_name) << eom);
+        msg_debug("utilities", "removing write lock file: "<< std::string(data->lockfile_name) << eom);
         remove(data->lockfile_name);
     }
     init_lockfile_data(data);
@@ -139,7 +139,7 @@ int MHO_LockFileHandler::check_stale(lockfile_data* other)
         if( (epoch_sec - other->time_sec) > LOCK_STALE_SEC )
         {
             //issue warning, we do not have priority
-            msg_warn("mk4interface", "stale lock file detected: "<<
+            msg_warn("utilities", "stale lock file detected: "<<
                 std::string(other->active_directory) + std::string(other->lockfile_name) << eom);
             return LOCK_STALE_ERROR;
         }
@@ -211,7 +211,7 @@ int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_n
     int ret_val = gethostname(host_name, 256);
     if( ret_val != 0)
     {
-        msg_fatal("mk4interface", "error retrieving host name in create_lockfile." << eom);
+        msg_fatal("utilities", "error retrieving host name in create_lockfile." << eom);
         std::exit(1);
     };
 
@@ -259,7 +259,7 @@ int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_n
         strcpy(lock_data->hostname, host_name);
         strcpy(lock_data->active_directory, directory);
         strcpy(lock_data->lockfile_name, lockfile_name);
-        msg_debug("mk4interface", "creating write lock file: "<< std::string(lock_data->lockfile_name) << eom);
+        msg_debug("utilities", "creating write lock file: "<< std::string(lock_data->lockfile_name) << eom);
     }
     else
     {
@@ -309,7 +309,7 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name,
                 strcpy(temp_lock_struct.active_directory, root_dir); 
                 if(error_code != LOCK_STATUS_OK)
                 {
-                    msg_error("mk4interface", "un-parsable lock file name: "<< std::string(dir->d_name) << eom);
+                    msg_error("utilities", "un-parsable lock file name: "<< std::string(dir->d_name) << eom);
                     return LOCK_PARSE_ERROR;
                 }
                 int stale_lock = check_stale(&temp_lock_struct);
@@ -324,7 +324,7 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name,
     }
     else
     {
-        msg_error("mk4interface", "cannot access the directory: "<< root_dir << eom );
+        msg_error("utilities", "cannot access the directory: "<< root_dir << eom );
         return LOCK_FILE_ERROR;
     }
 
@@ -427,7 +427,7 @@ int MHO_LockFileHandler::wait_for_write_lock(int& next_seq_no)
         fDirInterface.GetFringeFiles(files, fringe_files, max_seq_no);
         if(n_checks == 0)
         {
-            msg_debug("mk4interface", "detected max sequence number of: "<< max_seq_no << ", in: " << fDirectory << eom);
+            msg_debug("utilities", "detected max sequence number of: "<< max_seq_no << ", in: " << fDirectory << eom);
         }
         //provisionally fset->maxfile is the largest fringe number on disk
         //but we need to check that WE are allowed to take the successor:
@@ -440,7 +440,7 @@ int MHO_LockFileHandler::wait_for_write_lock(int& next_seq_no)
     //couldn't get a write lock because of time out
     if(n_checks >= LOCK_TIMEOUT)
     {
-        msg_error("mk4interface", "lock file time-out error associated with dir: "<< fDirectory<< eom);
+        msg_error("utilities", "lock file time-out error associated with dir: "<< fDirectory<< eom);
         return LOCK_TIMEOUT_ERROR;
     }
     
@@ -457,7 +457,7 @@ int MHO_LockFileHandler::wait_for_write_lock(int& next_seq_no)
     fDirInterface.GetFileList(files);
     fDirInterface.GetFringeFiles(files, fringe_files, max_seq_no);
     next_seq_no = max_seq_no+1;
-    msg_debug("mk4interface", "acquired write lock for sequence number: "<< next_seq_no << eom);
+    msg_debug("utilities", "acquired write lock for sequence number: "<< next_seq_no << eom);
 
     return LOCK_STATUS_OK;
 }

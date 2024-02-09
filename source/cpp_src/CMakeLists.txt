@@ -4,6 +4,16 @@ if(ENABLE_DEBUG_MSG)
     hops_add_cxxflag(HOPS_ENABLE_DEBUG_MSG)
 endif(ENABLE_DEBUG_MSG)
 
+option(ENABLE_EXTRA_VERBOSE_MSG "When enabled adds additional file:line origin information to all messages" OFF)
+if(ENABLE_EXTRA_VERBOSE_MSG)
+    hops_add_cxxflag(HOPS_EXTRA_VERBOSE_MSG)
+endif(ENABLE_EXTRA_VERBOSE_MSG)
+
+option(ENABLE_COLOR_MSG "Enable color messages." ON)
+if(ENABLE_COLOR_MSG)
+    hops_add_cxxflag(HOPS_COLOR_MSG)
+endif(ENABLE_COLOR_MSG)
+
 option(ENABLE_SNAPSHOTS "Enable object dumps to snapshot file for debugging/inspection" OFF)
 if(ENABLE_SNAPSHOTS)
     hops_add_cxxflag(HOPS_ENABLE_SNAPSHOTS)

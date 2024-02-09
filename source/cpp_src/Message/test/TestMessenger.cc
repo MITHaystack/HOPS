@@ -46,5 +46,9 @@ int main(int /*argc*/, char** /*argv*/)
     msg_info("core", "ENABLE_DEBUG_MSG is disabled, debug messages will be hidden." << eom);
     #endif
 
+    msg_warn("dummy", "This is a warning." << eom );
+
+    msg_fatal("dummy", "This is a fatal error." << eom );
+
     return 0;
 }
