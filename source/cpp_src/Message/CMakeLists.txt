@@ -3,6 +3,8 @@
 
 
 set (MESSAGE_HEADERFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SelfName.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Timer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Message.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TestAssertions.hh
 )
@@ -10,6 +12,7 @@ set (MESSAGE_HEADERFILES
 #list source files #############################################################
 
 set( MESSAGE_SOURCEFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Timer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Message.cc
 )
 
