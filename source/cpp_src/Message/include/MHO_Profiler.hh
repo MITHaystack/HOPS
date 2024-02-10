@@ -2,12 +2,13 @@
 #define MHO_Profiler_HH__
 
 #include <cstdlib>
-#include <ostream>
-#include <sstream>
 #include <string>
 #include <mutex>
-
+#include <vector>
+#include <cstring>
+#include <iostream>
 #include "MHO_SelfName.hh"
+#include "MHO_Timer.hh"
 
 /*
 *File: MHO_Profiler.hh
@@ -18,6 +19,8 @@
 *Description:
 */
 
+#define HOPS_USE_PROFILER
+
 namespace hops
 {
 
@@ -26,15 +29,16 @@ namespace sn = selfname;
 enum
 MHO_ProfilerFlag: int
 {
-    eStart = 1, //start time for this segment
-    eStop = 2 //stop timer for this segment
+    pStartFlag = 1, //start time for this segment
+    pStopFlag = 2 //stop timer for this segment
 };
 
 //short hand aliases
-static const MHO_ProfilerFlag pStart = MHO_ProfilerFlag::eSpecialLevel;
-static const MHO_ProfilerFlag pStop = MHO_ProfilerFlag::eSilentErrorLevel;
-using hops::eStart;
-using hops::eStop;
+static const MHO_ProfilerFlag pStart = MHO_ProfilerFlag::pStartFlag;
+static const MHO_ProfilerFlag pStop = MHO_ProfilerFlag::pStopFlag;
+
+using hops::pStart;
+using hops::pStop;
 
 #define PROFILE_INFO_LEN 64
 
@@ -67,25 +71,14 @@ class MHO_Profiler
         // void Lock(){fMutex.lock();};
         // void Unlock(){fMutex.unlock();};
 
-        void AddEntry(int flag, int thread_id, std::string filename, int line_num, std::string func_name)
-        {
-            ProfileEvent event;
-            event.fFlag = flag;
-            event.fLineNumber = line_num;
-            event.fThreadID = thread_id;
-            strncpy(event.fFilename, filename.c_str(), PROFILE_INFO_LEN);
-            event.fFilename[PROFILE_INFO_LEN-1] = '\0';
-            strncpy(event.fFuncname, func_name.c_str(), PROFILE_INFO_LEN);
-            event.fFilename[PROFILE_INFO_LEN-1] = '\0';
-            event.fTime = fTimer.GetTimeSinceStart();
-
-        }
+        void AddEntry(int flag, int thread_id, std::string filename, int line_num, std::string func_name);
+        void DumpEvents();
 
     private:
 
         MHO_Profiler():fNThreads(1)
         {
-            fThreadEvents.resize(fNThreads);            event.fFilename[PROFILE_INFO_LEN-1] = '\0';
+            // fEvents.resize(fNThreads);
             fTimer.Start();
         };
         virtual ~MHO_Profiler(){};
@@ -106,7 +99,9 @@ class MHO_Profiler
         };
 
         //map each thread to a vector of events
-        std::vector< std::vector< ProfileEvent > > fThreadEvents;
+        // std::vector< std::vector< ProfileEvent > > fThreadEvents;    
+        std::vector< ProfileEvent > fEvents;
+
 
         MHO_Timer fTimer;
 
@@ -119,13 +114,13 @@ class MHO_Profiler
     //abuse do-while for multiline macros
     #define prof_start() \
     do { \
-        MHO_Profiler::GetInstance().AddEntry(eStart, 0, std::string( sn::file_basename(__FILE__) ), __LINE__ , std::string(  __PRETTY_FUNCTION__ ) ); \
+        MHO_Profiler::GetInstance().AddEntry(pStart, 0, std::string( sn::file_basename(__FILE__) ), __LINE__ , std::string(  __PRETTY_FUNCTION__ ) ); \
     } \
     while(0)
 
     #define prof_stop() \
     do { \
-        MHO_Profiler::GetInstance().AddEntry(eStop, 0, std::string( sn::file_basename(__FILE__) ), __LINE__ , std::string(  __PRETTY_FUNCTION__ ) ); \
+        MHO_Profiler::GetInstance().AddEntry(pStop, 0, std::string( sn::file_basename(__FILE__) ), __LINE__ , std::string(  __PRETTY_FUNCTION__ ) ); \
     } \
     while(0)
 
