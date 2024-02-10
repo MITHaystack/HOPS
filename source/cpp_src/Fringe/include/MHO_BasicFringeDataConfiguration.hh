@@ -38,6 +38,8 @@ class MHO_BasicFringeDataConfiguration
         //takes care of command line parsing/initialization
         static int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore);
 
+        static void print_usage();
+
         //functions for consuming command line arguments
         static void set_message_level(int message_level);
         static void parse_baseline_freqgrp(std::string baseline_freqgrp, std::string& baseline, std::string& freqgrp);

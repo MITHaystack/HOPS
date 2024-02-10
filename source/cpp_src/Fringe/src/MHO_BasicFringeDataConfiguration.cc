@@ -10,8 +10,21 @@
 #include "MHO_VexInfoExtractor.hh"
 
 //parse_command_line
-#include <getopt.h>
 #include "MHO_Tokenizer.hh"
+#include <getopt.h>
+
+// #include <sys/ioctl.h>
+// // #include <stdio.h>
+// // #include <unistd.h>
+// 
+// //retrieve the width of the terminal 
+// //(so we know when to line break)
+// int get_window_columns()
+// {
+//     struct winsize w;
+//     ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+//     return w.ws_col;
+// }
 
 namespace hops
 {
@@ -41,7 +54,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     std::string polprod = ""; //'-P' polarization product argument (e.g XX or I or RR+LL)
     std::string reftime = ""; //'-T' specify the fourfit reference time - not yet enabled
     bool xpower_output = false; //'-x' same as option '-p' we no long use pgplot/xwindows
-    std::string output_file = "fdump.json"; //'-o' specify the output file, for testing
+    //std::string output_file = "fdump.json"; //'-o' specify the output file, for testing
     
     //store the raw arguments in the parameter store
     std::vector<std::string> arglist;
@@ -74,14 +87,13 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
         {"xwindow", no_argument, 0, 'x'},
         {"polarization-product", required_argument, 0, 'P'},
         {"time-reference", required_argument, 0, 'T'},
-        {"xpower-output", no_argument, 0, 'X'},
-        {"output", required_argument, 0, 'o'}
+        {"xpower-output", no_argument, 0, 'X'}
     };
 
     //these are nearly all of the options of the original fourfit
     //However, some are disabled, and the '-d' option has been coopted to point 
     //to the data directory, and '-o' is used to specify the output file name
-    static const char* optString = "+hab:c:d:ef:m:n:pr:s:tuxP:T:Xo:";
+    static const char* optString = "+hab:c:d:ef:m:n:pr:s:tuxP:T:X";
     //fourfit option string is "+ab:c:d:ef:m:n:pr:s:tuxP:T:X"
 
     while(true)
@@ -92,12 +104,11 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
         switch(optId)
         {
             case 'h':  // help
-                std::cout << usage << std::endl;
+                print_usage();
                 std::exit(0);
             case 'a':  // help
                 accounting = true;
-                msg_fatal("fringe", "accounting option '-a' is not available." << eom);
-                std::exit(1);
+                msg_warn("fringe", "accounting option '-a' is not available." << eom);
             case 'b':
                 parse_baseline_freqgrp(std::string(optarg), baseline, freqgrp);
                 break;
@@ -106,13 +117,11 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
                 break;
             case 'd':
                 //directory = std::string(optarg);
-                msg_fatal("fringe", "device (plotting) option '-d' is not available." << eom);
-                std::exit(1);
+                msg_warn("fringe", "device (plotting) option '-d' is not available." << eom);
                 break;
             case 'e':
                 estimate_time = true;
-                msg_fatal("fringe", "option '-e' is not available." << eom);
-                std::exit(1);
+                msg_warn("fringe", "option '-e' is not available." << eom);
                 break;
             case 'f':
                 first_plot_chan = std::atoi(optarg);
@@ -137,6 +146,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
                 std::exit(1);
                 break;
             case 'x':
+                msg_warn("fringe", "option '-x' is unused/deprecated." << eom);
                 show_plot = true; //equivalent to '-p', we do not use pgplot/xwindows
                 break;
             case 'P':
@@ -157,12 +167,11 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
                 break;
             case 'X':
                 xpower_output = false;
-                msg_fatal("fringe", "xpower output option '-X' is not available." << eom);
-                std::exit(1);
+                msg_warn("fringe", "xpower output option '-X' is not available." << eom);
                 break;
-            case 'o':
-                output_file = std::string(optarg);
-                break;
+            // case 'o':
+            //     output_file = std::string(optarg);
+            //     break;
             case '?':
                 if(set_arg_index != -1 && optind < set_arg_index)
                 {
@@ -218,7 +227,6 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     paramStore->Set("/cmdline/polprod", polprod);
     //reftime = ""; //not implemented
     //xpower_output = false; //not implemented
-    paramStore->Set("/cmdline/output_file",output_file); 
     paramStore->Set("/cmdline/set_string", set_string); //TODO
 
     int status = sanity_check(paramStore);
@@ -390,7 +398,7 @@ MHO_BasicFringeDataConfiguration::sanity_check(MHO_ParameterStore* paramStore)
     std::string polprod = paramStore->GetAs<std::string>("/cmdline/polprod");
     //std::string reftime = ""; 
     //bool xpower_output = false; 
-    std::string output_file = paramStore->GetAs<std::string>("/cmdline/output_file");
+    //std::string output_file = paramStore->GetAs<std::string>("/cmdline/output_file");
 
     #pragma message("TODO FIXME - fill out the sanity_check function for command line arguments")
     if( directory == "" || baseline == "" || polprod == "" || control_file == "")
@@ -424,7 +432,7 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     //set up the file section of the parameter store to record the directory, root file, and control file
     paramStore->Set("/files/control_file", control_file);
     paramStore->Set("/files/directory", directory);
-    paramStore->Set("/files/output_file", paramStore->GetAs<std::string>("/cmdline/output_file"));
+    //paramStore->Set("/files/output_file", paramStore->GetAs<std::string>("/cmdline/output_file"));
 
     //put the baseline and pol product selection into the parameter store
     paramStore->Set("/config/polprod", polprod);
@@ -628,6 +636,137 @@ MHO_BasicFringeDataConfiguration::determine_required_pol_products(std::string po
     return pp_vec;
 }
 
+void 
+MHO_BasicFringeDataConfiguration::print_usage()
+{
+    // bool accounting = false; //'-a' perform run-time accounting - not yet enabled
+    // std::string baseline = ""; //'-b' baseline:frequency_group selection
+    // std::string freqgrp = ""; //'-b' frequency_group selection
+    // std::string control_file = ""; //'-c' specifies the control file
+    // std::string directory = ""; // specifies the data direct (TODO REMOVE ME)
+    // bool estimate_time = false; //'-e' estimate run time
+    // int first_plot_chan = 0; //'-n' specifies the first channel displayed in the fringe plot
+    // int message_level = -1; //'-m' specifies the message verbosity level
+    // int nplot_chans = 0; //'-n' specifies the number of channels to display in the fringe plot
+    // bool show_plot = false; //'-p' generates and shows fringe plot
+    // std::string refringe_alist_file = ""; // '-r' alist file for refringing - not yet enabled
+    // int ap_per_seg = 0; //'-s' specify the APs to be averaged per plot-segment
+    // bool test_mode = false; //'-t' if true, then no output is written
+    // bool update_mode = false; //'-u' not yet enabled
+    // std::string polprod = ""; //'-P' polarization product argument (e.g XX or I or RR+LL)
+    // std::string reftime = ""; //'-T' specify the fourfit reference time - not yet enabled
+    // bool xpower_output = false; //'-x' same as option '-p' we no long use pgplot/xwindows
+    // std::string output_file = "fdump.json"; //'-o' specify the output file, for testing
 
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
+    msg_info("main", "ffit usage is of the form: ffit <options> <data directory> <set control>" << eol);
+    msg_info("main", "the data directory argument is required" << eol );
+    msg_info("main", "the optional keyword 'set' is used to pass control file syntax" << eol );
+    msg_info("main", "ffit supports the following options:" << eol);
+    msg_info("main", "(-h, --help) print help message and exit." << eom);
+
+    std::stringstream ss;
+    ss << "usage: ffit ";
+    ss << "[-h] ";
+    ss << "[-a] ";
+    ss << "[-b BASELINE or BASELINE:FREQGRP] ";
+    ss << "[-c CONTROL_FILE] ";
+    ss << "[-d DEVICE]";
+    ss << "[-e] ";
+    ss << "[-f FIRST_PLOT_CHANNEL] ";
+    ss << "[-m MSG_LEVEL] ";
+    ss << "[-n N_PLOT_CHANNELS]";
+    ss << "[-p] ";
+    ss << "[-r ALIST_FILE] ";
+    ss << "[-s AP_PER_SEG] ";
+    ss << "[-t] ";
+    ss << "[-u] ";
+    ss << "[-x] ";
+    ss << "[-P POLARIZATION_PRODUCT] ";
+    ss << "[-T TIME_REFERENCE] ";
+    ss << "[-X] ";
+    ss << "\n";
+    ss << "<data_directory> ";
+    ss << "<set control> ";
+
+    msg_info("main", ss.str() << eom );
+
+    // static struct option longOptions[] = 
+    // {
+    //     {"help", no_argument, 0, 'h'},
+    //     {"accounting", no_argument, 0, 'a'},
+    //     {"baseline", required_argument, 0, 'b'},
+    //     {"control", required_argument, 0, 'c'},
+    //     {"device", required_argument, 0, 'd'},
+    //     {"estimate-time", no_argument, 0, 'e'},
+    //     {"first-plot-channel", required_argument, 0, 'f'},
+    //     {"message-level", required_argument, 0, 'm'},
+    //     {"nplot-chans", required_argument, 0, 'n'},
+    //     {"plot", no_argument, 0, 'p'},
+    //     {"refringe", required_argument, 0, 'r'},
+    //     {"ap-per-seg", required_argument, 0, 's'},
+    //     {"test-mode", no_argument, 0, 't'},
+    //     {"update-mode", no_argument, 0, 'u'},
+    //     {"xwindow", no_argument, 0, 'x'},
+    //     {"polarization-product", required_argument, 0, 'P'},
+    //     {"time-reference", required_argument, 0, 'T'},
+    //     {"xpower-output", no_argument, 0, 'X'},
+    //     {"output", required_argument, 0, 'o'}
+    // };
+
+    // usage: vgoscf_generate.py [-h] [-v VERBOSITY] [-n NUM_PROC] [-s SNR_MIN] [-q QUALITY_LOWER_LIMIT] [-d DTEC_THRESH] [-b BEGIN_SCAN_LIMIT] [-e END_SCAN_LIMIT] [-c SIGMA_CUT_FACTOR]
+    //                           [-w] [-p] [-o OUTPUT_FILENAME] [-a AVERAGING_SCAN_LIMIT] [-t] [-y NCHANNEL_DISCARD_THRESHOLD] [-z CHANNEL_DISCARD_TOLERANCE]
+    //                           control_file network_reference_station stations data_directory
+    // 
+    // utility for constructing a control file suitable for pseudo-Stokes-I fringe fitting of VGOS sessions
+    // 
+    // positional arguments:
+    //   control_file          the control file to be applied to all scans
+    //   network_reference_station
+    //                         single character code of station used as network reference
+    //   stations              concatenated string of single codes of non-network-reference stations of interest
+    //   data_directory        relative path to directory containing experiment or scan data, cannot contain "prepass" or "scratch" and must point to a folder with a 4-digit name
+    // 
+    // optional arguments:
+    //   -h, --help            show this help message and exit
+    //   -v VERBOSITY, --verbosity VERBOSITY
+    //                         verbosity level: 0 (least verbose) to 3 (most verbose), default=2.
+    //   -n NUM_PROC, --num-proc NUM_PROC
+    //                         number of concurrent fourfit jobs to run, default=1
+    //   -s SNR_MIN, --snr-min SNR_MIN
+    //                         set minimum allowed snr threshold, default=30.
+    //   -q QUALITY_LOWER_LIMIT, --quality-limit QUALITY_LOWER_LIMIT
+    //                         set the lower limit on fringe quality (inclusive), default=6.
+    // 
+
+
+    // static struct option longOptions[] = 
+    // {
+    //     {"help", no_argument, 0, 'h'},
+    //     {"accounting", no_argument, 0, 'a'},
+    //     {"baseline", required_argument, 0, 'b'},
+    //     {"control", required_argument, 0, 'c'},
+    //     {"device", required_argument, 0, 'd'},
+    //     {"estimate-time", no_argument, 0, 'e'},
+    //     {"first-plot-channel", required_argument, 0, 'f'},
+    //     {"message-level", required_argument, 0, 'm'},
+    //     {"nplot-chans", required_argument, 0, 'n'},
+    //     {"plot", no_argument, 0, 'p'},
+    //     {"refringe", required_argument, 0, 'r'},
+    //     {"ap-per-seg", required_argument, 0, 's'},
+    //     {"test-mode", no_argument, 0, 't'},
+    //     {"update-mode", no_argument, 0, 'u'},
+    //     {"xwindow", no_argument, 0, 'x'},
+    //     {"polarization-product", required_argument, 0, 'P'},
+    //     {"time-reference", required_argument, 0, 'T'},
+    //     {"xpower-output", no_argument, 0, 'X'},
+    //     {"output", required_argument, 0, 'o'}
+    // };
+
+
+    
+        //command line parameters
+
+}
 
 }//end namespace

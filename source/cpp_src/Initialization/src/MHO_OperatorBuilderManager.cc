@@ -19,8 +19,6 @@ namespace hops
 void
 MHO_OperatorBuilderManager::CreateDefaultBuilders()
 {
-
-
     //we have a very limited number of operators enabled currently
     AddBuilderType<MHO_ChannelLabelerBuilder>("chan_ids", "chan_ids");
 

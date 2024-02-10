@@ -717,8 +717,8 @@ def make_coord_text(plot_dict):
         #also add some information about the input/output and control file
         control_file = plot_dict['extra']['control_file']
         input_file = plot_dict['extra']['baseline_input_file']
-        output_file = plot_dict['extra']['output_file']
-        file_info_textstr = "Control file: " + control_file + "   Input file: " + input_file + "   Output file: " + output_file
+        # output_file = plot_dict['extra']['output_file']
+        file_info_textstr = "Control file: " + control_file + "   Input file: " + input_file; #+ "   Output file: " + output_file
         plt.text(0.01,0.03, file_info_textstr ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
         #TODO - also add information about the 'samplers' when statement is present in control file
 
