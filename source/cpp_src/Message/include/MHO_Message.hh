@@ -11,6 +11,7 @@
 #include <stdio.h>
 
 #include "MHO_TestAssertions.hh"
+#include "MHO_SelfName.hh"
 
 /*
 *File: MHO_Message.hh
@@ -24,13 +25,14 @@
 namespace hops
 {
 
-//needed for stripping the path prefix from __FILE__ macro contents
-//see https://stackoverflow.com/questions/31050113
-constexpr const char* str_end(const char *str){ return *str ? str_end(str + 1) : str; }
-constexpr bool str_slash(const char *str){ return *str == '/' ? true : (*str ? str_slash(str + 1) : false); }
-constexpr const char* r_slash(const char* str){ return *str == '/' ? (str + 1) : r_slash(str - 1); }
-constexpr const char* file_base_name(const char* str) { return str_slash(str) ? r_slash(str_end(str)) : str; }
+// //needed for stripping the path prefix from __FILE__ macro contents
+// //see https://stackoverflow.com/questions/31050113
+// constexpr const char* str_end(const char *str){ return *str ? str_end(str + 1) : str; }
+// constexpr bool str_slash(const char *str){ return *str == '/' ? true : (*str ? str_slash(str + 1) : false); }
+// constexpr const char* r_slash(const char* str){ return *str == '/' ? (str + 1) : r_slash(str - 1); }
+// constexpr const char* sn::file_basename(const char* str) { return str_slash(str) ? r_slash(str_end(str)) : str; }
 
+namespace sn = selfname;
 
 class MHO_MessageNewline {};
 class MHO_MessageEndline {};
@@ -239,7 +241,7 @@ MHO_Message::operator<<(const XStreamableItemType& item)
     #define msg_fatal(xKEY, xCONTENT) \
     do { \
         MHO_Message::GetInstance().Lock(); \
-        MHO_Message::GetInstance().SendMessage(eFatal,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
+        MHO_Message::GetInstance().SendMessage(eFatal,xKEY) << "(" << sn::file_basename(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
         MHO_Message::GetInstance().Unlock(); \
     } \
     while(0)
@@ -248,7 +250,7 @@ MHO_Message::operator<<(const XStreamableItemType& item)
     #define msg_error(xKEY, xCONTENT) \
     do { \
         MHO_Message::GetInstance().Lock(); \
-        MHO_Message::GetInstance().SendMessage(eError,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
+        MHO_Message::GetInstance().SendMessage(eError,xKEY) << "(" << sn::file_basename(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
         MHO_Message::GetInstance().Unlock(); \
     } \
     while(0)
@@ -257,7 +259,7 @@ MHO_Message::operator<<(const XStreamableItemType& item)
     #define msg_warn(xKEY, xCONTENT) \
     do { \
         MHO_Message::GetInstance().Lock(); \
-        MHO_Message::GetInstance().SendMessage(eWarning,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
+        MHO_Message::GetInstance().SendMessage(eWarning,xKEY) << "(" << sn::file_basename(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
         MHO_Message::GetInstance().Unlock(); \
     } \
     while(0)
@@ -266,7 +268,7 @@ MHO_Message::operator<<(const XStreamableItemType& item)
     #define msg_status(xKEY, xCONTENT) \
     do { \
         MHO_Message::GetInstance().Lock(); \
-        MHO_Message::GetInstance().SendMessage(eStatus,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
+        MHO_Message::GetInstance().SendMessage(eStatus,xKEY) << "(" << sn::file_basename(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
         MHO_Message::GetInstance().Unlock(); \
     } \
     while(0)
@@ -275,7 +277,7 @@ MHO_Message::operator<<(const XStreamableItemType& item)
     #define msg_info(xKEY, xCONTENT) \
     do { \
         MHO_Message::GetInstance().Lock(); \
-        MHO_Message::GetInstance().SendMessage(eInfo,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
+        MHO_Message::GetInstance().SendMessage(eInfo,xKEY) << "(" << sn::file_basename(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
         MHO_Message::GetInstance().Unlock(); \
     } \
     while(0)
@@ -287,7 +289,7 @@ MHO_Message::operator<<(const XStreamableItemType& item)
     #define msg_debug(xKEY, xCONTENT) \
         do { \
             MHO_Message::GetInstance().Lock(); \
-            MHO_Message::GetInstance().SendMessage(eDebug,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
+            MHO_Message::GetInstance().SendMessage(eDebug,xKEY) << "(" << sn::file_basename(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
             MHO_Message::GetInstance().Unlock(); \
         } \
         while(0)
