@@ -1,9 +1,10 @@
 #include "MHO_Message.hh"
 
+#define MSG_ALIGN_PAD 32
+constexpr const char* PADDING = "                                ";
+
 namespace hops
 {
-
-
 
 //static initialization to nullptr
 MHO_Message* MHO_Message::fInstance = nullptr;
@@ -60,6 +61,7 @@ MHO_Message::RemoveAllKeys()
 void
 MHO_Message::Flush()
 {
+    fWasLastLineNewLine = false;
     if( PassMessage() )
     {
         *fTerminalStream << fMessageStream.str();
@@ -105,6 +107,7 @@ MHO_Message&
 MHO_Message::operator<<(const MHO_MessageNewline&)
 {
     fMessageStream << '\n';
+    fWasLastLineNewLine = true;
     return *fInstance;
 }
 
@@ -116,7 +119,7 @@ MHO_Message::operator<<(const MHO_MessageEndline&)
     #else 
     fMessageStream << std::endl;
     #endif
-
+    fWasLastLineNewLine = false;
     Flush();
     return *fInstance;
 }
@@ -131,28 +134,43 @@ MHO_Message::PassMessage()
 std::string
 MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& key)
 {
-
+    std::size_t color_size;
     std::stringstream ss;
+    if(fWasLastLineNewLine)
+    {
+        // std::string pad;
+        // pad.resize(MSG_ALIGN_PAD,' ');
+        // ss << pad;
+        ss << PADDING;
+        return ss.str();
+    }
+
     #ifdef HOPS_COLOR_MSG
 
     switch (level)
     {
         case eFatal:
+            color_size = fRed.size();
             ss << fRed << "FATAL[" << key << "] ";
             break;
         case eError:
+            color_size = fYellow.size();
             ss << fYellow << "ERROR[" << key << "] ";
             break;
         case eWarning:
+            color_size = fOrange.size();
             ss << fOrange << "WARNING["  << key << "] ";
             break;
         case eStatus:
+            color_size = fBlue.size();
             ss << fBlue << "STATUS[" << key << "] ";
             break;
         case eInfo:
+            color_size = fGreen.size();
             ss << fGreen << "INFO[" << key << "] ";
             break;
         case eDebug:
+            color_size = fCyan.size();
             ss << fCyan << "DEBUG[" << key << "] ";
             break;
     }
@@ -182,8 +200,15 @@ MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& 
     }
     #endif //end of HOPS_COLOR_MSG
 
+    //pad out for alignment 
+    std::string msg_label = ss.str();
+    std::size_t s = msg_label.size() - color_size; 
+    if(s < MSG_ALIGN_PAD)
+    {
+        msg_label.insert(msg_label.end(), MSG_ALIGN_PAD-s, ' ');
+    }
 
-    return ss.str();
+    return msg_label;
 }
 
 

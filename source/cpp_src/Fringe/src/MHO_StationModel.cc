@@ -86,7 +86,8 @@ MHO_StationModel::ComputeModel()
         auto wcoeff = fData->SubView(W_INDEX, int_no); //extract spline coeffs
         EvaluateSpline(wcoeff, dt, fW);
 
-        msg_debug("fringe", "station coord model: (delay, azimuth, elevation, par_angle, u, v, w) = (" <<
+        msg_debug("fringe", "station coord model: (delay, azimuth, elevation, par_angle, u, v, w) = " << eol);
+        msg_debug("fringe", "(" <<
             fDelay <<", "<<
             fAzimuth <<", "<<
             fElevation <<", "<<

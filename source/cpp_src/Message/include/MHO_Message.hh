@@ -36,6 +36,7 @@ class MHO_MessageNewline {};
 class MHO_MessageEndline {};
 
 static const MHO_MessageNewline ret = MHO_MessageNewline();
+static const MHO_MessageNewline eol = MHO_MessageNewline();
 static const MHO_MessageEndline eom = MHO_MessageEndline();
 
 enum
@@ -123,7 +124,8 @@ class MHO_Message
             fAllowedLevel(eStatus),
             fCurrentLevel(eInfo),
             fCurrentKeyIsAllowed(false),
-            fAcceptAllKeys(false)
+            fAcceptAllKeys(false),
+            fWasLastLineNewLine(false)
         {};
         virtual ~MHO_Message(){};
 
@@ -150,6 +152,8 @@ class MHO_Message
         static std::string fCyan; //debug
         static std::string fWhite; //default
         static std::string fColorSuffix; //color close
+
+        bool fWasLastLineNewLine;
 };
 
 

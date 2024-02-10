@@ -167,7 +167,7 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["extra"]["baseline_input_file"] = paramStore->GetAs<std::string>("/files/baseline_input_file");
     plot_dict["extra"]["ref_station_input_file"] = paramStore->GetAs<std::string>("/files/ref_station_input_file");
     plot_dict["extra"]["rem_station_input_file"] = paramStore->GetAs<std::string>("/files/rem_station_input_file");
-    plot_dict["extra"]["output_file"] = paramStore->GetAs<std::string>("/files/output_file");
+    //plot_dict["extra"]["output_file"] = paramStore->GetAs<std::string>("/files/output_file");
 
     plot_dict["extra"]["ref_station_mk4id"] = paramStore->GetAs<std::string>("/ref_station/mk4id");
     plot_dict["extra"]["rem_station_mk4id"] = paramStore->GetAs<std::string>("/rem_station/mk4id");
