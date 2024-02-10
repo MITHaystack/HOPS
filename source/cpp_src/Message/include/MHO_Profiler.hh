@@ -7,7 +7,6 @@
 #include <string>
 #include <mutex>
 
-
 #include "MHO_SelfName.hh"
 
 /*
@@ -22,6 +21,7 @@
 namespace hops
 {
 
+namespace sn = selfname;
 
 enum
 MHO_ProfilerFlag: int
@@ -36,6 +36,7 @@ static const MHO_ProfilerFlag pStop = MHO_ProfilerFlag::eSilentErrorLevel;
 using hops::eStart;
 using hops::eStop;
 
+#define PROFILE_INFO_LEN 64
 
 //uses the singleton pattern (as we only have one terminal)
 class MHO_Profiler
@@ -55,98 +56,86 @@ class MHO_Profiler
             return *fInstance;
         }
 
-        //TODO we need to eliminate these locks...would need a lock free map impl
-        void Lock(){fMutex.lock();};
-        void Unlock(){fMutex.unlock();};
+        // std:size_t GetNThreads(){return fNThreads;}
+        // void SetNThreads(std::size_t nthreads)
+        // {
+        //     fNThreads = nthreads;
+        //     fThreadEvents.resize(fNThreads);
+        // }
 
-        void AddEntry(int flag, int thread_id, std::string filename, std::string func_name);
+        // //TODO we need to eliminate these locks...would need a lock free map impl
+        // void Lock(){fMutex.lock();};
+        // void Unlock(){fMutex.unlock();};
+
+        void AddEntry(int flag, int thread_id, std::string filename, int line_num, std::string func_name)
+        {
+            ProfileEvent event;
+            event.fFlag = flag;
+            event.fLineNumber = line_num;
+            event.fThreadID = thread_id;
+            strncpy(event.fFilename, filename.c_str(), PROFILE_INFO_LEN);
+            event.fFilename[PROFILE_INFO_LEN-1] = '\0';
+            strncpy(event.fFuncname, func_name.c_str(), PROFILE_INFO_LEN);
+            event.fFilename[PROFILE_INFO_LEN-1] = '\0';
+            event.fTime = fTimer.GetTimeSinceStart();
+
+        }
 
     private:
 
-        //no public access to constructor
-        //set up the stream, for now just point to std::cout
-        //but we may want to allow this to be configured post-construction
-        //perhaps we should also pipe information into log file(s)
-        MHO_Profiler():
+        MHO_Profiler():fNThreads(1)
         {
-
-
+            fThreadEvents.resize(fNThreads);            event.fFilename[PROFILE_INFO_LEN-1] = '\0';
+            fTimer.Start();
         };
         virtual ~MHO_Profiler(){};
 
 
         std::mutex fMutex;
-
         static MHO_Profiler* fInstance; //static global class instance
-        std::ostream* fTerminalStream; //stream to terminal output
-        std::set< std::string > fKeys; //keys of which messages we will accept for output
-        MHO_ProfilerLevel fAllowedLevel;
+        std::size_t fNThreads;
+
+        struct ProfileEvent 
+        {
+            int fFlag; //indicates start/stop
+            int fLineNumber; //line number of the file
+            int fThreadID;
+            double fTime;
+            char fFilename[PROFILE_INFO_LEN]; //truncated filename
+            char fFuncname[PROFILE_INFO_LEN]; //truncated function name
+        };
+
+        //map each thread to a vector of events
+        std::vector< std::vector< ProfileEvent > > fThreadEvents;
+
+        MHO_Timer fTimer;
 
 };
 
 
-//abuse do-while for multiline message macros
 
-    // #define msg_fatal(xKEY, xCONTENT) \
-    // do { \
-    //     MHO_Profiler::GetInstance().Lock(); \
-    //     MHO_Profiler::GetInstance().SendMessage(eFatal,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
-    //     MHO_Profiler::GetInstance().Unlock(); \
-    // } \
-    // while(0)
-    // 
-    // //ERROR/////////////////////////////////////////////////////////////////////////
-    // #define msg_error(xKEY, xCONTENT) \
-    // do { \
-    //     MHO_Profiler::GetInstance().Lock(); \
-    //     MHO_Profiler::GetInstance().SendMessage(eError,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
-    //     MHO_Profiler::GetInstance().Unlock(); \
-    // } \
-    // while(0)
-    // 
-    // //WARNING///////////////////////////////////////////////////////////////////////
-    // #define msg_warn(xKEY, xCONTENT) \
-    // do { \
-    //     MHO_Profiler::GetInstance().Lock(); \
-    //     MHO_Profiler::GetInstance().SendMessage(eWarning,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
-    //     MHO_Profiler::GetInstance().Unlock(); \
-    // } \
-    // while(0)
-    // 
-    // //STATUS////////////////////////////////////////////////////////////////////////
-    // #define msg_status(xKEY, xCONTENT) \
-    // do { \
-    //     MHO_Profiler::GetInstance().Lock(); \
-    //     MHO_Profiler::GetInstance().SendMessage(eStatus,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
-    //     MHO_Profiler::GetInstance().Unlock(); \
-    // } \
-    // while(0)
-    // 
-    // //INFO//////////////////////////////////////////////////////////////////////////
-    // #define msg_info(xKEY, xCONTENT) \
-    // do { \
-    //     MHO_Profiler::GetInstance().Lock(); \
-    //     MHO_Profiler::GetInstance().SendMessage(eInfo,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
-    //     MHO_Profiler::GetInstance().Unlock(); \
-    // } \
-    // while(0)
-    // 
-    // //allow debug messages when debug flag is active
-    // #ifdef HOPS_ENABLE_DEBUG_MSG  //this is defined as a compiler flag via build system
-    // 
-    // //DEBUG/////////////////////////////////////////////////////////////////////////
-    // #define msg_debug(xKEY, xCONTENT) \
-    //     do { \
-    //         MHO_Profiler::GetInstance().Lock(); \
-    //         MHO_Profiler::GetInstance().SendMessage(eDebug,xKEY) << "(" << file_base_name(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
-    //         MHO_Profiler::GetInstance().Unlock(); \
-    //     } \
-    //     while(0)
-    // #else
-    // //debug is not enabled, so we remove them from compilation
-    // #define msg_debug(xKEY, xCONTENT)
-    // #endif
+#ifdef HOPS_USE_PROFILER
 
+    //abuse do-while for multiline macros
+    #define prof_start() \
+    do { \
+        MHO_Profiler::GetInstance().AddEntry(eStart, 0, std::string( sn::file_basename(__FILE__) ), __LINE__ , std::string(  __PRETTY_FUNCTION__ ) ); \
+    } \
+    while(0)
+
+    #define prof_stop() \
+    do { \
+        MHO_Profiler::GetInstance().AddEntry(eStop, 0, std::string( sn::file_basename(__FILE__) ), __LINE__ , std::string(  __PRETTY_FUNCTION__ ) ); \
+    } \
+    while(0)
+
+#else
+
+    //profiling is not turned on, ifdef out of compilation
+    #define prof_start()
+    #define prof_stop()
+
+#endif
 
 }//end of namespace
 
