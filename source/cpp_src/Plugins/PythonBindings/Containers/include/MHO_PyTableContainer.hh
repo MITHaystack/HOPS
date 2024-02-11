@@ -83,7 +83,6 @@ class MHO_PyTableContainer
 
         /** return the N-th axis as a python list object
         *this conversion is NOT copy-free, but we get the same return type for all axis types
-        * TODO FIXME -- figure out how we are going to pass interval-labels
         */
         py::list GetCoordinateAxis(size_t index)
         {

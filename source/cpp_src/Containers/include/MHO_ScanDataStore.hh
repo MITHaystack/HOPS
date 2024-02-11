@@ -36,10 +36,14 @@ class MHO_ScanDataStore
         void SetDirectory(std::string dir){fDirectory = dir;};
         void Initialize(); //load the directory
         bool IsValid(); //scan dir contains root file, and data
-        bool IsBaselinePresent(std::string bl); //check if a particular baseline is present in this scan
+        bool IsBaselinePresent(std::string bl) const; //check if a particular baseline is present in this scan
+        bool IsStationPresent(std::string st) const; //check if a particular station is present
 
         std::size_t GetNBaselines(){return fBaselineCodes.size();};
         std::size_t GetNStations(){return fStationCodes.size();};
+
+        std::vector< std::string > GetBaselinesPresent() const {return fBaselineCodes;} 
+        std::vector< std::string > GetStationsPresent() const { return fStationCodes;}
 
         //retieve file data (root, baseline, station)
         mho_json GetRootFileData();
