@@ -7,6 +7,8 @@
 #include <vector>
 #include <cstring>
 #include <iostream>
+#include <thread>
+
 #include "MHO_SelfName.hh"
 #include "MHO_Timer.hh"
 
@@ -42,6 +44,16 @@ using hops::pStop;
 
 #define PROFILE_INFO_LEN 128
 
+struct MHO_ProfileEvent 
+{
+    int fFlag; //indicates start/stop
+    int fLineNumber; //line number of the file
+    uint64_t fThreadID;
+    double fTime;
+    char fFilename[PROFILE_INFO_LEN]; //truncated filename
+    char fFuncname[PROFILE_INFO_LEN]; //truncated function name
+};
+
 //uses the singleton pattern (as we only have one terminal)
 class MHO_Profiler
 {
@@ -60,25 +72,25 @@ class MHO_Profiler
             return *fInstance;
         }
 
-        // std:size_t GetNThreads(){return fNThreads;}
-        // void SetNThreads(std::size_t nthreads)
-        // {
-        //     fNThreads = nthreads;
-        //     fThreadEvents.resize(fNThreads);
-        // }
+        //TODO we need to eliminate the need for locks...which sort of interferes
+        //with the objective of profiling. However, to do that we would
+        //probably need a lock free map implementation in order to map the 
+        //thread_id's to a local index and push the events into a thread-specific vector 
+        //so for now, mutex it is...
+        void Lock(){fMutex.lock();};
+        void Unlock(){fMutex.unlock();};
 
-        // //TODO we need to eliminate these locks...would need a lock free map impl
-        // void Lock(){fMutex.lock();};
-        // void Unlock(){fMutex.unlock();};
+        void AddEntry(int flag, uint64_t thread_id, std::string filename, int line_num, std::string func_name);
 
-        void AddEntry(int flag, int thread_id, std::string filename, int line_num, std::string func_name);
+        //add end of program, retrieve and utilize the profiler events
+        void GetEvents(std::vector< MHO_ProfileEvent >& events){events = fEvents;}
         void DumpEvents();
 
     private:
 
         MHO_Profiler():fNThreads(1)
         {
-            // fEvents.resize(fNThreads);
+            fEvents.reserve(1000);
             fTimer.Start();
         };
         virtual ~MHO_Profiler(){};
@@ -88,19 +100,11 @@ class MHO_Profiler
         static MHO_Profiler* fInstance; //static global class instance
         std::size_t fNThreads;
 
-        struct ProfileEvent 
-        {
-            int fFlag; //indicates start/stop
-            int fLineNumber; //line number of the file
-            int fThreadID;
-            double fTime;
-            char fFilename[PROFILE_INFO_LEN]; //truncated filename
-            char fFuncname[PROFILE_INFO_LEN]; //truncated function name
-        };
+
 
         //map each thread to a vector of events
-        // std::vector< std::vector< ProfileEvent > > fThreadEvents;    
-        std::vector< ProfileEvent > fEvents;
+        // std::vector< std::vector< MHO_ProfileEvent > > fThreadEvents;    
+        std::vector< MHO_ProfileEvent > fEvents;
 
 
         MHO_Timer fTimer;
@@ -114,13 +118,23 @@ class MHO_Profiler
     //abuse do-while for multiline macros
     #define profiler_start() \
     do { \
-        MHO_Profiler::GetInstance().AddEntry(pStart, 0, std::string( sn::file_basename(__FILE__) ), __LINE__ , std::string(  __PRETTY_FUNCTION__ ) ); \
+        MHO_Profiler::GetInstance().Lock(); \
+        MHO_Profiler::GetInstance().AddEntry(pStart, \
+            std::hash<std::thread::id>{}(std::this_thread::get_id()), \
+            std::string( sn::file_basename(__FILE__) ), __LINE__ , \
+            std::string(  __PRETTY_FUNCTION__ ) ); \
+        MHO_Profiler::GetInstance().Unlock(); \
     } \
     while(0)
 
     #define profiler_stop() \
     do { \
-        MHO_Profiler::GetInstance().AddEntry(pStop, 0, std::string( sn::file_basename(__FILE__) ), __LINE__ , std::string(  __PRETTY_FUNCTION__ ) ); \
+        MHO_Profiler::GetInstance().Lock(); \
+        MHO_Profiler::GetInstance().AddEntry(pStop, \
+            std::hash<std::thread::id>{}(std::this_thread::get_id()), \
+            std::string( sn::file_basename(__FILE__) ), __LINE__ , \
+            std::string(  __PRETTY_FUNCTION__ ) ); \
+        MHO_Profiler::GetInstance().Unlock(); \
     } \
     while(0)
 

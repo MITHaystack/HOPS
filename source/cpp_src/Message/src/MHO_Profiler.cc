@@ -8,9 +8,9 @@ namespace hops
 MHO_Profiler* MHO_Profiler::fInstance = nullptr;
 
 
-void MHO_Profiler::AddEntry(int flag, int thread_id, std::string filename, int line_num, std::string func_name)
+void MHO_Profiler::AddEntry(int flag, uint64_t thread_id, std::string filename, int line_num, std::string func_name)
 {
-    ProfileEvent event;
+    MHO_ProfileEvent event;
     event.fFlag = flag;
     event.fLineNumber = line_num;
     event.fThreadID = thread_id;

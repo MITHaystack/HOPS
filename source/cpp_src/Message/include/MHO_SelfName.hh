@@ -16,13 +16,6 @@ namespace hops
         constexpr const char* r_slash(const char* str){ return *str == '/' ? (str + 1) : r_slash(str - 1); }
         constexpr const char* file_basename(const char* str) { return str_slash(str) ? r_slash(str_end(str)) : str; }
 
-        // static std::atomic<uint64_t> thread_counter;
-        // uint64_t thread_id() 
-        // {
-        //     thread_local uint64_t tid = ++local_thread_counter;
-        //     return tid;
-        // }
-
     }//end selfname namespace
 
 }//end hops namespace
