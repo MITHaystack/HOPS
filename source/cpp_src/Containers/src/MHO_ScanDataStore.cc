@@ -96,41 +96,6 @@ MHO_ScanDataStore::DetermineRootFile()
         msg_error("containers", "duplicate root files found in directory, using last one found: "<< fRootFileName << eom );
     }
 
-    // 
-    // 
-    // //heuristic for a root file is that it is a json file which contains two '.'
-    // //and the mid-section is the 6-character root code.
-    // //there should only be one file like this, but if there is more than one
-    // //we return the last one found and issue a warning.
-    // 
-    // fRootFileName = "";
-    // std::size_t n_candidate_files = 0;
-    // for(auto it = fJSONFiles.begin(); it != fJSONFiles.end(); it++)
-    // {
-    //     std::string root_code = "";
-    //     if( std::count(it->begin(), it->end(), '.') == 2)
-    //     {
-    //         auto first = it->find(".");
-    //         auto second = it->find(".", first + 1);
-    //         root_code = it->substr(first + 1, second - first - 1);
-    //         if(root_code.size() == 6)
-    //         {
-    //             n_candidate_files++;
-    //             fRootFileName = *it;
-    //         }
-    //     }
-    // }
-    // 
-    // if(n_candidate_files == 0 || fRootFileName == "")
-    // {
-    //     msg_fatal("containers", "no root file found in directory: " << fDirectory << eom);
-    // }
-    // 
-    // if(n_candidate_files > 1)
-    // {
-    //     msg_warn("containers", "duplicate root files found in directory, using last one: "<< fRootFileName << eom );
-    // }
-
 }
 
 void

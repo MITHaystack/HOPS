@@ -301,16 +301,13 @@ DeclarePyTableContainer(py::module &m, std::string pyclass_name = "")
         .def("GetRank", &hops::MHO_PyTableContainer<XTableType>::GetRank)
         .def("GetClassName", &hops::MHO_PyTableContainer<XTableType>::GetClassName)
         .def("GetDimension", &hops::MHO_PyTableContainer<XTableType>::GetDimension)
-        // .def("GetTags", &hops::MHO_PyTableContainer<XTableType>::GetTags)
         .def("GetMetaData", &hops::MHO_PyTableContainer<XTableType>::GetMetaData)
         .def("SetMetaData", &hops::MHO_PyTableContainer<XTableType>::SetMetaData)
-        //.def("SetTag", &hops::MHO_PyTableContainer<XTableType>::SetTag)
         .def("GetNumpyArray", &hops::MHO_PyTableContainer<XTableType>::GetNumpyArray)
         .def("GetCoordinateAxis", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxis)
         .def("GetCoordinateAxisMetaData", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxisMetaData)
         .def("SetCoordinateAxisMetaData", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateAxisMetaData)
         .def("SetCoordinateLabel", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateLabel);
-        //.def("GetCoordinateAxisIntervalLabels", &hops::MHO_PyTableContainer<XTableType>:: GetCoordinateAxisIntervalLabels);
 }
 
 
