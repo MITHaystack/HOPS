@@ -40,7 +40,7 @@ static const MHO_ProfilerFlag pStop = MHO_ProfilerFlag::pStopFlag;
 using hops::pStart;
 using hops::pStop;
 
-#define PROFILE_INFO_LEN 64
+#define PROFILE_INFO_LEN 128
 
 //uses the singleton pattern (as we only have one terminal)
 class MHO_Profiler
@@ -112,13 +112,13 @@ class MHO_Profiler
 #ifdef HOPS_USE_PROFILER
 
     //abuse do-while for multiline macros
-    #define prof_start() \
+    #define profiler_start() \
     do { \
         MHO_Profiler::GetInstance().AddEntry(pStart, 0, std::string( sn::file_basename(__FILE__) ), __LINE__ , std::string(  __PRETTY_FUNCTION__ ) ); \
     } \
     while(0)
 
-    #define prof_stop() \
+    #define profiler_stop() \
     do { \
         MHO_Profiler::GetInstance().AddEntry(pStop, 0, std::string( sn::file_basename(__FILE__) ), __LINE__ , std::string(  __PRETTY_FUNCTION__ ) ); \
     } \
@@ -127,8 +127,8 @@ class MHO_Profiler
 #else
 
     //profiling is not turned on, ifdef out of compilation
-    #define prof_start()
-    #define prof_stop()
+    #define profiler_start()
+    #define profiler_stop()
 
 #endif
 

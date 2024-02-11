@@ -12,6 +12,7 @@
 
 #include "MHO_TestAssertions.hh"
 #include "MHO_SelfName.hh"
+#include "MHO_Profiler.hh"
 
 /*
 *File: MHO_Message.hh

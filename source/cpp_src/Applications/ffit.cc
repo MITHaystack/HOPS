@@ -40,6 +40,8 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
+    profiler_start();
+
     //TODO allow messaging keys to be set via command line arguments
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Snapshot::GetInstance().AcceptAllKeys();
@@ -151,6 +153,9 @@ int main(int argc, char** argv)
     }
     #endif
 
+    profiler_stop();
+
+    MHO_Profiler::GetInstance().DumpEvents();
 
     return 0;
 }
