@@ -46,6 +46,7 @@ MHO_IonosphericFringeFitter::~MHO_IonosphericFringeFitter(){};
 
 void MHO_IonosphericFringeFitter::Run()
 {
+    profiler_start();
     // std::cout<<"dumping parameter store = "<<std::endl;
     // fParameterStore->Dump();
 
@@ -70,7 +71,7 @@ void MHO_IonosphericFringeFitter::Run()
         MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
     }
 
-
+    profiler_stop();
 }
 
 
@@ -103,6 +104,8 @@ void MHO_IonosphericFringeFitter::Run()
 int 
 MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
 {
+    profiler_start();
+
     bool ok;
 
     int i,
@@ -475,6 +478,8 @@ MHO_IonosphericFringeFitter::sort_tecs(int nion, double dtec[][2])
     fParameterStore->Set("/fringe/dtec_array", dtec_values);
     fParameterStore->Set("/fringe/dtec_amp_array/", dtec_amp_values);
 
+    profiler_stop();
+
 };
 
 
@@ -497,6 +502,9 @@ MHO_IonosphericFringeFitter::sort_tecs(int nion, double dtec[][2])
 
 int MHO_IonosphericFringeFitter::ion_search_smooth()
 {
+
+    profiler_start();
+
     bool ok;
     
     int i,
@@ -787,6 +795,9 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     }
     else
         nion = 0;
+
+
+    profiler_stop();
 
     return (0);
 }

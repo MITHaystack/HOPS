@@ -35,15 +35,20 @@ MHO_BasicFringeFitter::~MHO_BasicFringeFitter(){};
 
 void MHO_BasicFringeFitter::Configure()
 {
+    profiler_start();
+
     //load root file and keep around (eventually eliminate this in favor of param store only)
     fVexInfo = fScanStore->GetRootFileData();
 
     //now build the operator build manager
     fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, fContainerStore, fParameterStore, fFringeData->GetControlFormat() );
+
+    profiler_stop();
 }
 
 void MHO_BasicFringeFitter::Initialize()
 {
+    profiler_start();
     bool skipped = fParameterStore->GetAs<bool>("/status/skipped");
     if( !skipped )
     {
@@ -191,6 +196,7 @@ void MHO_BasicFringeFitter::Initialize()
 
     // std::cout<<"PARAMETERS = "<<std::endl;
     // fParameterStore->Dump();
+    profiler_stop();
 }
 
 void MHO_BasicFringeFitter::PreRun()
@@ -204,6 +210,7 @@ void MHO_BasicFringeFitter::PreRun()
 
 void MHO_BasicFringeFitter::Run()
 {
+    profiler_start();
     bool is_finished = fParameterStore->GetAs<bool>("/status/is_finished");
     bool skipped = fParameterStore->GetAs<bool>("/status/skipped");
     if( !is_finished  && !skipped) //execute if we are not finished and are not skipping
@@ -219,6 +226,7 @@ void MHO_BasicFringeFitter::Run()
         //calculate the fringe properties
         MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
     }
+    profiler_stop();
 }
 
 void MHO_BasicFringeFitter::PostRun()
@@ -240,6 +248,7 @@ bool MHO_BasicFringeFitter::IsFinished()
 
 void MHO_BasicFringeFitter::Finalize()
 {
+    profiler_start();
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
@@ -268,12 +277,14 @@ void MHO_BasicFringeFitter::Finalize()
         plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
     }
+    profiler_stop();
 }
 
 
 void
 MHO_BasicFringeFitter::coarse_fringe_search()
 {
+    profiler_start();
     ////////////////////////////////////////////////////////////////////////////
     //COARSE SBD, DR, MBD SEARCH ALGO
     ////////////////////////////////////////////////////////////////////////////
@@ -341,11 +352,14 @@ MHO_BasicFringeFitter::coarse_fringe_search()
     
     double coarse_sbdelay = fMBDSearch.GetCoarseSBD();
     fParameterStore->Set("/fringe/sbdelay", coarse_sbdelay);
+
+    profiler_stop();
 }
 
 void
 MHO_BasicFringeFitter::interpolate_peak()
 {
+    profiler_start();
     ////////////////////////////////////////////////////////////////////////////
     //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
     ////////////////////////////////////////////////////////////////////////////
@@ -374,6 +388,8 @@ MHO_BasicFringeFitter::interpolate_peak()
     fParameterStore->Set("/fringe/drate", drate);
     fParameterStore->Set("/fringe/frate", frate);
     fParameterStore->Set("/fringe/famp", famp);
+
+    profiler_stop();
 }
 
 
