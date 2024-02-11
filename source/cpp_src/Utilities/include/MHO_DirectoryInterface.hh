@@ -32,7 +32,7 @@ class MHO_DirectoryInterface
         std::string GetCurrentDirectory() const;
         std::string GetCurrentParentDirectory() const;
 
-        void ReadCurrentDirectory();
+        bool ReadCurrentDirectory();
 
         void GetFileList(std::vector< std::string >& aFileList) const;
         void GetSubDirectoryList(std::vector< std::string >& aSubDirList) const;

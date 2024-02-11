@@ -34,7 +34,7 @@ class MHO_ScanDataStore
         virtual ~MHO_ScanDataStore();
 
         void SetDirectory(std::string dir){fDirectory = dir;};
-        void Initialize(); //load the directory
+        bool Initialize(); //load the directory
         bool IsValid(); //scan dir contains root file, and data
         bool IsBaselinePresent(std::string bl) const; //check if a particular baseline is present in this scan
         bool IsStationPresent(std::string st) const; //check if a particular station is present
@@ -48,9 +48,13 @@ class MHO_ScanDataStore
         //retieve file data (root, baseline, station)
         mho_json GetRootFileData();
         std::string GetRootFileBasename(){return fDirInterface.GetBasename(fRootFileName);}
-        void LoadBaseline(std::string baseline, MHO_ContainerStore* store);
+
+        //true if loaded, false if unsuccessful
+        bool LoadBaseline(std::string baseline, MHO_ContainerStore* store);
         std::string GetBaselineFilename(std::string baseline) const;
-        void LoadStation(std::string station, MHO_ContainerStore* store);
+
+        //true if loaded, false if unsuccessful
+        bool LoadStation(std::string station, MHO_ContainerStore* store);
         std::string GetStationFilename(std::string station) const;
 
         //deletes all loaded containers and resets the state for another scan.
