@@ -38,6 +38,26 @@
 
 using namespace hops;
 
+//TODO move this some where else
+mho_json ConvertProfileEvents(std::vector< MHO_ProfileEvent >& events)
+{
+    mho_json event_list;
+    for(std::size_t i=0; i<events.size(); i++)
+    {
+        mho_json obj;
+        obj["event_id"] = i;
+        obj["flag"] = events[i].fFlag;
+        obj["line"] = events[i].fLineNumber;
+        obj["thread_id"] = events[i].fThreadID;
+        obj["filename"] = std::string( events[i].fFilename );
+        obj["funcname"] = std::string( events[i].fFuncname );
+        obj["time"] = events[i].fTime;
+        event_list.push_back(obj);
+    }
+    return event_list;
+}
+
+
 int main(int argc, char** argv)
 {
     profiler_start();
@@ -99,21 +119,22 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     //OUTPUT/PLOTTING -- this should be reorganized with visitor pattern
     ////////////////////////////////////////////////////////////////////////////
-    bool test_mode = ffit->GetParameterStore()->GetAs<bool>("/cmdline/test_mode");
-    bool show_plot = ffit->GetParameterStore()->GetAs<bool>("/cmdline/show_plot");
+    bool test_mode = fringeData.GetParameterStore()->GetAs<bool>("/cmdline/test_mode");
+    bool show_plot = fringeData.GetParameterStore()->GetAs<bool>("/cmdline/show_plot");
 
-    // std::cout<<"param store = "<<std::endl;
-    // ffit->GetParameterStore()->Dump();
 
     mho_json plot_data = fringeData.GetPlotData();
-    // std::cout<<"plot data = "<<plot_data.dump(2)<<std::endl;
-    //open and dump to file
+
+    profiler_stop();
+    std::vector< MHO_ProfileEvent > events;
+    MHO_Profiler::GetInstance().GetEvents(events);
+    mho_json event_list = ConvertProfileEvents(events);
+    //dump the events in the parameter store for now
+    fringeData.GetParameterStore()->Set("/profile/events", event_list);
+
+    //open and dump to file -- should we profile this as well?
     if(!test_mode)
     {
-        // std::string output_file = fringeData.GetParameterStore()->GetAs<std::string>("/cmdline/output_file");
-        // std::ofstream fdumpFile(output_file.c_str(), std::ofstream::out);
-        // fdumpFile << plot_data;
-        // fdumpFile.close();
         fringeData.WriteOutput();
 
         #ifdef EXPORT_MK4
@@ -124,7 +145,9 @@ int main(int argc, char** argv)
         fexporter.ExportFringeFile();
         #endif
     }
-    
+
+
+
     #ifdef USE_PYBIND11
     if(show_plot)
     {
@@ -153,9 +176,7 @@ int main(int argc, char** argv)
     }
     #endif
 
-    profiler_stop();
 
-    MHO_Profiler::GetInstance().DumpEvents();
 
     return 0;
 }
