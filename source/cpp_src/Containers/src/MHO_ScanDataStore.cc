@@ -10,25 +10,31 @@ MHO_ScanDataStore::~MHO_ScanDataStore()
     Clear();
 };
 
-void
+bool
 MHO_ScanDataStore::Initialize()
 {
     Clear();
     //read the directory file list
     fDirInterface.SetCurrentDirectory(fDirectory);
-    fDirInterface.ReadCurrentDirectory();
+    bool ok = fDirInterface.ReadCurrentDirectory();
 
-    fDirInterface.GetFileList(fAllFiles);
-    fDirInterface.GetFilesMatchingExtention(fCorFiles, "cor");
-    fDirInterface.GetFilesMatchingExtention(fStaFiles, "sta");
-    fDirInterface.GetFilesMatchingExtention(fJSONFiles, "json");
+    if(ok)
+    {
+        fDirInterface.GetFileList(fAllFiles);
+        fDirInterface.GetFilesMatchingExtention(fCorFiles, "cor");
+        fDirInterface.GetFilesMatchingExtention(fStaFiles, "sta");
+        fDirInterface.GetFilesMatchingExtention(fJSONFiles, "json");
 
-    //determine the root file (.json)
-    DetermineRootFile();
+        //determine the root file (.json)
+        DetermineRootFile();
 
-    //map the stations and baselines to 1-char and 2-char (mk4 id) look-up codes
-    MapBaselines();
-    MapStations();
+        //map the stations and baselines to 1-char and 2-char (mk4 id) look-up codes
+        MapBaselines();
+        MapStations();
+
+        return true;
+    }
+    return false;
 }
 
 bool
@@ -186,7 +192,7 @@ MHO_ScanDataStore::GetRootFileData()
     return vex_info;
 }
 
-void
+bool
 MHO_ScanDataStore::LoadBaseline(std::string baseline, MHO_ContainerStore* store)
 {
     auto it = fBaselineFileMap.find(baseline);
@@ -197,9 +203,11 @@ MHO_ScanDataStore::LoadBaseline(std::string baseline, MHO_ContainerStore* store)
         conInter.SetFilename(it->second);
         msg_debug("containers", "loading baseline data from: "<< it->second << eom );
         conInter.PopulateStoreFromFile(*store); //reads in ALL the objects in the file
+        return true;
     }
     else 
     {
+        return false;
         msg_warn("containers", "could not find data for baseline: "<< baseline <<"." << eom);
     }
 }
@@ -212,7 +220,7 @@ MHO_ScanDataStore::GetBaselineFilename(std::string baseline) const
     else{return std::string("");}
 }
 
-void
+bool
 MHO_ScanDataStore::LoadStation(std::string station, MHO_ContainerStore* store)
 {
     auto it = fStationFileMap.find(station);
@@ -223,10 +231,12 @@ MHO_ScanDataStore::LoadStation(std::string station, MHO_ContainerStore* store)
         conInter.SetFilename(it->second);
         msg_debug("containers", "loading station data from: "<< it->second << eom );
         conInter.PopulateStoreFromFile(*store); //reads in ALL the objects in the file
+        return true;
     }
     else 
     {
         msg_warn("containers", "could not find data for station: "<< station <<"." << eom);
+        return false;
     }
 }
 

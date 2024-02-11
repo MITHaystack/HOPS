@@ -36,17 +36,31 @@ class MHO_PyContainerStoreInterface
         MHO_PyContainerStoreInterface(MHO_ContainerStore* conStore):fContainerStore(conStore){};
         virtual ~MHO_PyContainerStoreInterface(){};
 
+        bool IsValid()
+        {
+            if(fContainerStore != nullptr){return true;}
+            return false;
+        }
+
         std::size_t GetNObjects()
         {
-            return fContainerStore->GetNObjects();
+            if(fContainerStore)
+            {
+                return fContainerStore->GetNObjects();
+            }
+            return 0;
         }
 
         bool IsObjectPresent(const std::string& uuid_string) const
         {
-            MHO_UUID uuid;
-            bool ok = uuid.from_string(uuid_string);
-            if(!ok){msg_error("python_bindings", "error could not convert: "<<uuid_string<<" to valid UUID" <<eom);}
-            return fContainerStore->IsObjectPresent(uuid);
+            if(fContainerStore != nullptr)
+            {
+                MHO_UUID uuid;
+                bool ok = uuid.from_string(uuid_string);
+                if(!ok){msg_error("python_bindings", "error could not convert: "<<uuid_string<<" to valid UUID" <<eom);}
+                return fContainerStore->IsObjectPresent(uuid);
+            }
+            return false;
         }
 
         template< typename XClassType >
@@ -100,6 +114,7 @@ DeclarePyContainerStoreInterface(py::module &m, std::string pyclass_name)
 {
     py::class_< MHO_PyContainerStoreInterface >(m, pyclass_name.c_str() )
         //no __init__ def here, as this class is not meant to be constructable on the python side
+        .def("IsValid", &hops::MHO_PyContainerStoreInterface::IsValid)
         .def("GetNObjects", &hops::MHO_PyContainerStoreInterface::GetNObjects)
         .def("IsObjectPresent", &hops::MHO_PyContainerStoreInterface::IsObjectPresent)
         .def("GetVisibilityObject", &hops::MHO_PyContainerStoreInterface::GetObject<visibility_type>)

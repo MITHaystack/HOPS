@@ -237,7 +237,7 @@ MHO_Message::operator<<(const XStreamableItemType& item)
     #define msg_fatal(xKEY, xCONTENT) \
     do { \
         MHO_Message::GetInstance().Lock(); \
-        MHO_Message::GetInstance().SendMessage(eFatal,xKEY) << \ 
+        MHO_Message::GetInstance().SendMessage(eFatal,xKEY) << \
             "(" << sn::file_basename(__FILE__) << ":" << __LINE__ << ") " << xCONTENT; \
         MHO_Message::GetInstance().Unlock(); \
     } \

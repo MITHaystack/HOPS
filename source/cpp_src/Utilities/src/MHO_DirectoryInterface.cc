@@ -96,10 +96,11 @@ MHO_DirectoryInterface::GetSubDirectoryList(std::vector< std::string >& aSubDirL
 
 
 
-void
+bool
 MHO_DirectoryInterface::ReadCurrentDirectory()
 {
-    if(fDirectoryIsSet && !fHaveReadDirectory)
+    bool dir_exists =  DoesDirectoryExist(fCurrentDirectoryFullPath);
+    if(fDirectoryIsSet && dir_exists && !fHaveReadDirectory)
     {
         //get list of all the files (and directories) in the directory
         std::vector< std::string > allFiles;
@@ -141,17 +142,28 @@ MHO_DirectoryInterface::ReadCurrentDirectory()
         fCurrentFileList = allFiles;
         fCurrentSubDirectoryList = allDirs;
         fHaveReadDirectory = true;
+
+        return true;
     }
     else
     {
+
+        if(!dir_exists)
+        {
+            msg_error("utility", "attempted to read directory "<< fCurrentDirectoryFullPath <<" which does not exist" << eom);
+        }
+
         if(fHaveReadDirectory)
         {
             msg_warn("utility", "Already read directory: " << fCurrentDirectoryFullPath << eom);
         }
+
         if(!fDirectoryIsSet)
         {
             msg_warn("utility", "Attempted to read directory with no path set." << eom);
         }
+
+        return false;
     }
 }
 
