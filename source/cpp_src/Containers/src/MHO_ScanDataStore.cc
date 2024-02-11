@@ -41,11 +41,21 @@ MHO_ScanDataStore::IsValid()
 }
 
 bool 
-MHO_ScanDataStore::IsBaselinePresent(std::string bl)
+MHO_ScanDataStore::IsBaselinePresent(std::string bl) const
 {
     for(auto it = fBaselineCodes.begin(); it != fBaselineCodes.end(); it++)
     {
         if( bl == *it){return true;}
+    }
+    return false;
+}
+
+bool 
+MHO_ScanDataStore::IsStationPresent(std::string st) const
+{
+    for(auto it = fStationCodes.begin(); it != fStationCodes.end(); it++)
+    {
+        if( st == *it){return true;}
     }
     return false;
 }
