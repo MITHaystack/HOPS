@@ -167,27 +167,5 @@ MHO_ContainerStore::GetAllShortNames(std::vector< std::string >& shortnames)
     }
 }
 
-bool
-MHO_ContainerStore::SetObjectLabel(const MHO_UUID& obj_id, uint32_t label)
-{
-    if(IsObjectPresent(obj_id))
-    {
-        fIdsToLabels[obj_id] = label;
-        return true;
-    }
-    return false;
-}
-
-uint32_t 
-MHO_ContainerStore::GetObjectLabel(const MHO_UUID& obj_id)
-{
-    uint32_t value = 0;
-    auto it = fIdsToLabels.find(obj_id);
-    if(it != fIdsToLabels.end()){value = it->second;}
-    return value;
-}
-
-
-
 
 }

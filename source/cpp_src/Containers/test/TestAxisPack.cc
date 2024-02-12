@@ -81,9 +81,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     if(status)
     {
-        uint32_t label = 0xFF00FF00;
-        std::cout<<"A label = "<<label<<std::endl;
-        inter.Write(*test, "axis-pack", label);
+        inter.Write(*test, "axis-pack");
         inter.Close();
     }
     else

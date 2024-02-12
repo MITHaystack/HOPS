@@ -64,7 +64,6 @@ MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store, boo
             if(obj != nullptr)
             {
                 store.AddObject(obj);
-                store.SetObjectLabel(obj->GetObjectUUID(), key.fLabel);
                 std::string shortname = std::string(key.fName, MHO_FileKeyNameLength ).c_str();
                 store.SetShortName(obj->GetObjectUUID(), shortname);
             }
@@ -112,9 +111,8 @@ MHO_ContainerFileInterface::WriteStoreToFile(MHO_ContainerStore& store)
             {
                 MHO_Serializable* obj = store.GetObject(*it2);
                 std::string shortname = store.GetShortName(*it2);
-                uint32_t ilabel = store.GetObjectLabel(*it2);
 
-                bool ok = factory->second->WriteToFileInterface(fFileInterface, obj, shortname, ilabel);
+                bool ok = factory->second->WriteToFileInterface(fFileInterface, obj, shortname);
                 if(!ok)
                 {
                     msg_warn("containers", "factory failed to write object to file with type: "<< fUUID2ClassName[*it] << eom );

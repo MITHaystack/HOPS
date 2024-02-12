@@ -29,8 +29,7 @@ class MHO_SerializableObjectFactory
 
         virtual bool WriteToFileInterface(MHO_BinaryFileInterface& /*inter*/, 
                                           const MHO_Serializable* /*object*/,
-                                          const std::string& shortname = "", 
-                                          const uint32_t label = 0)
+                                          const std::string& shortname = "")
         {
             return false;
         };
@@ -77,8 +76,7 @@ class MHO_SerializableObjectFactorySpecific: public MHO_SerializableObjectFactor
 
         virtual bool WriteToFileInterface(MHO_BinaryFileInterface& inter, 
                                           const MHO_Serializable* object,
-                                          const std::string& shortname = "", 
-                                          const uint32_t label = 0)
+                                          const std::string& shortname = "") 
         {
 
             const XClassType* obj = dynamic_cast<const XClassType*>(object);
@@ -87,7 +85,7 @@ class MHO_SerializableObjectFactorySpecific: public MHO_SerializableObjectFactor
             {
                 if(inter.IsOpenForWrite())
                 {
-                    ok = inter.Write(*obj, shortname, label);
+                    ok = inter.Write(*obj, shortname);
                 }
             }
             if(!ok){msg_debug("file", "failed to write object to file." << eom);}

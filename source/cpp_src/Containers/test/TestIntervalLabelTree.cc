@@ -71,9 +71,8 @@ int main(int /*argc*/, char** /*argv*/)
 
     if(status)
     {
-        uint32_t label = 0xFF00FF00;
         std::string shortname = "junk";
-        inter.Write(test, shortname, label);
+        inter.Write(test, shortname);
         inter.Close();
     }
     else

@@ -36,9 +36,8 @@ int main(int /*argc*/, char** /*argv*/)
 
     if(status)
     {
-        uint32_t label = 0xFF00FF00;
         std::string shortname = "tags";
-        inter.Write(test, shortname, label);
+        inter.Write(test, shortname);
         inter.Close();
     }
     else
@@ -73,9 +72,8 @@ int main(int /*argc*/, char** /*argv*/)
     status = inter.OpenToAppend(filename);
     if(status)
     {
-        uint32_t label = 0xFF00FF00;
         std::string shortname = "tags2";
-        inter.Write(test2, shortname, label);
+        inter.Write(test2, shortname);
         inter.Close();
     }
     else
