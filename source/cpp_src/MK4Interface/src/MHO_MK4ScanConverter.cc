@@ -95,9 +95,8 @@ MHO_MK4ScanConverter::ConvertCorel(const std::string& root_file,
     bool status = inter.OpenToWrite(output_file);
     if(status)
     {
-        uint32_t label = 0xFFFFFFFF; //someday make this mean something
-        inter.Write(*ch_bl_data, "vis", label);
-        inter.Write(*ch_bl_wdata, "weight", label);
+        inter.Write(*ch_bl_data, "vis");
+        inter.Write(*ch_bl_wdata, "weight");
     }
     else
     {
@@ -136,12 +135,11 @@ MHO_MK4ScanConverter::ConvertStation(const std::string& root_file,
     bool status = inter.OpenToWrite(output_file);
     if(status)
     {
-        uint32_t label = 0xFFFFFFFF;
-        inter.Write(*st_data, "sta", label); //write out station data
+        inter.Write(*st_data, "sta"); //write out station data
         //write out pcal objects
         for(std::size_t i=0; i<n_pcal_obj; i++)
         {
-            inter.Write( *(mk4inter.GetPCalObject(i)), "pcal", label);
+            inter.Write( *(mk4inter.GetPCalObject(i)), "pcal");
         }
         inter.Close();
     }

@@ -198,11 +198,11 @@ class MHO_BinaryFileInterface
             fCollectKeys = false;
         }
 
-        template<class XWriteType> bool Write(const XWriteType& obj, const std::string& shortname = "", const uint32_t label = 0)
+        template<class XWriteType> bool Write(const XWriteType& obj, const std::string& shortname = "")
         {
             if( fObjectStreamer.IsOpenForWrite() )
             {
-                MHO_FileKey key = GenerateObjectFileKey(obj, shortname, label);
+                MHO_FileKey key = GenerateObjectFileKey(obj, shortname);
                 fObjectStreamer.ResetByteCount();
                 fObjectStreamer << key;
                 msg_debug("file", "wrote object key of size: " << fObjectStreamer.GetNBytesWritten() <<" bytes." << eom);
@@ -231,10 +231,10 @@ class MHO_BinaryFileInterface
         }
 
         //overload for char array name
-        template<class XWriteType> bool Write(const XWriteType& obj, const char* shortname, const uint32_t label = 0)
+        template<class XWriteType> bool Write(const XWriteType& obj, const char* shortname)
         {
             std::string sshortname(shortname);
-            return this->Write(obj, sshortname, label);
+            return this->Write(obj, sshortname);
         }
 
         template<class XReadType> bool Read(XReadType& obj, MHO_FileKey& obj_key)
@@ -304,12 +304,11 @@ class MHO_BinaryFileInterface
 
         //generate the file object key
         template<class XWriteType>
-        MHO_FileKey GenerateObjectFileKey(const XWriteType& obj, const std::string& shortname, const uint32_t label)
+        MHO_FileKey GenerateObjectFileKey(const XWriteType& obj, const std::string& shortname)
         {
-            MHO_FileKey key;
-            //set sync word and user label
-            key.fSync = MHO_FileKeySyncWord;
-            key.fLabel = label;
+            MHO_FileKey key; //sync and label set in constructor
+
+            //add short name
             CopyTruncatedString(shortname, key.fName);
 
             fMD5Generator.Initialize();

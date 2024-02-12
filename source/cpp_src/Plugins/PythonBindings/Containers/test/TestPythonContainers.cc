@@ -93,7 +93,6 @@ int main()
 
     //stuff something in the container store
     store.AddObject(visibilities);
-    store.SetObjectLabel(visibilities->GetObjectUUID(), key.fLabel);
     std::string shortname = std::string(key.fName, MHO_FileKeyNameLength ).c_str();
     store.SetShortName(visibilities->GetObjectUUID(), shortname);
 

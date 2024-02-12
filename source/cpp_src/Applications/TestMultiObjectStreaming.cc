@@ -156,11 +156,10 @@ int main(int argc, char** argv)
 
     if(status)
     {
-        uint32_t label = 0xFFFFFFFF;
-        inter.Write(*cscalar, "scalar1", label);
-        inter.Write(*cvector, "vector2", label);
-        inter.Write(*ctable, "table3", label);
-        inter.Write(*ch_bl_data, "vis", label);
+        inter.Write(*cscalar, "scalar1");
+        inter.Write(*cvector, "vector2");
+        inter.Write(*ctable, "table3");
+        inter.Write(*ch_bl_data, "vis");
         inter.Close();
     }
     else

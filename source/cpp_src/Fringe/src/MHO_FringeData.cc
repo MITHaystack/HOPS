@@ -103,10 +103,9 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
     bool status = inter.OpenToWrite(filename);
     if(status)
     {
-        uint32_t label = 0xFFFFFFFF; //someday make this mean something
         tags.AddObjectUUID(vis_data->GetObjectUUID());
-        inter.Write(tags, "tags", label);
-        inter.Write(*vis_data, "vis", label);
+        inter.Write(tags, "tags");
+        inter.Write(*vis_data, "vis");
         inter.Close();
     }
     else

@@ -54,12 +54,10 @@ int main()
 
     //stuff something in the container store
     store.AddObject(obj);
-    store.SetObjectLabel(obj->GetObjectUUID(), key.fLabel);
     std::string shortname = std::string(key.fName, MHO_FileKeyNameLength ).c_str();
     store.SetShortName(obj->GetObjectUUID(), shortname);
 
     store.AddObject(wobj);
-    store.SetObjectLabel(wobj->GetObjectUUID(), wkey.fLabel);
     std::string wshortname = std::string(wkey.fName, MHO_FileKeyNameLength ).c_str();
     store.SetShortName(wobj->GetObjectUUID(), wshortname);
 

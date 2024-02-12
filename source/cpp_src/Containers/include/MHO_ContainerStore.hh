@@ -82,14 +82,6 @@ class MHO_ContainerStore
         //provides a way in which we can replace the nickname of an object
         void RenameObject(const std::string& current_shortname, const std::string& new_shortname);
 
-        //provide the ability to attach integer labels to object uuids
-        //only a single integer label can be assigned per object uuid
-        //returns false if object not present
-        bool SetObjectLabel(const MHO_UUID& obj_id, uint32_t label);
-
-        //returns zero if object or label is not present
-        uint32_t GetObjectLabel(const MHO_UUID& obj_id);
-
         void DumpShortNamesToIds()
         {
             for(auto it = fShortNameToIds.begin(); it != fShortNameToIds.end(); it++)
@@ -120,8 +112,6 @@ class MHO_ContainerStore
         //maps string names to object uuids
         std::map< std::string, MHO_UUID > fShortNameToIds;
         std::set< std::string > fShortNameSet;
-        //maps uuid to integer label
-        std::map< MHO_UUID, uint32_t > fIdsToLabels;
 
 
 
@@ -246,10 +236,6 @@ MHO_ContainerStore::DeleteObject(XClassType* obj_ptr)
         }
     }
     fShortNameSet.erase(shortname);
-
-    auto label_it = fIdsToLabels.find(obj_id);
-    if(label_it != fIdsToLabels.end()){fIdsToLabels.erase(label_it);}
-
     return true;
 }
 
