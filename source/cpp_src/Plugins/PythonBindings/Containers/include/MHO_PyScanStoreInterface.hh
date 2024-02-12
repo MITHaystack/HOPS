@@ -152,7 +152,7 @@ class MHO_PyScanStoreInterface
             }
             //should not be able to reach here from python interface (via lambda)
             //but since we must have a return value, return an empty container
-            std::cerr << " could not find baseline:"<<baseline<<", returning empty container "<< std::endl;
+            py::print("could not find baseline: ", baseline, ", returning empty container ");
             return *fEmptyContainer;
         }
 
@@ -165,7 +165,7 @@ class MHO_PyScanStoreInterface
             }
             //should not be able to reach here from python interface (via lambda)
             //but since we must have a return value, return an empty container
-            std::cerr << " could not find station: "<<station<<", returning empty container "<< std::endl;
+            py::print("could not find station: ",station,", returning empty container ");
             return *fEmptyContainer;
         }
 
@@ -227,23 +227,23 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
         .def("GetBaselinesLoaded", &hops::MHO_PyScanStoreInterface::GetBaselinesLoaded)
         .def("GetStationsLoaded", &hops::MHO_PyScanStoreInterface::GetStationsLoaded)
         .def("GetBaselineData", //lambda for returing either baseline data or None-type
-            [=](MHO_PyScanStoreInterface& m, std::string const baseline) -> py::object 
+            [=](MHO_PyScanStoreInterface& m, std::string baseline) -> py::object 
             {
                 if( m.IsBaselineLoaded(baseline) ) 
                 {
                     return py::cast( m.GetBaselineData(baseline) );
                 }
-                std::cerr << "data for baseline " << baseline << " either has not been loaded or does not exist." << std::endl;
+                py::print( "data for baseline ",baseline," either it has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
             })
         .def("GetStationData", //lambda for returing either baseline data or None-type
-            [=](MHO_PyScanStoreInterface& m, std::string const station) -> py::object 
+            [=](MHO_PyScanStoreInterface& m, std::string station) -> py::object 
             {
                 if( m.IsStationLoaded(station) ) 
                 {
                     return py::cast( m.GetStationData(station) );
                 }
-                std::cerr << "data for station " << station << " either has not been loaded or does not exist." << std::endl;
+                py::print( "data for station ", station, " either it has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
             })
 
