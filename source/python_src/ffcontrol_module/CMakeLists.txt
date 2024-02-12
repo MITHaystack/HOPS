@@ -73,7 +73,7 @@ if (PY_EXE)
     #add a build target to catch problems before install (output not used)
     add_custom_target(ffcontrol_build_target ALL 
         COMMAND ${PY_EXE} ${SETUP_PY} build
-        DEPENDS ffcontrol_copy_src
+        DEPENDS hops4py_copy_src ffcontrol_copy_src
     )
 
     if("${PYTHON_SETUP}" STREQUAL "setuptools")
