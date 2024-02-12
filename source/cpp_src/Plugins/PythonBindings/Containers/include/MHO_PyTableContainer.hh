@@ -94,8 +94,10 @@ class MHO_PyTableContainer
             }
             else
             {
-                msg_fatal("python_bindings", "axis index: "<< index << " exceeds table rank of: "<< fRank << eom );
-                std::exit(1);
+                msg_error("python_bindings", "axis index: "<< index << " exceeds table rank of: "<< fRank << eom );
+                std::stringstream ss;
+                ss << "axis index: "<< index << " exceeds table rank of: "<< fRank;
+                py::print("error: ", ss.str());
             }
             return ret_val;
         }
@@ -110,8 +112,10 @@ class MHO_PyTableContainer
             }
             else
             {
-                msg_fatal("python_bindings", "axis index: "<< axis_index << " exceeds table rank of: "<< fRank << eom );
-                std::exit(1);
+                msg_error("python_bindings", "axis index: "<< axis_index << " exceeds table rank of: "<< fRank << eom );
+                std::stringstream ss;
+                ss << "axis index: "<< axis_index << " exceeds table rank of: "<< fRank;
+                py::print("error: ", ss.str());
             }
         }
 
@@ -135,8 +139,10 @@ class MHO_PyTableContainer
             }
             else
             {
-                msg_fatal("python_bindings", "axis index: "<< index << " exceeds table rank of: "<< fRank << eom );
-                std::exit(1);
+                msg_error("python_bindings", "axis index: "<< index << " exceeds table rank of: "<< fRank << eom );
+                std::stringstream ss;
+                ss << "axis index: "<< index << " exceeds table rank of: "<< fRank;
+                py::print("error: ", ss.str());
             }
             return ret_val;
         }
@@ -151,28 +157,30 @@ class MHO_PyTableContainer
             }
             else
             {
-                msg_fatal("python_bindings", "axis index: "<< index << " exceeds table rank of: "<< fRank << eom );
-                std::exit(1);
+                msg_error("python_bindings", "axis index: "<< index << " exceeds table rank of: "<< fRank << eom );
+                std::stringstream ss;
+                ss << "axis index: "<< index << " exceeds table rank of: "<< fRank;
+                py::print("error: ", ss.str());
             }
         }
 
     private:
 
-        template< typename XDumpType >
-        static void DumpValuesToPyDict(MHO_SingleTypeMap< std::string , XDumpType >* map, py::dict& dump)
-        {
-            std::vector< std::string > keys;
-            if(map != nullptr)
-            {
-                keys = map->DumpKeys();
-                for(auto it = keys.begin(); it != keys.end(); it++)
-                {
-                    XDumpType val;
-                    map->Retrieve(*it, val);
-                    dump[it->c_str()] = val;
-                }
-            }
-        }
+        // template< typename XDumpType >
+        // static void DumpValuesToPyDict(MHO_SingleTypeMap< std::string , XDumpType >* map, py::dict& dump)
+        // {
+        //     std::vector< std::string > keys;
+        //     if(map != nullptr)
+        //     {
+        //         keys = map->DumpKeys();
+        //         for(auto it = keys.begin(); it != keys.end(); it++)
+        //         {
+        //             XDumpType val;
+        //             map->Retrieve(*it, val);
+        //             dump[it->c_str()] = val;
+        //         }
+        //     }
+        // }
 
         template< typename XDataTableType >
         static py::dict GetTableTags(XDataTableType* table)
@@ -252,7 +260,6 @@ class MHO_PyTableContainer
                     fIndex(index),
                     fObject(label_object)
                 {};
-
                 ~PyAxisLabelModifier(){};
 
                 template< typename XAxisType >
@@ -265,8 +272,10 @@ class MHO_PyTableContainer
                     if(fIndex < axis.GetSize() ){ axis(fIndex) = label_value; }
                     else
                     {
-                        msg_fatal("python_bindings", "error axis coordinate index out of bounds: " << fIndex << " > " << axis.GetSize() << "."<< eom );
-                        std::exit(1);
+                        msg_error("python_bindings", "error axis coordinate index out of bounds: " << fIndex << " > " << axis.GetSize() << "."<< eom );
+                        std::stringstream ss;
+                        ss << "axis coordinate index out of bounds: " << fIndex  << " > " << axis.GetSize();
+                        py::print("error: ", ss.str());
                     }
                 }
 

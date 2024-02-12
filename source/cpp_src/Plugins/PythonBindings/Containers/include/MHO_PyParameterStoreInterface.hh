@@ -43,7 +43,12 @@ class MHO_PyParameterStoreInterface
         {
             mho_json obj;
             bool ok = fParameterStore->Get(value_path, obj);
-            if(!ok){msg_error("python_bindings", "error getting value associated with key: "<< value_path << eom );}
+            if(!ok)
+            {
+                msg_error("python_bindings", "error getting value associated with key: "<< value_path << eom );
+                py::print("error getting value associated with key: ", value_path);
+            }
+            
             return obj;
         }
 
@@ -52,7 +57,11 @@ class MHO_PyParameterStoreInterface
         {
             mho_json obj = value;
             bool ok = fParameterStore->Set(value_path, obj);
-            if(!ok){msg_error("python_bindings", "error setting value associated with key: "<< value_path << eom );}
+            if(!ok)
+            {
+                msg_error("python_bindings", "error setting value associated with key: "<< value_path << eom );
+                py::print("error setting value associated with key: ", value_path);
+            }
         }
 
         //returns a python dictionary containing all of the parameter stores contents
