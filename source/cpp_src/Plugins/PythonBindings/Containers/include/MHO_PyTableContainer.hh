@@ -147,7 +147,9 @@ class MHO_PyTableContainer
             return ret_val;
         }
         
-        //whole-sale re-setting of metadata (this may be over-kill)
+        //whole-sale re-setting of metadata, this may be over-kill and actually a bit dangerous
+        //since the index/interval labels are stored in the metadata object, if we are not 
+        //passing an object which is derived from an already retrieved copy we may lose info
         void SetCoordinateAxisMetaData(std::size_t index, py::dict metadata)
         {
             if(index < fRank)
@@ -165,22 +167,6 @@ class MHO_PyTableContainer
         }
 
     private:
-
-        // template< typename XDumpType >
-        // static void DumpValuesToPyDict(MHO_SingleTypeMap< std::string , XDumpType >* map, py::dict& dump)
-        // {
-        //     std::vector< std::string > keys;
-        //     if(map != nullptr)
-        //     {
-        //         keys = map->DumpKeys();
-        //         for(auto it = keys.begin(); it != keys.end(); it++)
-        //         {
-        //             XDumpType val;
-        //             map->Retrieve(*it, val);
-        //             dump[it->c_str()] = val;
-        //         }
-        //     }
-        // }
 
         template< typename XDataTableType >
         static py::dict GetTableTags(XDataTableType* table)
