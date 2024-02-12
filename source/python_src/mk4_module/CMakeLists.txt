@@ -21,7 +21,7 @@ if (PY_EXE)
     #add a build target to catch problems before install (output not used)
     add_custom_target(mk4io_build_target ALL 
         COMMAND ${PY_EXE} ${SETUP_PY} build
-        DEPENDS mk4io_copy_src
+        DEPENDS hops4py_copy_src mk4io_copy_src
     )
 
     if("${PYTHON_SETUP}" STREQUAL "setuptools")

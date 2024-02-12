@@ -22,7 +22,7 @@ if(PY_EXE)
     if(HOPS3_PYTHON_EXTRAS)
     add_custom_target(hops4py_build_target ALL
         COMMAND ${PY_EXE} ${SETUP_PY} build
-        DEPENDS mk4io_copy_src
+        DEPENDS hops4py_copy_src
     )
     endif(HOPS3_PYTHON_EXTRAS)
 
