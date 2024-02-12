@@ -53,11 +53,14 @@ class MHO_FileKey
     public:
         MHO_FileKey()
         {
+            //sync word is always the same
             fSync = MHO_FileKeySyncWord;
+            //define the current file key version/size
             MHO_FileKeyVersionInfo u;
             u.fVersionSize[0] = MHO_FileKeyVersion;
             u.fVersionSize[1] = MHO_FileKeySize;
             fLabel = u.fLabel;
+
             for(uint32_t i=0; i<MHO_FileKeyNameLength; i++)
             {
                 fName[i] = '\0';
@@ -79,27 +82,6 @@ class MHO_FileKey
         }
 
         virtual ~MHO_FileKey(){};
-
-
-        // bool IsEmpty()
-        // {
-        //     if(fSync){return false;}
-        //     if(fLabel){return false;}
-        //     for(uint32_t i=0; i<MHO_FileKeyNameLength; i++)
-        //     {
-        //         if(fName[i] != '\0'){return false;};
-        //     }
-        //     for(std::size_t i=0; i<MHO_UUID_LENGTH; i++)
-        //     {
-        //         if(fObjectId[i] != 0){return false;}
-        //     }
-        //     for(std::size_t i=0; i<MHO_UUID_LENGTH; i++)
-        //     {
-        //         if(fTypeId[i] != 0){return false;}
-        //     }
-        //     if(fSize){return false;}
-        //     return true;
-        // }
 
         bool operator==(const MHO_FileKey& rhs)
         {
@@ -154,6 +136,14 @@ class MHO_FileKey
         MHO_UUID fTypeId; //128 bits for full MD5 hash of class-type + version
         char     fName[MHO_FileKeyNameLength]; //16 bytes for a (shorthand) name (i.e.probably to replace type_XXX codes)
         uint64_t fSize; //total number of bytes of incoming object (distance in bytes to next key)
+
+        //Future version of the file key could include additional information/parameters here
+        //However, version/size flag must be defined and additional I/O functionality must be added.
+        //For example, we could include space for a checksum of the object data, or additional tags/meta-data.
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    //streaming functions and I/O defined below
 
 
         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_FileKey& aData)
@@ -213,11 +203,11 @@ class MHO_FileKey
                 case 0:
                     aData.StreamOutData_V0(s);
                 break;
-                case 0xFFFF: //reserved case
+                case 0xFFFF: //reserved case, use the current streamer version (v0 at the moment)
                     aData.StreamOutData_V0(s);
                 break;
                 default:
-                    //this should never happen (would requir having a file-key version in memory that we don't know about)
+                    //this should never happen (would require having a file-key version in memory that we don't know about)
                     msg_error("utility",
                         "error, cannot stream out MHO_FileKey object with unknown version: "
                         << version << eom );
@@ -253,35 +243,6 @@ class MHO_FileKey
             s >> this->fSize;
         }
 };
-
-//
-// template<typename XStream> XStream& operator>>(XStream& s, MHO_FileKey& aKey)
-// {
-//     s >> aKey.fSync;
-//     s >> aKey.fLabel;
-//     s >> aKey.fObjectId;
-//     s >> aKey.fTypeId;
-//     for(uint32_t i=0; i<MHO_FileKeyNameLength; i++)
-//     {
-//         s >> aKey.fName[i];
-//     }
-//     s >> aKey.fSize;
-//     return s;
-// }
-//
-// template<typename XStream> XStream& operator<<(XStream& s, const MHO_FileKey& aKey)
-// {
-//     s << aKey.fSync;
-//     s << aKey.fLabel;
-//     s << aKey.fObjectId;
-//     s << aKey.fTypeId;
-//     for(uint32_t i=0; i<MHO_FileKeyNameLength; i++)
-//     {
-//         s << aKey.fName[i];
-//     }
-//     s << aKey.fSize;
-//     return s;
-// }
 
 
 }//end of hops
