@@ -20,26 +20,26 @@ def mod_mx(mx_obj):
 
 def test_inter(cstore_interface_obj, param_interface_obj):
 
-    n_obj =  cstore_interface_obj.GetNObjects();
+    n_obj =  cstore_interface_obj.get_nobjects();
     print("n objects present = ", n_obj)
-    uuid_string = param_interface_obj.Get("vis_uuid");
+    uuid_string = param_interface_obj.get_by_path("vis_uuid");
     print("expecting an object with uuid: ", uuid_string)
-    print("object with that uuid is present? ", cstore_interface_obj.IsObjectPresent(uuid_string) )
+    print("object with that uuid is present? ", cstore_interface_obj.is_object_present(uuid_string) )
 
-    visib_obj = cstore_interface_obj.GetVisibilityObject(uuid_string)
+    visib_obj = cstore_interface_obj.get_object(uuid_string)
 
-    print("vis object class name = ", visib_obj.GetClassName() )
+    print("vis object class name = ", visib_obj.get_classname() )
 
-    vis_arr = visib_obj.GetNumpyArray() #this is already a numpy array
+    vis_arr = visib_obj.get_numpy_array() #this is already a numpy array
     print("vis array shape = ", vis_arr.shape)
     print("vis array strides = ", vis_arr.strides)
 
-    print("vis rank = ", visib_obj.GetRank() )
+    print("vis rank = ", visib_obj.get_rank() )
 
-    axis1 = visib_obj.GetCoordinateAxis(1);
-    axis0 = visib_obj.GetCoordinateAxis(0);
-    axis2 = visib_obj.GetCoordinateAxis(2);
-    axis3 = visib_obj.GetCoordinateAxis(3);
+    axis1 = visib_obj.get_axis(1);
+    axis0 = visib_obj.get_axis(0);
+    axis2 = visib_obj.get_axis(2);
+    axis3 = visib_obj.get_axis(3);
     print("the visibility dimensions are: ", vis_arr.shape)
     vis_arr[0,0,0,0] = 1000
     vis_arr[0,0,1,1] = 2000
@@ -56,35 +56,35 @@ def test_inter(cstore_interface_obj, param_interface_obj):
     print("we have to do this one label at a time via the visib_obj with the current interface")
 
     #set the polarization labels to some nonsense
-    visib_obj.SetCoordinateLabel(0, 0, "RR")
-    visib_obj.SetCoordinateLabel(0, 1, "LR")
+    visib_obj.set_axis_label(0, 0, "RR")
+    visib_obj.set_axis_label(0, 1, "LR")
 
 
 
 def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
 
-    n_obj =  cstore_interface_obj.GetNObjects();
+    n_obj =  cstore_interface_obj.get_nobjects();
     print("n objects present = ", n_obj)
-    vis_uuid = param_interface_obj.Get("/uuid/visibilities");
+    vis_uuid = param_interface_obj.get_by_path("/uuid/visibilities");
     print("expecting an object with uuid: ", vis_uuid)
-    print("object with that uuid is present? ", cstore_interface_obj.IsObjectPresent(vis_uuid) )
+    print("object with that uuid is present? ", cstore_interface_obj.is_object_present(vis_uuid) )
 
-    if not cstore_interface_obj.IsObjectPresent(vis_uuid):
+    if not cstore_interface_obj.is_object_present(vis_uuid):
         return
 
-    visib_obj = cstore_interface_obj.GetVisibilityObject(vis_uuid);
+    visib_obj = cstore_interface_obj.get_object(vis_uuid);
 
-    vis_arr = visib_obj.GetNumpyArray();
-    axis0 = visib_obj.GetCoordinateAxis(0);
-    axis1 = visib_obj.GetCoordinateAxis(1);
-    axis2 = visib_obj.GetCoordinateAxis(2);
-    axis3 = visib_obj.GetCoordinateAxis(3);
+    vis_arr = visib_obj.get_numpy_array();
+    axis0 = visib_obj.get_axis(0);
+    axis1 = visib_obj.get_axis(1);
+    axis2 = visib_obj.get_axis(2);
+    axis3 = visib_obj.get_axis(3);
 
     #modifying all values for APs 12-15
     # vis_arr[:,:,12:15,:] = 200.0
 
     #lets dump the tags
-    tags = visib_obj.GetMetaData()
+    tags = visib_obj.get_metadata()
     print("tags = ", tags)
 
     tags["python_int_tag"] = 33
@@ -94,23 +94,23 @@ def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
     tags["python_bool_tag"] = True
     
     #now set the tag object 
-    visib_obj.SetMetaData(tags)
+    visib_obj.set_metadata(tags)
     
     #now retrieve and dump them again
-    tags = visib_obj.GetMetaData()
+    tags = visib_obj.get_metadata()
     print("updated table metadata/tags = ", tags)
 
     #get the axis meta dat object
     for idx in [0,1,2,3]:
         print("axis: ", idx, " interval labels: ")
-        ax_meta = visib_obj.GetCoordinateAxisMetaData(idx);
+        ax_meta = visib_obj.get_axis_metadata(idx);
         print(ax_meta)
         if idx == 1:
             #channel axis, lets tweak it and whole-sale reset the meta data 
             #this is super crude
             ax_meta['index_labels']['0']['bandwidth'] = 400.0
-            visib_obj.SetCoordinateAxisMetaData(idx, ax_meta)
-            ax_meta2 = visib_obj.GetCoordinateAxisMetaData(idx);
+            visib_obj.set_axis_metadata(idx, ax_meta)
+            ax_meta2 = visib_obj.get_axis_metadata(idx);
             print("MODIFIED: ", ax_meta2)
 
 
@@ -139,22 +139,22 @@ def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
 
 def test_plot_visibilities_bad(cstore_interface_obj, param_interface_obj):
 
-    n_obj =  cstore_interface_obj.GetNObjects();
+    n_obj =  cstore_interface_obj.get_nobjects();
     print("n objects present = ", n_obj)
-    vis_uuid = param_interface_obj.Get("/uuid/visibilities");
+    vis_uuid = param_interface_obj.get_by_path("/uuid/visibilities");
     print("expecting an object with uuid: ", vis_uuid)
-    print("object with that uuid is present? ", cstore_interface_obj.IsObjectPresent(vis_uuid) )
+    print("object with that uuid is present? ", cstore_interface_obj.is_object_present(vis_uuid) )
 
-    if not cstore_interface_obj.IsObjectPresent(vis_uuid):
+    if not cstore_interface_obj.is_object_present(vis_uuid):
         return
 
-    visib_obj = cstore_interface_obj.GetVisibilityObject(vis_uuid);
+    visib_obj = cstore_interface_obj.get_object(vis_uuid);
 
-    vis_arr = visib_obj.GetNumpyArray();
-    axis0 = visib_obj.GetCoordinateAxis(0);
-    axis1 = visib_obj.GetCoordinateAxis(1);
-    axis2 = visib_obj.GetCoordinateAxis(2);
-    axis3 = visib_obj.GetCoordinateAxis(3);
+    vis_arr = visib_obj.get_numpy_array();
+    axis0 = visib_obj.get_axis(0);
+    axis1 = visib_obj.get_axis(1);
+    axis2 = visib_obj.get_axis(2);
+    axis3 = visib_obj.get_axis(3);
 
     #shoudl provoke an error
     vis_arr.resize( [1,2,3,4] )
