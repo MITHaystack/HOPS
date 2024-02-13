@@ -207,26 +207,26 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
 {
     py::class_< MHO_PyScanStoreInterface >(m, pyclass_name.c_str() )
         .def(py::init<>())
-        .def("SetDirectory", &hops::MHO_PyScanStoreInterface::SetDirectory)
-        .def("Initialize", &hops::MHO_PyScanStoreInterface::Initialize)
-        .def("IsValid", &hops::MHO_PyScanStoreInterface::IsValid)
-        .def("IsBaselinePresent", &hops::MHO_PyScanStoreInterface::IsBaselinePresent)
-        .def("IsBaselinePresent", &hops::MHO_PyScanStoreInterface::IsStationPresent)
-        .def("IsBaselineLoaded", &hops::MHO_PyScanStoreInterface::IsBaselinePresent)
-        .def("IsStationLoaded", &hops::MHO_PyScanStoreInterface::IsStationPresent)
-        .def("GetNBaselines", &hops::MHO_PyScanStoreInterface::GetNBaselines)
-        .def("GetNStations", &hops::MHO_PyScanStoreInterface::GetNStations)
-        .def("GetBaselinesPresent", &hops::MHO_PyScanStoreInterface::GetBaselinesPresent)
-        .def("GetStationsPresent", &hops::MHO_PyScanStoreInterface::GetStationsPresent)
-        .def("GetRootFileData", &hops::MHO_PyScanStoreInterface::GetRootFileData)
-        .def("GetRootFileBasename", &hops::MHO_PyScanStoreInterface::GetRootFileBasename)
-        .def("GetBaselineFilename", &hops::MHO_PyScanStoreInterface::GetBaselineFilename)
-        .def("GetStationFilename", &hops::MHO_PyScanStoreInterface::GetStationFilename)
-        .def("LoadBaseline", &hops::MHO_PyScanStoreInterface::LoadBaseline)
-        .def("LoadStation", &hops::MHO_PyScanStoreInterface::LoadStation)
-        .def("GetBaselinesLoaded", &hops::MHO_PyScanStoreInterface::GetBaselinesLoaded)
-        .def("GetStationsLoaded", &hops::MHO_PyScanStoreInterface::GetStationsLoaded)
-        .def("GetBaselineData", //lambda for returing either baseline data or None-type
+        .def("set_directory", &hops::MHO_PyScanStoreInterface::SetDirectory)
+        .def("initialize", &hops::MHO_PyScanStoreInterface::Initialize)
+        .def("is_valid", &hops::MHO_PyScanStoreInterface::IsValid)
+        .def("has_baseline", &hops::MHO_PyScanStoreInterface::IsBaselinePresent)
+        .def("has_station", &hops::MHO_PyScanStoreInterface::IsStationPresent)
+        .def("is_baseline_loaded", &hops::MHO_PyScanStoreInterface::IsBaselineLoaded)
+        .def("is_station_loaded", &hops::MHO_PyScanStoreInterface::IsStationLoaded)
+        .def("get_nbaselines", &hops::MHO_PyScanStoreInterface::GetNBaselines)
+        .def("get_nstations", &hops::MHO_PyScanStoreInterface::GetNStations)
+        .def("get_baseline_list", &hops::MHO_PyScanStoreInterface::GetBaselinesPresent)
+        .def("get_station_list", &hops::MHO_PyScanStoreInterface::GetStationsPresent)
+        .def("get_rootfile_data", &hops::MHO_PyScanStoreInterface::GetRootFileData)
+        .def("get_rootfile_basename", &hops::MHO_PyScanStoreInterface::GetRootFileBasename)
+        .def("get_baseline_filename", &hops::MHO_PyScanStoreInterface::GetBaselineFilename)
+        .def("get_station_filename", &hops::MHO_PyScanStoreInterface::GetStationFilename)
+        .def("load_baseline", &hops::MHO_PyScanStoreInterface::LoadBaseline)
+        .def("load_station", &hops::MHO_PyScanStoreInterface::LoadStation)
+        .def("get_baselines_loaded", &hops::MHO_PyScanStoreInterface::GetBaselinesLoaded)
+        .def("get_stations_loaded", &hops::MHO_PyScanStoreInterface::GetStationsLoaded)
+        .def("get_baseline_data", //lambda for returing either baseline data or None-type
             [=](MHO_PyScanStoreInterface& m, std::string baseline) -> py::object 
             {
                 if( m.IsBaselineLoaded(baseline) ) 
@@ -236,7 +236,7 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
                 py::print( "data for baseline ",baseline," either it has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
             })
-        .def("GetStationData", //lambda for returing either station data or None-type
+        .def("get_station_data", //lambda for returing either station data or None-type
             [=](MHO_PyScanStoreInterface& m, std::string station) -> py::object 
             {
                 if( m.IsStationLoaded(station) ) 
