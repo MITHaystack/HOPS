@@ -27,6 +27,7 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AxisTypes.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BaselineContainers.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationContainers.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeContainers.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerDefinitions.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SerializableObjectFactory.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ClassIdentityMap.hh

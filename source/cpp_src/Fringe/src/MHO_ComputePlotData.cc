@@ -284,13 +284,12 @@ MHO_ComputePlotData::calc_segs()
 
             //make sure this plot gets the channel label:
             (&std::get<0>(phasor_segs))->InsertIndexLabelKeyValue(ch, chan_label_key, channel_labels[ch]);
-
-            (&std::get<0>(phasor_segs))->at(ch) = freq;
+            (&std::get<0>(phasor_segs))->at(ch) = freq; //set the channel frequency label
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, max_sbd_bin);
             std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
             std::complex<double> z = vis*vr;
             phasor_segs(ch, ap) = z;
-            (&std::get<0>(phasor_segs))->at(ch) = freq; //set the channel frequency label
+
             //apply weight and sum
             double w = (*fWeights)(POLPROD, ch, ap, 0);
             std::complex<double> wght_phsr = w*z;
@@ -700,6 +699,19 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     double coh_avg_phase = calc_phase();
     auto sbd_xpower = calc_xpower_spec();
     auto phasors = calc_segs();
+
+    phasors.CopyTags(*fSBDArray);
+    phasors.Insert("name", "phasors");
+    std::get<0>(phasors).Insert("name", "channel");
+    std::get<0>(phasors).Insert("units", "MHz");
+    std::get<1>(phasors).Insert("name", "time");
+    std::get<1>(phasors).Insert("units", "s");
+    
+
+    //have to clone the phasors data (because this copy will go out of scope at the end of this function)
+    auto phasors_clone = phasors.Clone();
+    bool ok = fContainerStore->AddObject(phasors_clone);
+    ok = fContainerStore->SetShortName(phasors_clone->GetObjectUUID(), "phasors");
 
     double coh_avg_phase_deg = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
     fParamStore->Set("/fringe/raw_resid_phase", coh_avg_phase_deg);

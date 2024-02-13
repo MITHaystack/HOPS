@@ -1,5 +1,5 @@
-#ifndef MHO_StationCoordinates_HH__
-#define MHO_StationCoordinates_HH__
+#ifndef MHO_StationContainers_HH__
+#define MHO_StationContainers_HH__
 
 //this include file should not be used directly
 #ifndef MHO_ContainerDefinitions_HH__
