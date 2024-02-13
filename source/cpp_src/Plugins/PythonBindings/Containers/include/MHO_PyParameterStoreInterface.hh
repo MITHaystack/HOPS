@@ -84,10 +84,10 @@ DeclarePyParameterStoreInterface(py::module &m, std::string pyclass_name)
 {
     py::class_< MHO_PyParameterStoreInterface >(m, pyclass_name.c_str() )
         //no __init__ def here, as this class is not meant to be constructable on the python side
-        .def("IsPresent", &hops::MHO_PyParameterStoreInterface::IsPresent)
-        .def("Get", &hops::MHO_PyParameterStoreInterface::Get)
-        .def("Set", &hops::MHO_PyParameterStoreInterface::Set)
-        .def("GetContents", &hops::MHO_PyParameterStoreInterface::GetContents);
+        .def("is_present", &hops::MHO_PyParameterStoreInterface::IsPresent)
+        .def("get_by_path", &hops::MHO_PyParameterStoreInterface::Get)
+        .def("set_by_path", &hops::MHO_PyParameterStoreInterface::Set)
+        .def("get_contents", &hops::MHO_PyParameterStoreInterface::GetContents);
 }
 
 

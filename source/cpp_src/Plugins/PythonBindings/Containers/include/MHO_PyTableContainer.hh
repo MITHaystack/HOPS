@@ -293,16 +293,16 @@ DeclarePyTableContainer(py::module &m, std::string pyclass_name = "")
 
     py::class_< MHO_PyTableContainer<XTableType> >(m, pyclass_name.c_str() )
         //no __init__ def here, as this class is not meant to be constructable on the python side
-        .def("GetRank", &hops::MHO_PyTableContainer<XTableType>::GetRank)
-        .def("GetClassName", &hops::MHO_PyTableContainer<XTableType>::GetClassName)
-        .def("GetDimension", &hops::MHO_PyTableContainer<XTableType>::GetDimension)
-        .def("GetMetaData", &hops::MHO_PyTableContainer<XTableType>::GetMetaData)
-        .def("SetMetaData", &hops::MHO_PyTableContainer<XTableType>::SetMetaData)
-        .def("GetNumpyArray", &hops::MHO_PyTableContainer<XTableType>::GetNumpyArray)
-        .def("GetCoordinateAxis", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxis)
-        .def("GetCoordinateAxisMetaData", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxisMetaData)
-        .def("SetCoordinateAxisMetaData", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateAxisMetaData)
-        .def("SetCoordinateLabel", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateLabel);
+        .def("get_rank", &hops::MHO_PyTableContainer<XTableType>::GetRank)
+        .def("get_classname", &hops::MHO_PyTableContainer<XTableType>::GetClassName)
+        .def("get_dimension", &hops::MHO_PyTableContainer<XTableType>::GetDimension)
+        .def("get_metadata", &hops::MHO_PyTableContainer<XTableType>::GetMetaData)
+        .def("set_metadata", &hops::MHO_PyTableContainer<XTableType>::SetMetaData)
+        .def("get_numpy_array", &hops::MHO_PyTableContainer<XTableType>::GetNumpyArray)
+        .def("get_axis", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxis)
+        .def("get_axis_metadata", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxisMetaData)
+        .def("set_axis_metadata", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateAxisMetaData)
+        .def("set_axis_label", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateLabel);
 }
 
 
