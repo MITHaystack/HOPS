@@ -293,16 +293,45 @@ DeclarePyTableContainer(py::module &m, std::string pyclass_name = "")
 
     py::class_< MHO_PyTableContainer<XTableType> >(m, pyclass_name.c_str() )
         //no __init__ def here, as this class is not meant to be constructable on the python side
-        .def("get_rank", &hops::MHO_PyTableContainer<XTableType>::GetRank)
-        .def("get_classname", &hops::MHO_PyTableContainer<XTableType>::GetClassName)
-        .def("get_dimension", &hops::MHO_PyTableContainer<XTableType>::GetDimension)
-        .def("get_metadata", &hops::MHO_PyTableContainer<XTableType>::GetMetaData, py::return_value_policy::copy)
-        .def("set_metadata", &hops::MHO_PyTableContainer<XTableType>::SetMetaData)
-        .def("get_numpy_array", &hops::MHO_PyTableContainer<XTableType>::GetNumpyArray, py::return_value_policy::reference)
-        .def("get_axis", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxis, py::return_value_policy::reference)
-        .def("get_axis_metadata", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxisMetaData, py::return_value_policy::copy)
-        .def("set_axis_metadata", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateAxisMetaData)
-        .def("set_axis_label", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateLabel);
+        .def("get_rank", &hops::MHO_PyTableContainer<XTableType>::GetRank,
+            "get the rank (number of dimensions) of the table object"
+        )
+        .def("get_classname", &hops::MHO_PyTableContainer<XTableType>::GetClassName,
+            "get the name of the table class"
+        )
+        .def("get_dimension", &hops::MHO_PyTableContainer<XTableType>::GetDimension,
+            "get the size of the associated table dimension",
+            py::arg("dimension_index")
+        )
+        .def("get_metadata", &hops::MHO_PyTableContainer<XTableType>::GetMetaData, py::return_value_policy::copy,
+            "get a copy of the meta data attached to this table as a dictionary"
+        )
+        .def("set_metadata", &hops::MHO_PyTableContainer<XTableType>::SetMetaData,
+            "replace the meta data attached to this table with the passed dictionary",
+            py::arg("metadata_object")
+        )
+        .def("get_numpy_array", &hops::MHO_PyTableContainer<XTableType>::GetNumpyArray, py::return_value_policy::reference,
+            "get the underyling table data as a multidimensional numpy array"
+        )
+        .def("get_axis", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxis, py::return_value_policy::reference,
+            "get the axis container associated with the dimension index specified",
+            py::arg("index")
+        )
+        .def("get_axis_metadata", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxisMetaData, py::return_value_policy::copy,
+            "get a copy of the meta data attached to axis associated with the dimension index specified",
+            py::arg("index")
+        )
+        .def("set_axis_metadata", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateAxisMetaData,
+            "replace the meta data attached to the axis associated with the dimension index specified, with passed dictionary metadata_object",
+            py::arg("index"),
+            py::arg("metadata_object")
+        )
+        .def("set_axis_label", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateLabel,
+            "modify the axis (specified by the dimension_index) at the coordinate location specified by coordinate_index, replacing the existing value with label_value",
+            py::arg("dimension_index"),
+            py::arg("coordinate_index"),
+            py::arg("label_value")
+        );
 }
 
 
