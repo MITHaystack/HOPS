@@ -84,10 +84,23 @@ DeclarePyParameterStoreInterface(py::module &m, std::string pyclass_name)
 {
     py::class_< MHO_PyParameterStoreInterface >(m, pyclass_name.c_str() )
         //no __init__ def here, as this class is not meant to be constructable on the python side
-        .def("is_present", &hops::MHO_PyParameterStoreInterface::IsPresent)
-        .def("get_by_path", &hops::MHO_PyParameterStoreInterface::Get)
-        .def("set_by_path", &hops::MHO_PyParameterStoreInterface::Set)
-        .def("get_contents", &hops::MHO_PyParameterStoreInterface::GetContents, py::return_value_policy::copy);
+        .def("is_present", &hops::MHO_PyParameterStoreInterface::IsPresent,
+            "check if parameter with specified path is present in the store",
+            py::arg("value_path")
+        )
+        .def("get_by_path", &hops::MHO_PyParameterStoreInterface::Get,
+            "get parameter at path",
+            py::arg("value_path")
+        )
+        .def("set_by_path", &hops::MHO_PyParameterStoreInterface::Set,
+            "set the value of the parameter at the specified path",
+            py::arg("value_path"),
+            py::arg("value")
+        )
+        .def("get_contents", &hops::MHO_PyParameterStoreInterface::GetContents, 
+            py::return_value_policy::copy,
+            "get a copy of the contents of the parameter store as a dictionary"
+        );
 }
 
 
