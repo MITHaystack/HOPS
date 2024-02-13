@@ -99,6 +99,13 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
         std::exit(1);
     }
 
+    phasor_type* phasor_data = fContainerStore.GetObject<phasor_type>(std::string("phasors"));
+    if( phasor_data == nullptr)
+    {
+        msg_fatal("fringe", "could not find time/frequency averaged phasor object to write output." << eom);
+        std::exit(1);
+    }
+
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(filename);
     if(status)
@@ -106,6 +113,7 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
         tags.AddObjectUUID(vis_data->GetObjectUUID());
         inter.Write(tags, "tags");
         inter.Write(*vis_data, "vis");
+        inter.Write(*phasor_data, "phasors");
         inter.Close();
     }
     else
