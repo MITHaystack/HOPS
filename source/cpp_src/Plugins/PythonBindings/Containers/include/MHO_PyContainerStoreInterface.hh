@@ -217,12 +217,7 @@ DeclarePyContainerStoreInterface(py::module &m, std::string pyclass_name)
                 }
                 py::print( "object uuid ", object_uuid," is not recognized, returning None.");
                 return py::object(py::cast(nullptr));
-            });
-        // .def("GetVisibilityObject", &hops::MHO_PyContainerStoreInterface::GetObject<visibility_type>)
-        // .def("GetWeightObject", &hops::MHO_PyContainerStoreInterface::GetObject<weight_type>)
-        // .def("GetStationObject", &hops::MHO_PyContainerStoreInterface::GetObject<station_coord_type>)
-        // .def("GetVisibilityStoreObject", &hops::MHO_PyContainerStoreInterface::GetObject<visibility_store_type>)
-        // .def("GetWeightStoreObject", &hops::MHO_PyContainerStoreInterface::GetObject<weight_store_type>);
+            }, py::return_value_policy::reference);
 }
 
 

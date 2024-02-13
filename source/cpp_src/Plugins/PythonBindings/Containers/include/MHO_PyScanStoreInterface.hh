@@ -266,7 +266,7 @@ void
 DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
 {
     py::class_< MHO_PyScanStoreInterface >(m, pyclass_name.c_str() )
-        .def(py::init<>())
+        .def(py::init<>()) //can build this class from python
         .def("set_directory", &hops::MHO_PyScanStoreInterface::SetDirectory)
         .def("initialize", &hops::MHO_PyScanStoreInterface::Initialize)
         .def("is_valid", &hops::MHO_PyScanStoreInterface::IsValid)
@@ -302,7 +302,7 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
                 }
                 py::print( "data for baseline ",baseline," either it has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
-            })
+            }, py::return_value_policy::reference)
         .def("get_station_data", //lambda for returing either station data or None-type
             [=](MHO_PyScanStoreInterface& m, std::string station) -> py::object 
             {
@@ -312,7 +312,7 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
                 }
                 py::print( "data for station ", station, " either it has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
-            })
+            }, py::return_value_policy::reference)
         .def("get_fringe_data", //lambda for returing either fringe data or None-type
             [=](MHO_PyScanStoreInterface& m, std::string fringe) -> py::object 
             {
@@ -322,7 +322,7 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
                 }
                 py::print( "data for fringe ", fringe, " either it has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
-            })
+            }, py::return_value_policy::reference)
         .def("Clear", &hops::MHO_PyScanStoreInterface::Clear);
 
 }

@@ -60,7 +60,6 @@ using sbd_dr_type = visibility_type;
 using mbd_dr_type = MHO_TableContainer< visibility_element_type, mbd_dr_axis_pack >;
 using mbd_dr_amp_type = MHO_TableContainer< weight_element_type, mbd_dr_axis_pack >;
 
-
 //(here we are storing manual pcal as a rotation in 'degrees', should/could we use phasor instead?)
 using pcal_axis_pack = MHO_AxisPack< pol_axis_type, channel_axis_type>;
 using pcal_phase_type = MHO_TableContainer< double, pcal_axis_pack >;

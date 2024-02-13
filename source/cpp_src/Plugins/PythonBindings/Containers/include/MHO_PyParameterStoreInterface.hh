@@ -87,7 +87,7 @@ DeclarePyParameterStoreInterface(py::module &m, std::string pyclass_name)
         .def("is_present", &hops::MHO_PyParameterStoreInterface::IsPresent)
         .def("get_by_path", &hops::MHO_PyParameterStoreInterface::Get)
         .def("set_by_path", &hops::MHO_PyParameterStoreInterface::Set)
-        .def("get_contents", &hops::MHO_PyParameterStoreInterface::GetContents);
+        .def("get_contents", &hops::MHO_PyParameterStoreInterface::GetContents, py::return_value_policy::copy);
 }
 
 
