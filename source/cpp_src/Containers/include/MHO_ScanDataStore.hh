@@ -42,6 +42,7 @@ class MHO_ScanDataStore
 
         std::size_t GetNBaselines(){return fBaselineCodes.size();};
         std::size_t GetNStations(){return fStationCodes.size();};
+        std::size_t GetNFringes(){return fFringeCodes.size();};
 
         std::vector< std::string > GetBaselinesPresent() const {return fBaselineCodes;} 
         std::vector< std::string > GetStationsPresent() const { return fStationCodes;}
