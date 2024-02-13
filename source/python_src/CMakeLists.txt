@@ -8,9 +8,13 @@ if(PY_EXE)
     set(abs_srcdir "${CMAKE_CURRENT_BINARY_DIR}")
 
     #need this target to refresh our copy if anything in the source has changed
+    # add_custom_target( hops4py_copy_src ALL
+    #                    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    #                    "${CMAKE_CURRENT_SOURCE_DIR}/" "${CMAKE_CURRENT_BINARY_DIR}/"
+    # )
+
     add_custom_target( hops4py_copy_src ALL
-                       COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/" "${CMAKE_CURRENT_BINARY_DIR}/"
+                       COMMAND cp -r "${CMAKE_CURRENT_SOURCE_DIR}/" "${CMAKE_CURRENT_BINARY_DIR}/"
     )
 
     set(SETUP_PY_IN "${CMAKE_CURRENT_BINARY_DIR}/setup.py.in")
