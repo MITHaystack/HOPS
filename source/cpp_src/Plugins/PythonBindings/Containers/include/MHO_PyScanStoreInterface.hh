@@ -267,32 +267,97 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
 {
     py::class_< MHO_PyScanStoreInterface >(m, pyclass_name.c_str() )
         .def(py::init<>()) //can build this class from python
-        .def("set_directory", &hops::MHO_PyScanStoreInterface::SetDirectory)
-        .def("initialize", &hops::MHO_PyScanStoreInterface::Initialize)
-        .def("is_valid", &hops::MHO_PyScanStoreInterface::IsValid)
-        .def("has_baseline", &hops::MHO_PyScanStoreInterface::IsBaselinePresent)
-        .def("has_station", &hops::MHO_PyScanStoreInterface::IsStationPresent)
-        .def("has_fringe", &hops::MHO_PyScanStoreInterface::IsFringePresent)
-        .def("is_baseline_loaded", &hops::MHO_PyScanStoreInterface::IsBaselineLoaded)
-        .def("is_station_loaded", &hops::MHO_PyScanStoreInterface::IsStationLoaded)
-        .def("is_fringe_loaded", &hops::MHO_PyScanStoreInterface::IsFringeLoaded)
-        .def("get_nbaselines", &hops::MHO_PyScanStoreInterface::GetNBaselines)
-        .def("get_nstations", &hops::MHO_PyScanStoreInterface::GetNStations)
-        .def("get_nfringes", &hops::MHO_PyScanStoreInterface::GetNFringes)
-        .def("get_baseline_list", &hops::MHO_PyScanStoreInterface::GetBaselinesPresent)
-        .def("get_station_list", &hops::MHO_PyScanStoreInterface::GetStationsPresent)
-        .def("get_fringe_list", &hops::MHO_PyScanStoreInterface::GetFringesPresent)
-        .def("get_rootfile_data", &hops::MHO_PyScanStoreInterface::GetRootFileData)
-        .def("get_rootfile_basename", &hops::MHO_PyScanStoreInterface::GetRootFileBasename)
-        .def("get_baseline_filename", &hops::MHO_PyScanStoreInterface::GetBaselineFilename)
-        .def("get_station_filename", &hops::MHO_PyScanStoreInterface::GetStationFilename)
-        .def("get_fringe_filename", &hops::MHO_PyScanStoreInterface::GetFringeFilename)
-        .def("load_baseline", &hops::MHO_PyScanStoreInterface::LoadBaseline)
-        .def("load_station", &hops::MHO_PyScanStoreInterface::LoadStation)
-        .def("load_fringe", &hops::MHO_PyScanStoreInterface::LoadFringe)
-        .def("get_baselines_loaded", &hops::MHO_PyScanStoreInterface::GetBaselinesLoaded)
-        .def("get_stations_loaded", &hops::MHO_PyScanStoreInterface::GetStationsLoaded)
-        .def("get_fringes_loaded", &hops::MHO_PyScanStoreInterface::GetFringesLoaded)
+        .def("set_directory", &hops::MHO_PyScanStoreInterface::SetDirectory, 
+            "specify the path to the directory of the scan to be loaded", 
+            py::arg("directory")
+        )
+        .def("initialize", &hops::MHO_PyScanStoreInterface::Initialize, 
+            "initialize the scan storage container after setting the directory"
+        )
+        .def("is_valid", &hops::MHO_PyScanStoreInterface::IsValid, 
+            "check if initialization was successful"
+        )
+        .def("has_baseline", &hops::MHO_PyScanStoreInterface::IsBaselinePresent, 
+            "check if baseline (2-char code) is present in this scan",
+            py::arg("baseline")
+        )
+        .def("has_station", &hops::MHO_PyScanStoreInterface::IsStationPresent, 
+            "check if station (1-char code) is present in this scan",
+            py::arg("station")
+        )
+        .def("has_fringe", &hops::MHO_PyScanStoreInterface::IsFringePresent, 
+            "check if fringe file (file basename) is present in this scan",
+            py::arg("fringe_file_basename")
+        )
+        .def("is_baseline_loaded", &hops::MHO_PyScanStoreInterface::IsBaselineLoaded, 
+            "check if baseline has been loaded into memory, must be true before get_baseline_data can be called",
+            py::arg("baseline")
+        )
+        .def("is_station_loaded", &hops::MHO_PyScanStoreInterface::IsStationLoaded, 
+            "check if station has been loaded into memory, must be true before get_station_data can be called",
+            py::arg("station")
+        ) 
+        .def("is_fringe_loaded", &hops::MHO_PyScanStoreInterface::IsFringeLoaded, 
+            "check if fringe has been loaded into memory, must be true before get_fringe_data can be called",
+            py::arg("fringe_file_basename")
+        )
+        .def("get_nbaselines", &hops::MHO_PyScanStoreInterface::GetNBaselines,
+            "get the number of baselines in the current scan"
+        )
+        .def("get_nstations", &hops::MHO_PyScanStoreInterface::GetNStations,
+            "get the number of stations in the current scan"
+        )
+        .def("get_nfringes", &hops::MHO_PyScanStoreInterface::GetNFringes,
+            "get the number of fringe files in the current scan"
+        )
+        .def("get_baseline_list", &hops::MHO_PyScanStoreInterface::GetBaselinesPresent,
+            "get the list of baselines in the current scan"
+        )
+        .def("get_station_list", &hops::MHO_PyScanStoreInterface::GetStationsPresent,
+            "get the list of stations in the current scan"
+        )
+        .def("get_fringe_list", &hops::MHO_PyScanStoreInterface::GetFringesPresent,
+            "get the list of fringe files available in the current scan"
+        )
+        .def("get_rootfile_data", &hops::MHO_PyScanStoreInterface::GetRootFileData,
+            "get the root/ovex file data object as a dictionary"
+        )
+        .def("get_rootfile_basename", &hops::MHO_PyScanStoreInterface::GetRootFileBasename,
+            "get the file basename of the root/ovex file"
+        )
+        .def("get_baseline_filename", &hops::MHO_PyScanStoreInterface::GetBaselineFilename,
+            "get the filename associated with the baseline 2-char code",
+            py::arg("baseline")
+        )
+        .def("get_station_filename", &hops::MHO_PyScanStoreInterface::GetStationFilename,
+            "get the filename associated with the station 1-char code",
+            py::arg("station")
+        )
+        .def("get_fringe_filename", &hops::MHO_PyScanStoreInterface::GetFringeFilename,
+            "get the filename associated with the fringe basename",
+            py::arg("fringe")
+        )
+        .def("load_baseline", &hops::MHO_PyScanStoreInterface::LoadBaseline,
+            "load the baseline data container into memory",
+            py::arg("baseline")
+        )
+        .def("load_station", &hops::MHO_PyScanStoreInterface::LoadStation,
+            "load the station data container into memory",
+            py::arg("station")
+        )
+        .def("load_fringe", &hops::MHO_PyScanStoreInterface::LoadFringe,
+            "load the fringe data container into memory",
+            py::arg("fringe")
+        )
+        .def("get_baselines_loaded", &hops::MHO_PyScanStoreInterface::GetBaselinesLoaded,
+            "get the list of baseline container objects that have been loaded into memory"
+        )
+        .def("get_stations_loaded", &hops::MHO_PyScanStoreInterface::GetStationsLoaded,
+            "get the list of station container objects that have been loaded into memory"
+        )
+        .def("get_fringes_loaded", &hops::MHO_PyScanStoreInterface::GetFringesLoaded,
+            "get the list of fringe container objects that have been loaded into memory"
+        )
         .def("get_baseline_data", //lambda for returing either baseline data or None-type
             [=](MHO_PyScanStoreInterface& m, std::string baseline) -> py::object 
             {
@@ -302,7 +367,11 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
                 }
                 py::print( "data for baseline ",baseline," either it has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
-            }, py::return_value_policy::reference)
+            }, 
+            py::return_value_policy::reference,
+            "get the baseline data container that has been loaded into memory",
+            py::arg("baseline")
+        )
         .def("get_station_data", //lambda for returing either station data or None-type
             [=](MHO_PyScanStoreInterface& m, std::string station) -> py::object 
             {
@@ -312,7 +381,11 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
                 }
                 py::print( "data for station ", station, " either it has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
-            }, py::return_value_policy::reference)
+            }, 
+            py::return_value_policy::reference,
+            "get the station data container that has been loaded into memory",
+            py::arg("station")
+        )
         .def("get_fringe_data", //lambda for returing either fringe data or None-type
             [=](MHO_PyScanStoreInterface& m, std::string fringe) -> py::object 
             {
@@ -322,8 +395,14 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
                 }
                 py::print( "data for fringe ", fringe, " either it has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
-            }, py::return_value_policy::reference)
-        .def("Clear", &hops::MHO_PyScanStoreInterface::Clear);
+            }, 
+            py::return_value_policy::reference,
+            "get the fringe data container that has been loaded into memory",
+            py::arg("fringe")
+        )
+        .def("Clear", &hops::MHO_PyScanStoreInterface::Clear,
+            "clear memory of the current scan contents and reset to uninitialized state"
+        );
 
 }
 

@@ -17,30 +17,6 @@ MHO_ContainerStore::Clear()
     fIdsToObjects.clear();
 }
 
-
-// bool 
-// MHO_ContainerStore::AddObject(MHO_FileKey fkey, MHO_Serializable* obj)
-// {
-//     return AddObject(fkey.fTypeId, obj);
-// }
-
-// //add an object with type described by type_id, and generate/assign an object uuid for it
-// bool 
-// MHO_ContainerStore::AddObject(MHO_UUID type_id, MHO_Serializable* obj)
-// {
-//     if(obj == nullptr){return false;}
-//     if( type_id.is_empty() ){return false;}
-// 
-//     MHO_UUID obj_id = obj->GetObjectUUID();
-//     key_pair kp;
-//     kp.first = type_id;
-//     kp.second = obj_id;
-// 
-//     fIdsToObjects[kp] = obj;
-//     fObjectsToIds[obj] = kp;
-//     return true;
-// }
-
 //check if any object with the give object id is in the store
 bool 
 MHO_ContainerStore::IsObjectPresent(const MHO_UUID& obj_id) const
