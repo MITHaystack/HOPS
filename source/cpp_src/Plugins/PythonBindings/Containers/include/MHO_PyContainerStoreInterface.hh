@@ -149,10 +149,19 @@ DeclarePyContainerStoreInterface(py::module &m, std::string pyclass_name)
 {
     py::class_< MHO_PyContainerStoreInterface >(m, pyclass_name.c_str() )
         //no __init__ def here, as this class is not meant to be constructable on the python side
-        .def("is_valid", &hops::MHO_PyContainerStoreInterface::IsValid)
-        .def("get_nobjects", &hops::MHO_PyContainerStoreInterface::GetNObjects)
-        .def("is_object_present", &hops::MHO_PyContainerStoreInterface::IsObjectPresent)
-        .def("get_object_id_list", &hops::MHO_PyContainerStoreInterface::GetObjectList)
+        .def("is_valid", &hops::MHO_PyContainerStoreInterface::IsValid,
+            "check if the underlying container store object exists and is valid"
+        )
+        .def("get_nobjects", &hops::MHO_PyContainerStoreInterface::GetNObjects,
+            "get the number of objects present in the container store"
+        )
+        .def("is_object_present", &hops::MHO_PyContainerStoreInterface::IsObjectPresent,
+            "check if an object with the passed UUID is present",
+            py::arg("uuid")
+        )
+        .def("get_object_id_list", &hops::MHO_PyContainerStoreInterface::GetObjectList,
+            "get a list of the object information (list of dict's containing each object's type_uuid, object_uuid, and shortname"
+        )
         .def("get_object", //lambda for returing either object data or none type
             [=](MHO_PyContainerStoreInterface& m, std::string object_uuid) -> py::object 
             {
@@ -217,7 +226,11 @@ DeclarePyContainerStoreInterface(py::module &m, std::string pyclass_name)
                 }
                 py::print( "object uuid ", object_uuid," is not recognized, returning None.");
                 return py::object(py::cast(nullptr));
-            }, py::return_value_policy::reference);
+            }, 
+            py::return_value_policy::reference,
+            "return the object matching the specified uuid",
+            py::arg("uuid")
+        );
 }
 
 
