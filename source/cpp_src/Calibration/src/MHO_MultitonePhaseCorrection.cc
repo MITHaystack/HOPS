@@ -219,7 +219,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             //TODO FIXME -- make sure the stop/start parameters are accounted for
             //this should be fine, provided if we trim the pcal data appropriately ahead use here
 
-            double navg;
+            double navg = 0;
             std::size_t seg_start_ap, seg_end_ap;
             std::vector< double > pc_mag_segs;
             std::vector< double > pc_phase_segs;
@@ -251,13 +251,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 {
                     wght = 1.0; //pc weights default to 1
                     if(fWeights != nullptr){wght = fWeights->at(vis_pp, ch, ap, 0);}
-                    
-                    if( (mask & bit_one).count() == 1 )
-                    {
-                        //std::cout<<"channel: "<<ch_label<<"freq bounds: ("<<lower_freq<<", "<<upper_freq<<")"<<std::endl;;
-                        //std::cout<<"dropping channel "<<ch_label<<", tone_mask: "<<tone_mask<<", mask: "<<mask<<", tone @ "<<i<<" freq: "<<workspace_freq_ax->at(i)<<std::endl;
-                        wght = 0.0;
-                    }
+                    if( (mask & bit_one).count() == 1 ){wght = 0.0;}
                     mask >>= 1; //shift to next bit
                     fPCWorkspace(i) += wght*( fPCData->at(pc_pol, ap, start_idx+i) );
                     navg += wght; 
@@ -607,7 +601,6 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     //std::cout<<"chan center freq = "<<chan_center_freq<<std::endl;
     //rotate each tone phasor by the delay (zero rot at center freq)
     std::complex<double> mean_phasor = 0.0;
-    double navg = 0.0;
     for(std::size_t i=0; i<ntones; i++)
     {
         std::complex<double> phasor = pc_data_copy(i);
@@ -618,11 +611,10 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
         // std::cout<<"theta = "<<theta*(180.0/M_PI)<<std::endl;
         phasor *= std::exp(fImagUnit*theta );
         mean_phasor += phasor;
-        navg += 1.0;
     }
 
     #pragma message("TODO FIXME -- verify all sign/conjugation operations work properly for USB/LSB data.")
-    mean_phasor = std::conj( mean_phasor ) / navg;
+    mean_phasor = std::conj( mean_phasor );
 
     pcal_model[0] = std::abs(mean_phasor); //magnitude
     pcal_model[1] = std::arg(mean_phasor); //phase
