@@ -187,6 +187,8 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             tag_names = this->DumpKeys();
         }
 
+        std::set< MHO_UUID > GetTaggedObjectUUIDSet() const {return fObjectUUIDSet;}
+
     protected:
 
         //all object UUIDs which are associated with the tags 

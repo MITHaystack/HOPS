@@ -73,11 +73,18 @@ class MHO_ContainerStore
         //returns zero'd uuid if none exist
         MHO_UUID GetObjectUUID(const std::string& shortname);
 
+        //returns the type uuid of the object with obj_id (if it exists)
+        MHO_UUID GetObjectTypeUUID(const MHO_UUID& obj_id);
+
         //provide retrival of object short name from uuid
         std::string GetShortName(const MHO_UUID& obj_id);
 
         //get all short names currently in use
         void GetAllShortNames(std::vector< std::string >& shortnames);
+
+        //this is primarily here to provide a object look-up table for the python interface 
+        //returns a list of (object_type_uuid, object_item_uuid, shortname)
+        std::vector< std::tuple< std::string, std::string, std::string > > GetAllObjectInfo();
 
         //provides a way in which we can replace the nickname of an object
         void RenameObject(const std::string& current_shortname, const std::string& new_shortname);

@@ -91,7 +91,6 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
 
     //TODO REPLACE THIS WITH:
     //(1) The full visibilities (with spectral information) with the fringe solution applied 
-    //(2) The time/frequency averaged visibilities with the fringe solution applied (e.g. AP x CH)
     visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
     if( vis_data == nullptr)
     {
@@ -99,6 +98,7 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
         std::exit(1);
     }
 
+    //Add the time/frequency averaged visibilities with the fringe solution applied (e.g. AP x CH) (e.g. type212 equivalent)
     phasor_type* phasor_data = fContainerStore.GetObject<phasor_type>(std::string("phasors"));
     if( phasor_data == nullptr)
     {

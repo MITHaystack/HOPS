@@ -168,4 +168,43 @@ MHO_ContainerStore::GetAllShortNames(std::vector< std::string >& shortnames)
 }
 
 
+MHO_UUID 
+MHO_ContainerStore::GetObjectTypeUUID(const MHO_UUID& obj_id)
+{
+    MHO_UUID ret_val;
+    for(auto it = fIdsToObjects.begin(); it != fIdsToObjects.end(); it++)
+    {
+        key_pair item_ids = it->first;
+        MHO_UUID item_type_id = item_ids.first;
+        MHO_UUID item_object_id = item_ids.second;
+        if(obj_id == item_object_id)
+        {
+            ret_val = item_type_id;
+            break;
+        }
+    }
+    return ret_val;
+
+}
+
+std::vector< std::tuple< std::string, std::string, std::string > > 
+MHO_ContainerStore::GetAllObjectInfo()
+{
+    std::vector< std::tuple< std::string, std::string, std::string > >  info;
+    for(auto it = fIdsToObjects.begin(); it != fIdsToObjects.end(); it++)
+    {
+        std::tuple< std::string, std::string, std::string > obj_info;
+        key_pair item_ids = it->first;
+        MHO_UUID item_type_id = item_ids.first;
+        MHO_UUID item_object_id = item_ids.second;
+        std::string shortname = GetShortName(item_object_id);
+        std::get<0>(obj_info) = item_type_id.as_string();
+        std::get<1>(obj_info) = item_object_id.as_string();
+        std::get<2>(obj_info) = shortname;
+        info.push_back(obj_info);
+    }
+    return info;
+}
+
+
 }

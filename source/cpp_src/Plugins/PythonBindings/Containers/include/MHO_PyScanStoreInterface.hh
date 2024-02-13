@@ -236,7 +236,7 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
                 py::print( "data for baseline ",baseline," either it has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
             })
-        .def("GetStationData", //lambda for returing either baseline data or None-type
+        .def("GetStationData", //lambda for returing either station data or None-type
             [=](MHO_PyScanStoreInterface& m, std::string station) -> py::object 
             {
                 if( m.IsStationLoaded(station) ) 
@@ -246,7 +246,6 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
                 py::print( "data for station ", station, " either it has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
             })
-
         .def("Clear", &hops::MHO_PyScanStoreInterface::Clear);
 
 }
