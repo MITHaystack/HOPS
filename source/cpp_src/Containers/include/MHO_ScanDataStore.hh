@@ -49,7 +49,7 @@ class MHO_ScanDataStore
         std::vector< std::string > GetFringesPresent() const {return fFringeCodes;}
 
         //retieve file data (root, baseline, station)
-        mho_json GetRootFileData();
+        mho_json GetRootFileData() const;
         std::string GetRootFileBasename(){return fDirInterface.GetBasename(fRootFileName);}
 
         //true if loaded, false if unsuccessful

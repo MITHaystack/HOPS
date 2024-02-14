@@ -39,7 +39,7 @@ class MHO_FringeData
         MHO_ScanDataStore* GetScanDataStore(){return &fScanStore;}
 
         //should we expose these?
-        mho_json GetVex(){return fScanStore.GetRootFileData();} 
+        mho_json GetVex() const {return fScanStore.GetRootFileData();} 
 
         //access to the control format and parsed control statements
         mho_json& GetControlFormat(){return fControlFormat;}

@@ -34,50 +34,65 @@ class MHO_PyScanStoreInterface
 {
     public:
 
+        //this constructor to be called from c++ side (to provide interface to a pre-existing object)
+        MHO_PyScanStoreInterface(MHO_ScanDataStore* scan_store):
+            fScanStore(scan_store)
+        {
+            fIsOwned = false;
+            fInitialized = false;
+            fEmptyContainer = new MHO_PyContainerStoreInterface(nullptr);
+        };
+
+        //this constructor to be called from python side to create a stand-alone object
         MHO_PyScanStoreInterface()
         {
+            fScanStore = new MHO_ScanDataStore();
+            fIsOwned = true;
             fInitialized = false;
             fEmptyContainer = new MHO_PyContainerStoreInterface(nullptr);
         };
 
         virtual ~MHO_PyScanStoreInterface()
         {
-            Clear();
+            if(fIsOwned)
+            {
+                Clear();
+                delete fScanStore;
+            }
             delete fEmptyContainer;
         };
 
         void SetDirectory(std::string dir)
         {
-            fScanStore.SetDirectory(dir);
+            fScanStore->SetDirectory(dir);
             fInitialized = false;
         }
 
         bool Initialize()
         {
-            fInitialized = fScanStore.Initialize();
-            return fInitialized;
+            return fScanStore->Initialize();
         }; 
 
-        bool IsValid(){return fInitialized && fScanStore.IsValid();};
+        bool IsValid() const {return fScanStore->IsValid();};
  
-        bool IsBaselinePresent(std::string bl){return fScanStore.IsBaselinePresent(bl);}
-        bool IsStationPresent(std::string st){return fScanStore.IsStationPresent(st);}
-        bool IsFringePresent(std::string fr){return fScanStore.IsFringePresent(fr);}
+        bool IsBaselinePresent(std::string bl) const {return fScanStore->IsBaselinePresent(bl);}
+        bool IsStationPresent(std::string st) const {return fScanStore->IsStationPresent(st);}
+        bool IsFringePresent(std::string fr) const {return fScanStore->IsFringePresent(fr);}
 
-        std::size_t GetNBaselines(){return fScanStore.GetNBaselines();}
-        std::size_t GetNStations(){return fScanStore.GetNStations();}
-        std::size_t GetNFringes(){return fScanStore.GetNFringes();}
+        std::size_t GetNBaselines() const {return fScanStore->GetNBaselines();}
+        std::size_t GetNStations() const {return fScanStore->GetNStations();}
+        std::size_t GetNFringes() const {return fScanStore->GetNFringes();}
 
-        std::vector< std::string > GetBaselinesPresent() const {return fScanStore.GetBaselinesPresent();} 
-        std::vector< std::string > GetStationsPresent() const { return fScanStore.GetStationsPresent();}
-        std::vector< std::string > GetFringesPresent() const {return fScanStore.GetFringesPresent();}
+        std::vector< std::string > GetBaselinesPresent() const {return fScanStore->GetBaselinesPresent();} 
+        std::vector< std::string > GetStationsPresent() const { return fScanStore->GetStationsPresent();}
+        std::vector< std::string > GetFringesPresent() const {return fScanStore->GetFringesPresent();}
 
         //retieve file data (root, baseline, station)
-        py::dict GetRootFileData(){return fScanStore.GetRootFileData();};
-        std::string GetRootFileBasename(){return fScanStore.GetRootFileBasename();}
-        std::string GetBaselineFilename(std::string baseline){return fScanStore.GetBaselineFilename(baseline);}
-        std::string GetStationFilename(std::string station){return fScanStore.GetStationFilename(station);}
-        std::string GetFringeFilename(std::string fringe){return fScanStore.GetFringeFilename(fringe);}
+        py::dict GetRootFileData() const {return fScanStore->GetRootFileData();};
+        std::string GetRootFileBasename() const {return fScanStore->GetRootFileBasename();}
+        std::string GetBaselineFilename(std::string baseline) const {return fScanStore->GetBaselineFilename(baseline);}
+        std::string GetStationFilename(std::string station) const {return fScanStore->GetStationFilename(station);}
+        std::string GetFringeFilename(std::string fringe) const {return fScanStore->GetFringeFilename(fringe);}
 
         int LoadBaseline(std::string baseline) //perhaps we should have an optional force-reload parameter?
         {
@@ -89,13 +104,13 @@ class MHO_PyScanStoreInterface
             if(it != fBaselineContainers.end() ){return 1;} //ok, but already loaded 
 
             MHO_ContainerStore* con = new MHO_ContainerStore();
-            fScanStore.LoadBaseline(baseline, con);
+            fScanStore->LoadBaseline(baseline, con);
             MHO_PyContainerStoreInterface* inter = new MHO_PyContainerStoreInterface(con);
             fBaselineContainers[baseline] = std::make_pair(con, inter);
             return 0; //ok
         }
 
-        bool IsBaselineLoaded(std::string baseline)
+        bool IsBaselineLoaded(std::string baseline) const
         {
             if(!fInitialized){return false;}
             auto it = fBaselineContainers.find(baseline);
@@ -113,13 +128,13 @@ class MHO_PyScanStoreInterface
             if(it != fStationContainers.end() ){return 1;} //ok, but already loaded 
 
             MHO_ContainerStore* con = new MHO_ContainerStore();
-            fScanStore.LoadStation(station, con);
+            fScanStore->LoadStation(station, con);
             MHO_PyContainerStoreInterface* inter = new MHO_PyContainerStoreInterface(con);
             fStationContainers[station] = std::make_pair(con, inter);
             return 0; //ok
         }
 
-        bool IsStationLoaded(std::string station)
+        bool IsStationLoaded(std::string station) const
         {
             if(!fInitialized){return false;}
             auto it = fStationContainers.find(station);
@@ -138,13 +153,13 @@ class MHO_PyScanStoreInterface
             if(it != fFringeContainers.end() ){return 1;} //ok, but already loaded 
 
             MHO_ContainerStore* con = new MHO_ContainerStore();
-            fScanStore.LoadFringe(fringe, con);
+            fScanStore->LoadFringe(fringe, con);
             MHO_PyContainerStoreInterface* inter = new MHO_PyContainerStoreInterface(con);
             fFringeContainers[fringe] = std::make_pair(con, inter);
             return 0; //ok
         }
 
-        bool IsFringeLoaded(std::string fringe)
+        bool IsFringeLoaded(std::string fringe) const
         {
             if(!fInitialized){return false;}
             auto it = fFringeContainers.find(fringe);
@@ -250,7 +265,8 @@ class MHO_PyScanStoreInterface
     private:
 
         //provides directory/data-loading interface
-        MHO_ScanDataStore fScanStore;
+        MHO_ScanDataStore* fScanStore;
+        bool fIsOwned; //declare ownership of fScanStore
         bool fInitialized;
     
         //an empty container so we can a reference under certain error conditions
