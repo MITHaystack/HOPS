@@ -171,7 +171,7 @@ MHO_ScanDataStore::MapFringes()
 
 
 mho_json
-MHO_ScanDataStore::GetRootFileData()
+MHO_ScanDataStore::GetRootFileData() const
 {
     mho_json vex_info;
     if(fRootFileName != "" )

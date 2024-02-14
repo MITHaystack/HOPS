@@ -4,6 +4,7 @@ set (PYCONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyParameterStoreInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyContainerStoreInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyScanStoreInterface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyFringeDataInterface.hh
 )
 
 set( PYCONTAINER_SOURCEFILES

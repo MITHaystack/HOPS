@@ -36,6 +36,7 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerFileInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerStore.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScanDataStore.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeData.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Snapshot.hh
 )
 
@@ -46,6 +47,7 @@ set( CONTAINER_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerFileInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ScanDataStore.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerStore.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeData.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Snapshot.cc
 )
 
