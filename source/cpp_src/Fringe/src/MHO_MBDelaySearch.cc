@@ -28,6 +28,8 @@ MHO_MBDelaySearch::MHO_MBDelaySearch()
     fCoarseMBD = 0;
     fCoarseDR = 0;
     fSBDBinSep = 0;
+    fDRBinSep = 0;
+    fMBDBinSep = 0;
 }
 
 MHO_MBDelaySearch::~MHO_MBDelaySearch(){};
@@ -137,7 +139,11 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 ok = fDelayRateCalc.Execute();
                 
                 //copy the axis just once
-                if(first){fDRAxis = std::get<TIME_AXIS>(sbd_dr_data);}
+                if(first)
+                {
+                    fDRAxis = std::get<TIME_AXIS>(sbd_dr_data);
+                    fDRBinSep = fDRAxis.at(1) - fDRAxis.at(0);
+                }
 
                 auto NDRBin = fDRAxis.GetSize() ;//sbd_dr_data.GetDimensionArray();
                 for(std::size_t dr_idx=0; dr_idx < NDRBin; dr_idx++)
@@ -179,6 +185,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                             //turn off for all other iterations
                             fFFTEngine.DisableAxisLabelTransformation();
                             first = false;
+                            fMBDBinSep = fMBDAxis.at(1) - fMBDAxis.at(0);
                         }
 
                         check_step_fatal(ok, "fringe", "MBD search fft engine execution." << eom );
@@ -260,7 +267,7 @@ void
 MHO_MBDelaySearch::GetSBDWindow(double& low, double& high) const
 {
     low = fSBDAxis.at(0);
-    high = fSBDAxis.at(fSBDAxis.GetSize()-1);
+    high = fSBDAxis.at(fSBDAxis.GetSize()-1) + fSBDBinSep;
     if(fSBDWinSet)
     {
         low = std::max(fSBDWin[0], low); 
@@ -272,7 +279,7 @@ void
 MHO_MBDelaySearch::GetMBDWindow(double& low, double& high) const
 {
     low = fMBDAxis.at(0);
-    high = fMBDAxis.at(fMBDAxis.GetSize()-1);
+    high = fMBDAxis.at(fMBDAxis.GetSize()-1) + fMBDBinSep;
     if(fMBDWinSet)
     {
         low = std::max( fMBDWin[0], low); 
@@ -284,7 +291,7 @@ void
 MHO_MBDelaySearch::GetDRWindow(double& low, double& high) const
 {
     low = fDRAxis.at(0);
-    high = fDRAxis.at(fDRAxis.GetSize()-1);
+    high = fDRAxis.at(fDRAxis.GetSize()-1) + fDRBinSep;
     if(fDRWinSet)
     {
         low = std::max( fDRWin[0], low); 

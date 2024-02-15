@@ -169,6 +169,8 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["extra"]["rem_station_input_file"] = paramStore->GetAs<std::string>("/files/rem_station_input_file");
     //plot_dict["extra"]["output_file"] = paramStore->GetAs<std::string>("/files/output_file");
 
+    std::string ref_mk4id = paramStore->GetAs<std::string>("/ref_station/mk4id");
+    std::string rem_mk4id = paramStore->GetAs<std::string>("/rem_station/mk4id");
     plot_dict["extra"]["ref_station_mk4id"] = paramStore->GetAs<std::string>("/ref_station/mk4id");
     plot_dict["extra"]["rem_station_mk4id"] = paramStore->GetAs<std::string>("/rem_station/mk4id");
 
@@ -226,7 +228,6 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     int data_rate = (int)( nchan*eff_npols*srate_MHz* std::sqrt(ref_bits*rem_bits) + 0.5 );
     plot_dict["extra"]["data_rate"] = data_rate;
 
-
     //if ionospheric fit was done then pass that data too 
     if(paramStore->IsPresent("/fringe/dtec_array") && paramStore->IsPresent("/fringe/dtec_amp_array"))
     {
@@ -237,6 +238,44 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
         plot_dict["extra"]["dtec_array"] = dtec_array;
         plot_dict["extra"]["dtec_amp_array"] = dtec_amp_array;
     }
+
+    //pass the pcal mode that was used 
+    //check pc_mode values to see if this operator should be built at all (defaults to true)
+    //first we check if there is a 'pc_mode' defined under '/control/station/pc_mode'
+    std::string generic_pc_mode = "manual";
+    if(paramStore->IsPresent("/control/station/pc_mode"))
+    {
+        //load possible generic setting
+        generic_pc_mode = paramStore->GetAs<std::string>("/control/station/pc_mode");
+    }
+    std::string ref_pc_mode = generic_pc_mode;
+    std::string rem_pc_mode = generic_pc_mode;
+
+    //override with any station specific parameters
+    std::string ref_station_pcmode_path = std::string("/control/station/") + ref_mk4id + "/pc_mode";
+    if(paramStore->IsPresent(ref_station_pcmode_path) )
+    {
+        ref_pc_mode = paramStore->GetAs<std::string>(ref_station_pcmode_path);
+    }
+
+    //override with any station specific parameters
+    std::string rem_station_pcmode_path = std::string("/control/station/") + rem_mk4id + "/pc_mode";
+    if(paramStore->IsPresent(ref_station_pcmode_path) )
+    {
+        rem_pc_mode = paramStore->GetAs<std::string>(rem_station_pcmode_path);
+    }
+    plot_dict["extra"]["ref_pc_mode"] = ref_pc_mode;
+    plot_dict["extra"]["rem_pc_mode"] = rem_pc_mode;
+    
+    //pass the pc_period that was used, load possible generic setting
+    int generic_pc_period = 1;
+    paramStore->Get("/control/station/pc_period", generic_pc_period);
+    int ref_pc_period = generic_pc_period;
+    int rem_pc_period = generic_pc_period;
+    paramStore->Get( std::string("/control/station/") + ref_mk4id + "/pc_period", ref_pc_period);
+    paramStore->Get( std::string("/control/station/") + rem_mk4id + "/pc_period", rem_pc_period);
+    plot_dict["extra"]["ref_pc_period"] = ref_pc_period;
+    plot_dict["extra"]["rem_pc_period"] = rem_pc_period;
 
 }
 

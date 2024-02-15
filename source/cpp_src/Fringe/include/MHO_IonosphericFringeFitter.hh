@@ -24,6 +24,7 @@ class MHO_IonosphericFringeFitter: public MHO_BasicFringeFitter
         virtual ~MHO_IonosphericFringeFitter();
 
         virtual void Run() override;
+        void Finalize() override;
 
     protected:
 
@@ -31,6 +32,8 @@ class MHO_IonosphericFringeFitter: public MHO_BasicFringeFitter
         void sort_tecs(int nion, double dtec[][2]);
         int ion_search_smooth();
         void smoother (double *f, double *g, double *tec_step, int *npts);
+        
+        double fInitialSBWin[2]; //save the initial SBD window
 
 };
 

@@ -75,6 +75,40 @@ void MHO_IonosphericFringeFitter::Run()
 }
 
 
+void MHO_IonosphericFringeFitter::Finalize()
+{
+    profiler_start();
+    ////////////////////////////////////////////////////////////////////////////
+    //PLOTTING/DEBUG
+    ////////////////////////////////////////////////////////////////////////////
+    //TODO may want to reorg the way this is done
+
+    bool status_is_finished = fParameterStore->GetAs<bool>("/status/is_finished");
+    bool skipped = fParameterStore->GetAs<bool>("/status/skipped");
+    if( status_is_finished  && !skipped ) //have to be finished and not-skipped
+    {
+        //get the actual search windows that were used 
+        double low, high;
+        std::vector< double > win; win.resize(2);
+        // fMBDSearch.GetSBDWindow(low,high);
+        win[0] = fInitialSBWin[0]; win[1] = fInitialSBWin[1];
+        fParameterStore->Set("/fringe/sb_win", win);
+        
+        fMBDSearch.GetDRWindow(low,high);
+        win[0] = low; win[1] = high;
+        fParameterStore->Set("/fringe/dr_win", win);
+        
+        fMBDSearch.GetMBDWindow(low,high);
+        win[0] = low; win[1] = high;
+        fParameterStore->Set("/fringe/mb_win", win);
+        
+        mho_json& plot_data = fFringeData->GetPlotData();
+        plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, fVexInfo);
+        MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
+    }
+    profiler_stop();
+}
+
 
 // void MHO_IonosphericFringeFitter::Finalize()
 // {
@@ -118,9 +152,6 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     koff,
     nip,
     win_dr_save[2];
-
-    double win_sb_save[2];
-
 
     double coarse_spacing,
     medium_spacing,
@@ -386,7 +417,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             if(first_pass)
             {
                 //cache the full SBD search window for later
-                fMBDSearch.GetSBDWindow(win_sb_save[0], win_sb_save[1]);
+                fMBDSearch.GetSBDWindow(fInitialSBWin[0], fInitialSBWin[1]);
                 //then just limit the SBD window to bin where the max was located
                 double sbdelay = fParameterStore->GetAs<double>("/fringe/sbdelay");
                 double sbdsep = fMBDSearch.GetSBDBinSeparation();
@@ -407,7 +438,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             // restore original window values for interpolation
             for(i=0; i<2; i++)
             {
-                win_sb[i] = win_sb_save[i];
+                win_sb[i] = fInitialSBWin[i];
                 win_dr[i] = win_dr_save[i];
             }
             
@@ -521,8 +552,6 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
         koff,
         nip,
         win_dr_save[2];
-
-    double win_sb_save[2];
 
     double coarse_spacing,
            fine_spacing,
@@ -749,7 +778,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
             if(first_pass)
             {
                 //cache the full SBD search window for later
-                fMBDSearch.GetSBDWindow(win_sb_save[0], win_sb_save[1]);
+                fMBDSearch.GetSBDWindow(fInitialSBWin[0], fInitialSBWin[1]);
                 //then just limit the SBD window to bin where the max was located
                 double sbdelay = fParameterStore->GetAs<double>("/fringe/sbdelay");
                 fMBDSearch.SetSBDWindow(sbdelay, sbdelay);
@@ -769,7 +798,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
                                         // restore original window values for interpolation
             for (i=0; i<2; i++)
             {
-                win_sb[i] = win_sb_save[i];
+                win_sb[i] = fInitialSBWin[i];
                 win_dr[i] = win_dr_save[i];
             }
                                         // interpolate via direct counter-rotation for

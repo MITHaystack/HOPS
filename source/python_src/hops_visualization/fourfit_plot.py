@@ -103,7 +103,7 @@ def make_sbd_dtec_plot(plot_dict):
             ax4.plot(dtec_x, dtec_y,'r-',linewidth=0.5)
             ax4.set_xlim(dtec_x[0],dtec_x[-1])
             ax4.set_ylim(bottom=0)
-            ax4.set_xlabel(r'ion. TEC',fontsize=9)
+            ax4.set_xlabel(r'ion. TEC',fontsize=9, color='r')
             # ax4.xaxis.set_major_formatter(FormatStrFormatter('%.3f'))
             plt.xticks(fontsize=8)
             # ax4.xaxis.label.set_color('r')
@@ -812,6 +812,10 @@ def make_data_stats_text(plot_dict):
     data_rate = "-"
     nlags = "-"
 
+    ref_pc_mode = "MANUAL"
+    rem_pc_mode = "MANUAL"
+    ref_pc_period = "1"
+    rem_pc_period = "1"
     if 'extra' in plot_dict:
         ambiguity = str( np.round(float(plot_dict['extra']['ambiguity']),3) )
         ref_bits = str(plot_dict['extra']['ref_station_sample_bits'])
@@ -820,9 +824,13 @@ def make_data_stats_text(plot_dict):
         grid_pts = str(plot_dict['extra']['grid_pts'])
         data_rate = str(plot_dict['extra']['data_rate'])
         nlags = str(plot_dict['extra']['nlags'])
+        ref_pc_mode = plot_dict["extra"]["ref_pc_mode"].upper()
+        rem_pc_mode = plot_dict["extra"]["rem_pc_mode"].upper()
+        ref_pc_period = str(plot_dict["extra"]["ref_pc_period"])
+        rem_pc_period = str(plot_dict["extra"]["rem_pc_period"])
 
     #last pile of text
-    textstr100 = "Pcal mode: MANUAL, MANUAL   PC period (AP's) X,X" + '\n' + \
+    textstr100 = 'Pcal mode: ' + ref_pc_mode + ', ' + rem_pc_mode + " PC period (AP's) " + ref_pc_period +',' + rem_pc_period + '\n' + \
         'Pcal rate: X,X (us/s)' + '\n' + \
         'Bits/sample: '+ ref_bits + 'x' + rem_bits +'      SampCntNorm: disabled' + '\n' + \
         'Data rate(MSamp/s) ' + sample_rate + ' MBpts '+ grid_pts + ' Amb ' + ambiguity +' us ' + '\n' + \

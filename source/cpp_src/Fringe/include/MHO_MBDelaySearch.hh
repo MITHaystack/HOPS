@@ -112,7 +112,10 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         double fRefFreq;
         int fSBDStart;
         int fSBDStop;
+        
         double fSBDBinSep;
+        double fDRBinSep;
+        double fMBDBinSep;
 
         //the window limits 
         double fSBDWin[2];
