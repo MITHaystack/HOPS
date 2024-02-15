@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib
 #are any of these backends faster? matplotlib is abysmally slow
 # matplotlib.use("Agg")
-# matplotlib.use('Qt5Cairo') 
+# matplotlib.use('Qt5Cairo')
 
 
 
@@ -18,7 +18,7 @@ from matplotlib.ticker import AutoMinorLocator
 
 #these don't do much, still slow
 #import matplotlib.style as mplstyle
-# mplstyle.use('fast') 
+# mplstyle.use('fast')
 # matplotlib.rcParams['path.simplify_threshold'] = 1.0
 
 def make_dr_mbd_plot(plot_dict):
@@ -123,7 +123,7 @@ def make_xpower_plot(plot_dict):
         xpow_x = plot_dict['XPSPEC_XAXIS']
     else:
         xpow_x = np.arange(0,len(plot_dict['XPSPEC-ABS'])/2)
-    
+
     # The cross-power spectra (amplitude)
     ax4 = plt.subplot2grid((16, 16),(4,7),rowspan=2,colspan=6)
     ax4.plot(xpow_x, plot_dict['XPSPEC-ABS'][0:len(xpow_x)],'co-',markersize=2,markerfacecolor='b',linewidth=0.5, markeredgewidth=0.0)
@@ -222,9 +222,9 @@ def make_channel_segment_plots(plot_dict):
             ax6a.set_yticklabels(labels=[],visible=False)
             plt.tick_params(left = False, bottom = False)
 
-            
+
 def make_channel_segment_validity_plots(plot_dict):
-    
+
     #TODO FIXME -- THIS IS A DUMMY IMPLEMENTATION, PLOTS ZEROS
     # This function constructs USB/LSB validity flag plots for the time-averaged segments of each channel
     n_seg = int(plot_dict["NSeg"])
@@ -264,55 +264,56 @@ def make_channel_segment_validity_plots(plot_dict):
         if ch == 0:
             ax7b.set_ylabel('L',fontsize=7, rotation=0, labelpad=5)
             ax7b.yaxis.set_label_coords(-0.23,0.0)
-            
-            
+
+
 def make_pcal_plots(plot_dict):
 
     if "extra" in plot_dict:
-        #TODO FIXME ONLY APPLY IF MULTITONE IS ON AND PRESET
-        ref_pcal_channel_segs = plot_dict["extra"]["ref_mtpc_phase_segs"]
-        rem_pcal_channel_segs = plot_dict["extra"]["rem_mtpc_phase_segs"]
-        #TODO FIXME - This is a dummy implementation (zeros)
-        #construct the phase-cal segment plots
-        colw = 6
-    
-        n_ref_pcal_chans = len(ref_pcal_channel_segs)
-        n_rem_pcal_chans = len(rem_pcal_channel_segs)
+        if "ref_mtpc_phase_segs" in plot_dict["extra"] and "rem_mtpc_phase_segs" in plot_dict["extra"]:
 
-        n_channel_seg_plots = int(plot_dict["NPlots"])
+            #TODO FIXME ONLY APPLY IF MULTITONE IS ON AND PRESENT
+            ref_pcal_channel_segs = plot_dict["extra"]["ref_mtpc_phase_segs"]
+            rem_pcal_channel_segs = plot_dict["extra"]["rem_mtpc_phase_segs"]
+            #TODO FIXME - This is a dummy implementation (zeros)
+            #construct the phase-cal segment plots
+            colw = 6
 
-        n_seg_plots = 0
-        if n_ref_pcal_chans == n_rem_pcal_chans:
-            n_seg_plots = n_ref_pcal_chans
+            n_ref_pcal_chans = len(ref_pcal_channel_segs)
+            n_rem_pcal_chans = len(rem_pcal_channel_segs)
 
-        #PCAL PLOTS
-        for ch in range(0,n_seg_plots):
-            n_seg = len(ref_pcal_channel_segs[ch])
+            n_channel_seg_plots = int(plot_dict["NPlots"])
 
-            ax8 = plt.subplot2grid((255,colw*n_channel_seg_plots),(160,colw*ch),rowspan=16,colspan=colw)
-            plt.subplots_adjust(wspace=0, hspace=0)
-            ax8.plot(range(n_seg), ref_pcal_channel_segs[ch],'co',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
-            ax8.plot(range(n_seg), rem_pcal_channel_segs[ch],'co',markersize=2, markerfacecolor='m', linewidth=0.5, markeredgewidth=0.0)
-            ax8.set_xlim(0,n_seg)
-            ax8.set_ylim(-180,180)
-            ax8.xaxis.set_major_locator(plt.LinearLocator(numticks=3))
-            ax8.xaxis.set_minor_locator(AutoMinorLocator(2))
-            ax8.set_xticklabels(labels=[],visible=True)
-            ax8.tick_params(axis='both', direction='in', which='both')
+            n_seg_plots = 0
+            if n_ref_pcal_chans == n_rem_pcal_chans:
+                n_seg_plots = n_ref_pcal_chans
 
-            if ch == 0:
-                ax8.set_ylabel(r"pcal $\theta$",fontsize=9)
-                ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
-                ax8.tick_params(axis='y', left = False,  right=False, bottom = False, labelleft=False)
-            elif ch == (n_seg_plots-1):
-                ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
-                ax8.set_yticklabels(ax8.get_yticks(), fontsize=5)
-                ax8.tick_params(axis='y', left=False, right=True, labelleft=False, labelright=True)
-            else:
-                ax8.yaxis.set_major_locator(plt.NullLocator())
-                ax8.set_yticklabels(labels=[],visible=False)
-                plt.yticks(visible=False)
+            #PCAL PLOTS
+            for ch in range(0,n_seg_plots):
+                n_seg = len(ref_pcal_channel_segs[ch])
 
+                ax8 = plt.subplot2grid((255,colw*n_channel_seg_plots),(160,colw*ch),rowspan=16,colspan=colw)
+                plt.subplots_adjust(wspace=0, hspace=0)
+                ax8.plot(range(n_seg), ref_pcal_channel_segs[ch],'co',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
+                ax8.plot(range(n_seg), rem_pcal_channel_segs[ch],'co',markersize=2, markerfacecolor='m', linewidth=0.5, markeredgewidth=0.0)
+                ax8.set_xlim(0,n_seg)
+                ax8.set_ylim(-180,180)
+                ax8.xaxis.set_major_locator(plt.LinearLocator(numticks=3))
+                ax8.xaxis.set_minor_locator(AutoMinorLocator(2))
+                ax8.set_xticklabels(labels=[],visible=True)
+                ax8.tick_params(axis='both', direction='in', which='both')
+
+                if ch == 0:
+                    ax8.set_ylabel(r"pcal $\theta$",fontsize=9)
+                    ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
+                    ax8.tick_params(axis='y', left = False,  right=False, bottom = False, labelleft=False)
+                elif ch == (n_seg_plots-1):
+                    ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
+                    ax8.set_yticklabels(ax8.get_yticks(), fontsize=5)
+                    ax8.tick_params(axis='y', left=False, right=True, labelleft=False, labelright=True)
+                else:
+                    ax8.yaxis.set_major_locator(plt.NullLocator())
+                    ax8.set_yticklabels(labels=[],visible=False)
+                    plt.yticks(visible=False)
     else:
         #TODO FIXME - This is a dummy implementation (zeros)
         #construct the phase-cal segment plots
@@ -354,7 +355,7 @@ def make_pcal_plots(plot_dict):
 
 def make_channel_info_table(plot_dict):
 
-    #make the text table that sits below the channel/pcal plots 
+    #make the text table that sits below the channel/pcal plots
     n_seg_plots = int(plot_dict["NPlots"])
     axT = plt.subplot2grid((96,n_seg_plots),(67,0),rowspan=20,colspan=n_seg_plots)
     #plt.subplots_adjust(left=0.1, right=0.9, top=0.8, bottom=0.1)  # Adjust margins as needed
@@ -454,8 +455,8 @@ def make_channel_info_table(plot_dict):
     if n_seg_plots > 16:
         table.set_fontsize(4)
 
-    #adjust the cell text colors for the pcal amps 
-    #needed to set p-cal amplitudes in green, red, and orange colors 
+    #adjust the cell text colors for the pcal amps
+    #needed to set p-cal amplitudes in green, red, and orange colors
     #also, we round the floats to the nearest integer here
     for key, cell in table._cells.items():
         if cth_text[ key[0] ] == "PC amp":
@@ -550,7 +551,7 @@ def make_top_info_text(plot_dict):
 def make_model_resid_info_text(plot_dict):
     #adds the wall of text below the p-cal table with:
     #a priori, total, and residual delay model infomation
-    
+
     btmtextstr1 = 'Group delay (usec) ' + '\n' + \
         'Sband delay (usec) ' + '\n' + \
         'Phase delay (usec) ' + '\n' + \
@@ -684,7 +685,7 @@ def make_coord_text(plot_dict):
     #add the station sky coordinate and u-v coordinate info to the bottom
     #note that these parameters are only present in hops4 generated data
     #(plot_data_dir is currently missing these items)
-    #ALSO -> IMPORTANT: HOPS4 EVALUATES THESE QUANTIES AT THE FOURFIT REFERENCE TIME 
+    #ALSO -> IMPORTANT: HOPS4 EVALUATES THESE QUANTIES AT THE FOURFIT REFERENCE TIME
     #HOPS3 evalutes them at the beginning of the scan
     if 'extra' in plot_dict:
         ref_mk4id = plot_dict["extra"]["ref_station_mk4id"]
@@ -739,7 +740,7 @@ def make_amplitude_table(plot_dict):
     ct3_row_label[4] = 'Inc. frq. avg.'
     #create the table of per-channel data TODO - FILL ME IN
     ct3_data = np.zeros((ct3_rows,ct3_cols), dtype=object)
-    
+
     #fill the table values
     amp = float(plot_dict['Amp'])
     amp_err = amp/float(plot_dict['SNR'])
@@ -749,7 +750,7 @@ def make_amplitude_table(plot_dict):
     if 'extra' in plot_dict:
         ct3_data[3][0] = str(np.round(float(plot_dict["extra"]["inc_avg_amp"]),3))
         ct3_data[4][0] = str(np.round(float(plot_dict["extra"]["inc_avg_amp_freq"]),3))
-    
+
     # Create the table
     table3 = axT3.table(cellText=ct3_data, rowLabels=ct3_row_label, loc='center')
 
@@ -765,9 +766,9 @@ def make_amplitude_table(plot_dict):
     table3.scale(1, 0.7)  # Adjust the scale factor as needed
 
 def make_window_table(plot_dict):
-    
+
     #construct the table containing the limits of the search windows (sbd, mbd, dr, ion)
-    #this adds more text at the bottom 
+    #this adds more text at the bottom
     axT4 = plt.subplot2grid((120,120),(119,119),rowspan=4,colspan=1)
     ct4_rows = 4
     ct4_cols = 2
@@ -815,7 +816,7 @@ def make_data_stats_text(plot_dict):
         ambiguity = str( np.round(float(plot_dict['extra']['ambiguity']),3) )
         ref_bits = str(plot_dict['extra']['ref_station_sample_bits'])
         rem_bits = str(plot_dict['extra']['rem_station_sample_bits'])
-        sample_rate = str( np.round(float(plot_dict['extra']['sample_rate']), 1) ) 
+        sample_rate = str( np.round(float(plot_dict['extra']['sample_rate']), 1) )
         grid_pts = str(plot_dict['extra']['grid_pts'])
         data_rate = str(plot_dict['extra']['data_rate'])
         nlags = str(plot_dict['extra']['nlags'])
@@ -860,15 +861,15 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     make_xpower_plot(plot_dict) #constructs the cross-power spectrum phase/amp twin plot
     make_channel_segment_plots(plot_dict) #constructs the per-channel phase/amp plots
     make_channel_segment_validity_plots(plot_dict) #constructs the USB/LSB validity flags
-    make_pcal_plots(plot_dict) #constructs the per-channel p-cal plots 
-    make_channel_info_table(plot_dict) #constructs the channel/pcal info table 
+    make_pcal_plots(plot_dict) #constructs the per-channel p-cal plots
+    make_channel_info_table(plot_dict) #constructs the channel/pcal info table
     make_info_text_box(plot_dict) #constructs fringe summary text box
     make_top_info_text(plot_dict) #constructs the title/top-page info
     make_model_resid_info_text(plot_dict) #constructs the a priori model, totals, and residuals text at the bottom
-    make_rms_table(plot_dict) #constructs the fringe RMS table 
+    make_rms_table(plot_dict) #constructs the fringe RMS table
     make_coord_text(plot_dict) #constructs the station coordinate statements (az,el,pa,u,v)
-    make_amplitude_table(plot_dict) #constructs the amplitude table 
-    make_window_table(plot_dict) #constructs the (sbd,mbd,dr,ion) window limits table 
+    make_amplitude_table(plot_dict) #constructs the amplitude table
+    make_window_table(plot_dict) #constructs the (sbd,mbd,dr,ion) window limits table
     make_data_stats_text(plot_dict) #constructs the data statistics/summary text
 
     if show_on_screen:
