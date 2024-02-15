@@ -168,6 +168,7 @@ endif(HOPS_ENABLE_TEST)
 
 ################################################################################
 #python package setup
+option(HOPS_PYPI_MANAGE_DEPS "Allow pip to download and install python dependencies via PyPi." OFF)
 
 if(${CMAKE_VERSION} VERSION_GREATER "3.12.0")
     find_package (Python3 COMPONENTS Interpreter Development)
