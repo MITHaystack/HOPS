@@ -66,7 +66,15 @@ int main(int argc, char** argv)
 
     //open and dump to file 
     std::ofstream outFile(output_file.c_str(), std::ofstream::out);
-    outFile << root;
+
+    if(outFile.is_open())
+    {
+        outFile << root;
+    }
+    else
+    {
+        msg_error("main", "could not open file: " << output_file << eom);
+    }
     outFile.close();
 
     std::cout<<"Done."<<std::endl;
