@@ -343,24 +343,38 @@ MHO_ControlFileParser::FindAndReplace(const std::string& find_str, const std::st
 void 
 MHO_ControlFileParser::SplitSetString(const std::string& set_string, std::string& prepend, std::string& append)
 {
+    prepend = "";
+    append = "";
+    //(new behavior) prepend is always empty 
     if(set_string != "")
     {
-        std::string if_flag = "if";
-        std::size_t first_if_pos = set_string.find(if_flag);
-        if(first_if_pos == std::string::npos)
-        {
-            //no 'if' statement in the set string, add everything to prepend
-            prepend = set_string;
-        }
-        else 
-        {
-            //need to split the set_string into two parts at the location of the first 'if'
-            std::string part1 = set_string.substr(0, first_if_pos);
-            std::string part2 = set_string.substr(first_if_pos);
-            prepend = part1;
-            append = part2;
-        }
+        prepend = "";
+        append = " if true " + set_string;
     }
+    
+    //original behavior below, however this is probably undesirable because 
+    //usually the user expects 'set' arguments to take precedence over any 
+    //control file statements, but the behavior below allows any non-if'd statements 
+    //in the set string to get masked by a control file statement 
+    
+    // if(set_string != "")
+    // {
+    //     std::string if_flag = "if";
+    //     std::size_t first_if_pos = set_string.find(if_flag);
+    //     if(first_if_pos == std::string::npos)
+    //     {
+    //         //no 'if' statement in the set string, add everything to prepend
+    //         prepend = set_string;
+    //     }
+    //     else 
+    //     {
+    //         //need to split the set_string into two parts at the location of the first 'if'
+    //         std::string part1 = set_string.substr(0, first_if_pos);
+    //         std::string part2 = set_string.substr(first_if_pos);
+    //         prepend = part1;
+    //         append = part2;
+    //     }
+    // }
 }
 
 
