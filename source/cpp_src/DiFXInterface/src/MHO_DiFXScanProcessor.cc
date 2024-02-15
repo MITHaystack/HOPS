@@ -151,6 +151,11 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
             (*it)["mk4_site_ID"] = fStationCodeMap->GetMk4IdFromStationCode(station_code);
         }
 
+        //TODO FIXME -- we need to extract the bits/sample information from the datastreams objects 
+        //and stuff this is a OVEX $TRACKS object in order to get the data rate parameters (at bit statistics) 
+        //right in the fringe plot, for now the assumption is 2-bits/sample (always, doh!)
+        
+
         //lastly we need to insert the traditional mk4 channel names for each frequency
         //TODO FIXME -- need to support zoom bands (requires difx .input data)
         //fChanNameConstructor.AddChannelNames(vex_root);
