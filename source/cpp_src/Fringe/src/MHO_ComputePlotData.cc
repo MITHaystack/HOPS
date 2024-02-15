@@ -915,10 +915,6 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     dump_multitone_pcmodel(plot_dict, station_flag, pol);
     dump_manual_pcmodel(plot_dict, station_flag, pol);
 
-    //currently no dTEC fitting support
-    plot_dict["extra"]["ion_win"].push_back(0.0);
-    plot_dict["extra"]["ion_win"].push_back(0.0);
-
     double fringe_amp = fParamStore->GetAs<double>("/fringe/famp");
     double tsum_weights = fParamStore->GetAs<double>("/fringe/total_summed_weights");
 

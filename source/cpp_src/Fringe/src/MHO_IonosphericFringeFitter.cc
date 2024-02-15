@@ -199,6 +199,10 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
         win_ion[1] = ion_delta;
     }
 
+
+    //put the ion_win info into the 'fringe' section of the parameters 
+    fParameterStore->Set("/fringe/ion_win", win_ion);
+
     // prepare for ionospheric search
     center = (win_ion[0] + win_ion[1]) / 2.0;
     // condition total # of points
@@ -578,6 +582,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
         win_ion[1] = 0.0;
     }
     
+    
     //fixed ion fit...so we need to check if each station has an assigned a priori ion value
     if(ion_npts == 1)
     {
@@ -597,6 +602,9 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
         win_ion[0] = ion_delta;
         win_ion[1] = ion_delta;
     }
+    
+    //put the ion_win info into the 'fringe' section of the parameters 
+    fParameterStore->Set("/fringe/ion_win", win_ion);
     
     double values[MAX_ION_PTS];
     double smoothed_values[4*MAX_ION_PTS];

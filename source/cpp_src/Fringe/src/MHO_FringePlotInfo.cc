@@ -195,6 +195,11 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     win[0] *= 1e3; win[1] *= 1e3; 
     plot_dict["extra"]["dr_win"] = win;
     
+    bool do_ion = paramStore->GetAs<bool>("/config/do_ion");
+    if(do_ion){ win = paramStore->GetAs< std::vector<double> >("/fringe/ion_win"); }
+    else{ win[0] = 0.0; win[1] = 0.0;}
+    plot_dict["extra"]["ion_win"] = win;
+
     //calculate the (u,v) coordinates (taken from fill_202.c)
     double speed_of_light_Mm = 299.792458; // in mega-meters (?!)
     double lambda = speed_of_light_Mm / paramStore->GetAs<double>("/control/config/ref_freq"); // wavelength (m)
