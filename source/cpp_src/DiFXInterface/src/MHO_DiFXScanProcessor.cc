@@ -9,8 +9,11 @@
 #include <sys/stat.h>
 #include <time.h>
 #include <ctime>
-
 #include <iomanip>
+
+#include <cctype> //toupper
+#include <algorithm>
+
 
 #define EPS 1e-15
 
@@ -109,6 +112,7 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
         //rip out all scans but the one we are processing
         mho_json sched;
         mho_json sched_copy = vex_root["$SCHED"];
+        std::string mode_name; //grab this in this loop, we'll need it for the $TRACKS info later
         for(auto it = sched_copy.begin(); it != sched_copy.end(); ++it)
         {
             if(it.key() == scan_id)
@@ -119,6 +123,7 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
                 }
                 (*it)["fourfit_reftime"] = get_fourfit_reftime_for_scan(*it); //add the fourfit reference time
                 sched[it.key()] = it.value(); //add this scan to the schedule section
+                mode_name = it.value()["mode"].get<std::string>();
                 break;
             }
         }
@@ -145,16 +150,89 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
         vex_root["$SOURCE"] = src;
 
         //make sure the mk4_site_id single-character codes are specified for each site
+        //also create a map of DiFX input file station codes (all upper-case) to vex station codes (any-case)
+        std::map< std::string, std::string> difx2vex; //station code map
         for(auto it = vex_root["$SITE"].begin(); it != vex_root["$SITE"].end(); ++it)
         {
             std::string station_code = (*it)["site_ID"];
             (*it)["mk4_site_ID"] = fStationCodeMap->GetMk4IdFromStationCode(station_code);
+            //Careful!! this will break if there are two stations that only differ by case 
+            //needed because while the DiFX input-file makes all station codes upper-case
+            //the vex file does not (and we want to preserve the vex codes) - jpb 02/15/24 
+            std::string difx_station_code = station_code;
+            std::transform(difx_station_code.begin(), difx_station_code.end(), difx_station_code.begin(), ::toupper);
+            difx2vex[difx_station_code] = station_code; 
         }
 
-        //TODO FIXME -- we need to extract the bits/sample information from the datastreams objects 
-        //and stuff this is a OVEX $TRACKS object in order to get the data rate parameters (at bit statistics) 
-        //right in the fringe plot, for now the assumption is 2-bits/sample (always, doh!)
+        //This assumes all datastreams at a antenna are all sampled with the same bit depth
+        //this is probably relatively safe, 
+        //but otherwise we would need to track this on a per-channel or per-band basis
+        std::map< std::string, int >  code2bits;
+        std::map< int, std::string >  id2code;
+        std::set< int > bits_present; 
+        if( fInput.contains("datastream") && fInput.contains("antenna") )
+        {
+            for(auto it : fInput["datastream"].items() )
+            {
+                if( it.value().contains("antennaId") && it.value().contains("quantBits") )
+                {
+                    int antennaId = it.value()["antennaId"].get<int>();
+                    int bits = it.value()["quantBits"].get<int>();
+                    int antId = 0;
+                    for(auto it = fInput["antenna"].begin(); it != fInput["antenna"].end(); it++)
+                    {
+                        if(antId == antennaId && it.value().contains("name"))
+                        {
+                            std::string antCode = it.value()["name"].get<std::string>();  
+                            code2bits[antCode] = bits;
+                            id2code[antennaId] = antCode;
+                            break;
+                        }
+                        antId++;
+                    }
+                }
+            }
+        }
         
+        //fake it 'til we make it (just like difx2mark4)
+        //add an OVEX $TRACKS section for each site just to keep track of # bits/sample 
+        //we'll create a tracks "trax" entry for each possible bits/sample that we've encountered
+        //we will then re-link the stations to this OVEX tracks section in the MODE section
+        mho_json tracks_section;
+        std::set< int > added_trax;
+        std::map< std::string, std::vector< std::string > > trax2codes;
+        for(auto it = code2bits.begin(); it != code2bits.end(); it++)
+        {
+            std::stringstream ss;
+            ss << "trax_" << it->second << "bits";
+            std::string trax_name = ss.str();
+
+            auto iter_bool_pair = added_trax.insert(it->second);
+            if(iter_bool_pair.second)
+            {
+                //first time we are seeing this #bits/sample
+                mho_json trax;
+                trax["bits/sample"] = it->second;
+
+                tracks_section[trax_name] = trax;
+            }
+            //add the (vex) station code to the list of stations attached to this trax specification
+            trax2codes[trax_name].push_back( difx2vex[ it->first ] );
+        }
+        
+        //insert our new trax info
+        if( vex_root.contains("$TRACKS") ){ vex_root["$TRACKS"].update(tracks_section); }
+        else{ vex_root["$TRACKS"] = tracks_section; }
+    
+        //clear all existing tracks in the $MODE section, and re-link to only our 'trax'
+        vex_root["$MODE"][mode_name]["$TRACKS"].clear();
+        for(auto it = trax2codes.begin(); it != trax2codes.end(); it++)
+        {
+            mho_json trax_obj;
+            trax_obj["keyword"] = it->first;
+            trax_obj["qualifiers"] = it->second;
+            vex_root["$MODE"][mode_name]["$TRACKS"].push_back(trax_obj);
+        }
 
         //lastly we need to insert the traditional mk4 channel names for each frequency
         //TODO FIXME -- need to support zoom bands (requires difx .input data)
