@@ -44,7 +44,7 @@ using hops::pStop;
 
 #define PROFILE_INFO_LEN 128
 
-struct MHO_ProfileEvent 
+struct MHO_ProfileEvent
 {
     int fFlag; //indicates start/stop
     int fLineNumber; //line number of the file
@@ -72,10 +72,15 @@ class MHO_Profiler
             return *fInstance;
         }
 
+        void Enable(){fDisabled = false;};
+        void Disable(){fDisabled = true;};
+
+        bool IsEnabled() const { return !fDisabled; }
+
         //TODO we need to eliminate the need for locks...which sort of interferes
         //with the objective of profiling. However, to do that we would
-        //probably need a lock free map implementation in order to map the 
-        //thread_id's to a local index and push the events into a thread-specific vector 
+        //probably need a lock free map implementation in order to map the
+        //thread_id's to a local index and push the events into a thread-specific vector
         //so for now, mutex it is...
         void Lock(){fMutex.lock();};
         void Unlock(){fMutex.unlock();};
@@ -90,22 +95,20 @@ class MHO_Profiler
 
         MHO_Profiler():fNThreads(1)
         {
+            fDisabled = true; //disabled by default
             fEvents.reserve(1000);
             fTimer.Start();
         };
         virtual ~MHO_Profiler(){};
 
-
         std::mutex fMutex;
         static MHO_Profiler* fInstance; //static global class instance
         std::size_t fNThreads;
-
-
+        bool fDisabled;
 
         //map each thread to a vector of events
-        // std::vector< std::vector< MHO_ProfileEvent > > fThreadEvents;    
+        // std::vector< std::vector< MHO_ProfileEvent > > fThreadEvents;
         std::vector< MHO_ProfileEvent > fEvents;
-
 
         MHO_Timer fTimer;
 
