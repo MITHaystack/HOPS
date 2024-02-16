@@ -1,5 +1,3 @@
-#include <getopt.h>
-
 #include "MHO_Message.hh"
 #include "MHO_ContainerDictionary.hh"
 #include "MHO_ContainerStore.hh"
@@ -7,108 +5,43 @@
 
 using namespace hops;
 
-
+//option parsing and help text library
 #include "CLI11.hpp"
 
-//
-// /** This example demonstrates the use of `prefix_command` on a subcommand
-// to capture all subsequent arguments along with an alias to make it appear as a regular options.
-//
-// All the values after the "sub" or "--sub" are available in the remaining() method.
-// */
-// int main(int argc, const char *argv[]) {
-//
-//     int value{0};
-//     CLI::App app{"Test App"};
-//     app.add_option("-v", value, "value");
-//
-//     auto *subcom = app.add_subcommand("sub", "")->prefix_command();
-//     subcom->alias("--sub");
-//     CLI11_PARSE(app, argc, argv);
-//
-//     std::cout << "value=" << value << '\n';
-//     std::cout << "after Args:";
-//     for(const auto &aarg : subcom->remaining()) {
-//         std::cout << aarg << " ";
-//     }
-//     std::cout << '\n';
-// }
 
 int main(int argc, char** argv)
 {
-    std::string filename = "";
+    std::string input_file = "";
     std::string output_file = "";
     int detail = eJSONAll;
+    int nspaces = 0;
+    int message_level = 0;
 
     CLI::App app{"hops2json"};
 
+    app.add_option("input,-i,--input-file", input_file, "The name of the input (hops) file to be converted.")->required();
+    app.add_option("output,-o,--output-file", output_file, "The name of the output (json) file, if not given the result will be stored in <input-file>.json.");
+    app.add_option("-d,--detail", detail, "The level of detail to be used when generating the output, range: 0 (low) to 4 (high), default (4).")->expected(0,4);
+    app.add_option("-m,--message-level", message_level, "The message level to be used, range: -2 (debug) to 5 (silent).");
+    app.add_option("-p,--pretty-print", nspaces, "Generate the json with indentations (soft tabs) consisting of the number of spaces specified, default (disabled).");
 
-    app.add_option("-f", filename, "filename");
-    app.add_option("-o", filename, "output_file");
-    app.add_option("-d", detail, "detail");
-
-    // auto *subcom = app.add_subcommand("sub", "")->prefix_command();
-    // subcom->alias("--sub");
     CLI11_PARSE(app, argc, argv);
 
-    // std::cout << "value=" << value << '\n';
-    // std::cout << "after Args:";
-    // for(const auto &aarg : subcom->remaining()) {
-    // std::cout << aarg << " ";
-    // }
-    // std::cout << '\n';
-
-
-
-    std::string usage = "hops2json -f <file> -d <detail level: 0 (low) to 4 (high)> -o <output_file>";
-
     MHO_Message::GetInstance().AcceptAllKeys();
-    MHO_Message::GetInstance().SetMessageLevel(eDebug);
+    MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 
-    // std::string filename = "";
-    // std::string output_file = "";
-    // int detail = eJSONAll;
-    //
-    // static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
-    //                                       {"file", required_argument, 0, 'f'},
-    //                                       {"detail", required_argument, 0, 'd'},
-    //                                       {"output", required_argument, 0, 'o'}
-    // };
-    //
-    // static const char* optString = "hf:d:o:";
-    //
-    // while(true)
-    // {
-    //     char optId = getopt_long(argc, argv, optString, longOptions, NULL);
-    //     if (optId == -1)
-    //         break;
-    //     switch(optId)
-    //     {
-    //         case ('h'):  // help
-    //             std::cout << usage << std::endl;
-    //             return 0;
-    //         case ('f'):
-    //             filename = std::string(optarg);
-    //             break;
-    //         case ('d'):
-    //             detail = std::atoi(optarg);
-    //             break;
-    //         case ('o'):
-    //             output_file = std::string(optarg);
-    //             break;
-    //         default:
-    //             std::cout << usage << std::endl;
-    //             return 1;
-    //     }
-    // }
+    if(output_file == "")
+    {
+        output_file = input_file + ".json";
+    }
 
     MHO_ContainerStore conStore;
     MHO_ContainerFileInterface conInter;
-    conInter.SetFilename(filename);
+    conInter.SetFilename(input_file);
     conInter.PopulateStoreFromFile(conStore); //reads in all the objects in a file
 
     //all file objects are now in memory
-    std::cout<<"Converting "<<conStore.GetNObjects()<<" objects."<<std::endl;
+    msg_status("main", "converting "<<conStore.GetNObjects()<<" objects" << eom);
 
     //convert the entire store to json
     mho_json root;
@@ -119,15 +52,17 @@ int main(int argc, char** argv)
 
     if(outFile.is_open())
     {
-        outFile << root;
+        if(nspaces == 0){outFile << root;}
+        else{ outFile << root.dump(nspaces); }
     }
     else
     {
         msg_error("main", "could not open file: " << output_file << eom);
     }
+
     outFile.close();
 
-    std::cout<<"Done."<<std::endl;
+    msg_status("main", "done" << eom);
 
     return 0;
 }

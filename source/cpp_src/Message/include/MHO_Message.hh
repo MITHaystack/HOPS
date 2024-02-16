@@ -69,6 +69,7 @@ using hops::eStatus;
 using hops::eInfo;
 using hops::eDebug;
 
+
 //uses the singleton pattern (as we only have one terminal)
 class MHO_Message
 {
@@ -100,6 +101,7 @@ class MHO_Message
 
         void Flush();
         void SetMessageLevel(MHO_MessageLevel level){fAllowedLevel = level;}
+        void SetLegacyMessageLevel(int legacy_message_level);
         MHO_MessageLevel GetMessageLevel() const {return fAllowedLevel;}
 
         MHO_Message& SendMessage(const MHO_MessageLevel& level, const std::string& key);
