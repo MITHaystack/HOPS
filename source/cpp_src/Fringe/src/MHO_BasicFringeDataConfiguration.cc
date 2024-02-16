@@ -13,6 +13,19 @@
 #include "MHO_Tokenizer.hh"
 #include <getopt.h>
 
+// #include <sys/ioctl.h>
+// // #include <stdio.h>
+// // #include <unistd.h>
+// 
+// //retrieve the width of the terminal 
+// //(so we know when to line break)
+// int get_window_columns()
+// {
+//     struct winsize w;
+//     ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+//     return w.ws_col;
+// }
+
 namespace hops
 {
 
@@ -20,8 +33,11 @@ namespace hops
 int
 MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
 {
+    //TODO update the usage string
+    std::string usage = "ffit -c <control file> -b <baseline> -P <pol. product> <directory>";
+
     //command line parameters
-    bool accounting = false; //'-a' perform run-time accounting/profiling
+    bool accounting = false; //'-a' perform run-time accounting - not yet enabled
     std::string baseline = ""; //'-b' baseline:frequency_group selection
     std::string freqgrp = ""; //'-b' frequency_group selection
     std::string control_file = ""; //'-c' specifies the control file
@@ -39,18 +55,20 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     std::string reftime = ""; //'-T' specify the fourfit reference time - not yet enabled
     bool xpower_output = false; //'-x' same as option '-p' we no long use pgplot/xwindows
     //std::string output_file = "fdump.json"; //'-o' specify the output file, for testing
-
+    
     //store the raw arguments in the parameter store
     std::vector<std::string> arglist;
     for(int i=0; i<argc; i++){arglist.push_back( std::string(argv[i]) );}
     paramStore->Set("/cmdline/args", arglist);
-
-    //detect and parse the set_string, if it exists, so we can ignore items which may be
+    
+    //detect and parse the set_string, if it exists, so we can ignore items which may be 
     //valid control parameters but look like options to get opt (e.g. 'set start -3')
     int set_arg_index = -1;
     std::string set_string = parse_set_string(arglist, set_arg_index);
 
-    static struct option longOptions[] =
+
+
+    static struct option longOptions[] = 
     {
         {"help", no_argument, 0, 'h'},
         {"accounting", no_argument, 0, 'a'},
@@ -73,7 +91,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     };
 
     //these are nearly all of the options of the original fourfit
-    //However, some are disabled, and the '-d' option has been coopted to point
+    //However, some are disabled, and the '-d' option has been coopted to point 
     //to the data directory, and '-o' is used to specify the output file name
     static const char* optString = "+hab:c:d:ef:m:n:pr:s:tuxP:T:X";
     //fourfit option string is "+ab:c:d:ef:m:n:pr:s:tuxP:T:X"
@@ -88,9 +106,9 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
             case 'h':  // help
                 print_usage();
                 std::exit(0);
-            case 'a':
+            case 'a':  // help
                 accounting = true;
-                MHO_Profiler::GetInstance().Enable();
+                msg_warn("fringe", "accounting option '-a' is not available." << eom);
             case 'b':
                 parse_baseline_freqgrp(std::string(optarg), baseline, freqgrp);
                 break;
@@ -163,11 +181,11 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
                 }
                 break;
             default:
-                print_usage();
+                std::cout << usage << std::endl;
                 return 1;
         }
     }
-
+    
     //set the message level
     set_message_level(message_level);
 
@@ -189,13 +207,12 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
 
     //pass the extracted command line info back in the parameter store
     //accounting = false;  //not implemented
-    paramStore->Set("/cmdline/accounting", accounting);
     paramStore->Set("/cmdline/baseline", baseline);
     paramStore->Set("/cmdline/frequency_group", freqgrp);
 
     //TODO set the absolute path for the control file
     paramStore->Set("/cmdline/control_file",control_file);
-    //TODO et the absolute path for the data directory
+    //TODO et the absolute path for the data directory 
     paramStore->Set("/cmdline/directory", directory);
 
     //estimate_time = false; //not implemented
@@ -217,22 +234,22 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     return status; //0 is ok, anything else is an error
 }
 
-void
+void 
 MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(std::string baseline_freqgrp, std::string& baseline, std::string& freqgrp)
 {
     MHO_Tokenizer tokenizer;
-
+    
     if( baseline_freqgrp.find(':') == std::string::npos )
     {
         baseline = baseline_freqgrp;
-
+        
         if(baseline.size() != 2)
         {
             msg_fatal("fringe", "baseline must be passed as 2-char code."<< eom);
             std::exit(1);
         }
     }
-    else
+    else 
     {
         //split on ':' into baseline and frequency group
         std::vector< std::string> tokens;
@@ -252,7 +269,7 @@ MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(std::string baseline_fr
     }
 }
 
-void
+void 
 MHO_BasicFringeDataConfiguration::set_message_level(int message_level)
 {
     //set the message level according to the fourfit style
@@ -298,7 +315,7 @@ MHO_BasicFringeDataConfiguration::set_message_level(int message_level)
     }
 }
 
-std::string
+std::string 
 MHO_BasicFringeDataConfiguration::parse_set_string(const std::vector< std::string >& arglist, int& set_arg_index)
 {
     set_arg_index = -1;
@@ -312,10 +329,10 @@ MHO_BasicFringeDataConfiguration::parse_set_string(const std::vector< std::strin
         }
     }
 
-    //if we've found a 'set' command, assume everything after this is control
+    //if we've found a 'set' command, assume everything after this is control 
     //file syntax and concatenate everything together with spaces
     std::string set_string = "";
-    int start_idx = set_arg_index+1;
+    int start_idx = set_arg_index+1; 
     if(set_arg_index != -1 && start_idx < nargs-1 )
     {
         for(int i=start_idx; i<nargs; i++)
@@ -324,11 +341,11 @@ MHO_BasicFringeDataConfiguration::parse_set_string(const std::vector< std::strin
             set_string += " ";
         }
     }
-
+    
     return set_string;
 }
 
-std::string
+std::string 
 MHO_BasicFringeDataConfiguration::sanitize_directory(std::string dir)
 {
     bool ok;
@@ -345,26 +362,27 @@ MHO_BasicFringeDataConfiguration::sanitize_directory(std::string dir)
         std::string root_code = basename.substr(dot+1);
         if( root_code.size() == 6 )
         {
-            //check if is a directory
+            //check if is a directory 
             bool ok = MHO_DirectoryInterface::DoesDirectoryExist(fullpath);
             if(!ok)
             {
-                //we were actually passed a root file, so return the prefix
+                //we were actually passed a root file, so return the prefix 
                 fullpath = prefix;
             }
         }
     }
-
+    
     return fullpath;
 
 }
 
 //sanity check of parameters after command line parsing
-int
+int 
 MHO_BasicFringeDataConfiguration::sanity_check(MHO_ParameterStore* paramStore)
 {
     //command line parameters
-    std::string baseline = paramStore->GetAs<std::string>("/cmdline/baseline");
+    //bool accounting = false; //'-a' perform run-time accounting - not yet enabled
+    std::string baseline = paramStore->GetAs<std::string>("/cmdline/baseline"); 
     std::string freqgrp = paramStore->GetAs<std::string>("/cmdline/frequency_group");
     std::string control_file = paramStore->GetAs<std::string>("/cmdline/control_file");
     std::string directory = paramStore->GetAs<std::string>("/cmdline/directory");
@@ -378,8 +396,8 @@ MHO_BasicFringeDataConfiguration::sanity_check(MHO_ParameterStore* paramStore)
     bool test_mode = paramStore->GetAs<bool>("/cmdline/test_mode");
     //bool update_mode = false; //'-u' not yet enabled
     std::string polprod = paramStore->GetAs<std::string>("/cmdline/polprod");
-    //std::string reftime = "";
-    //bool xpower_output = false;
+    //std::string reftime = ""; 
+    //bool xpower_output = false; 
     //std::string output_file = paramStore->GetAs<std::string>("/cmdline/output_file");
 
     #pragma message("TODO FIXME - fill out the sanity_check function for command line arguments")
@@ -387,7 +405,7 @@ MHO_BasicFringeDataConfiguration::sanity_check(MHO_ParameterStore* paramStore)
     {
         return 1;
     }
-
+    
     return 0;
 }
 
@@ -445,7 +463,7 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
 
     //set the root file name
     paramStore->Set("/files/root_file", scanStore->GetRootFileBasename() );
-
+    
     msg_debug("fringe", "loading root file: "<< scanStore->GetRootFileBasename() << eom);
 
      // //load root file and extract useful vex info into parameter store
@@ -557,7 +575,7 @@ MHO_BasicFringeDataConfiguration::init_and_exec_operators(MHO_OperatorBuilderMan
         msg_error("fringe", "cannot initialize or execute operators if builder or toolbox is missing" << eom );
         return;
     }
-
+    
     msg_debug("fringe", "initializing and executing operators in "<<cat<<" category."<<eom);
 
     build_manager->BuildOperatorCategory(cat);
@@ -570,13 +588,13 @@ MHO_BasicFringeDataConfiguration::init_and_exec_operators(MHO_OperatorBuilderMan
     }
 }
 
-std::vector< std::string >
+std::vector< std::string > 
 MHO_BasicFringeDataConfiguration::determine_required_pol_products(std::string polprod)
 {
     MHO_Tokenizer tokenizer;
     std::set<std::string> pp_set;
     std::vector<std::string> pp_vec;
-    //first we parse the polprod string to see what individual pol-products we need
+    //first we parse the polprod string to see what individual pol-products we need 
     if( polprod.find("+") != std::string::npos)
     {
         //we have a pol-product summation like (RR+LL) or XX+YY, or RX+RY
@@ -595,7 +613,7 @@ MHO_BasicFringeDataConfiguration::determine_required_pol_products(std::string po
         pp_vec.push_back("XY");
         pp_vec.push_back("YX");
     }
-    else
+    else 
     {
         pp_vec.push_back(polprod); //polprod is just a single value
     }
@@ -618,10 +636,10 @@ MHO_BasicFringeDataConfiguration::determine_required_pol_products(std::string po
     return pp_vec;
 }
 
-void
+void 
 MHO_BasicFringeDataConfiguration::print_usage()
 {
-    // bool accounting = false; //'-a' perform run-time accounting
+    // bool accounting = false; //'-a' perform run-time accounting - not yet enabled
     // std::string baseline = ""; //'-b' baseline:frequency_group selection
     // std::string freqgrp = ""; //'-b' frequency_group selection
     // std::string control_file = ""; //'-c' specifies the control file
@@ -673,7 +691,7 @@ MHO_BasicFringeDataConfiguration::print_usage()
 
     msg_info("main", ss.str() << eom );
 
-    // static struct option longOptions[] =
+    // static struct option longOptions[] = 
     // {
     //     {"help", no_argument, 0, 'h'},
     //     {"accounting", no_argument, 0, 'a'},
@@ -699,16 +717,16 @@ MHO_BasicFringeDataConfiguration::print_usage()
     // usage: vgoscf_generate.py [-h] [-v VERBOSITY] [-n NUM_PROC] [-s SNR_MIN] [-q QUALITY_LOWER_LIMIT] [-d DTEC_THRESH] [-b BEGIN_SCAN_LIMIT] [-e END_SCAN_LIMIT] [-c SIGMA_CUT_FACTOR]
     //                           [-w] [-p] [-o OUTPUT_FILENAME] [-a AVERAGING_SCAN_LIMIT] [-t] [-y NCHANNEL_DISCARD_THRESHOLD] [-z CHANNEL_DISCARD_TOLERANCE]
     //                           control_file network_reference_station stations data_directory
-    //
+    // 
     // utility for constructing a control file suitable for pseudo-Stokes-I fringe fitting of VGOS sessions
-    //
+    // 
     // positional arguments:
     //   control_file          the control file to be applied to all scans
     //   network_reference_station
     //                         single character code of station used as network reference
     //   stations              concatenated string of single codes of non-network-reference stations of interest
     //   data_directory        relative path to directory containing experiment or scan data, cannot contain "prepass" or "scratch" and must point to a folder with a 4-digit name
-    //
+    // 
     // optional arguments:
     //   -h, --help            show this help message and exit
     //   -v VERBOSITY, --verbosity VERBOSITY
@@ -719,10 +737,10 @@ MHO_BasicFringeDataConfiguration::print_usage()
     //                         set minimum allowed snr threshold, default=30.
     //   -q QUALITY_LOWER_LIMIT, --quality-limit QUALITY_LOWER_LIMIT
     //                         set the lower limit on fringe quality (inclusive), default=6.
-    //
+    // 
 
 
-    // static struct option longOptions[] =
+    // static struct option longOptions[] = 
     // {
     //     {"help", no_argument, 0, 'h'},
     //     {"accounting", no_argument, 0, 'a'},
@@ -746,7 +764,7 @@ MHO_BasicFringeDataConfiguration::print_usage()
     // };
 
 
-
+    
         //command line parameters
 
 }

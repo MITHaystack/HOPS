@@ -3,15 +3,13 @@
 namespace hops
 {
 
-
+    
 //static initialization to nullptr
 MHO_Profiler* MHO_Profiler::fInstance = nullptr;
 
 
 void MHO_Profiler::AddEntry(int flag, uint64_t thread_id, std::string filename, int line_num, std::string func_name)
 {
-    if(fDisabled){return;}
-
     MHO_ProfileEvent event;
     event.fFlag = flag;
     event.fLineNumber = line_num;
@@ -22,7 +20,6 @@ void MHO_Profiler::AddEntry(int flag, uint64_t thread_id, std::string filename, 
     event.fFilename[PROFILE_INFO_LEN-1] = '\0';
     event.fTime = fTimer.GetTimeSinceStart();
     fEvents.push_back(event);
-
 }
 
 void MHO_Profiler::DumpEvents()
