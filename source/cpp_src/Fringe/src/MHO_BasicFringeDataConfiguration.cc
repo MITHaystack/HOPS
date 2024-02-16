@@ -189,8 +189,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     directory = sanitize_directory(directory);
 
     //pass the extracted command line info back in the parameter store
-    //accounting = false;  //not implemented
-    paramStore->Set("/cmdline/accounting", accounting);
+    //paramStore->Set("/cmdline/accounting", accounting);
     paramStore->Set("/cmdline/baseline", baseline);
     paramStore->Set("/cmdline/frequency_group", freqgrp);
 
