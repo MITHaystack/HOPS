@@ -292,7 +292,6 @@ int alt_parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore
     std::string freqgrp = ""; // the frequency group
     std::string control_file = ""; //'-c' specifies the control file
     bool estimate_time = false; //'-e' estimate run time
-
     int first_plot_chan = 0; //'-n' specifies the first channel displayed in the fringe plot
     int message_level = -1; //'-m' specifies the message verbosity level
     int nplot_chans = 0; //'-n' specifies the number of channels to display in the fringe plot
@@ -310,7 +309,15 @@ int alt_parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore
 
     CLI::App app{"ffit"};
 
+
+    // Remove help flag because it shortcuts all processing
+    app.set_help_flag();
+
+    // Add custom flag that activates help
+    auto *help = app.add_flag("-h,--help", "print this help message and exit");
+
     // app.add_flag("-h,--help", help, "show help text and exit");
+    // app.set_help_flag("h,--help", help, "print this help message and exit");
     app.add_flag("-a,--accounting", accounting, "perform run-time accounting/profiling");
     app.add_option("-b,--baseline", baseline_opt, "baseline or baseline:frequency_group selection (e.g GE or GE:X)")->required();
     app.add_option("-c,--control-file", control_file, "specify the control file");
@@ -329,29 +336,32 @@ int alt_parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore
     app.add_flag("-X,--xpower-output", xpower_output, "output spectral cross power data (ignored, not yet implemented)");
     app.add_option("input,-i,--input", input, "name of the input directory (scan) or root file")->required();
 
-    //the 'set' command for control file parameter override
+    //add the 'set' command for control file parameter overrides
     auto *setcom = app.add_subcommand("set", "")->prefix_command();
     setcom->alias("--set");
 
-    CLI11_PARSE(app, argc, argv);
+    try
+    {
+        app.parse(argc, argv);
+        if(*help)
+        {
+            throw CLI::CallForHelp();
+        }
+    }
+    catch(const CLI::Error &e)
+    {
+        std::cerr << app.help() << std::flush;
+        std::exit(1); //just exist don't bother returning to main
+    }
 
-    std::cout << "after Args:";
+    //grab the set string if present
     std::string set_string = " ";
     std::vector< std::string > set_tokens;
     for(const auto &aarg : setcom->remaining())
     {
         set_tokens.push_back(aarg);
         set_string += aarg + " ";
-        std::cout << aarg << " ";
     }
-    std::cout << '\n';
-
-    // if(help)
-    // {
-    //     std::cerr << app.help() << std::endl;
-    //     std::exit(1);
-    // }
-
 
     //clamp message level
     if(message_level > 5){message_level = 5;}
@@ -365,6 +375,10 @@ int alt_parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore
     //catch no input case
     if(input == ""){msg_fatal("main", "input directory/root file not set" << eom); std::exit(1);}
 
+    //catch no control file case and set to /dev/null
+    //TODO detect DEF_CONTROL environmental variable if present and use that
+    if(control_file == ""){control_file = "/dev/null";}
+
     //for now we require these options to be set (may relax this once we allow mult-pass fringe fitting)
     if(baseline_opt == ""){msg_fatal("main", "baseline option -b must be set" << eom); std::exit(1);}
     MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(baseline_opt, baseline, freqgrp);
@@ -374,19 +388,6 @@ int alt_parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore
 
     //set the message level
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
-
-    // //resolve remaining positional arguments (data directory) and put them in the parameter store
-    // std::vector< std::string > pargs;
-    // if(set_arg_index == -1){set_arg_index = argc;}
-    // for(int i = optind; i < set_arg_index; i++){pargs.push_back( std::string(argv[i]) );}
-    //
-    // paramStore->Set("/cmdline/positional_args", pargs);
-    // if(pargs.size() != 1)
-    // {
-    //     msg_fatal("fringe", "the data directory must be passed as the first positional argument." << eom );
-    //     std::exit(1);
-    // }
-    // else{ directory = pargs[0]; }
 
     std::string directory = MHO_BasicFringeDataConfiguration::sanitize_directory(input);
 
