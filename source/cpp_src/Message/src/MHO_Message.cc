@@ -18,6 +18,7 @@ std::string MHO_Message::fCyan = "\33[36;1m"; //debug
 std::string MHO_Message::fWhite = "\33[37;1m"; //default
 std::string MHO_Message::fColorSuffix = "\33[0m"; //color close
 
+
 void
 MHO_Message::AddKey(const std::string& key)
 {
@@ -116,7 +117,7 @@ MHO_Message::operator<<(const MHO_MessageEndline&)
 {
     #ifdef HOPS_COLOR_MSG
     fMessageStream << fColorSuffix << std::endl;
-    #else 
+    #else
     fMessageStream << std::endl;
     #endif
     fWasLastLineNewLine = false;
@@ -200,9 +201,9 @@ MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& 
     }
     #endif //end of HOPS_COLOR_MSG
 
-    //pad out for alignment 
+    //pad out for alignment
     std::string msg_label = ss.str();
-    std::size_t s = msg_label.size() - color_size; 
+    std::size_t s = msg_label.size() - color_size;
     if(s < MSG_ALIGN_PAD)
     {
         msg_label.insert(msg_label.end(), MSG_ALIGN_PAD-s, ' ');
@@ -212,4 +213,53 @@ MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& 
 }
 
 
+
+
+void
+MHO_Message::SetLegacyMessageLevel(int legacy_message_level)
+{
+    //set the message level according to the fourfit (legacy) style
+    //where 3 is least verbose, and '-1' is most verbose
+    switch (legacy_message_level)
+    {
+        case -2:
+            //NOTE: debug messages must be compiled-in
+            #ifndef HOPS_ENABLE_DEBUG_MSG
+            SetMessageLevel(eInfo);
+            msg_warn("fringe", "debug messages are toggled via compiler flag, re-compile with ENABLE_DEBUG_MSG=ON to enable." << eom);
+            #else
+            SetMessageLevel(eDebug);
+            #endif
+        break;
+        case -1:
+            SetMessageLevel(eInfo);
+        break;
+        case 0:
+            SetMessageLevel(eStatus);
+        break;
+        case 1:
+            SetMessageLevel(eWarning);
+        break;
+        case 2:
+            SetMessageLevel(eError);
+        break;
+        case 3:
+            SetMessageLevel(eFatal);
+        break;
+        case 4:
+            //silent, but prints out the mk4 fringe file name to stderr if it is created
+            //this is for backwards compatiblity with VGOS post-processing scripts
+            SetMessageLevel(eSpecial);
+        break;
+        case 5:
+            //completely silent
+            SetMessageLevel(eSilent);
+        break;
+        default:
+            //for now default is most verbose, eventually will change this to silent
+            SetMessageLevel(eDebug);
+    }
 }
+
+
+}//end namespace
