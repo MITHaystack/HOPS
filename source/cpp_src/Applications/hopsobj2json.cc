@@ -18,7 +18,7 @@ int main(int argc, char** argv)
     unsigned int nspaces = 0;
     int message_level = 0;
 
-    CLI::App app{"hops2json"};
+    CLI::App app{"hopsobj2json"};
 
     app.add_option("input,-i,--input-file", input_file, "name of the input (hops) file to be converted")->required();
     app.add_option("uuid,-u,--uuid", uuid_string, "uuid of the object to extract");
