@@ -91,6 +91,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
             case 'a':
                 accounting = true;
                 MHO_Profiler::GetInstance().Enable();
+                break;
             case 'b':
                 parse_baseline_freqgrp(std::string(optarg), baseline, freqgrp);
                 break;
@@ -164,7 +165,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
                 break;
             default:
                 print_usage();
-                return 1;
+                std::exit(1);
         }
     }
 
