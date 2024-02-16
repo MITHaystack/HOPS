@@ -14,26 +14,33 @@ int main(int argc, char** argv)
     std::string input_file = "";
     std::string output_file = "";
     int detail = eJSONAll;
-    int nspaces = 0;
+    unsigned int nspaces = 0;
     int message_level = 0;
 
     CLI::App app{"hops2json"};
 
-    app.add_option("input,-i,--input-file", input_file, "The name of the input (hops) file to be converted.")->required();
-    app.add_option("output,-o,--output-file", output_file, "The name of the output (json) file, if not given the result will be stored in <input-file>.json.");
-    app.add_option("-d,--detail", detail, "The level of detail to be used when generating the output, range: 0 (low) to 4 (high), default (4).")->expected(0,4);
-    app.add_option("-m,--message-level", message_level, "The message level to be used, range: -2 (debug) to 5 (silent).");
-    app.add_option("-p,--pretty-print", nspaces, "Generate the json with indentations (soft tabs) consisting of the number of spaces specified, default (disabled).");
+    app.add_option("input,-i,--input-file", input_file, "name of the input (hops) file to be converted")->required();
+    app.add_option("output,-o,--output-file", output_file, "name of the output (json) file, if not given the result will be stored in <input-file>.json");
+    app.add_option("-d,--detail", detail, "level of detail to be used when generating the output, range: 0 (low) to 4 (high), default (4)");
+    app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
+    app.add_option("-p,--pretty-print", nspaces, "generates the json ouput with indentations (soft tabs) consisting of the number of spaces specified, default (disabled)");
 
     CLI11_PARSE(app, argc, argv);
 
+    //clamp message level
+    if(message_level > 5){message_level = 5;}
+    if(message_level < -2){message_level = -2;}
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 
-    if(output_file == "")
-    {
-        output_file = input_file + ".json";
-    }
+    if(input_file == ""){msg_fatal("main", "input_file not set" << eom);}
+
+    //set default output if not passed
+    if(output_file == ""){ output_file = input_file + ".json"; }
+
+    //clamp detail level
+    if(detail > 4){detail = 4;}
+    if(detail < 0){detail = 0;}
 
     MHO_ContainerStore conStore;
     MHO_ContainerFileInterface conInter;
