@@ -33,13 +33,11 @@ int main(int argc, char** argv)
     unsigned int nspaces = 0;
     int message_level = 0;
     bool disable_dump = false;
-    bool binary_output = false;
 
     CLI::App app{"hopskeys"};
 
     app.add_option("input,-i,--input-file", input_file, "name of the input (hops) file to be inspected")->required();
     app.add_option("output,-o,--output-file", output_file, "optional name of the output file (default format: json), if not given, no output file will be created");
-    // app.add_flag("-b,--binary", binary_output, "indicate that output file format should be binary data (concatenates binary key data)");
     app.add_flag("-d,--disable-dump", disable_dump, "do not dump the keys to stdout as semi-formatted ascii");
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
     app.add_option("-p,--pretty-print", nspaces, "generates the json with indentations (soft tabs) consisting of the number of spaces specified, default (disabled)");
@@ -82,7 +80,7 @@ int main(int argc, char** argv)
         result = inter.ExtractFileObjectKeys(input_file, ikeys);
     }
 
-    if(output_file != "" && !binary_output) //dump keys to json file
+    if(output_file != "") //dump keys to json file
     {
         //convert the entire store to json
         mho_json root;
