@@ -66,7 +66,7 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Snapshot::GetInstance().AcceptAllKeys();
     MHO_Snapshot::GetInstance().SetExecutableName(std::string("ffit"));
-    
+
     MHO_FringeData fringeData;
 
     int parse_status = MHO_BasicFringeDataConfiguration::parse_command_line(argc, argv, fringeData.GetParameterStore() );
@@ -82,29 +82,29 @@ int main(int argc, char** argv)
     fringeData.GetParameterStore()->Get("/config/do_ion", do_ion);
 
     MHO_FringeFitter* ffit;
-    //TODO FIXME...replace this logic with a factory method based on the parameter store 
+    //TODO FIXME...replace this logic with a factory method based on the parameter store
     //but for the time being we only have two choices
     if(do_ion){ ffit = new MHO_IonosphericFringeFitter(&fringeData);}
     else{ ffit = new MHO_BasicFringeFitter(&fringeData);}
 
     #ifdef USE_PYBIND11
     // start the interpreter and keep it alive, need this or we segfault
-    py::scoped_interpreter guard{}; 
+    py::scoped_interpreter guard{};
     #endif
-    
+
     ffit->Configure();
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //POST-CONFIGURE FOR COMPILE-TIME EXTENSIONS -- this should be reorganized with visitor pattern
     ////////////////////////////////////////////////////////////////////////////
     #ifdef USE_PYBIND11
     #pragma message("TODO FIXME -- formalize the means by which plugin dependent operator builders are added to the configuration")
-    ffit->GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_labeling", "python_labeling"); 
-    ffit->GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_flagging", "python_flagging"); 
-    ffit->GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_calibration", "python_calibration"); 
+    ffit->GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_labeling", "python_labeling");
+    ffit->GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_flagging", "python_flagging");
+    ffit->GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_calibration", "python_calibration");
     #endif
-    
-    
+
+
     //initialize and perform run loop
     ffit->Initialize();
     while( !ffit->IsFinished() )
@@ -113,9 +113,9 @@ int main(int argc, char** argv)
         ffit->Run();
         ffit->PostRun();
     }
-    
+
     ffit->Finalize();
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //OUTPUT/PLOTTING -- this should be reorganized with visitor pattern
     ////////////////////////////////////////////////////////////////////////////
@@ -129,7 +129,7 @@ int main(int argc, char** argv)
     std::vector< MHO_ProfileEvent > events;
     MHO_Profiler::GetInstance().GetEvents(events);
     mho_json event_list = ConvertProfileEvents(events);
-    //dump the events in the parameter store for now
+    //dump the events into the parameter store for now (will be empty unless enabled)
     fringeData.GetParameterStore()->Set("/profile/events", event_list);
 
     //open and dump to file -- should we profile this as well?
@@ -157,17 +157,17 @@ int main(int argc, char** argv)
 
         msg_debug("main", "python plot generation enabled." << eom );
         py::dict plot_obj = plot_data;
-        
+
         //load our interface module -- this is extremely slow!
         auto vis_module = py::module::import("hops_visualization");
         auto plot_lib = vis_module.attr("fourfit_plot");
         //call a python function on the interface class instance
         //TODO, pass filename to save plot if needed
         plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
-        
+
         // current_time = timer.GetTimeSinceStart();
         // std::cout<<"time to plot = "<<current_time<<std::endl;
-        
+
     }
     #else //USE_PYBIND11
     if(show_plot)
