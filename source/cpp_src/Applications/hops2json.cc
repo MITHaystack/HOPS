@@ -69,7 +69,7 @@ int main(int argc, char** argv)
 
     outFile.close();
 
-    msg_status("main", "done" << eom);
+    msg_info("main", "done" << eom);
 
     return 0;
 }
