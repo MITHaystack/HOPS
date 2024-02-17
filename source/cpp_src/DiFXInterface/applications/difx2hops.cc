@@ -28,6 +28,38 @@
 
 using namespace hops;
 
+
+//TODO add frequency band labelling
+
+// fprintf (stderr, "  -b <code> <flo> <fhi>     Override freq band codes\n");
+//   fprintf (stderr, "                            (can have multiple triplets)\n");
+//   fprintf (stderr, "  -s or --scode <file>      Specify new VEX to mk4 station code mappings\n");
+//   fprintf (stderr, "                            via a file with lines of the form:   X Xx\n");
+//   fprintf (stderr, "  -g <freq-groups>          include data only from these freq groups\n");
+//   fprintf (stderr, "  -w <bandwidth in MHz>     include data only for this bandwidth\n");
+//   fprintf (stderr, "\n");
+//
+//   return 0;
+//   }
+//
+//                                   // global table of frequency bands
+// struct fbands fband[MAX_FBANDS] = {{'B',      0.0, 999999.9},  // default to band B
+//                                  {'I',    100.0,    150.0},
+//                                  {'G',    150.0,    225.0},
+//                                  {'P',    225.0,    390.0},
+//                                  {'L',    390.0,   1750.0}, // ITU: 1400-1722.2, EVN/arrays: 1150-1750
+//                                  {'S',   1750.0,   3900.0},
+//                                  {'C',   3900.0,   6200.0},
+//                                  {'X',   6200.0,  10900.0},
+//                                  {'K',  10900.0,  36000.0},
+//                                  {'Q',  36000.0,  46000.0},
+//                                  {'V',  46000.0,  56000.0},
+//                                  {'W',  56000.0, 100000.0},
+//                                  {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0},
+//                                  {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+
+
+
 int main(int argc, char** argv)
 {
 
