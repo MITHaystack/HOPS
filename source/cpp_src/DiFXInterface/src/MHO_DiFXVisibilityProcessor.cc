@@ -108,8 +108,8 @@ MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcess
                 if( allBaselineVisibilities.find(visRecord.baseline) == allBaselineVisibilities.end() )
                 {
                     allBaselineVisibilities[visRecord.baseline].SetDiFXInputData(fInput);
-                    // if(fFreqBands.size() != 0){ it->second.SetFrequencyBands(fFreqBands); }
-                    // if(fFreqGroups.size() != 0){ it->second.SetFreqGroups(fFreqGroups); }
+                    if(fFreqBands.size() != 0){ allBaselineVisibilities[visRecord.baseline].SetFrequencyBands(fFreqBands); }
+                    if(fOnlyFreqGroups.size() != 0){ allBaselineVisibilities[visRecord.baseline].SetFreqGroups(fOnlyFreqGroups); }
                     if(fSelectByBandwidth)
                     {
                         allBaselineVisibilities[visRecord.baseline].SetOnlyBandwidth(fOnlyBandwidth);
