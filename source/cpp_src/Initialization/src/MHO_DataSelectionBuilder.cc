@@ -145,14 +145,9 @@ MHO_DataSelectionBuilder::Build()
             //get all of channels in this frequency group
             std::string fgroup_label_key = "frequency_band";
             fgroup_idx = (&(std::get<CHANNEL_AXIS>(*vis_data)))->GetMatchingIndexes(fgroup_label_key, fgroup);
-            for(std::size_t i=0; i<std::get<CHANNEL_AXIS>(*vis_data).GetSize(); i++)
-            {
-                std::cout<<"channel: "<<i<<" freq = "<<std::get<CHANNEL_AXIS>(*vis_data).at(i)<<std::endl;
-                std::cout<<"info = "<<std::get<CHANNEL_AXIS>(*vis_data).GetLabelObject(i).dump(2)<<std::endl;
-            }
             if(fgroup_idx.size() == 0)
             {
-                msg_warn("initialization", "frequency group selection by " << fgroup<<", failed to match any data." << eom);
+                msg_warn("initialization", "frequency band/group selection by " << fgroup<< ", failed to match any data." << eom);
             }
         }
 
