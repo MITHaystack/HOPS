@@ -36,6 +36,7 @@ MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
     MICROSEC_TO_SEC = 1e-6; //needed to match difx2mark4 convention
     fFreqBands.clear();
     fFreqGroups.clear();
+    fSelectByBandwidth = false;
     fOnlyBandwidth = 0;
 };
 
@@ -273,11 +274,18 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
     //expectation here is that there is only a single file containing visibility
     //records from every baseline in the scan
     MHO_DiFXVisibilityProcessor visProcessor;
+
+    //pass these parameters if we need to select on bandwidth or freq group
+    if(fFreqBands.size() != 0){ visProcessor.SetFrequencyBands(fFreqBands); }
+    if(fFreqGroups.size() != 0){ visProcessor.SetFreqGroups(fFreqGroups); }
+    if(fSelectByBandwidth){  visProcessor.SetOnlyBandwidth(fOnlyBandwidth); }
+    visProcessor.SetDiFXInputData(&fInput);
     visProcessor.SetFilename(fFileSet->fVisibilityFileList[0]);
     visProcessor.ReadDIFXFile(fAllBaselineVisibilities);
 
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
     {
+        //it->second is a MHO_DiFXBaselineProcessor
         it->second.SetRescaleTrue(); //default is to always apply VanVleck and x10000 scaling
         it->second.SetRootCode(fRootCode);
         it->second.SetCorrelationDate(fCorrDate);
@@ -327,13 +335,19 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
         {
             std::string station_id = it->second.GetRefStationMk4Id();
             auto vis = it->second.GetVisibilities();
-            raw_auto_corrs[station_id] = vis;
+            if(vis != nullptr)
+            {
+                raw_auto_corrs[station_id] = vis;
+            }
         }
         else
         {
             std::string baseline = it->second.GetBaselineShortName();
             auto vis = it->second.GetVisibilities();
-            raw_visibilities[baseline] = vis;
+            if(vis != nullptr)
+            {
+                raw_visibilities[baseline] = vis;
+            }
         }
     }
 
@@ -375,55 +389,65 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
 
         if(ref_st != rem_st) //only do cross corrs
         {
-            //std::cout<<"CROSS CORR"<<std::endl;
-            auto ref_ac = reduced_auto_corrs[ref_st];
-            auto rem_ac = reduced_auto_corrs[rem_st];
-            for(std::size_t pp=0; pp<npp; pp++)
+            bool have_both = true;
+            if( reduced_auto_corrs.find(ref_st) == reduced_auto_corrs.end() ){have_both = false;}
+            if( reduced_auto_corrs.find(rem_st) == reduced_auto_corrs.end() ){have_both = false;}
+            if(have_both)
             {
-                //figure out the pol-mapping to the right autocorrs (we ignore cross-autos)
-                std::string polprod = std::get<POLPROD_AXIS>(*vis)(pp);
-                //std::cout<<"pp ax = "<<std::get<POLPROD_AXIS>(*vis)(pp)<<std::endl;
-                std::string ref_polprod = std::string() + (char)polprod[0] + (char)polprod[0];
-                std::string rem_polprod = std::string() + (char)polprod[1] + (char)polprod[1];
-                std::size_t ref_pp_idx, rem_pp_idx;
-                bool ref_ok = std::get<POLPROD_AXIS>(*ref_ac).SelectFirstMatchingIndex(ref_polprod, ref_pp_idx);
-                bool rem_ok = std::get<POLPROD_AXIS>(*rem_ac).SelectFirstMatchingIndex(rem_polprod, rem_pp_idx);
+                //std::cout<<"CROSS CORR"<<std::endl;
+                auto ref_ac = reduced_auto_corrs[ref_st];
+                auto rem_ac = reduced_auto_corrs[rem_st];
+                for(std::size_t pp=0; pp<npp; pp++)
+                {
+                    //figure out the pol-mapping to the right autocorrs (we ignore cross-autos)
+                    std::string polprod = std::get<POLPROD_AXIS>(*vis)(pp);
+                    //std::cout<<"pp ax = "<<std::get<POLPROD_AXIS>(*vis)(pp)<<std::endl;
+                    std::string ref_polprod = std::string() + (char)polprod[0] + (char)polprod[0];
+                    std::string rem_polprod = std::string() + (char)polprod[1] + (char)polprod[1];
+                    std::size_t ref_pp_idx, rem_pp_idx;
+                    bool ref_ok = std::get<POLPROD_AXIS>(*ref_ac).SelectFirstMatchingIndex(ref_polprod, ref_pp_idx);
+                    bool rem_ok = std::get<POLPROD_AXIS>(*rem_ac).SelectFirstMatchingIndex(rem_polprod, rem_pp_idx);
 
-                bool issue_once = true;
-                if(!ref_ok || !rem_ok)
-                {
-                    msg_error("difx_interface",
-                        "error missing pol-product in autocorrs needed to normalize: "
-                        <<baseline<<":"<<polprod<<" "<<pp<<"."<<eom);
-                }
-                else
-                {
-                    for(std::size_t ap=0;ap<nap;ap++)
+                    bool issue_once = true;
+                    if(!ref_ok || !rem_ok)
                     {
-                        for(std::size_t ch=0; ch<nch; ch++)
+                        msg_error("difx_interface",
+                            "error missing data in autocorrs needed to normalize: "
+                            <<baseline<<":"<<polprod<<" "<<pp<<"."<<eom);
+                    }
+                    else
+                    {
+                        for(std::size_t ap=0;ap<nap;ap++)
                         {
-                            double ref_val = std::sqrt( std::real( (*ref_ac)(ref_pp_idx,ch,ap,0) ) );
-                            double rem_val = std::sqrt( std::real( (*rem_ac)(rem_pp_idx,ch,ap,0) ) );
-                            //std::cout<<"pref = "<<ref_polprod<<", "<<ch<<", "<<ref_val<<std::endl;
-                            //std::cout<<"prem = "<<ref_polprod<<", "<<ch<<", "<<rem_val<<std::endl;
-
-                            double factor = 1.0;
-                            if( std::fabs(ref_val) == 0.0 || std::fabs(rem_val) == 0.0)
+                            for(std::size_t ch=0; ch<nch; ch++)
                             {
-                                if(issue_once)
+                                double ref_val = std::sqrt( std::real( (*ref_ac)(ref_pp_idx,ch,ap,0) ) );
+                                double rem_val = std::sqrt( std::real( (*rem_ac)(rem_pp_idx,ch,ap,0) ) );
+                                //std::cout<<"pref = "<<ref_polprod<<", "<<ch<<", "<<ref_val<<std::endl;
+                                //std::cout<<"prem = "<<ref_polprod<<", "<<ch<<", "<<rem_val<<std::endl;
+
+                                double factor = 1.0;
+                                if( std::fabs(ref_val) == 0.0 || std::fabs(rem_val) == 0.0)
                                 {
-                                    std::string st_code = "";
-                                    if( std::fabs(ref_val) == 0.0 ){st_code = ref_st;}
-                                    if( std::fabs(rem_val) == 0.0 ){st_code = rem_st;}
-                                    msg_error("difx_interface", "zero value in auto-corrs of station: "<< st_code << ", normalization may not be correct."<<eom);
-                                    issue_once = false;
+                                    if(issue_once)
+                                    {
+                                        std::string st_code = "";
+                                        if( std::fabs(ref_val) == 0.0 ){st_code = ref_st;}
+                                        if( std::fabs(rem_val) == 0.0 ){st_code = rem_st;}
+                                        msg_error("difx_interface", "zero value in auto-corrs of station: "<< st_code << ", normalization may not be correct."<<eom);
+                                        issue_once = false;
+                                    }
                                 }
+                                else{factor = 1.0/(ref_val*rem_val);}
+                                vis->SliceView(pp,ch,ap,":") *= factor;
                             }
-                            else{factor = 1.0/(ref_val*rem_val);}
-                            vis->SliceView(pp,ch,ap,":") *= factor;
                         }
                     }
                 }
+            }
+            else
+            {
+                msg_error("difx_interface", "cannot locate autocorrs for both stations of baseline: " << baseline <<", will not normalize." << eom);
             }
         }
     }

@@ -36,24 +36,33 @@ class MHO_DiFXVisibilityProcessor
 
         void SetFilename(std::string filename){fFilename = filename.c_str();}
 
+        //needed for processing!
+        void SetDiFXInputData(const mho_json* input){fInput = input;}
+
         //read the visibilities from Swinburne file and allocate memory to store them as we go
         //memory management of the visibility records is delegated to the caller
         void ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities);
 
-        // void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
-        // void SetFreqGroups(std::vector< std::string > fgroups){fFreqGroups = fgroups;}
-        // void SetOnlyBandwidth(double bw){fOnlyBandwidth = bw;}
+        void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
+        void SetFreqGroups(std::vector< std::string > fgroups){fOnlyFreqGroups = fgroups;}
+        void SetOnlyBandwidth(double bw)
+        {
+            std::cout<<"I AM BEING TOLD TO SELECT BY BANDWIDTH = "<<bw<<std::endl;
+            fOnlyBandwidth = bw;
+            fSelectByBandwidth = true;
+        }
 
     private:
 
-        // bool KeepRecord(const MHO_DiFXVisibilityRecord& visRecord);
+        const mho_json* fInput;
 
         std::string fFilename;
         //maps the pair(baseline,freqindex) to the number of channels (# of spectral points)
         std::map< std::pair<int, int>, int> fNChannelsMap;
 
         std::vector< std::tuple<std::string, double, double> > fFreqBands; //frequency band/group labels and ranges (code, flow, fhigh)
-        std::vector< std::string > fFreqGroups; //limit output to matching frequency groups
+        std::vector< std::string > fOnlyFreqGroups; //limit output to matching frequency groups
+        bool fSelectByBandwidth;
         double fOnlyBandwidth; //limit output to only channels of this bandwidth
 
 };

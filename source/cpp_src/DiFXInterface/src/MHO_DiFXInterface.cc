@@ -12,6 +12,7 @@ MHO_DiFXInterface::MHO_DiFXInterface():
     fFreqBands.clear();
     fFreqGroups.clear();
     fOnlyBandwidth = 0;
+    fSelectByBandwidth = false;
 };
 
 MHO_DiFXInterface::~MHO_DiFXInterface(){};
@@ -243,10 +244,9 @@ MHO_DiFXInterface::ProcessScans()
         if(fPreserveDiFXScanNames){ fScanProcessor.SetPreserveDiFXScanNamesTrue();}
         else{ fScanProcessor.SetPreserveDiFXScanNamesFalse(); }
 
-        fScanProcessor.SetFrequencyBands(fFreqBands);
-        fScanProcessor.SetFreqGroups(fFreqGroups);
-        fScanProcessor.SetOnlyBandwidth(fOnlyBandwidth);
-
+        if(fFreqBands.size() != 0){ fScanProcessor.SetFrequencyBands(fFreqBands); }
+        if(fFreqGroups.size() != 0){ fScanProcessor.SetFreqGroups(fFreqGroups); }
+        if(fSelectByBandwidth){ fScanProcessor.SetOnlyBandwidth(fOnlyBandwidth); }
 
         fScanProcessor.ProcessScan(fScanFileSetList[i]);
     }
