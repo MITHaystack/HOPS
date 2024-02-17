@@ -89,12 +89,14 @@ MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
     }
 
     std::string fgroup = DetermineFreqGroup(freq);
+    std::cout<<"FREQ GROUP = "<<fgroup<<std::endl;
     bool in_fgroups = true;
     if(fOnlyFreqGroups.size() != 0)
     {
         in_fgroups = false;
         for(std::size_t i=0; i<fOnlyFreqGroups.size(); i++)
         {
+            std::cout<<"COMPARING = "<<fgroup<<" to "<<fOnlyFreqGroups[i]<<std::endl;
             if(fgroup == fOnlyFreqGroups[i]){in_fgroups = true; break;}
         }
     }
@@ -533,9 +535,12 @@ MHO_DiFXBaselineProcessor::DetermineFreqGroup(const double& freq)
         double high = std::get<2>(*it);
         if(high < low){double tmp = low; low = high; high = tmp;} //swap if mis-ordered
         double width = high - low;
+        std::cout<<"freq, band, wid ="<<freq<<", "<<b<<", "<<width<<std::endl;
 
         if(freq < high && low < freq && width < fband_width)
         {
+            std::cout<<"freq, band, wid ="<<freq<<", "<<b<<", "<<width<<std::endl;
+
             fband = b;
             fband_width = width;
             //do not break here, so that narrower freq-bands will override larger ones

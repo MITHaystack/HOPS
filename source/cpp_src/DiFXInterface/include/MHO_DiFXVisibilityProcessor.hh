@@ -43,7 +43,15 @@ class MHO_DiFXVisibilityProcessor
         //memory management of the visibility records is delegated to the caller
         void ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities);
 
-        void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
+        void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands)
+        {
+            std::cout<<"VIS PROC GOT FREQ BANDS"<<std::endl;
+            for(auto it = fbands.begin(); it != fbands.end(); it++)
+            {
+                std::cout<<std::get<0>(*it)<<", "<<std::get<1>(*it)<<", "<<std::get<2>(*it)<<std::endl;
+            }
+            fFreqBands = fbands;
+        }
         void SetFreqGroups(std::vector< std::string > fgroups){fOnlyFreqGroups = fgroups;}
         void SetOnlyBandwidth(double bw)
         {

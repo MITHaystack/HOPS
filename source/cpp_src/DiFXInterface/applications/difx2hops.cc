@@ -61,7 +61,6 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-
     std::string input_dir = "";
     std::string output_dir = "";
     int message_level = 0;
@@ -69,10 +68,34 @@ int main(int argc, char** argv)
     int exper_num = 1234;
     bool raw_mode = false;
     bool preserve = false;
-    std::vector< std::tuple<std::string, double, double> > freq_bands;
+    std::vector< std::tuple<std::string, double, double> > freq_bands; //user override
     std::vector< std::string > freq_groups;
+    bool use_legacy_bands = false;
     double bandwidth = 0;
 
+    //legacy frequency band set-up
+    std::vector< std::tuple<std::string, double, double> > legacy_freq_bands;
+    legacy_freq_bands.push_back( std::make_tuple( std::string("B"), 0.0, 999999.9) );
+    legacy_freq_bands.push_back( std::make_tuple( std::string("I"), 100.0, 150.0) );
+    legacy_freq_bands.push_back( std::make_tuple( std::string("G"), 150.0, 225.0) );
+    legacy_freq_bands.push_back( std::make_tuple( std::string("P"), 225.0, 390.0) );
+    legacy_freq_bands.push_back( std::make_tuple( std::string("L"), 390.0, 1750.0) );
+    legacy_freq_bands.push_back( std::make_tuple( std::string("S"), 1750.0, 3900.0) );
+    legacy_freq_bands.push_back( std::make_tuple( std::string("C"), 3900.0, 6200.0) );
+    legacy_freq_bands.push_back( std::make_tuple( std::string("X"), 6200.0, 10900.0) );
+    legacy_freq_bands.push_back( std::make_tuple( std::string("K"), 10900.0, 36000.0) );
+    legacy_freq_bands.push_back( std::make_tuple( std::string("Q"), 36000.0, 46000.0) );
+    legacy_freq_bands.push_back( std::make_tuple( std::string("V"), 46000.0, 56000.0) );
+    legacy_freq_bands.push_back( std::make_tuple( std::string("W"), 56000.0, 100000.0) );
+
+    std::stringstream ss;
+    ss << "force the use of the legacy frequency band assignments (default: off) these are: \n";
+    for(auto it = legacy_freq_bands.begin(); it != legacy_freq_bands.end(); it++)
+    {
+        ss << "    " <<std::get<0>(*it)<<": ("<<std::get<1>(*it)<<", "<<std::get<2>(*it) << ") MHz \n";
+    }
+    ss << "during assignment, narrower bands will take precedence over wider bands";
+    std::string legacy_freq_bands_help = ss.str();
 
     CLI::App app{"difx2hops"};
 
@@ -82,17 +105,29 @@ int main(int argc, char** argv)
     app.add_option("-s,--scode", station_codes_file, "name of the file containing the 2-char station codes to 1-char mk4 station IDs in form: X Xx");
     app.add_option("-e,--exp-num", exper_num, "experiment identification number");
     app.add_flag("-r,--raw-mode", raw_mode, "enable raw mode (do not apply auto-corr normalization)");
-    app.add_flag("-p,--preserve-difx-names", preserve, "use original difx scan names to name each scans (otherwise uses DOY-HHMM");
-    app.add_option("-b,--band",freq_bands,"override frequency band codes, must pass triplet as -b <code> <freq_low> <freq_high> (in MHz)");
+    app.add_flag("-P,--preserve-difx-names", preserve, "use original difx scan names to name each scans (otherwise uses DOY-HHMM");
+    app.add_option("-b,--band",freq_bands,"set frequency band codes, must pass triplet as -b <code> <freq_low> <freq_high> (in MHz) if none specified and '-L' flag not passed, no band assignment will be made");
+    app.add_flag("-L,--legacy-bands",use_legacy_bands, legacy_freq_bands_help.c_str() )->excludes("-b");
     app.add_option("-g,--freq-groups",freq_groups,"include data only from the specified frequency groups");
     app.add_option("-w,--bandwidth",bandwidth,"include data only channels matching this bandwidth (in MHz)");
 
     CLI11_PARSE(app, argc, argv);
 
-    // for(auto it = freq_bands.begin(); it != freq_bands.end(); it++)
-    // {
-    //     std::cout<<std::get<0>(*it)<<", "<<std::get<1>(*it)<<", "<<std::get<2>(*it)<<std::endl;
-    // }
+    if(use_legacy_bands) //legacy behavior
+    {
+        freq_bands.clear();
+        freq_bands = legacy_freq_bands;
+    }
+
+    for(auto it = freq_bands.begin(); it != freq_bands.end(); it++)
+    {
+        std::cout<<std::get<0>(*it)<<", "<<std::get<1>(*it)<<", "<<std::get<2>(*it)<<std::endl;
+    }
+
+    for(auto it = freq_groups.begin(); it != freq_groups.end(); it++)
+    {
+        std::cout<<*it<<std::endl;
+    }
 
     //clamp message level
     if(message_level > 5){message_level = 5;}
@@ -134,6 +169,8 @@ int main(int argc, char** argv)
     if(preserve){difxInterface.SetPreserveDiFXScanNamesTrue();}
 
     if(bandwidth != 0){difxInterface.SetOnlyBandwidth(bandwidth);}
+    if(freq_bands.size() != 0){difxInterface.SetFrequencyBands(freq_bands);}
+    if(freq_groups.size() != 0){difxInterface.SetFreqGroups(freq_groups);}
 
     difxInterface.Initialize();
     difxInterface.ProcessScans();
