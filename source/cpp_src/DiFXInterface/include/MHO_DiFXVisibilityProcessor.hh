@@ -40,19 +40,19 @@ class MHO_DiFXVisibilityProcessor
         //memory management of the visibility records is delegated to the caller
         void ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities);
 
-        void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
-        void SetFreqGroups(std::vector< std::string > fgroups){fFreqGroups = fgroups;}
-        void SetOnlyBandwidth(double bw){fOnlyBandwidth = bw;}
+        // void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
+        // void SetFreqGroups(std::vector< std::string > fgroups){fFreqGroups = fgroups;}
+        // void SetOnlyBandwidth(double bw){fOnlyBandwidth = bw;}
 
     private:
 
-        bool KeepRecord(const MHO_DiFXVisibilityRecord& visRecord);
+        // bool KeepRecord(const MHO_DiFXVisibilityRecord& visRecord);
 
         std::string fFilename;
         //maps the pair(baseline,freqindex) to the number of channels (# of spectral points)
         std::map< std::pair<int, int>, int> fNChannelsMap;
 
-        std::vector< std::tuple<std::string, double, double> > fFreqBands; //frequency band/group labels and ranges
+        std::vector< std::tuple<std::string, double, double> > fFreqBands; //frequency band/group labels and ranges (code, flow, fhigh)
         std::vector< std::string > fFreqGroups; //limit output to matching frequency groups
         double fOnlyBandwidth; //limit output to only channels of this bandwidth
 

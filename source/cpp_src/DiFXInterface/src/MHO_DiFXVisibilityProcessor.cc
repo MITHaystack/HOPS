@@ -7,9 +7,9 @@ namespace hops
 
 MHO_DiFXVisibilityProcessor::MHO_DiFXVisibilityProcessor()
 {
-    fFreqBands.clear();
-    fFreqGroups.clear();
-    fOnlyBandwidth = 0;
+    // fFreqBands.clear();
+    // fFreqGroups.clear();
+    // fOnlyBandwidth = 0;
 }
 
 void
@@ -113,16 +113,16 @@ MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcess
 }
 
 
-bool
-MHO_DiFXVisibilityProcessor::KeepRecord(const MHO_DiFXVisibilityRecord& visRecord)
-{
-    //TODO check if this record belongs:
-    //(1) matches fOnlyBandwidth if present/non-zero
-    //(2) determine which frequency band it belongs to
-    //(3) determine if it is in the selected freq band(s) (if specified)
-
-    return true;
-}
+// bool
+// MHO_DiFXVisibilityProcessor::KeepRecord(const MHO_DiFXVisibilityRecord& visRecord)
+// {
+//     //TODO check if this record belongs:
+//     //(1) matches fOnlyBandwidth if present/non-zero
+//     //(2) determine which frequency band it belongs to
+//     //(3) determine if it is in the selected freq band(s) (if specified)
+//
+//     return true;
+// }
 
 
 }
