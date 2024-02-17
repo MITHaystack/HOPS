@@ -40,6 +40,12 @@ class MHO_DiFXVisibilityRecord
             dataweight = copy.dataweight;
             memcpy(uvw, copy.uvw, 3*sizeof(double));
             visdata = copy.visdata;
+
+            bandwidth = copy.bandwidth;
+            sky_freq = copy.sky_freq;
+            freq_band = copy.freq_band;
+            net_sideband = copy.net_sideband;
+
         };
 
         virtual ~MHO_DiFXVisibilityRecord(){};
@@ -65,6 +71,11 @@ class MHO_DiFXVisibilityRecord
             uvw[1] = 0.0;
             uvw[2] = 0.0;
             visdata.clear();
+
+            bandwidth = 0.0;
+            sky_freq = 0.0;;
+            freq_band = "";
+            net_sideband = "";
         }
 
         //we leave the members public  --- taken from directly from DifxVisRecord;
@@ -84,6 +95,13 @@ class MHO_DiFXVisibilityRecord
         double dataweight;  /* The fractional data weight */
         double uvw[3];      /* The u,v,w values in metres */
         std::vector< std::complex<float> > visdata; /* nchan complex values (2x float) */
+
+
+        //these are extra parameters that we will fill in when/if we have the info
+        double bandwidth;
+        double sky_freq;
+        std::string freq_band;
+        std::string net_sideband;
 };
 
 //helper union used for reading in visibility records

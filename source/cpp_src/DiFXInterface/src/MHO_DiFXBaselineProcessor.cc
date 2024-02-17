@@ -11,6 +11,10 @@
 #define DIFX_BASE2ANT 256
 #define SCALE 10000.0
 
+//tolerance to use when selecting by bandwidth
+//and frequency band
+#define FREQ_EPS 0.001
+
 namespace hops
 {
 
@@ -38,6 +42,11 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
     fNBitsToFactor.clear();
     fNBitsToFactor[1] = 1.25331;
     fNBitsToFactor[2] = 1.06448;
+
+    fFreqBands.clear();
+    fOnlyFreqGroups.clear();
+    fSelectByBandwidth = false;
+    fOnlyBandwidth = 0;
 };
 
 MHO_DiFXBaselineProcessor::~MHO_DiFXBaselineProcessor()
@@ -50,16 +59,65 @@ MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
 {
     //keep track of the baseline id on first insertion
     if(fRecords.size() == 0){fBaselineID = record->baseline;}
-    if(fBaselineID == record->baseline)
+    bool keep_record = true;
+
+    //discard if this record does not match our baseline (how did it get here?)
+    if(fBaselineID != record->baseline){keep_record = false;}
+
+    //figure out this records channel info (freq,bandwidth)
+    int freqidx = record->freqindex;
+    int points = record->nchan;
+    double freq = 0;
+    double bandwidth = 0;
+    std::string sideband = "";
+
+    //collect channel info
+    if(fInput && freqidx < (*fInput)["freq"].size() )
+    {
+        freq = (*fInput)["freq"][freqidx]["freq"].get<double>();
+        bandwidth = (*fInput)["freq"][freqidx]["bw"].get<double>();
+    }
+
+    if(fOnlyBandwidth && std::fabs(fOnlyBandwidth - bandwidth) < FREQ_EPS)
+    {
+        keep_record = false; //discard, does not match our bandwidth selection
+    }
+
+    std::string fgroup = DetermineFreqGroup(freq);
+    bool in_fgroups = true;
+    if(fOnlyFreqGroups.size() != 0)
+    {
+        in_fgroups = false;
+        for(std::size_t i=0; i<fOnlyFreqGroups.size(); i++)
+        {
+            if(fgroup == fOnlyFreqGroups[i]){in_fgroups = true; break;}
+        }
+    }
+
+    //discard if not in the list of frequency groups
+    if(!in_fgroups){keep_record = false;}
+
+    if(keep_record)
     {
         std::string pp(record->polpair,2);
         int freqidx = record->freqindex;
         int points = record->nchan;
+        double bandwidth = 0.;
         fPolPairSet.insert(pp);
         fFreqIndexSet.insert(freqidx);
         fSpecPointSet.insert(points);
+        fBandwidthSet.insert(bandwidth);
         fRecords.push_back(record);
         fVisibilities[pp][freqidx].push_back(record);
+
+        record->bandwidth = bandwidth;
+        record->sky_freq = freq;
+        record->freq_band = fgroup;
+    }
+    else
+    {
+        //doesn't match our selection criteria, dump it
+        delete record;
     }
 }
 
@@ -435,17 +493,47 @@ MHO_DiFXBaselineProcessor::DeleteDiFXVisRecords()
 }
 
 
-std::string 
+std::string
 MHO_DiFXBaselineProcessor::ConstructMK4ChannelID(std::string fgroup, int index, std::string sideband, char pol)
 {
     std::stringstream ss;
     ss << fgroup;
-    if(index < 10 ){ss << "0";} //pad with leading zero if less than 10 
+    if(index < 10 ){ss << "0";} //pad with leading zero if less than 10
     ss << index;
     ss << sideband;
     ss << pol;
     return ss.str();
 }
+
+std::string
+MHO_DiFXBaselineProcessor::DetermineFreqGroup(const double& freq)
+{
+    //decide based on sky-freq of channel (we ignore bandwidth/sideband for now)
+    //so may not be correct for extra-wide channels...but if that is the case,
+    //probably some customize fband settings should be passed by user to specify the freq band labeling
+    std::string fband = "";
+    double fband_width = 1e30;
+
+    for(auto it = fFreqBands.begin(); it != fFreqBands.end(); it++)
+    {
+        std::string b = std::get<0>(*it);
+        double low = std::get<1>(*it);
+        double high = std::get<2>(*it);
+        if(high < low){double tmp = low; low = high; high = tmp;} //swap if mis-ordered
+        double width = high - low;
+
+        if(freq < high && low < freq && width < fband_width)
+        {
+            fband = b;
+            fband_width = width;
+            //do not break here, so that narrower freq-bands will override larger ones
+        }
+    }
+
+    return fband; //returns "" if no matching band found
+
+}
+
 
 
 }//end namespace
