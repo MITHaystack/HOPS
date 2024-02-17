@@ -33,8 +33,10 @@ class MHO_DiFXBaselineProcessor
         MHO_DiFXBaselineProcessor();
         virtual ~MHO_DiFXBaselineProcessor();
 
-        int GetBaselineID() const {return fBaselineID;};
+        //needed for processing!
         void SetDiFXInputData(const mho_json* input){fInput = input;}
+
+        int GetBaselineID() const {return fBaselineID;};
         void SetRootCode(std::string rcode){fRootCode = rcode;}
         void SetCorrelationDate(std::string corrdate){fCorrDate = corrdate;}
 
@@ -57,10 +59,17 @@ class MHO_DiFXBaselineProcessor
 
         void Clear();
 
+        void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
+        void SetFreqGroups(std::vector< std::string > fgroups){fOnlyFreqGroups = fgroups;}
+        void SetOnlyBandwidth(double bw){fOnlyBandwidth = bw; fSelectByBandwidth = true;}
+
     private:
 
         void Organize();
         void DeleteDiFXVisRecords();
+
+        std::string DetermineFreqGroup(const double& freq);
+
 
         std::string fRootCode;
         std::string fCorrDate;
@@ -90,6 +99,7 @@ class MHO_DiFXBaselineProcessor
         std::set<int> fFreqIndexSet;
         std::set<int> fAPSet;
         std::set<int> fSpecPointSet;
+        std::set<double> fBandwidthSet;
         std::size_t fNPolPairs;
         std::size_t fNChannels;
         std::size_t fNAPs;
@@ -107,6 +117,12 @@ class MHO_DiFXBaselineProcessor
         weight_store_type* fW;
         visibility_store_type* fV;
         MHO_ObjectTags fTags;
+
+        //selection information
+        std::vector< std::tuple<std::string, double, double> > fFreqBands; //frequency band/group labels and ranges
+        std::vector< std::string > fOnlyFreqGroups; //limit output to matching frequency groups
+        bool fSelectByBandwidth;
+        double fOnlyBandwidth; //limit output to only channels of this bandwidth
 
         //comparison predicate for time-sorting visibility record data
         struct VisRecordTimeLess
