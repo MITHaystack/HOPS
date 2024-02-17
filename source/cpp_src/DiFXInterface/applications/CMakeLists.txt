@@ -1,4 +1,5 @@
 hops_internal_include_directories()
+hops_internal_include_directories(../../../../extern/cli11)
 
 set(HOPS_DIFXAPP_LIBS MHO_Message MHO_Utilities MHO_Math MHO_Operators MHO_Calibration MHO_DiFXInterface)
 
