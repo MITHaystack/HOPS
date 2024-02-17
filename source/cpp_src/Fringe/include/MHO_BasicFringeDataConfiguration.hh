@@ -12,6 +12,7 @@
 
 //global messaging util
 #include "MHO_Message.hh"
+#include "MHO_Profiler.hh"
 
 //data/config passing classes
 #include "MHO_ScanDataStore.hh"
@@ -35,13 +36,7 @@ class MHO_BasicFringeDataConfiguration
 
     public:
 
-        // //takes care of command line parsing/initialization
-        // static int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore);
-
-        static void print_usage();
-
         //functions for consuming command line arguments
-        // static void set_message_level(int message_level);
         static void parse_baseline_freqgrp(std::string baseline_freqgrp, std::string& baseline, std::string& freqgrp);
         static std::string parse_set_string(const std::vector< std::string >& arglist, int& set_arg_index);
         static std::string sanitize_directory(std::string dir);
@@ -60,6 +55,8 @@ class MHO_BasicFringeDataConfiguration
                                            std::string ref_station_mk4id,
                                            std::string rem_station_mk4id);
         static void init_and_exec_operators(MHO_OperatorBuilderManager* build_manager, MHO_OperatorToolbox* opToolbox, const char* category);
+
+        static mho_json ConvertProfileEvents(std::vector< MHO_ProfileEvent >& events);
 
 };
 

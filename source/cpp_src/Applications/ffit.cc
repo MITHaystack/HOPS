@@ -41,26 +41,9 @@
 using namespace hops;
 
 //TODO move this some where else
-mho_json ConvertProfileEvents(std::vector< MHO_ProfileEvent >& events)
-{
-    mho_json event_list;
-    for(std::size_t i=0; i<events.size(); i++)
-    {
-        mho_json obj;
-        obj["event_id"] = i;
-        obj["flag"] = events[i].fFlag;
-        obj["line"] = events[i].fLineNumber;
-        obj["thread_id"] = events[i].fThreadID;
-        obj["filename"] = std::string( events[i].fFilename );
-        obj["funcname"] = std::string( events[i].fFuncname );
-        obj["time"] = events[i].fTime;
-        event_list.push_back(obj);
-    }
-    return event_list;
-}
 
 
-int alt_parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
+int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
 {
     //store the raw arguments in the parameter store
     std::vector<std::string> arglist;
@@ -210,7 +193,7 @@ int main(int argc, char** argv)
 
     MHO_FringeData fringeData;
 
-    int parse_status = alt_parse_command_line(argc, argv, fringeData.GetParameterStore() );
+    int parse_status = parse_command_line(argc, argv, fringeData.GetParameterStore() );
     if(parse_status != 0){msg_fatal("main", "could not parse command line options." << eom); std::exit(1);}
 
     //populate a few necessary parameters and  initialize the scan data store
@@ -269,8 +252,8 @@ int main(int argc, char** argv)
     profiler_stop();
     std::vector< MHO_ProfileEvent > events;
     MHO_Profiler::GetInstance().GetEvents(events);
-    mho_json event_list = ConvertProfileEvents(events);
-    //dump the events into the parameter store for now (will be empty unless enabled)
+    //convert and dump the events into the parameter store for now (will be empty unless enabled)
+    mho_json event_list = MHO_BasicFringeDataConfiguration::ConvertProfileEvents(events);
     fringeData.GetParameterStore()->Set("/profile/events", event_list);
 
     //open and dump to file -- should we profile this as well?
@@ -292,10 +275,6 @@ int main(int argc, char** argv)
     #ifdef USE_PYBIND11
     if(show_plot)
     {
-        // MHO_Timer timer;
-        // double current_time;
-        // timer.Start();
-
         msg_debug("main", "python plot generation enabled." << eom );
         py::dict plot_obj = plot_data;
 
@@ -305,9 +284,6 @@ int main(int argc, char** argv)
         //call a python function on the interface class instance
         //TODO, pass filename to save plot if needed
         plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
-
-        // current_time = timer.GetTimeSinceStart();
-        // std::cout<<"time to plot = "<<current_time<<std::endl;
 
     }
     #else //USE_PYBIND11
