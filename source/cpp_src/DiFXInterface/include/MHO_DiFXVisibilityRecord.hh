@@ -15,7 +15,7 @@
 #include <complex>
 #include <cstring>
 
-namespace hops 
+namespace hops
 {
 
 class MHO_DiFXVisibilityRecord
@@ -26,11 +26,11 @@ class MHO_DiFXVisibilityRecord
         MHO_DiFXVisibilityRecord(const MHO_DiFXVisibilityRecord& copy)
         {
             nchan = copy.nchan;
-            visnum = copy.visnum;   
+            visnum = copy.visnum;
             sync = copy.sync;
-            headerversion = copy.headerversion;  
-            baseline = copy.baseline;   
-            mjd = copy.mjd;     
+            headerversion = copy.headerversion;
+            baseline = copy.baseline;
+            mjd = copy.mjd;
             seconds = copy.seconds;
             configindex = copy.configindex;
             sourceindex = copy.sourceindex;
@@ -87,8 +87,8 @@ class MHO_DiFXVisibilityRecord
 };
 
 //helper union used for reading in visibility records
-//to catch over-runs with sync word 
-typedef union 
+//to catch over-runs with sync word
+typedef union
 {
     float values[2];
     int32_t sync_test[2];

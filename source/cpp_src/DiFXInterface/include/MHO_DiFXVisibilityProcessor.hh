@@ -7,8 +7,8 @@
 *@author: J. Barrett
 *@email: barrettj@mit.edu
 *@date:
-*@brief: reads a DiFX Swinburne file and extracts the visibilities into a 
-* baseline-index mapped set of vectors, and keeps track of the unique pol-pairs 
+*@brief: reads a DiFX Swinburne file and extracts the visibilities into a
+* baseline-index mapped set of vectors, and keeps track of the unique pol-pairs
 * seen on each baseline
 */
 
@@ -31,7 +31,7 @@ class MHO_DiFXVisibilityProcessor
 {
     public:
 
-        MHO_DiFXVisibilityProcessor(){};
+        MHO_DiFXVisibilityProcessor();
         virtual ~MHO_DiFXVisibilityProcessor(){};
 
         void SetFilename(std::string filename){fFilename = filename.c_str();}
@@ -40,11 +40,21 @@ class MHO_DiFXVisibilityProcessor
         //memory management of the visibility records is delegated to the caller
         void ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities);
 
+        void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
+        void SetFreqGroups(std::vector< std::string > fgroups){fFreqGroups = fgroups;}
+        void SetOnlyBandwidth(double bw){fOnlyBandwidth = bw;}
+
     private:
+
+        bool KeepRecord(const MHO_DiFXVisibilityRecord& visRecord);
 
         std::string fFilename;
         //maps the pair(baseline,freqindex) to the number of channels (# of spectral points)
         std::map< std::pair<int, int>, int> fNChannelsMap;
+
+        std::vector< std::tuple<std::string, double, double> > fFreqBands; //frequency band/group labels and ranges
+        std::vector< std::string > fFreqGroups; //limit output to matching frequency groups
+        double fOnlyBandwidth; //limit output to only channels of this bandwidth
 
 };
 

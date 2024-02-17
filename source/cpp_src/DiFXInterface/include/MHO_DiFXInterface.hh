@@ -43,12 +43,16 @@ class MHO_DiFXInterface
 
         void SetNormalizeFalse(){fNormalize = false;}
         void SetNormalizeTrue(){fNormalize = true;}
-        
+
         void SetPreserveDiFXScanNamesTrue(){fPreserveDiFXScanNames = true;}
         void SetPreserveDiFXScanNamesFalse(){fPreserveDiFXScanNames = false;};
 
-        void Initialize(); //read the directory and construct the scan file-lists 
-        void ProcessScans(); //convert the scans 
+        void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
+        void SetFreqGroups(std::vector< std::string > fgroups){fFreqGroups = fgroups;}
+        void SetOnlyBandwidth(double bw){fOnlyBandwidth = bw;}
+
+        void Initialize(); //read the directory and construct the scan file-lists
+        void ProcessScans(); //convert the scans
 
     private:
 
@@ -60,6 +64,10 @@ class MHO_DiFXInterface
         std::vector< MHO_DiFXScanFileSet > fScanFileSetList;
         bool fNormalize;
         bool fPreserveDiFXScanNames;
+
+        std::vector< std::tuple<std::string, double, double> > fFreqBands; //frequency band/group labels and ranges
+        std::vector< std::string > fFreqGroups; //limit output to matching frequency groups
+        double fOnlyBandwidth; //limit output to only channels of this bandwidth
 
         int fExperNum;
         MHO_DiFXScanProcessor fScanProcessor;

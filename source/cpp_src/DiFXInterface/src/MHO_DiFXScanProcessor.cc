@@ -34,6 +34,9 @@ MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
     fPreserveDiFXScanNames = false;
     fNormalize = false;
     MICROSEC_TO_SEC = 1e-6; //needed to match difx2mark4 convention
+    fFreqBands.clear();
+    fFreqGroups.clear();
+    fOnlyBandwidth = 0;
 };
 
 MHO_DiFXScanProcessor::~MHO_DiFXScanProcessor()
@@ -156,20 +159,20 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
         {
             std::string station_code = (*it)["site_ID"];
             (*it)["mk4_site_ID"] = fStationCodeMap->GetMk4IdFromStationCode(station_code);
-            //Careful!! this will break if there are two stations that only differ by case 
+            //Careful!! this will break if there are two stations that only differ by case
             //needed because while the DiFX input-file makes all station codes upper-case
-            //the vex file does not (and we want to preserve the vex codes) - jpb 02/15/24 
+            //the vex file does not (and we want to preserve the vex codes) - jpb 02/15/24
             std::string difx_station_code = station_code;
             std::transform(difx_station_code.begin(), difx_station_code.end(), difx_station_code.begin(), ::toupper);
-            difx2vex[difx_station_code] = station_code; 
+            difx2vex[difx_station_code] = station_code;
         }
 
         //This assumes all datastreams at a antenna are all sampled with the same bit depth
-        //this is probably relatively safe, 
+        //this is probably relatively safe,
         //but otherwise we would need to track this on a per-channel or per-band basis
         std::map< std::string, int >  code2bits;
         std::map< int, std::string >  id2code;
-        std::set< int > bits_present; 
+        std::set< int > bits_present;
         if( fInput.contains("datastream") && fInput.contains("antenna") )
         {
             for(auto it : fInput["datastream"].items() )
@@ -183,7 +186,7 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
                     {
                         if(antId == antennaId && it.value().contains("name"))
                         {
-                            std::string antCode = it.value()["name"].get<std::string>();  
+                            std::string antCode = it.value()["name"].get<std::string>();
                             code2bits[antCode] = bits;
                             id2code[antennaId] = antCode;
                             break;
@@ -193,9 +196,9 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
                 }
             }
         }
-        
+
         //fake it 'til we make it (just like difx2mark4)
-        //add an OVEX $TRACKS section for each site just to keep track of # bits/sample 
+        //add an OVEX $TRACKS section for each site just to keep track of # bits/sample
         //we'll create a tracks "trax" entry for each possible bits/sample that we've encountered
         //we will then re-link the stations to this OVEX tracks section in the MODE section
         mho_json tracks_section;
@@ -219,11 +222,11 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
             //add the (vex) station code to the list of stations attached to this trax specification
             trax2codes[trax_name].push_back( difx2vex[ it->first ] );
         }
-        
+
         //insert our new trax info
         if( vex_root.contains("$TRACKS") ){ vex_root["$TRACKS"].update(tracks_section); }
         else{ vex_root["$TRACKS"] = tracks_section; }
-    
+
         //clear all existing tracks in the $MODE section, and re-link to only our 'trax'
         vex_root["$MODE"][mode_name]["$TRACKS"].clear();
         for(auto it = trax2codes.begin(); it != trax2codes.end(); it++)
@@ -515,8 +518,8 @@ MHO_DiFXScanProcessor::LoadInputFile()
     input_proc.LoadDiFXInputFile(fFileSet->fInputFile);
     input_proc.ConvertToJSON(fInput);
     // input_proc.FillFrequencyTable();
-    
-    //grab the date when the fInputFile was last modified as the correlation time 
+
+    //grab the date when the fInputFile was last modified as the correlation time
     struct tm *mod_time;
     struct stat attrib;
     fCorrDate = "";
@@ -533,7 +536,7 @@ MHO_DiFXScanProcessor::LoadInputFile()
         auto mod_datetime = std::chrono::system_clock::from_time_t(timeval);
         auto hops_datetime = hops_clock::from_sys(mod_datetime);
         fCorrDate = hops_clock::to_vex_format(hops_datetime);
-    } 
+    }
 
     msg_debug("difx_interface", "difx .input file: " << fFileSet->fInputFile <<" converted to json." << eom);
 }
