@@ -372,6 +372,8 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                     ch_label["net_sideband"] = sideband;
                     ch_label["difx_freqindex"] = freqidx; //probably ought to be more systematic about creating channel names
                     ch_label["channel"] = chidx; //channel position index
+                    std::string fband = DetermineFreqGroup(sky_freq);
+                    ch_label["frequency_band"] = fband; //will be empty string if assignment can't be made
 
                      //TODO FIXME need to construct difx2mark4-style chan_id --
                     //or rather need to construct the chan_id which corresponds to the reference and remote station for this chunk
