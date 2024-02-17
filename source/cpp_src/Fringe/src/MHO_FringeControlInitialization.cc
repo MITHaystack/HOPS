@@ -14,7 +14,7 @@
 namespace hops
 {
 
-bool 
+bool
 MHO_FringeControlInitialization::need_ion_search(mho_json* control)
 {
     std::vector< std::string > ion_keywords;
@@ -22,7 +22,7 @@ MHO_FringeControlInitialization::need_ion_search(mho_json* control)
     ion_keywords.push_back("ion_npts");
     ion_keywords.push_back("ionosphere");
     ion_keywords.push_back("ion_smooth");
-    //loop over control statements, find statements which contain ionospheric 
+    //loop over control statements, find statements which contain ionospheric
     //search related settings, return true on first one encountered
     for(auto ctrl_iter = control->begin(); ctrl_iter != control->end(); ctrl_iter++)
     {
@@ -56,6 +56,7 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     std::string control_file = paramStore->GetAs<std::string>("/files/control_file");
     std::string baseline = paramStore->GetAs<std::string>("/config/baseline");
     std::string polprod = paramStore->GetAs<std::string>("/config/polprod");
+    std::string fgroup = paramStore->GetAs<std::string>("/config/fgroup");
     std::vector< std::string > pp_vec = paramStore->GetAs< std::vector< std::string > >("/config/polprod_set");
 
     ////////////////////////////////////////////////////////////////////////////
@@ -70,16 +71,16 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     //add default operations to the control format, so we can later trigger them
     add_default_operator_format_def(control_format);
 
-    //add the set string info if it is available 
+    //add the set string info if it is available
     std::string set_string = paramStore->GetAs<std::string>("/cmdline/set_string");
     if(set_string != ""){cparser.PassSetString(set_string);}
 
-    //now parse the control file and collect the applicable statements 
+    //now parse the control file and collect the applicable statements
     cparser.SetControlFile(control_file);
     auto control_contents = cparser.ParseControl();
 
     //stash the processed text in the parameter store
-    //TODO FIXME -- we may want to move this elsewhere 
+    //TODO FIXME -- we may want to move this elsewhere
     // std::string parsed_control = cparser.GetProcessedControlFileText();
     std::string parsed_control = cparser.GetLegacyProcessedControlFileText();
     paramStore->Set("/control/control_file_contents", parsed_control);
@@ -87,14 +88,17 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     //TODO -- where should frequency group information get stashed/retrieved?
     std::string srcName = paramStore->GetAs<std::string>("/vex/scan/source/name");
     std::string scnName = paramStore->GetAs<std::string>("/vex/scan/name");
-    ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
+
+    std::string fgroup_code = "?";
+    if(fgroup != ""){fgroup_code = fgroup;}
+    ceval.SetPassInformation(baseline, srcName, fgroup_code, scnName);//baseline, source, fgroup, scan
     control_statements = ceval.GetApplicableStatements(control_contents);
 
     //tack on default-operations to the control statements, so we can trigger
     //the build of these operators at the proper step (e.g. coarse selection, multitone pcal etc.)
     add_default_operators( (*(control_statements.begin()))["statements"] );
 
-    //add the pol-product summation operator into the execution stream if we were passed 
+    //add the pol-product summation operator into the execution stream if we were passed
     //such a thing on the command line (e.g. RR+LL or I)
     std::size_t npp = pp_vec.size();
     if(npp > 1)
@@ -141,13 +145,13 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
 }
 
 
-void 
+void
 MHO_FringeControlInitialization::add_default_operator_format_def(mho_json& format)
 {
     //this is bit of a hack to get these operators
     //(which cannot be triggered via control file statements)
     //into the initialization stream (part 1)
-    
+
     //add the data selection operator
     mho_json data_select_format =
     {
@@ -213,13 +217,13 @@ MHO_FringeControlInitialization::add_default_operator_format_def(mho_json& forma
 }
 
 
-void 
+void
 MHO_FringeControlInitialization::add_default_operators(mho_json& statements)
 {
-    //this is the rest of the default operators hack 
-    //in part 2 (here) we actually define control statements that trigger 
+    //this is the rest of the default operators hack
+    //in part 2 (here) we actually define control statements that trigger
     //these operators to be built and exectuted
-    
+
     mho_json coarse_selection_hack =
     {
        {"name", "coarse_selection"},
@@ -227,7 +231,7 @@ MHO_FringeControlInitialization::add_default_operators(mho_json& statements)
        {"operator_category" , "selection"}
     };
     statements.push_back(coarse_selection_hack);
-    
+
     mho_json sampler_hack =
     {
        {"name", "sampler_labeler"},
@@ -236,7 +240,7 @@ MHO_FringeControlInitialization::add_default_operators(mho_json& statements)
     };
     statements.push_back(sampler_hack);
 
-    //add default ops for multi-tone pcal 
+    //add default ops for multi-tone pcal
     //note: this operator checks if the pcal data is available and if pc_mode != manual
     //if either condition fails, it does not get inserted into the execution stream
     mho_json ref_multitone_pcal_hack =
@@ -257,10 +261,10 @@ MHO_FringeControlInitialization::add_default_operators(mho_json& statements)
     statements.push_back(rem_multitone_pcal_hack);
 }
 
-void 
+void
 MHO_FringeControlInitialization::add_polprod_sum_operator(mho_json& statements)
 {
-    mho_json pp_sum_hack = 
+    mho_json pp_sum_hack =
     {
        {"name", "polproduct_sum"},
        {"statement_type", "operator"},
@@ -269,10 +273,10 @@ MHO_FringeControlInitialization::add_polprod_sum_operator(mho_json& statements)
     statements.push_back(pp_sum_hack);
 }
 
-void 
+void
 MHO_FringeControlInitialization::add_dpar_sign_correction_operator(mho_json& statements)
 {
-    mho_json dpar_corr_hack = 
+    mho_json dpar_corr_hack =
     {
        {"name", "dpar_corr"},
        {"statement_type", "operator"},

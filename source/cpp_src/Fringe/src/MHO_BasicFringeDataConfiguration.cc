@@ -51,52 +51,6 @@ MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(std::string baseline_fr
     }
 }
 
-// void
-// MHO_BasicFringeDataConfiguration::set_message_level(int message_level)
-// {
-//     //set the message level according to the fourfit style
-//     //where 3 is least verbose, and '-1' is most verbose
-//     switch (message_level)
-//     {
-//         case -2:
-//             //NOTE: debug messages must be compiled-in
-//             #ifndef HOPS_ENABLE_DEBUG_MSG
-//             MHO_Message::GetInstance().SetMessageLevel(eInfo);
-//             msg_warn("fringe", "debug messages are toggled via compiler flag, re-compile with ENABLE_DEBUG_MSG=ON to enable." << eom);
-//             #else
-//             MHO_Message::GetInstance().SetMessageLevel(eDebug);
-//             #endif
-//         break;
-//         case -1:
-//             MHO_Message::GetInstance().SetMessageLevel(eInfo);
-//         break;
-//         case 0:
-//             MHO_Message::GetInstance().SetMessageLevel(eStatus);
-//         break;
-//         case 1:
-//             MHO_Message::GetInstance().SetMessageLevel(eWarning);
-//         break;
-//         case 2:
-//             MHO_Message::GetInstance().SetMessageLevel(eError);
-//         break;
-//         case 3:
-//             MHO_Message::GetInstance().SetMessageLevel(eFatal);
-//         break;
-//         case 4:
-//             //silent, but prints out the mk4 fringe file name to stderr if it is created
-//             //this is for backwards compatiblity with VGOS post-processing scripts
-//             MHO_Message::GetInstance().SetMessageLevel(eSpecial);
-//         break;
-//         case 5:
-//             //completely silent
-//             MHO_Message::GetInstance().SetMessageLevel(eSilent);
-//         break;
-//         default:
-//             //for now default is most verbose, eventually will change this to silent
-//             MHO_Message::GetInstance().SetMessageLevel(eDebug);
-//     }
-// }
-
 std::string
 MHO_BasicFringeDataConfiguration::parse_set_string(const std::vector< std::string >& arglist, int& set_arg_index)
 {
