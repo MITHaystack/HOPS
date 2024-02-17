@@ -11,6 +11,19 @@ MHO_DataSelectionBuilder::Build()
     {
         msg_debug("initialization", "building data selection operators."<< eom);
 
+        bool do_select_fgroup = false;
+        std::string fgroup_key = "/config/fgroup";
+        std::string fgroup = "";
+        if(fParameterStore->IsPresent(fgroup_key))
+        {
+            fParameterStore->Get(fgroup_key, fgroup);
+            if(fgroup != "")
+            {
+                do_select_fgroup = true;
+                msg_debug("initialization", "will select data by frequency group: "<<fgroup<< eom);
+            }
+        }
+
         std::string polprod_key = "/config/polprod";
         std::string polprod = "";
         if(fParameterStore->IsPresent(polprod_key))
@@ -24,7 +37,7 @@ MHO_DataSelectionBuilder::Build()
         if(fParameterStore->IsPresent(polprod_set_key))
         {
             do_select_polprods = fParameterStore->Get(polprod_set_key, pp_vec);
-            
+
             if(do_select_polprods)
             {
                 std::stringstream ss;
@@ -53,7 +66,6 @@ MHO_DataSelectionBuilder::Build()
                 }
                 msg_debug("initialization", "will select data by channels: "<<ss.str()<<"."<< eom);
             }
-            
         }
 
         bool do_select_aps = false;
@@ -66,7 +78,7 @@ MHO_DataSelectionBuilder::Build()
             fParameterStore->Get(start_key, start);
             fParameterStore->Get(stop_key, stop);
             if(start != 0 || stop != 0){do_select_aps = true;}
-            
+
             if(do_select_aps)
             {
                 msg_debug("initialization", "will select data by AP, start offset: "<<start<<" and stop offset: "<<stop<<"." << eom);
@@ -80,7 +92,7 @@ MHO_DataSelectionBuilder::Build()
             }
         }
 
-        if( !do_select_chans && !do_select_polprods && !do_select_aps)
+        if( !do_select_chans && !do_select_polprods && !do_select_aps && !do_select_fgroup)
         {
             msg_info("initialization", "no pol/freq data selection needed." << eom);
             return false;
@@ -123,22 +135,38 @@ MHO_DataSelectionBuilder::Build()
             {
                 msg_warn("initialization", "pol-product selection failed to match any data." << eom);
             }
-
             spack->SelectAxisItems(POLPROD_AXIS,selected_pp);
             wtspack->SelectAxisItems(POLPROD_AXIS,selected_pp);
         }
 
+        std::vector< std::size_t > fgroup_idx;
+        if(do_select_fgroup)
+        {
+            //get all of channels in this frequency group
+            std::string fgroup_label_key = "frequency_band";
+            fgroup_idx = (&(std::get<CHANNEL_AXIS>(*vis_data)))->GetMatchingIndexes(fgroup_label_key, fgroup);
+            for(std::size_t i=0; i<std::get<CHANNEL_AXIS>(*vis_data).GetSize(); i++)
+            {
+                std::cout<<"channel: "<<i<<" freq = "<<std::get<CHANNEL_AXIS>(*vis_data).at(i)<<std::endl;
+                std::cout<<"info = "<<std::get<CHANNEL_AXIS>(*vis_data).GetLabelObject(i).dump(2)<<std::endl;
+            }
+            if(fgroup_idx.size() == 0)
+            {
+                msg_warn("initialization", "frequency group selection by " << fgroup<<", failed to match any data." << eom);
+            }
+        }
+
+        std::vector<std::size_t> selected_ch;
         if(do_select_chans)
         {
-            std::set< std::string > chan_set;
+            std::set< std::string > chan_set; //set of channels selected by control
             for(auto it = chans.begin(); it != chans.end(); it++){chan_set.insert(*it);}
             std::string chan_label_key = "channel_label";
-            std::vector<std::size_t> selected_ch;
 
             for(auto it = chan_set.begin(); it != chan_set.end(); it++)
             {
-                 auto tmp_ch = (&(std::get<CHANNEL_AXIS>(*vis_data)))->GetMatchingIndexes(chan_label_key, *it);
-                 selected_ch.insert(selected_ch.end(), tmp_ch.begin(), tmp_ch.end() );
+                auto tmp_ch = (&(std::get<CHANNEL_AXIS>(*vis_data)))->GetMatchingIndexes(chan_label_key, *it);
+                selected_ch.insert(selected_ch.end(), tmp_ch.begin(), tmp_ch.end() );
             }
 
             msg_debug("initialization", "data selection, selecting "<<selected_ch.size() << " channels." << eom);
@@ -146,9 +174,45 @@ MHO_DataSelectionBuilder::Build()
             {
                 msg_warn("initialization", "channel selection failed to match any data." << eom);
             }
+            // spack->SelectAxisItems(CHANNEL_AXIS,selected_ch);
+            // wtspack->SelectAxisItems(CHANNEL_AXIS,selected_ch);
+        }
 
-            spack->SelectAxisItems(CHANNEL_AXIS,selected_ch);
-            wtspack->SelectAxisItems(CHANNEL_AXIS,selected_ch);
+        //figure out the channel selection
+        std::vector< std::size_t > channel_selection;
+        if(do_select_chans && !do_select_fgroup)
+        {
+            channel_selection = selected_ch; //only channel selection
+        }
+
+        if(do_select_fgroup&& !do_select_chans)
+        {
+            channel_selection = fgroup_idx; //only freq group selection
+        }
+
+        //both, so figure out the intersection of the frequency group
+        //selection and the channel group selection
+        if(do_select_chans && do_select_fgroup)
+        {
+            channel_selection.clear();
+            //dumb brute force O(N^2) union
+            for(auto fit = fgroup_idx.begin(); fit !=fgroup_idx.end(); fit++)
+            {
+                bool include = false;
+                for(auto cit = selected_ch.begin(); cit !=selected_ch.end(); cit++)
+                {
+                    if(*fit == *cit){include = true; break;}
+                }
+                if(include){channel_selection.push_back(*fit);}
+            }
+            std::sort(channel_selection.begin(), channel_selection.end());
+        }
+
+        //finally assign the selected channels
+        if(do_select_fgroup || do_select_chans)
+        {
+            spack->SelectAxisItems(CHANNEL_AXIS,channel_selection);
+            wtspack->SelectAxisItems(CHANNEL_AXIS,channel_selection);
         }
 
         if(do_select_aps)

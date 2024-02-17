@@ -205,6 +205,7 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     std::string control_file = paramStore->GetAs<std::string>("/cmdline/control_file");
     std::string baseline = paramStore->GetAs<std::string>("/cmdline/baseline");
     std::string polprod = paramStore->GetAs<std::string>("/cmdline/polprod");
+    std::string fgroup = paramStore->GetAs<std::string>("/cmdline/frequency_group");
 
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE PARAMETERS
@@ -218,6 +219,7 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     //put the baseline and pol product selection into the parameter store
     paramStore->Set("/config/polprod", polprod);
     paramStore->Set("/config/baseline", baseline);
+    paramStore->Set("/config/fgroup", fgroup);
 
     //parse the polprod string in order to determine which pol-products are needed (if more than one)
     std::vector< std::string > pp_vec = determine_required_pol_products(polprod);
