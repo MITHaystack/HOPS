@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#define ERROR_STATE -1
 #define FALSE_STATE 0
 #define TRUE_STATE 1
 #define OPEN_PAR 2
@@ -9,6 +10,7 @@
 #define NOT_OP 4
 #define AND_OP 5
 #define OR_OP 6
+
 
 namespace hops
 {
@@ -97,6 +99,12 @@ MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
                 {
                     //std::cout<<"token: "<<*it<<std::endl;
                     eval_stack.push( ProcessToken(it, it_end) );
+                    if(eval_stack.top() == ERROR_STATE)
+                    {
+                        msg_fatal("control", "error parsing token: '" << *it << "' on line: " << fStartLineNumber << eom );
+                        std::exit(1);
+                    }
+
                     //std::cout<<"top value = "<<eval_stack.top()<<std::endl;
                     if(eval_stack.top() == OPEN_PAR){paren_count++;}
                     if(eval_stack.top() == CLOSED_PAR){paren_count--;}
@@ -167,7 +175,7 @@ MHO_ControlConditionEvaluator::ProcessToken(token_iter& it, token_iter& it_end)
         if( *it == "f_group"){return EvaluateFrequencyGroup(++it);}
         if( *it == "scan"){return EvaluateScan(++it, it_end);}
     }
-    return FALSE_STATE;
+    return ERROR_STATE;
 }
 
 

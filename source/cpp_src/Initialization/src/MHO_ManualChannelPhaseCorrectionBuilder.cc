@@ -14,17 +14,21 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
     {
         msg_debug("initialization", "building a manual per-channel phase correction operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
+        #pragma message("TODO FIXME -- add checks on attributes (e.g. IsConfigurationOk)" )
 
         std::string op_name = fAttributes["name"].get<std::string>();
         std::string op_category = "calibration";
+
         std::string channel_name_str = fAttributes["value"]["channel_names"].get<std::string>();
         std::vector<double> pc_phases = fAttributes["value"]["pc_phases"].get< std::vector<double> >();
+        //construct channel -> pc_phase map
+        auto chan2pcp = MapChannelQuantities(channel_name_str, pc_phases);
+
         double priority = fFormat["priority"].get<double>();
 
         std::string pol = ParsePolFromName(op_name);
         std::string mk4id = ExtractStationMk4ID();
-        //construct channel -> pc_phase map
-        auto chan2pcp = MapChannelQuantities(channel_name_str, pc_phases);
+
 
         if( chan2pcp.size() > 0)
         {
