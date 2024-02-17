@@ -71,6 +71,7 @@ int main(int argc, char** argv)
     std::vector< std::tuple<std::string, double, double> > freq_bands; //user override
     std::vector< std::string > freq_groups;
     bool use_legacy_bands = false;
+    bool use_legacy_stcodes = false;
     double bandwidth = 0;
 
     //legacy frequency band set-up
@@ -108,6 +109,7 @@ int main(int argc, char** argv)
     app.add_flag("-P,--preserve-difx-names", preserve, "use original difx scan names to name each scans (otherwise uses DOY-HHMM");
     app.add_option("-b,--band",freq_bands,"set frequency band codes, must pass triplet as -b <code> <freq_low> <freq_high> (in MHz) if none specified and '-L' flag not passed, no band assignment will be made");
     app.add_flag("-L,--legacy-bands",use_legacy_bands, legacy_freq_bands_help.c_str() )->excludes("-b");
+    app.add_flag("-C,--legacy-station-codes",use_legacy_stcodes,"use the legacy station code map with assigning mk4 station IDs.");
     app.add_option("-g,--freq-groups",freq_groups,"include data only from the specified frequency groups")->delimiter(',');
     app.add_option("-w,--bandwidth",bandwidth,"include data only channels matching this bandwidth (in MHz)");
 
@@ -184,9 +186,10 @@ int main(int argc, char** argv)
         std::exit(1);
     }
 
-    //TODO add option to enable/disable legacy code map (disabled by default)
+
     MHO_StationCodeMap stcode_map;
-    stcode_map.InitializeStationCodes(station_codes_file);
+    if(use_legacy_stcodes){stcode_map.UseLegacyCodes();} //use legacy d2m4 station code map
+    stcode_map.InitializeStationCodes(station_codes_file); //if no file passed, auto assignement will take place
 
     MHO_DiFXInterface difxInterface;
     difxInterface.SetInputDirectory(input_dir);

@@ -7,10 +7,10 @@
 *@author: J. Barrett
 *@email: barrettj@mit.edu
 *@date:
-*@brief: 
+*@brief:
     Handles the mapping of two character and one character station representation.
-    This class can be initialized from a file, otherwise it assigns free 1-char codes 
-    based on the order in which stations are encountered. Optionally, we can enable 
+    This class can be initialized from a file, otherwise it assigns free 1-char codes
+    based on the order in which stations are encountered. Optionally, we can enable
     some legacy station code assignments inherited from difx2mark4
 */
 
@@ -22,7 +22,7 @@
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_StationCodeMap
@@ -31,6 +31,8 @@ class MHO_StationCodeMap
 
         MHO_StationCodeMap(bool use_legacy_default_codes = false);
         virtual ~MHO_StationCodeMap();
+
+        void UseLegacyCodes(){fUseLegacyCodes = true;}
 
         void InitializeStationCodes(std::string station_codes_file = "");
 
