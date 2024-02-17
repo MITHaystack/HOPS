@@ -35,7 +35,7 @@
 #include "MHO_StationCodeMap.hh"
 #include "MHO_DirectoryInterface.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_DiFXScanProcessor
@@ -56,12 +56,16 @@ class MHO_DiFXScanProcessor
         void SetPreserveDiFXScanNamesTrue(){fPreserveDiFXScanNames = true;}
         void SetPreserveDiFXScanNamesFalse(){fPreserveDiFXScanNames = false;};
 
+        void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
+        void SetFreqGroups(std::vector< std::string > fgroups){fFreqGroups = fgroups;}
+        void SetOnlyBandwidth(double bw){fOnlyBandwidth = bw;}
+
         //use json representation of vex-scan information to return epoch string of frt
         std::string get_fourfit_reftime_for_scan(mho_json scan_obj);
 
         //given a mjd date and number of seconds, compute the vex string representation
         std::string get_vexdate_from_mjd_sec(double mjd, double sec);
-        
+
         std::string get_correlation_vexdate() const {return fCorrDate;} ;
 
     private:
@@ -88,18 +92,18 @@ class MHO_DiFXScanProcessor
         void ExtractStationCoords();
         void CleanUp();
 
-        //the DiFX input file structure 
+        //the DiFX input file structure
         mho_json fInput;
 
-        //the root code assigned to this scan 
+        //the root code assigned to this scan
         std::string fRootCode;
         std::string fCorrDate; //the correlation data as a vex-formatted string
 
-        //integer experiment number 
+        //integer experiment number
         int fExperNum;
         bool fNormalize;
 
-        //the output directory for this scan 
+        //the output directory for this scan
         std::string fOutputDirectory;
 
         std::map< int, MHO_DiFXBaselineProcessor > fAllBaselineVisibilities;
@@ -115,6 +119,11 @@ class MHO_DiFXScanProcessor
         bool fPreserveDiFXScanNames;
 
         double MICROSEC_TO_SEC; //needed to match difx2mark4 convention
+
+        //frequency band labelling/selection
+        std::vector< std::tuple<std::string, double, double> > fFreqBands; //frequency band/group labels and ranges
+        std::vector< std::string > fFreqGroups; //limit output to matching frequency groups
+        double fOnlyBandwidth; //limit output to only channels of this bandwidth
 
 
 };

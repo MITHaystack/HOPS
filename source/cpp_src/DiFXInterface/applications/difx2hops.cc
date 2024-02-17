@@ -6,7 +6,6 @@
 #include <set>
 #include <utility>
 #include <map>
-#include <getopt.h>
 
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
@@ -70,18 +69,30 @@ int main(int argc, char** argv)
     int exper_num = 1234;
     bool raw_mode = false;
     bool preserve = false;
+    std::vector< std::tuple<std::string, double, double> > freq_bands;
+    std::vector< std::string > freq_groups;
+    double bandwidth = 0;
+
 
     CLI::App app{"difx2hops"};
 
     app.add_option("input_dir,-i,--input-dir", input_dir, "name of the input directory (difx) file to be converted")->required();
     app.add_option("output_dir,-o,--output-dir", output_dir, "name of the output directory where results (hops) will be written (if unspecified defaults to <input_dir>/<experiment>)");
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
-    app.add_option("-s,--scode", station_codes_file, "name of file containing 2-char station codes to 1-char mk4id");
+    app.add_option("-s,--scode", station_codes_file, "name of the file containing the 2-char station codes to 1-char mk4 station IDs in form: X Xx");
     app.add_option("-e,--exp-num", exper_num, "experiment identification number");
     app.add_option("-r,--raw-mode", raw_mode, "enable raw mode (do not apply auto-corr normalization)");
     app.add_option("-p,--preserve-difx-names", preserve, "use original difx scan names to name each scans (otherwise uses DOY-HHMM");
+    app.add_option("-b,--band",freq_bands,"override frequency band codes, must pass triplet as -b <code> <freq_low> <freq_high> (in MHz)");
+    app.add_option("-g,--freq-groups",freq_groups,"include data only from the specified frequency groups");
+    app.add_option("-w,--bandwidth",bandwidth,"include data only channels matching this bandwidth (in MHz)");
 
     CLI11_PARSE(app, argc, argv);
+
+    // for(auto it = freq_bands.begin(); it != freq_bands.end(); it++)
+    // {
+    //     std::cout<<std::get<0>(*it)<<", "<<std::get<1>(*it)<<", "<<std::get<2>(*it)<<std::endl;
+    // }
 
     //clamp message level
     if(message_level > 5){message_level = 5;}
