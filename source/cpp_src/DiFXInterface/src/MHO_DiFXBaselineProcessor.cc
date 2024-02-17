@@ -78,9 +78,14 @@ MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
         bandwidth = (*fInput)["freq"][freqidx]["bw"].get<double>();
     }
 
-    if(fOnlyBandwidth && std::fabs(fOnlyBandwidth - bandwidth) < FREQ_EPS)
+    if(fSelectByBandwidth)
     {
-        keep_record = false; //discard, does not match our bandwidth selection
+        std::cout<<"CHECKING BW: "<<fOnlyBandwidth<<" ? "<<bandwidth<<std::endl;
+        if( std::fabs(fOnlyBandwidth - bandwidth) > FREQ_EPS)
+        {
+            std::cout<<"DISCARDING A RECORD WITH BW: "<<bandwidth<<std::endl;
+            keep_record = false; //discard, does not match our bandwidth selection
+        }
     }
 
     std::string fgroup = DetermineFreqGroup(freq);
@@ -125,15 +130,19 @@ MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
 void
 MHO_DiFXBaselineProcessor::Organize()
 {
+    fHaveBaselineData = true;
+
     if(fRecords.size() == 0)
     {
-        msg_debug("difx_interface", "no visiblity records available for baseline: " << fBaselineID << eom);
+        msg_warn("difx_interface", "no visiblity records available for baseline: " << fBaselineID << eom);
+        fHaveBaselineData = false;
         return;
     }
 
     if(fInput == nullptr)
     {
         msg_warn("difx_interface", "no difx input data set for baseline: " << fBaselineID << eom);
+        fHaveBaselineData = false;
         return;
     }
 
@@ -261,15 +270,15 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
     //fVisibilities contains the pol-pair and time sorted visibilities
     Organize();
 
-    if(fCanChannelize && fInput != nullptr)
+    //first construct a channelized visibility container
+    if(fV){delete fV; fV = nullptr;}
+    if(fW){delete fW; fW = nullptr;}
+
+    if(fHaveBaselineData && fCanChannelize && fInput != nullptr)
     {
         //insert the difx input data as a json object
         fTags.SetTagValue("difx_input_json", *fInput);
         fTags.SetTagValue("root_code", fRootCode);
-
-    	//first construct a channelized visibility container
-        if(fV){delete fV; fV = nullptr;}
-        if(fW){delete fW; fW = nullptr;}
 
         fV = new visibility_store_type();
         fW = new weight_store_type();
@@ -376,8 +385,6 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                     ch_axis->SetLabelObject(ch_label,chidx);
                     wch_axis->SetLabelObject(ch_label,chidx);
 
-
-
                     // MHO_IntervalLabel ch_label(chidx,chidx);
                     // ch_label.Insert(std::string("sky_freq"), sky_freq);
                     // ch_label.Insert(std::string("bandwidth"), bw);
@@ -421,7 +428,10 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
     }
     else
     {
-        msg_error("difx_interface", "cannot channelize visibility data, as not all channels are equal length. Feature not yet supported" << eom );
+        if(fHaveBaselineData) //not an error if there is no data
+        {
+            msg_error("difx_interface", "cannot channelize visibility data, as not all channels are equal length. Feature not yet supported" << eom );
+        }
     }
 
     DeleteDiFXVisRecords();
@@ -431,37 +441,39 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 void
 MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
 {
-    //apply difx2mark4 style factor and Van Vleck correction before writing out
-    if(fRescale)
+    if(fV != nullptr && fW != nullptr) //only if we have data
     {
-        //apply a x10000 factor to convert to "Whitney's"
-        // and apply Van Vleck n-bit statistics normalization factor (only 2x2, 1x1, and 1x2 bit supported)
-        (*fV) *= fScaleFactor;
-    }
+        //apply difx2mark4 style factor and Van Vleck correction before writing out
+        if(fRescale)
+        {
+            //apply a x10000 factor to convert to "Whitney's"
+            // and apply Van Vleck n-bit statistics normalization factor (only 2x2, 1x1, and 1x2 bit supported)
+            (*fV) *= fScaleFactor;
+        }
 
-    //construct output file name
-    std::string root_code = fRootCode;
-    std::string output_file = output_dir + "/" + fBaselineShortName + "." + root_code + ".cor";
+        //construct output file name
+        std::string root_code = fRootCode;
+        std::string output_file = output_dir + "/" + fBaselineShortName + "." + root_code + ".cor";
 
-    MHO_BinaryFileInterface inter;
-    bool status = inter.OpenToWrite(output_file);
-    if(status)
-    {
-        fTags.AddObjectUUID(fV->GetObjectUUID());
-        fTags.AddObjectUUID(fW->GetObjectUUID());
-        inter.Write(fTags, "tags");
+        MHO_BinaryFileInterface inter;
+        bool status = inter.OpenToWrite(output_file);
+        if(status)
+        {
+            fTags.AddObjectUUID(fV->GetObjectUUID());
+            fTags.AddObjectUUID(fW->GetObjectUUID());
+            inter.Write(fTags, "tags");
 
-        inter.Write(*fV, "vis");
-        inter.Write(*fW, "weight");
+            inter.Write(*fV, "vis");
+            inter.Write(*fW, "weight");
+            inter.Close();
+        }
+        else
+        {
+            msg_error("file", "error opening corel output file: " << output_file << eom);
+        }
+
         inter.Close();
     }
-    else
-    {
-        msg_error("file", "error opening corel output file: " << output_file << eom);
-    }
-
-    inter.Close();
-
     delete fV; fV = nullptr;
     delete fW; fW = nullptr;
 };

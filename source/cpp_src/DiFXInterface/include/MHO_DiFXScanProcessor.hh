@@ -58,7 +58,7 @@ class MHO_DiFXScanProcessor
 
         void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
         void SetFreqGroups(std::vector< std::string > fgroups){fFreqGroups = fgroups;}
-        void SetOnlyBandwidth(double bw){fOnlyBandwidth = bw;}
+        void SetOnlyBandwidth(double bw){fOnlyBandwidth = bw; fSelectByBandwidth = true;}
 
         //use json representation of vex-scan information to return epoch string of frt
         std::string get_fourfit_reftime_for_scan(mho_json scan_obj);
@@ -123,6 +123,7 @@ class MHO_DiFXScanProcessor
         //frequency band labelling/selection
         std::vector< std::tuple<std::string, double, double> > fFreqBands; //frequency band/group labels and ranges
         std::vector< std::string > fFreqGroups; //limit output to matching frequency groups
+        bool fSelectByBandwidth;
         double fOnlyBandwidth; //limit output to only channels of this bandwidth
 
 

@@ -61,7 +61,12 @@ class MHO_DiFXBaselineProcessor
 
         void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
         void SetFreqGroups(std::vector< std::string > fgroups){fOnlyFreqGroups = fgroups;}
-        void SetOnlyBandwidth(double bw){fOnlyBandwidth = bw; fSelectByBandwidth = true;}
+        void SetOnlyBandwidth(double bw)
+        {
+            std::cout<<"I AM BEING TOLD TO SELECT BY BANDWIDTH = "<<bw<<std::endl;
+            fOnlyBandwidth = bw;
+            fSelectByBandwidth = true;
+        }
 
     private:
 
@@ -105,6 +110,7 @@ class MHO_DiFXBaselineProcessor
         std::size_t fNAPs;
         std::size_t fNSpectralPoints;
         bool fCanChannelize;
+        bool fHaveBaselineData;
 
         bool fRescale;
         std::map<int, double> fNBitsToFactor;

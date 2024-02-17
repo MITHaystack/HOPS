@@ -7,9 +7,12 @@ namespace hops
 
 MHO_DiFXVisibilityProcessor::MHO_DiFXVisibilityProcessor()
 {
-    // fFreqBands.clear();
-    // fFreqGroups.clear();
-    // fOnlyBandwidth = 0;
+    //here so we can pass these parameters to the baseline processors upon construction (as map entries)
+    fFreqBands.clear();
+    fOnlyFreqGroups.clear();
+    fSelectByBandwidth = false;
+    fOnlyBandwidth = 0;
+    fInput = nullptr;
 }
 
 void
@@ -100,6 +103,19 @@ MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcess
                     //so we can just grab them all at once on the next encounter
                     fNChannelsMap[ std::make_pair(visRecord.baseline, visRecord.freqindex) ] = visRecord.nchan;
                 }
+
+                //first time seeing this baseline, so pass these parameters on construction
+                if( allBaselineVisibilities.find(visRecord.baseline) == allBaselineVisibilities.end() )
+                {
+                    allBaselineVisibilities[visRecord.baseline].SetDiFXInputData(fInput);
+                    // if(fFreqBands.size() != 0){ it->second.SetFrequencyBands(fFreqBands); }
+                    // if(fFreqGroups.size() != 0){ it->second.SetFreqGroups(fFreqGroups); }
+                    if(fSelectByBandwidth)
+                    {
+                        allBaselineVisibilities[visRecord.baseline].SetOnlyBandwidth(fOnlyBandwidth);
+                    }
+                }
+
                 //add the record to the appropriate baseline
                 allBaselineVisibilities[visRecord.baseline].AddRecord( new MHO_DiFXVisibilityRecord(visRecord) );
             }
@@ -111,18 +127,6 @@ MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcess
     //close the Swinburne file
     vFile.close();
 }
-
-
-// bool
-// MHO_DiFXVisibilityProcessor::KeepRecord(const MHO_DiFXVisibilityRecord& visRecord)
-// {
-//     //TODO check if this record belongs:
-//     //(1) matches fOnlyBandwidth if present/non-zero
-//     //(2) determine which frequency band it belongs to
-//     //(3) determine if it is in the selected freq band(s) (if specified)
-//
-//     return true;
-// }
 
 
 }

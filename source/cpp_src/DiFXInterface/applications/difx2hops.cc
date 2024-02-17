@@ -81,8 +81,8 @@ int main(int argc, char** argv)
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
     app.add_option("-s,--scode", station_codes_file, "name of the file containing the 2-char station codes to 1-char mk4 station IDs in form: X Xx");
     app.add_option("-e,--exp-num", exper_num, "experiment identification number");
-    app.add_option("-r,--raw-mode", raw_mode, "enable raw mode (do not apply auto-corr normalization)");
-    app.add_option("-p,--preserve-difx-names", preserve, "use original difx scan names to name each scans (otherwise uses DOY-HHMM");
+    app.add_flag("-r,--raw-mode", raw_mode, "enable raw mode (do not apply auto-corr normalization)");
+    app.add_flag("-p,--preserve-difx-names", preserve, "use original difx scan names to name each scans (otherwise uses DOY-HHMM");
     app.add_option("-b,--band",freq_bands,"override frequency band codes, must pass triplet as -b <code> <freq_low> <freq_high> (in MHz)");
     app.add_option("-g,--freq-groups",freq_groups,"include data only from the specified frequency groups");
     app.add_option("-w,--bandwidth",bandwidth,"include data only channels matching this bandwidth (in MHz)");
@@ -132,6 +132,8 @@ int main(int argc, char** argv)
     difxInterface.SetNormalizeFalse();
     if(!raw_mode){difxInterface.SetNormalizeTrue();}
     if(preserve){difxInterface.SetPreserveDiFXScanNamesTrue();}
+
+    if(bandwidth != 0){difxInterface.SetOnlyBandwidth(bandwidth);}
 
     difxInterface.Initialize();
     difxInterface.ProcessScans();
