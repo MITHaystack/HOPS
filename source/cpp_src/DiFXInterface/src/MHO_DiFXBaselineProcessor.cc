@@ -29,8 +29,6 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
     fRescale = true;
     fScaleFactor = 1.0;
 
-    fFreqGroup = "X"; //TODO FIXME -- this is the default (but we should implement d2m4 style grouping)
-
     /* The following coefficients are taken directly from difx2mark4 new_type1.c */
 
     // factors are sqrt (Van Vleck correction) for 1b, 2b case
@@ -80,23 +78,19 @@ MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
 
     if(fSelectByBandwidth)
     {
-        std::cout<<"CHECKING BW: "<<fOnlyBandwidth<<" ? "<<bandwidth<<std::endl;
         if( std::fabs(fOnlyBandwidth - bandwidth) > FREQ_EPS)
         {
-            std::cout<<"DISCARDING A RECORD WITH BW: "<<bandwidth<<std::endl;
             keep_record = false; //discard, does not match our bandwidth selection
         }
     }
 
     std::string fgroup = DetermineFreqGroup(freq);
-    std::cout<<"FREQ GROUP = "<<fgroup<<std::endl;
     bool in_fgroups = true;
     if(fOnlyFreqGroups.size() != 0)
     {
         in_fgroups = false;
         for(std::size_t i=0; i<fOnlyFreqGroups.size(); i++)
         {
-            std::cout<<"COMPARING = "<<fgroup<<" to "<<fOnlyFreqGroups[i]<<std::endl;
             if(fgroup == fOnlyFreqGroups[i]){in_fgroups = true; break;}
         }
     }
@@ -379,8 +373,8 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                     //or rather need to construct the chan_id which corresponds to the reference and remote station for this chunk
                     //this also needs to be able to support zoom bands
 
-                    std::string ref_chan_id = ConstructMK4ChannelID(fFreqGroup, chidx, sideband, pp[0]);
-                    std::string rem_chan_id = ConstructMK4ChannelID(fFreqGroup, chidx, sideband, pp[1]);
+                    std::string ref_chan_id = ConstructMK4ChannelID(fband, chidx, sideband, pp[0]);
+                    std::string rem_chan_id = ConstructMK4ChannelID(fband, chidx, sideband, pp[1]);
 
                     ch_label["mk4_channel_id"] = ref_chan_id + ":" + rem_chan_id;
 
@@ -537,20 +531,14 @@ MHO_DiFXBaselineProcessor::DetermineFreqGroup(const double& freq)
         double high = std::get<2>(*it);
         if(high < low){double tmp = low; low = high; high = tmp;} //swap if mis-ordered
         double width = high - low;
-        std::cout<<"freq, band, wid ="<<freq<<", "<<b<<", "<<width<<std::endl;
-
         if(freq < high && low < freq && width < fband_width)
         {
-            std::cout<<"freq, band, wid ="<<freq<<", "<<b<<", "<<width<<std::endl;
-
             fband = b;
             fband_width = width;
             //do not break here, so that narrower freq-bands will override larger ones
         }
     }
-
-    return fband; //returns "" if no matching band found
-
+    return fband; //returns "" if no matching band assignment found
 }
 
 

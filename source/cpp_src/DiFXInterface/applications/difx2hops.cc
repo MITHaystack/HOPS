@@ -108,32 +108,61 @@ int main(int argc, char** argv)
     app.add_flag("-P,--preserve-difx-names", preserve, "use original difx scan names to name each scans (otherwise uses DOY-HHMM");
     app.add_option("-b,--band",freq_bands,"set frequency band codes, must pass triplet as -b <code> <freq_low> <freq_high> (in MHz) if none specified and '-L' flag not passed, no band assignment will be made");
     app.add_flag("-L,--legacy-bands",use_legacy_bands, legacy_freq_bands_help.c_str() )->excludes("-b");
-    app.add_option("-g,--freq-groups",freq_groups,"include data only from the specified frequency groups");
+    app.add_option("-g,--freq-groups",freq_groups,"include data only from the specified frequency groups")->delimiter(',');
     app.add_option("-w,--bandwidth",bandwidth,"include data only channels matching this bandwidth (in MHz)");
 
     CLI11_PARSE(app, argc, argv);
-
-    if(use_legacy_bands) //legacy behavior
-    {
-        freq_bands.clear();
-        freq_bands = legacy_freq_bands;
-    }
-
-    for(auto it = freq_bands.begin(); it != freq_bands.end(); it++)
-    {
-        std::cout<<std::get<0>(*it)<<", "<<std::get<1>(*it)<<", "<<std::get<2>(*it)<<std::endl;
-    }
-
-    for(auto it = freq_groups.begin(); it != freq_groups.end(); it++)
-    {
-        std::cout<<*it<<std::endl;
-    }
 
     //clamp message level
     if(message_level > 5){message_level = 5;}
     if(message_level < -2){message_level = -2;}
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
+
+
+    if(use_legacy_bands) //enable legacy band assignment behavior
+    {
+        freq_bands.clear();
+        freq_bands = legacy_freq_bands;
+    }
+
+    if(freq_bands.size() == 0 )
+    {
+        msg_warn("main", "no frequency band assignments were passed with either the '-b' or '-L' option, no assignments will be made." << eom);
+    }
+    else
+    {
+
+        msg_info("main", "frequency band assignments are: " << eol);
+        for(auto it = freq_bands.begin(); it != freq_bands.end();)
+        {
+            std::stringstream ssb;
+            ssb << std::get<0>(*it)<<": ("<<std::get<1>(*it)<<", "<<std::get<2>(*it) << ") MHz ";
+            it++;
+            if(it != freq_bands.end()){ msg_info("main", ssb.str() << eol); }
+            else{ msg_info("main", ssb.str() << eom); }
+        }
+    }
+
+    if(freq_bands.size() == 0 && freq_groups.size() != 0)
+    {
+        msg_fatal("main", "no frequency band assignments were made, but data is excluded on the basis of frequency group by '-g' option, quitting." << eom);
+        std::exit(1);
+    }
+
+    if(freq_groups.size() != 0 )
+    {
+        std::stringstream ssg;
+        ssg << "frequency groups selected are: {";
+        for(auto it = freq_groups.begin(); it != freq_groups.end();)
+        {
+            ssg << *it;
+            it++;
+            if(it != freq_groups.end()){ ssg << ", "; }
+        }
+        msg_info("main", ssg.str() << "}" << eom );
+    }
+
 
     //if no output directory was specified assume we are going to dump the
     //converted data into <input_directory>/<exper_num>

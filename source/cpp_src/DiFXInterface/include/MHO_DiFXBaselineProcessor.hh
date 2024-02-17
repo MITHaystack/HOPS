@@ -59,19 +59,10 @@ class MHO_DiFXBaselineProcessor
 
         void Clear();
 
-        void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands)
-        {
-            std::cout<<"BASELINE PROC GOT FREQ BANDS"<<std::endl;
-            for(auto it = fbands.begin(); it != fbands.end(); it++)
-            {
-                std::cout<<std::get<0>(*it)<<", "<<std::get<1>(*it)<<", "<<std::get<2>(*it)<<std::endl;
-            }
-            fFreqBands = fbands;
-        }
+        void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
         void SetFreqGroups(std::vector< std::string > fgroups){fOnlyFreqGroups = fgroups;}
         void SetOnlyBandwidth(double bw)
         {
-            std::cout<<"I AM BEING TOLD TO SELECT BY BANDWIDTH = "<<bw<<std::endl;
             fOnlyBandwidth = bw;
             fSelectByBandwidth = true;
         }
@@ -96,8 +87,6 @@ class MHO_DiFXBaselineProcessor
         int fRefStationBits;
         int fRemStationBits;
         double fAPLength;
-
-        std::string fFreqGroup;
 
         //the station 2-char to 1-char code map (user specified)
         MHO_StationCodeMap* fStationCodeMap;
