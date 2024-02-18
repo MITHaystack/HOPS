@@ -432,11 +432,15 @@ MHO_ComputePlotData::calc_phase()
     fRot.SetSBDMax( fSBDelay );
     double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
 
+    fFringe.Resize(nchan);
+
     std::complex<double> sum_all = 0.0;
     std::string sidebandlabelkey = "net_sideband";
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = (*chan_ax)(ch);//sky freq of this channel
+
+        std::get<0>(fFringe).at(ch) = freq; //set the fringe element freq label
 
         std::string net_sideband = "?";
         bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
@@ -453,6 +457,8 @@ MHO_ComputePlotData::calc_phase()
             fRot.SetSideband(-1);
         }
 
+        std::complex<double> fringe_phasor = 0.0;
+        double sumwt = 0.0;
         for(std::size_t ap=0; ap < nap; ap++)
         {
             double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
@@ -461,19 +467,29 @@ MHO_ComputePlotData::calc_phase()
             std::complex<double> z = vis*vr;
             //apply weight and sum
             double w = (*fWeights)(POLPROD, ch, ap, 0);
+            sumwt += w;
             std::complex<double> wght_phsr = z*w;
             if(net_sideband == "U")
             {
                 sum_all += -1.0*wght_phsr;
+                fringe_phasor += -1.0*wght_phsr;
             }
             else
             {
                 sum_all += wght_phsr;
+                fringe_phasor += wght_phsr;
             }
         }
+
+        //set the fringe phasor
+        //NOTE we have applied the correction factor (see make_plotdata.c line 356)
+        //c = (sumwt > 0.0) ? status.amp_corr_fact/sumwt : 0.0;
+        fFringe[ch] = fringe_phasor/sumwt;
     }
 
+
     double coh_avg_phase = std::arg(sum_all);
+
 
     return coh_avg_phase; //not quite the value which is displayed in the fringe plot (see fill type 208)
 }
@@ -968,6 +984,8 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
     plot_dict["extra"]["nlags"] = fParamStore->GetAs<int>("/config/nlags");
 
+
+    calc_error_code();
 }
 
 
@@ -1169,7 +1187,7 @@ MHO_ComputePlotData::calc_error_code()
 
     double weak_channel;
     bool ok = fParamStore->Get("/control/fit/weak_channel", weak_channel);
-    if(!ok){weak_channel = 0.0;} //what is fourfit default
+    if(!ok){weak_channel = 0.5;} //what is fourfit default?
 
     double snr;
     ok = fParamStore->Get("/fringe/snr", snr);
@@ -1215,12 +1233,15 @@ MHO_ComputePlotData::calc_error_code()
 
 
     //need fringe phasor data and pc_amp data
-    // for( std::size_t i=0; i < nchan; i++)
-    // {
-        // if( std::abs(status->fringe[i]) < (weak_channel * inc_avg_amp_freq) )
-        // {
-        //     low_chan = true;
-        // }
+    std::size_t nchan = fFringe.GetDimension(0);
+    for( std::size_t i=0; i<nchan; i++)
+    {
+        std::cout<<"comparing fringe amp @"<<i<<": "<<fFringe[i]<< " ? " <<(weak_channel * inc_avg_amp_freq)<<std::endl;
+
+        if( std::abs(fFringe[i]) < (weak_channel * inc_avg_amp_freq) )
+        {
+            low_chan = true;
+        }
 
         // if( status->pc_amp[i][0][stnpol[0][pass->pol]] < param->pc_amp_hcode || status->pc_amp[i][0][stnpol[0][pass->pol]] > 0.500)
         // {
@@ -1231,7 +1252,7 @@ MHO_ComputePlotData::calc_error_code()
         // {
         //     rem_low_pcal = true;
         // }
-    // }
+    }
 
 
     /* G-code means a weak channel when SNR>20 */
@@ -1246,6 +1267,8 @@ MHO_ComputePlotData::calc_error_code()
     {
         errcode = "H";
     }
+
+    std::cout<<"ERR CODE = "<<errcode<<std::endl;
 
     return errcode;
 }

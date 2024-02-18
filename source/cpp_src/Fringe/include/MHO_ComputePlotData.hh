@@ -120,6 +120,8 @@ class MHO_ComputePlotData
         xpower_type fMBDWorkspace;
         xpower_amp_type fMBDAmpWorkspace;
 
+        xpower_type fFringe;
+
         MHO_ContainerStore* fContainerStore;
         MHO_ParameterStore* fParamStore;
         mho_json fVexInfo;
