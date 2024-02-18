@@ -88,7 +88,7 @@ class MHO_ComputePlotData
         );
 
         std::string calc_quality_code(); //quality only, not error
-        std::string calc_error_code();
+        std::string calc_error_code(const mho_json& plot_dict);
 
 
         // //these functions copied from ffmath and minmax.c -- TODO move to MHO_Math library
