@@ -48,12 +48,11 @@ class MHO_OperatorBuilder
         //but the default tries to check a few things
         virtual bool IsConfigurationOk()
         {
+            #pragma message("TODO FIXME -- improve checks on operator attributes in IsConfigurationOk)" )
             bool ok = true;
             //for compound statements, check that the fields are present
             if(fFormat["statement_type"] == "operator")
             {
-                std::cout<<"format = "<<fFormat.dump(2)<<std::endl;
-                std::cout<<"fAttributes = "<<fAttributes.dump(2)<<std::endl;
                 if(fFormat.contains("type") && fFormat["type"].get<std::string>() == "compound")
                 {
 
@@ -61,7 +60,8 @@ class MHO_OperatorBuilder
                     {
                         if( !fAttributes["value"].contains(*it) )
                         {
-                            std::cout<<"missing attribute :"<<*it<<std::endl;
+                            msg_error("initialization", "missing attribute called "<< *it <<
+                                " in parameters of operator: "<< fFormat["name"].get<std::string>() <<", will not build "<< eom );
                             return false;
                         }
                     }
