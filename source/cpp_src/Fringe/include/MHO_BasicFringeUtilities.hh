@@ -25,16 +25,16 @@
 // //initialization
 // #include "MHO_OperatorBuilderManager.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_BasicFringeUtilities
 {
-        
+
     public:
         MHO_BasicFringeUtilities(){};
         virtual ~MHO_BasicFringeUtilities(){};
-    
+
     public:
         //helper functions
         static void basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
