@@ -44,7 +44,6 @@ class MHO_BasicFringeInfo
         static double calculate_pfd(double snr, double pts_searched);
         static double calculate_phase_error(double sbavg, double snr);
         static double calculate_phase_delay_error(double sbavg, double snr, double ref_freq);
-        static std::string calculate_qf();
 
         static double calculate_theory_timerms_phase(double nseg, double snr);
         static double calculate_theory_timerms_amp(double nseg, double snr);

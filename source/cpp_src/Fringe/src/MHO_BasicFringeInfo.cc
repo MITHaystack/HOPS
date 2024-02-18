@@ -152,14 +152,6 @@ MHO_BasicFringeInfo::calculate_theory_freqrms_amp(double nchan, double snr)
     return th_freqrms_amp;
 }
 
-std::string
-MHO_BasicFringeInfo::calculate_qf()
-{
-    //dummy impl
-    #pragma message("TODO FIXME, implement quality code calculation.")
-    return std::string("?");
-}
-
 void
 MHO_BasicFringeInfo::correct_phases_mbd_anchor_sbd(double ref_freq, double freq0, double frequency_spacing, double delta_mbd, double& totphase_deg, double& resphase_deg)
 {

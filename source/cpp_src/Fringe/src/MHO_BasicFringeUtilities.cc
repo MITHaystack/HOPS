@@ -90,9 +90,9 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     double integration_time =  (total_summed_weights*ap_delta)/(double)nchan;
     paramStore->Set("/fringe/integration_time", integration_time);
 
-    //calculate quality code
-    std::string quality_code = MHO_BasicFringeInfo::calculate_qf();
-    paramStore->Set("/fringe/quality_code", quality_code);
+    // //calculate quality code
+    // std::string quality_code = MHO_BasicFringeInfo::calculate_qf();
+    // paramStore->Set("/fringe/quality_code", quality_code);
 
     //total number of points searched
     std::size_t nmbd = paramStore->GetAs<std::size_t>("/fringe/n_mbd_points");
@@ -149,8 +149,8 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     paramStore->Set("/fringe/total_drate", tot_drate);
 
     //totals computed at the reference station (instead of geocenter)
-    //section is only needed to populate type_208s when exporting to mk4 output 
-    //this is a candidate for deprecation 
+    //section is only needed to populate type_208s when exporting to mk4 output
+    //this is a candidate for deprecation
     double ref_adelay = paramStore->GetAs<double>("/model/ref_adelay");
     double ref_arate = paramStore->GetAs<double>("/model/ref_arate");
     double ref_station_delay = paramStore->GetAs<double>("/model/ref_station_delay");

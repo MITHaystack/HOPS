@@ -77,7 +77,7 @@ class MHO_ComputePlotData
             int station_flag, //0 = reference station, 1 = remote station,
             std::string pol //single char string
         );
-        
+
         //exports the manual pcal data (pc_phases)
         //to the plot dictionary
         void dump_manual_pcmodel
@@ -88,6 +88,7 @@ class MHO_ComputePlotData
         );
 
         std::string calc_quality_code(); //quality only, not error
+        std::string calc_error_code();
 
 
         // //these functions copied from ffmath and minmax.c -- TODO move to MHO_Math library
@@ -138,7 +139,7 @@ class MHO_ComputePlotData
         std::vector< int > fNUSBAP;
         std::vector< int > fNLSBAP;
 
-        //constants 
+        //constants
         std::complex<double> fImagUnit;
 };
 
