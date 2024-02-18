@@ -15,13 +15,32 @@ cd $EXP_DIR
 
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
+#run ffit...this is a hack because we need to fix the output to be silent on -m5
 echo "Running: ffit -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${SCAN_DIR}"
+outfile=$(ffit -m 5 -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${SCAN_DIR} 2>&1)
 
-time ffit -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${SCAN_DIR} | grep max555 | tee ./sfs.out
+#parse the print out (ffit: <fringe_filename>) into just the fringe_filename
+echo "$outfile"
+old_IFS=$IFS
+IFS=" "
+set -- $outfile
+IFS=$old_IFS
+cmdname=$1
+output_file=$2
+echo "output file: $output_file"
 
-echo "Running: fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR}"
-time fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1  | grep max555 | tee ./ff.out
+#convert the fringe file to json
+hops2json ${output_file}
 
+#use jq (json query) to extract the plot_data element and pipe to file
+echo "jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" | tee ./fdump.json"
+jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" | tee ./fdump.json
+
+#run fourfit and dump its data to a 'plot_data_dir' file
+echo "Running: fourfit -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR}"
+time fourfit -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1
+
+#finally compare the outputs
 compjsonpdd.py ./fdump.json ./chk1/105-1800-GE-X-XX*
 RET_VAL=$?
 
