@@ -31,7 +31,7 @@ typedef MHO_NDArrayWrapper< std::complex<FP_Type>, 1 > circulant_type;
 #ifdef USE_FFTW
 #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
 #define CPU_FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<test_table_type>
-#else 
+#else
 #define CPU_FFT_TYPE MHO_MultidimensionalFastFourierTransform<test_table_type>
 #endif
 
@@ -66,7 +66,7 @@ void ConstructOpenCLKernels()
     std::cout<<"fNLocal = "<<fNLocal<<std::endl;
     std::cout<<"fPreferredWorkgroupMultiple = "<<fPreferredWorkgroupMultiple<<std::endl;
     std::cout<<"fMaxNWorkItems = "<<fMaxNWorkItems<<std::endl;
-    
+
 }
 
 
@@ -85,17 +85,17 @@ int main(int /*argc*/, char** /*argv*/)
     test_table_type* test2 = new test_table_type(dim);
 
     std::size_t total_size = test->GetSize();
-    //fill up the array with data 
+    //fill up the array with data
     for(std::size_t i=0; i<total_size; i++)
     {
-        (*test)[i] = std::complex<FP_Type>(i % 5, i % 17); 
-        (*test2)[i] = std::complex<FP_Type>(i % 5, i % 17); 
+        (*test)[i] = std::complex<FP_Type>(i % 5, i % 17);
+        (*test2)[i] = std::complex<FP_Type>(i % 5, i % 17);
     }
 
     ConstructOpenCLKernels();
 
     std::cout<<"creating data buffer"<<std::endl;
-    //create the opencl buffer extensions 
+    //create the opencl buffer extensions
     ///data and dims first
     auto buffer_ext = test->MakeExtension< MHO_OpenCLNDArrayBuffer< test_table_type > >();
     buffer_ext->ConstructDimensionBuffer();
@@ -104,7 +104,7 @@ int main(int /*argc*/, char** /*argv*/)
     buffer_ext->WriteDataBuffer();
     buffer_ext->WriteDimensionBuffer();
 
-    //we need to construct FFT workspace plans to build the scale/circulant vectors 
+    //we need to construct FFT workspace plans to build the scale/circulant vectors
     MHO_FastFourierTransformWorkspace<FP_Type> fft_work[NDIM];
     unsigned int max_dim_size = 0;
     unsigned int max_work_size = 0;
@@ -146,7 +146,7 @@ int main(int /*argc*/, char** /*argv*/)
         // auto s_ext = s.MakeExtension< MHO_OpenCLNDArrayBuffer< circulant_type > >();
         // s_ext->ConstructDataBuffer();
         // s_ext->WriteDataBuffer();
-        // 
+        //
         // auto c_ext = c.MakeExtension< MHO_OpenCLNDArrayBuffer< circulant_type > >();
         // c_ext->ConstructDataBuffer();
         // c_ext->WriteDataBuffer();
@@ -206,10 +206,10 @@ int main(int /*argc*/, char** /*argv*/)
 
     fFFTKernel->setArg(2, *( buffer_ext->GetDimensionBuffer() ) ); //array dimensions
     fFFTKernel->setArg(3, MAX_NBITS*fNLocal*sizeof(cl_double2), NULL);
-    fFFTKernel->setArg(4, *( buffer_ext->GetDataBuffer() ) ); 
+    fFFTKernel->setArg(4, *( buffer_ext->GetDataBuffer() ) );
 
     //create a workspace buffer (arg 6)
-    unsigned int n_bytes = static_cast< unsigned int >( max_work_size*max_dim_size*max_dim_size*sizeof( MHO_OpenCLTypeMap< std::complex<double>  >::mapped_type ) );  
+    unsigned int n_bytes = static_cast< unsigned int >( max_work_size*max_dim_size*max_dim_size*sizeof( MHO_OpenCLTypeMap< std::complex<double>  >::mapped_type ) );
     std::cout<<"nbytes ="<<n_bytes<<std::endl;
     cl::Buffer* fWorkspaceBufferCL = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(), CL_MEM_READ_WRITE, n_bytes);
     fFFTKernel->setArg(7, *fWorkspaceBufferCL );
@@ -243,12 +243,12 @@ int main(int /*argc*/, char** /*argv*/)
 
         std::cout<<"pter = "<<scale_buffers[D]<<std::endl;
         CL_ERROR_TRY
-        fFFTKernel->setArg(5, *(scale_buffers[D]) ); 
+        fFFTKernel->setArg(5, *(scale_buffers[D]) );
         CL_ERROR_CATCH
 
         std::cout<<"pter = "<<circ_buffers[D]<<std::endl;
         CL_ERROR_TRY
-        fFFTKernel->setArg(6, *(circ_buffers[D]) ); 
+        fFFTKernel->setArg(6, *(circ_buffers[D]) );
         CL_ERROR_CATCH
 
         //now enqueue the kernel
@@ -261,7 +261,7 @@ int main(int /*argc*/, char** /*argv*/)
     //get the results (move this out of loop)
     buffer_ext->ReadDataBuffer();
     MHO_OpenCLInterface::GetInstance()->GetQueue().finish();
-    
+
     timer.Stop();
     FP_Type gpu_runtime = timer.GetDurationAsDouble();
     std::cout<<"GPU time = "<<gpu_runtime<<std::endl;

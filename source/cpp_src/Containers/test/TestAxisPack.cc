@@ -43,14 +43,14 @@ int main(int /*argc*/, char** /*argv*/)
     }
 
     std::cout<<"data @ 3 = "<<std::get<FREQ_AXIS>(*test).at(3) <<std::endl;
-    // 
+    //
     // MHO_IntervalLabel label1(0,4);
     // MHO_IntervalLabel label2(4,6);
     // MHO_IntervalLabel label3(6,9);
     // MHO_IntervalLabel label4(9,12);
     // MHO_IntervalLabel label5(0,6);
     // MHO_IntervalLabel label6(6,12);
-    // 
+    //
     // label1.Insert(std::string("channel"), 'a');
     // label1.Insert(std::string("bandwidth"), 32.0e6);
     // label2.Insert(std::string("channel"), 'b');
@@ -61,7 +61,7 @@ int main(int /*argc*/, char** /*argv*/)
     // label4.Insert(std::string("bandwidth"), 32.0e6);
     // label5.Insert(std::string("sampler"), std::string("r2dbe-1"));
     // label6.Insert(std::string("sampler"), std::string("r2dbe-2"));
-    // 
+    //
     // std::get<FREQ_AXIS>(*test).InsertLabel(label1);
     // std::get<FREQ_AXIS>(*test).InsertLabel(label2);
     // std::get<FREQ_AXIS>(*test).InsertLabel(label3);

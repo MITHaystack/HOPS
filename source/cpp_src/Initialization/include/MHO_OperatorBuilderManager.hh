@@ -11,12 +11,12 @@
 
 namespace hops
 {
-    
+
 class MHO_OperatorBuilderManager
 {
     public:
-        
-        MHO_OperatorBuilderManager(MHO_OperatorToolbox* toolbox, 
+
+        MHO_OperatorBuilderManager(MHO_OperatorToolbox* toolbox,
                                    MHO_ContainerStore* cstore,
                                    MHO_ParameterStore* pstore,
                                    mho_json control_format
@@ -39,7 +39,7 @@ class MHO_OperatorBuilderManager
             fCategoryToBuilderMap.clear();
         }
 
-        //pass in parsed control file elements 
+        //pass in parsed control file elements
         void SetControlStatements(mho_json* statements){fControl = statements;};
 
         void CreateDefaultBuilders();
@@ -59,19 +59,19 @@ class MHO_OperatorBuilderManager
                 {
                     auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
                     builder->SetFormat(fFormat[format_key]);
-                    
+
                     //the builder's operator category comes from the format specification
                     std::string category = "unknown"; //default's to unknown
                     if(format_it->contains("operator_category"))
                     {
-                        category = (*format_it)["operator_category"].get<std::string>(); 
+                        category = (*format_it)["operator_category"].get<std::string>();
                     }
                     fAllBuilders.push_back(builder);
                     fNameToBuilderMap.emplace(builder_name, builder);
                     fCategoryToBuilderMap.emplace(category, builder);
                 }
             }
-            else 
+            else
             {
                 msg_error("initialization", "cannot add builder for operator with format key: " << format_key << eom );
             }
@@ -79,9 +79,9 @@ class MHO_OperatorBuilderManager
 
 
     private:
-        
+
         void CreateNullFormatBuilders();
-        
+
         template<typename XBuilderType>
         void AddBuilderTypeWithFormat(const std::string& builder_name, const mho_json& format)
         {
@@ -90,12 +90,12 @@ class MHO_OperatorBuilderManager
             {
                 auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
                 builder->SetFormat(format);
-                
+
                 //the builder's operator category comes from the format specification
                 std::string category = "unknown"; //default's to unknown
                 if(format.contains("operator_category"))
                 {
-                    category = format["operator_category"].get<std::string>(); 
+                    category = format["operator_category"].get<std::string>();
                 }
                 fAllBuilders.push_back(builder);
                 fNameToBuilderMap.emplace(builder_name, builder);
@@ -105,7 +105,7 @@ class MHO_OperatorBuilderManager
 
 
 
-        
+
         //internal data
         mho_json fFormat; //control file statement formats
         mho_json* fControl; //control file statements
@@ -116,11 +116,11 @@ class MHO_OperatorBuilderManager
         //data container and parameter stores
         MHO_ContainerStore* fContainerStore;
         MHO_ParameterStore* fParameterStore;
-        
+
         //container to store all of the builders, for memory management
         std::vector< MHO_OperatorBuilder* > fAllBuilders;
 
-        //name -> builder map for lookup by name 
+        //name -> builder map for lookup by name
         std::map< std::string, MHO_OperatorBuilder* > fNameToBuilderMap;
 
         //operator category -> builder multimap for lookup by category

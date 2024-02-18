@@ -27,7 +27,7 @@ const int NUMBEROFFFITCHAN = 64;
 //    };
 
 //typedef struct date
-//    {   
+//    {
 //    short year;
 //    short day;
 //    short hour;

@@ -4,7 +4,7 @@
 #include <string>
 #include "legacy_hops_date.hh"
 
-namespace hops 
+namespace hops
 {
 
 //this class is necessary to prevent a collision between the "namespace date"

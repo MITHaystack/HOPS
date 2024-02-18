@@ -2,9 +2,9 @@
 #include <fstream>
 #include <regex>
 
-namespace hops 
+namespace hops
 {
-    
+
 
 MHO_VexGenerator::MHO_VexGenerator()
 {
@@ -22,7 +22,7 @@ void MHO_VexGenerator::SetFilename(std::string filename)
 void MHO_VexGenerator::GenerateVex(mho_json& root)
 {
     std::vector< std::string > all_lines;
-    //first line is always version line 
+    //first line is always version line
     std::string vers = root[fVexRevisionFlag].get<std::string>();
     SetVexVersion(vers);
     if(vers != "ovex") //only output this line for vex not ovex
@@ -30,7 +30,7 @@ void MHO_VexGenerator::GenerateVex(mho_json& root)
         std::string version_line = fVexRevisionFlag + MHO_VexDefinitions::AssignmentOp() + vers + MHO_VexDefinitions::StatementLineEnd();
         all_lines.push_back(version_line);
     }
-    //open block-names file for this version 
+    //open block-names file for this version
 
     //loop over blocks, and extract the data from from the root and append them
     for(auto blk_it = fBlockNames.begin(); blk_it != fBlockNames.end(); blk_it++)
@@ -43,7 +43,7 @@ void MHO_VexGenerator::GenerateVex(mho_json& root)
         all_lines.insert(all_lines.end(), block_lines.begin(), block_lines.end());
     }
 
-    //open and dump to file 
+    //open and dump to file
     std::ofstream outFile(fFilename.c_str(), std::ofstream::out);
     if(outFile.is_open())
     for(auto lit = all_lines.begin(); lit != all_lines.end(); lit++)
@@ -53,7 +53,7 @@ void MHO_VexGenerator::GenerateVex(mho_json& root)
     outFile.close();
 }
 
-void 
+void
 MHO_VexGenerator::ConstructBlockLines(mho_json& root, std::string block_name, std::vector< std::string >& lines)
 {
     lines.clear();
@@ -109,7 +109,7 @@ MHO_VexGenerator::ConstructBlockLines(mho_json& root, std::string block_name, st
 
 
 
-void 
+void
 MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std::string >& lines)
 {
     std::string prevPad = fPad;
@@ -143,7 +143,7 @@ MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std::str
                 std::string line = fPad + fLineGen.ConstructElementLine(field_name, element[field_name], fBlockFormat["parameters"][field_name]);
                 if(line.size() != 0){lines.push_back(line);}
             }
-            else 
+            else
             {
                 std::string line = fPad + fLineGen.ConstructElementLine(field_name, element[field_name], fBlockFormat["parameters"][field_name]);
                 if(line.size() != 0){lines.push_back(line);}
@@ -154,7 +154,7 @@ MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std::str
 }
 
 
-void 
+void
 MHO_VexGenerator::ConstructReferenceLines(mho_json& element, std::vector< std::string >& lines)
 {
     std::string prevPad = fPad;
@@ -189,7 +189,7 @@ MHO_VexGenerator::ConstructReferenceLines(mho_json& element, std::vector< std::s
     fPad = prevPad;
 }
 
-void 
+void
 MHO_VexGenerator::SetVexVersion(std::string version)
 {
     fVexVersion = version;
@@ -198,7 +198,7 @@ MHO_VexGenerator::SetVexVersion(std::string version)
     fFormatDirectory = fVexDef.GetFormatDirectory();
 }
 
-void 
+void
 MHO_VexGenerator::LoadBlockFormat(std::string block_name)
 {
     fBlockFormatLoaded = false;
@@ -222,7 +222,7 @@ MHO_VexGenerator::LoadBlockFormat(std::string block_name)
     }
 }
 
-std::string 
+std::string
 MHO_VexGenerator::GetBlockFormatFileName(std::string block_name)
 {
     //remove '$', and convert to lower-case

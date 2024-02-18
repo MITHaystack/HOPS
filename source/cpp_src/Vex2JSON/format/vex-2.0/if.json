@@ -21,10 +21,10 @@
                 "phase_cal_base": {"type": "real", "dimension": "frequency"},
                 "if_sample_rate": {"type": "real", "dimension": "frequency"}
             },
-            "fields": 
+            "fields":
             [
-                "if_id", 
-                "physical_if_id", 
+                "if_id",
+                "physical_if_id",
                 "polarization",
                 "effective_LO",
                 "net_sideband",
@@ -75,7 +75,7 @@
             "fields": ["if_id", "amplitude", "#switching_frequency"]
         }
     },
-    "fields": 
+    "fields":
     [
         "if_def",
         "receiver_name",

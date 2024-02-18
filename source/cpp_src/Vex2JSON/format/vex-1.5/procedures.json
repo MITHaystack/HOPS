@@ -73,7 +73,7 @@
         },
         "procedure_name_prefix": {"type":"string"}
     },
-    "fields": 
+    "fields":
     [
         "tape_change",
         "headstack_motion",

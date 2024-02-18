@@ -13,7 +13,7 @@ MHO_MBDelaySearch::MHO_MBDelaySearch()
     fSBDStop = -1;
     fMBDBinMap.clear();
 
-    //the window limits 
+    //the window limits
     fSBDWinSet = false;
     fMBDWinSet = false;
     fDRWinSet = false;
@@ -23,7 +23,7 @@ MHO_MBDelaySearch::MHO_MBDelaySearch()
     fMBDWin[1] = -1e30;
     fDRWin[0] = 1e30;
     fDRWin[1] = -1e30;
-    
+
     fCoarseSBD = 0;
     fCoarseMBD = 0;
     fCoarseDR = 0;
@@ -137,7 +137,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
                 //run the transformation to delay rate space (this also involves a zero padded FFT)
                 ok = fDelayRateCalc.Execute();
-                
+
                 //copy the axis just once
                 if(first)
                 {
@@ -165,7 +165,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
                         if(first)
                         {
-                            //only need to do this once, in order to 
+                            //only need to do this once, in order to
                             //set up the mbd delay axis (in frequency space)
                             fFFTEngine.EnableAxisLabelTransformation();
                             auto mbd_ax = &(std::get<0>(fMBDWorkspace) );
@@ -219,8 +219,8 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "fringe", "MBD search cyclic rotation execution." << eom );
         fMBDAxis = std::get<0>(fMBDWorkspace);
-        
-        
+
+
         fCoarseMBD = fMBDAxis(fMBDMaxBin);
         fCoarseSBD = fSBDAxis(fSBDMaxBin);
         fCoarseDR = fDRAxis(fDRMaxBin);
@@ -228,7 +228,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         fMax = std::sqrt(fMax);
         return true;
     }
-    else 
+    else
     {
         msg_error("fringe", "MHO_MBDelaySearch could not execute, intialization failure." << eom);
     }
@@ -238,7 +238,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
 //configure the search windows (using floating point limits)
 //default is the full range
-void 
+void
 MHO_MBDelaySearch::SetSBDWindow(double low, double high)
 {
     fSBDWinSet = true;
@@ -246,7 +246,7 @@ MHO_MBDelaySearch::SetSBDWindow(double low, double high)
     else{fSBDWin[1] = low; fSBDWin[0] = high;}
 }
 
-void 
+void
 MHO_MBDelaySearch::SetMBDWindow(double low, double high)
 {
     fMBDWinSet = true;
@@ -254,7 +254,7 @@ MHO_MBDelaySearch::SetMBDWindow(double low, double high)
     else{fMBDWin[1] = low; fMBDWin[0] = high;}
 }
 
-void 
+void
 MHO_MBDelaySearch::SetDRWindow(double low, double high)
 {
     fDRWinSet = true;
@@ -262,39 +262,39 @@ MHO_MBDelaySearch::SetDRWindow(double low, double high)
     else{fDRWin[1] = low; fDRWin[0] = high;}
 }
 
-//retrieve the window limits 
-void 
+//retrieve the window limits
+void
 MHO_MBDelaySearch::GetSBDWindow(double& low, double& high) const
 {
     low = fSBDAxis.at(0);
     high = fSBDAxis.at(fSBDAxis.GetSize()-1) + fSBDBinSep;
     if(fSBDWinSet)
     {
-        low = std::max(fSBDWin[0], low); 
+        low = std::max(fSBDWin[0], low);
         high = std::min(fSBDWin[1], high);
     }
 }
 
-void 
+void
 MHO_MBDelaySearch::GetMBDWindow(double& low, double& high) const
 {
     low = fMBDAxis.at(0);
     high = fMBDAxis.at(fMBDAxis.GetSize()-1) + fMBDBinSep;
     if(fMBDWinSet)
     {
-        low = std::max( fMBDWin[0], low); 
+        low = std::max( fMBDWin[0], low);
         high = std::min(fMBDWin[1], high);
     }
 }
 
-void 
+void
 MHO_MBDelaySearch::GetDRWindow(double& low, double& high) const
 {
     low = fDRAxis.at(0);
     high = fDRAxis.at(fDRAxis.GetSize()-1) + fDRBinSep;
     if(fDRWinSet)
     {
-        low = std::max( fDRWin[0], low); 
+        low = std::max( fDRWin[0], low);
         high = std::min(fDRWin[1], high);
     }
 }

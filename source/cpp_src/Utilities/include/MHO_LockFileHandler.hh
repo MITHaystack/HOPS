@@ -73,18 +73,18 @@ class MHO_LockFileHandler
         void EnableLegacyMode(){fEnableLegacyMode = true;};
         void DisableLegacyMode(){fEnableLegacyMode = false;};
 
-        //the only three functions user needs to call via the instance: 
+        //the only three functions user needs to call via the instance:
         //(1) enable/disable legacy mode
-        //(2) wait for lock 
+        //(2) wait for lock
         // write out the data file
         //(3) remove lock
         int WaitForWriteLock(std::string directory, int& next_seq_no);
         void RemoveWriteLock();
 
     private:
-        
+
         static void HandleSignal(int signal_value);
-        
+
         static void init_lockfile_data(lockfile_data* data);
         static int parse_lockfile_name(char* lockfile_name_base, lockfile_data* result);
         static int create_lockfile(const char* directory, char* lockfile_name, lockfile_data* lock_data, int max_seq_no);
@@ -120,7 +120,7 @@ class MHO_LockFileHandler
         static MHO_LockFileHandler* fInstance;
         //info of the current process
         lockfile_data fProcessLockFileData;
-        //directory interface 
+        //directory interface
         std::string fDirectory;
         MHO_DirectoryInterface fDirInterface;
         MHO_Tokenizer fTokenizer;

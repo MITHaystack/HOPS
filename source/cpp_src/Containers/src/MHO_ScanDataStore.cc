@@ -50,7 +50,7 @@ MHO_ScanDataStore::IsValid()
     return true;
 }
 
-bool 
+bool
 MHO_ScanDataStore::IsFringePresent(std::string basename) const
 {
     for(auto it = fFringeCodes.begin(); it != fFringeCodes.end(); it++)
@@ -61,7 +61,7 @@ MHO_ScanDataStore::IsFringePresent(std::string basename) const
 }
 
 
-bool 
+bool
 MHO_ScanDataStore::IsBaselinePresent(std::string bl) const
 {
     for(auto it = fBaselineCodes.begin(); it != fBaselineCodes.end(); it++)
@@ -71,7 +71,7 @@ MHO_ScanDataStore::IsBaselinePresent(std::string bl) const
     return false;
 }
 
-bool 
+bool
 MHO_ScanDataStore::IsStationPresent(std::string st) const
 {
     for(auto it = fStationCodes.begin(); it != fStationCodes.end(); it++)
@@ -199,7 +199,7 @@ MHO_ScanDataStore::LoadBaseline(std::string baseline, MHO_ContainerStore* store)
         conInter.PopulateStoreFromFile(*store); //reads in ALL the objects in the file
         return true;
     }
-    else 
+    else
     {
         return false;
         msg_warn("containers", "could not find data for baseline: "<< baseline <<"." << eom);
@@ -227,7 +227,7 @@ MHO_ScanDataStore::LoadStation(std::string station, MHO_ContainerStore* store)
         conInter.PopulateStoreFromFile(*store); //reads in ALL the objects in the file
         return true;
     }
-    else 
+    else
     {
         msg_warn("containers", "could not find data for station: "<< station <<"." << eom);
         return false;
@@ -244,7 +244,7 @@ MHO_ScanDataStore::GetStationFilename(std::string station) const
 
 
 //true if loaded, false if unsuccessful
-bool 
+bool
 MHO_ScanDataStore::LoadFringe(std::string fringe_basename, MHO_ContainerStore* store)
 {
     auto it = fFringeFileMap.find(fringe_basename);
@@ -257,14 +257,14 @@ MHO_ScanDataStore::LoadFringe(std::string fringe_basename, MHO_ContainerStore* s
         conInter.PopulateStoreFromFile(*store); //reads in ALL the objects in the file
         return true;
     }
-    else 
+    else
     {
         msg_warn("containers", "could not find data for fringe: "<< fringe_basename <<"." << eom);
         return false;
     }
 }
 
-std::string 
+std::string
 MHO_ScanDataStore::GetFringeFilename(std::string fringe_basename) const
 {
     auto it = fFringeFileMap.find(fringe_basename);

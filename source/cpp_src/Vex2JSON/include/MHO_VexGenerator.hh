@@ -22,7 +22,7 @@
 #include "MHO_VexElementLineGenerator.hh"
 #include "MHO_VexDefinitions.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_VexGenerator
@@ -40,7 +40,7 @@ class MHO_VexGenerator
 
         std::string fFilename;
 
-        //format definition 
+        //format definition
         std::string fSpace;
         MHO_VexDefinitions fVexDef;
         std::string fFormatDirectory;

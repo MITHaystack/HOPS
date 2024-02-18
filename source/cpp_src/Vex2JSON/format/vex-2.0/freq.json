@@ -22,7 +22,7 @@
                 "channel_name": {"type": "string"},
                 "freq_state": {"type": "list_int"}
             },
-            "fields": 
+            "fields":
             [
                 "#band_id",
                 "sky_frequency",
@@ -44,7 +44,7 @@
                 "state1_period": {"type": "real", "dimension": "time"},
                 "state2_period":  {"type": "real", "dimension": "time"}
             },
-            "fields": 
+            "fields":
             [
                 "phasing",
                 "state1_period",
@@ -52,7 +52,7 @@
             ]
         }
     },
-    "fields": 
+    "fields":
     [
         "chan_def",
         "switching_cycle"

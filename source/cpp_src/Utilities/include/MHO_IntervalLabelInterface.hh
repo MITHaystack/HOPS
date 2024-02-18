@@ -3,7 +3,7 @@
 
 #include "MHO_JSONHeaderWrapper.hh"
 
-namespace hops 
+namespace hops
 {
 
 //constructor is protected
@@ -150,7 +150,7 @@ class MHO_IntervalLabelInterface
             if(upper_index < lower_index)
             {
                 lower_index = idx_pair.second;
-                upper_index = idx_pair.first; 
+                upper_index = idx_pair.first;
             }
             return true;
         }

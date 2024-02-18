@@ -96,16 +96,16 @@ class MHO_BitReversalPermutation
                 sgn = (i < perm) - (i >= perm);
                 a = arr[i];
                 b = arr[perm];
-                
+
                 a = a + do_swap*b;
                 b = do_swap*a - sgn*b;
                 a = a - do_swap*b;
-                
+
                 arr[i] = a;
                 arr[perm] = b;
             }
         }
-        
+
         //strided data access version
         //branch free (this is actually slower on CPU, but we preserve it here for comparison as this method is used on GPU)
         template<typename DataType >
@@ -124,11 +124,11 @@ class MHO_BitReversalPermutation
                 sgn = (i < perm) - (i >= perm);
                 a = arr[i*stride];
                 b = arr[perm*stride];
-                
+
                 a = a + do_swap*b;
                 b = do_swap*a - sgn*b;
                 a = a - do_swap*b;
-                
+
                 arr[i*stride] = a;
                 arr[perm*stride] = b;
             }

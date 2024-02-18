@@ -24,7 +24,7 @@
 #include "MHO_VexBlockParser.hh"
 #include "MHO_VexDefinitions.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_VexParser
@@ -38,7 +38,7 @@ class MHO_VexParser
         void SetVexVersion(const char* version){ SetVexVersion( std::string(version) );};
 
         mho_json ParseVex();
-        
+
     private:
 
         void DetermineFileVersion();
@@ -72,19 +72,19 @@ class MHO_VexParser
         std::string fEndLiteralFlag;
 
         //workspace
-        std::string fLine; //the line from the input vex file 
+        std::string fLine; //the line from the input vex file
         std::list< MHO_VexLine > fLines;
         using line_itr = std::list< MHO_VexLine >::iterator;
-        std::set< std::string > fFoundBlocks; 
+        std::set< std::string > fFoundBlocks;
         std::map< std::string, line_itr > fBlockStartLines;
         std::map< std::string, line_itr > fBlockStopLines;
 
-        //format definition 
+        //format definition
         std::string fFormatDirectory;
         std::string fVexVersion;
         std::vector< std::string > fBlockNames;
 
-        //block parser 
+        //block parser
         MHO_VexBlockParser fBlockParser;
 
 };

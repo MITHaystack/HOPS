@@ -7,7 +7,7 @@ MHO_MK4ScanConverter::MHO_MK4ScanConverter(){};
 
 MHO_MK4ScanConverter::~MHO_MK4ScanConverter(){};
 
-int 
+int
 MHO_MK4ScanConverter::DetermineDirectoryType(const std::string& in_dir)
 {
     //directory interface
@@ -28,21 +28,21 @@ MHO_MK4ScanConverter::DetermineDirectoryType(const std::string& in_dir)
     std::vector< std::string > stationFiles;
     std::string root_file;
     dirInterface.GetRootFile(allFiles, root_file);
-    
+
     //definitely a scan directory (a root file and no subdirs)
     if(root_file != "" && allDirs.size() == 0)
     {
         return MK4_SCANDIR;
     }
-    
+
     //likely an experiment directory (no root and 1 or more subdir)
     if(root_file == "" && allDirs.size() >= 1)
     {
         //TODO check that the directory name is 4 digit number
         return MK4_EXPDIR;
     }
-    
-    //probably a scan directory 
+
+    //probably a scan directory
     //for some reason it has a sub-dir, but we found a root file
     if(root_file != "")
     {
@@ -55,8 +55,8 @@ MHO_MK4ScanConverter::DetermineDirectoryType(const std::string& in_dir)
 
 
 //convert a corel file
-void 
-MHO_MK4ScanConverter::ConvertCorel(const std::string& root_file, 
+void
+MHO_MK4ScanConverter::ConvertCorel(const std::string& root_file,
                                 const std::string& input_file,
                                 const std::string& output_file)
 {
@@ -114,7 +114,7 @@ MHO_MK4ScanConverter::ConvertCorel(const std::string& root_file,
 
 
 //convert a station data  file
-void 
+void
 MHO_MK4ScanConverter::ConvertStation(const std::string& root_file,
                                   const std::string& input_file,
                                   const std::string& output_file)
@@ -152,7 +152,7 @@ MHO_MK4ScanConverter::ConvertStation(const std::string& root_file,
     delete st_data;
 }
 
-void 
+void
 MHO_MK4ScanConverter::ProcessScan(const std::string& in_dir, const std::string& out_dir)
 {
     //directory interface
@@ -205,7 +205,7 @@ MHO_MK4ScanConverter::ProcessScan(const std::string& in_dir, const std::string& 
             jfile.close();
         }
     }
-    else 
+    else
     {
         msg_error("mk4interface", "could not convert root file: "<<root_file<< eom);
     }

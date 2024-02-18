@@ -16,9 +16,9 @@ void func1()
 int main(int /*argc*/, char** /*argv*/)
 {
     profiler_start();
-    
+
     sleep(4);
-    
+
     profiler_stop();
 
     MHO_Profiler::GetInstance().DumpEvents();

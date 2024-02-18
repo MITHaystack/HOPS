@@ -85,8 +85,8 @@ MHO_DelayModel::ComputeModel()
 
         ////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
-        //The following section calculates the a priori delay and rate at the 
-        //reference station. This is not actually used anywhere by the rest of the 
+        //The following section calculates the a priori delay and rate at the
+        //reference station. This is not actually used anywhere by the rest of the
         //fringe algorithm, and is only used for populating the type_208s on export.
         //It should be a candidate for deprecation if the 208 functionality is unneeded.
 
@@ -97,7 +97,7 @@ MHO_DelayModel::ComputeModel()
         /* Correct ref delay/rate for clocks */
         /* which are inherent in model from genaroot */
         /* Clock in usec, clockrate dimensionless */
-        ref_dra[0] -= fRefClockOff; 
+        ref_dra[0] -= fRefClockOff;
         ref_dra[1] -= fRefClockRate;
         /* Adjust ref delay for approx time of ref */
         /* station wavefront passage, not geocenter */

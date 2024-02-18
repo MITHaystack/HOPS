@@ -1,6 +1,6 @@
 #include "MHO_OpenCLFastFourierTransformPlan.hh"
 
-namespace hops 
+namespace hops
 {
 
 MHO_OpenCLFastFourierTransformPlan::MHO_OpenCLFastFourierTransformPlan()
@@ -14,8 +14,8 @@ MHO_OpenCLFastFourierTransformPlan::~MHO_OpenCLFastFourierTransformPlan()
 };
 
 //sets the dimension of the global array, and size of the
-//dimension associated with this plan 
-//reconfigures the kernel and necessary buffers 
+//dimension associated with this plan
+//reconfigures the kernel and necessary buffers
 void MHO_OpenCLFastFourierTransformPlan::Resize(std::size_t NDIM, std::size_t N)
 {
     fNDim = NDIM;
@@ -29,15 +29,15 @@ void MHO_OpenCLFastFourierTransformPlan::ConstructOpenCLKernel()
 
 }
 
-void 
-MHO_OpenCLFastFourierTransformPlan::ConstructKernel(const std::string& file_name, 
+void
+MHO_OpenCLFastFourierTransformPlan::ConstructKernel(const std::string& file_name,
                                                     const std::string& kernel_name,
                                                     const std::string& cflags)
 {
     std::cout<<"building file: "<<kernel_name << " kernel: "<<kernel_name<<std::endl;
     //Get name of kernel source file
     std::stringstream clFile;
-    clFile << MHO_OpenCLInterface::GetInstance()->GetKernelPath() << 
+    clFile << MHO_OpenCLInterface::GetInstance()->GetKernelPath() <<
     clFile << "/" << file_name;
 
     // //create the build flags
@@ -60,7 +60,7 @@ MHO_OpenCLFastFourierTransformPlan::ConstructKernel(const std::string& file_name
 
 
 
-void 
+void
 MHO_OpenCLFastFourierTransformPlan::BuildCodeList()
 {
     // radix2_strided,
@@ -72,28 +72,28 @@ MHO_OpenCLFastFourierTransformPlan::BuildCodeList()
     // bluestein_private,
     // bluestein_private_const
 
-    fSourceCodeMap.insert(radix2_strided, 
+    fSourceCodeMap.insert(radix2_strided,
         std::make_tuple(
             "MHO_MultidimensionalFastFourierTransformStrided_kernel.cl",
             "MultidimensionalFastFourierTransformStrided_Radix2Stage",
             "")
     );
 
-    fSourceCodeMap.insert(radix2_strided_const, 
+    fSourceCodeMap.insert(radix2_strided_const,
         std::make_tuple(
             "MHO_MultidimensionalFastFourierTransformStrided_kernel.cl",
             "MultidimensionalFastFourierTransformStrided_Radix2Stage",
             " -D FFT_USE_CONST_MEM ")
     );
 
-    fSourceCodeMap.insert(radix2_private, 
+    fSourceCodeMap.insert(radix2_private,
         std::make_tuple(
             "MHO_MultidimensionalFastFourierTransformPrivate_kernel.cl",
             "MultidimensionalFastFourierTransformPrivate_Radix2Stage",
             "")
     );
 
-    fSourceCodeMap.insert(radix2_private_const, 
+    fSourceCodeMap.insert(radix2_private_const,
         std::make_tuple(
             "MHO_MultidimensionalFastFourierTransformPrivate_kernel.cl",
             "MultidimensionalFastFourierTransformPrivate_Radix2Stage",

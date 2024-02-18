@@ -67,8 +67,8 @@ MHO_Timer::GetDurationAsTimeSpec() const
     return GetTimeDifference(fStart,fStop);
 }
 
-double 
-MHO_Timer::GetTimeSinceStart() const 
+double
+MHO_Timer::GetTimeSinceStart() const
 {
     timespec tmp;
     clock_gettime(fClockID, &tmp);
@@ -78,7 +78,7 @@ MHO_Timer::GetTimeSinceStart() const
     return ret_val;
 }
 
-double 
+double
 MHO_Timer::GetDurationAsDouble() const
 {
     timespec duration = GetTimeDifference(fStart, fStop);

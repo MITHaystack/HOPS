@@ -33,7 +33,7 @@ MHO_ChannelLabelerBuilder::Build()
             label2freq = MapChannelQuantities(channel_name_str, chan_freqs);
             msg_debug("initialization", "channel labeling operator was given a map of size: "<< label2freq.size() << eom );
         }
-        else 
+        else
         {
             msg_debug("initialization", "default channel labeling operator being created."<< eom );
         }
@@ -64,12 +64,12 @@ MHO_ChannelLabelerBuilder::Build()
 
         bool replace_duplicates = true; //replces the default labeler
         #pragma message("TODO - figure out proper naming/retrieval scheme for operators")
-        
+
         vis_op->SetPriority(priority);
         wt_op->SetPriority(priority);
         vis_op->SetName(op_name + ":vis");
         wt_op->SetName(op_name + ":weight");
-        
+
         fOperatorToolbox->AddOperator(vis_op, vis_op->GetName(), op_category, replace_duplicates);
         fOperatorToolbox->AddOperator(wt_op, wt_op->GetName(), op_category, replace_duplicates);
 

@@ -21,7 +21,7 @@
                 "third_multiplex_track": {"type": "int"},
                 "fourth_multiplex_track": {"type": "int"}
             },
-            "fields": 
+            "fields":
             [
                 "subpass_id",
                 "chan_id",
@@ -50,7 +50,7 @@
                 "chan_id4": {"type": "string"},
                 "sign_or_magnitude24": {"type": "string"}
             },
-            "fields": 
+            "fields":
             [
                 "subpass_number",
                 "headstack_number",
@@ -77,7 +77,7 @@
                 "data_type": {"type": "string"},
                 "track_info":{"type": "list_int"}
             },
-            "fields": 
+            "fields":
             [
                 "formatter_track_number",
                 "data_type",
@@ -92,14 +92,14 @@
                 "physical_track_number": {"type": "int"},
                 "formatter_output_track": {"type": "int"}
             },
-            "fields": 
+            "fields":
             [
                 "physical_track_number",
                 "formatter_output_track"
             ]
         },
         "S2_recording_mode": {"type":"string"},
-        "S2_data_source": 
+        "S2_data_source":
         {
             "type": "list_compound",
             "parameters":
@@ -109,7 +109,7 @@
                 "BBCX_id": {"type": "link"},
                 "BBCY_id": {"type": "link"}
             },
-            "fields": 
+            "fields":
             [
                 "S2_data_source",
                 "LBADR_bit_encoding",
@@ -118,7 +118,7 @@
             ]
         }
     },
-    "fields": 
+    "fields":
     [
         "fanout_def",
         "fanin_def",

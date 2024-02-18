@@ -52,7 +52,7 @@ if (HOPS_USE_OPENCL)
     else()
         execute_process(COMMAND ${CMAKE_CXX_COMPILER} ${CL_HeaderGenArgs} WORKING_DIRECTORY ${CMAKE_BINARY_DIR} RESULT_VARIABLE CL_STATUS_OK ERROR_VARIABLE COMPILER_OUTPUT )
         message(STATUS "Executing: ${CMAKE_CXX_COMPILER} ${CL_HeaderGenArgs}")
-    endif()    
+    endif()
 
     if(CL_STATUS_OK AND NOT CL_STATUS_OK EQUAL 0)
       message(FATAL_ERROR "Could not build the OpenCL header generator. Status = ${CL_STATUS_OK}. Error = ${COMPILER_OUTPUT}." )

@@ -13,7 +13,7 @@
 #define HOST_DETERMINATION_TAG    998
 #define LOCALID_DETERMINATION_TAG 997
 
-//deal with the discrepancy in size between size_t and unsigned int in MPI comms 
+//deal with the discrepancy in size between size_t and unsigned int in MPI comms
 #if SIZE_MAX == UCHAR_MAX
    #define HOPS_MPI_SIZE_T MPI_UNSIGNED_CHAR
 #elif SIZE_MAX == USHRT_MAX
@@ -67,7 +67,7 @@ void MHO_MPIInterface::Initialize(int* argc, char*** argv, bool split_mode)
         {
             msg_warn("mpi_interface", "no MPI processes found, not running in an MPI context." << eom);
         }
-        else if (!initialized) 
+        else if (!initialized)
         {
             msg_info("mpi_interface", "Running MPI, using " << fNProcesses << " processes." << eom );
         }
@@ -298,7 +298,7 @@ void MHO_MPIInterface::DetermineLocalRank()
                          &status);
             }
         }
-        else 
+        else
         {
             std::size_t root_rank = 0;
             MPI_Send(&(buf[msg_start_indexes[fGlobalProcessID]]),
@@ -319,7 +319,7 @@ void MHO_MPIInterface::DetermineLocalRank()
 
         std::vector<std::string> hostname_list;
         hostname_list.resize(fNProcesses);
-        for(int i = 0; i < fNProcesses; i++) 
+        for(int i = 0; i < fNProcesses; i++)
         {
             hostname_list[i] = std::string("");
             for (std::size_t j = 0; j < out_msg_sizes[i]; j++)
@@ -330,9 +330,9 @@ void MHO_MPIInterface::DetermineLocalRank()
 
         //collect all the process ids of all the process running on this host
         fCoHostedProcessIDs.clear();
-        for(int i = 0; i < fNProcesses; i++) 
+        for(int i = 0; i < fNProcesses; i++)
         {
-            if (hostname == hostname_list[i]) 
+            if (hostname == hostname_list[i])
             {
                 fCoHostedProcessIDs.push_back(i);
             }
@@ -362,9 +362,9 @@ void MHO_MPIInterface::SetupSubGroups()
 
         //reduce the buffer across all processes
         MPI_Status status;
-        if (fGlobalProcessID == 0) 
+        if (fGlobalProcessID == 0)
         {
-            for (int i = 1; i < fNProcesses; i++) 
+            for (int i = 1; i < fNProcesses; i++)
             {
                 MPI_Recv(&(local_ranks[i]), 1, MPI_INT, i, LOCALID_DETERMINATION_TAG, MPI_COMM_WORLD, &status);
             }
@@ -382,7 +382,7 @@ void MHO_MPIInterface::SetupSubGroups()
         //now we can proceed to determine which group they below to
         std::vector<int> even_members;
         std::vector<int> odd_members;
-        for (int i = 0; i < fNProcesses; i++) 
+        for (int i = 0; i < fNProcesses; i++)
         {
             if (local_ranks[i] % 2 == 0){ even_members.push_back(i); }
             else { odd_members.push_back(i); }
@@ -409,7 +409,7 @@ void MHO_MPIInterface::SetupSubGroups()
             MPI_Comm_rank(fEvenCommunicator, &fSubGroupRank);
             fNSubGroupProcesses = even_members.size();
         }
-        else 
+        else
         {
             fIsEvenGroupMember = false;
             MPI_Comm_rank(fOddCommunicator, &fSubGroupRank);
@@ -427,22 +427,22 @@ void MHO_MPIInterface::SetupSubGroups()
 
             //to make things faster we first try to pair up processes
             //which share the same node/host
-            if (result == fNProcesses) 
+            if (result == fNProcesses)
             {
                 //we can because each host has an even number of processes
-                if (fIsEvenGroupMember) 
+                if (fIsEvenGroupMember)
                 {
                     fPartnerProcessID = fCoHostedProcessIDs[fLocalProcessID + 1];
                 }
-                else 
+                else
                 {
                     fPartnerProcessID = fCoHostedProcessIDs[fLocalProcessID - 1];
                 }
             }
-            else 
+            else
             {
                 //this isn't possible so we have to pair up processes across nodes
-                if (fIsEvenGroupMember) 
+                if (fIsEvenGroupMember)
                 {
                     fPartnerProcessID = fGlobalProcessID + 1;
                 }

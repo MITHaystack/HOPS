@@ -71,10 +71,10 @@ class MHO_PyScanStoreInterface
         bool Initialize()
         {
             return fScanStore->Initialize();
-        }; 
+        };
 
         bool IsValid() const {return fScanStore->IsValid();};
- 
+
         bool IsBaselinePresent(std::string bl) const {return fScanStore->IsBaselinePresent(bl);}
         bool IsStationPresent(std::string st) const {return fScanStore->IsStationPresent(st);}
         bool IsFringePresent(std::string fr) const {return fScanStore->IsFringePresent(fr);}
@@ -83,7 +83,7 @@ class MHO_PyScanStoreInterface
         std::size_t GetNStations() const {return fScanStore->GetNStations();}
         std::size_t GetNFringes() const {return fScanStore->GetNFringes();}
 
-        std::vector< std::string > GetBaselinesPresent() const {return fScanStore->GetBaselinesPresent();} 
+        std::vector< std::string > GetBaselinesPresent() const {return fScanStore->GetBaselinesPresent();}
         std::vector< std::string > GetStationsPresent() const { return fScanStore->GetStationsPresent();}
         std::vector< std::string > GetFringesPresent() const {return fScanStore->GetFringesPresent();}
 
@@ -101,7 +101,7 @@ class MHO_PyScanStoreInterface
             if( !IsBaselinePresent(baseline) ){return -2;} //not present in this scan
 
             auto it = fBaselineContainers.find(baseline);
-            if(it != fBaselineContainers.end() ){return 1;} //ok, but already loaded 
+            if(it != fBaselineContainers.end() ){return 1;} //ok, but already loaded
 
             MHO_ContainerStore* con = new MHO_ContainerStore();
             fScanStore->LoadBaseline(baseline, con);
@@ -125,7 +125,7 @@ class MHO_PyScanStoreInterface
             if( !IsStationPresent(station) ){return -2;} //not present in this scan
 
             auto it = fStationContainers.find(station);
-            if(it != fStationContainers.end() ){return 1;} //ok, but already loaded 
+            if(it != fStationContainers.end() ){return 1;} //ok, but already loaded
 
             MHO_ContainerStore* con = new MHO_ContainerStore();
             fScanStore->LoadStation(station, con);
@@ -150,7 +150,7 @@ class MHO_PyScanStoreInterface
             if( !IsFringePresent(fringe) ){return -2;} //not present in this scan
 
             auto it = fFringeContainers.find(fringe);
-            if(it != fFringeContainers.end() ){return 1;} //ok, but already loaded 
+            if(it != fFringeContainers.end() ){return 1;} //ok, but already loaded
 
             MHO_ContainerStore* con = new MHO_ContainerStore();
             fScanStore->LoadFringe(fringe, con);
@@ -168,7 +168,7 @@ class MHO_PyScanStoreInterface
         }
 
 
-        std::vector< std::string > GetBaselinesLoaded() const 
+        std::vector< std::string > GetBaselinesLoaded() const
         {
             std::vector< std::string > baselines;
             for(auto it = fBaselineContainers.begin(); it != fBaselineContainers.end(); it++)
@@ -177,8 +177,8 @@ class MHO_PyScanStoreInterface
             }
             return baselines;
         }
- 
-        std::vector< std::string > GetStationsLoaded() const 
+
+        std::vector< std::string > GetStationsLoaded() const
         {
             std::vector< std::string > stations;
             for(auto it = fStationContainers.begin(); it != fStationContainers.end(); it++)
@@ -188,7 +188,7 @@ class MHO_PyScanStoreInterface
             return stations;
         }
 
-        std::vector< std::string > GetFringesLoaded() const 
+        std::vector< std::string > GetFringesLoaded() const
         {
             std::vector< std::string > fringes;
             for(auto it = fFringeContainers.begin(); it != fFringeContainers.end(); it++)
@@ -268,7 +268,7 @@ class MHO_PyScanStoreInterface
         MHO_ScanDataStore* fScanStore;
         bool fIsOwned; //declare ownership of fScanStore
         bool fInitialized;
-    
+
         //an empty container so we can a reference under certain error conditions
         MHO_PyContainerStoreInterface* fEmptyContainer;
 
@@ -283,37 +283,37 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
 {
     py::class_< MHO_PyScanStoreInterface >(m, pyclass_name.c_str() )
         .def(py::init<>()) //can build this class from python
-        .def("set_directory", &hops::MHO_PyScanStoreInterface::SetDirectory, 
-            "specify the path to the directory of the scan to be loaded", 
+        .def("set_directory", &hops::MHO_PyScanStoreInterface::SetDirectory,
+            "specify the path to the directory of the scan to be loaded",
             py::arg("directory")
         )
-        .def("initialize", &hops::MHO_PyScanStoreInterface::Initialize, 
+        .def("initialize", &hops::MHO_PyScanStoreInterface::Initialize,
             "initialize the scan storage container after setting the directory"
         )
-        .def("is_valid", &hops::MHO_PyScanStoreInterface::IsValid, 
+        .def("is_valid", &hops::MHO_PyScanStoreInterface::IsValid,
             "check if initialization was successful"
         )
-        .def("has_baseline", &hops::MHO_PyScanStoreInterface::IsBaselinePresent, 
+        .def("has_baseline", &hops::MHO_PyScanStoreInterface::IsBaselinePresent,
             "check if baseline (2-char code) is present in this scan",
             py::arg("baseline")
         )
-        .def("has_station", &hops::MHO_PyScanStoreInterface::IsStationPresent, 
+        .def("has_station", &hops::MHO_PyScanStoreInterface::IsStationPresent,
             "check if station (1-char code) is present in this scan",
             py::arg("station")
         )
-        .def("has_fringe", &hops::MHO_PyScanStoreInterface::IsFringePresent, 
+        .def("has_fringe", &hops::MHO_PyScanStoreInterface::IsFringePresent,
             "check if fringe file (file basename) is present in this scan",
             py::arg("fringe_file_basename")
         )
-        .def("is_baseline_loaded", &hops::MHO_PyScanStoreInterface::IsBaselineLoaded, 
+        .def("is_baseline_loaded", &hops::MHO_PyScanStoreInterface::IsBaselineLoaded,
             "check if baseline has been loaded into memory, must be true before get_baseline_data can be called",
             py::arg("baseline")
         )
-        .def("is_station_loaded", &hops::MHO_PyScanStoreInterface::IsStationLoaded, 
+        .def("is_station_loaded", &hops::MHO_PyScanStoreInterface::IsStationLoaded,
             "check if station has been loaded into memory, must be true before get_station_data can be called",
             py::arg("station")
-        ) 
-        .def("is_fringe_loaded", &hops::MHO_PyScanStoreInterface::IsFringeLoaded, 
+        )
+        .def("is_fringe_loaded", &hops::MHO_PyScanStoreInterface::IsFringeLoaded,
             "check if fringe has been loaded into memory, must be true before get_fringe_data can be called",
             py::arg("fringe_file_basename")
         )
@@ -375,43 +375,43 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
             "get the list of fringe container objects that have been loaded into memory"
         )
         .def("get_baseline_data", //lambda for returing either baseline data or None-type
-            [=](MHO_PyScanStoreInterface& m, std::string baseline) -> py::object 
+            [=](MHO_PyScanStoreInterface& m, std::string baseline) -> py::object
             {
-                if( m.IsBaselineLoaded(baseline) ) 
+                if( m.IsBaselineLoaded(baseline) )
                 {
                     return py::cast( m.GetBaselineData(baseline) );
                 }
                 py::print( "data for baseline ",baseline," either it has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
-            }, 
+            },
             py::return_value_policy::reference,
             "get the baseline data container that has been loaded into memory",
             py::arg("baseline")
         )
         .def("get_station_data", //lambda for returing either station data or None-type
-            [=](MHO_PyScanStoreInterface& m, std::string station) -> py::object 
+            [=](MHO_PyScanStoreInterface& m, std::string station) -> py::object
             {
-                if( m.IsStationLoaded(station) ) 
+                if( m.IsStationLoaded(station) )
                 {
                     return py::cast( m.GetStationData(station) );
                 }
                 py::print( "data for station ", station, " either it has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
-            }, 
+            },
             py::return_value_policy::reference,
             "get the station data container that has been loaded into memory",
             py::arg("station")
         )
         .def("get_fringe_data", //lambda for returing either fringe data or None-type
-            [=](MHO_PyScanStoreInterface& m, std::string fringe) -> py::object 
+            [=](MHO_PyScanStoreInterface& m, std::string fringe) -> py::object
             {
-                if( m.IsFringeLoaded(fringe) ) 
+                if( m.IsFringeLoaded(fringe) )
                 {
                     return py::cast( m.GetFringeData(fringe) );
                 }
                 py::print( "data for fringe ", fringe, " either it has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
-            }, 
+            },
             py::return_value_policy::reference,
             "get the fringe data container that has been loaded into memory",
             py::arg("fringe")

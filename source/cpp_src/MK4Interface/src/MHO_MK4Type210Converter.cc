@@ -9,7 +9,7 @@ const int AMPPHASE = 64;
 //    float               phase;                  /* Degrees */
 //    };
 //
-//struct type_210 
+//struct type_210
 //    {
 //    char                record_id[3];           /* Standard 3-digit id */
 //    char                version_no[2];          /* Standard 2-digit version # */

@@ -16,7 +16,7 @@
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_VexDefinitions.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_VexElementLineGenerator

@@ -24,22 +24,22 @@
 
 
 
-namespace hops 
+namespace hops
 {
 
-class MHO_FringeData 
+class MHO_FringeData
 {
     public:
 
         MHO_FringeData(){};
         virtual ~MHO_FringeData(){};
-        
+
         MHO_ParameterStore* GetParameterStore(){return &fParameterStore;}
         MHO_ContainerStore* GetContainerStore(){return &fContainerStore;}
         MHO_ScanDataStore* GetScanDataStore(){return &fScanStore;}
 
         //should we expose these?
-        mho_json GetVex() const {return fScanStore.GetRootFileData();} 
+        mho_json GetVex() const {return fScanStore.GetRootFileData();}
 
         //access to the control format and parsed control statements
         mho_json& GetControlFormat(){return fControlFormat;}

@@ -9,9 +9,9 @@
 *@date: Mon 18 Sep 2023 01:26:22 PM EDT
 *@brief: this class allows a user to inject a python function of the form:
 * func(container_interface, parameter_interface)
-* into the control flow of the fringe fitter. It is basically allowed full access to 
+* into the control flow of the fringe fitter. It is basically allowed full access to
 * any data or parameters in the container or parameter store. The only exception is
-* that re-sizing of arrays is not allowed. 
+* that re-sizing of arrays is not allowed.
 */
 
 #include "MHO_Operator.hh"
@@ -79,9 +79,9 @@ class MHO_PyGenericOperator: public MHO_Operator
                 bool success = false;
                 if( Py_IsInitialized() == 0 )
                 {
-                    //the internal python interpreter has not been started, bail out 
+                    //the internal python interpreter has not been started, bail out
                     msg_error("python_bindings", "python interpreter not running/initialized, " <<
-                    "cannot call python subroutine (" 
+                    "cannot call python subroutine ("
                     << fModuleName<< "," << fFunctionName << ")." << eom);
                     return success;
                 }

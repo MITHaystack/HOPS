@@ -18,8 +18,8 @@ int main(int /*argc*/, char** /*argv*/)
     double x = 1.23423423e30;
 
     A->SetValue(x);
-    
-    
+
+
     A->Insert("foo", 1.0);
     A->Insert("bar", "baz");
 

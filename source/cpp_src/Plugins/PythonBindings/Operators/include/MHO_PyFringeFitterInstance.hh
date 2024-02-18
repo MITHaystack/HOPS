@@ -34,7 +34,7 @@ class MHO_PyFringeFitterInstance
 
         // void SetParameterStore(MHO_ParameterStore* pstore){fParameterStore = pstore;};
         // void SetContainerStore(MHO_ContainerStore* cstore){fContainerStore = cstore;};
-        // 
+        //
         // void SetModuleName(std::string module_name){fModuleName = module_name;}
         // void SetFunctionName(std::string function_name){fFunctionName = function_name;}
 
@@ -45,10 +45,10 @@ class MHO_PyFringeFitterInstance
         // bool fInitialized;
         // std::string fModuleName;
         // std::string fFunctionName;
-        // 
+        //
         // MHO_ContainerStore* fContainerStore;
         // MHO_ParameterStore* fParameterStore;
-        // 
+        //
         // MHO_PyParameterStoreInterface* fParameterInterface;
         // MHO_PyContainerStoreInterface* fContainerInterface;
 

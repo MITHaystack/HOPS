@@ -38,7 +38,7 @@ unsigned int adler32_checksum(unsigned char *buf, int len)
     unsigned int s2 = 0;
     int n;
 
-    for(n = 0; n < len; n++) 
+    for(n = 0; n < len; n++)
     {
         s1 = (s1 + buf[n]) % MOD_ADLER;
         s2 = (s2 + s1) % MOD_ADLER;
@@ -89,7 +89,7 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
     //the correlation processing date
     FillDate(&(t200->corr_date), "/config/correlation_date");
 
-    //write out the fourfit reference time 
+    //write out the fourfit reference time
     FillDate(&(t200->frt), "/vex/scan/fourfit_reftime");
 
     return 0;
@@ -168,7 +168,7 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     FillFloat(t202->ref_clock, "/ref_station/clock_early_offset");
     FillFloat(t202->rem_clock, "/rem_station/clock_early_offset");
 
-    //note that in HOPS4 these (az,el, u,v) are evaluated at the FRT, 
+    //note that in HOPS4 these (az,el, u,v) are evaluated at the FRT,
     //so they will differ from the HOPS3 values (evaluated at scan start)
 
     FillFloat(t202->ref_elev, "/ref_station/elevation");
@@ -183,7 +183,7 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     double radians_to_arcsec = 4.848137e-6;
     double lambda = speed_of_light_Mm / ref_freq; // wavelength (m)
 
-    double ref_u, ref_v; 
+    double ref_u, ref_v;
     double rem_u, rem_v;
     FillDouble(ref_u, "/ref_station/u");
     FillDouble(ref_v, "/ref_station/v");
@@ -292,7 +292,7 @@ int MHO_MK4FringeExport::fill_205( struct type_203 *t203, struct type_205 *t205)
         {
             t205->ffit_chan[i].ffit_chan_id = ch_labels[i][0];
             //this element (array 0-3) is effectively useless (we have no type_101 records to reference)
-            t205->ffit_chan[i].channels[0] = (short) i; 
+            t205->ffit_chan[i].channels[0] = (short) i;
         }
     }
 
@@ -327,7 +327,7 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     int nlags = fPStore->GetAs<int>("/config/nlags");
     t206->sbdsize = (short) 4*nlags;
 
-    //TODO fill these in 
+    //TODO fill these in
     // struct sidebands    accepted[64];           /* APs accepted by chan/sband */
     // struct sbweights    weights[64];            /* Samples per channel/sideband */
     // float               accept_ratio;           /* % ratio min/max data accepted */
@@ -360,7 +360,7 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     ok = fPStore->Get("/fringe/error_code", errcode);     //TODO implement the error code calc!
     errcode = " ";
     t208->errcode = errcode[0];
-    
+
     //don't forget the "provisional" pol product indicator
     #define POLCHAR_OFFSET 64
     // polarization values in pass array structure
@@ -375,7 +375,7 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     #define POLMASK_LR 4
     #define POLMASK_RL 8
     #define POL_IXY 31
-    
+
     char passpol;
     char parampol;
     std::string polprod = fPStore->GetAs<std::string>("/config/polprod");
@@ -388,8 +388,8 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     if(polprod == "LR"){parampol = POLMASK_LR; passpol = POL_LR;}
     if(polprod == "RL"){parampol = POLMASK_RL; passpol = POL_RL;}
     if(polprod == "RR"){parampol = POLMASK_RR; passpol = POL_RR;}
-    
-    t208->unused1[0] = passpol + POLCHAR_OFFSET; 
+
+    t208->unused1[0] = passpol + POLCHAR_OFFSET;
     t208->unused1[1] = parampol + POLCHAR_OFFSET;
     t208->unused1[2] = '\0';
 
@@ -473,7 +473,7 @@ int MHO_MK4FringeExport::fill_212(int fr, struct type_212 *t212)
     t212->first_ap = 0;//pass->ap_off;
     t212->channel = fr;
     t212->sbd_chan = fPStore->GetAs<int>("/fringe/max_sbd_bin");//status->max_delchan;
-    
+
     //TODO FIXME -- dummy implementation for now
     for(int ap = 0; ap < nap; ap++)
     {
@@ -490,21 +490,21 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
     std::string control_contents;
     bool ok = fPStore->Get("/control/control_file_contents", control_contents);
     if(!ok){control_contents = "";}
-    
+
     unsigned char set_string_buff[1] = {' '};
     int setstr_len, cf_len, setstr_pad, cf_pad, full_size, i;
     unsigned int setstr_hash = 0;
     unsigned int cf_hash = 0;
-    
+
     //now allocate the necessary amount of memory
     setstr_len = 0; //nothing, we've packed this into the control contents
     cf_len = control_contents.size();
-    
+
     //find next largest multiple of 8 bytes
     setstr_pad = (( setstr_len + 7 ) & ~7) + 8;
     cf_pad = ( (cf_len + 7 ) & ~7) + 8;
-    full_size = sizeof(struct type_222) + setstr_pad + cf_pad; 
-    
+    full_size = sizeof(struct type_222) + setstr_pad + cf_pad;
+
     char* temp_buf = new char[cf_pad];
     for(std::size_t j=0;j<cf_pad; j++)
     {
@@ -519,7 +519,7 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
         msg_error("mk4interface", "memory allocation failure in fill_222" << eom);
         return -1;
     }
-    
+
     //figure out the stop/stop of the cf leading/trailing white space:
     //this is probably uncessary since the new parser strips this already
     //but legacy type_222 sometimes has an extra space at front or back
@@ -542,7 +542,7 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
     //now do the hashing
     setstr_hash = adler32_checksum( (unsigned char*) &(set_string_buff[0]), setstr_len);
     cf_hash = adler32_checksum( (unsigned char*) &(temp_buf[cf_start]), cf_stop-cf_start);
- 
+
     strncpy ( (*t222)->record_id, "222", 3);
     strncpy ( (*t222)->version_no, "00", 2);
     (*t222)->unused1 = ' ';
@@ -551,7 +551,7 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
     (*t222)->control_hash = cf_hash;
     (*t222)->setstring_length = setstr_len;
     (*t222)->cf_length = cf_len;
-    
+
     //don't bother with set string stuff
     for(i=0; i<setstr_pad; i++){ ((*t222)->control_contents)[i] = ' ';}
 
@@ -580,10 +580,10 @@ int MHO_MK4FringeExport::fill_221(struct type_221** t221)
     char *pplot, *end;
 
     double tickinc;
-    //load the dummy ps file 
+    //load the dummy ps file
     std::string ps_file;
     ps_file += HOPS_MK4AUX_DIR;
-    ps_file += "/mk4aux/blank.ps"; 
+    ps_file += "/mk4aux/blank.ps";
     fp = fopen (ps_file.c_str(), "r");
 
     if( (fd = fileno (fp)) < 0){return -1;}
@@ -602,7 +602,7 @@ int MHO_MK4FringeExport::fill_221(struct type_221** t221)
     pplot[filesize] = '\0';
     if (nb != filesize){return -4;}
     fclose (fp);
-    
+
     if( (end = strstr (pplot, "EOF\n")) != NULL){*(end+4) = '\0';}
     (*t221)->ps_length = strlen(pplot);
 
@@ -618,7 +618,7 @@ MHO_MK4FringeExport::output()
     //TODO -- allow for a different directory for output than the input directory
     std::string directory = fPStore->GetAs<std::string>("/files/directory");
     directory = MHO_DirectoryInterface::GetDirectoryFullPath(directory);
-    
+
     // for locking
     int lock_retval = LOCK_PROCESS_NO_PRIORITY;
     char lockfile_name[512] = {'\0'};
@@ -639,14 +639,14 @@ MHO_MK4FringeExport::output()
     struct type_208 t208;
     struct type_210 t210;
     struct type_000 t2_id;
-    
+
     //wait until we are the next process allowed to write an output file
     MHO_LockFileHandler::GetInstance().EnableLegacyMode();
     lock_retval = MHO_LockFileHandler::GetInstance().WaitForWriteLock(directory, the_seq_no);
 
     if(lock_retval == LOCK_STATUS_OK && the_seq_no > 0)
     {
-        //construct the fringe filename 
+        //construct the fringe filename
         std::string filename = CreateFringeFileName(directory, the_seq_no);
 
         if(filename.size() > 256)
@@ -703,7 +703,7 @@ MHO_MK4FringeExport::output()
         // Allocate memory as a block
         nap = fPStore->GetAs<int>("/config/total_naps");
         int nfreq = fPStore->GetAs<int>("/config/nchannels");
-        
+
         size_of_t212 = sizeof (struct type_212) + 12*(nap-1);
         if ((nap % 2) == 1) size_of_t212 += 12;
         t212_array = (char *)malloc (nfreq * size_of_t212);
@@ -739,7 +739,7 @@ MHO_MK4FringeExport::output()
         fringe.t221->ps_length = strlen (fringe.t221->pplot);
         fringe.allocated[fringe.nalloc] = fringe.t221;
         fringe.nalloc += 1;
-        
+
         /* Fill in the control file record */
         fringe.t222 = NULL;
         struct type_222 *t222;
@@ -752,7 +752,7 @@ MHO_MK4FringeExport::output()
         fringe.allocated[fringe.nalloc] = fringe.t222;
         fringe.nalloc += 1;
 
-        //kludge to get fourfit to feed the generated fringe file name 
+        //kludge to get fourfit to feed the generated fringe file name
         //(but nothing else) as a return value to a
         //a python calling script (requires passing option "-m 4"); see
         //e.g. chops/source/python_src/hopstest_module/hopstestb/hopstestb.py
@@ -762,7 +762,7 @@ MHO_MK4FringeExport::output()
 
         int write_nbytes = write_mk4fringe(&fringe, fringe_name);
         //pause 5ms, if a lock file was created, delete it now
-        usleep(5000); 
+        usleep(5000);
         MHO_LockFileHandler::GetInstance().RemoveWriteLock();
         if(write_nbytes <= 0)
         {
@@ -770,7 +770,7 @@ MHO_MK4FringeExport::output()
             return 1;
         }
     }
-    else 
+    else
     {
         msg_error("mk4interface", "could not obtain write lock for directory: " <<directory << eom);
     }
@@ -810,7 +810,7 @@ MHO_MK4FringeExport::convert_sky_coords(struct sky_coord& coords, std::string ra
     fTokenizer.SetString(&dec);
     fTokenizer.GetTokens(&tokens);
     if(tokens.size() != 2){ msg_error("mk4interface", "error parsing dec string: " << dec << " with delimiter" << delim1 << eom); return 1;}
-    
+
     tmp = tokens[0];
     dec_degs = std::atoi(tmp.c_str());
     tmp = tokens[1];
@@ -819,7 +819,7 @@ MHO_MK4FringeExport::convert_sky_coords(struct sky_coord& coords, std::string ra
     fTokenizer.SetString(&tmp);
     fTokenizer.GetTokens(&tokens);
     if(tokens.size() != 2){ msg_error("mk4interface", "error parsing dec string: " << dec << " with delimiter" << delim2 << eom); return 1;}
-    
+
     tmp = tokens[0];
     dec_mins = std::atoi(tmp.c_str());
     tmp = tokens[1];
@@ -832,7 +832,7 @@ MHO_MK4FringeExport::convert_sky_coords(struct sky_coord& coords, std::string ra
     fTokenizer.SetString(&ra);
     fTokenizer.GetTokens(&tokens);
     if(tokens.size() != 2){ msg_error("mk4interface", "error parsing ra string: " << ra << " with delimiter" << delim3 << eom); return 1;}
-    
+
     tmp = tokens[0];
     ra_hrs = std::atoi(tmp.c_str());
     tmp = tokens[1];
@@ -841,7 +841,7 @@ MHO_MK4FringeExport::convert_sky_coords(struct sky_coord& coords, std::string ra
     fTokenizer.SetString(&tmp);
     fTokenizer.GetTokens(&tokens);
     if(tokens.size() != 2){ msg_error("mk4interface", "error parsing ra string: " << ra << " with delimiter" << delim4 << eom); return 1;}
-    
+
     tmp = tokens[0];
     ra_mins = std::atoi(tmp.c_str());
     tmp = tokens[1];
@@ -860,25 +860,25 @@ MHO_MK4FringeExport::convert_sky_coords(struct sky_coord& coords, std::string ra
     return 0;
 }
 
-void 
+void
 MHO_MK4FringeExport::FillString(char* destination, std::string param_path, int max_length, std::string default_value)
 {
     char_clear(destination, max_length);
-    std::string tmp; 
+    std::string tmp;
     bool ok = fPStore->Get(param_path, tmp);
     if(!ok){tmp = default_value;}
     strncpy(destination, tmp.c_str(), std::min( max_length, (int) tmp.size() ) );
 }
-void 
+void
 MHO_MK4FringeExport::FillString(std::string& destination, std::string param_path, std::string default_value)
 {
-    std::string tmp; 
+    std::string tmp;
     bool ok = fPStore->Get(param_path, tmp);
     if(!ok){tmp = default_value;}
     destination = tmp;
 }
 
-void 
+void
 MHO_MK4FringeExport::FillInt(int& destination, std::string param_path, int default_value)
 {
     int value;
@@ -887,7 +887,7 @@ MHO_MK4FringeExport::FillInt(int& destination, std::string param_path, int defau
     destination = value;
 }
 
-void 
+void
 MHO_MK4FringeExport::FillShort(short& destination, std::string param_path, int default_value)
 {
     int value;
@@ -896,7 +896,7 @@ MHO_MK4FringeExport::FillShort(short& destination, std::string param_path, int d
     destination = (short) value;
 }
 
-void 
+void
 MHO_MK4FringeExport::FillDouble(double& destination, std::string param_path, double default_value)
 {
     double value;
@@ -905,7 +905,7 @@ MHO_MK4FringeExport::FillDouble(double& destination, std::string param_path, dou
     destination = value;
 }
 
-void 
+void
 MHO_MK4FringeExport::FillFloat(float& destination, std::string param_path, float default_value)
 {
     double value;
@@ -914,7 +914,7 @@ MHO_MK4FringeExport::FillFloat(float& destination, std::string param_path, float
     destination = value;
 }
 
-void 
+void
 MHO_MK4FringeExport::FillDate(struct date* destination, std::string param_path)
 {
     legacy_hops_date a_date;
@@ -929,7 +929,7 @@ MHO_MK4FringeExport::FillDate(struct date* destination, std::string param_path)
     destination->second = a_date.second;
 }
 
-void 
+void
 MHO_MK4FringeExport::FillDate(struct date* destination, struct legacy_hops_date& a_date)
 {
     destination->year = a_date.year;
@@ -1010,14 +1010,14 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array, std::size_t
 
 }
 
-std::string 
+std::string
 MHO_MK4FringeExport::CreateFringeFileName(std::string directory, int seq_no)
 {
     //grab the name info
     std::string baseline;
-    std::string root_code; 
+    std::string root_code;
     std::string frequency_group;
-    
+
     FillString(baseline, "/config/baseline", "??");
     FillString(root_code, "/config/root_code", "XXXXXX");
     FillString(frequency_group, "/config/frequency_group", "X");

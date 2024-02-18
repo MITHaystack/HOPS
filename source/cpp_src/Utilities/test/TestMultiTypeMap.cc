@@ -128,8 +128,8 @@ int main(int /*argc*/, char** /*argv*/)
     }
 
 
-    //test typename counter 
-    std::cout<< "number of ints in par pack = " << count_instances_of_type< int, 3, int, int, char, double>::value << std::endl; 
+    //test typename counter
+    std::cout<< "number of ints in par pack = " << count_instances_of_type< int, 3, int, int, char, double>::value << std::endl;
 
 
     return 0;

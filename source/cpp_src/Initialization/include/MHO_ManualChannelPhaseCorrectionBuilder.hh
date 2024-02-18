@@ -16,13 +16,13 @@
 namespace hops
 {
 
-class MHO_ManualChannelPhaseCorrectionBuilder: 
+class MHO_ManualChannelPhaseCorrectionBuilder:
     public MHO_OperatorBuilder,
     public MHO_ChannelQuantity
 {
     public:
 
-        MHO_ManualChannelPhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox, 
+        MHO_ManualChannelPhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox,
                                                 MHO_ContainerStore* cstore = nullptr,
                                                 MHO_ParameterStore* pstore = nullptr):
             MHO_OperatorBuilder(toolbox, cstore, pstore),

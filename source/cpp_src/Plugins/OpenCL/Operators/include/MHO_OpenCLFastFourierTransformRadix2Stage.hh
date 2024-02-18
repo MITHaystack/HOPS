@@ -30,7 +30,7 @@ class MHO_OpenCLFastFourierTransformRadix2Stage:
     public MHO_MultidimensionalFastFourierTransformInterface< XArgType >
 {
     public:
-        
+
         static_assert( is_complex< typename XArgType::value_type >::value, "Array element type must be a complex floating point type." );
         using complex_value_type = typename XArgType::value_type;
         using floating_point_value_type = typename XArgType::value_type::value_type;
@@ -60,7 +60,7 @@ class MHO_OpenCLFastFourierTransformRadix2Stage:
             for(std::size_t i=0; i<XArgType::rank::value; i++){fAxesToXForm[i] = false;}
             if(axis_index < XArgType::rank::value){fAxesToXForm[axis_index] = true;}
         }
-        
+
         //sometimes there is no need to read the data back from device -> host
         //for example, if there is another kernel using the same data that
         //is running immediately afterwards, we can just leave the data there
@@ -75,12 +75,12 @@ class MHO_OpenCLFastFourierTransformRadix2Stage:
 
 
     protected:
-        
+
         virtual bool InitializeInPlace(XArgType* in) override
         {
             fIsValid = false;
             if( in != nullptr ){fIsValid = true;}
-            
+
             if(fIsValid)
             {
                 //check if the current transform sizes are the same as the input
@@ -100,7 +100,7 @@ class MHO_OpenCLFastFourierTransformRadix2Stage:
 
         virtual bool ExecuteInPlace(XArgType* in) override
         {
-            
+
         }
 
         // virtual bool InitializeInPlace(XArrayType* in)
@@ -115,27 +115,27 @@ class MHO_OpenCLFastFourierTransformRadix2Stage:
         //         {
         //             fArrayBuffer = in->template MakeExtension< MHO_OpenCLNDArrayBuffer< XArrayType > >();
         //         }
-        // 
+        //
         //         unsigned int array_size = in->GetSize();
-        // 
+        //
         //         fKernel->setArg(0,array_size);
         //         fKernel->setArg(1,fFactor);
         //         fKernel->setArg(2, *(fArrayBuffer->GetDataBuffer()) );
-        // 
+        //
         //         //pad out n-global to be a multiple of the n-local
         //         fNGlobal = array_size;
         //         unsigned int dummy = fNLocal - (array_size%fNLocal);
         //         if(dummy == fNLocal){dummy = 0;};
         //         fNGlobal += dummy;
-        // 
+        //
         //         fInitialized = true;
         //         return true;
         //     }
         //     return false;
         // }
-        // 
-        // 
-        // 
+        //
+        //
+        //
         // virtual bool ExecuteInPlace(XArrayType* in)
         // {
         //     if(fInitialized)
@@ -145,13 +145,13 @@ class MHO_OpenCLFastFourierTransformRadix2Stage:
         //         {
         //             fArrayBuffer->WriteDataBuffer();
         //         }
-        // 
+        //
         //         //now fire up the kernel
         //         MHO_OpenCLInterface::GetInstance()->GetQueue().enqueueNDRangeKernel(*fKernel, cl::NullRange, fNGlobal, fNLocal);
         //         #ifdef ENFORCE_CL_FINISH
         //         MHO_OpenCLInterface::GetInstance()->GetQueue().finish();
         //         #endif
-        // 
+        //
         //         //read back data to the host if we must, otherwise, leave it on the device for the next kernel
         //         if(fReadBack)
         //         {
@@ -168,8 +168,8 @@ class MHO_OpenCLFastFourierTransformRadix2Stage:
         //     ConditionallyResizeOutput(in->GetDimensionArray(), out);
         //     return InitializeInPlace(out);
         // }
-        // 
-        // 
+        //
+        //
         // virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out)
         // {
         //     //This may not be the most efficient way to do this
@@ -250,12 +250,12 @@ class MHO_OpenCLFastFourierTransformRadix2Stage:
         void InitHostWorkspace()
         {
             fMaxBufferSize = 0;
-            fHostPlan[i].Resize(fDimensionSize[i]); 
+            fHostPlan[i].Resize(fDimensionSize[i]);
             if(fMaxBufferSize < fHostPlans[i].GetN() ){ fMaxBufferSize = fHostPlans[i].GetN(); }
             if(fMaxBufferSize < fHostPlans[i].GetM() ){ fMaxBufferSize = fHostPlans[i].GetM(); }
         }
-        
-        
+
+
         void InitDeviceWorkspace()
         {
             DeallocateDeviceWorkspace();
@@ -333,7 +333,7 @@ class MHO_OpenCLFastFourierTransformRadix2Stage:
                     fMaxNWorkItems = n_global;
                 };
             }
-            
+
         }
 
 

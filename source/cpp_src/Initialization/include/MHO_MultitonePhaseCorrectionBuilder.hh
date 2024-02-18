@@ -42,7 +42,7 @@ class MHO_MultitonePhaseCorrectionBuilder:
         void AttachSamplerDelays(multitone_pcal_type* pcal_data, std::string mk4id); //attaches sampler delays to pcal data
         void AttachPCToneMask(multitone_pcal_type* pcal_data, std::string mk4id); //attaches pc_tonemask infor to pcal data (if present)
         std::string GetSamplerDelayKey(std::string pol);
-        
+
         std::string fRefOpName;
         std::string fRemOpName;
 };

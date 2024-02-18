@@ -2,10 +2,10 @@
 
 #include <algorithm>
 
-namespace hops 
+namespace hops
 {
 
-    
+
 MHO_DiFXChannelNameConstructor::MHO_DiFXChannelNameConstructor()
 {
     fScanID = "";
@@ -15,8 +15,8 @@ MHO_DiFXChannelNameConstructor::MHO_DiFXChannelNameConstructor()
 MHO_DiFXChannelNameConstructor::~MHO_DiFXChannelNameConstructor(){};
 
 
-//add a frequency range for a specific band label 
-void 
+//add a frequency range for a specific band label
+void
 MHO_DiFXChannelNameConstructor::AddBandLabel(std::string band_label, double freq_low, double freq_high)
 {
     //note that we are not checking for overlap or other error conditions
@@ -58,7 +58,7 @@ MHO_DiFXChannelNameConstructor::AddChannelNames(mho_json& vex_root)
         scan = sched.begin().value();
     }
 
-    //TODO FIXME --for complicated schedules and/or zoom bands, 
+    //TODO FIXME --for complicated schedules and/or zoom bands,
     //different stations may have different modes
     std::string mode_key = scan["mode"].get<std::string>();
     int nst = scan["station"].size(); // number of stations;
@@ -67,7 +67,7 @@ MHO_DiFXChannelNameConstructor::AddChannelNames(mho_json& vex_root)
     std::map< std::string, std::string > stationCodeToSiteID;
     std::map< std::string, std::string > stationCodeToMk4ID;
     std::map< std::string, std::string > stationCodeToFreqTableName;
-    std::map< std::string, std::string > mk4IDToFreqTableName;  
+    std::map< std::string, std::string > mk4IDToFreqTableName;
 
     auto mode = vex_root["$MODE"][mode_key];
     //TODO FIXME -- this is incorrect if there are multple BBC/IFs defined
@@ -76,8 +76,8 @@ MHO_DiFXChannelNameConstructor::AddChannelNames(mho_json& vex_root)
 
     for(int ist = 0; ist<nst; ist++)
     {
-        //find the frequency table for this station 
-        //first locate the mode info 
+        //find the frequency table for this station
+        //first locate the mode info
         std::string freq_key;
         for(auto it = mode["$FREQ"].begin(); it != mode["$FREQ"].end(); ++it)
         {
@@ -87,7 +87,7 @@ MHO_DiFXChannelNameConstructor::AddChannelNames(mho_json& vex_root)
             {
                 std::string station_code = (*it)["qualifiers"][q].get<std::string>();
                 stationCodeToFreqTableName[station_code] = keyword;
-                //std::string site_key = 
+                //std::string site_key =
                 std::string site_key = vex_root["$STATION"][station_code]["$SITE"][0]["keyword"].get<std::string>();
                 std::string mk4_id = vex_root["$SITE"][site_key]["mk4_site_ID"].get<std::string>();
                 mk4IDToFreqTableName[mk4_id] = keyword;
@@ -97,16 +97,16 @@ MHO_DiFXChannelNameConstructor::AddChannelNames(mho_json& vex_root)
 
     for(auto it = mk4IDToFreqTableName.begin(); it != mk4IDToFreqTableName.end(); it++)
     {
-        //now loop over all stations, filling in the channel names 
+        //now loop over all stations, filling in the channel names
         std::string st = it->first;
         std::string freq_table = it->second;
 
-        //first we figure out the unique channel sky_frequencies, so we can assign 
-        //them ordered indices 
+        //first we figure out the unique channel sky_frequencies, so we can assign
+        //them ordered indices
         fOrderedSkyFrequencies.clear();
 
         //get the channel information of the reference station
-        std::vector< double > all_freqs; 
+        std::vector< double > all_freqs;
         for(std::size_t nch=0; nch < vex_root["$FREQ"][freq_table]["chan_def"].size(); nch++)
         {
             double sky_freq = vex_root["$FREQ"][freq_table]["chan_def"][nch]["sky_frequency"]["value"].get<double>();
@@ -142,7 +142,7 @@ MHO_DiFXChannelNameConstructor::AddChannelNames(mho_json& vex_root)
                 if( vex_root["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_bbc_id"].get<std::string>() == bbc_id )
                 {
                     std::string if_id = vex_root["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_if"].get<std::string>();
-                    //finally retrieve the polarization 
+                    //finally retrieve the polarization
                     for(std::size_t nif = 0; nif < vex_root["$IF"][if_name]["if_def"].size(); nif++)
                     {
                         if(vex_root["$IF"][if_name]["if_def"][nif]["if_id"].get<std::string>() == if_id)
@@ -155,7 +155,7 @@ MHO_DiFXChannelNameConstructor::AddChannelNames(mho_json& vex_root)
                 }
             }
 
-            //determine the band 
+            //determine the band
             std::string band = BandLabelFromSkyFreq(sky_freq);
 
             //channel number
@@ -163,8 +163,8 @@ MHO_DiFXChannelNameConstructor::AddChannelNames(mho_json& vex_root)
             std::stringstream ss;
             ss << std::setfill('0') << std::setw(2) << channel_index;
             std::string chan_no = ss.str();
-            
-            //now construct the channel name 
+
+            //now construct the channel name
             std::string chan_name;
             chan_name = band + chan_no + net_sb + pol;
             vex_root["$FREQ"][freq_table]["chan_def"][nch]["channel_name"] = chan_name;
@@ -172,7 +172,7 @@ MHO_DiFXChannelNameConstructor::AddChannelNames(mho_json& vex_root)
     }
 }
 
-std::string 
+std::string
 MHO_DiFXChannelNameConstructor::BandLabelFromSkyFreq(double sky_freq)
 {
     std::string label = "X"; //defaults to X
@@ -183,7 +183,7 @@ MHO_DiFXChannelNameConstructor::BandLabelFromSkyFreq(double sky_freq)
         {
             label = it->fLabel;
             return label;
-        } 
+        }
     }
     return label;
 }

@@ -39,11 +39,11 @@ MHO_ControlFileParser::ParseControl()
     FixSymbols();
     TokenizeLines();
     MergeTokens();
-    
+
     //exports the cleaned-up tokens to fProcessedControlFileText
     //this is only for record keeping
     ExportTokens();
-    
+
     FindKeywords();
     FormStatements();
 
@@ -54,20 +54,20 @@ MHO_ControlFileParser::ParseControl()
 bool
 MHO_ControlFileParser::ReadFile()
 {
-    //the set string needs to be handled here 
-    //this can be tricky because the set string may contain conditional statements 
+    //the set string needs to be handled here
+    //this can be tricky because the set string may contain conditional statements
     //like 'if station G'
-    //the problem with this is that if we prepend the control file with the set string 
-    //then we may be accidentally prepending the entire control file contents with an 
-    //'if' statement which does not apply. So, what we have to do is check if the 
-    //set string contains an 'if' and if so, we need to split its contents on the first 
-    //instance of 'if'. Anything before this if statement should be prepended to the 
+    //the problem with this is that if we prepend the control file with the set string
+    //then we may be accidentally prepending the entire control file contents with an
+    //'if' statement which does not apply. So, what we have to do is check if the
+    //set string contains an 'if' and if so, we need to split its contents on the first
+    //instance of 'if'. Anything before this if statement should be prepended to the
     //control file, while anything after it should be appended to the end of the control file
-    
+
     std::string prepend = "";
     std::string append = "";
     SplitSetString(fSetString, prepend, append);
-    
+
     //prepend applicable portion of the set string (give it line #0)
     //appends empty string "" if nothing in set string
     MHO_ControlLine tmp_line;
@@ -102,14 +102,14 @@ MHO_ControlFileParser::ReadFile()
             std::exit(1);
         }
     }
-    
-    //append applicable portion of the set string 
+
+    //append applicable portion of the set string
     //this append an empty string "" if  there is nothing in the set string
     tmp_line.fLineNumber = line_count;
     tmp_line.fContents = append;
     fLines.push_back(tmp_line);
 
-    
+
     return status;
 }
 
@@ -233,7 +233,7 @@ MHO_ControlFileParser::ExportTokens()
             fProcessedControlFileText += " ";
         }
     }
-    
+
     fLegacyProcessedControlFileText = "";
     for(auto it = fLegacyFileTokens.begin(); it != fLegacyFileTokens.end(); )
     {
@@ -340,23 +340,23 @@ MHO_ControlFileParser::FindAndReplace(const std::string& find_str, const std::st
     }
 }
 
-void 
+void
 MHO_ControlFileParser::SplitSetString(const std::string& set_string, std::string& prepend, std::string& append)
 {
     prepend = "";
     append = "";
-    //(new behavior) prepend is always empty 
+    //(new behavior) prepend is always empty
     if(set_string != "")
     {
         prepend = "";
         append = " if true " + set_string;
     }
-    
-    //original behavior below, however this is probably undesirable because 
-    //usually the user expects 'set' arguments to take precedence over any 
-    //control file statements, but the behavior below allows any non-if'd statements 
-    //in the set string to get masked by a control file statement 
-    
+
+    //original behavior below, however this is probably undesirable because
+    //usually the user expects 'set' arguments to take precedence over any
+    //control file statements, but the behavior below allows any non-if'd statements
+    //in the set string to get masked by a control file statement
+
     // if(set_string != "")
     // {
     //     std::string if_flag = "if";
@@ -366,7 +366,7 @@ MHO_ControlFileParser::SplitSetString(const std::string& set_string, std::string
     //         //no 'if' statement in the set string, add everything to prepend
     //         prepend = set_string;
     //     }
-    //     else 
+    //     else
     //     {
     //         //need to split the set_string into two parts at the location of the first 'if'
     //         std::string part1 = set_string.substr(0, first_if_pos);

@@ -1,6 +1,6 @@
 #include "MHO_VexTokenProcessor.hh"
 
-namespace hops 
+namespace hops
 {
 
 MHO_VexTokenProcessor::MHO_VexTokenProcessor()
@@ -11,22 +11,22 @@ MHO_VexTokenProcessor::MHO_VexTokenProcessor()
 MHO_VexTokenProcessor::~MHO_VexTokenProcessor(){};
 
 
-mho_json 
+mho_json
 MHO_VexTokenProcessor::ProcessInt(const std::string& element_name,
-                                  mho_json& format, 
+                                  mho_json& format,
                                   std::vector< std::string >& tokens)
 {
     mho_json element_data = std::atoi(tokens[0].c_str());
     return element_data;
 }
 
-mho_json 
-MHO_VexTokenProcessor::ProcessListInt(const std::string& element_name, 
-                                      mho_json& format, 
+mho_json
+MHO_VexTokenProcessor::ProcessListInt(const std::string& element_name,
+                                      mho_json& format,
                                       std::vector< std::string >& tokens)
 {
     mho_json element_data;
-    std::vector< int > values; 
+    std::vector< int > values;
     for(std::size_t i=0; i<tokens.size(); i++)
     {
         values.push_back( std::atoi(tokens[i].c_str() ) );
@@ -35,13 +35,13 @@ MHO_VexTokenProcessor::ProcessListInt(const std::string& element_name,
     return element_data;
 }
 
-mho_json 
-MHO_VexTokenProcessor::ProcessListString(const std::string& element_name, 
-                                         mho_json& format, 
+mho_json
+MHO_VexTokenProcessor::ProcessListString(const std::string& element_name,
+                                         mho_json& format,
                                          std::vector< std::string >& tokens)
 {
     mho_json element_data;
-    std::vector< std::string > values; 
+    std::vector< std::string > values;
     for(std::size_t i=0; i<tokens.size(); i++)
     {
         values.push_back( tokens[i] );
@@ -50,7 +50,7 @@ MHO_VexTokenProcessor::ProcessListString(const std::string& element_name,
     return element_data;
 }
 
-mho_json 
+mho_json
 MHO_VexTokenProcessor::ProcessReal(const std::string& element_name,
                                    mho_json& format,
                                    std::vector< std::string >& tokens)
@@ -74,25 +74,25 @@ MHO_VexTokenProcessor::ProcessReal(const std::string& element_name,
             element_data["value"] = std::atof(tmp_tok[0].c_str());
             element_data["units"] = tmp_tok[1];
         }
-        else 
+        else
         {
             msg_error("vex", "could not parse parameter: "<<element_name<<", as (numerical) value from: <"<<tokens[0]<<">."<<eom);
         }
     }
-    else 
+    else
     {
         element_data["value"] = std::atof(tokens[0].c_str());
     }
     return element_data;
 }
 
-mho_json 
+mho_json
 MHO_VexTokenProcessor::ProcessListReal(const std::string& element_name,
-                                       mho_json& format, 
+                                       mho_json& format,
                                        std::vector< std::string >& tokens)
 {
     mho_json element_data;
-    std::vector< double > values; 
+    std::vector< double > values;
     for(std::size_t i=0; i<tokens.size(); i++)
     {
         if( ContainsWhitespace(tokens[i]) )  //if the value has units (we need to parse them out)
@@ -112,12 +112,12 @@ MHO_VexTokenProcessor::ProcessListReal(const std::string& element_name,
                 values.push_back( std::atof(tokens[i].c_str() ) );
                 element_data["units"] = tmp_tok[1];
             }
-            else 
+            else
             {
                 msg_error("vex", "could not parse parameter: "<<element_name<<", as (numerical) value from: <"<<tokens[i]<<">."<<eom);
             }
         }
-        else 
+        else
         {
             values.push_back( std::atof(tokens[i].c_str() ) );
         }
@@ -126,7 +126,7 @@ MHO_VexTokenProcessor::ProcessListReal(const std::string& element_name,
     return element_data;
 }
 
-bool 
+bool
 MHO_VexTokenProcessor::ContainsWhitespace(std::string value)
 {
     auto start = value.find_first_of(fWhitespaceDelim);

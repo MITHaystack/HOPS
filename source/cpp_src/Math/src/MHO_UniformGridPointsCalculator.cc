@@ -3,7 +3,7 @@
 
 #define EXTRA_INTERP_DBG
 
-namespace hops 
+namespace hops
 {
 
 MHO_UniformGridPointsCalculator::MHO_UniformGridPointsCalculator()
@@ -25,14 +25,14 @@ MHO_UniformGridPointsCalculator::MHO_UniformGridPointsCalculator()
 MHO_UniformGridPointsCalculator::~MHO_UniformGridPointsCalculator(){};
 
 
-void 
+void
 MHO_UniformGridPointsCalculator::SetPoints(const std::vector<double>& pts)
 {
     fPoints.clear();
     fPoints = pts;
 }
 
-void 
+void
 MHO_UniformGridPointsCalculator::SetPoints(const double* pts, std::size_t npts)
 {
     fPoints.clear();
@@ -40,14 +40,14 @@ MHO_UniformGridPointsCalculator::SetPoints(const double* pts, std::size_t npts)
     for(std::size_t i=0;i<npts;i++){fPoints[i] = pts[i];}
 }
 
-void 
+void
 MHO_UniformGridPointsCalculator::Calculate()
 {
     Calculate_v1();
     //Calculate_v2();
 }
 
-void 
+void
 MHO_UniformGridPointsCalculator::Calculate_v1()
 {
     //this function is a basic adaptation of freq_spacing (same hard-coded parameters, etc.)
@@ -84,8 +84,8 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
         ave_loc /= (double)n_pts;
 
         fAverageLocation = ave_loc;
-        
-        //determine the spread about the average 
+
+        //determine the spread about the average
         double spread = 0.0;
         for(std::size_t i=0; i<n_pts; i++)
         {
@@ -93,7 +93,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
             double delta = freq - ave_loc;
             spread += delta*delta;
         }
-        
+
         if(n_pts > 1)
         {
             spread = std::sqrt(spread/(double)n_pts);
@@ -101,7 +101,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
         fSpread = spread;
 
         //TODO FIXME (single channel)
-        // else 
+        // else
         // {
         //     spread = bandwidth/std::sqrt(12.0); //uniform distribution over bandwidth
         // }
@@ -119,7 +119,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
             for(std::size_t fr = 0; fr < n_pts; fr++)
             {
                 index = (fPoints[fr] - min_pts) / spacing;
-                // Check whether all freqs lie on grid points 
+                // Check whether all freqs lie on grid points
                 if (fabs(index - (int)(index+0.5)) > fEpsilon){spacing_ok = 0;}
                 index = (double) (int)(index + 0.5);
                 // Make # of grid points the smallest power of 2 that will cover all points
@@ -149,7 +149,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
 
         fSpacing = min_space;
         fStart = min_pts;
-        
+
         if(grid_pts > MBD_GRID_PTS)
         {
             grid_pts = MBD_GRID_PTS;
@@ -157,7 +157,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
         grid_pts *= MBD_MULT;
         fNGridPoints = grid_pts;
     }
-    else 
+    else
     {
         msg_error("math", "cannot construct uniform grid with no points given." << eom);
     }
@@ -167,7 +167,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
 
 
 
-void 
+void
 MHO_UniformGridPointsCalculator::Calculate_v2()
 {
 
@@ -184,17 +184,17 @@ MHO_UniformGridPointsCalculator::Calculate_v2()
         std::size_t n_attempts = 0;
         double factor = 1;
 
-        do 
+        do
         {
             grid_pts = factor*start_grid_pts;
             grid_spacing = fMinSpacing/factor;
 
             max_delta = 0;
             for(std::size_t i=0; i<fPoints.size(); i++)
-            {   
+            {
                 double val = fPoints[i];
                 double location = val - fStart;
-                //find nearest grid point 
+                //find nearest grid point
                 std::size_t idx = std::round(location/grid_spacing);
                 fIndexMap[i] = idx;
                 double delta = location - idx*grid_spacing;
@@ -212,14 +212,14 @@ MHO_UniformGridPointsCalculator::Calculate_v2()
         fSpacing = grid_spacing;
         fNGridPoints = grid_pts;
     }
-    else 
+    else
     {
         msg_error("math", "cannot construct uniform grid with no points given." << eom);
     }
 
 }
 
-void 
+void
 MHO_UniformGridPointsCalculator::FindStartAndMinMaxSpacing()
 {
     if(fPoints.size() != 0)

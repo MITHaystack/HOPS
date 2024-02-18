@@ -26,7 +26,7 @@ const int NUMBEROFCHANNELS = 8 * MAXFREQ;
 //    struct ch_struct    channels[32];           /* channel-by-channel info */
 //    };
 
-//struct type_203 
+//struct type_203
 //    {
 //    char                record_id[3];           /* Standard 3-digit id */
 //    char                version_no[2];          /* Standard 2-digit version # */

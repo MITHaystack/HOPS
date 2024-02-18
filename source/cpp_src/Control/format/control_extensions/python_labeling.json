@@ -9,9 +9,9 @@
         "module_name": {"type": "string"},
         "function_name": {"type": "string"}
     },
-    "fields": 
+    "fields":
     [
-        "module_name", 
+        "module_name",
         "function_name"
     ]
 }

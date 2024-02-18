@@ -96,7 +96,7 @@ class MHO_MK4StationInterface
         std::string fStationCode;
         std::string fStationMK4ID;
 
-        //pcal data 
+        //pcal data
         std::vector< multitone_pcal_type > fFreqGroupPCal; //multitone_pcal_type dims = pol x time x freq
 
         std::string fStationFile;

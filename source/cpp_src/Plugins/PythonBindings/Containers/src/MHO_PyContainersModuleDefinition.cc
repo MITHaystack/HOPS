@@ -28,6 +28,6 @@ PYBIND11_MODULE(pyMHO_Containers, m)
     DeclarePyContainerStoreInterface(m, "MHO_PyContainerStoreInterface");
     DeclarePyScanStoreInterface(m, "MHO_PyScanStoreInterface");
 
-    //declare interface to the fringe data (e.g current pass's data as parameter, container, and scan stores) 
+    //declare interface to the fringe data (e.g current pass's data as parameter, container, and scan stores)
     DeclarePyFringeDataInterface(m, "MHO_PyFringeDataInterface");
 }

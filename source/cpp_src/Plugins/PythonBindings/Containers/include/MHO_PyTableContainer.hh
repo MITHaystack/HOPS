@@ -146,9 +146,9 @@ class MHO_PyTableContainer
             }
             return ret_val;
         }
-        
+
         //whole-sale re-setting of metadata, this may be over-kill and actually a bit dangerous
-        //since the index/interval labels are stored in the metadata object, if we are not 
+        //since the index/interval labels are stored in the metadata object, if we are not
         //passing an object which is derived from an already retrieved copy we may lose info
         void SetCoordinateAxisMetaData(std::size_t index, py::dict metadata)
         {
@@ -174,7 +174,7 @@ class MHO_PyTableContainer
             py::dict tags = table->GetMetaDataAsJSON();
             return tags;
         }
-        
+
         template< typename XDataTableType >
         static void SetTableTags(XDataTableType* table, py::dict metadata)
         {
@@ -198,7 +198,7 @@ class MHO_PyTableContainer
             private:
                 py::list* fList;
         };
-        
+
         //helper class to act as a python dict filling functor (to return copies of meta data)
         class PyAxisMetaDataFiller
         {
@@ -215,7 +215,7 @@ class MHO_PyTableContainer
             private:
                 py::dict* fDict;
         };
-        
+
         //helper class to act as a python dict filling functor (to return copies of meta data)
         class PyAxisMetaDataSetter
         {

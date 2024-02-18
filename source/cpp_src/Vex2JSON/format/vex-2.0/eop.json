@@ -34,7 +34,7 @@
         "nut_model": {"type":"string"},
         "nut_origin": {"type":"string"}
     },
-    "fields": 
+    "fields":
     [
         "TAI-UTC",
         "A1-TAI",
@@ -45,7 +45,7 @@
         "x_wobble",
         "y_wobble",
         "eop_origin",
-        "nut_ref_epoch", 
+        "nut_ref_epoch",
         "num_nut_points",
         "nut_interval",
         "delta_x_nut",

@@ -4,7 +4,7 @@
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_StationModel
@@ -12,12 +12,12 @@ class MHO_StationModel
     public:
         MHO_StationModel();
         virtual ~MHO_StationModel();
-        
+
         void SetEvaluationTimeVexString(std::string time_string){fEvalTimeString = time_string;};
         void SetStationData(station_coord_type* ref_data){fData = ref_data;};
 
         void ComputeModel();
-        
+
         double GetDelay(){return fDelay;}
         double GetAzimuth(){return fAzimuth;}
         double GetElevation(){return fElevation;};
@@ -43,7 +43,7 @@ class MHO_StationModel
         //necessary data
         std::string fEvalTimeString;
         station_coord_type* fData;
-        
+
         double fDelay;
         double fAzimuth;
         double fElevation;
@@ -74,7 +74,7 @@ MHO_StationModel::EvaluateSpline(const XCoeffVectorType& coeff, double delta_t, 
 
 
 template< typename XTagType >
-XTagType 
+XTagType
 MHO_StationModel::RetrieveTag(station_coord_type* data, std::string key)
 {
     //get the ref/rem station codes

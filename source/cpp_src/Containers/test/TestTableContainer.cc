@@ -214,7 +214,7 @@ int main(int argc, char** argv)
         MHO_RootCanvasManager cMan;
         auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
         c->Divide(1,3);
-        
+
         auto r_slice = test->SliceView(":", ":", 0);
         auto g_slice = test->SliceView(":", ":", 1);
         auto b_slice = test->SliceView(":", ":", 2);

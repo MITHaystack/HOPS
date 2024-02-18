@@ -17,16 +17,16 @@
                 "origin_epoch":{"type" : "epoch"},
                 "clock_rate":{"type": "real", "dimension": "time/time"}
             },
-            "fields": 
+            "fields":
             [
-                "#start_validity_epoch", 
-                "clock_early_offset", 
+                "#start_validity_epoch",
+                "clock_early_offset",
                 "#origin_epoch",
                 "#clock_rate"
             ]
         }
     },
-    "fields": 
+    "fields":
     [
         "clock_early"
     ]

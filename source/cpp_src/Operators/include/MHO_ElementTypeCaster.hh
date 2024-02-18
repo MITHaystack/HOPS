@@ -7,7 +7,7 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
-*Description: operator class which casts the element type of one array type to another 
+*Description: operator class which casts the element type of one array type to another
 * (e.g float -> double or double -> etc.)
 */
 
@@ -34,9 +34,9 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
         {
             if(in != nullptr && out != nullptr)
             {
-                //resize the output array 
+                //resize the output array
                 out->Resize( in->GetDimensions() );
-                
+
                 //copy the contents
                 std::size_t total_size = in->GetSize();
                 for(std::size_t i=0; i<total_size; i++)
@@ -52,10 +52,10 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
 
     private:
 
-        
+
         //default...does nothing
         template<class XArrayType1, class XArrayType2>
-        typename std::enable_if< !(std::is_base_of<MHO_TableContainerBase, XArrayType1>::value && 
+        typename std::enable_if< !(std::is_base_of<MHO_TableContainerBase, XArrayType1>::value &&
                                    std::is_base_of<MHO_TableContainerBase, XArrayType2>::value), void >::type
         IfTableCopyAxesAndTags(const XArrayType1* /*in*/, XArrayType2* /*out*/){};
 
@@ -63,12 +63,12 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
 
         //use SFINAE to generate specialization for MHO_TableContainer types
         template<class XArrayType1, class XArrayType2>
-        typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XArrayType1>::value && 
+        typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XArrayType1>::value &&
                                  std::is_base_of<MHO_TableContainerBase, XArrayType2>::value, void >::type
         IfTableCopyAxesAndTags(const XArrayType1* in, XArrayType2* out)
         {
             //if it inherits from a table container, execute this specialization
-            //copy the axes, their tags and labels 
+            //copy the axes, their tags and labels
             //Note: this will fail if the axis types are not the same! --> type casting is for table elements only
             *( out->GetAxisPack() ) = *( in->GetAxisPack() );
             //copy the tags

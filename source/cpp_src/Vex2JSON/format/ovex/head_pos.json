@@ -18,17 +18,17 @@
                 "headstack3_position": {"type": "real", "dimension":"length"},
                 "headstack4_position": {"type": "real", "dimension":"length"}
             },
-            "fields": 
+            "fields":
             [
-                "position_ref_number", 
-                "headstack1_position", 
+                "position_ref_number",
+                "headstack1_position",
                 "#headstack2_position",
                 "#headstack3_position",
                 "#headstack4_position"
             ]
         }
     },
-    "fields": 
+    "fields":
     [
         "headstack_pos"
     ]

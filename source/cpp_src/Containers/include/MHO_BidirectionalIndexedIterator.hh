@@ -18,7 +18,7 @@
 #include "MHO_Message.hh"
 #include "MHO_NDArrayMath.hh"
 
-namespace hops 
+namespace hops
 {
 
 template< typename XValueType, std::size_t RANK>
@@ -50,11 +50,11 @@ class MHO_BidirectionalIndexedIterator
         {
             for(std::size_t i=0; i<RANK; i++)
             {
-                fDimensions[i] = copy.fDimensions[i]; 
+                fDimensions[i] = copy.fDimensions[i];
                 fStrides[i] = copy.fStrides[i];
                 fIdx[i] = copy.fIdx[i];
             }
-            fLength = copy.fLength; 
+            fLength = copy.fLength;
             fMemoryOffset = copy.fMemoryOffset;
             fPtr = copy.fPtr;
         }
@@ -100,7 +100,7 @@ class MHO_BidirectionalIndexedIterator
             ++(*this);
             return ret_val;
         }
-        
+
         self_type operator--(int)
         {
             self_type ret_val(*this);
@@ -157,11 +157,11 @@ class MHO_BidirectionalIndexedIterator
                 fPositionOffset = rhs.fPositionOffset;
                 for(std::size_t i=0; i<RANK; i++)
                 {
-                    fDimensions[i] = rhs.fDimensions[i]; 
+                    fDimensions[i] = rhs.fDimensions[i];
                     fStrides[i] = rhs.fStrides[i];
                     fIdx[i] = rhs.fIdx[i];
                 }
-                fLength = rhs.fLength; 
+                fLength = rhs.fLength;
                 fMemoryOffset = rhs.fMemoryOffset;
                 fPtr = rhs.fPtr;
             }
@@ -218,7 +218,7 @@ class MHO_BidirectionalIndexedIterator
                 MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(fPositionOffset, &(fDimensions[0]), &(fIdx[0]) ); //determine current indexes
                 fMemoryOffset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(fIdx[0]) );
             }
-            else 
+            else
             {
                 //clamp to the end of the array + 1 (the 'end')
                 fPositionOffset = fLength-1;

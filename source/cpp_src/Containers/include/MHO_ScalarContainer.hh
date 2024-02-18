@@ -72,7 +72,7 @@ class MHO_ScalarContainer:
         {
             MHO_ClassVersion vers;
             s >> vers;
-            switch(vers) 
+            switch(vers)
             {
                 case 0:
                     aData.StreamInData_V0(s);
@@ -88,15 +88,15 @@ class MHO_ScalarContainer:
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_ScalarContainer& aData)
         {
-            switch( aData.GetVersion() ) 
+            switch( aData.GetVersion() )
             {
                 case 0:
                     s << aData.GetVersion();
                     aData.StreamOutData_V0(s);
                 break;
                 default:
-                    msg_error("containers", 
-                        "error, cannot stream out MHO_ScalarContainer object with unknown version: " 
+                    msg_error("containers",
+                        "error, cannot stream out MHO_ScalarContainer object with unknown version: "
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -115,7 +115,7 @@ class MHO_ScalarContainer:
             s << this->fData;
             s << static_cast< const MHO_Taggable& >(*this);
         };
-        
+
         virtual MHO_UUID DetermineTypeUUID() const override
         {
             MHO_MD5HashGenerator gen;
@@ -125,14 +125,14 @@ class MHO_ScalarContainer:
             gen.Finalize();
             return gen.GetDigestAsUUID();
         }
-    
+
     protected:
 
         using MHO_NDArrayWrapper<XValueType,0>::fData;
 
 };
 
-//specialization for string elements 
+//specialization for string elements
 //(NOTE: we need to use 'inline' to satisfy one-definiton rule, otherwise we have to stash this in a .cc file)
 template<>
 inline uint64_t

@@ -51,7 +51,7 @@ class MHO_ExtremaSearch:
         template< typename XCheckType = typename XArgType::value_type >
         typename std::enable_if< std::is_floating_point<XCheckType>::value, void >::type
         Search(const XArgType* in)
-        {   
+        {
             using fp_value_type = typename XArgType::value_type;
             fMaxLocation = 0;
             fMinLocation = 0;

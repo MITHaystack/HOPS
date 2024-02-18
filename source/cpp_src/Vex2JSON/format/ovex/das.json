@@ -60,7 +60,7 @@
         },
         "tape_control": {"type":"string"}
     },
-    "fields": 
+    "fields":
     [
         "record_transport_type",
         "electronics_rack_type",

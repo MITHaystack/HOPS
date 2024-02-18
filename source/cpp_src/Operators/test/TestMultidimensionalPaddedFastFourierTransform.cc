@@ -16,7 +16,7 @@
 using namespace hops;
 
 typedef double FPTYPE;
-#define ARRAY_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 1 > 
+#define ARRAY_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 1 >
 #define PADDED_FFT_TYPE MHO_MultidimensionalPaddedFastFourierTransform< ARRAY_TYPE >
 #define FFT_TYPE MHO_MultidimensionalFastFourierTransform< ARRAY_TYPE >
 

@@ -15,10 +15,10 @@
 *Description: collection of static math functions
 */
 
-namespace hops 
+namespace hops
 {
 
-class MHO_FringeRotation 
+class MHO_FringeRotation
 {
     public:
         MHO_FringeRotation();
@@ -36,15 +36,15 @@ class MHO_FringeRotation
 
         void SetOptimizeClosureTrue(){fOptimizeClosure = true;}
         void SetOptimizeClosureFalse(){fOptimizeClosure = false;}
-        
+
     private:
 
         static const std::complex<double> fImagUnit;
 
         std::complex<double> vrot_v1(double time_delta, double freq, double ref_freq, double dr, double mbd) const;
-        
+
         double calc_sideband_correction(double mbd) const;
-        
+
         int fSideband;
         int fNSBDBins;
         int fSBDMaxBin;

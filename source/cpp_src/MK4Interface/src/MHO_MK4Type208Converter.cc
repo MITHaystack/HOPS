@@ -1,7 +1,7 @@
 #include "MHO_MK4Type208Converter.hh"
 #include <iostream>
 
-//struct type_208 
+//struct type_208
 //    {
 //    char                record_id[3];           /* Standard 3-digit id */
 //    char                version_no[2];          /* Standard 2-digit version # */

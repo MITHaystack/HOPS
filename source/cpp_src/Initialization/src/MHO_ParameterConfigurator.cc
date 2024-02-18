@@ -12,7 +12,7 @@ MHO_ParameterConfigurator::Configure()
 
     if(statement_type == "parameter")
     {
-    
+
         if( !(fAttributes.contains("value")) )
         {
             msg_error("initialization", "could not parse a parameter with name: " << name << " missing value." << eom );

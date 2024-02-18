@@ -18,7 +18,7 @@
                 "bitstream_on_disk_number": {"type": "int"},
                 "bitstream_link": {"type": "link"}
             },
-            "fields": 
+            "fields":
             [
                 "channel_link",
                 "bitstream_sign_mag",
@@ -35,7 +35,7 @@
                 "sample_rate": {"type": "real", "dimension": "sample_rate"},
                 "bitstream_link": {"type": "link"}
             },
-            "fields": 
+            "fields":
             [
                 "sample_rate",
                 "#bitstream_link"
@@ -49,14 +49,14 @@
                 "stream_label": {"type": "string"},
                 "bitstream_link": {"type": "link"}
             },
-            "fields": 
+            "fields":
             [
                 "stream_label",
                 "#bitstream_link"
             ]
         }
     },
-    "fields": 
+    "fields":
     [
         "stream_def",
         "stream_sample_rate",

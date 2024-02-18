@@ -6,7 +6,7 @@ const int REASONSARRAYSIZE = 64;
 const int NUMBEROFREASONARRAYS = 8;
 
 //typedef struct date
-//    {   
+//    {
 //    short year;
 //    short day;
 //    short hour;
@@ -19,7 +19,7 @@ const int NUMBEROFREASONARRAYS = 8;
 //    short               lsb;
 //    short               usb;
 //    };
-  
+
 //struct sbweights
 //    {
 //    double              lsb;

@@ -5,11 +5,11 @@
 
 namespace hops
 {
-    
+
 class MHO_ParameterManager
 {
     public:
-        
+
         MHO_ParameterManager(MHO_ParameterStore* pstore, const mho_json& control_format):
             fDefaultParameterConfig(pstore, control_format)
         {
@@ -19,14 +19,14 @@ class MHO_ParameterManager
         virtual ~MHO_ParameterManager(){};
 
         void SetControlStatements(mho_json* statements){fControl = statements;};
-        
+
         void ConfigureAll();
 
     private:
-        
-        
+
+
         mho_json* fControl;
-        
+
         mho_json fFormat;
         MHO_ParameterConfigurator fDefaultParameterConfig;
 };

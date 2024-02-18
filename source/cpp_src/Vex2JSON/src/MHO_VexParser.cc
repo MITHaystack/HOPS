@@ -3,26 +3,26 @@
 #include <fstream>
 
 
-namespace hops 
+namespace hops
 {
 
 MHO_VexParser::MHO_VexParser()
 {
     //default to vex 1.5 -- though the file should tell us
-    SetVexVersion("1.5"); 
+    SetVexVersion("1.5");
 }
 
 
 MHO_VexParser::~MHO_VexParser(){};
 
-void 
+void
 MHO_VexParser::SetVexFile(std::string filename)
 {
     fVexFileName = filename;
     DetermineFileVersion();
 }
 
-void 
+void
 MHO_VexParser::DetermineFileVersion()
 {
     std::string rev = MHO_VexDefinitions::DetermineFileVersion(fVexFileName);
@@ -47,7 +47,7 @@ MHO_VexParser::ParseVex()
     return root;
 }
 
-void 
+void
 MHO_VexParser::ReadFile()
 {
     //nothing special, just read in the entire file line by line and stash in memory
@@ -70,14 +70,14 @@ MHO_VexParser::ReadFile()
             }
             vfile.close();
         }
-        else 
+        else
         {
             msg_error("vex", "could not open file: "<<fVexFileName<<eom);
         }
     }
 }
 
-void 
+void
 MHO_VexParser::RemoveComments()
 {
     std::string flag = fVexDef.CommentFlag();
@@ -102,7 +102,7 @@ MHO_VexParser::RemoveComments()
     }
 }
 
-void 
+void
 MHO_VexParser::MarkLiterals()
 {
     //primitive search for start/end literal statements
@@ -139,14 +139,14 @@ MHO_VexParser::SplitStatements()
         std::size_t n_stmt = std::count( it->fContents.begin(), it->fContents.end(), statement_end[0]);
         if(n_stmt > 1){must_split = true;}
 
-        //another condition for splitting the line would be if we have something 
+        //another condition for splitting the line would be if we have something
         //messy like the following (still legal according to the standard):
-        //    def K2; VSN = 1 : HOB+0093 : 
-        //    2019y133d00h00m : 2019y134d23h59m 
+        //    def K2; VSN = 1 : HOB+0093 :
+        //    2019y133d00h00m : 2019y134d23h59m
         //    ; enddef;
-        //to detect this we need to check if there are any non white space characters 
+        //to detect this we need to check if there are any non white space characters
         //after the presence of a ';' (comments should be stripped at this point)
-        
+
         std::string whitespace_chars = MHO_VexDefinitions::WhitespaceDelim();
         if(n_stmt >= 1)
         {
@@ -225,7 +225,7 @@ MHO_VexParser::JoinLines()
         {
             if(prepend_statements.size() != 0 )
             {
-                //concatenate all of the prepending statements and insert 
+                //concatenate all of the prepending statements and insert
                 //them at the front of this line
                 std::string full_statement;
                 for(std::size_t i=0; i<prepend_statements.size(); i++)
@@ -241,7 +241,7 @@ MHO_VexParser::JoinLines()
     }
 }
 
-void 
+void
 MHO_VexParser::MarkBlocks()
 {
     //brute force search for block start tags
@@ -263,14 +263,14 @@ MHO_VexParser::MarkBlocks()
                         //msg_debug("vex", "found block: "<<*blk_it<<" on line: "<< fBlockStartLines[*blk_it]->fLineNumber << eom);
                         break;
                     }
-                    else 
+                    else
                     {
-                        //error/warning! multiple blocks of the same type in the vex file 
+                        //error/warning! multiple blocks of the same type in the vex file
                         msg_error
                         (
                             "vex", "duplicate "<< *blk_it <<" block within vex file: "
-                            << fVexFileName << " found on line #" << 
-                            it->fLineNumber << "." << eom 
+                            << fVexFileName << " found on line #" <<
+                            it->fLineNumber << "." << eom
                         );
                     }
                 }
@@ -305,7 +305,7 @@ MHO_VexParser::MarkBlocks()
         {
             fBlockStopLines[*blk_it] = fBlockStartLines[next_blk];
         }
-        else 
+        else
         {
             fBlockStopLines[*blk_it] = fLines.end();
         }
@@ -313,7 +313,7 @@ MHO_VexParser::MarkBlocks()
 }
 
 
-void 
+void
 MHO_VexParser::ProcessBlocks(mho_json& root)
 {
     for(auto blk_it = fFoundBlocks.begin(); blk_it != fFoundBlocks.end(); blk_it++)
@@ -340,17 +340,17 @@ MHO_VexParser::CollectBlockLines(std::string block_name)
     return lines;
 }
 
-bool 
+bool
 MHO_VexParser::IsPotentialBlockStart(std::string line)
 {
     //first determine if a "$" is on this line
     std::string block_start_flag = fVexDef.BlockStartFlag();
     std::string ref_flag = fVexDef.RefTag();
 
-    auto loc = line.find(block_start_flag); 
+    auto loc = line.find(block_start_flag);
     if(loc != std::string::npos)
     {
-        //make sure "ref" is not on this line 
+        //make sure "ref" is not on this line
         auto ref_loc = line.find(ref_flag);
         if(ref_loc == std::string::npos)
         {
@@ -360,7 +360,7 @@ MHO_VexParser::IsPotentialBlockStart(std::string line)
     return false;
 }
 
-bool 
+bool
 MHO_VexParser::IsBlockStart(std::string line, std::string blk_name)
 {
     auto loc = line.find(blk_name);
@@ -378,7 +378,7 @@ MHO_VexParser::IsBlockStart(std::string line, std::string blk_name)
 }
 
 
-void 
+void
 MHO_VexParser::SetVexVersion(std::string version)
 {
     fVexVersion = version;

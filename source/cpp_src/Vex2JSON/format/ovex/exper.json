@@ -20,7 +20,7 @@
         "scheduler_email": {"type": "string"},
         "target_correlator": {"type": "string"}
     },
-    "fields": 
+    "fields":
     [
         "exper_num",
         "exper_name",

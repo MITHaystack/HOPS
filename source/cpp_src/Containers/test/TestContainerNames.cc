@@ -118,8 +118,8 @@ int main(int argc, char** argv)
     //all file objects are now in memory
     std::size_t n_objs_end = conStore2.GetNObjects();
     std::cout<<"store has: "<<n_objs_end<<" objects."<<std::endl;
-    
-    
+
+
     //explicitly delete the visibility type object;
     std::vector< MHO_UUID > obj_ids;
     MHO_UUID vis_type_id = conStore2.GetTypeUUID<visibility_type>();
@@ -129,10 +129,10 @@ int main(int argc, char** argv)
         std::cout<<"deleting object of visibility_type with object uuid: "<<(*it).as_string()<<std::endl;
         conStore2.DeleteObject(*it);
     }
-    
+
     conStore.Clear();
     conStore2.Clear();
-    
+
     if(n_objs_start == n_objs_end){return 0;} //test passes
     return 1; //test fails
 }

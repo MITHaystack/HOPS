@@ -9,7 +9,7 @@
 using namespace hops;
 
 typedef double FPTYPE;
-#define ARRAY_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 2 > 
+#define ARRAY_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 2 >
 #define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<ARRAY_TYPE>
 
 
@@ -29,13 +29,13 @@ int main(int /*argc*/, char** /*argv*/)
 
     //fill up the array with a signal
     int count = 0;
-    
+
     #ifdef PRINT_DETAIL
     std::cout << "original data = " << std::endl;
     #endif
-    for (size_t i = 0; i < dim_size[0]; i++) 
+    for (size_t i = 0; i < dim_size[0]; i++)
     {
-        for (size_t j = 0; j < dim_size[1]; j++) 
+        for (size_t j = 0; j < dim_size[1]; j++)
         {
                 std::cout << input(i,j) << ", ";
         }
@@ -51,12 +51,12 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->SelectAllAxes();
     fft_engine->Initialize();
     fft_engine->Execute();
-    
+
     #ifdef PRINT_DETAIL
     std::cout << "DFT of data = " << std::endl;
-    for (size_t i = 0; i < dim_size[0]; i++) 
+    for (size_t i = 0; i < dim_size[0]; i++)
     {
-        for (size_t j = 0; j < dim_size[1]; j++) 
+        for (size_t j = 0; j < dim_size[1]; j++)
         {
                 std::cout << input(i,j) << ", ";
         }
@@ -68,11 +68,11 @@ int main(int /*argc*/, char** /*argv*/)
     double delta = 0.0;
     std::complex<double> expected;
 
-    for (size_t i = 0; i < dim_size[0]; i++) 
+    for (size_t i = 0; i < dim_size[0]; i++)
     {
         expected = std::complex<double>(0.0, 0.0);
         if(i == 0){expected = std::complex<double>(4.0, 0.0);}
-        for (size_t j = 0; j < dim_size[1]; j++) 
+        for (size_t j = 0; j < dim_size[1]; j++)
         {
             std::complex<double> val = input(i,j);
             delta += std::abs(val - expected);

@@ -9,15 +9,15 @@
 namespace hops {
 
 /**
-*@file MHO_Tokenizer.hh 
+*@file MHO_Tokenizer.hh
 *@class MHO_Tokenizer
 *@author J. Barret - barrettj@mit.edu
-* A class reponsible for parsing a string on a given delimiter where the default is a space 
+* A class reponsible for parsing a string on a given delimiter where the default is a space
 */
 
 class MHO_Tokenizer{
     public:
-        MHO_Tokenizer(); 
+        MHO_Tokenizer();
         ~MHO_Tokenizer();
 
         /** Include empty tokens set fIncludeEmptyTokens to true for situations where two delimiters surround a substring which would result in an empty string
@@ -26,7 +26,7 @@ class MHO_Tokenizer{
         */
         void SetIncludeEmptyTokensTrue();
 
-        /** Do not include empty tokens and set fincludeEmptyTokens to false 
+        /** Do not include empty tokens and set fincludeEmptyTokens to false
         * @param None
         * @returns None
         */
@@ -41,25 +41,25 @@ class MHO_Tokenizer{
         void SetRemoveLeadingTrailingWhitespaceTrue();
         void SetRemoveLeadingTrailingWhitespaceFalse();
 
-        /** Set the string to be parsed 
+        /** Set the string to be parsed
         * @param aString string
-        * @returns None 
+        * @returns None
         */
         void SetString(const std::string* aString);
 
-        /** Set the delimiter to be used to parse the string in SetString 
+        /** Set the delimiter to be used to parse the string in SetString
         * @param aDelim string a string to be used as a delimiter
         * @returns None
         */
         void SetDelimiter(const std::string& aDelim);
-        
-        /** Parse the string using the tokens 
-        * @param tokens pointer to a vector of strings 
+
+        /** Parse the string using the tokens
+        * @param tokens pointer to a vector of strings
         * @returns None
         */
         void GetTokens(std::vector< std::string>* tokens);
 
-        static std::string 
+        static std::string
         TrimLeadingAndTrailingWhitespace(const std::string& value);
 
     protected:

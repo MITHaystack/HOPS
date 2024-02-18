@@ -19,7 +19,7 @@
             "fields": ["logical_bbc_id", "physical_bbc_id", "logical_if"]
         }
     },
-    "fields": 
+    "fields":
     [
         "BBC_assign"
     ]

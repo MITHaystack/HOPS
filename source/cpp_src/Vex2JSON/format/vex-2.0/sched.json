@@ -19,10 +19,10 @@
                 "correlate": {"type": "int"},
                 "station_list": {"type": "list_string"}
             },
-            "fields": 
+            "fields":
             [
-                "source", 
-                "#is_pointing_center", 
+                "source",
+                "#is_pointing_center",
                 "#correlate",
                 "#station_list"
             ]
@@ -59,7 +59,7 @@
         "intent":
         {
             "type": "list_compound",
-            "parameters": 
+            "parameters":
             {
                 "source": {"type": "keyword"},
                 "identifier": {"type": "string"},
@@ -84,7 +84,7 @@
     "fields":
     [
         "start",
-        "mode", 
+        "mode",
         "source",
         "station",
         "data_transfer",

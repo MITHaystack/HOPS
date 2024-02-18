@@ -46,9 +46,9 @@ MHO_BitReversalPermutation::NextLowestPowerOfTwo(unsigned int N)
     }
 }
 
-//takes the input value x, and the number of bits, and returns 
+//takes the input value x, and the number of bits, and returns
 //the number which is composed of the bits of x in reverse order
-unsigned int 
+unsigned int
 MHO_BitReversalPermutation::ReverseIndexBits(unsigned int nbits, unsigned int x)
 {
     unsigned int val = 0;

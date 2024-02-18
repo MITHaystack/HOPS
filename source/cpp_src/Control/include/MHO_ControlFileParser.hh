@@ -36,10 +36,10 @@ class MHO_ControlFileParser
         void SetControlFile(std::string filename);
 
         mho_json ParseControl();
-        
+
         //all of the tokens that make it into the control flow
         std::string GetProcessedControlFileText() const {return fProcessedControlFileText;}
-        
+
         //just the control file tokens without set-string additions
         //needed for backwards compatible type_222 records
         std::string GetLegacyProcessedControlFileText() const {return fLegacyProcessedControlFileText;}
@@ -55,7 +55,7 @@ class MHO_ControlFileParser
         void FindKeywords();
         void FormStatements();
         mho_json ConstructControlObjects();
-        
+
         void SplitSetString(const std::string& set_string, std::string& prepend, std::string& append);
 
         void FindAndReplace(const std::string& find_str, const std::string& regex_str, const std::string& replace_str, std::string& text);

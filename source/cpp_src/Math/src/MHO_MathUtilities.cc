@@ -62,7 +62,7 @@ MHO_MathUtilities::average(std::vector<double>& vec)
 }
 
 
-double 
+double
 MHO_MathUtilities::angular_average(std::vector<double>& vec)
 {
     std::size_t s = vec.size();

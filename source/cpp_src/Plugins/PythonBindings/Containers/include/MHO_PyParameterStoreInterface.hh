@@ -48,7 +48,7 @@ class MHO_PyParameterStoreInterface
                 msg_error("python_bindings", "error getting value associated with key: "<< value_path << eom );
                 py::print("error getting value associated with key: ", value_path);
             }
-            
+
             return obj;
         }
 
@@ -97,7 +97,7 @@ DeclarePyParameterStoreInterface(py::module &m, std::string pyclass_name)
             py::arg("value_path"),
             py::arg("value")
         )
-        .def("get_contents", &hops::MHO_PyParameterStoreInterface::GetContents, 
+        .def("get_contents", &hops::MHO_PyParameterStoreInterface::GetContents,
             py::return_value_policy::copy,
             "get a copy of the contents of the parameter store as a dictionary"
         );

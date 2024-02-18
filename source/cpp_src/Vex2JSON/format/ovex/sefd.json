@@ -20,7 +20,7 @@
             "fields": ["if_id", "zenith_sefd", "model_parameters"]
         }
     },
-    "fields": 
+    "fields":
     [
         "sefd_model",
         "sefd"

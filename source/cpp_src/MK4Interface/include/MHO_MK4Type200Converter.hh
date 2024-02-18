@@ -16,12 +16,12 @@ extern "C"
 }
 #endif
 
-//include the json library stuff through the header wrapper 
-//that lives inc the utilities library 
+//include the json library stuff through the header wrapper
+//that lives inc the utilities library
 #include "MHO_JSONHeaderWrapper.hh"
 
 
-namespace hops 
+namespace hops
 {
 
 /**

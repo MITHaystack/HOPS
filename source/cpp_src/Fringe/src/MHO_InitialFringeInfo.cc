@@ -150,14 +150,14 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
         msg_fatal("main", "could not determine AP period for data since AP axis is of size: "<< ap_ax->GetSize() << eom);
         std::exit(1);
     }
-    
+
     //retrieve the root code from the visib (only needed if we export to mk4)
     std::string root_code;
     bool ok = vis_data->Retrieve("root_code", root_code);
     if(!ok){root_code = "XXXXXX";}
     paramStore->Set("/config/root_code", root_code); //should this get stuffed in config?
-    
-    //retrieve the correlation processing date from the visibilities 
+
+    //retrieve the correlation processing date from the visibilities
     std::string corr_date;
     ok = vis_data->Retrieve("correlation_date", corr_date);
     if(!ok){corr_date = "";}
@@ -222,7 +222,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     paramStore->Set("/config/frt_offset", frt_offset);
 
     //calculate the data start and stop dates (including the start/stop offsets)
-    int64_t start_offset_ns = 1e9*start_offset; 
+    int64_t start_offset_ns = 1e9*start_offset;
     int64_t stop_offset_ns = 1e9*stop_offset;
     auto data_start_tp = start_time + std::chrono::nanoseconds(start_offset_ns);
     auto data_stop_tp = start_time + std::chrono::nanoseconds(stop_offset_ns);

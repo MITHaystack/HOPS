@@ -179,13 +179,13 @@ class MHO_Reducer: public MHO_UnaryOperator<XArrayType>
                         *it2 = *it1;
                         axis2.CopyTags(axis1);//copy the axis tags
                     }
-                    else 
+                    else
                     {
                         //copy the axis
                         axis2.Copy(axis1);
                     }
                 }
-            
+
             private:
 
                 bool fReduce;

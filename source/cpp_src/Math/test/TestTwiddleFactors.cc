@@ -33,7 +33,7 @@ int main(int /*argc*/, char** /*argv*/)
     unsigned log2N = MHO_BitReversalPermutation::LogBaseTwo(N);
     std::complex<FP_Type>* twiddle = new std::complex<FP_Type>[N];
     std::complex<FP_Type>* twid_basis = new std::complex<FP_Type>[log2N];
-    
+
     MHO_FastFourierTransformUtilities<FP_Type>::ComputeTwiddleFactors(N, twiddle);
     MHO_FastFourierTransformUtilities<FP_Type>::ComputeTwiddleFactorBasis(log2N, twid_basis);
 

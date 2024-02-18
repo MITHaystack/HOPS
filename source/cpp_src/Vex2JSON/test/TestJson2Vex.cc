@@ -25,7 +25,7 @@ int main(int argc, char** argv)
         root = mho_json::parse(ifs);
     }
     ifs.close();
-    
+
     MHO_VexGenerator gen;
     std::string output_file("./test.vex");
     gen.SetFilename(output_file);

@@ -19,7 +19,7 @@
             "fields": ["owner", "name", "values"]
         }
     },
-    "fields": 
+    "fields":
     [
         "extension"
     ]

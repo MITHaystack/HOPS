@@ -12,7 +12,7 @@
 #define CONJ_TWIDDLE -1.0
 
 
-unsigned int ComputeBluesteinArraySize(unsigned int N) 
+unsigned int ComputeBluesteinArraySize(unsigned int N)
 {
     //returns smallest M = 2^p >= (2N - 2);
     unsigned int M = 2*(N - 1);
@@ -40,7 +40,7 @@ CL_TYPE2 ComputeTwiddleFactor(unsigned int log2N, unsigned int index, __local co
 {
     unsigned int bit = 1;
     CL_TYPE2 val;
-    val.s0 = 1.0; 
+    val.s0 = 1.0;
     val.s1 = 0.0;
     for(unsigned int i=0; i<log2N; i++)
     {
@@ -55,7 +55,7 @@ CL_TYPE2 ComputeTwiddleFactor(unsigned int log2N, unsigned int index, __local co
 //calculates the number of 1d FFTs, and shape of work items
 unsigned int CalculateWorkItemInfo(unsigned int NDIM, //total number of dimensions
                                    unsigned int D, //selected dimension
-                                   unsigned int* dim, //size of array in each dimension 
+                                   unsigned int* dim, //size of array in each dimension
                                    unsigned int* non_active_dimension_index, //index selected in each non-active dimension
                                    unsigned int* non_active_dimension_size) //sizes of each non-active dimension
 {
@@ -79,11 +79,11 @@ unsigned int CalculateWorkItemInfo(unsigned int NDIM, //total number of dimensio
 ////////////////////////////////////////////////////////////////////////////////
 //RADIX2 DIT with strided data locations.
 //The twiddle factors are computed on-the-fly from a factor-basis.
-void FFTRadixTwo_DIT(unsigned int N, 
-                     unsigned int stride, 
+void FFTRadixTwo_DIT(unsigned int N,
+                     unsigned int stride,
                      CL_TYPE conj_flag, //conjugate the twiddle factors
                      CL_TYPE direction, //-1 = forward, 1 = backward
-                     __local const CL_TYPE2* twiddle_basis, 
+                     __local const CL_TYPE2* twiddle_basis,
                      __global CL_TYPE2* data)
 {
     //temporary workspace
@@ -114,7 +114,7 @@ void FFTRadixTwo_DIT(unsigned int N,
                 butterfly_index = group_start + k; //index
                 x = stride*butterfly_index;
                 y = stride*(butterfly_index + butterfly_width);
-            
+
                 H0 = data[x];
                 H1 = data[y];
                 W = ComputeTwiddleFactor(logN, n_butterfly_groups*k, twiddle_basis, conj_flag);
@@ -153,10 +153,10 @@ void FFTRadixTwo_DIT(unsigned int N,
 
 
 //RADIX-2 DIF
-void 
-FFTRadixTwo_DIF(unsigned int N, 
-                unsigned int stride, 
-                CL_TYPE conj_flag, 
+void
+FFTRadixTwo_DIF(unsigned int N,
+                unsigned int stride,
+                CL_TYPE conj_flag,
                 CL_TYPE direction, //-1 = forward, 1 = backward
                 __local const CL_TYPE2* twiddle_basis,
                 CL_TYPE2* data)
@@ -166,7 +166,7 @@ FFTRadixTwo_DIF(unsigned int N,
     CL_TYPE2 H1;
     CL_TYPE2 W;
     CL_TYPE2 Z;
-    
+
     //decimation in frequency, N is assumed to be a power of 2
     unsigned int logN = LogBaseTwo(N);
     unsigned int butterfly_width;
@@ -177,7 +177,7 @@ FFTRadixTwo_DIF(unsigned int N,
     {
         //compute the number of butterfly groups
         n_butterfly_groups= TwoToThePowerOf(stage);
-    
+
         //compute the width of each butterfly
         butterfly_width =  N/(2*n_butterfly_groups);
         for(unsigned int n = 0; n < n_butterfly_groups; n++)
@@ -221,7 +221,7 @@ FFTRadixTwo_DIF(unsigned int N,
 
 
 //Bluestein algorithm for arbitrary length, N is length of the data, strided data access
-void 
+void
 #ifdef FFT_USE_CONST_MEM
 FFTBluestein(unsigned int N,
              unsigned int M,

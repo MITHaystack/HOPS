@@ -50,7 +50,7 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
             return total_size;
         }
 
-        virtual 
+        virtual
 
         //assignment operator
         MHO_AxisPack& operator=(const MHO_AxisPack& rhs)
@@ -108,15 +108,15 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_AxisPack& aData)
         {
-            switch( aData.GetVersion() ) 
+            switch( aData.GetVersion() )
             {
                 case 0:
                     s << aData.GetVersion();
                     aData.StreamOutData_V0(s);
                 break;
                 default:
-                    msg_error("containers", 
-                        "error, cannot stream out MHO_Axis object with unknown version: " 
+                    msg_error("containers",
+                        "error, cannot stream out MHO_Axis object with unknown version: "
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -126,7 +126,7 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
         {
             MHO_ClassVersion vers;
             s >> vers;
-            switch(vers) 
+            switch(vers)
             {
                 case 0:
                     aData.StreamInData_V0(s);

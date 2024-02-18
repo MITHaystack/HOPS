@@ -9,9 +9,9 @@
         "channel_names": {"type": "string"},
         "channel_frequencies": {"type": "list_real"}
     },
-    "fields": 
+    "fields":
     [
-        "channel_names", 
+        "channel_names",
         "channel_frequencies"
     ]
 }

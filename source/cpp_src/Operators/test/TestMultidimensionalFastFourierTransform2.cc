@@ -13,9 +13,9 @@ using namespace hops;
 typedef double FPTYPE;
 
 #define ARRAY1_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 1 >
-#define ARRAY2_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 2 > 
-#define ARRAY3_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 3 > 
-#define ARRAY4_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 4 > 
+#define ARRAY2_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 2 >
+#define ARRAY3_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 3 >
+#define ARRAY4_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 4 >
 
 #define FFT1_TYPE MHO_MultidimensionalFastFourierTransform<ARRAY1_TYPE>
 #define FFT2_TYPE MHO_MultidimensionalFastFourierTransform<ARRAY2_TYPE>
@@ -25,30 +25,30 @@ typedef double FPTYPE;
 #define PRINT_DETAIL
 
 template< typename XArrayType, typename XFFTType>
-int 
+int
 run_test(const std::vector<std::size_t>& dim_size, const std::vector<std::size_t>& selected_axes)
 {
     if(dim_size.size() != XArrayType::rank::value)
     {
         std::cout<<"dimension rank error: "<<dim_size.size()<<" != "<<XArrayType::rank::value<<std::endl; std::exit(1);
     }
-    
+
     XArrayType* input = new XArrayType();
     XArrayType* original = new XArrayType();
     input->Resize(&(dim_size[0]));
     input->ZeroArray();
     std::size_t total_size = input->GetSize();
-    
-    //fill up the array with data 
+
+    //fill up the array with data
     for(std::size_t i=0; i<total_size; i++)
     {
         (*input)[i] = std::complex<FPTYPE>(i % 13, i % 17);
     }
-    
+
     //make a copy of the original input
     (*original) = (*input);
-    
-    //we do the FFT in two stages...first we transform the array along the axes specified in 
+
+    //we do the FFT in two stages...first we transform the array along the axes specified in
     //initial_selected_axes, then if any axes are left, we to those next.
     //Finally we do a single-pass (all-axes) inverse FFT and compare to the original array
     std::vector<std::size_t> first_pass_axes;
@@ -63,7 +63,7 @@ run_test(const std::vector<std::size_t>& dim_size, const std::vector<std::size_t
 
     XFFTType* fft_engine = new XFFTType();
 
-    //do FFT on first set of axes 
+    //do FFT on first set of axes
     if(first_pass_axes.size() > 0)
     {
         fft_engine->SetForward();
@@ -90,8 +90,8 @@ run_test(const std::vector<std::size_t>& dim_size, const std::vector<std::size_t
         fft_engine->Initialize();
         fft_engine->Execute();
     }
-    
-    
+
+
     //no do IFFT pass on all axes
     fft_engine->SetBackward();
     fft_engine->SetArgs(input);
@@ -110,12 +110,12 @@ run_test(const std::vector<std::size_t>& dim_size, const std::vector<std::size_t
 
     for(std::size_t i=0; i<total_size; i++)
     {
-        
+
         std::complex<FPTYPE> del = (*input)[i] / norm;
         del -= (*original)[i];
         l2_norm += std::real(del) * std::real(del) + std::imag(del) * std::imag(del);
     }
-    
+
     double err = std::sqrt(l2_norm);
     std::cout << "--------------------------" << std::endl;
     std::cout << "single pass wallclock time (s): " << runtime << std::endl;
@@ -137,7 +137,7 @@ int main(int /*argc*/, char** /*argv*/)
     // set this up to do several multidimensional FFTs of various sizes
     std::vector<std::size_t> dim_sizes;
     std::vector<std::size_t> axes;
-    
+
     dim_sizes.clear();
     axes.clear();
     dim_sizes.insert(dim_sizes.end(), { 1024 });
@@ -149,19 +149,19 @@ int main(int /*argc*/, char** /*argv*/)
     dim_sizes.insert(dim_sizes.end(), { 1024*256 });
     axes.insert(axes.end(), { 0 });
     int val1 = run_test<ARRAY1_TYPE, FFT1_TYPE>(dim_sizes, axes);
-    
+
     dim_sizes.clear();
     axes.clear();
     dim_sizes.insert(dim_sizes.end(), { 512, 32 });
     axes.insert(axes.end(), { 0 });
     int val2 = run_test<ARRAY2_TYPE, FFT2_TYPE>(dim_sizes, axes);
-    
+
     dim_sizes.clear();
     axes.clear();
     dim_sizes.insert(dim_sizes.end(), { 64, 32, 97 });
     axes.insert(axes.end(), { 0, 2 });
     int val3 = run_test<ARRAY3_TYPE, FFT3_TYPE>(dim_sizes, axes);
-    
+
     dim_sizes.clear();
     axes.clear();
     dim_sizes.insert(dim_sizes.end(), { 32, 64, 32, 163 });

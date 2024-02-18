@@ -1,7 +1,7 @@
 #include "MHO_VexElementLineGenerator.hh"
 #include <regex>
 
-namespace hops 
+namespace hops
 {
 
 MHO_VexElementLineGenerator::MHO_VexElementLineGenerator()
@@ -11,7 +11,7 @@ MHO_VexElementLineGenerator::MHO_VexElementLineGenerator()
 
 MHO_VexElementLineGenerator::~MHO_VexElementLineGenerator(){};
 
-std::string 
+std::string
 MHO_VexElementLineGenerator::ConstructElementLine(std::string element_name, mho_json& element, mho_json& format)
 {
 
@@ -68,7 +68,7 @@ MHO_VexElementLineGenerator::ConstructElementLine(std::string element_name, mho_
 
 
 
-std::string 
+std::string
 MHO_VexElementLineGenerator::GenerateInt(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
@@ -76,7 +76,7 @@ MHO_VexElementLineGenerator::GenerateInt(std::string element_name, mho_json& obj
     return val.str();
 }
 
-std::string 
+std::string
 MHO_VexElementLineGenerator::GenerateListInt(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
@@ -88,7 +88,7 @@ MHO_VexElementLineGenerator::GenerateListInt(std::string element_name, mho_json&
     return val.str();
 }
 
-std::string 
+std::string
 MHO_VexElementLineGenerator::GenerateReal(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
@@ -108,7 +108,7 @@ MHO_VexElementLineGenerator::GenerateReal(std::string element_name, mho_json& ob
     return val.str();
 }
 
-std::string 
+std::string
 MHO_VexElementLineGenerator::GenerateListReal(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
@@ -121,7 +121,7 @@ MHO_VexElementLineGenerator::GenerateListReal(std::string element_name, mho_json
             {
                 val << fSpace << obj["values"][i].get<double>() << fSpace << obj["units"].get<std::string>() << fSpace;
             }
-            else 
+            else
             {
                 val << fSpace << obj["values"][i].get<double>() << fSpace;
             }
@@ -143,7 +143,7 @@ MHO_VexElementLineGenerator::GenerateListReal(std::string element_name, mho_json
     return val.str();
 }
 
-std::string 
+std::string
 MHO_VexElementLineGenerator::GenerateKeyword(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
@@ -151,7 +151,7 @@ MHO_VexElementLineGenerator::GenerateKeyword(std::string element_name, mho_json&
     return val.str();
 }
 
-std::string 
+std::string
 MHO_VexElementLineGenerator::GenerateString(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
@@ -159,7 +159,7 @@ MHO_VexElementLineGenerator::GenerateString(std::string element_name, mho_json& 
     return val.str();
 }
 
-std::string 
+std::string
 MHO_VexElementLineGenerator::GenerateListString(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
@@ -171,7 +171,7 @@ MHO_VexElementLineGenerator::GenerateListString(std::string element_name, mho_js
     return val.str();
 }
 
-std::string 
+std::string
 MHO_VexElementLineGenerator::GenerateEpoch(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
@@ -179,7 +179,7 @@ MHO_VexElementLineGenerator::GenerateEpoch(std::string element_name, mho_json& o
     return val.str();
 }
 
-std::string 
+std::string
 MHO_VexElementLineGenerator::GenerateRaDec(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
@@ -187,7 +187,7 @@ MHO_VexElementLineGenerator::GenerateRaDec(std::string element_name, mho_json& o
     return val.str();
 }
 
-std::string 
+std::string
 MHO_VexElementLineGenerator::GenerateLink(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
@@ -195,7 +195,7 @@ MHO_VexElementLineGenerator::GenerateLink(std::string element_name, mho_json& ob
     return val.str();
 }
 
-std::string 
+std::string
 MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json& element, mho_json& format)
 {
     std::vector< std::string > components;
@@ -206,7 +206,7 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
     for(std::size_t i=0; i<format["fields"].size(); i++)
     {
         std::string raw_field_name = format["fields"][i].get<std::string>();
-        //remove # prefix indicating optional elements 
+        //remove # prefix indicating optional elements
         std::string field_name = std::regex_replace(raw_field_name,std::regex(hash),nothing);
 
         if(element.contains(field_name))
@@ -270,7 +270,7 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
 }
 
 
-bool 
+bool
 MHO_VexElementLineGenerator::IsTrailingOptionalField(std::string field_name, mho_json& fields)
 {
     if(MHO_VexDefinitions::IsOptionalField(field_name))

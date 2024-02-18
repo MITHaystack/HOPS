@@ -10,25 +10,25 @@ MHO_ContainerFileInterface::MHO_ContainerFileInterface():
 
 MHO_ContainerFileInterface::~MHO_ContainerFileInterface(){};
 
-void 
+void
 MHO_ContainerFileInterface::SetFilename(std::string filename)
 {
     fFilename = filename;
 }
 
-void 
+void
 MHO_ContainerFileInterface::SetIndexFileName(std::string index_filename)
 {
     fIndexFilename = index_filename;
 }
 
-void 
+void
 MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store, bool do_clear_store)
 {
     if(do_clear_store){store.Clear();}
     bool ok = false;
 
-    //pull the file object keys for inspection 
+    //pull the file object keys for inspection
     std::vector< MHO_FileKey > ikeys;
     MHO_FileKey object_key;
 
@@ -38,7 +38,7 @@ MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store, boo
         ok = fFileInterface.ExtractIndexFileObjectKeys(fIndexFilename, ikeys);
         if(!ok){msg_error("containers", "could not extract index-file object keys" << eom); return;}
     }
-    else 
+    else
     {
         ok = fFileInterface.ExtractFileObjectKeys(fFilename, ikeys);
         if(!ok){msg_error("containers", "could not extract file object keys" << eom); return;}
@@ -67,12 +67,12 @@ MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store, boo
                 std::string shortname = std::string(key.fName, MHO_FileKeyNameLength ).c_str();
                 store.SetShortName(obj->GetObjectUUID(), shortname);
             }
-            else 
+            else
             {
                 msg_warn("containers", "factory failed to build object from file with type: "<< fUUID2ClassName[type_id] << eom );
             }
         }
-        else 
+        else
         {
             msg_warn("containers", "unrecognized object in file with type uuid: " << type_id.as_string() << eom );
         }
@@ -81,7 +81,7 @@ MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store, boo
     fFileInterface.Close();
 };
 
-void 
+void
 MHO_ContainerFileInterface::WriteStoreToFile(MHO_ContainerStore& store)
 {
     bool ok = false;
@@ -91,7 +91,7 @@ MHO_ContainerFileInterface::WriteStoreToFile(MHO_ContainerStore& store)
         ok = fFileInterface.OpenToWrite(fFilename,fIndexFilename);
         if(!ok){msg_error("containers", "could not open file: " <<fFilename << " to write." << eom); return;}
     }
-    else 
+    else
     {
         ok = fFileInterface.OpenToWrite(fFilename);
         if(!ok){msg_error("containers", "could not open file: " <<fFilename << " to write." << eom); return;}
@@ -125,7 +125,7 @@ MHO_ContainerFileInterface::WriteStoreToFile(MHO_ContainerStore& store)
 }
 
 
-void 
+void
 MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, mho_json& json_obj, int level_of_detail)
 {
     std::vector< MHO_UUID > type_ids;
@@ -156,10 +156,10 @@ MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, mho_js
 };
 
 
-void 
+void
 MHO_ContainerFileInterface::ConvertObjectInStoreToJSON(MHO_ContainerStore& store,
                                                        const MHO_UUID& obj_uuid,
-                                                       mho_json& json_obj, 
+                                                       mho_json& json_obj,
                                                        int level_of_detail)
 {
     std::vector< MHO_UUID > type_ids;

@@ -20,7 +20,7 @@ int main(int argc, char** argv)
     vparser.SetVexFile(vexfile);
     mho_json vex = vparser.ParseVex();
 
-    //open and dump to file 
+    //open and dump to file
     std::string output_file("test_vex.json");
     std::ofstream outFile(output_file.c_str(), std::ofstream::out);
     outFile << vex;

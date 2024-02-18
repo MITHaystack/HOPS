@@ -73,15 +73,15 @@ class MHO_Timer
 
         /** Call GetTimeDifference and return the result as a double
         * @param None
-        * @returns ret_val double which contains the start and stop time in seconds 
+        * @returns ret_val double which contains the start and stop time in seconds
         */
         double GetDurationAsDouble() const;
 
         //Get the time since the start without stopping the timer
-        double GetTimeSinceStart() const; 
+        double GetTimeSinceStart() const;
 
     protected:
-        /** Calculate total compute time spent on a process or thread and store the result in a timespec struct 
+        /** Calculate total compute time spent on a process or thread and store the result in a timespec struct
         * @param start timespec which is the start time for a process or thread
         * @param stop timespec which is the start time for a process or thread
         * @returns ret_val timespec which contains the time spent on a given process or thread in seconds and nanoseconds

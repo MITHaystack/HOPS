@@ -47,19 +47,19 @@ int main(int argc, char** argv)
     std::map< std::string, std::string > fStationCodeToSiteID;
     std::map< std::string, std::string > fStationCodeToMk4ID;
     std::map< std::string, std::string > fStationCodeToFreqTableName;
-    std::map< std::string, std::string > fMk4IDToFreqTableName;  
+    std::map< std::string, std::string > fMk4IDToFreqTableName;
 
     for(int ist = 0; ist<nst; ist++)
     {
-        //find the frequency table for this station 
-        //first locate the mode info 
+        //find the frequency table for this station
+        //first locate the mode info
         auto mode = fVex["$MODE"][mode_key];
         std::string freq_key;
         for(auto it = mode["$FREQ"].begin(); it != mode["$FREQ"].end(); ++it)
         {
             std::string keyword = (*it)["keyword"].get<std::string>();
             std::size_t n_qual = (*it)["qualifiers"].size();
-            
+
             std::cout<<"freq setup keyword = "<<keyword<<std::endl;
             for(std::size_t q=0; q<n_qual; q++)
             {
@@ -67,11 +67,11 @@ int main(int argc, char** argv)
                 fStationCodeToFreqTableName[station_code] = keyword;
                 std::cout<<"qualifier @"<<q<<" = "<<(*it)["qualifiers"][q].get<std::string>()<<std::endl;
 
-                //std::string site_key = 
+                //std::string site_key =
                 std::string site_key = fVex["$STATION"][station_code]["$SITE"][0]["keyword"].get<std::string>();
                 std::string mk4_id = fVex["$SITE"][site_key]["mk4_site_ID"].get<std::string>();
                 fMk4IDToFreqTableName[mk4_id] = keyword;
-                
+
                 std::cout<<keyword<<" : "<<mk4_id<<" : "<<site_key<<std::endl;
             }
         }

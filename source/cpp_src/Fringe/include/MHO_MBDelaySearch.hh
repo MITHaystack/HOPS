@@ -61,11 +61,11 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         int GetMBDMaxBin() const {return fMBDMaxBin;}
         int GetSBDMaxBin() const {return fSBDMaxBin;}
         int GetDRMaxBin() const {return fDRMaxBin;}
-        
+
         double GetCoarseMBD() const {return fCoarseMBD;}
         double GetCoarseSBD() const {return fCoarseSBD;}
         double GetCoarseDR() const {return fCoarseDR;}
-        
+
         double GetSBDBinSeparation() const {return fSBDBinSep;}
 
         int GetNMBDBins(){return fNGridPoints;};
@@ -112,12 +112,12 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         double fRefFreq;
         int fSBDStart;
         int fSBDStop;
-        
+
         double fSBDBinSep;
         double fDRBinSep;
         double fMBDBinSep;
 
-        //the window limits 
+        //the window limits
         double fSBDWin[2];
         double fMBDWin[2];
         double fDRWin[2];
@@ -132,7 +132,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         int fMBDMaxBin;
         int fSBDMaxBin;
         int fDRMaxBin;
-        
+
         double fCoarseMBD;
         double fCoarseSBD;
         double fCoarseDR;

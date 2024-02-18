@@ -55,7 +55,7 @@ int main(int /*argc*/, char** /*argv*/)
     {
         MHO_FileKey key;
         inter.Read(test2, key);
-        
+
         std::vector< std::string > keys;
         test2.DumpTags(keys);
         for(auto it = keys.begin(); it != keys.end(); it++)

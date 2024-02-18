@@ -1,6 +1,6 @@
 #include "MHO_RootCanvasManager.hh"
 
-namespace hops 
+namespace hops
 {
 
 MHO_RootCanvasManager::MHO_RootCanvasManager()
@@ -49,7 +49,7 @@ MHO_RootCanvasManager::CreateCanvas(std::string name, unsigned int width, unsign
 }
 
 
-TCanvas* 
+TCanvas*
 MHO_RootCanvasManager::SelectCanvasByName(std::string name)
 {
     for(std::size_t i=0; i<fCanvasList.size(); i++)
@@ -65,7 +65,7 @@ MHO_RootCanvasManager::SelectCanvasByName(std::string name)
     return nullptr;
 }
 
-void 
+void
 MHO_RootCanvasManager::DestroyCanvasList()
 {
     for(std::size_t i=0; i<fCanvasList.size(); i++)

@@ -81,7 +81,7 @@ class MHO_MK4FringeExport
         void ExportFringeFile(){ output(); }
 
     private:
-        
+
         std::string CreateFringeFileName(std::string directory, int seq_no);
 
         MHO_ParameterStore* fPStore;
@@ -90,14 +90,14 @@ class MHO_MK4FringeExport
 
         void char_clear(char* arr, std::size_t n){ for(std::size_t i=0; i<n; i++){arr[i] = '\0';} }
 
-        //utilty to convert source coordinate strings to numerical values 
+        //utilty to convert source coordinate strings to numerical values
         int convert_sky_coords(struct sky_coord& coords, std::string ra, std::string dec);
         MHO_Tokenizer fTokenizer;
 
         //the fringe data to be filled and written
         struct mk4_fringe* fringe;
 
-        //utilities 
+        //utilities
         void FillString(char* destination, std::string param_path, int max_length, std::string default_value="");
         void FillString(std::string& destination, std::string param_path, std::string default_value="");
         void FillInt(int& destination, std::string param_path, int default_value = 0);
@@ -120,7 +120,7 @@ class MHO_MK4FringeExport
         int fill_208( struct type_202 *t202, struct type_208 *t208);
         int fill_210( struct type_210 *t210);
         int fill_212( int fr, struct type_212 *t212);
-        
+
         int fill_221( struct type_221** t221);
 
         int fill_222( struct type_222** t222);

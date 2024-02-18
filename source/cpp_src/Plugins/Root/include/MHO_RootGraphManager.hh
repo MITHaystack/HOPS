@@ -28,7 +28,7 @@
 #define ROOT_CMPLX_PLOT_ABS 2
 #define ROOT_CMPLX_PLOT_ARG 3
 
-namespace hops 
+namespace hops
 {
 
 class MHO_RootGraphManager
@@ -46,10 +46,10 @@ class MHO_RootGraphManager
         template< typename XTableType, typename XAxisType >
         TGraph* GenerateGraph1D(const XTableType& table, const XAxisType& x_axis)
         {
-            //assert that this is a 1d table 
+            //assert that this is a 1d table
             HOPS_ASSERT_EQUAL( table.GetRank(), 1 );
 
-            //assume axis is labeled by doubles 
+            //assume axis is labeled by doubles
             std::size_t nxbins = table.GetDimension(0);
 
             TGraph* h = new TGraph();
@@ -67,10 +67,10 @@ class MHO_RootGraphManager
         template< typename XTableType, typename XAxisType >
         TGraph* GenerateComplexGraph1D(const XTableType& table, const XAxisType& x_axis, int plot_mode )
         {
-            //assert that this is a 1d table 
+            //assert that this is a 1d table
             HOPS_ASSERT_EQUAL( table.GetRank(), 1 );
 
-            //assume axis is labeled by doubles 
+            //assume axis is labeled by doubles
             std::size_t nxbins = table.GetDimension(0);
 
             TGraph* h = new TGraph();
@@ -111,7 +111,7 @@ class MHO_RootGraphManager
         template< typename XTableType, typename XAxisType, typename YAxisType >
         TGraph2D* GenerateGraph2D(const XTableType& table, const XAxisType& x_axis, const YAxisType& y_axis)
         {
-            HOPS_ASSERT_EQUAL( table.GetRank(), 2 ); 
+            HOPS_ASSERT_EQUAL( table.GetRank(), 2 );
 
             std::size_t nxbins = table.GetDimension(0);
             std::size_t nybins = table.GetDimension(1);
@@ -137,7 +137,7 @@ class MHO_RootGraphManager
         template< typename XTableType, typename XAxisType, typename YAxisType >
         TGraph2D* GenerateComplexGraph2D(const XTableType& table, const XAxisType& x_axis, const YAxisType& y_axis, int plot_mode)
         {
-            HOPS_ASSERT_EQUAL( table.GetRank(), 2 ); 
+            HOPS_ASSERT_EQUAL( table.GetRank(), 2 );
 
             std::size_t nxbins = table.GetDimension(0);
             std::size_t nybins = table.GetDimension(1);

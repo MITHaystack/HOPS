@@ -1,11 +1,11 @@
 #include "MHO_ContainerStore.hh"
 
-namespace hops 
+namespace hops
 {
 
-    
 
-void 
+
+void
 MHO_ContainerStore::Clear()
 {
     for(auto it = fObjectsToIds.begin(); it != fObjectsToIds.end(); it++)
@@ -18,7 +18,7 @@ MHO_ContainerStore::Clear()
 }
 
 //check if any object with the give object id is in the store
-bool 
+bool
 MHO_ContainerStore::IsObjectPresent(const MHO_UUID& obj_id) const
 {
     for(auto it = fIdsToObjects.begin(); it != fIdsToObjects.end(); it++)
@@ -31,7 +31,7 @@ MHO_ContainerStore::IsObjectPresent(const MHO_UUID& obj_id) const
 }
 
 //get an object via uuid (returns nullptr if not present)
-MHO_Serializable* 
+MHO_Serializable*
 MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
 {
     //this is a slow  O(N) way to take care of this
@@ -49,7 +49,7 @@ MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
     return ptr;
 }
 
-bool 
+bool
 MHO_ContainerStore::DeleteObject(const MHO_UUID& obj_id)
 {
     MHO_Serializable* ptr = GetObject(obj_id);
@@ -59,7 +59,7 @@ MHO_ContainerStore::DeleteObject(const MHO_UUID& obj_id)
 }
 
 
-void 
+void
 MHO_ContainerStore::GetAllTypeUUIDs(std::vector< MHO_UUID >& type_ids)
 {
     type_ids.clear();
@@ -77,7 +77,7 @@ MHO_ContainerStore::GetAllTypeUUIDs(std::vector< MHO_UUID >& type_ids)
     }
 }
 
-void 
+void
 MHO_ContainerStore::GetAllObjectUUIDsOfType(MHO_UUID type_id, std::vector< MHO_UUID >& obj_ids)
 {
     obj_ids.clear();
@@ -94,7 +94,7 @@ MHO_ContainerStore::GetAllObjectUUIDsOfType(MHO_UUID type_id, std::vector< MHO_U
 }
 
 
-bool 
+bool
 MHO_ContainerStore::SetShortName(const MHO_UUID& obj_id, const std::string& shortname)
 {
     if(shortname.size() != 0 && IsObjectPresent(obj_id))
@@ -109,7 +109,7 @@ MHO_ContainerStore::SetShortName(const MHO_UUID& obj_id, const std::string& shor
     return false;
 }
 
-MHO_UUID 
+MHO_UUID
 MHO_ContainerStore::GetObjectUUID(const std::string& shortname)
 {
     MHO_UUID obj_id;
@@ -120,10 +120,10 @@ MHO_ContainerStore::GetObjectUUID(const std::string& shortname)
 
 
 //provide retrival of object short name from uuid
-std::string 
+std::string
 MHO_ContainerStore::GetShortName(const MHO_UUID& obj_id)
 {
-    //brute force search 
+    //brute force search
     std::string value = "";
     for(auto it = fShortNameToIds.begin(); it != fShortNameToIds.end(); it++)
     {
@@ -133,7 +133,7 @@ MHO_ContainerStore::GetShortName(const MHO_UUID& obj_id)
 }
 
 
-void 
+void
 MHO_ContainerStore::GetAllShortNames(std::vector< std::string >& shortnames)
 {
     shortnames.clear();
@@ -144,7 +144,7 @@ MHO_ContainerStore::GetAllShortNames(std::vector< std::string >& shortnames)
 }
 
 
-MHO_UUID 
+MHO_UUID
 MHO_ContainerStore::GetObjectTypeUUID(const MHO_UUID& obj_id)
 {
     MHO_UUID ret_val;
@@ -163,7 +163,7 @@ MHO_ContainerStore::GetObjectTypeUUID(const MHO_UUID& obj_id)
 
 }
 
-std::vector< std::tuple< std::string, std::string, std::string > > 
+std::vector< std::tuple< std::string, std::string, std::string > >
 MHO_ContainerStore::GetAllObjectInfo()
 {
     std::vector< std::tuple< std::string, std::string, std::string > >  info;

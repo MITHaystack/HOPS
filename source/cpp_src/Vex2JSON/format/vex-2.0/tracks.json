@@ -21,7 +21,7 @@
                 "third_multiplex_track": {"type": "int"},
                 "fourth_multiplex_track": {"type": "int"}
             },
-            "fields": 
+            "fields":
             [
                 "#subpass_id",
                 "chan_id",
@@ -36,7 +36,7 @@
         "track_frame_format": {"type": "string"},
         "sample_rate": {"type": "real", "dimension": "time"}
     },
-    "fields": 
+    "fields":
     [
         "fanout_def",
         "track_frame_format",

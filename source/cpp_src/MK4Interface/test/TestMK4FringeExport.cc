@@ -326,7 +326,7 @@ int main(int argc, char** argv)
         }
       }
     )";
-    
+
     mho_json params = mho_json::parse(text);
 
     MHO_ParameterStore pStore;
@@ -1129,7 +1129,7 @@ int main(int argc, char** argv)
     )";
 
     mho_json plot_data = mho_json::parse(text2);
-    
+
     std::cout<<plot_data.dump(4)<<std::endl;
 
     MHO_MK4FringeExport fexporter;
@@ -1140,16 +1140,16 @@ int main(int argc, char** argv)
     fexporter.ExportFringeFile();
 
     // std::string usage = "TestMK4FringeExport -r <root_filename> -f <corel_filename>";
-    // 
+    //
     // std::string root_filename;
     // std::string corel_filename;
-    // 
+    //
     // static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
     //                                       {"root (vex) file", required_argument, 0, 'r'},
     //                                       {"corel file", required_argument, 0, 'f'}};
-    // 
+    //
     // static const char* optString = "hr:f:";
-    // 
+    //
     // while(true)
     // {
     //     char optId = getopt_long(argc, argv, optString, longOptions, NULL);
@@ -1171,19 +1171,19 @@ int main(int argc, char** argv)
     //             return 1;
     //     }
     // }
-    // 
+    //
     // MHO_Message::GetInstance().AcceptAllKeys();
     // MHO_Message::GetInstance().SetMessageLevel(eDebug);
-    // 
+    //
     // MHO_MK4CorelInterface mk4inter;
-    // 
+    //
     // mk4inter.SetCorelFile(corel_filename);
     // mk4inter.SetVexFile(root_filename);
     // mk4inter.ExtractCorelFile();
-    // 
+    //
     // uch_visibility_store_type* bl_data = mk4inter.GetExtractedVisibilities();
-    // uch_weight_store_type* bl_wdata = mk4inter.GetExtractedWeights(); 
-    // 
+    // uch_weight_store_type* bl_wdata = mk4inter.GetExtractedWeights();
+    //
     // if(bl_data == nullptr)
     // {
     //     msg_fatal("main", "Failed to extract mk4corel data." << eom);

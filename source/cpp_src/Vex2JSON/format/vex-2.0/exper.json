@@ -50,7 +50,7 @@
             "fields": ["program", "#version", "#date_created"]
         }
     },
-    "fields": 
+    "fields":
     [
         "exper_name",
         "exper_description",

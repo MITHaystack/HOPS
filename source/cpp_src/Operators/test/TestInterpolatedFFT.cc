@@ -156,8 +156,8 @@ int main(int argc, char** argv)
     // {
     //     std::cout<<"array @ "<<i<<" = "<<array1[i]<<std::endl;
     // }
-    // 
-    // 
+    //
+    //
     // for(size_t i=0; i<NM; i++)
     // {
     //     std::cout<<"expanded array2 @ "<<i<<" = "<<expanded_array2[i]<<std::endl;

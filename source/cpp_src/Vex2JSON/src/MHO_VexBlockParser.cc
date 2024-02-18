@@ -6,7 +6,7 @@
 #include <stack>
 #include <regex>
 
-namespace hops 
+namespace hops
 {
 
 MHO_VexBlockParser::MHO_VexBlockParser()
@@ -20,7 +20,7 @@ MHO_VexBlockParser::MHO_VexBlockParser()
 MHO_VexBlockParser::~MHO_VexBlockParser(){};
 
 
-void 
+void
 MHO_VexBlockParser::LoadBlockFormat(std::string block_name)
 {
     fBlockFormatLoaded = false;
@@ -47,7 +47,7 @@ MHO_VexBlockParser::LoadBlockFormat(std::string block_name)
     }
 }
 
-std::string 
+std::string
 MHO_VexBlockParser::GetBlockFormatFileName(std::string block_name)
 {
     //remove '$', and convert to lower-case
@@ -60,7 +60,7 @@ MHO_VexBlockParser::GetBlockFormatFileName(std::string block_name)
 mho_json
 MHO_VexBlockParser::ParseBlockLines(std::string block_name, const std::vector< MHO_VexLine >* block_lines)
 {
-    //retrieve the block format 
+    //retrieve the block format
     fBlockFormatLoaded = false;
     LoadBlockFormat(block_name);
     fBlockLines = block_lines;
@@ -77,13 +77,13 @@ MHO_VexBlockParser::ParseBlockLines(std::string block_name, const std::vector< M
                 mho_json empty;
                 return empty;
             }
-            else 
+            else
             {
                 return ParseBlock(); //otherwise parse any of the other supported blocks
             }
-        } 
+        }
     }
-    else 
+    else
     {
         msg_error("vex", "parser error, could not load format file for: "<<block_name<<" block, skipping."<<eom);
         mho_json empty;
@@ -139,7 +139,7 @@ MHO_VexBlockParser::ParseBlock()
 }
 
 
-mho_json 
+mho_json
 MHO_VexBlockParser::ParseGlobalBlock()
 {
     mho_json block_root;
@@ -154,7 +154,7 @@ MHO_VexBlockParser::ParseGlobalBlock()
         file_node.push( &block_root );
         format_node.push( fBlockFormat["parameters"] );
     }
-    else 
+    else
     {
         msg_error("vex", "failed to find parameters statement in $GLOBAL format block"<<eom);
         return block_root;
@@ -199,14 +199,14 @@ MHO_VexBlockParser::IsStartTag(const MHO_VexLine& line)
     return false;
 }
 
-bool 
+bool
 MHO_VexBlockParser::IsStopTag(const MHO_VexLine& line)
 {
     if(line.fContents.find( fStopTag ) != std::string::npos){return true;}
     return false;
 }
 
-bool 
+bool
 MHO_VexBlockParser::IsReferenceTag(const MHO_VexLine& line)
 {
     if(line.fContents.find( MHO_VexDefinitions::RefTag() ) != std::string::npos)
@@ -230,8 +230,8 @@ MHO_VexBlockParser::IsReferenceTag(const MHO_VexLine& line)
 
 
 
-bool 
-MHO_VexBlockParser::ProcessStartTag(const MHO_VexLine& line, 
+bool
+MHO_VexBlockParser::ProcessStartTag(const MHO_VexLine& line,
                      std::stack< std::string >& path,
                      std::stack< mho_json* >& file_node,
                      std::stack< mho_json >& format_node)
@@ -264,8 +264,8 @@ MHO_VexBlockParser::ProcessStartTag(const MHO_VexLine& line,
     else{return false;}
 }
 
-bool 
-MHO_VexBlockParser::ProcessStopTag(const MHO_VexLine& line, 
+bool
+MHO_VexBlockParser::ProcessStopTag(const MHO_VexLine& line,
                       std::stack< std::string >& path,
                       std::stack< mho_json* >& file_node,
                       std::stack< mho_json >& format_node)
@@ -277,14 +277,14 @@ MHO_VexBlockParser::ProcessStopTag(const MHO_VexLine& line,
     path.pop();
     format_node.pop();
     //insert this object into output json structure
-    (*(file_node.top()))[last_obj_name] = *last_obj; 
+    (*(file_node.top()))[last_obj_name] = *last_obj;
     delete last_obj;
     //msg_debug("vex", "closed a block element with name: "<<last_obj_name<<eom);
     return true;
 }
 
-bool 
-MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line, 
+bool
+MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
                  std::stack< std::string >& path,
                  mho_json* obj_node,
                  mho_json& format)
@@ -303,7 +303,7 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
     if(tokens.size() == 2)
     {
         std::string element_name = tokens[0];
-        //verify that the element name is present in the current format node 
+        //verify that the element name is present in the current format node
         if(!(format.contains(element_name)))
         {
             msg_info("vex", "could not locate element with name: "<<element_name<<" under "<<fBlockName<< " block format."<<eom);
@@ -312,7 +312,7 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
         vex_element_type etype = MHO_VexDefinitions::DetermineType( format[element_name]["type"].get<std::string>() );
 
         fTokenizer.SetPreserveQuotesTrue();
-        //One infuriating feature of vex is that single/double quotes are not 
+        //One infuriating feature of vex is that single/double quotes are not
         //only used to encapsulate strings which must preserved, but are also
         //used to indicate minutes/seconds of arc in RA/DEC so for very specific
         //lines (i.e. source coordinates) we need to set this to false
@@ -335,15 +335,15 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
         //if we are processing a list of compound elements, insert them one at a time
         if( etype == vex_list_compound_type)
         {
-            (*obj_node)[element_name].push_back( element ); 
+            (*obj_node)[element_name].push_back( element );
         }
-        else 
+        else
         {
-            (*obj_node)[element_name] = element; 
+            (*obj_node)[element_name] = element;
         }
         return true;
     }
-    else 
+    else
     {
         msg_error("vex", "expected assignment with 2 tokens, but could not determine how to parse "<<tokens.size()<<" tokens from: <"<<line.fContents<<">."<<eom);
         return false;
@@ -351,8 +351,8 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
 
 }
 
-bool 
-MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line, 
+bool
+MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line,
                                      std::stack< std::string >& path,
                                      mho_json* file_node,
                                      mho_json& format_node)
@@ -371,8 +371,8 @@ MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line,
     //verify that n_tokens is 2 for '=' assignment statement
     if(tokens.size() == 2)
     {
-        //split first token on whitespace, verify 'ref' is present and extract the block name 
-        std::vector< std::string > ref_tokens; 
+        //split first token on whitespace, verify 'ref' is present and extract the block name
+        std::vector< std::string > ref_tokens;
         fTokenizer.SetDelimiter(MHO_VexDefinitions::WhitespaceDelim());
         fTokenizer.SetIncludeEmptyTokensFalse();
         fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
@@ -390,7 +390,7 @@ MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line,
                 }
 
                 //split second token on ':' for parsable elements
-                std::vector< std::string > kq_tokens; 
+                std::vector< std::string > kq_tokens;
                 fTokenizer.SetDelimiter( MHO_VexDefinitions::ElementDelim() );
                 fTokenizer.SetIncludeEmptyTokensFalse();
                 fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
@@ -407,17 +407,17 @@ MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line,
                     }
                 }
             }
-            else 
+            else
             {
                 msg_error("vex", "could not process a reference from: "<<ref_tokens[0]<<eom );
                 return false;
             }
         }
 
-        (*file_node)[element_block_name].push_back( element ); 
+        (*file_node)[element_block_name].push_back( element );
         return true;
     }
-    else 
+    else
     {
         msg_error("vex", "expected assignment with 2 tokens, but could not determine how to parse "<<tokens.size()<<" tokens from: <"<<line.fContents<<">."<<eom);
         return false;
@@ -426,7 +426,7 @@ MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line,
 }
 
 
-mho_json 
+mho_json
 MHO_VexBlockParser::ProcessTokens(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens)
 {
     vex_element_type etype = MHO_VexDefinitions::DetermineType( format["type"].get<std::string>() );
@@ -475,11 +475,11 @@ MHO_VexBlockParser::ProcessTokens(const std::string& element_name, mho_json& for
     return element_data;
 }
 
-mho_json 
+mho_json
 MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
 {
     mho_json element_data;
-    mho_json fields = format["fields"]; 
+    mho_json fields = format["fields"];
     std::size_t n_tokens = tokens.size();
     std::size_t n_all_fields = fields.size();
 
@@ -491,7 +491,7 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
         if(token_idx < tokens.size() )
         {
             if(tokens[token_idx] == nothing){token_idx++;} //empty value, skip this element
-            else 
+            else
             {
                 std::string raw_field_name = it->get<std::string>();
                 std::string field_name = std::regex_replace(raw_field_name,std::regex(hash),nothing);
@@ -508,13 +508,13 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
                 }
                 else if (element_name == "chan_def" && field_name == "channel_name" )
                 {
-                    //Deal with the stupid vex 2.0 case where there is no "optional" "channel_name" field in 
+                    //Deal with the stupid vex 2.0 case where there is no "optional" "channel_name" field in
                     //in the channel defintion but there is a list of "freq_state" elements following it.
                     //Normally any valid text can be converted to a string, but in this case the only
-                    //way to tell whether the current token is the optional channel_name element or the leading integer 
+                    //way to tell whether the current token is the optional channel_name element or the leading integer
                     //in the frequency sequence is to explicitly check that this token is/isn't an integer.
                     //If someone decides to specify a channel_name which is an integer value (1, 3, etc), then
-                    //the vex standard leaves this case undefined -- but we will (mis)interpret it as the leading index 
+                    //the vex standard leaves this case undefined -- but we will (mis)interpret it as the leading index
                     //of the freq_state list.
                     if( !MatchesType( tokens[token_idx], std::string("int") ) )
                     {
@@ -522,7 +522,7 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
                         element_data[field_name] = ProcessTokens(field_name, next_format, tmp_tokens);
                         token_idx++;
                     }
-                    else 
+                    else
                     {
                         msg_warn("vex", "channel definition on line: "<<fCurrentLineNumber<<" is ambiguous, intepreting integer value as leading freq_state index, not channel_name." << eom);
                     }
@@ -533,17 +533,17 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
                     element_data[field_name] = ProcessTokens(field_name, next_format, tmp_tokens);
                     token_idx++;
                 }
-                else 
+                else
                 {
                     //assume that if the current token does not match the current type,
                     //then an optional element has been omitted in the vex file
-                    //so don't increment the token index, and see if we can process it as 
+                    //so don't increment the token index, and see if we can process it as
                     //the next expected field
                     if( MHO_VexDefinitions::IsOptionalField(raw_field_name))
                     {
                         msg_debug("vex", "could not parse <"<<tokens[token_idx]<<"> as type: "<<type_name<<", assuming optional field: "<< field_name << " is skipped." << eom);
                     }
-                    else 
+                    else
                     {
                         msg_warn("vex", "could not parse <"<<tokens[token_idx]<<"> as type: "<<type_name<<", for field: "<< field_name << ", skipping." << eom);
                     }
@@ -555,7 +555,7 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
 }
 
 
-bool 
+bool
 MHO_VexBlockParser::MatchesType(const std::string& token, const std::string& type_name)
 {
     vex_element_type etype = MHO_VexDefinitions::DetermineType(type_name);
@@ -616,7 +616,7 @@ MHO_VexBlockParser::MatchesType(const std::string& token, const std::string& typ
             if(token.find_first_of("&") == std::string::npos){return false;}
             else{return true;}
         break;
-        case vex_compound_type: 
+        case vex_compound_type:
             return true; //return true until we recurse to a simpler type
         case vex_list_compound_type:
             return true; //return true until we recurse to a simpler type

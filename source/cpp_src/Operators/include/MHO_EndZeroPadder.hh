@@ -54,8 +54,8 @@ class MHO_EndZeroPadder:
         virtual void SetEndPadded(){fFlipped = false;}; //zero padding from end of signal out to end of the array
         virtual void SetReverseEndPadded(){fFlipped = true;}; //place signal at end of array and zero pad out to start
 
-        virtual void DisableNormFXMode(){fNormFXMode = false;}; 
-        virtual void EnableNormFXMode(){fNormFXMode = true;}; 
+        virtual void DisableNormFXMode(){fNormFXMode = false;};
+        virtual void EnableNormFXMode(){fNormFXMode = true;};
 
         virtual void PreserveWorkspace(){fPreserveWorkspace = true;} //keep the memory reserved for the workspace around after exectution
         virtual void DoNotPreserveWorkspace(){fPreserveWorkspace = false;} //delete memory after execution
@@ -286,7 +286,7 @@ class MHO_EndZeroPadder:
                 }
 
             private:
-                
+
                 template< typename XAxisType >
                 void CopyLabelsWithoutTags(const XAxisType& axis1, XAxisType& axis2)
                 {
@@ -296,8 +296,8 @@ class MHO_EndZeroPadder:
                     std::size_t s = std::min(ax1_size, ax2_size);
                     for(std::size_t i=0;i<s;i++){axis2(i) = axis1(i);}
                 }
-                
-                
+
+
                 bool fModify;
                 bool fFlipped;
                 bool fCopyTags;

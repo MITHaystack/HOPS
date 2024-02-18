@@ -61,7 +61,7 @@ class MHO_TableContainer:
         //clone table shape, but leave contents/axes empty
         MHO_TableContainer* CloneEmpty()
         {
-            return new MHO_TableContainer( this->GetDimensions() ); 
+            return new MHO_TableContainer( this->GetDimensions() );
         }
 
         virtual ~MHO_TableContainer(){};
@@ -131,7 +131,7 @@ class MHO_TableContainer:
             MHO_ClassVersion vers;
             s >> vers;
 
-            switch(vers) 
+            switch(vers)
             {
                 case 0:
                     aData.StreamInData_V0(s);
@@ -147,15 +147,15 @@ class MHO_TableContainer:
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_TableContainer& aData)
         {
-            switch( aData.GetVersion() ) 
+            switch( aData.GetVersion() )
             {
                 case 0:
                     s << aData.GetVersion();
                     aData.StreamOutData_V0(s);
                 break;
                 default:
-                    msg_error("containers", 
-                        "error, cannot stream out MHO_TableContainer object with unknown version: " 
+                    msg_error("containers",
+                        "error, cannot stream out MHO_TableContainer object with unknown version: "
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -190,7 +190,7 @@ class MHO_TableContainer:
             s >> static_cast< MHO_Taggable& >(*this);
 
             //next stream the axis-pack
-            uint64_t tmp_dim; 
+            uint64_t tmp_dim;
             std::size_t dims[XAxisPackType::NAXES::value];
             for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
             {
@@ -221,7 +221,7 @@ class MHO_TableContainer:
                 }
             }
         }
-        
+
         virtual MHO_UUID DetermineTypeUUID() const override
         {
             MHO_MD5HashGenerator gen;

@@ -22,12 +22,12 @@
 *Description: extract useful information from the vex file and place in parameter store
 */
 
-namespace hops 
+namespace hops
 {
 
 class MHO_VexInfoExtractor
 {
-        
+
     public:
         MHO_VexInfoExtractor(){};
         virtual ~MHO_VexInfoExtractor(){};

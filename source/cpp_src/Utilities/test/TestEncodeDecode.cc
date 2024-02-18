@@ -23,7 +23,7 @@ int main(int /*argc*/, char** /*argv*/)
     bases.push_back(base52);
     bases.push_back(base64);
 
-    std::vector<uint64_t> values = 
+    std::vector<uint64_t> values =
     {
         0,1,10,
         15,16,17,
