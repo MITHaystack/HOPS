@@ -64,9 +64,9 @@ echo "sbd_aok is $sbd_aok, $sbd_delta, $low, $high"
 
 
 RET_VAL=1
-if [ "$mbd_aok" -eq 1 ]; then 
-    if [ "$dr_aok" -eq 1 ]; then 
-        if [ "$sbd_aok" -eq 1 ]; then 
+if [ "$mbd_aok" -eq 1 ]; then
+    if [ "$dr_aok" -eq 1 ]; then
+        if [ "$sbd_aok" -eq 1 ]; then
             RET_VAL=0
         fi
     fi

@@ -61,8 +61,8 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
         std::string fStationCode;
         std::string fMk4ID;
         std::string fPol;
-        
-        //pc rotation 
+
+        //pc rotation
         double fPhaseOffset;
 
         //keys for tag retrieval

@@ -71,7 +71,7 @@ echo "mbd aok is $aok_mbd, $mbd_delta, $low, $high"
 echo "dr aok is $aok_dr, $dr_delta, $low, $high"
 
 RET_VAL=1
-if [ "$aok_mbd" -eq 1 -a "$aok_sbd" -eq 1 -a "$aok_dr" -eq 1 ]; then 
+if [ "$aok_mbd" -eq 1 -a "$aok_sbd" -eq 1 -a "$aok_dr" -eq 1 ]; then
     RET_VAL=0
 fi
 

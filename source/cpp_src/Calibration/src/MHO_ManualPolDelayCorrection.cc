@@ -20,7 +20,7 @@ MHO_ManualPolDelayCorrection::MHO_ManualPolDelayCorrection()
     fNanoSecToSecond = MHO_Constants::nanosec_to_second;
     fMHzToHz = MHO_Constants::MHz_to_Hz;
     fPi = MHO_Constants::pi;
-    
+
     fRefFreq = 0.0;
     fDelayOffset = 0.0;
 };
@@ -93,7 +93,7 @@ MHO_ManualPolDelayCorrection::DetermineStationIndex(const visibility_type* in)
         in->Retrieve(fRefStationKey, val);
         if(fStationCode == val){return 0;}
     }
-    
+
     msg_warn("calibration", "manual per-pol delay correction, (remote,reference) " <<
         "stations: ("<<ref<<", "<<rem<<") do not match selection "<<fMk4ID<<"."<< eom );
     return 2;

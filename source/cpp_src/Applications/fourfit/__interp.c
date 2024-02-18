@@ -178,8 +178,8 @@ void __interp (struct type_pass *pass)
                     sbd = status.max_delchan    +        isbd - 2;
                     mbd = status.mbd_max_global + 0.5 * (imbd - 2) * status.mbd_sep;
                     dr  = status.dr_max_global  + 0.5 * (idr - 2)  * status.rate_sep;
-                    
-                    
+
+
                     printf("idr = %d and dr = %.8f \n", idr, dr);
 
                     msg ("[interp]dr %le mbd %le sbd %d sbd_max(ns) %10.6f", -1,

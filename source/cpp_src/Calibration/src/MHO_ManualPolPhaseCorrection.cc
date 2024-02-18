@@ -19,7 +19,7 @@ MHO_ManualPolPhaseCorrection::MHO_ManualPolPhaseCorrection()
 
     fImagUnit = MHO_Constants::imag_unit;
     fDegToRad = MHO_Constants::deg_to_rad;
-    
+
     fPhaseOffset = 0.0;
 };
 
@@ -41,7 +41,7 @@ MHO_ManualPolPhaseCorrection::ExecuteInPlace(visibility_type* in)
         if( PolMatch(st_idx, pp_label) )
         {
             visibility_element_type pc_phasor = std::exp( fImagUnit*fPhaseOffset*fDegToRad );
-            
+
             //conjugate the phase for the reference station, but not remote?
             //should this behavior change depending on the USB/LSB?
             #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")

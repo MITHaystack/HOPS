@@ -56,7 +56,7 @@ int main(int argc, char** argv)
     }
 
     //read the directory file list
-    bool status = false; 
+    bool status = false;
     std::vector< std::string > allFiles;
     std::vector< std::string > corFiles;
     std::vector< std::string > staFiles;
@@ -161,10 +161,8 @@ int main(int argc, char** argv)
 
 
 
-    //clean up 
+    //clean up
     delete bl_data;
     delete pcal_data;
     return 0;
 }
-
-

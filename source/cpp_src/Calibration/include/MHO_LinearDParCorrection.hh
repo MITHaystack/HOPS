@@ -39,7 +39,7 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
 
         void SetPolProductSet(std::vector< std::string >& pp_vec){ fPolProductSet = pp_vec;};
 
-        // //these data objects are not used yet, but could be needed if we want to apply 
+        // //these data objects are not used yet, but could be needed if we want to apply
         // //time-dependence to the pol-product pre-factors
         // void SetReferenceStationCoordinateData(station_coord_type* ref_data){fRefData = ref_data;};
         // void SetRemoteStationCoordinateData(station_coord_type* rem_data){fRemData = rem_data;};
@@ -47,7 +47,7 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
         //parallactic angle values for each station (expects degrees)
         void SetReferenceParallacticAngle(double p){fRefParAngle = p;}
         void SetRemoteParallacticAngle(double p){fRemParAngle = p;}
-        
+
         // //not currently used (but needed for circ-circ pol sum)
         // void SetReferenceMountType(std::string mt){fRefMountType = mt;}
         // void SetRemoteMountType(std::string mt){fRemMountType = mt;}
@@ -61,7 +61,7 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
-        
+
 
         //multiplies each pol product by the appropriate pre-factor
         void PreMultiply(visibility_type* in);

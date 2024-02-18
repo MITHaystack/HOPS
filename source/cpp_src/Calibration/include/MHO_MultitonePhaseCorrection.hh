@@ -51,7 +51,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
 
          //pass in the data weights (to be applied to the pcal phasors as well?)
          void SetWeights(weight_type* w){fWeights = w;}
-         
+
     protected:
 
         virtual bool InitializeInPlace(visibility_type* /*in*/) override {return true;};
@@ -103,7 +103,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         //the multi-tone pcal data
         std::size_t fPCPeriod;
         multitone_pcal_type* fPCData;
-        
+
         //the data weights
         weight_type* fWeights;
 
@@ -129,7 +129,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         std::string fPCToneMaskBitmasksKey;
         bool fHavePCToneMask;
         std::string fPCToneMaskChannels;
-        std::vector< int > fPCToneMaskBitmasks; 
+        std::vector< int > fPCToneMaskBitmasks;
 
 
         //minor helper function to make sure all strings are compared as upper-case only

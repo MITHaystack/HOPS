@@ -279,7 +279,7 @@ sbd_type* extract_sbd_v2(struct type_pass* pass, struct type_param* param)
     //     if(pol == 0)
     //     {
     //         int sband = pass->pass_data[ch].data->sband;
-    // 
+    //
     //         //for(int sb=0; sb<2; sb++)
     //         {
     //             if(pass->pass_data[ch].data->apdata_ll[sb] != NULL)
@@ -291,7 +291,7 @@ sbd_type* extract_sbd_v2(struct type_pass* pass, struct type_param* param)
     //         }
     //     }
     // }
-    
+
     // std::cout<<"nlags = "<<nlags<<std::endl;
 
     //lets extract the pass data into a visibility container
@@ -357,5 +357,3 @@ void extract_sbd_dr(struct type_pass* pass, struct type_status* status, int fr, 
         }
     // }
 }
-
-
