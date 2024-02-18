@@ -357,8 +357,8 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     t208->quality = qcode[0];
 
     std::string errcode;
-    ok = fPStore->Get("/fringe/error_code", errcode);     //TODO implement the error code calc!
-    errcode = " ";
+    ok = fPStore->Get("/fringe/error_code", errcode);
+    if(!ok){errcode = " ";};
     t208->errcode = errcode[0];
 
     //don't forget the "provisional" pol product indicator
