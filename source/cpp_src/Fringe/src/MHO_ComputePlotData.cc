@@ -482,7 +482,7 @@ MHO_ComputePlotData::calc_phase()
         }
 
         //set the fringe phasor
-        //NOTE we have applied the correction factor (see make_plotdata.c line 356)
+        //NOTE we have NOT applied the correction factor (see make_plotdata.c line 356)
         //c = (sumwt > 0.0) ? status.amp_corr_fact/sumwt : 0.0;
         fFringe[ch] = fringe_phasor/sumwt;
     }
@@ -985,7 +985,10 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     plot_dict["extra"]["nlags"] = fParamStore->GetAs<int>("/config/nlags");
 
 
-    calc_error_code();
+    std::string errcode = calc_error_code();
+    plot_dict["extra"]["error_code"] = errcode;
+    fParamStore->Set("/fringe/error_code", errcode);
+
 }
 
 
