@@ -933,6 +933,10 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     plot_dict["extra"]["inc_avg_amp"] = inc_avg_amp;
     plot_dict["extra"]["inc_avg_amp_freq"] = inc_avg_amp_freq;
 
+    #pragma message("TODO FIXME -- store the rest of these incoherent/theory parameters in the store")
+    fParamStore->Set("/fringe/inc_avg_amp_freq", inc_avg_amp_freq);
+
+
     //stuff this in the parameter store too (reorganize this later)
     fParamStore->Set("/fringe/freqrms_phase", freqrms_phase);
     fParamStore->Set("/fringe/freqrms_amp", freqrms_amp);
@@ -1158,102 +1162,92 @@ MHO_ComputePlotData::calc_quality_code()
 std::string
 MHO_ComputePlotData::calc_error_code()
 {
-    std::string err_code = " ";
+
+    #pragma message("TODO FIXME -- implement error codes other than G and H, also move all param retrieval outside of this function and pass in data")
+
+    std::string errcode = " "; //default
+
+    double weak_channel;
+    bool ok = fParamStore->Get("/control/fit/weak_channel", weak_channel);
+    if(!ok){weak_channel = 0.0;} //what is fourfit default
+
+    double snr;
+    ok = fParamStore->Get("/fringe/snr", snr);
+
+    double inc_avg_amp_freq;
+    ok = fParamStore->Get("/fringe/inc_avg_amp_freq", inc_avg_amp_freq);
+
+    std::string ref_mk4id = fParamStore->GetAs<std::string>("/ref_station/mk4id");
+    std::string rem_mk4id = fParamStore->GetAs<std::string>("/rem_station/mk4id");
+
+    //pass the pcal mode that was used
+    //check pc_mode values to see if this operator should be built at all (defaults to true)
+    //first we check if there is a 'pc_mode' defined under '/control/station/pc_mode'
+    std::string generic_pc_mode = "manual";
+    if(fParamStore->IsPresent("/control/station/pc_mode"))
+    {
+        //load possible generic setting
+        generic_pc_mode = fParamStore->GetAs<std::string>("/control/station/pc_mode");
+    }
+    std::string ref_pc_mode = generic_pc_mode;
+    std::string rem_pc_mode = generic_pc_mode;
+
+    //override with any station specific parameters
+    std::string ref_station_pcmode_path = std::string("/control/station/") + ref_mk4id + "/pc_mode";
+    if(fParamStore->IsPresent(ref_station_pcmode_path) )
+    {
+        ref_pc_mode = fParamStore->GetAs<std::string>(ref_station_pcmode_path);
+    }
+
+    //override with any station specific parameters
+    std::string rem_station_pcmode_path = std::string("/control/station/") + rem_mk4id + "/pc_mode";
+    if(fParamStore->IsPresent(ref_station_pcmode_path) )
+    {
+        rem_pc_mode = fParamStore->GetAs<std::string>(rem_station_pcmode_path);
+    }
+
+    //Channel < half of mean for G-code
+    bool low_chan = false;
+
+    //low pcal amp flags
+    bool ref_low_pcal = false;
+    bool rem_low_pcal = false;
 
 
+    //need fringe phasor data and pc_amp data
+    // for( std::size_t i=0; i < nchan; i++)
+    // {
+        // if( std::abs(status->fringe[i]) < (weak_channel * inc_avg_amp_freq) )
+        // {
+        //     low_chan = true;
+        // }
+
+        // if( status->pc_amp[i][0][stnpol[0][pass->pol]] < param->pc_amp_hcode || status->pc_amp[i][0][stnpol[0][pass->pol]] > 0.500)
+        // {
+        //     ref_low_pcal = true;
+        // }
+        //
+        // if( status->pc_amp[i][1][stnpol[1][pass->pol]] < param->pc_amp_hcode || status->pc_amp[i][1][stnpol[1][pass->pol]] > 0.500)
+        // {
+        //     rem_low_pcal = true;
+        // }
+    // }
 
 
-        //                                     /* Figure out a few conditions for */
-        //                                     /* calculation of qcode */
-        //                                     /* Missing tracks for D-code */
-        // missing_track = FALSE;
-        //                                     /* Channel < half of mean for 2-code */
-        // low_chan = FALSE;
-        //                                     /* Low Pcal amplitude < some threshhold */
-        // low_pcal[0] = low_pcal[1] = FALSE;
-        // for (i=0; i<pass->nfreq; i++)
-        //     {
-        //                                     /* Both sidebands must be absent to
-        //                                        cause a D-code */
-        //     if ((status->ap_num[0][i] == 0) && (status->ap_num[1][i] == 0))
-        //         missing_track = TRUE;
-        //     if (abs_complex(status->fringe[i]) < (param->weak_channel * status->inc_avg_amp_freq))
-        //         low_chan = TRUE;
-        //                                     /* re-enable the following test;
-        //                                      * change threshold units  rjc 2001.10.25
-        //                                      * also mark high amp bad  rjc 2005.10.26 */
-        //     if (status->pc_amp[i][0][stnpol[0][pass->pol]] < param->pc_amp_hcode
-        //      || status->pc_amp[i][0][stnpol[0][pass->pol]] > 0.500)
-        //         low_pcal[0] = TRUE;
-        //     if (status->pc_amp[i][1][stnpol[1][pass->pol]] < param->pc_amp_hcode
-        //      || status->pc_amp[i][1][stnpol[1][pass->pol]] > 0.500)
-        //         low_pcal[1] = TRUE;
-        //     }
-        //                                     /* Zero-width windows nullify B/E-codes */
-        // if (param->win_sb[0] == param->win_sb[1])
-        //     status->interp_err &= ~(WIN_EDGE_SBD | INTP_ERR_SBD);
-        // if (param->win_mb[0] == param->win_mb[1])
-        //     status->interp_err &= ~(WIN_EDGE_MBD | INTP_ERR_MBD);
-        // if (param->win_dr[0] == param->win_dr[1])
-        //     status->interp_err &= ~(WIN_EDGE_RATE | INTP_ERR_RATE);
-        //                                     /* Default value */
-        // *errcode = ' ';
-        //                                     /* Fill in qcode ... earlier codes in this */
-        //                                     /* if/else clause override later codes */
-        //                                     /* A-code means fourfit unable to handle */
-        //                                     /* (probably will never implement) */
-        // //if (0==1)
-        // // co-opted for passband and notches used together
-        // if (param->nnotches > 0 && (param->passband[0] != 0.0 || param->passband[1] != 1.0E6))
-        //     *errcode = 'A';
-        //                                     /* B-code caused by interpolation error, */
-        //                                     /* usually due to fringes at edge of window */
-        // else if (status->interp_err & (INTP_ERR_SBD | INTP_ERR_MBD | INTP_ERR_RATE))
-        //     {
-        //     msg ("Interpolation error", 2);
-        //     *errcode = 'B';
-        //     }
-        //                                     /* C epoch error condition test here */
-        // else if (0==1)
-        //     *errcode = 'C';
-        //                                     /* D-code, at least 1 channel missing */
-        // else if (missing_track)
-        //     *errcode = 'D';
-        //                                     /* F code means no data found, dummy output */
-        //                                     /* (not yet implemented) */
-        //                                     /* for now, use F to catch SU "forks"
-        //                                      * rjc 2001.2.26 */
-        // else if (((filter.zero[0] - pass->nfreq) * 4 >= status->total_ap)
-        //       || ((filter.zero[0] - pass->nfreq) * 4 >= status->total_ap))
-        //     *errcode = 'F';
-        //                                     /* No fringes, just leave at 0. Placed */
-        //                                     /* here to override E, 1 and 2 codes */
-        // else if (status->prob_false > 1.E-4)
-        //     ;
-        //                                     /* E code means solution at edge of */
-        //                                     /* window, see above (may need more */
-        //                                     /* sophistication for wide-open windows */
-        // else if (status->interp_err & (WIN_EDGE_SBD | WIN_EDGE_MBD | WIN_EDGE_RATE))
-        //     *errcode = 'E';
-        //                                     /* G-code means a weak channel when SNR>20 */
-        // else if (low_chan && (status->snr > 20.0))
-        //     *errcode = 'G';
-        //                                     /* H-code means 1 or more pcals < .01 */
-        //                                     /* when in normal pcal mode */
-        //                                     /* When in multione mode, this means */
-        //                                     /* that the coherent avarage pcal amp */
-        //                                     /* is below the threshold. However, it*/
-        //                                     /* is still possible for individual tones */
-        //                                     /* to be below the threhold, and not have */
-        //                                     /* and H code flagged */
-        // else if ( (low_pcal[0] &&
-        //           (param->pc_mode[0] == NORMAL || param->pc_mode[0] == MULTITONE))||
-        //           (low_pcal[1] &&
-        //           (param->pc_mode[1] == NORMAL || param->pc_mode[1] == MULTITONE)) )
-        //     *errcode = 'H';
+    /* G-code means a weak channel when SNR>20 */
+    if( low_chan && snr > 20.0)
+    {
+        errcode = "G";
+    }
 
+    //only care about 'multitone', 'normal' pc_mode not implemented
+    if(  (ref_low_pcal && ( ref_pc_mode == "multione") ) ||
+         (rem_low_pcal && ( rem_pc_mode == "multione") ) )
+    {
+        errcode = "H";
+    }
 
-    return err_code;
+    return errcode;
 }
 
 void MHO_ComputePlotData::dump_multitone_pcmodel
