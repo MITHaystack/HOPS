@@ -1190,7 +1190,7 @@ MHO_ComputePlotData::calc_error_code()
 
     double weak_channel;
     bool ok = fParamStore->Get("/control/fit/weak_channel", weak_channel);
-    if(!ok){weak_channel = 0.5;} //what is fourfit default?
+    if(!ok){weak_channel = 0.5;} //default weak_channel threshold is 0.5
 
     double snr;
     ok = fParamStore->Get("/fringe/snr", snr);
@@ -1239,7 +1239,7 @@ MHO_ComputePlotData::calc_error_code()
     std::size_t nchan = fFringe.GetDimension(0);
     for( std::size_t i=0; i<nchan; i++)
     {
-        std::cout<<"comparing fringe amp @"<<i<<": "<<fFringe[i]<< " ? " <<(weak_channel * inc_avg_amp_freq)<<std::endl;
+        //std::cout<<"comparing fringe amp @"<<i<<": "<<fFringe[i]<< " ? " <<(weak_channel * inc_avg_amp_freq)<<std::endl;
 
         if( std::abs(fFringe[i]) < (weak_channel * inc_avg_amp_freq) )
         {
@@ -1271,7 +1271,10 @@ MHO_ComputePlotData::calc_error_code()
         errcode = "H";
     }
 
-    std::cout<<"ERR CODE = "<<errcode<<std::endl;
+    if(errcode != " ")
+    {
+        msg_info("fringe", "fringe condition assigned error code: " << errcode << eom);
+    }
 
     return errcode;
 }

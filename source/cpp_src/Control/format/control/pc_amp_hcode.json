@@ -1,5 +1,6 @@
 {
     "name": "pc_amp_hcode",
     "statement_type": "parameter",
+    "parameter_type": "fit",
     "type": "real"
 }
