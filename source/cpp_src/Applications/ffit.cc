@@ -32,11 +32,9 @@
     #include "MHO_PythonOperatorBuilder.hh"
 #endif
 
-#define EXPORT_MK4
-
-#ifdef EXPORT_MK4
+//needed to export to mark4 fringe files
 #include "MHO_MK4FringeExport.hh"
-#endif
+
 
 using namespace hops;
 
@@ -69,6 +67,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     std::string reftime = ""; //'-T' specify the fourfit reference time - not yet enabled
     bool xwindows; //'-x' same as option '-p' we no long use pgplot/xwindows
     bool xpower_output = false; //-X export xpower spectrum
+    bool use_mk4_output = false;
     std::string input;
 
     CLI::App app{"ffit"};
@@ -95,6 +94,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     app.add_flag("-x,--xwindows", xwindows, "display plot using xwindows (ignored, not yet implemented)");
     app.add_flag("-X,--xpower-output", xpower_output, "output spectral cross power data (ignored, not yet implemented)");
     app.add_option("input,-i,--input", input, "name of the input directory (scan) or root file")->required();
+    app.add_flag("-k,--mark4-output", use_mk4_output, "write output files in mark4 type_2xx format");
 
     //add the 'set' command for control file parameter overrides
     auto *setcom = app.add_subcommand("set", "pass control file parameters and related syntax on the command line")->prefix_command();
@@ -174,6 +174,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     //reftime = ""; //not implemented
     //xpower_output = false; //not implemented
     paramStore->Set("/cmdline/set_string", set_string); //TODO
+    paramStore->Set("/cmdline/mk4format_output", use_mk4_output);
 
     int status = MHO_BasicFringeDataConfiguration::sanity_check(paramStore);
 
@@ -259,15 +260,21 @@ int main(int argc, char** argv)
     //open and dump to file -- should we profile this as well?
     if(!test_mode)
     {
-        fringeData.WriteOutput();
+        bool use_mk4_output = false;
+        fringeData.GetParameterStore()->Get("/cmdline/mk4format_output", use_mk4_output);
 
-        #ifdef EXPORT_MK4
-        MHO_MK4FringeExport fexporter;
-        fexporter.SetParameterStore(fringeData.GetParameterStore());
-        fexporter.SetPlotData(plot_data);
-        fexporter.SetContainerStore(fringeData.GetContainerStore());
-        fexporter.ExportFringeFile();
-        #endif
+        if(!use_mk4_output)
+        {
+            fringeData.WriteOutput();
+        }
+        else
+        {
+            MHO_MK4FringeExport fexporter;
+            fexporter.SetParameterStore(fringeData.GetParameterStore());
+            fexporter.SetPlotData(plot_data);
+            fexporter.SetContainerStore(fringeData.GetContainerStore());
+            fexporter.ExportFringeFile();
+        }
     }
 
 
