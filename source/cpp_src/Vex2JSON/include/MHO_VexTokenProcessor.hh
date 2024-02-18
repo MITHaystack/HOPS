@@ -27,7 +27,7 @@ class MHO_VexTokenProcessor
     public:
         MHO_VexTokenProcessor();
         virtual ~MHO_VexTokenProcessor();
-    
+
         mho_json ProcessInt(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
         mho_json ProcessListInt(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
         mho_json ProcessListString(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);

@@ -25,7 +25,7 @@
 #include "MHO_VexTokenProcessor.hh"
 #include "MHO_VexDefinitions.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_VexBlockParser
@@ -50,22 +50,22 @@ class MHO_VexBlockParser
         bool IsStopTag(const MHO_VexLine& line);
         bool IsReferenceTag(const MHO_VexLine& line);
 
-        bool ProcessStartTag(const MHO_VexLine& line, 
+        bool ProcessStartTag(const MHO_VexLine& line,
                              std::stack< std::string >& path,
                              std::stack< mho_json* >& file_node,
                              std::stack< mho_json >& format_node);
 
-        bool ProcessStopTag(const MHO_VexLine& line, 
+        bool ProcessStopTag(const MHO_VexLine& line,
                               std::stack< std::string >& path,
                               std::stack< mho_json* >& file_node,
                               std::stack< mho_json >& format_node);
 
-        bool ProcessLine(const MHO_VexLine& line, 
+        bool ProcessLine(const MHO_VexLine& line,
                          std::stack< std::string >& path,
                          mho_json* file_node,
                          mho_json& format_node);
 
-        bool ProcessReference(const MHO_VexLine& line, 
+        bool ProcessReference(const MHO_VexLine& line,
                          std::stack< std::string >& path,
                          mho_json* file_node,
                          mho_json& format_node);
@@ -82,7 +82,7 @@ class MHO_VexBlockParser
         std::string fFormatDirectory;
         const std::vector< MHO_VexLine >* fBlockLines;
         std::size_t fCurrentLineNumber;
-        
+
         std::string fStartTag;
         std::string fStopTag;
 

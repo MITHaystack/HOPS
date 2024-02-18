@@ -27,7 +27,7 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
         {
             pc_mode = this->fParameterStore->GetAs<std::string>("/control/station/pc_mode");
         }
-        
+
         //however, any station specific value under '/control/station/<mk4id>/pc_mode' will
         //override the generic /control/station/pc_mode
         std::string station_pcmode_path = std::string("/control/station/") + mk4id + "/pc_mode";
@@ -185,7 +185,7 @@ MHO_MultitonePhaseCorrectionBuilder::GetSamplerDelayKey(std::string pol)
 
 void MHO_MultitonePhaseCorrectionBuilder::AttachPCToneMask(multitone_pcal_type* pcal_data, std::string mk4id)
 {
-    //pulls the appropriate pc_tonemask data from the parameter store and labels the pcal data 
+    //pulls the appropriate pc_tonemask data from the parameter store and labels the pcal data
     std::string pc_tonemask_key = "pc_tonemask";
     std::string channel_names_key = "channel_names";
     std::string tone_masks_key = "tone_masks";
@@ -221,7 +221,7 @@ void MHO_MultitonePhaseCorrectionBuilder::AttachPCToneMask(multitone_pcal_type* 
         pcal_data->Insert("pc_tonemask_channels", channel_names);
         pcal_data->Insert("pc_tonemask_bitmasks", tone_masks);
     }
-    // else 
+    // else
     // {
     //     msg_warn("initialization", "could not configure pc_tonemask for station: "<< mk4id<< ", assuming no pc tone masks." << eom);
     // }

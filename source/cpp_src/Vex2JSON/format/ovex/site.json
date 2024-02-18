@@ -49,7 +49,7 @@
         "orbit_epoch": {"type": "epoch"},
         "mk4_site_ID": {"type": "string"}
     },
-    "fields": 
+    "fields":
     [
         "site_type",
         "site_name",

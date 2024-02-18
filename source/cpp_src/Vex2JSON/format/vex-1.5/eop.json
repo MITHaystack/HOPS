@@ -16,7 +16,7 @@
         "x_wobble": {"type":"list_real", "dimension": "angle"},
         "y_wobble": {"type":"list_real", "dimension": "angle"}
     },
-    "fields": 
+    "fields":
     [
         "TAI-UTC",
         "A1-TAI",

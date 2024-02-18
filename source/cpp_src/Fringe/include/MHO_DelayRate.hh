@@ -64,7 +64,7 @@ class MHO_DelayRate: public MHO_BinaryOperator<
         #else
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< visibility_type >;
         #endif
-        
+
         MHO_SubSample<sbd_type> fSubSampler;
         MHO_CyclicRotator<sbd_type> fCyclicRotator;
 

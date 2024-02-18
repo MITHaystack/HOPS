@@ -51,7 +51,7 @@ class MHO_OpenCLMultidimensionalFastFourierTransform:
         {
             if( in != nullptr ){fIsValid = true;}
             else{fIsValid = false;}
-            
+
             if(fIsValid)
             {
                 //check if the current transform sizes are the same as the input
@@ -63,7 +63,7 @@ class MHO_OpenCLMultidimensionalFastFourierTransform:
                 if(need_to_resize)
                 {
                     in->GetDimensions(fDimensionSize);
-                    
+
                     InitHostWorkspace();
                     InitDeviceWorkspace();
                     // DeallocateDeviceWorkspace();
@@ -77,7 +77,7 @@ class MHO_OpenCLMultidimensionalFastFourierTransform:
 
         virtual bool ExecuteInPlace(XArgType* in) override
         {
-            
+
         }
 
 
@@ -121,14 +121,14 @@ class MHO_OpenCLMultidimensionalFastFourierTransform:
             {
                 if( fAxesToXForm[i] )
                 {
-                    fHostPlans[i].Resize(fDimensionSize[i]); 
+                    fHostPlans[i].Resize(fDimensionSize[i]);
                     if(fMaxBufferSize < fHostPlans[i].GetN() ){ fMaxBufferSize = fHostPlans[i].GetN(); }
                     if(fMaxBufferSize < fHostPlans[i].GetM() ){ fMaxBufferSize = fHostPlans[i].GetM(); }
                 }
             }
         }
-        
-        
+
+
         void InitDeviceWorkspace()
         {
             DeallocateDeviceWorkspace();
@@ -206,12 +206,12 @@ class MHO_OpenCLMultidimensionalFastFourierTransform:
                     fMaxNWorkItems = n_global;
                 };
             }
-            
+
         }
 
 
 
-        
+
         //data
 
 

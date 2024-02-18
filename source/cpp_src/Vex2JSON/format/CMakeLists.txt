@@ -25,7 +25,7 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-1.5/procedures.json" DESTINATION 
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-1.5/global.json" DESTINATION "${DATA_INSTALL_DIR}/vex-1.5")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-1.5/station.json" DESTINATION "${DATA_INSTALL_DIR}/vex-1.5")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-1.5/mode.json" DESTINATION "${DATA_INSTALL_DIR}/vex-1.5")
-#unsupported dummy files 
+#unsupported dummy files
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-1.5/head_pos.json" DESTINATION "${DATA_INSTALL_DIR}/vex-1.5")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-1.5/pass_order.json" DESTINATION "${DATA_INSTALL_DIR}/vex-1.5")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-1.5/roll.json" DESTINATION "${DATA_INSTALL_DIR}/vex-1.5")
@@ -58,12 +58,12 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/procedures.json" DESTINATION 
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/global.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/station.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/mode.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
-#unsupported dummy files 
+#unsupported dummy files
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/head_pos.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/pass_order.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/roll.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 
-#install the ovex files 
+#install the ovex files
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/ovex/block-names.json" DESTINATION "${DATA_INSTALL_DIR}/ovex")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/ovex/ovex_rev.json" DESTINATION "${DATA_INSTALL_DIR}/ovex")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/ovex/antenna.json" DESTINATION "${DATA_INSTALL_DIR}/ovex")
@@ -86,7 +86,7 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/ovex/procedures.json" DESTINATION "${
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/ovex/global.json" DESTINATION "${DATA_INSTALL_DIR}/ovex")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/ovex/station.json" DESTINATION "${DATA_INSTALL_DIR}/ovex")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/ovex/mode.json" DESTINATION "${DATA_INSTALL_DIR}/ovex")
-#unsupported dummy files 
+#unsupported dummy files
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/ovex/head_pos.json" DESTINATION "${DATA_INSTALL_DIR}/ovex")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/ovex/pass_order.json" DESTINATION "${DATA_INSTALL_DIR}/ovex")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/ovex/roll.json" DESTINATION "${DATA_INSTALL_DIR}/ovex")

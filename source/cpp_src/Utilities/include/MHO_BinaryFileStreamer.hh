@@ -125,7 +125,7 @@ template<> class MHO_BinaryFileStreamerSingleType<mho_json>
             data.resize(size);
             s.GetStream().read(reinterpret_cast<char*>(&(data[0])), size);
             //TODO FIXME - Add the ability to support other JSON encodings besides CBOR
-            //now decode from CBOR 
+            //now decode from CBOR
             if(encoding == 0)
             {
                 obj = mho_json::from_cbor(data);

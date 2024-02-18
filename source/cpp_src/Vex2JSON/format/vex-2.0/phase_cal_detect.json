@@ -18,7 +18,7 @@
             "fields": ["pcal_id", "tone_numbers"]
         }
     },
-    "fields": 
+    "fields":
     [
         "phase_cal_detect"
     ]

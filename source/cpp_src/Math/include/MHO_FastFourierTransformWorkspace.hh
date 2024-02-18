@@ -20,7 +20,7 @@ class
 MHO_FastFourierTransformWorkspace
 {
     public:
-        
+
         MHO_FastFourierTransformWorkspace()
         {
             fN = 0;
@@ -45,7 +45,7 @@ MHO_FastFourierTransformWorkspace
             fWorkspace = nullptr;
             Resize(n);
         };
-        
+
         MHO_FastFourierTransformWorkspace(const MHO_FastFourierTransformWorkspace& copy)
         {
             fN = 0;
@@ -95,9 +95,9 @@ MHO_FastFourierTransformWorkspace
         std::complex<XFloatType>* fScale;  //unused for radix-2 (nullptr)
         std::complex<XFloatType>* fCirculant;  //unused for radix-2 (nullptr)
         std::complex<XFloatType>* fWorkspace;  //unused for radix-2 (nullptr)
-        
+
     private:
-        
+
         void Deallocate()
         {
             delete[] fPermutation; fPermutation = nullptr;
@@ -109,13 +109,13 @@ MHO_FastFourierTransformWorkspace
             fN = 0;
             fM = 0;
         }
-        
+
         void Fill()
         {
             if(fN == 0){return;}
             if(fM == 0)
             {
-                //radix-2 algorithm, only need a handful of items 
+                //radix-2 algorithm, only need a handful of items
                 MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(fN, fPermutation);
                 MHO_FastFourierTransformUtilities<XFloatType>::ComputeTwiddleFactors(fN, fTwiddle);
                 MHO_FastFourierTransformUtilities<XFloatType>::ComputeConjugateTwiddleFactors(fN, fConjugateTwiddle);
@@ -156,9 +156,9 @@ MHO_FastFourierTransformWorkspace
                 fConjugateTwiddle = new std::complex<XFloatType>[fN];
             }
         }
-        
 
-        
+
+
 
 };
 

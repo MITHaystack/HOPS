@@ -82,7 +82,7 @@ class MHO_ContainerStore
         //get all short names currently in use
         void GetAllShortNames(std::vector< std::string >& shortnames);
 
-        //this is primarily here to provide a object look-up table for the python interface 
+        //this is primarily here to provide a object look-up table for the python interface
         //returns a list of (object_type_uuid, object_item_uuid, shortname)
         std::vector< std::tuple< std::string, std::string, std::string > > GetAllObjectInfo();
 

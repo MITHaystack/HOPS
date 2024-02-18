@@ -4,7 +4,7 @@
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_DelayModel
@@ -12,7 +12,7 @@ class MHO_DelayModel
     public:
         MHO_DelayModel();
         virtual ~MHO_DelayModel();
-        
+
         void SetFourfitReferenceTimeVexString(std::string fourfit_reftime_string){fRefTimeString = fourfit_reftime_string;};
         void SetReferenceStationData(station_coord_type* ref_data){fRefData = ref_data;};
         void SetRemoteStationData(station_coord_type* rem_data){fRemData = rem_data;};
@@ -24,7 +24,7 @@ class MHO_DelayModel
 
         void SetReferenceStationClockOffset(double clock_off){fRefClockOff = clock_off;}
         void SetReferenceStationClockRate(double clock_rate){fRefClockRate = clock_rate;}
-    
+
         double GetRefDelay(){return fRefDelay;}
         double GetRefRate(){return fRefRate;};
         double GetRefStationDelay(){return fRefStationDelay;}
@@ -48,12 +48,12 @@ class MHO_DelayModel
         station_coord_type* fRefData;
         station_coord_type* fRemData;
 
-        //results 
+        //results
         double fDelay;
         double fRate;
         double fAccel;
 
-        //ref station 
+        //ref station
         double fRefClockOff;
         double fRefClockRate;
 
@@ -75,7 +75,7 @@ MHO_DelayModel::EvaluateDelaySpline(const XCoeffVectorType& coeff, double delta_
 
     //compute delay, rate accel
     results[DELAY_INDEX] = 0.0;
-    results[RATE_INDEX] = 0.0; 
+    results[RATE_INDEX] = 0.0;
     results[ACCEL_INDEX] = 0.0;
     int n_coeff = coeff.GetSize();
     double tp, tpm1, tpm2, c;
@@ -93,7 +93,7 @@ MHO_DelayModel::EvaluateDelaySpline(const XCoeffVectorType& coeff, double delta_
 
 
 template< typename XTagType >
-XTagType 
+XTagType
 MHO_DelayModel::RetrieveTag(station_coord_type* data, std::string key)
 {
     //get the ref/rem station codes

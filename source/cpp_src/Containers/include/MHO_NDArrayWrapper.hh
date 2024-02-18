@@ -45,13 +45,13 @@ class MHO_NDArrayWrapper:
 
         //constructors
         //empty constructor, to be configured later
-        MHO_NDArrayWrapper(){Construct(nullptr, nullptr);}; 
+        MHO_NDArrayWrapper(){Construct(nullptr, nullptr);};
 
         //data is internally allocated
-        MHO_NDArrayWrapper(const std::size_t* dim){Construct(nullptr, dim);}; 
+        MHO_NDArrayWrapper(const std::size_t* dim){Construct(nullptr, dim);};
 
         //data is interally allocated, but copied in from an external source
-        MHO_NDArrayWrapper(XValueType* ptr, const std::size_t* dim){Construct(ptr,dim);}; 
+        MHO_NDArrayWrapper(XValueType* ptr, const std::size_t* dim){Construct(ptr,dim);};
 
         //copy constructor
         MHO_NDArrayWrapper(const MHO_NDArrayWrapper& obj)
@@ -93,7 +93,7 @@ class MHO_NDArrayWrapper:
         const std::size_t* GetDimensions() const {return &(fDims[0]);}
         void GetDimensions(std::size_t* dim) const { for(std::size_t i=0; i<RANK; i++){dim[i] = fDims[i];} }
         index_type GetDimensionArray() const {return fDims;}
-        std::size_t GetDimension(std::size_t idx) const 
+        std::size_t GetDimension(std::size_t idx) const
         {
             if(idx < RANK){return fDims[idx];}
             else{ throw std::out_of_range("MHO_NDArrayWrapper::GetDimension() index out of range."); }
@@ -195,7 +195,7 @@ class MHO_NDArrayWrapper:
         {
             return MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), index);
         }
-        
+
         //linear offset into the array
         index_type GetIndicesForOffset(std::size_t offset)
         {

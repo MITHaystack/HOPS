@@ -16,7 +16,7 @@
                 "datastream_format": {"type": "string"},
                 "datastream_label": {"type": "string"}
             },
-            "fields": 
+            "fields":
             [
                 "datastream_link",
                 "datastream_format",
@@ -37,7 +37,7 @@
                 "sample_type": {"type": "string"},
                 "bytes_per_packet":{"type":"int"}
             },
-            "fields": 
+            "fields":
             [
                 "datastream_link",
                 "thread_link",
@@ -59,7 +59,7 @@
                 "channel_link": {"type": "link"},
                 "channel_number": {"type": "int"}
             },
-            "fields": 
+            "fields":
             [
                 "datastream_link",
                 "thread_link",
@@ -76,7 +76,7 @@
                 "merged_datastream_label": {"type": "string"},
                 "constituent_datastreams": {"type": "list_string"}
             },
-            "fields": 
+            "fields":
             [
                 "merged_datastream_link",
                 "merged_datastream_label",
@@ -84,7 +84,7 @@
             ]
         }
     },
-    "fields": 
+    "fields":
     [
         "datastream",
         "thread",

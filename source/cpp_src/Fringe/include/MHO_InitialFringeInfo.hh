@@ -7,7 +7,7 @@
 *Author:
 *Email:
 *Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: collection of helper functions to populate the parameter store 
+*Description: collection of helper functions to populate the parameter store
 * with a priori information know before fringe fitting
 */
 
@@ -19,16 +19,16 @@
 #include "MHO_ContainerStore.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_InitialFringeInfo
 {
-        
+
     public:
         MHO_InitialFringeInfo(){};
         virtual ~MHO_InitialFringeInfo(){};
-    
+
     public:
         static void set_default_parameters_minimal(MHO_ParameterStore* paramStore);
         static void configure_reference_frequency(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);

@@ -31,7 +31,7 @@ class MHO_InterpolateFringePeak: public MHO_Operator
 
         void EnableOptimizeClosure(){fRot.SetOptimizeClosureTrue();}
         void DisableOptimizeClosure(){fRot.SetOptimizeClosureFalse();}
-        
+
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
         void SetReferenceTimeOffset(double frt_offset){fFRTOffset = frt_offset;}
         void SetMaxBins(int sbd_max, int mbd_max, int dr_max);
@@ -80,7 +80,7 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         void max555 (MHO_NDArrayWrapper<double, 3>&, double xlim[3][2], double xi[3], double *drfmax);
         void interp555 (MHO_NDArrayWrapper<double, 3>&, double xi[3], double *drfval);
         double dwin (double, double, double);
-        
+
         //class which implements vrot
         MHO_FringeRotation fRot;
 };

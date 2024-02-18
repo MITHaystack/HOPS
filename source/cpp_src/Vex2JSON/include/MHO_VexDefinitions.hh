@@ -14,7 +14,7 @@
 #include <vector>
 #include "MHO_Message.hh"
 
-namespace hops 
+namespace hops
 {
 
 enum vex_element_type

@@ -37,7 +37,7 @@ class MHO_Taggable:
             MHO_JSONWrapper(copy)
         {
         };
-        
+
         virtual ~MHO_Taggable(){};
 
         MHO_Taggable& operator=(const MHO_Taggable& rhs)
@@ -95,11 +95,11 @@ class MHO_Taggable:
             total_size += sizeof(MHO_ClassVersion); //version number
 
             //compute the serialized size of fObject in CBOR encoding.
-            //this is a somewhat inconvenient waste of time to encode the data 
+            //this is a somewhat inconvenient waste of time to encode the data
             //just so we can find out the size (should we cache this serialized data?)
             std::vector<std::uint8_t> data = mho_json::to_cbor(fObject);
             uint64_t size = data.size();
-            
+
             total_size += sizeof(uint64_t);//for the encoded data-size parameter
             total_size += sizeof(uint64_t);//for parameter that specifies the type of the JSON binary encoding
             total_size += size*sizeof(std::uint8_t); //for the actual data

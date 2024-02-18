@@ -78,7 +78,7 @@ class MHO_Interval
             return fUpperBound;
         }
 
-        XIntegerType GetLength() const 
+        XIntegerType GetLength() const
         {
             return fUpperBound - fLowerBound;
         }

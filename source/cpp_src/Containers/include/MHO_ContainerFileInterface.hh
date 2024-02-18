@@ -18,7 +18,7 @@
 #include "MHO_ContainerStore.hh"
 
 
-namespace hops 
+namespace hops
 {
 
 class MHO_ContainerFileInterface: public MHO_ContainerDictionary
@@ -36,7 +36,7 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
         void SetIndexFileName(std::string index_filename);
 
         //currently this function reads the file keys and then the all the file objects
-        //we may want to split this functionality so we can inspect the file first 
+        //we may want to split this functionality so we can inspect the file first
         //and then only read the objects of interest
         void PopulateStoreFromFile(MHO_ContainerStore& store, bool do_clear_store=false);
 

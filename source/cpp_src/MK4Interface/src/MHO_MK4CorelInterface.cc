@@ -105,7 +105,7 @@ MHO_MK4CorelInterface::ReadCorelFile()
     fRemStation = "";
     fRefStationMk4Id = "";
     fRemStationMk4Id = "";
-    
+
     //determine the root code;
     std::size_t last_dot = fCorelFile.find_last_of('.');
     fRootCode = "";
@@ -114,7 +114,7 @@ MHO_MK4CorelInterface::ReadCorelFile()
         fRootCode = fCorelFile.substr(last_dot + 1);
         //trim to 6 chars if too long (this shouldn't happen)
         if(fRootCode.size() > 6){fRootCode.resize(6);}
-    } 
+    }
 
 }
 
@@ -292,7 +292,7 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         std::string rem_freq_table = mk4IDToFreqTableName[rem_st];
 
         //get the channel information of the reference station
-        //Note: we could probably just parse the polarization information from the mk4 channel IDs 
+        //Note: we could probably just parse the polarization information from the mk4 channel IDs
         //instead of walking the insanely convoluted vex-tree
 
         for(std::size_t nch=0; nch < fVex["$FREQ"][ref_freq_table]["chan_def"].size(); nch++)

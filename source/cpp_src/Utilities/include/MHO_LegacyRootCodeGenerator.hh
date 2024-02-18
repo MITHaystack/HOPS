@@ -15,7 +15,7 @@
 #include <vector>
 
 
-namespace hops 
+namespace hops
 {
 
 
@@ -30,7 +30,7 @@ class MHO_LegacyRootCodeGenerator
         std::string GetCode();
 
         //get a pre-assigned sequential list of N root codes
-        //to avoid collisions/duplicates if sub-Delta-T time intervals 
+        //to avoid collisions/duplicates if sub-Delta-T time intervals
         //are encountered when processing a single experiment;
         std::vector<std::string> GetCodes(std::size_t N);
 

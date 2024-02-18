@@ -37,7 +37,7 @@ int main(int /*argc*/, char** /*argv*/)
     // MHO_IntervalLabel label4(9,12);
     // MHO_IntervalLabel label5(0,6);
     // MHO_IntervalLabel label6(6,12);
-    // 
+    //
     // label1.Insert(std::string("channel"), 'a');
     // label1.Insert(std::string("bandwidth"), 32.0e6);
     // label2.Insert(std::string("channel"), 'b');

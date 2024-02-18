@@ -136,7 +136,7 @@ class MHO_ClassIdentityMap
             return false;
         }
 
-        //returns a ptr to base class MHO_Serializable, but the underlying type 
+        //returns a ptr to base class MHO_Serializable, but the underlying type
         //is that which is associated with the uuid, if the uuid is not in the
         //factory map then nullptr is returned, memory managment is delegated to
         //the caller

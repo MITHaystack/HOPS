@@ -21,7 +21,7 @@
                 "phase_cal_id": {"type": "link"},
                 "freq_state": {"type": "list_int"}
             },
-            "fields": 
+            "fields":
             [
                 "#band_id",
                 "sky_frequency",
@@ -41,7 +41,7 @@
                 "phasing": {"type": "string"},
                 "state_periods": {"type": "list_real", "dimension": "time"}
             },
-            "fields": 
+            "fields":
             [
                 "phasing",
                 "state_periods"
@@ -49,7 +49,7 @@
         },
         "sample_rate": {"type": "real", "dimension": "sample_rate"}
     },
-    "fields": 
+    "fields":
     [
         "chan_def",
         "switching_cycle",

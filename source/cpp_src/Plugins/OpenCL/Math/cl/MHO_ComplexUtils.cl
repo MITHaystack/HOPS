@@ -19,7 +19,7 @@ inline CL_TYPE2 ComplexConjugate(CL_TYPE2 x)
     return z;
 }
 
-//conjugate is applied to the second argument 
+//conjugate is applied to the second argument
 inline CL_TYPE2 ConjugateComplexMultiply(CL_TYPE2 x, CL_TYPE2 y)
 {
     CL_TYPE2 z;

@@ -20,10 +20,10 @@
                 "third_order_coeff":{"type": "real", "dimension": "time/time^3"},
                 "fmout2gps":{"type": "real", "dimension": "time"}
             },
-            "fields": 
+            "fields":
             [
-                "#start_validity_epoch", 
-                "clock_early_offset", 
+                "#start_validity_epoch",
+                "clock_early_offset",
                 "#origin_epoch",
                 "#clock_rate",
                 "#second_order_coeff",
@@ -32,7 +32,7 @@
             ]
         }
     },
-    "fields": 
+    "fields":
     [
         "clock_early"
     ]

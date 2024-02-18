@@ -73,11 +73,11 @@ void MHO_BasicFringeFitter::Initialize()
             msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
             std::exit(1);
         }
-        
+
         //safety check
         if(vis_data->GetSize() == 0){msg_fatal("fringe", "visibility data has size zero." << eom); std::exit(1);}
         if(wt_data->GetSize() == 0){msg_fatal("fringe", "weight data has size zero." << eom); std::exit(1);}
-        
+
         std::string vis_uuid = vis_data->GetObjectUUID().as_string();
         std::string wt_uuid = wt_data->GetObjectUUID().as_string();
         fParameterStore->Set("/uuid/visibilities", vis_uuid);
@@ -135,7 +135,7 @@ void MHO_BasicFringeFitter::Initialize()
         //OPERATOR CONSTRUCTION
         ////////////////////////////////////////////////////////////////////////////
 
-        fOperatorBuildManager->BuildOperatorCategory("default");    
+        fOperatorBuildManager->BuildOperatorCategory("default");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labeling");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
 
@@ -178,12 +178,12 @@ void MHO_BasicFringeFitter::Initialize()
         fMBDSearch.SetArgs(sbd_data);
         ok = fMBDSearch.Initialize();
         check_step_fatal(ok, "fringe", "mbd initialization." << eom );
-        
+
         //configure the fringe-peak interpolator
         bool optimize_closure_flag = false;
         bool is_oc_set = fParameterStore->Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag );
         double frt_offset = fParameterStore->GetAs<double>("/config/frt_offset");
-        //NOTE: the optimize_closure_flag has no effect on fringe-phase when 
+        //NOTE: the optimize_closure_flag has no effect on fringe-phase when
         //using the 'simul' algorithm, which is currently the only one implemented
         //This is also true of the legacy code 'simul' implementation.
         if(optimize_closure_flag){fPeakInterpolator.EnableOptimizeClosure();}
@@ -219,7 +219,7 @@ void MHO_BasicFringeFitter::Run()
         //basic_fringe_search();
         coarse_fringe_search();
         interpolate_peak();
-        
+
         // MHO_BasicFringeUtilities::basic_fringe_search(fContainerStore, fParameterStore);
         fParameterStore->Set("/status/is_finished", true);
         //have sampled all grid points, find the solution and finalize
@@ -258,21 +258,21 @@ void MHO_BasicFringeFitter::Finalize()
     bool skipped = fParameterStore->GetAs<bool>("/status/skipped");
     if( status_is_finished  && !skipped ) //have to be finished and not-skipped
     {
-        //get the actual search windows that were used 
+        //get the actual search windows that were used
         double low, high;
         std::vector< double > win; win.resize(2);
         fMBDSearch.GetSBDWindow(low,high);
         win[0] = low; win[1] = high;
         fParameterStore->Set("/fringe/sb_win", win);
-        
+
         fMBDSearch.GetDRWindow(low,high);
         win[0] = low; win[1] = high;
         fParameterStore->Set("/fringe/dr_win", win);
-        
+
         fMBDSearch.GetMBDWindow(low,high);
         win[0] = low; win[1] = high;
         fParameterStore->Set("/fringe/mb_win", win);
-        
+
         mho_json& plot_data = fFringeData->GetPlotData();
         plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
@@ -296,7 +296,7 @@ MHO_BasicFringeFitter::coarse_fringe_search()
 
     //take snapshot of sbd data after normfx
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
-    
+
     //set the coarse SBD/MBD/DR search windows here
     if(fParameterStore->IsPresent("/control/fit/sb_win"))
     {
@@ -349,7 +349,7 @@ MHO_BasicFringeFitter::coarse_fringe_search()
     fParameterStore->Set("/fringe/max_mbd_bin", c_mbdmax);
     fParameterStore->Set("/fringe/max_sbd_bin", c_sbdmax);
     fParameterStore->Set("/fringe/max_dr_bin", c_drmax);
-    
+
     double coarse_sbdelay = fMBDSearch.GetCoarseSBD();
     fParameterStore->Set("/fringe/sbdelay", coarse_sbdelay);
 
@@ -373,7 +373,7 @@ MHO_BasicFringeFitter::interpolate_peak()
     //TODO FIXME: Figure out how best to present this axis data to the fine-interp function.
     fPeakInterpolator.SetMBDAxis( fMBDSearch.GetMBDAxis() );
     fPeakInterpolator.SetDRAxis( fMBDSearch.GetDRAxis() );
-    
+
     fPeakInterpolator.Initialize();
     fPeakInterpolator.Execute();
 

@@ -8,9 +8,9 @@
         "channel_names": {"type": "string"},
         "tone_masks": {"type": "list_int"}
     },
-    "fields": 
+    "fields":
     [
-        "channel_names", 
+        "channel_names",
         "tone_masks"
     ]
 }

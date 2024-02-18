@@ -8,7 +8,7 @@
     "parameters" :
     {
         "antenna_diam" : {"type": "real", "dimension": "length"},
-        "axis_type" : 
+        "axis_type" :
         {
             "type": "compound",
             "parameters":
@@ -27,7 +27,7 @@
             ]
         },
         "axis_offset" : {"type" : "real", "dimension" : "length"},
-        "antenna_motion" : 
+        "antenna_motion" :
         {
             "type": "list_compound",
             "parameters" :
@@ -45,7 +45,7 @@
                 "#acceleration"
             ]
         },
-        "pointing_sector" : 
+        "pointing_sector" :
         {
             "type": "list_compound",
             "parameters" :
@@ -82,7 +82,7 @@
             "fields": ["band_link", "platform"]
         }
     },
-    "fields": 
+    "fields":
     [
         "antenna_diam",
         "axis_type",

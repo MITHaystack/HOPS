@@ -28,10 +28,10 @@
 #include "MHO_ParameterConfigurator.hh"
 #include "MHO_ParameterManager.hh"
 
-namespace hops 
+namespace hops
 {
 
-class MHO_FringeFitter 
+class MHO_FringeFitter
 {
     public:
 
@@ -48,15 +48,15 @@ class MHO_FringeFitter
         {
             delete fOperatorBuildManager;
         };
-        
+
         MHO_ParameterStore* GetParameterStore(){return fParameterStore;}
         MHO_ContainerStore* GetContainerStore(){return fContainerStore;}
         MHO_OperatorToolbox* GetOperatorToolbox(){return &fOperatorToolbox;}
 
         //should we expose these?
-        mho_json GetVex(){return fScanStore->GetRootFileData();} 
+        mho_json GetVex(){return fScanStore->GetRootFileData();}
         MHO_ScanDataStore* GetScanDataStore(){return fScanStore;}
-        
+
         //only valid after 'Configure' is called
         MHO_OperatorBuilderManager* GetOperatorBuildManager(){return fOperatorBuildManager;}
 
@@ -81,7 +81,7 @@ class MHO_FringeFitter
 
         MHO_OperatorToolbox fOperatorToolbox; //stores the data operator objects
 
-        //configuration/initialization managers 
+        //configuration/initialization managers
         MHO_OperatorBuilderManager* fOperatorBuildManager;
 
 };

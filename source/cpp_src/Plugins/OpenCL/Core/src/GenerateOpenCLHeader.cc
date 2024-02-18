@@ -2,7 +2,7 @@
 
 #ifdef HOPS_OPENCL_VERSION2
     #include <CL/cl2.hpp>
-#else 
+#else
     #include <CL/cl.hpp>
 #endif
 

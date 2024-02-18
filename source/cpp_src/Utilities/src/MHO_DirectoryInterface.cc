@@ -200,7 +200,7 @@ MHO_DirectoryInterface::GetPrefix(const std::string& filename)
 }
 
 
-std::string 
+std::string
 MHO_DirectoryInterface::StripExtensionFromBasename(const std::string& file_basename)
 {
     //assume we have just the basename (not directory prefix)
@@ -260,7 +260,7 @@ MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aF
     }
 }
 
-void 
+void
 MHO_DirectoryInterface::GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const std::string& aPrefix) const
 {
     //from the current list of files, locate the ones which match the given extension
@@ -276,7 +276,7 @@ MHO_DirectoryInterface::GetFilesMatchingPrefix(std::vector< std::string >& aFile
     }
 }
 
-void 
+void
 MHO_DirectoryInterface::GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const char* aPrefix) const
 {
     std::string prefix(aPrefix);
@@ -451,26 +451,26 @@ MHO_DirectoryInterface::GetFringeFiles(const std::vector<std::string>& files, st
     fTokenizer.SetIncludeEmptyTokensFalse();
     fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
     std::vector< std::string > tokens;
-    
+
     max_sequence_num = 0;
     for(auto it = files.begin(); it != files.end(); it++)
     {
         std::string base_filename = it->substr(it->find_last_of("/\\") + 1);
         //check that there is three dots in the filename base
-        if(count_number_of_matches(base_filename, '.') == 3) 
+        if(count_number_of_matches(base_filename, '.') == 3)
         {
             //check that the two dots are separated by a single "frequency group" character
             //format looks like "GE.X.1.0VSI1M"
             tokens.clear();
             fTokenizer.SetString(&base_filename);
             fTokenizer.GetTokens(&tokens);
-            if(tokens.size() == 4) 
+            if(tokens.size() == 4)
             {
                 //fringe file should get split into 4 tokens
-                //first token is the 2-char baseline code 
-                //second token is 1-char freq group code 
+                //first token is the 2-char baseline code
+                //second token is 1-char freq group code
                 //third token is integer "sequence number"
-                //4th token is 6 char root code 
+                //4th token is 6 char root code
                 if(tokens[0].size() == 2 && tokens[1].size() == 1 && tokens[3].size() == 6)
                 {
                     int seq_no = std::atoi(tokens[2].c_str());

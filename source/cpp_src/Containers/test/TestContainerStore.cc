@@ -63,7 +63,7 @@ int main(int argc, char** argv)
     }
 
 
-    //convert the entire store to mho_json 
+    //convert the entire store to mho_json
     mho_json root;
     conInter.ConvertStoreToJSON(conStore,root,eJSONTags);
 

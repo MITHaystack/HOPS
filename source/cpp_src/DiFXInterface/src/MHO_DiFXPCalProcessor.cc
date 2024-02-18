@@ -8,7 +8,7 @@
 
 //#include <iostream>
 
-namespace hops 
+namespace hops
 {
 
 
@@ -25,12 +25,12 @@ MHO_DiFXPCalProcessor::MHO_DiFXPCalProcessor()
 MHO_DiFXPCalProcessor::~MHO_DiFXPCalProcessor(){}
 
 
-void 
+void
 MHO_DiFXPCalProcessor::SetFilename(std::string filename)
 {
     fValid = false;
     //tokenize the file name, and verify it is a 'PCAL' file
-    //also extract the station 2-character code 
+    //also extract the station 2-character code
     fTokenizer.SetDelimiter("_");
     fTokens.clear();
 
@@ -48,7 +48,7 @@ MHO_DiFXPCalProcessor::SetFilename(std::string filename)
         fFilename = filename;
         fValid = true;
     }
-    else 
+    else
     {
         msg_error("difx_interface", "filename pattern does not match PCAL type for file: "<< filename << eom);
     }
@@ -57,7 +57,7 @@ MHO_DiFXPCalProcessor::SetFilename(std::string filename)
     fTokenizer.SetDelimiter(" ");
 }
 
-void 
+void
 MHO_DiFXPCalProcessor::ReadPCalFile()
 {
     if(fValid)
@@ -71,12 +71,12 @@ MHO_DiFXPCalProcessor::ReadPCalFile()
             std::ifstream file(fFilename.c_str());
             if(file.is_open())
             {
-                //read lines until end 
+                //read lines until end
                 while( getline(file,fLine) )
                 {
                     if(fLine.size() != 0)
                     {
-                        //parse line and covert tokens into data points 
+                        //parse line and covert tokens into data points
                         if(!IsComment())
                         {
                             TokenizeLine();
@@ -88,14 +88,14 @@ MHO_DiFXPCalProcessor::ReadPCalFile()
             }
         }
     }
-    else 
+    else
     {
         msg_warn("difx_interface", "cannot read pcal file in invalid state." << eom);
     }
 }
 
 
-bool 
+bool
 MHO_DiFXPCalProcessor::IsComment()
 {
     //we are working under the assumption that the header lines have '#' first char
@@ -107,7 +107,7 @@ MHO_DiFXPCalProcessor::IsComment()
 }
 
 
-void 
+void
 MHO_DiFXPCalProcessor::TokenizeLine()
 {
     fTokens.clear();
@@ -115,7 +115,7 @@ MHO_DiFXPCalProcessor::TokenizeLine()
     fTokenizer.GetTokens(&fTokens);
 }
 
-void 
+void
 MHO_DiFXPCalProcessor::ProcessTokens()
 {
     if(fTokens.size() >= 6)
@@ -156,7 +156,7 @@ MHO_DiFXPCalProcessor::ProcessTokens()
 }
 
 
-void 
+void
 MHO_DiFXPCalProcessor::Organize()
 {
     if(fValid)
@@ -171,7 +171,7 @@ MHO_DiFXPCalProcessor::Organize()
         msg_debug("difx_interface", "pcal for station: "<< fStationCode << ss.str() << eom);
 
         fSortedPCalData.clear();
-        //we need to run through all of the p-cal data and merge tone/phasor data 
+        //we need to run through all of the p-cal data and merge tone/phasor data
         //from the same time period (can happen w/ multiple datastream-correlation)
         //then stash them in a table container
 
@@ -209,7 +209,7 @@ MHO_DiFXPCalProcessor::Organize()
         for(auto ap_it = ap_set.begin(); ap_it != ap_set.end(); ++ap_it)
         {
             int ap = *ap_it;
-            for(std::size_t idx = 0; idx < fPCalData.size(); ++idx) 
+            for(std::size_t idx = 0; idx < fPCalData.size(); ++idx)
             {
                 if(fPCalData[idx].ap == ap){ aps_to_merge[ap].push_back(idx);}
             }
@@ -246,13 +246,13 @@ MHO_DiFXPCalProcessor::Organize()
             for(auto ppit = fPolSet.begin(); ppit != fPolSet.end(); ppit++)
             {
                 std::string pol = *ppit;
-                std::sort( pp.pc_phasors[pol].begin(), pp.pc_phasors[pol].end(), fPhasorToneComp); 
+                std::sort( pp.pc_phasors[pol].begin(), pp.pc_phasors[pol].end(), fPhasorToneComp);
             }
 
             fSortedPCalData.push_back(pp);
         }
 
-        //finally sort all by AP 
+        //finally sort all by AP
         std::sort(fSortedPCalData.begin(), fSortedPCalData.end(), fAPIndexComp);
 
         /* debug print out
@@ -270,8 +270,8 @@ MHO_DiFXPCalProcessor::Organize()
             }
         }
         */
-    
-        //determine the data dimensions 
+
+        //determine the data dimensions
         std::size_t npol = fPolSet.size();
         std::size_t naps = fSortedPCalData.size();
         //find the max number of tones
@@ -295,7 +295,7 @@ MHO_DiFXPCalProcessor::Organize()
             //TODO figure out how to handle this possible case
         }
 
-        //now we can go ahead and create/resize the organized pcal data-table 
+        //now we can go ahead and create/resize the organized pcal data-table
         fPCal.Resize(npol, naps, max_ntones);
         fPCal.ZeroArray();
 
@@ -333,11 +333,11 @@ MHO_DiFXPCalProcessor::Organize()
                 auto phasor_vec = &( fSortedPCalData[time_idx].pc_phasors[pol] );
 
                 //We need to check that the phasor vector has the same maximal size,
-                //if it is not, we cannot guarantee we have the same set of tones 
+                //if it is not, we cannot guarantee we have the same set of tones
                 //e.g. if we are missing band S, but have band X, the X-band tones
                 //will get shifted into the S-band slots.
-                //If we wanted to get fancy we could make a map of tone-value to tone index, 
-                //which would let us recover partial Pols/APs. However, given that encountering 
+                //If we wanted to get fancy we could make a map of tone-value to tone index,
+                //which would let us recover partial Pols/APs. However, given that encountering
                 //partial data is a pretty non-standard situation (or upstream bug), discarding it seems sane.
                 if(phasor_vec->size() == max_ntones)
                 {
@@ -354,7 +354,7 @@ MHO_DiFXPCalProcessor::Organize()
         fPCal.Insert("start_time_mjd", first_ap);
 
     }
-    else 
+    else
     {
         msg_warn("difx_interface", "cannot organize pcal data while in invalid state." << eom);
     }

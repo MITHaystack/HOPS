@@ -7,7 +7,7 @@
     "block_type": "primitive",
     "parameters" :
     {
-        "pass_order": 
+        "pass_order":
         {
             "type": "list_compound",
             "parameters":
@@ -16,7 +16,7 @@
             },
             "fields": [ "pass_ids" ]
         },
-        "S2_group_order": 
+        "S2_group_order":
         {
             "type": "list_compound",
             "parameters":
@@ -26,7 +26,7 @@
             "fields": [ "group_numbers" ]
         }
     },
-    "fields": 
+    "fields":
     [
         "pass_order",
         "S2_group_order"

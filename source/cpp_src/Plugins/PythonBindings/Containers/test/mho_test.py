@@ -92,10 +92,10 @@ def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
     tags["python_string_tag"] = "a_new_string"
     tags["python vector tag"] = [1.0, 2.0, 3.0, 12.0]
     tags["python_bool_tag"] = True
-    
-    #now set the tag object 
+
+    #now set the tag object
     visib_obj.set_metadata(tags)
-    
+
     #now retrieve and dump them again
     tags = visib_obj.get_metadata()
     print("updated table metadata/tags = ", tags)
@@ -106,7 +106,7 @@ def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
         ax_meta = visib_obj.get_axis_metadata(idx);
         print(ax_meta)
         if idx == 1:
-            #channel axis, lets tweak it and whole-sale reset the meta data 
+            #channel axis, lets tweak it and whole-sale reset the meta data
             #this is super crude
             ax_meta['index_labels']['0']['bandwidth'] = 400.0
             visib_obj.set_axis_metadata(idx, ax_meta)

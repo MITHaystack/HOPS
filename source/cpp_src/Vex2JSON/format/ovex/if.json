@@ -20,10 +20,10 @@
                 "phase_cal_interval": {"type": "real", "dimension": "frequency"},
                 "phase_cal_base": {"type": "real", "dimension": "frequency"}
             },
-            "fields": 
+            "fields":
             [
-                "if_id", 
-                "physical_if_id", 
+                "if_id",
+                "physical_if_id",
                 "polarization",
                 "effective_LO",
                 "net_sideband",
@@ -32,7 +32,7 @@
             ]
         }
     },
-    "fields": 
+    "fields":
     [
         "if_def"
     ]

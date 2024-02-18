@@ -54,17 +54,17 @@ void MHO_IonosphericFringeFitter::Run()
     bool skipped = fParameterStore->GetAs<bool>("/status/skipped");
     if( !is_finished  && !skipped) //execute if we are not finished and are not skipping
     {
-        //determine if we use the smoothed algorithm or not 
+        //determine if we use the smoothed algorithm or not
         bool do_smoothing;
         bool ok = fParameterStore->Get("/control/fit/ion_smooth", do_smoothing);
         if(!ok){do_smoothing = false;}
-        
+
         //do bare bones first-pass (no iono) to set the sbd
         coarse_fringe_search();
-        
+
         if(do_smoothing){ion_search_smooth();}
         else{ rjc_ion_search();}
-        
+
         fParameterStore->Set("/status/is_finished", true);
         //have sampled all grid points, find the solution and finalize
         //calculate the fringe properties
@@ -87,21 +87,21 @@ void MHO_IonosphericFringeFitter::Finalize()
     bool skipped = fParameterStore->GetAs<bool>("/status/skipped");
     if( status_is_finished  && !skipped ) //have to be finished and not-skipped
     {
-        //get the actual search windows that were used 
+        //get the actual search windows that were used
         double low, high;
         std::vector< double > win; win.resize(2);
         // fMBDSearch.GetSBDWindow(low,high);
         win[0] = fInitialSBWin[0]; win[1] = fInitialSBWin[1];
         fParameterStore->Set("/fringe/sb_win", win);
-        
+
         fMBDSearch.GetDRWindow(low,high);
         win[0] = low; win[1] = high;
         fParameterStore->Set("/fringe/dr_win", win);
-        
+
         fMBDSearch.GetMBDWindow(low,high);
         win[0] = low; win[1] = high;
         fParameterStore->Set("/fringe/mb_win", win);
-        
+
         mho_json& plot_data = fFringeData->GetPlotData();
         plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
@@ -116,7 +116,7 @@ void MHO_IonosphericFringeFitter::Finalize()
 //     //PLOTTING/DEBUG
 //     ////////////////////////////////////////////////////////////////////////////
 //     //TODO may want to reorg the way this is done
-// 
+//
 //     bool is_finished = fParameterStore->GetAs<bool>("/status/is_finished");
 //     bool skipped = fParameterStore->GetAs<bool>("/status/skipped");
 //     if( is_finished  && !skipped ) //have to be finished and not-skipped
@@ -135,7 +135,7 @@ void MHO_IonosphericFringeFitter::Finalize()
 ////////////////////////////////////////////////////////////////////////////////
 
 
-int 
+int
 MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
 {
     profiler_start();
@@ -209,7 +209,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
         win_ion[0] = 0.0;
         win_ion[1] = 0.0;
     }
-    
+
     //fixed ion fit...so we need to check if each station has an assigned a priori ion value
     if(ion_npts == 1)
     {
@@ -218,28 +218,28 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
         double ref_ion = 0;
         ok = fParameterStore->Get(ref_ion_path, ref_ion);
         if(!ok){ref_ion = 0.0;}
-        
+
         std::string rem_mk4id = fParameterStore->GetAs<std::string>("/rem_station/mk4id");
         std::string rem_ion_path = "/control/station/" + rem_mk4id + "/ionosphere";
         double rem_ion = 0;
         ok = fParameterStore->Get(rem_ion_path, rem_ion);
         if(!ok){rem_ion = 0.0;}
-        
+
         double ion_delta = rem_ion - ref_ion;
         win_ion[0] = ion_delta;
         win_ion[1] = ion_delta;
     }
 
 
-    //put the ion_win info into the 'fringe' section of the parameters 
+    //put the ion_win info into the 'fringe' section of the parameters
     fParameterStore->Set("/fringe/ion_win", win_ion);
 
     // prepare for ionospheric search
     center = (win_ion[0] + win_ion[1]) / 2.0;
     // condition total # of points
-    if (ion_npts > MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1)   
+    if (ion_npts > MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1)
     {
-        ion_npts = MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1;   
+        ion_npts = MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1;
         //msg ("limited ion search to %d points", 2, ion_npts);
     }
     coarse_spacing = win_ion[1] - win_ion[0];
@@ -267,7 +267,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                     level = 3;          // immediately to final delay & rate search
                 }
             break;
-            case 1:                     // set up for medium ion search 
+            case 1:                     // set up for medium ion search
                 //std::cout<<"CASE 1 "<<std::endl;
                 // find maximum from coarse search
                 // should do parabolic interpolation here
@@ -300,7 +300,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 // make medium search symmetric about level 0 max
                 bottom = center - (ilmax - 1) / 2.0 * step;
             break;
-            case 2:                     // set up for fine ion search 
+            case 2:                     // set up for fine ion search
                 //std::cout<<"CASE 2 "<<std::endl;
                 // find maximum from medium search
                 // should do parabolic interpolation here
@@ -361,13 +361,13 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 {
                     koff = 0;
                 }
-                
+
                 for (k=0; k<3; k++)
                 {
                     y[k] = values[kmax + k - 1 + koff];
                     xlo = bottom + (kmax - 1 + koff) * step;
                 }
-        
+
                 //std::cout<<"calling parabola"<<std::endl;
                 rc = MHO_MathUtilities::parabola (y, -1.0, 1.0, &xmax, &ampmax, q);
 
@@ -379,14 +379,14 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 {
                     //msg ("TEC fine interpolation error; positive curvature",1);
                 }
-                
+
                 center = xlo + (xmax + 1.0) * step;
                 bottom = center;
                 ilmax = 1;
                 step = 0.0;
             break;
         }
-        
+
         for (ionloop=0; ionloop<ilmax; ionloop++)
         {
             loopion = ionloop;
@@ -434,14 +434,14 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             {
                 return rc;
             }
-            
+
             // restore original window values for interpolation
             for(i=0; i<2; i++)
             {
                 win_sb[i] = fInitialSBWin[i];
                 win_dr[i] = win_dr_save[i];
             }
-            
+
             // // interpolate via direct counter-rotation for
             // // more precise results
             // interp (pass);
@@ -451,7 +451,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             double delres_max = fParameterStore->GetAs<double>("/fringe/famp");
             values[ionloop] = delres_max;
             //printf("ion search differential TEC %f amp %f \n", ion_diff, delres_max);
-            
+
             if(delres_max > max_so_far)
             {
                 max_so_far = delres_max;
@@ -459,7 +459,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             }
         }
     }
-    
+
     // save the final ion. point, if there is one
     if (ion_npts > 1)
     {
@@ -475,7 +475,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
 
 
 // sort tec array
-void 
+void
 MHO_IonosphericFringeFitter::sort_tecs(int nion, double dtec[][2])
 {
     //std::cout<<"calling sort tecs"<<std::endl;
@@ -509,7 +509,7 @@ MHO_IonosphericFringeFitter::sort_tecs(int nion, double dtec[][2])
         dtec_values.push_back(dtec[i][0]);
         dtec_amp_values.push_back(dtec[i][1]);
     }
-    
+
     fParameterStore->Set("/fringe/dtec_array", dtec_values);
     fParameterStore->Set("/fringe/dtec_amp_array/", dtec_amp_values);
 
@@ -541,7 +541,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     profiler_start();
 
     bool ok;
-    
+
     int i,
         k,
         kmax,
@@ -610,8 +610,8 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
         win_ion[0] = 0.0;
         win_ion[1] = 0.0;
     }
-    
-    
+
+
     //fixed ion fit...so we need to check if each station has an assigned a priori ion value
     if(ion_npts == 1)
     {
@@ -620,30 +620,30 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
         double ref_ion = 0.0;
         ok = fParameterStore->Get(ref_ion_path, ref_ion);
         if(!ok){ref_ion = 0.0;}
-        
+
         std::string rem_mk4id = fParameterStore->GetAs<std::string>("/rem_station/mk4id");
         std::string rem_ion_path = "/control/station/" + rem_mk4id + "/ionosphere";
         double rem_ion = 0.0;
         ok = fParameterStore->Get(rem_ion_path, rem_ion);
         if(!ok){rem_ion = 0.0;}
-        
+
         double ion_delta = rem_ion - ref_ion;
         win_ion[0] = ion_delta;
         win_ion[1] = ion_delta;
     }
-    
-    //put the ion_win info into the 'fringe' section of the parameters 
+
+    //put the ion_win info into the 'fringe' section of the parameters
     fParameterStore->Set("/fringe/ion_win", win_ion);
-    
+
     double values[MAX_ION_PTS];
     double smoothed_values[4*MAX_ION_PTS];
 
                                         // prepare for ionospheric search
     center = (win_ion[0] + win_ion[1]) / 2.0;
                                         // condition total # of points
-    if (ion_npts > MAX_ION_PTS - N_FINE_PTS_SMOOTH - 1)   
+    if (ion_npts > MAX_ION_PTS - N_FINE_PTS_SMOOTH - 1)
     {
-        ion_npts = MAX_ION_PTS - N_FINE_PTS_SMOOTH - 1;   
+        ion_npts = MAX_ION_PTS - N_FINE_PTS_SMOOTH - 1;
         //msg ("limited ion search to %d points", 2, ion_npts);
     }
     coarse_spacing = win_ion[1] - win_ion[0];
@@ -668,7 +668,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
                     level = 3;          // immediately to final delay & rate search
                 break;
 
-            case 1:                     // set up for fine ion search 
+            case 1:                     // set up for fine ion search
                                         // first, store the coarse ionosphere points
                 for (k=0; k<ilmax; k++)
                 {
@@ -695,7 +695,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
                 if (kmax == 0)          // coarse maximum up against lower edge?
                     center = bottom + (N_FINE_PTS_SMOOTH - 1) / 2.0 * fine_spacing;
                 else if (kmax == ion_npts) // upper edge?
-                    center = bottom + (kmax - 1) * step 
+                    center = bottom + (kmax - 1) * step
                                     - (N_FINE_PTS_SMOOTH - 1) / 2.0 * fine_spacing;
                 else                    // max was one of the interior points
                     center = bottom + kmax * step;
@@ -805,9 +805,9 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
                                         // more precise results
             //interp (pass);
             interpolate_peak();
-            // if (do_accounting) 
+            // if (do_accounting)
             //     account ("Interpolate fringes");
-            
+
                                         // save values for iterative search
             double delres_max = fParameterStore->GetAs<double>("/fringe/famp");
             values[ionloop] = delres_max;
@@ -858,7 +858,7 @@ void MHO_IonosphericFringeFitter::smoother (double *f,           // input data a
         nf,                         // # of input pts
         ng,                         // # of output pts
         ns;                         // # of smoothing curve pts
-        
+
     double gwork[4*MAX_ION_PTS],
            shape[4*MAX_ION_PTS],
            ssum;

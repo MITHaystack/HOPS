@@ -19,10 +19,10 @@
                 "correlate": {"type": "int"},
                 "station_list": {"type": "list_string"}
             },
-            "fields": 
+            "fields":
             [
-                "source", 
-                "#is_pointing_center", 
+                "source",
+                "#is_pointing_center",
                 "#correlate",
                 "#station_list"
             ]
@@ -47,7 +47,7 @@
     "fields":
     [
         "start",
-        "mode", 
+        "mode",
         "source",
         "station",
         "fourfit_reftime"

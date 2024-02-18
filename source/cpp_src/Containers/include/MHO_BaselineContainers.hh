@@ -22,12 +22,12 @@ namespace hops
 
 ////////////////////////////////////////////////////////////////////////////
 //the following definitions are for 'un-channelized data'
-//this doesn't necessarily mean that this data can't be made chunked into channels 
-//and labelled as such, just that these channels are all indexed 
-//along the same (possibly discontinuous) frequency axis 
+//this doesn't necessarily mean that this data can't be made chunked into channels
+//and labelled as such, just that these channels are all indexed
+//along the same (possibly discontinuous) frequency axis
 //(not along separate channel dimension), making this data 3-dimensional
 //This type of data layout is non-standard (and not used by original fourfit algo)
-//Currently these data types are only used as an intermediate state during mk4 types -> hops conversion 
+//Currently these data types are only used as an intermediate state during mk4 types -> hops conversion
 
 #define UCH_VIS_NDIM 3
 #define UCH_POLPROD_AXIS 0
@@ -40,7 +40,7 @@ using uch_weight_type = MHO_TableContainer< weight_element_type, uch_baseline_ax
 
 ////////////////////////////////////////////////////////////////////////////////
 //Definitions for visibilities and related quantities (in-memory types)
-//which have a separate channel axis. In this case all channels should have the 
+//which have a separate channel axis. In this case all channels should have the
 //same number of spectral points, or be padded out to the same size
 
 #define VIS_NDIM 4

@@ -17,16 +17,16 @@
                 "start_time": {"type": "epoch"},
                 "stop_time": {"type": "epoch"}
             },
-            "fields": 
+            "fields":
             [
-                "recorder_number", 
-                "serial_number", 
+                "recorder_number",
+                "serial_number",
                 "start_time",
                 "stop_time"
             ]
         }
     },
-    "fields": 
+    "fields":
     [
         "VSN"
     ]

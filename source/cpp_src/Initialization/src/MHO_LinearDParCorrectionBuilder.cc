@@ -40,7 +40,7 @@ MHO_LinearDParCorrectionBuilder::Build()
             return false;
         }
 
-        //get the parallactic angle values for each station 
+        //get the parallactic angle values for each station
         bool ref_pa_ok = this->fParameterStore->IsPresent("/ref_station/parallactic_angle");
         bool rem_pa_ok = this->fParameterStore->IsPresent("/rem_station/parallactic_angle");
         if(!ref_pa_ok || !rem_pa_ok)
@@ -55,7 +55,7 @@ MHO_LinearDParCorrectionBuilder::Build()
         //set the arguments
         op->SetArgs(vis_data);
         op->SetPolProductSet(pp_set);
-        op->SetReferenceParallacticAngle(ref_pa); 
+        op->SetReferenceParallacticAngle(ref_pa);
         op->SetRemoteParallacticAngle(rem_pa);
 
         op->SetName(op_name);

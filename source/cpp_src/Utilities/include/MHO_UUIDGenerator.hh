@@ -30,8 +30,8 @@ class MHO_UUIDGenerator
         */
         MHO_UUID GenerateUUID();
 
-        /** Convert the UUID to a string 
-        * @param uuid MHO_UUID& which is a UUID passed by reference 
+        /** Convert the UUID to a string
+        * @param uuid MHO_UUID& which is a UUID passed by reference
         * @returns ss string which is the string version of the UUID
         */
         std::string ConvertUUIDToString(MHO_UUID& uuid);

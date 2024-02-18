@@ -21,7 +21,7 @@
 *@brief:
 */
 
-namespace hops 
+namespace hops
 {
 
 class MHO_RootCanvasManager

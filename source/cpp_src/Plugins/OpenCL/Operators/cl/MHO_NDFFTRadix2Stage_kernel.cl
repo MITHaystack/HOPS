@@ -18,14 +18,14 @@ NDFFTRadix2Stage(
     __global CL_TYPE2* data, // the data to be transformed
     __local CL_TYPE2* twiddle_scratch //scratch space for the twiddle factor basis
 )
-{    
-    //get the index of the current work item in the global list 
+{
+    //get the index of the current work item in the global list
     unsigned int offset = get_global_id(0);
     unsigned int i_local = get_local_id(0);
     unsigned int workgroup_size = get_local_size(0);
     unsigned int dim[FFT_NDIM];
     for(unsigned int i=0;i<FFT_NDIM; i++){dim[i] = dim_arr[i];}
-    
+
     //work-item specific space for the twiddle factor basis
     __local CL_TYPE2* twiddle_basis = &(twiddle_scratch[workgroup_size*get_local_id(0)]);
     unsigned int log2N = LogBaseTwo(dim[D]);
@@ -56,7 +56,7 @@ NDFFTRadix2Stage(
     for(unsigned int i=0; i<FFT_NDIM-1; i++)
     {
         //copy the value of the non-active dimensions in to the index array
-        index[ na_dimension_index[i] ] = na_dimension_value[i]; 
+        index[ na_dimension_index[i] ] = na_dimension_value[i];
     }
     //calculate the total memory offset to the start of the work-item's data block
     data_location = OffsetFromRowMajorIndex(FFT_NDIM, dim, index);

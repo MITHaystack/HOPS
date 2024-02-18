@@ -1,27 +1,27 @@
 #include "MHO_LegacyDateConverter.hh"
 
-//isolate the MHO_Clock.hh include to this .cc file so we don't collide with 
+//isolate the MHO_Clock.hh include to this .cc file so we don't collide with
 //legacy mk4util "struct date"
 #include "MHO_Clock.hh"
 
-namespace hops 
+namespace hops
 {
 
-std::string 
+std::string
 MHO_LegacyDateConverter::ConvertToISO8601Format(legacy_hops_date a_date)
 {
     auto mstart = hops_clock::from_legacy_hops_date(a_date);
     return hops_clock::to_iso8601_format(mstart);
 }
 
-std::string 
+std::string
 MHO_LegacyDateConverter::ConvertToVexFormat(legacy_hops_date a_date)
 {
     auto mstart = hops_clock::from_legacy_hops_date(a_date);
     return hops_clock::to_vex_format(mstart);
 }
 
-legacy_hops_date 
+legacy_hops_date
 MHO_LegacyDateConverter::ConvertFromVexFormat(std::string vex_date)
 {
     if(vex_date != "")
@@ -29,7 +29,7 @@ MHO_LegacyDateConverter::ConvertFromVexFormat(std::string vex_date)
         auto mstart = hops_clock::from_vex_format(vex_date);
         return hops_clock::to_legacy_hops_date(mstart);
     }
-    else 
+    else
     {
         //return dummy value (start of epoch)
         auto mstart = hops_clock::get_hops_epoch();
@@ -38,7 +38,7 @@ MHO_LegacyDateConverter::ConvertFromVexFormat(std::string vex_date)
 }
 
 
-legacy_hops_date 
+legacy_hops_date
 MHO_LegacyDateConverter::Now()
 {
     //get the current time
@@ -49,7 +49,7 @@ MHO_LegacyDateConverter::Now()
     return now_date;
 }
 
-legacy_hops_date 
+legacy_hops_date
 MHO_LegacyDateConverter::HopsEpoch()
 {
     auto epoch_start = hops_clock::get_hops_epoch();

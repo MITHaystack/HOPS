@@ -66,7 +66,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     double drfmax;
 
     double total_ap_frac = fTotalSummedWeights;
-    
+
     // std::cout<<"total ap frac = "<<total_ap_frac<<std::endl;
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
@@ -117,7 +117,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
                 sbd_bin = ( (fSBDMaxBin + isbd - 2) % (int) sbd_ax->GetSize() + (int) sbd_ax->GetSize() ) % (int) sbd_ax->GetSize() ;
                 dr_bin = ( (fDRMaxBin + idr - 2 ) % (int) fDRAxis.GetSize() + (int) fDRAxis.GetSize() ) % (int) fDRAxis.GetSize() ;
                 mbd_bin = ( ( fMBDMaxBin + imbd - 2) % (int) fMBDAxis.GetSize() + (int) fMBDAxis.GetSize()) % (int) fMBDAxis.GetSize();
-                
+
                 // std::cout<<"max bins sbd, mbd, dr = "<<fSBDMaxBin<<", "<<fMBDMaxBin<<", "<<fDRMaxBin<<std::endl;
                 // std::cout<<"sbd, dr, mbd bins = "<<sbd_bin<<", "<<dr_bin<<", "<<mbd_bin<<std::endl;
 
@@ -135,11 +135,11 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
 
                 if(mbd < mbd_lower){mbd_lower = mbd;}
                 if(mbd > mbd_upper){mbd_upper = mbd;}
-                
+
                 // std::cout<<"fMBDMaxBin = "<<fMBDMaxBin<<" max = "<<fMBDAxis.at(fMBDMaxBin)<<std::endl;
                 // std::cout<<"mbd delta = "<<mbd_delta<<std::endl;
                 // std::cout<<"mbd info = "<<mbd<<", "<<imbd<<std::endl;
-                
+
                 // counter-rotate data from all freqs. and AP's
                 for(std::size_t fr = 0; fr < nchan; fr++)
                 {
@@ -148,7 +148,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
                     {
                         double tdelta = ap_ax->at(ap) + ap_delta/2.0 - fFRTOffset; //time diff w.r.t FRT
                         visibility_element_type vis = (*fSBDArray)(0,fr,ap,sbd_bin);
-                        
+
                         //std::cout<<"fr, ap ="<<fr<<", "<<ap<<" vrot input( "<<tdelta<<", "<<freq<<", "<<fRefFreq<<", "<<dr<<", "<<mbd<<")"<<std::endl;
                         std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, dr, mbd);
                         std::complex<double> x = vis * vr;// vrot_mod(tdelta, dr, mbd, freq, fRefFreq);
@@ -174,7 +174,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
 
     xlim[2][0] = -2;//dr_lower;// - status.dr_max_global) / status.rate_sep;
     xlim[2][1] = 2;//dr_upper;// - status.dr_max_global) / status.rate_sep;
-    // 
+    //
     // std::cout<< "xlim's "<< xlim[0][0]<<", "<< xlim[0][1] <<", "<< xlim[1][0] <<", "<< xlim[1][1] <<", " << xlim[2][0] <<", "<< xlim[2][1] <<std::endl;
     //                             // find maximum value within cube via interpolation
     max555(fDRF, xlim, xi, &drfmax);

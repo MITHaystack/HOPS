@@ -8,13 +8,13 @@
 
 
 /*
-*File: 
-*Class: 
+*File:
+*Class:
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
 *Description: This class re-implements the function freq_spacing from hops3.
-Basically it is a primitive method to figure out an approximate (but uniformly spaced) grid which 
+Basically it is a primitive method to figure out an approximate (but uniformly spaced) grid which
 aligns (within epsilon) with the original floating point locations.
 */
 
@@ -31,7 +31,7 @@ class MHO_UniformGridPointsCalculator
         void SetEpsilon(double eps){fEpsilon = std::fabs(eps);};
         void SetDefaultGridPoints(std::size_t n){fDefaultGridPoints = n;};
 
-        //expects points to be given in increasing order 
+        //expects points to be given in increasing order
         void SetPoints(const std::vector<double>& pts);
         void SetPoints(const double* pts, std::size_t npts);
         void Calculate();
@@ -40,12 +40,12 @@ class MHO_UniformGridPointsCalculator
 
         double GetGridStart() const {return fStart;};//get value of start
         double GetGridSpacing() const {return fSpacing;}; //the distance between points on the uniform grid
-        double GetGridAverage() const {return fAverageLocation;} //the average point location 
+        double GetGridAverage() const {return fAverageLocation;} //the average point location
         double GetSpread() const {return fSpread;} //the spread about the average
-        std::size_t GetNGridPoints() const {return fNGridPoints;}; //the number of points in the uniform grid 
+        std::size_t GetNGridPoints() const {return fNGridPoints;}; //the number of points in the uniform grid
 
 
-        //maps the indexes of the original points to their new locations in the 
+        //maps the indexes of the original points to their new locations in the
         //uniform grid array
         std::map<std::size_t, std::size_t> GetGridIndexMap(){return fIndexMap;}
 

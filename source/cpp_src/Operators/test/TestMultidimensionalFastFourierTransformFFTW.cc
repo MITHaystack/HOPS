@@ -9,7 +9,7 @@
 using namespace hops;
 
 typedef double FPTYPE;
-#define ARRAY_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 3 > 
+#define ARRAY_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 3 >
 #define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<ARRAY_TYPE>
 
 #define PRINT_DETAIL
@@ -56,14 +56,14 @@ int main(int /*argc*/, char** /*argv*/)
 
     fft_engine->SetForward();
     fft_engine->SetArgs(&input, &output);
-    
+
     fft_engine->DeselectAllAxes();
     fft_engine->SelectAxis(0);
     fft_engine->SelectAxis(2);
-    
+
     fft_engine->Initialize();
     fft_engine->Execute();
-    
+
     #ifdef PRINT_DETAIL
     std::cout << "DFT of data = " << std::endl;
     for (size_t i = 0; i < dim_size[0]; i++) {
@@ -85,7 +85,7 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->SelectAxis(1);
     fft_engine->Initialize();
     fft_engine->Execute();
-    
+
     #ifdef PRINT_DETAIL
     std::cout << "DFT of data = " << std::endl;
     for (size_t i = 0; i < dim_size[0]; i++) {

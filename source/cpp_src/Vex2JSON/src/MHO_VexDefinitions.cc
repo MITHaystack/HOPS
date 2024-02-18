@@ -4,7 +4,7 @@
 
 #include <fstream>
 
-namespace hops 
+namespace hops
 {
 
 MHO_VexDefinitions::MHO_VexDefinitions()
@@ -48,14 +48,14 @@ void MHO_VexDefinitions::SetVexVersion(std::string version)
     }
 }
 
-void 
+void
 MHO_VexDefinitions::SetVexVersion(const char* version)
 {
     std::string vers(version);
     SetVexVersion(vers);
 }
 
-std::string 
+std::string
 MHO_VexDefinitions::GetFormatDirectory() const
 {
     std::string format_dir = VEX_FORMAT_DIR;
@@ -63,14 +63,14 @@ MHO_VexDefinitions::GetFormatDirectory() const
     {
         format_dir += "/ovex/";
     }
-    else 
+    else
     {
         format_dir += "/vex-" + fVexVersion + "/";
     }
     return format_dir;
 }
 
-std::string 
+std::string
 MHO_VexDefinitions::DetermineFileVersion(std::string filename)
 {
     //read the first line to determine the vex revision
@@ -94,7 +94,7 @@ MHO_VexDefinitions::DetermineFileVersion(std::string filename)
                 //sanitize the version statment (only pass 1.5 or 2.0)
                 if(rev.find("1.5") != std::string::npos ){revision = "1.5";}
                 else if(rev.find("2.0") != std::string::npos ){revision = "2.0";}
-                else 
+                else
                 {
                     msg_error("vex", "version string: "<< rev << "not understood." << eom );
                 }
@@ -104,13 +104,13 @@ MHO_VexDefinitions::DetermineFileVersion(std::string filename)
         {
             revision = "ovex";
         }
-        else 
+        else
         {
             msg_error("vex", "could not determine vex version of file: "<< filename << "." << eom );
         }
         vfile.close();
     }
-    else 
+    else
     {
         msg_error("vex", "could not open file: "<<filename<<eom);
     }
@@ -118,7 +118,7 @@ MHO_VexDefinitions::DetermineFileVersion(std::string filename)
 }
 
 
-vex_element_type 
+vex_element_type
 MHO_VexDefinitions::DetermineType(std::string etype)
 {
     if(etype == "int"){return vex_int_type;}

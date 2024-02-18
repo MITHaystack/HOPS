@@ -9,19 +9,19 @@
 
 /*
 *File: MHO_TemplateTypenameDeduction.hh
-*Class: 
+*Class:
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
 *Description:
 * Main idea from blog post here: https://bitwizeshift.github.io/posts/2021/03/09/getting-an-unmangled-type-name-at-compile-time/
 * but re-worked so that it can work with C++11.
-* However, class name deduction is now done at run-time rather than compile time, because the compiler names 
-* are very ugly (especially when std::string is involved). We also need to deal with the fact that the exact 
+* However, class name deduction is now done at run-time rather than compile time, because the compiler names
+* are very ugly (especially when std::string is involved). We also need to deal with the fact that the exact
 * class name string can be different depending on compiler. Especially in the special case of std::string,
 * where the compiler name for this class can depend on whether it has been used inside of a std::tuple.
-* For example: the program TestTemplateTypenameDeduction outputs the following for clang and gcc (note the difference 
-* in the second print-out, which is the case where std::string has been used as the argument of a tuple). In this 
+* For example: the program TestTemplateTypenameDeduction outputs the following for clang and gcc (note the difference
+* in the second print-out, which is the case where std::string has been used as the argument of a tuple). In this
 * case clang is actually pretty well behaved (hiding the default template arguments in both cases), but GCC decides
 * switch it up). Much of the code below is in order to catch this and covert both ugly statments into plain old "std::string".
 
@@ -109,8 +109,8 @@ std::string MHO_RawCompilerNameWithoutSpaces()
     std::string space = " ";
     std::string nothing = "";
     //strip out all of the spaces in the class name
-    std::string tmp = std::regex_replace(class_name, 
-                                          std::regex(space), 
+    std::string tmp = std::regex_replace(class_name,
+                                          std::regex(space),
                                           nothing);
     return tmp;
 };
@@ -120,7 +120,7 @@ template<typename XClassType>
 std::string MHO_TupleElementNameWithoutSpaces()
 {
     //this is needed because GCC represents a std::string when used within
-    //a tuple differently (adding hidden default template parameters) 
+    //a tuple differently (adding hidden default template parameters)
     //than it does in an arbitrary template (why??)
 
     std::string prefix = compiler_func_prefix< std::tuple<XClassType> >();
@@ -134,13 +134,13 @@ std::string MHO_TupleElementNameWithoutSpaces()
     std::string space = " ";
     std::string nothing = "";
     //strip out all of the spaces in the class name
-    std::string tmp = std::regex_replace(tuple_class_name, 
-                                          std::regex(space), 
+    std::string tmp = std::regex_replace(tuple_class_name,
+                                          std::regex(space),
                                           nothing);
 
     std::string tuple_prefix = "std::tuple<";
     std::string tuple_suffix = ">";
-    
+
     start = tmp.find(tuple_prefix) + tuple_prefix.size();
     end = tmp.rfind(tuple_suffix);
     std::string class_name = tmp.substr(start, (end - start));
@@ -149,8 +149,8 @@ std::string MHO_TupleElementNameWithoutSpaces()
 };
 
 
-//this template class is what we use to determine the name of class throughout the 
-//rest of the code, it does some string processing to make sure std::string 
+//this template class is what we use to determine the name of class throughout the
+//rest of the code, it does some string processing to make sure std::string
 //comes out with a sensible name whenever it appears
 template<typename XClassType>
 std::string MHO_ClassName()
@@ -163,7 +163,7 @@ std::string MHO_ClassName()
     //first strip out the any tuple dependent std::string name, and replace with std::string
     std::string tmp = class_name;
     std::size_t strname_loc = std::string::npos;
-    do 
+    do
     {
         strname_loc = tmp.find(string_tuple_name);
         if(strname_loc != std::string::npos)
@@ -175,7 +175,7 @@ std::string MHO_ClassName()
 
     //next strip out any non-tuple dependent std::string names and replace with std::string
     strname_loc = std::string::npos;
-    do 
+    do
     {
         strname_loc = tmp.find(string_name);
         if(strname_loc != std::string::npos)
@@ -185,18 +185,18 @@ std::string MHO_ClassName()
     }
     while(strname_loc != std::string::npos );
 
-    //finally, lets also get rid of the hops:: namespace prefix on all the class names 
+    //finally, lets also get rid of the hops:: namespace prefix on all the class names
     std::string hops_nmspc = "hops::";
     std::string nothing = "";
-    std::string name = std::regex_replace(tmp, 
-                                          std::regex(hops_nmspc), 
+    std::string name = std::regex_replace(tmp,
+                                          std::regex(hops_nmspc),
                                           nothing);
 
     return name;
 };
 
 
-//specialization for std::string to keep things from 
+//specialization for std::string to keep things from
 //getting really unwieldly, aka:
 // std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >
 template<>

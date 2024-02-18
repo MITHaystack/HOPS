@@ -13,7 +13,7 @@
 #include <sstream>
 #include <tuple>
 
-namespace hops 
+namespace hops
 {
 
 class MHO_OpenCLFastFourierTransformPlan
@@ -25,8 +25,8 @@ class MHO_OpenCLFastFourierTransformPlan
         virtual ~MHO_OpenCLFastFourierTransformPlan();
 
         //sets the dimension of the global array, and size of the
-        //dimension associated with this plan 
-        //reconfigures the kernel and necessary buffers 
+        //dimension associated with this plan
+        //reconfigures the kernel and necessary buffers
         void Build(std::size_t NDIM, std::size_t N);
 
         cl::Kernel* GetKernel();//retrieve the kernel
@@ -43,11 +43,11 @@ class MHO_OpenCLFastFourierTransformPlan
         std::size_t fPreferredWorkgroupMultiple;
         cl::Kernel* fFFTKernel;
 
-        void ConstructKernel(const std::string& file_name, 
+        void ConstructKernel(const std::string& file_name,
                              const std::string& kernel_name,
                              const std::string& cflags);
 
-        enum fft_plan_type 
+        enum fft_plan_type
         {
             radix2_strided,
             radix2_strided_const,
@@ -58,7 +58,7 @@ class MHO_OpenCLFastFourierTransformPlan
             // bluestein_private,
             // bluestein_private_const
         }
-    
+
         using kfile_kfunc_cflags = std::tuple< std::string, std::string, std::string >;
         std::map< fft_plan_type, kfile_kfunc_cflags > fSourceCodeMap;
 

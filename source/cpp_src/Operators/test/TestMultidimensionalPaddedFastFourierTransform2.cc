@@ -16,7 +16,7 @@ using namespace hops;
 typedef double FPTYPE;
 #define NDIM 2
 #define AXIS_PACK_TYPE MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double> >
-#define ARRAY_TYPE MHO_TableContainer< std::complex<FPTYPE>, AXIS_PACK_TYPE > 
+#define ARRAY_TYPE MHO_TableContainer< std::complex<FPTYPE>, AXIS_PACK_TYPE >
 #define PADDER_TYPE MHO_EndZeroPadder< ARRAY_TYPE >
 #define PADDED_FFT_TYPE MHO_MultidimensionalPaddedFastFourierTransform< ARRAY_TYPE >
 #define FFT_TYPE MHO_MultidimensionalFastFourierTransform< ARRAY_TYPE >
@@ -52,8 +52,8 @@ int main(int argc, char** argv)
 
     for(std::size_t i=0; i<input1->GetSize(); i++)
     {
-        (*input1)[i] = std::complex<FPTYPE>( i%5, i%17); 
-        (*input2)[i] = std::complex<FPTYPE>( i%5, i%17); 
+        (*input1)[i] = std::complex<FPTYPE>( i%5, i%17);
+        (*input2)[i] = std::complex<FPTYPE>( i%5, i%17);
     }
 
     for(size_t i=0; i<dval; i++)
@@ -64,7 +64,7 @@ int main(int argc, char** argv)
         (&std::get<1>(*input2) )->at(i) = i;
     }
 
-    
+
     //compare the results
     for(std::size_t i=0; i<dval; i++)
     {
@@ -81,7 +81,7 @@ int main(int argc, char** argv)
 
     std::cout<<"flag0"<<std::endl;
 
-    //execute the padder followed by an FFT 
+    //execute the padder followed by an FFT
     PADDER_TYPE padder;
     padder.DeselectAllAxes();
     padder.SelectAxis(0);
@@ -105,7 +105,7 @@ int main(int argc, char** argv)
         std::cout<<std::get<1>(*output1)(i)<<" ? " << std::get<1>(*output2)(i)<<std::endl;
     }
 
- 
+
 
     std::cout<<"flag1"<<std::endl;
 
@@ -119,7 +119,7 @@ int main(int argc, char** argv)
 
     std::cout<<"flag2"<<std::endl;
 
-    //excute just the padded FFT 
+    //excute just the padded FFT
     PADDED_FFT_TYPE pfft_engine;
     pfft_engine.SetArgs(input2, output2);
     pfft_engine.DeselectAllAxes();

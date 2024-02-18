@@ -42,7 +42,7 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
 
         std::vector< MHO_IntervalLabel > GetIntervalsWithKey(const std::string& key) const;
 
-        template<typename XLabelValueType> 
+        template<typename XLabelValueType>
         std::size_t
         GetNIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value) const;
 
@@ -88,7 +88,7 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
         {
             MHO_ClassVersion vers;
             s >> vers;
-            switch(vers) 
+            switch(vers)
             {
                 case 0:
                     aData.StreamInData_V0(s);
@@ -103,15 +103,15 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_IntervalLabelTree& aData)
         {
-            switch( aData.GetVersion() ) 
+            switch( aData.GetVersion() )
             {
                 case 0:
                     s << aData.GetVersion();
                     aData.StreamOutData_V0(s);
                 break;
                 default:
-                    msg_error("containers", 
-                        "error, cannot stream out MHO_IntervalLabel object with unknown version: " 
+                    msg_error("containers",
+                        "error, cannot stream out MHO_IntervalLabel object with unknown version: "
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -139,7 +139,7 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
                 s << this->fIntervals[i];
             }
         }
-        
+
         virtual MHO_UUID DetermineTypeUUID() const override
         {
             MHO_MD5HashGenerator gen;

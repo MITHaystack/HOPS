@@ -19,16 +19,16 @@
 #include "MHO_OperatorToolbox.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_FringePlotInfo
 {
-        
+
     public:
         MHO_FringePlotInfo(){};
         virtual ~MHO_FringePlotInfo(){};
-    
+
     public:
 
         static mho_json construct_plot_data(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore, mho_json& vexInfo);

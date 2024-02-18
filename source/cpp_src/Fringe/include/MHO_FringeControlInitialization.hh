@@ -23,16 +23,16 @@
 //initialization
 #include "MHO_OperatorBuilderManager.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_FringeControlInitialization
 {
-        
+
     public:
         MHO_FringeControlInitialization(){};
         virtual ~MHO_FringeControlInitialization(){};
-    
+
     public:
 
         //control format and control_statements objects should reference the MHO_FringeData object

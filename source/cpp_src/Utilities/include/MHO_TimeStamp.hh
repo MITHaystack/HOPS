@@ -24,7 +24,7 @@ class MHO_TimeStamp
 
         MHO_TimeStamp(){};
         virtual ~MHO_TimeStamp(){};
-    
+
         void std::string GetClockEpoch();
         void std::string GetTicks();
 
@@ -37,13 +37,13 @@ class MHO_TimeStamp
     private:
 
         // std::string vex_to_iso8601(std::string vex_date_time);
-        // 
+        //
         // std::string iso8601_to_vex(std::string )
 
 
         hops_clock::time_point fTimePoint;
 
-        
+
 };
 
 

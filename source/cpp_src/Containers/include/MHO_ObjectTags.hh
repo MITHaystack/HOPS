@@ -7,7 +7,7 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
-*Description: container for tag/value meta-data to be attached to objects 
+*Description: container for tag/value meta-data to be attached to objects
 *via association with their UUID
 */
 
@@ -53,7 +53,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         std::size_t GetNObjectUUIDs() const {return fObjectUUIDSet.size();}
 
         //grab all object uuids at once
-        std::vector< MHO_UUID > GetAllObjectUUIDs() const 
+        std::vector< MHO_UUID > GetAllObjectUUIDs() const
         {
             std::vector<MHO_UUID> obj_uuids;
             for(auto it = fObjectUUIDSet.begin(); it != fObjectUUIDSet.end(); it++)
@@ -65,7 +65,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         //check if a tag with the given name is present
         bool IsTagPresent(const std::string& tag_name) const
-        {   
+        {
             return this->HasKey(tag_name);
         }
 
@@ -130,7 +130,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
                         return ss.str();
                     }
                 }
-                
+
 
                 {
                     int value;
@@ -161,7 +161,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
                         return value;
                     }
                 }
-                
+
                 {
                     mho_json value;
                     bool ok = this->Retrieve(tag_name,value);
@@ -191,16 +191,16 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
     protected:
 
-        //all object UUIDs which are associated with the tags 
+        //all object UUIDs which are associated with the tags
         std::set< MHO_UUID > fObjectUUIDSet;
-    
+
     public:
 
         virtual uint64_t GetSerializedSize() const override
         {
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion); //version number
-            total_size += sizeof(uint64_t); //number of uuids 
+            total_size += sizeof(uint64_t); //number of uuids
             total_size += MHO_UUID::ByteSize()*(fObjectUUIDSet.size());
             total_size += MHO_Taggable::GetSerializedSize();
             return total_size;
@@ -211,7 +211,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         {
             MHO_ClassVersion vers;
             s >> vers;
-            switch(vers) 
+            switch(vers)
             {
                 case 0:
                     aData.StreamInData_V0(s);
@@ -226,15 +226,15 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_ObjectTags& aData)
         {
-            switch( aData.GetVersion() ) 
+            switch( aData.GetVersion() )
             {
                 case 0:
                     s << aData.GetVersion();
                     aData.StreamOutData_V0(s);
                 break;
                 default:
-                    msg_error("containers", 
-                        "error, cannot stream out MHO_Taggable object with unknown version: " 
+                    msg_error("containers",
+                        "error, cannot stream out MHO_Taggable object with unknown version: "
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -244,7 +244,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         template<typename XStream> void StreamInData_V0(XStream& s)
         {
-            //then do the number of object uuids 
+            //then do the number of object uuids
             uint64_t n_uuids = 0;
             s >> n_uuids;
             //then do object uuids
@@ -257,10 +257,10 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             //now do the taggable element;
             s >> static_cast< MHO_Taggable& >(*this);
         };
-        
+
         template<typename XStream> void StreamOutData_V0(XStream& s) const
         {
-            //then do the number of object uuids 
+            //then do the number of object uuids
             uint64_t n_uuids = this->fObjectUUIDSet.size();
             s << n_uuids;
             //then do object uuids
@@ -271,7 +271,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             //now do the taggable element;
             s << static_cast< const MHO_Taggable& >(*this);
         };
-        
+
         virtual MHO_UUID DetermineTypeUUID() const override
         {
             MHO_MD5HashGenerator gen;

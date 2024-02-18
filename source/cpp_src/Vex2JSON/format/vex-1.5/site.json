@@ -49,7 +49,7 @@
         "mean_motion":  {"type": "real", "dimension":"NA"},
         "orbit_epoch": {"type": "epoch"}
     },
-    "fields": 
+    "fields":
     [
         "site_type",
         "site_name",

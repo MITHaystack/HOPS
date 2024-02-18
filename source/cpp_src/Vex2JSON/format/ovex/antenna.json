@@ -9,7 +9,7 @@
     {
         "antenna_diam" : {"type": "real", "dimension": "length"},
         "antenna_name" : {"type": "string"},
-        "axis_type" : 
+        "axis_type" :
         {
             "type": "compound",
             "parameters":
@@ -26,7 +26,7 @@
             ]
         },
         "axis_offset" : {"type" : "real", "dimension" : "length"},
-        "antenna_motion" : 
+        "antenna_motion" :
         {
             "type": "list_compound",
             "parameters" :
@@ -42,7 +42,7 @@
                 "settling_time"
             ]
         },
-        "pointing_sector" : 
+        "pointing_sector" :
         {
             "type": "list_compound",
             "parameters" :
@@ -67,7 +67,7 @@
             ]
         }
     },
-    "fields": 
+    "fields":
     [
         "antenna_diam",
         "antenna_name",

@@ -19,7 +19,7 @@
 #include "MHO_Message.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_DiFXChannelNameConstructor
@@ -29,11 +29,11 @@ class MHO_DiFXChannelNameConstructor
         MHO_DiFXChannelNameConstructor();
         virtual ~MHO_DiFXChannelNameConstructor();
 
-        //add a frequency range for a specific band label 
+        //add a frequency range for a specific band label
         void AddBandLabel(std::string band_label, double freq_low, double freq_high);
         void AddChannelNames(mho_json& vex_root);
 
-        //if the (o)vex file has more than one scan, we may want to specify 
+        //if the (o)vex file has more than one scan, we may want to specify
         //a specific one, otherwise, we will just use the first in the schedule
         void SetScanName(std::string scan_id){fScanID = scan_id;}
 
@@ -53,7 +53,7 @@ class MHO_DiFXChannelNameConstructor
         std::string fScanID;
 
         double fChanTol; //tolerance for labeling disinct frequencies
-        std::vector< double > fOrderedSkyFrequencies; 
+        std::vector< double > fOrderedSkyFrequencies;
 };
 
 

@@ -43,7 +43,7 @@ class MHO_PyFringeDataInterface
             fContainerInterface(fdata->GetContainerStore()),
             fParameterInterface(fdata->GetParameterStore())
         {
-            
+
         };
 
         virtual ~MHO_PyFringeDataInterface(){};
@@ -53,7 +53,7 @@ class MHO_PyFringeDataInterface
         MHO_PyScanStoreInterface& GetScanStore(){return fScanInterface;}
 
         //return copy of vex data converted to py::dict
-        py::dict GetVex() const {return fFringeData->GetVex();} 
+        py::dict GetVex() const {return fFringeData->GetVex();}
         py::dict GetPlotData() const {return fFringeData->GetPlotData();}
 
         //for now we do not expose these to python
@@ -62,9 +62,9 @@ class MHO_PyFringeDataInterface
         // py::dict GetControlStatements() const {return fFringeData->GetControlStatements();}
 
     private:
-        
+
         MHO_FringeData* fFringeData;
-        
+
         //pointer to the parameter store
         MHO_PyScanStoreInterface fScanInterface;
         MHO_PyContainerStoreInterface fContainerInterface;

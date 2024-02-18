@@ -3,7 +3,7 @@
 
 #include "MHO_JSONHeaderWrapper.hh"
 
-namespace hops 
+namespace hops
 {
 
 
@@ -57,7 +57,7 @@ class MHO_IndexLabelInterface
                 obj[key] = value;
                 (*fIndexLabelObjectPtr)[ikey].update(obj);
             }
-            else 
+            else
             {
                 msg_error("utilities", "cannot insert key:value pair, index label interface is missing object!" << eom);
             }
@@ -75,7 +75,7 @@ class MHO_IndexLabelInterface
                     return true;
                 }
             }
-            else 
+            else
             {
                 msg_error("utilities", "cannot retrieve key:value pair, index label interface is missing object!" << eom);
             }
@@ -101,7 +101,7 @@ class MHO_IndexLabelInterface
                 obj["index"] = index;
                 (*fIndexLabelObjectPtr)[ikey].update(obj);
             }
-            else 
+            else
             {
                 msg_error("utilities", "cannot insert label object, index label interface is missing object!" << eom);
             }
@@ -115,7 +115,7 @@ class MHO_IndexLabelInterface
                 std::string ikey = index2key(index);
                 return (*fIndexLabelObjectPtr)[ikey];
             }
-            else 
+            else
             {
                 msg_error("utilities", "cannot retrieve label object, index label interface is missing object!" << eom);
                 return fDummy;
@@ -129,7 +129,7 @@ class MHO_IndexLabelInterface
                 std::string ikey = index2key(index);
                 return (*fIndexLabelObjectPtr)[ikey];
             }
-            else 
+            else
             {
                 msg_error("utilities", "cannot retrieve label object, index label interface is missing object!" << eom);
                 return fDummy;
@@ -152,7 +152,7 @@ class MHO_IndexLabelInterface
                     }
                 }
             }
-            else 
+            else
             {
                 msg_error("utilities", "cannot determine matching indexes, index label interface is missing object!" << eom);
             }
@@ -179,7 +179,7 @@ class MHO_IndexLabelInterface
                     }
                 }
             }
-            else 
+            else
             {
                 msg_error("utilities", "cannot determine matching indexes, index label interface is missing object!" << eom);
             }

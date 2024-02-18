@@ -19,7 +19,7 @@ class MHO_SamplerLabelerBuilder: public MHO_OperatorBuilder
 {
     public:
 
-        MHO_SamplerLabelerBuilder(MHO_OperatorToolbox* toolbox, 
+        MHO_SamplerLabelerBuilder(MHO_OperatorToolbox* toolbox,
                                    MHO_ContainerStore* cstore = nullptr,
                                    MHO_ParameterStore* pstore = nullptr):
             MHO_OperatorBuilder(toolbox, cstore, pstore)

@@ -77,7 +77,7 @@
         },
         "record_control": {"type": "int"}
     },
-    "fields": 
+    "fields":
     [
         "equip",
         "composite_equip",

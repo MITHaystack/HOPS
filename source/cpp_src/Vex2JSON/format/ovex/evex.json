@@ -5,7 +5,7 @@
     "stop_tag": "enddef",
     "type" : "primitive",
     "block_type": "primitive",
-    "parameters" : 
+    "parameters" :
     {
         "core_exp#": {"type": "int"},
         "ovex_file": {"type": "string"},
@@ -14,7 +14,7 @@
         "AP_length": {"type": "real", "dimension": "time"},
         "speedup_factor": {"type": "real", "dimension": "time"}
     },
-    "fields": 
+    "fields":
     [
         "core_exp#",
         "ovex_file",

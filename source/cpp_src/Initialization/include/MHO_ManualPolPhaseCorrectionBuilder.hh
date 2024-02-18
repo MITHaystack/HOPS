@@ -15,12 +15,12 @@
 namespace hops
 {
 
-class MHO_ManualPolPhaseCorrectionBuilder: 
+class MHO_ManualPolPhaseCorrectionBuilder:
     public MHO_OperatorBuilder
 {
     public:
 
-        MHO_ManualPolPhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox, 
+        MHO_ManualPolPhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox,
                                                 MHO_ContainerStore* cstore = nullptr,
                                                 MHO_ParameterStore* pstore = nullptr):
             MHO_OperatorBuilder(toolbox, cstore, pstore)

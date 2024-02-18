@@ -18,7 +18,7 @@ class MHO_FastFourierTransformUtilities
     public:
         MHO_FastFourierTransformUtilities(){};
         virtual ~MHO_FastFourierTransformUtilities(){};
-        
+
         //conjugate an array
         static void Conjugate(unsigned int N, std::complex< XFloatType >* array)
         {
@@ -44,11 +44,11 @@ class MHO_FastFourierTransformUtilities
 
 
         ////////////////////////////////////////////////////////////////////////
-        //compute only the twiddle factors we need to compute them on the fly 
+        //compute only the twiddle factors we need to compute them on the fly
         //e.g e^{ix}, e^{2ix}, e^{4ix}, e^{8ix}, etc up to e^{Nix} )
         //that way we only need log2N storage
         static void ComputeTwiddleFactorBasis(unsigned int log2N, std::complex< XFloatType >* twiddle);
-        
+
         static void ComputeConjugateTwiddleFactorBasis(unsigned int log2N, std::complex< XFloatType >* conj_twiddle)
         {
             ComputeTwiddleFactors(log2N, conj_twiddle);
@@ -107,13 +107,13 @@ class MHO_FastFourierTransformUtilities
             //H0 is the element from the even indexed array
             //H1 is the element from the odd index array
             //W is the twiddle factor
-            
+
             //fetch the data
             XFloatType H00, H01, H10, H11, W0, W1, alpha_i, alpha_r;
             H00 = H0[0]; H01 = H0[1];
             H10 = H1[0]; H11 = H1[1];
             W0 = W[0]; W1 = W[1];
-            
+
             //apply the butterfly
             alpha_r = W0*H10 - W1*H11;
             alpha_i = W1*H10 + W0*H11;
@@ -121,7 +121,7 @@ class MHO_FastFourierTransformUtilities
             H11 = H01 - alpha_i;
             H00 = H00 + alpha_r;
             H01 = H01 + alpha_i;
-            
+
             //write out
             H0[0] = H00; H0[1] = H01;
             H1[0] = H10; H1[1] = H11;
@@ -158,7 +158,7 @@ class MHO_FastFourierTransformUtilities
                     for(unsigned int k=0; k < butterfly_width; k++)
                     {
                         butterfly_index = group_start + k; //index
-                        
+
                         H0 = data + (access_stride*butterfly_index);
                         H1 = H0 + access_stride*butterfly_width;
                         W = twiddle + 2*n_butterfly_groups*k;
@@ -167,7 +167,7 @@ class MHO_FastFourierTransformUtilities
                 }
             }
         }
-        
+
         static inline void ButterflyRadixTwo_GentlemanSande(XFloatType* H0, XFloatType* H1, XFloatType* W)
         {
             ////////////////////////////////////////////////////////////////////////
@@ -177,32 +177,32 @@ class MHO_FastFourierTransformUtilities
             //H0 is the element from the even indexed array
             //H1 is the element from the odd index array
             //W is the twiddle factor
-            
+
             //fetch the data
             XFloatType H00, H01, H10, H11, W0, W1, alpha_i, alpha_r, h1_r, h1_i;
             H00 = H0[0]; H01 = H0[1];
             H10 = H1[0]; H11 = H1[1];
             W0 = W[0]; W1 = W[1];
-            
+
             //cache H1
             h1_r = H10;
             h1_i = H11;
-            
+
             //compute new h1
             H10 = H00 - h1_r;
             H11 = H01 - h1_i;
-            
+
             //compute new H0
             H00 += h1_r;
             H01 += h1_i;
-            
+
             //multiply new h1 by twiddle factor
             alpha_r = W0*H10 - W1*H11;
             alpha_i = W1*H10 + W0*H11;
-            
+
             H10 = alpha_r;
             H11 = alpha_i;
-            
+
             //write out
             H0[0] = H00; H0[1] = H01;
             H1[0] = H10; H1[1] = H11;
@@ -325,7 +325,7 @@ class MHO_FastFourierTransformUtilities
                 data[i*stride] = norm*workspace[i]*scale[i];
             }
         }
-        
+
 }; //end of class
 
 

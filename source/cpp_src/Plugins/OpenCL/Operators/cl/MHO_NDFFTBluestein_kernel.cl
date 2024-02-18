@@ -23,7 +23,7 @@
 
 
 //TODO HOW DO WE DETERMINE THIS FOR OUR DEVICE??
-#define MAX_CONCURRENT_WORKGROUPS 4 
+#define MAX_CONCURRENT_WORKGROUPS 4
 
 __kernel void
 NDFFTBluesteinStage(
@@ -35,15 +35,15 @@ NDFFTBluesteinStage(
     __global CL_TYPE2* scale,
     __global CL_TYPE2* circulant,
     __global CL_TYPE2* workspace)
-{    
-    //get the index of the current work item in the global list 
+{
+    //get the index of the current work item in the global list
     unsigned int i_global = get_global_id(0);
     unsigned int i_local = get_local_id(0);
     unsigned int workgroup_size = get_local_size(0);
     unsigned int i_workgroup = i_global;//(i_global/workgroup_size)%MAX_CONCURRENT_WORKGROUPS;
     unsigned int dim[FFT_NDIM];
     for(unsigned int i=0;i<FFT_NDIM; i++){dim[i] = dim_arr[i];}
-    
+
     //work-item specific space for the twiddle factor basis
     __local CL_TYPE2* twiddle_basis = &(twiddle_scratch[workgroup_size*get_local_id(0)]);
     unsigned int log2N = LogBaseTwo(dim[D]);
@@ -56,7 +56,7 @@ NDFFTBluesteinStage(
     //pointer to the work-item's data chunk
     __global CL_TYPE2* chunk;
 
-    //pointer to the FFT workspace 
+    //pointer to the FFT workspace
     __global CL_TYPE2* work_chunk;
     // work_chunk = &(workspace[  M*(workgroup_size*i_workgroup + i_local) ] );
     work_chunk = &(workspace[i_global*M]);
@@ -80,7 +80,7 @@ NDFFTBluesteinStage(
     for(unsigned int i=0; i<FFT_NDIM-1; i++)
     {
         //copy the value of the non-active dimensions in to the index array
-        index[ na_dimension_index[i] ] = na_dimension_value[i]; 
+        index[ na_dimension_index[i] ] = na_dimension_value[i];
     }
     //calculate the total memory offset to the start of the work-item's data block
     data_location = OffsetFromRowMajorIndex(FFT_NDIM, dim, index);

@@ -93,9 +93,9 @@ class MHO_PyContainerStoreInterface
             }
         }
 
-        
 
-        //return a list of (UUID <-> typename <-> shortname) tuples 
+
+        //return a list of (UUID <-> typename <-> shortname) tuples
         py::list GetObjectList()
         {
             mho_json info_obj;
@@ -112,7 +112,7 @@ class MHO_PyContainerStoreInterface
             return ret_obj;
         };
 
-        //publically EXPOSED for C++ lambda's 
+        //publically EXPOSED for C++ lambda's
         //DO NOT EXPOSE THIS CLASS TO PYTHON
         MHO_ContainerStore* GetContainerStore(){return fContainerStore;}
 
@@ -163,7 +163,7 @@ DeclarePyContainerStoreInterface(py::module &m, std::string pyclass_name)
             "get a list of the object information (list of dict's containing each object's type_uuid, object_uuid, and shortname"
         )
         .def("get_object", //lambda for returing either object data or none type
-            [=](MHO_PyContainerStoreInterface& m, std::string object_uuid) -> py::object 
+            [=](MHO_PyContainerStoreInterface& m, std::string object_uuid) -> py::object
             {
                 MHO_UUID uuid;
                 bool is_valid = uuid.from_string(object_uuid);
@@ -171,32 +171,32 @@ DeclarePyContainerStoreInterface(py::module &m, std::string pyclass_name)
                 if( is_valid && cStore != nullptr &&  cStore->IsObjectPresent(uuid) ) //use MHO_UUID, not string
                 {
                     MHO_UUID type_id = cStore->GetObjectTypeUUID(uuid);
-                    
+
                     if(type_id == cStore->GetTypeUUID<visibility_type>() )
                     {
                         //handle visibility data (acess via string key)
-                        return py::cast( m.GetObject<visibility_type>(object_uuid) ); 
+                        return py::cast( m.GetObject<visibility_type>(object_uuid) );
                     }
                     if(type_id == cStore->GetTypeUUID<weight_type>() )
                     {
                         //handle weight_type data
-                        return  py::cast( m.GetObject<weight_type>(object_uuid) ); 
+                        return  py::cast( m.GetObject<weight_type>(object_uuid) );
                     }
                     if(type_id == cStore->GetTypeUUID<station_coord_type>() )
                     {
                         //handle station data
-                        return py::cast( m.GetObject<station_coord_type>(object_uuid) ); 
+                        return py::cast( m.GetObject<station_coord_type>(object_uuid) );
                     }
                     if(type_id == cStore->GetTypeUUID<visibility_store_type>() )
                     {
                         //handle visibility storage data (single float)
-                        return py::cast( m.GetObject<visibility_store_type>(object_uuid) ); 
+                        return py::cast( m.GetObject<visibility_store_type>(object_uuid) );
                     }
 
                     if(type_id == cStore->GetTypeUUID<weight_store_type>() )
                     {
                         //handle weight storage data (single float)
-                        return py::cast( m.GetObject<weight_store_type>(object_uuid) ); 
+                        return py::cast( m.GetObject<weight_store_type>(object_uuid) );
                     }
 
                     if(type_id == cStore->GetTypeUUID<MHO_ObjectTags>() )
@@ -214,11 +214,11 @@ DeclarePyContainerStoreInterface(py::module &m, std::string pyclass_name)
                             }
                             //append the tagged object uuid list
                             meta_data["tagged_object_uuid_list"] = id_list;
-                            //convert to py::dict 
+                            //convert to py::dict
                             py::dict dict_obj = meta_data;
                             return dict_obj;
                         }
-                        else 
+                        else
                         {
                             py::print( "MHO_ObjectTags object with uuid: ", object_uuid," cannot be loaded.");
                         }
@@ -226,7 +226,7 @@ DeclarePyContainerStoreInterface(py::module &m, std::string pyclass_name)
                 }
                 py::print( "object uuid ", object_uuid," is not recognized, returning None.");
                 return py::object(py::cast(nullptr));
-            }, 
+            },
             py::return_value_policy::reference,
             "return the object matching the specified uuid",
             py::arg("uuid")

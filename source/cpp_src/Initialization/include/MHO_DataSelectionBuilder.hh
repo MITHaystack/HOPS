@@ -17,12 +17,12 @@
 namespace hops
 {
 
-class MHO_DataSelectionBuilder: 
+class MHO_DataSelectionBuilder:
     public MHO_OperatorBuilder
 {
     public:
 
-        MHO_DataSelectionBuilder(MHO_OperatorToolbox* toolbox, 
+        MHO_DataSelectionBuilder(MHO_OperatorToolbox* toolbox,
                                  MHO_ContainerStore* cstore = nullptr,
                                  MHO_ParameterStore* pstore = nullptr):
             MHO_OperatorBuilder(toolbox, cstore, pstore)

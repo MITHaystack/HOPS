@@ -65,21 +65,21 @@ MHO_StationModel::ComputeModel()
         //evaluate the station model: delay, azimuth, elevation, par_angle, u, v, w
         auto dcoeff = fData->SubView(DELAY_INDEX, int_no); //extract spline coeffs
         EvaluateSpline(dcoeff, dt, fDelay);
-        
+
         auto acoeff = fData->SubView(AZIMUTH_INDEX, int_no); //extract spline coeffs
         EvaluateSpline(acoeff, dt, fAzimuth);
-        
+
         auto ecoeff = fData->SubView(ELEVATION_INDEX, int_no); //extract spline coeffs
         EvaluateSpline(ecoeff, dt, fElevation);
-        
-        //this evaluation doesn't really work, since CALC does not provide a spline for 
+
+        //this evaluation doesn't really work, since CALC does not provide a spline for
         //parallactic angle...this should be calculated by az/el, station coords, etc.
         auto pcoeff = fData->SubView(PARANGLE_INDEX, int_no); //extract spline coeffs
         EvaluateSpline(pcoeff, dt, fParAngle);
-        
+
         auto ucoeff = fData->SubView(U_INDEX, int_no); //extract spline coeffs
         EvaluateSpline(ucoeff, dt, fU);
-        
+
         auto vcoeff = fData->SubView(V_INDEX, int_no); //extract spline coeffs
         EvaluateSpline(vcoeff, dt, fV);
 

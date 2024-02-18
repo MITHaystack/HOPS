@@ -27,7 +27,7 @@ typedef MHO_TableContainer< std::complex<FP_Type>, axis_pack_test > test_table_t
 #ifdef USE_FFTW
 #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
 #define CPU_FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<test_table_type>
-#else 
+#else
 #define CPU_FFT_TYPE MHO_MultidimensionalFastFourierTransform<test_table_type>
 #endif
 
@@ -62,7 +62,7 @@ void ConstructOpenCLKernels()
     std::cout<<"fNLocal = "<<fNLocal<<std::endl;
     std::cout<<"fPreferredWorkgroupMultiple = "<<fPreferredWorkgroupMultiple<<std::endl;
     std::cout<<"fMaxNWorkItems = "<<fMaxNWorkItems<<std::endl;
-    
+
 }
 
 
@@ -82,17 +82,17 @@ int main(int /*argc*/, char** /*argv*/)
     test_table_type* test2 = new test_table_type(dim);
 
     std::size_t total_size = test->GetSize();
-    //fill up the array with data 
+    //fill up the array with data
     for(std::size_t i=0; i<total_size; i++)
     {
-        (*test)[i] = std::complex<FP_Type>(i % 5, i % 17); 
-        (*test2)[i] = std::complex<FP_Type>(i % 5, i % 17); 
+        (*test)[i] = std::complex<FP_Type>(i % 5, i % 17);
+        (*test2)[i] = std::complex<FP_Type>(i % 5, i % 17);
     }
 
     ConstructOpenCLKernels();
 
     std::cout<<"creating data buffer"<<std::endl;
-    //create the opencl buffer extensions 
+    //create the opencl buffer extensions
     ///data and dims first
     auto buffer_ext = test->MakeExtension< MHO_OpenCLNDArrayBuffer< test_table_type > >();
     buffer_ext->ConstructDimensionBuffer();
@@ -143,7 +143,7 @@ int main(int /*argc*/, char** /*argv*/)
     //get the results (move this out of loop)
     buffer_ext->ReadDataBuffer();
     MHO_OpenCLInterface::GetInstance()->GetQueue().finish();
-    
+
     timer.Stop();
     FP_Type gpu_runtime = timer.GetDurationAsDouble();
     std::cout<<"GPU time = "<<gpu_runtime<<std::endl;

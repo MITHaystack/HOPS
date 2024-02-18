@@ -6,8 +6,8 @@
 *Class: MHO_MK4ScanConverter
 *Author: J. Barrett
 *Email: barrettj@mit.edu
-*Date: 
-*Description: 
+*Date:
+*Description:
 */
 
 #include <iostream>
@@ -60,20 +60,20 @@ class MHO_MK4ScanConverter
 
         MHO_MK4ScanConverter();
         virtual ~MHO_MK4ScanConverter();
-        
+
         static int DetermineDirectoryType(const std::string& in_dir);
         static void ProcessScan(const std::string& input_dir, const std::string& output_dir);
 
     private:
 
         //convert a corel file
-        static void ConvertCorel(const std::string& root_file, 
-                                 const std::string& input_file, 
+        static void ConvertCorel(const std::string& root_file,
+                                 const std::string& input_file,
                                  const std::string& output_file);
-    
+
         //convert a station file
-        static void ConvertStation(const std::string& root_file, 
-                                   const std::string& input_file, 
+        static void ConvertStation(const std::string& root_file,
+                                   const std::string& input_file,
                                    const std::string& output_file);
 
 

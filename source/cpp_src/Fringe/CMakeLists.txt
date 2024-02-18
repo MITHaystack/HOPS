@@ -51,7 +51,7 @@ target_link_libraries (MHO_Fringe ${FRINGE_LIBS})
 
 hops_install_headers (${FRINGE_HEADERFILES})
 hops_install_libraries (MHO_Fringe )
-# 
+#
 # if (HOPS_ENABLE_TEST)
 #     add_subdirectory(test)
 # endif (HOPS_ENABLE_TEST)

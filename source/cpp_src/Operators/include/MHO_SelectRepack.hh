@@ -226,7 +226,7 @@ class MHO_SelectRepack:
                         #pragma message("TODO FIXME -- ensure that only the proper interval tags are selected/copied here.")
                         //axis2.ClearIntervalLabels();
                         //it doesn't make sense to copy the original interval labels since we have changed the organization of this axis
-                        //what ought to do is figure out the overlap between previous interval labels and items of the new axis 
+                        //what ought to do is figure out the overlap between previous interval labels and items of the new axis
                         //and create new overlapping intervals with the appropriate tags.
                     }
                     else

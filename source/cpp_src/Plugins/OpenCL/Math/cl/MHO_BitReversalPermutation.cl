@@ -37,7 +37,7 @@ NextLowestPowerOfTwo(unsigned int N)
     }
 }
 
-unsigned int 
+unsigned int
 ReverseIndexBits(unsigned int nbits, unsigned int x)
 {
     unsigned int val = 0;
@@ -49,7 +49,7 @@ ReverseIndexBits(unsigned int nbits, unsigned int x)
     return val;
 }
 
-void 
+void
 PermuteArray(unsigned int N, unsigned int stride, __global CL_TYPE2* arr)
 {
     unsigned int log2N = LogBaseTwo(N);

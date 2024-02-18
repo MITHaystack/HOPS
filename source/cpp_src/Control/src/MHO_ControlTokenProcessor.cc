@@ -69,8 +69,8 @@ MHO_ControlTokenProcessor::ProcessFixedLengthListString(const std::vector< MHO_T
 {
     mho_json element_data;
     std::vector< std::string > values;
-    
-    //check that there is at least 1 token 
+
+    //check that there is at least 1 token
     int n_elem = tokens.size();
     int length = 0;
     if(tokens.size() > 1)
@@ -86,7 +86,7 @@ MHO_ControlTokenProcessor::ProcessFixedLengthListString(const std::vector< MHO_T
         tokens[0].fValue << " is inconsistent with the number of tokens: "<< (n_elem - 1) << "." << eom);
         std::exit(1);
     }
-    
+
     for(std::size_t i=1; i<tokens.size(); i++){values.push_back( tokens[i].fValue );}
     element_data = values;
     return element_data;
@@ -178,7 +178,7 @@ MHO_ControlTokenProcessor::ConvertBool(const MHO_Token& token, bool& val)
         msg_fatal("control", "could not convert: "<< token.fValue << " to boolean value, only 'true' and 'false' accepted." << eom);
         std::exit(1);
     }
-    
+
     return ok;
 }
 

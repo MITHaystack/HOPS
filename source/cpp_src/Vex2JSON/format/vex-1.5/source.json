@@ -26,7 +26,7 @@
         "ra_rate": {"type": "real", "dimension": "angle/time"},
         "dec_rate": {"type": "real", "dimension": "angle/time"},
         "source_position_epoch": {"type": "epoch"},
-        "source_model": 
+        "source_model":
         {
             "type": "list_compound",
             "parameters":
@@ -40,7 +40,7 @@
                 "ra_offset":  {"type": "real", "dimension": "angle"},
                 "dec_offset":  {"type": "real", "dimension": "angle"}
             },
-            "fields": 
+            "fields":
             [
                 "component_number",
                 "band_id",
@@ -61,7 +61,7 @@
         "mean_motion":  {"type": "real", "dimension":"NA"},
         "orbit_epoch": {"type": "epoch"}
     },
-    "fields": 
+    "fields":
     [
         "source_type",
         "source_name",

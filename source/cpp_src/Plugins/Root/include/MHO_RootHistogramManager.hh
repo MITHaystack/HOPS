@@ -17,7 +17,7 @@
 *@brief:
 */
 
-namespace hops 
+namespace hops
 {
 
 class MHO_RootHistogramManager
@@ -36,10 +36,10 @@ class MHO_RootHistogramManager
         template< typename XTableType >
         TH1D* GenerateHistogram1D(std::string name, XTableType* table)
         {
-            //assert that this is a 1d table 
+            //assert that this is a 1d table
             HOPS_ASSERT_EQUAL( table->GetRank(), 1 );
 
-            //assume axis is labeled by doubles 
+            //assume axis is labeled by doubles
             auto x_axis = (std::get<0>(*table));
             std::size_t nxbins = table->GetDimension(0);
             double* xbins = x_axis.GetData();
@@ -59,9 +59,9 @@ class MHO_RootHistogramManager
         template< typename XTableType >
         TH2D* GenerateHistogram2D(std::string name, XTableType* table)
         {
-            HOPS_ASSERT_EQUAL( table->GetRank(), 2 ); 
+            HOPS_ASSERT_EQUAL( table->GetRank(), 2 );
 
-            //assume axes are labeled by doubles 
+            //assume axes are labeled by doubles
             auto x_axis = (std::get<0>(*table));
             std::size_t nxbins = table->GetDimension(0);
             double* xbins = x_axis.GetData();
@@ -88,9 +88,9 @@ class MHO_RootHistogramManager
         template< typename XTableType >
         TH3D* GenerateHistogram3D(std::string name, XTableType* table)
         {
-            HOPS_ASSERT_EQUAL( table->GetRank(), 3 ); 
+            HOPS_ASSERT_EQUAL( table->GetRank(), 3 );
 
-            //assume axes are labeled by doubles 
+            //assume axes are labeled by doubles
             auto x_axis = (std::get<0>(*table));
             std::size_t nxbins = table->GetDimension(0);
             double* xbins = x_axis.GetData();
