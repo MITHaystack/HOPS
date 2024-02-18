@@ -37,7 +37,7 @@ MHO_LinearDParCorrection::InitializeOutOfPlace(const visibility_type* /*in*/, vi
 }
 
 
-void 
+void
 MHO_LinearDParCorrection::PreMultiply(visibility_type* in)
 {
     //TODO this is an extremely basic implementation (single pre-factor per-pol product)
@@ -53,7 +53,7 @@ MHO_LinearDParCorrection::PreMultiply(visibility_type* in)
 }
 
 
-std::complex<double> 
+std::complex<double>
 MHO_LinearDParCorrection::GetPrefactor(std::string pp_label)
 {
     #pragma message("TODO FIXME...we need to implement proper treatment of X/Y vs H/V pols. Fourfit has the convention inverted." )
@@ -61,7 +61,7 @@ MHO_LinearDParCorrection::GetPrefactor(std::string pp_label)
     //if we cannot find this label in the set, return zero
     if( std::find( fPolProductSet.begin(), fPolProductSet.end(), pp_label) == fPolProductSet.end()  ){return factor;}
 
-    //calculate the parallactic angle difference 
+    //calculate the parallactic angle difference
     double dpar = (fRemParAngle - fRefParAngle)*(M_PI/180.);
     if(pp_label == "XX"){factor = signum( std::cos(dpar) ); }
     if(pp_label == "YY"){factor = signum( std::cos(dpar) ); }

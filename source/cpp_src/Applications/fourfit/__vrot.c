@@ -40,7 +40,7 @@ hops_complex __vrot (int ap, double dr, double mbd, int fr, int sb, struct type_
                                         /* fringe rate * time from central epoch */
     theta = pass->pass_data[fr].frequency * dr
                 * (param.acc_period * (ap + 0.5) + status.epoch_err[fr]);
-    
+
     //printf("theta = %f \n", theta);
 
 

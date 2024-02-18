@@ -38,7 +38,7 @@ int __fringe_search ( struct vex* root, struct type_pass* pass)
     extern int output (struct vex*, struct type_pass*);
     extern int __ion_search (struct type_pass *pass);
 
-    msg  ("Baseline %c%c subgroup %c", 1, 
+    msg  ("Baseline %c%c subgroup %c", 1,
            param.baseline[0], param.baseline[1], pass->pass_data[0].fgroup);
 
                                         /* Currently does default filtering */
@@ -61,7 +61,7 @@ int __fringe_search ( struct vex* root, struct type_pass* pass)
                                         /* pass parameters reflect user restrictions */
                                         /* on data extent */
     size = 2 * param.nlags * pass->nfreq * pass->num_ap;
-    
+
     printf("sbdelay total size alloc = %d\n", size);
     printf("param.nlags = %d\n", param.nlags);
     printf("pass.nfreq = %d\n", pass->nfreq);

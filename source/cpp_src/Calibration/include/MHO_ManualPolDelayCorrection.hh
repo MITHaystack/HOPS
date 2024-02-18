@@ -64,7 +64,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         std::string fStationCode;
         std::string fMk4ID;
         std::string fPol;
-        
+
         //ref freq and pc delay
         double fRefFreq;
         double fDelayOffset;

@@ -62,7 +62,7 @@ class MHO_IonosphericPhaseCorrection: public MHO_UnaryOperator< visibility_type 
         std::string fBandwidthKey;
         std::string fLowerSideband;
         std::string fUpperSideband;
-        
+
         //figures out upper/lower frequency bounds of each channel
         void DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq);
 

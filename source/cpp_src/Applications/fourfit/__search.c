@@ -147,14 +147,14 @@ int __search (struct type_pass *pass)
         // count of fr that actually have data after norm_fx
         if (status.apbyfreq[fr] > 0) status.napbyfreq ++;
         }
-        
-        
+
+
         #ifdef EXTRA_DEBUG
         auto sbd_data = extract_sbd_v2(pass, &param);
         take_snapshot_here("pass", "sbd", __FILE__, __LINE__, sbd_data);
         delete sbd_data;
         #endif
-        
+
                                         /* norm can flag data, so check we still */
                                         /* have some! */
     if (status.total_ap == 0 || status.napbyfreq == 0)
@@ -214,7 +214,7 @@ int __search (struct type_pass *pass)
         sbd_type* sbd_dr_data = new sbd_type();
         sbd_dr_data->Resize(1, pass->nfreq, status.drsp_size,  2*param.nlags);
         //printf(" sizes = %d, %d, %d, %d \n", 1, pass->nfreq, status.drsp_size, 2*param.nlags);
-        
+
         sbd_dr_data->ZeroArray();
         for (lag = 0; lag < 2*param.nlags; lag++)
         {
@@ -230,7 +230,7 @@ int __search (struct type_pass *pass)
 
         take_snapshot_here("test", "sbd_dr", __FILE__, __LINE__, sbd_dr_data);
         delete sbd_dr_data;
-    #endif 
+    #endif
 
 
 

@@ -28,7 +28,7 @@ MHO_IonosphericPhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
     auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
     auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
-    
+
     //loop over pol-products
     for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
     {
@@ -50,11 +50,11 @@ MHO_IonosphericPhaseCorrection::ExecuteInPlace(visibility_type* in)
             double lower_freq, upper_freq;
             DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
             double chan_center_freq = 0.5*(lower_freq+upper_freq);
-            
+
             //calculate the differential ionospheric phase rotation (assume constant over length of scan)
             double ion_theta = fIonoK * fdTEC / (1e6 * chan_center_freq);
             std::complex<double> ion_phasor = std::exp(fImagUnit*ion_theta);
-            
+
             //retrieve and multiply against appropriate sub-view of the visibility array
             auto chunk = in->SubView(pp, ch);
             chunk *= ion_phasor;

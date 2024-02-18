@@ -77,9 +77,9 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                         //retrieve and multiply the appropriate sub view of the visibility array
                         auto chunk = in->SubView(pp, ch);
                         chunk *= pc_phasor;
-                        
+
                         //now attach the manual pcal value to this channel/pol/station
-                        //it would probably be better to stash this information in 
+                        //it would probably be better to stash this information in
                         //a new data type rather than attaching it as meta data here
                         chan_ax->InsertIndexLabelKeyValue(ch, pc_phase_key, pc_val*fDegToRad);
                     }

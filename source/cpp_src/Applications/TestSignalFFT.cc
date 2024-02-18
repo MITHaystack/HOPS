@@ -103,14 +103,14 @@ int main(int argc, char** argv)
     // {
     //     std::cout<<noise_samples(i)<<std::endl;
     // }
-    // 
+    //
     // std::cout<<"--------------"<<std::endl;
-    // 
+    //
     // for(std::size_t i=0; i<n_samples; i++)
     // {
     //     std::cout<<tone_samples(i)<<std::endl;
     // }
-    
+
     //now execute an FFT on the samples
     data_type ft_noise_samples; ft_noise_samples.Copy(noise_samples); //ft_noise_samples.Resize(n_samples);
     data_type ft_tone_samples; ft_tone_samples.Copy(tone_samples); //ft_tone_samples.Resize(n_samples);
@@ -147,28 +147,28 @@ int main(int argc, char** argv)
     aCyclicRotator.SetArgs(&ft_noise_samples);
     status = aCyclicRotator.Initialize();
     status = aCyclicRotator.Execute();
-    
+
     aCyclicRotator.SetOffset(0, n_samples/2);
     aCyclicRotator.SetArgs(&ft_tone_samples);
     status = aCyclicRotator.Initialize();
     status = aCyclicRotator.Execute();
-    
+
     aCyclicRotator.SetOffset(0, n_samples/2);
     aCyclicRotator.SetArgs(&ft_sum_samples);
     status = aCyclicRotator.Initialize();
     status = aCyclicRotator.Execute();
 
     #ifdef USE_ROOT
-    
+
     std::cout<<"starting root plotting"<<std::endl;
-    
+
     //ROOT stuff for plots
     int dummy_argc = 0;
     char tmp = '\0';
     char* argv_placeholder = &tmp;
     char** dummy_argv = &argv_placeholder;
     TApplication* App = new TApplication("test",&dummy_argc,dummy_argv);
-    
+
     MHO_RootCanvasManager cMan;
     auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
     c->Divide(1,3);
@@ -207,9 +207,9 @@ int main(int argc, char** argv)
     c2->cd(3);
     f3->Draw("APL");
     c2->Update();
-    
+
     App->Run();
-    
+
     #endif
 
 

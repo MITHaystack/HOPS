@@ -61,9 +61,9 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-    
+
     //TestPCalExtraction -d ./ -s E -b GE -P X
-    
+
     //TODO allow messaging keys to be set via command line arguments
     MHO_Message::GetInstance().AcceptAllKeys();
 
@@ -191,7 +191,7 @@ int main(int argc, char** argv)
     //load root file and extract useful vex info
     auto vexInfo = scanStore.GetRootFileData();
     //MHO_VexInfoExtractor::extract_vex_info(vexInfo, &paramStore);
-    
+
     //load baseline data
     scanStore.LoadBaseline(baseline, &containerStore);
     MHO_BasicFringeDataConfiguration::configure_visibility_data(&containerStore);
@@ -213,7 +213,7 @@ int main(int argc, char** argv)
     }
 
     MHO_MultitonePhaseCorrection pcal_corr;
-    
+
     pcal_corr.SetStationMk4ID("E");
     pcal_corr.SetMultitonePCData(pcal_data);
     pcal_corr.SetArgs(vis_data);

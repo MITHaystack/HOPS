@@ -74,7 +74,7 @@ void __delay_rate (struct type_pass *pass,
         if (j < 0) j += size;
         fringe_spect[i] = X[j];
         }
-    
+
     // //sub-sample by 2 ( not in original implementation)
     // for (L = 0; L < np; L++)
     // {
@@ -87,7 +87,7 @@ void __delay_rate (struct type_pass *pass,
                                         /* Grid fringe rate spectrum to delay */
                                         /* rate spectrum. rate[L] is interpolated */
                                         /* from fringe[l_int] & fringe[l_int2] */
-                                        
+
     //printf("b = %f \n", b);
     for (L = 0; L < np; L++)
         {
@@ -99,8 +99,8 @@ void __delay_rate (struct type_pass *pass,
         if (l_int2 > (size-1)) l_int2 = size - 1;
         rate_spectrum[L] = fringe_spect[l_int] * (1.0 - l_fp + l_int)
                          + fringe_spect[l_int2] * (l_fp - l_int);
-                         
-                         
+
+
         //if(l_int == 0 && status.lag == 0)
         // {
         //  printf("L = %d \n", L);
@@ -109,7 +109,7 @@ void __delay_rate (struct type_pass *pass,
         //  printf("p2 = %f, %f \n", real_comp(fringe_spect[l_int2]), imag_comp(fringe_spect[l_int2]) );
         //  printf("result = %f, %f \n", real_comp(rate_spectrum[L]), imag_comp(rate_spectrum[L]) );
         // }
-                         
+
         //msg("fr %d cabs(rate_spectrum[%d]) %f", -3, fr, L, cabs (rate_spectrum[L]));
         }
      }

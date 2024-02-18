@@ -4,7 +4,7 @@
 #include <bitset>
 
 template<std::size_t N>
-void 
+void
 reverse_bits(std::bitset<N> &b)
 {
     for(std::size_t i = 0; i < N/2; ++i)
@@ -51,7 +51,7 @@ MHO_MultitonePhaseCorrection::MHO_MultitonePhaseCorrection()
     fFFTEngine.SetArgs(&fPCWorkspace);
     fFFTEngine.SelectAllAxes();
     fFFTEngine.SetForward();//forward DFT
-    
+
     fWeights = nullptr;
 
     bool ok;
@@ -166,7 +166,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         {
             msg_error("calibration", "no pcal tones found for channel: " << ch << " with sky_freq: "<<sky_freq << eom);
         }
-        else 
+        else
         {
             //grab the sampler delay associated with this channel
             std::size_t sampler_delay_index;
@@ -206,14 +206,14 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 //std::cout<<"channel: "<<ch_label<<" initial bitmask = "<<bit_mask<<std::endl;
                 if(net_sideband == "L")
                 {
-                    bit_mask <<= (32-ntones); 
+                    bit_mask <<= (32-ntones);
                     //std::cout<<"shifted bitmask = "<<bit_mask<<std::endl;
                     reverse_bits(bit_mask);
                     //std::cout<<"reverse_bits = "<<bit_mask<<std::endl;
                 }
             }
 
-            
+
 
             //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
             //TODO FIXME -- make sure the stop/start parameters are accounted for
@@ -254,7 +254,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                     if( (mask & bit_one).count() == 1 ){wght = 0.0;}
                     mask >>= 1; //shift to next bit
                     fPCWorkspace(i) += wght*( fPCData->at(pc_pol, ap, start_idx+i) );
-                    navg += wght; 
+                    navg += wght;
                 }
 
                 //finish the average, do delay fit on last ap of segment or last ap and append to list
@@ -302,11 +302,11 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
 
 
 
-    //here follows the 'sampler_delay.c' code which averages the pcal delays over all 
-    //channels and AP's which belong to the same sampler. We should investigate if 
+    //here follows the 'sampler_delay.c' code which averages the pcal delays over all
+    //channels and AP's which belong to the same sampler. We should investigate if
     //this is really needed, or if it improves the post-fit residuals. It doesn't
     //seem to be necessary and overcomplicates the code.
-    
+
     //loop over sampler delays and average
     for(std::size_t sd=0; sd<sampler_delays.size(); sd++)
     {
@@ -332,24 +332,24 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 if(fStationIndex == 1){st_prefix = "rem";}
                 std::string pc_delay_key = st_prefix + "_mtpc_delays_" + pc_pol_code;
                 vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
-                
+
                 std::size_t nsegs = pc_delay_segs.size();
                 if(first_pass){mean_pc_delay.resize(nsegs, 0.0); first_pass = false;}
                 for(std::size_t s=0; s<nsegs; s++)
                 {
                     //std::cout<<"ch pc_delay seg = "<<ch<<", "<<s<<", "<<1e9*pc_delay_segs[s]<<std::endl;
-                    mean_pc_delay[s] += pc_delay_segs[s]; 
+                    mean_pc_delay[s] += pc_delay_segs[s];
                 }
                 n_avg += 1.0;
             }
         }
 
-        //compute the average 
+        //compute the average
         for(std::size_t i=0; i<mean_pc_delay.size(); i++)
         {
             mean_pc_delay[i] /= n_avg;
         }
-        
+
         //now loop over the channels and insert the 'averaged' delay to be applied
         for(std::size_t ch=0; ch < vis_chan_ax->GetSize(); ch++)
         {
@@ -371,27 +371,27 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             }
         }
     }
-    
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //now loop over the channels and actually apply the processed pcal phase 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //now loop over the channels and actually apply the processed pcal phase
     //and averaged-down delays
     for(std::size_t ch=0; ch < vis_chan_ax->GetSize(); ch++)
     {
@@ -409,7 +409,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         std::vector< double > pc_mag_segs;
         std::vector< double > pc_phase_segs;
         std::vector< double > pc_delay_segs;
-        
+
         std::string st_prefix = "ref";
         if(fStationIndex == 1){st_prefix = "rem";}
         std::string pc_seg_start_key = st_prefix + "_mtpc_seg_start_" + pc_pol_code;
@@ -428,7 +428,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         // vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
         vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_phase_key, pc_phase_segs);
         vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
-        
+
         for(std::size_t seg=0; seg < seg_start_aps.size(); seg++)
         {
             std::size_t seg_start_ap = seg_start_aps[seg];
@@ -445,12 +445,12 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
 
             //conjugate pc phasor when applied to reference station
             if(fStationIndex == 0){pc_phasor = std::conj(pc_phasor);}
-            
+
             for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
             {
                 //apply phase offset correction
                 in->SubView(vis_pp, ch, dap) *= pc_phasor;
-                
+
                 //std::cout<<"pol, ch, ap, phase/delay = "<<vis_pp<<", "<<ch<<", "<<dap<<", "<<pcphase<<", "<<1e9*pcdelay<<std::endl;
 
                 //apply delay correction
@@ -634,13 +634,13 @@ void MHO_MultitonePhaseCorrection::RepairMK4PCData(visibility_type* vis)
     fPCData->Retrieve("origin", data_origin);
     if(data_origin == "mark4")
     {
-        //first loop over the pcal freq axis and extract the channel indexes and ranges 
+        //first loop over the pcal freq axis and extract the channel indexes and ranges
         auto pc_tone_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCData));
         auto chan_ax = &(std::get<CHANNEL_AXIS>(*vis));
         std::map< std::size_t, std::pair<std::size_t, std::size_t> > chanidx2range;
-        
+
         auto interval_objs = pc_tone_ax->GetMatchingIntervalLabels("channel_index");
-        for(std::size_t i=0; i<interval_objs.size(); i++) 
+        for(std::size_t i=0; i<interval_objs.size(); i++)
         {
             std::size_t channel_idx = interval_objs[i]["channel_index"].get<int>();
             std::size_t low = interval_objs[i]["lower_index"].get<int>();
@@ -691,7 +691,7 @@ void MHO_MultitonePhaseCorrection::RepairMK4PCData(visibility_type* vis)
                 DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
 
                 //figure out the number of tones in this channel (better match stop-start)
-                int c = std::floor(lower_freq/pcal_spacing); 
+                int c = std::floor(lower_freq/pcal_spacing);
                 if( (lower_freq - c*pcal_spacing) > 0 ){c += 1;} //first tone in channel is c*pcal_spacing
                 int d = std::floor(upper_freq/pcal_spacing);
                 if( (upper_freq - d*pcal_spacing) > 0 ){d += 1;} //d is first tone just beyond the channel
@@ -701,9 +701,9 @@ void MHO_MultitonePhaseCorrection::RepairMK4PCData(visibility_type* vis)
                     std::size_t ntones = stop - start;
                     for(std::size_t ti=0; ti < ntones; ti++)
                     {
-                        //loop over the tone indexes and figure out the tone frequencies 
+                        //loop over the tone indexes and figure out the tone frequencies
                         //which are multiples of the pcal spacing within the channel
-                        pc_tone_ax->at(start+ti) = (c+ti)*pcal_spacing; 
+                        pc_tone_ax->at(start+ti) = (c+ti)*pcal_spacing;
                     }
                 }
             }
