@@ -6,7 +6,7 @@
 
 #include <cstdio>
 
-namespace hops 
+namespace hops
 {
 
 //write data objects to output file...perhaps we may want to move this elsewhere?
@@ -36,10 +36,10 @@ MHO_FringeData::WriteOutput()
     if(!ok4){polprod = "?";}
 
     //write out the data to disk (don't bother waiting for a directory write lock)
-    //because we are going to write it to a unique temporary name 
-    //once it is complete, we will then get a write lock in order to rename it 
+    //because we are going to write it to a unique temporary name
+    //once it is complete, we will then get a write lock in order to rename it
     //to the properly sequenced ID
-    //ideally this should reduce the amount of time each independent process waits to access the directory 
+    //ideally this should reduce the amount of time each independent process waits to access the directory
     //since they can write in parallel and only need to queue up to rename their files
 
     std::string temp_name;
@@ -53,7 +53,7 @@ MHO_FringeData::WriteOutput()
     // for locking
     int lock_retval = LOCK_PROCESS_NO_PRIORITY;
     int the_seq_no; //the fringe file sequence number
-    
+
     //wait until we are the next process allowed to write an output file
     MHO_LockFileHandler::GetInstance().DisableLegacyMode();
     lock_retval = MHO_LockFileHandler::GetInstance().WaitForWriteLock(directory, the_seq_no);
@@ -63,11 +63,12 @@ MHO_FringeData::WriteOutput()
         std::stringstream ss2;
         ss2 << directory << "/" << baseline << "." << frequency_group << "." << polprod<< "." << root_code << "." << the_seq_no << ".frng";
         output_file = ss2.str();
-        
+
         //rename the temp file to the proper output name
         if(write_ok == 0)
         {
-            std::rename(temp_name.c_str(), output_file.c_str());    
+            std::rename(temp_name.c_str(), output_file.c_str());
+            std::cerr<<"ffit: "<<output_file<<std::endl;
         }
     }
 
@@ -90,7 +91,7 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
     //TODO what other information should be tagged/included?
 
     //TODO REPLACE THIS WITH:
-    //(1) The full visibilities (with spectral information) with the fringe solution applied 
+    //(1) The full visibilities (with spectral information) with the fringe solution applied
     visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
     if( vis_data == nullptr)
     {
