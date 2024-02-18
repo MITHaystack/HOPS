@@ -502,12 +502,28 @@ def make_info_text_box(plot_dict):
         plot_dict['RA'] + '\n' + \
         plot_dict['Dec'].replace('d', '$\degree$')
 
+
+    textstr3 = ""
+    errcode = " "
+    if "extra" in plot_dict:
+        errcode = plot_dict["extra"]["error_code"]
+
+    if errcode != " ":
+        textstr3 += "\n Error code " + errcode + '\n'
+    else:
+        textstr3 += ""
+
     #now add the text boxes to the plot
     plt.text(0.83,0.94,textstr1,transform=plt.gcf().transFigure,fontsize=8,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='g')
 
     plt.text(0.965,0.94,textstr2,transform=plt.gcf().transFigure,fontsize=8,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
+
+    plt.text(0.965,0.94,textstr3,transform=plt.gcf().transFigure,fontsize=8,verticalalignment='top',
+             family='monospace',horizontalalignment='right',color='r')
+
+
 
 
 def make_top_info_text(plot_dict):
