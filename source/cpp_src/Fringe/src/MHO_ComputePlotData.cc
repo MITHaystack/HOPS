@@ -984,8 +984,7 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
     plot_dict["extra"]["nlags"] = fParamStore->GetAs<int>("/config/nlags");
 
-
-    std::string errcode = calc_error_code();
+    std::string errcode = calc_error_code(plot_dict);
     plot_dict["extra"]["error_code"] = errcode;
     fParamStore->Set("/fringe/error_code", errcode);
 
@@ -1181,7 +1180,7 @@ MHO_ComputePlotData::calc_quality_code()
 }
 
 std::string
-MHO_ComputePlotData::calc_error_code()
+MHO_ComputePlotData::calc_error_code(const mho_json& plot_dict)
 {
 
     #pragma message("TODO FIXME -- implement error codes other than G and H, also move all param retrieval outside of this function and pass in data")
@@ -1191,6 +1190,10 @@ MHO_ComputePlotData::calc_error_code()
     double weak_channel;
     bool ok = fParamStore->Get("/control/fit/weak_channel", weak_channel);
     if(!ok){weak_channel = 0.5;} //default weak_channel threshold is 0.5
+
+    double pc_amp_hcode;
+    ok = fParamStore->Get("/control/fit/pc_amp_hcode", pc_amp_hcode);
+    if(!ok){pc_amp_hcode = 0.005;} //default pc_amp_hcode is 0.005
 
     double snr;
     ok = fParamStore->Get("/fringe/snr", snr);
@@ -1234,7 +1237,6 @@ MHO_ComputePlotData::calc_error_code()
     bool ref_low_pcal = false;
     bool rem_low_pcal = false;
 
-
     //need fringe phasor data and pc_amp data
     std::size_t nchan = fFringe.GetDimension(0);
     for( std::size_t i=0; i<nchan; i++)
@@ -1246,15 +1248,19 @@ MHO_ComputePlotData::calc_error_code()
             low_chan = true;
         }
 
-        // if( status->pc_amp[i][0][stnpol[0][pass->pol]] < param->pc_amp_hcode || status->pc_amp[i][0][stnpol[0][pass->pol]] > 0.500)
-        // {
-        //     ref_low_pcal = true;
-        // }
-        //
-        // if( status->pc_amp[i][1][stnpol[1][pass->pol]] < param->pc_amp_hcode || status->pc_amp[i][1][stnpol[1][pass->pol]] > 0.500)
-        // {
-        //     rem_low_pcal = true;
-        // }
+        //TODO FIXME -- get rid of dependence on plot_dict, and just use raw pcal data  directly
+        //this rough implementation is lazy
+        if(ref_pc_mode == "multitone")
+        {
+            double pc_amp = plot_dict["PLOT_INFO"]["PCAmpRf"][i].get<double>() / 1000.0;
+            if( pc_amp < pc_amp_hcode || pc_amp > 0.500){ref_low_pcal = true;}
+        }
+
+        if(rem_pc_mode == "multitone")
+        {
+            double pc_amp = plot_dict["PLOT_INFO"]["PCAmpRm"][i].get<double>() / 1000.0 ;
+            if( pc_amp < pc_amp_hcode || pc_amp > 0.500){rem_low_pcal = true;}
+        }
     }
 
 
@@ -1264,9 +1270,8 @@ MHO_ComputePlotData::calc_error_code()
         errcode = "G";
     }
 
-    //only care about 'multitone', 'normal' pc_mode not implemented
-    if(  (ref_low_pcal && ( ref_pc_mode == "multione") ) ||
-         (rem_low_pcal && ( rem_pc_mode == "multione") ) )
+    //only care about 'multitone', so far 'normal' pc_mode has not been implemented
+    if(  ref_low_pcal || rem_low_pcal  )
     {
         errcode = "H";
     }
