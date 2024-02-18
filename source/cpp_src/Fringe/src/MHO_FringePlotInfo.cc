@@ -52,7 +52,9 @@ MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_Parame
 
     auto ref_name = paramStore->GetAs<std::string>("/ref_station/site_name");
     auto rem_name = paramStore->GetAs<std::string>("/rem_station/site_name");
-    std::string freq_group = "fgroup ?";
+    std::string fgroup;
+    paramStore->Get("/config/fgroup", fgroup);
+    std::string freq_group = "fgroup "+fgroup;
 
     plot_dict["PolStr"] = ref_name + " - " + rem_name +", " + freq_group + ", " + "pol " + polprod;
     plot_dict["extra"]["pol_product"] = polprod;
@@ -194,9 +196,9 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["extra"]["mb_win"] = win;
     win = paramStore->GetAs< std::vector<double> >("/fringe/dr_win");
     #pragma message("TODO FIXME -- perform proper accounting of window units, here we (convert to ns/s)")
-    win[0] *= 1e3; win[1] *= 1e3; 
+    win[0] *= 1e3; win[1] *= 1e3;
     plot_dict["extra"]["dr_win"] = win;
-    
+
     bool do_ion = paramStore->GetAs<bool>("/config/do_ion");
     if(do_ion){ win = paramStore->GetAs< std::vector<double> >("/fringe/ion_win"); }
     else{ win[0] = 0.0; win[1] = 0.0;}
@@ -221,14 +223,14 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["extra"]["grid_pts"] = grid_pts;
 
     int nchan = paramStore->GetAs<int>("/config/nchannels");
-    
+
     std::vector< std::string > pp_vec = paramStore->GetAs< std::vector< std::string > >("/config/polprod_set");
     int eff_npols = 1;
     if(pp_vec.size()  > 2 ){eff_npols = 2;}
     int data_rate = (int)( nchan*eff_npols*srate_MHz* std::sqrt(ref_bits*rem_bits) + 0.5 );
     plot_dict["extra"]["data_rate"] = data_rate;
 
-    //if ionospheric fit was done then pass that data too 
+    //if ionospheric fit was done then pass that data too
     if(paramStore->IsPresent("/fringe/dtec_array") && paramStore->IsPresent("/fringe/dtec_amp_array"))
     {
         std::vector<double> dtec_array;
@@ -239,7 +241,7 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
         plot_dict["extra"]["dtec_amp_array"] = dtec_amp_array;
     }
 
-    //pass the pcal mode that was used 
+    //pass the pcal mode that was used
     //check pc_mode values to see if this operator should be built at all (defaults to true)
     //first we check if there is a 'pc_mode' defined under '/control/station/pc_mode'
     std::string generic_pc_mode = "manual";
@@ -266,7 +268,7 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     }
     plot_dict["extra"]["ref_pc_mode"] = ref_pc_mode;
     plot_dict["extra"]["rem_pc_mode"] = rem_pc_mode;
-    
+
     //pass the pc_period that was used, load possible generic setting
     int generic_pc_period = 1;
     paramStore->Get("/control/station/pc_period", generic_pc_period);
