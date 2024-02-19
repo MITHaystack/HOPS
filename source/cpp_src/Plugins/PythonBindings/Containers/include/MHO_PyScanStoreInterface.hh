@@ -70,7 +70,8 @@ class MHO_PyScanStoreInterface
 
         bool Initialize()
         {
-            return fScanStore->Initialize();
+            fInitialized = fScanStore->Initialize();
+            return fInitialized;
         };
 
         bool IsValid() const {return fScanStore->IsValid();};
@@ -381,7 +382,7 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
                 {
                     return py::cast( m.GetBaselineData(baseline) );
                 }
-                py::print( "data for baseline ",baseline," either it has not been loaded or it does not exist in this scan.");
+                py::print( "data for baseline ",baseline," either has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
             },
             py::return_value_policy::reference,
@@ -395,7 +396,7 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
                 {
                     return py::cast( m.GetStationData(station) );
                 }
-                py::print( "data for station ", station, " either it has not been loaded or it does not exist in this scan.");
+                py::print( "data for station ", station, " either has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
             },
             py::return_value_policy::reference,
@@ -409,7 +410,7 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
                 {
                     return py::cast( m.GetFringeData(fringe) );
                 }
-                py::print( "data for fringe ", fringe, " either it has not been loaded or it does not exist in this scan.");
+                py::print( "data for fringe ", fringe, " either has not been loaded or it does not exist in this scan.");
                 return py::object(py::cast(nullptr));
             },
             py::return_value_policy::reference,
