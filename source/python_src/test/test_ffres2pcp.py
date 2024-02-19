@@ -86,7 +86,7 @@ def main():
     V_X_tolerance = 0.1
     ff_cmd = ht.get_fourfit_cmd()
     if ff_cmd == "ffit":
-        tolerance = 10.0
+        tolerance = 0.3
         V_X_tolerance = 20.0
     for stpol in cached_pc_values.keys():
         tol = tolerance
@@ -100,7 +100,7 @@ def main():
                 ret_status += 1000
             else:
                 for i in list(range(0,len(gen_values))):
-                    delta = gen_values[i] - test_values[i]        
+                    delta = gen_values[i] - test_values[i]
                     if abs(delta) > tol:
                         print("st:pol:chan", stpol, i," | generated: ", round(gen_values[i],2), "test value: ", test_values[i], "delta: ",  round(gen_values[i] - test_values[i], 2) )
                         ret_status += 1
