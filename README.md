@@ -88,8 +88,13 @@ sudo apt-get install python3-dev python3-pip
 sudo apt-get install wget jq
 ```
 
-However, there are several optional dependencies which will enable additional features if they are present.
-If you wish to build the original HOPS3 software suite (fourfit, etc.), you will need at a minimum:
+While not strictly required by HOPS4, the Fast Fourier Transform library fftw is highly recommended and can be installed with:
+```
+sudo apt-get install libfftw3-dev
+```
+
+If you wish to build the original HOPS3 software suite (fourfit, etc.), in addition to HOPS4, you will need
+several additional dependencies, these are:
 
 (1) `Python 3.x` \
 (2) `FFTW3` \
@@ -109,7 +114,7 @@ sudo apt-get install binutils libx11-dev libxpm-dev \
 ```
 
 ### Installing pgplot
-* Otherwise compile and install from source with this script:
+* If the pgplot5 package is missing you can otherwise compile and install pgplot from source with this script:
   `<hops-git>/installation/shell_src/install-pgplot.sh`
 
 
@@ -123,7 +128,7 @@ make
 make install
 source <hops-install>/bin/hops.bash
 ```
-you can the run `make test`. 
+you can run `make test`. 
 
 Note that if you do not have a cached copy of the test data and the cmake option `HOPS_ENABLE_REMOTE_TEST_DATA` is set to `ON`, the test data
 tarballs will be downloaded and cached in the build directory (TODO -- add alternate instructions to manually obtain the test data).
