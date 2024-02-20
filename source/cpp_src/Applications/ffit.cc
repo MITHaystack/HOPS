@@ -57,6 +57,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     bool estimate_time = false; //'-e' estimate run time
     int first_plot_chan = 0; //'-n' specifies the first channel displayed in the fringe plot
     int message_level = -1; //'-m' specifies the message verbosity level
+    std::vector< std::string > message_categories;  // -'M' limits the allowed message categories to those the user specifies
     int nplot_chans = 0; //'-n' specifies the number of channels to display in the fringe plot
     bool show_plot = false; //'-p' generates and shows fringe plot
     std::string refringe_alist_file = ""; // '-r' alist file for refringing - not yet enabled
@@ -69,6 +70,23 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     bool xpower_output = false; //-X export xpower spectrum
     bool use_mk4_output = false;
     std::string input;
+    
+    std::vector< std::string > msg_cats = 
+    {
+        "main", "calibration", 
+        "containers", "control", "fringe", "file", "initialization", "mk4interface",
+        "utilities", "vex"
+    };
+
+    std::stringstream ss;
+    ss << "limit the allowed message categories to only those which the user specifies, the available categories are: \n";
+    for(auto it = msg_cats.begin(); it != msg_cats.end(); it++)
+    {
+        ss << "    "<< *it <<"\n";
+    }
+    ss <<"if the '-M' option is not used, the default is to allow all categories. ";
+    std::string msg_cat_help = ss.str();
+
 
     CLI::App app{"ffit"};
 
@@ -83,6 +101,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     app.add_flag("-e,--estimate", estimate_time, "estimate run time (ignored, not yet implemented)");
     app.add_option("-f,--first-plot-channel", first_plot_chan, "specifies the first channel displayed in the fringe plot");
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
+    app.add_option("-M, --message-categories", message_categories, msg_cat_help.c_str() );
     app.add_option("-n,--nplot-channels", nplot_chans, "specifies the number of channels to display in the fringe plot");
     app.add_flag("-p,--plot", show_plot, "generate and shows fringe plot on completion");
     app.add_option("-r,--refringe-alist", refringe_alist_file, "alist file for refringing (ignored, not yet implemented)");
@@ -128,6 +147,17 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     if(message_level < -2){message_level = -2;}
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
+    
+    //check if any message categories were passed, if so, we limit the messages 
+    //to only those categories 
+    if(message_categories.size() != 0)
+    {
+        MHO_Message::GetInstance().LimitToKeySet();
+        for(std::size_t i=0; i++; i<message_categories.size())
+        {
+            MHO_Message::GetInstance().AddKey(message_categories[i]);
+        }
+    }
 
     //enable profiling if passed '-a'
     if(accounting){ MHO_Profiler::GetInstance().Enable();}
