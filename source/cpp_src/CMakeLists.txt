@@ -1,5 +1,5 @@
 #add an option to turn on/off debug messages, off by default
-option(ENABLE_DEBUG_MSG "Enable passing of debug messages" OFF)
+option(ENABLE_DEBUG_MSG "Enable passing of debug messages" ON)
 if(ENABLE_DEBUG_MSG)
     hops_add_cxxflag(HOPS_ENABLE_DEBUG_MSG)
 endif(ENABLE_DEBUG_MSG)
