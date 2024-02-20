@@ -19,7 +19,7 @@ After the build is complete, you can put all of the hops executables in your PAT
 
 `source <hops-install>/bin/hops.bash`
 
-where <hops-install> is the HOPS4 installation directory
+where `<hops-install>` is the HOPS4 installation directory.
 
 To change the default options or if a library is not automatically found and you
 need to specify a directory path in order for it to be located, use the command
@@ -115,30 +115,29 @@ sudo apt-get install binutils libx11-dev libxpm-dev \
 
 
 ## Checking the distribution
-If you wish to check the correctness of the installation, you can run `make test` after running `make install` and `source <hops-install>/bin/hops.bash`.
-However, you must first install the pre-requisites `wget` and `jq`, and ensure that the cmake option HOPS_ENABLE_REMOTE_TEST_DATA is set to ON, so that the 
-test data tarballs can be retrieved and cached in the build directory.
+If you wish to check the correctness of the installation, you can enable the option `HOPS_ENABLE_TEST` using `ccmake` before building the software (default is `OFF`).
+Then after building you can run `make test` after running `make install` and `source <hops-install>/bin/hops.bash`.
+However, if you do not have a cached copy of the test data, you must first install the pre-requisites `wget` and `jq`, and 
+also ensure that the cmake option `HOPS_ENABLE_REMOTE_TEST_DATA` is set to `ON`, so that the test data tarballs can be 
+retrieved and cached in the build directory (TODO -- add alternate instructions to obtain the test data).
 
 ### Testing
 ```
-cd hops-git
+cd <hops-git>
 mkdir build
 cd build
 ```
-If this is the first time you are running tests you will need to turn `HOPS_ENABLE_TEST` on using `ccmake ../`.
+Note: If this is the first time you are running tests you will need to turn `HOPS_ENABLE_TEST` on using `ccmake ../`.
 ```
-cmake ../
+ccmake ../
 make && make build
 source ../x86_64-4.00/bin/hops.bash
 ```
-To run an individual test:
-```
-TestFile
-```
-To run all tests:
+Then to run all tests:
 ```
 make test
 ```
+
 
 <!-- Currently HOPS supports the ability to run `make distcheck` from the build directory assuming `make` was used to build the project instead of `cmake`.
 `distcheck` is not currently compatible with `cmake`. `distcheck` checks that the tarball distribution is in working order and all the necessary files are included. -->
