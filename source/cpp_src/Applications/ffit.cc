@@ -144,7 +144,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(baseline_opt, baseline, freqgrp);
 
     //catch no polprod case
-    if(polprod == ""){msg_fatal("main", "polarization-produce option -P must be set" << eom); std::exit(1);}
+    if(polprod == ""){msg_fatal("main", "polarization-product option -P must be set" << eom); std::exit(1);}
 
     //set the message level
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
@@ -152,13 +152,11 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     std::string directory = MHO_BasicFringeDataConfiguration::sanitize_directory(input);
 
     //pass the extracted command line info back in the parameter store
-    //paramStore->Set("/cmdline/accounting", accounting);
+    paramStore->Set("/cmdline/accounting", accounting);
     paramStore->Set("/cmdline/baseline", baseline);
     paramStore->Set("/cmdline/frequency_group", freqgrp);
 
-    //TODO set the absolute path for the control file
     paramStore->Set("/cmdline/control_file",control_file);
-    //TODO set the absolute path for the data directory
     paramStore->Set("/cmdline/directory", directory);
 
     //estimate_time = false; //not implemented
@@ -207,7 +205,8 @@ int main(int argc, char** argv)
     fringeData.GetParameterStore()->Get("/config/do_ion", do_ion);
 
     MHO_FringeFitter* ffit;
-    //TODO FIXME...replace this logic with a factory method based on the parameter store
+    //TODO FIXME...replace this logic with a factory method based on the
+    //contents of the control and parameter store
     //but for the time being we only have two choices
     if(do_ion){ ffit = new MHO_IonosphericFringeFitter(&fringeData);}
     else{ ffit = new MHO_BasicFringeFitter(&fringeData);}
