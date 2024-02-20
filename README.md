@@ -14,6 +14,7 @@ To configure with defaults and compile with cmake, run:
 `$ cmake ../` \
 `$ make && make install`
 
+If you want a faster build it is preferable to paralellize it with the `-j N` option (e.g. `make -j 8`).
 After the build is complete, you can put all of the hops executables in your PATH by running:
 
 `source <hops-install>/bin/hops.bash`
