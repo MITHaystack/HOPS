@@ -1425,7 +1425,7 @@ def ignore_files(directory, directory_contents):
                 objects_to_ignore.append(obj)
     return objects_to_ignore
 
-def mirror_directory_with_symlinks(source_root, dest_root, mk4types_only=True, exclude_list=None):
+def mirror_directory_with_symlinks(source_root, dest_root, mk4types_only=False, exclude_list=None):
     """ mirror the files in one directory to a scratch data directory containing only symlinks """
     if exclude_list == None:
         exclude_list=['prepass', 'scratch', 'pre_production']

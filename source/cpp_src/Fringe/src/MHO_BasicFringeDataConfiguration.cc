@@ -84,33 +84,76 @@ MHO_BasicFringeDataConfiguration::parse_set_string(const std::vector< std::strin
 std::string
 MHO_BasicFringeDataConfiguration::sanitize_directory(std::string dir)
 {
-    bool ok;
-    std::string fullpath = MHO_DirectoryInterface::GetDirectoryFullPath(dir);
-    ok = MHO_DirectoryInterface::DoesDirectoryExist(fullpath);
-    if(ok){return fullpath;}
-
-    //check if we have actually been passed a root-file instead (and need to return the prefix)
-    std::string basename = MHO_DirectoryInterface::GetBasename(fullpath);
-    std::string prefix = MHO_DirectoryInterface::GetPrefix(fullpath);
-    std::size_t dot = basename.find('.');
-    if(dot != std::string::npos)
+    //do not resolve the full path
+    //just strip the root file if it exists in the dir name
+    std::string path = dir;
+    std::size_t dir_end = dir.find_last_of("/");
+    if(dir_end != std::string::npos)
     {
-        std::string root_code = basename.substr(dot+1);
-        if( root_code.size() == 6 )
-        {
-            //check if is a directory
-            bool ok = MHO_DirectoryInterface::DoesDirectoryExist(fullpath);
-            if(!ok)
-            {
-                //we were actually passed a root file, so return the prefix
-                fullpath = prefix;
-            }
-        }
+        path = dir.substr(0,dir_end) + "/";
     }
-
-    return fullpath;
+    return path;
+    
+    // bool ok;
+    // std::string fullpath = MHO_DirectoryInterface::GetDirectoryFullPath(dir);
+    // ok = MHO_DirectoryInterface::DoesDirectoryExist(fullpath);
+    // if(ok){return fullpath;}
+    // 
+    // //check if we have actually been passed a root-file instead (and need to return the prefix)
+    // std::string basename = MHO_DirectoryInterface::GetBasename(fullpath);
+    // std::string prefix = MHO_DirectoryInterface::GetPrefix(fullpath);
+    // std::size_t dot = basename.find('.');
+    // if(dot != std::string::npos)
+    // {
+    //     std::string root_code = basename.substr(dot+1);
+    //     if( root_code.size() == 6 )
+    //     {
+    //         //check if is a directory
+    //         bool ok = MHO_DirectoryInterface::DoesDirectoryExist(fullpath);
+    //         if(!ok)
+    //         {
+    //             //we were actually passed a root file, so return the prefix
+    //             fullpath = prefix;
+    //         }
+    //     }
+    // }
+    // 
+    // return fullpath;
 
 }
+
+std::string 
+MHO_BasicFringeDataConfiguration::find_associated_root_file(std::string dir)
+{
+    std::string path = sanitize_directory(dir);
+    MHO_DirectoryInterface dirInter;
+    
+    dirInter.SetCurrentDirectory(path);
+    dirInter.ReadCurrentDirectory();
+    std::vector< std::string > flist;
+    std::string ext(".root.json");
+    dirInter.GetFilesMatchingExtention(flist, ext);
+    
+    if(flist.size() != 1)
+    {
+        if(flist.size() == 0)
+        {
+            msg_fatal("fringe", "no root file found in: "<< dir << eom );
+            std::exit(1);
+        }
+        if(flist.size() > 1 )
+        {
+            msg_warn("fringe", "multiple root files found in: "<< dir <<" using the first one found: "<< flist[0] << eom );
+        }
+    }
+    
+    std::string root_file = flist[0];
+    root_file = MHO_DirectoryInterface::GetDirectoryFullPath(root_file);
+    return root_file;
+
+}
+
+
 
 //sanity check of parameters after command line parsing
 int

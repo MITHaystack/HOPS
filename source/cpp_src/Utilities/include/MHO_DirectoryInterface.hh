@@ -25,6 +25,7 @@ class MHO_DirectoryInterface
         virtual ~MHO_DirectoryInterface();
 
         static std::string GetDirectoryFullPath(const std::string& dirname);
+        static std::string GetDirectoryFullPathPreserveSymlinks(const std::string& dirname);
         static bool DoesDirectoryExist(const std::string& dirname);
         bool CreateDirectory(const std::string& dirname) const;
 

@@ -150,6 +150,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 
     std::string directory = MHO_BasicFringeDataConfiguration::sanitize_directory(input);
+    std::string root_file = MHO_BasicFringeDataConfiguration::find_associated_root_file(input);
 
     //pass the extracted command line info back in the parameter store
     paramStore->Set("/cmdline/accounting", accounting);
@@ -157,7 +158,8 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     paramStore->Set("/cmdline/frequency_group", freqgrp);
 
     paramStore->Set("/cmdline/control_file",control_file);
-    paramStore->Set("/cmdline/directory", directory);
+    paramStore->Set("/cmdline/directory", directory); //un-modified directory path
+    paramStore->Set("/cmdline/root_file", root_file); //fully resolve (symlink free path to the root file)
 
     //estimate_time = false; //not implemented
     paramStore->Set("/cmdline/first_plot_channel", first_plot_chan); //TODO
