@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <errno.h>
 #include <fstream>
 
 namespace hops
@@ -32,6 +33,29 @@ MHO_DirectoryInterface::GetDirectoryFullPath(const std::string& dirname)
     for(std::size_t i=0; i<PATH_MAX; i++){buffer[i] = '\0';}
     char* tmp = realpath( tmp_path.c_str(), buffer);
     (void) tmp; //shut up the compiler about unused variable...we don't need it, result is stored in buffer
+    
+    buffer[PATH_MAX-1] = '\0'; //always null terminate
+    std::string fullpath(buffer);
+    return fullpath;
+}
+
+std::string 
+MHO_DirectoryInterface::GetDirectoryFullPathPreserveSymlinks(const std::string& dirname)
+{
+    //get the full path to a directory (in case it is relative), but preserve the names of symlinks!
+    std::string tmp_path = dirname;
+    char buffer[PATH_MAX];
+    for(std::size_t i=0; i<PATH_MAX; i++){buffer[i] = '\0';}
+    ssize_t s = readlink(dirname.c_str(), buffer, PATH_MAX);
+
+    if(s < 0 || s >= PATH_MAX-1)
+    {
+        msg_error("utilities", "error on readlink of path: "<< dirname << " with errno " << errno << eom);
+        return dirname; //return unmodified path
+    }
+    //always null terminate here, if the path over-ran PATH_MAX,
+    //we will have the error above, but just in case
+    buffer[PATH_MAX-1] = '\0';
     std::string fullpath(buffer);
     return fullpath;
 }
@@ -225,12 +249,12 @@ MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aF
     for(auto it = fCurrentFileList.begin(); it != fCurrentFileList.end(); it++)
     {
         std::string basename = GetBasename(*it);
-        std::size_t index = basename.find_last_of(".");
+        std::size_t index = basename.find(anExt);
         if(index != std::string::npos)
         {
-            //get the extension
-            std::string ext = basename.substr(index);
-            if(ext == anExt)
+            //make sure the extension is the very end of the string 
+            std::string sub = basename.substr(index);
+            if(sub == anExt)
             {
                 aFileList.push_back(*it);
             }
@@ -242,22 +266,8 @@ MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aF
 void
 MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aFileList, const char* anExt) const
 {
-    //from the current list of files, locate the ones which match the given extension
-    aFileList.clear();
-    for(auto it = fCurrentFileList.begin(); it != fCurrentFileList.end(); it++)
-    {
-        std::string basename = GetBasename(*it);
-        std::size_t index = basename.find_last_of(".");
-        if(index != std::string::npos)
-        {
-            //get the extension
-            std::string ext = basename.substr(index+1);
-            if(ext == anExt)
-            {
-                aFileList.push_back(*it);
-            }
-        }
-    }
+    std::string ext(anExt);
+    return GetFilesMatchingExtention(aFileList, ext);
 }
 
 void
@@ -286,17 +296,17 @@ MHO_DirectoryInterface::GetFilesMatchingPrefix(std::vector< std::string >& aFile
 void
 MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const std::string& anExt) const
 {
-    //from the current list of files, locate the ones which match the given extension
+    //from the current list of files, locate the ones which match the given extension (e.g ./h_1000.difx)
     aDirList.clear();
     for(auto it = fCurrentSubDirectoryList.begin(); it != fCurrentSubDirectoryList.end(); it++)
     {
         std::string basename = GetBasename(*it);
-        std::size_t index = basename.find_last_of(".");
+        std::size_t index = basename.find(anExt);
         if(index != std::string::npos)
         {
-            //get the extension
-            std::string ext = basename.substr(index);
-            if(ext == anExt)
+            //make sure the extension is the very end of the string 
+            std::string sub = basename.substr(index);
+            if(sub == anExt)
             {
                 aDirList.push_back(*it);
             }
@@ -308,22 +318,8 @@ MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std::str
 void
 MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const char* anExt) const
 {
-    //from the current list of files, locate the ones which match the given extension
-    aDirList.clear();
-    for(auto it = fCurrentSubDirectoryList.begin(); it != fCurrentSubDirectoryList.end(); it++)
-    {
-        std::string basename = GetBasename(*it);
-        std::size_t index = basename.find_last_of(".");
-        if(index != std::string::npos)
-        {
-            //get the extension
-            std::string ext = basename.substr(index+1);
-            if(ext == anExt)
-            {
-                aDirList.push_back(*it);
-            }
-        }
-    }
+    std::string ext(anExt);
+    return GetSubDirectoriesMatchingExtention(aDirList, ext);
 }
 
 

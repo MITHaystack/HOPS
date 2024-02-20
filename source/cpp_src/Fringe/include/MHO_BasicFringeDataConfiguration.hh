@@ -40,6 +40,7 @@ class MHO_BasicFringeDataConfiguration
         static void parse_baseline_freqgrp(std::string baseline_freqgrp, std::string& baseline, std::string& freqgrp);
         static std::string parse_set_string(const std::vector< std::string >& arglist, int& set_arg_index);
         static std::string sanitize_directory(std::string dir);
+        static std::string find_associated_root_file(std::string dir);
 
         //sanity check of parameters after command line parsing
         static int sanity_check(MHO_ParameterStore* paramStore);
