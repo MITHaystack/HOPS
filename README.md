@@ -77,9 +77,18 @@ The absolute minimum dependencies are:
 (1) cmake, cmake-curses-gui, GNU make, and bash \
 (2) A c++ compiler which supports the C++11 standard (gcc > 4.8, or clang > 3.3)
 (3) python3 and pip (if you want to make use of python extensions)
+(4) For post-installation testing (e.g. make test) the utilities wget and jq are needed, but are not required for installation.
 
-However, there are several optional dependencies which 
-Optional dependencies (it depends on how much of HOPS you want to build):
+On Ubuntu 22.04 or Debian based systems these can be installed with:
+
+```
+sudo apt-get install build-essential cmake cmake-curses-gui
+sudo apt-get install python3-dev python3-pip
+sudo apt-get install wget jq
+```
+
+However, there are several optional dependencies which will enable additional features if they are present.
+If you wish to build the original HOPS3 software suite (fourfit, etc.), you will need at a minimum:
 
 (1) `Python 3.x` \
 (2) `FFTW3` \
@@ -87,30 +96,27 @@ Optional dependencies (it depends on how much of HOPS you want to build):
 (4) `X11` \
 (5) `GNU Fortran`
 
+On Ubuntu 22.04 or Debian based systems these can be installed with:
+
+```
+sudo apt-get install python3-dev python3-pip
+sudo apt-get install pgplot5 libgfortran5
+sudo apt-get install libfftw3-dev
+sudo apt-get install libx11-dev
+sudo apt-get install gnuplot
+sudo apt-get install binutils libx11-dev libxpm-dev \
+```
+
 ### Installing pgplot
-* `libpgplot0` is available for Ubuntu distributions.
 * Otherwise compile and install from source with this script:
   `source/shell_src/install-pgplot.sh`
 
+
+
 ## Checking the distribution
-Currently HOPS supports the ability to run `make distcheck` from the build directory assuming `make` was used to build the project instead of `cmake`.
-`distcheck` is not currently compatible with `cmake`. `distcheck` checks that the tarball distribution is in working order and all the necessary files are included.
-
-## Documentation Dependencies
-### Ubuntu packages
-(1) `texlive-full` \
-(2) `graphviz` \
-(3) `doxygen` \
-(4) `sphinx-common`
-pkg-config, csh, autoconf, libtool, xorg, openbox, libx11-dev, fftw3, fftw3-dev
-python3-sphinx, python3-dev, python-dev, swig, help2man
-
-
-### Fedora packages
-### NixOS packages
-(1) `texlive.combined.scheme-full` \
-(2) `graphviz` \
-(3) `doxygen` 
+If you wish to check the correctness of the installation, you can run `make test` after running `make install` and `source <hops-install>/bin/hops.bash`.
+However, you must first install the pre-requisites `wget` and `jq`, and ensure that the cmake option HOPS_ENABLE_REMOTE_TEST_DATA is set to ON, so that the 
+test data tarballs can be retrieved and cached in the build directory.
 
 ### Testing
 ```
@@ -132,7 +138,27 @@ To run all tests:
 ```
 make test
 ```
-Note: If you've enabled `HOPS_ENABLE_REMOTE_TEST_DATA` then it will try to download the test data tarball from gemini.
+
+<!-- Currently HOPS supports the ability to run `make distcheck` from the build directory assuming `make` was used to build the project instead of `cmake`.
+`distcheck` is not currently compatible with `cmake`. `distcheck` checks that the tarball distribution is in working order and all the necessary files are included. -->
+
+<!-- ## Documentation Dependencies
+### Ubuntu packages
+(1) `texlive-full` \
+(2) `graphviz` \
+(3) `doxygen` \
+(4) `sphinx-common`
+pkg-config, csh, autoconf, libtool, xorg, openbox, libx11-dev, fftw3, fftw3-dev
+python3-sphinx, python3-dev, python-dev, swig, help2man
+
+
+### Fedora packages
+### NixOS packages
+(1) `texlive.combined.scheme-full` \
+(2) `graphviz` \
+(3) `doxygen` 
+
+
 
 ### Building the documentation
 HOPS supports the ability to build the documentation as well as the code with `make` by doing the following:
@@ -147,4 +173,4 @@ Paste that in your shell and run it. \
 `make all check install`
 
 An equivalent build process using the GNU autotools is also available
-using the script autogen.sh which accepts a --help argument for usage.
+using the script autogen.sh which accepts a --help argument for usage. -->
