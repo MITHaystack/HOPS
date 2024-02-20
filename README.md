@@ -23,7 +23,7 @@ where `<hops-install>` is the HOPS4 installation directory.
 
 To change the default options or if a library is not automatically found and you
 need to specify a directory path in order for it to be located, use the command
-line interface ccmake (cmake-curses-gui) in place of cmake. This will open a CLI
+line interface `ccmake` (cmake-curses-gui) in place of `cmake`. This will open a CLI
 GUI where you may change various parameters. An example of this (with some optional
 dependencies turned on/off, e.g. OpenCL, PyBind11, etc.) is shown below:
 ```
@@ -110,33 +110,25 @@ sudo apt-get install binutils libx11-dev libxpm-dev \
 
 ### Installing pgplot
 * Otherwise compile and install from source with this script:
-  `source/shell_src/install-pgplot.sh`
+  `<hops-git>/installation/shell_src/install-pgplot.sh`
 
 
-
-## Checking the distribution
-If you wish to check the correctness of the installation, you can enable the option `HOPS_ENABLE_TEST` using `ccmake` before building the software (default is `OFF`).
-Then after building you can run `make test` after running `make install` and `source <hops-install>/bin/hops.bash`.
-However, if you do not have a cached copy of the test data, you must first install the pre-requisites `wget` and `jq`, and 
-also ensure that the cmake option `HOPS_ENABLE_REMOTE_TEST_DATA` is set to `ON`, so that the test data tarballs can be 
-retrieved and cached in the build directory (TODO -- add alternate instructions to obtain the test data).
-
-### Testing
+## Testing
+If you wish to check the correctness of the installation, then after successfully building the software with:
 ```
 cd <hops-git>
 mkdir build
 cd build
+make
+make install
+source <hops-install>/bin/hops.bash
 ```
-Note: If this is the first time you are running tests you will need to turn `HOPS_ENABLE_TEST` on using `ccmake ../`.
-```
-ccmake ../
-make && make build
-source ../x86_64-4.00/bin/hops.bash
-```
-Then to run all tests:
-```
-make test
-```
+you can the run `make test`. 
+
+Note that if you do not have a cached copy of the test data and the cmake option `HOPS_ENABLE_REMOTE_TEST_DATA` is set to `ON`, the test data
+tarballs will be downloaded and cached in the build directory (TODO -- add alternate instructions to manually obtain the test data).
+
+
 
 
 <!-- Currently HOPS supports the ability to run `make distcheck` from the build directory assuming `make` was used to build the project instead of `cmake`.

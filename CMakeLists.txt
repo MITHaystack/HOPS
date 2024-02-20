@@ -103,7 +103,7 @@ endif()
 ################################################################################
 
 #options for triggering additional dependencies
-option(HOPS_ENABLE_TEST "Build developer tests." OFF)
+option(HOPS_ENABLE_TEST "Build developer tests." ON)
 option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms" OFF)
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" OFF)
