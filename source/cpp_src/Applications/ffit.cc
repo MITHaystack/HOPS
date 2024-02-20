@@ -73,8 +73,8 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     
     std::vector< std::string > msg_cats = 
     {
-        "main", "calibration", 
-        "containers", "control", "fringe", "file", "initialization", "mk4interface",
+        "main", "calibration", "containers", "control", 
+        "fringe", "file", "initialization", "mk4interface",
         "utilities", "vex"
     };
 
@@ -117,7 +117,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
 
     //add the 'set' command for control file parameter overrides
     auto *setcom = app.add_subcommand("set", "pass control file parameters and related syntax on the command line")->prefix_command();
-    setcom->alias("--set");
+    //setcom->alias("--set");
 
     try
     {
@@ -152,6 +152,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     //to only those categories 
     if(message_categories.size() != 0)
     {
+        std::cout<<"N message categories = "<<message_categories.size()<<std::endl;
         MHO_Message::GetInstance().LimitToKeySet();
         for(std::size_t i=0; i++; i<message_categories.size())
         {
