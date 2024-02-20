@@ -24,6 +24,18 @@ def test_standalone_file_interface(dirname, baseline):
                         vis = bl_data.get_object(uuid)
                         if vis != None:
                             print("retrieved object: ", uuid, " as visibility")
-                            #TODO FIXME -- test all of these functions!
-# get_axis()          get_classname()     get_metadata()      get_rank()          set_axis_metadata()
-# get_axis_metadata() get_dimension()     get_numpy_array()   set_axis_label()    set_metadata()
+                            class_name = vis.get_classname()
+                            rank = vis.get_rank()
+                            print("visibility object has rank: ", rank, " and is a ", class_name)
+                            table_meta = vis.get_metadata()
+                            print("meta data is: ", table_meta)
+                            vis_arr = vis.get_numpy_array()
+                            print("vis array shape = ", vis_arr.shape)
+                            print("vis array strides = ", vis_arr.strides)
+                            for i in range(0,rank):
+                                dim = vis.get_dimension(i)
+                                print("dimension: ", i, " has size: ", dim)
+                                axis = vis.get_axis(i)
+                                print("axis: ", i, " = ", axis)
+                                axis_meta = vis.get_axis_metadata(i)
+                                print("axis meta data = ", axis_meta)
