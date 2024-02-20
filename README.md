@@ -14,11 +14,17 @@ To configure with defaults and compile with cmake, run:
 `$ cmake ../` \
 `$ make && make install`
 
+After the build is complete, you can put all of the hops executables in your PATH by running:
+
+`source <hops-install>/bin/hops.bash`
+
+where <hops-install> is the HOPS4 installation directory
+
 To change the default options or if a library is not automatically found and you
 need to specify a directory path in order for it to be located, use the command
 line interface ccmake (cmake-curses-gui) in place of cmake. This will open a CLI
 GUI where you may change various parameters. An example of this (with some optional
-dependencies turned on, e.g. OpenCL) is shown below:
+dependencies turned on/off, e.g. OpenCL, PyBind11, etc.) is shown below:
 ```
  BASH_PROGRAM                     /usr/bin/bash                                                                                                                                                           
  BUILD_DOXYGEN_REF                OFF                                                                                                                                                                     
@@ -50,7 +56,7 @@ dependencies turned on, e.g. OpenCL) is shown below:
 
 
 
-## Alternate build with Automake
+<!-- ## Alternate build with Automake
 
 An alternate build path is available via the GNU auto build tools (autoconf, automake, etc.).  A top-level build script autogen.sh (which takes --help) can be used to build everything.  As usual with autoconfigured scripts, environment variables may need to be set to get it all to work.  For example:
 
@@ -62,13 +68,17 @@ An alternate build path is available via the GNU auto build tools (autoconf, aut
 
 (The true/false directives control what the script does, and the last
 argument is appended to the name of the build directory--here we use it
-to indicate what was needed on two Red Hat flavor OSs.)
+to indicate what was needed on two Red Hat flavor OSs.) -->
 
 ## Current pre-requisites:
 
+The absolute minimum dependencies are:
+
 (1) cmake, cmake-curses-gui, GNU make, and bash \
 (2) A c++ compiler which supports the C++11 standard (gcc > 4.8, or clang > 3.3)
+(3) python3 and pip (if you want to make use of python extensions)
 
+However, there are several optional dependencies which 
 Optional dependencies (it depends on how much of HOPS you want to build):
 
 (1) `Python 3.x` \

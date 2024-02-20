@@ -155,6 +155,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
         MHO_Message::GetInstance().LimitToKeySet();
         for(std::size_t i=0; i++; i<message_categories.size())
         {
+            std::cout<<"adding msg key = "<<message_categories<<std::endl;
             MHO_Message::GetInstance().AddKey(message_categories[i]);
         }
     }
