@@ -153,12 +153,12 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     if(message_categories.size() != 0)
     {
         std::cout<<"N message categories = "<<message_categories.size()<<std::endl;
-        for(std::size_t i=0; i++; i<message_categories.size())
+        for(std::size_t m=0; m++; m<message_categories.size())
         {
-            std::cout<<"adding msg key = "<<message_categories[i]<<std::endl;
-            MHO_Message::GetInstance().AddKey(message_categories[i]);
+            std::cout<<"adding msg key = "<<message_categories[m]<<std::endl;
+            //MHO_Message::GetInstance().AddKey(message_categories[m]);
         }
-        MHO_Message::GetInstance().LimitToKeySet();
+        //MHO_Message::GetInstance().LimitToKeySet();
     }
 
     //enable profiling if passed '-a'
