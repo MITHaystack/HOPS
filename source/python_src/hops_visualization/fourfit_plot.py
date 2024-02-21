@@ -176,12 +176,15 @@ def make_channel_segment_plots(plot_dict):
     seg_amp_arr1 = seg_amp_arr.reshape(n_seg, n_seg_plots)
     seg_phs_arr1 = seg_phs_arr.reshape(n_seg, n_seg_plots)
 
+    if n_seg_plots == 2:
+        n_seg_plots = 1 #do not need 'all' plot if only one channel
+
     for ch in range(0,n_seg_plots):
         ax6 = plt.subplot2grid((32,colw*n_seg_plots),(14,colw*ch),rowspan=5,colspan=colw)
         plt.subplots_adjust(wspace=0, hspace=0)
         ax6.plot(range(n_seg), seg_amp_arr1[:,ch],'co-',markersize=2, markerfacecolor='b', linewidth=0.5, markeredgewidth=0.0)
         ax6.set_xlim(0,n_seg)
-        ax6.set_ylim(0,seg_ymax)
+        ax6.set_ylim(0,2*seg_ymax)
         ax6.set_xticklabels(labels=[],visible=False)
         ax6.tick_params(axis='both', direction='in', which='both')
         if ch < n_seg_plots-1:
@@ -294,6 +297,9 @@ def make_pcal_plots(plot_dict):
 
         if ref_n_seg == rem_n_seg:
             n_seg = ref_n_seg
+
+        if n_seg_plots == 2:
+            n_seg_plots = 1 #do not need 'all' plot if only one channel
 
         ax8 = plt.subplot2grid((255,colw*n_seg_plots),(160,colw*ch),rowspan=16,colspan=colw)
         plt.subplots_adjust(wspace=0, hspace=0)
