@@ -93,6 +93,9 @@ While not strictly required by HOPS4, the Fast Fourier Transform library fftw is
 sudo apt-get install libfftw3-dev
 ```
 
+Python package installation is handled by pip, but it will not pull in any python dependencies (numpy, matplotlib, scipy) unless the user enables the cmake flag `HOPS_PYPI_MANAGE_DEPS`,
+if this option is turned on pip with attempt to download and locally install the necessary python packages.
+
 If you wish to build the original HOPS3 software suite (fourfit, etc.), in addition to HOPS4, you will need
 several additional dependencies, these are:
 
@@ -110,7 +113,7 @@ sudo apt-get install pgplot5 libgfortran5
 sudo apt-get install libfftw3-dev
 sudo apt-get install libx11-dev
 sudo apt-get install gnuplot
-sudo apt-get install binutils libx11-dev libxpm-dev \
+sudo apt-get install binutils libx11-dev libxpm-dev
 ```
 
 ### Installing pgplot
