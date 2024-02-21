@@ -210,9 +210,9 @@ MHO_VexInfoExtractor::extract_sample_rate(const mho_json& vexInfo, MHO_Parameter
 
     //check that these sample rates are the same
     double diff = std::abs(ref_rate - rem_rate);
-    if(diff > 1e-15)
+    if(diff > 1e-12)
     {
-        msg_error("fringe", "reference and remote station sample rates do not appear to be the same.");
+        msg_error("fringe", "reference and remote station sample rates do not appear to be the same: ("<< ref_rate<<", "<<rem_rate<<") " << eom );
     }
 
     //use the raw values here (Hz and sec)
