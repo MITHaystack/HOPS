@@ -789,7 +789,7 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     //use fourfit default method to determine how many APs to average together (see calc_rms.c)
     int ap_per_seg = fParamStore->GetAs<int>("/cmdline/ap_per_seg");
     std::size_t apseg;
-    if(nplot == 2){nplot = 1;}
+    //if(nplot == 2){nplot = 1;}
     if(ap_per_seg == 0)
     {
         nseg = 200/nplot; //max of 200 points across plot
@@ -841,8 +841,10 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     {
         for(std::size_t i=0; i<xsize; i++)
         {
-            transposed_flatted_seg_amp.push_back( seg_amp[i][j] );
-            transposed_flatted_seg_arg.push_back( seg_arg[i][j] );
+            double amp = seg_amp[i][j];
+            double arg = seg_arg[i][j];
+            transposed_flatted_seg_amp.push_back( amp );
+            transposed_flatted_seg_arg.push_back( arg );
         }
     }
 
