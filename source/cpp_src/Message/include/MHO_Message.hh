@@ -25,6 +25,10 @@
 *Description:
 */
 
+//MACROS handy for stringifying compiler defines
+#define STR(str) #str
+#define STRING(str) STR(str)
+
 namespace hops
 {
 

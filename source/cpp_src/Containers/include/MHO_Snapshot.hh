@@ -25,8 +25,6 @@
 #ifndef HOPS_SNAPSHOT_DIR
     #define HOPS_SNAPSHOT_DIR_STR "./"
 #else
-    #define STR(str) #str
-    #define STRING(str) STR(str)
     #define HOPS_SNAPSHOT_DIR_STR STRING(HOPS_SNAPSHOT_DIR)
 #endif
 
