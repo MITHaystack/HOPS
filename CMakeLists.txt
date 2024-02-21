@@ -56,6 +56,7 @@ set(CONFIG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/config")
 set(DATA_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/data")
 set(DOC_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/doc")
 set(LOG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/log")
+set(PLUGINS_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/plugin_scripts") #user and other python-plugin scripts
 set(SNAPSHOT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/snapshot")
 set(OPENCL_KERNEL_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/cl_kernel")
 set(SHARE_TEXT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/text")
@@ -72,6 +73,7 @@ file(MAKE_DIRECTORY ${SNAPSHOT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${OPENCL_KERNEL_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_TEXT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_VHELP_INSTALL_DIR})
+file(MAKE_DIRECTORY ${PLUGINS_INSTALL_DIR})
 
 #convenience variables
 set(CSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/c_src)
@@ -110,7 +112,7 @@ option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" ON)
 option(HOPS_USE_ROOT "Use CERN ROOT libraries to enable plugin tools for plotting/debug/analysis." OFF)
 option(HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
 option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
-option(HOPS3_PYTHON_EXTRAS "Build python (cytpes) interface to hops3 libraries" ON)
+option(HOPS3_PYTHON_EXTRAS "Build python (ctypes) interface to hops3 libraries" ON)
 
 if(HOPS3_USE_CXX)
     hops_add_cflag(HOPS3_USE_CXX)
@@ -236,8 +238,6 @@ if(PY_EXE)
         endif()
     endif()
 endif()
-
-
 
 ################################################################################
 #find and configure perl if available
