@@ -41,11 +41,14 @@ class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
                 op->SetContainerStore(this->fContainerStore);
 
                 //retrieve pass the module/function name info from the control file
-                std::string op_name = fAttributes["name"].get<std::string>();
+                std::string op_name = this->fFormat["name"].get<std::string>();
                 std::string op_category = this->fFormat["operator_category"].get<std::string>();
                 std::string module_name = fAttributes["value"]["module_name"].get<std::string>();
                 std::string function_name = fAttributes["value"]["function_name"].get<std::string>();
+                double priority = this->fFormat["priority"].get<double>();
 
+                op->SetPriority(priority);
+                op->SetName(module_name + ":" + function_name);
                 op->SetModuleName(module_name);
                 op->SetFunctionName(function_name);
 
