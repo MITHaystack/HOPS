@@ -266,8 +266,14 @@ MHO_MBDelaySearch::SetDRWindow(double low, double high)
 void
 MHO_MBDelaySearch::GetSBDWindow(double& low, double& high) const
 {
-    low = fSBDAxis.at(0);
-    high = fSBDAxis.at(fSBDAxis.GetSize()-1) + fSBDBinSep;
+    low = 0.0;
+    high = 0.0;
+    if(fSBDAxis.GetSize() >= 2)
+    {
+        low = fSBDAxis.at(0);
+        high = fSBDAxis.at(fSBDAxis.GetSize()-1) + fSBDBinSep;
+    }
+
     if(fSBDWinSet)
     {
         low = std::max(fSBDWin[0], low);
@@ -278,8 +284,13 @@ MHO_MBDelaySearch::GetSBDWindow(double& low, double& high) const
 void
 MHO_MBDelaySearch::GetMBDWindow(double& low, double& high) const
 {
-    low = fMBDAxis.at(0);
-    high = fMBDAxis.at(fMBDAxis.GetSize()-1) + fMBDBinSep;
+    low = 0.0;
+    high = 0.0;
+    if(fMBDAxis.GetSize() >= 2)
+    {
+        low = fMBDAxis.at(0);
+        high = fMBDAxis.at(fMBDAxis.GetSize()-1) + fMBDBinSep;
+    }
     if(fMBDWinSet)
     {
         low = std::max( fMBDWin[0], low);
@@ -290,8 +301,13 @@ MHO_MBDelaySearch::GetMBDWindow(double& low, double& high) const
 void
 MHO_MBDelaySearch::GetDRWindow(double& low, double& high) const
 {
-    low = fDRAxis.at(0);
-    high = fDRAxis.at(fDRAxis.GetSize()-1) + fDRBinSep;
+    low = 0.0;
+    high = 0.0;
+    if(fDRAxis.GetSize() >= 2)
+    {
+        low = fDRAxis.at(0);
+        high = fDRAxis.at(fDRAxis.GetSize()-1) + fDRBinSep;
+    }
     if(fDRWinSet)
     {
         low = std::max( fDRWin[0], low);
