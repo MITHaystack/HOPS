@@ -212,8 +212,8 @@ MHO_VexInfoExtractor::extract_sample_rate(const mho_json& vexInfo, MHO_Parameter
     double diff = std::abs(ref_rate - rem_rate);
     if(diff > 1e-12)
     {
-        msg_warn("fringe", "reference and remote station sample rates are not equal: ("<< ref_rate<<", "<<rem_rate<< ") " <<
-            "in vex file, falling back to visibility channel bandwidth labels to determine the data rate." << eom );
+        msg_warn("fringe", "reference and remote station sample rates are not equal: ("<< ref_rate<<", "<<rem_rate<< ") in vex file" << eol);
+        msg_warn("fringe", "will fall back to visibility data channel bandwidth labels to determine the data rate." << eom );
     }
 
     //use the raw values here (Hz and sec)
