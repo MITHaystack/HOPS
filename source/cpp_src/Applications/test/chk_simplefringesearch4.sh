@@ -18,8 +18,8 @@ export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 # echo "Running: ffit -c ./cf_test5 -b GE -P I ./${D2H_EXP_NUM}/${SCAN_DIR}"
 # time ffit -c ./cf_test5 -b GE -P I ./${D2H_EXP_NUM}/${SCAN_DIR} | grep max555 | tee ./sfs.out
 
-echo "Running: ffit -m 4 -c ./cf_test5 -b GE -P I ./${D2H_EXP_NUM}/${SCAN_DIR}"
-outfile=$( ffit -m 4 -c ./cf_test5 -b GE -P I ./${D2H_EXP_NUM}/${SCAN_DIR}  2>&1)
+echo "Running: ffit -m 4 -c ./cf_test5 -b GE -P I ./${D2H_EXP_NUM}/${SCAN_DIR}/"
+outfile=$( ffit -m 4 -c ./cf_test5 -b GE -P I ./${D2H_EXP_NUM}/${SCAN_DIR}/  2>&1)
 
 #parse the print out (ffit: <fringe_filename>) into just the fringe_filename
 echo "$outfile"

@@ -144,6 +144,15 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
                 for(std::size_t fr = 0; fr < nchan; fr++)
                 {
                     double freq = (*chan_ax)(fr);//sky freq of this channel
+
+                    // std::string net_sideband = "?";
+                    // bool key_present = chan_ax->RetrieveIndexLabelKeyValue(fr, "net_sideband", net_sideband);
+                    // if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< fr << "." << eom);}
+                    //
+                    // fRot.SetSideband(0); //DSB
+                    // if(net_sideband == "U"){fRot.SetSideband(1);}
+                    // if(net_sideband == "L"){fRot.SetSideband(-1);}
+
                     for(std::size_t ap = 0; ap < nap; ap++)
                     {
                         double tdelta = ap_ax->at(ap) + ap_delta/2.0 - fFRTOffset; //time diff w.r.t FRT

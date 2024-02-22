@@ -15,9 +15,9 @@ cd $EXP_DIR
 
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
-echo "Running: ffit -c ./test0.cf -b AS -P RR ./${D2H_EXP_NUM}/${SCAN_DIR} "
+echo "Running: ffit -c ./test0.cf -b AS -P RR ./${D2H_EXP_NUM}/${SCAN_DIR}/ "
 
-time ffit -c ./test0.cf -b AS -P RR ./${D2H_EXP_NUM}/${SCAN_DIR} | grep max555 | tee ./sfs.out
+time ffit -c ./test0.cf -b AS -P RR ./${D2H_EXP_NUM}/${SCAN_DIR}/ | grep max555 | tee ./sfs.out
 
 sfs_mbd=$( cat ./sfs.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
 sfs_sbd=$( cat ./sfs.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
