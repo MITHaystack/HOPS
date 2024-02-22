@@ -310,13 +310,34 @@ MHO_BasicFringeFitter::coarse_fringe_search()
         fMBDSearch.SetMBDWindow(mbwin[0], mbwin[1]); //units are microsec
     }
 
+    double ref_freq = fParameterStore->GetAs< double >("/control/config/ref_freq");
     if(fParameterStore->IsPresent("/control/fit/dr_win"))
     {
+        // double lo, hi;
+        // fMBDSearch.GetDRWindow(lo,hi);
+        // std::cout<<"original dr win = "<< lo<< ", "<< hi <<std::endl;
+
+
         std::vector<double> drwin = fParameterStore->GetAs< std::vector<double> >("/control/fit/dr_win");
-        fMBDSearch.SetDRWindow(drwin[0], drwin[1]); //units are us/s (??)
+        fMBDSearch.SetDRWindow(drwin[0]*ref_freq, drwin[1]*ref_freq);
+
+        // fMBDSearch.GetDRWindow(lo,hi);
+        // std::cout<<"new dr win = "<< lo<< ", "<< hi <<std::endl;
     }
 
     ok = fMBDSearch.Execute();
+
+     double lo, hi;
+    // fMBDSearch.GetDRWindow(lo,hi);
+    // std::cout<<"original dr win = "<< lo<< ", "<< hi <<std::endl;
+    //
+    // std::vector<double> drwin = fParameterStore->GetAs< std::vector<double> >("/control/fit/dr_win");
+    // fMBDSearch.SetDRWindow(drwin[0]*ref_freq, drwin[1]*ref_freq); //units are ns/s (??)
+    //
+    fMBDSearch.GetDRWindow(lo,hi);
+    std::cout<<"new dr win = "<< lo<< ", "<< hi <<std::endl;
+
+
     check_step_fatal(ok, "fringe", "mbd execution." << eom );
 
     int n_mbd_pts = fMBDSearch.GetNMBDBins();
