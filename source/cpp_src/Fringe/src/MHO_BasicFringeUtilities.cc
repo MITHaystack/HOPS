@@ -30,6 +30,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     // //TODO FIXME (what if channels have multiple-bandwidths?, units?)
     // double samp_period = 1.0/(sample_rate*1e6);
 
+    determine_sample_rate(conStore, paramStore);
     double sample_rate = paramStore->GetAs<double>("/vex/scan/sample_rate/value");
     double samp_period = paramStore->GetAs<double>("/vex/scan/sample_period/value");
 
@@ -440,9 +441,49 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     paramStore->Set("/fringe/drate", drate);
     paramStore->Set("/fringe/frate", frate);
     paramStore->Set("/fringe/famp", famp);
-
-    std::cout<<"done basic fringe search"<<std::endl;
 }
 
+
+void
+MHO_BasicFringeUtilities::determine_sample_rate(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
+{
+    //checks the actual sample rate in the data, against that which is reported in the VEX file
+    //first get the value determined from the VEX file (may not be correct if zoom-bands have been used)
+    double sample_rate = paramStore->GetAs<double>("/vex/scan/sample_rate/value");
+
+    //grab visibilities and loop over channel axis
+    visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
+    if( vis_data != nullptr )
+    {
+        auto chan_ax = &(std::get<CHANNEL_AXIS>(*vis_data));
+        std::set<double> bw_set;
+        for(std::size_t i=0; i<chan_ax->GetSize(); i++)
+        {
+            double bw;
+            bool ok = chan_ax->RetrieveIndexLabelKeyValue(i, "bandwidth", bw);
+            if(ok){bw_set.insert(bw);}
+        }
+
+        double bandwidth = *(bw_set.rbegin());//should only be one value, just use the last
+        if(bw_set.size() != 1)
+        {
+            msg_warn("fringe", "multiple channel bandwidths detected when determining sample rate, SNR may not be accurate" << eom );
+        }
+        bandwidth *= 1e6; //channel labels are given in MHz
+        double alt_sample_rate = 2.0*bandwidth; //assume Nyquist
+
+        //sample rate from channel info differs from VEX...
+        //so use the channel bandwidth label info to figure out sample_rate/period instead
+        if( std::fabs(alt_sample_rate - sample_rate) > 1e-12 )
+        {
+            sample_rate = alt_sample_rate;
+            paramStore->Set("/vex/scan/sample_rate/value", sample_rate);
+            paramStore->Set("/vex/scan/sample_period/value", 1.0/sample_rate);
+            paramStore->Set("/vex/scan/sample_rate/units", std::string("Hz"));
+            paramStore->Set("/vex/scan/sample_period/units", std::string("s"));
+        }
+    }
+
+}
 
 }//end namespace
