@@ -56,7 +56,7 @@ MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcess
                 vFile.read( reinterpret_cast<char*>(&visRecord.baseline), sizeof(int) );
                 vFile.read( reinterpret_cast<char*>(&visRecord.mjd), sizeof(int) );
                 vFile.read( reinterpret_cast<char*>(&visRecord.seconds), sizeof(double) );
-                vFile.read( reinterpret_cast<char*>( &visRecord.configindex), sizeof(int) );
+                vFile.read( reinterpret_cast<char*>(&visRecord.configindex), sizeof(int) );
                 vFile.read( reinterpret_cast<char*>(&visRecord.sourceindex), sizeof(int) );
                 vFile.read( reinterpret_cast<char*>(&visRecord.freqindex), sizeof(int) );
                 vFile.read( reinterpret_cast<char*>(visRecord.polpair), 2*sizeof(char) );

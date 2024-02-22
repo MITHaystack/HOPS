@@ -188,19 +188,27 @@ MHO_DiFXBaselineProcessor::Organize()
         {
             int freqidx = *frqit;
             std::sort( fVisibilities[pp][freqidx].begin(), fVisibilities[pp][freqidx].end(), fTimePredicate);
+            //msg_debug("difx_interface", "Number of APs on "<<fBaselineName<<" with ID: "<<fBaselineID<<" for polprod: "<<pp<<" and freqidx: "<<freqidx<< " is "<< fVisibilities[pp][freqidx].size() << eom);
             fAPSet.insert( fVisibilities[pp][freqidx].size() );
         }
     }
 
+    //TODO -- what happens when we have missing/extra APs (should we truncate as below, or pad?)
     //determine the number of APs
     fNAPs = 0;
-    if(!fAPSet.empty()){fNAPs = *(fAPSet.rbegin());} //sets are sorted in ascending order, so grab the max from end
+    if(!fAPSet.empty()){fNAPs = *(fAPSet.begin());} //sets are sorted in ascending order, so grab the max from end
     if(fAPSet.size() > 1 )
     {
-        msg_error("difx_interface", "channels do not have same number of APs on baseline: " << fBaselineName <<" will zero pad-out to max AP: "<< fNAPs << "."<< eom);
+        msg_error("difx_interface", "channels do not have same number of APs on baseline: " <<
+            fBaselineName <<", ID: "<<fBaselineID<<" truncating to lowest common number of APs: "<< fNAPs << "."<< eom);
+        // msg_error("difx_interface", "channels do not have same number of APs on baseline: " << fBaselineName <<" will zero pad-out to max AP: "<< fNAPs << "."<< eom);
+        // for(auto apit = fAPSet.begin(); apit != fAPSet.end(); apit++)
+        // {
+        //     std::cout<<"ap: "<<*apit<<std::endl;
+        // }
     }
 
-    //TODO!! CHECK FOR MISSING APs
+
 
     //construct the table of frequencies for this baseline and sort in asscending order
     fNChannels = fFreqIndexSet.size();
@@ -400,7 +408,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                     // wch_axis->InsertLabel(ch_label);
                 }
 
-                for(std::size_t ap = 0; ap<fVisibilities[pp][freqidx].size(); ap++)
+                for(std::size_t ap = 0; ap<fNAPs; ap++)
                 {
                     ap_axis->at(ap) = ap*fAPLength;
                     wap_axis->at(ap) = ap*fAPLength;

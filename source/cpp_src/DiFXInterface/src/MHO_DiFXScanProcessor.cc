@@ -340,22 +340,18 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
                 raw_auto_corrs[station_id] = vis;
             }
         }
-        else
+        //add all here (including autocorrs)
+        std::string baseline = it->second.GetBaselineShortName();
+        auto vis = it->second.GetVisibilities();
+        if(vis != nullptr)
         {
-            std::string baseline = it->second.GetBaselineShortName();
-            auto vis = it->second.GetVisibilities();
-            if(vis != nullptr)
-            {
-                raw_visibilities[baseline] = vis;
-            }
+            raw_visibilities[baseline] = vis;
         }
     }
-
 
     //for the auto-corrs compute the sum/average of all the values for each pol/ap
     MHO_Reducer<visibility_store_type, MHO_CompoundSum> reducer;
     reducer.ReduceAxis(FREQ_AXIS);
-    // reducer.ReduceAxis(TIME_AXIS);
     for(auto it = raw_auto_corrs.begin(); it != raw_auto_corrs.end(); it++)
     {
         std::string station_id = it->first;
@@ -375,11 +371,10 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
         reduced_auto_corrs[station_id] = reduced;
     }
 
-    //now apply normalizatioin to visibilities
+    //now apply normalization to visibilities
     for(auto it = raw_visibilities.begin(); it != raw_visibilities.end(); it++)
     {
         std::string baseline = it->first;
-        //std::cout<<"WORKING ON BASELINE: "<<baseline<<std::endl;
         auto vis = it->second;
         std::size_t npp = vis->GetDimension(POLPROD_AXIS);
         std::size_t nap = vis->GetDimension(TIME_AXIS);
@@ -387,68 +382,61 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
         std::string ref_st = std::string() + (char) baseline[0];
         std::string rem_st = std::string() + (char) baseline[1];
 
-        if(ref_st != rem_st) //only do cross corrs
+        //do all baselines (including autocorrs)
+        bool have_both = true;
+        if( reduced_auto_corrs.find(ref_st) == reduced_auto_corrs.end() ){have_both = false;}
+        if( reduced_auto_corrs.find(rem_st) == reduced_auto_corrs.end() ){have_both = false;}
+        if(have_both)
         {
-            bool have_both = true;
-            if( reduced_auto_corrs.find(ref_st) == reduced_auto_corrs.end() ){have_both = false;}
-            if( reduced_auto_corrs.find(rem_st) == reduced_auto_corrs.end() ){have_both = false;}
-            if(have_both)
+            auto ref_ac = reduced_auto_corrs[ref_st];
+            auto rem_ac = reduced_auto_corrs[rem_st];
+            for(std::size_t pp=0; pp<npp; pp++)
             {
-                //std::cout<<"CROSS CORR"<<std::endl;
-                auto ref_ac = reduced_auto_corrs[ref_st];
-                auto rem_ac = reduced_auto_corrs[rem_st];
-                for(std::size_t pp=0; pp<npp; pp++)
+                //figure out the pol-mapping to the right autocorrs
+                std::string polprod = std::get<POLPROD_AXIS>(*vis)(pp);
+                std::string ref_polprod = std::string() + (char)polprod[0] + (char)polprod[0];
+                std::string rem_polprod = std::string() + (char)polprod[1] + (char)polprod[1];
+                std::size_t ref_pp_idx, rem_pp_idx;
+                bool ref_ok = std::get<POLPROD_AXIS>(*ref_ac).SelectFirstMatchingIndex(ref_polprod, ref_pp_idx);
+                bool rem_ok = std::get<POLPROD_AXIS>(*rem_ac).SelectFirstMatchingIndex(rem_polprod, rem_pp_idx);
+
+                bool issue_once = true;
+                if(!ref_ok || !rem_ok)
                 {
-                    //figure out the pol-mapping to the right autocorrs (we ignore cross-autos)
-                    std::string polprod = std::get<POLPROD_AXIS>(*vis)(pp);
-                    //std::cout<<"pp ax = "<<std::get<POLPROD_AXIS>(*vis)(pp)<<std::endl;
-                    std::string ref_polprod = std::string() + (char)polprod[0] + (char)polprod[0];
-                    std::string rem_polprod = std::string() + (char)polprod[1] + (char)polprod[1];
-                    std::size_t ref_pp_idx, rem_pp_idx;
-                    bool ref_ok = std::get<POLPROD_AXIS>(*ref_ac).SelectFirstMatchingIndex(ref_polprod, ref_pp_idx);
-                    bool rem_ok = std::get<POLPROD_AXIS>(*rem_ac).SelectFirstMatchingIndex(rem_polprod, rem_pp_idx);
-
-                    bool issue_once = true;
-                    if(!ref_ok || !rem_ok)
+                    msg_error("difx_interface",
+                        "error missing data in autocorrs needed to normalize: "
+                        <<baseline<<":"<<polprod<<" "<<pp<<"."<<eom);
+                }
+                else
+                {
+                    for(std::size_t ap=0;ap<nap;ap++)
                     {
-                        msg_error("difx_interface",
-                            "error missing data in autocorrs needed to normalize: "
-                            <<baseline<<":"<<polprod<<" "<<pp<<"."<<eom);
-                    }
-                    else
-                    {
-                        for(std::size_t ap=0;ap<nap;ap++)
+                        for(std::size_t ch=0; ch<nch; ch++)
                         {
-                            for(std::size_t ch=0; ch<nch; ch++)
+                            double ref_val = std::sqrt( std::real( (*ref_ac)(ref_pp_idx,ch,ap,0) ) );
+                            double rem_val = std::sqrt( std::real( (*rem_ac)(rem_pp_idx,ch,ap,0) ) );
+                            double factor = 1.0;
+                            if( std::fabs(ref_val) == 0.0 || std::fabs(rem_val) == 0.0)
                             {
-                                double ref_val = std::sqrt( std::real( (*ref_ac)(ref_pp_idx,ch,ap,0) ) );
-                                double rem_val = std::sqrt( std::real( (*rem_ac)(rem_pp_idx,ch,ap,0) ) );
-                                //std::cout<<"pref = "<<ref_polprod<<", "<<ch<<", "<<ref_val<<std::endl;
-                                //std::cout<<"prem = "<<ref_polprod<<", "<<ch<<", "<<rem_val<<std::endl;
-
-                                double factor = 1.0;
-                                if( std::fabs(ref_val) == 0.0 || std::fabs(rem_val) == 0.0)
+                                if(issue_once)
                                 {
-                                    if(issue_once)
-                                    {
-                                        std::string st_code = "";
-                                        if( std::fabs(ref_val) == 0.0 ){st_code = ref_st;}
-                                        if( std::fabs(rem_val) == 0.0 ){st_code = rem_st;}
-                                        msg_error("difx_interface", "zero value in auto-corrs of station: "<< st_code << ", normalization may not be correct."<<eom);
-                                        issue_once = false;
-                                    }
+                                    std::string st_code = "";
+                                    if( std::fabs(ref_val) == 0.0 ){st_code = ref_st;}
+                                    if( std::fabs(rem_val) == 0.0 ){st_code = rem_st;}
+                                    msg_error("difx_interface", "zero value in auto-corrs of station: "<< st_code << ", normalization may not be correct."<<eom);
+                                    issue_once = false;
                                 }
-                                else{factor = 1.0/(ref_val*rem_val);}
-                                vis->SliceView(pp,ch,ap,":") *= factor;
                             }
+                            else{factor = 1.0/(ref_val*rem_val);}
+                            vis->SliceView(pp,ch,ap,":") *= factor;
                         }
                     }
                 }
             }
-            else
-            {
-                msg_error("difx_interface", "cannot locate autocorrs for both stations of baseline: " << baseline <<", will not normalize." << eom);
-            }
+        }
+        else
+        {
+            msg_error("difx_interface", "cannot locate autocorrs for both stations of baseline: " << baseline <<", will not normalize." << eom);
         }
     }
 
