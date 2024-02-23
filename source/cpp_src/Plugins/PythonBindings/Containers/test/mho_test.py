@@ -175,8 +175,6 @@ def calibration_test(cstore_interface_obj, param_interface_obj):
 
 def test_noema(cstore_interface_obj, param_interface_obj):
 
-    print("HELLO FROM PYTHON")
-
     #grab the UUID of the visibility object
     vis_uuid = param_interface_obj.get_by_path("/uuid/visibilities");
     visib_obj = cstore_interface_obj.get_object(vis_uuid);
