@@ -138,10 +138,11 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 //run the transformation to delay rate space (this also involves a zero padded FFT)
                 ok = fDelayRateCalc.Execute();
 
-                //copy the axis just once
+                //copy and cache the delay-rate axis just once
                 if(first)
                 {
-                    fDRAxis = std::get<TIME_AXIS>(sbd_dr_data);
+                    fDRAxis = std::get<TIME_AXIS>(sbd_dr_data); //upon retrieval this here is fringe-rate
+                    fDRAxis *= 1.0/fRefFreq; //now convert to delay rate by dividing by reference frequency
                     fDRBinSep = fDRAxis.at(1) - fDRAxis.at(0);
                 }
 

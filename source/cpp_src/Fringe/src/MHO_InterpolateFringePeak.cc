@@ -123,7 +123,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
 
                 sbd = sbd_ax->at( (std::size_t) sbd_bin);
                 mbd = fMBDAxis.at(fMBDMaxBin) + 0.5 * (imbd - 2) * mbd_delta;
-                dr  = (fDRAxis.at(fDRMaxBin) + (0.5 * (idr - 2)  * dr_delta) )/fRefFreq;
+                dr  = (fDRAxis.at(fDRMaxBin) + (0.5 * (idr - 2)  * dr_delta) ); // /fRefFreq;
 
                 //printf("idr = %d and dr = %.8f \n", idr, dr);
 
@@ -206,12 +206,12 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     // std::cout<<"mbd_bin="<<mbd_bin<<std::endl;
 
     sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
-    dr =  (fDRAxis.at(dr_bin) )*(1.0/fRefFreq);
+    dr =  (fDRAxis.at(dr_bin) ); //*(1.0/fRefFreq);
     mbd = (fMBDAxis.at(mbd_bin));
 
     double sbd_change = xi[0] * sbd_delta;
     double mbd_change = xi[1] * 0.5 * mbd_delta;
-    double dr_change =  (xi[2] * 0.5 * dr_delta)/fRefFreq;
+    double dr_change =  (xi[2] * 0.5 * dr_delta); ///fRefFreq;
 
     double sbd_max = (sbd + sbd_change);
     double mbd_max_global = mbd + mbd_change;
@@ -220,7 +220,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     fSBDelay = sbd_max;
     fMBDelay = mbd_max_global;
     fDelayRate = dr_max_global;
-    fFringeRate = fDRAxis.at(dr_bin) + (xi[2] * 0.5 * dr_delta);
+    fFringeRate = ( fDRAxis.at(dr_bin) + (xi[2] * 0.5 * dr_delta) )*fRefFreq;
 
     // std::cout<< std::setprecision(15);
     // std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
