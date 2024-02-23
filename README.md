@@ -131,12 +131,16 @@ make
 make install
 source <hops-install>/bin/hops.bash
 ```
-you can run `make test`. 
+you can run `make test`.
 
 Note that if you do not have a cached copy of the test data and the cmake option `HOPS_ENABLE_REMOTE_TEST_DATA` is set to `ON`, the test data
 tarballs will be downloaded and cached in the build directory (TODO -- add alternate instructions to manually obtain the test data).
 
-
+### Building the documentation
+HOPS supports the ability to automatically build documentation using the doxygen too. To do this, ensure that doxygen is installed, and that the
+cmake option `BUILD_DOXYGEN_REF` is set to `ON`. To build and install the auto-generated documentation run the command `make reference` from the build directory.
+The resulting html documentation will be placed in `<hops-install>/doc/reference`. The master index file will be installed as `<hops-install>/doc/Hops.html` and can
+be opened with any browser.
 
 
 <!-- Currently HOPS supports the ability to run `make distcheck` from the build directory assuming `make` was used to build the project instead of `cmake`.
@@ -156,7 +160,7 @@ python3-sphinx, python3-dev, python-dev, swig, help2man
 ### NixOS packages
 (1) `texlive.combined.scheme-full` \
 (2) `graphviz` \
-(3) `doxygen` 
+(3) `doxygen`
 
 
 

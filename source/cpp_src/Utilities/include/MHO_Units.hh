@@ -1,7 +1,7 @@
 #ifndef MHO_Units_HH__
 #define MHO_Units_HH__
 
-/*
+/*!
 *File: MHO_Units.hh
 *Class: MHO_Units
 *Author: J. Barrett

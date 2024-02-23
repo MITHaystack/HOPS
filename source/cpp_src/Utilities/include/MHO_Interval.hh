@@ -1,7 +1,7 @@
 #ifndef MHO_Interval_HH__
 #define MHO_Interval_HH__
 
-/*
+/*!
 *File: MHO_Interval.hh
 *Class: MHO_Interval
 *Author: J. Barrett

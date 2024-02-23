@@ -1,7 +1,7 @@
 #ifndef MHO_UUID_HH__
 #define MHO_UUID_HH__
 
-/*
+/*!
 *File: MHO_UUID.hh
 *Class: MHO_UUID
 *Author: J. Barrett

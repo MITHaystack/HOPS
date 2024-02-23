@@ -7,7 +7,7 @@
 namespace hops
 {
 
-/**
+/*!
 *@file MHO_Timer.hh
 *@class MHO_Timer
 *@author J. Barrett - barrettj@mit.edu

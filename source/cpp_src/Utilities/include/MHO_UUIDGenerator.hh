@@ -9,7 +9,7 @@
 namespace hops
 {
 
-/**
+/*!
 *@file MHO_UUIDGenerator.hh
 *@class MHO_UUIDGenerator
 *@author J. Barrett - barrettj@mit.edu

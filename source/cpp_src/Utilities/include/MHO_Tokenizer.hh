@@ -8,7 +8,7 @@
 
 namespace hops {
 
-/**
+/*!
 *@file MHO_Tokenizer.hh
 *@class MHO_Tokenizer
 *@author J. Barret - barrettj@mit.edu

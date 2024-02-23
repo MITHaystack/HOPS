@@ -1,7 +1,7 @@
 #ifndef MHO_StationCodeMap_HH__
 #define MHO_StationCodeMap_HH__
 
-/*
+/*!
 *@file: MHO_StationCodeMap.hh
 *@class: MHO_StationCodeMap
 *@author: J. Barrett
