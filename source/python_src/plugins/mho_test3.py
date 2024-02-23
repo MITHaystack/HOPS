@@ -4,16 +4,13 @@ import numpy as np
 import scipy.stats
 from vpal import utility
 
-def test_pcphases(plot_data):
+def generate_pcphases(plot_data):
 
     #get channel label and phase
     ch_labels = plot_data["PLOT_INFO"]["#Ch"]
     ch_phase = plot_data["PLOT_INFO"]["Phase"]
-
-    ch_plotted = plot_data["ChannelsPlotted"]
-    print("ch_plotted", ch_plotted)
-    print("ch_labels", ch_labels)
-    print("ch_phase", ch_phase)
+    # print("ch_labels", ch_labels)
+    # print("ch_phase", ch_phase)
 
     nchan = len(ch_labels) - 1
     #actually stored in the type 210's and what their fourfit names are
@@ -28,7 +25,7 @@ def test_pcphases(plot_data):
     channel_list = []
     for ch, ch_phase in list(phase_corrections.items()):
         channel_list.append( ch )
-        phase_list_proxy.append( -1.0*ch_phase )
+        phase_list_proxy.append( -1.0*ch_phase ) #invert to get corrections from residuals
 
     #invert, unwrap and remove mean phase
     #TODO FIXME -- the next 3 lines effectively do nothing, we have no need to unwrap
@@ -38,7 +35,6 @@ def test_pcphases(plot_data):
 
     #assign the corrections
     for i in list(range(0, len(phase_list_proxy))):
-
         phase_corrections[ channel_list[i] ] = phase_list_proxy[i]
 
     chan_names = ""

@@ -18,6 +18,7 @@ namespace py = pybind11;
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_ContainerStore.hh"
 #include "MHO_PyContainerStoreInterface.hh"
+#include "MHO_PyConfigurePath.hh"
 
 #include "MHO_ParameterStore.hh"
 #include "MHO_PyParameterStoreInterface.hh"
@@ -215,7 +216,7 @@ int main(int argc, char** argv)
     //the amp/phase of the visibilities for a particular channel
 
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive
-
+    configure_pypath();
 
     std::cout<<"*************** passing visibilities to python **************"<<std::endl;
 

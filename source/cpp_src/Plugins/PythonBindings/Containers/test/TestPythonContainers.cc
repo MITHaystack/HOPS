@@ -12,6 +12,7 @@ namespace py = pybind11;
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_ContainerStore.hh"
 #include "MHO_PyContainerStoreInterface.hh"
+#include "MHO_PyConfigurePath.hh"
 
 #include "MHO_ParameterStore.hh"
 #include "MHO_PyParameterStoreInterface.hh"
@@ -22,6 +23,7 @@ using namespace hops;
 int main()
 {
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive
+    configure_pypath();
 
     std::cout<<"the python path directories: "<<std::endl;
     py::exec(R"(

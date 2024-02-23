@@ -1,11 +1,9 @@
 import pyMHO_Containers
-
 import numpy as np
 
+def fix_noema_jumps(cstore_interface_obj, param_interface_obj):
 
-def test_noema(cstore_interface_obj, param_interface_obj):
-
-    print("RUNNING NOEMA PHASE JUMP CORRECTION")
+    # print("RUNNING NOEMA PHASE JUMP CORRECTION")
 
     #grab the UUID of the visibility object
     vis_uuid = param_interface_obj.get_by_path("/uuid/visibilities");

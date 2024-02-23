@@ -20,6 +20,7 @@
 namespace py = pybind11;
 
 #include "MHO_PyGenericOperator.hh"
+#include "MHO_PyConfigurePath.hh"
 
 using namespace hops;
 
@@ -209,6 +210,7 @@ int main(int argc, char** argv)
     pyOper.SetParameterStore(&paramStore);
 
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive
+    configure_pypath();
 
     std::cout<<"*************** executing operation via python **************"<<std::endl;
 
@@ -217,4 +219,3 @@ int main(int argc, char** argv)
 
     return 0;
 }
-

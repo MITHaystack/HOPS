@@ -1,5 +1,6 @@
 #list header files #############################################################
 set (PYCONTAINER_HEADERFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyConfigurePath.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyTableContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyParameterStoreInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyContainerStoreInterface.hh
