@@ -1,6 +1,14 @@
 #ifndef MHO_TransformingOperator_HH__
 #define MHO_TransformingOperator_HH__
 
+/*!
+*@file MHO_TransformingOperator.hh
+*@class MHO_TransformingOperator
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 #include "MHO_Operator.hh"
 
 #include <tuple>

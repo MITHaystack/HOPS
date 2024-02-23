@@ -4,8 +4,7 @@
 /*!
 *@file MHO_ExtensibleElement.hh
 *@class MHO_ExtensibleElement
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief Implements an interface by which a class that inherits from MHO_ExtensibleElement
 * can have arbitrarily extended functionality added to it without modifying the original class

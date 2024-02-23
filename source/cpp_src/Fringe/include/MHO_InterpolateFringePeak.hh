@@ -3,12 +3,11 @@
 
 
 /*!
-*@file MHO_DelayRate.hh
-*@class MHO_DelayRate
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@file MHO_InterpolateFringePeak.hh
+*@class MHO_InterpolateFringePeak
+*@author J. Barrettj - barrettj@mit.edu
 *@date
-*@brief
+*@brief implements fine interpolation about the fringe peak (see interp.c and max555.c code)
 */
 
 #include <cmath>

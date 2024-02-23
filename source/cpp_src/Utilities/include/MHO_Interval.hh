@@ -5,7 +5,6 @@
 *@file MHO_Interval.hh
 *@class MHO_Interval
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date
 *@brief Implements the open integer interval [a,b)
 */

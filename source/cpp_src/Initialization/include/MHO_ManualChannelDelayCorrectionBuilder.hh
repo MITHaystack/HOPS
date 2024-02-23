@@ -4,8 +4,7 @@
 /*!
 *@file MHO_ManualChannelDelayCorrectionBuilder.hh
 *@class MHO_ManualChannelDelayCorrectionBuilder
-*@author
-*Email:
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

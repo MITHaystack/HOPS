@@ -4,8 +4,7 @@
 /*!
 *@file MHO_ObjectTags.hh
 *@class MHO_ObjectTags
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief container for tag/value meta-data to be attached to objects
 *via association with their UUID

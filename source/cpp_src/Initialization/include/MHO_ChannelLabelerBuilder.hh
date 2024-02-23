@@ -5,7 +5,6 @@
 *@file MHO_ChannelLabelerBuilder.hh
 *@class MHO_ChannelLabelerBuilder
 *@author
-*Email:
 *@date
 *@brief
 */

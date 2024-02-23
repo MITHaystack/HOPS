@@ -5,7 +5,6 @@
 *@file MHO_UUID.hh
 *@class MHO_UUID
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date
 *@brief
 */

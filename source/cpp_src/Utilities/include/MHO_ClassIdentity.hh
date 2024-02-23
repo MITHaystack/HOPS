@@ -5,7 +5,6 @@
 *@file MHO_ClassIdentity.hh
 *@class MHO_ClassIdentity
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date
 *@brief template class to produce the name of XClassType at runtime
 */

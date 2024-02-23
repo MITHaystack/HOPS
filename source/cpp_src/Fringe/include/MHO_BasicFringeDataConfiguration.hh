@@ -4,8 +4,7 @@
 /*!
 *@file MHO_BasicFringeDataConfiguration.hh
 *@class MHO_BasicFringeDataConfiguration
-*@author
-*Email:
+*@author J. Barrettj - barrettj@mit.edu
 *@date Tue Sep 19 04:11:24 PM EDT 2023
 *@brief collection of helper functions for fringe fitter start-up
 */

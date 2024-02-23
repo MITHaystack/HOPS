@@ -1,6 +1,15 @@
 #ifndef MHO_PyScanStoreInterface_HH__
 #define MHO_PyScanStoreInterface_HH__
 
+
+/*!
+*@file  MHO_PyScanStoreInterface.hh
+*@class  MHO_PyScanStoreInterface
+*@author  J. Barrett - barrettj@mit.edu
+*@date  Fri Sep 15 10:03:38 PM EDT 2023
+*@brief python bindings for the MHO_ScanDataStore
+*/
+
 #include "MHO_ContainerDictionary.hh"
 #include "MHO_ContainerDefinitions.hh"
 
@@ -15,16 +24,6 @@
 namespace py = pybind11;
 namespace nl = nlohmann;
 using namespace pybind11::literals;
-
-
-/*!
-*@file  MHO_PyScanStoreInterface.hh
-*@class  MHO_PyScanStoreInterface
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date  Fri Sep 15 10:03:38 PM EDT 2023
-*@brief 
-*/
 
 namespace hops
 {

@@ -4,8 +4,7 @@
 /*!
 *@file MHO_PolProductSummation.hh
 *@class MHO_PolProductSummation
-*@author
-*Email:
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

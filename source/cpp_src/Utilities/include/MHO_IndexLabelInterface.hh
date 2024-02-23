@@ -1,6 +1,14 @@
 #ifndef MHO_IndexLabelInterface_HH__
 #define MHO_IndexLabelInterface_HH__
 
+/*!
+*@file MHO_IndexLabelInterface.hh
+*@class MHO_IndexLabelInterface
+*@date
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include "MHO_JSONHeaderWrapper.hh"
 
 namespace hops
@@ -200,5 +208,3 @@ class MHO_IndexLabelInterface
 
 
 #endif /*! end of include guard: MHO_IndexLabelInterface_HH__ */
-
-

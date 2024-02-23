@@ -4,10 +4,9 @@
 /*!
 *@file MHO_WeightChannelizer.hh
 *@class MHO_WeightChannelizer
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
-*@brief
+*@brief collects unchannelized (3d) weight data and groups by channel (but all must be of equal size) into 4d object
 */
 
 #include "MHO_NDArrayWrapper.hh"

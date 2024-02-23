@@ -1,23 +1,20 @@
 #ifndef MHO_UniformGridPointsCalculator_HH__
 #define MHO_UniformGridPointsCalculator_HH__
 
-#include <cmath>
-#include <limits>
-#include <map>
-#include <vector>
-
-
 /*!
 *@file
 *@class
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief This class re-implements the function freq_spacing from hops3.
 Basically it is a primitive method to figure out an approximate (but uniformly spaced) grid which
 aligns (within epsilon) with the original floating point locations.
 */
 
+#include <cmath>
+#include <limits>
+#include <map>
+#include <vector>
 
 namespace hops
 {

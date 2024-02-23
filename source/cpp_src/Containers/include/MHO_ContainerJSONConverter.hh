@@ -4,8 +4,7 @@
 /*!
 *@file MHO_ContainerJSONConverter.hh
 *@class MHO_ContainerJSONConverter
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief Converts a given ndarray-based container into a JSON representation
 * this isn't really intended for data transport/storage, but only as

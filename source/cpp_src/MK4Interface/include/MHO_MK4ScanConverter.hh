@@ -4,8 +4,7 @@
 /*!
 *@file MHO_MK4ScanConverter.hh
 *@class MHO_MK4ScanConverter
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

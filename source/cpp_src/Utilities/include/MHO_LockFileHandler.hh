@@ -1,6 +1,14 @@
 #ifndef MHO_LockFileHandler_HH__
 #define MHO_LockFileHandler_HH__
 
+/*!
+*@file MHO_LockFileHandler.hh
+*@class MHO_LockFileHandler
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief ported version of fourfit write lock mechanism
+*/
+
 #include <cstdlib>
 #include <csignal>
 #include <unistd.h>
@@ -17,17 +25,6 @@
 #define LOCK_PROCESS_NO_PRIORITY -1
 #define LOCK_STATUS_OK 0
 #define LOCK_PROCESS_HAS_PRIORITY 1
-
-
-/*!
-*@file MHO_LockFileHandler.hh
-*@class MHO_LockFileHandler
-*@author J. Barrett - barrettj@mit.edu 
-*
-*@date
-*@brief ported version of fourfit write lock mechanism
-*/
-
 
 //number of chars in lock file name
 #define MAX_LOCKNAME_LEN 512

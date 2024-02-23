@@ -4,9 +4,8 @@
 /*!
 *@file  MHO_DiFXChannelNameConstructor.hh
 *@class  MHO_DiFXChannelNameConstructor
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
+*@author  J. Barrett - barrettj@mit.edu
+*@date
 *@brief  Name channels in a vex object, according to the d2m4 convention.
 * Needed in order to convert vex to ovex.
 */

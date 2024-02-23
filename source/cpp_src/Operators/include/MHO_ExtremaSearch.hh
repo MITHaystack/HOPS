@@ -1,6 +1,15 @@
 #ifndef MHO_ExtremaSearch_HH__
 #define MHO_ExtremaSearch_HH__
 
+/*!
+*@file MHO_ExtremaSearch.hh
+*@class MHO_ExtremaSearch
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+
+*/
+
 #include <algorithm>
 #include <cstdint>
 #include <limits>
@@ -10,16 +19,6 @@
 #include "MHO_InspectingOperator.hh"
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_TableContainer.hh"
-
-/*!
-*@file MHO_ExtremaSearch.hh
-*@class MHO_ExtremaSearch
-*@author J. Barrett - barrettj@mit.edu 
-*
-*@date
-*@brief
-
-*/
 
 
 namespace hops

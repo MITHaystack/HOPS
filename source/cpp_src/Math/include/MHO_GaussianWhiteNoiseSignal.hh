@@ -1,6 +1,14 @@
 #ifndef MHO_GaussianWhiteNoiseSignal_HH__
 #define MHO_GaussianWhiteNoiseSignal_HH__
 
+/*!
+*@file MHO_GaussianWhiteNoiseSignal.hh
+*@class MHO_GaussianWhiteNoiseSignal
+*@date
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include "MHO_SimulatedSignalGenerator.hh"
 
 #include <random>

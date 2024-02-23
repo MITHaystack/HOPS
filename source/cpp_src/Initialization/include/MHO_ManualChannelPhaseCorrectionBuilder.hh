@@ -4,8 +4,7 @@
 /*!
 *@file MHO_ManualChannelPhaseCorrectionBuilder.hh
 *@class MHO_ManualChannelPhaseCorrectionBuilder
-*@author
-*Email:
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

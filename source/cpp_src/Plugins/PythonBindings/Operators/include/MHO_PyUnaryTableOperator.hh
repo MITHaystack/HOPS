@@ -1,14 +1,11 @@
 #ifndef MHO_PyUnaryTableOperator_HH__
 #define MHO_PyUnaryTableOperator_HH__
 
-
-
 /*!
 *@file  MHO_PyUnaryTableOperator.hh
 *@class  MHO_PyUnaryTableOperator
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
+*@author  J. Barrett - barrettj@mit.edu
+*@date
 *@brief 
 */
 

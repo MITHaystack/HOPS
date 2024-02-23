@@ -4,8 +4,7 @@
 /*!
 *@file MHO_ManualPolDelayCorrectionBuilder.hh
 *@class MHO_ManualPolDelayCorrectionBuilder
-*@author
-*Email:
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

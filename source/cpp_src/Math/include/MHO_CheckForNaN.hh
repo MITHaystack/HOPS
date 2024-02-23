@@ -5,7 +5,6 @@
 *@file MHO_CheckForNaN.hh
 *@class MHO_CheckForNaN
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date
 *@brief
 */

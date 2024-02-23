@@ -1,6 +1,15 @@
 #ifndef MHO_Message_HH__
 #define MHO_Message_HH__
 
+/*!
+*@file MHO_Message.hh
+*@class MHO_Message
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief class for managing messages to stdout
+*/
+
+
 #include <cstdlib>
 #include <ostream>
 #include <sstream>
@@ -16,14 +25,6 @@
 //include the profiler here to make it visible just about everywhere
 #include "MHO_Profiler.hh"
 
-/*!
-*@file MHO_Message.hh
-*@class MHO_Message
-*@author J. Barrett - barrettj@mit.edu 
-*
-*@date
-*@brief
-*/
 
 //MACROS handy for stringifying compiler defines
 #define STR(str) #str

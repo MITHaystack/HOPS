@@ -1,6 +1,14 @@
 #ifndef MHO_BitReversalPermutation_HH__
 #define MHO_BitReversalPermutation_HH__
 
+/*!
+*@file MHO_BitReversalPermutation.hh
+*@class MHO_BitReversalPermutation
+*@date
+*@brief bit reversal permutation function for power-of-two FFTs
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include <cstddef>
 
 #define USE_STDALGO_SWAP

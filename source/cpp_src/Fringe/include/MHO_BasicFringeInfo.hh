@@ -1,6 +1,15 @@
 #ifndef MHO_BasicFringeInfo_HH__
 #define MHO_BasicFringeInfo_HH__
 
+/*!
+*@file MHO_BasicFringeInfo.hh
+*@class MHO_BasicFringeInfo
+*@author J. Barrettj - barrettj@mit.edu
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief collection of very simple static helper functions
+* used when computing fringe information/parameters
+*/
+
 #include <string>
 #include <cmath>
 #include <complex>
@@ -9,17 +18,6 @@
 
 #include "MHO_Message.hh"
 #include "MHO_Clock.hh"
-
-
-/*!
-*@file MHO_BasicFringeInfo.hh
-*@class MHO_BasicFringeInfo
-*@author
-*Email:
-*@date Tue Sep 19 04:11:24 PM EDT 2023
-*@brief collection of very simple static helper functions
-* used when computing fringe information/parameters
-*/
 
 namespace hops
 {

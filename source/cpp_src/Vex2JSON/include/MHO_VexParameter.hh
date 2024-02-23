@@ -5,9 +5,8 @@
 *@file  MHO_VexParameter.hh
 *@class  MHO_VexParameter
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@date
+*@brief
 */
 
 #include <string>

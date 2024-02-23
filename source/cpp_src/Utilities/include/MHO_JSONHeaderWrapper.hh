@@ -1,6 +1,14 @@
 #ifndef JSON_WRAPPER_HH__
 #define JSON_WRAPPER_HH__
 
+/*!
+*@file MHO_JSONHeaderWrapper.hh
+*@class MHO_JSONHeaderWrapper
+*@date
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include "nlohmann/json.hpp"
 using mho_json = nlohmann::json;
 using mho_ordered_json = nlohmann::ordered_json;

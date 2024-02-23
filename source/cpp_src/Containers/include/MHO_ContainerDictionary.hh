@@ -4,8 +4,7 @@
 /*!
 *@file MHO_ContainerDictionary.hh
 *@class MHO_ContainerDictionary
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

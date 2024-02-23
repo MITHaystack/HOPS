@@ -4,9 +4,8 @@
 /*!
 *@file  MHO_BidirectionalIndexedIterator.hh
 *@class  MHO_BidirectionalIndexedIterator
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
+*@author  J. Barrett - barrettj@mit.edu
+*@date
 *@brief  This is an iterator for more complicated n-darrays (primarily array "slices").
 * Because we cannot guarantee that adjacent elements (in index space) are contiguous in
 * memory for an array slice, we need to ensure that the proper strided access takes place.
@@ -235,11 +234,3 @@ class MHO_BidirectionalIndexedIterator
 }//end of namespace
 
 #endif /*! end of include guard: MHO_BidirectionalIndexedIterator */
-
-
-
-
-
-
-
-

@@ -5,9 +5,8 @@
 *@file  MHO_VexLine.hh
 *@class  MHO_VexLine
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@date
+*@brief
 */
 
 #include <string>

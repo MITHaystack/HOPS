@@ -5,9 +5,8 @@
 *@file  MHO_BidirectionalIterator.hh
 *@class  MHO_BidirectionalIterator
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@date
+*@brief
 */
 
 #include <iterator>

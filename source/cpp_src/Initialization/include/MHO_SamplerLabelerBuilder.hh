@@ -4,8 +4,7 @@
 /*!
 *@file MHO_SamplerLabelerBuilder.hh
 *@class MHO_SamplerLabelerBuilder
-*@author
-*Email:
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

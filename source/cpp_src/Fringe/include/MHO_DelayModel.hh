@@ -1,6 +1,14 @@
 #ifndef MHO_DelayModel_HH__
 #define MHO_DelayModel_HH__
 
+/*!
+*@file MHO_DelayModel.hh
+*@class MHO_DelayModel
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief evaluates the station a priori delay model polynomials
+*/
+
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
 

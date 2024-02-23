@@ -4,9 +4,8 @@
 /*!
 *@file  MHO_PyOperator.hh
 *@class  MHO_PyOperator
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
+*@author  J. Barrett - barrettj@mit.edu
+*@date
 *@brief  trampoline for generic data operator
 */
 

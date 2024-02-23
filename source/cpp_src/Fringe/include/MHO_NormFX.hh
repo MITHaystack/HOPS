@@ -4,10 +4,10 @@
 /*!
 *@file MHO_NormFX.hh
 *@class MHO_NormFX
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
-*@brief
+*@brief implements a subset of the functionality found in norm_fx.c,
+*mainly the transform from frequency to delay space
 */
 
 #include <cmath>

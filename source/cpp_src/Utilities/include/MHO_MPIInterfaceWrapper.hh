@@ -1,7 +1,14 @@
 #ifndef MHO_MPIInterfaceWrapper_HH__
 #define MHO_MPIInterfaceWrapper_HH__
 
-//hides the usage of MPI when it was not compiled-in
+/*!
+*@file MHO_MPIInterfaceWrapper.hh
+*@class
+*@date
+*@brief hides the usage of MPI when it was not compiled-in
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 
 #ifdef HOPS_USE_MPI
 #include "MHO_MPIInterface.hh"

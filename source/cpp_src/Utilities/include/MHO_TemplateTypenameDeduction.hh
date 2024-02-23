@@ -10,8 +10,7 @@
 /*!
 *@file MHO_TemplateTypenameDeduction.hh
 *@class
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 * Main idea from blog post here: https://bitwizeshift.github.io/posts/2021/03/09/getting-an-unmangled-type-name-at-compile-time/
@@ -36,8 +35,6 @@
      MHO_TupleElementNameWithoutSpaces< std::string >() = std::__cxx11::basic_string<char,std::char_traits<char>,std::allocator<char>>
      MHO_ClassName<std::string>()  = std::string
      MHO_ClassName< std::tuple< std::string > >()  = std::tuple<std::string>
-
-
 */
 
 

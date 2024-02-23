@@ -1,14 +1,6 @@
 #ifndef MHO_TimeStampConverter_HH__
 #define MHO_TimeStampConverter_HH__
 
-#include <string>
-#include <time.h>
-#include <ctime>
-
-
-namespace hops
-{
-
 /*!
 *@file MHO_TimeStampConverter.hh
 *@class MHO_TimeStampConverter
@@ -18,6 +10,14 @@ namespace hops
 * in both directions
 */
 
+
+#include <string>
+#include <time.h>
+#include <ctime>
+
+
+namespace hops
+{
 
 class MHO_TimeStampConverter
 {

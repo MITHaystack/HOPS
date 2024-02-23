@@ -4,8 +4,7 @@
 /*!
 *@file MHO_PythonOperatorBuilder.hh
 *@class MHO_PythonOperatorBuilder
-*@author
-*Email:
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

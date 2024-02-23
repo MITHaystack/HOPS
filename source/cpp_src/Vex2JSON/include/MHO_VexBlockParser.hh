@@ -5,9 +5,8 @@
 *@file  MHO_VexBlockParser.hh
 *@class  MHO_VexBlockParser
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@date
+*@brief
 */
 
 #include <vector>

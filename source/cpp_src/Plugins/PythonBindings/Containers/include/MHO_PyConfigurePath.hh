@@ -1,6 +1,14 @@
 #ifndef MHO_PyConfigurePath_HH__
 #define MHO_PyConfigurePath_HH_
 
+/*!
+*@file MHO_PyConfigurePath.hh
+*@class MHO_PyConfigurePath
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief sets the python module search path after the embedded interpreter has been started
+*/
+
 #include <string>
 #include <sstream>
 

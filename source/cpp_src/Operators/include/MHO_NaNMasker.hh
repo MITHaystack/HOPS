@@ -4,8 +4,7 @@
 /*!
 *@file MHO_NaNMasker.hh
 *@class MHO_NaNMasker
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

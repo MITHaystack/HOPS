@@ -5,7 +5,6 @@
 *@file  MHO_PyFringeFitterInstance.hh
 *@class  MHO_PyFringeFitterInstance
 *@author  J. Barrett - barrettj@mit.edu 
-*
 *@date  Mon 18 Sep 2023 01:26:22 PM EDT
 *@brief  Container class which provides an interface to a fringe fitter instance
 */

@@ -1,6 +1,15 @@
 #ifndef MHO_MultidimensionalPaddedFastFourierTransform_HH__
 #define MHO_MultidimensionalPaddedFastFourierTransform_HH__
 
+/*!
+*@file MHO_MultidimensionalPaddedFastFourierTransform.hh
+*@class MHO_MultidimensionalPaddedFastFourierTransform
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
+
 #include <cstring>
 #include <vector>
 #include <bitset>
@@ -613,4 +622,4 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
 
 }
 
-#endif /*! MHO_MultidimensionalPaddedFastFourierTransform_H__ */
+#endif /*! MHO_MultidimensionalPaddedFastFourierTransform_HH__ */

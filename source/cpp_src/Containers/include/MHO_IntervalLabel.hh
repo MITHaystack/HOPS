@@ -4,8 +4,7 @@
 /*!
 *@file MHO_IntervalLabel.hh
 *@class MHO_IntervalLabel
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

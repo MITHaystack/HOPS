@@ -1,6 +1,14 @@
 #ifndef MHO_ParameterStore_HH__
 #define MHO_ParameterStore_HH__
 
+/*!
+*@file MHO_ParameterStore.hh
+*@class MHO_ParameterStore
+*@date
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include <string>
 
 #include "MHO_JSONHeaderWrapper.hh"

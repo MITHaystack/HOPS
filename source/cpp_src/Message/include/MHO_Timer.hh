@@ -1,20 +1,21 @@
 #ifndef MHO_Timer_HH__
 #define MHO_Timer_HH__
 
+/*!*
+*@file MHO_Timer.hh
+*@class MHO_Timer
+*@author J. Barrett - barrettj@mit.edu
+* A timer class responsible for thread and process benchmarking
+* For more information on the linux system variables and functions that were leveraged see: https://linux.die.net/man/3/clock_gettime
+* TODO -- detect if system actually has a realtime clock and disable if not present
+*/
+
 #include <string>
 #include <ctime>
 
 namespace hops
 {
 
-/*!*
-*@file MHO_Timer.hh
-*@class MHO_Timer
-*@author J. Barrett - barrettj@mit.edu  - barrettj@mit.edu
-* A timer class responsible for thread and process benchmarking
-* For more information on the linux system variables and functions that were leveraged see: https://linux.die.net/man/3/clock_gettime
-* TODO -- detect if system actually has a realtime clock and disable if not present
-*/
 
 class MHO_Timer
 {

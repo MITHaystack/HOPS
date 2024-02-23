@@ -4,8 +4,7 @@
 /*!
 *@file MHO_IntervalLabelTree.hh
 *@class MHO_IntervalLabelTree
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief Inteval-tree stucture, to allow for fast location of an interval
 * currently un-implemented...just does a dumb brute force O(n) search.

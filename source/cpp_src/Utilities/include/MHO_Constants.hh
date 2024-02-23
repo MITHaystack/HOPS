@@ -1,6 +1,14 @@
 #ifndef MHO_Constants_HH__
 #define MHO_Constants_HH__
 
+/*!
+*@file MHO_Constants.hh
+*@class MHO_Constants
+*@date
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include <cmath>
 #include <complex>
 

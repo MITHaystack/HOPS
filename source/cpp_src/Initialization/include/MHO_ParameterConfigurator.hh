@@ -1,6 +1,14 @@
 #ifndef MHO_ParameterConfigurator_HH__
 #define MHO_ParameterConfigurator_HH__
 
+/*!
+*@file MHO_ParameterConfigurator.hh
+*@class MHO_ParameterConfigurator
+*@date
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include <string>
 #include <utility>
 #include <vector>

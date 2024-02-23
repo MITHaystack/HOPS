@@ -1,6 +1,13 @@
 #ifndef MHO_PyParameterStoreInterface_HH__
 #define MHO_PyParameterStoreInterface_HH__
 
+/*!
+*@file  MHO_PyParameterStoreInterface.hh
+*@class  MHO_PyParameterStoreInterface
+*@author  J. Barrett - barrettj@mit.edu
+*@date  Fri Sep 15 10:03:38 PM EDT 2023
+*@brief python bindings for the MHO_ParameterStore
+*/
 
 #include "MHO_ParameterStore.hh"
 
@@ -11,16 +18,6 @@
 namespace py = pybind11;
 namespace nl = nlohmann;
 using namespace pybind11::literals;
-
-
-/*!
-*@file  MHO_PyParameterStoreInterface.hh
-*@class  MHO_PyParameterStoreInterface
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date  Fri Sep 15 10:03:38 PM EDT 2023
-*@brief 
-*/
 
 namespace hops
 {

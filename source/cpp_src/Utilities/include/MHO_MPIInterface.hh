@@ -1,6 +1,14 @@
 #ifndef MHO_MPIInterface_HH__
 #define MHO_MPIInterface_HH__
 
+/*!
+*@file MHO_MPIInterface.hh
+*@class MHO_MPIInterface
+*@date
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include "mpi.h"
 
 #include <string>

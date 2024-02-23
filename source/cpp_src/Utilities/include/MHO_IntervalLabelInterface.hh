@@ -1,6 +1,14 @@
 #ifndef MHO_IntervalLabelInterface_HH__
 #define MHO_IntervalLabelInterface_HH__
 
+/*!
+*@file MHO_IntervalLabelInterface.hh
+*@class MHO_IntervalLabelInterface
+*@date
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include "MHO_JSONHeaderWrapper.hh"
 
 namespace hops
@@ -184,5 +192,3 @@ class MHO_IntervalLabelInterface
 
 
 #endif /*! end of include guard: MHO_IntervalLabelInterface_HH__ */
-
-

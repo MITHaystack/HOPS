@@ -5,7 +5,6 @@
 *@file MHO_BinaryFileStreamer.hh
 *@class MHO_BinaryFileStreamer
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date
 *@brief variadic template parameter implemenation
 * of a gen scatter hierarchy streamer for POD and JSON types to a file stream

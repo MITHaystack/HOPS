@@ -4,10 +4,9 @@
 /*!
 *@file  MHO_DiFXInterface.hh
 *@class  MHO_DiFXInterface
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
 */
 
 #include <string>

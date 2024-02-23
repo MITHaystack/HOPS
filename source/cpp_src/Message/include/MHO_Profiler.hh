@@ -1,6 +1,14 @@
 #ifndef MHO_Profiler_HH__
 #define MHO_Profiler_HH__
 
+/*!
+*@file MHO_Profiler.hh
+*@class MHO_Profiler
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief class for running time/performance profiling
+*/
+
 #include <cstdlib>
 #include <string>
 #include <mutex>
@@ -12,14 +20,7 @@
 #include "MHO_SelfName.hh"
 #include "MHO_Timer.hh"
 
-/*!
-*@file MHO_Profiler.hh
-*@class MHO_Profiler
-*@author J. Barrett - barrettj@mit.edu 
-*
-*@date
-*@brief
-*/
+
 
 #define HOPS_USE_PROFILER
 

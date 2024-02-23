@@ -4,8 +4,7 @@
 /*!
 *@file MHO_ComplexConjugator.hh
 *@class MHO_ComplexConjugator
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

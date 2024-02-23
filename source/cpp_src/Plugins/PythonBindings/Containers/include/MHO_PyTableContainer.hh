@@ -4,10 +4,9 @@
 /*!
 *@file MHO_PyTableContainer.hh
 *@class MHO_PyTableContainer
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date Fri Sep 15 10:03:38 PM EDT 2023
-*@brief
+*@brief python bindings for template MHO_TableContainer objects
 */
 
 #include <complex>

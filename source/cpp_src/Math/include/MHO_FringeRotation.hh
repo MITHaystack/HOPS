@@ -9,10 +9,9 @@
 /*!
 *@file MHO_FringeRotation.hh
 *@class MHO_FringeRotation
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
-*@brief collection of static math functions
+*@brief class to implement functionality originally found in vrot.c
 */
 
 namespace hops

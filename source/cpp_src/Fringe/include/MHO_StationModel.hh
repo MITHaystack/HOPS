@@ -1,6 +1,14 @@
 #ifndef MHO_StationModel_HH__
 #define MHO_StationModel_HH__
 
+/*!
+*@file MHO_StationModel.hh
+*@class MHO_StationModel
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief evaluates the station a priori coordinate polynomials
+*/
+
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
 

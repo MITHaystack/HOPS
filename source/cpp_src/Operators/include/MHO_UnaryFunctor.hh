@@ -1,17 +1,16 @@
 #ifndef MHO_UnaryFunctor_HH__
 #define MHO_UnaryFunctor_HH__
 
-#include <algorithm>
-#include "MHO_NDArrayWrapper.hh"
-
 /*!
 *@file MHO_UnaryFunctor.hh
 *@class MHO_UnaryFunctor
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief abstract baseclass for an functor which takes array iterators
 */
+
+#include <algorithm>
+#include "MHO_NDArrayWrapper.hh"
 
 
 namespace hops

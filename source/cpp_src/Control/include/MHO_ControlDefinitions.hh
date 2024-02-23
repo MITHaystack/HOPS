@@ -4,10 +4,9 @@
 /*!
 *@file  MHO_ControlElements.hh
 *@class  MHO_ControlElements
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
 */
 
 #include <string>

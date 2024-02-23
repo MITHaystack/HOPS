@@ -4,8 +4,7 @@
 /*!
 *@file MHO_CompoundReductions.hh
 *@class MHO_CompoundReductions
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

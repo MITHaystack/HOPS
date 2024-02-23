@@ -1,20 +1,19 @@
 #ifndef MHO_MathUtilities_HH__
 #define MHO_MathUtilities_HH__
 
+/*!
+*@file MHO_MathUtilities.hh
+*@class MHO_MathUtilities
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief implements a variety of simple math functions copied from original c code with minimal changes
+*/
+
 
 #include <complex>
 #include <cmath>
 #include <vector>
 
-
-/*!
-*@file MHO_MathUtilities.hh
-*@class MHO_MathUtilities
-*@author J. Barrett - barrettj@mit.edu 
-*
-*@date
-*@brief implements a variety of simple math functions copied from original c code with minimal changes
-*/
 
 namespace hops
 {

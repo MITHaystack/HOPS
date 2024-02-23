@@ -5,7 +5,6 @@
 *@file MHO_DiFXVisibilityRecord.hh
 *@class MHO_DiFXVisibilityRecord
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date
 *@brief
 */

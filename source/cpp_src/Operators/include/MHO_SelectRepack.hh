@@ -5,8 +5,7 @@
 /*!
 *@file MHO_SelectRepack.hh
 *@class MHO_SelectRepack
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date Thu 15 Dec 2022 02:42:45 PM EST
 *@brief
 * operator to select data from table and repack it into an entirely new table,

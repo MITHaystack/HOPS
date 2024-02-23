@@ -5,7 +5,6 @@
 *@file MHO_OpenCLNDArrayBuffer.hh
 *@class MHO_OpenCLNDArrayBuffer
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date
 *@brief
 */

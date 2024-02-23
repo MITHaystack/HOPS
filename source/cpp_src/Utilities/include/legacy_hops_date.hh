@@ -5,9 +5,8 @@
 *@file  legacy_hops_date.hh
 *@class  legacy_hops_date
 *@author  J. Barrett - barrettj@mit.edu 
-*
 *@brief  A struct to avoid name collisions between the mk4utils 'data' struct and the 'date' header library
-*@date 
+*@date
 */
 
 namespace hops

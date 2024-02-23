@@ -1,6 +1,12 @@
 #ifndef MHO_SelfName_HH__
 #define MHO_SelfName_HH__
 
+/*!*
+*@file MHO_SelfName.hh
+*@brief constexpr to stip path prefix from __FILE__ macros
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include <atomic>
 #include <thread>
 #include <cstdint>

@@ -4,10 +4,9 @@
 /*!
 *@file  MHO_SerializableObjectFactory.hh
 *@class  MHO_SerializableObjectFactory
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
 */
 
 #include "MHO_Message.hh"

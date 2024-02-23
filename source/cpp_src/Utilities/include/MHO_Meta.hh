@@ -5,7 +5,6 @@
 /*!
 *@file MHO_Meta.hh
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date 2020-05-13T17:43:26.831Z
 *@brief template meta-programming helper functions, mostly tuple access/modification
 */

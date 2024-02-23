@@ -1,6 +1,13 @@
 #ifndef MHO_OperatorBuilderManager_HH__
 #define MHO_OperatorBuilderManager_HH__
 
+/*!
+*@file MHO_OperatorBuilderManager.hh
+*@class MHO_OperatorBuilderManager
+*@date
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
 
 #include "MHO_Message.hh"
 #include "MHO_OperatorBuilder.hh"

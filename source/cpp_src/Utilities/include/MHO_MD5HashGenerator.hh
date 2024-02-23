@@ -5,7 +5,6 @@
 *@file MHO_MD5HashGenerator.hh
 *@class MHO_MD5HashGenerator
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date
 *@brief
 */

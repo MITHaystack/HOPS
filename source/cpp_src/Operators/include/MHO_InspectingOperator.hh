@@ -1,6 +1,14 @@
 #ifndef MHO_InspectingOperator_HH__
 #define MHO_InspectingOperator_HH__
 
+/*!
+*@file MHO_InspectingOperator.hh
+*@class MHO_InspectingOperator
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 #include "MHO_Operator.hh"
 
 namespace hops{

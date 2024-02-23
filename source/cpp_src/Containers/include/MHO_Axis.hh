@@ -4,8 +4,7 @@
 /*!
 *@file MHO_Axis.hh
 *@class MHO_Axis
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */
