@@ -27,49 +27,44 @@ line interface `ccmake` (cmake-curses-gui) in place of `cmake`. This will open a
 GUI where you may change various parameters. An example of this (with some optional
 dependencies turned on/off, e.g. OpenCL, PyBind11, etc.) is shown below:
 ```
- BASH_PROGRAM                     /usr/bin/bash                                                                                                                                                           
- BUILD_DOXYGEN_REF                OFF                                                                                                                                                                     
- BUILD_LATEX_DOCS                 OFF                                                                                                                                                                     
- CMAKE_BUILD_TYPE                                                                                                                                                                                         
- CMAKE_INSTALL_PREFIX             /home/barrettj/work/projects/hops-git/x86_64-4.0.0                                                                                                                      
- CPGPLOT_LIBRARY                  /usr/local/pgplot/libcpgplot.a                                                                                                                                          
- ENABLE_DEBUG_MSG                 OFF                                                                                                                                                                     
- GFORTRAN_LIB                     /usr/lib/gcc/x86_64-linux-gnu/9/libgfortran.so                                                                                                                          
- HOPS3_DISABLE_WARNINGS           ON                                                                                                                                                                      
- HOPS3_USE_CXX                    ON                                                                                                                                                                      
- HOPS_DEV_USE_OLD                 OFF                                                                                                                                                                     
- HOPS_ENABLE_REMOTE_TEST_DATA     OFF                                                                                                                                                                     
- HOPS_ENABLE_TEST                 ON                                                                                                                                                                      
- HOPS_USE_DIFXIO                  OFF                                                                                                                                                                     
- HOPS_USE_FFTW3                   ON                                                                                                                                                                      
- HOPS_USE_OPENCL                  ON                                                                                                                                                                      
- HOPS_USE_PYBIND11                OFF                                                                                                                                                                     
- HOPS_USE_ROOT                    OFF                                                                                                                                                                     
- LATEX_DEFAULT_BUILD              pdf                                                                                                                                                                     
- LATEX_OUTPUT_PATH                                                                                                                                                                                        
- LATEX_SMALL_IMAGES               OFF                                                                                                                                                                     
- LATEX_USE_SYNCTEX                OFF                                                                                                                                                                     
- OPENCL_LIBRARIES                 /usr/lib/x86_64-linux-gnu/libOpenCL.so                                                                                                                                  
- TAR_PROGRAM                      /usr/bin/tar                                                                                                                                                            
- WGET_PROGRAM                     /usr/bin/wget                                                                                                                                                           
- _OPENCL_CPP_INCLUDE_DIRS         /usr/include    
+ BASH_PROGRAM                     /usr/bin/bash
+ BC_PROGRAM                       /usr/bin/bc
+ BUILD_DOXYGEN_REF                ON
+ BUILD_LATEX_DOCS                 OFF
+ CMAKE_BUILD_TYPE                 RelWithDebInfo
+ CMAKE_INSTALL_PREFIX             /home/barrettj/work/projects/hops-git/x86_64-4.00
+ CPGPLOT_LIBRARY                  /usr/lib/libcpgplot.so
+ ENABLE_COLOR_MSG                 ON
+ ENABLE_DEBUG_MSG                 ON
+ ENABLE_EXTRA_VERBOSE_MSG         OFF
+ ENABLE_SNAPSHOTS                 OFF
+ ENABLE_STEPWISE_CHECK            OFF
+ EXTRA_WARNINGS                   OFF
+ GFORTRAN_LIB                     /lib/x86_64-linux-gnu/libgfortran.so.5
+ GS_EXE                           /usr/bin/gs
+ HOPS3_DISABLE_WARNINGS           ON
+ HOPS3_PYTHON_EXTRAS              ON
+ HOPS3_USE_ADHOC_FLAGGING         ON
+ HOPS3_USE_CXX                    OFF
+ HOPS_BUILD_EXTRA_CONTAINERS      OFF
+ HOPS_ENABLE_REMOTE_TEST_DATA     ON
+ HOPS_ENABLE_TEST                 ON
+ HOPS_PYPI_MANAGE_DEPS            ON
+ HOPS_USE_DIFXIO                  ON
+ HOPS_USE_FFTW3                   ON
+ HOPS_USE_MPI                     OFF
+ HOPS_USE_OPENCL                  OFF
+ HOPS_USE_PYBIND11                ON
+ HOPS_USE_ROOT                    OFF
+ PYBIND11_FINDPYTHON              OFF
+ PYBIND11_INSTALL                 OFF
+ PYBIND11_INTERNALS_VERSION
+ PYBIND11_NOPYTHON                OFF
+ PYBIND11_SIMPLE_GIL_MANAGEMENT   OFF
+ PYBIND11_TEST                    OFF
+ TAR_PROGRAM                      /usr/bin/tar
+ WGET_PROGRAM                     /usr/bin/wget
 ```
-
-
-
-<!-- ## Alternate build with Automake
-
-An alternate build path is available via the GNU auto build tools (autoconf, automake, etc.).  A top-level build script autogen.sh (which takes --help) can be used to build everything.  As usual with autoconfigured scripts, environment variables may need to be set to get it all to work.  For example:
-
-`$ ./autogen.sh --help` \
-`$ HOPS_CONFIGURE_ARGS='CXXFLAGS=-std=c++11 --enable-gcov' \` \
-`  ./autogen.sh true false false centos-7` \
-`$ HOPS_CONFIGURE_ARGS='--enable-gcov' \` \
-`  ./autogen.sh true false false fedora-33`
-
-(The true/false directives control what the script does, and the last
-argument is appended to the name of the build directory--here we use it
-to indicate what was needed on two Red Hat flavor OSs.) -->
 
 ## Current pre-requisites:
 
@@ -143,10 +138,24 @@ The resulting html documentation will be placed in `<hops-install>/doc/reference
 be opened with any browser.
 
 
-<!-- Currently HOPS supports the ability to run `make distcheck` from the build directory assuming `make` was used to build the project instead of `cmake`.
-`distcheck` is not currently compatible with `cmake`. `distcheck` checks that the tarball distribution is in working order and all the necessary files are included. -->
+## Alternate build with Automake (not up to date)
 
-<!-- ## Documentation Dependencies
+An alternate build path is available via the GNU auto build tools (autoconf, automake, etc.).  A top-level build script autogen.sh (which takes --help) can be used to build everything.  As usual with autoconfigured scripts, environment variables may need to be set to get it all to work.  For example:
+
+`$ ./autogen.sh --help` \
+`$ HOPS_CONFIGURE_ARGS='CXXFLAGS=-std=c++11 --enable-gcov' \` \
+`  ./autogen.sh true false false centos-7` \
+`$ HOPS_CONFIGURE_ARGS='--enable-gcov' \` \
+`  ./autogen.sh true false false fedora-33`
+
+(The true/false directives control what the script does, and the last
+argument is appended to the name of the build directory--here we use it
+to indicate what was needed on two Red Hat flavor OSs.)
+
+The HOPS automake build supports the ability to run `make distcheck` from the build directory assuming `make` was used to build the project instead of `cmake`.
+`distcheck` is not currently compatible with `cmake`. `distcheck` checks that the tarball distribution is in working order and all the necessary files are included.
+
+## Automake Documentation Dependencies
 ### Ubuntu packages
 (1) `texlive-full` \
 (2) `graphviz` \
@@ -162,10 +171,8 @@ python3-sphinx, python3-dev, python-dev, swig, help2man
 (2) `graphviz` \
 (3) `doxygen`
 
-
-
 ### Building the documentation
-HOPS supports the ability to build the documentation as well as the code with `make` by doing the following:
+The automake build supports the ability to build the documentation as well as the code with `make` by doing the following:
 `cd hops-git/` \
 `./autogen.sh` \
 Copy the output of the configure script that looks something like configure=/some/path
@@ -175,6 +182,3 @@ Paste that in your shell and run it. \
 `cd ambld-4.0` \
 `$configure --enable-devel --enable-docs CC=clang --enable-doxy` \
 `make all check install`
-
-An equivalent build process using the GNU autotools is also available
-using the script autogen.sh which accepts a --help argument for usage. -->
