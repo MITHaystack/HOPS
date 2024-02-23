@@ -17,6 +17,6 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 #temp work around until we do this properly
-install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/mho_operators.py" DESTINATION ${PYTHON_MODULE_INSTALL_DIR})
+install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/mho_operators.py" DESTINATION ${PLUGINS_INSTALL_DIR})
 
 hops_install_executables( ${SOURCE_BASENAMES} )
