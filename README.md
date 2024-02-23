@@ -70,10 +70,10 @@ dependencies turned on/off, e.g. OpenCL, PyBind11, etc.) is shown below:
 
 The absolute minimum dependencies are:
 
-(1) cmake, cmake-curses-gui, GNU make, and bash \
-(2) A c++ compiler which supports the C++11 standard (gcc > 4.8, or clang > 3.3)
-(3) python3 and pip (if you want to make use of python extensions)
-(4) For post-installation testing (e.g. make test) the utilities wget and jq are needed, but are not required for installation.
+1. cmake, cmake-curses-gui, GNU make, and bash
+2. A c++ compiler which supports the C++11 standard (gcc > 4.8, or clang > 3.3)
+3. python3 and pip (if you want to make use of python extensions)
+4. For post-installation testing (e.g. make test) the utilities wget and jq are needed, but are not required for installation.
 
 On Ubuntu 22.04 or Debian based systems these can be installed with:
 
@@ -94,11 +94,11 @@ if this option is turned on pip with attempt to download and locally install the
 If you wish to build the original HOPS3 software suite (fourfit, etc.), in addition to HOPS4, you will need
 several additional dependencies, these are:
 
-(1) `Python 3.x` \
-(2) `FFTW3` \
-(3) `PGPLOT` \
-(4) `X11` \
-(5) `GNU Fortran`
+1. `Python 3.x` \
+2. `FFTW3` \
+3. `PGPLOT` \
+4. `X11` \
+5. `GNU Fortran`
 
 On Ubuntu 22.04 or Debian based systems these can be installed with:
 
