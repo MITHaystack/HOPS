@@ -1,13 +1,13 @@
 #ifndef MHO_CompoundReductions_HH__
 #define MHO_CompoundReductions_HH__
 
-/*
-*File: MHO_CompoundReductions.hh
-*Class: MHO_CompoundReductions
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_CompoundReductions.hh
+*@class MHO_CompoundReductions
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include <cstddef>
@@ -81,4 +81,4 @@ struct MHO_CompoundMultiply
 //TODO -- Can we think of any other useful reduction operations to put here?
 
 
-#endif /* end of include guard: MHO_CompoundReductions */
+#endif /*! end of include guard: MHO_CompoundReductions */

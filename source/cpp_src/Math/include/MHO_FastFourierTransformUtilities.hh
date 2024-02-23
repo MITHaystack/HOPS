@@ -507,4 +507,4 @@ MHO_FastFourierTransformUtilities<long double>::ComputeBluesteinScaleFactors(uns
 }
 
 
-#endif /* MHO_FastFourierTransformUtilities_H__ */
+#endif /*! MHO_FastFourierTransformUtilities_H__ */

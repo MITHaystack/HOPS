@@ -61,7 +61,7 @@ class MHO_MultidimensionalFastFourierTransformInterface
         //default...does nothing
         template< typename XCheckType = XArgType >
         typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        IfTableTransformAxis(XArgType* /*in*/, std::size_t /*axis_index*/){};
+        IfTableTransformAxis(XArgType* /*!in*/, std::size_t /*!axis_index*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
         template< typename XCheckType = XArgType >
@@ -86,7 +86,7 @@ class MHO_MultidimensionalFastFourierTransformInterface
 
                 //generic axis, do nothing
                 template< typename XAxisType >
-                void operator()(XAxisType& /*axis1*/){};
+                void operator()(XAxisType& /*!axis1*/){};
 
                 //overload for doubles
                 void operator()(MHO_Axis<double>& axis1)
@@ -167,4 +167,4 @@ class MHO_MultidimensionalFastFourierTransformInterface
 
 }
 
-#endif /* MHO_MultidimensionalFastFourierTransformInterface_H__ */
+#endif /*! MHO_MultidimensionalFastFourierTransformInterface_H__ */

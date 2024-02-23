@@ -140,4 +140,4 @@ class MHO_BitReversalPermutation
 }
 
 
-#endif /* MHO_BitReversalPermutation_H__ */
+#endif /*! MHO_BitReversalPermutation_H__ */

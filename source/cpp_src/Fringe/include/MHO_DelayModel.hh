@@ -110,4 +110,4 @@ MHO_DelayModel::RetrieveTag(station_coord_type* data, std::string key)
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_DelayModel_HH__ */
+#endif /*! end of include guard: MHO_DelayModel_HH__ */

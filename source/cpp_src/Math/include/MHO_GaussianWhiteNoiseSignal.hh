@@ -23,7 +23,7 @@ class MHO_GaussianWhiteNoiseSignal: public MHO_SimulatedSignalGenerator
 
     protected:
 
-        virtual bool GenerateSample(const double& /*sample_time*/, double& sample) const override;
+        virtual bool GenerateSample(const double& /*!sample_time*/, double& sample) const override;
 
         double fMean;
         double fStandardDeviation;
@@ -35,4 +35,4 @@ class MHO_GaussianWhiteNoiseSignal: public MHO_SimulatedSignalGenerator
 
 }
 
-#endif /* end of include guard: MHO_GaussianWhiteNoiseSignal_HH__ */
+#endif /*! end of include guard: MHO_GaussianWhiteNoiseSignal_HH__ */

@@ -68,4 +68,4 @@ class MHO_UnaryOperator: public MHO_Operator
 
 }//end of namespace
 
-#endif /* __MHO_UnaryOperator_HH__ */
+#endif /*! __MHO_UnaryOperator_HH__ */

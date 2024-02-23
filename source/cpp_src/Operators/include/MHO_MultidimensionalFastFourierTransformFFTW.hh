@@ -316,4 +316,4 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
 
 }
 
-#endif /* MHO_MultidimensionalFastFourierTransformFFTW_H__ */
+#endif /*! MHO_MultidimensionalFastFourierTransformFFTW_H__ */

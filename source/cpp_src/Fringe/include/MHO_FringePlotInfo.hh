@@ -1,13 +1,13 @@
 #ifndef MHO_FringePlotInfo_HH__
 #define MHO_FringePlotInfo_HH__
 
-/*
-*File: MHO_FringePlotInfo.hh
-*Class: MHO_FringePlotInfo
-*Author:
+/*!
+*@file MHO_FringePlotInfo.hh
+*@class MHO_FringePlotInfo
+*@author
 *Email:
-*Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: a collection of helper functions to organize fringe fitting
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief a collection of helper functions to organize fringe fitting
 */
 
 //global messaging util
@@ -37,4 +37,4 @@ class MHO_FringePlotInfo
 
 }//end namespace
 
-#endif /* end of include guard: MHO_FringePlotInfo_HH__ */
+#endif /*! end of include guard: MHO_FringePlotInfo_HH__ */

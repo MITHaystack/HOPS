@@ -7,13 +7,13 @@
 #include <vector>
 
 
-/*
-*File: MHO_MathUtilities.hh
-*Class: MHO_MathUtilities
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: implements a variety of simple math functions copied from original c code with minimal changes
+/*!
+*@file MHO_MathUtilities.hh
+*@class MHO_MathUtilities
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief implements a variety of simple math functions copied from original c code with minimal changes
 */
 
 namespace hops
@@ -38,4 +38,4 @@ class MHO_MathUtilities
 
 }
 
-#endif /* end of include guard: MHO_MathUtilities_HH__ */
+#endif /*! end of include guard: MHO_MathUtilities_HH__ */

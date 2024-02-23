@@ -2,13 +2,13 @@
 #define MHO_SelectRepack_HH__
 
 
-/*
-*File: MHO_SelectRepack.hh
-*Class: MHO_SelectRepack
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: Thu 15 Dec 2022 02:42:45 PM EST
-*Description:
+/*!
+*@file MHO_SelectRepack.hh
+*@class MHO_SelectRepack
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date Thu 15 Dec 2022 02:42:45 PM EST
+*@brief
 * operator to select data from table and repack it into an entirely new table,
 * this typically would involve lots of copying (expensive), so it should be used
 * sparringly (e.g. initial or final coarse data selection)
@@ -182,7 +182,7 @@ class MHO_SelectRepack:
         //default...does nothing
         template< typename XCheckType = XArgType >
         typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        IfTableSelectOnAxes(const XArgType* /*in*/, XArgType* /*out*/){};
+        IfTableSelectOnAxes(const XArgType* /*!in*/, XArgType* /*!out*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
         template< typename XCheckType = XArgType >
@@ -263,4 +263,4 @@ class MHO_SelectRepack:
 };
 
 
-#endif /* end of include guard: MHO_SelectRepack_HH__ */
+#endif /*! end of include guard: MHO_SelectRepack_HH__ */

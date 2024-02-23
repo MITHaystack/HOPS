@@ -1,13 +1,13 @@
 #ifndef MHO_VexDefinitions_HH__
 #define MHO_VexDefinitions_HH__
 
-/*
-*@file: MHO_VexDefinitions.hh
-*@class: MHO_VexDefinitions
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief: Basic definitions of various tokens and utilities
+/*!
+*@file  MHO_VexDefinitions.hh
+*@class  MHO_VexDefinitions
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief  Basic definitions of various tokens and utilities
 */
 
 #include <string>
@@ -82,4 +82,4 @@ class MHO_VexDefinitions
 
 }
 
-#endif /* end of include guard: MHO_VexDefinitions */
+#endif /*! end of include guard: MHO_VexDefinitions */

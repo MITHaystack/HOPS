@@ -11,13 +11,13 @@
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_TableContainer.hh"
 
-/*
-*File: MHO_ExtremaSearch.hh
-*Class: MHO_ExtremaSearch
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_ExtremaSearch.hh
+*@class MHO_ExtremaSearch
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 
 */
 
@@ -42,7 +42,7 @@ class MHO_ExtremaSearch:
 
     protected:
 
-        virtual bool InitializeImpl(const XArgType* /*in*/) override {return true;};
+        virtual bool InitializeImpl(const XArgType* /*!in*/) override {return true;};
         virtual bool ExecuteImpl(const XArgType* in) override { Search(in); return true;}
 
     private:
@@ -112,4 +112,4 @@ class MHO_ExtremaSearch:
 
 
 
-#endif /* MHO_ExtremaSearch_H__ */
+#endif /*! MHO_ExtremaSearch_H__ */

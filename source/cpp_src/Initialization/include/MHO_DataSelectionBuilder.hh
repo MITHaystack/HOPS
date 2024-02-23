@@ -1,13 +1,13 @@
 #ifndef MHO_DataSelectionBuilderBuilder_HH__
 #define MHO_DataSelectionBuilderBuilder_HH__
 
-/*
-*File: MHO_DataSelectionBuilder.hh
-*Class: MHO_DataSelectionBuilder
-*Author:
+/*!
+*@file MHO_DataSelectionBuilder.hh
+*@class MHO_DataSelectionBuilder
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include "MHO_OperatorBuilder.hh"
@@ -41,4 +41,4 @@ class MHO_DataSelectionBuilder:
 }//end namespace
 
 
-#endif /* end of include guard: MHO_DataSelectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_DataSelectionBuilderBuilder_HH__ */

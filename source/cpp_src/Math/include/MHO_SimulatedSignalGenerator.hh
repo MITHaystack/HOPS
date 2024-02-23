@@ -37,4 +37,4 @@ class MHO_SimulatedSignalGenerator
 }
 
 
-#endif /* MHO_SimulatedSignalGenerator_H__ */
+#endif /*! MHO_SimulatedSignalGenerator_H__ */

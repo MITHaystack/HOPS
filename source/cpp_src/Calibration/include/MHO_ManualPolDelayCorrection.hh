@@ -1,13 +1,13 @@
 #ifndef MHO_ManualPolDelayCorrection_HH__
 #define MHO_ManualPolDelayCorrection_HH__
 
-/*
-*File: MHO_ManualPolDelayCorrection.hh
-*Class: MHO_ManualPolDelayCorrection
-*Author:
+/*!
+*@file MHO_ManualPolDelayCorrection.hh
+*@class MHO_ManualPolDelayCorrection
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include <cmath>
@@ -87,4 +87,4 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
 }
 
 
-#endif /* end of include guard: MHO_ManualPolDelayCorrection */
+#endif /*! end of include guard: MHO_ManualPolDelayCorrection */

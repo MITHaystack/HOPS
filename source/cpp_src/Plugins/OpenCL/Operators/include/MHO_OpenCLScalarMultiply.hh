@@ -11,13 +11,13 @@
 #include "MHO_OpenCLKernelBuilder.hh"
 #include "MHO_OpenCLNDArrayBuffer.hh"
 
-/*
-*File: MHO_OpenCLScalarMultiply.hh
-*Class: MHO_OpenCLScalarMultiply
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_OpenCLScalarMultiply.hh
+*@class MHO_OpenCLScalarMultiply
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 namespace hops
@@ -218,4 +218,4 @@ class MHO_OpenCLScalarMultiply: public MHO_UnaryOperator< XArrayType >
 }
 
 
-#endif /* MHO_OpenCLScalarMultiply_H__ */
+#endif /*! MHO_OpenCLScalarMultiply_H__ */

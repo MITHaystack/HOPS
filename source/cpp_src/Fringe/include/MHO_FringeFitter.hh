@@ -1,13 +1,13 @@
 #ifndef MHO_FringeFitter_HH__
 #define MHO_FringeFitter_HH__
 
-/*
-*File: MHO_FringeFitter.hh
-*Class: MHO_FringeFitter
-*Author:
+/*!
+*@file MHO_FringeFitter.hh
+*@class MHO_FringeFitter
+*@author
 *Email:
-*Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: Abstract base class for a basic fringe fitter
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief Abstract base class for a basic fringe fitter
 */
 
 //global messaging util
@@ -88,4 +88,4 @@ class MHO_FringeFitter
 
 }
 
-#endif /* end of include guard: MHO_FringeFitter_HH__ */
+#endif /*! end of include guard: MHO_FringeFitter_HH__ */

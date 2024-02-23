@@ -1,13 +1,13 @@
 #ifndef MHO_PyTableContainer_HH__
 #define MHO_PyTableContainer_HH__
 
-/*
-*File: MHO_PyTableContainer.hh
-*Class: MHO_PyTableContainer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: Fri Sep 15 10:03:38 PM EDT 2023
-*Description:
+/*!
+*@file MHO_PyTableContainer.hh
+*@class MHO_PyTableContainer
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date Fri Sep 15 10:03:38 PM EDT 2023
+*@brief
 */
 
 #include <complex>
@@ -33,7 +33,7 @@ namespace py = pybind11;
 namespace hops
 {
 
-/**extension which allows us to present the contents of the XTableType to
+/*!*extension which allows us to present the contents of the XTableType to
 * python as a numpy array + python list objects for the axes.
 * Changes made to the contents of numpy array will be exposed to the c++ side.
 * However, no changes to the size/shape or axes of the array are supported.
@@ -64,7 +64,7 @@ class MHO_PyTableContainer
             return MHO_ClassName< XTableType >();
         }
 
-        /**return the ND-array data block as a numpy array
+        /*!*return the ND-array data block as a numpy array
         *this transfer is copy-free
         */
         py::array_t< typename XTableType::value_type > GetNumpyArray()
@@ -81,7 +81,7 @@ class MHO_PyTableContainer
             return ret_val;
         }
 
-        /** return the N-th axis as a python list object
+        /*!* return the N-th axis as a python list object
         *this conversion is NOT copy-free, but we get the same return type for all axis types
         */
         py::list GetCoordinateAxis(size_t index)
@@ -342,4 +342,4 @@ DeclarePyTableContainer(py::module &m, std::string pyclass_name = "")
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_PyTableContainer */
+#endif /*! end of include guard: MHO_PyTableContainer */

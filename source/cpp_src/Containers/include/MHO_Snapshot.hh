@@ -28,13 +28,13 @@
     #define HOPS_SNAPSHOT_DIR_STR STRING(HOPS_SNAPSHOT_DIR)
 #endif
 
-/*
-*File: MHO_Snapshot.hh
-*Class: MHO_Snapshot
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_Snapshot.hh
+*@class MHO_Snapshot
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 namespace hops
@@ -199,4 +199,4 @@ class MHO_Snapshot
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_Snapshot */
+#endif /*! end of include guard: MHO_Snapshot */

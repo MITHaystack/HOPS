@@ -1,13 +1,13 @@
 #ifndef MHO_VexParser_HH__
 #define MHO_VexParser_HH__
 
-/*
-*@file: MHO_VexParser.hh
-*@class: MHO_VexParser
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_VexParser.hh
+*@class  MHO_VexParser
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include <vector>
@@ -91,4 +91,4 @@ class MHO_VexParser
 
 }//end namespace
 
-#endif /* end of include guard: MHO_VexParser */
+#endif /*! end of include guard: MHO_VexParser */

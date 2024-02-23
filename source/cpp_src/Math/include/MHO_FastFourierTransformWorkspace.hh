@@ -164,4 +164,4 @@ MHO_FastFourierTransformWorkspace
 
 }
 
-#endif /* MHO_FastFourierTransformWorkspace_HH__ */
+#endif /*! MHO_FastFourierTransformWorkspace_HH__ */

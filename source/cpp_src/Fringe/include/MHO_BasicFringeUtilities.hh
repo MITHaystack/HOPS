@@ -1,13 +1,13 @@
 #ifndef MHO_BasicFringeUtilities_HH__
 #define MHO_BasicFringeUtilities_HH__
 
-/*
-*File: MHO_BasicFringeUtilities.hh
-*Class: MHO_BasicFringeUtilities
-*Author:
+/*!
+*@file MHO_BasicFringeUtilities.hh
+*@class MHO_BasicFringeUtilities
+*@author
 *Email:
-*Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: a collection of helper functions to organize fringe fitting
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief a collection of helper functions to organize fringe fitting
 */
 
 //global messaging util
@@ -46,4 +46,4 @@ class MHO_BasicFringeUtilities
 
 }//end namespace
 
-#endif /* end of include guard: MHO_BasicFringeUtilities_HH__ */
+#endif /*! end of include guard: MHO_BasicFringeUtilities_HH__ */

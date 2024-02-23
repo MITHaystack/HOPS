@@ -1,13 +1,13 @@
 #ifndef MHO_LinearDParCorrectionBuilderBuilder_HH__
 #define MHO_LinearDParCorrectionBuilderBuilder_HH__
 
-/*
-*File: MHO_LinearDParCorrectionBuilder.hh
-*Class: MHO_LinearDParCorrectionBuilder
-*Author:
+/*!
+*@file MHO_LinearDParCorrectionBuilder.hh
+*@class MHO_LinearDParCorrectionBuilder
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include "MHO_OperatorBuilder.hh"
@@ -39,4 +39,4 @@ class MHO_LinearDParCorrectionBuilder:
 }//end namespace
 
 
-#endif /* end of include guard: MHO_LinearDParCorrectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_LinearDParCorrectionBuilderBuilder_HH__ */

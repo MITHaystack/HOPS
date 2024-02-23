@@ -1,13 +1,13 @@
 #ifndef MHO_ScanDataStore_HH__
 #define MHO_ScanDataStore_HH__
 
-/*
-*File: MHO_ScanDataStore.hh
-*Class: MHO_ScanDataStore
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 27-01-2023 3:15
-*Description: Class to catalog and organize data files
+/*!
+*@file MHO_ScanDataStore.hh
+*@class MHO_ScanDataStore
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date 27-01-2023 3:15
+*@brief Class to catalog and organize data files
  associated with a single scan, and handle retrieval for specific baselilnes
 */
 
@@ -107,4 +107,4 @@ class MHO_ScanDataStore
 }//end namespace
 
 
-#endif /* end of include guard: MHO_ScanDataStore_HH__ */
+#endif /*! end of include guard: MHO_ScanDataStore_HH__ */

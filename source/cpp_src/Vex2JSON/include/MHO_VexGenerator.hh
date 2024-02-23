@@ -1,13 +1,13 @@
 #ifndef MHO_VexGenerator_HH__
 #define MHO_VexGenerator_HH__
 
-/*
-*@file: MHO_VexGenerator.hh
-*@class: MHO_VexGenerator
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_VexGenerator.hh
+*@class  MHO_VexGenerator
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include <vector>
@@ -66,4 +66,4 @@ class MHO_VexGenerator
 
 }//end namespace
 
-#endif /* end of include guard: MHO_VexGenerator */
+#endif /*! end of include guard: MHO_VexGenerator */

@@ -48,4 +48,4 @@ static void configure_pypath()
 }//end namespace
 
 
-#endif /* end of include guard: MHO_PyConfigurePath_HH__ */
+#endif /*! end of include guard: MHO_PyConfigurePath_HH__ */

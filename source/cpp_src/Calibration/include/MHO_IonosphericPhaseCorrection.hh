@@ -1,13 +1,13 @@
 #ifndef MHO_IonosphericPhaseCorrection_HH__
 #define MHO_IonosphericPhaseCorrection_HH__
 
-/*
-*File: MHO_IonosphericPhaseCorrection.hh
-*Class: MHO_IonosphericPhaseCorrection
-*Author:
+/*!
+*@file MHO_IonosphericPhaseCorrection.hh
+*@class MHO_IonosphericPhaseCorrection
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include <cmath>
@@ -77,4 +77,4 @@ class MHO_IonosphericPhaseCorrection: public MHO_UnaryOperator< visibility_type 
 }
 
 
-#endif /* end of include guard: MHO_IonosphericPhaseCorrection */
+#endif /*! end of include guard: MHO_IonosphericPhaseCorrection */

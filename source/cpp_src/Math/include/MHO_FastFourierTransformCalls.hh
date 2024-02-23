@@ -47,4 +47,4 @@ void FFTBluestein(std::complex<XFloatType>* data, MHO_FastFourierTransformWorksp
 }//end namespace
 
 
-#endif /* MHO_FastFourierTransformCalls_HH__ */
+#endif /*! MHO_FastFourierTransformCalls_HH__ */

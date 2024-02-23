@@ -48,4 +48,4 @@ class MHO_UnaryInPlaceOperator: public MHO_Operator
 
 }//end of namespace
 
-#endif /* __MHO_UnaryInPlaceOperator_HH__ */
+#endif /*! __MHO_UnaryInPlaceOperator_HH__ */

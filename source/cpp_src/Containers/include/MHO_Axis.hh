@@ -1,13 +1,13 @@
 #ifndef MHO_Axis_HH__
 #define MHO_Axis_HH__
 
-/*
-*File: MHO_Axis.hh
-*Class: MHO_Axis
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_Axis.hh
+*@class MHO_Axis
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include <set>
@@ -275,4 +275,4 @@ using MHO_AxisString = MHO_Axis< std::string >;
 
 }
 
-#endif /* end of include guard: MHO_Axis */
+#endif /*! end of include guard: MHO_Axis */

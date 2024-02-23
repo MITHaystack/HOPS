@@ -20,7 +20,7 @@ class MHO_SingleToneSignal: public MHO_SimulatedSignalGenerator
 
     protected:
 
-        virtual bool GenerateSample(const double& /*sample_time*/, double& sample) const override;
+        virtual bool GenerateSample(const double& /*!sample_time*/, double& sample) const override;
 
         double fPhaseOffset;
         double fToneFrequency;
@@ -29,4 +29,4 @@ class MHO_SingleToneSignal: public MHO_SimulatedSignalGenerator
 
 }
 
-#endif /* end of include guard: MHO_SingleToneSignal_HH__ */
+#endif /*! end of include guard: MHO_SingleToneSignal_HH__ */

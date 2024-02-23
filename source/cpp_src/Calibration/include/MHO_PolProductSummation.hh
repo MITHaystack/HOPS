@@ -1,13 +1,13 @@
 #ifndef MHO_PolProductSummation_HH__
 #define MHO_PolProductSummation_HH__
 
-/*
-*File: MHO_PolProductSummation.hh
-*Class: MHO_PolProductSummation
-*Author:
+/*!
+*@file MHO_PolProductSummation.hh
+*@class MHO_PolProductSummation
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include <cmath>
@@ -95,4 +95,4 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
 }
 
 
-#endif /* end of include guard: MHO_PolProductSummation */
+#endif /*! end of include guard: MHO_PolProductSummation */

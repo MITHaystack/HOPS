@@ -91,4 +91,4 @@ MHO_StationModel::RetrieveTag(station_coord_type* data, std::string key)
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_StationModel_HH__ */
+#endif /*! end of include guard: MHO_StationModel_HH__ */

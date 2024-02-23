@@ -8,13 +8,13 @@
 #include "MHO_Message.hh"
 #include "MHO_TestAssertions.hh"
 
-/*
-*@file: MHO_RootHistogramManager.hh
-*@class: MHO_RootHistogramManager
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_RootHistogramManager.hh
+*@class  MHO_RootHistogramManager
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 namespace hops
@@ -133,4 +133,4 @@ class MHO_RootHistogramManager
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_RootHistogramManager */
+#endif /*! end of include guard: MHO_RootHistogramManager */

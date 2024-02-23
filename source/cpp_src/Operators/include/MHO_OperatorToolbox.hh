@@ -8,13 +8,13 @@
 
 #include "MHO_Operator.hh"
 
-/*
-*File: MHO_OperatorToolbox.hh
-*Class: MHO_OperatorToolbox
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_OperatorToolbox.hh
+*@class MHO_OperatorToolbox
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 namespace hops
@@ -192,4 +192,4 @@ class MHO_OperatorToolbox
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_OperatorToolbox */
+#endif /*! end of include guard: MHO_OperatorToolbox */

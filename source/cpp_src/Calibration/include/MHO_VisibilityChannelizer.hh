@@ -1,13 +1,13 @@
 #ifndef MHO_VisibilityChannelizer_HH__
 #define MHO_VisibilityChannelizer_HH__
 
-/*
-*File: MHO_VisibilityChannelizer.hh
-*Class: MHO_VisibilityChannelizer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_VisibilityChannelizer.hh
+*@class MHO_VisibilityChannelizer
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include "MHO_NDArrayWrapper.hh"
@@ -37,4 +37,4 @@ class MHO_VisibilityChannelizer: public MHO_TransformingOperator< uch_visibility
 
 }
 
-#endif /* end of include guard: MHO_VisibilityChannelizer */
+#endif /*! end of include guard: MHO_VisibilityChannelizer */

@@ -1,13 +1,13 @@
 #ifndef MHO_FringeControlInitialization_HH__
 #define MHO_FringeControlInitialization_HH__
 
-/*
-*File: MHO_FringeControlInitialization.hh
-*Class: MHO_FringeControlInitialization
-*Author:
+/*!
+*@file MHO_FringeControlInitialization.hh
+*@class MHO_FringeControlInitialization
+*@author
 *Email:
-*Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: collection of helper functions for fringe fitter start-up
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief collection of helper functions for fringe fitter start-up
 */
 
 //global messaging util
@@ -52,4 +52,4 @@ class MHO_FringeControlInitialization
 
 }//end namespace
 
-#endif /* end of include guard: MHO_FringeControlInitialization_HH__ */
+#endif /*! end of include guard: MHO_FringeControlInitialization_HH__ */

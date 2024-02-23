@@ -20,4 +20,4 @@ namespace hops
 
 }//end hops namespace
 
-#endif /* end of include guard: MHO_SelfName_HH__ */
+#endif /*! end of include guard: MHO_SelfName_HH__ */

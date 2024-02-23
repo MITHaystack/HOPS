@@ -4,13 +4,13 @@
 #include <algorithm>
 #include "MHO_NDArrayWrapper.hh"
 
-/*
-*File: MHO_NDArrayTypeCastFunctor.hh
-*Class: MHO_NDArrayTypeCastFunctor
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: functor to cast array items from one type to another
+/*!
+*@file MHO_NDArrayTypeCastFunctor.hh
+*@class MHO_NDArrayTypeCastFunctor
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief functor to cast array items from one type to another
 */
 
 
@@ -42,4 +42,4 @@ class MHO_NDArrayTypeCastFunctor
 }
 
 
-#endif /* MHO_NDArrayTypeCastFunctor_H__ */
+#endif /*! MHO_NDArrayTypeCastFunctor_H__ */

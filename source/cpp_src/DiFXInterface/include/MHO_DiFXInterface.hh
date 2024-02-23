@@ -1,13 +1,13 @@
 #ifndef MHO_DiFXInterface_HH__
 #define MHO_DiFXInterface_HH__
 
-/*
-*@file: MHO_DiFXInterface.hh
-*@class: MHO_DiFXInterface
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_DiFXInterface.hh
+*@class  MHO_DiFXInterface
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include <string>
@@ -76,4 +76,4 @@ class MHO_DiFXInterface
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_DiFXInterface */
+#endif /*! end of include guard: MHO_DiFXInterface */

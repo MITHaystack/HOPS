@@ -1,13 +1,13 @@
 #ifndef MHO_IntervalLabelTree_HH__
 #define MHO_IntervalLabelTree_HH__
 
-/*
-*File: MHO_IntervalLabelTree.hh
-*Class: MHO_IntervalLabelTree
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: Inteval-tree stucture, to allow for fast location of an interval
+/*!
+*@file MHO_IntervalLabelTree.hh
+*@class MHO_IntervalLabelTree
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief Inteval-tree stucture, to allow for fast location of an interval
 * currently un-implemented...just does a dumb brute force O(n) search.
 */
 
@@ -224,4 +224,4 @@ MHO_IntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, cons
 
 }//end namespace
 
-#endif /* end of include guard: MHO_IntervalLabelTree */
+#endif /*! end of include guard: MHO_IntervalLabelTree */

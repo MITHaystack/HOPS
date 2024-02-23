@@ -131,4 +131,4 @@ class MHO_OperatorBuilderManager
 }
 
 
-#endif /* end of include guard: MHO_OperatorBuilderManager_HH__ */
+#endif /*! end of include guard: MHO_OperatorBuilderManager_HH__ */

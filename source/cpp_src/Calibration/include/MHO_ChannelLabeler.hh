@@ -15,13 +15,13 @@
 
 
 
-/*
-*File: MHO_ChannelLabeler.hh
-*Class: MHO_ChannelLabeler
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: Applies 'fourfit' labels to each channel (e.g. a, b,...),
+/*!
+*@file MHO_ChannelLabeler.hh
+*@class MHO_ChannelLabeler
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief Applies 'fourfit' labels to each channel (e.g. a, b,...),
 * if no user-defined map is supplied then the default mapping is in order
 * of frequency low -> high, starting with 'a'
 */
@@ -84,7 +84,7 @@ class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >
     protected:
 
         virtual bool InitializeInPlace(XArrayType* in) override {return true;}
-        virtual bool InitializeOutOfPlace(const XArrayType* /*in*/, XArrayType* /*out*/) override {return true;}
+        virtual bool InitializeOutOfPlace(const XArrayType* /*!in*/, XArrayType* /*!out*/) override {return true;}
 
         virtual bool ExecuteInPlace(XArrayType* in) override
         {
@@ -168,4 +168,4 @@ class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >
 
 } //end of namespace
 
-#endif /* end of include guard: MHO_ChannelLabeler_HH__ */
+#endif /*! end of include guard: MHO_ChannelLabeler_HH__ */

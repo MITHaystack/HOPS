@@ -1,13 +1,13 @@
 #ifndef MHO_ContainerJSONConverter_HH__
 #define MHO_ContainerJSONConverter_HH__
 
-/*
-*File: MHO_ContainerJSONConverter.hh
-*Class: MHO_ContainerJSONConverter
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: Converts a given ndarray-based container into a JSON representation
+/*!
+*@file MHO_ContainerJSONConverter.hh
+*@class MHO_ContainerJSONConverter
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief Converts a given ndarray-based container into a JSON representation
 * this isn't really intended for data transport/storage, but only as
 * conversion to an ascii-like representation for human inspection/debugging
 */
@@ -106,7 +106,7 @@ class MHO_JSONConverter
         void SetLevelOfDetail(int level){fLOD = level;};
         mho_json* GetJSON(){return &fJSON;}
 
-        virtual void SetObjectToConvert(MHO_Serializable* /*obj*/) = 0;
+        virtual void SetObjectToConvert(MHO_Serializable* /*!obj*/) = 0;
         virtual void ConstructJSONRepresentation() = 0;
 
     protected:

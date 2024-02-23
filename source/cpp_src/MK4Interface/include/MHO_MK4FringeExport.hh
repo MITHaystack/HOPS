@@ -1,13 +1,13 @@
 #ifndef MHO_MK4FringeExport_HH__
 #define MHO_MK4FringeExport_HH__
 
-/*
-*File: MHO_MK4FringeExport.hh
-*Class: MHO_MK4FringeExport
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-19T18:54:28.140Z
-*Description:
+/*!
+*@file MHO_MK4FringeExport.hh
+*@class MHO_MK4FringeExport
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date 2020-05-19T18:54:28.140Z
+*@brief
 */
 
 //forward declaration of mk4 structs
@@ -132,4 +132,4 @@ class MHO_MK4FringeExport
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_MK4FringeExport */
+#endif /*! end of include guard: MHO_MK4FringeExport */

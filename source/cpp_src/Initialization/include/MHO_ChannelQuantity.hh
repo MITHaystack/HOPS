@@ -23,4 +23,4 @@ class MHO_ChannelQuantity
 
 }
 
-#endif /* end of include guard: MHO_ChannelQuantity_HH__ */
+#endif /*! end of include guard: MHO_ChannelQuantity_HH__ */

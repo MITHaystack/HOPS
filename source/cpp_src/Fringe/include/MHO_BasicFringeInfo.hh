@@ -11,13 +11,13 @@
 #include "MHO_Clock.hh"
 
 
-/*
-*File: MHO_BasicFringeInfo.hh
-*Class: MHO_BasicFringeInfo
-*Author:
+/*!
+*@file MHO_BasicFringeInfo.hh
+*@class MHO_BasicFringeInfo
+*@author
 *Email:
-*Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: collection of very simple static helper functions
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief collection of very simple static helper functions
 * used when computing fringe information/parameters
 */
 
@@ -56,4 +56,4 @@ class MHO_BasicFringeInfo
 
 }//end namespace
 
-#endif /* end of include guard: MHO_BasicFringeInfo_HH__ */
+#endif /*! end of include guard: MHO_BasicFringeInfo_HH__ */

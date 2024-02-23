@@ -1,13 +1,13 @@
 #ifndef MHO_ObjectTags_HH__
 #define MHO_ObjectTags_HH__
 
-/*
-*File: MHO_ObjectTags.hh
-*Class: MHO_ObjectTags
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: container for tag/value meta-data to be attached to objects
+/*!
+*@file MHO_ObjectTags.hh
+*@class MHO_ObjectTags
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief container for tag/value meta-data to be attached to objects
 *via association with their UUID
 */
 
@@ -287,4 +287,4 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_ObjectTags */
+#endif /*! end of include guard: MHO_ObjectTags */

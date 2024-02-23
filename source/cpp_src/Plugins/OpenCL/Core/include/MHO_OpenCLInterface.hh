@@ -149,4 +149,4 @@ namespace hops
 
 }
 
-#endif /* HOPS_OPENCLINTERFACE_DEF */
+#endif /*! HOPS_OPENCLINTERFACE_DEF */

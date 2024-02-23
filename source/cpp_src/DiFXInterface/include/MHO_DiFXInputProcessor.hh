@@ -4,13 +4,13 @@
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
 
-/*
-*@file: MHO_DiFXInputProcessor.hh
-*@class: MHO_DiFXInputProcessor
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_DiFXInputProcessor.hh
+*@class  MHO_DiFXInputProcessor
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include "difxio/difx_input.h"
@@ -51,4 +51,4 @@ class MHO_DiFXInputProcessor
 
 }
 
-#endif /* end of include guard: MHO_DiFXInputProcessor */
+#endif /*! end of include guard: MHO_DiFXInputProcessor */

@@ -1,13 +1,13 @@
 #ifndef MHO_InitialFringeInfo_HH__
 #define MHO_InitialFringeInfo_HH__
 
-/*
-*File: MHO_InitialFringeInfo.hh
-*Class: MHO_InitialFringeInfo
-*Author:
+/*!
+*@file MHO_InitialFringeInfo.hh
+*@class MHO_InitialFringeInfo
+*@author
 *Email:
-*Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: collection of helper functions to populate the parameter store
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief collection of helper functions to populate the parameter store
 * with a priori information know before fringe fitting
 */
 
@@ -42,4 +42,4 @@ class MHO_InitialFringeInfo
 
 }//end namespace
 
-#endif /* end of include guard: MHO_InitialFringeInfo_HH__ */
+#endif /*! end of include guard: MHO_InitialFringeInfo_HH__ */

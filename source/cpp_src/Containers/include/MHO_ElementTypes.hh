@@ -42,4 +42,4 @@ using weight_element_store_type = WFP_STORE_TYPE;
 
 }//end namespace
 
-#endif /* end of include guard: MHO_ElementTypes_H__ */
+#endif /*! end of include guard: MHO_ElementTypes_H__ */

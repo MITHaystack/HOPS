@@ -404,7 +404,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
         //default XArgType...does nothing
         template< typename XCheckType = XArgType >
         typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        IfTableTransformAxis(const XArgType* /*in*/, XArgType* out, std::size_t /*axis_index*/){};
+        IfTableTransformAxis(const XArgType* /*!in*/, XArgType* out, std::size_t /*!axis_index*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
         template< typename XCheckType = XArgType >
@@ -613,4 +613,4 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
 
 }
 
-#endif /* MHO_MultidimensionalPaddedFastFourierTransform_H__ */
+#endif /*! MHO_MultidimensionalPaddedFastFourierTransform_H__ */

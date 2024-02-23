@@ -1,13 +1,13 @@
 #ifndef MHO_PolProductSummationBuilderBuilder_HH__
 #define MHO_PolProductSummationBuilderBuilder_HH__
 
-/*
-*File: MHO_PolProductSummationBuilder.hh
-*Class: MHO_PolProductSummationBuilder
-*Author:
+/*!
+*@file MHO_PolProductSummationBuilder.hh
+*@class MHO_PolProductSummationBuilder
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include "MHO_OperatorBuilder.hh"
@@ -39,4 +39,4 @@ class MHO_PolProductSummationBuilder:
 }//end namespace
 
 
-#endif /* end of include guard: MHO_PolProductSummationBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_PolProductSummationBuilderBuilder_HH__ */

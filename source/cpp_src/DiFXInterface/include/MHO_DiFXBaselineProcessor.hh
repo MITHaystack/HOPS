@@ -1,13 +1,13 @@
 #ifndef MHO_DiFXBaselineProcessor_HH__
 #define MHO_DiFXBaselineProcessor_HH__
 
-/*
-*@file: MHO_DiFXBaselineProcessor.hh
-*@class: MHO_DiFXBaselineProcessor
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief: accumulates visbility records from a single baseline, sorts and re-packs them into a visbility container
+/*!
+*@file  MHO_DiFXBaselineProcessor.hh
+*@class  MHO_DiFXBaselineProcessor
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief  accumulates visbility records from a single baseline, sorts and re-packs them into a visbility container
 */
 
 #include <vector>
@@ -157,4 +157,4 @@ class MHO_DiFXBaselineProcessor
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_DiFXBaselineProcessor */
+#endif /*! end of include guard: MHO_DiFXBaselineProcessor */

@@ -1,13 +1,13 @@
 #ifndef MHO_ManualChannelPhaseCorrection_HH__
 #define MHO_ManualChannelPhaseCorrection_HH__
 
-/*
-*File: MHO_ManualChannelPhaseCorrection.hh
-*Class: MHO_ManualChannelPhaseCorrection
-*Author:
+/*!
+*@file MHO_ManualChannelPhaseCorrection.hh
+*@class MHO_ManualChannelPhaseCorrection
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include <cmath>
@@ -91,4 +91,4 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
 }
 
 
-#endif /* end of include guard: MHO_ManualChannelPhaseCorrection */
+#endif /*! end of include guard: MHO_ManualChannelPhaseCorrection */

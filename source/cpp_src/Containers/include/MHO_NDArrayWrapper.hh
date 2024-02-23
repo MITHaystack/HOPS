@@ -1,13 +1,13 @@
 #ifndef MHO_NDArrayWrapper_HH__
 #define MHO_NDArrayWrapper_HH__
 
-/*
-*File: MHO_NDArrayWrapper.hh
-*Class: MHO_NDArrayWrapper
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-15T20:22:38.395Z
-*Description:
+/*!
+*@file MHO_NDArrayWrapper.hh
+*@class MHO_NDArrayWrapper
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date 2020-05-15T20:22:38.395Z
+*@brief
 * Thu 13 Aug 2020 02:53:11 PM EDT
 */
 
@@ -259,7 +259,7 @@ class MHO_NDArrayWrapper:
                     std::vector<std::size_t> free_idx; //list the indexs which are free to vary
 
                     //placeholder type sets index to zero
-                    void operator()(std::size_t i, const char* /*value*/){full_idx[i] = 0; free_idx.push_back(i);}
+                    void operator()(std::size_t i, const char* /*!value*/){full_idx[i] = 0; free_idx.push_back(i);}
                     //index types pass along their value
                     void operator()(std::size_t i, std::size_t value){full_idx[i] = value; fixed_idx.push_back(i);}
 
@@ -448,7 +448,7 @@ namespace hops
 //utilities ////////////////////////////////////////////////////////////////////
 template< class XArrayType1, class XArrayType2 >
 static bool
-HaveSameRank(const XArrayType1* /*arr1*/, const XArrayType2* /*arr2*/)
+HaveSameRank(const XArrayType1* /*!arr1*/, const XArrayType2* /*!arr2*/)
 {
     return ( XArrayType1::rank::value == XArrayType2::rank::value );
 }
@@ -486,4 +486,4 @@ HaveSameDimensions(const XArrayType1* arr1, const XArrayType2* arr2)
 }//end of hops namespace
 
 
-#endif /* MHO_NDArrayWrapper_HH__ */
+#endif /*! MHO_NDArrayWrapper_HH__ */

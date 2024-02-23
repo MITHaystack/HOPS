@@ -4,13 +4,13 @@
 #include <fftw3.h>
 #include <complex>
 
-/*
-*File: MHO_FFTWTypes.hh
-*Class: MHO_FFTWTypes
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_FFTWTypes.hh
+*@class MHO_FFTWTypes
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 * template declaration of common FFTW3 types (dependent on floating precision)
 * These are necessary to get around partial template specialization in the FFT x-form classes
 */
@@ -87,4 +87,4 @@ struct MHO_FFTWTypes<long double>
 
 }
 
-#endif /* end of include guard: MHO_FFTWTypes */
+#endif /*! end of include guard: MHO_FFTWTypes */

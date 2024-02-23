@@ -1,13 +1,13 @@
 #ifndef MHO_DiFXScanFileSet_HH__
 #define MHO_DiFXScanFileSet_HH__
 
-/*
-*@file: MHO_DiFXScanFileSet.hh
-*@class: MHO_DiFXScanFileSet
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_DiFXScanFileSet.hh
+*@class  MHO_DiFXScanFileSet
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include <vector>
@@ -41,4 +41,4 @@ class MHO_DiFXScanFileSet
 
 }
 
-#endif /* end of include guard: MHO_DiFXScanFileSet */
+#endif /*! end of include guard: MHO_DiFXScanFileSet */

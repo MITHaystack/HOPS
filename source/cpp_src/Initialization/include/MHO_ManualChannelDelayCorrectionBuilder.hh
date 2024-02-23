@@ -1,13 +1,13 @@
 #ifndef MHO_ManualChannelDelayCorrectionBuilderBuilder_HH__
 #define MHO_ManualChannelDelayCorrectionBuilderBuilder_HH__
 
-/*
-*File: MHO_ManualChannelDelayCorrectionBuilder.hh
-*Class: MHO_ManualChannelDelayCorrectionBuilder
-*Author:
+/*!
+*@file MHO_ManualChannelDelayCorrectionBuilder.hh
+*@class MHO_ManualChannelDelayCorrectionBuilder
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include "MHO_OperatorBuilder.hh"
@@ -42,4 +42,4 @@ class MHO_ManualChannelDelayCorrectionBuilder:
 }//end namespace
 
 
-#endif /* end of include guard: MHO_ManualChannelDelayCorrectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_ManualChannelDelayCorrectionBuilderBuilder_HH__ */

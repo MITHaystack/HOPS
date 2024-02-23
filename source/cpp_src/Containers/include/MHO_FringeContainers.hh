@@ -18,4 +18,4 @@ using xpower_amp_type = MHO_TableContainer< double, MHO_AxisPack< MHO_Axis<doubl
 
 }//end of hops namespaces
 
-#endif /* end of include guard: MHO_StationCoordinates */
+#endif /*! end of include guard: MHO_StationCoordinates */

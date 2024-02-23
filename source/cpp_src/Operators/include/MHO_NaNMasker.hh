@@ -1,13 +1,13 @@
 #ifndef MHO_NaNMasker_HH__
 #define MHO_NaNMasker_HH__
 
-/*
-*File: MHO_NaNMasker.hh
-*Class: MHO_NaNMasker
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_NaNMasker.hh
+*@class MHO_NaNMasker
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include <cmath>
@@ -59,4 +59,4 @@ class MHO_NaNMasker: public MHO_UnaryFunctor< XArrayType >
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_NaNMasker */
+#endif /*! end of include guard: MHO_NaNMasker */

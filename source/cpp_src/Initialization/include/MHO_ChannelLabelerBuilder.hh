@@ -1,13 +1,13 @@
 #ifndef MHO_ChannelLabelerBuilderBuilder_HH__
 #define MHO_ChannelLabelerBuilderBuilder_HH__
 
-/*
-*File: MHO_ChannelLabelerBuilder.hh
-*Class: MHO_ChannelLabelerBuilder
-*Author:
+/*!
+*@file MHO_ChannelLabelerBuilder.hh
+*@class MHO_ChannelLabelerBuilder
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include "MHO_OperatorBuilder.hh"
@@ -40,4 +40,4 @@ class MHO_ChannelLabelerBuilder:
 }//end namespace
 
 
-#endif /* end of include guard: MHO_ChannelLabelerBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_ChannelLabelerBuilderBuilder_HH__ */

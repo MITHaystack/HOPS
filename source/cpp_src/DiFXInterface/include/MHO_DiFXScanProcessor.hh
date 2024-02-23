@@ -1,13 +1,13 @@
 #ifndef MHO_DiFXScanProcessor_HH__
 #define MHO_DiFXScanProcessor_HH__
 
-/*
-*@file: MHO_DiFXScanProcessor.hh
-*@class: MHO_DiFXScanProcessor
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_DiFXScanProcessor.hh
+*@class  MHO_DiFXScanProcessor
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 
@@ -131,4 +131,4 @@ class MHO_DiFXScanProcessor
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_DiFXScanProcessor */
+#endif /*! end of include guard: MHO_DiFXScanProcessor */

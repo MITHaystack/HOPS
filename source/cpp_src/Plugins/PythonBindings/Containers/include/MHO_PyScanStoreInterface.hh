@@ -17,13 +17,13 @@ namespace nl = nlohmann;
 using namespace pybind11::literals;
 
 
-/*
-*@file: MHO_PyScanStoreInterface.hh
-*@class: MHO_PyScanStoreInterface
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date: Fri Sep 15 10:03:38 PM EDT 2023
-*@brief:
+/*!
+*@file  MHO_PyScanStoreInterface.hh
+*@class  MHO_PyScanStoreInterface
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date  Fri Sep 15 10:03:38 PM EDT 2023
+*@brief 
 */
 
 namespace hops
@@ -425,4 +425,4 @@ DeclarePyScanStoreInterface(py::module &m, std::string pyclass_name)
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_PyScanStoreInterface */
+#endif /*! end of include guard: MHO_PyScanStoreInterface */

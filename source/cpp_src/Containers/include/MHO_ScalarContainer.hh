@@ -1,13 +1,13 @@
 #ifndef MHO_ScalarContainer_HH__
 #define MHO_ScalarContainer_HH__
 
-/*
-*File: MHO_ScalarContainer.hh
-*Class: MHO_ScalarContainer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-15T20:22:06.227Z
-*Description:
+/*!
+*@file MHO_ScalarContainer.hh
+*@class MHO_ScalarContainer
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date 2020-05-15T20:22:06.227Z
+*@brief
 */
 
 
@@ -172,4 +172,4 @@ using MHO_ScalarString = MHO_ScalarContainer< std::string >;
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_ScalarContainer */
+#endif /*! end of include guard: MHO_ScalarContainer */

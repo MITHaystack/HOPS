@@ -1,13 +1,13 @@
 #ifndef MHO_PyGenericOperator_HH__
 #define MHO_PyGenericOperator_HH__
 
-/*
-*@file: MHO_PyGenericOperator.hh
-*@class: MHO_PyGenericOperator
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date: Mon 18 Sep 2023 01:26:22 PM EDT
-*@brief: this class allows a user to inject a python function of the form:
+/*!
+*@file  MHO_PyGenericOperator.hh
+*@class  MHO_PyGenericOperator
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date  Mon 18 Sep 2023 01:26:22 PM EDT
+*@brief  this class allows a user to inject a python function of the form:
 * func(container_interface, parameter_interface)
 * into the control flow of the fringe fitter. It is basically allowed full access to
 * any data or parameters in the container or parameter store. The only exception is
@@ -124,4 +124,4 @@ class MHO_PyGenericOperator: public MHO_Operator
 }//end of namespace
 
 
-#endif /* end of include guard: MHO_PyGenericOperator */
+#endif /*! end of include guard: MHO_PyGenericOperator */

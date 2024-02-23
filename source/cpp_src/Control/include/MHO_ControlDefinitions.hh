@@ -1,13 +1,13 @@
 #ifndef MHO_ControlElements_HH__
 #define MHO_ControlElements_HH__
 
-/*
-*@file: MHO_ControlElements.hh
-*@class: MHO_ControlElements
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_ControlElements.hh
+*@class  MHO_ControlElements
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include <string>
@@ -84,4 +84,4 @@ class MHO_ControlDefinitions
 
 }
 
-#endif /* end of include guard: MHO_ControlElements */
+#endif /*! end of include guard: MHO_ControlElements */

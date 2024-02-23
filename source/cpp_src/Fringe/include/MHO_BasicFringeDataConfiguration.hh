@@ -1,13 +1,13 @@
 #ifndef MHO_BasicFringeDataConfiguration_HH__
 #define MHO_BasicFringeDataConfiguration_HH__
 
-/*
-*File: MHO_BasicFringeDataConfiguration.hh
-*Class: MHO_BasicFringeDataConfiguration
-*Author:
+/*!
+*@file MHO_BasicFringeDataConfiguration.hh
+*@class MHO_BasicFringeDataConfiguration
+*@author
 *Email:
-*Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: collection of helper functions for fringe fitter start-up
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief collection of helper functions for fringe fitter start-up
 */
 
 //global messaging util
@@ -63,4 +63,4 @@ class MHO_BasicFringeDataConfiguration
 
 }//end namespace
 
-#endif /* end of include guard: MHO_BasicFringeDataConfiguration_HH__ */
+#endif /*! end of include guard: MHO_BasicFringeDataConfiguration_HH__ */

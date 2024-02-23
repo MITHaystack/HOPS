@@ -1,13 +1,13 @@
 #ifndef MHO_ComplexConjugator_HH__
 #define MHO_ComplexConjugator_HH__
 
-/*
-*File: MHO_ComplexConjugator.hh
-*Class: MHO_ComplexConjugator
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_ComplexConjugator.hh
+*@class MHO_ComplexConjugator
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include <cmath>
@@ -45,4 +45,4 @@ class MHO_ComplexConjugator: public MHO_UnaryFunctor< XArrayType >
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_ComplexConjugator */
+#endif /*! end of include guard: MHO_ComplexConjugator */

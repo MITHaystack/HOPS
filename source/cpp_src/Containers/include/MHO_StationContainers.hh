@@ -42,4 +42,4 @@ using manual_pcal_delay_type = MHO_TableContainer< manual_pcal_element_type, man
 
 }//end of hops namespaces
 
-#endif /* end of include guard: MHO_StationCoordinates */
+#endif /*! end of include guard: MHO_StationCoordinates */
