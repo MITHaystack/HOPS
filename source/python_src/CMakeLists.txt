@@ -1,5 +1,5 @@
 if(PY_EXE)
-    
+
     #just wholesale copy the entire python source directory into the build directory
     #because the pythonic wizards who wrote setuptools like to pollute the source
     #directory with egg.info garbage
@@ -18,7 +18,7 @@ if(PY_EXE)
     )
 
     #setup-no-deps.py.in assumes that the system already has the python dependencies
-    #needed (numpy, matplotlib, future, scipy) and makes not attempt to manage or 
+    #needed (numpy, matplotlib, future, scipy) and makes not attempt to manage or
     #install them, this is also useful for off-line installations
     set(SETUP_PY_IN "${CMAKE_CURRENT_BINARY_DIR}/setup-no-deps.py.in")
     if(HOPS_PYPI_MANAGE_DEPS)
@@ -56,7 +56,8 @@ if(PY_EXE)
         enable_testing()
         add_subdirectory(test)
     endif(HOPS_ENABLE_TEST)
-    
+
     add_subdirectory(scripts)
+    add_subdirectory(plugins)
 
 endif(PY_EXE)

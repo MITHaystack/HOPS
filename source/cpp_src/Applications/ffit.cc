@@ -70,12 +70,12 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     bool xpower_output = false; //-X export xpower spectrum
     bool use_mk4_output = false;
     std::string input;
-    
-    std::vector< std::string > msg_cats = 
+
+    std::vector< std::string > msg_cats =
     {
-        "main", "calibration", "containers", "control", 
+        "main", "calibration", "containers", "control",
         "fringe", "file", "initialization", "mk4interface",
-        "utilities", "vex"
+        "utilities", "vex", "python_bindings"
     };
 
     std::stringstream ss;
@@ -147,9 +147,9 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     if(message_level < -2){message_level = -2;}
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
-    
-    //check if any message categories were passed, if so, we limit the messages 
-    //to only those categories 
+
+    //check if any message categories were passed, if so, we limit the messages
+    //to only those categories
     if(message_categories.size() != 0)
     {
         for(std::size_t m=0; m<message_categories.size(); m++)
@@ -246,8 +246,8 @@ int main(int argc, char** argv)
     #ifdef USE_PYBIND11
     // start the interpreter and keep it alive, need this or we segfault
     py::scoped_interpreter guard{};
-    
-    //make sure our python plugin directories are in our search paths 
+
+    //make sure our python plugin directories are in our search paths
     //only do this once on a per-executable level, since these settings are global
     //(e.g. we don't want each individual class messing with the search paths)
     std::stringstream pyss;

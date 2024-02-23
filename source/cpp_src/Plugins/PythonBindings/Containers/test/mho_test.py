@@ -180,10 +180,21 @@ def test_noema(cstore_interface_obj, param_interface_obj):
     visib_obj = cstore_interface_obj.get_object(vis_uuid);
 
     if visib_obj is None:
-        return
+        return #bail out
+
+    #figure out if NOEMA is reference or remote station
+    stidx = 0
+    ref_id = param_interface_obj.get_by_path("/ref_station/site_id");
+    rem_id = param_interface_obj.get_by_path("/rem_station/side_id");
+    if ref_id == "Nn":
+        stidx = 0
+    if rem_id == "Nn":
+        stidx = 1
 
     vis_arr = visib_obj.get_numpy_array();
     rank = visib_obj.get_rank()
+    axis0 = visib_obj.get_axis(0); #get the polprod axis
+    print(axis0)
     axis1 = visib_obj.get_axis(1); #get the channel axis
     axis3 = visib_obj.get_axis(3); #get the spectral point axis (sub-channel)
     chan_meta_data = visib_obj.get_axis_metadata(1) #channel axis meta data object
@@ -192,7 +203,7 @@ def test_noema(cstore_interface_obj, param_interface_obj):
     #hacky dictionary of phase jumps for NOEMA L-pol channels
     #first number is intra-channel frequency, second is phasor correction
     #roughly estimated from fringe plots
-    jumps = {
+    jumps_l = {
         "a":[25.0, -1.0],
         "b":[30.5, 1.0j],
         "d":[42.0, -1.0],
@@ -216,15 +227,48 @@ def test_noema(cstore_interface_obj, param_interface_obj):
         "A":[37.6, -1.0]
     }
 
+    jumps_r = {
+        "a":[25.0, -1.0],
+        "b":[30.5, 1.0j],
+        "d":[42.0, -1.0],
+        "e":[46.0, -1.0],
+        "f":[52.0, -1.0j],
+        "i":[4.2, -1.0],
+        "j":[9.5, -1.0],
+        "k":[15.0, -1.0],
+        "m":[25.8, -1.0],
+        "n":[31.2, -1.0],
+        "o":[36.5, 1.0j],
+        "p":[42.0, -1.0],
+        "q":[47.6, -1.0],
+        "r":[53.0, -1.0],
+        "u":[5.0, -1.0],
+        "v":[10.0, -1.0],
+        "w":[16.0, -1.0],
+        "x":[21.6, 1.0j],
+        "y":[26.5, -1.0j],
+        "z":[32.0, -1.0],
+        "A":[37.6, -1.0]
+    }
+
+    #stash in one object
+    jumps["R"] = jumps_r
+    jumps["L"] = jumps_l
+
     nspectral = visib_obj.get_dimension(3) # number of spectral points in channel
-    for idx in range(0,len(axis1)):
-        idx_key = str(idx) #meta data keys are strings (e.g. "1", "2") not integers
-        fourfit_chan_label = channel_info[idx_key]["channel_label"] #fourfit label
-        if fourfit_chan_label in jumps:
-            jump_freq = jumps[fourfit_chan_label][0]
-            jump_phasor = jumps[fourfit_chan_label][1]
-            #now apply the phase shift at/after the jump freq
-            for sp in range(0,nspectral):
-                freq = axis3[sp]
-                if freq > jump_freq:
-                    vis_arr[0,idx,:,sp] *= jump_phasor
+    for pp in axis0:
+        print(pp)
+        pol = str( pp[stidx] ):
+        for idx in range(0,len(axis1)):
+            idx_key = str(idx) #meta data keys are strings (e.g. "1", "2") not integers
+            fourfit_chan_label = channel_info[idx_key]["channel_label"] #fourfit label
+            if fourfit_chan_label in jumps:
+                jump_freq = jumps[pol][fourfit_chan_label][0]
+                jump_phasor = jumps[pol][fourfit_chan_label][1]
+                if stidx == 1:
+                    jump_phasor *= -1 #flip sign when Nn is remote
+                #now apply the phase shift at/after the jump freq
+                for sp in range(0,nspectral):
+                    freq = axis3[sp]
+                    if freq > jump_freq:
+                        vis_arr[0,idx,:,sp] *= jump_phasor
