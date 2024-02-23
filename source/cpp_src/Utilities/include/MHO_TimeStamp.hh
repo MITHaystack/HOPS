@@ -1,7 +1,7 @@
 #ifndef MHO_TimeStamp_HH__
 #define MHO_TimeStamp_HH__
 
-/*
+/*!
 *@file: MHO_TimeStamp.hh
 *@class: MHO_TimeStamp
 *@author: J. Barrett

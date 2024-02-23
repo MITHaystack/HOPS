@@ -1,7 +1,7 @@
 #ifndef MHO_BidirectionalIterator_HH__
 #define MHO_BidirectionalIterator_HH__
 
-/*
+/*!
 *@file: MHO_BidirectionalIterator.hh
 *@class: MHO_BidirectionalIterator
 *@author: J. Barrett

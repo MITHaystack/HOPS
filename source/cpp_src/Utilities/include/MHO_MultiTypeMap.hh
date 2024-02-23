@@ -2,7 +2,7 @@
 #define MHO_MultiTypeMap_HH__
 
 
-/*
+/*!
 *File: MHO_MultiTypeMap.hh
 *Class: MHO_MultiTypeMap
 *Author: J. Barrett

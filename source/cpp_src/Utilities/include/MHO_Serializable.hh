@@ -1,7 +1,7 @@
 #ifndef MHO_Serializable_HH__
 #define MHO_Serializable_HH__
 
-/*
+/*!
 *File: MHO_Serializable.hh
 *Class: MHO_Serializable
 *Author: J. Barrett

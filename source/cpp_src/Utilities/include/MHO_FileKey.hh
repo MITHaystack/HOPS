@@ -1,7 +1,7 @@
 #ifndef MHO_FileKey_HH__
 #define MHO_FileKey_HH__
 
-/*
+/*!
 *File: MHO_FileKey.hh
 *Class: MHO_FileKey
 *Author: J. Barrett

@@ -1,7 +1,7 @@
 #ifndef MHO_ExtensibleElement_HH__
 #define MHO_ExtensibleElement_HH__
 
-/*
+/*!
 *File: MHO_ExtensibleElement.hh
 *Class: MHO_ExtensibleElement
 *Author: J. Barrett

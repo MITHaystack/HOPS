@@ -19,7 +19,7 @@
 #define LOCK_PROCESS_HAS_PRIORITY 1
 
 
-/*
+/*!
 *File: MHO_LockFileHandler.hh
 *Class: MHO_LockFileHandler
 *Author: J. Barrett

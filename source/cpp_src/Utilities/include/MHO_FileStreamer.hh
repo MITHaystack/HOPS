@@ -1,7 +1,7 @@
 #ifndef MHO_FileStreamer_HH__
 #define MHO_FileStreamer_HH__
 
-/*
+/*!
 *File: MHO_FileStreamer.hh
 *Class: MHO_FileStreamer
 *Author: J. Barrett

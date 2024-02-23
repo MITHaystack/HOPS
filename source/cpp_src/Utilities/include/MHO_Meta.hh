@@ -2,7 +2,7 @@
 #define MHO_Meta_HH__
 
 
-/*
+/*!
 *File: MHO_Meta.hh
 *Author: J. Barrett
 *Email: barrettj@mit.edu

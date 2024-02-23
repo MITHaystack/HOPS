@@ -1,7 +1,7 @@
 #ifndef MHO_LegacyRootCodeGenerator_HH__
 #define MHO_LegacyRootCodeGenerator_HH__
 
-/*
+/*!
 *@file: MHO_LegacyRootCodeGenerator.hh
 *@class: MHO_LegacyRootCodeGenerator
 *@author: J. Barrett

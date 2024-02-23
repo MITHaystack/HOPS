@@ -1,7 +1,7 @@
 #ifndef MHO_DirectoryInterface_HH__
 #define MHO_DirectoryInterface_HH__
 
-/*
+/*!
 *File: MHO_DirectoryInterface.hh
 *Class: MHO_DirectoryInterface
 *Author: J. Barrett

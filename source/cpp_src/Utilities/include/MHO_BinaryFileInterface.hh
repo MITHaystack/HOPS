@@ -1,7 +1,7 @@
 #ifndef MHO_BinaryFileInterface_HH__
 #define MHO_BinaryFileInterface_HH__
 
-/*
+/*!
 *File: MHO_BinaryFileInterface.hh
 *Class: MHO_BinaryFileInterface
 *Author: J. Barrett

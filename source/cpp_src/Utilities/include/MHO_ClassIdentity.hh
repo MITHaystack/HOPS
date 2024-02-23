@@ -1,7 +1,7 @@
 #ifndef MHO_ClassIdentity_HH__
 #define MHO_ClassIdentity_HH__
 
-/*
+/*!
 *File: MHO_ClassIdentity.hh
 *Class: MHO_ClassIdentity
 *Author: J. Barrett

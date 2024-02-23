@@ -7,7 +7,7 @@
 #ifndef MHO_TemplateTypenameDeduction_HH__
 #define MHO_TemplateTypenameDeduction_HH__
 
-/*
+/*!
 *File: MHO_TemplateTypenameDeduction.hh
 *Class:
 *Author: J. Barrett

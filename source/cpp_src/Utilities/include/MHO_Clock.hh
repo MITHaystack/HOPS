@@ -1,14 +1,14 @@
 #ifndef MHO_Clock_HH__
 #define MHO_Clock_HH__
 
-/*
+/*!
 *@file: MHO_Clock.hh
 *@class: hops_clock
 *@author: J. Barrett
 *@email: barrettj@mit.edu
-*@date: a clock for hops-time stamps, measures time in (UTC) nanoseconds since J2000 epoch.
+*@brief: a clock for hops-time stamps, measures time in (UTC) nanoseconds since J2000 epoch.
 *Functionality modelled on the gps_clock from the 'date' library (requires the timezone tz library too).
-*@brief:
+*@date:
 */
 
 #include <string>

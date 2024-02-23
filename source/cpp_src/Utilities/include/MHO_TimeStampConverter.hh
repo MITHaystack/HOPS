@@ -9,7 +9,7 @@
 namespace hops
 {
 
-/**
+/*!
 *@file MHO_TimeStampConverter.hh
 *@class MHO_TimeStampConverter
 *@author J. Barrett - barrettj@mit.edu

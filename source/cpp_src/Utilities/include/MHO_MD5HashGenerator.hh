@@ -1,7 +1,7 @@
 #ifndef MHO_MD5HashGenerator_HH__
 #define MHO_MD5HashGenerator_HH__
 
-/*
+/*!
 *File: MHO_MD5HashGenerator.hh
 *Class: MHO_MD5HashGenerator
 *Author: J. Barrett

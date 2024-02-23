@@ -1,7 +1,7 @@
 #ifndef MHO_BinaryFileStreamer_HH__
 #define MHO_BinaryFileStreamer_HH__
 
-/*
+/*!
 *File: MHO_BinaryFileStreamer.hh
 *Class: MHO_BinaryFileStreamer
 *Author: J. Barrett
