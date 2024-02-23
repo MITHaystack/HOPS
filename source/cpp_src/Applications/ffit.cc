@@ -336,12 +336,28 @@ int main(int argc, char** argv)
         msg_debug("main", "python plot generation enabled." << eom );
         py::dict plot_obj = plot_data;
 
+        //QUICK HACK FOR PCPHASES //////////////////////////////////////////////
+        try
+        {
+            auto mod = py::module::import("mho_test3");
+            mod.attr("test_pcphases")(plot_obj);
+        }
+        catch(py::error_already_set &excep)
+        {
+            msg_error("python_bindings", "python exception when calling subroutine (" << "mho_test3"<< "," << "test_pcphases" << ")" << eom );
+            msg_error("python_bindings", "python error message: "<< excep.what() << eom);
+            PyErr_Clear(); //clear the error and attempt to continue
+        }
+
+        ////////////////////////////////////////////////////////////////////////
+
         //load our interface module -- this is extremely slow!
         auto vis_module = py::module::import("hops_visualization");
         auto plot_lib = vis_module.attr("fourfit_plot");
         //call a python function on the interface class instance
         //TODO, pass filename to save plot if needed
         plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
+
 
     }
     #else //USE_PYBIND11
