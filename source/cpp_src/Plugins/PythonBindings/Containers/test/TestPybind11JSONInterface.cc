@@ -14,6 +14,7 @@ namespace nl = nlohmann;
 using namespace pybind11::literals;
 
 #include "MHO_Message.hh"
+#include "MHO_PyConfigurePath.hh"
 
 using namespace hops;
 
@@ -21,7 +22,7 @@ using namespace hops;
 int main()
 {
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
-
+    configure_pypath(); //don't really need this since we are not looking for a plugin
 
     py::dict obj = py::dict("number"_a=1234, "hello"_a="world");
 

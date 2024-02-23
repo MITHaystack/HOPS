@@ -20,6 +20,7 @@ namespace py = pybind11;
 
 #include "MHO_PyContainerInterface.hh"
 #include "MHO_PyUnaryTableOperator.hh"
+#include "MHO_PyConfigurePath.hh"
 
 
 using namespace hops;
@@ -163,6 +164,7 @@ int main(int argc, char** argv)
     //need a singleton interface class to handle the python interpreter start-up and shutdown
     //see issue: https://github.com/pybind/pybind11/issues/3112
     py::scoped_interpreter guard{};
+    configure_pypath();
 
     std::cout<<"*************** 1st view of visibilities python **************"<<std::endl;
     {

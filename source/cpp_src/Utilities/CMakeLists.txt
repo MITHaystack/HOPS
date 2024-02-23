@@ -2,6 +2,10 @@ hops_require_cpp11()
 
 include_directories(${EXTERN_HLIBS}/date/include)
 
+if(HOPS_USE_PYBIND11)
+include_directories(${EXTERN_HLIBS}/)
+endif(HOPS_USE_PYBIND11)
+
 #list header files #############################################################
 set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/picohash.h

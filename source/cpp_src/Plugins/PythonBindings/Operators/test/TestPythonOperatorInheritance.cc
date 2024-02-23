@@ -5,6 +5,7 @@
 namespace py = pybind11;
 
 #include "MHO_Message.hh"
+#include "MHO_PyConfigurePath.hh"
 
 using namespace hops;
 
@@ -12,6 +13,7 @@ using namespace hops;
 int main()
 {
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive
+    configure_pypath();
 
     //MHO_PyContainerInterface myInterface;
     //myInterface.SetVisibilities(visibilities);
