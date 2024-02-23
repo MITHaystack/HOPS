@@ -1,13 +1,13 @@
 #ifndef MHO_VexParameter_HH__
 #define MHO_VexParameter_HH__
 
-/*
-*@file: MHO_VexParameter.hh
-*@class: MHO_VexParameter
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_VexParameter.hh
+*@class  MHO_VexParameter
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include <string>
@@ -48,4 +48,4 @@ class MHO_VexParameter
 
 }
 
-#endif /* end of include guard: MHO_VexParameter */
+#endif /*! end of include guard: MHO_VexParameter */

@@ -34,7 +34,7 @@ class MHO_OpenCLFastFourierTransformPlan
 
 
     private:
-        /* data */
+        /*! data */
 
         std::size_t fNDim;
         std::size_t fN;
@@ -69,4 +69,4 @@ class MHO_OpenCLFastFourierTransformPlan
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_OpenCLFastFourierTransformPlan_HH__ */
+#endif /*! end of include guard: MHO_OpenCLFastFourierTransformPlan_HH__ */

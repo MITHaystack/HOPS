@@ -4,13 +4,13 @@
 #include <algorithm>
 #include "MHO_NDArrayWrapper.hh"
 
-/*
-*File: MHO_UnaryFunctor.hh
-*Class: MHO_UnaryFunctor
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: abstract baseclass for an functor which takes array iterators
+/*!
+*@file MHO_UnaryFunctor.hh
+*@class MHO_UnaryFunctor
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief abstract baseclass for an functor which takes array iterators
 */
 
 
@@ -38,4 +38,4 @@ class MHO_UnaryFunctor
 }
 
 
-#endif /* MHO_UnaryFunctor_H__ */
+#endif /*! MHO_UnaryFunctor_H__ */

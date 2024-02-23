@@ -2,13 +2,13 @@
 #define MHO_InterpolateFringePeak_HH__
 
 
-/*
-*File: MHO_DelayRate.hh
-*Class: MHO_DelayRate
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_DelayRate.hh
+*@class MHO_DelayRate
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include <cmath>
@@ -89,4 +89,4 @@ class MHO_InterpolateFringePeak: public MHO_Operator
 }
 
 
-#endif /* end of include guard: MHO_InterpolateFringePeak_HH__ */
+#endif /*! end of include guard: MHO_InterpolateFringePeak_HH__ */

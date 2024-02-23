@@ -1,13 +1,13 @@
 #ifndef MHO_MK4CorelInterface_HH__
 #define MHO_MK4CorelInterface_HH__
 
-/*
-*File: MHO_MK4CorelInterface.hh
-*Class: MHO_MK4CorelInterface
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-19T18:54:28.140Z
-*Description: This class implicitly assumes that the frequency/channel configuration
+/*!
+*@file MHO_MK4CorelInterface.hh
+*@class MHO_MK4CorelInterface
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date 2020-05-19T18:54:28.140Z
+*@brief This class implicitly assumes that the frequency/channel configuration
 * is shared among all polarization products (i.e. nlags), we may want to loosen this restriction
 * in the future
 */
@@ -119,4 +119,4 @@ class MHO_MK4CorelInterface
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_MK4CorelInterface */
+#endif /*! end of include guard: MHO_MK4CorelInterface */

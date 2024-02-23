@@ -1,13 +1,13 @@
 #ifndef MHO_IntervalLabel_HH__
 #define MHO_IntervalLabel_HH__
 
-/*
-*File: MHO_IntervalLabel.hh
-*Class: MHO_IntervalLabel
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_IntervalLabel.hh
+*@class MHO_IntervalLabel
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include <string>
@@ -152,4 +152,4 @@ class MHO_IntervalLabel:
 
 }
 
-#endif /* end of include guard: MHO_IntervalLabel */
+#endif /*! end of include guard: MHO_IntervalLabel */

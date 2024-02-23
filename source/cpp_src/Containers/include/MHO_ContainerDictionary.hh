@@ -1,13 +1,13 @@
 #ifndef MHO_ContainerDictionary_HH__
 #define MHO_ContainerDictionary_HH__
 
-/*
-*File: MHO_ContainerDictionary.hh
-*Class: MHO_ContainerDictionary
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_ContainerDictionary.hh
+*@class MHO_ContainerDictionary
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 
@@ -35,4 +35,4 @@ class MHO_ContainerDictionary: public MHO_ClassIdentityMap
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_ContainerDictionary */
+#endif /*! end of include guard: MHO_ContainerDictionary */

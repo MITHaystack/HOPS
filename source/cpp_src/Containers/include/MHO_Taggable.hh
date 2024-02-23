@@ -1,13 +1,13 @@
 #ifndef MHO_Taggable_HH__
 #define MHO_Taggable_HH__
 
-/*
-*File: MHO_Taggable.hh
-*Class: MHO_Taggable
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_Taggable.hh
+*@class MHO_Taggable
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 
@@ -166,4 +166,4 @@ class MHO_Taggable:
 
 }
 
-#endif /* end of include guard: MHO_Taggable */
+#endif /*! end of include guard: MHO_Taggable */

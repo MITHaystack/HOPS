@@ -1,13 +1,13 @@
 #ifndef MHO_ElementTypeCaster_HH__
 #define MHO_ElementTypeCaster_HH__
 
-/*
-*File: MHO_ElementTypeCaster.hh
-*Class: MHO_ElementTypeCaster
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: operator class which casts the element type of one array type to another
+/*!
+*@file MHO_ElementTypeCaster.hh
+*@class MHO_ElementTypeCaster
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief operator class which casts the element type of one array type to another
 * (e.g float -> double or double -> etc.)
 */
 
@@ -28,7 +28,7 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
 
     protected:
 
-        virtual bool InitializeImpl(const XArgType1* /*in*/, XArgType2* /*out*/) override {return true;}; //no op
+        virtual bool InitializeImpl(const XArgType1* /*!in*/, XArgType2* /*!out*/) override {return true;}; //no op
 
         virtual bool ExecuteImpl(const XArgType1* in, XArgType2* out) override
         {
@@ -57,7 +57,7 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
         template<class XArrayType1, class XArrayType2>
         typename std::enable_if< !(std::is_base_of<MHO_TableContainerBase, XArrayType1>::value &&
                                    std::is_base_of<MHO_TableContainerBase, XArrayType2>::value), void >::type
-        IfTableCopyAxesAndTags(const XArrayType1* /*in*/, XArrayType2* /*out*/){};
+        IfTableCopyAxesAndTags(const XArrayType1* /*!in*/, XArrayType2* /*!out*/){};
 
 
 
@@ -81,4 +81,4 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
 
 }
 
-#endif /* end of include guard: MHO_ElementTypeCaster */
+#endif /*! end of include guard: MHO_ElementTypeCaster */

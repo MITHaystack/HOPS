@@ -344,4 +344,4 @@ class MHO_OpenCLFastFourierTransformRadix2Stage:
 } //end namespace
 
 
-#endif /* end of include guard: MHO_OpenCLFastFourierTransformRadix2Stage_HH__ */
+#endif /*! end of include guard: MHO_OpenCLFastFourierTransformRadix2Stage_HH__ */

@@ -24,13 +24,13 @@ extern "C"
 namespace hops
 {
 
-/**
+/*!*
 *@file MHO_MK4JSONDateConverter.hh
 *@author V. Pfeiffer - violetp@mit.edu
 * A function that accepts the date struct and returns a JSON string with that data.
 **/
 
-/* convert struct to JSON string
+/*! convert struct to JSON string
 * @param t pointer
 * @return JSON string
 */
@@ -39,4 +39,4 @@ mho_json convertDateToJSON(const date &t);
 
 }
 
-#endif /* end of include guard: MHO_MKJSONDateConverter_HH__ */
+#endif /*! end of include guard: MHO_MKJSONDateConverter_HH__ */

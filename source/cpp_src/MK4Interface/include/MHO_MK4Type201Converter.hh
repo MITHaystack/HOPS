@@ -24,7 +24,7 @@ extern "C"
 namespace hops
 {
 
-/**
+/*!*
 *@file MHO_MK4Type201Converter.hh
 *@author V. Pfeiffer - violetp@mit.edu
 * A function that accepts the data from a type 201 file in the form of a struct and converts it to a JSON string.
@@ -34,4 +34,4 @@ mho_json convertToJSON(const type_201& t);
 
 }
 
-#endif /* end of include guard: MHO_MKType200Converter */
+#endif /*! end of include guard: MHO_MKType200Converter */

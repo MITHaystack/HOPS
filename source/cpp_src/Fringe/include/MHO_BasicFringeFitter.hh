@@ -10,13 +10,13 @@
 #include "MHO_InterpolateFringePeak.hh"
 
 
-/*
-*File: MHO_BasicFringeFitter.hh
-*Class: MHO_BasicFringeFitter
-*Author:
+/*!
+*@file MHO_BasicFringeFitter.hh
+*@class MHO_BasicFringeFitter
+*@author
 *Email:
-*Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: basic single-baseline fringe fitter, no bells or whistles
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief basic single-baseline fringe fitter, no bells or whistles
 */
 
 namespace hops
@@ -66,4 +66,4 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
 
 }//end namespace
 
-#endif /* end of include guard: MHO_BasicFringeFitter_HH__ */
+#endif /*! end of include guard: MHO_BasicFringeFitter_HH__ */

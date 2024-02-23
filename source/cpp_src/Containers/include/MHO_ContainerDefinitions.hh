@@ -24,4 +24,4 @@
 //declare the container types for fringe output
 #include "MHO_FringeContainers.hh"
 
-#endif /* end of include guard: MHO_ContainerDefinitions */
+#endif /*! end of include guard: MHO_ContainerDefinitions */

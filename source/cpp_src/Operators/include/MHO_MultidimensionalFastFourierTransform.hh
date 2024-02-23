@@ -170,4 +170,4 @@ class MHO_MultidimensionalFastFourierTransform:
 
 }
 
-#endif /* MHO_MultidimensionalFastFourierTransform_H__ */
+#endif /*! MHO_MultidimensionalFastFourierTransform_H__ */

@@ -31,7 +31,7 @@ class MHO_ParameterConfigurator
 
     protected:
 
-        /* data */
+        /*! data */
         enum class ParamType
         {
             config,
@@ -99,8 +99,8 @@ void MHO_ParameterConfigurator::SetVectorParameter(std::string path, const std::
 
 
 
-} /* hops */
+} /*! hops */
 
 
 
-#endif /* end of include guard: MHO_ParameterConfigurator_HH__ */
+#endif /*! end of include guard: MHO_ParameterConfigurator_HH__ */

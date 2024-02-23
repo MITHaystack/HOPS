@@ -4,13 +4,13 @@
 #include "MHO_BasicFringeFitter.hh"
 #include "MHO_Tokenizer.hh"
 
-/*
-*File: MHO_IonosphericFringeFitter.hh
-*Class: MHO_IonosphericFringeFitter
-*Author:
+/*!
+*@file MHO_IonosphericFringeFitter.hh
+*@class MHO_IonosphericFringeFitter
+*@author
 *Email:
-*Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: single-baseline fringe fitter with ionosphere search
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief single-baseline fringe fitter with ionosphere search
 */
 
 namespace hops
@@ -39,4 +39,4 @@ class MHO_IonosphericFringeFitter: public MHO_BasicFringeFitter
 
 }//end namespace
 
-#endif /* end of include guard: MHO_IonosphericFringeFitter_HH__ */
+#endif /*! end of include guard: MHO_IonosphericFringeFitter_HH__ */

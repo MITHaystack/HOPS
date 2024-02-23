@@ -21,4 +21,4 @@ class MHO_OpenCLKernelBuilder
 
 }
 
-#endif /* MHO_OpenCLKernelBuilder_H__ */
+#endif /*! MHO_OpenCLKernelBuilder_H__ */

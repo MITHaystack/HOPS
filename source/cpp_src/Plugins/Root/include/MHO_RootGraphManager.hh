@@ -13,13 +13,13 @@
 #include "MHO_Message.hh"
 #include "MHO_TestAssertions.hh"
 
-/*
-*@file: MHO_RootGraphManager.hh
-*@class: MHO_RootGraphManager
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_RootGraphManager.hh
+*@class  MHO_RootGraphManager
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 
@@ -200,4 +200,4 @@ class MHO_RootGraphManager
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_RootGraphManager */
+#endif /*! end of include guard: MHO_RootGraphManager */

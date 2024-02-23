@@ -11,13 +11,13 @@
 
 
 
-/*
-*File: MHO_CyclicRotator.hh
-*Class: MHO_CyclicRotator
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_CyclicRotator.hh
+*@class MHO_CyclicRotator
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 * Applies a cyclic rotation on the contents on a multidimensional array
 * by some specified offset for each dimension.
 */
@@ -211,7 +211,7 @@ class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
         //default...does nothing
         template< typename XCheckType = XArrayType >
         typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        IfTableRotateAxis(const XArrayType* /*in*/, XArrayType* /*out*/, std::size_t /*dim*/){};
+        IfTableRotateAxis(const XArrayType* /*!in*/, XArrayType* /*!out*/, std::size_t /*!dim*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
         template< typename XCheckType = XArrayType >
@@ -279,4 +279,4 @@ class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
 
 
 
-#endif /* MHO_CyclicRotator_H__ */
+#endif /*! MHO_CyclicRotator_H__ */

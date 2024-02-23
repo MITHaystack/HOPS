@@ -1,13 +1,13 @@
 #ifndef MHO_ClassIdentityMap_HH__
 #define MHO_ClassIdentityMap_HH__
 
-/*
-*File: MHO_ClassIdentityMap.hh
-*Class: MHO_ClassIdentityMap
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_ClassIdentityMap.hh
+*@class MHO_ClassIdentityMap
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include "MHO_ClassIdentity.hh"
@@ -169,4 +169,4 @@ class MHO_ClassIdentityMap
 
 }
 
-#endif /* end of include guard: MHO_ClassIdentityMap */
+#endif /*! end of include guard: MHO_ClassIdentityMap */

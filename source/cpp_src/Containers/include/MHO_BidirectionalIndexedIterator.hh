@@ -1,13 +1,13 @@
 #ifndef MHO_BidirectionalIndexedIterator_HH__
 #define MHO_BidirectionalIndexedIterator_HH__
 
-/*
-*@file: MHO_BidirectionalIndexedIterator.hh
-*@class: MHO_BidirectionalIndexedIterator
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief: This is an iterator for more complicated n-darrays (primarily array "slices").
+/*!
+*@file  MHO_BidirectionalIndexedIterator.hh
+*@class  MHO_BidirectionalIndexedIterator
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief  This is an iterator for more complicated n-darrays (primarily array "slices").
 * Because we cannot guarantee that adjacent elements (in index space) are contiguous in
 * memory for an array slice, we need to ensure that the proper strided access takes place.
 */
@@ -117,7 +117,7 @@ class MHO_BidirectionalIndexedIterator
         {
             fPositionOffset += diff; //TODO CHECK AGAINST out_of_range ERRORS
             CalculateOffsets();
-            fPtr = fBegin + fMemoryOffset;//*sizeof(XValueType);
+            fPtr = fBegin + fMemoryOffset;//*!sizeof(XValueType);
             return *this;
         }
 
@@ -234,7 +234,7 @@ class MHO_BidirectionalIndexedIterator
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_BidirectionalIndexedIterator */
+#endif /*! end of include guard: MHO_BidirectionalIndexedIterator */
 
 
 

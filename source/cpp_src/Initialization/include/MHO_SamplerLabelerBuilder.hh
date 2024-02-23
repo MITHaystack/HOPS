@@ -1,13 +1,13 @@
 #ifndef MHO_SamplerLabelerBuilderBuilder_HH__
 #define MHO_SamplerLabelerBuilderBuilder_HH__
 
-/*
-*File: MHO_SamplerLabelerBuilder.hh
-*Class: MHO_SamplerLabelerBuilder
-*Author:
+/*!
+*@file MHO_SamplerLabelerBuilder.hh
+*@class MHO_SamplerLabelerBuilder
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include "MHO_OperatorBuilder.hh"
@@ -36,4 +36,4 @@ class MHO_SamplerLabelerBuilder: public MHO_OperatorBuilder
 }//end namespace
 
 
-#endif /* end of include guard: MHO_SamplerLabelerBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_SamplerLabelerBuilderBuilder_HH__ */

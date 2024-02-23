@@ -49,4 +49,4 @@ class MHO_TransformingOperator: public MHO_Operator
 
 }//end of namespace
 
-#endif /* __MHO_TransformingOperator_HH__ */
+#endif /*! __MHO_TransformingOperator_HH__ */

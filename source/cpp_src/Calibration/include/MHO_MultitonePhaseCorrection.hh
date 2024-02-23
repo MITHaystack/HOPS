@@ -1,13 +1,13 @@
 #ifndef MHO_MultitonePhaseCorrection_HH__
 #define MHO_MultitonePhaseCorrection_HH__
 
-/*
-*File: MHO_MultitonePhaseCorrection.hh
-*Class: MHO_MultitonePhaseCorrection
-*Author:
+/*!
+*@file MHO_MultitonePhaseCorrection.hh
+*@class MHO_MultitonePhaseCorrection
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include <cmath>
@@ -54,8 +54,8 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
 
     protected:
 
-        virtual bool InitializeInPlace(visibility_type* /*in*/) override {return true;};
-        virtual bool InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/) override {return true;};
+        virtual bool InitializeInPlace(visibility_type* /*!in*/) override {return true;};
+        virtual bool InitializeOutOfPlace(const visibility_type* /*!in*/, visibility_type* /*!out*/) override {return true;};
 
         virtual bool ExecuteInPlace(visibility_type* in) override;
         virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
@@ -143,4 +143,4 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
 }
 
 
-#endif /* end of include guard: MHO_MultitonePhaseCorrection */
+#endif /*! end of include guard: MHO_MultitonePhaseCorrection */

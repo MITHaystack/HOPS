@@ -1,13 +1,13 @@
 #ifndef MHO_TableContainer_HH__
 #define MHO_TableContainer_HH__
 
-/*
-*File: MHO_TableContainer.hh
-*Class: MHO_TableContainer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-15T20:22:00.867Z
-*Description:
+/*!
+*@file MHO_TableContainer.hh
+*@class MHO_TableContainer
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date 2020-05-15T20:22:00.867Z
+*@brief
 */
 
 
@@ -538,4 +538,4 @@ DefTableContainers(ComplexF);
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_TableContainer_HH__ */
+#endif /*! end of include guard: MHO_TableContainer_HH__ */

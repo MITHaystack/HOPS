@@ -14,13 +14,13 @@
 
 
 
-/*
-*File: MHO_OpenCLComplexPointwiseMultiply.hh
-*Class: MHO_OpenCLComplexPointwiseMultiply
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_OpenCLComplexPointwiseMultiply.hh
+*@class MHO_OpenCLComplexPointwiseMultiply
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 
@@ -60,4 +60,4 @@ class MHO_OpenCLComplexPointwiseMultiply: public MHO_BinaryOperator<
 }
 
 
-#endif /* MHO_OpenCLComplexPointwiseMultiply_H__ */
+#endif /*! MHO_OpenCLComplexPointwiseMultiply_H__ */

@@ -1,13 +1,13 @@
 #ifndef MHO_ContainerFileInterface_HH__
 #define MHO_ContainerFileInterface_HH__
 
-/*
-*@file: MHO_ContainerFileInterface.hh
-*@class: MHO_ContainerFileInterface
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_ContainerFileInterface.hh
+*@class  MHO_ContainerFileInterface
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include "MHO_Message.hh"
@@ -56,4 +56,4 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 
 } //end namespace
 
-#endif /* end of include guard: MHO_ContainerFileInterface */
+#endif /*! end of include guard: MHO_ContainerFileInterface */

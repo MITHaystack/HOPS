@@ -12,13 +12,13 @@
 #include "MHO_SelfName.hh"
 #include "MHO_Timer.hh"
 
-/*
-*File: MHO_Profiler.hh
-*Class: MHO_Profiler
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_Profiler.hh
+*@class MHO_Profiler
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #define HOPS_USE_PROFILER
@@ -151,4 +151,4 @@ class MHO_Profiler
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_Profiler */
+#endif /*! end of include guard: MHO_Profiler */

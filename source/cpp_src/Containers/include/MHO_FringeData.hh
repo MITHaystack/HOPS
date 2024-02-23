@@ -1,13 +1,13 @@
 #ifndef MHO_FringeData_HH__
 #define MHO_FringeData_HH__
 
-/*
-*File: MHO_FringeData.hh
-*Class: MHO_FringeData
-*Author:
+/*!
+*@file MHO_FringeData.hh
+*@class MHO_FringeData
+*@author
 *Email:
-*Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: simple class to contain fringe data objects
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief simple class to contain fringe data objects
 */
 
 //global messaging util
@@ -71,4 +71,4 @@ class MHO_FringeData
 
 }
 
-#endif /* end of include guard: MHO_FringeData_HH__ */
+#endif /*! end of include guard: MHO_FringeData_HH__ */

@@ -1,13 +1,13 @@
 #ifndef MHO_PyOperator_HH__
 #define MHO_PyOperator_HH__
 
-/*
-*@file: MHO_PyOperator.hh
-*@class: MHO_PyOperator
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief: trampoline for generic data operator
+/*!
+*@file  MHO_PyOperator.hh
+*@class  MHO_PyOperator
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief  trampoline for generic data operator
 */
 
 #include <pybind11/pybind11.h>
@@ -40,4 +40,4 @@ class MHO_PyOperator: public MHO_Operator
 
 }
 
-#endif /* end of include guard: MHO_PyOperator */
+#endif /*! end of include guard: MHO_PyOperator */

@@ -191,7 +191,7 @@ class MHO_EndZeroPadder:
         //default...does nothing
         template< typename XCheckType = XArgType >
         typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        IfTableTransformAxis(const XArgType* /*in*/, XArgType* /*out*/){};
+        IfTableTransformAxis(const XArgType* /*!in*/, XArgType* /*!out*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
         template< typename XCheckType = XArgType >
@@ -357,4 +357,4 @@ class MHO_EndZeroPadder:
 
 }
 
-#endif /* MHO_EndZeroPadder_H__ */
+#endif /*! MHO_EndZeroPadder_H__ */

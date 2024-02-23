@@ -6,13 +6,13 @@
 #include <cmath>
 
 
-/*
-*File: MHO_FringeRotation.hh
-*Class: MHO_FringeRotation
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: collection of static math functions
+/*!
+*@file MHO_FringeRotation.hh
+*@class MHO_FringeRotation
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief collection of static math functions
 */
 
 namespace hops
@@ -56,4 +56,4 @@ class MHO_FringeRotation
 
 }
 
-#endif /* end of include guard: MHO_FringeRotation_HH__ */
+#endif /*! end of include guard: MHO_FringeRotation_HH__ */

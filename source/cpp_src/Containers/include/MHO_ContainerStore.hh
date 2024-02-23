@@ -1,13 +1,13 @@
 #ifndef MHO_ContainerStore_HH__
 #define MHO_ContainerStore_HH__
 
-/*
-*@file: MHO_ContainerStore.hh
-*@class: MHO_ContainerStore
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief: holds a collection of objects all pointed to by base class MHO_Serializable*
+/*!
+*@file  MHO_ContainerStore.hh
+*@class  MHO_ContainerStore
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief  holds a collection of objects all pointed to by base class MHO_Serializable*
 * retrival is through type/object ids
 */
 
@@ -287,4 +287,4 @@ MHO_ContainerStore::RenameObject(const std::string& current_shortname, const std
 
 } //end namespace
 
-#endif /* end of include guard: MHO_ContainerStore */
+#endif /*! end of include guard: MHO_ContainerStore */

@@ -61,4 +61,4 @@ class MHO_ControlConditionEvaluator
 
 }
 
-#endif /* end of include guard: MHO_ControlConditionEvaluator_HH__ */
+#endif /*! end of include guard: MHO_ControlConditionEvaluator_HH__ */

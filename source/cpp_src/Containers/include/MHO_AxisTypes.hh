@@ -26,4 +26,4 @@ using coeff_axis_type = MHO_Axis<int>; //spline coefficient index 0,1,2...6(max)
 
 }
 
-#endif /* end of include guard: MHO_AxisTypes */
+#endif /*! end of include guard: MHO_AxisTypes */

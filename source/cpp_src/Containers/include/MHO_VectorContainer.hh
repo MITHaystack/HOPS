@@ -1,13 +1,13 @@
 #ifndef MHO_VectorContainer_HH__
 #define MHO_VectorContainer_HH__
 
-/*
-*File: MHO_VectorContainer.hh
-*Class: MHO_VectorContainer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-15T20:22:00.867Z
-*Description:
+/*!
+*@file MHO_VectorContainer.hh
+*@class MHO_VectorContainer
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date 2020-05-15T20:22:00.867Z
+*@brief
 */
 
 
@@ -218,4 +218,4 @@ using MHO_VectorString = MHO_VectorContainer< std::string >;
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_VectorContainer_HH__ */
+#endif /*! end of include guard: MHO_VectorContainer_HH__ */

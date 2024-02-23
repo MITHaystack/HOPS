@@ -1,13 +1,13 @@
 #ifndef MHO_ControlFileParser_HH__
 #define MHO_ControlFileParser_HH__
 
-/*
-*@file: MHO_ControlFileParser.hh
-*@class: MHO_ControlFileParser
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_ControlFileParser.hh
+*@class  MHO_ControlFileParser
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include <vector>
@@ -94,4 +94,4 @@ class MHO_ControlFileParser
 
 }//end namespace
 
-#endif /* end of include guard: MHO_ControlFileParser */
+#endif /*! end of include guard: MHO_ControlFileParser */

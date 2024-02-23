@@ -1,13 +1,13 @@
 #ifndef MHO_ManualChannelPhaseCorrectionBuilderBuilder_HH__
 #define MHO_ManualChannelPhaseCorrectionBuilderBuilder_HH__
 
-/*
-*File: MHO_ManualChannelPhaseCorrectionBuilder.hh
-*Class: MHO_ManualChannelPhaseCorrectionBuilder
-*Author:
+/*!
+*@file MHO_ManualChannelPhaseCorrectionBuilder.hh
+*@class MHO_ManualChannelPhaseCorrectionBuilder
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include "MHO_OperatorBuilder.hh"
@@ -42,4 +42,4 @@ class MHO_ManualChannelPhaseCorrectionBuilder:
 }//end namespace
 
 
-#endif /* end of include guard: MHO_ManualChannelPhaseCorrectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_ManualChannelPhaseCorrectionBuilderBuilder_HH__ */

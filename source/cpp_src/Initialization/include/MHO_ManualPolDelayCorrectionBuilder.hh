@@ -1,13 +1,13 @@
 #ifndef MHO_ManualPolDelayCorrectionBuilderBuilder_HH__
 #define MHO_ManualPolDelayCorrectionBuilderBuilder_HH__
 
-/*
-*File: MHO_ManualPolDelayCorrectionBuilder.hh
-*Class: MHO_ManualPolDelayCorrectionBuilder
-*Author:
+/*!
+*@file MHO_ManualPolDelayCorrectionBuilder.hh
+*@class MHO_ManualPolDelayCorrectionBuilder
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include "MHO_OperatorBuilder.hh"
@@ -39,4 +39,4 @@ class MHO_ManualPolDelayCorrectionBuilder:
 }//end namespace
 
 
-#endif /* end of include guard: MHO_ManualPolDelayCorrectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_ManualPolDelayCorrectionBuilderBuilder_HH__ */

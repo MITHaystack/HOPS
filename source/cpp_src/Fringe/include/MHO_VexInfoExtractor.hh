@@ -13,13 +13,13 @@
 #include "MHO_ParameterStore.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 
-/*
-*File: MHO_VexInfoExtractor.hh
-*Class: MHO_VexInfoExtractor
-*Author:
+/*!
+*@file MHO_VexInfoExtractor.hh
+*@class MHO_VexInfoExtractor
+*@author
 *Email:
-*Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: extract useful information from the vex file and place in parameter store
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief extract useful information from the vex file and place in parameter store
 */
 
 namespace hops
@@ -44,4 +44,4 @@ class MHO_VexInfoExtractor
 
 }//end namespace
 
-#endif /* end of include guard: MHO_VexInfoExtractor_HH__ */
+#endif /*! end of include guard: MHO_VexInfoExtractor_HH__ */

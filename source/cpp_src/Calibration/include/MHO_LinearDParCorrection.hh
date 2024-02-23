@@ -1,13 +1,13 @@
 #ifndef MHO_LinearDParCorrection_HH__
 #define MHO_LinearDParCorrection_HH__
 
-/*
-*File: MHO_LinearDParCorrection.hh
-*Class: MHO_LinearDParCorrection
-*Author:
+/*!
+*@file MHO_LinearDParCorrection.hh
+*@class MHO_LinearDParCorrection
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include <cmath>
@@ -81,4 +81,4 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
 }
 
 
-#endif /* end of include guard: MHO_LinearDParCorrection */
+#endif /*! end of include guard: MHO_LinearDParCorrection */

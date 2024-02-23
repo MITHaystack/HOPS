@@ -1,13 +1,13 @@
 #ifndef MHO_PythonOperatorBuilderBuilder_HH__
 #define MHO_PythonOperatorBuilderBuilder_HH__
 
-/*
-*File: MHO_PythonOperatorBuilder.hh
-*Class: MHO_PythonOperatorBuilder
-*Author:
+/*!
+*@file MHO_PythonOperatorBuilder.hh
+*@class MHO_PythonOperatorBuilder
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include "MHO_OperatorBuilder.hh"
@@ -72,4 +72,4 @@ class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
 }//end namespace
 
 
-#endif /* end of include guard: MHO_PythonOperatorBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_PythonOperatorBuilderBuilder_HH__ */

@@ -221,4 +221,4 @@ struct MHO_NDArrayMath::Divide<numerator, 1>
 
 }//end of namespace
 
-#endif /* MHO_NDArrayMath_HH__ */
+#endif /*! MHO_NDArrayMath_HH__ */

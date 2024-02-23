@@ -1,13 +1,13 @@
 #ifndef MHO_OpenCLNDArrayBuffer_HH__
 #define MHO_OpenCLNDArrayBuffer_HH__
 
-/*
-*File: MHO_OpenCLNDArrayBuffer.hh
-*Class: MHO_OpenCLNDArrayBuffer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_OpenCLNDArrayBuffer.hh
+*@class MHO_OpenCLNDArrayBuffer
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include "MHO_OpenCLInterface.hh"
@@ -133,4 +133,4 @@ class MHO_OpenCLNDArrayBuffer
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_OpenCLNDArrayBuffer */
+#endif /*! end of include guard: MHO_OpenCLNDArrayBuffer */

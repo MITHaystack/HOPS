@@ -1,13 +1,13 @@
 #ifndef MHO_ControlTokenProcessor_HH__
 #define MHO_ControlTokenProcessor_HH__
 
-/*
-*@file: MHO_ControlTokenProcessor.hh
-*@class: MHO_ControlTokenProcessor
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_ControlTokenProcessor.hh
+*@class  MHO_ControlTokenProcessor
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include "MHO_Message.hh"
@@ -49,4 +49,4 @@ class MHO_ControlTokenProcessor
 
 }
 
-#endif /* end of include guard: MHO_ControlTokenProcessor */
+#endif /*! end of include guard: MHO_ControlTokenProcessor */

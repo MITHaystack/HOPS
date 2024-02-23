@@ -1,13 +1,13 @@
 #ifndef MHO_ControlElementParser_HH__
 #define MHO_ControlElementParser_HH__
 
-/*
-*@file: MHO_ControlElementParser.hh
-*@class: MHO_ControlElementParser
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_ControlElementParser.hh
+*@class  MHO_ControlElementParser
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include <vector>
@@ -51,4 +51,4 @@ class MHO_ControlElementParser
 }
 
 
-#endif /* end of include guard: MHO_ControlElementParser */
+#endif /*! end of include guard: MHO_ControlElementParser */

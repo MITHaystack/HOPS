@@ -88,4 +88,4 @@ class MHO_OperatorBuilder
 
 }
 
-#endif /* end of include guard: MHO_OperatorBuilder_HH__ */
+#endif /*! end of include guard: MHO_OperatorBuilder_HH__ */

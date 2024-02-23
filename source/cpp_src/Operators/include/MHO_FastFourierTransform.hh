@@ -107,4 +107,4 @@ MHO_FastFourierTransform<XFloatType>::ExecuteOutOfPlace(const XArrayType* in, XA
 }
 
 
-#endif /* MHO_FastFourierTransform_H__ */
+#endif /*! MHO_FastFourierTransform_H__ */

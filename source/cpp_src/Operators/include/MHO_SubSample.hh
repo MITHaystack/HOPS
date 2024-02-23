@@ -10,13 +10,13 @@
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_TableContainer.hh"
 
-/*
-*File: MHO_SubSample.hh
-*Class: MHO_SubSample
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_SubSample.hh
+*@class MHO_SubSample
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 * Sub-samples an array at the specified stride (e.g. select every-other point)
 * Can only be applied to a single-axis at a time.
 */
@@ -181,7 +181,7 @@ class MHO_SubSample:
         //default...does nothing
         template< typename XCheckType = XArrayType >
         typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        IfTableSubSampleAxis(const XArrayType* /*in*/, XArrayType* /*out*/){};
+        IfTableSubSampleAxis(const XArrayType* /*!in*/, XArrayType* /*!out*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
         template< typename XCheckType = XArrayType >
@@ -252,4 +252,4 @@ class MHO_SubSample:
 
 
 
-#endif /* MHO_SubSample_H__ */
+#endif /*! MHO_SubSample_H__ */

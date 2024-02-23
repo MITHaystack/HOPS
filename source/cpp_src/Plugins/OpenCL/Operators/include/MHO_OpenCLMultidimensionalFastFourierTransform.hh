@@ -221,4 +221,4 @@ class MHO_OpenCLMultidimensionalFastFourierTransform:
 
 }
 
-#endif /* MHO_OpenCLMultidimensionalFastFourierTransform_H__ */
+#endif /*! MHO_OpenCLMultidimensionalFastFourierTransform_H__ */

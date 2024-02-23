@@ -1,13 +1,13 @@
 #ifndef MHO_TableContainerBufferBuilder_HH__
 #define MHO_TableContainerBufferBuilder_HH__
 
-/*
-*File: MHO_TableContainerBufferBuilder.hh
-*Class: MHO_TableContainerBufferBuilder
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_TableContainerBufferBuilder.hh
+*@class MHO_TableContainerBufferBuilder
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include "MHO_TableContainer.hh"
@@ -28,4 +28,4 @@ class MHO_TableContainerBufferBuilder: public MHO_ExtendedElement< MHO_TableCont
 
 }
 
-#endif /* end of include guard: MHO_TableContainerBufferBuilder */
+#endif /*! end of include guard: MHO_TableContainerBufferBuilder */

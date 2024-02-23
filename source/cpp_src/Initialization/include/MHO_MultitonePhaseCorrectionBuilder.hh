@@ -1,13 +1,13 @@
 #ifndef MHO_MultitonePhaseCorrectionBuilderBuilder_HH__
 #define MHO_MultitonePhaseCorrectionBuilderBuilder_HH__
 
-/*
-*File: MHO_MultitonePhaseCorrectionBuilder.hh
-*Class: MHO_MultitonePhaseCorrectionBuilder
-*Author:
+/*!
+*@file MHO_MultitonePhaseCorrectionBuilder.hh
+*@class MHO_MultitonePhaseCorrectionBuilder
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include "MHO_OperatorBuilder.hh"
@@ -50,4 +50,4 @@ class MHO_MultitonePhaseCorrectionBuilder:
 }//end namespace
 
 
-#endif /* end of include guard: MHO_MultitonePhaseCorrectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_MultitonePhaseCorrectionBuilderBuilder_HH__ */

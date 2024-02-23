@@ -1,13 +1,13 @@
 #ifndef MHO_DiFXVisibilityRecord_HH__
 #define MHO_DiFXVisibilityRecord_HH__
 
-/*
-*File: MHO_DiFXVisibilityRecord.hh
-*Class: MHO_DiFXVisibilityRecord
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_DiFXVisibilityRecord.hh
+*@class MHO_DiFXVisibilityRecord
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include <cstdint>
@@ -80,21 +80,21 @@ class MHO_DiFXVisibilityRecord
 
         //we leave the members public  --- taken from directly from DifxVisRecord;
 
-        int nchan;          /* number of channels to expect */
-        int visnum;         /* counter of number of vis */
-        int sync;           /* space to store the sync value */
-        int headerversion;  /* 0=old style, 1=new binary style */
-        int baseline;       /* The baseline number (256*A1 + A2, 1 indexed) */
-        int mjd;            /* The MJD integer day */
-        double seconds;     /* The seconds offset from mjd */
-        int configindex;    /* The index to the configuration table */
-        int sourceindex;    /* The index to the source table */
-        int freqindex;      /* The index to the freq table */
-        char polpair[3];    /* The polarisation pair */
-        int pulsarbin;      /* The pulsar bin */
-        double dataweight;  /* The fractional data weight */
-        double uvw[3];      /* The u,v,w values in metres */
-        std::vector< std::complex<float> > visdata; /* nchan complex values (2x float) */
+        int nchan;          /*! number of channels to expect */
+        int visnum;         /*! counter of number of vis */
+        int sync;           /*! space to store the sync value */
+        int headerversion;  /*! 0=old style, 1=new binary style */
+        int baseline;       /*! The baseline number (256*A1 + A2, 1 indexed) */
+        int mjd;            /*! The MJD integer day */
+        double seconds;     /*! The seconds offset from mjd */
+        int configindex;    /*! The index to the configuration table */
+        int sourceindex;    /*! The index to the source table */
+        int freqindex;      /*! The index to the freq table */
+        char polpair[3];    /*! The polarisation pair */
+        int pulsarbin;      /*! The pulsar bin */
+        double dataweight;  /*! The fractional data weight */
+        double uvw[3];      /*! The u,v,w values in metres */
+        std::vector< std::complex<float> > visdata; /*! nchan complex values (2x float) */
 
 
         //these are extra parameters that we will fill in when/if we have the info
@@ -116,4 +116,4 @@ MHO_VisibilityChunk;
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_DiFXVisibilityRecord */
+#endif /*! end of include guard: MHO_DiFXVisibilityRecord */

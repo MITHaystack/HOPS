@@ -16,13 +16,13 @@
 //include the profiler here to make it visible just about everywhere
 #include "MHO_Profiler.hh"
 
-/*
-*File: MHO_Message.hh
-*Class: MHO_Message
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_Message.hh
+*@class MHO_Message
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 //MACROS handy for stringifying compiler defines
@@ -338,4 +338,4 @@ MHO_Message::operator<<(const XStreamableItemType& item)
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_Message */
+#endif /*! end of include guard: MHO_Message */

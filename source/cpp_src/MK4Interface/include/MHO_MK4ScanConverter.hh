@@ -1,13 +1,13 @@
 #ifndef MHO_MK4ScanConverter_HH__
 #define MHO_MK4ScanConverter_HH__
 
-/*
-*File: MHO_MK4ScanConverter.hh
-*Class: MHO_MK4ScanConverter
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_MK4ScanConverter.hh
+*@class MHO_MK4ScanConverter
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include <iostream>
@@ -81,4 +81,4 @@ class MHO_MK4ScanConverter
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_MK4ScanConverter */
+#endif /*! end of include guard: MHO_MK4ScanConverter */

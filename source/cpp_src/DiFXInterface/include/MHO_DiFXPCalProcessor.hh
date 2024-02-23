@@ -1,13 +1,13 @@
 #ifndef MHO_DiFXPCalProcessor_HH__
 #define MHO_DiFXPCalProcessor_HH__
 
-/*
-*@file: MHO_DiFXPCalProcessor.hh
-*@class: MHO_DiFXPCalProcessor
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_DiFXPCalProcessor.hh
+*@class  MHO_DiFXPCalProcessor
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include <string>
@@ -110,4 +110,4 @@ class MHO_DiFXPCalProcessor
 
 }//end namespace
 
-#endif /* end of include guard: MHO_DiFXPCalProcessor */
+#endif /*! end of include guard: MHO_DiFXPCalProcessor */

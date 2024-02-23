@@ -7,12 +7,12 @@
 #endif
 
 
-/*
-*File: MHO_BaselineContainers.hh
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: Wed 21 Oct 2020 08:32:43 PM UTC
-*Description: Definitions for single-baseline visibility data and related quantities.
+/*!
+*@file MHO_BaselineContainers.hh
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date Wed 21 Oct 2020 08:32:43 PM UTC
+*@brief Definitions for single-baseline visibility data and related quantities.
 * This will likely be re-worked as things progress.
 */
 
@@ -90,4 +90,4 @@ using uch_weight_store_type = MHO_TableContainer< weight_element_store_type, uch
 
 }//end of hops namespaces
 
-#endif /* end of include guard: MHO_BaselineContainers */
+#endif /*! end of include guard: MHO_BaselineContainers */

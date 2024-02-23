@@ -1,13 +1,13 @@
 #ifndef MHO_SerializableObjectFactory_HH__
 #define MHO_SerializableObjectFactory_HH__
 
-/*
-*@file: MHO_SerializableObjectFactory.hh
-*@class: MHO_SerializableObjectFactory
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_SerializableObjectFactory.hh
+*@class  MHO_SerializableObjectFactory
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include "MHO_Message.hh"
@@ -25,10 +25,10 @@ class MHO_SerializableObjectFactory
         virtual ~MHO_SerializableObjectFactory(){};
 
         virtual MHO_Serializable* Build(){return nullptr;}
-        virtual MHO_Serializable* BuildFromFileInterface(MHO_BinaryFileInterface& /*inter*/){return nullptr;}
+        virtual MHO_Serializable* BuildFromFileInterface(MHO_BinaryFileInterface& /*!inter*/){return nullptr;}
 
-        virtual bool WriteToFileInterface(MHO_BinaryFileInterface& /*inter*/,
-                                          const MHO_Serializable* /*object*/,
+        virtual bool WriteToFileInterface(MHO_BinaryFileInterface& /*!inter*/,
+                                          const MHO_Serializable* /*!object*/,
                                           const std::string& shortname = "")
         {
             return false;
@@ -97,4 +97,4 @@ class MHO_SerializableObjectFactorySpecific: public MHO_SerializableObjectFactor
 
 }//end namespace
 
-#endif /* end of include guard: MHO_SerializableObjectFactory */
+#endif /*! end of include guard: MHO_SerializableObjectFactory */

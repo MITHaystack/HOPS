@@ -1,13 +1,13 @@
 #ifndef MHO_WeightChannelizer_HH__
 #define MHO_WeightChannelizer_HH__
 
-/*
-*File: MHO_WeightChannelizer.hh
-*Class: MHO_WeightChannelizer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_WeightChannelizer.hh
+*@class MHO_WeightChannelizer
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include "MHO_NDArrayWrapper.hh"
@@ -36,4 +36,4 @@ class MHO_WeightChannelizer: public MHO_TransformingOperator< uch_weight_store_t
 
 }
 
-#endif /* end of include guard: MHO_WeightChannelizer */
+#endif /*! end of include guard: MHO_WeightChannelizer */

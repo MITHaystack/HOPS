@@ -1,13 +1,13 @@
 #ifndef MHO_ManualChannelDelayCorrection_HH__
 #define MHO_ManualChannelDelayCorrection_HH__
 
-/*
-*File: MHO_ManualChannelDelayCorrection.hh
-*Class: MHO_ManualChannelDelayCorrection
-*Author:
+/*!
+*@file MHO_ManualChannelDelayCorrection.hh
+*@class MHO_ManualChannelDelayCorrection
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include <cmath>
@@ -91,4 +91,4 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
 }
 
 
-#endif /* end of include guard: MHO_ManualChannelDelayCorrection */
+#endif /*! end of include guard: MHO_ManualChannelDelayCorrection */

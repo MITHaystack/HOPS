@@ -665,4 +665,4 @@ class MHO_OpenCLBatchedMultidimensionalFastFourierTransform :
 
 }  // namespace hops
 
-#endif /* MHO_OpenCLBatchedMultidimensionalFastFourierTransform_H__ */
+#endif /*! MHO_OpenCLBatchedMultidimensionalFastFourierTransform_H__ */

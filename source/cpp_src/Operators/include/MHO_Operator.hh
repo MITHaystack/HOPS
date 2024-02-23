@@ -3,13 +3,13 @@
 
 #include <string>
 
-/*
-*@file: MHO_Operator.hh
-*@class: MHO_Operator
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+/*!
+*@file  MHO_Operator.hh
+*@class  MHO_Operator
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 namespace hops
@@ -41,4 +41,4 @@ class MHO_Operator
 
 }
 
-#endif /* end of include guard: MHO_Operator */
+#endif /*! end of include guard: MHO_Operator */

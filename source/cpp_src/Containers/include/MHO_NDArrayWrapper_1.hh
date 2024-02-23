@@ -178,7 +178,7 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         //this function is mainly here to allow for 1-d table containers, there's not much utility
         //of a 'slice view' of a 1-d array (you just get the same array back...)
         MHO_NDArrayView< XValueType, 1>
-        SliceView(const char* /* unused_arg */)
+        SliceView(const char* /*! unused_arg */)
         {
             //just return a 1d array view of this 1-d array
             return MHO_NDArrayView<XValueType, 1>( &(fData[0]), &(fDims[0]), &(fStrides[0]) );
@@ -312,4 +312,4 @@ class MHO_NDArrayWrapper<XValueType, 1>:
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_NDArrayWrapper_1 */
+#endif /*! end of include guard: MHO_NDArrayWrapper_1 */

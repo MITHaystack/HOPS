@@ -9,13 +9,13 @@
 #include "MHO_UnaryOperator.hh"
 #include "MHO_CompoundReductions.hh" //for operator type definitions
 
-/*
-*File: MHO_Reducer.hh
-*Class: MHO_Reducer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: Reduce a multi-dimensional array via a templated operation
+/*!
+*@file MHO_Reducer.hh
+*@class MHO_Reducer
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief Reduce a multi-dimensional array via a templated operation
 *(e.g. summation) along the (runtime) specified dimensions. The output array has the same
 dimensionality (i.e. XArrayType::rank::value). However, the axes over which reduction occured
 will have a size of 1. The output array will be resized if/as needed.
@@ -194,7 +194,7 @@ class MHO_Reducer: public MHO_UnaryOperator<XArrayType>
         //default...does nothing
         template< typename XCheckType = XArrayType >
         typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        IfTableReduceAxis(const XArrayType* /*in*/, XArrayType* /*out*/, std::size_t /*ax_index)*/){};
+        IfTableReduceAxis(const XArrayType* /*!in*/, XArrayType* /*!out*/, std::size_t /*!ax_index)*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
         template< typename XCheckType = XArrayType >
@@ -217,4 +217,4 @@ class MHO_Reducer: public MHO_UnaryOperator<XArrayType>
 }
 
 
-#endif /* MHO_Reducer_H__ */
+#endif /*! MHO_Reducer_H__ */

@@ -1,13 +1,13 @@
 #ifndef MHO_MK4FringeInterface_HH__
 #define MHO_MK4FringeInterface_HH__
 
-/*
-*File: MHO_MK4FringeInterface.hh
-*Class: MHO_MK4FringeInterface
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-19T18:54:28.140Z
-*Description:
+/*!
+*@file MHO_MK4FringeInterface.hh
+*@class MHO_MK4FringeInterface
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date 2020-05-19T18:54:28.140Z
+*@brief
 */
 
 #include <iostream>
@@ -52,4 +52,4 @@ class MHO_MK4FringeInterface
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_MK4FringeInterface */
+#endif /*! end of include guard: MHO_MK4FringeInterface */

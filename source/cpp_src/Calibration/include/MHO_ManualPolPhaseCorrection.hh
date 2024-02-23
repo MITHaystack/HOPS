@@ -1,13 +1,13 @@
 #ifndef MHO_ManualPolPhaseCorrection_HH__
 #define MHO_ManualPolPhaseCorrection_HH__
 
-/*
-*File: MHO_ManualPolPhaseCorrection.hh
-*Class: MHO_ManualPolPhaseCorrection
-*Author:
+/*!
+*@file MHO_ManualPolPhaseCorrection.hh
+*@class MHO_ManualPolPhaseCorrection
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include <cmath>
@@ -84,4 +84,4 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
 }
 
 
-#endif /* end of include guard: MHO_ManualPolPhaseCorrection */
+#endif /*! end of include guard: MHO_ManualPolPhaseCorrection */

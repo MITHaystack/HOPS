@@ -57,4 +57,4 @@ class MHO_NDArrayWrapper<XValueType, 0>:
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_NDArrayWrapper_0 */
+#endif /*! end of include guard: MHO_NDArrayWrapper_0 */

@@ -9,13 +9,13 @@
 
 
 
-/*
-*File: MHO_FunctorBroadcaster.hh
-*Class: MHO_FunctorBroadcaster
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_FunctorBroadcaster.hh
+*@class MHO_FunctorBroadcaster
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 
@@ -113,4 +113,4 @@ class MHO_FunctorBroadcaster: public MHO_UnaryOperator<XArrayType>
 }
 
 
-#endif /* MHO_FunctorBroadcaster_H__ */
+#endif /*! MHO_FunctorBroadcaster_H__ */

@@ -34,4 +34,4 @@ class MHO_ParameterManager
 }
 
 
-#endif /* end of include guard: MHO_ParameterManager_HH__ */
+#endif /*! end of include guard: MHO_ParameterManager_HH__ */

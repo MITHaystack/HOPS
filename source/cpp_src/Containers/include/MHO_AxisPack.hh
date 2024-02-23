@@ -1,13 +1,13 @@
 #ifndef MHO_AxisPack_HH__
 #define MHO_AxisPack_HH__
 
-/*
-*File: MHO_AxisPack.hh
-*Class: MHO_AxisPack
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 17-08-2020 11:32
-*Description: set of axes (XAxisTypeS are expected to be MHO_VectorContainers)
+/*!
+*@file MHO_AxisPack.hh
+*@class MHO_AxisPack
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date 17-08-2020 11:32
+*@brief set of axes (XAxisTypeS are expected to be MHO_VectorContainers)
 */
 
 #include "MHO_Axis.hh"
@@ -64,7 +64,7 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
         //inductive access to all elements of the tuple, so we can re-size them from an array
         template<std::size_t N = 0>
         typename std::enable_if< ( N == sizeof...(XAxisTypeS) ), void >::type
-        resize_axis_pack( const std::size_t* /*dim*/){}; //terminating case, do nothing
+        resize_axis_pack( const std::size_t* /*!dim*/){}; //terminating case, do nothing
 
         template<std::size_t N = 0>
         typename std::enable_if< ( N < sizeof...(XAxisTypeS) ), void>::type
@@ -79,7 +79,7 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
         // //inductive access to all elements of the tuple, so we compute total size for streaming
         template<std::size_t N = 0>
         typename std::enable_if< ( N == sizeof...(XAxisTypeS) ), void >::type
-        compute_total_size(uint64_t& /*total_size*/) const {}; //terminating case, do nothing
+        compute_total_size(uint64_t& /*!total_size*/) const {}; //terminating case, do nothing
 
         template<std::size_t N = 0>
         typename std::enable_if< ( N < sizeof...(XAxisTypeS) ), void >::type
@@ -343,4 +343,4 @@ DefAxisPack4(String, String, String, String);
 
 }
 
-#endif /* end of include guard: MHO_AxisPack */
+#endif /*! end of include guard: MHO_AxisPack */

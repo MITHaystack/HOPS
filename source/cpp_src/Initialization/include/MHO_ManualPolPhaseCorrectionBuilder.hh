@@ -1,13 +1,13 @@
 #ifndef MHO_ManualPolPhaseCorrectionBuilderBuilder_HH__
 #define MHO_ManualPolPhaseCorrectionBuilderBuilder_HH__
 
-/*
-*File: MHO_ManualPolPhaseCorrectionBuilder.hh
-*Class: MHO_ManualPolPhaseCorrectionBuilder
-*Author:
+/*!
+*@file MHO_ManualPolPhaseCorrectionBuilder.hh
+*@class MHO_ManualPolPhaseCorrectionBuilder
+*@author
 *Email:
-*Date:
-*Description:
+*@date
+*@brief
 */
 
 #include "MHO_OperatorBuilder.hh"
@@ -39,4 +39,4 @@ class MHO_ManualPolPhaseCorrectionBuilder:
 }//end namespace
 
 
-#endif /* end of include guard: MHO_ManualPolPhaseCorrectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_ManualPolPhaseCorrectionBuilderBuilder_HH__ */

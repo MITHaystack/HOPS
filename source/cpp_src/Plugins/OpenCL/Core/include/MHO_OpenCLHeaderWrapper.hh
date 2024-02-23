@@ -22,4 +22,4 @@
     #endif
 #endif
 
-#endif /* MHO_OPENCLHEADERWRAPPER_DEF */
+#endif /*! MHO_OPENCLHEADERWRAPPER_DEF */

@@ -1,13 +1,13 @@
 #ifndef MHO_DelayRate_HH__
 #define MHO_DelayRate_HH__
 
-/*
-*File: MHO_DelayRate.hh
-*Class: MHO_DelayRate
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_DelayRate.hh
+*@class MHO_DelayRate
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include <cmath>
@@ -82,4 +82,4 @@ class MHO_DelayRate: public MHO_BinaryOperator<
 }
 
 
-#endif /* end of include guard: MHO_DelayRate */
+#endif /*! end of include guard: MHO_DelayRate */

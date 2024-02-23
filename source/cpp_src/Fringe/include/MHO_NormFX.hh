@@ -1,13 +1,13 @@
 #ifndef MHO_NormFX_HH__
 #define MHO_NormFX_HH__
 
-/*
-*File: MHO_NormFX.hh
-*Class: MHO_NormFX
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_NormFX.hh
+*@class MHO_NormFX
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include <cmath>
@@ -84,4 +84,4 @@ class MHO_NormFX: public MHO_BinaryOperator<
 }
 
 
-#endif /* end of include guard: MHO_NormFX */
+#endif /*! end of include guard: MHO_NormFX */

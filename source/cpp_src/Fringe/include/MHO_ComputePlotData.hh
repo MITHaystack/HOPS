@@ -147,4 +147,4 @@ class MHO_ComputePlotData
 
 }
 
-#endif /* end of include guard: MHO_ComputePlotData_HH__ */
+#endif /*! end of include guard: MHO_ComputePlotData_HH__ */

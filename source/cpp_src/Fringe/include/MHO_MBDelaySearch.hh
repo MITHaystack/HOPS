@@ -2,13 +2,13 @@
 #define MHO_MBDelaySearch_HH__
 
 
-/*
-*File: MHO_MBDelaySearch.hh
-*Class: MHO_MBDelaySearch
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_MBDelaySearch.hh
+*@class MHO_MBDelaySearch
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include <cmath>
@@ -163,4 +163,4 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
 
 
-#endif /* end of include guard: MHO_MBDelaySearch_HH__ */
+#endif /*! end of include guard: MHO_MBDelaySearch_HH__ */

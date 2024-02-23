@@ -28,4 +28,4 @@ class MHO_LegacyDateConverter
 
 }
 
-#endif /* end of include guard: MHO_LegacyDateConverter_HH__ */
+#endif /*! end of include guard: MHO_LegacyDateConverter_HH__ */
