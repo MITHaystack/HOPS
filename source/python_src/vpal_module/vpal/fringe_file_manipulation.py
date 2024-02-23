@@ -314,6 +314,7 @@ class PhaseResidualData(object):
                 phase_list_proxy.append( ch_phase )
 
             #invert, unwrap and remove mean phase
+            #TODO FIXME -- the next 3 lines effectively do nothing, we have no need to unwrap
             phase_list_proxy = [(-1.0*(old_div(math.pi,180.0)))*x for x in phase_list_proxy] #negate and convert to radians
             phase_list_proxy = np.unwrap(phase_list_proxy) #arguments must be in radians
             phase_list_proxy = [(old_div(180.0,math.pi))*x for x in phase_list_proxy] #convert back to degrees
