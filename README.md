@@ -94,10 +94,10 @@ if this option is turned on pip with attempt to download and locally install the
 If you wish to build the original HOPS3 software suite (fourfit, etc.), in addition to HOPS4, you will need
 several additional dependencies, these are:
 
-1. `Python 3.x` \
-2. `FFTW3` \
-3. `PGPLOT` \
-4. `X11` \
+1. `Python 3.x`
+2. `FFTW3`
+3. `PGPLOT`
+4. `X11`
 5. `GNU Fortran`
 
 On Ubuntu 22.04 or Debian based systems these can be installed with:
@@ -157,19 +157,19 @@ The HOPS automake build supports the ability to run `make distcheck` from the bu
 
 ## Automake Documentation Dependencies
 ### Ubuntu packages
-(1) `texlive-full` \
-(2) `graphviz` \
-(3) `doxygen` \
-(4) `sphinx-common`
+1. `texlive-full`
+2. `graphviz`
+3. `doxygen`
+4. `sphinx-common`
 pkg-config, csh, autoconf, libtool, xorg, openbox, libx11-dev, fftw3, fftw3-dev
 python3-sphinx, python3-dev, python-dev, swig, help2man
 
 
 ### Fedora packages
 ### NixOS packages
-(1) `texlive.combined.scheme-full` \
-(2) `graphviz` \
-(3) `doxygen`
+1. `texlive.combined.scheme-full`
+2. `graphviz`
+3. `doxygen`
 
 ### Building the documentation
 The automake build supports the ability to build the documentation as well as the code with `make` by doing the following:
