@@ -277,6 +277,7 @@ void MHO_BasicFringeFitter::Finalize()
         plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
     }
+
     profiler_stop();
 }
 

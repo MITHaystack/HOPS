@@ -134,6 +134,9 @@ MHO_ManualChannelDelayCorrection::DetermineStationIndex(const visibility_type* i
         if(fStationCode == val){return 0;}
     }
 
+    //wildcard, it doesn't matter, so just return as rem station
+    if(fStationCode == "??" || fMk4ID == "?"){return 1;}
+
     msg_warn("calibration", "manual per-channel delay correction, (remote,reference) " <<
         "stations: ("<<ref<<", "<<rem<<") do not match selection "<<fMk4ID<<"."<< eom );
     //msg_warn("calibration", "manual delay correction, remote/reference station do not match selection."<< eom );

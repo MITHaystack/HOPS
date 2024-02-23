@@ -94,6 +94,9 @@ MHO_ManualPolDelayCorrection::DetermineStationIndex(const visibility_type* in)
         if(fStationCode == val){return 0;}
     }
 
+    //wildcard, it doesn't matter, so just return as rem station
+    if(fStationCode == "??" || fMk4ID == "?"){return 0;}
+
     msg_warn("calibration", "manual per-pol delay correction, (remote,reference) " <<
         "stations: ("<<ref<<", "<<rem<<") do not match selection "<<fMk4ID<<"."<< eom );
     return 2;
