@@ -4,7 +4,7 @@
 /*!
 *@file MHO_UUIDGenerator.hh
 *@class MHO_UUIDGenerator
-*@author J. Barrett - barrettj@mit.edu  - barrettj@mit.edu
+*@author J. Barrett - barrettj@mit.edu
 * A class to provide pseudo-randomly generated UUID strings,
 * based on RFC-4122, but with a non-standard 4 byte sync word as a prefix
 * https://tools.ietf.org/html/rfc4122
