@@ -105,4 +105,4 @@ class MHO_MPIInterface
 
 }  //end of namespace hops
 
-#endif /* MHO_MPIInterface_HH__ */
+#endif /*! MHO_MPIInterface_HH__ */

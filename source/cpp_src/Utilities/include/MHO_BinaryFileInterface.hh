@@ -2,12 +2,12 @@
 #define MHO_BinaryFileInterface_HH__
 
 /*!
-*File: MHO_BinaryFileInterface.hh
-*Class: MHO_BinaryFileInterface
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+*@file MHO_BinaryFileInterface.hh
+*@class MHO_BinaryFileInterface
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include "MHO_Message.hh"
@@ -346,4 +346,4 @@ class MHO_BinaryFileInterface
 }
 
 
-#endif /* end of include guard: MHO_BinaryFileInterface */
+#endif /*! end of include guard: MHO_BinaryFileInterface */

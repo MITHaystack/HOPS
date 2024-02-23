@@ -2,12 +2,12 @@
 #define MHO_BinaryFileStreamer_HH__
 
 /*!
-*File: MHO_BinaryFileStreamer.hh
-*Class: MHO_BinaryFileStreamer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: variadic template parameter implemenation
+*@file MHO_BinaryFileStreamer.hh
+*@class MHO_BinaryFileStreamer
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief variadic template parameter implemenation
 * of a gen scatter hierarchy streamer for POD and JSON types to a file stream
 */
 
@@ -231,4 +231,4 @@ class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStre
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_BinaryFileStreamer */
+#endif /*! end of include guard: MHO_BinaryFileStreamer */

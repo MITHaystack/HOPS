@@ -2,12 +2,12 @@
 #define MHO_TimeStamp_HH__
 
 /*!
-*@file: MHO_TimeStamp.hh
-*@class: MHO_TimeStamp
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+*@file  MHO_TimeStamp.hh
+*@class  MHO_TimeStamp
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include <chrono>
@@ -49,4 +49,4 @@ class MHO_TimeStamp
 
 }
 
-#endif /* end of include guard: MHO_TimeStamp */
+#endif /*! end of include guard: MHO_TimeStamp */

@@ -2,12 +2,12 @@
 #define MHO_ExtensibleElement_HH__
 
 /*!
-*File: MHO_ExtensibleElement.hh
-*Class: MHO_ExtensibleElement
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: Implements an interface by which a class that inherits from MHO_ExtensibleElement
+*@file MHO_ExtensibleElement.hh
+*@class MHO_ExtensibleElement
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief Implements an interface by which a class that inherits from MHO_ExtensibleElement
 * can have arbitrarily extended functionality added to it without modifying the original class
 * Pointers to the extensions are stored internally, and access proceeds through the visitor pattern.
 * This interface should be used VERY sparingly, as dynamic_casts are expensive and the number of dynamic_casts needed for a
@@ -172,4 +172,4 @@ class MHO_ExtendedElement: public MHO_Element, public XExtensionType
 
 }
 
-#endif /* end of include guard: MHO_ExtensibleElement */
+#endif /*! end of include guard: MHO_ExtensibleElement */

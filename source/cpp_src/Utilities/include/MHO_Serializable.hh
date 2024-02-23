@@ -2,12 +2,12 @@
 #define MHO_Serializable_HH__
 
 /*!
-*File: MHO_Serializable.hh
-*Class: MHO_Serializable
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-15T20:21:32.924Z
-*Description:
+*@file MHO_Serializable.hh
+*@class MHO_Serializable
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date 2020-05-15T20:21:32.924Z
+*@brief
 */
 
 
@@ -65,4 +65,4 @@ class MHO_Serializable
 
 }  // namespace hops
 
-#endif /* end of include guard: MHO_Serializable */
+#endif /*! end of include guard: MHO_Serializable */

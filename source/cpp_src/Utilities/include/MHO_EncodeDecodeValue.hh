@@ -79,4 +79,4 @@ decode_value(const std::string& code, const std::string& character_set)
 
 }//end namespace
 
-#endif /* end of include guard: MHO_EncodeValue_HH__ */
+#endif /*! end of include guard: MHO_EncodeValue_HH__ */

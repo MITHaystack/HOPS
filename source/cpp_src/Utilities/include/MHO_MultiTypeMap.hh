@@ -3,12 +3,12 @@
 
 
 /*!
-*File: MHO_MultiTypeMap.hh
-*Class: MHO_MultiTypeMap
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-15T20:56:55.583Z
-*Description:
+*@file MHO_MultiTypeMap.hh
+*@class MHO_MultiTypeMap
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date 2020-05-15T20:56:55.583Z
+*@brief
 */
 
 #include <set>
@@ -295,4 +295,4 @@ void cm_stream_exporter(XStream& s, const MHO_CommonLabelMap& aMap)
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_MultiTypeMap_HH__ */
+#endif /*! end of include guard: MHO_MultiTypeMap_HH__ */

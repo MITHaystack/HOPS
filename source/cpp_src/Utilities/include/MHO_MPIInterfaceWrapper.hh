@@ -13,4 +13,4 @@
     #define MPI_SINGLE_PROCESS
 #endif
 
-#endif /* end of include guard: MHO_MPIInterfaceWrapper_HH__ */
+#endif /*! end of include guard: MHO_MPIInterfaceWrapper_HH__ */

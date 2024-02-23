@@ -2,12 +2,12 @@
 #define MHO_FileKey_HH__
 
 /*!
-*File: MHO_FileKey.hh
-*Class: MHO_FileKey
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+*@file MHO_FileKey.hh
+*@class MHO_FileKey
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include "MHO_Types.hh"
@@ -247,4 +247,4 @@ class MHO_FileKey
 
 }//end of hops
 
-#endif /* end of include guard: MHO_FileKey */
+#endif /*! end of include guard: MHO_FileKey */

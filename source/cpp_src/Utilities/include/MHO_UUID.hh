@@ -2,12 +2,12 @@
 #define MHO_UUID_HH__
 
 /*!
-*File: MHO_UUID.hh
-*Class: MHO_UUID
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+*@file MHO_UUID.hh
+*@class MHO_UUID
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 
@@ -76,7 +76,7 @@ class MHO_UUID
                                                 &(rhs[MHO_UUID_LENGTH-1]));
         }
 
-        /**
+        /*!*
         * Truncate the UUID byte array to the first (last) 8 bytes and convert into a 64 bit int
         * @return A uint64_t composed of the first or last 8 bytes of the UUID
         */
@@ -89,7 +89,7 @@ class MHO_UUID
         }
 
 
-        /**
+        /*!*
         * Split the UUID byte array into two halves conver to uint64_t and return the sum
         * @return A uint64_t composed of the sum of the two halves of the uuid
         */
@@ -104,7 +104,7 @@ class MHO_UUID
         }
 
 
-        /**
+        /*!*
         * Convert the UUID byte array into a string
         * @return A std::string containing the hexadecimal digits of the UUID.
         */
@@ -123,7 +123,7 @@ class MHO_UUID
         }
 
 
-        /**
+        /*!*
         * Convert a formatted string into a UUID byte array and fill this object
         * @return update the uuid object from std::string containing the hexadecimal digits of the UUID.
         */
@@ -198,4 +198,4 @@ template<typename XStream> XStream& operator<<(XStream& s, const MHO_UUID& uuid)
 
 }
 
-#endif /* end of include guard: MHO_UUID */
+#endif /*! end of include guard: MHO_UUID */

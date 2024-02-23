@@ -20,12 +20,12 @@
 
 
 /*!
-*File: MHO_LockFileHandler.hh
-*Class: MHO_LockFileHandler
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: ported version of fourfit write lock mechanism
+*@file MHO_LockFileHandler.hh
+*@class MHO_LockFileHandler
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief ported version of fourfit write lock mechanism
 */
 
 
@@ -132,4 +132,4 @@ class MHO_LockFileHandler
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_LockFileHandler */
+#endif /*! end of include guard: MHO_LockFileHandler */

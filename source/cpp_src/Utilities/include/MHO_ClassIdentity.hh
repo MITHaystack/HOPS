@@ -2,12 +2,12 @@
 #define MHO_ClassIdentity_HH__
 
 /*!
-*File: MHO_ClassIdentity.hh
-*Class: MHO_ClassIdentity
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: template class to produce the name of XClassType at runtime
+*@file MHO_ClassIdentity.hh
+*@class MHO_ClassIdentity
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief template class to produce the name of XClassType at runtime
 */
 
 
@@ -72,4 +72,4 @@ struct MHO_ClassIdentity
 }
 
 
-#endif /* end of include guard:MHO_ClassIdentity */
+#endif /*! end of include guard:MHO_ClassIdentity */

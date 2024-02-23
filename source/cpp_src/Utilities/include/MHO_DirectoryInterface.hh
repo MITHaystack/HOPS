@@ -2,12 +2,12 @@
 #define MHO_DirectoryInterface_HH__
 
 /*!
-*File: MHO_DirectoryInterface.hh
-*Class: MHO_DirectoryInterface
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+*@file MHO_DirectoryInterface.hh
+*@class MHO_DirectoryInterface
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include <vector>
@@ -79,4 +79,4 @@ class MHO_DirectoryInterface
 
 }
 
-#endif /* end of include guard: MHO_DirectoryInterface */
+#endif /*! end of include guard: MHO_DirectoryInterface */

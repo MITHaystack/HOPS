@@ -2,16 +2,16 @@
 #define MHO_Units_HH__
 
 /*!
-*File: MHO_Units.hh
-*Class: MHO_Units
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-15T20:20:42.711Z
-*Description:
+*@file MHO_Units.hh
+*@class MHO_Units
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date 2020-05-15T20:20:42.711Z
+*@brief
 */
 
 
 //TODO implement an actual unit mechanism
 struct MHO_EmptyUnit {};
 
-#endif /* end of include guard: MHO_Units */
+#endif /*! end of include guard: MHO_Units */
