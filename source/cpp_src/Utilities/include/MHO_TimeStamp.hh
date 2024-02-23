@@ -5,9 +5,8 @@
 *@file  MHO_TimeStamp.hh
 *@class  MHO_TimeStamp
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@date
+*@brief
 */
 
 #include <chrono>

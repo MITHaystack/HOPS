@@ -1,6 +1,14 @@
 #ifndef MHO_OpenCLComplexPointwiseMultiply_HH__
 #define MHO_OpenCLComplexPointwiseMultiply_HH__
 
+/*!
+*@file MHO_OpenCLComplexPointwiseMultiply.hh
+*@class MHO_OpenCLComplexPointwiseMultiply
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 #include <algorithm>
 
 #include "MHO_Message.hh"
@@ -10,19 +18,6 @@
 
 #include "MHO_OpenCLInterface.hh"
 #include "MHO_OpenCLKernelBuilder.hh"
-
-
-
-
-/*!
-*@file MHO_OpenCLComplexPointwiseMultiply.hh
-*@class MHO_OpenCLComplexPointwiseMultiply
-*@author J. Barrett - barrettj@mit.edu 
-*
-*@date
-*@brief
-*/
-
 
 namespace hops
 {

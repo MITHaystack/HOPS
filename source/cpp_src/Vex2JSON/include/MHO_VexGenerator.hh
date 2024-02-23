@@ -5,9 +5,8 @@
 *@file  MHO_VexGenerator.hh
 *@class  MHO_VexGenerator
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@date
+*@brief
 */
 
 #include <vector>

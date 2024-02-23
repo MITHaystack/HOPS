@@ -11,8 +11,7 @@
 /*!
 *@file MHO_OperatorToolbox.hh
 *@class MHO_OperatorToolbox
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

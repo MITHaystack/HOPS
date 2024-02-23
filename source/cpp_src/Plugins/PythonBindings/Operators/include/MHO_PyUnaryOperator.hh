@@ -5,8 +5,7 @@
 *@file  MHO_PyOperator.hh
 *@class  MHO_PyOperator
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
+*@date
 *@brief  trampoline for unary data operator
 */
 

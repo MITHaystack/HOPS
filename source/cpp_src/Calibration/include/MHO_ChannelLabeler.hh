@@ -1,6 +1,18 @@
 #ifndef MHO_ChannelLabeler_HH__
 #define MHO_ChannelLabeler_HH__
 
+/*!
+*@file MHO_ChannelLabeler.hh
+*@class MHO_ChannelLabeler
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief Applies 'fourfit' labels to each channel (e.g. a, b,...),
+* if no user-defined map is supplied then the default mapping is in order
+* of frequency low -> high, starting with 'a'
+*/
+
+
+
 #include <string>
 #include <map>
 #include <stack>
@@ -12,19 +24,6 @@
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_UnaryOperator.hh"
-
-
-
-/*!
-*@file MHO_ChannelLabeler.hh
-*@class MHO_ChannelLabeler
-*@author J. Barrett - barrettj@mit.edu 
-*
-*@date
-*@brief Applies 'fourfit' labels to each channel (e.g. a, b,...),
-* if no user-defined map is supplied then the default mapping is in order
-* of frequency low -> high, starting with 'a'
-*/
 
 
 namespace hops

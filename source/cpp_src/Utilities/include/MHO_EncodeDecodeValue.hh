@@ -1,6 +1,15 @@
 #ifndef MHO_EncodeValue_HH__
 #define MHO_EncodeValue_HH__
 
+
+/*!
+*@file MHO_EncodeValue.hh
+*@class
+*@date
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include <string>
 #include <stack>
 #include <limits>

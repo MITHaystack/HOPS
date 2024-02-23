@@ -5,7 +5,6 @@
 *@file MHO_Taggable.hh
 *@class MHO_Taggable
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date
 *@brief
 */

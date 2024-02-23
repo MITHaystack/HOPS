@@ -4,8 +4,7 @@
 /*!
 *@file  MHO_PyGenericOperator.hh
 *@class  MHO_PyGenericOperator
-*@author  J. Barrett - barrettj@mit.edu 
-*
+*@author  J. Barrett - barrettj@mit.edu
 *@date  Mon 18 Sep 2023 01:26:22 PM EDT
 *@brief  this class allows a user to inject a python function of the form:
 * func(container_interface, parameter_interface)

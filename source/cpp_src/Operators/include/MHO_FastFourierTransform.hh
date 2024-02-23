@@ -1,6 +1,14 @@
 #ifndef MHO_FastFourierTransform_HH__
 #define MHO_FastFourierTransform_HH__
 
+/*!
+*@file MHO_FastFourierTransform
+*@class MHO_FastFourierTransform.hh
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 #include <complex>
 
 #include "MHO_NDArrayWrapper.hh"

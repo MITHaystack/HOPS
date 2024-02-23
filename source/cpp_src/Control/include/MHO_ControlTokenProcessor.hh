@@ -5,9 +5,8 @@
 *@file  MHO_ControlTokenProcessor.hh
 *@class  MHO_ControlTokenProcessor
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@date
+*@brief
 */
 
 #include "MHO_Message.hh"

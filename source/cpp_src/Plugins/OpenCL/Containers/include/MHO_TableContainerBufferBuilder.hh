@@ -4,8 +4,7 @@
 /*!
 *@file MHO_TableContainerBufferBuilder.hh
 *@class MHO_TableContainerBufferBuilder
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

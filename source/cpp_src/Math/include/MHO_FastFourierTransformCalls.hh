@@ -1,6 +1,14 @@
 #ifndef MHO_FastFourierTransformCalls_HH__
 #define MHO_FastFourierTransformCalls_HH__
 
+/*!
+*@file MHO_FastFourierTransformCalls.hh
+*@class MHO_FastFourierTransformCalls
+*@date
+*@brief native FFT implemenation calls
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include <complex>
 #include <cstddef>
 #include <cmath>

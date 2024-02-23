@@ -4,8 +4,7 @@
 /*!
 *@file MHO_BasicFringeUtilities.hh
 *@class MHO_BasicFringeUtilities
-*@author
-*Email:
+*@author J. Barrettj - barrettj@mit.edu
 *@date Tue Sep 19 04:11:24 PM EDT 2023
 *@brief a collection of helper functions to organize fringe fitting
 */

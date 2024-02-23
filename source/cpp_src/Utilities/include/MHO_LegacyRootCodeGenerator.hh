@@ -5,8 +5,7 @@
 *@file  MHO_LegacyRootCodeGenerator.hh
 *@class  MHO_LegacyRootCodeGenerator
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
+*@date
 *@brief  generate the 6-character timestamp-like root codes for converted filenames
 */
 

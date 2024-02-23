@@ -5,7 +5,6 @@
 *@file MHO_TestAssertions.hh
 *@class MHO_TestAssertions
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date
 *@brief
 */

@@ -1,6 +1,15 @@
 #ifndef MHO_MultidimensionalFastFourierTransform_HH__
 #define MHO_MultidimensionalFastFourierTransform_HH__
 
+/*!
+*@file MHO_MultidimensionalFastFourierTransform.hh
+*@class MHO_MultidimensionalFastFourierTransform
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
+
 #include <cstring>
 
 #include "MHO_Meta.hh"

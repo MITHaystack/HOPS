@@ -4,8 +4,7 @@
 /*!
 *@file MHO_NDArrayView.hh
 *@class MHO_NDArrayView
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date 2020-05-15T20:22:38.395Z
 *@brief
 * Thu 13 Aug 2020 02:53:11 PM EDT

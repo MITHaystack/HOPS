@@ -1,6 +1,14 @@
 #ifndef MHO_NDArrayMath_HH__
 #define MHO_NDArrayMath_HH__
 
+/*!
+*@file MHO_NDArrayMath.hh
+*@class MHO_NDArrayMath
+*@date
+*@brief utility functions for multidimensional array access
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include <cmath>
 #include <cstddef>
 

@@ -1,23 +1,21 @@
 #ifndef MHO_FunctorBroadcaster_HH__
 #define MHO_FunctorBroadcaster_HH__
 
+
+/*!
+*@file MHO_FunctorBroadcaster.hh
+*@class MHO_FunctorBroadcaster
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
+
 #include <algorithm>
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_UnaryOperator.hh"
-
-
-
-/*!
-*@file MHO_FunctorBroadcaster.hh
-*@class MHO_FunctorBroadcaster
-*@author J. Barrett - barrettj@mit.edu 
-*
-*@date
-*@brief
-*/
-
 
 namespace hops
 {

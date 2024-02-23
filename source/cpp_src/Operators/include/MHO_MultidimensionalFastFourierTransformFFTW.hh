@@ -1,6 +1,14 @@
 #ifndef MHO_MultidimensionalFastFourierTransformFFTW_HH__
 #define MHO_MultidimensionalFastFourierTransformFFTW_HH__
 
+/*!
+*@file MHO_MultidimensionalFastFourierTransformFFTW.hh
+*@class MHO_MultidimensionalFastFourierTransformFFTW
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 #include <cstring>
 #include <fftw3.h>
 

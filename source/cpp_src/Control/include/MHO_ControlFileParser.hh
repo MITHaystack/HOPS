@@ -4,10 +4,9 @@
 /*!
 *@file  MHO_ControlFileParser.hh
 *@class  MHO_ControlFileParser
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
 */
 
 #include <vector>

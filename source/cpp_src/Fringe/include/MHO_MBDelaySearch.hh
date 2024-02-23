@@ -5,10 +5,9 @@
 /*!
 *@file MHO_MBDelaySearch.hh
 *@class MHO_MBDelaySearch
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
-*@brief
+*@brief implements the coarse MBD/SBD/DR search, see search.c
 */
 
 #include <cmath>

@@ -1,6 +1,13 @@
 #ifndef MHO_ElementTypes_H__
 #define MHO_ElementTypes_H__
 
+/*!
+*@file MHO_ElementTypes.hh
+*@date
+*@brief typedefs and using statements for table container data element types
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include <complex>
 
 //this include file should not be used directly

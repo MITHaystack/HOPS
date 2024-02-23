@@ -1,6 +1,15 @@
 #ifndef MHO_OpenCLScalarMultiply_HH__
 #define MHO_OpenCLScalarMultiply_HH__
 
+/*!
+*@file MHO_OpenCLScalarMultiply.hh
+*@class MHO_OpenCLScalarMultiply
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
+
 #include <algorithm>
 
 #include "MHO_Message.hh"
@@ -10,15 +19,6 @@
 #include "MHO_OpenCLInterface.hh"
 #include "MHO_OpenCLKernelBuilder.hh"
 #include "MHO_OpenCLNDArrayBuffer.hh"
-
-/*!
-*@file MHO_OpenCLScalarMultiply.hh
-*@class MHO_OpenCLScalarMultiply
-*@author J. Barrett - barrettj@mit.edu 
-*
-*@date
-*@brief
-*/
 
 namespace hops
 {

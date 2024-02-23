@@ -1,6 +1,15 @@
 #ifndef MHO_Snapshot_HH__
 #define MHO_Snapshot_HH__
 
+/*!
+*@file MHO_Snapshot.hh
+*@class MHO_Snapshot
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
+
 #include <cstdlib>
 #include <ostream>
 #include <sstream>
@@ -28,14 +37,6 @@
     #define HOPS_SNAPSHOT_DIR_STR STRING(HOPS_SNAPSHOT_DIR)
 #endif
 
-/*!
-*@file MHO_Snapshot.hh
-*@class MHO_Snapshot
-*@author J. Barrett - barrettj@mit.edu 
-*
-*@date
-*@brief
-*/
 
 namespace hops
 {

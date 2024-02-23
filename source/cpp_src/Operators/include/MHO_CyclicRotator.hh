@@ -1,6 +1,17 @@
 #ifndef MHO_CyclicRotator_HH__
 #define MHO_CyclicRotator_HH__
 
+/*!
+*@file MHO_CyclicRotator.hh
+*@class MHO_CyclicRotator
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+* Applies a cyclic rotation on the contents on a multidimensional array
+* by some specified offset for each dimension.
+*/
+
+
 #include <algorithm>
 #include <cstdint>
 
@@ -8,20 +19,6 @@
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_UnaryOperator.hh"
 #include "MHO_TableContainer.hh"
-
-
-
-/*!
-*@file MHO_CyclicRotator.hh
-*@class MHO_CyclicRotator
-*@author J. Barrett - barrettj@mit.edu 
-*
-*@date
-*@brief
-* Applies a cyclic rotation on the contents on a multidimensional array
-* by some specified offset for each dimension.
-*/
-
 
 namespace hops
 {

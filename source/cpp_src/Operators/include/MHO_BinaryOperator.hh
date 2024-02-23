@@ -1,6 +1,14 @@
 #ifndef MHO_BinaryOperator_HH__
 #define MHO_BinaryOperator_HH__
 
+/*!
+*@file MHO_BinaryOperator.hh
+*@class MHO_BinaryOperator
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 #include "MHO_Operator.hh"
 
 #include <tuple>

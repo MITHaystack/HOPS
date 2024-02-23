@@ -1,14 +1,23 @@
 #ifndef MHO_LegacyDateConverter_HH__
 #define MHO_LegacyDateConverter_HH__
 
+/*!
+*@file MHO_LegacyDateConverter.hh
+*@class MHO_LegacyDateConverter
+*@date
+*@brief this class is necessary to prevent a collision between the "namespace date"
+*and the legacy HOPS3 "struct date"
+*@author J. Barrett - barrettj@mit.edu
+*/
+
+
 #include <string>
 #include "legacy_hops_date.hh"
 
 namespace hops
 {
 
-//this class is necessary to prevent a collision between the "namespace date"
-//and the legacy HOPS3 "struct date"
+
 
 class MHO_LegacyDateConverter
 {

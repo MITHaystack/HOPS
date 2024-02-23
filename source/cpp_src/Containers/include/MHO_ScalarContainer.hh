@@ -4,8 +4,7 @@
 /*!
 *@file MHO_ScalarContainer.hh
 *@class MHO_ScalarContainer
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date 2020-05-15T20:22:06.227Z
 *@brief
 */

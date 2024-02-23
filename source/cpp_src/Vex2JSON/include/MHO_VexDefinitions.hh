@@ -5,8 +5,7 @@
 *@file  MHO_VexDefinitions.hh
 *@class  MHO_VexDefinitions
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
+*@date
 *@brief  Basic definitions of various tokens and utilities
 */
 

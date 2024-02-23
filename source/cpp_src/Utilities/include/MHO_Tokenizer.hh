@@ -1,19 +1,19 @@
 #ifndef MHO_Tokenizer_HH__
 #define MHO_Tokenizer_HH__
 
-#include <vector>
-#include <string>
-
-#include "MHO_Message.hh"
-
-namespace hops {
-
 /*!
 *@file MHO_Tokenizer.hh
 *@class MHO_Tokenizer
 *@author J. Barret - barrettj@mit.edu
 * A class reponsible for parsing a string on a given delimiter where the default is a space
 */
+
+#include <vector>
+#include <string>
+
+#include "MHO_Message.hh"
+
+namespace hops {
 
 class MHO_Tokenizer{
     public:

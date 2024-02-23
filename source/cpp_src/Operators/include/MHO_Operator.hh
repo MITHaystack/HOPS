@@ -7,9 +7,8 @@
 *@file  MHO_Operator.hh
 *@class  MHO_Operator
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@date
+*@brief
 */
 
 namespace hops

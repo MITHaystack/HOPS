@@ -4,8 +4,7 @@
 /*!
 *@file MHO_ManualPolPhaseCorrectionBuilder.hh
 *@class MHO_ManualPolPhaseCorrectionBuilder
-*@author
-*Email:
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

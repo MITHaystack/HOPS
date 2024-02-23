@@ -4,10 +4,9 @@
 /*!
 *@file  MHO_ContainerFileInterface.hh
 *@class  MHO_ContainerFileInterface
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
 */
 
 #include "MHO_Message.hh"

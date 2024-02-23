@@ -4,8 +4,7 @@
 /*!
 *@file MHO_FringeFitter.hh
 *@class MHO_FringeFitter
-*@author
-*Email:
+*@author J. Barrettj - barrettj@mit.edu
 *@date Tue Sep 19 04:11:24 PM EDT 2023
 *@brief Abstract base class for a basic fringe fitter
 */

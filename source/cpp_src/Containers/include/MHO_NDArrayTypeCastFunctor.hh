@@ -1,17 +1,18 @@
 #ifndef MHO_NDArrayTypeCastFunctor_HH__
 #define MHO_NDArrayTypeCastFunctor_HH__
 
-#include <algorithm>
-#include "MHO_NDArrayWrapper.hh"
-
 /*!
 *@file MHO_NDArrayTypeCastFunctor.hh
 *@class MHO_NDArrayTypeCastFunctor
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief functor to cast array items from one type to another
 */
+
+
+
+#include <algorithm>
+#include "MHO_NDArrayWrapper.hh"
 
 
 namespace hops

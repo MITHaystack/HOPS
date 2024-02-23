@@ -6,7 +6,6 @@
 *@file MHO_MultiTypeMap.hh
 *@class MHO_MultiTypeMap
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date 2020-05-15T20:56:55.583Z
 *@brief
 */

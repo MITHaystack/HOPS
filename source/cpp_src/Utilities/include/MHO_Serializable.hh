@@ -5,7 +5,6 @@
 *@file MHO_Serializable.hh
 *@class MHO_Serializable
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date 2020-05-15T20:21:32.924Z
 *@brief
 */

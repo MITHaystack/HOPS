@@ -4,10 +4,9 @@
 /*!
 *@file  MHO_DiFXScanProcessor.hh
 *@class  MHO_DiFXScanProcessor
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
 */
 
 

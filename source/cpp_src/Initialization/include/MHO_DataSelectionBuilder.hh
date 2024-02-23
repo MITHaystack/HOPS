@@ -4,8 +4,7 @@
 /*!
 *@file MHO_DataSelectionBuilder.hh
 *@class MHO_DataSelectionBuilder
-*@author
-*Email:
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

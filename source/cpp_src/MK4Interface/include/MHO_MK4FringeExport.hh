@@ -4,8 +4,7 @@
 /*!
 *@file MHO_MK4FringeExport.hh
 *@class MHO_MK4FringeExport
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date 2020-05-19T18:54:28.140Z
 *@brief
 */

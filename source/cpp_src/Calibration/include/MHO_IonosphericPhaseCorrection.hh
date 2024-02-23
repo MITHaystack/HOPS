@@ -4,8 +4,7 @@
 /*!
 *@file MHO_IonosphericPhaseCorrection.hh
 *@class MHO_IonosphericPhaseCorrection
-*@author
-*Email:
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

@@ -4,10 +4,9 @@
 /*!
 *@file  MHO_DiFXScanFileSet.hh
 *@class  MHO_DiFXScanFileSet
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
 */
 
 #include <vector>

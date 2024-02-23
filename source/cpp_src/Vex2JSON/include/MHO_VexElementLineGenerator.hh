@@ -5,9 +5,8 @@
 *@file  MHO_VexElementLineGenerator.hh
 *@class  MHO_VexElementLineGenerator
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@date
+*@brief
 */
 
 #include <string>

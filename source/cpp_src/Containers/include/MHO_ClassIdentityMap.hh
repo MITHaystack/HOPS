@@ -5,7 +5,6 @@
 *@file MHO_ClassIdentityMap.hh
 *@class MHO_ClassIdentityMap
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date
 *@brief
 */

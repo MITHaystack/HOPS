@@ -5,7 +5,6 @@
 *@file MHO_FringeData.hh
 *@class MHO_FringeData
 *@author
-*Email:
 *@date Tue Sep 19 04:11:24 PM EDT 2023
 *@brief simple class to contain fringe data objects
 */

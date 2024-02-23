@@ -4,8 +4,7 @@
 /*!
 *@file MHO_MultitonePhaseCorrection.hh
 *@class MHO_MultitonePhaseCorrection
-*@author
-*Email:
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

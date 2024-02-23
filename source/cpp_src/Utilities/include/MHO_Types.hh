@@ -1,13 +1,21 @@
 #ifndef MHO_Types_HH__
 #define MHO_Types_HH__
 
+/*!
+*@file
+*@class
+*@date
+*@brief
+* The static asserts are here to trigger build failure if the sizes of these types
+* are not as expecte. Systems with implementation defined sizes which differ from
+* these will not produce portable data files, so we don't allow compilation.
+* For now, disabling this is not user-configurable.
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include <complex>
 #include <cstdint>
 
-//The static asserts are here to trigger build failure if the sizes of these types
-//are not as expecte. Systems with implementation defined sizes which differ from
-//these will not produce portable data files, so we don't allow compilation.
-//For now, disabling this is not user-configurable.
 
 #define ENSURE_PORTABILITY
 

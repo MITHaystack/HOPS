@@ -7,10 +7,9 @@
 /*!
 *@file  MHO_DiFXInputProcessor.hh
 *@class  MHO_DiFXInputProcessor
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
 */
 
 #include "difxio/difx_input.h"

@@ -1,6 +1,14 @@
 #ifndef MHO_SimulatedSignalGenerator_HH__
 #define MHO_SimulatedSignalGenerator_HH__
 
+/*!
+*@file MHO_SimulatedSignalGenerator.hh
+*@class MHO_SimulatedSignalGenerator
+*@date
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include <cmath>
 
 namespace hops

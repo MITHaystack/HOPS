@@ -4,8 +4,7 @@
 /*!
 *@file MHO_ElementTypeCaster.hh
 *@class MHO_ElementTypeCaster
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief operator class which casts the element type of one array type to another
 * (e.g float -> double or double -> etc.)

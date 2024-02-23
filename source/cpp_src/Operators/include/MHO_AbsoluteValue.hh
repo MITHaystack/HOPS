@@ -4,8 +4,7 @@
 /*!
 *@file MHO_AbsoluteValue.hh
 *@class MHO_AbsoluteValue
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

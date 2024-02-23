@@ -1,19 +1,11 @@
 #ifndef MHO_Reducer_HH__
 #define MHO_Reducer_HH__
 
-#include <algorithm>
-
-#include "MHO_Message.hh"
-#include "MHO_NDArrayWrapper.hh"
-#include "MHO_TableContainer.hh"
-#include "MHO_UnaryOperator.hh"
-#include "MHO_CompoundReductions.hh" //for operator type definitions
 
 /*!
 *@file MHO_Reducer.hh
 *@class MHO_Reducer
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief Reduce a multi-dimensional array via a templated operation
 *(e.g. summation) along the (runtime) specified dimensions. The output array has the same
@@ -21,6 +13,14 @@ dimensionality (i.e. XArrayType::rank::value). However, the axes over which redu
 will have a size of 1. The output array will be resized if/as needed.
 */
 
+
+#include <algorithm>
+
+#include "MHO_Message.hh"
+#include "MHO_NDArrayWrapper.hh"
+#include "MHO_TableContainer.hh"
+#include "MHO_UnaryOperator.hh"
+#include "MHO_CompoundReductions.hh" //for operator type definitions
 
 namespace hops
 {

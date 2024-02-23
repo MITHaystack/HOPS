@@ -1,6 +1,14 @@
 #ifndef MHO_UnaryOperator_HH__
 #define MHO_UnaryOperator_HH__
 
+/*!
+*@file MHO_UnaryOperator.hh
+*@class MHO_UnaryOperator
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 #include "MHO_Operator.hh"
 
 #include <tuple>

@@ -4,8 +4,7 @@
 /*!
 *@file MHO_InitialFringeInfo.hh
 *@class MHO_InitialFringeInfo
-*@author
-*Email:
+*@author J. Barrettj - barrettj@mit.edu
 *@date Tue Sep 19 04:11:24 PM EDT 2023
 *@brief collection of helper functions to populate the parameter store
 * with a priori information know before fringe fitting

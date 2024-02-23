@@ -4,8 +4,7 @@
 /*!
 *@file MHO_LinearDParCorrection.hh
 *@class MHO_LinearDParCorrection
-*@author
-*Email:
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 */

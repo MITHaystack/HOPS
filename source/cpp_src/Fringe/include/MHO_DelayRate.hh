@@ -4,10 +4,9 @@
 /*!
 *@file MHO_DelayRate.hh
 *@class MHO_DelayRate
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
-*@brief
+*@brief implements the delay rate search
 */
 
 #include <cmath>

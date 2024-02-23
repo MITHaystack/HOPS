@@ -1,6 +1,14 @@
 #include <string>
 #include <array>
 
+/*!
+*@file MHO_Unit
+*@class MHO_Unit.hh
+*@date
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 namespace hops
 {
 

@@ -7,8 +7,7 @@
 /*!
 *@file MHO_IonosphericFringeFitter.hh
 *@class MHO_IonosphericFringeFitter
-*@author
-*Email:
+*@author J. Barrettj - barrettj@mit.edu
 *@date Tue Sep 19 04:11:24 PM EDT 2023
 *@brief single-baseline fringe fitter with ionosphere search
 */

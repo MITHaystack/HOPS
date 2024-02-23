@@ -5,9 +5,8 @@
 *@file  MHO_VexParser.hh
 *@class  MHO_VexParser
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@date
+*@brief
 */
 
 #include <vector>

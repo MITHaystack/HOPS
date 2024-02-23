@@ -5,7 +5,6 @@
 *@file MHO_FileStreamer.hh
 *@class MHO_FileStreamer
 *@author J. Barrett - barrettj@mit.edu 
-*
 *@date
 *@brief
 */

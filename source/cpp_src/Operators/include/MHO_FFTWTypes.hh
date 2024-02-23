@@ -1,19 +1,18 @@
 #ifndef MHO_FFTWTypes_HH__
 #define MHO_FFTWTypes_HH__
 
-#include <fftw3.h>
-#include <complex>
-
 /*!
 *@file MHO_FFTWTypes.hh
 *@class MHO_FFTWTypes
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date
 *@brief
 * template declaration of common FFTW3 types (dependent on floating precision)
 * These are necessary to get around partial template specialization in the FFT x-form classes
 */
+
+#include <fftw3.h>
+#include <complex>
 
 //avoids "no-args depending on template parameter error"
 int fftwf_alignment_of(float*) __attribute__((weak));

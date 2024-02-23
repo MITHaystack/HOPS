@@ -5,9 +5,8 @@
 *@file  MHO_VexTokenProcessor.hh
 *@class  MHO_VexTokenProcessor
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@date
+*@brief
 */
 
 #include "MHO_Message.hh"

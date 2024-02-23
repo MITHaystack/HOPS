@@ -5,8 +5,7 @@
 *@file  MHO_ContainerStore.hh
 *@class  MHO_ContainerStore
 *@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
+*@date
 *@brief  holds a collection of objects all pointed to by base class MHO_Serializable*
 * retrival is through type/object ids
 */

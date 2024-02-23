@@ -4,8 +4,7 @@
 /*!
 *@file MHO_TableContainer.hh
 *@class MHO_TableContainer
-*@author J. Barrett - barrettj@mit.edu 
-*
+*@author J. Barrett - barrettj@mit.edu
 *@date 2020-05-15T20:22:00.867Z
 *@brief
 */

@@ -1,6 +1,14 @@
 #ifndef MHO_SingleToneSignal_HH__
 #define MHO_SingleToneSignal_HH__
 
+/*!
+*@file MHO_SingleToneSignal.hh
+*@class MHO_SingleToneSignal
+*@date
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 #include "MHO_SimulatedSignalGenerator.hh"
 
 namespace hops

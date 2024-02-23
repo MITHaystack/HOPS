@@ -4,10 +4,9 @@
 /*!
 *@file  MHO_DiFXPCalProcessor.hh
 *@class  MHO_DiFXPCalProcessor
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
 */
 
 #include <string>

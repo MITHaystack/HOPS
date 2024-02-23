@@ -4,10 +4,9 @@
 /*!
 *@file  MHO_ControlElementParser.hh
 *@class  MHO_ControlElementParser
-*@author  J. Barrett - barrettj@mit.edu 
-*
-*@date 
-*@brief 
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
 */
 
 #include <vector>
