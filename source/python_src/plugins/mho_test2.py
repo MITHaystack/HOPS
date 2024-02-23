@@ -23,17 +23,20 @@ def test_noema(cstore_interface_obj, param_interface_obj):
     if rem_id == "Nn":
         stidx = 1
 
+    #grab the underlying visibility 4-d array
     vis_arr = visib_obj.get_numpy_array();
-    rank = visib_obj.get_rank()
+    #rank = visib_obj.get_rank()
+
+    #grab the axis information we care about
     axis0 = visib_obj.get_axis(0); #get the polprod axis
     axis1 = visib_obj.get_axis(1); #get the channel axis
     axis3 = visib_obj.get_axis(3); #get the spectral point axis (sub-channel)
     chan_meta_data = visib_obj.get_axis_metadata(1) #channel axis meta data object
     channel_info = chan_meta_data["index_labels"] #channel bin label dict
 
-    #hacky dictionary of phase jumps for NOEMA L-pol channels
+    #hacky dictionaries of phase jumps for NOEMA channels
     #first number is intra-channel frequency, second is phasor correction
-    #roughly estimated from fringe plots -- THIS ONLY WORKS FOR NON-ALMA baselines
+    #roughly estimated from fringe plots
     jumps_l = {
         "a":[25.0, -1.0],
         "b":[30.5, 1.0j],
@@ -84,7 +87,8 @@ def test_noema(cstore_interface_obj, param_interface_obj):
         "A":[37.6, -1.0]
     }
 
-    #why are these additional jumps/flips needed when NOEMA is the remote station
+    #oddly enough when NOEMA is the remote-station in the baseline, some sign flips happend
+    #why are these additional jumps/flips needed?
     if stidx == 1:
         #L pol
         jumps_l["b"][1] = -1j #the odd ball
@@ -104,12 +108,14 @@ def test_noema(cstore_interface_obj, param_interface_obj):
     jumps["R"] = jumps_r
     jumps["L"] = jumps_l
 
+    #now apply the corrections to the visibilities, looping over pol-prod and channel
     nspectral = visib_obj.get_dimension(3) # number of spectral points in channel
-    for polprod in axis0:
+    for pp in range(0, len(axis0)):
+        polprod = axis0[pp]
         pol = polprod[stidx:stidx+1]
-        for idx in range(0,len(axis1)):
-            idx_key = str(idx) #meta data keys are strings (e.g. "1", "2") not integers
-            fourfit_chan_label = channel_info[idx_key]["channel_label"] #fourfit label
+        for ch in range(0,len(axis1)):
+            chan_key = str(ch) #meta data keys must be strings (e.g. "1", "2") not integers
+            fourfit_chan_label = channel_info[chan_key]["channel_label"] #fourfit label
             if pol in jumps and fourfit_chan_label in jumps[pol]:
                 jump_freq = jumps[pol][fourfit_chan_label][0]
                 jump_phasor = jumps[pol][fourfit_chan_label][1]
@@ -117,4 +123,4 @@ def test_noema(cstore_interface_obj, param_interface_obj):
                 for sp in range(0,nspectral):
                     freq = axis3[sp]
                     if freq > jump_freq:
-                        vis_arr[0,idx,:,sp] *= jump_phasor
+                        vis_arr[pp, ch, :, sp] *= jump_phasor
