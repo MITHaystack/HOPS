@@ -199,4 +199,4 @@ MHO_ParameterStore::GetAs(const std::string& value_path) const
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_ParameterStore_HH__ */
+#endif /*! end of include guard: MHO_ParameterStore_HH__ */

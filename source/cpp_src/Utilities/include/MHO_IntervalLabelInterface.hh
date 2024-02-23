@@ -183,6 +183,6 @@ class MHO_IntervalLabelInterface
 } //end namespace
 
 
-#endif /* end of include guard: MHO_IntervalLabelInterface_HH__ */
+#endif /*! end of include guard: MHO_IntervalLabelInterface_HH__ */
 
 

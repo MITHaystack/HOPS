@@ -2,12 +2,12 @@
 #define MHO_Interval_HH__
 
 /*!
-*File: MHO_Interval.hh
-*Class: MHO_Interval
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: Implements the open integer interval [a,b)
+*@file MHO_Interval.hh
+*@class MHO_Interval
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief Implements the open integer interval [a,b)
 */
 
 #include <utility>
@@ -277,4 +277,4 @@ class MHO_Interval
 
 } //end of namespace
 
-#endif /* end of include guard: MHO_Interval */
+#endif /*! end of include guard: MHO_Interval */

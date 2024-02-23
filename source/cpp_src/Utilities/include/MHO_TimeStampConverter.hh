@@ -12,7 +12,7 @@ namespace hops
 /*!
 *@file MHO_TimeStampConverter.hh
 *@class MHO_TimeStampConverter
-*@author J. Barrett - barrettj@mit.edu
+*@author J. Barrett - barrettj@mit.edu  - barrettj@mit.edu
 * A class responsible for converting times/dates stored in a human readable string
 * into Unix epoch seconds and fractions of a second. The conversion can be done
 * in both directions
@@ -25,7 +25,7 @@ class MHO_TimeStampConverter
         MHO_TimeStampConverter(){};
         ~MHO_TimeStampConverter(){};
 
-        /** convert a long int epoch second count to a human readable date string in YYYY-MM-DDTHH:MM:SS.(F)Z format.
+        /*!* convert a long int epoch second count to a human readable date string in YYYY-MM-DDTHH:MM:SS.(F)Z format.
         * The fractional_part is rounded to the nearest nano second
         * @param epoch_sec const reference to a uint64_t to the epoch second
         * @param fractional_part const reference to a double containing the factional second
@@ -34,7 +34,7 @@ class MHO_TimeStampConverter
         */
         static bool ConvertEpochSecondToTimeStamp(const uint64_t& epoch_sec, const double& fractional_part, std::string& date);
 
-        /** Convert a date string into an epoch second and fractional second.
+        /*!* Convert a date string into an epoch second and fractional second.
         * The time stamp must be in UTC/Zulu with format: YYYY-MM-DDTHH:MM:SS.(F)Z, the
         * number of digits in the fractional part (F) may vary.
         * @param date const reference to the date string to be converted
@@ -48,4 +48,4 @@ class MHO_TimeStampConverter
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_TimeStampConverter_HH__ */
+#endif /*! end of include guard: MHO_TimeStampConverter_HH__ */

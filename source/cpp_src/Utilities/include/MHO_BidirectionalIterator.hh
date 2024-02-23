@@ -2,12 +2,12 @@
 #define MHO_BidirectionalIterator_HH__
 
 /*!
-*@file: MHO_BidirectionalIterator.hh
-*@class: MHO_BidirectionalIterator
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
+*@file  MHO_BidirectionalIterator.hh
+*@class  MHO_BidirectionalIterator
+*@author  J. Barrett - barrettj@mit.edu 
+*
+*@date 
+*@brief 
 */
 
 #include <iterator>
@@ -288,4 +288,4 @@ class MHO_BidirectionalConstIterator
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_BidirectionalIterator */
+#endif /*! end of include guard: MHO_BidirectionalIterator */

@@ -27,4 +27,4 @@ class MHO_Constants
 }
 
 
-#endif /* end of include guard: MHO_Constants_HH__ */
+#endif /*! end of include guard: MHO_Constants_HH__ */

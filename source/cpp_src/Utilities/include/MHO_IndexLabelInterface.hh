@@ -199,6 +199,6 @@ class MHO_IndexLabelInterface
 } //end namespace
 
 
-#endif /* end of include guard: MHO_IndexLabelInterface_HH__ */
+#endif /*! end of include guard: MHO_IndexLabelInterface_HH__ */
 
 

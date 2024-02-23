@@ -25,4 +25,4 @@ static_assert( sizeof( std::complex<float> ) == 8, "std::complex<float> size is 
 #endif
 
 
-#endif /* end of include guard: MHO_Types_HH__ */
+#endif /*! end of include guard: MHO_Types_HH__ */

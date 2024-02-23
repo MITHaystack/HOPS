@@ -8,12 +8,12 @@
 #define MHO_TemplateTypenameDeduction_HH__
 
 /*!
-*File: MHO_TemplateTypenameDeduction.hh
-*Class:
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+*@file MHO_TemplateTypenameDeduction.hh
+*@class
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 * Main idea from blog post here: https://bitwizeshift.github.io/posts/2021/03/09/getting-an-unmangled-type-name-at-compile-time/
 * but re-worked so that it can work with C++11.
 * However, class name deduction is now done at run-time rather than compile time, because the compiler names
@@ -207,4 +207,4 @@ inline std::string MHO_ClassName<std::string>()
 };
 
 
-#endif /* end of include guard:  */
+#endif /*! end of include guard:  */

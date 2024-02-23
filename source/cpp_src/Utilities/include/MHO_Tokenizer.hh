@@ -20,13 +20,13 @@ class MHO_Tokenizer{
         MHO_Tokenizer();
         ~MHO_Tokenizer();
 
-        /** Include empty tokens set fIncludeEmptyTokens to true for situations where two delimiters surround a substring which would result in an empty string
+        /*!* Include empty tokens set fIncludeEmptyTokens to true for situations where two delimiters surround a substring which would result in an empty string
         * @param None
         * @returns None
         */
         void SetIncludeEmptyTokensTrue();
 
-        /** Do not include empty tokens and set fincludeEmptyTokens to false
+        /*!* Do not include empty tokens and set fincludeEmptyTokens to false
         * @param None
         * @returns None
         */
@@ -41,19 +41,19 @@ class MHO_Tokenizer{
         void SetRemoveLeadingTrailingWhitespaceTrue();
         void SetRemoveLeadingTrailingWhitespaceFalse();
 
-        /** Set the string to be parsed
+        /*!* Set the string to be parsed
         * @param aString string
         * @returns None
         */
         void SetString(const std::string* aString);
 
-        /** Set the delimiter to be used to parse the string in SetString
+        /*!* Set the delimiter to be used to parse the string in SetString
         * @param aDelim string a string to be used as a delimiter
         * @returns None
         */
         void SetDelimiter(const std::string& aDelim);
 
-        /** Parse the string using the tokens
+        /*!* Parse the string using the tokens
         * @param tokens pointer to a vector of strings
         * @returns None
         */
@@ -92,4 +92,4 @@ std::vector< std::string > SplitString(const std::string& input, std::string del
 
 } // end of hops namespace
 
-#endif /* end of include guard: MHO_Tokenizer */
+#endif /*! end of include guard: MHO_Tokenizer */

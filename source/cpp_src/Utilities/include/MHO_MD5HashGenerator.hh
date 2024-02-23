@@ -2,12 +2,12 @@
 #define MHO_MD5HashGenerator_HH__
 
 /*!
-*File: MHO_MD5HashGenerator.hh
-*Class: MHO_MD5HashGenerator
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+*@file MHO_MD5HashGenerator.hh
+*@class MHO_MD5HashGenerator
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date
+*@brief
 */
 
 #include <stdio.h>
@@ -170,4 +170,4 @@ class MHO_MD5HashGenerator: public MHO_MD5HashGeneratorBasicTypes
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_MD5HashGenerator */
+#endif /*! end of include guard: MHO_MD5HashGenerator */

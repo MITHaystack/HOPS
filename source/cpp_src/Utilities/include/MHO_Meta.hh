@@ -3,11 +3,11 @@
 
 
 /*!
-*File: MHO_Meta.hh
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-13T17:43:26.831Z
-*Description: template meta-programming helper functions, mostly tuple access/modification
+*@file MHO_Meta.hh
+*@author J. Barrett - barrettj@mit.edu 
+*
+*@date 2020-05-13T17:43:26.831Z
+*@brief template meta-programming helper functions, mostly tuple access/modification
 */
 
 #include <type_traits>
@@ -293,4 +293,4 @@ class MHO_ScalarContainerBase{}; //only needed for dependent template specializa
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_Meta */
+#endif /*! end of include guard: MHO_Meta */

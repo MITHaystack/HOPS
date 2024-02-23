@@ -112,4 +112,4 @@ class MHO_JSONWrapper
 
 }//end namespace
 
-#endif /* end of include guard: JSON_WRAPPER */
+#endif /*! end of include guard: JSON_WRAPPER */
