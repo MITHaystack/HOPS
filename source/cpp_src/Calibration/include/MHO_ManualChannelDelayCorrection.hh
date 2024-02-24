@@ -1,13 +1,7 @@
 #ifndef MHO_ManualChannelDelayCorrection_HH__
 #define MHO_ManualChannelDelayCorrection_HH__
 
-/*!
-*@file MHO_ManualChannelDelayCorrection.hh
-*@class MHO_ManualChannelDelayCorrection
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
+
 
 #include <cmath>
 #include <complex>
@@ -27,6 +21,13 @@
 namespace hops
 {
 
+/*!
+*@file MHO_ManualChannelDelayCorrection.hh
+*@class MHO_ManualChannelDelayCorrection
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_type >
 {

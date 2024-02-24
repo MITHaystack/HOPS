@@ -1,14 +1,6 @@
 #ifndef MHO_TimeStampConverter_HH__
 #define MHO_TimeStampConverter_HH__
 
-/*!
-*@file MHO_TimeStampConverter.hh
-*@class MHO_TimeStampConverter
-*@author J. Barrett - barrettj@mit.edu
-* A class responsible for converting times/dates stored in a human readable string
-* into Unix epoch seconds and fractions of a second. The conversion can be done
-* in both directions
-*/
 
 
 #include <string>
@@ -18,6 +10,16 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_TimeStampConverter.hh
+*@class MHO_TimeStampConverter
+*@author J. Barrett - barrettj@mit.edu
+* A class responsible for converting times/dates stored in a human readable string
+* into Unix epoch seconds and fractions of a second. The conversion can be done
+* in both directions
+*/
+
 
 class MHO_TimeStampConverter
 {

@@ -1,13 +1,6 @@
 #ifndef MHO_TableContainer_HH__
 #define MHO_TableContainer_HH__
 
-/*!
-*@file MHO_TableContainer.hh
-*@class MHO_TableContainer
-*@author J. Barrett - barrettj@mit.edu
-*@date 2020-05-15T20:22:00.867Z
-*@brief
-*/
 
 
 #include <tuple>
@@ -26,6 +19,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_TableContainer.hh
+*@class MHO_TableContainer
+*@author J. Barrett - barrettj@mit.edu
+*@date 2020-05-15T20:22:00.867Z
+*@brief
+*/
 
 template< typename XValueType, typename XAxisPackType >
 class MHO_TableContainer:

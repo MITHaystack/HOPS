@@ -1,14 +1,6 @@
 #ifndef MHO_VexGenerator_HH__
 #define MHO_VexGenerator_HH__
 
-/*!
-*@file  MHO_VexGenerator.hh
-*@class  MHO_VexGenerator
-*@author  J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
-
 #include <vector>
 #include <list>
 #include <string>
@@ -23,6 +15,15 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_VexGenerator.hh
+*@class  MHO_VexGenerator
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 
 class MHO_VexGenerator
 {

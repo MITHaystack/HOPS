@@ -1,13 +1,6 @@
 #ifndef MHO_FringePlotInfo_HH__
 #define MHO_FringePlotInfo_HH__
 
-/*!
-*@file MHO_FringePlotInfo.hh
-*@class MHO_FringePlotInfo
-*@author J. Barrettj - barrettj@mit.edu
-*@date Tue Sep 19 04:11:24 PM EDT 2023
-*@brief a collection of helper functions to organize fringe fitting
-*/
 
 //global messaging util
 #include "MHO_Message.hh"
@@ -20,6 +13,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_FringePlotInfo.hh
+*@class MHO_FringePlotInfo
+*@author J. Barrettj - barrettj@mit.edu
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief a collection of helper functions to organize fringe fitting
+*/
 
 class MHO_FringePlotInfo
 {

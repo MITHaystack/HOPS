@@ -1,13 +1,7 @@
 #ifndef MHO_FileStreamer_HH__
 #define MHO_FileStreamer_HH__
 
-/*!
-*@file MHO_FileStreamer.hh
-*@class MHO_FileStreamer
-*@author J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
+
 
 #include "MHO_Message.hh"
 #include <fstream>
@@ -15,6 +9,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_FileStreamer.hh
+*@class MHO_FileStreamer
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_FileStreamer
 {

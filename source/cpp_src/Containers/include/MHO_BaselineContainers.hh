@@ -7,6 +7,11 @@
 #endif
 
 
+
+
+namespace hops
+{
+
 /*!
 *@file MHO_BaselineContainers.hh
 *@author J. Barrett - barrettj@mit.edu
@@ -14,10 +19,6 @@
 *@brief Definitions for single-baseline visibility data and related quantities.
 * This will likely be re-worked as things progress.
 */
-
-namespace hops
-{
-
 
 ////////////////////////////////////////////////////////////////////////////
 //the following definitions are for 'un-channelized data'

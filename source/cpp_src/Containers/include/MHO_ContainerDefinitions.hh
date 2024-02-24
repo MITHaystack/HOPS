@@ -1,14 +1,6 @@
 #ifndef MHO_ContainerDefinitions_HH__
 #define MHO_ContainerDefinitions_HH__
 
-/*!
-*@file MHO_ContainerDefinitions.hh
-*@class
-*@date
-*@brief wrapper header to include all container definitions
-*@author J. Barrett - barrettj@mit.edu
-*/
-
 #include <string>
 #include <complex>
 

@@ -1,13 +1,7 @@
 #ifndef MHO_PolProductSummation_HH__
 #define MHO_PolProductSummation_HH__
 
-/*!
-*@file MHO_PolProductSummation.hh
-*@class MHO_PolProductSummation
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
+
 
 #include <cmath>
 #include <complex>
@@ -28,6 +22,13 @@
 namespace hops
 {
 
+/*!
+*@file MHO_PolProductSummation.hh
+*@class MHO_PolProductSummation
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
 {

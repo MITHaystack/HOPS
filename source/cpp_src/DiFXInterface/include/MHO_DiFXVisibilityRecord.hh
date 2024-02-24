@@ -1,13 +1,6 @@
 #ifndef MHO_DiFXVisibilityRecord_HH__
 #define MHO_DiFXVisibilityRecord_HH__
 
-/*!
-*@file MHO_DiFXVisibilityRecord.hh
-*@class MHO_DiFXVisibilityRecord
-*@author J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
 
 #include <cstdint>
 #include <vector>
@@ -16,6 +9,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_DiFXVisibilityRecord.hh
+*@class MHO_DiFXVisibilityRecord
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_DiFXVisibilityRecord
 {

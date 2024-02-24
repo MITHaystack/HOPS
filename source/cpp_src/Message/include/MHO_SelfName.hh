@@ -1,11 +1,6 @@
 #ifndef MHO_SelfName_HH__
 #define MHO_SelfName_HH__
 
-/*!*
-*@file MHO_SelfName.hh
-*@brief constexpr to stip path prefix from __FILE__ macros
-*@author J. Barrett - barrettj@mit.edu
-*/
 
 #include <atomic>
 #include <thread>
@@ -13,8 +8,15 @@
 
 namespace hops
 {
+
     namespace selfname
     {
+        /*!*
+        *@file MHO_SelfName.hh
+        *@brief constexpr to stip path prefix from __FILE__ macros
+        *@author J. Barrett - barrettj@mit.edu
+        */
+
         //needed for stripping the path prefix from __FILE__ macro contents
         //see https://stackoverflow.com/questions/31050113
         constexpr const char* str_end(const char *str){ return *str ? str_end(str + 1) : str; }

@@ -1,6 +1,12 @@
 #ifndef MHO_IntervalLabelInterface_HH__
 #define MHO_IntervalLabelInterface_HH__
 
+
+#include "MHO_JSONHeaderWrapper.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_IntervalLabelInterface.hh
 *@class MHO_IntervalLabelInterface
@@ -9,10 +15,6 @@
 *@author J. Barrett - barrettj@mit.edu
 */
 
-#include "MHO_JSONHeaderWrapper.hh"
-
-namespace hops
-{
 
 //constructor is protected
 //this class is only intended to provide an interface that derived classes may inherit

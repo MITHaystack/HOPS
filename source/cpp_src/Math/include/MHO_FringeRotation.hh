@@ -6,6 +6,10 @@
 #include <cmath>
 
 
+
+namespace hops
+{
+
 /*!
 *@file MHO_FringeRotation.hh
 *@class MHO_FringeRotation
@@ -13,9 +17,6 @@
 *@date
 *@brief class to implement functionality originally found in vrot.c
 */
-
-namespace hops
-{
 
 class MHO_FringeRotation
 {

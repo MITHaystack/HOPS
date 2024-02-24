@@ -1,13 +1,6 @@
 #ifndef MHO_Serializable_HH__
 #define MHO_Serializable_HH__
 
-/*!
-*@file MHO_Serializable.hh
-*@class MHO_Serializable
-*@author J. Barrett - barrettj@mit.edu 
-*@date 2020-05-15T20:21:32.924Z
-*@brief
-*/
 
 
 #include "MHO_Types.hh"
@@ -20,6 +13,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_Serializable.hh
+*@class MHO_Serializable
+*@author J. Barrett - barrettj@mit.edu
+*@date 2020-05-15T20:21:32.924Z
+*@brief
+*/
+
 
 class MHO_Serializable
 {

@@ -1,14 +1,7 @@
 #ifndef MHO_ObjectTags_HH__
 #define MHO_ObjectTags_HH__
 
-/*!
-*@file MHO_ObjectTags.hh
-*@class MHO_ObjectTags
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief container for tag/value meta-data to be attached to objects
-*via association with their UUID
-*/
+
 
 #include <set>
 #include <string>
@@ -21,6 +14,14 @@
 
 namespace hops{
 
+/*!
+*@file MHO_ObjectTags.hh
+*@class MHO_ObjectTags
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief container for tag/value meta-data to be attached to objects
+*via association with their UUID
+*/
 
 class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 {

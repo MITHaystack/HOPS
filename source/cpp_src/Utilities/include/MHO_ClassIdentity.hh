@@ -1,14 +1,6 @@
 #ifndef MHO_ClassIdentity_HH__
 #define MHO_ClassIdentity_HH__
 
-/*!
-*@file MHO_ClassIdentity.hh
-*@class MHO_ClassIdentity
-*@author J. Barrett - barrettj@mit.edu 
-*@date
-*@brief template class to produce the name of XClassType at runtime
-*/
-
 
 #include <string>
 #include "MHO_Types.hh"
@@ -19,6 +11,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_ClassIdentity.hh
+*@class MHO_ClassIdentity
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief template class to produce the name of XClassType at runtime
+*/
 
 typedef uint32_t MHO_ClassVersion;
 

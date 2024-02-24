@@ -1,14 +1,6 @@
 #ifndef MHO_IonosphericPhaseCorrection_HH__
 #define MHO_IonosphericPhaseCorrection_HH__
 
-/*!
-*@file MHO_IonosphericPhaseCorrection.hh
-*@class MHO_IonosphericPhaseCorrection
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
-
 #include <cmath>
 #include <complex>
 #include <vector>
@@ -22,11 +14,17 @@
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_UnaryOperator.hh"
 
-
-
 namespace hops
 {
 
+
+/*!
+*@file MHO_IonosphericPhaseCorrection.hh
+*@class MHO_IonosphericPhaseCorrection
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_IonosphericPhaseCorrection: public MHO_UnaryOperator< visibility_type >
 {

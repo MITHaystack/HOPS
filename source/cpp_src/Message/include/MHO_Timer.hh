@@ -1,6 +1,14 @@
 #ifndef MHO_Timer_HH__
 #define MHO_Timer_HH__
 
+
+#include <string>
+#include <ctime>
+
+namespace hops
+{
+
+
 /*!*
 *@file MHO_Timer.hh
 *@class MHO_Timer
@@ -9,13 +17,6 @@
 * For more information on the linux system variables and functions that were leveraged see: https://linux.die.net/man/3/clock_gettime
 * TODO -- detect if system actually has a realtime clock and disable if not present
 */
-
-#include <string>
-#include <ctime>
-
-namespace hops
-{
-
 
 class MHO_Timer
 {

@@ -1,15 +1,6 @@
 #ifndef MHO_MK4CorelInterface_HH__
 #define MHO_MK4CorelInterface_HH__
 
-/*!
-*@file MHO_MK4CorelInterface.hh
-*@class MHO_MK4CorelInterface
-*@author J. Barrett - barrettj@mit.edu
-*@date 2020-05-19T18:54:28.140Z
-*@brief This class implicitly assumes that the frequency/channel configuration
-* is shared among all polarization products (i.e. nlags), we may want to loosen this restriction
-* in the future
-*/
 
 #include <vector>
 #include <cstdlib>
@@ -38,6 +29,17 @@ struct mk4_corel;
 
 namespace hops
 {
+
+/*!
+*@file MHO_MK4CorelInterface.hh
+*@class MHO_MK4CorelInterface
+*@author J. Barrett - barrettj@mit.edu
+*@date 2020-05-19T18:54:28.140Z
+*@brief This class implicitly assumes that the frequency/channel configuration
+* is shared among all polarization products (i.e. nlags), we may want to loosen this restriction
+* in the future
+*/
+
 
 class MHO_MK4CorelInterface
 {

@@ -2,14 +2,6 @@
 #define MHO_MBDelaySearch_HH__
 
 
-/*!
-*@file MHO_MBDelaySearch.hh
-*@class MHO_MBDelaySearch
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief implements the coarse MBD/SBD/DR search, see search.c
-*/
-
 #include <cmath>
 #include <complex>
 
@@ -31,6 +23,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_MBDelaySearch.hh
+*@class MHO_MBDelaySearch
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief implements the coarse MBD/SBD/DR search, see search.c
+*/
 
 using mbd_axis_pack = MHO_AxisPack< time_axis_type >;
 using mbd_type = MHO_TableContainer< visibility_element_type, mbd_axis_pack >;

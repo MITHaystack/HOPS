@@ -1,15 +1,6 @@
 #ifndef MHO_SubSample_HH__
 #define MHO_SubSample_HH__
 
-/*!
-*@file MHO_SubSample.hh
-*@class MHO_SubSample
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-* Sub-samples an array at the specified stride (e.g. select every-other point)
-* Can only be applied to a single-axis at a time.
-*/
 
 
 #include <algorithm>
@@ -23,6 +14,17 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_SubSample.hh
+*@class MHO_SubSample
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+* Sub-samples an array at the specified stride (e.g. select every-other point)
+* Can only be applied to a single-axis at a time.
+*/
+
 
 template< class XArrayType>
 class MHO_SubSample:

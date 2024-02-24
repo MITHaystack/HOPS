@@ -1,15 +1,6 @@
 #ifndef MHO_CyclicRotator_HH__
 #define MHO_CyclicRotator_HH__
 
-/*!
-*@file MHO_CyclicRotator.hh
-*@class MHO_CyclicRotator
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-* Applies a cyclic rotation on the contents on a multidimensional array
-* by some specified offset for each dimension.
-*/
 
 
 #include <algorithm>
@@ -22,6 +13,17 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_CyclicRotator.hh
+*@class MHO_CyclicRotator
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+* Applies a cyclic rotation on the contents on a multidimensional array
+* by some specified offset for each dimension.
+*/
+
 
 template< class XArrayType >
 class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >

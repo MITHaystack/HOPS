@@ -1,14 +1,7 @@
 #ifndef MHO_NDArrayView_HH__
 #define MHO_NDArrayView_HH__
 
-/*!
-*@file MHO_NDArrayView.hh
-*@class MHO_NDArrayView
-*@author J. Barrett - barrettj@mit.edu
-*@date 2020-05-15T20:22:38.395Z
-*@brief
-* Thu 13 Aug 2020 02:53:11 PM EDT
-*/
+
 
 #include <cstring> //for memset
 #include <string>
@@ -28,6 +21,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_NDArrayView.hh
+*@class MHO_NDArrayView
+*@author J. Barrett - barrettj@mit.edu
+*@date 2020-05-15T20:22:38.395Z
+*@brief
+* Thu 13 Aug 2020 02:53:11 PM EDT
+*/
 
 template< typename XValueType, std::size_t RANK>
 class MHO_NDArrayView

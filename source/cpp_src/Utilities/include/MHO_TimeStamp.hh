@@ -1,13 +1,7 @@
 #ifndef MHO_TimeStamp_HH__
 #define MHO_TimeStamp_HH__
 
-/*!
-*@file  MHO_TimeStamp.hh
-*@class  MHO_TimeStamp
-*@author  J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
+
 
 #include <chrono>
 #include <string>
@@ -16,6 +10,14 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_TimeStamp.hh
+*@class  MHO_TimeStamp
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_TimeStamp
 {

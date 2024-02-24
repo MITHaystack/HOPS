@@ -1,13 +1,6 @@
 #ifndef MHO_OpenCLScalarMultiply_HH__
 #define MHO_OpenCLScalarMultiply_HH__
 
-/*!
-*@file MHO_OpenCLScalarMultiply.hh
-*@class MHO_OpenCLScalarMultiply
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 
 #include <algorithm>
@@ -22,6 +15,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_OpenCLScalarMultiply.hh
+*@class MHO_OpenCLScalarMultiply
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 
 template< typename XFactorType, class XArrayType >
 class MHO_OpenCLScalarMultiply: public MHO_UnaryOperator< XArrayType >

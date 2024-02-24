@@ -1,13 +1,7 @@
 #ifndef JSON_WRAPPER_HH__
 #define JSON_WRAPPER_HH__
 
-/*!
-*@file MHO_JSONHeaderWrapper.hh
-*@class MHO_JSONHeaderWrapper
-*@date
-*@brief
-*@author J. Barrett - barrettj@mit.edu
-*/
+
 
 #include "nlohmann/json.hpp"
 using mho_json = nlohmann::json;
@@ -22,6 +16,13 @@ namespace nl=nlohmann;
 namespace hops
 {
 
+/*!
+*@file MHO_JSONHeaderWrapper.hh
+*@class MHO_JSONHeaderWrapper
+*@date
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
 
 //constructor is protected
 //this class is only intended to provide an interface that derived classes may inherit

@@ -1,13 +1,6 @@
 #ifndef MHO_DiFXInterface_HH__
 #define MHO_DiFXInterface_HH__
 
-/*!
-*@file  MHO_DiFXInterface.hh
-*@class  MHO_DiFXInterface
-*@author  J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 #include <string>
 #include <vector>
@@ -26,6 +19,14 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_DiFXInterface.hh
+*@class  MHO_DiFXInterface
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_DiFXInterface
 {

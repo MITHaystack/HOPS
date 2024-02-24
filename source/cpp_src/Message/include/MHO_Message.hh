@@ -1,14 +1,6 @@
 #ifndef MHO_Message_HH__
 #define MHO_Message_HH__
 
-/*!
-*@file MHO_Message.hh
-*@class MHO_Message
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief class for managing messages to stdout
-*/
-
 
 #include <cstdlib>
 #include <ostream>
@@ -32,6 +24,16 @@
 
 namespace hops
 {
+
+
+/*!
+*@file MHO_Message.hh
+*@class MHO_Message
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief class for managing messages to stdout
+*/
+
 
 namespace sn = selfname;
 

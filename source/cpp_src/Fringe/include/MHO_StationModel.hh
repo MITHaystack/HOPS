@@ -1,6 +1,13 @@
 #ifndef MHO_StationModel_HH__
 #define MHO_StationModel_HH__
 
+
+#include "MHO_TableContainer.hh"
+#include "MHO_ContainerDefinitions.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_StationModel.hh
 *@class MHO_StationModel
@@ -8,12 +15,6 @@
 *@date
 *@brief evaluates the station a priori coordinate polynomials
 */
-
-#include "MHO_TableContainer.hh"
-#include "MHO_ContainerDefinitions.hh"
-
-namespace hops
-{
 
 class MHO_StationModel
 {

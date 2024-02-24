@@ -1,6 +1,14 @@
 #ifndef MHO_PythonOperatorBuilderBuilder_HH__
 #define MHO_PythonOperatorBuilderBuilder_HH__
 
+
+
+#include "MHO_OperatorBuilder.hh"
+#include "MHO_PyGenericOperator.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_PythonOperatorBuilder.hh
 *@class MHO_PythonOperatorBuilder
@@ -8,12 +16,6 @@
 *@date
 *@brief
 */
-
-#include "MHO_OperatorBuilder.hh"
-#include "MHO_PyGenericOperator.hh"
-
-namespace hops
-{
 
 class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
 {

@@ -1,13 +1,6 @@
 #ifndef MHO_UUID_HH__
 #define MHO_UUID_HH__
 
-/*!
-*@file MHO_UUID.hh
-*@class MHO_UUID
-*@author J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
 
 
 #include <cstdlib>
@@ -21,6 +14,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_UUID.hh
+*@class MHO_UUID
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 
 #define MHO_UUID_LENGTH 16
 

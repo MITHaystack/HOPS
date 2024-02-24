@@ -1,19 +1,21 @@
 #ifndef MHO_BidirectionalStrideIterator_HH__
 #define MHO_BidirectionalStrideIterator_HH__
 
-/*!
-*@file  MHO_BidirectionalStrideIterator.hh
-*@class  MHO_BidirectionalStrideIterator
-*@author  J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
+
 
 #include <iterator>
 
 
 namespace hops
 {
+
+/*!
+*@file  MHO_BidirectionalStrideIterator.hh
+*@class  MHO_BidirectionalStrideIterator
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 template < typename XValueType >
 class MHO_BidirectionalStrideIterator

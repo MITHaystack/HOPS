@@ -1,13 +1,7 @@
 #ifndef MHO_BinaryFileInterface_HH__
 #define MHO_BinaryFileInterface_HH__
 
-/*!
-*@file MHO_BinaryFileInterface.hh
-*@class MHO_BinaryFileInterface
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
+
 
 #include "MHO_Message.hh"
 #include "MHO_ClassIdentity.hh"
@@ -19,6 +13,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_BinaryFileInterface.hh
+*@class MHO_BinaryFileInterface
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_BinaryFileInterface
 {

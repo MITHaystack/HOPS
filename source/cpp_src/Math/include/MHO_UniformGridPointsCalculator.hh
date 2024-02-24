@@ -1,6 +1,16 @@
 #ifndef MHO_UniformGridPointsCalculator_HH__
 #define MHO_UniformGridPointsCalculator_HH__
 
+
+
+#include <cmath>
+#include <limits>
+#include <map>
+#include <vector>
+
+namespace hops
+{
+
 /*!
 *@file
 *@class
@@ -10,14 +20,6 @@
 Basically it is a primitive method to figure out an approximate (but uniformly spaced) grid which
 aligns (within epsilon) with the original floating point locations.
 */
-
-#include <cmath>
-#include <limits>
-#include <map>
-#include <vector>
-
-namespace hops
-{
 
 class MHO_UniformGridPointsCalculator
 {

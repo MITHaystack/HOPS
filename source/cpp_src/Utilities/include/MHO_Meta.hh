@@ -2,13 +2,6 @@
 #define MHO_Meta_HH__
 
 
-/*!
-*@file MHO_Meta.hh
-*@author J. Barrett - barrettj@mit.edu 
-*@date 2020-05-13T17:43:26.831Z
-*@brief template meta-programming helper functions, mostly tuple access/modification
-*/
-
 #include <type_traits>
 #include <tuple>
 #include <map>
@@ -16,6 +9,13 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_Meta.hh
+*@author J. Barrett - barrettj@mit.edu
+*@date 2020-05-13T17:43:26.831Z
+*@brief template meta-programming helper functions, mostly tuple access/modification
+*/
 
 //null and empty types
 class MHO_NullType {};

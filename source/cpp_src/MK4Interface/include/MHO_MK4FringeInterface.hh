@@ -1,14 +1,6 @@
 #ifndef MHO_MK4FringeInterface_HH__
 #define MHO_MK4FringeInterface_HH__
 
-/*!
-*@file MHO_MK4FringeInterface.hh
-*@class MHO_MK4FringeInterface
-*@author J. Barrett - barrettj@mit.edu
-*@date 2020-05-19T18:54:28.140Z
-*@brief
-*/
-
 #include <iostream>
 #include <string>
 
@@ -27,6 +19,16 @@ extern "C"
 
 namespace hops
 {
+
+
+/*!
+*@file MHO_MK4FringeInterface.hh
+*@class MHO_MK4FringeInterface
+*@author J. Barrett - barrettj@mit.edu
+*@date 2020-05-19T18:54:28.140Z
+*@brief
+*/
+
 
 class MHO_MK4FringeInterface
 {

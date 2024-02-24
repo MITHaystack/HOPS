@@ -1,6 +1,12 @@
 #ifndef MHO_ManualPolPhaseCorrectionBuilderBuilder_HH__
 #define MHO_ManualPolPhaseCorrectionBuilderBuilder_HH__
 
+
+#include "MHO_OperatorBuilder.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_ManualPolPhaseCorrectionBuilder.hh
 *@class MHO_ManualPolPhaseCorrectionBuilder
@@ -8,11 +14,6 @@
 *@date
 *@brief
 */
-
-#include "MHO_OperatorBuilder.hh"
-
-namespace hops
-{
 
 class MHO_ManualPolPhaseCorrectionBuilder:
     public MHO_OperatorBuilder

@@ -1,6 +1,13 @@
 #ifndef MHO_ManualChannelDelayCorrectionBuilderBuilder_HH__
 #define MHO_ManualChannelDelayCorrectionBuilderBuilder_HH__
 
+
+#include "MHO_OperatorBuilder.hh"
+#include "MHO_ChannelQuantity.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_ManualChannelDelayCorrectionBuilder.hh
 *@class MHO_ManualChannelDelayCorrectionBuilder
@@ -8,12 +15,6 @@
 *@date
 *@brief
 */
-
-#include "MHO_OperatorBuilder.hh"
-#include "MHO_ChannelQuantity.hh"
-
-namespace hops
-{
 
 class MHO_ManualChannelDelayCorrectionBuilder:
     public MHO_OperatorBuilder,

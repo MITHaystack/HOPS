@@ -1,13 +1,7 @@
 #ifndef MHO_FastFourierTransformCalls_HH__
 #define MHO_FastFourierTransformCalls_HH__
 
-/*!
-*@file MHO_FastFourierTransformCalls.hh
-*@class MHO_FastFourierTransformCalls
-*@date
-*@brief native FFT implemenation calls
-*@author J. Barrett - barrettj@mit.edu
-*/
+
 
 #include <complex>
 #include <cstddef>
@@ -22,6 +16,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_FastFourierTransformCalls.hh
+*@class MHO_FastFourierTransformCalls
+*@date
+*@brief native FFT implemenation calls
+*@author J. Barrett - barrettj@mit.edu
+*/
 
 template< typename XFloatType >
 void FFTRadix2(std::complex<XFloatType>* data, MHO_FastFourierTransformWorkspace<XFloatType>& work, bool isForward, unsigned int stride=1)

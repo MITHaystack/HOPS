@@ -1,13 +1,6 @@
 #ifndef MHO_ScalarContainer_HH__
 #define MHO_ScalarContainer_HH__
 
-/*!
-*@file MHO_ScalarContainer.hh
-*@class MHO_ScalarContainer
-*@author J. Barrett - barrettj@mit.edu
-*@date 2020-05-15T20:22:06.227Z
-*@brief
-*/
 
 
 #include <string>
@@ -20,6 +13,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_ScalarContainer.hh
+*@class MHO_ScalarContainer
+*@author J. Barrett - barrettj@mit.edu
+*@date 2020-05-15T20:22:06.227Z
+*@brief
+*/
 
 
 template< typename XValueType >

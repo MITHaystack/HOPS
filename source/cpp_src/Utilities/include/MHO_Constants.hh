@@ -1,6 +1,13 @@
 #ifndef MHO_Constants_HH__
 #define MHO_Constants_HH__
 
+
+#include <cmath>
+#include <complex>
+
+namespace hops
+{
+
 /*!
 *@file MHO_Constants.hh
 *@class MHO_Constants
@@ -9,11 +16,6 @@
 *@author J. Barrett - barrettj@mit.edu
 */
 
-#include <cmath>
-#include <complex>
-
-namespace hops
-{
 
 class MHO_Constants
 {

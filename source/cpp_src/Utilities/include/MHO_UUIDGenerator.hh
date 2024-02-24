@@ -1,6 +1,16 @@
 #ifndef MHO_UUIDGenerator_HH__
 #define MHO_UUIDGenerator_HH__
 
+
+#include <sstream>
+#include <random>
+#include <string>
+#include "MHO_UUID.hh"
+
+namespace hops
+{
+
+
 /*!
 *@file MHO_UUIDGenerator.hh
 *@class MHO_UUIDGenerator
@@ -10,14 +20,6 @@
 * https://tools.ietf.org/html/rfc4122
 */
 
-
-#include <sstream>
-#include <random>
-#include <string>
-#include "MHO_UUID.hh"
-
-namespace hops
-{
 
 class MHO_UUIDGenerator
 {

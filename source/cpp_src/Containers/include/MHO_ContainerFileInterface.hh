@@ -1,13 +1,7 @@
 #ifndef MHO_ContainerFileInterface_HH__
 #define MHO_ContainerFileInterface_HH__
 
-/*!
-*@file  MHO_ContainerFileInterface.hh
-*@class  MHO_ContainerFileInterface
-*@author  J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
+
 
 #include "MHO_Message.hh"
 #include "MHO_ContainerDictionary.hh"
@@ -19,6 +13,14 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_ContainerFileInterface.hh
+*@class  MHO_ContainerFileInterface
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 {

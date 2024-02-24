@@ -1,6 +1,14 @@
 #ifndef MHO_UnaryFunctor_HH__
 #define MHO_UnaryFunctor_HH__
 
+
+
+#include <algorithm>
+#include "MHO_NDArrayWrapper.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_UnaryFunctor.hh
 *@class MHO_UnaryFunctor
@@ -8,13 +16,6 @@
 *@date
 *@brief abstract baseclass for an functor which takes array iterators
 */
-
-#include <algorithm>
-#include "MHO_NDArrayWrapper.hh"
-
-
-namespace hops
-{
 
 template< class XArrayType >
 class MHO_UnaryFunctor

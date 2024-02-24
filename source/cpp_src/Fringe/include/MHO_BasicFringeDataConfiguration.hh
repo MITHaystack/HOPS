@@ -1,13 +1,6 @@
 #ifndef MHO_BasicFringeDataConfiguration_HH__
 #define MHO_BasicFringeDataConfiguration_HH__
 
-/*!
-*@file MHO_BasicFringeDataConfiguration.hh
-*@class MHO_BasicFringeDataConfiguration
-*@author J. Barrettj - barrettj@mit.edu
-*@date Tue Sep 19 04:11:24 PM EDT 2023
-*@brief collection of helper functions for fringe fitter start-up
-*/
 
 //global messaging util
 #include "MHO_Message.hh"
@@ -25,6 +18,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_BasicFringeDataConfiguration.hh
+*@class MHO_BasicFringeDataConfiguration
+*@author J. Barrettj - barrettj@mit.edu
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief collection of helper functions for fringe fitter start-up
+*/
 
 class MHO_BasicFringeDataConfiguration
 {

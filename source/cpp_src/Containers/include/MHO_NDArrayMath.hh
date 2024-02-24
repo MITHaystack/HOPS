@@ -1,6 +1,13 @@
 #ifndef MHO_NDArrayMath_HH__
 #define MHO_NDArrayMath_HH__
 
+
+
+#include <cmath>
+#include <cstddef>
+
+namespace hops{
+
 /*!
 *@file MHO_NDArrayMath.hh
 *@class MHO_NDArrayMath
@@ -8,11 +15,6 @@
 *@brief utility functions for multidimensional array access
 *@author J. Barrett - barrettj@mit.edu
 */
-
-#include <cmath>
-#include <cstddef>
-
-namespace hops{
 
 class MHO_NDArrayMath
 {

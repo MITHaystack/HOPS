@@ -1,13 +1,6 @@
 #ifndef MHO_ControlFileParser_HH__
 #define MHO_ControlFileParser_HH__
 
-/*!
-*@file  MHO_ControlFileParser.hh
-*@class  MHO_ControlFileParser
-*@author  J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 #include <vector>
 #include <list>
@@ -24,6 +17,14 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_ControlFileParser.hh
+*@class  MHO_ControlFileParser
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_ControlFileParser
 {

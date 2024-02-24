@@ -1,14 +1,6 @@
 #ifndef MHO_NormFX_HH__
 #define MHO_NormFX_HH__
 
-/*!
-*@file MHO_NormFX.hh
-*@class MHO_NormFX
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief implements a subset of the functionality found in norm_fx.c,
-*mainly the transform from frequency to delay space
-*/
 
 #include <cmath>
 #include <complex>
@@ -31,6 +23,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_NormFX.hh
+*@class MHO_NormFX
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief implements a subset of the functionality found in norm_fx.c,
+*mainly the transform from frequency to delay space
+*/
 
 
 class MHO_NormFX: public MHO_BinaryOperator<

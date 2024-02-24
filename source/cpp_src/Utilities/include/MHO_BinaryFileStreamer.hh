@@ -1,14 +1,7 @@
 #ifndef MHO_BinaryFileStreamer_HH__
 #define MHO_BinaryFileStreamer_HH__
 
-/*!
-*@file MHO_BinaryFileStreamer.hh
-*@class MHO_BinaryFileStreamer
-*@author J. Barrett - barrettj@mit.edu 
-*@date
-*@brief variadic template parameter implemenation
-* of a gen scatter hierarchy streamer for POD and JSON types to a file stream
-*/
+
 
 #include <stdio.h>
 #include <stdint.h>
@@ -25,6 +18,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_BinaryFileStreamer.hh
+*@class MHO_BinaryFileStreamer
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief variadic template parameter implemenation
+* of a gen scatter hierarchy streamer for POD and JSON types to a file stream
+*/
 
 //forward declare our binary data streamer (for plain old data types ((POD))
 class MHO_BinaryFileStreamer;

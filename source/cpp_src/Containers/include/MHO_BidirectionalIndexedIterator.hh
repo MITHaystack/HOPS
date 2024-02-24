@@ -1,6 +1,16 @@
 #ifndef MHO_BidirectionalIndexedIterator_HH__
 #define MHO_BidirectionalIndexedIterator_HH__
 
+
+
+#include <iterator>
+
+#include "MHO_Message.hh"
+#include "MHO_NDArrayMath.hh"
+
+namespace hops
+{
+
 /*!
 *@file  MHO_BidirectionalIndexedIterator.hh
 *@class  MHO_BidirectionalIndexedIterator
@@ -11,14 +21,6 @@
 * memory for an array slice, we need to ensure that the proper strided access takes place.
 */
 
-
-#include <iterator>
-
-#include "MHO_Message.hh"
-#include "MHO_NDArrayMath.hh"
-
-namespace hops
-{
 
 template< typename XValueType, std::size_t RANK>
 class MHO_BidirectionalIndexedIterator

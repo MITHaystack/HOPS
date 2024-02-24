@@ -1,13 +1,6 @@
 #ifndef MHO_VexTokenProcessor_HH__
 #define MHO_VexTokenProcessor_HH__
 
-/*!
-*@file  MHO_VexTokenProcessor.hh
-*@class  MHO_VexTokenProcessor
-*@author  J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
 
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
@@ -20,6 +13,15 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_VexTokenProcessor.hh
+*@class  MHO_VexTokenProcessor
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 
 class MHO_VexTokenProcessor
 {

@@ -8,6 +8,11 @@
 
 #include "MHO_Operator.hh"
 
+
+
+namespace hops
+{
+
 /*!
 *@file MHO_OperatorToolbox.hh
 *@class MHO_OperatorToolbox
@@ -15,9 +20,6 @@
 *@date
 *@brief
 */
-
-namespace hops
-{
 
 class MHO_OperatorToolbox
 {

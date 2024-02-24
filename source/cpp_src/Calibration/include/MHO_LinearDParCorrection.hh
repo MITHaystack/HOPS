@@ -1,14 +1,6 @@
 #ifndef MHO_LinearDParCorrection_HH__
 #define MHO_LinearDParCorrection_HH__
 
-/*!
-*@file MHO_LinearDParCorrection.hh
-*@class MHO_LinearDParCorrection
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
-
 #include <cmath>
 #include <complex>
 #include <vector>
@@ -27,6 +19,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_LinearDParCorrection.hh
+*@class MHO_LinearDParCorrection
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 
 class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >

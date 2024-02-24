@@ -1,13 +1,6 @@
 #ifndef MHO_EndZeroPadder_HH__
 #define MHO_EndZeroPadder_HH__
 
-/*!
-*@file MHO_EndZeroPadder.hh
-*@class MHO_EndZeroPadder
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 #include <cstring>
 #include <vector>
@@ -21,6 +14,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_EndZeroPadder.hh
+*@class MHO_EndZeroPadder
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 
 template< typename XArgType >
 class MHO_EndZeroPadder:

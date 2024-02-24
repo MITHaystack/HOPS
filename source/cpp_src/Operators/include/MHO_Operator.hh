@@ -3,16 +3,18 @@
 
 #include <string>
 
-/*!
-*@file  MHO_Operator.hh
-*@class  MHO_Operator
-*@author  J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
+
 
 namespace hops
 {
+
+/*!
+*@file  MHO_Operator.hh
+*@class  MHO_Operator
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_Operator
 {

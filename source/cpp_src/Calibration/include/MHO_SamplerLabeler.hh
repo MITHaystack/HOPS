@@ -1,18 +1,7 @@
 #ifndef MHO_SamplerLabeler_HH__
 #define MHO_SamplerLabeler_HH__
 
-/*!
-*@file MHO_SamplerLabeler.hh
-*@class MHO_SamplerLabeler
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief When the 'samplers' keyword is encountered, this operator loops
-* over all channels and inserts a label for each channel which contains the sampler index
-* associated with that channel. This can later be used to look up the station sampler delay (ambiguities)
-* for this channel by the pcal operators
-* e.g.:
-* samplers 4 abcdefgh ijklmnop qrstuvwx yzABCDEF
-*/
+
 
 
 #include <string>
@@ -28,6 +17,19 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_SamplerLabeler.hh
+*@class MHO_SamplerLabeler
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief When the 'samplers' keyword is encountered, this operator loops
+* over all channels and inserts a label for each channel which contains the sampler index
+* associated with that channel. This can later be used to look up the station sampler delay (ambiguities)
+* for this channel by the pcal operators
+* e.g.:
+* samplers 4 abcdefgh ijklmnop qrstuvwx yzABCDEF
+*/
 
 template< typename XArrayType >
 class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >

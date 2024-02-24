@@ -1,13 +1,6 @@
 #ifndef MHO_BasicFringeUtilities_HH__
 #define MHO_BasicFringeUtilities_HH__
 
-/*!
-*@file MHO_BasicFringeUtilities.hh
-*@class MHO_BasicFringeUtilities
-*@author J. Barrettj - barrettj@mit.edu
-*@date Tue Sep 19 04:11:24 PM EDT 2023
-*@brief a collection of helper functions to organize fringe fitting
-*/
 
 //global messaging util
 #include "MHO_Message.hh"
@@ -26,6 +19,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_BasicFringeUtilities.hh
+*@class MHO_BasicFringeUtilities
+*@author J. Barrettj - barrettj@mit.edu
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief a collection of helper functions to organize fringe fitting
+*/
 
 class MHO_BasicFringeUtilities
 {

@@ -1,12 +1,6 @@
 #ifndef MHO_ElementTypes_H__
 #define MHO_ElementTypes_H__
 
-/*!
-*@file MHO_ElementTypes.hh
-*@date
-*@brief typedefs and using statements for table container data element types
-*@author J. Barrett - barrettj@mit.edu
-*/
 
 #include <complex>
 
@@ -17,6 +11,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_ElementTypes.hh
+*@date
+*@brief typedefs and using statements for table container data element types
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 
 //global definition of floating point types for use in data containers. ////////
 //for in-memory use we use double precision

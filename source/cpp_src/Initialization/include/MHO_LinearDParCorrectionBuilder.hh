@@ -1,6 +1,12 @@
 #ifndef MHO_LinearDParCorrectionBuilderBuilder_HH__
 #define MHO_LinearDParCorrectionBuilderBuilder_HH__
 
+
+#include "MHO_OperatorBuilder.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_LinearDParCorrectionBuilder.hh
 *@class MHO_LinearDParCorrectionBuilder
@@ -9,10 +15,6 @@
 *@brief
 */
 
-#include "MHO_OperatorBuilder.hh"
-
-namespace hops
-{
 
 class MHO_LinearDParCorrectionBuilder:
     public MHO_OperatorBuilder

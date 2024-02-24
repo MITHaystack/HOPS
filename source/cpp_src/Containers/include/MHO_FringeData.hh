@@ -1,13 +1,6 @@
 #ifndef MHO_FringeData_HH__
 #define MHO_FringeData_HH__
 
-/*!
-*@file MHO_FringeData.hh
-*@class MHO_FringeData
-*@author
-*@date Tue Sep 19 04:11:24 PM EDT 2023
-*@brief simple class to contain fringe data objects
-*/
 
 //global messaging util
 #include "MHO_Message.hh"
@@ -20,11 +13,17 @@
 
 #include "MHO_JSONHeaderWrapper.hh"
 
-
-
-
 namespace hops
 {
+
+
+/*!
+*@file MHO_FringeData.hh
+*@class MHO_FringeData
+*@author
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief simple class to contain fringe data objects
+*/
 
 class MHO_FringeData
 {

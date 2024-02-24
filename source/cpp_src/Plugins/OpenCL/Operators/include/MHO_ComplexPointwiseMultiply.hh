@@ -1,13 +1,7 @@
 #ifndef MHO_OpenCLComplexPointwiseMultiply_HH__
 #define MHO_OpenCLComplexPointwiseMultiply_HH__
 
-/*!
-*@file MHO_OpenCLComplexPointwiseMultiply.hh
-*@class MHO_OpenCLComplexPointwiseMultiply
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
+
 
 #include <algorithm>
 
@@ -21,6 +15,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_OpenCLComplexPointwiseMultiply.hh
+*@class MHO_OpenCLComplexPointwiseMultiply
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_OpenCLComplexPointwiseMultiply: public MHO_BinaryOperator<
     MHO_NDArrayWrapper< std::complex<XFloatType>, RANK >,

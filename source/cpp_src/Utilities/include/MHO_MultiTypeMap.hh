@@ -2,13 +2,7 @@
 #define MHO_MultiTypeMap_HH__
 
 
-/*!
-*@file MHO_MultiTypeMap.hh
-*@class MHO_MultiTypeMap
-*@author J. Barrett - barrettj@mit.edu 
-*@date 2020-05-15T20:56:55.583Z
-*@brief
-*/
+
 
 #include <set>
 #include <map>
@@ -21,6 +15,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_MultiTypeMap.hh
+*@class MHO_MultiTypeMap
+*@author J. Barrett - barrettj@mit.edu
+*@date 2020-05-15T20:56:55.583Z
+*@brief
+*/
 
 template< typename XKeyType, typename XValueType >
 class MHO_SingleTypeMap

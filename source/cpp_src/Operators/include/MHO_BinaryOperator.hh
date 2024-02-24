@@ -1,6 +1,14 @@
 #ifndef MHO_BinaryOperator_HH__
 #define MHO_BinaryOperator_HH__
 
+
+#include "MHO_Operator.hh"
+
+#include <tuple>
+
+namespace hops
+{
+
 /*!
 *@file MHO_BinaryOperator.hh
 *@class MHO_BinaryOperator
@@ -8,12 +16,6 @@
 *@date
 *@brief
 */
-
-#include "MHO_Operator.hh"
-
-#include <tuple>
-
-namespace hops{
 
 template<class XArgType1, class XArgType2 = XArgType1, class XArgType3 = XArgType2>
 class MHO_BinaryOperator: public MHO_Operator

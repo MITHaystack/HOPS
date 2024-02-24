@@ -1,13 +1,6 @@
 #ifndef MHO_DiFXBaselineProcessor_HH__
 #define MHO_DiFXBaselineProcessor_HH__
 
-/*!
-*@file  MHO_DiFXBaselineProcessor.hh
-*@class  MHO_DiFXBaselineProcessor
-*@author  J. Barrett - barrettj@mit.edu
-*@date
-*@brief  accumulates visbility records from a single baseline, sorts and re-packs them into a visbility container
-*/
 
 #include <vector>
 #include <string>
@@ -20,11 +13,16 @@
 #include "MHO_StationCodeMap.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 
-
-
-
 namespace hops
 {
+
+/*!
+*@file  MHO_DiFXBaselineProcessor.hh
+*@class  MHO_DiFXBaselineProcessor
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief  accumulates visbility records from a single baseline, sorts and re-packs them into a visbility container
+*/
 
 class MHO_DiFXBaselineProcessor
 {

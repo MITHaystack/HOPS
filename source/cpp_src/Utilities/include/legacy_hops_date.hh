@@ -1,16 +1,18 @@
 #ifndef LEGACY_HOPS_DATA_HH__
 #define LEGACY_HOPS_DATA_HH__
 
-/*!
-*@file  legacy_hops_date.hh
-*@class  legacy_hops_date
-*@author  J. Barrett - barrettj@mit.edu 
-*@brief  A struct to avoid name collisions between the mk4utils 'data' struct and the 'date' header library
-*@date
-*/
+
 
 namespace hops
 {
+
+/*!
+*@file  legacy_hops_date.hh
+*@class  legacy_hops_date
+*@author  J. Barrett - barrettj@mit.edu
+*@brief  A struct to avoid name collisions between the mk4utils 'data' struct and the 'date' header library
+*@date
+*/
 
 //struct compatible with the legacy hops date format
 struct legacy_hops_date

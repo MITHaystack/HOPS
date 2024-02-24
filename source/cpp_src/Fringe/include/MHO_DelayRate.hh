@@ -1,13 +1,6 @@
 #ifndef MHO_DelayRate_HH__
 #define MHO_DelayRate_HH__
 
-/*!
-*@file MHO_DelayRate.hh
-*@class MHO_DelayRate
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief implements the delay rate search
-*/
 
 #include <cmath>
 #include <complex>
@@ -28,6 +21,13 @@
 namespace hops
 {
 
+/*!
+*@file MHO_DelayRate.hh
+*@class MHO_DelayRate
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief implements the delay rate search
+*/
 
 class MHO_DelayRate: public MHO_BinaryOperator<
     visibility_type,

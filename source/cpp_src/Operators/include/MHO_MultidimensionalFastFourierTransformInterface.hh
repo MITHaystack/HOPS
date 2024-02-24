@@ -1,13 +1,7 @@
 #ifndef MHO_MultidimensionalFastFourierTransformInterface_HH__
 #define MHO_MultidimensionalFastFourierTransformInterface_HH__
 
-/*!
-*@file MHO_MultidimensionalFastFourierTransformInterface.hh
-*@class MHO_MultidimensionalFastFourierTransformInterface
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
+
 
 #include <cstring>
 
@@ -17,6 +11,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_MultidimensionalFastFourierTransformInterface.hh
+*@class MHO_MultidimensionalFastFourierTransformInterface
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 template< typename XArgType >
 class MHO_MultidimensionalFastFourierTransformInterface
