@@ -1,6 +1,14 @@
 #ifndef MHO_UnaryInPlaceOperator_HH__
 #define MHO_UnaryInPlaceOperator_HH__
 
+
+#include "MHO_Operator.hh"
+
+#include <tuple>
+
+namespace hops
+{
+
 /*!
 *@file MHO_UnaryInPlaceOperator.hh
 *@class MHO_UnaryInPlaceOperator
@@ -9,11 +17,6 @@
 *@brief
 */
 
-#include "MHO_Operator.hh"
-
-#include <tuple>
-
-namespace hops{
 
 //only operates on a single array, input = ouput
 template<class XArgType>

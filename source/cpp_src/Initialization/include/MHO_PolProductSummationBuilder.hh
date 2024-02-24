@@ -1,6 +1,13 @@
 #ifndef MHO_PolProductSummationBuilderBuilder_HH__
 #define MHO_PolProductSummationBuilderBuilder_HH__
 
+
+
+#include "MHO_OperatorBuilder.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_PolProductSummationBuilder.hh
 *@class MHO_PolProductSummationBuilder
@@ -8,11 +15,6 @@
 *@date
 *@brief
 */
-
-#include "MHO_OperatorBuilder.hh"
-
-namespace hops
-{
 
 class MHO_PolProductSummationBuilder:
     public MHO_OperatorBuilder

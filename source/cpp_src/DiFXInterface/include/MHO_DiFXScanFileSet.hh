@@ -1,6 +1,14 @@
 #ifndef MHO_DiFXScanFileSet_HH__
 #define MHO_DiFXScanFileSet_HH__
 
+
+#include <vector>
+#include <string>
+
+namespace hops
+{
+
+
 /*!
 *@file  MHO_DiFXScanFileSet.hh
 *@class  MHO_DiFXScanFileSet
@@ -8,12 +16,6 @@
 *@date
 *@brief
 */
-
-#include <vector>
-#include <string>
-
-namespace hops
-{
 
 //stores the names of all the assorted files related to a difx scan
 class MHO_DiFXScanFileSet

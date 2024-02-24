@@ -1,15 +1,6 @@
 #ifndef MHO_DiFXVisibilityProcessor_HH__
 #define MHO_DiFXVisibilityProcessor_HH__
 
-/*!
-*@file  MHO_DiFXVisibilityProcessor.hh
-*@class  MHO_DiFXVisibilityProcessor
-*@author  J. Barrett - barrettj@mit.edu
-*@date
-*@brief  reads a DiFX Swinburne file and extracts the visibilities into a
-* baseline-index mapped set of vectors, and keeps track of the unique pol-pairs
-* seen on each baseline
-*/
 
 #include <string>
 #include <vector>
@@ -25,6 +16,16 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_DiFXVisibilityProcessor.hh
+*@class  MHO_DiFXVisibilityProcessor
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief  reads a DiFX Swinburne file and extracts the visibilities into a
+* baseline-index mapped set of vectors, and keeps track of the unique pol-pairs
+* seen on each baseline
+*/
 
 class MHO_DiFXVisibilityProcessor
 {

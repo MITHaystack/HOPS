@@ -1,13 +1,6 @@
 #ifndef MHO_FastFourierTransform_HH__
 #define MHO_FastFourierTransform_HH__
 
-/*!
-*@file MHO_FastFourierTransform
-*@class MHO_FastFourierTransform.hh
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 #include <complex>
 
@@ -20,6 +13,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_FastFourierTransform
+*@class MHO_FastFourierTransform.hh
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 
 template< typename XFloatType >
 class MHO_FastFourierTransform:

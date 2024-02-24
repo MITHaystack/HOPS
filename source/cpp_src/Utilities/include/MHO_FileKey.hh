@@ -1,20 +1,21 @@
 #ifndef MHO_FileKey_HH__
 #define MHO_FileKey_HH__
 
-/*!
-*@file MHO_FileKey.hh
-*@class MHO_FileKey
-*@author J. Barrett - barrettj@mit.edu 
-*
-*@date
-*@brief
-*/
+
 
 #include "MHO_Types.hh"
 #include "MHO_UUID.hh"
 
 namespace hops
 {
+
+/*!
+*@file MHO_FileKey.hh
+*@class MHO_FileKey
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief class for file object keys to locate and describe objects in a hops file
+*/
 
 //fixed values
 static constexpr uint32_t MHO_FileKeySyncWord = 0xEFBEADDE; //DEADBEEF

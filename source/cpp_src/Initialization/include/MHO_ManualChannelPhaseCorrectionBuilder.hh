@@ -1,6 +1,13 @@
 #ifndef MHO_ManualChannelPhaseCorrectionBuilderBuilder_HH__
 #define MHO_ManualChannelPhaseCorrectionBuilderBuilder_HH__
 
+
+#include "MHO_OperatorBuilder.hh"
+#include "MHO_ChannelQuantity.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_ManualChannelPhaseCorrectionBuilder.hh
 *@class MHO_ManualChannelPhaseCorrectionBuilder
@@ -8,12 +15,6 @@
 *@date
 *@brief
 */
-
-#include "MHO_OperatorBuilder.hh"
-#include "MHO_ChannelQuantity.hh"
-
-namespace hops
-{
 
 class MHO_ManualChannelPhaseCorrectionBuilder:
     public MHO_OperatorBuilder,

@@ -1,13 +1,7 @@
 #ifndef MHO_NaNMasker_HH__
 #define MHO_NaNMasker_HH__
 
-/*!
-*@file MHO_NaNMasker.hh
-*@class MHO_NaNMasker
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
+
 
 #include <cmath>
 #include <complex>
@@ -17,6 +11,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_NaNMasker.hh
+*@class MHO_NaNMasker
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 
 template< class XArrayType>

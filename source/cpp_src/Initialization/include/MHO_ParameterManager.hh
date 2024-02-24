@@ -1,6 +1,13 @@
 #ifndef MHO_ParameterManager_HH__
 #define MHO_ParameterManager_HH__
 
+
+
+#include "MHO_ParameterConfigurator.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_ParameterManager.hh
 *@class MHO_ParameterManager
@@ -8,11 +15,6 @@
 *@brief
 *@author J. Barrett - barrettj@mit.edu
 */
-
-#include "MHO_ParameterConfigurator.hh"
-
-namespace hops
-{
 
 class MHO_ParameterManager
 {

@@ -2,18 +2,6 @@
 #define MHO_SelectRepack_HH__
 
 
-/*!
-*@file MHO_SelectRepack.hh
-*@class MHO_SelectRepack
-*@author J. Barrett - barrettj@mit.edu
-*@date Thu 15 Dec 2022 02:42:45 PM EST
-*@brief
-* operator to select data from table and repack it into an entirely new table,
-* this typically would involve lots of copying (expensive), so it should be used
-* sparringly (e.g. initial or final coarse data selection)
-
-*/
-
 #include <map>
 #include <vector>
 
@@ -24,6 +12,19 @@
 
 namespace hops
 {
+
+
+/*!
+*@file MHO_SelectRepack.hh
+*@class MHO_SelectRepack
+*@author J. Barrett - barrettj@mit.edu
+*@date Thu 15 Dec 2022 02:42:45 PM EST
+*@brief
+* operator to select data from table and repack it into an entirely new table,
+* this typically would involve lots of copying (expensive), so it should be used
+* sparringly (e.g. initial or final coarse data selection)
+*/
+
 
 template< class XArgType>
 class MHO_SelectRepack:

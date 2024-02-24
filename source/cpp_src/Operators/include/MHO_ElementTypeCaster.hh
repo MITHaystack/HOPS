@@ -1,6 +1,15 @@
 #ifndef MHO_ElementTypeCaster_HH__
 #define MHO_ElementTypeCaster_HH__
 
+
+#include "MHO_NDArrayWrapper.hh"
+#include "MHO_TransformingOperator.hh"
+
+#include "MHO_ContainerDefinitions.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_ElementTypeCaster.hh
 *@class MHO_ElementTypeCaster
@@ -10,13 +19,6 @@
 * (e.g float -> double or double -> etc.)
 */
 
-#include "MHO_NDArrayWrapper.hh"
-#include "MHO_TransformingOperator.hh"
-
-#include "MHO_ContainerDefinitions.hh"
-
-namespace hops
-{
 
 template<class XArgType1, class XArgType2> //args implicitly assumed to inherit from MHO_NDArrayWrapper
 class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgType2>

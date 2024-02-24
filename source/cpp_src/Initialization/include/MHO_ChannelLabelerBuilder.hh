@@ -1,6 +1,14 @@
 #ifndef MHO_ChannelLabelerBuilderBuilder_HH__
 #define MHO_ChannelLabelerBuilderBuilder_HH__
 
+
+
+#include "MHO_OperatorBuilder.hh"
+#include "MHO_ChannelQuantity.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_ChannelLabelerBuilder.hh
 *@class MHO_ChannelLabelerBuilder
@@ -8,12 +16,6 @@
 *@date
 *@brief
 */
-
-#include "MHO_OperatorBuilder.hh"
-#include "MHO_ChannelQuantity.hh"
-
-namespace hops
-{
 
 class MHO_ChannelLabelerBuilder:
     public MHO_OperatorBuilder,

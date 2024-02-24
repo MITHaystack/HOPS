@@ -1,13 +1,6 @@
 #ifndef MHO_PyFringeDataInterface_HH__
 #define MHO_PyFringeDataInterface_HH__
 
-/*!
-*@file  MHO_PyFringeDataInterface.hh
-*@class  MHO_PyFringeDataInterface
-*@author  J. Barrett - barrettj@mit.edu
-*@date  Fri Sep 15 10:03:38 PM EDT 2023
-*@brief python bindings for the MHO_FringeData class
-*/
 
 #include "MHO_ContainerDictionary.hh"
 #include "MHO_ContainerDefinitions.hh"
@@ -30,6 +23,13 @@ using namespace pybind11::literals;
 namespace hops
 {
 
+/*!
+*@file  MHO_PyFringeDataInterface.hh
+*@class  MHO_PyFringeDataInterface
+*@author  J. Barrett - barrettj@mit.edu
+*@date  Fri Sep 15 10:03:38 PM EDT 2023
+*@brief python bindings for the MHO_FringeData class
+*/
 
 class MHO_PyFringeDataInterface
 {

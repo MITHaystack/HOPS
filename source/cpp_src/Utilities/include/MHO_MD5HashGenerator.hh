@@ -1,13 +1,7 @@
 #ifndef MHO_MD5HashGenerator_HH__
 #define MHO_MD5HashGenerator_HH__
 
-/*!
-*@file MHO_MD5HashGenerator.hh
-*@class MHO_MD5HashGenerator
-*@author J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
+
 
 #include <stdio.h>
 #include <stdint.h>
@@ -25,6 +19,13 @@
 namespace hops
 {
 
+/*!
+*@file MHO_MD5HashGenerator.hh
+*@class MHO_MD5HashGenerator
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 //forward declare our md5 hashing streamer (for plain old data types ((POD))
 class MHO_MD5HashGenerator;

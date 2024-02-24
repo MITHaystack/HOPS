@@ -1,14 +1,7 @@
 #ifndef MHO_ExtremaSearch_HH__
 #define MHO_ExtremaSearch_HH__
 
-/*!
-*@file MHO_ExtremaSearch.hh
-*@class MHO_ExtremaSearch
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
 
-*/
 
 #include <algorithm>
 #include <cstdint>
@@ -23,6 +16,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_ExtremaSearch.hh
+*@class MHO_ExtremaSearch
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 template< class XArgType>
 class MHO_ExtremaSearch:

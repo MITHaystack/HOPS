@@ -1,13 +1,6 @@
 #ifndef MHO_MK4FringeExport_HH__
 #define MHO_MK4FringeExport_HH__
 
-/*!
-*@file MHO_MK4FringeExport.hh
-*@class MHO_MK4FringeExport
-*@author J. Barrett - barrettj@mit.edu
-*@date 2020-05-19T18:54:28.140Z
-*@brief
-*/
 
 //forward declaration of mk4 structs
 //we do this to keep the mk4 structures from 'leaking' into the new code via includes,
@@ -62,6 +55,15 @@ struct ch_struct;
 
 namespace hops
 {
+
+/*!
+*@file MHO_MK4FringeExport.hh
+*@class MHO_MK4FringeExport
+*@author J. Barrett - barrettj@mit.edu
+*@date 2020-05-19T18:54:28.140Z
+*@brief
+*/
+
 
 class MHO_MK4FringeExport
 {

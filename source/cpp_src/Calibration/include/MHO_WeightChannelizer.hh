@@ -1,13 +1,7 @@
 #ifndef MHO_WeightChannelizer_HH__
 #define MHO_WeightChannelizer_HH__
 
-/*!
-*@file MHO_WeightChannelizer.hh
-*@class MHO_WeightChannelizer
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief collects unchannelized (3d) weight data and groups by channel (but all must be of equal size) into 4d object
-*/
+
 
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_TransformingOperator.hh"
@@ -17,6 +11,13 @@
 namespace hops
 {
 
+/*!
+*@file MHO_WeightChannelizer.hh
+*@class MHO_WeightChannelizer
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief collects unchannelized (3d) weight data and groups by channel (but all must be of equal size) into 4d object
+*/
 
 class MHO_WeightChannelizer: public MHO_TransformingOperator< uch_weight_store_type, weight_store_type>
 {

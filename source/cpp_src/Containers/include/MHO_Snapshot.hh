@@ -1,13 +1,6 @@
 #ifndef MHO_Snapshot_HH__
 #define MHO_Snapshot_HH__
 
-/*!
-*@file MHO_Snapshot.hh
-*@class MHO_Snapshot
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 
 #include <cstdlib>
@@ -42,6 +35,13 @@ namespace hops
 {
 
 
+/*!
+*@file MHO_Snapshot.hh
+*@class MHO_Snapshot
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 //uses the singleton pattern (dumps to only one file)
 //TODO make this class thread safe

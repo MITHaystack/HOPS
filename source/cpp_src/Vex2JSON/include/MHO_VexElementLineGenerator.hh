@@ -1,14 +1,6 @@
 #ifndef MHO_VexElementLineGenerator_HH__
 #define MHO_VexElementLineGenerator_HH__
 
-/*!
-*@file  MHO_VexElementLineGenerator.hh
-*@class  MHO_VexElementLineGenerator
-*@author  J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
-
 #include <string>
 #include <sstream>
 #include "MHO_Message.hh"
@@ -17,6 +9,16 @@
 
 namespace hops
 {
+
+
+/*!
+*@file  MHO_VexElementLineGenerator.hh
+*@class  MHO_VexElementLineGenerator
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 
 class MHO_VexElementLineGenerator
 {

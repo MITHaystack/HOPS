@@ -1,6 +1,12 @@
 #ifndef MHO_ManualPolDelayCorrectionBuilderBuilder_HH__
 #define MHO_ManualPolDelayCorrectionBuilderBuilder_HH__
 
+
+#include "MHO_OperatorBuilder.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_ManualPolDelayCorrectionBuilder.hh
 *@class MHO_ManualPolDelayCorrectionBuilder
@@ -8,11 +14,6 @@
 *@date
 *@brief
 */
-
-#include "MHO_OperatorBuilder.hh"
-
-namespace hops
-{
 
 class MHO_ManualPolDelayCorrectionBuilder:
     public MHO_OperatorBuilder

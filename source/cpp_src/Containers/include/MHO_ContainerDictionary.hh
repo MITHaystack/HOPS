@@ -1,14 +1,6 @@
 #ifndef MHO_ContainerDictionary_HH__
 #define MHO_ContainerDictionary_HH__
 
-/*!
-*@file MHO_ContainerDictionary.hh
-*@class MHO_ContainerDictionary
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
-
 
 #include "MHO_Axis.hh"
 #include "MHO_AxisPack.hh"
@@ -21,6 +13,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_ContainerDictionary.hh
+*@class MHO_ContainerDictionary
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_ContainerDictionary: public MHO_ClassIdentityMap
 {

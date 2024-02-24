@@ -1,13 +1,6 @@
 #ifndef MHO_DataSelectionBuilderBuilder_HH__
 #define MHO_DataSelectionBuilderBuilder_HH__
 
-/*!
-*@file MHO_DataSelectionBuilder.hh
-*@class MHO_DataSelectionBuilder
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 #include "MHO_OperatorBuilder.hh"
 
@@ -15,6 +8,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_DataSelectionBuilder.hh
+*@class MHO_DataSelectionBuilder
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_DataSelectionBuilder:
     public MHO_OperatorBuilder

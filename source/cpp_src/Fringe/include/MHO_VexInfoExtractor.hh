@@ -1,14 +1,6 @@
 #ifndef MHO_VexInfoExtractor_HH__
 #define MHO_VexInfoExtractor_HH__
 
-/*!
-*@file MHO_VexInfoExtractor.hh
-*@class MHO_VexInfoExtractor
-*@author
-*Email:
-*@date Tue Sep 19 04:11:24 PM EDT 2023
-*@brief extract useful information from the vex file and place in parameter store
-*/
 
 #include <string>
 #include <cmath>
@@ -24,6 +16,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_VexInfoExtractor.hh
+*@class MHO_VexInfoExtractor
+*@author
+*Email:
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief extract useful information from the vex file and place in parameter store
+*/
 
 class MHO_VexInfoExtractor
 {

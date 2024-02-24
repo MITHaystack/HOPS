@@ -1,6 +1,15 @@
 #ifndef MHO_TransformingOperator_HH__
 #define MHO_TransformingOperator_HH__
 
+
+
+#include "MHO_Operator.hh"
+
+#include <tuple>
+
+namespace hops
+{
+
 /*!
 *@file MHO_TransformingOperator.hh
 *@class MHO_TransformingOperator
@@ -8,12 +17,6 @@
 *@date
 *@brief
 */
-
-#include "MHO_Operator.hh"
-
-#include <tuple>
-
-namespace hops{
 
 template<class XArgType1, class XArgType2>
 class MHO_TransformingOperator: public MHO_Operator

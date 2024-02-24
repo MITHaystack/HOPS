@@ -1,15 +1,6 @@
 #ifndef MHO_Taggable_HH__
 #define MHO_Taggable_HH__
 
-/*!
-*@file MHO_Taggable.hh
-*@class MHO_Taggable
-*@author J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
-
-
 #include <string>
 #include <utility>
 
@@ -20,6 +11,13 @@
 namespace hops
 {
 
+/*!
+*@file MHO_Taggable.hh
+*@class MHO_Taggable
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_Taggable:
     public MHO_JSONWrapper,

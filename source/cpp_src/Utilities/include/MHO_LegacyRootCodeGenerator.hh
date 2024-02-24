@@ -1,13 +1,6 @@
 #ifndef MHO_LegacyRootCodeGenerator_HH__
 #define MHO_LegacyRootCodeGenerator_HH__
 
-/*!
-*@file  MHO_LegacyRootCodeGenerator.hh
-*@class  MHO_LegacyRootCodeGenerator
-*@author  J. Barrett - barrettj@mit.edu 
-*@date
-*@brief  generate the 6-character timestamp-like root codes for converted filenames
-*/
 
 #include <ctime>
 #include <string>
@@ -16,6 +9,14 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_LegacyRootCodeGenerator.hh
+*@class  MHO_LegacyRootCodeGenerator
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief  generate the 6-character timestamp-like root codes for converted filenames
+*/
 
 
 class MHO_LegacyRootCodeGenerator

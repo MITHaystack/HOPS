@@ -1,13 +1,6 @@
 #ifndef MHO_ClassIdentityMap_HH__
 #define MHO_ClassIdentityMap_HH__
 
-/*!
-*@file MHO_ClassIdentityMap.hh
-*@class MHO_ClassIdentityMap
-*@author J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
 
 #include "MHO_ClassIdentity.hh"
 #include "MHO_MD5HashGenerator.hh"
@@ -22,6 +15,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_ClassIdentityMap.hh
+*@class MHO_ClassIdentityMap
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 
 
 class MHO_ClassIdentityMap

@@ -1,13 +1,6 @@
 #ifndef MHO_FastFourierTransformWorkspace_HH__
 #define MHO_FastFourierTransformWorkspace_HH__
 
-/*!
-*@file MHO_FastFourierTransformWorkspace.hh
-*@class MHO_FastFourierTransformWorkspace
-*@date
-*@brief navtive FFT workspace definitions
-*@author J. Barrett - barrettj@mit.edu
-*/
 
 #include <complex>
 #include <cstddef>
@@ -22,6 +15,14 @@
 namespace hops
 {
 
+
+/*!
+*@file MHO_FastFourierTransformWorkspace.hh
+*@class MHO_FastFourierTransformWorkspace
+*@date
+*@brief navtive FFT workspace definitions
+*@author J. Barrett - barrettj@mit.edu
+*/
 
 template< typename XFloatType >
 class

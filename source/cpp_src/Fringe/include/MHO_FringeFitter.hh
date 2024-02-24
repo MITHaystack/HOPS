@@ -1,13 +1,6 @@
 #ifndef MHO_FringeFitter_HH__
 #define MHO_FringeFitter_HH__
 
-/*!
-*@file MHO_FringeFitter.hh
-*@class MHO_FringeFitter
-*@author J. Barrettj - barrettj@mit.edu
-*@date Tue Sep 19 04:11:24 PM EDT 2023
-*@brief Abstract base class for a basic fringe fitter
-*/
 
 //global messaging util
 #include "MHO_Message.hh"
@@ -29,6 +22,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_FringeFitter.hh
+*@class MHO_FringeFitter
+*@author J. Barrettj - barrettj@mit.edu
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief Abstract base class for a basic fringe fitter
+*/
 
 class MHO_FringeFitter
 {

@@ -1,6 +1,10 @@
 #include <string>
 #include <array>
 
+
+namespace hops
+{
+
 /*!
 *@file MHO_Unit
 *@class MHO_Unit.hh
@@ -9,8 +13,6 @@
 *@author J. Barrett - barrettj@mit.edu
 */
 
-namespace hops
-{
 
 class MHO_Unit
 {

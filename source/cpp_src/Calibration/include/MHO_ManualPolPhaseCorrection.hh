@@ -1,13 +1,6 @@
 #ifndef MHO_ManualPolPhaseCorrection_HH__
 #define MHO_ManualPolPhaseCorrection_HH__
 
-/*!
-*@file MHO_ManualPolPhaseCorrection.hh
-*@class MHO_ManualPolPhaseCorrection
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 #include <cmath>
 #include <complex>
@@ -25,6 +18,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_ManualPolPhaseCorrection.hh
+*@class MHO_ManualPolPhaseCorrection
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 
 class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >

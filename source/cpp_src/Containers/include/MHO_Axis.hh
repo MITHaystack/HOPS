@@ -1,13 +1,7 @@
 #ifndef MHO_Axis_HH__
 #define MHO_Axis_HH__
 
-/*!
-*@file MHO_Axis.hh
-*@class MHO_Axis
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
+
 
 #include <set>
 
@@ -20,6 +14,13 @@
 namespace hops
 {
 
+/*!
+*@file MHO_Axis.hh
+*@class MHO_Axis
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 template< typename XValueType >
 class MHO_Axis:

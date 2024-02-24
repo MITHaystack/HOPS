@@ -1,6 +1,12 @@
 #ifndef MHO_SamplerLabelerBuilderBuilder_HH__
 #define MHO_SamplerLabelerBuilderBuilder_HH__
 
+
+#include "MHO_OperatorBuilder.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_SamplerLabelerBuilder.hh
 *@class MHO_SamplerLabelerBuilder
@@ -8,11 +14,6 @@
 *@date
 *@brief
 */
-
-#include "MHO_OperatorBuilder.hh"
-
-namespace hops
-{
 
 class MHO_SamplerLabelerBuilder: public MHO_OperatorBuilder
 {

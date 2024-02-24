@@ -1,6 +1,12 @@
 #ifndef MHO_InspectingOperator_HH__
 #define MHO_InspectingOperator_HH__
 
+#include "MHO_Operator.hh"
+
+namespace hops
+{
+
+
 /*!
 *@file MHO_InspectingOperator.hh
 *@class MHO_InspectingOperator
@@ -8,10 +14,6 @@
 *@date
 *@brief
 */
-
-#include "MHO_Operator.hh"
-
-namespace hops{
 
 //operates on a single const array (just to inspect it)
 template<class XArgType>

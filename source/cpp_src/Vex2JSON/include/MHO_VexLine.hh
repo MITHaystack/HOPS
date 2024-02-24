@@ -1,18 +1,19 @@
 #ifndef MHO_VexLine_HH__
 #define MHO_VexLine_HH__
 
-/*!
-*@file  MHO_VexLine.hh
-*@class  MHO_VexLine
-*@author  J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
-
 #include <string>
 
 namespace hops
 {
+
+/*!
+*@file  MHO_VexLine.hh
+*@class  MHO_VexLine
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 
 struct MHO_VexLine
 {

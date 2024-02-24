@@ -1,13 +1,6 @@
 #ifndef MHO_LockFileHandler_HH__
 #define MHO_LockFileHandler_HH__
 
-/*!
-*@file MHO_LockFileHandler.hh
-*@class MHO_LockFileHandler
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief ported version of fourfit write lock mechanism
-*/
 
 #include <cstdlib>
 #include <csignal>
@@ -31,6 +24,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_LockFileHandler.hh
+*@class MHO_LockFileHandler
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief ported version of fourfit write lock mechanism
+*/
+
 
 //struct for holding data about the lock file's creation
 struct lockfile_data

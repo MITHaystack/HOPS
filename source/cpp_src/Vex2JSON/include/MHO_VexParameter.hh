@@ -1,18 +1,20 @@
 #ifndef MHO_VexParameter_HH__
 #define MHO_VexParameter_HH__
 
-/*!
-*@file  MHO_VexParameter.hh
-*@class  MHO_VexParameter
-*@author  J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
+
 
 #include <string>
 
 namespace hops
 {
+
+/*!
+*@file  MHO_VexParameter.hh
+*@class  MHO_VexParameter
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_VexParameter
 {

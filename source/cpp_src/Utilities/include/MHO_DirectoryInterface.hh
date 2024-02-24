@@ -1,14 +1,6 @@
 #ifndef MHO_DirectoryInterface_HH__
 #define MHO_DirectoryInterface_HH__
 
-/*!
-*@file MHO_DirectoryInterface.hh
-*@class MHO_DirectoryInterface
-*@author J. Barrett - barrettj@mit.edu 
-*
-*@date
-*@brief
-*/
 
 #include <vector>
 #include <string>
@@ -17,6 +9,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_DirectoryInterface.hh
+*@class MHO_DirectoryInterface
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief implements utility functions to access a directory and locate files
+*/
+
 
 class MHO_DirectoryInterface
 {

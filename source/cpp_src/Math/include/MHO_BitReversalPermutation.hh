@@ -1,13 +1,6 @@
 #ifndef MHO_BitReversalPermutation_HH__
 #define MHO_BitReversalPermutation_HH__
 
-/*!
-*@file MHO_BitReversalPermutation.hh
-*@class MHO_BitReversalPermutation
-*@date
-*@brief bit reversal permutation function for power-of-two FFTs
-*@author J. Barrett - barrettj@mit.edu
-*/
 
 #include <cstddef>
 
@@ -19,6 +12,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_BitReversalPermutation.hh
+*@class MHO_BitReversalPermutation
+*@date
+*@brief bit reversal permutation function for power-of-two FFTs
+*@author J. Barrett - barrettj@mit.edu
+*/
 
 class MHO_BitReversalPermutation
 {

@@ -1,13 +1,6 @@
 #ifndef MHO_IntervalLabel_HH__
 #define MHO_IntervalLabel_HH__
 
-/*!
-*@file MHO_IntervalLabel.hh
-*@class MHO_IntervalLabel
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 #include <string>
 #include <utility>
@@ -19,6 +12,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_IntervalLabel.hh
+*@class MHO_IntervalLabel
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 
 
 class MHO_IntervalLabel:

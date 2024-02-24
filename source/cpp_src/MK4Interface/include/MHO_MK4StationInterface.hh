@@ -1,15 +1,7 @@
 #ifndef MHO_MK4StationInterface_HH__
 #define MHO_MK4StationInterface_HH__
 
-/*!
-*@file MHO_MK4StationInterface.hh
-*@class MHO_MK4StationInterface
-*@author J. Barrett - barrettj@mit.edu
-*@date 2020-05-19T18:54:28.140Z
-*@brief This class implicitly assumes that the frequency/channel configuration
-* is shared among all polarization products, we may want to loosen this restriction
-* in the future
-*/
+
 
 #include <vector>
 #include <cstdlib>
@@ -38,6 +30,16 @@ extern "C"
 
 namespace hops
 {
+
+/*!
+*@file MHO_MK4StationInterface.hh
+*@class MHO_MK4StationInterface
+*@author J. Barrett - barrettj@mit.edu
+*@date 2020-05-19T18:54:28.140Z
+*@brief This class implicitly assumes that the frequency/channel configuration
+* is shared among all polarization products, we may want to loosen this restriction
+* in the future
+*/
 
 class MHO_MK4StationInterface
 {

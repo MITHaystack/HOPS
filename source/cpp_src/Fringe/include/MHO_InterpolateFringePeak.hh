@@ -2,14 +2,6 @@
 #define MHO_InterpolateFringePeak_HH__
 
 
-/*!
-*@file MHO_InterpolateFringePeak.hh
-*@class MHO_InterpolateFringePeak
-*@author J. Barrettj - barrettj@mit.edu
-*@date
-*@brief implements fine interpolation about the fringe peak (see interp.c and max555.c code)
-*/
-
 #include <cmath>
 #include <complex>
 
@@ -21,6 +13,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_InterpolateFringePeak.hh
+*@class MHO_InterpolateFringePeak
+*@author J. Barrettj - barrettj@mit.edu
+*@date
+*@brief implements fine interpolation about the fringe peak (see interp.c and max555.c code)
+*/
 
 class MHO_InterpolateFringePeak: public MHO_Operator
 {

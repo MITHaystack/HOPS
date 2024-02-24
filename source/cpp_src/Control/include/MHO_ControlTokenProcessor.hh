@@ -1,13 +1,6 @@
 #ifndef MHO_ControlTokenProcessor_HH__
 #define MHO_ControlTokenProcessor_HH__
 
-/*!
-*@file  MHO_ControlTokenProcessor.hh
-*@class  MHO_ControlTokenProcessor
-*@author  J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
 
 #include "MHO_Message.hh"
 #include "MHO_JSONHeaderWrapper.hh"
@@ -21,6 +14,14 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_ControlTokenProcessor.hh
+*@class  MHO_ControlTokenProcessor
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_ControlTokenProcessor
 {

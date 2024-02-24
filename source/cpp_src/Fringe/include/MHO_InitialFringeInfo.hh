@@ -1,14 +1,6 @@
 #ifndef MHO_InitialFringeInfo_HH__
 #define MHO_InitialFringeInfo_HH__
 
-/*!
-*@file MHO_InitialFringeInfo.hh
-*@class MHO_InitialFringeInfo
-*@author J. Barrettj - barrettj@mit.edu
-*@date Tue Sep 19 04:11:24 PM EDT 2023
-*@brief collection of helper functions to populate the parameter store
-* with a priori information know before fringe fitting
-*/
 
 //global messaging util
 #include "MHO_Message.hh"
@@ -20,6 +12,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_InitialFringeInfo.hh
+*@class MHO_InitialFringeInfo
+*@author J. Barrettj - barrettj@mit.edu
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief collection of helper functions to populate the parameter store
+* with a priori information know before fringe fitting
+*/
 
 class MHO_InitialFringeInfo
 {

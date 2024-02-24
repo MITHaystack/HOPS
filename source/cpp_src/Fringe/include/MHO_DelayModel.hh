@@ -1,6 +1,14 @@
 #ifndef MHO_DelayModel_HH__
 #define MHO_DelayModel_HH__
 
+
+#include "MHO_TableContainer.hh"
+#include "MHO_ContainerDefinitions.hh"
+
+namespace hops
+{
+
+
 /*!
 *@file MHO_DelayModel.hh
 *@class MHO_DelayModel
@@ -8,12 +16,6 @@
 *@date
 *@brief evaluates the station a priori delay model polynomials
 */
-
-#include "MHO_TableContainer.hh"
-#include "MHO_ContainerDefinitions.hh"
-
-namespace hops
-{
 
 class MHO_DelayModel
 {

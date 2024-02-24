@@ -1,13 +1,6 @@
 #ifndef MHO_MultitonePhaseCorrection_HH__
 #define MHO_MultitonePhaseCorrection_HH__
 
-/*!
-*@file MHO_MultitonePhaseCorrection.hh
-*@class MHO_MultitonePhaseCorrection
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 #include <cmath>
 #include <complex>
@@ -32,6 +25,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_MultitonePhaseCorrection.hh
+*@class MHO_MultitonePhaseCorrection
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 
 class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >

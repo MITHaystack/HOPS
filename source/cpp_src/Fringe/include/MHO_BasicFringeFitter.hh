@@ -1,15 +1,6 @@
 #ifndef MHO_BasicFringeFitter_HH__
 #define MHO_BasicFringeFitter_HH__
 
-/*!
-*@file MHO_BasicFringeFitter.hh
-*@class MHO_BasicFringeFitter
-*@author J. Barrettj - barrettj@mit.edu
-*@date Tue Sep 19 04:11:24 PM EDT 2023
-*@brief basic single-baseline fringe fitter, no bells or whistles
-*/
-
-
 #include "MHO_FringeFitter.hh"
 #include "MHO_ContainerDefinitions.hh"
 
@@ -19,6 +10,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_BasicFringeFitter.hh
+*@class MHO_BasicFringeFitter
+*@author J. Barrettj - barrettj@mit.edu
+*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@brief basic single-baseline fringe fitter, no bells or whistles
+*/
+
 
 class MHO_BasicFringeFitter: public MHO_FringeFitter
 {

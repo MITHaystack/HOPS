@@ -1,13 +1,6 @@
 #ifndef MHO_PyContainerStoreInterface_HH__
 #define MHO_PyContainerStoreInterface_HH__
 
-/*!
-*@file  MHO_PyContainerStoreInterface.hh
-*@class  MHO_PyContainerStoreInterface
-*@author  J. Barrett - barrettj@mit.edu
-*@date  Fri Sep 15 10:03:38 PM EDT 2023
-*@brief python binding to the MHO_ContainerStore
-*/
 
 
 #include "MHO_ContainerDictionary.hh"
@@ -28,6 +21,13 @@ using namespace pybind11::literals;
 namespace hops
 {
 
+/*!
+*@file  MHO_PyContainerStoreInterface.hh
+*@class  MHO_PyContainerStoreInterface
+*@author  J. Barrett - barrettj@mit.edu
+*@date  Fri Sep 15 10:03:38 PM EDT 2023
+*@brief python binding to the MHO_ContainerStore
+*/
 
 class MHO_PyContainerStoreInterface
 {

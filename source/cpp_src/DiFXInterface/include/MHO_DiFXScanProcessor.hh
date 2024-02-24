@@ -1,13 +1,6 @@
 #ifndef MHO_DiFXScanProcessor_HH__
 #define MHO_DiFXScanProcessor_HH__
 
-/*!
-*@file  MHO_DiFXScanProcessor.hh
-*@class  MHO_DiFXScanProcessor
-*@author  J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 
 #include <string>
@@ -36,6 +29,14 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_DiFXScanProcessor.hh
+*@class  MHO_DiFXScanProcessor
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_DiFXScanProcessor
 {

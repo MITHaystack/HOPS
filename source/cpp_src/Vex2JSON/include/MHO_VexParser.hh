@@ -1,13 +1,7 @@
 #ifndef MHO_VexParser_HH__
 #define MHO_VexParser_HH__
 
-/*!
-*@file  MHO_VexParser.hh
-*@class  MHO_VexParser
-*@author  J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
+
 
 #include <vector>
 #include <list>
@@ -25,6 +19,14 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_VexParser.hh
+*@class  MHO_VexParser
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_VexParser
 {

@@ -1,13 +1,6 @@
 #ifndef MHO_ControlElements_HH__
 #define MHO_ControlElements_HH__
 
-/*!
-*@file  MHO_ControlElements.hh
-*@class  MHO_ControlElements
-*@author  J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 #include <string>
 #include <vector>
@@ -17,6 +10,14 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_ControlElements.hh
+*@class  MHO_ControlElements
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 struct MHO_Token
 {

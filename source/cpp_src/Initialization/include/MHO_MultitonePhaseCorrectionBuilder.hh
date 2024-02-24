@@ -1,13 +1,6 @@
 #ifndef MHO_MultitonePhaseCorrectionBuilderBuilder_HH__
 #define MHO_MultitonePhaseCorrectionBuilderBuilder_HH__
 
-/*!
-*@file MHO_MultitonePhaseCorrectionBuilder.hh
-*@class MHO_MultitonePhaseCorrectionBuilder
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 #include "MHO_OperatorBuilder.hh"
 #include "MHO_ContainerDefinitions.hh"
@@ -15,6 +8,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_MultitonePhaseCorrectionBuilder.hh
+*@class MHO_MultitonePhaseCorrectionBuilder
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_MultitonePhaseCorrectionBuilder:
     public MHO_OperatorBuilder

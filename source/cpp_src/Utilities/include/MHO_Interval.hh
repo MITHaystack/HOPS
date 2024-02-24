@@ -1,19 +1,21 @@
 #ifndef MHO_Interval_HH__
 #define MHO_Interval_HH__
 
-/*!
-*@file MHO_Interval.hh
-*@class MHO_Interval
-*@author J. Barrett - barrettj@mit.edu 
-*@date
-*@brief Implements the open integer interval [a,b)
-*/
 
 #include <utility>
 #include <algorithm>
 
 namespace hops
 {
+
+/*!
+*@file MHO_Interval.hh
+*@class MHO_Interval
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief Implements the open integer interval [a,b)
+*/
+
 
 template< typename XIntegerType = std::size_t >
 class MHO_Interval

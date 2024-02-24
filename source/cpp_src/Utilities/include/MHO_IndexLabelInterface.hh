@@ -1,6 +1,13 @@
 #ifndef MHO_IndexLabelInterface_HH__
 #define MHO_IndexLabelInterface_HH__
 
+
+
+#include "MHO_JSONHeaderWrapper.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_IndexLabelInterface.hh
 *@class MHO_IndexLabelInterface
@@ -8,12 +15,6 @@
 *@brief
 *@author J. Barrett - barrettj@mit.edu
 */
-
-#include "MHO_JSONHeaderWrapper.hh"
-
-namespace hops
-{
-
 
 //constructor is protected
 //this class is only intended to provide an interface that derived classes may inherit

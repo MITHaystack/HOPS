@@ -1,13 +1,6 @@
 #ifndef MHO_DiFXPCalProcessor_HH__
 #define MHO_DiFXPCalProcessor_HH__
 
-/*!
-*@file  MHO_DiFXPCalProcessor.hh
-*@class  MHO_DiFXPCalProcessor
-*@author  J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 #include <string>
 #include <vector>
@@ -19,6 +12,14 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_DiFXPCalProcessor.hh
+*@class  MHO_DiFXPCalProcessor
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_DiFXPCalProcessor
 {

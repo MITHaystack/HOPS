@@ -1,13 +1,6 @@
 #ifndef MHO_ControlConditionEvaluator_HH__
 #define MHO_ControlConditionEvaluator_HH__
 
-/*!
-*@file MHO_ControlConditionEvaluator.hh
-*@class MHO_ControlConditionEvaluator
-*@date
-*@brief evaluates conditional statements encounterd in control file syntax
-*@author J. Barrett - barrettj@mit.edu
-*/
 
 
 #include "MHO_Message.hh"
@@ -20,6 +13,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_ControlConditionEvaluator.hh
+*@class MHO_ControlConditionEvaluator
+*@date
+*@brief evaluates conditional statements encounterd in control file syntax
+*@author J. Barrett - barrettj@mit.edu
+*/
 
 class MHO_ControlConditionEvaluator
 {

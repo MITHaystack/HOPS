@@ -1,13 +1,7 @@
 #ifndef MHO_ManualChannelPhaseCorrection_HH__
 #define MHO_ManualChannelPhaseCorrection_HH__
 
-/*!
-*@file MHO_ManualChannelPhaseCorrection.hh
-*@class MHO_ManualChannelPhaseCorrection
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
+
 
 #include <cmath>
 #include <complex>
@@ -27,6 +21,13 @@
 namespace hops
 {
 
+/*!
+*@file MHO_ManualChannelPhaseCorrection.hh
+*@class MHO_ManualChannelPhaseCorrection
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_type >
 {

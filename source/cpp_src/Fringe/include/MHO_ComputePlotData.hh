@@ -1,13 +1,6 @@
 #ifndef MHO_ComputePlotData_HH__
 #define MHO_ComputePlotData_HH__
 
-/*!
-*@file MHO_ComputePlotData.hh
-*@class MHO_ComputePlotData
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief class for computing fringe plot information
-*/
 
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
@@ -39,6 +32,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_ComputePlotData.hh
+*@class MHO_ComputePlotData
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief class for computing fringe plot information
+*/
 
 class MHO_ComputePlotData
 {

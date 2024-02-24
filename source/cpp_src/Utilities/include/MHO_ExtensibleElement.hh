@@ -1,6 +1,12 @@
 #ifndef MHO_ExtensibleElement_HH__
 #define MHO_ExtensibleElement_HH__
 
+
+#include <vector>
+
+namespace hops
+{
+
 /*!
 *@file MHO_ExtensibleElement.hh
 *@class MHO_ExtensibleElement
@@ -13,10 +19,6 @@
 * single call to the 'Accept' method scales like N*M (where N is the number of visitors, and M the number of extensions).
 */
 
-#include <vector>
-
-namespace hops
-{
 
 //forward declare these types
 class MHO_Visitor;

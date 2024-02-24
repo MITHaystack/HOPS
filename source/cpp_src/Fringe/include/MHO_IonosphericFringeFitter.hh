@@ -4,6 +4,11 @@
 #include "MHO_BasicFringeFitter.hh"
 #include "MHO_Tokenizer.hh"
 
+
+namespace hops
+{
+
+
 /*!
 *@file MHO_IonosphericFringeFitter.hh
 *@class MHO_IonosphericFringeFitter
@@ -11,9 +16,6 @@
 *@date Tue Sep 19 04:11:24 PM EDT 2023
 *@brief single-baseline fringe fitter with ionosphere search
 */
-
-namespace hops
-{
 
 class MHO_IonosphericFringeFitter: public MHO_BasicFringeFitter
 {

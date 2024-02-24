@@ -1,13 +1,6 @@
 #ifndef MHO_SerializableObjectFactory_HH__
 #define MHO_SerializableObjectFactory_HH__
 
-/*!
-*@file  MHO_SerializableObjectFactory.hh
-*@class  MHO_SerializableObjectFactory
-*@author  J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
 
 #include "MHO_Message.hh"
 #include "MHO_Serializable.hh"
@@ -15,6 +8,15 @@
 
 namespace hops
 {
+
+
+/*!
+*@file  MHO_SerializableObjectFactory.hh
+*@class  MHO_SerializableObjectFactory
+*@author  J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 //base class does nothing
 class MHO_SerializableObjectFactory

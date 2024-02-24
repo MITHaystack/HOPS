@@ -1,6 +1,13 @@
 #ifndef MHO_AxisPack_HH__
 #define MHO_AxisPack_HH__
 
+
+#include "MHO_Axis.hh"
+#include "MHO_Meta.hh"
+
+namespace hops
+{
+
 /*!
 *@file MHO_AxisPack.hh
 *@class MHO_AxisPack
@@ -9,10 +16,6 @@
 *@brief set of axes (XAxisTypeS are expected to be MHO_VectorContainers)
 */
 
-#include "MHO_Axis.hh"
-#include "MHO_Meta.hh"
-
-namespace hops{
 
 template< typename...XAxisTypeS >
 class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Serializable

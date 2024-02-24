@@ -4,6 +4,12 @@
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
 
+
+#include "difxio/difx_input.h"
+
+namespace hops
+{
+
 /*!
 *@file  MHO_DiFXInputProcessor.hh
 *@class  MHO_DiFXInputProcessor
@@ -11,11 +17,6 @@
 *@date
 *@brief
 */
-
-#include "difxio/difx_input.h"
-
-namespace hops
-{
 
 class MHO_DiFXInputProcessor
 {

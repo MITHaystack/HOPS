@@ -1,19 +1,21 @@
 #ifndef MHO_OpenCLNDArrayBuffer_HH__
 #define MHO_OpenCLNDArrayBuffer_HH__
 
-/*!
-*@file MHO_OpenCLNDArrayBuffer.hh
-*@class MHO_OpenCLNDArrayBuffer
-*@author J. Barrett - barrettj@mit.edu 
-*@date
-*@brief
-*/
 
 #include "MHO_OpenCLInterface.hh"
 #include "MHO_ExtensibleElement.hh"
 
 namespace hops
 {
+
+
+/*!
+*@file MHO_OpenCLNDArrayBuffer.hh
+*@class MHO_OpenCLNDArrayBuffer
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
 
 template< typename XArrayType >
 class MHO_OpenCLNDArrayBuffer

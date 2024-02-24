@@ -2,14 +2,6 @@
 #define MHO_FunctorBroadcaster_HH__
 
 
-/*!
-*@file MHO_FunctorBroadcaster.hh
-*@class MHO_FunctorBroadcaster
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
-
 
 #include <algorithm>
 
@@ -19,6 +11,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_FunctorBroadcaster.hh
+*@class MHO_FunctorBroadcaster
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 
 template< class XArrayType, class XFunctorType >
 class MHO_FunctorBroadcaster: public MHO_UnaryOperator<XArrayType>
