@@ -6,7 +6,7 @@ def fix_noema_jumps(cstore_interface_obj, param_interface_obj):
     # print("RUNNING NOEMA PHASE JUMP CORRECTION")
 
     #grab the UUID of the visibility object
-    vis_uuid = param_interface_obj.get_by_path("/uuid/visibilities");
+    vis_uuid = param_interface_obj.get_by_path("/uuid/visibilities")
     visib_obj = cstore_interface_obj.get_object(vis_uuid);
 
     if visib_obj is None:
@@ -14,21 +14,21 @@ def fix_noema_jumps(cstore_interface_obj, param_interface_obj):
 
     #figure out if NOEMA is reference or remote station
     stidx = 0
-    ref_id = param_interface_obj.get_by_path("/ref_station/site_id");
-    rem_id = param_interface_obj.get_by_path("/rem_station/site_id");
+    ref_id = param_interface_obj.get_by_path("/ref_station/site_id")
+    rem_id = param_interface_obj.get_by_path("/rem_station/site_id")
     if ref_id == "Nn":
         stidx = 0
     if rem_id == "Nn":
         stidx = 1
 
     #grab the underlying visibility 4-d array
-    vis_arr = visib_obj.get_numpy_array();
+    vis_arr = visib_obj.get_numpy_array()
     #rank = visib_obj.get_rank()
 
     #grab the axis information we care about
-    axis0 = visib_obj.get_axis(0); #get the polprod axis
-    axis1 = visib_obj.get_axis(1); #get the channel axis
-    axis3 = visib_obj.get_axis(3); #get the spectral point axis (sub-channel)
+    axis0 = visib_obj.get_axis(0) #get the polprod axis
+    axis1 = visib_obj.get_axis(1) #get the channel axis
+    axis3 = visib_obj.get_axis(3) #get the spectral point axis (sub-channel)
     chan_meta_data = visib_obj.get_axis_metadata(1) #channel axis meta data object
     channel_info = chan_meta_data["index_labels"] #channel bin label dict
 
