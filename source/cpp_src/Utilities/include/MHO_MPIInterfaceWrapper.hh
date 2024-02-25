@@ -4,7 +4,7 @@
 /*!
 *@file MHO_MPIInterfaceWrapper.hh
 *@class
-*@date
+*@date Sat Mar 11 18:35:02 2023 -0500
 *@brief hides the usage of MPI when it was not compiled-in
 *@author J. Barrett - barrettj@mit.edu
 */

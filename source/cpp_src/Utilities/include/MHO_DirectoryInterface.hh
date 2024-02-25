@@ -14,7 +14,7 @@ namespace hops
 *@file MHO_DirectoryInterface.hh
 *@class MHO_DirectoryInterface
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Tue Jun 1 16:14:04 2021 -0400
 *@brief implements utility functions to access a directory and locate files
 */
 

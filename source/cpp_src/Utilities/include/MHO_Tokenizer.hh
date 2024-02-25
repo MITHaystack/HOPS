@@ -13,6 +13,7 @@ namespace hops
 /*!
 *@file MHO_Tokenizer.hh
 *@class MHO_Tokenizer
+*@date Mon May 11 15:51:26 2020 -0400
 *@author J. Barret - barrettj@mit.edu
 * A class reponsible for parsing a string on a given delimiter where the default is a space
 */

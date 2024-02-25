@@ -8,7 +8,7 @@ namespace hops
 /*!
 *@file MHO_Unit
 *@class MHO_Unit.hh
-*@date
+*@date Wed Feb 8 15:28:42 2023 -0500
 *@brief
 *@author J. Barrett - barrettj@mit.edu
 */

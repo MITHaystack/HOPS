@@ -14,7 +14,7 @@ namespace hops
 *@file MHO_FileStreamer.hh
 *@class MHO_FileStreamer
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed Apr 21 13:40:18 2021 -0400
 *@brief
 */
 

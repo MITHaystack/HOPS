@@ -15,7 +15,7 @@ namespace hops
 *@file  MHO_TimeStamp.hh
 *@class  MHO_TimeStamp
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Tue May 17 14:00:36 2022 -0400
 *@brief
 */
 

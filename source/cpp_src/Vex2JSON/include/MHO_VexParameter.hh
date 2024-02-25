@@ -12,7 +12,7 @@ namespace hops
 *@file  MHO_VexParameter.hh
 *@class  MHO_VexParameter
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu May 26 16:55:16 2022 -0400
 *@brief
 */
 

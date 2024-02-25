@@ -35,7 +35,7 @@ namespace hops
 *@author  J. Barrett - barrettj@mit.edu
 *@brief  a clock for hops-time stamps, measures time in (UTC) nanoseconds since J2000 epoch.
 *Functionality modelled on the gps_clock from the 'date' library (requires the timezone tz library too).
-*@date
+*@date Wed May 18 16:46:16 2022 -0400
 */
 
 class hops_clock

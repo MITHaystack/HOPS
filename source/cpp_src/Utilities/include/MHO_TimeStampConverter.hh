@@ -14,6 +14,7 @@ namespace hops
 /*!
 *@file MHO_TimeStampConverter.hh
 *@class MHO_TimeStampConverter
+*@date Mon May 11 15:51:26 2020 -0400
 *@author J. Barrett - barrettj@mit.edu
 * A class responsible for converting times/dates stored in a human readable string
 * into Unix epoch seconds and fractions of a second. The conversion can be done

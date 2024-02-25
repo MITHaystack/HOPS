@@ -23,7 +23,7 @@ namespace hops
 *@file MHO_BinaryFileStreamer.hh
 *@class MHO_BinaryFileStreamer
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed Apr 21 13:40:18 2021 -0400
 *@brief variadic template parameter implemenation
 * of a gen scatter hierarchy streamer for POD and JSON types to a file stream
 */

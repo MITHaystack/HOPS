@@ -13,7 +13,7 @@ namespace hops
 *@file MHO_FileKey.hh
 *@class MHO_FileKey
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed Apr 21 13:40:18 2021 -0400
 *@brief class for file object keys to locate and describe objects in a hops file
 */
 

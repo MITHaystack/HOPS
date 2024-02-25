@@ -17,7 +17,7 @@ namespace hops
 *@file  MHO_StationCodeMap.hh
 *@class  MHO_StationCodeMap
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Apr 28 12:25:09 2022 -0400
 *@brief
     Handles the mapping of two character and one character station representation.
     This class can be initialized from a file, otherwise it assigns free 1-char codes

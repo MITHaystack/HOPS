@@ -14,7 +14,7 @@ namespace hops
 *@file  MHO_LegacyRootCodeGenerator.hh
 *@class  MHO_LegacyRootCodeGenerator
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed Apr 27 11:59:40 2022 -0400
 *@brief  generate the 6-character timestamp-like root codes for converted filenames
 */
 
