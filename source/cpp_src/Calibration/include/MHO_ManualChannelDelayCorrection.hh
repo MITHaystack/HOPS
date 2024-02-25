@@ -25,7 +25,7 @@ namespace hops
 *@file MHO_ManualChannelDelayCorrection.hh
 *@class MHO_ManualChannelDelayCorrection
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Jan 27 10:36:00 2022 -0500
 *@brief
 */
 

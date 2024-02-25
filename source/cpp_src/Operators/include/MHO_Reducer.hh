@@ -19,7 +19,7 @@ namespace hops
 *@file MHO_Reducer.hh
 *@class MHO_Reducer
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Tue Nov 17 16:53:15 2020 -0500
 *@brief Reduce a multi-dimensional array via a templated operation
 *(e.g. summation) along the (runtime) specified dimensions. The output array has the same
 dimensionality (i.e. XArrayType::rank::value). However, the axes over which reduction occured

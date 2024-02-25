@@ -19,7 +19,7 @@ namespace hops
 *@file MHO_EndZeroPadder.hh
 *@class MHO_EndZeroPadder
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Aug 11 13:35:43 2023 -0400
 *@brief
 */
 

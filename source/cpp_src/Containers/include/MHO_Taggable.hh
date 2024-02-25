@@ -15,7 +15,7 @@ namespace hops
 *@file MHO_Taggable.hh
 *@class MHO_Taggable
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Oct 16 11:17:19 2020 -0400
 *@brief
 */
 

@@ -13,7 +13,7 @@ namespace hops
 *@file MHO_ChannelLabelerBuilder.hh
 *@class MHO_ChannelLabelerBuilder
 *@author
-*@date
+*@date Fri Jun 2 16:09:43 2023 -0400
 *@brief
 */
 

@@ -12,7 +12,7 @@ namespace hops
 *@file MHO_StationModel.hh
 *@class MHO_StationModel
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Nov 16 11:49:39 2023 -0500
 *@brief evaluates the station a priori coordinate polynomials
 */
 

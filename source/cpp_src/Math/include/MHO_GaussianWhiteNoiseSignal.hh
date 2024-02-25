@@ -13,7 +13,7 @@ namespace hops
 /*!
 *@file MHO_GaussianWhiteNoiseSignal.hh
 *@class MHO_GaussianWhiteNoiseSignal
-*@date
+*@date Mon Dec 19 16:33:05 2022 -0500
 *@brief
 *@author J. Barrett - barrettj@mit.edu
 */

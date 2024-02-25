@@ -19,7 +19,7 @@ namespace hops
 *@file MHO_BasicFringeInfo.hh
 *@class MHO_BasicFringeInfo
 *@author J. Barrettj - barrettj@mit.edu
-*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@date Wed Sep 20 14:38:33 2023 -0400
 *@brief collection of very simple static helper functions
 * used when computing fringe information/parameters
 */

@@ -34,7 +34,7 @@ namespace hops
 *@file  MHO_DiFXScanProcessor.hh
 *@class  MHO_DiFXScanProcessor
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Mon Jan 31 14:35:02 2022 -0500
 *@brief
 */
 

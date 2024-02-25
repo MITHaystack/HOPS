@@ -15,7 +15,7 @@ namespace hops
 *@file MHO_MathUtilities.hh
 *@class MHO_MathUtilities
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Tue Dec 5 17:01:15 2023 -0500
 *@brief implements a variety of simple math functions copied from original c code with minimal changes
 */
 

@@ -20,7 +20,7 @@ namespace hops
 *@file MHO_ClassIdentityMap.hh
 *@class MHO_ClassIdentityMap
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Apr 29 12:30:28 2021 -0400
 *@brief
 */
 

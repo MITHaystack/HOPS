@@ -12,7 +12,7 @@ namespace hops
 /*!
 *@file MHO_ChannelQuantity.hh
 *@class MHO_ChannelQuantity
-*@date
+*@date Thu Jun 8 13:56:30 2023 -0400
 *@brief class for storing and mapping per-channel control quantities
 *@author J. Barrett - barrettj@mit.edu
 */

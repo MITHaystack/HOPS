@@ -18,7 +18,7 @@ namespace hops
 *@file MHO_FastFourierTransform
 *@class MHO_FastFourierTransform.hh
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Oct 23 12:02:01 2020 -0400
 *@brief
 */
 

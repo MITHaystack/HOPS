@@ -18,7 +18,7 @@ namespace hops
 *@file MHO_Axis.hh
 *@class MHO_Axis
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Mon Oct 19 11:34:27 2020 -0400
 *@brief
 */
 

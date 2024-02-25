@@ -12,7 +12,7 @@ namespace hops
 *@file MHO_ManualChannelPhaseCorrectionBuilder.hh
 *@class MHO_ManualChannelPhaseCorrectionBuilder
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed May 31 17:11:03 2023 -0400
 *@brief
 */
 

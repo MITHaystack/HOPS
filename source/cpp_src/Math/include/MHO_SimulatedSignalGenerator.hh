@@ -10,7 +10,7 @@ namespace hops
 /*!
 *@file MHO_SimulatedSignalGenerator.hh
 *@class MHO_SimulatedSignalGenerator
-*@date
+*@date Mon Dec 19 16:33:05 2022 -0500
 *@brief
 *@author J. Barrett - barrettj@mit.edu
 */

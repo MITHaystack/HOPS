@@ -20,7 +20,7 @@ namespace hops
 *@file  MHO_DiFXBaselineProcessor.hh
 *@class  MHO_DiFXBaselineProcessor
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Tue Mar 1 16:44:37 2022 -0500
 *@brief  accumulates visbility records from a single baseline, sorts and re-packs them into a visbility container
 */
 

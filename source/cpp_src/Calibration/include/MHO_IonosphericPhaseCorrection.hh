@@ -22,7 +22,7 @@ namespace hops
 *@file MHO_IonosphericPhaseCorrection.hh
 *@class MHO_IonosphericPhaseCorrection
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed Jan 17 15:31:52 2024 -0500
 *@brief
 */
 

@@ -11,7 +11,7 @@ namespace hops
 *@file MHO_ManualPolDelayCorrectionBuilder.hh
 *@class MHO_ManualPolDelayCorrectionBuilder
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Tue Jun 20 12:35:56 2023 -0400
 *@brief
 */
 

@@ -16,7 +16,7 @@ namespace hops
 *@file MHO_FunctorBroadcaster.hh
 *@class MHO_FunctorBroadcaster
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Nov 20 17:44:28 2020 -0500
 *@brief
 */
 

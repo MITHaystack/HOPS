@@ -15,7 +15,7 @@ namespace hops
 /*!
 *@file MHO_OperatorBuilderManager.hh
 *@class MHO_OperatorBuilderManager
-*@date
+*@date Thu Jun 8 17:05:29 2023 -0400
 *@brief
 *@author J. Barrett - barrettj@mit.edu
 */

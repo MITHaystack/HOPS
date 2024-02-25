@@ -13,7 +13,7 @@ namespace hops
 *@file MHO_IonosphericFringeFitter.hh
 *@class MHO_IonosphericFringeFitter
 *@author J. Barrettj - barrettj@mit.edu
-*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@date Wed Jan 17 14:48:52 2024 -0500
 *@brief single-baseline fringe fitter with ionosphere search
 */
 

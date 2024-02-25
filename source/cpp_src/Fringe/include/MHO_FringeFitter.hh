@@ -27,7 +27,7 @@ namespace hops
 *@file MHO_FringeFitter.hh
 *@class MHO_FringeFitter
 *@author J. Barrettj - barrettj@mit.edu
-*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@date Tue Sep 19 16:26:35 2023 -0400 
 *@brief Abstract base class for a basic fringe fitter
 */
 

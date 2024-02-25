@@ -27,7 +27,7 @@ namespace hops
 *@file  MHO_PyFringeDataInterface.hh
 *@class  MHO_PyFringeDataInterface
 *@author  J. Barrett - barrettj@mit.edu
-*@date  Fri Sep 15 10:03:38 PM EDT 2023
+*@date Tue Feb 13 22:27:35 2024 -0500
 *@brief python bindings for the MHO_FringeData class
 */
 

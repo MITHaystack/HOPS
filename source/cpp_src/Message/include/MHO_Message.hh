@@ -30,7 +30,7 @@ namespace hops
 *@file MHO_Message.hh
 *@class MHO_Message
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed Oct 14 17:17:31 2020 -0400
 *@brief class for managing messages to stdout
 */
 

@@ -15,7 +15,7 @@ namespace hops
 /*!
 *@file MHO_FastFourierTransformUtilities.hh
 *@class  MHO_FastFourierTransformUtilities
-*@date
+*@date Fri Oct 23 12:02:01 2020 -0400
 *@brief utils for native FFTs
 *@author J. Barrett - barrettj@mit.edu
 */

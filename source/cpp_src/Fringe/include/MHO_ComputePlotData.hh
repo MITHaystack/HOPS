@@ -37,7 +37,7 @@ namespace hops
 *@file MHO_ComputePlotData.hh
 *@class MHO_ComputePlotData
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Mon Apr 24 10:01:21 2023 -0400
 *@brief class for computing fringe plot information
 */
 

@@ -24,7 +24,7 @@ namespace hops
 *@file MHO_LinearDParCorrection.hh
 *@class MHO_LinearDParCorrection
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed Feb 7 23:58:10 2024 -0500
 *@brief
 */
 

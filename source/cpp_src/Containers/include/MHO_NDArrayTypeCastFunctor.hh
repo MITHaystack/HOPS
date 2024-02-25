@@ -15,7 +15,7 @@ namespace hops
 *@file MHO_NDArrayTypeCastFunctor.hh
 *@class MHO_NDArrayTypeCastFunctor
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Mon Jun 28 12:41:01 2021 -0400
 *@brief functor to cast array items from one type to another
 */
 

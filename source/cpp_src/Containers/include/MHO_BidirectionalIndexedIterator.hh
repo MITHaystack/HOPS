@@ -15,7 +15,7 @@ namespace hops
 *@file  MHO_BidirectionalIndexedIterator.hh
 *@class  MHO_BidirectionalIndexedIterator
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Tue Mar 29 21:13:12 2022 -0400
 *@brief  This is an iterator for more complicated n-darrays (primarily array "slices").
 * Because we cannot guarantee that adjacent elements (in index space) are contiguous in
 * memory for an array slice, we need to ensure that the proper strided access takes place.

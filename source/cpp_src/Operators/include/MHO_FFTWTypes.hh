@@ -18,7 +18,7 @@ namespace hops
 *@file MHO_FFTWTypes.hh
 *@class MHO_FFTWTypes
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Tue Jun 22 14:53:20 2021 -0400
 *@brief
 * template declaration of common FFTW3 types (dependent on floating precision)
 * These are necessary to get around partial template specialization in the FFT x-form classes

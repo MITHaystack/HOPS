@@ -21,7 +21,7 @@ namespace hops
 *@file MHO_ExtremaSearch.hh
 *@class MHO_ExtremaSearch
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Jan 5 09:13:09 2023 -0500
 *@brief
 */
 

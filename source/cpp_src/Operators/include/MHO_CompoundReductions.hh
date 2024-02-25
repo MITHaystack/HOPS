@@ -5,7 +5,7 @@
 *@file MHO_CompoundReductions.hh
 *@class MHO_CompoundReductions
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Nov 19 16:49:30 2020 -0500
 *@brief
 */
 

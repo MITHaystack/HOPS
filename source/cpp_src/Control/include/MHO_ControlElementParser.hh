@@ -24,7 +24,7 @@ namespace hops
 *@file  MHO_ControlElementParser.hh
 *@class  MHO_ControlElementParser
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu May 26 16:55:16 2022 -0400
 *@brief
 */
 

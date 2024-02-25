@@ -34,7 +34,7 @@ namespace hops
 *@file MHO_MK4CorelInterface.hh
 *@class MHO_MK4CorelInterface
 *@author J. Barrett - barrettj@mit.edu
-*@date 2020-05-19T18:54:28.140Z
+*@date Thu May 28 19:47:51 2020 -0400
 *@brief This class implicitly assumes that the frequency/channel configuration
 * is shared among all polarization products (i.e. nlags), we may want to loosen this restriction
 * in the future

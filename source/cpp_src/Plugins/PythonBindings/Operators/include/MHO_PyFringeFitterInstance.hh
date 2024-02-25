@@ -20,7 +20,7 @@ namespace hops
 *@file  MHO_PyFringeFitterInstance.hh
 *@class  MHO_PyFringeFitterInstance
 *@author  J. Barrett - barrettj@mit.edu
-*@date  Mon 18 Sep 2023 01:26:22 PM EDT
+*@date Tue Sep 19 16:26:35 2023 -0400
 *@brief  Container class which provides an interface to a fringe fitter instance
 */
 

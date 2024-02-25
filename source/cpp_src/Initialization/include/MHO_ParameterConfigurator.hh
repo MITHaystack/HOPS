@@ -17,7 +17,7 @@ namespace hops
 /*!
 *@file MHO_ParameterConfigurator.hh
 *@class MHO_ParameterConfigurator
-*@date
+*@date Mon Jun 12 12:51:32 2023 -0400
 *@brief
 *@author J. Barrett - barrettj@mit.edu
 */

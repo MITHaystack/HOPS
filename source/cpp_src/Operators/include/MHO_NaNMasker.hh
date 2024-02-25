@@ -16,7 +16,7 @@ namespace hops
 *@file MHO_NaNMasker.hh
 *@class MHO_NaNMasker
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Aug 12 11:16:36 2021 -0400
 *@brief
 */
 

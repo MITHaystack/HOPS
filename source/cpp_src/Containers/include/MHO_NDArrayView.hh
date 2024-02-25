@@ -26,7 +26,7 @@ namespace hops
 *@file MHO_NDArrayView.hh
 *@class MHO_NDArrayView
 *@author J. Barrett - barrettj@mit.edu
-*@date 2020-05-15T20:22:38.395Z
+*@date Mon Mar 28 10:47:46 2022 -0400
 *@brief
 * Thu 13 Aug 2020 02:53:11 PM EDT
 */

@@ -14,7 +14,7 @@ namespace hops
 *@file MHO_ElementTypeCaster.hh
 *@class MHO_ElementTypeCaster
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Apr 13 15:19:20 2023 -0400
 *@brief operator class which casts the element type of one array type to another
 * (e.g float -> double or double -> etc.)
 */

@@ -14,7 +14,7 @@ namespace hops
 *@file  MHO_DiFXInputProcessor.hh
 *@class  MHO_DiFXInputProcessor
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Mon Feb 21 00:33:14 2022 -0500
 *@brief
 */
 

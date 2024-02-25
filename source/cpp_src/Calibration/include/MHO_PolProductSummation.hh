@@ -26,7 +26,7 @@ namespace hops
 *@file MHO_PolProductSummation.hh
 *@class MHO_PolProductSummation
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Sun Jan 14 17:16:10 2024 -0500
 *@brief
 */
 

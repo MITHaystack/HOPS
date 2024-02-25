@@ -17,7 +17,7 @@ namespace hops
 *@file  MHO_DiFXChannelNameConstructor.hh
 *@class  MHO_DiFXChannelNameConstructor
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Tue Jul 12 16:54:42 2022 -0400
 *@brief  Name channels in a vex object, according to the d2m4 convention.
 * Needed in order to convert vex to ovex.
 */

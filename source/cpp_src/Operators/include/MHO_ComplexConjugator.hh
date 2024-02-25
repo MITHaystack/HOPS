@@ -14,7 +14,7 @@ namespace hops
 *@file MHO_ComplexConjugator.hh
 *@class MHO_ComplexConjugator
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed Aug 18 12:02:32 2021 -0400
 *@brief
 */
 

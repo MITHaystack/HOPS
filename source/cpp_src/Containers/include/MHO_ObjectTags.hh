@@ -18,7 +18,7 @@ namespace hops{
 *@file MHO_ObjectTags.hh
 *@class MHO_ObjectTags
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu May 13 10:44:24 2021 -0400
 *@brief container for tag/value meta-data to be attached to objects
 *via association with their UUID
 */

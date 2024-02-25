@@ -28,7 +28,7 @@ namespace hops
 *@file MHO_NormFX.hh
 *@class MHO_NormFX
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Jul 9 11:47:00 2021 -0400
 *@brief implements a subset of the functionality found in norm_fx.c,
 *mainly the transform from frequency to delay space
 */

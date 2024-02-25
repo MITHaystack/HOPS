@@ -23,7 +23,7 @@ namespace hops
 *@file MHO_BasicFringeDataConfiguration.hh
 *@class MHO_BasicFringeDataConfiguration
 *@author J. Barrettj - barrettj@mit.edu
-*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@date Wed Sep 20 16:40:35 2023 -0400 Tue Sep 19 04:11:24 PM EDT 2023
 *@brief collection of helper functions for fringe fitter start-up
 */
 

@@ -13,7 +13,7 @@ namespace hops
 *@file MHO_UnaryFunctor.hh
 *@class MHO_UnaryFunctor
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Oct 15 12:58:01 2021 -0400
 *@brief abstract baseclass for an functor which takes array iterators
 */
 

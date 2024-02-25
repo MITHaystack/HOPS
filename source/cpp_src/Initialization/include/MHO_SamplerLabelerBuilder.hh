@@ -11,7 +11,7 @@ namespace hops
 *@file MHO_SamplerLabelerBuilder.hh
 *@class MHO_SamplerLabelerBuilder
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Dec 14 11:49:02 2023 -0500
 *@brief
 */
 

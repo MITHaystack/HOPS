@@ -22,7 +22,7 @@ namespace hops
 *@file MHO_SamplerLabeler.hh
 *@class MHO_SamplerLabeler
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed Dec 13 16:55:25 2023 -0500
 *@brief When the 'samplers' keyword is encountered, this operator loops
 * over all channels and inserts a label for each channel which contains the sampler index
 * associated with that channel. This can later be used to look up the station sampler delay (ambiguities)

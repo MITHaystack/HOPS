@@ -25,7 +25,7 @@ namespace hops
 *@file MHO_DelayRate.hh
 *@class MHO_DelayRate
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Feb 3 15:13:40 2023 -0500
 *@brief implements the delay rate search
 */
 

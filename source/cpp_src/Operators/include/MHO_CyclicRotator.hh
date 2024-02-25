@@ -18,7 +18,7 @@ namespace hops
 *@file MHO_CyclicRotator.hh
 *@class MHO_CyclicRotator
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Mon Aug 23 15:27:52 2021 -0400
 *@brief
 * Applies a cyclic rotation on the contents on a multidimensional array
 * by some specified offset for each dimension.

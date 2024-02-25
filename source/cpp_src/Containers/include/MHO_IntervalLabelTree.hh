@@ -18,7 +18,7 @@ namespace hops
 *@file MHO_IntervalLabelTree.hh
 *@class MHO_IntervalLabelTree
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Oct 16 11:17:19 2020 -0400
 *@brief Inteval-tree stucture, to allow for fast location of an interval
 * currently un-implemented...just does a dumb brute force O(n) search.
 */
