@@ -12,7 +12,7 @@ namespace hops
 *@file MHO_Interval.hh
 *@class MHO_Interval
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Sep 17 10:45:44 2020 -0400
 *@brief Implements the open integer interval [a,b)
 */
 

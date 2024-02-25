@@ -19,7 +19,7 @@ namespace hops
 *@file MHO_UUID.hh
 *@class MHO_UUID
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed Apr 21 13:40:18 2021 -0400
 *@brief
 */
 

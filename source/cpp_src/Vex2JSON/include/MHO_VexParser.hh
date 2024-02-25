@@ -24,7 +24,7 @@ namespace hops
 *@file  MHO_VexParser.hh
 *@class  MHO_VexParser
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed May 25 17:04:24 2022 -0400
 *@brief
 */
 

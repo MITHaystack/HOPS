@@ -20,7 +20,7 @@ namespace hops
 *@file MHO_MultiTypeMap.hh
 *@class MHO_MultiTypeMap
 *@author J. Barrett - barrettj@mit.edu
-*@date 2020-05-15T20:56:55.583Z
+*@date Tue May 12 16:19:28 2020 -0400
 *@brief
 */
 

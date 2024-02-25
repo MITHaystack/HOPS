@@ -17,7 +17,7 @@ namespace hops
 /*!
 *@file MHO_EncodeValue.hh
 *@class
-*@date
+*@date Fri Jun 2 11:19:07 2023 -0400
 *@brief functions to encode/decode an unsigned base-10 integer value in and out of
 *another base, represented by the single-character symbols present in
 *the specified character_set.

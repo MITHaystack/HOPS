@@ -29,7 +29,7 @@ namespace hops
 *@file MHO_LockFileHandler.hh
 *@class MHO_LockFileHandler
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Tue Jan 30 23:48:59 2024 -0500
 *@brief ported version of fourfit write lock mechanism
 */
 

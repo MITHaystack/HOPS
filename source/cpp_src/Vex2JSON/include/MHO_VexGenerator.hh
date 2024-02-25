@@ -20,7 +20,7 @@ namespace hops
 *@file  MHO_VexGenerator.hh
 *@class  MHO_VexGenerator
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Jun 16 12:01:17 2022 -0400
 *@brief
 */
 

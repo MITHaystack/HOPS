@@ -10,7 +10,7 @@ namespace hops
 *@file  MHO_VexLine.hh
 *@class  MHO_VexLine
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri May 27 12:45:21 2022 -0400
 *@brief
 */
 

@@ -11,7 +11,7 @@ namespace hops
 /*!
 *@file MHO_Constants.hh
 *@class MHO_Constants
-*@date
+*@date Thu Jun 1 13:05:18 2023 -0400
 *@brief
 *@author J. Barrett - barrettj@mit.edu
 */

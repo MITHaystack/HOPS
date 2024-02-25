@@ -13,7 +13,7 @@ namespace hops
 /*!
 *@file MHO_Meta.hh
 *@author J. Barrett - barrettj@mit.edu
-*@date 2020-05-13T17:43:26.831Z
+*@date Fri Oct 16 11:17:19 2020 -0400
 *@brief template meta-programming helper functions, mostly tuple access/modification
 */
 

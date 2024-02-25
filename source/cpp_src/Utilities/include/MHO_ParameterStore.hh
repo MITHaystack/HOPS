@@ -15,7 +15,7 @@ namespace hops
 /*!
 *@file MHO_ParameterStore.hh
 *@class MHO_ParameterStore
-*@date
+*@date Wed Jun 7 23:42:31 2023 -0400
 *@author J. Barrett - barrettj@mit.edu
 *@brief class to store parameters (typically from control file) for later retrieval
 *There are some deficiencies with this json-based approach, for example everything except terminal values

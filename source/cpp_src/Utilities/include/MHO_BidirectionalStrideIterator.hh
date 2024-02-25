@@ -13,7 +13,7 @@ namespace hops
 *@file  MHO_BidirectionalStrideIterator.hh
 *@class  MHO_BidirectionalStrideIterator
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Sat Oct 2 04:34:18 2021 -0400
 *@brief
 */
 

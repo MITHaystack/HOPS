@@ -11,7 +11,7 @@
 *@file MHO_TemplateTypenameDeduction.hh
 *@class
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed Apr 21 13:40:18 2021 -0400
 *@brief
 * Main idea from blog post here: https://bitwizeshift.github.io/posts/2021/03/09/getting-an-unmangled-type-name-at-compile-time/
 * but re-worked so that it can work with C++11.

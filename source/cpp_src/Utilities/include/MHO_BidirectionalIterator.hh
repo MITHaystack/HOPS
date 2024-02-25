@@ -12,7 +12,7 @@ namespace hops
 *@file  MHO_BidirectionalIterator.hh
 *@class  MHO_BidirectionalIterator
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Sat Oct 2 04:34:18 2021 -0400
 *@brief
 */
 

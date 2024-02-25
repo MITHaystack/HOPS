@@ -11,7 +11,7 @@ namespace hops
 *@class  legacy_hops_date
 *@author  J. Barrett - barrettj@mit.edu
 *@brief  A struct to avoid name collisions between the mk4utils 'data' struct and the 'date' header library
-*@date
+*@date Fri Aug 18 10:22:26 2023 -0400
 */
 
 //struct compatible with the legacy hops date format

@@ -11,7 +11,7 @@ namespace hops
 *@file MHO_ExtensibleElement.hh
 *@class MHO_ExtensibleElement
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed Sep 15 13:18:04 2021 -0400
 *@brief Implements an interface by which a class that inherits from MHO_ExtensibleElement
 * can have arbitrarily extended functionality added to it without modifying the original class
 * Pointers to the extensions are stored internally, and access proceeds through the visitor pattern.

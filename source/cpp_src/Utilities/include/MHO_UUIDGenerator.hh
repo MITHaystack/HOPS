@@ -14,6 +14,7 @@ namespace hops
 /*!
 *@file MHO_UUIDGenerator.hh
 *@class MHO_UUIDGenerator
+*@date Wed Apr 21 13:40:18 2021 -0400
 *@author J. Barrett - barrettj@mit.edu
 * A class to provide pseudo-randomly generated UUID strings,
 * based on RFC-4122, but with a non-standard 4 byte sync word as a prefix

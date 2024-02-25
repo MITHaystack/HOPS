@@ -15,7 +15,7 @@ namespace hops
 *@file  MHO_VexElementLineGenerator.hh
 *@class  MHO_VexElementLineGenerator
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Jun 17 10:45:26 2022 -0400
 *@brief
 */
 
