@@ -350,7 +350,8 @@ int main(int argc, char** argv)
     }
     #endif
 
-
+    //clean up
+    delete ffit;
 
     return 0;
 }
