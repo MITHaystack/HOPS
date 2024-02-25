@@ -15,7 +15,7 @@ namespace hops
 *@file MHO_WeightChannelizer.hh
 *@class MHO_WeightChannelizer
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Mon Jul 12 15:11:14 2021 -0400
 *@brief collects unchannelized (3d) weight data and groups by channel (but all must be of equal size) into 4d object
 */
 

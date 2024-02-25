@@ -22,7 +22,7 @@ namespace hops
 *@file MHO_FringeControlInitialization.hh
 *@class MHO_FringeControlInitialization
 *@author J. Barrettj - barrettj@mit.edu
-*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@date Mon Feb 5 13:59:09 2024 -0500 
 *@brief collection of helper functions for fringe fitter start-up
 */
 

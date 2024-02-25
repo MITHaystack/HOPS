@@ -11,7 +11,7 @@ namespace hops{
 /*!
 *@file MHO_NDArrayMath.hh
 *@class MHO_NDArrayMath
-*@date
+*@date Sun Jan 24 14:53:01 2021 -0500
 *@brief utility functions for multidimensional array access
 *@author J. Barrett - barrettj@mit.edu
 */

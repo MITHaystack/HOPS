@@ -21,7 +21,7 @@ namespace hops
 *@file MHO_FringeData.hh
 *@class MHO_FringeData
 *@author
-*@date Tue Sep 19 04:11:24 PM EDT 2023
+*@date Sun Feb 4 20:25:51 2024 -0500 
 *@brief simple class to contain fringe data objects
 */
 

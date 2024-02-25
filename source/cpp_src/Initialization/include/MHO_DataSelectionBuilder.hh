@@ -13,7 +13,7 @@ namespace hops
 *@file MHO_DataSelectionBuilder.hh
 *@class MHO_DataSelectionBuilder
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Jun 9 15:01:13 2023 -0400
 *@brief
 */
 

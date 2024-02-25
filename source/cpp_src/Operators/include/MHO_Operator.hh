@@ -12,7 +12,7 @@ namespace hops
 *@file  MHO_Operator.hh
 *@class  MHO_Operator
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Sep 23 16:03:48 2021 -0400
 *@brief
 */
 

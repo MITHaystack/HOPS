@@ -19,7 +19,7 @@ namespace hops
 /*!
 *@file MHO_FastFourierTransformWorkspace.hh
 *@class MHO_FastFourierTransformWorkspace
-*@date
+*@date Mon Jul 31 15:44:01 2023 -0400
 *@brief navtive FFT workspace definitions
 *@author J. Barrett - barrettj@mit.edu
 */

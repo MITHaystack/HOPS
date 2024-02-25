@@ -17,7 +17,7 @@ namespace hops
 /*!
 *@file MHO_ControlConditionEvaluator.hh
 *@class MHO_ControlConditionEvaluator
-*@date
+*@date Fri May 19 13:08:22 2023 -0400
 *@brief evaluates conditional statements encounterd in control file syntax
 *@author J. Barrett - barrettj@mit.edu
 */

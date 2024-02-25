@@ -24,7 +24,7 @@ namespace hops
 *@file MHO_Profiler.hh
 *@class MHO_Profiler
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Sat Feb 10 11:17:05 2024 -0500
 *@brief class for running time/performance profiling
 */
 

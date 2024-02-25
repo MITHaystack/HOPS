@@ -22,7 +22,7 @@ namespace hops
 *@file  MHO_ControlFileParser.hh
 *@class  MHO_ControlFileParser
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu May 11 15:00:11 2023 -0400
 *@brief
 */
 

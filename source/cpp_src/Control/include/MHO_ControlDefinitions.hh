@@ -15,7 +15,7 @@ namespace hops
 *@file  MHO_ControlElements.hh
 *@class  MHO_ControlElements
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Mon May 15 16:14:11 2023 -0400
 *@brief
 */
 

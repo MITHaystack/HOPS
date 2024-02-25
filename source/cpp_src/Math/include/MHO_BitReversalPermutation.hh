@@ -16,7 +16,7 @@ namespace hops
 /*!
 *@file MHO_BitReversalPermutation.hh
 *@class MHO_BitReversalPermutation
-*@date
+*@date Fri Oct 23 12:02:01 2020 -0400
 *@brief bit reversal permutation function for power-of-two FFTs
 *@author J. Barrett - barrettj@mit.edu
 */

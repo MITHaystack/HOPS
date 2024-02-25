@@ -15,7 +15,7 @@ namespace hops
 *@file MHO_AbsoluteValue.hh
 *@class MHO_AbsoluteValue
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Wed Aug 18 12:02:32 2021 -0400
 *@brief
 */
 

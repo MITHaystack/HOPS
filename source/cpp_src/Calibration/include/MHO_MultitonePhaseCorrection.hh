@@ -30,7 +30,7 @@ namespace hops
 *@file MHO_MultitonePhaseCorrection.hh
 *@class MHO_MultitonePhaseCorrection
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Jan 27 10:36:00 2022 -0500
 *@brief
 */
 

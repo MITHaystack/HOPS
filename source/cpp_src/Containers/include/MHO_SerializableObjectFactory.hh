@@ -14,7 +14,7 @@ namespace hops
 *@file  MHO_SerializableObjectFactory.hh
 *@class  MHO_SerializableObjectFactory
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Sun Feb 13 19:54:27 2022 -0500
 *@brief
 */
 

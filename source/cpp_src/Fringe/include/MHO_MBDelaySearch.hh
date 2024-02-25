@@ -28,7 +28,7 @@ namespace hops
 *@file MHO_MBDelaySearch.hh
 *@class MHO_MBDelaySearch
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Tue Apr 11 16:50:11 2023 -0400
 *@brief implements the coarse MBD/SBD/DR search, see search.c
 */
 

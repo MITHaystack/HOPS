@@ -16,7 +16,7 @@ namespace hops
 *@file  MHO_PyOperator.hh
 *@class  MHO_PyOperator
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Sep 23 16:03:48 2021 -0400
 *@brief  trampoline for generic data operator
 */
 

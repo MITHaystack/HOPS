@@ -12,7 +12,7 @@ namespace hops
 *@file MHO_AxisPack.hh
 *@class MHO_AxisPack
 *@author J. Barrett - barrettj@mit.edu
-*@date 17-08-2020 11:32
+*@date Mon Aug 17 12:42:31 2020 -0400
 *@brief set of axes (XAxisTypeS are expected to be MHO_VectorContainers)
 */
 

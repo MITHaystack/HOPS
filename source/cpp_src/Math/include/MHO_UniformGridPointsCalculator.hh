@@ -15,7 +15,7 @@ namespace hops
 *@file
 *@class
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Jan 12 16:03:58 2023 -0500
 *@brief This class re-implements the function freq_spacing from hops3.
 Basically it is a primitive method to figure out an approximate (but uniformly spaced) grid which
 aligns (within epsilon) with the original floating point locations.

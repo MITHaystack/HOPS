@@ -24,7 +24,7 @@ namespace hops
 *@file  MHO_DiFXInterface.hh
 *@class  MHO_DiFXInterface
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Feb 4 13:56:11 2022 -0500
 *@brief
 */
 

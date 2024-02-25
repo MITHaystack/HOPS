@@ -16,7 +16,7 @@ namespace hops
 *@file  MHO_PyUnaryTableOperator.hh
 *@class  MHO_PyUnaryTableOperator
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Sep 23 16:03:48 2021 -0400
 *@brief
 */
 

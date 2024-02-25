@@ -19,7 +19,7 @@ namespace hops
 *@file MHO_SubSample.hh
 *@class MHO_SubSample
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Tue Aug 24 15:18:04 2021 -0400
 *@brief
 * Sub-samples an array at the specified stride (e.g. select every-other point)
 * Can only be applied to a single-axis at a time.

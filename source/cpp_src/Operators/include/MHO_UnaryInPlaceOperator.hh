@@ -13,7 +13,7 @@ namespace hops
 *@file MHO_UnaryInPlaceOperator.hh
 *@class MHO_UnaryInPlaceOperator
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Mon Jul 31 14:54:52 2023 -0400
 *@brief
 */
 

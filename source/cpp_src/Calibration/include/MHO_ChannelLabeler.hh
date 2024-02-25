@@ -21,7 +21,7 @@ namespace hops
 *@file MHO_ChannelLabeler.hh
 *@class MHO_ChannelLabeler
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Jun 1 13:20:19 2023 -0400
 *@brief Applies 'fourfit' labels to each channel (e.g. a, b,...),
 * if no user-defined map is supplied then the default mapping is in order
 * of frequency low -> high, starting with 'a'

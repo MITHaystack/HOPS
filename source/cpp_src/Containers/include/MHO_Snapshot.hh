@@ -39,7 +39,7 @@ namespace hops
 *@file MHO_Snapshot.hh
 *@class MHO_Snapshot
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Sun Apr 2 17:06:41 2023 -0400
 *@brief
 */
 

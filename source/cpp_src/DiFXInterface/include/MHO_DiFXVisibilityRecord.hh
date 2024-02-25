@@ -14,7 +14,7 @@ namespace hops
 *@file MHO_DiFXVisibilityRecord.hh
 *@class MHO_DiFXVisibilityRecord
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Feb 3 11:15:07 2022 -0500
 *@brief
 */
 

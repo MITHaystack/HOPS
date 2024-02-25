@@ -21,7 +21,7 @@ namespace hops
 *@file MHO_PyConfigurePath.hh
 *@class MHO_PyConfigurePath
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Feb 23 12:15:30 2024 -0500
 *@brief sets the python module search path after the embedded interpreter has been started
 */
 

@@ -22,7 +22,7 @@ namespace hops
 *@file MHO_ContainerJSONConverter.hh
 *@class MHO_ContainerJSONConverter
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Feb 18 14:17:16 2022 -0500
 *@brief Converts a given ndarray-based container into a JSON representation
 * this isn't really intended for data transport/storage, but only as
 * conversion to an ascii-like representation for human inspection/debugging

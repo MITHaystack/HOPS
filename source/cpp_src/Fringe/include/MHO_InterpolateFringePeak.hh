@@ -18,7 +18,7 @@ namespace hops
 *@file MHO_InterpolateFringePeak.hh
 *@class MHO_InterpolateFringePeak
 *@author J. Barrettj - barrettj@mit.edu
-*@date
+*@date Thu Apr 13 16:25:38 2023 -0400
 *@brief implements fine interpolation about the fringe peak (see interp.c and max555.c code)
 */
 

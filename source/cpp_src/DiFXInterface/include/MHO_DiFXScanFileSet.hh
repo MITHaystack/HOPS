@@ -13,7 +13,7 @@ namespace hops
 *@file  MHO_DiFXScanFileSet.hh
 *@class  MHO_DiFXScanFileSet
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Mon Jan 31 15:48:42 2022 -0500
 *@brief
 */
 

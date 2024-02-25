@@ -11,7 +11,7 @@ namespace hops
 *@file MHO_InspectingOperator.hh
 *@class MHO_InspectingOperator
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Tue Jan 10 16:42:53 2023 -0500
 *@brief
 */
 

@@ -60,7 +60,7 @@ namespace hops
 *@file MHO_MK4FringeExport.hh
 *@class MHO_MK4FringeExport
 *@author J. Barrett - barrettj@mit.edu
-*@date 2020-05-19T18:54:28.140Z
+*@date Thu Jan 25 21:05:22 2024 -0500 
 *@brief
 */
 

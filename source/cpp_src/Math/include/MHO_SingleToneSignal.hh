@@ -10,7 +10,7 @@ namespace hops
 /*!
 *@file MHO_SingleToneSignal.hh
 *@class MHO_SingleToneSignal
-*@date
+*@date Mon Dec 19 16:33:05 2022 -0500
 *@brief
 *@author J. Barrett - barrettj@mit.edu
 */

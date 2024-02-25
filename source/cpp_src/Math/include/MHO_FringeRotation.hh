@@ -14,7 +14,7 @@ namespace hops
 *@file MHO_FringeRotation.hh
 *@class MHO_FringeRotation
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Feb 17 13:35:37 2023 -0500
 *@brief class to implement functionality originally found in vrot.c
 */
 

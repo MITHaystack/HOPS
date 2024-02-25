@@ -51,7 +51,7 @@ namespace hops
 *@file MHO_MK4ScanConverter.hh
 *@class MHO_MK4ScanConverter
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Thu Feb 8 13:15:14 2024 -0500
 *@brief
 */
 

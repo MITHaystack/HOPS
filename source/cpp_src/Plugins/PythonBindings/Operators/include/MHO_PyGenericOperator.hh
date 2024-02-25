@@ -21,7 +21,7 @@ namespace hops
 *@file  MHO_PyGenericOperator.hh
 *@class  MHO_PyGenericOperator
 *@author  J. Barrett - barrettj@mit.edu
-*@date  Mon 18 Sep 2023 01:26:22 PM EDT
+*@date Mon Sep 18 13:51:51 2023 -0400
 *@brief  this class allows a user to inject a python function of the form:
 * func(container_interface, parameter_interface)
 * into the control flow of the fringe fitter. It is basically allowed full access to

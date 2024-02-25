@@ -13,7 +13,7 @@ namespace hops
 *@file MHO_DelayModel.hh
 *@class MHO_DelayModel
 *@author J. Barrett - barrettj@mit.edu
-*@date
+*@date Fri Aug 18 13:42:45 2023 -0400
 *@brief evaluates the station a priori delay model polynomials
 */
 

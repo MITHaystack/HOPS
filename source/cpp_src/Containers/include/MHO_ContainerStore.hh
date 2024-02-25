@@ -22,7 +22,7 @@ namespace hops
 *@file  MHO_ContainerStore.hh
 *@class  MHO_ContainerStore
 *@author  J. Barrett - barrettj@mit.edu
-*@date
+*@date Sat Feb 12 17:54:26 2022 -0500
 *@brief  holds a collection of objects all pointed to by base class MHO_Serializable*
 * retrieval is through type/object ids
 */

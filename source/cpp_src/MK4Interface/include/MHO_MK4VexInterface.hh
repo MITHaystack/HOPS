@@ -15,7 +15,7 @@ namespace hops
 *@file MHO_MK4VexInterface.hh
 *@class MHO_MK4VexInterface
 *@author J. Barrett - barrettj@mit.edu
-*@date 2020-05-19T04:44:32.593Z
+*@date Tue May 19 01:47:28 2020 -0400 
 *@brief
 */
 
