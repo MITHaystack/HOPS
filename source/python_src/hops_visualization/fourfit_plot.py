@@ -184,7 +184,7 @@ def make_channel_segment_plots(plot_dict):
         plt.subplots_adjust(wspace=0, hspace=0)
         ax6.plot(range(n_seg), seg_amp_arr1[:,ch],'co-',markersize=2, markerfacecolor='b', linewidth=0.5, markeredgewidth=0.0)
         ax6.set_xlim(0,n_seg)
-        ax6.set_ylim(0,2*seg_ymax)
+        ax6.set_ylim(0,seg_ymax)
         ax6.set_xticklabels(labels=[],visible=False)
         ax6.tick_params(axis='both', direction='in', which='both')
         if ch < n_seg_plots-1:
