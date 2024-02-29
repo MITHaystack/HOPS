@@ -41,8 +41,8 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         if(n_usb_chan != 0 && n_lsb_chan != 0)
         {
-            msg_error("fringe", "Could not initialize MHO_NormFX, mixed USB/LSB data not yet supported." << eom);
-            return false;
+            msg_error("fringe", "problem initializing MHO_NormFX, mixed USB/LSB data not yet supported." << eom);
+            //return false;
         }
 
         in1->GetDimensions(fInDims);
