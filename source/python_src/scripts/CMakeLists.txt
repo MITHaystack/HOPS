@@ -4,9 +4,12 @@ if (PY_EXE)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/test.py.in" "${CMAKE_CURRENT_BINARY_DIR}/test.py" @ONLY)
     install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/test.py" DESTINATION ${BIN_INSTALL_DIR})
 
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/test_hops_access.py.in" "${CMAKE_CURRENT_BINARY_DIR}/test_hops_access.py" @ONLY)
+    install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/test_hops_access.py" DESTINATION ${BIN_INSTALL_DIR})
+
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/compjsonpdd.py.in" "${CMAKE_CURRENT_BINARY_DIR}/compjsonpdd.py" @ONLY)
     install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/compjsonpdd.py" DESTINATION ${BIN_INSTALL_DIR})
-    
+
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/pdd2json.py.in" "${CMAKE_CURRENT_BINARY_DIR}/pdd2json.py" @ONLY)
     install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/pdd2json.py" DESTINATION ${BIN_INSTALL_DIR})
 
