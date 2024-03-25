@@ -73,7 +73,7 @@ def main():
 
 
 
-if __name__ == '__main__':          # official entry point
+if __name__ == '__main__':
     main()
     sys.exit(0)
 
