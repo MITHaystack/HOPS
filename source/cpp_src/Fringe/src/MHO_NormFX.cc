@@ -35,7 +35,6 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         if(n_usb_chan != 0){fIsUSB = true;}
         if(n_lsb_chan != 0){fIsUSB = false;}
 
-
         if(!fIsUSB){msg_debug("fringe", "MHO_NormFX operating on LSB data, N LSB channels: " << n_lsb_chan <<eom );}
         else{msg_debug("fringe", "MHO_NormFX operating on USB data, N USB channels: " << n_usb_chan <<eom );}
 
@@ -119,15 +118,6 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
 
     if(fInitialized)
     {
-        //apply phase-cal corrections to each channel (manuals only)
-        //for now do nothing
-
-        //apply differential delay corrections (phase ramp) to each channel (manuals only)
-        //for now do nothing
-
-        //sum over all relevant polarization-products and side-bands
-        //for now only select the first polarization
-
         bool status;
 
         //first thing we do is filter out any NaNs
