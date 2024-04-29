@@ -43,6 +43,8 @@ class MHO_UniformGridPointsCalculator
         double GetSpread() const {return fSpread;} //the spread about the average
         std::size_t GetNGridPoints() const {return fNGridPoints;}; //the number of points in the uniform grid
 
+        bool GetSpacingErrorStatus() const {return fSpacingError;};
+
 
         //maps the indexes of the original points to their new locations in the
         //uniform grid array
@@ -68,7 +70,7 @@ class MHO_UniformGridPointsCalculator
         std::map<std::size_t, std::size_t> fIndexMap;
 
         int fDefaultGridPoints;
-
+        bool fSpacingError;
         double fAbsEps; //use to check that value is not zero
 
 };
