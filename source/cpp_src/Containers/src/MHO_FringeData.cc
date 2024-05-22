@@ -96,12 +96,10 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
     tags.SetTagValue("parameters", params);
     //TODO what other information should be tagged/included?
 
-    //TODO REPLACE THIS WITH:
-    //(1) The full visibilities (with spectral information) with the fringe solution applied
-    visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
-    if( vis_data == nullptr)
+    visibility_type* cvis_data = fContainerStore.GetObject<visibility_type>(std::string("cvis"));
+    if( cvis_data == nullptr)
     {
-        msg_fatal("fringe", "could not find visibility object to write output." << eom);
+        msg_fatal("fringe", "could not find corrected visibility object to write output." << eom);
         std::exit(1);
     }
 
@@ -117,9 +115,9 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
     bool status = inter.OpenToWrite(filename);
     if(status)
     {
-        tags.AddObjectUUID(vis_data->GetObjectUUID());
+        tags.AddObjectUUID(cvis_data->GetObjectUUID());
         inter.Write(tags, "tags");
-        inter.Write(*vis_data, "vis");
+        inter.Write(*cvis_data, "cvis");
         inter.Write(*phasor_data, "phasors");
         inter.Close();
     }
