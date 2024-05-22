@@ -96,6 +96,7 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
     tags.SetTagValue("parameters", params);
     //TODO what other information should be tagged/included?
 
+    //TODO -- only enable this output when the -X option has been passed
     visibility_type* cvis_data = fContainerStore.GetObject<visibility_type>(std::string("cvis"));
     if( cvis_data == nullptr)
     {

@@ -117,7 +117,7 @@ class MHO_SelectRepack:
                 }
                 else
                 {
-                    //some axes have data selected, an some do not (meaning all is passed)
+                    //some axes have data selected, and some do not (meaning all is passed)
                     //so we need to sort through the mess
                     for(std::size_t i=0; i<total_size; i++)
                     {
