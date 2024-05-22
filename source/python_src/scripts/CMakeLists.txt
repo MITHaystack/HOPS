@@ -7,6 +7,9 @@ if (PY_EXE)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/test_hops_access.py.in" "${CMAKE_CURRENT_BINARY_DIR}/test_hops_access.py" @ONLY)
     install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/test_hops_access.py" DESTINATION ${BIN_INSTALL_DIR})
 
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/test_hops_fringe.py.in" "${CMAKE_CURRENT_BINARY_DIR}/test_hops_fringe.py" @ONLY)
+    install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/test_hops_fringe.py" DESTINATION ${BIN_INSTALL_DIR})
+
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/compjsonpdd.py.in" "${CMAKE_CURRENT_BINARY_DIR}/compjsonpdd.py" @ONLY)
     install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/compjsonpdd.py" DESTINATION ${BIN_INSTALL_DIR})
 
