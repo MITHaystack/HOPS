@@ -5,8 +5,16 @@
 
 #include "MHO_Constants.hh"
 
+#include "MHO_MultidimensionalFastFourierTransform.hh"
+
 namespace hops
 {
+
+#ifdef HOPS_USE_FFTW3
+using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< visibility_type >;
+#else
+using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< visibility_type >;
+#endif
 
 MHO_ComputePlotData::MHO_ComputePlotData()
 {
@@ -305,6 +313,82 @@ MHO_ComputePlotData::calc_segs()
     return phasor_segs;
 
 }
+
+
+
+visibility_type*
+MHO_ComputePlotData::calc_corrected_vis()
+{
+    //clone the SBD array 
+    visibility_type* corrected_vis = fSBDArray->Clone();
+
+    std::size_t POLPROD = 0;
+    std::size_t nchan = corrected_vis->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = corrected_vis->GetDimension(TIME_AXIS);
+    std::size_t nbins = corrected_vis->GetDimension(FREQ_AXIS);
+
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*corrected_vis) );
+    auto ap_ax = &(std::get<TIME_AXIS>(*corrected_vis));
+    auto lag_ax = &(std::get<FREQ_AXIS>(*corrected_vis));
+    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+    double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
+
+    //grab the fourfit channel names
+    std::string chan_label_key = "channel_label";
+    std::vector< std::string > channel_labels;
+    for(std::size_t ch=0; ch < chan_ax->GetSize(); ch++)
+    {
+        std::string ch_label;
+        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, chan_label_key, ch_label);
+        if(key_present){channel_labels.push_back(ch_label);}
+    }
+
+    std::string sidebandlabelkey = "net_sideband";
+    for(std::size_t ap=0; ap < nap; ap++)
+    {
+        std::complex<double> sum = 0; //sum over all channels
+        double sumwt = 0.0;
+        double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
+        for(std::size_t ch=0; ch < nchan; ch++)
+        {
+            double freq = (*chan_ax)(ch);//sky freq of this channel
+            std::string net_sideband = "?";
+            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
+            if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
+
+            fRot.SetSideband(0); //DSB
+            if(net_sideband == "U"){fRot.SetSideband(1);}
+            if(net_sideband == "L"){fRot.SetSideband(-1);}
+
+            std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+
+            for(std::size_t lag=0; lag < nbins; lag++)
+            {
+                //apply the rotation....hey wait a minute, what about the frequency/delay change across the channel??!
+                std::complex<double> vis = (*corrected_vis)(POLPROD, ch, ap, lag);
+                (*corrected_vis)(POLPROD, ch, ap, lag) = vis*vr;
+            }
+        }
+    }
+
+    FFT_ENGINE_TYPE fftEngine;
+    
+    fftEngine.SetArgs(corrected_vis);
+    fftEngine.DeselectAllAxes();
+    fftEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
+    fftEngine.SetBackward();//backward DFT
+
+    //now we need to appy an FFT to take us from single-band-delay back to frequency space
+    bool status = fftEngine.Execute();
+    if(!status){msg_error("fringe", "Could not execute FFT in MHO_ComputePlotData" << eom);}
+    
+    //normalize the array
+    double norm =  1.0/(double)nbins;
+    *(corrected_vis) *= norm;
+
+    return corrected_vis;
+}
+
 
 
 xpower_amp_type
@@ -723,11 +807,16 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     std::get<1>(phasors).Insert("name", "time");
     std::get<1>(phasors).Insert("units", "s");
 
-
     //have to clone the phasors data (because this copy will go out of scope at the end of this function)
     auto phasors_clone = phasors.Clone();
     bool ok = fContainerStore->AddObject(phasors_clone);
     ok = fContainerStore->SetShortName(phasors_clone->GetObjectUUID(), "phasors");
+    
+    auto cvis = calc_corrected_vis();
+    cvis->CopyTags(*fSBDArray);
+    cvis->Insert("name", "corrected_visibilities");
+    ok = fContainerStore->AddObject(cvis);
+    ok = fContainerStore->SetShortName(cvis->GetObjectUUID(), "cvis");
 
     double coh_avg_phase_deg = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
     fParamStore->Set("/fringe/raw_resid_phase", coh_avg_phase_deg);
