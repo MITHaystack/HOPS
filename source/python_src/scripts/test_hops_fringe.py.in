@@ -7,6 +7,45 @@ import os
 import sys
 import argparse
 
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator
+from mpl_toolkits.mplot3d import Axes3D
+
+
+def test_plot_visibilities(visib_obj, polprod_idx, chan_idx):
+
+    vis_arr = visib_obj.get_numpy_array();
+    axis0 = visib_obj.get_axis(0);
+    axis1 = visib_obj.get_axis(1);
+    axis2 = visib_obj.get_axis(2);
+    axis3 = visib_obj.get_axis(3);
+
+    pp = polprod_idx;
+    ch = chan_idx;
+
+    print("plotting the visibilities of: pp = ", axis0[pp], " chan = ", axis1[ch]);
+    fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+
+    time, freq = np.meshgrid(axis3, axis2)
+    #time, freq = np.meshgrid(range(0,len(axis3)), range(0,len(axis2)) )
+    vis = np.array(vis_arr[pp,ch,:,:])
+    print("time shape = ", time.shape)
+    print("freq shape = ", freq.shape)
+    print("vis_00 shape = ", vis.shape)
+    vis_mag = np.abs(vis)
+    vis_arg = np.angle(vis, deg=True)
+
+    # Plot the surface.
+    # surf = ax.plot_surface(time, freq, vis_mag, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+    surf = ax.plot_surface(time, freq, vis_arg, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+
+
+    # Add a color bar which maps values to colors.
+    fig.colorbar(surf, shrink=0.5, aspect=5)
+    plt.show()
+
 def main():
 
     parser = argparse.ArgumentParser(
@@ -72,6 +111,10 @@ def main():
                                     print("axis: ", i, " = ", axis)
                                     axis_meta = cvis.get_axis_metadata(i)
                                     print("axis meta data = ", axis_meta)
+                                    
+                                #lets plot the mag/phase of the first channel 
+                                test_plot_visibilities(cvis, 0, 0)
+
 
 
 
