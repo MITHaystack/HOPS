@@ -377,6 +377,7 @@ MHO_ComputePlotData::calc_corrected_vis()
     fftEngine.DeselectAllAxes();
     fftEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
     fftEngine.SetBackward();//backward DFT
+    fftEngine.Initialize();
 
     //now we need to appy an FFT to take us from single-band-delay back to frequency space
     bool status = fftEngine.Execute();
@@ -385,6 +386,8 @@ MHO_ComputePlotData::calc_corrected_vis()
     //normalize the array
     double norm =  1.0/(double)nbins;
     *(corrected_vis) *= norm;
+
+    //TODO...we need select-repack the data (and re-label the FREQ_AXIS too)!!
 
     return corrected_vis;
 }
