@@ -92,8 +92,8 @@ class FourFitThread(threading.Thread):
         set_commands = self.subargs[5]
 
         exe_name = get_fourfit_cmd()
-        if exe_name == "ffit":
-            exe_name += " -k " #tell ffit to generate mk4 output
+        if exe_name == "fourfit4":
+            exe_name += " -k " #tell fourfit4 to generate mk4 output
         exe_arg = exe_name + " -m 4 " + options_arg + " " + baseline_arg + " " + control_arg + " " + root_file_path + " " + set_commands
 
         return exe_arg
@@ -189,8 +189,8 @@ def fourfit_generate_fringe(options, baseline, control_file_path, root_file_path
     stdout_log = tempfile.TemporaryFile(mode="w+b") #dump stdout here
     stderr_log = tempfile.TemporaryFile(mode="w+b") #dump stderr here
     cmd_name=get_fourfit_cmd()
-    if cmd_name == "ffit":
-        cmd_name += " -k " #tell ffit to generate mk4 output
+    if cmd_name == "fourfit4":
+        cmd_name += " -k " #tell fourfit4 to generate mk4 output
     if fplot is True:
         cmd_name = cmd_name + " -p "
     if control_arg == "":
@@ -227,8 +227,8 @@ def run_fourfit(options, baseline, control_file_path, root_file_path, verbose=Fa
     stdout_log = tempfile.TemporaryFile(mode="w") #dump stdout here
     stderr_log = tempfile.TemporaryFile(mode="w") #dump stderr here
     cmd_name=get_fourfit_cmd()
-    if cmd_name == "ffit":
-        cmd_name += " -k " #tell ffit to generate mk4 output
+    if cmd_name == "fourfit4":
+        cmd_name += " -k " #tell fourfit4 to generate mk4 output
     exe_arg = cmd_name + " " + options + " " + baseline_arg + " " + control_arg + " " + root_file_path
     if verbose:
         print(exe_arg)

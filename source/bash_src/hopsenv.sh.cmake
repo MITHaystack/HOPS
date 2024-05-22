@@ -41,7 +41,7 @@ export CMAKE_PREFIX_PATH=$HOPS_INSTALL:${CMAKE_PREFIX_PATH//${OLD_CMAKE_PREF}/}
 export PYTHONPATH=${HOPSSYSPY}:${PYTHONPATH//${OLD_HOPSSYSPY}}
 export PROGDOC=@CMAKE_INSTALL_PREFIX@/share/vhelp
 export DEF_CONTROL=/dev/null
-export HOPS_VPAL_FRINGE_FITTER="ffit"
+export HOPS_VPAL_FRINGE_FITTER="fourfit4"
 export HOPS_DEFAULT_PLUGINS_DIR=@PLUGINS_INSTALL_DIR@
 
 #we will also look for plugin scripts in the environmental variable: HOPS_USER_PLUGINS_DIR

@@ -85,7 +85,7 @@ def main():
     tolerance = 0.1 #tolerance to detect changes is 0.1 degrees
     V_X_tolerance = 0.1
     ff_cmd = ht.get_fourfit_cmd()
-    if ff_cmd == "ffit":
+    if ff_cmd == "fourfit4":
         tolerance = 0.3
         V_X_tolerance = 20.0
     for stpol in cached_pc_values.keys():
