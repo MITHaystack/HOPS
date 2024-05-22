@@ -12,6 +12,11 @@ macro(hops_install_executables)
     install(TARGETS ${ARGN} EXPORT hopsTargets DESTINATION ${BIN_INSTALL_DIR})
 endmacro()
 
+macro(hops_install_symlink filepath sympath)
+    install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${filepath} ${sympath})")
+    install(CODE "message(\"-- Created symlink: ${sympath} -> ${filepath}\")")
+endmacro(hops_install_symlink)
+
 macro (hops_add_cflag CFLAG)
   set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D${CFLAG}")
 endmacro()

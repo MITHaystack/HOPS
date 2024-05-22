@@ -7,7 +7,7 @@ find_package (GFORTRAN)
 if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
 
     #declare exe name ############################################################
-    set(EXENAME "fourfit")
+    set(EXENAME "fourfit3")
 
     #list header files #############################################################
 
@@ -119,5 +119,7 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
 
     hops_install_headers (${${EXENAME}_HEADERFILES})
     hops_install_executables(${EXENAME})
+
+    hops_install_symlink( "${BIN_INSTALL_DIR}/${EXENAME}" "${BIN_INSTALL_DIR}/fourfit" )
 
 endif()

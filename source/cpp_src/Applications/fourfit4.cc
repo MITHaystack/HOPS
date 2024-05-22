@@ -89,7 +89,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     std::string msg_cat_help = ss.str();
 
 
-    CLI::App app{"ffit"};
+    CLI::App app{"fourfit"};
 
     // Remove help flag because it shortcuts all processing
     app.set_help_flag();
@@ -221,7 +221,7 @@ int main(int argc, char** argv)
     //TODO allow messaging keys to be set via command line arguments
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Snapshot::GetInstance().AcceptAllKeys();
-    MHO_Snapshot::GetInstance().SetExecutableName(std::string("ffit"));
+    MHO_Snapshot::GetInstance().SetExecutableName(std::string("fourfit"));
 
     MHO_FringeData fringeData;
 
