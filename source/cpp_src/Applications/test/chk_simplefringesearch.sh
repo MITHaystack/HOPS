@@ -15,10 +15,10 @@ cd $EXP_DIR
 
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
-echo "Running: ffit -m 4 -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${SCAN_DIR}/"
-outfile=$(ffit -m 4 -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${SCAN_DIR}/ 2>&1)
+echo "Running: fourfit4 -m 4 -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${SCAN_DIR}/"
+outfile=$(fourfit4 -m 4 -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${SCAN_DIR}/ 2>&1)
 
-#parse the print out (ffit: <fringe_filename>) into just the fringe_filename
+#parse the print out (fourfit4: <fringe_filename>) into just the fringe_filename
 echo "$outfile"
 old_IFS=$IFS
 IFS=" "
