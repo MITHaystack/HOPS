@@ -68,6 +68,8 @@ class MHO_ComputePlotData
         xpower_type calc_xpower_spec();
         xpower_amp_type calc_dr();
 
+        visibility_type* calc_corrected_vis();
+
         double calc_phase();
 
         void calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp,
