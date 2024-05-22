@@ -2,6 +2,8 @@
 #include "MHO_BasicFringeInfo.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_EndZeroPadder.hh"
+#include "MHO_CyclicRotator.hh"
+#include "MHO_SelectRepack.hh"
 
 #include "MHO_Constants.hh"
 
@@ -361,7 +363,6 @@ MHO_ComputePlotData::calc_corrected_vis()
             if(net_sideband == "L"){fRot.SetSideband(-1);}
 
             std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
-
             for(std::size_t lag=0; lag < nbins; lag++)
             {
                 //apply the rotation....hey wait a minute, what about the frequency/delay change across the channel??!
@@ -387,7 +388,26 @@ MHO_ComputePlotData::calc_corrected_vis()
     double norm =  1.0/(double)nbins;
     *(corrected_vis) *= norm;
 
+    //first do a cyclic rotation to fix things after the FFT
+    MHO_CyclicRotator<visibility_type> cyclicRotator;
+    cyclicRotator.SetOffset(FREQ_AXIS, -nbins/4);
+    cyclicRotator.SetArgs(corrected_vis);
+    status = cyclicRotator.Initialize();
+    status = cyclicRotator.Execute();
+    
+    if(!status){msg_error("fringe", "Could not execute cyclic rotation in MHO_ComputePlotData." << eom);}
+
     //TODO...we need select-repack the data (and re-label the FREQ_AXIS too)!!
+    MHO_SelectRepack<visibility_type> repacker;
+    std::vector< std::size_t > selected_freq;
+    for(std::size_t i=0; i<nbins/4; i++)
+    {
+        selected_freq.push_back(i);
+    }
+    repacker.SelectAxisItems(FREQ_AXIS,selected_freq);
+    repacker.SetArgs(corrected_vis);
+    repacker.Initialize();
+    repacker.Execute();
 
     return corrected_vis;
 }
