@@ -29,6 +29,7 @@ MHO_IonosphericPhaseCorrection::ExecuteInPlace(visibility_type* in)
     auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
     auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
 
+    std::string ion_key = "dtec_phase_deg";
     //loop over pol-products
     for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
     {
@@ -58,6 +59,11 @@ MHO_IonosphericPhaseCorrection::ExecuteInPlace(visibility_type* in)
             //retrieve and multiply against appropriate sub-view of the visibility array
             auto chunk = in->SubView(pp, ch);
             chunk *= ion_phasor;
+            
+            //make sure we attach a some meta-data info about the diff. ionospheric phase applied to this channel
+            double ion_theta_deg = ion_theta*MHO_Constants::rad_to_deg;
+            chan_ax->InsertIndexLabelKeyValue(ch, ion_key, ion_theta_deg);
+            
         }
     }
 
