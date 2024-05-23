@@ -317,12 +317,108 @@ MHO_ComputePlotData::calc_segs()
 }
 
 
+// 
+// visibility_type*
+// MHO_ComputePlotData::calc_corrected_vis()
+// {
+//     //clone the SBD array 
+//     visibility_type* corrected_vis = fSBDArray->Clone();
+// 
+//     std::size_t POLPROD = 0;
+//     std::size_t nchan = corrected_vis->GetDimension(CHANNEL_AXIS);
+//     std::size_t nap = corrected_vis->GetDimension(TIME_AXIS);
+//     std::size_t nbins = corrected_vis->GetDimension(FREQ_AXIS);
+// 
+//     auto chan_ax = &( std::get<CHANNEL_AXIS>(*corrected_vis) );
+//     auto ap_ax = &(std::get<TIME_AXIS>(*corrected_vis));
+//     auto lag_ax = &(std::get<FREQ_AXIS>(*corrected_vis));
+//     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+//     double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
+// 
+//     //grab the fourfit channel names
+//     std::string chan_label_key = "channel_label";
+//     std::vector< std::string > channel_labels;
+//     for(std::size_t ch=0; ch < chan_ax->GetSize(); ch++)
+//     {
+//         std::string ch_label;
+//         bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, chan_label_key, ch_label);
+//         if(key_present){channel_labels.push_back(ch_label);}
+//     }
+// 
+//     std::string sidebandlabelkey = "net_sideband";
+//     for(std::size_t ap=0; ap < nap; ap++)
+//     {
+//         std::complex<double> sum = 0; //sum over all channels
+//         double sumwt = 0.0;
+//         double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
+//         for(std::size_t ch=0; ch < nchan; ch++)
+//         {
+//             double freq = (*chan_ax)(ch);//sky freq of this channel
+//             std::string net_sideband = "?";
+//             bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
+//             if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
+// 
+//             fRot.SetSideband(0); //DSB
+//             if(net_sideband == "U"){fRot.SetSideband(1);}
+//             if(net_sideband == "L"){fRot.SetSideband(-1);}
+// 
+//             std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+//             for(std::size_t lag=0; lag < nbins; lag++)
+//             {
+//                 //apply the rotation....hey wait a minute, what about the frequency/delay change across the channel??!
+//                 std::complex<double> vis = (*corrected_vis)(POLPROD, ch, ap, lag);
+//                 (*corrected_vis)(POLPROD, ch, ap, lag) = vis*vr;
+//             }
+//         }
+//     }
+// 
+//     FFT_ENGINE_TYPE fftEngine;
+// 
+//     fftEngine.SetArgs(corrected_vis);
+//     fftEngine.DeselectAllAxes();
+//     fftEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
+//     fftEngine.SetBackward();//backward DFT
+//     fftEngine.Initialize();
+// 
+//     //now we need to appy an FFT to take us from single-band-delay back to frequency space
+//     bool status = fftEngine.Execute();
+//     if(!status){msg_error("fringe", "Could not execute FFT in MHO_ComputePlotData" << eom);}
+// 
+//     //normalize the array
+//     double norm =  1.0/(double)nbins;
+//     *(corrected_vis) *= norm;
+// 
+//     //first do a cyclic rotation to fix things after the FFT
+//     MHO_CyclicRotator<visibility_type> cyclicRotator;
+//     cyclicRotator.SetOffset(FREQ_AXIS, -nbins/4);
+//     cyclicRotator.SetArgs(corrected_vis);
+//     status = cyclicRotator.Initialize();
+//     status = cyclicRotator.Execute();
+// 
+//     if(!status){msg_error("fringe", "Could not execute cyclic rotation in MHO_ComputePlotData." << eom);}
+// 
+//     //TODO...we need select-repack the data (and re-label the FREQ_AXIS too)!!
+//     MHO_SelectRepack<visibility_type> repacker;
+//     std::vector< std::size_t > selected_freq;
+//     for(std::size_t i=0; i<nbins/4; i++)
+//     {
+//         selected_freq.push_back(i);
+//     }
+//     repacker.SelectAxisItems(FREQ_AXIS,selected_freq);
+//     repacker.SetArgs(corrected_vis);
+//     repacker.Initialize();
+//     repacker.Execute();
+// 
+//     return corrected_vis;
+// }
+
+
 
 visibility_type*
 MHO_ComputePlotData::calc_corrected_vis()
 {
     //clone the SBD array 
-    visibility_type* corrected_vis = fSBDArray->Clone();
+    visibility_type* corrected_vis = fVisibilities->Clone();
 
     std::size_t POLPROD = 0;
     std::size_t nchan = corrected_vis->GetDimension(CHANNEL_AXIS);
@@ -345,6 +441,8 @@ MHO_ComputePlotData::calc_corrected_vis()
         if(key_present){channel_labels.push_back(ch_label);}
     }
 
+    std::cout<<"sbd delay = "<<fSBDelay<<std::endl;
+
     std::string sidebandlabelkey = "net_sideband";
     for(std::size_t ap=0; ap < nap; ap++)
     {
@@ -362,56 +460,24 @@ MHO_ComputePlotData::calc_corrected_vis()
             if(net_sideband == "U"){fRot.SetSideband(1);}
             if(net_sideband == "L"){fRot.SetSideband(-1);}
 
-            std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+            std::complex<double> imag_unit(0,1);
             for(std::size_t lag=0; lag < nbins; lag++)
             {
-                //apply the rotation....hey wait a minute, what about the frequency/delay change across the channel??!
-                std::complex<double> vis = (*corrected_vis)(POLPROD, ch, ap, lag);
-                (*corrected_vis)(POLPROD, ch, ap, lag) = vis*vr;
+                //apply the rotation....hey wait a minute, what about the frequency change across the channel??!
+                double fr = freq + (*lag_ax)[lag];
+                std::complex<double> vr = fRot.vrot(tdelta, fr, fRefFreq, fDelayRate, fMBDelay);
+                std::cout<<"vrot = @"<<ap<<", "<<lag<<" = "<<std::arg(vr)*(180/M_PI)<<std::endl;
+                // double theta = (*lag_ax)[lag] * fSBDelay;
+                // std::cout<<"THETA @ lag "<<lag<<" = "<<theta<<std::endl;
+                // std::complex<double> sbd_rot = std::exp(-2.0 * M_PI * imag_unit * theta); 
+
+                std::complex<double> vis =  (*corrected_vis)(POLPROD, ch, ap, lag);
+                (*corrected_vis)(POLPROD, ch, ap, lag) = vr*vis;//*sbd_rot;
             }
         }
     }
-
-    FFT_ENGINE_TYPE fftEngine;
-    
-    fftEngine.SetArgs(corrected_vis);
-    fftEngine.DeselectAllAxes();
-    fftEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
-    fftEngine.SetBackward();//backward DFT
-    fftEngine.Initialize();
-
-    //now we need to appy an FFT to take us from single-band-delay back to frequency space
-    bool status = fftEngine.Execute();
-    if(!status){msg_error("fringe", "Could not execute FFT in MHO_ComputePlotData" << eom);}
-    
-    //normalize the array
-    double norm =  1.0/(double)nbins;
-    *(corrected_vis) *= norm;
-
-    //first do a cyclic rotation to fix things after the FFT
-    MHO_CyclicRotator<visibility_type> cyclicRotator;
-    cyclicRotator.SetOffset(FREQ_AXIS, -nbins/4);
-    cyclicRotator.SetArgs(corrected_vis);
-    status = cyclicRotator.Initialize();
-    status = cyclicRotator.Execute();
-    
-    if(!status){msg_error("fringe", "Could not execute cyclic rotation in MHO_ComputePlotData." << eom);}
-
-    //TODO...we need select-repack the data (and re-label the FREQ_AXIS too)!!
-    MHO_SelectRepack<visibility_type> repacker;
-    std::vector< std::size_t > selected_freq;
-    for(std::size_t i=0; i<nbins/4; i++)
-    {
-        selected_freq.push_back(i);
-    }
-    repacker.SelectAxisItems(FREQ_AXIS,selected_freq);
-    repacker.SetArgs(corrected_vis);
-    repacker.Initialize();
-    repacker.Execute();
-
     return corrected_vis;
 }
-
 
 
 xpower_amp_type
