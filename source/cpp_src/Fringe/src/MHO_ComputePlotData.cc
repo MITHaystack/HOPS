@@ -526,18 +526,18 @@ MHO_ComputePlotData::correct_vis()
             if(net_sideband == "U"){fRot.SetSideband(1);}
             if(net_sideband == "L"){fRot.SetSideband(-1);}
 
-            // std::complex<double> imag_unit(0,1);
+            std::complex<double> imag_unit(0,1);
             std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
             for(std::size_t lag=0; lag < nbins; lag++)
             {
                 //apply the rotation....hey wait a minute, what about the frequency change across the channel??!
                 //double fr = freq - (*lag_ax)[lag];
                 // std::cout<<"vrot = @"<<ap<<", "<<lag<<" = "<<std::arg(vr)*(180/M_PI)<<std::endl;
-                // double theta = (*lag_ax)[lag] * fSBDelay;
+                double theta = -1.0*( (*lag_ax)[lag] - 16.0 ) * fSBDelay;
                 // std::cout<<"THETA @ lag "<<lag<<" = "<<theta<<std::endl;
-                // std::complex<double> sbd_rot = std::exp(-2.0 * M_PI * imag_unit * theta); 
+                std::complex<double> sbd_rot = std::exp(-2.0 * M_PI * imag_unit * theta); 
                 std::complex<double> vis =  (*corrected_vis)(POLPROD, ch, ap, lag);
-                (*corrected_vis)(POLPROD, ch, ap, lag) = std::conj(vr)*vis;//*sbd_rot;
+                (*corrected_vis)(POLPROD, ch, ap, lag) = std::conj(sbd_rot)*std::conj(vr)*vis;//*sbd_rot;
             }
         }
     }
