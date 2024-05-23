@@ -148,14 +148,26 @@ MHO_DelayRate::ApplyDataWeights(const XArgType2* in2,  XArgType3* out)
     std::size_t nch = out->GetDimension(CHANNEL_AXIS);
     std::size_t nap = out->GetDimension(TIME_AXIS);
     std::size_t nsbd = out->GetDimension(FREQ_AXIS);
+    
+    std::size_t wpprod = in2->GetDimension(POLPROD_AXIS);
+    std::size_t wnch = in2->GetDimension(CHANNEL_AXIS);
+    std::size_t wnap = in2->GetDimension(TIME_AXIS);
 
+    // if(pprod != wpprod){std::cout<<pprod<<" != "<<wpprod<<std::endl; std::exit(1);}
+    // if(nch != wnch){std::cout<<nch<<" != "<<wnch<<std::endl;std::exit(1);}
+    // if(nap != wnap){std::cout<<nap<<" != "<<wnap<<std::endl;std::exit(1);}
+
+    //make sure we don't over run the weight array bounds (since out array has been padded)
+    std::size_t nap_range = std::min(nap, wnap); 
+    
     for(std::size_t pp=0; pp<pprod; pp++)
     {
         for(std::size_t ch=0; ch<nch; ch++)
         {
-            for(std::size_t ap=0; ap<nap; ap++)
+            for(std::size_t ap=0; ap<nap_range; ap++)
             {
                 auto val = (*in2)(pp, ch, ap, 0);
+
                 for(std::size_t sbd=0; sbd<nsbd; sbd++)
                 {
                     (*out)(pp,ch,ap,sbd) *= val;
