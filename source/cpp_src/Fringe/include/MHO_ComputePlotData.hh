@@ -69,6 +69,7 @@ class MHO_ComputePlotData
         xpower_amp_type calc_dr();
 
         // visibility_type* calc_corrected_vis();
+        void correct_vis();
 
         double calc_phase();
 
