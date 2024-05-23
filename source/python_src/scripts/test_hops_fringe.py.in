@@ -26,7 +26,7 @@ def test_plot_visibilities(visib_obj, polprod_idx, chan_idx):
     ch = chan_idx;
 
     print("plotting the visibilities of: pp = ", axis0[pp], " chan = ", axis1[ch]);
-    fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+    fig, (ax1, ax2) = plt.subplots(2, subplot_kw={"projection": "3d"})
 
     time, freq = np.meshgrid(axis3, axis2)
     #time, freq = np.meshgrid(range(0,len(axis3)), range(0,len(axis2)) )
@@ -36,15 +36,80 @@ def test_plot_visibilities(visib_obj, polprod_idx, chan_idx):
     print("vis_00 shape = ", vis.shape)
     vis_mag = np.abs(vis)
     vis_arg = np.angle(vis, deg=True)
+    
+    for x in range(0, len(time) ):
+        for y in range(0, len(freq) ):
+            if vis_mag[y,x] < 7:
+                vis_mag[y,x] = 0
+                vis_arg[y,x] = 0
 
     # Plot the surface.
-    # surf = ax.plot_surface(time, freq, vis_mag, cmap=cm.coolwarm, linewidth=0, antialiased=False)
-    surf = ax.plot_surface(time, freq, vis_arg, cmap=cm.coolwarm, linewidth=0, antialiased=False)
-
-
-    # Add a color bar which maps values to colors.
-    fig.colorbar(surf, shrink=0.5, aspect=5)
+    surf1 = ax1.plot_surface(time, freq, vis_mag, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+    fig.colorbar(surf1, shrink=0.5, aspect=5)
+    surf2 = ax2.plot_surface(time, freq, vis_arg, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+    #fig.colorbar(surf2, shrink=0.5, aspect=5)
+    
     plt.show()
+
+
+def test_plot_visibilities2(visib_obj, polprod_idx, chan_idx):
+
+    vis_arr = visib_obj.get_numpy_array();
+    axis0 = visib_obj.get_axis(0);
+    axis1 = visib_obj.get_axis(1);
+    axis2 = visib_obj.get_axis(2);
+    axis3 = visib_obj.get_axis(3);
+    
+    vis_sum = np.sum(vis_arr, axis=2) #sum along AP/Time axis
+
+    pp = polprod_idx;
+    ch = chan_idx;
+
+    print("plotting the visibilities of: pp = ", axis0[pp], " chan = ", axis1[ch]);
+    fig, (ax1, ax2) = plt.subplots(2)
+
+    freq = axis3
+    vis = np.array(vis_sum[pp,ch,:])
+    vis_mag = np.abs(vis)
+    vis_arg = np.angle(vis, deg=True)
+
+
+    vis1 = ax1.plot(freq, vis_mag, linewidth=1)
+    vis2 = ax2.plot(freq, vis_arg, linewidth=1)
+    
+    plt.show()
+
+    
+def test_plot_visibilities3(visib_obj, polprod_idx, chan_idx):
+
+    vis_arr = visib_obj.get_numpy_array();
+    axis0 = visib_obj.get_axis(0);
+    axis1 = visib_obj.get_axis(1);
+    axis2 = visib_obj.get_axis(2);
+    axis3 = visib_obj.get_axis(3);
+    
+    pp = polprod_idx;
+    ch = chan_idx;
+
+    print("plotting the visibilities of: pp = ", axis0[pp], " chan = ", axis1[ch]);
+    fig, (ax1, ax2) = plt.subplots(2)
+
+    freq = axis3
+    vis = np.array(vis_arr[pp,ch,:,:])
+    vis_mag = np.abs(vis)
+
+    vis_arg = np.angle(np.sum(vis, axis=0), deg=True) #coherent sum along time axis
+    mag_sum = np.abs( np.sum(vis, axis=0) ) #coherent sum along time axis
+
+    #mag_sum = np.sum(vis_mag, axis=0) #incoherent sum along time axis
+
+    # Plot the surface.
+    vis1 = ax1.plot(freq, mag_sum, linewidth=1)
+    vis2 = ax2.plot(freq, vis_arg, linewidth=1)
+
+    plt.show()
+
+        
 
 def main():
 
@@ -112,8 +177,8 @@ def main():
                                     axis_meta = cvis.get_axis_metadata(i)
                                     print("axis meta data = ", axis_meta)
                                     
-                                #lets plot the mag/phase of the first channel 
-                                test_plot_visibilities(cvis, 0, 0)
+                                #lets plot the mag/phase of a channel 
+                                test_plot_visibilities3(cvis, 0, 0)
 
 
 
