@@ -339,6 +339,7 @@ MHO_BasicFringeFitter::coarse_fringe_search()
 
     if(c_mbdmax < 0 || c_sbdmax < 0 || c_drmax < 0)
     {
+        fParameterStore->Dump();
         msg_fatal("fringe", "coarse fringe search could not locate peak, bin (sbd, mbd, dr) = (" <<c_sbdmax << ", " << c_mbdmax <<"," << c_drmax<< ")." << eom );
         std::exit(1);
     }
