@@ -97,10 +97,17 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
     //TODO what other information should be tagged/included?
 
     //TODO -- only enable this output when the -X option has been passed
-    visibility_type* cvis_data = fContainerStore.GetObject<visibility_type>(std::string("cvis"));
-    if( cvis_data == nullptr)
+    visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
+    if( vis_data == nullptr)
     {
-        msg_fatal("fringe", "could not find corrected visibility object to write output." << eom);
+        msg_fatal("fringe", "could not find visibility object to write output." << eom);
+        std::exit(1);
+    }
+    
+    weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
+    if( wt_data == nullptr)
+    {
+        msg_fatal("fringe", "could not find weights object to write output." << eom);
         std::exit(1);
     }
 
@@ -112,13 +119,33 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
         std::exit(1);
     }
 
+    // visibility_store_type* vis_store_data = new visibility_store_type();
+    // weight_store_type* wt_store_data = new weight_store_type();
+    // 
+    // MHO_ElementTypeCaster<visibility_type, visibility_store_type> down_caster;
+    // down_caster.SetArgs(vis_data, vis_store_data);
+    // down_caster.Initialize();
+    // down_caster.Execute();
+    // 
+    // MHO_ElementTypeCaster< weight_store_type, weight_type> wt_down_caster;
+    // wt_down_caster.SetArgs(wt_data, wt_store_data);
+    // wt_down_caster.Initialize();
+    // wt_down_caster.Execute();
+
+    // //add these temporary objects to the container store so they get properly deleted later
+    // fContainerStore->AddObject(vis_store_data);
+    // fContainerStore->AddObject(wt_store_data);
+
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(filename);
     if(status)
     {
-        tags.AddObjectUUID(cvis_data->GetObjectUUID());
+        tags.AddObjectUUID(vis_data->GetObjectUUID());
+        tags.AddObjectUUID(wt_data->GetObjectUUID());
+        tags.AddObjectUUID(phasor_data->GetObjectUUID());
         inter.Write(tags, "tags");
-        inter.Write(*cvis_data, "cvis");
+        inter.Write(*vis_data, "vis");
+        inter.Write(*wt_data, "weight");
         inter.Write(*phasor_data, "phasors");
         inter.Close();
     }

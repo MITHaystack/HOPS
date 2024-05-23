@@ -256,6 +256,20 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
 void
 MHO_BasicFringeDataConfiguration::configure_visibility_data(MHO_ContainerStore* store)
 {
+    //first check if there are visibility_type and weight_type with double precision present
+    std::size_t n_vis = store->GetNObjects<visibility_type>();
+    std::size_t n_wt = store->GetNObjects<weight_type>();
+
+    if(n_vis == 1 && n_wt == 1)
+    {
+        msg_debug("initialization", "double precision visibility and weight types found, these will be preferred and used over single precision types." << eom);
+        return;
+    }
+
+    //evidently there are no double precision objects, so we look for the single-precision 'storage types'
+    n_vis = store->GetNObjects<visibility_store_type>();
+    n_wt = store->GetNObjects<weight_store_type>();
+
     //retrieve the (first) visibility and weight objects
     //(currently assuming there is only one object per type)
     visibility_store_type* vis_store_data = nullptr;
@@ -276,12 +290,9 @@ MHO_BasicFringeDataConfiguration::configure_visibility_data(MHO_ContainerStore* 
         std::exit(1);
     }
 
-    std::size_t n_vis = store->GetNObjects<visibility_store_type>();
-    std::size_t n_wt = store->GetNObjects<weight_store_type>();
-
     if(n_vis != 1 || n_wt != 1)
     {
-        msg_warn("initialization", "multiple visibility and/or weight types per-baseline not yet supported" << eom);
+        msg_warn("initialization", "multiple visibility and/or weight types per-baseline not yet supported, will use first located." << eom);
     }
 
     auto vis_store_uuid = vis_store_data->GetObjectUUID();
