@@ -392,6 +392,14 @@ MHO_ComputePlotData::correct_vis()
             }
         }
     }
+
+
+    //NOTE: for single linear pol-products fourfit applies a sign correction based on delta-parallactic angle
+    //we should probably invert this correction here, because it results in a very confusing 180 sign flip
+    //if we process the 'corrected' visibilities through fourfit once again.
+    //TODO: retrieve the MHO_LinearDParCorrection operator from the operator toolbox and apply it's inverse here
+
+
 }
 
 
