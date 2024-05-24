@@ -24,6 +24,7 @@ MHO_ComputePlotData::MHO_ComputePlotData()
     fParamStore = nullptr;
     fContainerStore = nullptr;
     fVisibilities = nullptr;
+    fToolbox = nullptr;
     fWeights = nullptr;
     fSBDArray = nullptr;
     fImagUnit = MHO_Constants::imag_unit;
