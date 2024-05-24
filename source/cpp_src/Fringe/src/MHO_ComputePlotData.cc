@@ -8,6 +8,7 @@
 #include "MHO_Constants.hh"
 
 #include "MHO_MultidimensionalFastFourierTransform.hh"
+#include "MHO_LinearDParCorrection.hh"
 
 namespace hops
 {
@@ -400,6 +401,19 @@ MHO_ComputePlotData::correct_vis()
     //if we process the 'corrected' visibilities through fourfit once again.
     //TODO: retrieve the MHO_LinearDParCorrection operator from the operator toolbox and apply it's inverse here
 
+    if(fToolbox != nullptr)
+    {
+        std::string op_name = "dpar_corr";
+        MHO_Operator* op = fToolbox->GetOperator(op_name);
+        if(op != nullptr)
+        {
+            MHO_LinearDParCorrection* dpar_op = dynamic_cast<MHO_LinearDParCorrection*>(op);
+            if(dpar_op != nullptr)
+            {
+                dpar_op->Execute(); //the nature of this operator is that if we execute it twice, it's effect is inverted
+            }
+        }
+    }
 
 }
 
