@@ -9,7 +9,7 @@ namespace hops
 {
 
 mho_json
-MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore, mho_json& vexInfo)
+MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore, MHO_OperatorToolbox* toolbox, mho_json& vexInfo)
 {
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
