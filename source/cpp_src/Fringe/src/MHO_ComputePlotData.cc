@@ -342,8 +342,6 @@ MHO_ComputePlotData::correct_vis()
         if(key_present){channel_labels.push_back(ch_label);}
     }
 
-    std::cout<<"sbd delay = "<<fSBDelay<<std::endl;
-
     std::string sidebandlabelkey = "net_sideband";
     std::string bandwidthlabelkey = "bandwidth";
     for(std::size_t ap=0; ap < nap; ap++)
