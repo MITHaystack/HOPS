@@ -203,7 +203,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     //update_mode = false; //not implemented
     paramStore->Set("/cmdline/polprod", polprod);
     //reftime = ""; //not implemented
-    //xpower_output = false; //not implemented
+    paramStore->Set("/cmdline/xpower_output", xpower_output);
     paramStore->Set("/cmdline/set_string", set_string); //TODO
     paramStore->Set("/cmdline/mk4format_output", use_mk4_output);
 
