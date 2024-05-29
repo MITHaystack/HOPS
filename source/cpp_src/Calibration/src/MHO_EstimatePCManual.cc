@@ -30,17 +30,17 @@
 /*
  * Rename the program name to make the output easier to parse and use
  */
-static char opname[256];
-static void save_pn(void)
-{
-    // int ln = strlen(progname);
-    // strncpy(opname, progname, sizeof(opname));
-    // strncpy(progname, "*est", ln-1);
-}
-static void rest_pn(void)
-{
-    // strcpy(progname, opname);
-}
+// static char opname[256];
+// static void save_pn(void)
+// {
+//     // int ln = strlen(progname);
+//     // strncpy(opname, progname, sizeof(opname));
+//     // strncpy(progname, "*est", ln-1);
+// }
+// static void rest_pn(void)
+// {
+//     // strcpy(progname, opname);
+// }
 
 /* some things for a library, later */
 static char *pol_string(int pol)
@@ -66,9 +66,9 @@ static int pol_letter(int pol, int rr)
     return('?');
 }
 
-/* generate information about where the results came from */
-static void masthead(int mode, char *rf, struct type_pass *pass, int first_ch, int final_ch)
-{
+// /* generate information about where the results came from */
+// static void masthead(int mode, char *rf, struct type_pass *pass, int first_ch, int final_ch)
+// {
     // msg("rf:  %s", 3, rf);
     // msg("cf:  %s", 3, control_filename);
     // msg("on: %.8s - %.8s [%c%c] fq %c pol %s ch %c..%c mode %03X", 3,
@@ -82,7 +82,7 @@ static void masthead(int mode, char *rf, struct type_pass *pass, int first_ch, i
     // msg("sbd %.6f mbd %.6f frr %.6f", 3,
     //     status.sbd_max, status.mbd_max_global,
     //     status.dr_max_global * param.ref_freq);
-}
+// }
 
 /* move phase to principal branch */
 static double pbranch(double phase)
@@ -382,7 +382,7 @@ void est_pc_manual(int mode, char *rootfile, struct type_pass *pass)
 
     if (param.pc_mode[0] != MANUAL || param.pc_mode[1] != MANUAL) return;
     // msg("estimating pc phases and delays", 1);
-    save_pn();
+    // save_pn();
 
     doref = (mode>0) ? 1 : 0;
     if (!doref) mode *= -1; /* so that mode is now positive   */
@@ -395,14 +395,14 @@ void est_pc_manual(int mode, char *rootfile, struct type_pass *pass)
     final_ch = (param.nplot_chans == 0) ? pass->nfreq : param.nplot_chans;
     final_ch += first_ch - 1;
     
-    masthead(mode, rootfile, pass, first_ch, final_ch);
+    // masthead(mode, rootfile, pass, first_ch, final_ch);
     if (dophs) est_phases(pass, first_ch, final_ch, doref, domrp);
     // if (dodly) est_delays(pass, first_ch, final_ch, doref, dodly);
     // if (dooff) est_offset(pass, doref);
     // msg("*-----------------------------------"
     //     "------------------------------------",3);
 
-    rest_pn();
+    //rest_pn();
     // msg("done with  pc phases and delays", 1);
 }
 
