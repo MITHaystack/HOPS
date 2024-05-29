@@ -107,12 +107,12 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     app.add_flag("-p,--plot", show_plot, "generate and shows fringe plot on completion");
     app.add_option("-r,--refringe-alist", refringe_alist_file, "alist file for refringing (ignored, not yet implemented)");
     app.add_option("-s,--ap-per-segment", ap_per_seg, "specify the APs to be averaged per plot-segment");
-    app.add_flag("-t,--test-mode", test_mode, "if true, then no output is written");
+    app.add_flag("-t,--test-mode", test_mode, "if passed, then no output is written");
     app.add_flag("-u,--update-mode", update_mode, "(ignored, not yet implemented)");
     app.add_option("-P,--polprod", polprod, "polarization product argument (e.g XX or I or RR+LL)")->required();
     app.add_option("-T,--reftime", reftime, "specify the fourfit reference time (ignored, not yet implemented)");
     app.add_flag("-x,--xwindows", xwindows, "display plot using xwindows (ignored, not yet implemented)");
-    app.add_flag("-X,--xpower-output", xpower_output, "output spectral cross power data (ignored, not yet implemented)");
+    app.add_flag("-X,--xpower-output", xpower_output, "output spectral cross power data (visibilities with corrections/residual fringe solution applied)");
     app.add_option("input,-i,--input", input, "name of the input directory (scan) or root file")->required();
     app.add_flag("-k,--mark4-output", use_mk4_output, "write output files in mark4 type_2xx format");
 
