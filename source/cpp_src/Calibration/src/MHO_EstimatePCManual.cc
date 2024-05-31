@@ -13,6 +13,9 @@
 #include <string.h>
 #include <stdlib.h>
 
+namespace hops
+{
+
 // // #include "msg.h"
 // // #include "mk4_data.h"
 // // #include "param_struct.h"
@@ -85,37 +88,71 @@
 //  * This routine calculates adjustments to channel phases
 //  * designed to remove the multiband delay (however anchored).
 //  */
-// static void est_phases(struct type_pass *pass, int first, int final, int rr, int keep)
-// {
-//     static char buf[720], tmp[80], *pb;
-//     int ch, ss, pol, nd;
-//     double inp_phase, est_phase, sbmult, delta_delay, phase_bias;
-//     char *epb = getenv("HOPS_EST_PC_BIAS");
-//     char *epd = getenv("HOPS_EST_PC_DLYM");
+// static
+void
+MHO_EstimatePCManual::est_phases(int rr, int keep)
+{
+
+    //calculate the average phasors
+
+    // for(std::size_t i=0; i<nplot; i++)
+    // {
+    //     std::complex<double> ph = 0;
+    //     std::complex<double> phsum = 0;
+    //     for(std::size_t j=0; j<naps; j++)
+    //     {
+    //         ph += phasors(i,j);
+    //         phsum += phasors(i,j);
+    //         if(j % apseg == apseg-1 || j == naps-1) //push the last one back
+    //         {
+    //             ph *= 1.0/(double)apseg; //average
+    //             seg_amp[i].push_back( std::abs(ph) );
+    //             seg_arg[i].push_back( std::arg(ph) );
+    //             ph = 0.0;
+    //         }
+    //     }
+    //     phsum *= 1.0/(double)naps;
+    //     ch_amp.push_back( std::abs(phsum) );
+    //     ch_arg.push_back( std::arg(phsum) );
+    // }
+
+    //
+    //
+    // static char buf[720], tmp[80], *pb;
+    // int ch, ss, pol, nd;
+    // double inp_phase, est_phase, sbmult, delta_delay, phase_bias;
+    // char *epb = getenv("HOPS_EST_PC_BIAS");
+    // char *epd = getenv("HOPS_EST_PC_DLYM");
+    //
+    // // *progname = 0;
+    // // msg("*est: phases on %s station", 1, rr ? "ref" : "rem");
+    //
+    // /* support for bias operation */
+    // if(keep)
+    // {
+    //     phase_bias = (epb) ? atof(epb) : 0.0;
+    //     // msg("*est: phase bias %f (mod res phase is %f)", 3,
+    //     //     phase_bias, status.coh_avg_phase * (180.0 / M_PI));
+    // }
+    // // if (epb || epd)
+    //     // msg("*est: HOPS_EST_PC_BIAS %s ..._DLYM %s", 3, epb, epd);
+    //
+    // /* header for the section */
+    // pol = pol_letter(pass->pol, !rr);
+    // sprintf(buf, "if station %c\n pc_phases_%c ",fringe.t202->baseline[!rr], pol);
+    // for (ch = first, pb = buf + strlen(buf); ch <= final; ch++, pb++)
+    // {
+    //     *pb = pass->pass_data[ch].freq_code;
+    // }
+    // *pb = 0;
+    // msg(buf, 3);
+
+    //for (buf[nd = ss = 0] = 0, ch = first; ch <= final; ch++)
 //
-//     // *progname = 0;
-//     // msg("*est: phases on %s station", 1, rr ? "ref" : "rem");
+//     //loop over pol axis
 //
-//     /* support for bias operation */
-//     if (keep)
-//     {
-//         phase_bias = (epb) ? atof(epb) : 0.0;
-//         // msg("*est: phase bias %f (mod res phase is %f)", 3,
-//         //     phase_bias, status.coh_avg_phase * (180.0 / M_PI));
-//     }
-//     // if (epb || epd)
-//         // msg("*est: HOPS_EST_PC_BIAS %s ..._DLYM %s", 3, epb, epd);
+//     //loop over channel axis:
 //
-//     /* header for the section */
-//     pol = pol_letter(pass->pol, !rr);
-//     sprintf(buf,
-//         "if station %c\n pc_phases_%c ",fringe.t202->baseline[!rr], pol);
-//     for (ch = first, pb = buf + strlen(buf); ch <= final; ch++, pb++)
-//         *pb = pass->pass_data[ch].freq_code;
-//     *pb = 0;
-//     // msg(buf, 3);
-//
-//     for (buf[nd = ss = 0] = 0, ch = first; ch <= final; ch++)
 //     {
 //         /* assume it is all usb or lsb for this estimate */
 //         sbmult = (status.total_usb_frac > 0) ? 1.0 : -1.0;
@@ -160,14 +197,14 @@
 //     }
 //     // if (buf[0]) msg(buf, 3);
 //     // msg("*est: phases %s (%d)", 2, nd ? "converging" : "converged", nd);
-// }
-//
-//
-//
+
+}
 
 
-namespace hops
-{
+
+
+
+
 
 void
 MHO_EstimatePCManual::est_pc_manual(int mode)
@@ -189,8 +226,8 @@ MHO_EstimatePCManual::est_pc_manual(int mode)
     key = "/control/station/" + ref_id + "/pc_mode";
     bool have_refmode = fParameterStore->Get(key, ref_pcmode);
     if(!have_refmode){ref_pcmode = default_pcmode;}
-    std::string rem_pcmode;
 
+    std::string rem_pcmode;
     key = "/control/station/" + rem_id + "/pc_mode";
     bool have_remmode = fParameterStore->Get(key, rem_pcmode);
     if(!have_remmode){rem_pcmode = default_pcmode;}
@@ -212,7 +249,7 @@ MHO_EstimatePCManual::est_pc_manual(int mode)
     // masthead(mode, rootfile, pass, first_ch, final_ch);
 
     //compute pc_phases for all channels of the visibility array
-    //if (dophs){ est_phases(doref, domrp); }
+    if(dophs){ est_phases(doref, domrp); }
 
     // if (dodly) est_delays(pass, first_ch, final_ch, doref, dodly);
     // if (dooff) est_offset(pass, doref);
