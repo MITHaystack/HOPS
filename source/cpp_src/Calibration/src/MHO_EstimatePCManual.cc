@@ -93,51 +93,61 @@ void
 MHO_EstimatePCManual::est_phases(int rr, int keep)
 {
 
-    //calculate the average phasors
 
-    // for(std::size_t i=0; i<nplot; i++)
-    // {
-    //     std::complex<double> ph = 0;
-    //     std::complex<double> phsum = 0;
-    //     for(std::size_t j=0; j<naps; j++)
-    //     {
-    //         ph += phasors(i,j);
-    //         phsum += phasors(i,j);
-    //         if(j % apseg == apseg-1 || j == naps-1) //push the last one back
-    //         {
-    //             ph *= 1.0/(double)apseg; //average
-    //             seg_amp[i].push_back( std::abs(ph) );
-    //             seg_arg[i].push_back( std::arg(ph) );
-    //             ph = 0.0;
-    //         }
-    //     }
-    //     phsum *= 1.0/(double)naps;
-    //     ch_amp.push_back( std::abs(phsum) );
-    //     ch_arg.push_back( std::arg(phsum) );
-    // }
 
-    //
-    //
-    // static char buf[720], tmp[80], *pb;
-    // int ch, ss, pol, nd;
-    // double inp_phase, est_phase, sbmult, delta_delay, phase_bias;
-    // char *epb = getenv("HOPS_EST_PC_BIAS");
-    // char *epd = getenv("HOPS_EST_PC_DLYM");
+    //static char buf[720], tmp[80], *pb;
+    int ch, ss, pol, nd;
+    double inp_phase, est_phase, sbmult, delta_delay, phase_bias;
+    char *epb = getenv("HOPS_EST_PC_BIAS");
+    char *epd = getenv("HOPS_EST_PC_DLYM");
     //
     // // *progname = 0;
     // // msg("*est: phases on %s station", 1, rr ? "ref" : "rem");
     //
-    // /* support for bias operation */
-    // if(keep)
-    // {
-    //     phase_bias = (epb) ? atof(epb) : 0.0;
-    //     // msg("*est: phase bias %f (mod res phase is %f)", 3,
-    //     //     phase_bias, status.coh_avg_phase * (180.0 / M_PI));
-    // }
-    // // if (epb || epd)
-    //     // msg("*est: HOPS_EST_PC_BIAS %s ..._DLYM %s", 3, epb, epd);
+    /* support for bias operation */
+    if(keep)
+    {
+        phase_bias = (epb) ? atof(epb) : 0.0;
+        // msg("*est: phase bias %f (mod res phase is %f)", 3,
+        //     phase_bias, status.coh_avg_phase * (180.0 / M_PI));
+    }
+    // if (epb || epd)
+    //     msg("*est: HOPS_EST_PC_BIAS %s ..._DLYM %s", 3, epb, epd);
     //
-    // /* header for the section */
+
+    //construct the control file line prefix
+    std::string station_id = "?"
+    std::string pol = "?"
+
+    std::string cf_line = "if station " + station_id + "\n" + "pc_phases_" + pol + " ";
+
+
+    std::map<std::string, double> chan2pcp;
+    std::string channels;
+    std::string pcp;
+
+
+
+    //calculate the average fPhasors
+    std::vector<double> ch_arg;
+    std::size_t nchan = fPhasors->GetSize(0); //"what about 'All' channel?"
+    for(std::size_t i=0; i<nplot; i++) //loop over channels
+    {
+        std::complex<double> phsum = 0;
+        double wght = 0;
+        for(std::size_t j=0; j<naps; j++) //sum over APs
+        {
+            phsum += (*fPhasors)(i,j);
+            wght += 1.0;
+        }
+        phsum *= 1.0/(double)wght;
+        ch_arg.push_back( std::arg(phsum) );
+    }
+
+
+
+
+    // // /* header for the section */
     // pol = pol_letter(pass->pol, !rr);
     // sprintf(buf, "if station %c\n pc_phases_%c ",fringe.t202->baseline[!rr], pol);
     // for (ch = first, pb = buf + strlen(buf); ch <= final; ch++, pb++)
