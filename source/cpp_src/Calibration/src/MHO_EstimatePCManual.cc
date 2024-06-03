@@ -36,19 +36,6 @@ class freq_predicate
     }
 };
 
-
-
-// // #include "msg.h"
-// // #include "mk4_data.h"
-// // #include "param_struct.h"
-// // #include "pass_struct.h"
-//
-// // extern char control_filename[];
-// // extern char progname[];
-// // extern struct mk4_fringe fringe;
-// // extern struct type_param param;
-// // extern struct type_status status;
-// //
 // static int stnpol[2][4] = {0, 1, 0, 1, 0, 1, 1, 0}; // [stn][pol] = 0:L, 1:R
 //
 // /*
@@ -66,30 +53,7 @@ class freq_predicate
 // //     // strcpy(progname, opname);
 // // }
 //
-// /* some things for a library, later */
-// static char *pol_string(int pol)
-// {
-//     char *polstr;
-//     switch(pol) {
-//     case 0: polstr = "LL"; break;
-//     case 1: polstr = "RR"; break;
-//     case 2: polstr = "LR"; break;
-//     case 3: polstr = "RL"; break;
-//     default: polstr = "??"; break;
-//     }
-//     return(polstr);
-// }
-// /* return the proper lower case letter */
-// static int pol_letter(int pol, int rr)
-// {
-//     char *polstr = pol_string(pol);
-//     switch (polstr[rr]) {
-//     case 'L': return('l'); break;
-//     case 'R': return('r'); break;
-//     }
-//     return('?');
-// }
-//
+
 //
 /* move phase to principal branch */
 static double pbranch(double phase)
