@@ -11,9 +11,11 @@
 #include "MHO_Message.hh"
 #include "MHO_Constants.hh"
 
+#include "MHO_ParameterStore.hh"
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_InspectingOperator.hh"
+
 
 
 namespace hops
@@ -39,6 +41,11 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         // void SetStationMk4ID(std::string station_id){fMk4ID = station_id;} //1-char mk4id
         // void SetPolarization(const std::string& pol){fPol = pol; make_upper(fPol);};
         // void SetPCPhaseOffset(const double& pc_phase_offset){fPhaseOffset = pc_phase_offset;}
+        
+        void SetPlotData(mho_json& plot_data)
+        {
+            fPlotData.FillData(plot_data);
+        }
 
     protected:
 
@@ -47,6 +54,8 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         virtual bool ExecuteImpl(const visibility_type* in) override;
 
     private:
+        
+        MHO_ParameterStore fPlotData;
 
         // std::size_t DetermineStationIndex(const visibility_type* in);
         // bool PolMatch(std::size_t station_idx, std::string& polprod);
