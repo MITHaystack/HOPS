@@ -37,6 +37,9 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         MHO_EstimatePCManual();
         virtual ~MHO_EstimatePCManual();
 
+        void SetPhasors(phasor_type* phasors){fPhasors = phasors;};
+        void SetParameterStore(MHO_ParameterStore* paramStore){fParameterStore = paramStore;}; // TODO replace me
+
         // void SetStation(std::string station){fStationCode = station;}; //2-char station code
         // void SetStationMk4ID(std::string station_id){fMk4ID = station_id;} //1-char mk4id
         // void SetPolarization(const std::string& pol){fPol = pol; make_upper(fPol);};
@@ -50,28 +53,34 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
     protected:
 
         virtual bool InitializeImpl(const visibility_type* in) override { return true; };
-        
+
         virtual bool ExecuteImpl(const visibility_type* in) override;
 
     private:
         
         MHO_ParameterStore fPlotData;
 
+        MHO_ParameterStore* fParameterStore;
+        phasor_type* fPhasors;
+
+        void est_pc_manual(int mode);
+        void est_phases(int rr, int keep);
+
         // std::size_t DetermineStationIndex(const visibility_type* in);
         // bool PolMatch(std::size_t station_idx, std::string& polprod);
-        // 
+        //
         // //constants
         // std::complex<double> fImagUnit;
         // double fDegToRad;
-        // 
+        //
         // //selection
         // std::string fStationCode;
         // std::string fMk4ID;
         // std::string fPol;
-        // 
+        //
         // //pc rotation
         // double fPhaseOffset;
-        // 
+        //
         // //keys for tag retrieval
         // std::string fStationKey;
         // std::string fRemStationKey;
