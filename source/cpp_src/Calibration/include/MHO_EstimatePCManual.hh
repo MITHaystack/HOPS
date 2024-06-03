@@ -37,7 +37,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         MHO_EstimatePCManual();
         virtual ~MHO_EstimatePCManual();
 
-        void SetPhasors(phasor_type* phasors){fPhasors = phasors;};
+        // void SetPhasors(phasor_type* phasors){fPhasors = phasors;};
         void SetParameterStore(MHO_ParameterStore* paramStore){fParameterStore = paramStore;}; // TODO replace me
 
         // void SetStation(std::string station){fStationCode = station;}; //2-char station code
@@ -62,11 +62,12 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
 
         MHO_ParameterStore* fParameterStore;
         phasor_type* fPhasors;
+        const visibility_type* fVisibilities;
 
         void est_pc_manual(int mode);
         void est_phases(int rr, int keep);
 
-        // std::size_t DetermineStationIndex(const visibility_type* in);
+        // std::size_t DetermineStationIndex(const phasor_type* in);
         // bool PolMatch(std::size_t station_idx, std::string& polprod);
         //
         // //constants

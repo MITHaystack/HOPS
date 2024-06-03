@@ -278,6 +278,7 @@ MHO_ComputePlotData::calc_segs()
     }
 
     std::string sidebandlabelkey = "net_sideband";
+    std::string weight_key = "weight";
     for(std::size_t ap=0; ap < nap; ap++)
     {
         std::complex<double> sum = 0; //sum over all channels
@@ -302,7 +303,7 @@ MHO_ComputePlotData::calc_segs()
             std::complex<double> z = vis*vr;
             phasor_segs(ch, ap) = z;
 
-            //apply weight and sum
+            //apply weight and sum (for 'All' channel)
             double w = (*fWeights)(POLPROD, ch, ap, 0);
             std::complex<double> wght_phsr = w*z;
             sum += wght_phsr;
