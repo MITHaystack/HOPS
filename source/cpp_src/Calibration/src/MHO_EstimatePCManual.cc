@@ -129,8 +129,7 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
     if(keep)
     {
         phase_bias = (epb) ? atof(epb) : 0.0;
-        // msg("*est: phase bias %f (mod res phase is %f)", 3,
-        //     phase_bias, status.coh_avg_phase * (180.0 / M_PI));
+        //msg("*est: phase bias %f (mod res phase is %f)", 3, phase_bias, status.coh_avg_phase * (180.0 / M_PI));
     }
     // if (epb || epd)
     //     msg("*est: HOPS_EST_PC_BIAS %s ..._DLYM %s", 3, epb, epd);

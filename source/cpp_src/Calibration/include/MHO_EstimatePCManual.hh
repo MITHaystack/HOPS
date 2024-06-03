@@ -37,7 +37,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         MHO_EstimatePCManual();
         virtual ~MHO_EstimatePCManual();
 
-        // void SetPhasors(phasor_type* phasors){fPhasors = phasors;};
+        void SetPhasors(phasor_type* phasors){fPhasors = phasors;};
         void SetParameterStore(MHO_ParameterStore* paramStore){fParameterStore = paramStore;}; // TODO replace me
 
         // void SetStation(std::string station){fStationCode = station;}; //2-char station code
@@ -45,10 +45,10 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         // void SetPolarization(const std::string& pol){fPol = pol; make_upper(fPol);};
         // void SetPCPhaseOffset(const double& pc_phase_offset){fPhaseOffset = pc_phase_offset;}
         
-        void SetPlotData(mho_json& plot_data)
-        {
-            fPlotData.FillData(plot_data);
-        }
+        // void SetPlotData(mho_json& plot_data)
+        // {
+        //     fPlotData.FillData(plot_data);
+        // }
 
     protected:
 
@@ -57,8 +57,8 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         virtual bool ExecuteImpl(const visibility_type* in) override;
 
     private:
-        
-        MHO_ParameterStore fPlotData;
+
+        // MHO_ParameterStore fPlotData;
 
         MHO_ParameterStore* fParameterStore;
         phasor_type* fPhasors;
