@@ -14,6 +14,7 @@
 #include <vector>
 #include <utility>
 #include <algorithm>
+#include <cctype>
 
 
 #include "MHO_Constants.hh"
@@ -146,10 +147,15 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
     // msg(buf, 3);
     
     double ref_freq = fParameterStore->GetAs<double>(std::string("/control/config/ref_freq"));
-
+    
     //construct the control file line prefix
     std::string station_id = "?";
+    if(rr){station_id = fRefStationMk4ID;}
+    else{station_id = fRemStationMk4ID;}
+    
     std::string pol = "?";
+    if(rr){pol = fRefStationPol;}
+    else{pol = fRemStationPol;}
 
     std::string cf_line = "if station " + station_id + "\n" + "pc_phases_" + pol + " ";
 
@@ -262,6 +268,8 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
                 }
 
                 if(epd){delta_delay *= std::atof(epd);}
+                
+                std::cout<<"delta delay = "<<delta_delay<<std::endl;
 
                 est_phase += sbmult*(ch_resid_phase*MHO_Constants::rad_to_deg) + 360.0*delta_delay*(ch_freq - ref_freq);
 
@@ -338,6 +346,12 @@ MHO_EstimatePCManual::est_pc_manual(int mode)
 
     std::string ref_id = fParameterStore->GetAs<std::string>("/ref_station/mk4id");
     std::string rem_id = fParameterStore->GetAs<std::string>("/rem_station/mk4id");
+    fRefStationMk4ID = ref_id;
+    fRemStationMk4ID = rem_id;
+
+    std::string polprod = fParameterStore->GetAs<std::string>("/config/polprod");
+    fRefStationPol = tolower(polprod[0]);
+    fRefStationPol = tolower(polprod[1]);
 
     std::string key = "/control/station/pc_mode";
     std::string default_pcmode;

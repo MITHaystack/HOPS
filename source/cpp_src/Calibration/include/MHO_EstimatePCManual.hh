@@ -86,8 +86,12 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         // std::string fStationKey;
         // std::string fRemStationKey;
         // std::string fRefStationKey;
-        // std::string fRemStationMk4IDKey;
-        // std::string fRefStationMk4IDKey;
+        
+        std::string fRemStationMk4ID;
+        std::string fRefStationMk4ID;
+        std::string fRemStationPol;
+        std::string fRefStationPol;
+        
         // std::string fChannelLabelKey;
 
         // //minor helper function to make sure all strings are compared as upper-case only
