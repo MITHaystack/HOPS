@@ -312,7 +312,7 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
         }
     }
 
-    std::cout<<cf_line<<" "<<concat_ch<<" "<<output_string<<std::endl;
+    std::cout<<cf_line<<" "<<concat_ch<<"\n "<<output_string<<std::endl;
 
 //     // if (buf[0]) msg(buf, 3);
 //     // msg("*est: phases %s (%d)", 2, nd ? "converging" : "converged", nd);
@@ -330,8 +330,11 @@ MHO_EstimatePCManual::est_pc_manual(int mode)
 {
     // int first_ch, final_ch;
     // int doref, dophs, dodly, dooff, domrp;
+    std::cout<<" in est_pc_manual"<<std::endl;
 
-    std::string rootfile = fParameterStore->GetAs<std::string>("/files/rootfile");
+    fParameterStore->Dump();
+
+    std::string rootfile = fParameterStore->GetAs<std::string>("/files/root_file");
 
     std::string ref_id = fParameterStore->GetAs<std::string>("/ref_station/mk4id");
     std::string rem_id = fParameterStore->GetAs<std::string>("/rem_station/mk4id");
@@ -390,7 +393,7 @@ MHO_EstimatePCManual::ExecuteImpl(const visibility_type* in)
 {
 
     fVisibilities = in;
-    est_pc_manual(0);
+    est_pc_manual(1);
     return true;
 }
 
