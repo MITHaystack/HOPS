@@ -413,7 +413,7 @@ MHO_EstimatePCManual::get_manual_phasecal(int is_remote, int channel_idx, std::s
 void
 MHO_EstimatePCManual::adj_delays(double sbd_max, double sbd[], double esd[], double delta_delay, int first, int final, int rr, int how)
 {
-    static double cpy[MAXFREQ];
+    double cpy[MAXFREQ];
     double tol, medly, ave, tot = sbd_max * 1e3;
     int ch, med;
 
@@ -481,75 +481,92 @@ MHO_EstimatePCManual::adj_delays(double sbd_max, double sbd[], double esd[], dou
 //static void est_delays(struct type_pass *pass, int first, int final, int rr, int how)
 void MHO_EstimatePCManual::est_delays(int rr, int how)
 {
-    // static char buf[720], tmp[80];
-    // static double sbd[MAXFREQ], rdy[MAXFREQ], esd[MAXFREQ];
-    // double delta_delay;
-    // int ch, ss, pol, nd;
-    // char *pb, *epd = getenv("HOPS_EST_PC_MDLY");
-    //
-    // *progname = 0;
-    // //msg("*est: delays on %s station", 1, rr ? "ref" : "rem");
-    // //if (epd) msg("*est: HOPS_EST_PC_MDLY %s", 3, epd);
-    //
-    // /* restrict operation to only one delay calculation */
-    // if ((((how & 0x02)>>1) + ((how & 0x04)>>2) +
-    //      ((how & 0x08)>>3) + ((how & 0x10)>>4)) > 1) {
-    //     //msg("*est: too many delay modes selected: 0x%02x",3,how);
-    //     return;
-    // }
-    //
-    // /* consider a delay correction due to mbd */
-    // if (how & 0x100)
-    // {
-    //     //delta_delay = (param.mbd_anchor == MODEL)
-    //     //            ? fringe.t208->resid_mbd
-    //     //            : fringe.t208->resid_mbd - fringe.t208->resid_sbd;
-    //     delta_delay = fringe.t208->resid_mbd;
-    //     delta_delay *= ((epd) ? atof(epd) : 1.0) * 1000.0;
-    //     //msg("*est: post-MDLY sbd adjustment %f ns", 3, delta_delay);
-    // } else {
-    //     delta_delay = 0.0;
-    // }
-    //
-    // /* build an array of per-channel sbd values */
-    // for (ch = first; ch <= final; ch++) {
-    //     /* Cf. status.sbdbox[MAXFREQ] <=> status.sbd_max */
-    //     sbd[ch] = (status.sbdbox[ch] - param.nlags - 1) * status.sbd_sep;
-    //     sbd[ch] *= 1000.0;  /* us to ns */
-    //     if (!rr) sbd[ch] = - sbd[ch];
-    //
-    //     /* calculate original delays */
-    //     rdy[ch] = (rr)
-    //             ? pass->control.delay_offs[ch].ref
-    //             + pass->control.delay_offs_pol[ch][stnpol[0][pass->pol]].ref
-    //             : pass->control.delay_offs[ch].rem
-    //             + pass->control.delay_offs_pol[ch][stnpol[1][pass->pol]].rem;
-    // }
-    //
-    // /* make sense of it */
-    // adj_delays(sbd, esd, delta_delay, first, final, rr, how);
-    //
-    // /* header for the section */
+    static char buf[720], tmp[80];
+    static double sbd[MAXFREQ], rdy[MAXFREQ], esd[MAXFREQ];
+    double delta_delay;
+    int ch, ss, pol, nd;
+    char *pb, *epd = getenv("HOPS_EST_PC_MDLY");
+
+    int first = 0;
+    int final = MAXFREQ;
+
+
+    //Quantities we need
+    double resid_mbd = 0.0;
+    double sbd_max = 0.0;
+    double sbd_sep = 0.0;
+    int sbdbox[MAXFREQ];
+    char baseline[2];
+    int nlags = 0;
+
+
+    //*progname = 0;
+    //msg("*est: delays on %s station", 1, rr ? "ref" : "rem");
+    //if (epd) msg("*est: HOPS_EST_PC_MDLY %s", 3, epd);
+
+    /* restrict operation to only one delay calculation */
+    if ((((how & 0x02)>>1) + ((how & 0x04)>>2) +
+         ((how & 0x08)>>3) + ((how & 0x10)>>4)) > 1) {
+        //msg("*est: too many delay modes selected: 0x%02x",3,how);
+        return;
+    }
+
+    /* consider a delay correction due to mbd */
+    if (how & 0x100)
+    {
+        //delta_delay = (param.mbd_anchor == MODEL)
+        //            ? fringe.t208->resid_mbd
+        //            : fringe.t208->resid_mbd - fringe.t208->resid_sbd;
+        delta_delay = resid_mbd;
+        delta_delay *= ((epd) ? atof(epd) : 1.0) * 1000.0;
+        //msg("*est: post-MDLY sbd adjustment %f ns", 3, delta_delay);
+    } else {
+        delta_delay = 0.0;
+    }
+
+    /* build an array of per-channel sbd values */
+    for (ch = first; ch <= final; ch++) {
+        /* Cf. status.sbdbox[MAXFREQ] <=> status.sbd_max */
+        sbd[ch] = (sbdbox[ch] - nlags - 1) * sbd_sep;
+        sbd[ch] *= 1000.0;  /* us to ns */
+        if (!rr) sbd[ch] = - sbd[ch];
+
+        /* calculate original delays */
+        //TODO PORT THIS!!!
+        // rdy[ch] = (rr)
+        //         ? pass->control.delay_offs[ch].ref
+        //         + pass->control.delay_offs_pol[ch][stnpol[0][pass->pol]].ref
+        //         : pass->control.delay_offs[ch].rem
+        //         + pass->control.delay_offs_pol[ch][stnpol[1][pass->pol]].rem;
+    }
+
+    /* make sense of it */
+    adj_delays(sbd_max, sbd, esd, delta_delay, first, final, rr, how);
+
+    /* header for the section */
+    //TODO FIX THE POL LETTER
     // pol = pol_letter(pass->pol, !rr);
-    // sprintf(buf,
-    //     "if station %c\n delay_offs_%c ",fringe.t202->baseline[!rr], pol);
+
+
+    //TODO FIXE THE ONTROL FILE CONSTRUCTION
+    sprintf(buf, "if station %c\n delay_offs_%c ",baseline[!rr], pol);
     // for (ch = first, pb = buf + strlen(buf); ch <= final; ch++, pb++)
     //     *pb = pass->pass_data[ch].freq_code;
     // *pb = 0;
-    // //msg(buf, 3);
-    //
-    // for (buf[nd = ss = 0] = 0, ch = first; ch <= final; ch++) {
-    //     esd[ch] += rdy[ch];     /* work relative to input value */
-    //     if (fabs(esd[ch] - rdy[ch]) > 0.01) nd ++;
-    //     snprintf(tmp, sizeof(tmp), " %+8.3f", esd[ch]);
-    //     strncat(buf, tmp, sizeof(buf)-1);
-    //
-    //     /* eight delays per line for a line length of 73 */
-    //     // if (++ss == 8) {
-    //     //     msg(buf, 3);
-    //     //     buf[ss = 0] = 0;
-    //     // }
-    // }
+    //msg(buf, 3);
+
+    for (buf[nd = ss = 0] = 0, ch = first; ch <= final; ch++) {
+        esd[ch] += rdy[ch];     /* work relative to input value */
+        if (fabs(esd[ch] - rdy[ch]) > 0.01) nd ++;
+        snprintf(tmp, sizeof(tmp), " %+8.3f", esd[ch]);
+        strncat(buf, tmp, sizeof(buf)-1);
+
+        /* eight delays per line for a line length of 73 */
+        // if (++ss == 8) {
+        //     msg(buf, 3);
+        //     buf[ss = 0] = 0;
+        // }
+    }
     // if (buf[0]) msg(buf, 3);
     //msg("*est: delays %s (%d)", 2, nd ? "converging" : "converged", nd);
 }
