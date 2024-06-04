@@ -176,16 +176,6 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
         concat_ch += ch_freq_pairs[i].first;
     }
 
-    std::cout<<" concatenated channels = "<<concat_ch<<std::endl;
-
-
-
-    //for (buf[nd = ss = 0] = 0, ch = first; ch <= final; ch++)
-//
-//     //loop over pol axis
-//
-//     //loop over channel axis:
-//
     //loop over the channels
     std::string output_string = "";
     for(auto it = ch_freq_pairs.begin(); it != ch_freq_pairs.end(); it++)
@@ -243,8 +233,6 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
                 }
 
                 if(epd){delta_delay *= std::atof(epd);}
-
-                std::cout<<"delta delay = "<<delta_delay<<std::endl;
 
                 est_phase += sbmult*(ch_resid_phase*MHO_Constants::rad_to_deg) + 360.0*delta_delay*(ch_freq - ref_freq);
 
