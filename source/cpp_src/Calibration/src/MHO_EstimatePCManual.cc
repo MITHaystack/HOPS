@@ -254,8 +254,8 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
                 if (fabs(inp_phase - est_phase) > 0.01) nd ++;
 
                 /* remove input phase values */
-                if(rr){ inp_phase = ref_pc;} //status.pc_phase[ch][1][stnpol[1][pass->pol]];
-                else{ inp_phase = -1.0*rem_pc;} //status.pc_phase[ch][0][stnpol[0][pass->pol]];
+                if(rr){ inp_phase = rem_pc;} //status.pc_phase[ch][1][stnpol[1][pass->pol]];
+                else{ inp_phase = -1.0*ref_pc;} //status.pc_phase[ch][0][stnpol[0][pass->pol]];
 
                 est_phase += inp_phase;// * 180.0 / M_PI;
 
@@ -386,6 +386,7 @@ MHO_EstimatePCManual::get_manual_phasecal(int is_remote, int channel_idx, std::s
 
     double phase = 0.0;
     bool present = std::get<CHANNEL_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(channel_idx, key, phase);
+    phase *= MHO_Constants::rad_to_deg;
     if(present){return phase;}
     return 0.0;
 }
