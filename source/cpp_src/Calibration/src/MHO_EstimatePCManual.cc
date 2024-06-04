@@ -201,11 +201,11 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
                 if(net_sideband == "U"){sbmult = 1.0;}
 
                 //get the ref station manual pcal (if applied)
-                double ref_pc;
+                double ref_pc = get_manual_phasecal(0, ch_idx, fRefStationPol); //0 indicates ref station
                 //get the rem station manual pcal (if applied)
-                double rem_pc;
+                double rem_pc = get_manual_phasecal(1, ch_idx, fRemStationPol); //1 indidcates rem station
 
-                double est_phase = rem_pc - rem_pc; //should already be in degrees
+                double est_phase = ref_pc - rem_pc; //should already be in degrees
                 double inp_phase = pbranch(est_phase);
 
                 //
@@ -277,13 +277,13 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
                 std::stringstream ss;
                 ss << tmp;
                 output_string += ss.str();
-                if(ch_idx != 0 && ch_idx % 8 == 0){output_string +=  "\n";}
+                if(ch_idx % 8 == 7){output_string +=  "\n";}
             }
 
         }
     }
 
-    std::cout<<cf_line<<" "<<concat_ch<<"\n "<<output_string<<std::endl;
+    std::cout<<cf_line<<" "<<concat_ch<<"\n"<<output_string<<std::endl;
 
 //     // if (buf[0]) msg(buf, 3);
 //     // msg("*est: phases %s (%d)", 2, nd ? "converging" : "converged", nd);
@@ -374,6 +374,21 @@ MHO_EstimatePCManual::ExecuteImpl(const visibility_type* in)
     return true;
 }
 
+
+double
+MHO_EstimatePCManual::get_manual_phasecal(int is_remote, int channel_idx, std::string pol)
+{
+    std::string key = "ref_";
+    if(is_remote){key = "rem_";}
+    key += "pcphase_";
+    char upper_pol = toupper(pol[0]);
+    key += upper_pol;
+
+    double phase = 0.0;
+    bool present = std::get<CHANNEL_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(channel_idx, key, phase);
+    if(present){return phase;}
+    return 0.0;
+}
 
 
 
