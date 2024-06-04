@@ -203,7 +203,7 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
                 //get the ref station manual pcal (if applied)
                 double ref_pc = get_manual_phasecal(0, ch_idx, fRefStationPol); //0 indicates ref station
                 //get the rem station manual pcal (if applied)
-                double rem_pc = get_manual_phasecal(1, ch_idx, fRemStationPol); //1 indidcates rem station
+                double rem_pc = get_manual_phasecal(1, ch_idx, fRemStationPol); //1 indicates rem station
 
                 double est_phase = ref_pc - rem_pc; //should already be in degrees
                 double inp_phase = pbranch(est_phase);
