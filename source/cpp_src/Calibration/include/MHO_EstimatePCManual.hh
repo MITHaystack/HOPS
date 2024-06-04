@@ -70,6 +70,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
 
         void est_pc_manual(int mode);
         void est_phases(int rr, int keep);
+        void est_delays(int rr, int how);
 
         // std::size_t DetermineStationIndex(const phasor_type* in);
         // bool PolMatch(std::size_t station_idx, std::string& polprod);
