@@ -22,7 +22,7 @@
 #include "MHO_InterpolateFringePeak.hh"
 
 
-//TODO FIXME -- remove this 
+//TODO FIXME -- remove this
 #include "MHO_EstimatePCManual.hh"
 
 namespace hops
@@ -280,18 +280,20 @@ void MHO_BasicFringeFitter::Finalize()
         mho_json& plot_data = fFringeData->GetPlotData();
         plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, &fOperatorToolbox, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
-        
-        //TODO FIXME...remove this, just for testing 
+
+        //TODO FIXME...remove this, just for testing
         MHO_EstimatePCManual est_pc_man;
         auto vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
+        auto wt_data = fContainerStore->GetObject<weight_type>(std::string("weight"));
         auto phasor_data = fContainerStore->GetObject<phasor_type>(std::string("phasors"));
         est_pc_man.SetArgs(vis_data);
+        est_pc_man.SetWeights(wt_data);
         est_pc_man.SetParameterStore(fParameterStore);
         est_pc_man.SetPhasors(phasor_data);
         est_pc_man.Initialize();
         est_pc_man.Execute();
-        
-        
+
+
     }
 
     profiler_stop();

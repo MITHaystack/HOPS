@@ -109,14 +109,14 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
     // }
     // *pb = 0;
     // msg(buf, 3);
-    
+
     double ref_freq = fParameterStore->GetAs<double>(std::string("/control/config/ref_freq"));
-    
+
     //construct the control file line prefix
     std::string station_id = "?";
     if(rr){station_id = fRefStationMk4ID;}
     else{station_id = fRemStationMk4ID;}
-    
+
     std::string pol = "?";
     if(rr){pol = fRefStationPol;}
     else{pol = fRemStationPol;}
@@ -132,23 +132,34 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
     //calculate the average fPhasors
     std::size_t nchan = (&std::get<0>(*fPhasors))->GetSize(); //"what about 'All' channel?"...we just skip it
     std::size_t naps = (&std::get<1>(*fPhasors))->GetSize();
+
+    std::size_t wchan = fWeights->GetDimension(CHANNEL_AXIS);
+    std::size_t wnaps = fWeights->GetDimension(TIME_AXIS);
+    std::size_t POLPROD_INDEX = 0;
+
     for(std::size_t i=0; i<nchan; i++) //loop over channels
     {
-        //grab the channel label 
+        //grab the channel label
         std::string ch_label;
         (&std::get<0>(*fPhasors))->RetrieveIndexLabelKeyValue(i, chan_label_key, ch_label);
-        
+
         if(ch_label != "All")
         {
             double freq = std::get<0>(*fPhasors).at(i);//sky freq of this channel
             std::complex<double> phsum = 0;
-            double wght = 0;
+            double wsum = 0;
+            double w;
             for(std::size_t j=0; j<naps; j++) //sum over APs
             {
                 phsum += (*fPhasors)(i,j);
-                wght += 1.0; //TODO use real weights, but for now just assume 1
+                w = 1.0;
+                if(i<wchan && j<wnaps)
+                {
+                    w = (*fWeights)(POLPROD_INDEX,i,j,0);
+                }
+                wsum += w;
             }
-            phsum *= 1.0/(double)wght;
+            phsum *= 1.0/(double)wsum;
             double ch_arg = std::arg(phsum);
             chan2resid[ch_label] = ch_arg;
             chan2freq[ch_label] = freq;
@@ -156,7 +167,7 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
         }
     }
 
-    //construct the frequency ordered list of channels    
+    //construct the frequency ordered list of channels
     freq_predicate fpred;
     std::sort(ch_freq_pairs.begin(), ch_freq_pairs.end(), fpred);
     std::string concat_ch;
@@ -175,16 +186,16 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
 //
 //     //loop over channel axis:
 //
-    //loop over the channels 
+    //loop over the channels
     std::string output_string = "";
     for(auto it = ch_freq_pairs.begin(); it != ch_freq_pairs.end(); it++)
     {
         std::string ch = it->first;
         double ch_freq = it->second;
         double ch_resid_phase = chan2resid[ch];
-        
-        //figure out the channel index and grab the sideband info 
-        //as well as what manual pcal has been applied 
+
+        //figure out the channel index and grab the sideband info
+        //as well as what manual pcal has been applied
         std::size_t ch_idx;
         std::vector< std::size_t > ch_idx_vec = std::get<CHANNEL_AXIS>(*fVisibilities).GetMatchingIndexes(chan_label_key, ch);
         if(ch_idx_vec.size() == 1)
@@ -193,33 +204,33 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
             std::string net_sideband = "?";
             bool key_present = std::get<CHANNEL_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(ch_idx, sidebandlabelkey, net_sideband);
             if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch << "." << eom);}
-            else 
+            else
             {
                 double sbmult = 0.0;
                 if(net_sideband == "L"){sbmult = -1.0;}
                 if(net_sideband == "U"){sbmult = 1.0;}
-                
+
                 //get the ref station manual pcal (if applied)
                 double ref_pc;
                 //get the rem station manual pcal (if applied)
                 double rem_pc;
-                
+
                 double est_phase = rem_pc - rem_pc; //should already be in degrees
                 double inp_phase = pbranch(est_phase);
-                            
-                // 
+
+                //
                 // /* assume it is all usb or lsb for this estimate */
                 // sbmult = (status.total_usb_frac > 0) ? 1.0 : -1.0;
                 // est_phase = status.pc_phase[ch][0][stnpol[0][pass->pol]]
                 //           - status.pc_phase[ch][1][stnpol[1][pass->pol]];
                 // est_phase *= 180.0 / M_PI;  /* radians to degrees */
                 // inp_phase = pbranch(est_phase);
-                
-                //get the residual delays 
+
+                //get the residual delays
                  double resid_mbd = fParameterStore->GetAs<double>("/fringe/mbdelay");
                  double resid_sbd = fParameterStore->GetAs<double>("/fringe/sbdelay");
 
-                //get the mbd_anchor method 
+                //get the mbd_anchor method
                 std::string mbd_anchor = fParameterStore->GetAs<std::string>("/control/config/mbd_anchor");
                 double delta_delay = 0.0;
                 if(mbd_anchor == "model")
@@ -232,7 +243,7 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
                 }
 
                 if(epd){delta_delay *= std::atof(epd);}
-                
+
                 std::cout<<"delta delay = "<<delta_delay<<std::endl;
 
                 est_phase += sbmult*(ch_resid_phase*MHO_Constants::rad_to_deg) + 360.0*delta_delay*(ch_freq - ref_freq);
@@ -262,17 +273,17 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
 
                 if(rr){ est_phase = pbranch(est_phase); }
                 else{ est_phase = pbranch(-est_phase); }
-                
+
                 //snprintf(tmp, sizeof(tmp), " %+8.3f", est_phase);
                 // strncat(buf, tmp, sizeof(buf)-1);
-                // 
+                //
                 // /* eight phases per line for a line length of 73 */
                 // if (++ss == 8)
                 // {
                 //     // msg(buf, 3);
                 //     buf[ss = 0] = 0;
                 // }
-                
+
                 char tmp[80] = {0};
                 snprintf(tmp, sizeof(tmp), " %+8.3f", est_phase);
                 std::stringstream ss;
@@ -280,7 +291,7 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
                 output_string += ss.str();
                 if(ch_idx != 0 && ch_idx % 8 == 0){output_string +=  "\n";}
             }
-            
+
         }
     }
 

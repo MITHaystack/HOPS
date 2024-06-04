@@ -37,6 +37,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         MHO_EstimatePCManual();
         virtual ~MHO_EstimatePCManual();
 
+        void SetWeights(const weight_type* weights){fWeights = weights;}
         void SetPhasors(phasor_type* phasors){fPhasors = phasors;};
         void SetParameterStore(MHO_ParameterStore* paramStore){fParameterStore = paramStore;}; // TODO replace me
 
@@ -44,7 +45,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         // void SetStationMk4ID(std::string station_id){fMk4ID = station_id;} //1-char mk4id
         // void SetPolarization(const std::string& pol){fPol = pol; make_upper(fPol);};
         // void SetPCPhaseOffset(const double& pc_phase_offset){fPhaseOffset = pc_phase_offset;}
-        
+
         // void SetPlotData(mho_json& plot_data)
         // {
         //     fPlotData.FillData(plot_data);
@@ -62,6 +63,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
 
         MHO_ParameterStore* fParameterStore;
         phasor_type* fPhasors;
+        const weight_type* fWeights;
         const visibility_type* fVisibilities;
 
         void est_pc_manual(int mode);
@@ -86,12 +88,12 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         // std::string fStationKey;
         // std::string fRemStationKey;
         // std::string fRefStationKey;
-        
+
         std::string fRemStationMk4ID;
         std::string fRefStationMk4ID;
         std::string fRemStationPol;
         std::string fRefStationPol;
-        
+
         // std::string fChannelLabelKey;
 
         // //minor helper function to make sure all strings are compared as upper-case only
