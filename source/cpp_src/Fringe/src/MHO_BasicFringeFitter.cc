@@ -288,6 +288,7 @@ void MHO_BasicFringeFitter::Finalize()
         auto phasor_data = fContainerStore->GetObject<phasor_type>(std::string("phasors"));
         est_pc_man.SetArgs(vis_data);
         est_pc_man.SetWeights(wt_data);
+        est_pc_man.SetPlotData(plot_data);
         est_pc_man.SetParameterStore(fParameterStore);
         est_pc_man.SetPhasors(phasor_data);
         est_pc_man.Initialize();
