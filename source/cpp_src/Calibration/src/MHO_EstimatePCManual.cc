@@ -287,7 +287,7 @@ MHO_EstimatePCManual::est_pc_manual(int mode)
 {
     // int first_ch, final_ch;
     // int doref, dophs, dodly, dooff, domrp;
-    std::cout<<" in est_pc_manual"<<std::endl;
+    std::cout<<" in est_pc_manual, mode:"<< mode <<std::endl;
 
     fParameterStore->Dump();
 
@@ -356,7 +356,10 @@ MHO_EstimatePCManual::ExecuteImpl(const visibility_type* in)
 {
 
     fVisibilities = in;
-    est_pc_manual(1);
+    
+    int mode = 0;
+    bool ok = fParameterStore->Get("/control/config/est_pc_manual", mode);
+    est_pc_manual(mode);
     return true;
 }
 
@@ -465,7 +468,6 @@ MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, doubl
 //static void est_delays(struct type_pass *pass, int first, int final, int rr, int how)
 void MHO_EstimatePCManual::est_delays(int rr, int how)
 {
-    static char buf[720], tmp[80];
     //static double sbd[MAXFREQ], rdy[MAXFREQ], esd[MAXFREQ];
     std::vector<double> sbd_vec; sbd_vec.resize(MAXFREQ);
     std::vector<double> rdy_vec; rdy_vec.resize(MAXFREQ);
@@ -483,10 +485,10 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
 
     //Quantities we need
     double sbd_max = 0.0;
-    double sbd_sep = 0.0;
+    double sbd_sep = fParameterStore->GetAs<double>("/fringe/sbd_separation");
+
     //int sbdbox[MAXFREQ];
-    char baseline[2];
-    int nlags = 0;
+    int nlags = fParameterStore->GetAs<int>("/config/nlags");
     
     double resid_mbd = 0.0;
     double resid_sbd = 0.0;
@@ -534,6 +536,7 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     {
         /* Cf. status.sbdbox[MAXFREQ] <=> status.sbd_max */
         //sbd[ch] = (sbdbox[ch] - nlags - 1) * sbd_sep;
+        sbd[ch] = (sbd[ch] - nlags - 1) * sbd_sep;
         sbd[ch] *= 1000.0;  /* us to ns */
         if (!rr) sbd[ch] = - sbd[ch];
 
@@ -573,7 +576,7 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     std::string concat_ch;
     std::string output_string;
     // for (buf[nd = ss = 0] = 0, ch = first; ch <= final; ch++)
-    for(int ch=first; ch< final; ch++)
+    for(int ch=first; ch<final; ch++)
     {
         esd[ch] += rdy[ch];     /* work relative to input value */
         if (fabs(esd[ch] - rdy[ch]) > 0.01) nd ++;
