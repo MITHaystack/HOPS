@@ -406,11 +406,14 @@ MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, doubl
 
     /* start with a clean slate */
     for (ch = first; ch <= final; ch++) esd[ch] = 0.0;
+    
+    std::cout<<"tot = "<<tot<<std::endl;
+    for (ch = first; ch < final; ch++){std::cout<<"ch: "<<ch<<" -> "<<sbd[ch]<<std::endl;};
 
     /* for methods requiring a median value */
     if ( how & 0x026 )
     {
-        for (ch = first, ave=0.0; ch <= final; ch++)
+        for (ch = first, ave=0.0; ch < final; ch++)
         {
             cpy[ch] = sbd[ch];
             ave += sbd[ch];
@@ -428,36 +431,39 @@ MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, doubl
     {
         tol = fabs(cpy[med] - tot);
         //msg("*est: tolerance %.3f, retaining %.3f+/-%.3f",3,tol,medly,3*tol);
-        for (ch = first; tol > 0 && ch <= final; ch++)
+        for (ch = first; tol > 0 && ch < final; ch++)
             if (fabs( (sbd[ch] - medly) / tol ) > 3) sbd[ch] = medly;
         /* recompute average */
         for (ch = first, ave=0.0; ch <= final; ch++) ave += sbd[ch];
         ave /= (final - first + 1);
         //msg("*est: revised average delay is %.3f",3,ave);
     }
+    
+    std::cout<<"MEDIAN DLY = "<<medly<<std::endl;
+    std::cout<<"AVE DLY = "<<ave<<std::endl;
 
     if (how & 0x02)
     {            /* use the median value */
         //msg("*est: using median delay (mode %x)",3,how);
-        for (ch = first; ch <= final; ch++) esd[ch] = medly - delta_delay;
+        for (ch = first; ch < final; ch++) esd[ch] = medly - delta_delay;
     }
     else if (how & 0x04)
     {            /* compute and use average */
         //msg("*est: using ave delay (mode %x)",3,how);
-        for (ch = first; ch <= final; ch++) esd[ch] = ave - delta_delay;
+        for (ch = first; ch < final; ch++) esd[ch] = ave - delta_delay;
     }
     else if (how & 0x08)
     {            /* use total SBD value */
         //msg("*est: using total SBD delay (mode %x)",3,how);
-        for (ch = first; ch <= final; ch++) esd[ch] = tot - delta_delay;
+        for (ch = first; ch < final; ch++) esd[ch] = tot - delta_delay;
     }
     else if (how & 0x10)
     {            /* use the measured values */
         //msg("*est: using measured SBD delay (mode %x)",3,how);
-        for (ch = first; ch <= final; ch++) esd[ch] = sbd[ch] - delta_delay;
+        for (ch = first; ch < final; ch++) esd[ch] = sbd[ch] - delta_delay;
     }
 
-    if (!rr) for (ch = first; ch <= final; ch++) esd[ch] = -esd[ch];
+    if (!rr) for (ch = first; ch < final; ch++) esd[ch] = -esd[ch];
 }
 
 /*
@@ -482,12 +488,13 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     int final = 32;// MAXFREQ;
 
     //Quantities we need
-    double sbd_max = 0.0;
     double sbd_sep = fParameterStore->GetAs<double>("/fringe/sbd_separation");
 
     //int sbdbox[MAXFREQ];
     int nlags = fParameterStore->GetAs<int>("/config/nlags");
-    
+
+
+
     double resid_mbd = 0.0;
     double resid_sbd = 0.0;
     double delta_delay = 0.0;
@@ -497,6 +504,11 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     double* sbd = &(sbd_vec[0]);
     double* rdy = &(rdy_vec[0]);
     double* esd = &(esd_vec[0]);
+
+    //huh???#!
+    double sbd_max = 2.345e-3;
+    std::cout<<"sbd_max ="<<sbd_max<<std::endl;
+    
 
     //*progname = 0;
     //msg("*est: delays on %s station", 1, rr ? "ref" : "rem");
