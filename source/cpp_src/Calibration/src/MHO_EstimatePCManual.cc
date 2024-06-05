@@ -321,12 +321,12 @@ MHO_EstimatePCManual::est_pc_manual(int mode)
     if(ref_pcmode != "manual" || rem_pcmode != "manual"){return;}
 
     //determine mode logic
-    bool doref = (mode>0) ? 1 : 0;
+    int doref = (mode>0) ? 1 : 0;
     if (!doref) mode *= -1; /* so that mode is now positive   */
-    bool dophs = mode & 0x001;   /* per-channel phase correction   */
-    bool dodly = mode & 0x13e;   /* 0x02 0x04 0x08 0x10 0x20 0x100 */
-    bool dooff = mode & 0x040;   /* estimate phase offset value    */
-    bool domrp = mode & 0x080;   /* phase bias HOPS_EST_PC_BIAS    */
+    int dophs = mode & 0x001;   /* per-channel phase correction   */
+    int dodly = mode & 0x13e;   /* 0x02 0x04 0x08 0x10 0x20 0x100 */
+    int dooff = mode & 0x040;   /* estimate phase offset value    */
+    int domrp = mode & 0x080;   /* phase bias HOPS_EST_PC_BIAS    */
 
     // first_ch = (param.first_plot == 0) ? 0 : param.first_plot;
     // final_ch = (param.nplot_chans == 0) ? pass->nfreq : param.nplot_chans;
