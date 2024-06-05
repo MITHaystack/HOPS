@@ -16,10 +16,24 @@
 #include <algorithm>
 #include <cctype>
 
+#include <stdlib.h>
 
 #include "MHO_Constants.hh"
 
 #define MAXFREQ 64
+
+
+
+/* a comparison routine for use by qsort() */
+static int sbd_cmp(const void *a, const void *b)
+{
+    double da = *(double*)a, db = *(double*)b;
+    if (da<db) return(-1);
+    if (da>db) return( 1);
+    return(0);
+}
+
+
 
 namespace hops
 {
@@ -429,7 +443,7 @@ MHO_EstimatePCManual::adj_delays(double sbd_max, double sbd[], double esd[], dou
             ave += sbd[ch];
         }
         ave /= (final - first + 1);
-        //qsort(cpy + first, final - first + 1, sizeof(double), &sbd_cmp);
+        qsort(cpy + first, final - first + 1, sizeof(double), &sbd_cmp);
         med = (first + final) / 2;
         medly = cpy[med];
         //msg("*est: median,average,total delays are %.3f,%.3f,%.3f",3,
@@ -483,8 +497,7 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
 {
     static char buf[720], tmp[80];
     static double sbd[MAXFREQ], rdy[MAXFREQ], esd[MAXFREQ];
-    double delta_delay;
-    int ch, ss, pol, nd;
+    int ch, ss, nd;
     char *pb, *epd = getenv("HOPS_EST_PC_MDLY");
 
     int first = 0;
@@ -492,12 +505,16 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
 
 
     //Quantities we need
-    double resid_mbd = 0.0;
     double sbd_max = 0.0;
     double sbd_sep = 0.0;
     int sbdbox[MAXFREQ];
     char baseline[2];
     int nlags = 0;
+    
+    double resid_mbd = 0.0;
+    double resid_sbd = 0.0;
+    double delta_delay = 0.0;
+    
 
 
     //*progname = 0;
@@ -514,23 +531,37 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     /* consider a delay correction due to mbd */
     if (how & 0x100)
     {
-        //delta_delay = (param.mbd_anchor == MODEL)
-        //            ? fringe.t208->resid_mbd
-        //            : fringe.t208->resid_mbd - fringe.t208->resid_sbd;
-        delta_delay = resid_mbd;
+        //get the residual delays
+        resid_mbd = fParameterStore->GetAs<double>("/fringe/mbdelay");
+        resid_sbd = fParameterStore->GetAs<double>("/fringe/sbdelay");
+        //get the mbd_anchor method
+        std::string mbd_anchor = fParameterStore->GetAs<std::string>("/control/config/mbd_anchor");
+        if(mbd_anchor == "model")
+        {
+            delta_delay = resid_mbd;
+        }
+        else if(mbd_anchor == "sbd")
+        {
+            delta_delay = resid_mbd - resid_sbd;
+        }
         delta_delay *= ((epd) ? atof(epd) : 1.0) * 1000.0;
         //msg("*est: post-MDLY sbd adjustment %f ns", 3, delta_delay);
-    } else {
+    }
+    else 
+    {
         delta_delay = 0.0;
     }
 
     /* build an array of per-channel sbd values */
-    for (ch = first; ch <= final; ch++) {
+    for (ch = first; ch < final; ch++) 
+    {
         /* Cf. status.sbdbox[MAXFREQ] <=> status.sbd_max */
         sbd[ch] = (sbdbox[ch] - nlags - 1) * sbd_sep;
         sbd[ch] *= 1000.0;  /* us to ns */
         if (!rr) sbd[ch] = - sbd[ch];
 
+        //TODO FIXME
+        rdy[ch] = 0.0;
         /* calculate original delays */
         //TODO PORT THIS!!!
         // rdy[ch] = (rr)
@@ -542,24 +573,43 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
 
     /* make sense of it */
     adj_delays(sbd_max, sbd, esd, delta_delay, first, final, rr, how);
+    
+    //construct the control file line prefix
+    std::string station_id = "?";
+    if(rr){station_id = fRefStationMk4ID;}
+    else{station_id = fRemStationMk4ID;}
 
     /* header for the section */
-    //TODO FIX THE POL LETTER
+    std::string pol = "?";
+    if(rr){pol = fRefStationPol;}
+    else{pol = fRemStationPol;}
     // pol = pol_letter(pass->pol, !rr);
 
-
-    //TODO FIXE THE ONTROL FILE CONSTRUCTION
-    sprintf(buf, "if station %c\n delay_offs_%c ",baseline[!rr], pol);
+    //TODO FIX THE CONTROL FILE LINE CONSTRUCTION
+    std::string cf_line = "if station " + station_id + "\n" + "delay_offs_" + pol + " ";
+    //sprintf(buf, "if station %c\n delay_offs_%c ",baseline[!rr], pol);
     // for (ch = first, pb = buf + strlen(buf); ch <= final; ch++, pb++)
     //     *pb = pass->pass_data[ch].freq_code;
     // *pb = 0;
     //msg(buf, 3);
 
-    for (buf[nd = ss = 0] = 0, ch = first; ch <= final; ch++) {
+    std::string concat_ch;
+    std::string output_string;
+    // for (buf[nd = ss = 0] = 0, ch = first; ch <= final; ch++)
+    for(int ch=first; ch< final; ch++)
+    {
         esd[ch] += rdy[ch];     /* work relative to input value */
         if (fabs(esd[ch] - rdy[ch]) > 0.01) nd ++;
+        // snprintf(tmp, sizeof(tmp), " %+8.3f", esd[ch]);
+        // strncat(buf, tmp, sizeof(buf)-1);
+
+        char tmp[80] = {0};
         snprintf(tmp, sizeof(tmp), " %+8.3f", esd[ch]);
-        strncat(buf, tmp, sizeof(buf)-1);
+        std::stringstream ss;
+        ss << tmp;
+        output_string += ss.str();
+        if(ch % 8 == 7){output_string +=  "\n";}
+
 
         /* eight delays per line for a line length of 73 */
         // if (++ss == 8) {
@@ -569,6 +619,10 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     }
     // if (buf[0]) msg(buf, 3);
     //msg("*est: delays %s (%d)", 2, nd ? "converging" : "converged", nd);
+    
+    
+    std::cout<<cf_line<<" "<<concat_ch<<"\n"<<output_string<<std::endl;
+
 }
 
 

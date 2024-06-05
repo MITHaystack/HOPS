@@ -46,10 +46,10 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         // void SetPolarization(const std::string& pol){fPol = pol; make_upper(fPol);};
         // void SetPCPhaseOffset(const double& pc_phase_offset){fPhaseOffset = pc_phase_offset;}
 
-        // void SetPlotData(mho_json& plot_data)
-        // {
-        //     fPlotData.FillData(plot_data);
-        // }
+        void SetPlotData(mho_json& plot_data)
+        {
+            fPlotData.FillData(plot_data);
+        }
 
     protected:
 
@@ -61,8 +61,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
 
         double get_manual_phasecal(int is_remote, int channel_idx, std::string pol);
 
-        // MHO_ParameterStore fPlotData;
-
+        MHO_ParameterStore fPlotData;
         MHO_ParameterStore* fParameterStore;
         phasor_type* fPhasors;
         const weight_type* fWeights;
