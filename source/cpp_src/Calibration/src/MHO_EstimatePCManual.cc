@@ -33,6 +33,14 @@ static int sbd_cmp(const void *a, const void *b)
     return(0);
 }
 
+/* move phase to principal branch */
+static double pbranch(double phase)
+{
+    phase = ( fmod(phase, 360.0) );
+    if (phase < -180.0){ phase += 360.0; }
+    if (phase >  180.0){ phase -= 360.0; }
+    return phase;
+}
 
 
 namespace hops
@@ -52,45 +60,7 @@ class freq_predicate
     }
 };
 
-// static int stnpol[2][4] = {0, 1, 0, 1, 0, 1, 1, 0}; // [stn][pol] = 0:L, 1:R
-//
-// /*
-//  * Rename the program name to make the output easier to parse and use
-//  */
-// // static char opname[256];
-// // static void save_pn(void)
-// // {
-// //     // int ln = strlen(progname);
-// //     // strncpy(opname, progname, sizeof(opname));
-// //     // strncpy(progname, "*est", ln-1);
-// // }
-// // static void rest_pn(void)
-// // {
-// //     // strcpy(progname, opname);
-// // }
-//
 
-//
-/* move phase to principal branch */
-static double pbranch(double phase)
-{
-    phase = ( fmod(phase, 360.0) );
-    if (phase < -180.0){ phase += 360.0; }
-    if (phase >  180.0){ phase -= 360.0; }
-    return phase;
-}
-
-//
-//
-//
-//
-//
-//
-// /*
-//  * This routine calculates adjustments to channel phases
-//  * designed to remove the multiband delay (however anchored).
-//  */
-// static
 void
 MHO_EstimatePCManual::est_phases(int rr, int keep)
 {
@@ -425,7 +395,7 @@ MHO_EstimatePCManual::get_manual_phasecal(int is_remote, int channel_idx, std::s
  *    0x20: use heuristics to discard outliers
  */
 void
-MHO_EstimatePCManual::adj_delays(double sbd_max, double sbd[], double esd[], double delta_delay, int first, int final, int rr, int how)
+MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, double delta_delay, int first, int final, int rr, int how)
 {
     double cpy[MAXFREQ];
     double tol, medly, ave, tot = sbd_max * 1e3;
@@ -496,18 +466,25 @@ MHO_EstimatePCManual::adj_delays(double sbd_max, double sbd[], double esd[], dou
 void MHO_EstimatePCManual::est_delays(int rr, int how)
 {
     static char buf[720], tmp[80];
-    static double sbd[MAXFREQ], rdy[MAXFREQ], esd[MAXFREQ];
+    //static double sbd[MAXFREQ], rdy[MAXFREQ], esd[MAXFREQ];
+    std::vector<double> sbd_vec; sbd_vec.resize(MAXFREQ);
+    std::vector<double> rdy_vec; rdy_vec.resize(MAXFREQ);
+    std::vector<double> esd_vec; esd_vec.resize(MAXFREQ);
+    
+    double* sbd = &(sbd_vec[0]);
+    double* rdy = &(rdy_vec[0]);
+    double* esd = &(esd_vec[0]);
+    
     int ch, ss, nd;
     char *pb, *epd = getenv("HOPS_EST_PC_MDLY");
 
     int first = 0;
-    int final = MAXFREQ;
-
+    int final = 32;// MAXFREQ;
 
     //Quantities we need
     double sbd_max = 0.0;
     double sbd_sep = 0.0;
-    int sbdbox[MAXFREQ];
+    //int sbdbox[MAXFREQ];
     char baseline[2];
     int nlags = 0;
     
@@ -515,7 +492,7 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     double resid_sbd = 0.0;
     double delta_delay = 0.0;
     
-
+    fill_sbd(sbd_vec);
 
     //*progname = 0;
     //msg("*est: delays on %s station", 1, rr ? "ref" : "rem");
@@ -556,7 +533,7 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     for (ch = first; ch < final; ch++) 
     {
         /* Cf. status.sbdbox[MAXFREQ] <=> status.sbd_max */
-        sbd[ch] = (sbdbox[ch] - nlags - 1) * sbd_sep;
+        //sbd[ch] = (sbdbox[ch] - nlags - 1) * sbd_sep;
         sbd[ch] *= 1000.0;  /* us to ns */
         if (!rr) sbd[ch] = - sbd[ch];
 
@@ -629,8 +606,17 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
 ////////////////////////////////////////////////////////////////////////////////
 
 
-
-
+void 
+MHO_EstimatePCManual::fill_sbd(std::vector<double>& sbd)
+{
+    //["PLOT_INFO"]["#Ch"]
+    //["PLOT_INFO"]["SbdBox"]
+    
+        //std::vector< std::string > chan_labels = fPlotData["PLOT_INFO"]["#Ch"].get< std::vector< std::string> >();
+        mho_json obj;
+        bool ok = fPlotData.Get("/PLOT_INFO/SbdBox", obj);
+        if(ok){sbd = obj.get< std::vector<double> >();}
+}
 
 
 
