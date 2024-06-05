@@ -473,9 +473,7 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     std::vector<double> rdy_vec; rdy_vec.resize(MAXFREQ);
     std::vector<double> esd_vec; esd_vec.resize(MAXFREQ);
     
-    double* sbd = &(sbd_vec[0]);
-    double* rdy = &(rdy_vec[0]);
-    double* esd = &(esd_vec[0]);
+
     
     int ch, ss, nd;
     char *pb, *epd = getenv("HOPS_EST_PC_MDLY");
@@ -495,6 +493,10 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     double delta_delay = 0.0;
     
     fill_sbd(sbd_vec);
+
+    double* sbd = &(sbd_vec[0]);
+    double* rdy = &(rdy_vec[0]);
+    double* esd = &(esd_vec[0]);
 
     //*progname = 0;
     //msg("*est: delays on %s station", 1, rr ? "ref" : "rem");
@@ -536,9 +538,14 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     {
         /* Cf. status.sbdbox[MAXFREQ] <=> status.sbd_max */
         //sbd[ch] = (sbdbox[ch] - nlags - 1) * sbd_sep;
-        sbd[ch] = (sbd[ch] - nlags - 1) * sbd_sep;
+        std::cout<<"sbd @ "<<ch<<" = "<<sbd[ch]<<std::endl;
+        sbd[ch] = (sbd[ch] - (double)nlags - 1) * sbd_sep;
+
+        
         sbd[ch] *= 1000.0;  /* us to ns */
         if (!rr) sbd[ch] = - sbd[ch];
+
+        std::cout<<"sbd @ "<<ch<<" = "<<sbd[ch]<<std::endl;
 
         //TODO FIXME
         rdy[ch] = 0.0;
@@ -616,9 +623,18 @@ MHO_EstimatePCManual::fill_sbd(std::vector<double>& sbd)
     //["PLOT_INFO"]["SbdBox"]
     
         //std::vector< std::string > chan_labels = fPlotData["PLOT_INFO"]["#Ch"].get< std::vector< std::string> >();
+        sbd.clear();
         mho_json obj;
         bool ok = fPlotData.Get("/PLOT_INFO/SbdBox", obj);
         if(ok){sbd = obj.get< std::vector<double> >();}
+        std::cout<<"SBD BOX"<<std::endl;
+        std::cout<<obj.dump(2)<<std::endl;
+        
+        for(std::size_t i=0; i<sbd.size(); i++)
+        {
+            std::cout<<i<<" : "<<sbd[i]<<std::endl;
+        }
+        
 }
 
 
