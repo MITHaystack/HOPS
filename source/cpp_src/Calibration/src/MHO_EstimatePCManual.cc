@@ -475,6 +475,7 @@ MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, doubl
 void MHO_EstimatePCManual::est_delays(int rr, int how)
 {
     //static double sbd[MAXFREQ], rdy[MAXFREQ], esd[MAXFREQ];
+    std::vector< std::string > ch_label;
     std::vector<double> sbd_vec; sbd_vec.resize(MAXFREQ);
     std::vector<double> rdy_vec; rdy_vec.resize(MAXFREQ);
     std::vector<double> esd_vec; esd_vec.resize(MAXFREQ);
@@ -499,7 +500,7 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     double resid_sbd = 0.0;
     double delta_delay = 0.0;
     
-    fill_sbd(sbd_vec);
+    fill_sbd(ch_label, sbd_vec);
 
     double* sbd = &(sbd_vec[0]);
     double* rdy = &(rdy_vec[0]);
@@ -629,24 +630,22 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
 
 
 void 
-MHO_EstimatePCManual::fill_sbd(std::vector<double>& sbd)
+MHO_EstimatePCManual::fill_sbd(std::vector<std::string>& ch_labels, std::vector<double>& sbd)
 {
     //["PLOT_INFO"]["#Ch"]
     //["PLOT_INFO"]["SbdBox"]
+
+    bool ok;
+    ch_labels.clear();
+    sbd.clear();
     
-        //std::vector< std::string > chan_labels = fPlotData["PLOT_INFO"]["#Ch"].get< std::vector< std::string> >();
-        sbd.clear();
-        mho_json obj;
-        bool ok = fPlotData.Get("/PLOT_INFO/SbdBox", obj);
-        if(ok){sbd = obj.get< std::vector<double> >();}
-        std::cout<<"SBD BOX"<<std::endl;
-        std::cout<<obj.dump(2)<<std::endl;
-        
-        for(std::size_t i=0; i<sbd.size(); i++)
-        {
-            std::cout<<i<<" : "<<sbd[i]<<std::endl;
-        }
-        
+    mho_json ch_obj;
+    ok = fPlotData.Get("/PLOT_INFO/#Ch", ch_obj);
+    if(ok){ch_labels = ch_obj.get< std::vector< std::string > >();}
+
+    mho_json obj;
+    ok = fPlotData.Get("/PLOT_INFO/SbdBox", obj);
+    if(ok){sbd = obj.get< std::vector<double> >();}
 }
 
 
