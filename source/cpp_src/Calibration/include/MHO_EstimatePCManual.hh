@@ -68,11 +68,11 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         const visibility_type* fVisibilities;
 
         void est_pc_manual(int mode);
-        void est_phases(int rr, int keep);
+        void est_phases(int is_ref, int keep);
 
-        void adj_delays(double sbd_max, double* sbd, double* esd, double delta_delay, int first, int final, int rr, int how);
-        void est_delays(int rr, int how);
-        void est_offset(int rr);
+        void adj_delays(double sbd_max, double* sbd, double* esd, double delta_delay, int first, int final, int is_ref, int how);
+        void est_delays(int is_ref, int how);
+        void est_offset(int is_ref);
         
         void fill_sbd(std::vector<std::string>& ch_labels, std::vector<double>& sbd);
 

@@ -62,14 +62,14 @@ class freq_predicate
 
 
 void
-MHO_EstimatePCManual::est_phases(int rr, int keep)
+MHO_EstimatePCManual::est_phases(int is_ref, int keep)
 {
     int nd;
     char *epb = getenv("HOPS_EST_PC_BIAS");
     char *epd = getenv("HOPS_EST_PC_DLYM");
     //
     // // *progname = 0;
-    // // msg("*est: phases on %s station", 1, rr ? "ref" : "rem");
+    // // msg("*est: phases on %s station", 1, is_ref ? "ref" : "rem");
     //
     /* support for bias operation */
     double phase_bias;
@@ -87,11 +87,11 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
 
     //construct the control file line prefix
     std::string station_id = "?";
-    if(rr){station_id = fRefStationMk4ID;}
+    if(is_ref){station_id = fRefStationMk4ID;}
     else{station_id = fRemStationMk4ID;}
 
     std::string pol = "?";
-    if(rr){pol = fRefStationPol;}
+    if(is_ref){pol = fRefStationPol;}
     else{pol = fRemStationPol;}
 
     std::string cf_line = "if station " + station_id + "\n" + "pc_phases_" + pol + " ";
@@ -209,12 +209,12 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
                 if (fabs(inp_phase - est_phase) > 0.01) nd ++;
 
                 /* remove input phase values */
-                if(rr){ inp_phase = rem_pc;} //status.pc_phase[ch][1][stnpol[1][pass->pol]];
+                if(is_ref){ inp_phase = rem_pc;} //status.pc_phase[ch][1][stnpol[1][pass->pol]];
                 else{ inp_phase = -1.0*ref_pc;} //status.pc_phase[ch][0][stnpol[0][pass->pol]];
 
                 est_phase += inp_phase;// * 180.0 / M_PI;
 
-                if(rr){ est_phase = pbranch(est_phase); }
+                if(is_ref){ est_phase = pbranch(est_phase); }
                 else{ est_phase = pbranch(-est_phase); }
 
                 char tmp[80] = {0};
@@ -356,7 +356,7 @@ MHO_EstimatePCManual::get_manual_phasecal(int is_remote, int channel_idx, std::s
  *    0x20: use heuristics to discard outliers
  */
 void
-MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, double delta_delay, int first, int final, int rr, int how)
+MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, double delta_delay, int first, int final, int is_ref, int how)
 {
     double cpy[MAXFREQ];
     double tol, medly, ave;
@@ -423,7 +423,7 @@ MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, doubl
         for (ch = first; ch < final; ch++) esd[ch] = sbd[ch] - delta_delay;
     }
 
-    if (!rr) for (ch = first; ch < final; ch++) esd[ch] = -esd[ch];
+    if (!is_ref) for (ch = first; ch < final; ch++) esd[ch] = -esd[ch];
 }
 
 /*
@@ -431,8 +431,8 @@ MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, doubl
  *  designed to remove the sbd.  Several methods and options
  *  are available via the 'how' argument.  See adj_delays().
  */
-//static void est_delays(struct type_pass *pass, int first, int final, int rr, int how)
-void MHO_EstimatePCManual::est_delays(int rr, int how)
+//static void est_delays(struct type_pass *pass, int first, int final, int is_ref, int how)
+void MHO_EstimatePCManual::est_delays(int is_ref, int how)
 {
     std::vector< std::string > ch_label;
     std::vector<double> sbd_vec; sbd_vec.resize(MAXFREQ);
@@ -459,7 +459,7 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     double* esd = &(esd_vec[0]);
 
     //*progname = 0;
-    //msg("*est: delays on %s station", 1, rr ? "ref" : "rem");
+    //msg("*est: delays on %s station", 1, is_ref ? "ref" : "rem");
     //if (epd) msg("*est: HOPS_EST_PC_MDLY %s", 3, epd);
 
     /* restrict operation to only one delay calculation */
@@ -484,13 +484,13 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
 
         sbd[ch] = (sbd[ch] - (double)nlags - 1) * sbd_sep;
         sbd[ch] *= 1000.0;  /* us to ns */
-        if (!rr) sbd[ch] = - sbd[ch];
+        if (!is_ref) sbd[ch] = - sbd[ch];
 
         //TODO FIXME
         rdy[ch] = 0.0;
         /* calculate original delays */
         //TODO PORT THIS!!!
-        // rdy[ch] = (rr)
+        // rdy[ch] = (is_ref)
         //         ? pass->control.delay_offs[ch].ref
         //         + pass->control.delay_offs_pol[ch][stnpol[0][pass->pol]].ref
         //         : pass->control.delay_offs[ch].rem
@@ -498,16 +498,16 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     }
 
     /* make sense of it */
-    adj_delays(sbd_max, sbd, esd, delta_delay, first, final, rr, how);
+    adj_delays(sbd_max, sbd, esd, delta_delay, first, final, is_ref, how);
     
     //construct the control file line prefix
     std::string station_id = "?";
-    if(rr){station_id = fRefStationMk4ID;}
+    if(is_ref){station_id = fRefStationMk4ID;}
     else{station_id = fRemStationMk4ID;}
 
     /* header for the section */
     std::string pol = "?";
-    if(rr){pol = fRefStationPol;}
+    if(is_ref){pol = fRefStationPol;}
     else{pol = fRemStationPol;}
 
     //control file line prefix
@@ -561,19 +561,58 @@ MHO_EstimatePCManual::fill_sbd(std::vector<std::string>& ch_labels, std::vector<
 }
 
 
-void MHO_EstimatePCManual::est_offset(int rr)
+void MHO_EstimatePCManual::est_offset(int is_ref)
 {
-    // double ofs;
-    // int ip = stnpol[rr][pass->pol];
+    //grab the residual phase
+    double resphase = fParameterStore->GetAs<double>("/fringe/resid_phase");
+    double pc_phase_offset = 0.0;
+    
+    std::string station_id = "?";
+    if(is_ref){station_id = fRefStationMk4ID;}
+    else{station_id = fRemStationMk4ID;}
+
+    std::string pol = "";
+    // if(is_ref){pol = tolower(fRefStationPol[0]);}
+    // else{pol = tolower(fRemStationPol[0]);}
+
+    std::string polprod = fParameterStore->GetAs<std::string>("/config/polprod");
+    if(is_ref){pol += polprod[0];}
+    else{pol += polprod[1];}
+    std::string polchar = "";
+    polchar += tolower(pol[0]);
+    
+    std::string key;
+    if(is_ref){ key = "ref_pcphase_offset_" + pol; }
+    else{key = "rem_pcphase_offset_" + pol; }
+    
+    bool key_present = std::get<POLPROD_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(0, key, pc_phase_offset);
+    
+    std::cout<<   std::get<POLPROD_AXIS>(*fVisibilities) << std::endl;
+    
+    if(!key_present){pc_phase_offset = 0.0;}
+
+    pc_phase_offset *= MHO_Constants::rad_to_deg;
+    std::cout<<"key = "<<key<<std::endl;
+    std::cout<<"pc phase off = "<<pc_phase_offset<<std::endl;
+    
+    
+    // //get the phase offsets that were applied in the control file (if present)
+    // int ip = stnpol[is_ref][pass->pol];
     // *progname = 0;
     // msg("*est phs %.3f ip-%d ref %.3f rem %.3f",3,
     //     fringe.t208->resphase, ip, pass->control.pc_phase_offset[ip].ref,
     //     pass->control.pc_phase_offset[ip].rem);
-    // ofs = (rr)
-    //     ? (fringe.t208->resphase   - pass->control.pc_phase_offset[ip].ref )
-    //     : (- fringe.t208->resphase + pass->control.pc_phase_offset[ip].rem );
+    // 
+    // 
+    double ofs;
+
+    if(is_ref){ ofs = resphase - pc_phase_offset; }
+    else{ ofs = -1.0*resphase + pc_phase_offset; }
+    
+    std::cout<<"if station " + station_id + " pc_phase_offset_" + polchar << " " << ofs<<std::endl;
+
     // msg("if station %c\n pc_phase_offset_%c %+8.3f",3,
-    //     fringe.t202->baseline[!rr], pol_letter(pass->pol, !rr), ofs);
+    //     fringe.t202->baseline[!is_ref], pol_letter(pass->pol, !is_ref), ofs);
 }
 
 
