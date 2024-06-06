@@ -418,12 +418,13 @@ MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, doubl
             cpy[ch] = sbd[ch];
             ave += sbd[ch];
         }
-        ave /= (final - first + 1);
+        ave /= (final - first);// + 1);
         qsort(cpy + first, final - first + 1, sizeof(double), &sbd_cmp);
         med = (first + final) / 2;
         medly = cpy[med];
         //msg("*est: median,average,total delays are %.3f,%.3f,%.3f",3,
         //    medly,ave,tot);
+        std::cout<<"*est: median,average,total delays are: "<< medly <<", "<< ave <<", "<< tot <<std::endl;
     }
 
     /* heuristic is to replace outliers with the median delay */
@@ -496,8 +497,8 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
 
 
 
-    double resid_mbd = 0.0;
-    double resid_sbd = 0.0;
+    double resid_mbd = fParameterStore->GetAs<double>("/fringe/mbdelay");
+    double resid_sbd = fParameterStore->GetAs<double>("/fringe/sbdelay");
     double delta_delay = 0.0;
     
     fill_sbd(ch_label, sbd_vec);
@@ -507,7 +508,7 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     double* esd = &(esd_vec[0]);
 
     //huh???#!
-    double sbd_max = 2.345e-3;
+    double sbd_max = resid_sbd;// 2.345e-3;
     std::cout<<"sbd_max ="<<sbd_max<<std::endl;
     
 
@@ -526,8 +527,7 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     if (how & 0x100)
     {
         //get the residual delays
-        resid_mbd = fParameterStore->GetAs<double>("/fringe/mbdelay");
-        resid_sbd = fParameterStore->GetAs<double>("/fringe/sbdelay");
+
         //get the mbd_anchor method
         std::string mbd_anchor = fParameterStore->GetAs<std::string>("/control/config/mbd_anchor");
         if(mbd_anchor == "model")
@@ -551,7 +551,7 @@ void MHO_EstimatePCManual::est_delays(int rr, int how)
     {
         /* Cf. status.sbdbox[MAXFREQ] <=> status.sbd_max */
         //sbd[ch] = (sbdbox[ch] - nlags - 1) * sbd_sep;
-        std::cout<<"sbd @ "<<ch<<" = "<<sbd[ch]<<std::endl;
+        // std::cout<<"sbd @ "<<ch<<" = "<<sbd[ch]<<std::endl;
         sbd[ch] = (sbd[ch] - (double)nlags - 1) * sbd_sep;
 
         
