@@ -609,7 +609,7 @@ void MHO_EstimatePCManual::est_offset(int is_ref)
     if(is_ref){ ofs = resphase - pc_phase_offset; }
     else{ ofs = -1.0*resphase + pc_phase_offset; }
     
-    std::cout<<"if station " + station_id + " pc_phase_offset_" + polchar << " " << ofs<<std::endl;
+    std::cout<<"if station " + station_id + "\n pc_phase_offset_" + polchar << " " << ofs<<std::endl;
 
     // msg("if station %c\n pc_phase_offset_%c %+8.3f",3,
     //     fringe.t202->baseline[!is_ref], pol_letter(pass->pol, !is_ref), ofs);
