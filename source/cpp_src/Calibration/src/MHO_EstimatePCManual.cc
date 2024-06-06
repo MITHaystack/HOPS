@@ -6,6 +6,7 @@
  * pc_phase_? and delay_offs_? values report.
  *
  * This is adapted from fearfit test code. gbc 5/8/2017
+ * Ported to hops4 jpb 6/6/2024
  */
 
 #include <cmath>
@@ -619,6 +620,43 @@ void MHO_EstimatePCManual::est_offset(int is_ref)
 
 
 
+/* generate information about where the results came from */
+void 
+MHO_EstimatePCManual::masthead(int mode, std::string root_file, int first_ch, int final_ch)
+{
+    std::string control_filename;
+    std::string ref_name;
+    std::string rem_name;
+    std::string fgroup;
+    std::string low_chan_fcode;
+    std::string high_chan_fcode;
+    std::string pol_string;
+    
+    std::string baseline;
+    
+    double snr;
+    double delres_max;
+    double resphase;
+    
+    double sbd_max;
+    double mbd_max_global;
+    double dr_max_global;
+    double ref_freq;
+
+    // msg("rf:  %s", 3, root_file);
+    // msg("cf:  %s", 3, control_filename);
+    // msg("on: %.8s - %.8s [%c%c] fq %c pol %s ch %c..%c mode %03X", 3,
+    //     ref_name, rem_name,
+    //     baseline[0], baseline[1],
+    //     fgroup, pol_string,
+    //     low_chan_fcode,
+    //     high_chan_fcode, mode);
+    // msg("snr %.3f amp %.6f phs %.6f", 3,
+    //     snr, delres_max, resphase);
+    // msg("sbd %.6f mbd %.6f frr %.6f", 3,
+    //     sbd_max, mbd_max_global,
+    //     dr_max_global * ref_freq);
+}
 
 
 

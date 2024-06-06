@@ -73,6 +73,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         void adj_delays(double sbd_max, double* sbd, double* esd, double delta_delay, int first, int final, int is_ref, int how);
         void est_delays(int is_ref, int how);
         void est_offset(int is_ref);
+        void masthead(int mode, std::string root_file, int first_ch, int final_ch);
         
         void fill_sbd(std::vector<std::string>& ch_labels, std::vector<double>& sbd);
 
