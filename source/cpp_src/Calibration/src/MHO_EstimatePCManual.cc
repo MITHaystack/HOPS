@@ -64,11 +64,7 @@ class freq_predicate
 void
 MHO_EstimatePCManual::est_phases(int rr, int keep)
 {
-
-    //static char buf[720], tmp[80], *pb;
-    // int ch, ss, pol, nd;
     int nd;
-    // double inp_phase, est_phase, sbmult, delta_delay, phase_bias;
     char *epb = getenv("HOPS_EST_PC_BIAS");
     char *epd = getenv("HOPS_EST_PC_DLYM");
     //
@@ -86,15 +82,6 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
     //     msg("*est: HOPS_EST_PC_BIAS %s ..._DLYM %s", 3, epb, epd);
     //
 
-    // // /* header for the section */
-    // pol = pol_letter(pass->pol, !rr);
-    // sprintf(buf, "if station %c\n pc_phases_%c ",fringe.t202->baseline[!rr], pol);
-    // for (ch = first, pb = buf + strlen(buf); ch <= final; ch++, pb++)
-    // {
-    //     *pb = pass->pass_data[ch].freq_code;
-    // }
-    // *pb = 0;
-    // msg(buf, 3);
 
     double ref_freq = fParameterStore->GetAs<double>(std::string("/control/config/ref_freq"));
 
@@ -194,14 +181,6 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
                 double est_phase = ref_pc - rem_pc; //should already be in degrees
                 double inp_phase = pbranch(est_phase);
 
-                //
-                // /* assume it is all usb or lsb for this estimate */
-                // sbmult = (status.total_usb_frac > 0) ? 1.0 : -1.0;
-                // est_phase = status.pc_phase[ch][0][stnpol[0][pass->pol]]
-                //           - status.pc_phase[ch][1][stnpol[1][pass->pol]];
-                // est_phase *= 180.0 / M_PI;  /* radians to degrees */
-                // inp_phase = pbranch(est_phase);
-
                 //get the residual delays
                  double resid_mbd = fParameterStore->GetAs<double>("/fringe/mbdelay");
                  double resid_sbd = fParameterStore->GetAs<double>("/fringe/sbdelay");
@@ -222,16 +201,6 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
 
                 est_phase += sbmult*(ch_resid_phase*MHO_Constants::rad_to_deg) + 360.0*delta_delay*(ch_freq - ref_freq);
 
-                // /* what we need to do to remove the multiband delay */
-                // delta_delay = (param.mbd_anchor == MODEL)
-                //             ? fringe.t208->resid_mbd
-                //             : fringe.t208->resid_mbd - fringe.t208->resid_sbd;
-                // /* allow this factor to be adjusted */
-                // delta_delay *= (epd) ? atof(epd) : 1.0;
-                // est_phase += sbmult * (arg_complex(status.fringe[ch]) * 180.0 / M_PI
-                //           + 360.0 * delta_delay *
-                //             (pass->pass_data[ch].frequency - fringe.t205->ref_freq));
-
                 /* bias the phase calculation to preserve existing resid phase */
                 if (keep) est_phase += phase_bias;
 
@@ -247,16 +216,6 @@ MHO_EstimatePCManual::est_phases(int rr, int keep)
 
                 if(rr){ est_phase = pbranch(est_phase); }
                 else{ est_phase = pbranch(-est_phase); }
-
-                //snprintf(tmp, sizeof(tmp), " %+8.3f", est_phase);
-                // strncat(buf, tmp, sizeof(buf)-1);
-                //
-                // /* eight phases per line for a line length of 73 */
-                // if (++ss == 8)
-                // {
-                //     // msg(buf, 3);
-                //     buf[ss = 0] = 0;
-                // }
 
                 char tmp[80] = {0};
                 snprintf(tmp, sizeof(tmp), " %+8.3f", est_phase);
@@ -336,8 +295,7 @@ MHO_EstimatePCManual::est_pc_manual(int mode)
     //compute pc_phases for all channels of the visibility array
     if(dophs){ est_phases(doref, domrp); }
     if(dodly){ est_delays(doref, dodly); }
-    // if (dodly) est_delays(pass, first_ch, final_ch, doref, dodly);
-    // if (dooff) est_offset(pass, doref);
+    if(dooff){ est_offset(doref); }
     // msg("*-----------------------------------"
     //     "------------------------------------",3);
 
@@ -603,7 +561,20 @@ MHO_EstimatePCManual::fill_sbd(std::vector<std::string>& ch_labels, std::vector<
 }
 
 
-
+void MHO_EstimatePCManual::est_offset(int rr)
+{
+    // double ofs;
+    // int ip = stnpol[rr][pass->pol];
+    // *progname = 0;
+    // msg("*est phs %.3f ip-%d ref %.3f rem %.3f",3,
+    //     fringe.t208->resphase, ip, pass->control.pc_phase_offset[ip].ref,
+    //     pass->control.pc_phase_offset[ip].rem);
+    // ofs = (rr)
+    //     ? (fringe.t208->resphase   - pass->control.pc_phase_offset[ip].ref )
+    //     : (- fringe.t208->resphase + pass->control.pc_phase_offset[ip].rem );
+    // msg("if station %c\n pc_phase_offset_%c %+8.3f",3,
+    //     fringe.t202->baseline[!rr], pol_letter(pass->pol, !rr), ofs);
+}
 
 
 
