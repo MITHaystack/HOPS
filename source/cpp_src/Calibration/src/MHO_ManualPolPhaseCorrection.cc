@@ -40,6 +40,12 @@ MHO_ManualPolPhaseCorrection::ExecuteInPlace(visibility_type* in)
         pp_label = pp_ax->at(pp);
         if( PolMatch(st_idx, pp_label) )
         {
+            std::string pc_phase_offset_key;
+            std::string pol_code = std::string(1, pp_label[st_idx] ); //get the polarization for the appropriate station (ref/rem)
+            if(st_idx == 0){pc_phase_offset_key = "ref_pcphase_offset_";}
+            if(st_idx == 1){pc_phase_offset_key = "rem_pcphase_offset_";}
+            pc_phase_offset_key += pol_code;
+            
             visibility_element_type pc_phasor = std::exp( fImagUnit*fPhaseOffset*fDegToRad );
 
             //conjugate the phase for the reference station, but not remote?
@@ -49,6 +55,11 @@ MHO_ManualPolPhaseCorrection::ExecuteInPlace(visibility_type* in)
             //retrieve and multiply the appropriate sub view of the visibility array
             auto chunk = in->SubView(pp);
             chunk *= pc_phasor;
+            
+            //now attach the manual pc phase offset value to this pol/station
+            //it would probably be better to stash this information in
+            //a new data type rather than attaching it as meta data here
+            pp_ax->InsertIndexLabelKeyValue(pp, pc_phase_offset_key, fPhaseOffset*fDegToRad);
         }
     }
 
