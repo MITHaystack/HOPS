@@ -228,7 +228,7 @@ MHO_EstimatePCManual::est_phases(int is_ref, int keep)
         }
     }
 
-    std::cout<<cf_line<<" "<<concat_ch<<"\n"<<output_string<<std::endl;
+    //std::cout<<cf_line<<" "<<concat_ch<<"\n"<<output_string<<std::endl;
 
 //     // if (buf[0]) msg(buf, 3);
 //     // msg("*est: phases %s (%d)", 2, nd ? "converging" : "converged", nd);
@@ -246,9 +246,9 @@ MHO_EstimatePCManual::est_pc_manual(int mode)
 {
     // int first_ch, final_ch;
     // int doref, dophs, dodly, dooff, domrp;
-    std::cout<<" in est_pc_manual, mode:"<< mode <<std::endl;
+    //std::cout<<" in est_pc_manual, mode:"<< mode <<std::endl;
 
-    fParameterStore->Dump();
+    //fParameterStore->Dump();
 
     std::string rootfile = fParameterStore->GetAs<std::string>("/files/root_file");
 
@@ -366,8 +366,8 @@ MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, doubl
     /* start with a clean slate */
     for (ch = first; ch <= final; ch++) esd[ch] = 0.0;
     
-    // std::cout<<"tot = "<<tot<<std::endl;
-    // for (ch = first; ch < final; ch++){std::cout<<"ch: "<<ch<<" -> "<<sbd[ch]<<std::endl;};
+    // //std::cout<<"tot = "<<tot<<std::endl;
+    // for (ch = first; ch < final; ch++){//std::cout<<"ch: "<<ch<<" -> "<<sbd[ch]<<std::endl;};
 
     /* for methods requiring a median value */
     if ( how & 0x026 )
@@ -383,7 +383,7 @@ MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, doubl
         medly = cpy[med];
         //msg("*est: median,average,total delays are %.3f,%.3f,%.3f",3,
         //    medly,ave,tot);
-        //std::cout<<"*est: median,average,total delays are: "<< medly <<", "<< ave <<", "<< tot <<std::endl;
+        ////std::cout<<"*est: median,average,total delays are: "<< medly <<", "<< ave <<", "<< tot <<std::endl;
     }
 
     /* heuristic is to replace outliers with the median delay */
@@ -399,8 +399,8 @@ MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, doubl
         //msg("*est: revised average delay is %.3f",3,ave);
     }
     // 
-    // std::cout<<"MEDIAN DLY = "<<medly<<std::endl;
-    // std::cout<<"AVE DLY = "<<ave<<std::endl;
+    // //std::cout<<"MEDIAN DLY = "<<medly<<std::endl;
+    // //std::cout<<"AVE DLY = "<<ave<<std::endl;
 
     if (how & 0x02)
     {            /* use the median value */
@@ -536,7 +536,7 @@ void MHO_EstimatePCManual::est_delays(int is_ref, int how)
     // if (buf[0]) msg(buf, 3);
     //msg("*est: delays %s (%d)", 2, nd ? "converging" : "converged", nd);
 
-    std::cout<<cf_line<<" "<<concat_ch<<"\n"<<output_string<<std::endl;
+    //std::cout<<cf_line<<" "<<concat_ch<<"\n"<<output_string<<std::endl;
 
 }
 
@@ -587,13 +587,13 @@ void MHO_EstimatePCManual::est_offset(int is_ref)
     
     bool key_present = std::get<POLPROD_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(0, key, pc_phase_offset);
     
-    std::cout<<   std::get<POLPROD_AXIS>(*fVisibilities) << std::endl;
+    //std::cout<<   std::get<POLPROD_AXIS>(*fVisibilities) << std::endl;
     
     if(!key_present){pc_phase_offset = 0.0;}
 
     pc_phase_offset *= MHO_Constants::rad_to_deg;
-    std::cout<<"key = "<<key<<std::endl;
-    std::cout<<"pc phase off = "<<pc_phase_offset<<std::endl;
+    //std::cout<<"key = "<<key<<std::endl;
+    //std::cout<<"pc phase off = "<<pc_phase_offset<<std::endl;
     
     
     // //get the phase offsets that were applied in the control file (if present)
@@ -609,7 +609,7 @@ void MHO_EstimatePCManual::est_offset(int is_ref)
     if(is_ref){ ofs = resphase - pc_phase_offset; }
     else{ ofs = -1.0*resphase + pc_phase_offset; }
     
-    std::cout<<"if station " + station_id + "\n pc_phase_offset_" + polchar << " " << ofs<<std::endl;
+    //std::cout<<"if station " + station_id + "\n pc_phase_offset_" + polchar << " " << ofs<<std::endl;
 
     // msg("if station %c\n pc_phase_offset_%c %+8.3f",3,
     //     fringe.t202->baseline[!is_ref], pol_letter(pass->pol, !is_ref), ofs);
