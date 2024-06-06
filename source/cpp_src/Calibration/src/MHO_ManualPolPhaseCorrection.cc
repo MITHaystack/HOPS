@@ -13,6 +13,10 @@ MHO_ManualPolPhaseCorrection::MHO_ManualPolPhaseCorrection()
     fRemStationMk4IDKey = "remote_station_mk4id";
     fRefStationMk4IDKey = "reference_station_mk4id";
     fChannelLabelKey = "channel_label";
+    
+    fSidebandLabelKey = "net_sideband";
+    fLowerSideband = "L";
+    fUpperSideband = "U";
 
     fStationCode = "";
     fMk4ID = "";
@@ -34,6 +38,7 @@ MHO_ManualPolPhaseCorrection::ExecuteInPlace(visibility_type* in)
 
     //loop over pol-products and apply pc-phases to the appropriate pol/channel
     auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
+    auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
     std::string pp_label;
     for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
     {
@@ -45,21 +50,32 @@ MHO_ManualPolPhaseCorrection::ExecuteInPlace(visibility_type* in)
             if(st_idx == 0){pc_phase_offset_key = "ref_pcphase_offset_";}
             if(st_idx == 1){pc_phase_offset_key = "rem_pcphase_offset_";}
             pc_phase_offset_key += pol_code;
-            
-            visibility_element_type pc_phasor = std::exp( fImagUnit*fPhaseOffset*fDegToRad );
 
-            //conjugate the phase for the reference station, but not remote?
-            //should this behavior change depending on the USB/LSB?
-            #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
-            if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
-            //retrieve and multiply the appropriate sub view of the visibility array
-            auto chunk = in->SubView(pp);
-            chunk *= pc_phasor;
-            
             //now attach the manual pc phase offset value to this pol/station
             //it would probably be better to stash this information in
             //a new data type rather than attaching it as meta data here
             pp_ax->InsertIndexLabelKeyValue(pp, pc_phase_offset_key, fPhaseOffset*fDegToRad);
+
+            //loop over the channels and apply the phase offset
+            //we need to do this on a per-channel basis in case we have mixed USB/LSB data (there is a sign flip between the two)
+            for(std::size_t ch=0; ch < chan_ax->GetSize(); ch++)
+            {
+                visibility_element_type pc_phasor = std::exp( fImagUnit*fPhaseOffset*fDegToRad );
+            
+                std::string net_sideband = "?";
+                bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+                if( nsb_key_present )
+                {
+                    //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                    if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
+                    if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
+                }
+
+                //retrieve and multiply the appropriate sub view of the visibility array
+                auto chunk = in->SubView(pp,ch);
+                chunk *= pc_phasor;
+            }
+
         }
     }
 
