@@ -278,7 +278,6 @@ MHO_ComputePlotData::calc_segs()
     }
 
     std::string sidebandlabelkey = "net_sideband";
-    std::string weight_key = "weight";
     for(std::size_t ap=0; ap < nap; ap++)
     {
         std::complex<double> sum = 0; //sum over all channels
