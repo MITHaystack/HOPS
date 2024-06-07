@@ -77,32 +77,10 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         
         void fill_sbd(std::vector<std::string>& ch_labels, std::vector<double>& sbd);
 
-        // std::size_t DetermineStationIndex(const phasor_type* in);
-        // bool PolMatch(std::size_t station_idx, std::string& polprod);
-        //
-        // //constants
-        // std::complex<double> fImagUnit;
-        // double fDegToRad;
-        //
-        // //selection
-        // std::string fStationCode;
-        // std::string fMk4ID;
-        // std::string fPol;
-        //
-        // //pc rotation
-        // double fPhaseOffset;
-        //
-        // //keys for tag retrieval
-        // std::string fStationKey;
-        // std::string fRemStationKey;
-        // std::string fRefStationKey;
-
         std::string fRemStationMk4ID;
         std::string fRefStationMk4ID;
         std::string fRemStationPol;
         std::string fRefStationPol;
-
-        // std::string fChannelLabelKey;
 
         // //minor helper function to make sure all strings are compared as upper-case only
         // void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
