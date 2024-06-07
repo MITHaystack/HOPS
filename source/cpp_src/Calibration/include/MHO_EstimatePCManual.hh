@@ -39,12 +39,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
 
         void SetWeights(const weight_type* weights){fWeights = weights;}
         void SetPhasors(phasor_type* phasors){fPhasors = phasors;};
-        void SetParameterStore(MHO_ParameterStore* paramStore){fParameterStore = paramStore;}; // TODO replace me
-
-        // void SetStation(std::string station){fStationCode = station;}; //2-char station code
-        // void SetStationMk4ID(std::string station_id){fMk4ID = station_id;} //1-char mk4id
-        // void SetPolarization(const std::string& pol){fPol = pol; make_upper(fPol);};
-        // void SetPCPhaseOffset(const double& pc_phase_offset){fPhaseOffset = pc_phase_offset;}
+        void SetParameterStore(MHO_ParameterStore* paramStore){fParameterStore = paramStore;}; 
 
         void SetPlotData(mho_json& plot_data)
         {
