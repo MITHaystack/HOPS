@@ -162,6 +162,23 @@ MHO_EstimatePCManual::get_manual_phasecal(int is_remote, int channel_idx, std::s
     return 0.0;
 }
 
+double
+MHO_EstimatePCManual::get_manual_delayoff(int is_remote, int channel_idx, std::string pol)
+{
+    std::string key = "ref_";
+    if(is_remote){key = "rem_";}
+    key += "delayoff_";
+    char upper_pol = toupper(pol[0]);
+    key += upper_pol;
+
+    double delay = 0.0;
+    bool present = std::get<CHANNEL_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(channel_idx, key, delay);
+    if(present){return delay;}
+    return 0.0;
+}
+
+
+
 
 void 
 MHO_EstimatePCManual::fill_sbd(std::vector<std::string>& ch_labels, std::vector<double>& sbd)

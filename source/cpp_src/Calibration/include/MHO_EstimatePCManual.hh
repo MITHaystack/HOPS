@@ -60,6 +60,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
     private:
 
         double get_manual_phasecal(int is_remote, int channel_idx, std::string pol);
+        double get_manual_delayoff(int is_remote, int channel_idx, std::string pol);
 
         MHO_ParameterStore fPlotData;
         MHO_ParameterStore* fParameterStore;
