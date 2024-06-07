@@ -107,6 +107,22 @@ MHO_EstimatePCManual::est_pc_manual(int mode)
 
     //this is only enabled for pc_mode manual...why? TODO FIXME
     if(ref_pcmode != "manual" || rem_pcmode != "manual"){return;}
+    
+    //map channel labels to indices
+    fChannelLabel2Index.clear();
+    fIndex2ChannelLabel.clear();
+    std::string ch_label_key = "channel_label";
+    auto chan_ax = &(std::get<CHANNEL_AXIS>(*fVisibilities));
+    for(int i=0; i<chan_ax->GetSize(); i++)
+    {
+        std::string label;
+        bool ok = chan_ax->RetrieveIndexLabelKeyValue(i,ch_label_key,label);
+        if(ok)
+        {
+            fChannelLabel2Index[label] = i;
+            fIndex2ChannelLabel[i] = label;
+        }
+    }
 
     //determine mode logic
     int doref = (mode>0) ? 1 : 0;
@@ -136,9 +152,7 @@ MHO_EstimatePCManual::est_pc_manual(int mode)
 bool
 MHO_EstimatePCManual::ExecuteImpl(const visibility_type* in)
 {
-
     fVisibilities = in;
-    
     int mode = 0;
     bool ok = fParameterStore->Get("/control/config/est_pc_manual", mode);
     est_pc_manual(mode);
@@ -151,14 +165,24 @@ MHO_EstimatePCManual::get_manual_phasecal(int is_remote, int channel_idx, std::s
 {
     std::string key = "ref_";
     if(is_remote){key = "rem_";}
+    std::string pol_key = key + "pcphase_offset_";
     key += "pcphase_";
     char upper_pol = toupper(pol[0]);
     key += upper_pol;
+    pol_key += upper_pol;
 
     double phase = 0.0;
-    bool present = std::get<CHANNEL_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(channel_idx, key, phase);
-    phase *= MHO_Constants::rad_to_deg;
-    if(present){return phase;}
+    bool present = false;
+
+    // double pol_phase = 0.0;
+    // present = std::get<CHANNEL_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(0, pol_key, pol_phase);
+    // pol_phase *= MHO_Constants::rad_to_deg;
+    // if(present){phase += pol_phase;}
+
+    double ch_phase = 0.0;
+    present = std::get<CHANNEL_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(channel_idx, key, ch_phase);
+    ch_phase *= MHO_Constants::rad_to_deg;
+    if(present){phase += ch_phase;}
     return 0.0;
 }
 
@@ -170,11 +194,26 @@ MHO_EstimatePCManual::get_manual_delayoff(int is_remote, int channel_idx, std::s
     key += "delayoff_";
     char upper_pol = toupper(pol[0]);
     key += upper_pol;
-
+    
+    //test...flip order of channels to check on bug in c code
+    //channel_idx = 31 - channel_idx; 
+    
     double delay = 0.0;
-    bool present = std::get<CHANNEL_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(channel_idx, key, delay);
-    if(present){return delay;}
-    return 0.0;
+    
+    bool present = false;
+    //grab the pol-based delay
+    double pol_delay = 0.0;
+    present = std::get<POLPROD_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(0, key, pol_delay);
+    if(present){delay += pol_delay;}
+    
+    //grab the individual channel delay 
+    double ch_delay = 0.0;
+    present = std::get<CHANNEL_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(channel_idx, key, ch_delay);
+    if(present){delay += ch_delay;}
+
+    //std::cout<<"key = "<<key<<", delay = "<<delay<<std::endl;
+
+    return delay;
 }
 
 
@@ -523,6 +562,16 @@ void MHO_EstimatePCManual::est_delays(int is_ref, int how)
         delta_delay *= ((epd) ? atof(epd) : 1.0) * 1000.0;
         msg_debug("calibration", "*est: post-MDLY sbd adjustment "<< delta_delay << " ns" << eom );
     }
+    
+    //info needed to construct the control file line prefix
+    std::string station_id = "?";
+    if(is_ref){station_id = fRefStationMk4ID;}
+    else{station_id = fRemStationMk4ID;}
+
+    /* header for the section */
+    std::string pol = "?";
+    if(is_ref){pol = fRefStationPol;}
+    else{pol = fRemStationPol;}
 
     /* build an array of per-channel sbd values */
     for (ch = first; ch < final; ch++) 
@@ -533,7 +582,9 @@ void MHO_EstimatePCManual::est_delays(int is_ref, int how)
         if (!is_ref) sbd[ch] = - sbd[ch];
 
         //TODO FIXME
-        rdy[ch] = 0.0;
+        rdy[ch] = get_manual_delayoff(!is_ref, fChannelLabel2Index[ch_label[ch]], pol);
+        std::cout<<"ch, sbd, rdy = "<<ch_label[ch]<<","<<sbd[ch]<<", "<<rdy[ch]<<std::endl;
+        
         /* calculate original delays */
         //TODO PORT THIS!!!
         // rdy[ch] = (is_ref)
@@ -546,15 +597,6 @@ void MHO_EstimatePCManual::est_delays(int is_ref, int how)
     /* make sense of it */
     adj_delays(sbd_max, sbd, esd, delta_delay, first, final, is_ref, how);
     
-    //construct the control file line prefix
-    std::string station_id = "?";
-    if(is_ref){station_id = fRefStationMk4ID;}
-    else{station_id = fRemStationMk4ID;}
-
-    /* header for the section */
-    std::string pol = "?";
-    if(is_ref){pol = fRefStationPol;}
-    else{pol = fRemStationPol;}
 
     //control file line prefix
     std::string cf_line = "if station " + station_id + "\n" + "delay_offs_" + pol + " ";

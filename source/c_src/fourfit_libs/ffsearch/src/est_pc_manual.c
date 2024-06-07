@@ -290,6 +290,8 @@ static void est_delays(struct type_pass *pass,
                 + pass->control.delay_offs_pol[ch][stnpol[0][pass->pol]].ref
                 : pass->control.delay_offs[ch].rem
                 + pass->control.delay_offs_pol[ch][stnpol[1][pass->pol]].rem;
+                
+        printf("ch, sbd, rdy = %c, %f, %f \n", pass->pass_data[ch].freq_code, sbd[ch], rdy[ch]);
     }
 
     /* make sense of it */
