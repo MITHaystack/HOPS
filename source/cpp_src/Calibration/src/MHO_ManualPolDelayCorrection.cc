@@ -56,14 +56,14 @@ MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
 
                 visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
                 
-                std::string net_sideband = "?";
-                bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
-                //conjugate phases for LSB data, but not for USB - TODO what about DSB?
-                if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
-                if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
+                // std::string net_sideband = "?";
+                // bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+                // //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
+                // if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
 
-                //first impl behavior:
-                //if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
+                //first impl behavior...working for EHT test case, but not checked everywhere
+                if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
 
                 //retrieve and multiply the appropriate sub view of the visibility array
                 auto chunk = in->SubView(pp, ch);
