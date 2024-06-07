@@ -88,7 +88,7 @@ MHO_EstimatePCManual::est_pc_manual(int mode)
 
     std::string polprod = fParameterStore->GetAs<std::string>("/config/polprod");
     fRefStationPol = tolower(polprod[0]);
-    fRefStationPol = tolower(polprod[1]);
+    fRemStationPol = tolower(polprod[1]);
 
     std::string key = "/control/station/pc_mode";
     std::string default_pcmode;
@@ -174,16 +174,17 @@ MHO_EstimatePCManual::get_manual_phasecal(int is_remote, int channel_idx, std::s
     double phase = 0.0;
     bool present = false;
 
-    // double pol_phase = 0.0;
-    // present = std::get<CHANNEL_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(0, pol_key, pol_phase);
-    // pol_phase *= MHO_Constants::rad_to_deg;
-    // if(present){phase += pol_phase;}
+    double pol_phase = 0.0;
+    present = std::get<POLPROD_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(0, pol_key, pol_phase);
+    pol_phase *= MHO_Constants::rad_to_deg;
+    if(present){phase += pol_phase;}
 
     double ch_phase = 0.0;
     present = std::get<CHANNEL_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(channel_idx, key, ch_phase);
     ch_phase *= MHO_Constants::rad_to_deg;
     if(present){phase += ch_phase;}
-    return 0.0;
+
+    return phase;
 }
 
 double
@@ -398,8 +399,10 @@ MHO_EstimatePCManual::est_phases(int is_ref, int keep)
                 if (fabs(inp_phase - est_phase) > 0.01) nd ++;
 
                 /* remove input phase values */
-                if(is_ref){ inp_phase = rem_pc;} //status.pc_phase[ch][1][stnpol[1][pass->pol]];
-                else{ inp_phase = -1.0*ref_pc;} //status.pc_phase[ch][0][stnpol[0][pass->pol]];
+                if(is_ref){ inp_phase = get_manual_phasecal(1, ch_idx, fRemStationPol);} //status.pc_phase[ch][1][stnpol[1][pass->pol]];
+                else{ inp_phase = -1.0*get_manual_phasecal(0, ch_idx, fRefStationPol);} //status.pc_phase[ch][0][stnpol[0][pass->pol]];
+
+                std::cout<<"inp_phase "<<inp_phase<<std::endl;
 
                 est_phase += inp_phase;// * 180.0 / M_PI;
 
