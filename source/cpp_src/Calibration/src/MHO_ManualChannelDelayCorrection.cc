@@ -65,6 +65,18 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                     std::size_t ch = idx_list[0];
                     double bandwidth = 0;
                     bool bw_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, bwkey, bandwidth);
+                    
+                    std::string delay_offset_key;
+                    std::string pol_code = std::string(1, pp_label[st_idx] ); //get the polarization for the appropriate station (ref/rem)
+                    if(st_idx == 0){delay_offset_key = "ref_delayoff_";}
+                    if(st_idx == 1){delay_offset_key = "rem_delayoff_";}
+                    delay_offset_key += pol_code;
+
+                    //now attach the manual delay offset value to this pol/station
+                    //it may be better to stash this information in a new data type 
+                    //rather than attaching it as meta data here...
+                    //also, if multiple delay offsets are applied, this will only capture the last one 
+                    chan_ax->InsertIndexLabelKeyValue(ch, delay_offset_key, delay); //store as ns
 
                     if( bw_key_present )
                     {
