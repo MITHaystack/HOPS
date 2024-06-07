@@ -56,7 +56,6 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
             {
                 chan_label = pcal_it->first;
                 double pc_val = pcal_it->second;
-                //TODO, may need to re-work this mapping method if too slow
                 auto idx_list = chan_ax->GetMatchingIndexes(fChannelLabelKey, chan_label);
                 if(idx_list.size() == 1)
                 {
@@ -72,7 +71,6 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                         #pragma message("TODO FIXME X2 - make sure we are not confusing ref/rem with USB/LSB signs.")
                         if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
                         if(st_idx == 0){pc_phasor = std::conj(pc_phasor);}
-
 
                         //retrieve and multiply the appropriate sub view of the visibility array
                         auto chunk = in->SubView(pp, ch);

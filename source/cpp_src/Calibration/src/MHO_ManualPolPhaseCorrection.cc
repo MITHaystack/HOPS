@@ -52,8 +52,9 @@ MHO_ManualPolPhaseCorrection::ExecuteInPlace(visibility_type* in)
             pc_phase_offset_key += pol_code;
 
             //now attach the manual pc phase offset value to this pol/station
-            //it would probably be better to stash this information in
-            //a new data type rather than attaching it as meta data here
+            //it may be better to stash this information in a new data type 
+            //rather than attaching it as meta data here...
+            //also, if multiple phase offsets are applied, this will only capture the last one 
             pp_ax->InsertIndexLabelKeyValue(pp, pc_phase_offset_key, fPhaseOffset*fDegToRad);
 
             //loop over the channels and apply the phase offset
