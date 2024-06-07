@@ -48,6 +48,18 @@ MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
         pp_label = pp_ax->at(pp);
         if( PolMatch(st_idx, pp_label) )
         {
+            std::string delay_offset_key;
+            std::string pol_code = std::string(1, pp_label[st_idx] ); //get the polarization for the appropriate station (ref/rem)
+            if(st_idx == 0){delay_offset_key = "ref_delayoff_";}
+            if(st_idx == 1){delay_offset_key = "rem_delayoff_";}
+            delay_offset_key += pol_code;
+
+            //now attach the manual delay offset value to this pol/station
+            //it may be better to stash this information in a new data type 
+            //rather than attaching it as meta data here...
+            //also, if multiple delay offsets are applied, this will only capture the last one 
+            pp_ax->InsertIndexLabelKeyValue(pp, delay_offset_key, fDelayOffset); //store as ns
+
             for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
             {
                 double chan_freq = chan_ax->at(ch);
