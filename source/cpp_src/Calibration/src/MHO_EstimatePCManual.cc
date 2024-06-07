@@ -74,6 +74,19 @@ MHO_EstimatePCManual::~MHO_EstimatePCManual(){};
 
 
 
+
+
+bool
+MHO_EstimatePCManual::ExecuteImpl(const visibility_type* in)
+{
+    fVisibilities = in;
+    int mode = 0;
+    bool ok = fParameterStore->Get("/control/config/est_pc_manual", mode);
+    est_pc_manual(mode);
+    return true;
+}
+
+
 void
 MHO_EstimatePCManual::est_pc_manual(int mode)
 {
@@ -149,17 +162,6 @@ MHO_EstimatePCManual::est_pc_manual(int mode)
 }
 
 
-bool
-MHO_EstimatePCManual::ExecuteImpl(const visibility_type* in)
-{
-    fVisibilities = in;
-    int mode = 0;
-    bool ok = fParameterStore->Get("/control/config/est_pc_manual", mode);
-    est_pc_manual(mode);
-    return true;
-}
-
-
 double
 MHO_EstimatePCManual::get_manual_phasecal(int is_remote, int channel_idx, std::string pol)
 {
@@ -211,8 +213,6 @@ MHO_EstimatePCManual::get_manual_delayoff(int is_remote, int channel_idx, std::s
     double ch_delay = 0.0;
     present = std::get<CHANNEL_AXIS>(*fVisibilities).RetrieveIndexLabelKeyValue(channel_idx, key, ch_delay);
     if(present){delay += ch_delay;}
-
-    //std::cout<<"key = "<<key<<", delay = "<<delay<<std::endl;
 
     return delay;
 }
@@ -401,10 +401,7 @@ MHO_EstimatePCManual::est_phases(int is_ref, int keep)
                 /* remove input phase values */
                 if(is_ref){ inp_phase = get_manual_phasecal(1, ch_idx, fRemStationPol);} //status.pc_phase[ch][1][stnpol[1][pass->pol]];
                 else{ inp_phase = -1.0*get_manual_phasecal(0, ch_idx, fRefStationPol);} //status.pc_phase[ch][0][stnpol[0][pass->pol]];
-
-                std::cout<<"inp_phase "<<inp_phase<<std::endl;
-
-                est_phase += inp_phase;// * 180.0 / M_PI;
+                est_phase += inp_phase; //already in degrees
 
                 if(is_ref){ est_phase = pbranch(est_phase); }
                 else{ est_phase = pbranch(-est_phase); }
@@ -586,7 +583,7 @@ void MHO_EstimatePCManual::est_delays(int is_ref, int how)
 
         //TODO FIXME
         rdy[ch] = get_manual_delayoff(!is_ref, fChannelLabel2Index[ch_label[ch]], pol);
-        std::cout<<"ch, sbd, rdy = "<<ch_label[ch]<<","<<sbd[ch]<<", "<<rdy[ch]<<std::endl;
+        //std::cout<<"ch, sbd, rdy = "<<ch_label[ch]<<","<<sbd[ch]<<", "<<rdy[ch]<<std::endl;
         
         /* calculate original delays */
         //TODO PORT THIS!!!
