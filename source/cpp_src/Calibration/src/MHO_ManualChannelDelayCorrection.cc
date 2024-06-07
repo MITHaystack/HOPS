@@ -14,6 +14,10 @@ MHO_ManualChannelDelayCorrection::MHO_ManualChannelDelayCorrection()
     fRefStationMk4IDKey = "reference_station_mk4id";
     fChannelLabelKey = "channel_label";
     fBandwidthKey = "bandwidth";
+    
+    fSidebandLabelKey = "net_sideband";
+    fLowerSideband = "L";
+    fUpperSideband = "U";
 
     fStationCode = "";
     fMk4ID = "";
@@ -83,7 +87,15 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                             theta += phase_shift;
 
                             visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
-                            if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
+                            
+                            std::string net_sideband = "?";
+                            bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+                            //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                            if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
+                            if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
+
+                            //first impl behavior:
+                            // if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
 
                             //retrieve and multiply the appropriate sub view of the visibility array
                             auto chunk = in->SliceView(pp, ch, ":", sp); //select this spectral point (for this pol/channel) across all APs
