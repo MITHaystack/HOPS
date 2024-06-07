@@ -80,6 +80,10 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
 
         // //minor helper function to make sure all strings are compared as upper-case only
         // void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
+        
+        
+        std::map< std::string, int > fChannelLabel2Index;
+        std::map< int, std::string > fIndex2ChannelLabel;
 
 };
 
