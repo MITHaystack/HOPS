@@ -65,12 +65,9 @@ MHO_ManualPolPhaseCorrection::ExecuteInPlace(visibility_type* in)
             
                 std::string net_sideband = "?";
                 bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
-                if( nsb_key_present )
-                {
-                    //conjugate phases for LSB data, but not for USB - TODO what about DSB?
-                    if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
-                    if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
-                }
+                //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
+                if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
 
                 //retrieve and multiply the appropriate sub view of the visibility array
                 auto chunk = in->SubView(pp,ch);
