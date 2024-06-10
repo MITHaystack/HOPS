@@ -16,6 +16,7 @@
 
 #include "MHO_ParameterStore.hh"
 #include "MHO_ContainerStore.hh"
+#include "MHO_OperatorToolbox.hh"
 
 #ifdef HOPS_USE_FFTW3
     #include "MHO_FFTWTypes.hh"
@@ -51,6 +52,7 @@ class MHO_ComputePlotData
         void DisableOptimizeClosure(){fRot.SetOptimizeClosureFalse();}
         void SetMBDAnchor(std::string flag){fMBDAnchor = flag;}
 
+        void SetOperatorToolbox(MHO_OperatorToolbox* toolbox){fToolbox = toolbox;}
         void SetContainerStore(MHO_ContainerStore* cStore){fContainerStore = cStore;}
         void SetParameterStore(MHO_ParameterStore* pStore){fParamStore = pStore;}
         void SetVexInfo(const mho_json& vex_info){fVexInfo = vex_info;}
@@ -67,6 +69,9 @@ class MHO_ComputePlotData
         phasor_type calc_segs();
         xpower_type calc_xpower_spec();
         xpower_amp_type calc_dr();
+
+        // visibility_type* calc_corrected_vis();
+        void correct_vis();
 
         double calc_phase();
 
@@ -133,6 +138,7 @@ class MHO_ComputePlotData
 
         MHO_ContainerStore* fContainerStore;
         MHO_ParameterStore* fParamStore;
+        MHO_OperatorToolbox* fToolbox;
         mho_json fVexInfo;
 
         MHO_MultidimensionalPaddedFastFourierTransform< xpower_type > fPaddedFFTEngine;

@@ -56,33 +56,28 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
             {
                 chan_label = pcal_it->first;
                 double pc_val = pcal_it->second;
-                //TODO, may need to re-work this mapping method if too slow
                 auto idx_list = chan_ax->GetMatchingIndexes(fChannelLabelKey, chan_label);
                 if(idx_list.size() == 1)
                 {
                     std::size_t ch = idx_list[0];
                     std::string net_sideband = "?";
                     bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
-                    if( nsb_key_present )
-                    {
-                        visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
+                    visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
 
-                        //conjugate phases for LSB data, but not for USB - TODO what about DSB?
-                        #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
-                        #pragma message("TODO FIXME X2 - make sure we are not confusing ref/rem with USB/LSB signs.")
-                        if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
-                        if(st_idx == 0){pc_phasor = std::conj(pc_phasor);}
+                    //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                    #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
+                    #pragma message("TODO FIXME X2 - make sure we are not confusing ref/rem with USB/LSB signs.")
+                    if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
+                    if(st_idx == 0){pc_phasor = std::conj(pc_phasor);}
 
+                    //retrieve and multiply the appropriate sub view of the visibility array
+                    auto chunk = in->SubView(pp, ch);
+                    chunk *= pc_phasor;
 
-                        //retrieve and multiply the appropriate sub view of the visibility array
-                        auto chunk = in->SubView(pp, ch);
-                        chunk *= pc_phasor;
-
-                        //now attach the manual pcal value to this channel/pol/station
-                        //it would probably be better to stash this information in
-                        //a new data type rather than attaching it as meta data here
-                        chan_ax->InsertIndexLabelKeyValue(ch, pc_phase_key, pc_val*fDegToRad);
-                    }
+                    //now attach the manual pcal value to this channel/pol/station
+                    //it would probably be better to stash this information in
+                    //a new data type rather than attaching it as meta data here
+                    chan_ax->InsertIndexLabelKeyValue(ch, pc_phase_key, pc_val*fDegToRad);
                 }
             }
         }

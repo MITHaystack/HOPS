@@ -2,11 +2,22 @@
 #include "MHO_BasicFringeInfo.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_EndZeroPadder.hh"
+#include "MHO_CyclicRotator.hh"
+#include "MHO_SelectRepack.hh"
 
 #include "MHO_Constants.hh"
 
+#include "MHO_MultidimensionalFastFourierTransform.hh"
+#include "MHO_LinearDParCorrection.hh"
+
 namespace hops
 {
+
+#ifdef HOPS_USE_FFTW3
+using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< visibility_type >;
+#else
+using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< visibility_type >;
+#endif
 
 MHO_ComputePlotData::MHO_ComputePlotData()
 {
@@ -14,6 +25,7 @@ MHO_ComputePlotData::MHO_ComputePlotData()
     fParamStore = nullptr;
     fContainerStore = nullptr;
     fVisibilities = nullptr;
+    fToolbox = nullptr;
     fWeights = nullptr;
     fSBDArray = nullptr;
     fImagUnit = MHO_Constants::imag_unit;
@@ -290,7 +302,7 @@ MHO_ComputePlotData::calc_segs()
             std::complex<double> z = vis*vr;
             phasor_segs(ch, ap) = z;
 
-            //apply weight and sum
+            //apply weight and sum (for 'All' channel)
             double w = (*fWeights)(POLPROD, ch, ap, 0);
             std::complex<double> wght_phsr = w*z;
             sum += wght_phsr;
@@ -305,6 +317,104 @@ MHO_ComputePlotData::calc_segs()
     return phasor_segs;
 
 }
+
+void
+MHO_ComputePlotData::correct_vis()
+{
+    std::size_t POLPROD = 0;
+    std::size_t nchan = fVisibilities->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = fVisibilities->GetDimension(TIME_AXIS);
+    std::size_t nbins = fVisibilities->GetDimension(FREQ_AXIS);
+
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*fVisibilities) );
+    auto ap_ax = &(std::get<TIME_AXIS>(*fVisibilities));
+    auto freq_ax = &(std::get<FREQ_AXIS>(*fVisibilities));
+    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+    double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
+
+    //grab the fourfit channel names
+    std::string chan_label_key = "channel_label";
+    std::vector< std::string > channel_labels;
+    for(std::size_t ch=0; ch < chan_ax->GetSize(); ch++)
+    {
+        std::string ch_label;
+        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, chan_label_key, ch_label);
+        if(key_present){channel_labels.push_back(ch_label);}
+    }
+
+    std::string sidebandlabelkey = "net_sideband";
+    std::string bandwidthlabelkey = "bandwidth";
+    for(std::size_t ap=0; ap < nap; ap++)
+    {
+        std::complex<double> sum = 0; //sum over all channels
+        double sumwt = 0.0;
+        double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
+        for(std::size_t ch=0; ch < nchan; ch++)
+        {
+            double freq = (*chan_ax)(ch);//sky freq of this channel
+            std::string net_sideband = "?";
+
+            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
+            if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
+
+            double bw = 0;
+            key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, bandwidthlabelkey, bw);
+            if(!key_present){msg_error("fringe", "missing bandwidth label for channel "<< ch << "." << eom);}
+
+            double sb_sign = 0.0;
+            fRot.SetSideband(0); //DSB
+            if(net_sideband == "U")
+            {
+                fRot.SetSideband(1);
+                sb_sign = 1.0;
+            }
+
+            if(net_sideband == "L")
+            {
+                fRot.SetSideband(-1);
+                sb_sign = -1.0;
+            }
+
+            std::complex<double> imag_unit(0,1);
+            //calculate the per-channel phase rotation due to MBD and delay_rate
+            std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+            //now apply a rotation for the SBD at each spectral point
+            for(std::size_t sp=0; sp < nbins; sp++)
+            {
+                //apply the rotation....hey wait a minute, what about the frequency change across the channel??!
+                //double fr = freq - (*freq_ax)[lag];
+                // std::cout<<"vrot = @"<<ap<<", "<<lag<<" = "<<std::arg(vr)*(180/M_PI)<<std::endl;
+                double theta = sb_sign*( (*freq_ax)[sp] - bw/2.0 ) * fSBDelay;
+                // std::cout<<"THETA @ lag "<<lag<<" = "<<theta<<std::endl;
+                std::complex<double> sbd_rot = std::exp(-2.0 * M_PI * imag_unit * theta);
+                std::complex<double> vis = (*fVisibilities)(POLPROD, ch, ap, sp);
+                (*fVisibilities)(POLPROD, ch, ap, sp) = std::conj(sbd_rot)*std::conj(vr)*vis;
+            }
+        }
+    }
+
+
+    //NOTE: for single linear pol-products fourfit applies a sign correction based on delta-parallactic angle
+    //we should probably invert this correction here, because it results in a very confusing 180 sign flip
+    //if we process the 'corrected' visibilities through fourfit once again.
+    //TODO: retrieve the MHO_LinearDParCorrection operator from the operator toolbox and apply it's inverse here
+
+    if(fToolbox != nullptr)
+    {
+        std::string op_name = "dpar_corr";
+        MHO_Operator* op = fToolbox->GetOperator(op_name);
+        if(op != nullptr)
+        {
+            MHO_LinearDParCorrection* dpar_op = dynamic_cast<MHO_LinearDParCorrection*>(op);
+            if(dpar_op != nullptr)
+            {
+                dpar_op->Execute(); //the nature of this operator is that if we execute it twice, it's effect is inverted
+            }
+        }
+    }
+
+}
+
 
 
 xpower_amp_type
@@ -723,11 +833,16 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     std::get<1>(phasors).Insert("name", "time");
     std::get<1>(phasors).Insert("units", "s");
 
-
     //have to clone the phasors data (because this copy will go out of scope at the end of this function)
     auto phasors_clone = phasors.Clone();
     bool ok = fContainerStore->AddObject(phasors_clone);
     ok = fContainerStore->SetShortName(phasors_clone->GetObjectUUID(), "phasors");
+
+    // auto cvis = calc_corrected_vis();
+    // cvis->CopyTags(*fSBDArray);
+    // cvis->Insert("name", "corrected_visibilities");
+    // ok = fContainerStore->AddObject(cvis);
+    // ok = fContainerStore->SetShortName(cvis->GetObjectUUID(), "cvis");
 
     double coh_avg_phase_deg = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
     fParamStore->Set("/fringe/raw_resid_phase", coh_avg_phase_deg);
@@ -989,6 +1104,9 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     std::string errcode = calc_error_code(plot_dict);
     plot_dict["extra"]["error_code"] = errcode;
     fParamStore->Set("/fringe/error_code", errcode);
+
+    //last thing is apply residual delay/delay rate correction to visibilities
+    correct_vis();
 
 }
 

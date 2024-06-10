@@ -96,13 +96,28 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
     tags.SetTagValue("parameters", params);
     //TODO what other information should be tagged/included?
 
-    //TODO REPLACE THIS WITH:
-    //(1) The full visibilities (with spectral information) with the fringe solution applied
-    visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
-    if( vis_data == nullptr)
+    //only enable this type of output iff the -X option has been passed
+    bool xpower_output = false;
+    xpower_output = fParameterStore.GetAs<bool>("/cmdline/xpower_output");
+
+    visibility_type* vis_data = nullptr;
+    weight_type* wt_data = nullptr;
+
+    if(xpower_output)
     {
-        msg_fatal("fringe", "could not find visibility object to write output." << eom);
-        std::exit(1);
+        vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
+        if( vis_data == nullptr)
+        {
+            msg_fatal("fringe", "could not find visibility object to write output." << eom);
+            std::exit(1);
+        }
+
+        wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
+        if( wt_data == nullptr)
+        {
+            msg_fatal("fringe", "could not find weights object to write output." << eom);
+            std::exit(1);
+        }
     }
 
     //Add the time/frequency averaged visibilities with the fringe solution applied (e.g. AP x CH) (e.g. type212 equivalent)
@@ -113,13 +128,33 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
         std::exit(1);
     }
 
+    // visibility_store_type* vis_store_data = new visibility_store_type();
+    // weight_store_type* wt_store_data = new weight_store_type();
+    //
+    // MHO_ElementTypeCaster<visibility_type, visibility_store_type> down_caster;
+    // down_caster.SetArgs(vis_data, vis_store_data);
+    // down_caster.Initialize();
+    // down_caster.Execute();
+    //
+    // MHO_ElementTypeCaster< weight_store_type, weight_type> wt_down_caster;
+    // wt_down_caster.SetArgs(wt_data, wt_store_data);
+    // wt_down_caster.Initialize();
+    // wt_down_caster.Execute();
+
+    // //add these temporary objects to the container store so they get properly deleted later
+    // fContainerStore->AddObject(vis_store_data);
+    // fContainerStore->AddObject(wt_store_data);
+
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(filename);
     if(status)
     {
-        tags.AddObjectUUID(vis_data->GetObjectUUID());
+        if(vis_data != nullptr){ tags.AddObjectUUID(vis_data->GetObjectUUID()); }
+        if(wt_data != nullptr){ tags.AddObjectUUID(wt_data->GetObjectUUID()); }
+        tags.AddObjectUUID(phasor_data->GetObjectUUID());
         inter.Write(tags, "tags");
-        inter.Write(*vis_data, "vis");
+        if(vis_data != nullptr){ inter.Write(*vis_data, "vis"); }
+        if(wt_data != nullptr){ inter.Write(*wt_data, "weight"); }
         inter.Write(*phasor_data, "phasors");
         inter.Close();
     }

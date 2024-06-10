@@ -13,6 +13,10 @@ MHO_ManualPolDelayCorrection::MHO_ManualPolDelayCorrection()
     fRemStationMk4IDKey = "remote_station_mk4id";
     fRefStationMk4IDKey = "reference_station_mk4id";
 
+    fSidebandLabelKey = "net_sideband";
+    fLowerSideband = "L";
+    fUpperSideband = "U";
+
     fStationCode = "";
     fMk4ID = "";
 
@@ -44,6 +48,18 @@ MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
         pp_label = pp_ax->at(pp);
         if( PolMatch(st_idx, pp_label) )
         {
+            std::string delay_offset_key;
+            std::string pol_code = std::string(1, pp_label[st_idx] ); //get the polarization for the appropriate station (ref/rem)
+            if(st_idx == 0){delay_offset_key = "ref_delayoff_";}
+            if(st_idx == 1){delay_offset_key = "rem_delayoff_";}
+            delay_offset_key += pol_code;
+
+            //now attach the manual delay offset value to this pol/station
+            //it may be better to stash this information in a new data type 
+            //rather than attaching it as meta data here...
+            //also, if multiple delay offsets are applied, this will only capture the last one 
+            pp_ax->InsertIndexLabelKeyValue(pp, delay_offset_key, fDelayOffset); //store as ns
+
             for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
             {
                 double chan_freq = chan_ax->at(ch);
@@ -51,7 +67,16 @@ MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
                 double theta = 2.0*fPi*deltaf*delay;
 
                 visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
+                
+                // std::string net_sideband = "?";
+                // bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+                // //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
+                // if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
+
+                //first impl behavior...working for EHT test case, but not checked everywhere
                 if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
+
                 //retrieve and multiply the appropriate sub view of the visibility array
                 auto chunk = in->SubView(pp, ch);
                 chunk *= pc_phasor;

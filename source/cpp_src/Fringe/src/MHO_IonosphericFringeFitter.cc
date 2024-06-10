@@ -103,7 +103,7 @@ void MHO_IonosphericFringeFitter::Finalize()
         fParameterStore->Set("/fringe/mb_win", win);
 
         mho_json& plot_data = fFringeData->GetPlotData();
-        plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, fVexInfo);
+        plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, &fOperatorToolbox, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
     }
     profiler_stop();

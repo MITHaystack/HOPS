@@ -17,6 +17,7 @@ MHO_UniformGridPointsCalculator::MHO_UniformGridPointsCalculator()
     fAverageLocation = 0;
     fSpread = 0;
     fDefaultGridPoints = 2;
+    fSpacingError = false;
     // #ifdef EXTRA_INTERP_DBG
     // fDefaultGridPoints = 256;
     // #endif
@@ -107,7 +108,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
         // }
 
         div = 1;
-        bool spacing_err = false;
+        fSpacingError = false;
         std::map<std::size_t, double> chan_idx_to_mbd_idx;
         do
         {
@@ -133,7 +134,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
 
                 if ((index > (MBD_GRID_PTS-1)) || (index < 0))
                 {
-                    spacing_err = true;
+                    fSpacingError = true;
                     chan_idx_to_mbd_idx[fr] = BOGUS_MBD_INDEX;
                     fIndexMap[fr] = (std::size_t) index;
                 }
@@ -147,7 +148,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
             fIndexMap[it->first] = (std::size_t) it->second;
         }
 
-        fSpacing = min_space;
+        fSpacing = spacing;
         fStart = min_pts;
 
         if(grid_pts > MBD_GRID_PTS)

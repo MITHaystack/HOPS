@@ -21,6 +21,10 @@
 #include "MHO_VexInfoExtractor.hh"
 #include "MHO_InterpolateFringePeak.hh"
 
+
+//TODO FIXME -- remove this
+#include "MHO_EstimatePCManual.hh"
+
 namespace hops
 {
 
@@ -274,8 +278,23 @@ void MHO_BasicFringeFitter::Finalize()
         fParameterStore->Set("/fringe/mb_win", win);
 
         mho_json& plot_data = fFringeData->GetPlotData();
-        plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, fVexInfo);
+        plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, &fOperatorToolbox, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
+
+        //TODO FIXME...remove this, just for testing
+        MHO_EstimatePCManual est_pc_man;
+        auto vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
+        auto wt_data = fContainerStore->GetObject<weight_type>(std::string("weight"));
+        auto phasor_data = fContainerStore->GetObject<phasor_type>(std::string("phasors"));
+        est_pc_man.SetArgs(vis_data);
+        est_pc_man.SetWeights(wt_data);
+        est_pc_man.SetPlotData(plot_data);
+        est_pc_man.SetParameterStore(fParameterStore);
+        est_pc_man.SetPhasors(phasor_data);
+        est_pc_man.Initialize();
+        est_pc_man.Execute();
+
+
     }
 
     profiler_stop();
@@ -339,6 +358,7 @@ MHO_BasicFringeFitter::coarse_fringe_search()
 
     if(c_mbdmax < 0 || c_sbdmax < 0 || c_drmax < 0)
     {
+        fParameterStore->Dump();
         msg_fatal("fringe", "coarse fringe search could not locate peak, bin (sbd, mbd, dr) = (" <<c_sbdmax << ", " << c_mbdmax <<"," << c_drmax<< ")." << eom );
         std::exit(1);
     }
