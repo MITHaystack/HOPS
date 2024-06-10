@@ -113,6 +113,7 @@ option(HOPS_USE_ROOT "Use CERN ROOT libraries to enable plugin tools for plottin
 option(HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
 option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
 option(HOPS3_PYTHON_EXTRAS "Build python (ctypes) interface to hops3 libraries" ON)
+option(FOURFIT_IS_FOURFIT4 "Install the HOPS4 version (fourfit4) aliased as the executable fourfit" OFF)
 
 if(HOPS3_USE_CXX)
     hops_add_cflag(HOPS3_USE_CXX)

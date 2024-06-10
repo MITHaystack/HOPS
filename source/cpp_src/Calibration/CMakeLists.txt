@@ -12,6 +12,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolProductSummation.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LinearDParCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IonosphericPhaseCorrection.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_EstimatePCManual.hh
 )
 
 #list source files #############################################################
@@ -26,6 +27,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PolProductSummation.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LinearDParCorrection.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IonosphericPhaseCorrection.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_EstimatePCManual.cc
 )
 
 #declare header paths ##########################################################

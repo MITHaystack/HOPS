@@ -9,7 +9,7 @@ namespace hops
 {
 
 mho_json
-MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore, mho_json& vexInfo)
+MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore, MHO_OperatorToolbox* toolbox, mho_json& vexInfo)
 {
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
@@ -34,6 +34,7 @@ MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_Parame
     MHO_ComputePlotData mk_plotdata;
     mk_plotdata.SetParameterStore(paramStore);
     mk_plotdata.SetContainerStore(conStore);
+    mk_plotdata.SetOperatorToolbox(toolbox);
     mk_plotdata.SetVexInfo(vexInfo);
     bool optimize_closure_flag = false;
     bool is_oc_set = paramStore->Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag );

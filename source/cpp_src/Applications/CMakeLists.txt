@@ -27,7 +27,7 @@ set(SOURCE_BASENAMES
     TestSignalFFT
     CompareCorFiles
     TestPCalExtraction
-    ffit
+    fourfit4
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency
@@ -56,11 +56,16 @@ endforeach( BASENAME )
 
 hops_install_executables( ${SOURCE_BASENAMES} )
 
+#fourfit is fourfit4...so install a symlink as: fourfit -> fourfit4
+if(FOURFIT_IS_FOURFIT4)
+    hops_install_symlink( "${BIN_INSTALL_DIR}/fourfit4" "${BIN_INSTALL_DIR}/fourfit" )
+endif()
+
 ################################################################################
 #transitory applications for migration
-if(HOPS3_USE_CXX)
-    add_subdirectory(${CPPSOURCE}/Applications/fourfit)
-endif(HOPS3_USE_CXX)
+# if(HOPS3_USE_CXX)
+#     add_subdirectory(${CPPSOURCE}/Applications/fourfit)
+# endif(HOPS3_USE_CXX)
 
 if(HOPS_ENABLE_TEST)
    add_subdirectory(test)
