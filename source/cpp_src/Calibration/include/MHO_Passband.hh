@@ -35,10 +35,24 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
         MHO_Passband();
         virtual ~MHO_Passband();
 
-        void SetPassband(const double& low, const double& high)
+        void SetPassband(const double& first, const double& second)
         {
-            fLow = low;
-            fHigh = high;
+            //if first < second then this is an 'exclusion' telling us this is a chunk of spectrum to cut
+            //this is the legacy behavior
+            if(first < second)
+            {
+                fIsExclusion = true;
+                fLow = first;
+                fHigh = second;
+            }
+            else
+            {
+                //if first > second, then this is a wrapping 'inclusion'...so everything outside of this range is cut
+                fIsExclusion = false;
+                fLow = second;
+                fHigh = first;
+            }
+
         }
 
     protected:
@@ -51,8 +65,16 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
 
     private:
 
+        void DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq);
+
+        bool fIsExclusion;
         double fLow;
         double fHigh;
+
+        std::string fBandwidthKey;
+        std::string fSidebandLabelKey;
+        std::string fLowerSideband;
+        std::string fUpperSideband;
 
 
 };

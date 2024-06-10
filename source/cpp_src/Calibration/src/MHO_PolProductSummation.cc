@@ -77,7 +77,7 @@ MHO_PolProductSummation::PreMultiply(visibility_type* in)
 {
     //TODO this is an extremely basic implementation (single pre-factor per-pol product)
     //it is entirely possible to imagine a time dependent pre-factor for each pol-product
-    //(e.g if parallactic angle is changing substantiall)
+    //(e.g if parallactic angle is changing substantially)
     //or other more complex pre-multiplication
     auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
 
