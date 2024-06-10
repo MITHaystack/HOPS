@@ -1,5 +1,7 @@
 #include "MHO_Passband.hh"
 
+#include "MHO_MathUtilities.hh"
+
 
 namespace hops
 {
@@ -50,12 +52,23 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                 DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
 
                 //check if the passband that is to be excluded is within/overlaps this channel
+                double overlap[2];
+                int n_inter = MHO_MathUtilities::FindIntersection(lower_freq, upper_freq, fLow, fHigh, overlap);
 
-
-                for(std::size_t sp=0; sp < freq_ax->GetSize(); sp++) //loop over spectral points if pass-band inside this channel
+                if(n_inter)
                 {
-                    //get a slice view for this spectral point across all APs
-
+                    //loop over spectral points and apply the pass-band inside this channel
+                    for(std::size_t sp=0; sp < freq_ax->GetSize(); sp++)
+                    {
+                        //calculate the frequency of this point
+                        double deltaf = ( (*freq_ax)(sp) );
+                        double sp_freq = sky_freq + deltaf; //TODO FIXME...CHECK THE SIGN
+                        if(fLow <= sp_freq && sp_freq < fHigh)
+                        {
+                            //get a slice view for this spectral point across all APs, and zero it out
+                            in->SliceView(pp, ch, ":", sp) *= 0.0;
+                        }
+                    }
                 }
             }
         }
@@ -64,7 +77,7 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
     {
         //loop over all channels, cutting everything that is not in the 'inclusion'
 
-
+        //TODO FIXME
     }
 
 
