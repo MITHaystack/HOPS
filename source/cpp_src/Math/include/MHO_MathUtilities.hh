@@ -35,6 +35,10 @@ class MHO_MathUtilities
         //returns the average of the values in a vector assuming they are angles (radians)
         static double angular_average(std::vector<double>& vec);
 
+
+        static int FindIntersection(double a, double b, double c, double d, double result[2]);
+
+
 };
 
 }
