@@ -36,6 +36,7 @@ class MHO_InitialFringeInfo
         static void calculate_clock_model(MHO_ParameterStore* paramStore);
         static void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
         static void compute_total_summed_weights(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
+        static void determine_n_active_channels(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
 
 
 };

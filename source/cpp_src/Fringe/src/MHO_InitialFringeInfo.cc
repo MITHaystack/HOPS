@@ -131,8 +131,35 @@ MHO_InitialFringeInfo::compute_total_summed_weights(MHO_ContainerStore* conStore
     double total_ap_frac = temp_weights[0];
     paramStore->Set("/fringe/total_summed_weights", total_ap_frac);
     wt_data->Insert("total_summed_weights", total_ap_frac);
-
 }
+
+void 
+MHO_InitialFringeInfo::determine_n_active_channels(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
+{
+    //just loop over the weights and count the number of channels which contain an AP with weight > 0
+    weight_type* wt_data = conStore->GetObject<weight_type>(std::string("weight"));
+    if(wt_data == nullptr )
+    {
+        msg_fatal("main", "could not find weight object with name: weight." << eom);
+        std::exit(1);
+    }
+
+    std::size_t n_active_channels = 0;
+    auto chan_ax = &(std::get<CHANNEL_AXIS>(*wt_data));
+    for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
+    {
+        auto slice = wt_data->SliceView(":", ch, ":", ":");
+        double sum = 0.0;
+        for(auto it = slice.begin(); it != slice.end(); it++)
+        {
+            sum += *it;
+        }
+        if(sum > 0.0){n_active_channels++;}
+    }
+
+    paramStore->Set("/fringe/n_active_channels", n_active_channels);
+}
+
 
 void
 MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)

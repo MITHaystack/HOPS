@@ -153,6 +153,10 @@ void MHO_BasicFringeFitter::Initialize()
         MHO_InitialFringeInfo::compute_total_summed_weights(fContainerStore, fParameterStore);
 
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
+
+        //figure out the number of channels which have data with weights >0 in at least 1 AP
+        MHO_InitialFringeInfo::determine_n_active_channels(fContainerStore, fParameterStore);
+        
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
 
         //initialize the fringe search operators ///////////////////////////////
@@ -404,6 +408,15 @@ MHO_BasicFringeFitter::interpolate_peak()
     double drate = fPeakInterpolator.GetDelayRate();
     double frate = fPeakInterpolator.GetFringeRate();
     double famp = fPeakInterpolator.GetFringeAmplitude();
+
+    //if there is only one channel, original/default fourfit behavior is to set MBD = SBD
+    int n_active = fParameterStore->GetAs<int>("/fringe/n_active_channels");
+    if(n_active == 1)
+    {
+        msg_info("fringe", "only one active data channel, setting MBD("<<mbdelay<<") to SBD("<<sbdelay<<")" << eom);
+        //see original fourfit code: interp.c, line 238
+        mbdelay = sbdelay;
+    }
 
     fParameterStore->Set("/fringe/sbdelay", sbdelay);
     fParameterStore->Set("/fringe/mbdelay", mbdelay);
