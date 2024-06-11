@@ -49,6 +49,8 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                 //figure out the upper/lower frequency limits for this channel
                 double lower_freq, upper_freq;
                 DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
+                double sb = 1.0;
+                if(net_sideband == fLowerSideband){sb = -1.0;}
 
                 //check if the passband that is to be excluded is within/overlaps this channel
                 double overlap[2];
@@ -63,7 +65,7 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                     {
                         //calculate the frequency of this point
                         double deltaf = ( (*freq_ax)(sp) );
-                        double sp_freq = sky_freq + deltaf; //TODO FIXME...CHECK THE SIGN PER USB/LSB
+                        double sp_freq = sky_freq + sb*deltaf; //TODO FIXME...CHECK THE SIGN PER USB/LSB
                         if(fLow < sp_freq && sp_freq < fHigh)
                         {
                             count++;
@@ -103,7 +105,9 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                 //figure out the upper/lower frequency limits for this channel
                 double lower_freq, upper_freq;
                 DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
-
+                double sb = 1.0;
+                if(net_sideband == fLowerSideband){sb = -1.0;}
+                
                 //check if the passband that is to be excluded is within/overlaps this channel
                 double overlap[2];
                 int n_inter = MHO_MathUtilities::FindIntersection(lower_freq, upper_freq, fLow, fHigh, overlap);
@@ -117,7 +121,7 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                     {
                         //calculate the frequency of this point
                         double deltaf = ( (*freq_ax)(sp) );
-                        double sp_freq = sky_freq + deltaf; //TODO FIXME...CHECK THE SIGN PER USB/LSB
+                        double sp_freq = sky_freq + sb*deltaf; //TODO FIXME...CHECK THE SIGN PER USB/LSB
                         if(sp_freq < fLow || sp_freq > fHigh)
                         {
                             count++;
