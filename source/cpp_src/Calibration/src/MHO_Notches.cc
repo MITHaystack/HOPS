@@ -26,8 +26,8 @@ MHO_Notches::ExecuteInPlace(visibility_type* in)
     auto freq_ax = &(std::get<FREQ_AXIS>(*in) );
 
     //loop over all channels looking for the chunk to exclude
-    for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++) //apply to all pol-products
-    {
+    // for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++) //apply to all pol-products
+    // {
         for(std::size_t ch=0; ch < chan_ax->GetSize(); ch++) //loop over all channels
         {
             //loop over notches and spectral points and apply the filter inside this channel
@@ -70,7 +70,7 @@ MHO_Notches::ExecuteInPlace(visibility_type* in)
                         {
                             count++;
                             //get a slice view for this spectral point across all APs, and zero it out
-                            in->SliceView(pp, ch, ":", sp) *= 0.0;
+                            in->SliceView(":", ch, ":", sp) *= 0.0;
                         }
                     }
                 }
@@ -81,10 +81,10 @@ MHO_Notches::ExecuteInPlace(visibility_type* in)
             double frac = (npts-count)/npts;
             double factor = 0.0;
             if(frac != 0.0){factor = 1.0/frac;}
-            fWeights->SliceView(pp,ch,":",0) *= factor;
+            fWeights->SliceView(":",ch,":",0) *= factor;
             //fWeights->SliceView(pp,ch,":",0) *= frac;
         }
-    }
+    // }
 
     return true;
 }
