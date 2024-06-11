@@ -28,6 +28,14 @@ MHO_PassbandBuilder::Build()
             return false;
         }
         
+        //retrieve the arguments to operate on from the container store
+        weight_type* wt_data = fContainerStore->GetObject<weight_type>(std::string("weight"));
+        if( wt_data == nullptr )
+        {
+            msg_error("initialization", "cannot construct MHO_Passband without weight data." << eom);
+            return false;
+        }
+        
         if(values.size() != 2)
         {
             msg_error("initialization", "cannot construct MHO_Passband, improper number ("<<values.size()<<"), of frequency limits given" << eom);
@@ -38,6 +46,7 @@ MHO_PassbandBuilder::Build()
         
         //set the arguments
         op->SetArgs(vis_data);
+        op->SetWeights(wt_data);
         op->SetPassband(values[0], values[1]);
         op->SetName(op_name);
         op->SetPriority(priority);
