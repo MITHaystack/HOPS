@@ -37,20 +37,22 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
 
         void SetPassband(const double& first, const double& second)
         {
-            //if first < second then this is an 'exclusion' telling us this is a chunk of spectrum to cut
+            //if second > first then this is an 'exclusion'
+            //telling us this is a chunk of spectrum to cut
             //this is the legacy behavior
-            if(first < second)
+            if(second < first)
             {
                 fIsExclusion = true;
-                fLow = first;
-                fHigh = second;
+                fLow = second;
+                fHigh = first;
             }
             else
             {
-                //if first > second, then this is a wrapping 'inclusion'...so everything outside of this range is cut
+                //if first < second, then this chunk is the 'passed' band
+                //s,o everything outside of this range is cut
                 fIsExclusion = false;
-                fLow = second;
-                fHigh = first;
+                fLow = first;
+                fHigh = second;
             }
 
         }
