@@ -35,6 +35,8 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
         MHO_Passband();
         virtual ~MHO_Passband();
 
+        void SetWeights(weight_type* weights){fWeights = weights;};
+
         void SetPassband(const double& first, const double& second)
         {
             //if second > first then this is an 'exclusion'
@@ -77,6 +79,8 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
         std::string fSidebandLabelKey;
         std::string fLowerSideband;
         std::string fUpperSideband;
+        
+        weight_type* fWeights;
 
 
 };

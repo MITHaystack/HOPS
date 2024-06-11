@@ -57,6 +57,8 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                 if(n_inter)
                 {
                     //loop over spectral points and apply the pass-band inside this channel
+                    double count = 0;
+                    double npts = freq_ax->GetSize();
                     for(std::size_t sp=0; sp < freq_ax->GetSize(); sp++)
                     {
                         //calculate the frequency of this point
@@ -64,10 +66,15 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                         double sp_freq = sky_freq + deltaf; //TODO FIXME...CHECK THE SIGN
                         if(fLow <= sp_freq && sp_freq < fHigh)
                         {
+                            count++;
                             //get a slice view for this spectral point across all APs, and zero it out
                             in->SliceView(pp, ch, ":", sp) *= 0.0;
                         }
                     }
+                    
+                    //re-scale the weights to account for the excised chunk 
+                    double rescale = (npts-count)/npts;
+                    fWeights->SliceView(pp,ch,":",0) *= rescale;
                 }
             }
         }
@@ -100,6 +107,8 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                 if(n_inter)
                 {
                     //loop over spectral points and determine what is excluded inside this channel
+                    double count = 0;
+                    double npts = freq_ax->GetSize();
                     for(std::size_t sp=0; sp < freq_ax->GetSize(); sp++)
                     {
                         //calculate the frequency of this point
@@ -107,15 +116,22 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                         double sp_freq = sky_freq + deltaf; //TODO FIXME...CHECK THE SIGN
                         if(sp_freq <= fLow || sp_freq > fHigh)
                         {
+                            count++;
                             //get a slice view for this spectral point across all APs, and zero it out
                             in->SliceView(pp, ch, ":", sp) *= 0.0;
                         }
                     }
+                    //re-scale the weights to account for the excised chunk 
+                    double rescale = (npts-count)/npts;
+                    fWeights->SliceView(pp,ch,":",0) *= rescale;
                 }
                 else 
                 {
                     //no intersection with the 'inclusion', so zero out this whole channel 
                     in->SubView(pp,ch) *= 0.0;
+                    
+                    //rescale the weights
+                    fWeights->SubView(pp,ch) *= 0.0;
                 }
                 
             }
