@@ -25,14 +25,13 @@ MHO_Passband::~MHO_Passband(){};
 bool
 MHO_Passband::ExecuteInPlace(visibility_type* in)
 {
+    auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
+    auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
+    auto freq_ax = &(std::get<FREQ_AXIS>(*in) );
 
     if(fIsExclusion)
     {
-        //loop over all channels looking the chunk to exclude
-        auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
-        auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
-        auto freq_ax = &(std::get<FREQ_AXIS>(*in) );
-
+        //loop over all channels looking for the chunk to exclude
         for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++) //apply to all pol-products
         {
             for(std::size_t ch=0; ch < chan_ax->GetSize(); ch++) //loop over all channels
@@ -76,8 +75,53 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
     else
     {
         //loop over all channels, cutting everything that is not in the 'inclusion'
+        for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++) //apply to all pol-products
+        {
+            for(std::size_t ch=0; ch < chan_ax->GetSize(); ch++) //loop over all channels
+            {
+                //get channel's frequency info
+                double sky_freq = (*chan_ax)(ch); //get the sky frequency of this channel
+                double bandwidth = 0;
+                std::string net_sideband;
 
-        //TODO FIXME
+                bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+                if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch << ", with sky_freq: "<<sky_freq << eom); }
+                key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fBandwidthKey, bandwidth);
+                if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch << ", with sky_freq: "<<sky_freq << eom);}
+
+                //figure out the upper/lower frequency limits for this channel
+                double lower_freq, upper_freq;
+                DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
+
+                //check if the passband that is to be excluded is within/overlaps this channel
+                double overlap[2];
+                int n_inter = MHO_MathUtilities::FindIntersection(lower_freq, upper_freq, fLow, fHigh, overlap);
+
+                if(n_inter)
+                {
+                    //loop over spectral points and determine what is excluded inside this channel
+                    for(std::size_t sp=0; sp < freq_ax->GetSize(); sp++)
+                    {
+                        //calculate the frequency of this point
+                        double deltaf = ( (*freq_ax)(sp) );
+                        double sp_freq = sky_freq + deltaf; //TODO FIXME...CHECK THE SIGN
+                        if(sp_freq <= fLow || sp_freq > fHigh)
+                        {
+                            //get a slice view for this spectral point across all APs, and zero it out
+                            in->SliceView(pp, ch, ":", sp) *= 0.0;
+                        }
+                    }
+                }
+                else 
+                {
+                    //no intersection with the 'inclusion', so zero out this whole channel 
+                    in->SubView(pp,ch) *= 0.0;
+                }
+                
+            }
+        }
+
+
     }
 
 
