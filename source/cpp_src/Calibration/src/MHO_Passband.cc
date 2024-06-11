@@ -73,8 +73,10 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                     }
                     
                     //re-scale the weights to account for the excised chunk 
-                    double rescale = (npts-count)/npts;
-                    fWeights->SliceView(pp,ch,":",0) *= rescale;
+                    double frac = (npts-count)/npts;
+                    double factor = 0.0;
+                    if(frac != 0.0){factor = 1.0/frac;}
+                    fWeights->SliceView(pp,ch,":",0) *= factor;
                 }
             }
         }
@@ -122,15 +124,17 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                         }
                     }
                     //re-scale the weights to account for the excised chunk 
-                    double rescale = (npts-count)/npts;
-                    fWeights->SliceView(pp,ch,":",0) *= rescale;
+                    double frac = (npts-count)/npts;
+                    double factor = 0.0;
+                    if(frac != 0.0){factor = 1.0/frac;}
+                    fWeights->SliceView(pp,ch,":",0) *= factor;
                 }
                 else 
                 {
                     //no intersection with the 'inclusion', so zero out this whole channel 
                     in->SubView(pp,ch) *= 0.0;
                     
-                    //rescale the weights
+                    //rescale the weights by zero, since this was cut entirely
                     fWeights->SubView(pp,ch) *= 0.0;
                 }
                 
