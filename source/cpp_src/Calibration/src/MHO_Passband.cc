@@ -141,7 +141,6 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                     //rescale the weights by zero, since this was cut entirely
                     fWeights->SubView(pp,ch) *= 0.0;
                 }
-                
             }
         }
 
