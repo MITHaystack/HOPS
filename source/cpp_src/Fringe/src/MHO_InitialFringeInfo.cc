@@ -113,7 +113,7 @@ MHO_InitialFringeInfo::compute_total_summed_weights(MHO_ContainerStore* conStore
     weight_type* wt_data = conStore->GetObject<weight_type>(std::string("weight"));
     if(wt_data == nullptr )
     {
-        msg_fatal("main", "could not find weight objectswith name: weight." << eom);
+        msg_fatal("main", "could not find weight object with name: weight." << eom);
         std::exit(1);
     }
 
@@ -140,7 +140,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
     if( vis_data == nullptr )
     {
-        msg_fatal("main", "could not find visibility or weight objects with name: vis." << eom);
+        msg_fatal("main", "could not find visibility object with name: vis." << eom);
         std::exit(1);
     }
 
@@ -190,7 +190,6 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     //offset to the start of the data
     double stop_offset = ap_ax->at( ap_ax->GetSize()-1 ) + ap_delta;
     paramStore->Set("stop_offset", stop_offset);
-
 
     //the number of channels present after cuts
     int nchan = chan_ax->GetSize();

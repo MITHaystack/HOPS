@@ -63,8 +63,8 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                     {
                         //calculate the frequency of this point
                         double deltaf = ( (*freq_ax)(sp) );
-                        double sp_freq = sky_freq + deltaf; //TODO FIXME...CHECK THE SIGN
-                        if(fLow <= sp_freq && sp_freq < fHigh)
+                        double sp_freq = sky_freq + deltaf; //TODO FIXME...CHECK THE SIGN PER USB/LSB
+                        if(fLow < sp_freq && sp_freq < fHigh)
                         {
                             count++;
                             //get a slice view for this spectral point across all APs, and zero it out
@@ -73,10 +73,12 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                     }
                     
                     //re-scale the weights to account for the excised chunk 
+                    //TODO FIXME...this needs to be do properly to get the correct integration-time and SNR
                     double frac = (npts-count)/npts;
                     double factor = 0.0;
                     if(frac != 0.0){factor = 1.0/frac;}
                     fWeights->SliceView(pp,ch,":",0) *= factor;
+                    //fWeights->SliceView(pp,ch,":",0) *= frac;
                 }
             }
         }
@@ -115,8 +117,8 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                     {
                         //calculate the frequency of this point
                         double deltaf = ( (*freq_ax)(sp) );
-                        double sp_freq = sky_freq + deltaf; //TODO FIXME...CHECK THE SIGN
-                        if(sp_freq <= fLow || sp_freq > fHigh)
+                        double sp_freq = sky_freq + deltaf; //TODO FIXME...CHECK THE SIGN PER USB/LSB
+                        if(sp_freq < fLow || sp_freq > fHigh)
                         {
                             count++;
                             //get a slice view for this spectral point across all APs, and zero it out
@@ -125,9 +127,11 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                     }
                     //re-scale the weights to account for the excised chunk 
                     double frac = (npts-count)/npts;
+                    //TODO FIXME...this needs to be do properly to get the correct integration-time and SNR
                     double factor = 0.0;
                     if(frac != 0.0){factor = 1.0/frac;}
                     fWeights->SliceView(pp,ch,":",0) *= factor;
+                    //fWeights->SliceView(pp,ch,":",0) *= frac;
                 }
                 else 
                 {
