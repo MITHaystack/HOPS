@@ -24,7 +24,7 @@ namespace hops
 *@class MHO_Passband
 *@author J. Barrett - barrettj@mit.edu
 *@date
-*@briefe Tue Apr  2 09:41:24 AM EDT 2024
+*@brief Tue Apr  2 09:41:24 AM EDT 2024
 */
 
 

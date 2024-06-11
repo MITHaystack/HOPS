@@ -13,6 +13,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LinearDParCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IonosphericPhaseCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_EstimatePCManual.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Passband.hh
 )
 
 #list source files #############################################################
@@ -28,6 +29,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LinearDParCorrection.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IonosphericPhaseCorrection.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_EstimatePCManual.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Passband.cc
 )
 
 #declare header paths ##########################################################

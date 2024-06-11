@@ -42,10 +42,10 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                 double bandwidth = 0;
                 std::string net_sideband;
 
-                key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
-                if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch_label << ", with sky_freq: "<<sky_freq << eom); }
+                bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+                if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch << ", with sky_freq: "<<sky_freq << eom); }
                 key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fBandwidthKey, bandwidth);
-                if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch_label << ", with sky_freq: "<<sky_freq << eom);}
+                if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch << ", with sky_freq: "<<sky_freq << eom);}
 
                 //figure out the upper/lower frequency limits for this channel
                 double lower_freq, upper_freq;
@@ -102,7 +102,7 @@ MHO_Passband::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_typ
 
 
 void
-MHO_MultitonePhaseCorrection::DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq)
+MHO_Passband::DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq)
 {
     if(net_sideband == fUpperSideband)
     {
