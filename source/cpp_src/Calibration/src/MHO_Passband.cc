@@ -32,8 +32,8 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
     if(fIsExclusion)
     {
         //loop over all channels looking for the chunk to exclude
-        for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++) //apply to all pol-products
-        {
+        // for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++) //apply to all pol-products
+        // {
             for(std::size_t ch=0; ch < chan_ax->GetSize(); ch++) //loop over all channels
             {
                 //get channel's frequency info
@@ -70,7 +70,7 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                         {
                             count++;
                             //get a slice view for this spectral point across all APs, and zero it out
-                            in->SliceView(pp, ch, ":", sp) *= 0.0;
+                            in->SliceView(":", ch, ":", sp) *= 0.0;
                         }
                     }
                     
@@ -79,17 +79,17 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                     double frac = (npts-count)/npts;
                     double factor = 0.0;
                     if(frac != 0.0){factor = 1.0/frac;}
-                    fWeights->SliceView(pp,ch,":",0) *= factor;
+                    fWeights->SliceView(":", ch, ":", 0) *= factor;
                     //fWeights->SliceView(pp,ch,":",0) *= frac;
                 }
             }
-        }
+        // }
     }
     else
     {
         //loop over all channels, cutting everything that is not in the 'inclusion'
-        for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++) //apply to all pol-products
-        {
+        // for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++) //apply to all pol-products
+        // {
             for(std::size_t ch=0; ch < chan_ax->GetSize(); ch++) //loop over all channels
             {
                 //get channel's frequency info
@@ -126,7 +126,7 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                         {
                             count++;
                             //get a slice view for this spectral point across all APs, and zero it out
-                            in->SliceView(pp, ch, ":", sp) *= 0.0;
+                            in->SliceView(":", ch, ":", sp) *= 0.0;
                         }
                     }
                     //re-scale the weights to account for the excised chunk 
@@ -134,19 +134,19 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                     //TODO FIXME...this needs to be done properly to get the correct integration-time and SNR
                     double factor = 0.0;
                     if(frac != 0.0){factor = 1.0/frac;}
-                    fWeights->SliceView(pp,ch,":",0) *= factor;
+                    fWeights->SliceView(":", ch, ":", 0) *= factor;
                     //fWeights->SliceView(pp,ch,":",0) *= frac;
                 }
                 else 
                 {
                     //no intersection with the 'inclusion', so zero out this whole channel 
-                    in->SubView(pp,ch) *= 0.0;
+                    in->SliceView(":", ch, ":", ":") *= 0.0;
                     
                     //rescale the weights by zero, since this was cut entirely
-                    fWeights->SubView(pp,ch) *= 0.0;
+                    fWeights->SliceView(":", ch, ":", ":") *= 0.0;
                 }
             }
-        }
+        // }
 
 
     }
