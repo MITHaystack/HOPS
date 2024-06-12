@@ -16,6 +16,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Passband.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Notches.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DCBlock.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MinWeight.hh
 )
 
 #list source files #############################################################
@@ -34,6 +35,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Passband.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Notches.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DCBlock.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MinWeight.cc
 )
 
 #declare header paths ##########################################################
