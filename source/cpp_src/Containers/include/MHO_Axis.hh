@@ -68,6 +68,9 @@ class MHO_Axis:
             MHO_IndexLabelInterface(),
             MHO_IntervalLabelInterface()
         {
+            if( obj.fObject.contains("index_labels") ){ this->fObject["index_labels"] = obj.fObject["index_labels"]; }
+            if( obj.fObject.contains("interval_labels") ){ this->fObject["interval_labels"] = obj.fObject["interval_labels"]; }
+            
             this->SetIndexLabelObject( &(this->fObject["index_labels"]) );
             this->SetIntervalLabelObject( &(this->fObject["interval_labels"]) );
         };
