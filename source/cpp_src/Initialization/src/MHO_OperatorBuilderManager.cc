@@ -14,6 +14,7 @@
 #include "MHO_LinearDParCorrectionBuilder.hh"
 #include "MHO_PassbandBuilder.hh"
 #include "MHO_NotchesBuilder.hh"
+#include "MHO_DCBlockBuilder.hh"
 
 namespace hops
 {
@@ -48,9 +49,10 @@ MHO_OperatorBuilderManager::CreateDefaultBuilders()
     AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_r", "pc_delay_r");
     AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_l", "pc_delay_l");
     
-    //passband flagging operators
+    //flagging operators
     AddBuilderType<MHO_PassbandBuilder>("passband", "passband");
     AddBuilderType<MHO_NotchesBuilder>("notches", "notches");
+    AddBuilderType<MHO_DCBlockBuilder>("dc_block", "dc_block");
 
     //add builders for operators which are not accessible via control file
     CreateNullFormatBuilders();
