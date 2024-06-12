@@ -54,7 +54,7 @@ MHO_Notches::ExecuteInPlace(visibility_type* in)
 
             //check if the notch that is to be excluded is within/overlaps this channel
             double overlap[2];
-            int n_inter = MHO_MathUtilities::FindIntersection(lower_freq, upper_freq, notch_low, notch_high, overlap);
+            int n_inter = MHO_MathUtilities::FindIntersection<double>(lower_freq, upper_freq, notch_low, notch_high, overlap);
 
             if(n_inter)
             {
