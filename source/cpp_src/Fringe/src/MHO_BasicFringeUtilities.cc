@@ -83,7 +83,9 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     std::vector< std::string > pp_vec = paramStore->GetAs< std::vector< std::string > >("/config/polprod_set");
     double eff_npols = 1.0;
     if(pp_vec.size()  > 2 ){eff_npols = 2.0;}
-    double snr = MHO_BasicFringeInfo::calculate_snr(eff_npols, ap_delta, samp_period, total_summed_weights, famp);
+    
+    double bw_corr_factor = calculate_snr_correction_factor(conStore, paramStore); //correction if notches/passband applied
+    double snr = MHO_BasicFringeInfo::calculate_snr(eff_npols, ap_delta, samp_period, total_summed_weights, famp, bw_corr_factor);
     paramStore->Set("/fringe/snr", snr);
 
     //calculate integration time
@@ -484,6 +486,53 @@ MHO_BasicFringeUtilities::determine_sample_rate(MHO_ContainerStore* conStore, MH
         }
     }
 
+}
+
+double 
+MHO_BasicFringeUtilities::calculate_snr_correction_factor(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
+{
+    //grab visibilities and weights
+    bool ok;
+    visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
+    weight_type* wt_data = conStore->GetObject<weight_type>(std::string("weight"));
+    if( vis_data == nullptr || wt_data == nullptr )
+    {
+        msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
+        std::exit(1);
+    }
+    
+    //grab the channel axes
+    auto ap_ax = &(std::get<TIME_AXIS>(*vis_data) );
+    auto chan_ax = &(std::get<CHANNEL_AXIS>(*vis_data) );
+    auto wchan_ax = &(std::get<CHANNEL_AXIS>(*wt_data) );
+    
+    std::size_t nchan = chan_ax->GetSize();
+    std::size_t nap = ap_ax->GetSize();
+    
+    double net_bw;
+    double net_ap;
+    for(std::size_t ch=0; ch<nchan; ch++)
+    {
+        double ap_weight = nap;
+        double frac;
+        double factor;
+        std::string ubf_key = "used_bandwidth_fraction";
+        std::string rf_key = "rescaling_factor";
+        bool frac_present = chan_ax->RetrieveIndexLabelKeyValue(ch, ubf_key, frac);
+        bool factor_present = wchan_ax->RetrieveIndexLabelKeyValue(ch, rf_key, factor);
+        if(!frac_present){frac = 1.0;}
+        
+        net_bw += ap_weight*frac; 
+        net_ap += ap_weight;
+    }
+    
+    double bw_corr = std::sqrt(net_bw/net_ap);
+
+    std::cout<<"net_bw = "<<net_bw<<std::endl;
+    std::cout<<"net_ap = "<<net_ap<<std::endl;    
+    std::cout<<"bw_corr = "<<bw_corr<<std::endl;
+
+    return bw_corr;
 }
 
 }//end namespace

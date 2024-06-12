@@ -28,7 +28,7 @@ MHO_BasicFringeInfo::make_legacy_datetime_format(legacy_hops_date ldate)
 
 
 double
-MHO_BasicFringeInfo::calculate_snr(double effective_npol, double ap_period, double samp_period, double total_ap_frac, double amp)
+MHO_BasicFringeInfo::calculate_snr(double effective_npol, double ap_period, double samp_period, double total_ap_frac, double amp, double bw_corr_factor)
 {
     //Poor imitation of SNR -- needs corrections
     //some hardcoded values used right now
@@ -39,7 +39,7 @@ MHO_BasicFringeInfo::calculate_snr(double effective_npol, double ap_period, doub
     double fact3 = 0.970; //difx
     double whitneys = 1e4; //unit conversion to 'Whitneys'
     double inv_sigma = fact1 * fact2 * fact3 * std::sqrt(ap_period/samp_period);
-    double snr = amp * inv_sigma *  sqrt(total_ap_frac * effective_npol)/(whitneys * amp_corr_factor);
+    double snr = bw_corr_factor * amp * inv_sigma *  sqrt(total_ap_frac * effective_npol)/(whitneys * amp_corr_factor);
     return snr;
 }
 

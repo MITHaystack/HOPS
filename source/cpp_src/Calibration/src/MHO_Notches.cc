@@ -77,9 +77,13 @@ MHO_Notches::ExecuteInPlace(visibility_type* in)
         //TODO FIXME...this needs to be done properly to get the correct integration-time and SNR
         double frac = (npts-count)/npts;
         double factor = 0.0;
-        if(frac != 0.0){factor = 1.0/frac;}
+        if(frac > 0.0){factor = 1.0/frac;}
         fWeights->SliceView(":",ch,":",0) *= factor;
-        //fWeights->SliceView(pp,ch,":",0) *= frac;
+
+        std::string ubf_key = "used_bandwidth_fraction";
+        std::string rf_key = "rescaling_factor";
+        chan_ax->InsertIndexLabelKeyValue(ch, ubf_key, frac);
+        chan_ax->InsertIndexLabelKeyValue(ch, rf_key, factor);
     }
 
     return true;

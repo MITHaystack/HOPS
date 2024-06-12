@@ -41,6 +41,7 @@ class MHO_BasicFringeUtilities
         static double calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
         static void calculate_fringe_solution_info(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore, const mho_json& vexInfo);
         static void determine_sample_rate(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
+        static double calculate_snr_correction_factor(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
 
 };
 

@@ -26,6 +26,7 @@ bool
 MHO_Passband::ExecuteInPlace(visibility_type* in)
 {
     auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
+    auto wchan_ax = &(std::get<CHANNEL_AXIS>(*fWeights) );
     auto freq_ax = &(std::get<FREQ_AXIS>(*in) );
 
     if(fIsExclusion)
@@ -75,9 +76,13 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                 //TODO FIXME...this needs to be done properly to get the correct integration-time and SNR
                 double frac = (npts-count)/npts;
                 double factor = 0.0;
-                if(frac != 0.0){factor = 1.0/frac;}
+                if(frac > 0.0){factor = 1.0/frac;}
                 fWeights->SliceView(":", ch, ":", 0) *= factor;
-                //fWeights->SliceView(pp,ch,":",0) *= frac;
+                
+                std::string ubf_key = "used_bandwidth_fraction";
+                std::string rf_key = "rescaling_factor";
+                chan_ax->InsertIndexLabelKeyValue(ch, ubf_key, frac);
+                wchan_ax->InsertIndexLabelKeyValue(ch, rf_key, factor);
             }
         }
     }
@@ -127,8 +132,13 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                 double frac = (npts-count)/npts;
                 //TODO FIXME...this needs to be done properly to get the correct integration-time and SNR
                 double factor = 0.0;
-                if(frac != 0.0){factor = 1.0/frac;}
+                if(frac > 0.0){factor = 1.0/frac;}
                 fWeights->SliceView(":", ch, ":", 0) *= factor;
+                
+                std::string ubf_key = "used_bandwidth_fraction";
+                std::string rf_key = "rescaling_factor";
+                chan_ax->InsertIndexLabelKeyValue(ch, ubf_key, frac);
+                wchan_ax->InsertIndexLabelKeyValue(ch, rf_key, factor);
             }
             else 
             {
@@ -137,6 +147,11 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
                 
                 //rescale the weights by zero, since this was cut entirely
                 fWeights->SliceView(":", ch, ":", ":") *= 0.0;
+                
+                std::string ubf_key = "used_bandwidth_fraction";
+                std::string rf_key = "rescaling_factor";
+                chan_ax->InsertIndexLabelKeyValue(ch, ubf_key, 0.0);
+                wchan_ax->InsertIndexLabelKeyValue(ch, rf_key, 0.0);
             }
         }
     }
