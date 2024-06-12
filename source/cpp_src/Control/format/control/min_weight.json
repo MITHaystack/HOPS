@@ -1,5 +1,7 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
-    "type": "unknown"
+    "name": "min_weight",
+    "statement_type": "operator",
+    "operator_category" : "flagging",
+    "type": "real",
+    "priority": 3.5
 }

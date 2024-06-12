@@ -22,6 +22,7 @@ MHO_MinWeight::ExecuteInPlace(weight_type* in)
         double w = *it;
         if( w < fMinWeight)
         {
+            std::cout<<"changing weight from: "<<*it<<" to 0"<<std::endl;
             *it = 0.0;
         }
     }

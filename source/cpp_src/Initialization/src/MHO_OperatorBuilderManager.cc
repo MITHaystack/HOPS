@@ -15,6 +15,7 @@
 #include "MHO_PassbandBuilder.hh"
 #include "MHO_NotchesBuilder.hh"
 #include "MHO_DCBlockBuilder.hh"
+#include "MHO_MinWeightBuilder.hh"
 
 namespace hops
 {
@@ -53,6 +54,7 @@ MHO_OperatorBuilderManager::CreateDefaultBuilders()
     AddBuilderType<MHO_PassbandBuilder>("passband", "passband");
     AddBuilderType<MHO_NotchesBuilder>("notches", "notches");
     AddBuilderType<MHO_DCBlockBuilder>("dc_block", "dc_block");
+    AddBuilderType<MHO_MinWeightBuilder>("min_weight", "min_weight");
 
     //add builders for operators which are not accessible via control file
     CreateNullFormatBuilders();
