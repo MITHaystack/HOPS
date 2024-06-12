@@ -15,6 +15,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_EstimatePCManual.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Passband.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Notches.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DCBlock.hh
 )
 
 #list source files #############################################################
@@ -32,6 +33,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_EstimatePCManual.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Passband.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Notches.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DCBlock.cc
 )
 
 #declare header paths ##########################################################
