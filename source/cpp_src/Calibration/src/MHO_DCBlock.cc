@@ -20,6 +20,8 @@ MHO_DCBlock::ExecuteInPlace(visibility_type* in)
     auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
     auto freq_ax = &(std::get<FREQ_AXIS>(*in) );
 
+    msg_debug("calibration", "zero-ing out DC spectral points for all channels" << eom);
+
     //loop over all channels (application depends on USB/LSB)
     for(std::size_t ch=0; ch < chan_ax->GetSize(); ch++) 
     {
