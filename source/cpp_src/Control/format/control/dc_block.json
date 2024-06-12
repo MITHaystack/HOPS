@@ -1,6 +1,7 @@
 {
     "name": "dc_block",
-    "statement_type": "parameter",
-    "parameter_type": "flagging",
-    "type": "bool"
+    "statement_type": "operator",
+    "operator_category" : "flagging",
+    "type": "bool",
+    "priority": 3.5
 }
