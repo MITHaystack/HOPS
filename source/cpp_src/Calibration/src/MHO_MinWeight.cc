@@ -16,17 +16,11 @@ bool
 MHO_MinWeight::ExecuteInPlace(weight_type* in)
 {
     msg_debug("calibration", "zero-ing out weights for all values less than "<< fMinWeight << eom);
-
     for(auto it = in->begin(); it != in->end(); it++)
     {
         double w = *it;
-        if( w < fMinWeight)
-        {
-            std::cout<<"changing weight from: "<<*it<<" to 0"<<std::endl;
-            *it = 0.0;
-        }
+        if( w < fMinWeight){ *it = 0.0;}
     }
-
     return true;
 }
 
