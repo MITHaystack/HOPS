@@ -327,7 +327,7 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     int nlags = fPStore->GetAs<int>("/config/nlags");
     t206->sbdsize = (short) 4*nlags;
 
-    //TODO fill these in
+    //TODO FIXME fill these in
     // struct sidebands    accepted[64];           /* APs accepted by chan/sband */
     // struct sbweights    weights[64];            /* Samples per channel/sideband */
     // float               accept_ratio;           /* % ratio min/max data accepted */
