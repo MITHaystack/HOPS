@@ -101,8 +101,8 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     app.add_option("-c,--control-file", control_file, "specify the control file");
     app.add_flag("-e,--estimate", estimate_time, "estimate run time (ignored, not yet implemented)");
     app.add_option("-f,--first-plot-channel", first_plot_chan, "specifies the first channel displayed in the fringe plot");
-    app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
     app.add_option("-M,--message-categories", message_categories, msg_cat_help.c_str() )->delimiter(',');
+    app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
     app.add_option("-n,--nplot-channels", nplot_chans, "specifies the number of channels to display in the fringe plot");
     app.add_flag("-p,--plot", show_plot, "generate and shows fringe plot on completion");
     app.add_option("-r,--refringe-alist", refringe_alist_file, "alist file for refringing (ignored, not yet implemented)");
