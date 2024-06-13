@@ -1,7 +1,7 @@
 {
     "name": "min_weight",
     "statement_type": "operator",
-    "operator_category" : "flagging",
+    "operator_category" : "selection",
     "type": "real",
     "priority": 3.5
 }

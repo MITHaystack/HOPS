@@ -16,7 +16,7 @@ MHO_MinWeightBuilder::Build()
         //assume attributes are ok for now - TODO add checks!
         
         std::string op_name = fAttributes["name"].get<std::string>();
-        std::string op_category = "flagging";
+        std::string op_category = "selection";
         double value = fAttributes["value"].get< double >();
         double priority = fFormat["priority"].get<double>();
 
