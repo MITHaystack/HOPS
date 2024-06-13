@@ -265,7 +265,7 @@ MHO_EstimatePCManual::est_phases(int is_ref, int keep)
     if(keep)
     {
         phase_bias = (epb) ? atof(epb) : 0.0;
-        //msg_debug("calibration", "*est: phase bias "<<phase_biase<<" (mod res phase is "<<coh_avg_phase<<")" << eom); 
+        msg_debug("calibration", "*est: phase bias "<<phase_bias << eom); 
     }
     
     if (epb || epd)
@@ -581,17 +581,8 @@ void MHO_EstimatePCManual::est_delays(int is_ref, int how)
         sbd[ch] *= 1000.0;  /* us to ns */
         if (!is_ref) sbd[ch] = - sbd[ch];
 
-        //TODO FIXME
-        rdy[ch] = get_manual_delayoff(!is_ref, fChannelLabel2Index[ch_label[ch]], pol);
-        //std::cout<<"ch, sbd, rdy = "<<ch_label[ch]<<","<<sbd[ch]<<", "<<rdy[ch]<<std::endl;
-        
         /* calculate original delays */
-        //TODO PORT THIS!!!
-        // rdy[ch] = (is_ref)
-        //         ? pass->control.delay_offs[ch].ref
-        //         + pass->control.delay_offs_pol[ch][stnpol[0][pass->pol]].ref
-        //         : pass->control.delay_offs[ch].rem
-        //         + pass->control.delay_offs_pol[ch][stnpol[1][pass->pol]].rem;
+        rdy[ch] = get_manual_delayoff(!is_ref, fChannelLabel2Index[ch_label[ch]], pol);
     }
 
     /* make sense of it */
