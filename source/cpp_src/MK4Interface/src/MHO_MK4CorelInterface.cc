@@ -184,6 +184,7 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
                 else
                 {
                     msg_fatal("mk4interface", "Non-spectral type-120 not supported." << eom);
+                    std::exit(1);
                 }
             }
         }
