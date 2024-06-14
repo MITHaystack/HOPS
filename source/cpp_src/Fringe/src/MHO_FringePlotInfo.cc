@@ -79,6 +79,9 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["IntgTime"] = paramStore->GetAs<double>("/fringe/integration_time");
     plot_dict["Amp"] = paramStore->GetAs<double>("/fringe/famp");
     plot_dict["ResPhase"] = paramStore->GetAs<double>("/fringe/resid_phase");
+
+    double pfd = paramStore->GetAs<double>("/fringe/prob_false_detect");
+    std::cout<<"PFD = "<<pfd<<std::endl;
     plot_dict["PFD"] = paramStore->GetAs<double>("/fringe/prob_false_detect");
 
     plot_dict["ResidSbd(us)"] = paramStore->GetAs<double>("/fringe/sbdelay");

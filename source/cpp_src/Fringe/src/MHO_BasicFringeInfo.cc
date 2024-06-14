@@ -30,6 +30,8 @@ MHO_BasicFringeInfo::make_legacy_datetime_format(legacy_hops_date ldate)
 double
 MHO_BasicFringeInfo::calculate_snr(double effective_npol, double ap_period, double samp_period, double total_ap_frac, double amp, double bw_corr_factor)
 {
+
+
     //Poor imitation of SNR -- needs corrections
     //some hardcoded values used right now
     #pragma message("TODO FIXME -- need to accommodate stations with non-2bit sampling")
@@ -40,6 +42,14 @@ MHO_BasicFringeInfo::calculate_snr(double effective_npol, double ap_period, doub
     double whitneys = 1e4; //unit conversion to 'Whitneys'
     double inv_sigma = fact1 * fact2 * fact3 * std::sqrt(ap_period/samp_period);
     double snr = bw_corr_factor * amp * inv_sigma *  sqrt(total_ap_frac * effective_npol)/(whitneys * amp_corr_factor);
+
+    std::cout<<bw_corr_factor<<std::endl;
+    std::cout<<inv_sigma<<std::endl;
+    std::cout<<total_ap_frac<<std::endl;
+    std::cout<<effective_npol<<std::endl;
+    std::cout<<amp<<std::endl;
+    std::cout<<snr<<std::endl;
+
     return snr;
 }
 
@@ -89,12 +99,17 @@ MHO_BasicFringeInfo::calculate_drate_error_v2(double snr, double ref_freq, doubl
 double
 MHO_BasicFringeInfo::calculate_pfd(double snr, double pts_searched)
 {
+    std::cout<<"POINTS SEARCHED: "<<pts_searched<<std::endl;
     double a = 1.0 - std::exp(-1.0*(snr*snr)/ 2.0);
     double pfd =  1.0 - std::pow(a, pts_searched);
+    std::cout<<"pfd = "<<pfd<<std::endl;
+
     if(pfd < 0.01)
     {
         pfd = pts_searched * std::exp(-1.0*(snr*snr)/ 2.0);
     }
+    std::cout<<"pfd = "<<pfd<<std::endl;
+
     return pfd;
 }
 
