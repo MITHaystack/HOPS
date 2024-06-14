@@ -67,10 +67,12 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
         double GetSBDBinSeparation() const {return fSBDBinSep;}
 
-        int GetNMBDBins(){return fNGridPoints;};
-        int GetNSBDBins(){return fNSBD;};
-        int GetNDRBins(){return fNDR;};
-        int GetNDRSPBins(){return fDelayRateCalc.GetDelayRateSearchSpaceSize(); }
+        int GetNMBDBins() const {return fNGridPoints;};
+        int GetNSBDBins() const {return fNSBD;};
+        int GetNDRBins() const {return fNDR;};
+        int GetNDRSPBins() const {return fDelayRateCalc.GetDelayRateSearchSpaceSize(); }
+
+        double GetNPointsSearched() const;
 
         double GetSearchMaximumAmplitude() const {return fMax;}
         double GetFrequencySpacing() const {return fGridSpace;}
@@ -135,6 +137,9 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         double fCoarseMBD;
         double fCoarseSBD;
         double fCoarseDR;
+
+        //the number of points searched
+        double fNPointsSearched;
 
         MHO_Axis<double> fSBDAxis;
         MHO_Axis<double> fMBDAxis;

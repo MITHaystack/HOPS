@@ -156,7 +156,7 @@ void MHO_BasicFringeFitter::Initialize()
 
         //figure out the number of channels which have data with weights >0 in at least 1 AP
         MHO_InitialFringeInfo::determine_n_active_channels(fContainerStore, fParameterStore);
-        
+
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
 
         //initialize the fringe search operators ///////////////////////////////
@@ -348,11 +348,13 @@ MHO_BasicFringeFitter::coarse_fringe_search()
     int n_dr_pts = fMBDSearch.GetNDRBins();
     int n_sbd_pts = fMBDSearch.GetNSBDBins();
     int n_drsp_pts = fMBDSearch.GetNDRSPBins();
+    double n_pts_searched = fMBDSearch.GetNPointsSearched();
 
     fParameterStore->Set("/fringe/n_mbd_points", n_mbd_pts);
     fParameterStore->Set("/fringe/n_sbd_points", n_sbd_pts);
     fParameterStore->Set("/fringe/n_dr_points", n_dr_pts);
     fParameterStore->Set("/fringe/n_drsp_points", n_drsp_pts);
+    fParameterStore->Set("/fringe/n_pts_searched", n_pts_searched);
 
     int c_mbdmax = fMBDSearch.GetMBDMaxBin();
     int c_sbdmax = fMBDSearch.GetSBDMaxBin();
