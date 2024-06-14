@@ -93,16 +93,6 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     double integration_time =  (total_summed_weights*ap_delta)/(double)nchan;
     paramStore->Set("/fringe/integration_time", integration_time);
 
-    // //calculate quality code
-    // std::string quality_code = MHO_BasicFringeInfo::calculate_qf();
-    // paramStore->Set("/fringe/quality_code", quality_code);
-
-    //total number of points searched
-    std::size_t nmbd = paramStore->GetAs<std::size_t>("/fringe/n_mbd_points");
-    std::size_t nsbd = paramStore->GetAs<std::size_t>("/fringe/n_sbd_points");
-    std::size_t ndr = paramStore->GetAs<std::size_t>("/fringe/n_dr_points");
-    double total_npts_searched = (double)nmbd * (double)nsbd *(double)ndr;
-
     //residual phase in radians and degrees
     double resid_phase_rad = calculate_residual_phase(conStore, paramStore);
     paramStore->Set("/fringe/raw_resid_phase_rad", resid_phase_rad);
@@ -113,16 +103,15 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     double tot_phase_deg = std::fmod( aphase + resid_phase_rad*(180.0/M_PI), 360.0 );
     paramStore->Set("/fringe/aphase", aphase);
 
-    //calculate the probability of false detection, THIS IS BROKEN
-    #pragma message("TODO FIXME - PFD calculation needs the MBD/SBD/DR windows defined")
+    //get total number of points searched
+    double total_npts_searched = paramStore->GetAs<double>("/fringe/n_pts_searched");
+    //calculate the probability of false detection
     double pfd = MHO_BasicFringeInfo::calculate_pfd(snr, total_npts_searched);
-    pfd = 0.0;
     paramStore->Set("/fringe/prob_false_detect", pfd);
 
     //TODO FIXME -- -acount for units (these are printed on fringe plot in usec)
     double tot_mbd = adelay + mbdelay;
     double tot_sbd = adelay + sbdelay;
-
 
     double ambig = paramStore->GetAs<double>("/fringe/ambiguity");
     double freq_spacing = paramStore->GetAs<double>("/fringe/frequency_spacing");
@@ -302,150 +291,6 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
 }
 
 
-
-
-
-
-void
-MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
-{
-    bool ok;
-    visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
-    weight_type* wt_data = conStore->GetObject<weight_type>(std::string("weight"));
-    if( vis_data == nullptr || wt_data == nullptr )
-    {
-        msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
-        std::exit(1);
-    }
-
-    //temporarily organize the main fringe search in this function
-    //TODO consolidate the coarse search in a single class, so it can be mixed-and-matched
-    //with different interpolation schemes
-
-    std::cout<<"getting sbd data container"<<std::endl;
-
-    //space for the visibilities transformed into single-band-delay space
-    std::size_t bl_dim[visibility_type::rank::value];
-    vis_data->GetDimensions(bl_dim);
-    visibility_type* sbd_data = conStore->GetObject<visibility_type>(std::string("sbd"));
-    if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
-    {
-        sbd_data = vis_data->Clone();
-        conStore->AddObject(sbd_data);
-        conStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
-        bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
-        sbd_data->Resize(bl_dim);
-        sbd_data->ZeroArray();
-    }
-
-    ////////////////////////////////////////////////////////////////////////////
-    //COARSE SBD, DR, MBD SEARCH ALGO
-    ////////////////////////////////////////////////////////////////////////////
-
-    std::cout<<"init of nfx op"<<std::endl;
-
-    //run norm-fx via the wrapper class (x-form to SBD space)
-    MHO_NormFX nfxOp;
-    nfxOp.SetArgs(vis_data, wt_data, sbd_data);
-    ok = nfxOp.Initialize();
-    check_step_fatal(ok, "fringe", "normfx initialization." << eom );
-
-    ok = nfxOp.Execute();
-    check_step_fatal(ok, "fringe", "normfx execution." << eom );
-
-    //take snapshot of sbd data after normfx
-    take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
-
-    std::cout<<"coarse mbd search"<<std::endl;
-
-    //coarse SBD/MBD/DR search (locates max bin)
-    double ref_freq = paramStore->GetAs<double>("/control/config/ref_freq");
-    MHO_MBDelaySearch mbdSearch;
-    mbdSearch.SetWeights(wt_data);
-    mbdSearch.SetReferenceFrequency(ref_freq);
-    mbdSearch.SetArgs(sbd_data);
-    ok = mbdSearch.Initialize();
-    check_step_fatal(ok, "fringe", "mbd initialization." << eom );
-    ok = mbdSearch.Execute();
-    check_step_fatal(ok, "fringe", "mbd execution." << eom );
-
-    int n_mbd_pts = mbdSearch.GetNMBDBins();
-    int n_dr_pts = mbdSearch.GetNDRBins();
-    int n_sbd_pts = mbdSearch.GetNSBDBins();
-    int n_drsp_pts = mbdSearch.GetNDRSPBins();
-
-    paramStore->Set("/fringe/n_mbd_points", n_mbd_pts);
-    paramStore->Set("/fringe/n_sbd_points", n_sbd_pts);
-    paramStore->Set("/fringe/n_dr_points", n_dr_pts);
-    paramStore->Set("/fringe/n_drsp_points", n_drsp_pts);
-
-    int c_mbdmax = mbdSearch.GetMBDMaxBin();
-    int c_sbdmax = mbdSearch.GetSBDMaxBin();
-    int c_drmax = mbdSearch.GetDRMaxBin();
-    double freq_spacing = mbdSearch.GetFrequencySpacing();
-    double ave_freq = mbdSearch.GetAverageFrequency();
-
-    if(c_mbdmax < 0 || c_sbdmax < 0 || c_drmax < 0)
-    {
-        msg_fatal("fringe", "coarse fringe search could not locate peak, bin (sbd, mbd, dr) = (" <<c_sbdmax << ", " << c_mbdmax <<"," << c_drmax<< ")." << eom );
-        std::exit(1);
-    }
-
-    //get the coarse maximum and re-scale by the total weights
-    double search_max_amp = mbdSearch.GetSearchMaximumAmplitude();
-    double total_summed_weights = paramStore->GetAs<double>("/fringe/total_summed_weights");
-
-    paramStore->Set("/fringe/coarse_search_max_amp", search_max_amp/total_summed_weights);
-    paramStore->Set("/fringe/max_mbd_bin", c_mbdmax);
-    paramStore->Set("/fringe/max_sbd_bin", c_sbdmax);
-    paramStore->Set("/fringe/max_dr_bin", c_drmax);
-
-
-
-    std::cout<<"bins = "<<c_mbdmax<<", "<<c_sbdmax<<", "<<c_drmax<<std::endl;
-
-    ////////////////////////////////////////////////////////////////////////////
-    //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
-    ////////////////////////////////////////////////////////////////////////////
-    std::cout<<"starting fringe interp"<<std::endl;
-
-    MHO_InterpolateFringePeak fringeInterp;
-
-    bool optimize_closure_flag = false;
-    bool is_oc_set = paramStore->Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag );
-    //NOTE, this has no effect on fringe-phase when using 'simul' algo which is currently is the only one implemented
-    //This is also true in the legacy code simul implementation.
-    if(optimize_closure_flag){fringeInterp.EnableOptimizeClosure();}
-
-    fringeInterp.SetReferenceFrequency(ref_freq);
-    fringeInterp.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
-
-    fringeInterp.SetSBDArray(sbd_data);
-    fringeInterp.SetWeights(wt_data);
-
-    #pragma message("TODO FIXME -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace")
-    //Figure out how best to present this axis data to the fine-interp function.
-
-    fringeInterp.SetMBDAxis( mbdSearch.GetMBDAxis() );
-    fringeInterp.SetDRAxis( mbdSearch.GetDRAxis() );
-
-    fringeInterp.Initialize();
-    fringeInterp.Execute();
-
-    double sbdelay = fringeInterp.GetSBDelay();
-    double mbdelay = fringeInterp.GetMBDelay();
-    double drate = fringeInterp.GetDelayRate();
-    double frate = fringeInterp.GetFringeRate();
-    double famp = fringeInterp.GetFringeAmplitude();
-
-    paramStore->Set("/fringe/sbdelay", sbdelay);
-    paramStore->Set("/fringe/mbdelay", mbdelay);
-    paramStore->Set("/fringe/drate", drate);
-    paramStore->Set("/fringe/frate", frate);
-    paramStore->Set("/fringe/famp", famp);
-}
-
-
 void
 MHO_BasicFringeUtilities::determine_sample_rate(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
@@ -533,10 +378,6 @@ MHO_BasicFringeUtilities::calculate_snr_correction_factor(MHO_ContainerStore* co
     {
         msg_debug("fringe", "bandwidth correction factor due to passband/notches is: "<< bw_corr << eom );
     }
-
-    // std::cout<<"net_bw = "<<net_bw<<std::endl;
-    // std::cout<<"net_ap = "<<net_ap<<std::endl;
-    // std::cout<<"bw_corr = "<<bw_corr<<std::endl;
 
     return bw_corr;
 }

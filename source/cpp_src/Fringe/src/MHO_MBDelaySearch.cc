@@ -30,6 +30,8 @@ MHO_MBDelaySearch::MHO_MBDelaySearch()
     fSBDBinSep = 0;
     fDRBinSep = 0;
     fMBDBinSep = 0;
+
+    fNPointsSearched = 0;
 }
 
 MHO_MBDelaySearch::~MHO_MBDelaySearch(){};
@@ -115,6 +117,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         //loop over the single-band delay 'lags', computing the MBD/DR function
         //find the max for each SBD, and globally
         fMax = -0.0;
+        fNPointsSearched = 0;
         bool first = true;
         for(std::size_t sbd_idx=0; sbd_idx<fNSBD; sbd_idx++)
         {
@@ -209,6 +212,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                                     fSBDMaxBin = sbd_idx;
                                     fDRMaxBin = dr_idx;
                                 }
+                                fNPointsSearched += 1; //just count each search point we visit
                             }
                         }
                     }
@@ -236,6 +240,15 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
     return false;
 };
+
+
+double
+MHO_MBDelaySearch::GetNPointsSearched() const
+{
+    //factor of 4 is due to the fact that the SBD search space
+    //has been zero-padded for interpolation (e.g. all points visited are not independent)
+    return fNPointsSearched/4;
+}
 
 //configure the search windows (using floating point limits)
 //default is the full range
