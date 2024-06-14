@@ -187,6 +187,39 @@ MHO_BasicFringeDataConfiguration::sanity_check(MHO_ParameterStore* paramStore)
     return 0;
 }
 
+void MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* paramStore, MHO_ScanDataStore* scanStore)
+{
+    //these should all be present and ok at this point
+    std::string directory = paramStore->GetAs<std::string>("/cmdline/directory");
+
+    ////////////////////////////////////////////////////////////////////////////
+    //INITIALIZE SCAN DIRECTORY
+    ////////////////////////////////////////////////////////////////////////////
+
+    //initialize the scan store from this directory
+    scanStore->SetDirectory(directory);
+    scanStore->Initialize();
+    if( !scanStore->IsValid() )
+    {
+        msg_fatal("fringe", "cannot initialize a valid scan store from this directory: " << directory << eom);
+        std::exit(1);
+    }
+
+    // if( !scanStore->IsBaselinePresent(baseline) )
+    // {
+    //     msg_fatal("fringe", "cannot find the specified baseline: " << baseline << " in " << directory << eom);
+    //     std::exit(1);
+    // }
+
+    //set the root file name
+    paramStore->Set("/files/root_file", scanStore->GetRootFileBasename() );
+
+    msg_debug("fringe", "loading root file: "<< scanStore->GetRootFileBasename() << eom);
+
+    //load root file and extract useful vex info into parameter store
+    auto vexInfo = scanStore->GetRootFileData();
+    MHO_VexInfoExtractor::extract_vex_info(vexInfo, paramStore);
+}
 
 
 
@@ -246,7 +279,7 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
 
     msg_debug("fringe", "loading root file: "<< scanStore->GetRootFileBasename() << eom);
 
-     // //load root file and extract useful vex info into parameter store
+    //load root file and extract useful vex info into parameter store
     auto vexInfo = scanStore->GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(vexInfo, paramStore);
 
