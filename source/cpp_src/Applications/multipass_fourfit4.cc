@@ -215,9 +215,13 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
 
 void DetermineScans(MHO_ParameterStore& param, std::vector< std::string >& scans)
 {
+    std::string initial_dir = param.GetAs<std::string>("directory");
+    scans.push_back(initial_dir);
 
+    //TODO FIXME...for now we only treat the single directory case
+    //if no root file was located, then we might be running over a whole experiment directory
+    //we need to loop over all the sub-dirs and determine if they are scans directories
 }
-
 
 
 void DetermineBaselines(MHO_ParameterStore& param, std::vector< std::string >& baselines)
@@ -239,30 +243,39 @@ int main(int argc, char** argv)
     MHO_Snapshot::GetInstance().AcceptAllKeys();
     MHO_Snapshot::GetInstance().SetExecutableName(std::string("fourfit"));
 
-    MHO_ParameterStore basic_param_store;
-    int parse_status = parse_command_line(argc, argv, &basic_param_store );
+    MHO_ParameterStore initial_param_store;
+    int parse_status = parse_command_line(argc, argv, &initial_param_store );
     if(parse_status != 0){msg_fatal("main", "could not parse command line options." << eom); std::exit(1);}
 
     //data loop order is scans, then baselines, then fgroups, then pol-producs
-    std::vector< std::string > scans;
+    std::vector< std::string > scans; //list of scan directories
     std::vector< std::string > baselines;
     std::vector< std::string > fgroups;
     std::vector< std::string > polproducts;
 
-    DetermineScans(basic_param_store, scans);
+    DetermineScans(initial_param_store, scans);
+    initial_param_store.Dump(); //TODO REMOVE
 
     for(auto sc = scans.begin(); sc != scans.end(); sc++)
     {
+        std::string scan_dir = *sc;
+        std::string root_file = MHO_BasicFringeDataConfiguration::find_associated_root_file(scan_dir);
+        if(root_file == ""){continue;} //TODO FIXME get rid of this!!
+
         MHO_FringeData fringeData;
+        fringeData.GetParameterStore()->CopyFrom(initial_param_store); //copy in command line info
+        fringeData.GetParameterStore()->Set("directory", scan_dir); //point to current scan
+        fringeData.GetParameterStore()->Set("root_file", root_file); //point to current root file
 
         //populate a few necessary parameters and  initialize the scan data store
+        MHO_BasicFringeDataConfiguration::initialize_scan_data(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
         MHO_BasicFringeDataConfiguration::populate_initial_parameters(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
-        DetermineBaselines(basic_param_store, baselines);
+        DetermineBaselines(initial_param_store, baselines);
 
         //loop over all baselines
         for(auto bl = baselines.begin(); bl != baselines.end(); bl++)
         {
-            DetermineFGroupsAndPolProducts(basic_param_store, fgroups, polproducts);
+            DetermineFGroupsAndPolProducts(initial_param_store, fgroups, polproducts);
 
             for(auto fg = fgroups.begin(); fg != fgroups.end(); fg++)
             {
