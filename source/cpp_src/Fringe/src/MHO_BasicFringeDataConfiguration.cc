@@ -179,7 +179,7 @@ MHO_BasicFringeDataConfiguration::sanity_check(MHO_ParameterStore* paramStore)
     //std::string output_file = paramStore->GetAs<std::string>("/cmdline/output_file");
 
     #pragma message("TODO FIXME - fill out the sanity_check function for command line arguments")
-    if( directory == "" || baseline == "" || polprod == "" || control_file == "")
+    if( directory == "" || control_file == "")
     {
         return 1;
     }
