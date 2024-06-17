@@ -40,45 +40,10 @@
 
 using namespace hops;
 
-// 
-//
-// bool GetFileKeysAndOffsets(std::vector< std::pair< MHO_FileKey, std::size_t > >& key_offsets, std::string input_file)
-// {
-//     std::vector< MHO_FileKey >
-//     key.clear();
-//     //now lets extract all of the object keys in the file for inspection
-//     MHO_BinaryFileInterface inter;
-//     //regular key extraction skips over the objects, just pulling keys
-//     bool result = inter.ExtractFileObjectKeys(input_file, ikeys);
-//     return result;
-// }
-//
-// void GetTagObject(std::string input_file)
-// {
-//     std::vector< MHO_FileKey > keys;
-//     bool have_keys = GetFileKeys(keys, input_file);
-//     MHO_ContainerDictionary cdict;
-//     MHO_UUID tag_uuid = cdict.GetUUIDFor<MHO_ObjectTags>();
-//     if(have_keys)
-//     {
-//         //determine which key corresponds to the tags (MHO_ObjectTags)
-//         for(std::size_t i=0; i<keys.size(); i++)
-//         {
-//             if(keys[i].fTypeId == tag_uuid)
-//             {
-//                 //pull out the MHO_ObjectTags object
-//
-//             }
-//         }
-//     }
-// }
-
-
-
 void DetermineScans(MHO_ParameterStore& param, std::vector< std::string >& scans)
 {
     scans.clear();
-    std::string initial_dir = param.GetAs<std::string>("directory");
+    std::string initial_dir = param.GetAs<std::string>("/cmdline/directory");
     scans.push_back(initial_dir);
 
     //TODO FIXME...for now we only treat the single directory case
@@ -86,9 +51,9 @@ void DetermineScans(MHO_ParameterStore& param, std::vector< std::string >& scans
     //we need to loop over all the sub-dirs and determine if they are scans directories
 }
 
-void DetermineBaselines(std::string dir, std::vector< std::string >& baselines)
+void DetermineBaselines(std::string dir, std::vector< std::pair< std::string, std::string > >& baseline_files)
 {
-    baselines.clear();
+    baseline_files.clear();
     std::vector< std::string > corFiles;
     MHO_DirectoryInterface dirInterface;
     dirInterface.SetCurrentDirectory(dir);
@@ -110,14 +75,14 @@ void DetermineBaselines(std::string dir, std::vector< std::string >& baselines)
         {
             if(tok[0].size() == 2)
             {
-                std::cout<<"got a baseline: "<<tok[0]<<std::endl;
-                baselines.push_back(tok[0]);
+                std::cout<<"got a baseline: "<<tok[0]<<" in "<<corFiles[i]<<std::endl;
+                baseline_files.push_back( std::make_pair(tok[0], corFiles[i]) );
             }
         }
     }
 }
 
-void DetermineFGroupsAndPolProducts(MHO_ParameterStore& param, std::vector< std::string >& fgroups, std::vector< std::string >& pprods )
+void DetermineFGroupsAndPolProducts(std::string filename, std::vector< std::string >& fgroups, std::vector< std::string >& pprods )
 {
 
 }
@@ -131,18 +96,18 @@ int main(int argc, char** argv)
     MHO_Snapshot::GetInstance().AcceptAllKeys();
     MHO_Snapshot::GetInstance().SetExecutableName(std::string("fourfit"));
 
-    MHO_ParameterStore initial_param_store;
-    int parse_status = MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(argc, argv, &initial_param_store );
+    MHO_ParameterStore cmdline_params;
+    int parse_status = MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(argc, argv, &cmdline_params );
     if(parse_status != 0){msg_fatal("main", "could not parse command line options." << eom); std::exit(1);}
 
     //data loop order is scans, then baselines, then fgroups, then pol-producs
     std::vector< std::string > scans; //list of scan directories
-    std::vector< std::string > baselines;
+    std::vector< std::pair< std::string, std::string > > baseline_files;
     std::vector< std::string > fgroups;
     std::vector< std::string > polproducts;
 
-    DetermineScans(initial_param_store, scans);
-    initial_param_store.Dump(); //TODO REMOVE
+    DetermineScans(cmdline_params, scans);
+    cmdline_params.Dump(); //TODO REMOVE
 
     for(auto sc = scans.begin(); sc != scans.end(); sc++)
     {
@@ -151,32 +116,35 @@ int main(int argc, char** argv)
         if(root_file == ""){continue;} //TODO FIXME get rid of this!!
 
         MHO_FringeData fringeData;
-        fringeData.GetParameterStore()->CopyFrom(initial_param_store); //copy in command line info
+        fringeData.GetParameterStore()->CopyFrom(cmdline_params); //copy in command line info
         fringeData.GetParameterStore()->Set("directory", scan_dir); //point to current scan
         fringeData.GetParameterStore()->Set("root_file", root_file); //point to current root file
 
         //populate a few necessary parameters and  initialize the scan data store
-        MHO_BasicFringeDataConfiguration::initialize_scan_data(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
-        MHO_BasicFringeDataConfiguration::populate_initial_parameters(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
-        DetermineBaselines(scan_dir, baselines);
+        bool scan_dir_ok = MHO_BasicFringeDataConfiguration::initialize_scan_data(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
+
+        DetermineBaselines(scan_dir, baseline_files);
 
         //loop over all baselines
-        for(auto bl = baselines.begin(); bl != baselines.end(); bl++)
+        for(auto bl = baseline_files.begin(); bl != baseline_files.end(); bl++)
         {
-            if( !(fringeData.GetScanDataStore()->IsBaselinePresent(*bl) ) )
-            {
-                msg_error("fringe", "cannot find the specified baseline: " << *bl << " in " << scan_dir << eom);
-                continue;
-            }
+            std::string baseline = bl->first;
+            std::string corFile = bl->second;
+            DetermineFGroupsAndPolProducts(corFile, fgroups, polproducts);
 
-            DetermineFGroupsAndPolProducts(initial_param_store, fgroups, polproducts);
+            // if( !(fringeData.GetScanDataStore()->IsBaselinePresent(*bl) ) )
+            // {
+            //     msg_error("fringe", "cannot find the specified baseline: " << *bl << " in " << scan_dir << eom);
+            //     continue;
+            // }
+
+            MHO_BasicFringeDataConfiguration::populate_initial_parameters(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
 
             for(auto fg = fgroups.begin(); fg != fgroups.end(); fg++)
             {
                 //loop over all pol-products
                 for(auto pprod = polproducts.begin(); pprod != polproducts.end(); pprod++)
                 {
-
 
                     //parse the control file and form the control statements
                     MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(), fringeData.GetControlFormat(), fringeData.GetControlStatements() );

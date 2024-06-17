@@ -23,12 +23,12 @@ void
 MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(std::string baseline_freqgrp, std::string& baseline, std::string& freqgrp)
 {
     MHO_Tokenizer tokenizer;
-
     if( baseline_freqgrp.find(':') == std::string::npos )
     {
+        //no ':' present, so we must only have a baseline specification
         baseline = baseline_freqgrp;
-
-        if(baseline.size() != 2)
+        freqgrp = "?";
+        if(baseline.size() != 2) //error out if something odd was passed
         {
             msg_fatal("fringe", "baseline must be passed as 2-char code."<< eom);
             std::exit(1);
@@ -95,34 +95,17 @@ MHO_BasicFringeDataConfiguration::sanitize_directory(std::string dir)
     {
         path = dir.substr(0,dir_end) + "/";
     }
-    return path;
 
-    // bool ok;
-    // std::string fullpath = MHO_DirectoryInterface::GetDirectoryFullPath(dir);
-    // ok = MHO_DirectoryInterface::DoesDirectoryExist(fullpath);
-    // if(ok){return fullpath;}
-    //
-    // //check if we have actually been passed a root-file instead (and need to return the prefix)
-    // std::string basename = MHO_DirectoryInterface::GetBasename(fullpath);
-    // std::string prefix = MHO_DirectoryInterface::GetPrefix(fullpath);
-    // std::size_t dot = basename.find('.');
-    // if(dot != std::string::npos)
-    // {
-    //     std::string root_code = basename.substr(dot+1);
-    //     if( root_code.size() == 6 )
-    //     {
-    //         //check if is a directory
-    //         bool ok = MHO_DirectoryInterface::DoesDirectoryExist(fullpath);
-    //         if(!ok)
-    //         {
-    //             //we were actually passed a root file, so return the prefix
-    //             fullpath = prefix;
-    //         }
-    //     }
-    // }
-    //
-    // return fullpath;
-
+    //check that this directory exists
+    bool ok;
+    std::string fullpath = MHO_DirectoryInterface::GetDirectoryFullPath(dir);
+    ok = MHO_DirectoryInterface::DoesDirectoryExist(fullpath);
+    if(!ok)
+    {
+        msg_error("fringe", "could not find the directory: "<< fullpath << eom );
+        std::exit(1);
+    }
+    return path; //we do not return the full-path in order to preserve symlinks
 }
 
 std::string
@@ -137,12 +120,13 @@ MHO_BasicFringeDataConfiguration::find_associated_root_file(std::string dir)
     std::string ext(".root.json");
     dirInter.GetFilesMatchingExtention(flist, ext);
 
+    std::string root_file = "";
     if(flist.size() != 1)
     {
         if(flist.size() == 0)
         {
-            msg_fatal("fringe", "no root file found in: "<< dir << eom );
-            std::exit(1);
+            msg_warn("fringe", "no root file found in: "<< dir << eom );
+            return root_file;
         }
         if(flist.size() > 1 )
         {
@@ -150,7 +134,7 @@ MHO_BasicFringeDataConfiguration::find_associated_root_file(std::string dir)
         }
     }
 
-    std::string root_file = flist[0];
+    root_file = flist[0];
     root_file = MHO_DirectoryInterface::GetDirectoryFullPath(root_file);
     return root_file;
 
@@ -203,9 +187,9 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
 
     //command line parameters
     bool accounting = false; //'-a' perform run-time accounting/profiling
-    std::string baseline_opt = ""; //'-b' baseline:frequency_group selection
-    std::string baseline = ""; // the baseline
-    std::string freqgrp = ""; // the frequency group
+    std::string baseline_opt = "??:?"; //'-b' baseline:frequency_group selection
+    std::string baseline = "??"; // the baseline
+    std::string freqgrp = "?"; // the frequency group
     std::string control_file = ""; //'-c' specifies the control file
     bool estimate_time = false; //'-e' estimate run time
     int first_plot_chan = 0; //'-n' specifies the first channel displayed in the fringe plot
@@ -322,15 +306,14 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     if(control_file == ""){control_file = "/dev/null";}
 
     //for now we require these options to be set (may relax this once we allow mult-pass fringe fitting)
-    if(baseline_opt != "")
-    {
-        MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(baseline_opt, baseline, freqgrp);
-    }
+    MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(baseline_opt, baseline, freqgrp);
 
     //set the message level
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 
+    //clean the directory string
     std::string directory = MHO_BasicFringeDataConfiguration::sanitize_directory(input);
+    //if there is no root file (i.e. we were passed and experiment directory, we get and empty string)
     std::string root_file = MHO_BasicFringeDataConfiguration::find_associated_root_file(input);
 
     //pass the extracted command line info back in the parameter store
@@ -339,8 +322,8 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     paramStore->Set("/cmdline/frequency_group", freqgrp);
 
     paramStore->Set("/cmdline/control_file",control_file);
-    paramStore->Set("/cmdline/directory", directory); //un-modified directory path
-    paramStore->Set("/cmdline/root_file", root_file); //fully resolve (symlink free path to the root file)
+    paramStore->Set("/cmdline/directory", directory); //sanitized directory path
+    paramStore->Set("/cmdline/root_file", root_file); //fully resolved (symlink free path to the root file)...or empty
 
     //estimate_time = false; //not implemented
     paramStore->Set("/cmdline/first_plot_channel", first_plot_chan); //TODO
@@ -363,7 +346,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
 }
 
 
-void MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* paramStore, MHO_ScanDataStore* scanStore)
+bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* paramStore, MHO_ScanDataStore* scanStore)
 {
     //this should all be present and ok at this point
     std::string directory = paramStore->GetAs<std::string>("directory");
@@ -377,8 +360,8 @@ void MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
     scanStore->Initialize();
     if( !scanStore->IsValid() )
     {
-        msg_fatal("fringe", "cannot initialize a valid scan store from this directory: " << directory << eom);
-        std::exit(1);
+        msg_error("fringe", "cannot initialize a valid scan store from this directory: " << directory << eom);
+        return false;
     }
 
     //set the root file name
@@ -389,6 +372,8 @@ void MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
     //load root file and extract useful vex info into parameter store
     auto vexInfo = scanStore->GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(vexInfo, paramStore);
+
+    return true;
 }
 
 
