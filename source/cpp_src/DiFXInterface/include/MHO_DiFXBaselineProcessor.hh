@@ -112,6 +112,7 @@ class MHO_DiFXBaselineProcessor
 
         //list of channel frequencies for this baseline, sorted in ascending order (freq)
         std::vector< std::pair<int, mho_json> > fBaselineFreqs;
+        std::set< std::string > fFreqBandLabelSet;
 
         //the baseline data in hops data containers
         weight_store_type* fW;
