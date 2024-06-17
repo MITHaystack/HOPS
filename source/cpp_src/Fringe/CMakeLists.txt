@@ -1,3 +1,7 @@
+hops_internal_include_directories()
+hops_internal_include_directories(../../../extern/cli11)
+
+
 #list header files #############################################################
 set (FRINGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NormFX.hh
