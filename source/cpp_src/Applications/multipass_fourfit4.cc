@@ -40,178 +40,178 @@
 using namespace hops;
 
 //TODO move this some where else
-
-
-int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
-{
-    //store the raw arguments in the parameter store
-    std::vector<std::string> arglist;
-    for(int i=0; i<argc; i++){arglist.push_back( std::string(argv[i]) );}
-    paramStore->Set("/cmdline/args", arglist);
-
-    //command line parameters
-    bool accounting = false; //'-a' perform run-time accounting/profiling
-    std::string baseline_opt = ""; //'-b' baseline:frequency_group selection
-    std::string baseline = ""; // the baseline
-    std::string freqgrp = ""; // the frequency group
-    std::string control_file = ""; //'-c' specifies the control file
-    bool estimate_time = false; //'-e' estimate run time
-    int first_plot_chan = 0; //'-n' specifies the first channel displayed in the fringe plot
-    int message_level = -1; //'-m' specifies the message verbosity level
-    std::vector< std::string > message_categories;  // -'M' limits the allowed message categories to those the user specifies
-    int nplot_chans = 0; //'-n' specifies the number of channels to display in the fringe plot
-    bool show_plot = false; //'-p' generates and shows fringe plot
-    std::string refringe_alist_file = ""; // '-r' alist file for refringing - not yet enabled
-    int ap_per_seg = 0; //'-s' specify the APs to be averaged per plot-segment
-    bool test_mode = false; //'-t' if true, then no output is written
-    bool update_mode = false; //'-u' not yet enabled
-    std::string polprod = ""; //'-P' polarization product argument (e.g XX or I or RR+LL)
-    std::string reftime = ""; //'-T' specify the fourfit reference time - not yet enabled
-    bool xwindows; //'-x' same as option '-p' we no long use pgplot/xwindows
-    bool xpower_output = false; //-X export xpower spectrum
-    bool use_mk4_output = false;
-    std::string input;
-
-    std::vector< std::string > msg_cats =
-    {
-        "main", "calibration", "containers", "control",
-        "fringe", "file", "initialization", "mk4interface",
-        "utilities", "vex", "python_bindings"
-    };
-
-    std::stringstream ss;
-    ss << "limit the allowed message categories to only those which the user specifies, the available categories are: \n";
-    for(auto it = msg_cats.begin(); it != msg_cats.end(); it++)
-    {
-        ss << "    "<< *it <<"\n";
-    }
-    ss <<"if the '-M' option is not used, the default is to allow all categories. ";
-    std::string msg_cat_help = ss.str();
-
-
-    CLI::App app{"fourfit"};
-
-    // Remove help flag because it shortcuts all processing
-    app.set_help_flag();
-
-    // Add custom flag that activates help
-    auto *help = app.add_flag("-h,--help", "print this help message and exit");
-    app.add_flag("-a,--accounting", accounting, "perform run-time accounting/profiling");
-    app.add_option("-b,--baseline", baseline_opt, "baseline or baseline:frequency_group selection (e.g GE or GE:X)");
-    app.add_option("-c,--control-file", control_file, "specify the control file");
-    app.add_flag("-e,--estimate", estimate_time, "estimate run time (ignored, not yet implemented)");
-    app.add_option("-f,--first-plot-channel", first_plot_chan, "specifies the first channel displayed in the fringe plot");
-    app.add_option("-M,--message-categories", message_categories, msg_cat_help.c_str() )->delimiter(',');
-    app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
-    app.add_option("-n,--nplot-channels", nplot_chans, "specifies the number of channels to display in the fringe plot");
-    app.add_flag("-p,--plot", show_plot, "generate and shows fringe plot on completion");
-    app.add_option("-r,--refringe-alist", refringe_alist_file, "alist file for refringing (ignored, not yet implemented)");
-    app.add_option("-s,--ap-per-segment", ap_per_seg, "specify the APs to be averaged per plot-segment");
-    app.add_flag("-t,--test-mode", test_mode, "if passed, then no output is written");
-    app.add_flag("-u,--update-mode", update_mode, "(ignored, not yet implemented)");
-    app.add_option("-P,--polprod", polprod, "polarization product argument (e.g XX or I or RR+LL)");
-    app.add_option("-T,--reftime", reftime, "specify the fourfit reference time (ignored, not yet implemented)");
-    app.add_flag("-x,--xwindows", xwindows, "display plot using xwindows (ignored, not yet implemented)");
-    app.add_flag("-X,--xpower-output", xpower_output, "output spectral cross power data (visibilities with corrections/residual fringe solution applied)");
-    app.add_option("input,-i,--input", input, "name of the input directory (scan) or root file")->required();
-    app.add_flag("-k,--mark4-output", use_mk4_output, "write output files in mark4 type_2xx format");
-
-    //add the 'set' command for control file parameter overrides
-    auto *setcom = app.add_subcommand("set", "pass control file parameters and related syntax on the command line")->prefix_command();
-    //setcom->alias("--set");
-
-    try
-    {
-        app.parse(argc, argv);
-        if(*help)
-        {
-            throw CLI::CallForHelp();
-        }
-    }
-    catch(const CLI::Error &e)
-    {
-        std::cout << app.help() << std::endl;
-        std::exit(1); //just exit don't bother returning to main
-    }
-
-    //grab the set string if present
-    std::string set_string = " ";
-    std::vector< std::string > set_tokens;
-    for(const auto &aarg : setcom->remaining())
-    {
-        set_tokens.push_back(aarg);
-        set_string += aarg + " ";
-    }
-
-    //clamp message level
-    if(message_level > 5){message_level = 5;}
-    if(message_level < -2){message_level = -2;}
-    MHO_Message::GetInstance().AcceptAllKeys();
-    MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
-
-    //check if any message categories were passed, if so, we limit the messages
-    //to only those categories
-    if(message_categories.size() != 0)
-    {
-        for(std::size_t m=0; m<message_categories.size(); m++)
-        {
-            MHO_Message::GetInstance().AddKey(message_categories[m]);
-        }
-        MHO_Message::GetInstance().LimitToKeySet();
-    }
-
-    //enable profiling if passed '-a'
-    if(accounting){ MHO_Profiler::GetInstance().Enable();}
-
-    //catch no input case
-    if(input == ""){msg_fatal("main", "input directory/root file not set" << eom); std::exit(1);}
-
-    //catch no control file case and set to /dev/null
-    //TODO detect DEF_CONTROL environmental variable if present and use that
-    if(control_file == ""){control_file = "/dev/null";}
-
-    //for now we require these options to be set (may relax this once we allow mult-pass fringe fitting)
-    if(baseline_opt != "")
-    {
-        MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(baseline_opt, baseline, freqgrp);
-    }
-
-    //set the message level
-    MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
-
-    std::string directory = MHO_BasicFringeDataConfiguration::sanitize_directory(input);
-    std::string root_file = MHO_BasicFringeDataConfiguration::find_associated_root_file(input);
-
-    //pass the extracted command line info back in the parameter store
-    paramStore->Set("/cmdline/accounting", accounting);
-    paramStore->Set("/cmdline/baseline", baseline);
-    paramStore->Set("/cmdline/frequency_group", freqgrp);
-
-    paramStore->Set("/cmdline/control_file",control_file);
-    paramStore->Set("/cmdline/directory", directory); //un-modified directory path
-    paramStore->Set("/cmdline/root_file", root_file); //fully resolve (symlink free path to the root file)
-
-    //estimate_time = false; //not implemented
-    paramStore->Set("/cmdline/first_plot_channel", first_plot_chan); //TODO
-    paramStore->Set("/cmdline/message_level", message_level);
-    paramStore->Set("/cmdline/nplot_channels", nplot_chans); //TODO
-    paramStore->Set("/cmdline/show_plot", show_plot); //TODO
-    //refringe_alist_file = ""; //not implemented
-    paramStore->Set("/cmdline/ap_per_seg",ap_per_seg);
-    paramStore->Set("/cmdline/test_mode", test_mode); //TODO
-    //update_mode = false; //not implemented
-    paramStore->Set("/cmdline/polprod", polprod);
-    //reftime = ""; //not implemented
-    paramStore->Set("/cmdline/xpower_output", xpower_output);
-    paramStore->Set("/cmdline/set_string", set_string); //TODO
-    paramStore->Set("/cmdline/mk4format_output", use_mk4_output);
-
-    int status = MHO_BasicFringeDataConfiguration::sanity_check(paramStore);
-
-    return status; //0 is ok, anything else is an error
-}
-
-
+//
+//
+// int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
+// {
+//     //store the raw arguments in the parameter store
+//     std::vector<std::string> arglist;
+//     for(int i=0; i<argc; i++){arglist.push_back( std::string(argv[i]) );}
+//     paramStore->Set("/cmdline/args", arglist);
+//
+//     //command line parameters
+//     bool accounting = false; //'-a' perform run-time accounting/profiling
+//     std::string baseline_opt = ""; //'-b' baseline:frequency_group selection
+//     std::string baseline = ""; // the baseline
+//     std::string freqgrp = ""; // the frequency group
+//     std::string control_file = ""; //'-c' specifies the control file
+//     bool estimate_time = false; //'-e' estimate run time
+//     int first_plot_chan = 0; //'-n' specifies the first channel displayed in the fringe plot
+//     int message_level = -1; //'-m' specifies the message verbosity level
+//     std::vector< std::string > message_categories;  // -'M' limits the allowed message categories to those the user specifies
+//     int nplot_chans = 0; //'-n' specifies the number of channels to display in the fringe plot
+//     bool show_plot = false; //'-p' generates and shows fringe plot
+//     std::string refringe_alist_file = ""; // '-r' alist file for refringing - not yet enabled
+//     int ap_per_seg = 0; //'-s' specify the APs to be averaged per plot-segment
+//     bool test_mode = false; //'-t' if true, then no output is written
+//     bool update_mode = false; //'-u' not yet enabled
+//     std::string polprod = ""; //'-P' polarization product argument (e.g XX or I or RR+LL)
+//     std::string reftime = ""; //'-T' specify the fourfit reference time - not yet enabled
+//     bool xwindows; //'-x' same as option '-p' we no long use pgplot/xwindows
+//     bool xpower_output = false; //-X export xpower spectrum
+//     bool use_mk4_output = false;
+//     std::string input;
+//
+//     std::vector< std::string > msg_cats =
+//     {
+//         "main", "calibration", "containers", "control",
+//         "fringe", "file", "initialization", "mk4interface",
+//         "utilities", "vex", "python_bindings"
+//     };
+//
+//     std::stringstream ss;
+//     ss << "limit the allowed message categories to only those which the user specifies, the available categories are: \n";
+//     for(auto it = msg_cats.begin(); it != msg_cats.end(); it++)
+//     {
+//         ss << "    "<< *it <<"\n";
+//     }
+//     ss <<"if the '-M' option is not used, the default is to allow all categories. ";
+//     std::string msg_cat_help = ss.str();
+//
+//
+//     CLI::App app{"fourfit"};
+//
+//     // Remove help flag because it shortcuts all processing
+//     app.set_help_flag();
+//
+//     // Add custom flag that activates help
+//     auto *help = app.add_flag("-h,--help", "print this help message and exit");
+//     app.add_flag("-a,--accounting", accounting, "perform run-time accounting/profiling");
+//     app.add_option("-b,--baseline", baseline_opt, "baseline or baseline:frequency_group selection (e.g GE or GE:X)");
+//     app.add_option("-c,--control-file", control_file, "specify the control file");
+//     app.add_flag("-e,--estimate", estimate_time, "estimate run time (ignored, not yet implemented)");
+//     app.add_option("-f,--first-plot-channel", first_plot_chan, "specifies the first channel displayed in the fringe plot");
+//     app.add_option("-M,--message-categories", message_categories, msg_cat_help.c_str() )->delimiter(',');
+//     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
+//     app.add_option("-n,--nplot-channels", nplot_chans, "specifies the number of channels to display in the fringe plot");
+//     app.add_flag("-p,--plot", show_plot, "generate and shows fringe plot on completion");
+//     app.add_option("-r,--refringe-alist", refringe_alist_file, "alist file for refringing (ignored, not yet implemented)");
+//     app.add_option("-s,--ap-per-segment", ap_per_seg, "specify the APs to be averaged per plot-segment");
+//     app.add_flag("-t,--test-mode", test_mode, "if passed, then no output is written");
+//     app.add_flag("-u,--update-mode", update_mode, "(ignored, not yet implemented)");
+//     app.add_option("-P,--polprod", polprod, "polarization product argument (e.g XX or I or RR+LL)");
+//     app.add_option("-T,--reftime", reftime, "specify the fourfit reference time (ignored, not yet implemented)");
+//     app.add_flag("-x,--xwindows", xwindows, "display plot using xwindows (ignored, not yet implemented)");
+//     app.add_flag("-X,--xpower-output", xpower_output, "output spectral cross power data (visibilities with corrections/residual fringe solution applied)");
+//     app.add_option("input,-i,--input", input, "name of the input directory (scan) or root file")->required();
+//     app.add_flag("-k,--mark4-output", use_mk4_output, "write output files in mark4 type_2xx format");
+//
+//     //add the 'set' command for control file parameter overrides
+//     auto *setcom = app.add_subcommand("set", "pass control file parameters and related syntax on the command line")->prefix_command();
+//     //setcom->alias("--set");
+//
+//     try
+//     {
+//         app.parse(argc, argv);
+//         if(*help)
+//         {
+//             throw CLI::CallForHelp();
+//         }
+//     }
+//     catch(const CLI::Error &e)
+//     {
+//         std::cout << app.help() << std::endl;
+//         std::exit(1); //just exit don't bother returning to main
+//     }
+//
+//     //grab the set string if present
+//     std::string set_string = " ";
+//     std::vector< std::string > set_tokens;
+//     for(const auto &aarg : setcom->remaining())
+//     {
+//         set_tokens.push_back(aarg);
+//         set_string += aarg + " ";
+//     }
+//
+//     //clamp message level
+//     if(message_level > 5){message_level = 5;}
+//     if(message_level < -2){message_level = -2;}
+//     MHO_Message::GetInstance().AcceptAllKeys();
+//     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
+//
+//     //check if any message categories were passed, if so, we limit the messages
+//     //to only those categories
+//     if(message_categories.size() != 0)
+//     {
+//         for(std::size_t m=0; m<message_categories.size(); m++)
+//         {
+//             MHO_Message::GetInstance().AddKey(message_categories[m]);
+//         }
+//         MHO_Message::GetInstance().LimitToKeySet();
+//     }
+//
+//     //enable profiling if passed '-a'
+//     if(accounting){ MHO_Profiler::GetInstance().Enable();}
+//
+//     //catch no input case
+//     if(input == ""){msg_fatal("main", "input directory/root file not set" << eom); std::exit(1);}
+//
+//     //catch no control file case and set to /dev/null
+//     //TODO detect DEF_CONTROL environmental variable if present and use that
+//     if(control_file == ""){control_file = "/dev/null";}
+//
+//     //for now we require these options to be set (may relax this once we allow mult-pass fringe fitting)
+//     if(baseline_opt != "")
+//     {
+//         MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(baseline_opt, baseline, freqgrp);
+//     }
+//
+//     //set the message level
+//     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
+//
+//     std::string directory = MHO_BasicFringeDataConfiguration::sanitize_directory(input);
+//     std::string root_file = MHO_BasicFringeDataConfiguration::find_associated_root_file(input);
+//
+//     //pass the extracted command line info back in the parameter store
+//     paramStore->Set("/cmdline/accounting", accounting);
+//     paramStore->Set("/cmdline/baseline", baseline);
+//     paramStore->Set("/cmdline/frequency_group", freqgrp);
+//
+//     paramStore->Set("/cmdline/control_file",control_file);
+//     paramStore->Set("/cmdline/directory", directory); //un-modified directory path
+//     paramStore->Set("/cmdline/root_file", root_file); //fully resolve (symlink free path to the root file)
+//
+//     //estimate_time = false; //not implemented
+//     paramStore->Set("/cmdline/first_plot_channel", first_plot_chan); //TODO
+//     paramStore->Set("/cmdline/message_level", message_level);
+//     paramStore->Set("/cmdline/nplot_channels", nplot_chans); //TODO
+//     paramStore->Set("/cmdline/show_plot", show_plot); //TODO
+//     //refringe_alist_file = ""; //not implemented
+//     paramStore->Set("/cmdline/ap_per_seg",ap_per_seg);
+//     paramStore->Set("/cmdline/test_mode", test_mode); //TODO
+//     //update_mode = false; //not implemented
+//     paramStore->Set("/cmdline/polprod", polprod);
+//     //reftime = ""; //not implemented
+//     paramStore->Set("/cmdline/xpower_output", xpower_output);
+//     paramStore->Set("/cmdline/set_string", set_string); //TODO
+//     paramStore->Set("/cmdline/mk4format_output", use_mk4_output);
+//
+//     int status = MHO_BasicFringeDataConfiguration::sanity_check(paramStore);
+//
+//     return status; //0 is ok, anything else is an error
+// }
+//
+//
 
 void DetermineScans(MHO_ParameterStore& param, std::vector< std::string >& scans)
 {
@@ -244,7 +244,7 @@ int main(int argc, char** argv)
     MHO_Snapshot::GetInstance().SetExecutableName(std::string("fourfit"));
 
     MHO_ParameterStore initial_param_store;
-    int parse_status = parse_command_line(argc, argv, &initial_param_store );
+    int parse_status = MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(argc, argv, &initial_param_store );
     if(parse_status != 0){msg_fatal("main", "could not parse command line options." << eom); std::exit(1);}
 
     //data loop order is scans, then baselines, then fgroups, then pol-producs
