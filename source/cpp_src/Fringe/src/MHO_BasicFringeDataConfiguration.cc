@@ -365,8 +365,8 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
 
 void MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* paramStore, MHO_ScanDataStore* scanStore)
 {
-    //these should all be present and ok at this point
-    std::string directory = paramStore->GetAs<std::string>("/cmdline/directory");
+    //this should all be present and ok at this point
+    std::string directory = paramStore->GetAs<std::string>("directory");
 
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE SCAN DIRECTORY
@@ -380,12 +380,6 @@ void MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
         msg_fatal("fringe", "cannot initialize a valid scan store from this directory: " << directory << eom);
         std::exit(1);
     }
-
-    // if( !scanStore->IsBaselinePresent(baseline) )
-    // {
-    //     msg_fatal("fringe", "cannot find the specified baseline: " << baseline << " in " << directory << eom);
-    //     std::exit(1);
-    // }
 
     //set the root file name
     paramStore->Set("/files/root_file", scanStore->GetRootFileBasename() );

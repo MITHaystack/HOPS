@@ -33,13 +33,13 @@ MHO_DirectoryInterface::GetDirectoryFullPath(const std::string& dirname)
     for(std::size_t i=0; i<PATH_MAX; i++){buffer[i] = '\0';}
     char* tmp = realpath( tmp_path.c_str(), buffer);
     (void) tmp; //shut up the compiler about unused variable...we don't need it, result is stored in buffer
-    
+
     buffer[PATH_MAX-1] = '\0'; //always null terminate
     std::string fullpath(buffer);
     return fullpath;
 }
 
-std::string 
+std::string
 MHO_DirectoryInterface::GetDirectoryFullPathPreserveSymlinks(const std::string& dirname)
 {
     //get the full path to a directory (in case it is relative), but preserve the names of symlinks!
@@ -252,7 +252,7 @@ MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aF
         std::size_t index = basename.find(anExt);
         if(index != std::string::npos)
         {
-            //make sure the extension is the very end of the string 
+            //make sure the extension is the very end of the string
             std::string sub = basename.substr(index);
             if(sub == anExt)
             {
@@ -304,7 +304,7 @@ MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std::str
         std::size_t index = basename.find(anExt);
         if(index != std::string::npos)
         {
-            //make sure the extension is the very end of the string 
+            //make sure the extension is the very end of the string
             std::string sub = basename.substr(index);
             if(sub == anExt)
             {

@@ -75,6 +75,7 @@ void DetermineBaselines(std::string dir, std::vector< std::string >& baselines)
         {
             if(tok[0].size() == 2)
             {
+                std::cout<<"got a baseline: "<<tok[0]<<std::endl;
                 baselines.push_back(tok[0]);
             }
         }
@@ -127,6 +128,12 @@ int main(int argc, char** argv)
         //loop over all baselines
         for(auto bl = baselines.begin(); bl != baselines.end(); bl++)
         {
+            if( !(fringeData.GetScanDataStore()->IsBaselinePresent(*bl) ) )
+            {
+                msg_error("fringe", "cannot find the specified baseline: " << *bl << " in " << scan_dir << eom);
+                continue;
+            }
+
             DetermineFGroupsAndPolProducts(initial_param_store, fgroups, polproducts);
 
             for(auto fg = fgroups.begin(); fg != fgroups.end(); fg++)
