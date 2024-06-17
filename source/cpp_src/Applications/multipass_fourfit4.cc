@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <utility>
 #include <getopt.h>
 
 //option parsing and help text library
@@ -38,6 +39,40 @@
 
 
 using namespace hops;
+
+// 
+//
+// bool GetFileKeysAndOffsets(std::vector< std::pair< MHO_FileKey, std::size_t > >& key_offsets, std::string input_file)
+// {
+//     std::vector< MHO_FileKey >
+//     key.clear();
+//     //now lets extract all of the object keys in the file for inspection
+//     MHO_BinaryFileInterface inter;
+//     //regular key extraction skips over the objects, just pulling keys
+//     bool result = inter.ExtractFileObjectKeys(input_file, ikeys);
+//     return result;
+// }
+//
+// void GetTagObject(std::string input_file)
+// {
+//     std::vector< MHO_FileKey > keys;
+//     bool have_keys = GetFileKeys(keys, input_file);
+//     MHO_ContainerDictionary cdict;
+//     MHO_UUID tag_uuid = cdict.GetUUIDFor<MHO_ObjectTags>();
+//     if(have_keys)
+//     {
+//         //determine which key corresponds to the tags (MHO_ObjectTags)
+//         for(std::size_t i=0; i<keys.size(); i++)
+//         {
+//             if(keys[i].fTypeId == tag_uuid)
+//             {
+//                 //pull out the MHO_ObjectTags object
+//
+//             }
+//         }
+//     }
+// }
+
 
 
 void DetermineScans(MHO_ParameterStore& param, std::vector< std::string >& scans)
