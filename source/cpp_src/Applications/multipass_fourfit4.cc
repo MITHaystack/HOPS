@@ -84,6 +84,62 @@ void DetermineBaselines(std::string dir, std::vector< std::pair< std::string, st
 
 void DetermineFGroupsAndPolProducts(std::string filename, std::vector< std::string >& fgroups, std::vector< std::string >& pprods )
 {
+    fgroups.clear();
+    pprods.clear();
+
+    //get uuid for MHO_ObjectTags object
+    MHO_ContainerDictionary cdict;
+    MHO_UUID tag_uuid = cdict.GetUUIDFor<MHO_ObjectTags>();
+
+    //pull all the keys and byte offsets for each object
+    std::vector< MHO_FileKey > ikeys;
+    std::vector< std::size_t > byte_offsets;
+    MHO_BinaryFileInterface inter;
+    inter.ExtractFileObjectKeysAndOffsets(filename, ikeys, byte_offsets);
+
+    //loop over keys and offsets, looking for tags offset
+    bool found = false;
+    std::size_t offset_bytes = 0;
+    for(std::size_t i=0; i<ikeys.size(); i++)
+    {
+        if(ikeys[i].fTypeId == tag_uuid)
+        {
+            offset_bytes = byte_offsets[i];
+            found = true;
+            break; //only first tag object is used
+        }
+    }
+
+    if(found)
+    {
+        inter.OpenToReadAtOffset(filename, offset_bytes);
+        MHO_ObjectTags obj;
+        MHO_FileKey obj_key;
+        bool ok = inter.Read(obj, obj_key);
+        if(ok)
+        {
+            //we read the tags object, now pull the pol-products and frequency groups info
+            if( obj.IsTagPresent("polarization_product_set") )
+            {
+                obj.GetTagValue("polarization_product_set", pprods);
+                for(std::size_t i=0; i<pprods.size(); i++)
+                {
+                    std::cout<<"got a pprod: "<<pprods[i]<<std::endl;
+                }
+
+            }
+
+            if( obj.IsTagPresent("frequency_band_set") )
+            {
+                obj.GetTagValue("frequency_band_set", fgroups);
+                for(std::size_t i=0; i<fgroups.size(); i++)
+                {
+                    std::cout<<"got a fgroup: "<<fgroups[i]<<std::endl;
+                }
+            }
+        }
+        inter.Close();
+    }
 
 }
 
