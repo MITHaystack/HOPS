@@ -48,7 +48,7 @@ class MHO_BasicFringeDataConfiguration
         static int parse_fourfit_command_line(int argc, char** argv, MHO_ParameterStore* paramStore);
 
         //some post-command line parse initialization (populates the scan store)
-        static void initialize_scan_data(MHO_ParameterStore*, MHO_ScanDataStore* scanStore);
+        static bool initialize_scan_data(MHO_ParameterStore*, MHO_ScanDataStore* scanStore);
         static void populate_initial_parameters(MHO_ParameterStore* paramStore, MHO_ScanDataStore* scanStore);
         static std::vector< std::string > determine_required_pol_products(std::string polprod);
 
