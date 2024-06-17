@@ -283,6 +283,18 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         //insert the difx input data as a json object
         fTags.SetTagValue("difx_input_json", *fInput);
         fTags.SetTagValue("root_code", fRootCode);
+        //add a bug of tags from the visib/weight objects for ease of retrieval
+        fTags.SetTagValue("difx_baseline_index", fBaselineID);
+        fTags.SetTagValue("baseline", fBaselineName);
+        fTags.SetTagValue("baseline_shortname", fBaselineShortName);
+        fTags.SetTagValue("reference_station", fRefStation);
+        fTags.SetTagValue("remote_station", fRemStation);
+        fTags.SetTagValue("reference_station_mk4id", fRefStationMk4Id);
+        fTags.SetTagValue("remote_station_mk4id", fRemStationMk4Id);
+        fTags.SetTagValue("correlation_date", fCorrDate);
+        fTags.SetTagValue("root_code", fRootCode);
+        fTags.SetTagValue("origin", "difx");
+
 
         fV = new visibility_store_type();
         fW = new weight_store_type();
@@ -349,6 +361,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 
 
         int ppidx = 0;
+        fFreqIndexSet.clear();
         for(auto ppit = fPolPairSet.begin(); ppit != fPolPairSet.end(); ppit++)
         {
             std::string pp = *ppit;
@@ -375,6 +388,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                     ch_label["difx_freqindex"] = freqidx; //probably ought to be more systematic about creating channel names
                     ch_label["channel"] = chidx; //channel position index
                     std::string fband = DetermineFreqGroup(sky_freq);
+                    fFreqBandLabelSet.insert(fband);//keep track of all the freq-band labels we've inserted
                     ch_label["frequency_band"] = fband; //will be empty string if assignment can't be made
 
                      //TODO FIXME need to construct difx2mark4-style chan_id --
@@ -431,6 +445,13 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             ppidx++;
         }
 
+        //last thing we do is to attach the pol-product set and freq-band set to the 'Tags' data
+        //this is allow a program reading this file to determine this information without streaming
+        //in the potentially very large visibility/weights data
+        std::vector< std::string > fband_vec(fFreqBandLabelSet.begin(), fFreqBandLabelSet.end());
+        std::vector< std::string > pprod_vec(fPolPairSet.begin(), fPolPairSet.end() );
+        fTags.SetTagValue("frequency_band_set", fband_vec);
+        fTags.SetTagValue("polarization_product_set", pprod_vec);
     }
     else
     {
