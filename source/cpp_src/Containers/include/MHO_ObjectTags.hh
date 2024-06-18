@@ -93,7 +93,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         template<typename XValueType>
         bool GetTagValue(const char* tag_name, XValueType& tag_value)
         {
-            std::string tmp;
+            std::string tmp(tag_name);
             return GetTagValue(tmp, tag_value);
         }
 
