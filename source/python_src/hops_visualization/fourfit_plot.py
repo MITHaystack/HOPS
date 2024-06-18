@@ -15,6 +15,8 @@ import pylab
 from matplotlib.ticker import FormatStrFormatter
 from matplotlib.ticker import AutoMinorLocator
 
+import matplotlib.style as mplstyle
+mplstyle.use('fast')
 
 #these don't do much, still slow
 #import matplotlib.style as mplstyle
@@ -835,6 +837,17 @@ def make_data_stats_text(plot_dict):
     plt.text(0.41,0.095,textstr100,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='k')
 
 
+def press_event_handler(event):
+    if event.key == 'enter': #exit on enter
+        plt.close('all')
+        fig.canvas.flush_events()
+    if event.key == "escape": #exit on escape
+        plt.close('all')
+        fig.canvas.flush_events()
+    if event.key == " ": #exit on space bar
+        plt.close('all')
+        fig.canvas.flush_events()
+
 
 def make_fourfit_plot(plot_dict, show_on_screen, filename):
     '''
@@ -875,8 +888,13 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     make_window_table(plot_dict) #constructs the (sbd,mbd,dr,ion) window limits table
     make_data_stats_text(plot_dict) #constructs the data statistics/summary text
 
-    if show_on_screen:
-        pylab.show()
-
     if filename != "":
         pylab.savefig(filename)
+
+    if show_on_screen:
+        #handler to capture key presses to exit plot and continue
+        fig.canvas.mpl_connect('key_press_event', press_event_handler) 
+        pylab.show() #blocking
+
+    plt.close('all')
+    fig.canvas.flush_events()
