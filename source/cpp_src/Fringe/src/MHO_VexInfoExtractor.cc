@@ -227,7 +227,7 @@ MHO_VexInfoExtractor::extract_sample_rate(const mho_json& vexInfo, MHO_Parameter
 void
 MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
 {
-    std::string baseline = paramStore->GetAs<std::string>("/cmdline/baseline");
+    std::string baseline = paramStore->GetAs<std::string>("/pass/baseline");
     std::string ref_station_mk4id = std::string(1,baseline[0]);
     std::string rem_station_mk4id = std::string(1,baseline[1]);
 
