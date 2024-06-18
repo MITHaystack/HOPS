@@ -40,10 +40,9 @@
 
 using namespace hops;
 
-void DetermineScans(MHO_ParameterStore& param, std::vector< std::string >& scans)
+void DetermineScans(const std::string& initial_dir, std::vector< std::string >& scans)
 {
     scans.clear();
-    std::string initial_dir = param.GetAs<std::string>("/cmdline/directory");
     scans.push_back(initial_dir);
 
     //TODO FIXME...for now we only treat the single directory case
@@ -51,7 +50,7 @@ void DetermineScans(MHO_ParameterStore& param, std::vector< std::string >& scans
     //we need to loop over all the sub-dirs and determine if they are scans directories
 }
 
-void DetermineBaselines(std::string dir, std::vector< std::pair< std::string, std::string > >& baseline_files)
+void DetermineBaselines(const std::string& dir, const std::string& baseline, std::vector< std::pair< std::string, std::string > >& baseline_files)
 {
     baseline_files.clear();
     std::vector< std::string > corFiles;
@@ -68,24 +67,42 @@ void DetermineBaselines(std::string dir, std::vector< std::pair< std::string, st
     tokenizer.SetIncludeEmptyTokensFalse();
     for(std::size_t i=0; i<corFiles.size(); i++)
     {
-        tokenizer.SetString( &(corFiles[i]) );
+        std::string bname = MHO_DirectoryInterface::GetBasename(corFiles[i]);
+        tokenizer.SetString( &bname );
         std::vector< std::string > tok;
         tokenizer.GetTokens(&tok);
         if(tok.size() == 3)
         {
+            std::cout<<"tok[0] = "<<tok[0]<<std::endl;
             if(tok[0].size() == 2)
             {
                 std::cout<<"got a baseline: "<<tok[0]<<" in "<<corFiles[i]<<std::endl;
-                baseline_files.push_back( std::make_pair(tok[0], corFiles[i]) );
+                std::string bl = tok[0];
+                bool keep = false;
+                if(baseline == "??"){keep = true;}
+                if(baseline[0]  == '?' && baseline[1] == bl[1]){keep = true;}
+                if(baseline[1] == '?' && baseline[0] == bl[0]){keep = true;}
+                if(baseline == bl){keep = true;}
+                if(keep)
+                {
+                    std::cout<<"keeping a baseline: "<<bl<<" in "<<corFiles[i]<<std::endl;
+                    baseline_files.push_back( std::make_pair(bl, corFiles[i]) );
+                }
             }
         }
     }
 }
 
-void DetermineFGroupsAndPolProducts(std::string filename, std::vector< std::string >& fgroups, std::vector< std::string >& pprods )
+void DetermineFGroupsAndPolProducts(const std::string& filename, 
+                                    const std::string& cmd_fgroup, 
+                                    const std::string& cmd_pprod,
+                                    std::vector< std::string >& fgroups, 
+                                    std::vector< std::string >& pprods )
 {
     fgroups.clear();
     pprods.clear();
+    
+    std::cout<<"looking at: "<<filename<<std::endl;
 
     //get uuid for MHO_ObjectTags object
     MHO_ContainerDictionary cdict;
@@ -106,41 +123,93 @@ void DetermineFGroupsAndPolProducts(std::string filename, std::vector< std::stri
         {
             offset_bytes = byte_offsets[i];
             found = true;
+            std::cout<<"found the tag object"<<std::endl;
             break; //only first tag object is used
         }
     }
 
+    std::vector< std::string > tmp_fgroups;
+    std::vector< std::string > tmp_pprods;
     if(found)
     {
         inter.OpenToReadAtOffset(filename, offset_bytes);
         MHO_ObjectTags obj;
         MHO_FileKey obj_key;
+        //we read the tags object
+        //now pull the pol-products and frequency groups info
+        //and check them agains the command line arguments
         bool ok = inter.Read(obj, obj_key);
+        
+        std::cout<<"read the object"<<std::endl;
+        // std::cout<< obj.GetMetaDataAsJSON().dump(2)<<std::endl;
+        
         if(ok)
         {
-            //we read the tags object, now pull the pol-products and frequency groups info
             if( obj.IsTagPresent("polarization_product_set") )
             {
-                obj.GetTagValue("polarization_product_set", pprods);
-                for(std::size_t i=0; i<pprods.size(); i++)
+                obj.GetTagValue("polarization_product_set", tmp_pprods);
+                std::cout<<"size of pol prod set: "<<tmp_pprods.size()<<std::endl;
+                for(std::size_t i=0; i<tmp_pprods.size(); i++)
                 {
-                    std::cout<<"got a pprod: "<<pprods[i]<<std::endl;
+                    std::cout<<"got a pprod: "<<tmp_pprods[i]<<std::endl;
+                    //only if pol-product is unspecified, will we do them all
+                    //otherwise only the specified pol-product will be used
+                    bool keep = false;
+                    if(cmd_pprod == "??"){keep = true;}
+                    if(keep)
+                    {
+                        pprods.push_back(tmp_pprods[i]);
+                        std::cout<<"keeping a pprod: "<<tmp_pprods[i]<<std::endl;
+                    }
                 }
-
+            }
+            else 
+            {
+                msg_error("main", "no polarization_product_set present in MHO_ObjectTags" << eom);
             }
 
             if( obj.IsTagPresent("frequency_band_set") )
             {
-                obj.GetTagValue("frequency_band_set", fgroups);
-                for(std::size_t i=0; i<fgroups.size(); i++)
+                obj.GetTagValue("frequency_band_set", tmp_fgroups);
+                std::cout<<"size of freq band set: "<<tmp_fgroups.size()<<std::endl;
+                for(std::size_t i=0; i<tmp_fgroups.size(); i++)
                 {
-                    std::cout<<"got a fgroup: "<<fgroups[i]<<std::endl;
+                    std::cout<<"got a fgroup: "<<tmp_fgroups[i]<<std::endl;
+                    //if fgroup is unspecified we do them all
+                    //otherwise we only keep the one selected
+                    bool keep = false;
+                    if(cmd_fgroup == "?"){keep = true;}
+                    if(cmd_fgroup == tmp_fgroups[i]){keep = true;}
+                    if(keep)
+                    {
+                        fgroups.push_back(tmp_fgroups[i]);
+                        std::cout<<"keeping a fgroup: "<<tmp_fgroups[i]<<std::endl;
+                    }
                 }
             }
+            else 
+            {
+                msg_error("main", "no frequency_band_set present in MHO_ObjectTags" << eom);
+            }
+        }
+        else 
+        {
+            msg_error("main", "could not determine polarization products or frequency bands from: "<< filename << eom);
         }
         inter.Close();
     }
+    else 
+    {
+        msg_error("main", "no MHO_ObjectTags object found in file: "<< filename << eom);
+    }
 
+    //if a pol-product (or a linear combination was specified)
+    //make sure it gets through here 
+    if(cmd_pprod != "??")
+    {
+        pprods.clear();
+        pprods.push_back(cmd_pprod);
+    }
 }
 
 
@@ -156,51 +225,61 @@ int main(int argc, char** argv)
     int parse_status = MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(argc, argv, &cmdline_params );
     if(parse_status != 0){msg_fatal("main", "could not parse command line options." << eom); std::exit(1);}
 
-    //data loop order is scans, then baselines, then fgroups, then pol-producs
+    //data-loop order is scans, then baselines, then fgroups, then pol-products
     std::vector< std::string > scans; //list of scan directories
     std::vector< std::pair< std::string, std::string > > baseline_files;
     std::vector< std::string > fgroups;
     std::vector< std::string > polproducts;
 
-    DetermineScans(cmdline_params, scans);
+    //determine which directories contain scans to process
+    std::string initial_dir = cmdline_params.GetAs<std::string>("/cmdline/directory");
+    DetermineScans(initial_dir, scans);
     cmdline_params.Dump(); //TODO REMOVE
 
     for(auto sc = scans.begin(); sc != scans.end(); sc++)
     {
         std::string scan_dir = *sc;
+        std::cout<<"scan directory = "<<scan_dir<<std::endl;
         std::string root_file = MHO_BasicFringeDataConfiguration::find_associated_root_file(scan_dir);
+        std::cout<<"root file = "<<root_file<<std::endl;
         if(root_file == ""){continue;} //TODO FIXME get rid of this!!
 
-        MHO_FringeData fringeData;
-        fringeData.GetParameterStore()->CopyFrom(cmdline_params); //copy in command line info
-        fringeData.GetParameterStore()->Set("directory", scan_dir); //point to current scan
-        fringeData.GetParameterStore()->Set("root_file", root_file); //point to current root file
-
-        //populate a few necessary parameters and  initialize the scan data store
-        bool scan_dir_ok = MHO_BasicFringeDataConfiguration::initialize_scan_data(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
-
-        DetermineBaselines(scan_dir, baseline_files);
+        std::string cmd_bl = cmdline_params.GetAs<std::string>("/cmdline/baseline"); //if not passed, will be "??"
+        DetermineBaselines(scan_dir, cmd_bl, baseline_files);
 
         //loop over all baselines
         for(auto bl = baseline_files.begin(); bl != baseline_files.end(); bl++)
         {
+
             std::string baseline = bl->first;
             std::string corFile = bl->second;
-            DetermineFGroupsAndPolProducts(corFile, fgroups, polproducts);
 
-            // if( !(fringeData.GetScanDataStore()->IsBaselinePresent(*bl) ) )
-            // {
-            //     msg_error("fringe", "cannot find the specified baseline: " << *bl << " in " << scan_dir << eom);
-            //     continue;
-            // }
-
-            MHO_BasicFringeDataConfiguration::populate_initial_parameters(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
+            std::cout<<"working on baseline: "<<baseline<<std::endl;
+            std::string cmd_fg = cmdline_params.GetAs<std::string>("/cmdline/frequency_group"); //if not passed, this will be "?"
+            std::string cmd_pp = cmdline_params.GetAs<std::string>("/cmdline/polprod"); //if not passed, this will be "??"
+            DetermineFGroupsAndPolProducts(corFile, cmd_fg, cmd_pp, fgroups, polproducts);
 
             for(auto fg = fgroups.begin(); fg != fgroups.end(); fg++)
             {
+                std::string fgroup = *fg;
                 //loop over all pol-products
                 for(auto pprod = polproducts.begin(); pprod != polproducts.end(); pprod++)
                 {
+                    std::string polprod = *pprod;
+                    
+                    //populate a few necessary parameters and  initialize the fringe/scan data
+                    MHO_FringeData fringeData;
+                    fringeData.GetParameterStore()->CopyFrom(cmdline_params); //copy in command line info
+                    //set the current pass info (directory, root_file, source, baseline, pol-product, frequency-group)
+                    fringeData.GetParameterStore()->Set("/pass/directory", scan_dir);
+                    fringeData.GetParameterStore()->Set("/pass/root_file", root_file);
+                    fringeData.GetParameterStore()->Set("/pass/baseline", baseline);
+                    fringeData.GetParameterStore()->Set("/pass/polprod", polprod);
+                    fringeData.GetParameterStore()->Set("/pass/frequency_group", fgroup);
+                    //initializes the scan data store, reads the ovex file and sets the value of '/pass/source'
+                    bool scan_dir_ok = MHO_BasicFringeDataConfiguration::initialize_scan_data(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
+                    
+                    MHO_BasicFringeDataConfiguration::populate_initial_parameters(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
 
                     //parse the control file and form the control statements
                     MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(), fringeData.GetControlFormat(), fringeData.GetControlStatements() );
@@ -251,8 +330,6 @@ int main(int argc, char** argv)
                     ////////////////////////////////////////////////////////////////////////////
                     bool test_mode = fringeData.GetParameterStore()->GetAs<bool>("/cmdline/test_mode");
                     bool show_plot = fringeData.GetParameterStore()->GetAs<bool>("/cmdline/show_plot");
-
-
                     mho_json plot_data = fringeData.GetPlotData();
 
                     profiler_stop();
@@ -281,8 +358,6 @@ int main(int argc, char** argv)
                             fexporter.ExportFringeFile();
                         }
                     }
-
-
 
                     #ifdef USE_PYBIND11
                     if(show_plot)

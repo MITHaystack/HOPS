@@ -27,7 +27,7 @@ MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(std::string baseline_fr
     {
         //no ':' present, so we must only have a baseline specification
         baseline = baseline_freqgrp;
-        freqgrp = "?";
+        freqgrp = "?"; //not passed, set to wildcard
         if(baseline.size() != 2) //error out if something odd was passed
         {
             msg_fatal("fringe", "baseline must be passed as 2-char code."<< eom);
@@ -201,7 +201,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     int ap_per_seg = 0; //'-s' specify the APs to be averaged per plot-segment
     bool test_mode = false; //'-t' if true, then no output is written
     bool update_mode = false; //'-u' not yet enabled
-    std::string polprod = ""; //'-P' polarization product argument (e.g XX or I or RR+LL)
+    std::string polprod = "??"; //'-P' polarization product argument (e.g XX or I or RR+LL)
     std::string reftime = ""; //'-T' specify the fourfit reference time - not yet enabled
     bool xwindows; //'-x' same as option '-p' we no long use pgplot/xwindows
     bool xpower_output = false; //-X export xpower spectrum
@@ -313,7 +313,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
 
     //clean the directory string
     std::string directory = MHO_BasicFringeDataConfiguration::sanitize_directory(input);
-    //if there is no root file (i.e. we were passed and experiment directory, we get and empty string)
+    //if there is no root file (i.e. we were passed and experiment directory, we return an empty string)
     std::string root_file = MHO_BasicFringeDataConfiguration::find_associated_root_file(input);
 
     //pass the extracted command line info back in the parameter store
@@ -349,7 +349,9 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
 bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* paramStore, MHO_ScanDataStore* scanStore)
 {
     //this should all be present and ok at this point
-    std::string directory = paramStore->GetAs<std::string>("directory");
+    std::string directory = paramStore->GetAs<std::string>("/pass/directory");
+    
+    std::cout<<" the dir = "<<directory<< std::endl;
 
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE SCAN DIRECTORY
@@ -372,7 +374,13 @@ bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
     //load root file and extract useful vex info into parameter store
     auto vexInfo = scanStore->GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(vexInfo, paramStore);
-
+    
+    // //set the source name information in this pass ...TODO FIXME, do we really need this?
+    // std::string source_name;
+    // bool ok = vexInfo.Get("/vex/scan/source/name", source_name);
+    // if(!ok){source_name = "";}
+    // paramStore->Set("/pass/source", source_name);
+    // 
     return true;
 }
 
@@ -386,11 +394,11 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     // paramStore->Set("/status/skipped", false);
 
     //these should all be present and ok at this point
-    std::string directory = paramStore->GetAs<std::string>("/cmdline/directory");
+    std::string directory = paramStore->GetAs<std::string>("/pass/directory");
     std::string control_file = paramStore->GetAs<std::string>("/cmdline/control_file");
-    std::string baseline = paramStore->GetAs<std::string>("/cmdline/baseline");
-    std::string polprod = paramStore->GetAs<std::string>("/cmdline/polprod");
-    std::string fgroup = paramStore->GetAs<std::string>("/cmdline/frequency_group");
+    std::string baseline = paramStore->GetAs<std::string>("/pass/baseline");
+    std::string polprod = paramStore->GetAs<std::string>("/pass/polprod");
+    std::string fgroup = paramStore->GetAs<std::string>("/pass/frequency_group");
 
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE PARAMETERS
