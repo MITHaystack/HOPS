@@ -46,6 +46,19 @@ class MHO_BasicFringeDataConfiguration
         static int sanity_check(MHO_ParameterStore* paramStore);
 
         static int parse_fourfit_command_line(int argc, char** argv, MHO_ParameterStore* paramStore);
+        
+        
+        
+        static void DetermineScans(const std::string& initial_dir, std::vector< std::string >& scans);
+
+
+        static void DetermineBaselines(const std::string& dir, const std::string& baseline, std::vector< std::pair< std::string, std::string > >& baseline_files);
+
+        static void DetermineFGroupsAndPolProducts(const std::string& filename, 
+                                            const std::string& cmd_fgroup, 
+                                            const std::string& cmd_pprod,
+                                            std::vector< std::string >& fgroups, 
+                                            std::vector< std::string >& pprods );
 
         //some post-command line parse initialization (populates the scan store)
         static bool initialize_scan_data(MHO_ParameterStore*, MHO_ScanDataStore* scanStore);
