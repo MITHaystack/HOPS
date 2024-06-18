@@ -1,13 +1,15 @@
 
+import time
 import os, sys
 import numpy as np
 import matplotlib
 #are any of these backends faster? matplotlib is abysmally slow
 # matplotlib.use("Agg")
+# matplotlib.use("TkAgg")
 # matplotlib.use('Qt5Cairo')
 
 
-
+ 
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 matplotlib.rcParams.update({'savefig.dpi':300})
@@ -872,13 +874,25 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     # Build the figure.  We'll construct this figure using many subplots, with different grid specifications.
     fig = pylab.figure(1)
 
+    t1 = time.process_time()
     make_dr_mbd_plot(plot_dict) #constructs the delay-rate/multiband delay twin plot
     make_sbd_dtec_plot(plot_dict) #constructs the single-band delay and (ion-dTEC) twin plot
     make_xpower_plot(plot_dict) #constructs the cross-power spectrum phase/amp twin plot
+    t2 = time.process_time()
+
+    print("time for first few plots: ", t2 - t1)
+
+    #THESE PLOTS ARE SUPER SLOW
+    t1 = time.process_time()
     make_channel_segment_plots(plot_dict) #constructs the per-channel phase/amp plots
     make_channel_segment_validity_plots(plot_dict) #constructs the USB/LSB validity flags
     make_pcal_plots(plot_dict) #constructs the per-channel p-cal plots
     make_channel_info_table(plot_dict) #constructs the channel/pcal info table
+    t2 = time.process_time()
+    
+    print("time for slow functions: ", t2 - t1)
+
+    t1 = time.process_time()
     make_info_text_box(plot_dict) #constructs fringe summary text box
     make_top_info_text(plot_dict) #constructs the title/top-page info
     make_model_resid_info_text(plot_dict) #constructs the a priori model, totals, and residuals text at the bottom
@@ -887,6 +901,9 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     make_amplitude_table(plot_dict) #constructs the amplitude table
     make_window_table(plot_dict) #constructs the (sbd,mbd,dr,ion) window limits table
     make_data_stats_text(plot_dict) #constructs the data statistics/summary text
+    t2 = time.process_time()
+    
+    print("time for rest of text functions: ", t2 - t1)
 
     if filename != "":
         pylab.savefig(filename)
