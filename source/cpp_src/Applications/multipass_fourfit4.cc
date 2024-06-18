@@ -216,6 +216,12 @@ void DetermineFGroupsAndPolProducts(const std::string& filename,
 int main(int argc, char** argv)
 {
     profiler_start();
+    
+    #ifdef USE_PYBIND11
+    // start the interpreter and keep it alive, need this or we segfault
+    py::scoped_interpreter guard{};
+    configure_pypath();
+    #endif
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Snapshot::GetInstance().AcceptAllKeys();
@@ -294,12 +300,6 @@ int main(int argc, char** argv)
                     if(do_ion){ ffit = new MHO_IonosphericFringeFitter(&fringeData);}
                     else{ ffit = new MHO_BasicFringeFitter(&fringeData);}
 
-                    #ifdef USE_PYBIND11
-                    // start the interpreter and keep it alive, need this or we segfault
-                    py::scoped_interpreter guard{};
-                    configure_pypath();
-
-                    #endif
 
                     ffit->Configure();
 
@@ -312,7 +312,6 @@ int main(int argc, char** argv)
                     ffit->GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_flagging", "python_flagging");
                     ffit->GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_calibration", "python_calibration");
                     #endif
-
 
                     //initialize and perform run loop
                     ffit->Initialize();
