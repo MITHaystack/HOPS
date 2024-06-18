@@ -346,6 +346,183 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
 }
 
 
+
+void 
+MHO_BasicFringeDataConfiguration::DetermineScans(const std::string& initial_dir, std::vector< std::string >& scans)
+{
+    scans.clear();
+    scans.push_back(initial_dir);
+
+    //TODO FIXME...for now we only treat the single directory case
+    //if no root file was located, then we might be running over a whole experiment directory
+    //we need to loop over all the sub-dirs and determine if they are scans directories
+}
+
+void 
+MHO_BasicFringeDataConfiguration::DetermineBaselines(const std::string& dir, const std::string& baseline, std::vector< std::pair< std::string, std::string > >& baseline_files)
+{
+    baseline_files.clear();
+    std::vector< std::string > corFiles;
+    MHO_DirectoryInterface dirInterface;
+    dirInterface.SetCurrentDirectory(dir);
+    dirInterface.ReadCurrentDirectory();
+    dirInterface.GetFilesMatchingExtention(corFiles, "cor");
+
+    //loop over 'cor' files and extract the 2-character baseline code
+    //TODO...eventually we want to eliminate the need to single-char station codes
+    //(so that things like 'Gs-Wf.ABCDEF.cor' are also possible)
+    MHO_Tokenizer tokenizer;
+    tokenizer.SetDelimiter(".");
+    tokenizer.SetIncludeEmptyTokensFalse();
+    for(std::size_t i=0; i<corFiles.size(); i++)
+    {
+        std::string bname = MHO_DirectoryInterface::GetBasename(corFiles[i]);
+        tokenizer.SetString( &bname );
+        std::vector< std::string > tok;
+        tokenizer.GetTokens(&tok);
+        if(tok.size() == 3)
+        {
+            std::cout<<"tok[0] = "<<tok[0]<<std::endl;
+            if(tok[0].size() == 2)
+            {
+                std::cout<<"got a baseline: "<<tok[0]<<" in "<<corFiles[i]<<std::endl;
+                std::string bl = tok[0];
+                bool keep = false;
+                if(baseline == "??"){keep = true;}
+                if(baseline[0]  == '?' && baseline[1] == bl[1]){keep = true;}
+                if(baseline[1] == '?' && baseline[0] == bl[0]){keep = true;}
+                if(baseline == bl){keep = true;}
+                if(keep)
+                {
+                    std::cout<<"keeping a baseline: "<<bl<<" in "<<corFiles[i]<<std::endl;
+                    baseline_files.push_back( std::make_pair(bl, corFiles[i]) );
+                }
+            }
+        }
+    }
+}
+
+void 
+MHO_BasicFringeDataConfiguration::DetermineFGroupsAndPolProducts(const std::string& filename, 
+                                    const std::string& cmd_fgroup, 
+                                    const std::string& cmd_pprod,
+                                    std::vector< std::string >& fgroups, 
+                                    std::vector< std::string >& pprods )
+{
+    fgroups.clear();
+    pprods.clear();
+    
+    std::cout<<"looking at: "<<filename<<std::endl;
+
+    //get uuid for MHO_ObjectTags object
+    MHO_ContainerDictionary cdict;
+    MHO_UUID tag_uuid = cdict.GetUUIDFor<MHO_ObjectTags>();
+
+    //pull all the keys and byte offsets for each object
+    std::vector< MHO_FileKey > ikeys;
+    std::vector< std::size_t > byte_offsets;
+    MHO_BinaryFileInterface inter;
+    inter.ExtractFileObjectKeysAndOffsets(filename, ikeys, byte_offsets);
+
+    //loop over keys and offsets, looking for tags offset
+    bool found = false;
+    std::size_t offset_bytes = 0;
+    for(std::size_t i=0; i<ikeys.size(); i++)
+    {
+        if(ikeys[i].fTypeId == tag_uuid)
+        {
+            offset_bytes = byte_offsets[i];
+            found = true;
+            std::cout<<"found the tag object"<<std::endl;
+            break; //only first tag object is used
+        }
+    }
+
+    std::vector< std::string > tmp_fgroups;
+    std::vector< std::string > tmp_pprods;
+    if(found)
+    {
+        inter.OpenToReadAtOffset(filename, offset_bytes);
+        MHO_ObjectTags obj;
+        MHO_FileKey obj_key;
+        //we read the tags object
+        //now pull the pol-products and frequency groups info
+        //and check them agains the command line arguments
+        bool ok = inter.Read(obj, obj_key);
+        
+        std::cout<<"read the object"<<std::endl;
+        // std::cout<< obj.GetMetaDataAsJSON().dump(2)<<std::endl;
+        
+        if(ok)
+        {
+            if( obj.IsTagPresent("polarization_product_set") )
+            {
+                obj.GetTagValue("polarization_product_set", tmp_pprods);
+                std::cout<<"size of pol prod set: "<<tmp_pprods.size()<<std::endl;
+                for(std::size_t i=0; i<tmp_pprods.size(); i++)
+                {
+                    std::cout<<"got a pprod: "<<tmp_pprods[i]<<std::endl;
+                    //only if pol-product is unspecified, will we do them all
+                    //otherwise only the specified pol-product will be used
+                    bool keep = false;
+                    if(cmd_pprod == "??"){keep = true;}
+                    if(keep)
+                    {
+                        pprods.push_back(tmp_pprods[i]);
+                        std::cout<<"keeping a pprod: "<<tmp_pprods[i]<<std::endl;
+                    }
+                }
+            }
+            else 
+            {
+                msg_error("fringe", "no polarization_product_set present in MHO_ObjectTags" << eom);
+            }
+
+            if( obj.IsTagPresent("frequency_band_set") )
+            {
+                obj.GetTagValue("frequency_band_set", tmp_fgroups);
+                std::cout<<"size of freq band set: "<<tmp_fgroups.size()<<std::endl;
+                for(std::size_t i=0; i<tmp_fgroups.size(); i++)
+                {
+                    std::cout<<"got a fgroup: "<<tmp_fgroups[i]<<std::endl;
+                    //if fgroup is unspecified we do them all
+                    //otherwise we only keep the one selected
+                    bool keep = false;
+                    if(cmd_fgroup == "?"){keep = true;}
+                    if(cmd_fgroup == tmp_fgroups[i]){keep = true;}
+                    if(keep)
+                    {
+                        fgroups.push_back(tmp_fgroups[i]);
+                        std::cout<<"keeping a fgroup: "<<tmp_fgroups[i]<<std::endl;
+                    }
+                }
+            }
+            else 
+            {
+                msg_error("fringe", "no frequency_band_set present in MHO_ObjectTags" << eom);
+            }
+        }
+        else 
+        {
+            msg_error("fringe", "could not determine polarization products or frequency bands from: "<< filename << eom);
+        }
+        inter.Close();
+    }
+    else 
+    {
+        msg_error("fringe", "no MHO_ObjectTags object found in file: "<< filename << eom);
+    }
+
+    //if a pol-product (or a linear combination was specified)
+    //make sure it gets through here 
+    if(cmd_pprod != "??")
+    {
+        pprods.clear();
+        pprods.push_back(cmd_pprod);
+    }
+}
+
+
 bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* paramStore, MHO_ScanDataStore* scanStore)
 {
     //this should all be present and ok at this point
