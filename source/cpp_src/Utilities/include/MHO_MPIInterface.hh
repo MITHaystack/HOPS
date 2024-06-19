@@ -55,6 +55,9 @@ class MHO_MPIInterface
         //use to safely print messages from each process without clobbering
         void PrintMessage(std::string msg);
 
+        //broadcast a string message to all processes
+        void BroadcastString(std::string& msg);
+
         //routines to be used by programs which split the processes into two
         //groups bases on even/odd local process rank
         bool SplitMode(){ return fSplitMode; };
