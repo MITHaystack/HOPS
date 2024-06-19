@@ -228,12 +228,15 @@ MHO_MPIInterface::BroadcastString(std::string& msg)
     std::size_t msg_size = msg.size();
 
     //first broadcast size of the message to the other processes
-    MPI_Bcast(&msg_size, msg_size, MPI_UNSIGNED, 0, MPI_COMM_WORLD);
+    MPI_Bcast(&msg_size, 1, MPI_UNSIGNED, 0, MPI_COMM_WORLD);
 
     //create some buffer space
     std::string buf;
     buf.resize(msg_size);
     if(fGlobalProcessID == 0){buf = msg;}
+
+    //now broadcast the message contents to all processes
+    MPI_Bcast(&(buf[0]), msg_size, MPI_CHAR, 0, MPI_COMM_WORLD);
 
     //now every process should have the root/master's msg in the buffer, return
     msg = buf;
