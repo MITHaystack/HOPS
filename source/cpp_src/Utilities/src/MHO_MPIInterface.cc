@@ -221,6 +221,25 @@ void MHO_MPIInterface::PrintMessage(std::string msg)
 }
 
 
+void
+MHO_MPIInterface::BroadcastString(std::string& msg)
+{
+    //if we are the root/master process, figure out the size of the message
+    std::size_t msg_size = msg.size();
+
+    //first broadcast size of the message to the other processes
+    MPI_Bcast(&msg_size, msg_size, MPI_UNSIGNED, 0, MPI_COMM_WORLD);
+
+    //create some buffer space
+    std::string buf;
+    buf.resize(msg_size);
+    if(fGlobalProcessID == 0){buf = msg;}
+
+    //now every process should have the root/master's msg in the buffer, return
+    msg = buf;
+}
+
+
 void MHO_MPIInterface::DetermineLocalRank()
 {
     #ifdef LOCAL_RANK_MPI

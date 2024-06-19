@@ -38,12 +38,22 @@
 #include "MHO_MK4FringeExport.hh"
 
 
+#include "MHO_MPIInterfaceWrapper.hh"
+
+
 using namespace hops;
 
 
 int main(int argc, char** argv)
 {
     profiler_start();
+
+    #ifdef HOPS_USE_MPI
+    MHO_MPIInterface::GetInstance()->Initialize(&argc, &argv, true); //true -> run with no local even/odd split
+    int process_id = MHO_MPIInterface::GetInstance()->GetGlobalProcessID();
+    int local_id = MHO_MPIInterface::GetInstance()->GetLocalProcessID();
+    int n_processes = MHO_MPIInterface::GetInstance()->GetNProcesses();
+    #endif
 
     #ifdef USE_PYBIND11
     // start the interpreter and keep it alive, need this or we segfault
@@ -64,47 +74,77 @@ int main(int argc, char** argv)
     std::vector< std::pair< std::string, std::string > > baseline_files;
     std::vector< std::string > fgroups;
     std::vector< std::string > polproducts;
-
-    //determine which directories contain scans to process
-    std::string initial_dir = cmdline_params.GetAs<std::string>("/cmdline/directory");
-    MHO_BasicFringeDataConfiguration::determine_scans(initial_dir, scans);
-
-    //form all the data passes that must be processed
     std::vector< mho_json > pass_vector;
-    for(auto sc = scans.begin(); sc != scans.end(); sc++)
-    {
-        std::string scan_dir = *sc;
-        std::string root_file = MHO_BasicFringeDataConfiguration::find_associated_root_file(scan_dir);
-        if(root_file != "")
-        {
-            std::string cmd_bl = cmdline_params.GetAs<std::string>("/cmdline/baseline"); //if not passed, will be "??"
-            MHO_BasicFringeDataConfiguration::determine_baselines(scan_dir, cmd_bl, baseline_files);
-            for(auto bl = baseline_files.begin(); bl != baseline_files.end(); bl++)
-            {
-                std::string baseline = bl->first;
-                std::string corFile = bl->second;
-                std::string cmd_fg = cmdline_params.GetAs<std::string>("/cmdline/frequency_group"); //if not passed, this will be "?"
-                std::string cmd_pp = cmdline_params.GetAs<std::string>("/cmdline/polprod"); //if not passed, this will be "??"
-                MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts(corFile, cmd_fg, cmd_pp, fgroups, polproducts);
 
-                for(auto fg = fgroups.begin(); fg != fgroups.end(); fg++)
+    //flattened parameters (for passing via MPI)
+    std::string concat_delim = ",";
+    std::string concat_pass_scans;
+    std::string concat_pass_roots;
+    std::string concat_pass_baselines;
+    std::string concat_pass_fgroups;
+    std::string concat_pass_polproducts;
+
+    MPI_SINGLE_PROCESS
+    {
+        //determine which directories contain scans to process
+        std::string initial_dir = cmdline_params.GetAs<std::string>("/cmdline/directory");
+        MHO_BasicFringeDataConfiguration::determine_scans(initial_dir, scans);
+
+        //form all the data passes that must be processed
+        for(auto sc = scans.begin(); sc != scans.end(); sc++)
+        {
+            std::string scan_dir = *sc;
+            std::string root_file = MHO_BasicFringeDataConfiguration::find_associated_root_file(scan_dir);
+            if(root_file != "")
+            {
+                std::string cmd_bl = cmdline_params.GetAs<std::string>("/cmdline/baseline"); //if not passed, will be "??"
+                MHO_BasicFringeDataConfiguration::determine_baselines(scan_dir, cmd_bl, baseline_files);
+                for(auto bl = baseline_files.begin(); bl != baseline_files.end(); bl++)
                 {
-                    std::string fgroup = *fg;
-                    for(auto pprod = polproducts.begin(); pprod != polproducts.end(); pprod++)
+                    std::string baseline = bl->first;
+                    std::string corFile = bl->second;
+                    std::string cmd_fg = cmdline_params.GetAs<std::string>("/cmdline/frequency_group"); //if not passed, this will be "?"
+                    std::string cmd_pp = cmdline_params.GetAs<std::string>("/cmdline/polprod"); //if not passed, this will be "??"
+                    MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts(corFile, cmd_fg, cmd_pp, fgroups, polproducts);
+
+                    for(auto fg = fgroups.begin(); fg != fgroups.end(); fg++)
                     {
-                        std::string polprod = *pprod;
-                        mho_json pass;
-                        pass["directory"] = scan_dir;
-                        pass["root_file"] = root_file;
-                        pass["baseline"] = baseline;
-                        pass["polprod"] = polprod;
-                        pass["frequency_group"] = fgroup;
-                        pass_vector.push_back(pass);
-                    } //end of pol-product loop
-                } //end of frequency group loop
-            }//end of baseline loop
-        } //end only if root exists
-    } //end of scan loop
+                        std::string fgroup = *fg;
+                        for(auto pprod = polproducts.begin(); pprod != polproducts.end(); pprod++)
+                        {
+                            std::string polprod = *pprod;
+                            mho_json pass;
+                            pass["directory"] = scan_dir;
+                            pass["root_file"] = root_file;
+                            pass["baseline"] = baseline;
+                            pass["polprod"] = polprod;
+                            pass["frequency_group"] = fgroup;
+                            pass_vector.push_back(pass);
+
+                            //repeatedly append for every work item
+                            concat_pass_scans += scan_dir + concat_delim;
+                            concat_pass_roots  += root_file + concat_delim;
+                            concat_pass_baselines += baseline + concat_delim;
+                            concat_pass_polproducts += polprod + concat_delim;
+                            concat_pass_fgroups += fgroup + concat_delim;
+
+                        } //end of pol-product loop
+                    } //end of frequency group loop
+                }//end of baseline loop
+            } //end only if root exists
+        } //end of scan loop
+
+    } //end of MPI_SINGLE_PROCESS
+
+    //MPI send all of the pass information to the worker processes
+    #ifdef HOPS_USE_MPI
+        MHO_MPIInterface::GetInstance()->BroadcastString(concat_pass_scans);
+        MHO_MPIInterface::GetInstance()->BroadcastString(concat_pass_roots);
+        MHO_MPIInterface::GetInstance()->BroadcastString(concat_pass_baselines);
+        MHO_MPIInterface::GetInstance()->BroadcastString(concat_pass_fgroups);
+        MHO_MPIInterface::GetInstance()->BroadcastString(concat_pass_polproducts);
+    #endif
+
 
     std::size_t n_scans = scans.size();
     std::size_t n_pass = pass_vector.size();
@@ -245,6 +285,12 @@ int main(int argc, char** argv)
         delete ffit;
 
     } //end of pass loop
+
+
+    #ifdef HOPS_USE_MPI
+        MHO_MPIInterface::GetInstance()->GlobalBarrier();
+        MHO_MPIInterface::GetInstance()->Finalize();
+    #endif
 
     return 0;
 }
