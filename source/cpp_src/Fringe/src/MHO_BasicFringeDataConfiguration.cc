@@ -347,8 +347,8 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
 
 
 
-void 
-MHO_BasicFringeDataConfiguration::DetermineScans(const std::string& initial_dir, std::vector< std::string >& scans)
+void
+MHO_BasicFringeDataConfiguration::determine_scans(const std::string& initial_dir, std::vector< std::string >& scans)
 {
     scans.clear();
     scans.push_back(initial_dir);
@@ -358,8 +358,8 @@ MHO_BasicFringeDataConfiguration::DetermineScans(const std::string& initial_dir,
     //we need to loop over all the sub-dirs and determine if they are scans directories
 }
 
-void 
-MHO_BasicFringeDataConfiguration::DetermineBaselines(const std::string& dir, const std::string& baseline, std::vector< std::pair< std::string, std::string > >& baseline_files)
+void
+MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& dir, const std::string& baseline, std::vector< std::pair< std::string, std::string > >& baseline_files)
 {
     baseline_files.clear();
     std::vector< std::string > corFiles;
@@ -402,16 +402,16 @@ MHO_BasicFringeDataConfiguration::DetermineBaselines(const std::string& dir, con
     }
 }
 
-void 
-MHO_BasicFringeDataConfiguration::DetermineFGroupsAndPolProducts(const std::string& filename, 
-                                    const std::string& cmd_fgroup, 
+void
+MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts(const std::string& filename,
+                                    const std::string& cmd_fgroup,
                                     const std::string& cmd_pprod,
-                                    std::vector< std::string >& fgroups, 
+                                    std::vector< std::string >& fgroups,
                                     std::vector< std::string >& pprods )
 {
     fgroups.clear();
     pprods.clear();
-    
+
     std::cout<<"looking at: "<<filename<<std::endl;
 
     //get uuid for MHO_ObjectTags object
@@ -449,10 +449,10 @@ MHO_BasicFringeDataConfiguration::DetermineFGroupsAndPolProducts(const std::stri
         //now pull the pol-products and frequency groups info
         //and check them agains the command line arguments
         bool ok = inter.Read(obj, obj_key);
-        
+
         std::cout<<"read the object"<<std::endl;
         // std::cout<< obj.GetMetaDataAsJSON().dump(2)<<std::endl;
-        
+
         if(ok)
         {
             if( obj.IsTagPresent("polarization_product_set") )
@@ -473,7 +473,7 @@ MHO_BasicFringeDataConfiguration::DetermineFGroupsAndPolProducts(const std::stri
                     }
                 }
             }
-            else 
+            else
             {
                 msg_error("fringe", "no polarization_product_set present in MHO_ObjectTags" << eom);
             }
@@ -497,24 +497,24 @@ MHO_BasicFringeDataConfiguration::DetermineFGroupsAndPolProducts(const std::stri
                     }
                 }
             }
-            else 
+            else
             {
                 msg_error("fringe", "no frequency_band_set present in MHO_ObjectTags" << eom);
             }
         }
-        else 
+        else
         {
             msg_error("fringe", "could not determine polarization products or frequency bands from: "<< filename << eom);
         }
         inter.Close();
     }
-    else 
+    else
     {
         msg_error("fringe", "no MHO_ObjectTags object found in file: "<< filename << eom);
     }
 
     //if a pol-product (or a linear combination was specified)
-    //make sure it gets through here 
+    //make sure it gets through here
     if(cmd_pprod != "??")
     {
         pprods.clear();
@@ -527,7 +527,7 @@ bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
 {
     //this should all be present and ok at this point
     std::string directory = paramStore->GetAs<std::string>("/pass/directory");
-    
+
     std::cout<<" the dir = "<<directory<< std::endl;
 
     ////////////////////////////////////////////////////////////////////////////
@@ -551,13 +551,13 @@ bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
     //load root file and extract useful vex info into parameter store
     auto vexInfo = scanStore->GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(vexInfo, paramStore);
-    
+
     // //set the source name information in this pass ...TODO FIXME, do we really need this?
     // std::string source_name;
     // bool ok = vexInfo.Get("/vex/scan/source/name", source_name);
     // if(!ok){source_name = "";}
     // paramStore->Set("/pass/source", source_name);
-    // 
+    //
     return true;
 }
 

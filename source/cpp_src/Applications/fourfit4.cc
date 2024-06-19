@@ -44,7 +44,7 @@ using namespace hops;
 int main(int argc, char** argv)
 {
     profiler_start();
-    
+
     #ifdef USE_PYBIND11
     // start the interpreter and keep it alive, need this or we segfault
     py::scoped_interpreter guard{};
@@ -67,7 +67,7 @@ int main(int argc, char** argv)
 
     //determine which directories contain scans to process
     std::string initial_dir = cmdline_params.GetAs<std::string>("/cmdline/directory");
-    MHO_BasicFringeDataConfiguration::DetermineScans(initial_dir, scans);
+    MHO_BasicFringeDataConfiguration::determine_scans(initial_dir, scans);
     cmdline_params.Dump(); //TODO REMOVE
 
     for(auto sc = scans.begin(); sc != scans.end(); sc++)
@@ -79,7 +79,7 @@ int main(int argc, char** argv)
         if(root_file == ""){continue;} //TODO FIXME get rid of this!!
 
         std::string cmd_bl = cmdline_params.GetAs<std::string>("/cmdline/baseline"); //if not passed, will be "??"
-        MHO_BasicFringeDataConfiguration::DetermineBaselines(scan_dir, cmd_bl, baseline_files);
+        MHO_BasicFringeDataConfiguration::determine_baselines(scan_dir, cmd_bl, baseline_files);
 
         //loop over all baselines
         for(auto bl = baseline_files.begin(); bl != baseline_files.end(); bl++)
@@ -91,7 +91,7 @@ int main(int argc, char** argv)
             std::cout<<"working on baseline: "<<baseline<<std::endl;
             std::string cmd_fg = cmdline_params.GetAs<std::string>("/cmdline/frequency_group"); //if not passed, this will be "?"
             std::string cmd_pp = cmdline_params.GetAs<std::string>("/cmdline/polprod"); //if not passed, this will be "??"
-            MHO_BasicFringeDataConfiguration::DetermineFGroupsAndPolProducts(corFile, cmd_fg, cmd_pp, fgroups, polproducts);
+            MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts(corFile, cmd_fg, cmd_pp, fgroups, polproducts);
 
             for(auto fg = fgroups.begin(); fg != fgroups.end(); fg++)
             {
@@ -100,7 +100,7 @@ int main(int argc, char** argv)
                 for(auto pprod = polproducts.begin(); pprod != polproducts.end(); pprod++)
                 {
                     std::string polprod = *pprod;
-                    
+
                     //populate a few necessary parameters and  initialize the fringe/scan data
                     MHO_FringeData fringeData;
                     fringeData.GetParameterStore()->CopyFrom(cmdline_params); //copy in command line info
@@ -112,7 +112,7 @@ int main(int argc, char** argv)
                     fringeData.GetParameterStore()->Set("/pass/frequency_group", fgroup);
                     //initializes the scan data store, reads the ovex file and sets the value of '/pass/source'
                     bool scan_dir_ok = MHO_BasicFringeDataConfiguration::initialize_scan_data(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
-                    
+
                     MHO_BasicFringeDataConfiguration::populate_initial_parameters(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
 
                     //parse the control file and form the control statements
