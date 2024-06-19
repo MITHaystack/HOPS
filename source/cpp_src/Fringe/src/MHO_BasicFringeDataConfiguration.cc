@@ -382,10 +382,8 @@ MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& dir, co
         tokenizer.GetTokens(&tok);
         if(tok.size() == 3)
         {
-            std::cout<<"tok[0] = "<<tok[0]<<std::endl;
             if(tok[0].size() == 2)
             {
-                std::cout<<"got a baseline: "<<tok[0]<<" in "<<corFiles[i]<<std::endl;
                 std::string bl = tok[0];
                 bool keep = false;
                 if(baseline == "??"){keep = true;}
@@ -394,7 +392,6 @@ MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& dir, co
                 if(baseline == bl){keep = true;}
                 if(keep)
                 {
-                    std::cout<<"keeping a baseline: "<<bl<<" in "<<corFiles[i]<<std::endl;
                     baseline_files.push_back( std::make_pair(bl, corFiles[i]) );
                 }
             }
@@ -411,8 +408,6 @@ MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts(const std::strin
 {
     fgroups.clear();
     pprods.clear();
-
-    std::cout<<"looking at: "<<filename<<std::endl;
 
     //get uuid for MHO_ObjectTags object
     MHO_ContainerDictionary cdict;
@@ -433,7 +428,6 @@ MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts(const std::strin
         {
             offset_bytes = byte_offsets[i];
             found = true;
-            std::cout<<"found the tag object"<<std::endl;
             break; //only first tag object is used
         }
     }
@@ -449,19 +443,13 @@ MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts(const std::strin
         //now pull the pol-products and frequency groups info
         //and check them agains the command line arguments
         bool ok = inter.Read(obj, obj_key);
-
-        std::cout<<"read the object"<<std::endl;
-        // std::cout<< obj.GetMetaDataAsJSON().dump(2)<<std::endl;
-
         if(ok)
         {
             if( obj.IsTagPresent("polarization_product_set") )
             {
                 obj.GetTagValue("polarization_product_set", tmp_pprods);
-                std::cout<<"size of pol prod set: "<<tmp_pprods.size()<<std::endl;
                 for(std::size_t i=0; i<tmp_pprods.size(); i++)
                 {
-                    std::cout<<"got a pprod: "<<tmp_pprods[i]<<std::endl;
                     //only if pol-product is unspecified, will we do them all
                     //otherwise only the specified pol-product will be used
                     bool keep = false;
@@ -469,7 +457,6 @@ MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts(const std::strin
                     if(keep)
                     {
                         pprods.push_back(tmp_pprods[i]);
-                        std::cout<<"keeping a pprod: "<<tmp_pprods[i]<<std::endl;
                     }
                 }
             }
@@ -481,10 +468,8 @@ MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts(const std::strin
             if( obj.IsTagPresent("frequency_band_set") )
             {
                 obj.GetTagValue("frequency_band_set", tmp_fgroups);
-                std::cout<<"size of freq band set: "<<tmp_fgroups.size()<<std::endl;
                 for(std::size_t i=0; i<tmp_fgroups.size(); i++)
                 {
-                    std::cout<<"got a fgroup: "<<tmp_fgroups[i]<<std::endl;
                     //if fgroup is unspecified we do them all
                     //otherwise we only keep the one selected
                     bool keep = false;
@@ -493,7 +478,6 @@ MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts(const std::strin
                     if(keep)
                     {
                         fgroups.push_back(tmp_fgroups[i]);
-                        std::cout<<"keeping a fgroup: "<<tmp_fgroups[i]<<std::endl;
                     }
                 }
             }
@@ -513,7 +497,7 @@ MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts(const std::strin
         msg_error("fringe", "no MHO_ObjectTags object found in file: "<< filename << eom);
     }
 
-    //if a pol-product (or a linear combination was specified)
+    //if a pol-product was specified (or a linear combination was specified)
     //make sure it gets through here
     if(cmd_pprod != "??")
     {
@@ -527,8 +511,6 @@ bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
 {
     //this should all be present and ok at this point
     std::string directory = paramStore->GetAs<std::string>("/pass/directory");
-
-    std::cout<<" the dir = "<<directory<< std::endl;
 
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE SCAN DIRECTORY
@@ -552,12 +534,6 @@ bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
     auto vexInfo = scanStore->GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(vexInfo, paramStore);
 
-    // //set the source name information in this pass ...TODO FIXME, do we really need this?
-    // std::string source_name;
-    // bool ok = vexInfo.Get("/vex/scan/source/name", source_name);
-    // if(!ok){source_name = "";}
-    // paramStore->Set("/pass/source", source_name);
-    //
     return true;
 }
 
@@ -565,10 +541,10 @@ bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
 
 void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_ParameterStore* paramStore, MHO_ScanDataStore* scanStore)
 {
-    // //initialize by setting "is_finished" to false, and 'skipped' to false
-    // //these parameters must always be present
-    // paramStore->Set("/status/is_finished", false);
-    // paramStore->Set("/status/skipped", false);
+    //initialize by setting "is_finished" to false, and 'skipped' to false
+    //these parameters must always be present
+    paramStore->Set("/status/is_finished", false);
+    paramStore->Set("/status/skipped", false);
 
     //these should all be present and ok at this point
     std::string directory = paramStore->GetAs<std::string>("/pass/directory");
