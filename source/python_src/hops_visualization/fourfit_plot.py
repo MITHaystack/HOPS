@@ -9,7 +9,7 @@ import matplotlib
 # matplotlib.use('Qt5Cairo')
 
 
- 
+
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 matplotlib.rcParams.update({'savefig.dpi':300})
@@ -842,13 +842,10 @@ def make_data_stats_text(plot_dict):
 def press_event_handler(event):
     if event.key == 'enter': #exit on enter
         plt.close('all')
-        fig.canvas.flush_events()
     if event.key == "escape": #exit on escape
         plt.close('all')
-        fig.canvas.flush_events()
     if event.key == " ": #exit on space bar
         plt.close('all')
-        fig.canvas.flush_events()
 
 
 def make_fourfit_plot(plot_dict, show_on_screen, filename):
@@ -880,7 +877,7 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     make_xpower_plot(plot_dict) #constructs the cross-power spectrum phase/amp twin plot
     t2 = time.process_time()
 
-    print("time for first few plots: ", t2 - t1)  #takes like 0.3 sec
+    #print("time for first few plots: ", t2 - t1)  #takes like 0.3 sec
 
     #THESE PLOTS ARE SUPER SLOW
     t1 = time.process_time()
@@ -889,8 +886,8 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     make_pcal_plots(plot_dict) #constructs the per-channel p-cal plots
     make_channel_info_table(plot_dict) #constructs the channel/pcal info table
     t2 = time.process_time()
-    
-    print("time for slow functions: ", t2 - t1) #takes like 5.5 sec
+
+    #print("time for slow functions: ", t2 - t1) #takes like 5.5 sec
 
     t1 = time.process_time()
     make_info_text_box(plot_dict) #constructs fringe summary text box
@@ -902,15 +899,15 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     make_window_table(plot_dict) #constructs the (sbd,mbd,dr,ion) window limits table
     make_data_stats_text(plot_dict) #constructs the data statistics/summary text
     t2 = time.process_time()
-    
-    print("time for rest of text functions: ", t2 - t1) #takes like .05 sec
+
+    #print("time for rest of text functions: ", t2 - t1) #takes like .05 sec
 
     if filename != "":
         pylab.savefig(filename)
 
     if show_on_screen:
         #handler to capture key presses to exit plot and continue
-        fig.canvas.mpl_connect('key_press_event', press_event_handler) 
+        fig.canvas.mpl_connect('key_press_event', press_event_handler)
         pylab.show() #blocking
 
     plt.close('all')
