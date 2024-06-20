@@ -45,20 +45,40 @@ class MHO_BasicFringeDataConfiguration
         //sanity check of parameters after command line parsing
         static int sanity_check(MHO_ParameterStore* paramStore);
 
+        //parses the command line options and puts them in a parameter store object
         static int parse_fourfit_command_line(int argc, char** argv, MHO_ParameterStore* paramStore);
 
-
-
+        //determines which directories are scan data that should be processed
         static void determine_scans(const std::string& initial_dir, std::vector< std::string >& scans);
-
-
-        static void determine_baselines(const std::string& dir, const std::string& baseline, std::vector< std::pair< std::string, std::string > >& baseline_files);
-
+        
+        //determines which baselines are present for each scan
+        static void determine_baselines(const std::string& dir,
+                                        const std::string& baseline,
+                                        std::vector< std::pair< std::string, std::string > >& baseline_files);
+                                        
+        //determines what frequency groups and pol-products should be processed for each baseline
         static void determine_fgroups_polproducts(const std::string& filename,
                                             const std::string& cmd_fgroup,
                                             const std::string& cmd_pprod,
                                             std::vector< std::string >& fgroups,
                                             std::vector< std::string >& pprods );
+
+        //loops over all data and constructs (concatenated strings) containing all of the pass information
+        static void determine_passes(MHO_ParameterStore* cmdline_params, 
+                                     std::string& cscans, 
+                                     std::string& croots,
+                                     std::string& cbaselines,
+                                     std::string& cfgroups,
+                                     std::string& cpolprods);
+        
+        //takes the (concatenated) strings from determine_passes, and breaks them into a vector of json objects 
+        //describing the data item to be processed on each pass
+        static void split_passes(std::vector<mho_json>& pass_vector,
+                                 const std::string& cscans, 
+                                 const std::string& croots,
+                                 const std::string& cbaselines,
+                                 const std::string& cfgroups,
+                                 const std::string& cpolprods);
 
         //some post-command line parse initialization (populates the scan store)
         static bool initialize_scan_data(MHO_ParameterStore*, MHO_ScanDataStore* scanStore);
@@ -71,8 +91,11 @@ class MHO_BasicFringeDataConfiguration
                                            MHO_ContainerStore* containerStore,
                                            std::string ref_station_mk4id,
                                            std::string rem_station_mk4id);
+                                           
+        //initializes and executes (in order) all the operators associated with a category
         static void init_and_exec_operators(MHO_OperatorBuilderManager* build_manager, MHO_OperatorToolbox* opToolbox, const char* category);
 
+        //dumps the profiler events into a json object
         static mho_json ConvertProfileEvents(std::vector< MHO_ProfileEvent >& events);
 
 };

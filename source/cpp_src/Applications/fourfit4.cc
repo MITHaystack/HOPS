@@ -46,11 +46,9 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-    profiler_start();
-
     int process_id = 0;
     int local_id = 0;
-    int n_processes;
+    int n_processes = 1;
 
     #ifdef HOPS_USE_MPI
     MHO_MPIInterface::GetInstance()->Initialize(&argc, &argv, true); //true -> run with no local even/odd split
@@ -60,7 +58,8 @@ int main(int argc, char** argv)
     #endif
 
     #ifdef USE_PYBIND11
-    // start the interpreter and keep it alive, need this or we segfault
+    //start the interpreter and keep it alive, need this or we segfault
+    //each process has its own interpreter
     py::scoped_interpreter guard{};
     configure_pypath();
     #endif
@@ -73,129 +72,42 @@ int main(int argc, char** argv)
     int parse_status = MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(argc, argv, &cmdline_params );
     if(parse_status != 0){msg_fatal("main", "could not parse command line options." << eom); std::exit(1);}
 
-    //pass search order is scans, then baselines, then fgroups, then pol-products
-    std::vector< std::string > scans; //list of scan directories
-    std::vector< std::pair< std::string, std::string > > baseline_files;
-    std::vector< std::string > fgroups;
-    std::vector< std::string > polproducts;
-    std::vector< mho_json > pass_vector;
-
-    //flattened  pass parameters (for via MPI)
+    //flattened pass-info parameters (these are flattened into a single string primarily for MPI)
     std::string concat_delim = ",";
-    std::string concat_pass_scans;
-    std::string concat_pass_roots;
-    std::string concat_pass_baselines;
-    std::string concat_pass_fgroups;
-    std::string concat_pass_polproducts;
+    std::string cscans;
+    std::string croots;
+    std::string cbaselines;
+    std::string cfgroups;
+    std::string cpolprods;
 
     MPI_SINGLE_PROCESS
     {
-        //determine which directories contain scans to process
-        std::string initial_dir = cmdline_params.GetAs<std::string>("/cmdline/directory");
-        MHO_BasicFringeDataConfiguration::determine_scans(initial_dir, scans);
+        MHO_BasicFringeDataConfiguration::determine_passes(&cmdline_params, cscans, croots, cbaselines, cfgroups, cpolprods);
+    }
 
-        //form all the data passes that must be processed
-        for(auto sc = scans.begin(); sc != scans.end(); sc++)
-        {
-            std::string scan_dir = *sc;
-            std::string root_file = MHO_BasicFringeDataConfiguration::find_associated_root_file(scan_dir);
-            if(root_file != "")
-            {
-                std::string cmd_bl = cmdline_params.GetAs<std::string>("/cmdline/baseline"); //if not passed, will be "??"
-                MHO_BasicFringeDataConfiguration::determine_baselines(scan_dir, cmd_bl, baseline_files);
-                for(auto bl = baseline_files.begin(); bl != baseline_files.end(); bl++)
-                {
-                    std::string baseline = bl->first;
-                    std::string corFile = bl->second;
-                    std::string cmd_fg = cmdline_params.GetAs<std::string>("/cmdline/frequency_group"); //if not passed, this will be "?"
-                    std::string cmd_pp = cmdline_params.GetAs<std::string>("/cmdline/polprod"); //if not passed, this will be "??"
-                    MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts(corFile, cmd_fg, cmd_pp, fgroups, polproducts);
-
-                    for(auto fg = fgroups.begin(); fg != fgroups.end(); fg++)
-                    {
-                        std::string fgroup = *fg;
-                        for(auto pprod = polproducts.begin(); pprod != polproducts.end(); pprod++)
-                        {
-                            std::string polprod = *pprod;
-                            mho_json pass;
-                            pass["directory"] = scan_dir;
-                            pass["root_file"] = root_file;
-                            pass["baseline"] = baseline;
-                            pass["polprod"] = polprod;
-                            pass["frequency_group"] = fgroup;
-                            pass_vector.push_back(pass);
-
-                            //repeatedly append for every work item
-                            concat_pass_scans += scan_dir + concat_delim;
-                            concat_pass_roots  += root_file + concat_delim;
-                            concat_pass_baselines += baseline + concat_delim;
-                            concat_pass_polproducts += polprod + concat_delim;
-                            concat_pass_fgroups += fgroup + concat_delim;
-
-                        } //end of pol-product loop
-                    } //end of frequency group loop
-                }//end of baseline loop
-            } //end only if root exists
-        } //end of scan loop
-
-    } //end of MPI_SINGLE_PROCESS
-
-    //MPI send all of the pass information to the worker processes
+    //use MPI bcast to send all of the pass information to the worker processes
     #ifdef HOPS_USE_MPI
-        MHO_MPIInterface::GetInstance()->BroadcastString(concat_pass_scans);
-        MHO_MPIInterface::GetInstance()->BroadcastString(concat_pass_roots);
-        MHO_MPIInterface::GetInstance()->BroadcastString(concat_pass_baselines);
-        MHO_MPIInterface::GetInstance()->BroadcastString(concat_pass_fgroups);
-        MHO_MPIInterface::GetInstance()->BroadcastString(concat_pass_polproducts);
-
-        std::vector< std::string > sdirs;
-        std::vector< std::string > rts;
-        std::vector< std::string > blines;
-        std::vector< std::string > fgrps;
-        std::vector< std::string > ppds;
-
-        MHO_Tokenizer tokenizer;
-        tokenizer.SetDelimiter(concat_delim);
-        tokenizer.SetIncludeEmptyTokensFalse();
-        tokenizer.SetString(&concat_pass_scans);
-        tokenizer.GetTokens(&sdirs);
-        tokenizer.SetString(&concat_pass_roots);
-        tokenizer.GetTokens(&rts);
-        tokenizer.SetString(&concat_pass_baselines);
-        tokenizer.GetTokens(&blines);
-        tokenizer.SetString(&concat_pass_fgroups);
-        tokenizer.GetTokens(&fgrps);
-        tokenizer.SetString(&concat_pass_polproducts);
-        tokenizer.GetTokens(&ppds);
-
-        //TODO FIXME...all these vectors better have the same size!
-        std::size_t npass = sdirs.size();
-
-        pass_vector.clear();
-        for(std::size_t i=0; i<npass; i++)
-        {
-            mho_json pass;
-            pass["directory"] = sdirs[i];
-            pass["root_file"] = rts[i];
-            pass["baseline"] = blines[i];
-            pass["polprod"] = ppds[i];
-            pass["frequency_group"] = fgrps[i];
-            pass_vector.push_back(pass);
-        }
-
+        MHO_MPIInterface::GetInstance()->BroadcastString(cscans);
+        MHO_MPIInterface::GetInstance()->BroadcastString(croots);
+        MHO_MPIInterface::GetInstance()->BroadcastString(cbaselines);
+        MHO_MPIInterface::GetInstance()->BroadcastString(cfgroups);
+        MHO_MPIInterface::GetInstance()->BroadcastString(cpolprods);
     #endif
 
+    std::vector< mho_json > pass_vector;
+    MHO_BasicFringeDataConfiguration::split_passes(pass_vector, cscans, croots, cbaselines, cfgroups, cpolprods);
+
     std::size_t n_pass = pass_vector.size();
-    msg_info("main", "fourfit will fringe "<<n_pass<<" passes of data" << eom);
+    MPI_SINGLE_PROCESS{ msg_info("main", "fourfit will fringe "<<n_pass<<" passes of data" << eom); }
 
     //this loop could be trivially parallelized (with the exception of plotting)
-    for(std::size_t pass_num=0; pass_num < n_pass; pass_num++)
+    for(std::size_t pass_index=0; pass_index < n_pass; pass_index++)
     {
-        if(pass_num % n_processes == local_id)
+        if(pass_index % n_processes == local_id)
         {
-
+            profiler_start();
             //grab this pass info
-            mho_json pass = pass_vector[pass_num];
+            mho_json pass = pass_vector[pass_index];
             std::string scan_dir = pass["directory"];
             std::string root_file = pass["root_file"];
             std::string baseline = pass["baseline"];
@@ -248,7 +160,6 @@ int main(int argc, char** argv)
                 ffit->Run();
                 ffit->PostRun();
             }
-
             ffit->Finalize();
 
             ////////////////////////////////////////////////////////////////////////////
@@ -305,15 +216,12 @@ int main(int argc, char** argv)
                 // }
 
                 ////////////////////////////////////////////////////////////////////////
-
                 //load our interface module -- this is extremely slow!
                 auto vis_module = py::module::import("hops_visualization");
                 auto plot_lib = vis_module.attr("fourfit_plot");
                 //call a python function on the interface class instance
                 //TODO, pass filename to save plot if needed
                 plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
-
-
             }
             #else //USE_PYBIND11
             if(show_plot)
