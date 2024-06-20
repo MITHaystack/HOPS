@@ -1,8 +1,8 @@
 {
-	"name": ""
-	"type": "",
+	"name": "baseline"
+	"type": "string",
 	"source_object": "",
 	"path": "",
-	"description": "",
+	"description": "standard baseline id",
 	"units": ""
 }

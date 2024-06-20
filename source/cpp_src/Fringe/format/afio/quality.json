@@ -1,8 +1,8 @@
 {
-	"name": ""
-	"type": "",
+	"name": "quality"
+	"type": "string",
 	"source_object": "",
 	"path": "",
-	"description": "",
+	"description": "fringe quality code",
 	"units": ""
 }

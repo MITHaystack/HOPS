@@ -1,8 +1,8 @@
 {
-	"name": ""
-	"type": "",
+	"name": "freq_code"
+	"type": "string",
 	"source_object": "",
 	"path": "",
-	"description": "",
+	"description": "type 2 only",
 	"units": ""
 }
