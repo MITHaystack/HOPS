@@ -1,8 +1,8 @@
 {
-	"name": ""
-	"type": "",
-	"source_object": "",
-	"path": "",
-	"description": "",
-	"units": ""
+    "name": "time_tag"
+    "type": "",
+    "source_object": "",
+    "path": "",
+    "description": "Seconds since 0h, Jan 1 1980",
+    "units": "s"
 }

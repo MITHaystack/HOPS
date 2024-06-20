@@ -1,8 +1,8 @@
 {
-	"name": ""
-	"type": "",
+	"name": "source"
+	"type": "string",
 	"source_object": "",
 	"path": "",
-	"description": "",
+	"description": "Source name",
 	"units": ""
 }

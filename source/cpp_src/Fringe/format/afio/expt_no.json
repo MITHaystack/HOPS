@@ -1,8 +1,8 @@
 {
-	"name": ""
-	"type": "",
-	"source_object": "",
-	"path": "",
-	"description": "",
-	"units": ""
+    "name": "expt_no",
+    "type": "",
+    "source_object": "",
+    "path": "",
+    "description": "Experiment serial # ",
+    "units": ""
 }

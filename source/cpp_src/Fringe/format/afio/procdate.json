@@ -1,8 +1,8 @@
 {
-	"name": ""
-	"type": "",
-	"source_object": "",
-	"path": "",
-	"description": "",
-	"units": ""
+    "name": "procdate"
+    "type": "",
+    "source_object": "",
+    "path": "",
+    "description": "Creation date for this extent",
+    "units": ""
 }
