@@ -17,9 +17,6 @@ import pylab
 from matplotlib.ticker import FormatStrFormatter
 from matplotlib.ticker import AutoMinorLocator
 
-import matplotlib.style as mplstyle
-mplstyle.use('fast')
-
 #these don't do much, still slow
 #import matplotlib.style as mplstyle
 # mplstyle.use('fast')
