@@ -150,11 +150,14 @@ MHO_DirectoryInterface::ReadCurrentDirectory()
                         struct stat st;
                         if(stat( fullpath.c_str(), &st) == 0 )
                         {
-                            if( st.st_mode & S_IFREG ){allFiles.push_back(fullpath);}
+                            if( S_ISREG(st.st_mode) ){allFiles.push_back(fullpath);}
                             //we don't want to collect the current/parent directory, only sub-directories
                             if( fullpath != fCurrentDirectoryFullPath && fullpath != fCurrentParentFullPath)
                             {
-                                if( st.st_mode & S_IFDIR ){allDirs.push_back(fullpath);}
+                                if( S_ISDIR(st.st_mode) )
+                                {
+                                    allDirs.push_back(fullpath);
+                                }
                             }
                         }
                     }
@@ -166,7 +169,6 @@ MHO_DirectoryInterface::ReadCurrentDirectory()
         fCurrentFileList = allFiles;
         fCurrentSubDirectoryList = allDirs;
         fHaveReadDirectory = true;
-
         return true;
     }
     else
@@ -179,12 +181,12 @@ MHO_DirectoryInterface::ReadCurrentDirectory()
 
         if(fHaveReadDirectory)
         {
-            msg_warn("utility", "Already read directory: " << fCurrentDirectoryFullPath << eom);
+            msg_warn("utility", "already read directory: " << fCurrentDirectoryFullPath << eom);
         }
 
         if(!fDirectoryIsSet)
         {
-            msg_warn("utility", "Attempted to read directory with no path set." << eom);
+            msg_warn("utility", "attempted to read directory with no path set." << eom);
         }
 
         return false;
