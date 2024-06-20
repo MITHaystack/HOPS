@@ -100,7 +100,7 @@ int main(int argc, char** argv)
     //this loop could be trivially parallelized (with the exception of plotting)
     for(std::size_t pass_index=0; pass_index < n_pass; pass_index++)
     {
-        if(pass_index % n_processes == local_id)
+        if(pass_index % n_processes == process_id)
         {
             profiler_start();
 
