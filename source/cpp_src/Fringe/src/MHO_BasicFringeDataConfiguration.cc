@@ -125,8 +125,8 @@ MHO_BasicFringeDataConfiguration::find_associated_root_file(std::string dir)
     {
         if(flist.size() == 0)
         {
-            msg_warn("fringe", "no root file found in: "<< dir << eom );
-            return root_file;
+            // msg_warn("fringe", "no root file found in: "<< dir << eom );
+            return root_file; //empty root file (nothing here)
         }
         if(flist.size() > 1 )
         {
@@ -348,14 +348,45 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
 
 
 void
-MHO_BasicFringeDataConfiguration::determine_scans(const std::string& initial_dir, std::vector< std::string >& scans)
+MHO_BasicFringeDataConfiguration::determine_scans(const std::string& initial_dir, std::vector< std::string >& scans, std::vector< std::string >& roots)
 {
     scans.clear();
-    scans.push_back(initial_dir);
-
-    //TODO FIXME...for now we only treat the single directory case
-    //if no root file was located, then we might be running over a whole experiment directory
-    //we need to loop over all the sub-dirs and determine if they are scans directories
+    roots.clear();
+    //if we are only doing a single directory we will have a root file right away
+    std::string root = find_associated_root_file(initial_dir);
+    if(root == "")
+    {
+        //no root file was located, so we might be running over a whole experiment directory
+        //we need to loop over all the sub-dirs and determine if they are scans directories
+        MHO_DirectoryInterface dirInterface;
+        dirInterface.SetCurrentDirectory(initial_dir);
+        dirInterface.ReadCurrentDirectory();
+        std::vector< std::string > subdirs; 
+        dirInterface.GetSubDirectoryList(subdirs);
+        
+        //loop over all these directories and check if they have a root file
+        //if they do, then add them to the list, if not, skip 
+        for(auto it = subdirs.begin(); it != subdirs.end(); it++)
+        {
+            std::string path = *it;
+            dirInterface.SetCurrentDirectory(path);
+            dirInterface.ReadCurrentDirectory();
+            std::vector< std::string > flist;
+            std::string ext(".root.json");
+            dirInterface.GetFilesMatchingExtention(flist, ext);
+            if(flist.size() != 0)
+            {
+                scans.push_back(path + "/"); //NOTE: the trailing '/' is important!
+                roots.push_back(flist[0]);
+            }
+        }
+    }
+    else 
+    {
+        //just one scan passed
+        scans.push_back(initial_dir);
+        roots.push_back(root);
+    }
 }
 
 void
@@ -516,6 +547,7 @@ MHO_BasicFringeDataConfiguration::determine_passes(MHO_ParameterStore* cmdline_p
 {
     //pass search order is: scans, then baselines, then fgroups, then pol-products
     std::vector< std::string > scans; //list of scan directories
+    std::vector< std::string > roots; //list of associated root files
     std::vector< std::pair< std::string, std::string > > baseline_files;
     std::vector< std::string > fgroups;
     std::vector< std::string > polproducts;
@@ -534,13 +566,16 @@ MHO_BasicFringeDataConfiguration::determine_passes(MHO_ParameterStore* cmdline_p
     std::string cmd_fg = cmdline_params->GetAs<std::string>("/cmdline/frequency_group"); //if not passed, this will be "?"
     std::string cmd_pp = cmdline_params->GetAs<std::string>("/cmdline/polprod"); //if not passed, this will be "??"
     
-    determine_scans(initial_dir, scans);
+    determine_scans(initial_dir, scans, roots);
 
     //form all the data passes that must be processed
-    for(auto sc = scans.begin(); sc != scans.end(); sc++)
+    for(std::size_t sc = 0; sc < scans.size(); sc++)
     {
-        std::string scan_dir = *sc;
-        std::string root_file = find_associated_root_file(scan_dir);
+        std::string scan_dir = scans[sc];
+        std::cout<<"looking in: "<<scan_dir<<std::endl;
+        std::string root_file = roots[sc]; //find_associated_root_file(scan_dir);
+        
+        std::cout<<"associated root file??! :"<<root_file<<std::endl;
         if(root_file != "")
         {
             determine_baselines(scan_dir, cmd_bl, baseline_files);

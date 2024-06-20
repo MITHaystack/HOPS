@@ -49,7 +49,7 @@ class MHO_BasicFringeDataConfiguration
         static int parse_fourfit_command_line(int argc, char** argv, MHO_ParameterStore* paramStore);
 
         //determines which directories are scan data that should be processed
-        static void determine_scans(const std::string& initial_dir, std::vector< std::string >& scans);
+        static void determine_scans(const std::string& initial_dir, std::vector< std::string >& scans, std::vector< std::string >& roots);
         
         //determines which baselines are present for each scan
         static void determine_baselines(const std::string& dir,
