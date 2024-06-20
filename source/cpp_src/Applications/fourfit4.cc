@@ -8,8 +8,6 @@
 //option parsing and help text library
 #include "CLI11.hpp"
 
-#define EXTRA_DEBUG
-
 #include "MHO_Message.hh"
 #include "MHO_Snapshot.hh"
 #include "MHO_Timer.hh"
