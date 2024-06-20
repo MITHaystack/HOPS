@@ -37,7 +37,6 @@
 //needed to export to mark4 fringe files
 #include "MHO_MK4FringeExport.hh"
 
-
 #include "MHO_MPIInterfaceWrapper.hh"
 
 
@@ -74,15 +73,13 @@ int main(int argc, char** argv)
 
     //flattened pass-info parameters (these are flattened into a single string primarily for MPI)
     std::string concat_delim = ",";
-    std::string cscans;
-    std::string croots;
-    std::string cbaselines;
-    std::string cfgroups;
-    std::string cpolprods;
+    std::string cscans, croots, cbaselines, cfgroups, cpolprods;
 
     MPI_SINGLE_PROCESS
     {
+        msg_debug("main", "determining the data passes" << eom);
         MHO_BasicFringeDataConfiguration::determine_passes(&cmdline_params, cscans, croots, cbaselines, cfgroups, cpolprods);
+        msg_debug("main", "done determining the data passes" << eom);
     }
 
     //use MPI bcast to send all of the pass information to the worker processes
@@ -106,23 +103,14 @@ int main(int argc, char** argv)
         if(pass_index % n_processes == local_id)
         {
             profiler_start();
-            //grab this pass info
-            mho_json pass = pass_vector[pass_index];
-            std::string scan_dir = pass["directory"];
-            std::string root_file = pass["root_file"];
-            std::string baseline = pass["baseline"];
-            std::string polprod = pass["polprod"];
-            std::string fgroup = pass["frequency_group"];
 
             //populate a few necessary parameters and  initialize the fringe/scan data
             MHO_FringeData fringeData;
             fringeData.GetParameterStore()->CopyFrom(cmdline_params); //copy in command line info
+
             //set the current pass info (directory, root_file, source, baseline, pol-product, frequency-group)
-            fringeData.GetParameterStore()->Set("/pass/directory", scan_dir);
-            fringeData.GetParameterStore()->Set("/pass/root_file", root_file);
-            fringeData.GetParameterStore()->Set("/pass/baseline", baseline);
-            fringeData.GetParameterStore()->Set("/pass/polprod", polprod);
-            fringeData.GetParameterStore()->Set("/pass/frequency_group", fgroup);
+            mho_json pass = pass_vector[pass_index]; 
+            fringeData.GetParameterStore()->Set("/pass", pass);
 
             //initializes the scan data store, reads the ovex file and sets the value of '/pass/source'
             bool scan_dir_ok = MHO_BasicFringeDataConfiguration::initialize_scan_data(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
