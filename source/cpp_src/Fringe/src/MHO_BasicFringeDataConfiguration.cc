@@ -572,10 +572,7 @@ MHO_BasicFringeDataConfiguration::determine_passes(MHO_ParameterStore* cmdline_p
     for(std::size_t sc = 0; sc < scans.size(); sc++)
     {
         std::string scan_dir = scans[sc];
-        std::cout<<"looking in: "<<scan_dir<<std::endl;
-        std::string root_file = roots[sc]; //find_associated_root_file(scan_dir);
-        
-        std::cout<<"associated root file??! :"<<root_file<<std::endl;
+        std::string root_file = roots[sc];
         if(root_file != "")
         {
             determine_baselines(scan_dir, cmd_bl, baseline_files);
