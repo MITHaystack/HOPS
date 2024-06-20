@@ -62,11 +62,6 @@ if(FOURFIT_IS_FOURFIT4)
 endif()
 
 ################################################################################
-#transitory applications for migration
-# if(HOPS3_USE_CXX)
-#     add_subdirectory(${CPPSOURCE}/Applications/fourfit)
-# endif(HOPS3_USE_CXX)
-
 if(HOPS_ENABLE_TEST)
    add_subdirectory(test)
 endif(HOPS_ENABLE_TEST)
