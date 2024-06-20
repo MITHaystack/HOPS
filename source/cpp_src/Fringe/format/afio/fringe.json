@@ -1,0 +1,523 @@
+{
+    "name": "fringe",
+    "parameters" :
+    {
+        "version":
+        {
+            "type": "int",
+            "path": "/",
+            "description": "Disk format version number",
+            "units": ""
+        },
+        "fname":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "expt_no":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "extent_no":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "length":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "corel_vers":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "procdate":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "time_tag":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "ssec":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "source":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "baseline":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "quality":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "freq_code":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "mode":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "no_freq":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "archiv":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "reftap":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "remtape":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "amp":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "snr":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "resid_phas":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "sbdelay":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "mbdelay":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "delay_rate":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "esdesp":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "epoch":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "total_phas":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "total_rate":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "total_mbdelay":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "total_sbresid":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "ambiguity":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "pcals":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "root_id":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "ref_freq":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "datatype":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "ref_elev":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "rem_elev":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "ref_az":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "rem_az":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "u":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "v":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "parents":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "duration":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "offset":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "scan_offset":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "lags":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "phase_snr":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "srch_cotime":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "noloss_cotime":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "scan_id":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "polarization":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "errcode":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "ra_hrs":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "dec_deg":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        },
+        "resid_delay":
+        {
+            "type": ""
+            "path": "",
+            "description": "",
+            "units": ""
+        }
+    },
+    "fields":
+    [
+        "version",
+        "fname",
+        "expt_no",
+        "extent_no",
+        "length",
+        "corel_vers",
+        "procdate",
+        "time_tag",
+        "ssec",
+        "source",
+        "baseline",
+        "quality",
+        "freq_code",
+        "mode",
+        "no_freq",
+        "archiv",
+        "reftap",
+        "remtape",
+        "amp",
+        "snr",
+        "resid_phas",
+        "sbdelay",
+        "mbdelay",
+        "delay_rate",
+        "esdesp",
+        "epoch",
+        "total_phas",
+        "total_rate",
+        "total_mbdelay",
+        "total_sbresid",
+        "ambiguity",
+        "pcals",
+        "root_id",
+        "ref_freq",
+        "datatype",
+        "ref_elev",
+        "rem_elev",
+        "ref_az",
+        "rem_az",
+        "u",
+        "v",
+        "parents",
+        "duration",
+        "offset",
+        "scan_offset",
+        "lags",
+        "phase_snr",
+        "srch_cotime",
+        "noloss_cotime",
+        "scan_id",
+        "polarization",
+        "errcode",
+        "ra_hrs",
+        "dec_deg",
+        "resid_delay"
+    ]
+}
+
+
+        // typedef struct {
+        //         short                   version;        /* Disk format version number */
+        //         char                    fname[6];       /* FMGR name without "<" */
+        //         short                   expt_no;        /* Experiment serial # */
+        //         short                   extent_no;      /* From HP-1000 system */
+        //         short                   length;         /* scan length in seconds */
+        //         char                    corel_vers;     /* Corel version used */
+        //         int                     procdate;       /* Creation date for this extent */
+        //         int                     time_tag;       /* Seconds since 0h, Jan 1 1980 */
+        //         short                   ssec;           /* scan time seconds, version 1 */
+        //         char                    source[32];     /* Source name */
+        //         char                    baseline[3];    /* standard baseline id */
+        //         char                    quality;        /* frnge quality code */
+        //         char                    freq_code;      /* type 2 only */
+        //         char                    mode;           /* recording mode */
+        //         short                   no_freq;        /* number of freqs through frnge */
+        //         short                   archiv;         /* A-file number */
+        //         char                    reftape[9];     /* Reference tape label */
+        //         char                    remtape[9];     /* Remote tape label */
+        //         float                   amp;            /* Correlation amplitude */
+        //         float                   snr;            /* SNR from frnge, v1 clips at 9999 */
+        //         float                   resid_phas;     /* residual earth-centered phase deg */
+        //         float                   sbdelay;        /* resid singleband delay usec */
+        //         float                   mbdelay;        /* resid multiband delay usec */
+        //         float                   delay_rate;     /* resid delay rate psec/sec */
+        //         int                     esdesp;         /* Various numbers describing data */
+        //         short                   epoch[2];       /* reference epoch mins,secs */
+        //         float                   total_phas;     /* tot earth-centered phase deg */
+        //         double                  total_rate;     /* tot delay rate usec/sec */
+        //         double                  total_mbdelay;  /* tot multiband delay usec */
+        //         float                   total_sbresid;  /* tot sbdelay - mbdelay usec */
+        //         float                   ambiguity;      /* mbdelay ambiguity */
+        //         short                   pcals[4];       /* Phasecals deg,  ref1,reflast, */
+        //         char                    root_id[7];     /* Unique 6-char root id code */
+        // 
+        //                                         /* Added for version 2 */
+        // 
+        //         double                  ref_freq;       /* Reference frequency */
+        //         char                    datatype[3];    /* Origin and phase type */
+        //         float                   ref_elev;       /* Reference elevation */
+        //         float                   rem_elev;       /* Remote elevation */
+        //         float                   ref_az;         /* Reference azimuth */
+        //         float                   rem_az;         /* Remote azimuth */
+        //         float                   u;              /* u in megalambda */
+        //         float                   v;              /* v in megalambda */
+        //         short                   parents[4];     /* Parent corel extent(s) */
+        // 
+        //                                         /* Added for version 3 */
+        // 
+        //         short                   duration;       /* Nominal duration of scan (secs) */
+        //         short                   offset;         /* mean time minus scan_time (sec) */
+        // 
+        //                                         /* Added for version 4 */
+        // 
+        //         short                   scan_offset;    /* time_tag minus scan time */
+        //         int                     lags;           /* Number of lags in correlation*/
+        //         float                   phase_snr;      /* When independent of amp. snr */
+        //         short                   srch_cotime;    /* Coh. time for max. snr (sec) */
+        //         short                   noloss_cotime;  /* Coh. time for negligible loss (sec) */
+        // 
+        //                                         /* Added for version 5 */
+        // 
+        //         char                    scan_id[32];    /* From VEX, not necessarily scantime */
+        //         char                    polarization[3]; /* RR, LL, RL or LR */
+        //         char                    errcode;        /* for Mk3-style letter codes */
+        // 
+        //                                         /* Added for version 6 */
+        // 
+        //         float                   ra_hrs;         /* derived from sky_coord */
+        //         float                   dec_deg;        /* derived from sky_coord */
+        // 
+        //         float                   resid_delay;    /* N*AMB + MBD to match SBD */
