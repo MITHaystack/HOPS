@@ -874,7 +874,7 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     make_xpower_plot(plot_dict) #constructs the cross-power spectrum phase/amp twin plot
     t2 = time.process_time()
 
-    #print("time for first few plots: ", t2 - t1)  #takes like 0.3 sec
+    print("time for first few plots: ", t2 - t1)  #takes like 0.3 sec
 
     #THESE PLOTS ARE SUPER SLOW
     t1 = time.process_time()
@@ -884,7 +884,7 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     make_channel_info_table(plot_dict) #constructs the channel/pcal info table
     t2 = time.process_time()
 
-    #print("time for slow functions: ", t2 - t1) #takes like 5.5 sec
+    print("time for slow functions: ", t2 - t1) #takes like 5.5 sec
 
     t1 = time.process_time()
     make_info_text_box(plot_dict) #constructs fringe summary text box
@@ -897,7 +897,7 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     make_data_stats_text(plot_dict) #constructs the data statistics/summary text
     t2 = time.process_time()
 
-    #print("time for rest of text functions: ", t2 - t1) #takes like .05 sec
+    print("time for rest of text functions: ", t2 - t1) #takes like .05 sec
 
     if filename != "":
         pylab.savefig(filename)
