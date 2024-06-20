@@ -1,96 +1,98 @@
 {
     "name": "fringe",
+    "supported_versions": [1,2,3,4,5,6],
     "parameters" :
     {
         "version":
         {
+            "name": ""
             "type": "int",
-            "path": "/",
+            "path": "",
             "description": "Disk format version number",
             "units": ""
         },
         "fname":
         {
-            "type": ""
+            "type": "string"
             "path": "",
-            "description": "",
+            "description": "FMGR name without '<'",
             "units": ""
         },
         "expt_no":
         {
-            "type": ""
+            "type": "int"
             "path": "",
-            "description": "",
+            "description": "Experiment serial # ",
             "units": ""
         },
         "extent_no":
         {
-            "type": ""
+            "type": "int"
             "path": "",
-            "description": "",
+            "description": "From HP-1000 system ",
             "units": ""
         },
         "length":
         {
-            "type": ""
+            "type": "int"
             "path": "",
-            "description": "",
-            "units": ""
+            "description": "scan length in seconds",
+            "units": "s"
         },
         "corel_vers":
         {
-            "type": ""
+            "type": "string"
             "path": "",
-            "description": "",
+            "description": "Corel version used",
             "units": ""
         },
         "procdate":
         {
-            "type": ""
+            "type": "int"
             "path": "",
-            "description": "",
+            "description": "Creation date for this extent",
             "units": ""
         },
         "time_tag":
         {
-            "type": ""
+            "type": "int"
             "path": "",
-            "description": "",
-            "units": ""
+            "description": "Seconds since 0h, Jan 1 1980",
+            "units": "s"
         },
         "ssec":
         {
-            "type": ""
+            "type": "int"
             "path": "",
-            "description": "",
-            "units": ""
+            "description": "scan time seconds, version 1 ",
+            "units": "s"
         },
         "source":
         {
-            "type": ""
+            "type": "string"
             "path": "",
-            "description": "",
+            "description": "Source name",
             "units": ""
         },
         "baseline":
         {
-            "type": ""
+            "type": "string"
             "path": "",
-            "description": "",
+            "description": "standard baseline id",
             "units": ""
         },
         "quality":
         {
-            "type": ""
+            "type": "string"
             "path": "",
-            "description": "",
+            "description": "fringe quality code",
             "units": ""
         },
         "freq_code":
         {
-            "type": ""
+            "type": "string"
             "path": "",
-            "description": "",
+            "description": "type 2 only",
             "units": ""
         },
         "mode":
