@@ -152,81 +152,6 @@ def make_xpower_plot(plot_dict):
     ax5.yaxis.label.set_color('r')
     ax5.tick_params(axis='both', direction='in', which='both')
 
-# 
-# 
-# def make_channel_segment_plots(fig,plot_dict):
-# 
-#     # This function constructs the phase/amp plots for each channel from the time-average segments
-#     n_seg = int(plot_dict["NSeg"])
-#     n_seg_plots = int(plot_dict["NPlots"])
-#     colw = 6
-# 
-#     #grab the segment amplitudes
-#     seg_amp_arr = np.array( plot_dict['SEG_AMP'] )
-#     seg_ymax = float(plot_dict['Amp'])*3.0 #see generate_graphs.c
-# 
-#     if "ChannelsPlotted" in plot_dict:
-#         seg_chan_labels = plot_dict["ChannelsPlotted"]
-#     else:
-#         #if this info is missing use the default fourfit channel names
-#         seg_chan_labels =  [chr for chr in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"]
-# 
-#     # convert SEG_PHS to deg
-#     seg_phs_arr = np.array( [xx*180/np.pi for xx in plot_dict['SEG_PHS']] )
-# 
-#     seg_amp_arr1 = seg_amp_arr.reshape(n_seg, n_seg_plots)
-#     seg_phs_arr1 = seg_phs_arr.reshape(n_seg, n_seg_plots)
-# 
-#     if n_seg_plots == 2:
-#         n_seg_plots = 1 #do not need 'all' plot if only one channel
-# 
-#     for ch in range(0,n_seg_plots):
-#         ax6 = plt.subplot2grid((32,colw*n_seg_plots),(14,colw*ch),rowspan=5,colspan=colw)
-#         ax6.plot(range(n_seg), seg_amp_arr1[:,ch],'co-',markersize=2, markerfacecolor='b', linewidth=0.5, markeredgewidth=0.0)
-#         ax6.set_xlim(0,n_seg)
-#         ax6.set_ylim(0,seg_ymax)
-#         ax6.set_xticklabels(labels=[],visible=False)
-#         ax6.tick_params(axis='both', direction='in', which='both')
-#         if ch < n_seg_plots-1:
-#             ax6.title.set_text(seg_chan_labels[ch])
-#             ax6.title.set_size(9)
-#         if ch == 0:
-#             ax6.set_ylabel('amplitude',fontsize=9)
-#             plt.yticks(fontsize=8,rotation=90)
-#             ax6.yaxis.label.set_color('b')
-#             ax6.minorticks_on()
-#             plt.tick_params(left = True, bottom = False)
-#         else:
-#             ax6.xaxis.set_major_locator(plt.NullLocator())
-#             ax6.yaxis.set_major_locator(plt.NullLocator())
-#             ax6.set_yticklabels(labels=[],visible=False)
-#             plt.yticks(visible=False)
-#             plt.tick_params(left = False, bottom = False)
-# 
-#         ax6a = ax6.twinx()
-#         ax6a.plot(range(n_seg), seg_phs_arr1[:,ch],'ro',markersize=2, linewidth=0.5, markeredgewidth=0.0)
-#         ax6a.set_xlim(0,n_seg)
-#         ax6a.set_ylim(-180,180)
-#         ax6a.tick_params(axis='both', direction='in', which='both')
-#         if ch == n_seg_plots-1:
-#             if n_seg_plots > 1:
-#                 ax6a.title.set_text("All")
-#                 ax6a.title.set_size(9)
-#             ax6a.set_ylabel('phase [deg]',fontsize=9)
-#             ax6a.set_ylabel('phase [deg]',fontsize=9)
-#             ytick_locs = [-180,-90,0,90,180]
-#             ytick_labels = [str(yy) for yy in ytick_locs]
-#             plt.yticks(ytick_locs, ytick_labels, fontsize=8,rotation=90)
-#             ax6a.yaxis.label.set_color('r')
-#             plt.tick_params(right = True, bottom = False)
-#         else:
-#             ax6a.xaxis.set_major_locator(plt.NullLocator())
-#             ax6a.yaxis.set_major_locator(plt.NullLocator())
-#             ax6a.set_yticklabels(labels=[],visible=False)
-#             plt.tick_params(left = False, bottom = False)
-# 
-#     plt.subplots_adjust(wspace=0, hspace=0)
-
 
 def make_channel_segment_plots_alt(fig, plot_dict):
 
@@ -957,7 +882,7 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     make_sbd_dtec_plot(plot_dict) #constructs the single-band delay and (ion-dTEC) twin plot
     make_xpower_plot(plot_dict) #constructs the cross-power spectrum phase/amp twin plot
     t2 = time.process_time()
-    print("time for first few plots: ", t2 - t1)  #takes like 0.3 sec
+    #print("time for first few plots: ", t2 - t1)  #takes like 0.3 sec
 
     #THESE PLOTS ARE SUPER SLOW
     t1 = time.process_time()
@@ -966,7 +891,7 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     make_pcal_plots(fig, plot_dict) #constructs the per-channel p-cal plots
     make_channel_info_table(plot_dict) #constructs the channel/pcal info table
     t2 = time.process_time()
-    print("time for slow functions: ", t2 - t1) #takes like 5.5 sec
+    #print("time for slow functions: ", t2 - t1) #takes like 5.5 sec
 
     t1 = time.process_time()
     make_info_text_box(plot_dict) #constructs fringe summary text box
@@ -978,8 +903,7 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     make_window_table(plot_dict) #constructs the (sbd,mbd,dr,ion) window limits table
     make_data_stats_text(plot_dict) #constructs the data statistics/summary text
     t2 = time.process_time()
-    print("time for rest of text functions: ", t2 - t1) #takes like .05 sec
-
+    #print("time for rest of text functions: ", t2 - t1) #takes like .05 sec
 
     if filename != "":
         pylab.savefig(filename)
