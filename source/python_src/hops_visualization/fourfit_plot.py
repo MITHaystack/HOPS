@@ -152,9 +152,83 @@ def make_xpower_plot(plot_dict):
     ax5.yaxis.label.set_color('r')
     ax5.tick_params(axis='both', direction='in', which='both')
 
+# 
+# 
+# def make_channel_segment_plots(fig,plot_dict):
+# 
+#     # This function constructs the phase/amp plots for each channel from the time-average segments
+#     n_seg = int(plot_dict["NSeg"])
+#     n_seg_plots = int(plot_dict["NPlots"])
+#     colw = 6
+# 
+#     #grab the segment amplitudes
+#     seg_amp_arr = np.array( plot_dict['SEG_AMP'] )
+#     seg_ymax = float(plot_dict['Amp'])*3.0 #see generate_graphs.c
+# 
+#     if "ChannelsPlotted" in plot_dict:
+#         seg_chan_labels = plot_dict["ChannelsPlotted"]
+#     else:
+#         #if this info is missing use the default fourfit channel names
+#         seg_chan_labels =  [chr for chr in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"]
+# 
+#     # convert SEG_PHS to deg
+#     seg_phs_arr = np.array( [xx*180/np.pi for xx in plot_dict['SEG_PHS']] )
+# 
+#     seg_amp_arr1 = seg_amp_arr.reshape(n_seg, n_seg_plots)
+#     seg_phs_arr1 = seg_phs_arr.reshape(n_seg, n_seg_plots)
+# 
+#     if n_seg_plots == 2:
+#         n_seg_plots = 1 #do not need 'all' plot if only one channel
+# 
+#     for ch in range(0,n_seg_plots):
+#         ax6 = plt.subplot2grid((32,colw*n_seg_plots),(14,colw*ch),rowspan=5,colspan=colw)
+#         ax6.plot(range(n_seg), seg_amp_arr1[:,ch],'co-',markersize=2, markerfacecolor='b', linewidth=0.5, markeredgewidth=0.0)
+#         ax6.set_xlim(0,n_seg)
+#         ax6.set_ylim(0,seg_ymax)
+#         ax6.set_xticklabels(labels=[],visible=False)
+#         ax6.tick_params(axis='both', direction='in', which='both')
+#         if ch < n_seg_plots-1:
+#             ax6.title.set_text(seg_chan_labels[ch])
+#             ax6.title.set_size(9)
+#         if ch == 0:
+#             ax6.set_ylabel('amplitude',fontsize=9)
+#             plt.yticks(fontsize=8,rotation=90)
+#             ax6.yaxis.label.set_color('b')
+#             ax6.minorticks_on()
+#             plt.tick_params(left = True, bottom = False)
+#         else:
+#             ax6.xaxis.set_major_locator(plt.NullLocator())
+#             ax6.yaxis.set_major_locator(plt.NullLocator())
+#             ax6.set_yticklabels(labels=[],visible=False)
+#             plt.yticks(visible=False)
+#             plt.tick_params(left = False, bottom = False)
+# 
+#         ax6a = ax6.twinx()
+#         ax6a.plot(range(n_seg), seg_phs_arr1[:,ch],'ro',markersize=2, linewidth=0.5, markeredgewidth=0.0)
+#         ax6a.set_xlim(0,n_seg)
+#         ax6a.set_ylim(-180,180)
+#         ax6a.tick_params(axis='both', direction='in', which='both')
+#         if ch == n_seg_plots-1:
+#             if n_seg_plots > 1:
+#                 ax6a.title.set_text("All")
+#                 ax6a.title.set_size(9)
+#             ax6a.set_ylabel('phase [deg]',fontsize=9)
+#             ax6a.set_ylabel('phase [deg]',fontsize=9)
+#             ytick_locs = [-180,-90,0,90,180]
+#             ytick_labels = [str(yy) for yy in ytick_locs]
+#             plt.yticks(ytick_locs, ytick_labels, fontsize=8,rotation=90)
+#             ax6a.yaxis.label.set_color('r')
+#             plt.tick_params(right = True, bottom = False)
+#         else:
+#             ax6a.xaxis.set_major_locator(plt.NullLocator())
+#             ax6a.yaxis.set_major_locator(plt.NullLocator())
+#             ax6a.set_yticklabels(labels=[],visible=False)
+#             plt.tick_params(left = False, bottom = False)
+# 
+#     plt.subplots_adjust(wspace=0, hspace=0)
 
 
-def make_channel_segment_plots(plot_dict):
+def make_channel_segment_plots_alt(fig, plot_dict):
 
     # This function constructs the phase/amp plots for each channel from the time-average segments
     n_seg = int(plot_dict["NSeg"])
@@ -179,10 +253,13 @@ def make_channel_segment_plots(plot_dict):
 
     if n_seg_plots == 2:
         n_seg_plots = 1 #do not need 'all' plot if only one channel
-
+        
+    # Assuming colw, n_seg_plots, n_seg, and seg_amp_arr1 are defined
+    gs = fig.add_gridspec(32, colw * n_seg_plots)
     for ch in range(0,n_seg_plots):
-        ax6 = plt.subplot2grid((32,colw*n_seg_plots),(14,colw*ch),rowspan=5,colspan=colw)
-        plt.subplots_adjust(wspace=0, hspace=0)
+        #ax6 = plt.subplot2grid((32,colw*n_seg_plots),(14,colw*ch),rowspan=5,colspan=colw)
+        ax6 = fig.add_subplot(gs[14:19, colw*ch:colw*(ch+1)])
+        #plt.subplots_adjust(wspace=0, hspace=0)
         ax6.plot(range(n_seg), seg_amp_arr1[:,ch],'co-',markersize=2, markerfacecolor='b', linewidth=0.5, markeredgewidth=0.0)
         ax6.set_xlim(0,n_seg)
         ax6.set_ylim(0,seg_ymax)
@@ -226,19 +303,23 @@ def make_channel_segment_plots(plot_dict):
             ax6a.set_yticklabels(labels=[],visible=False)
             plt.tick_params(left = False, bottom = False)
 
+    plt.subplots_adjust(wspace=0, hspace=0)
 
-def make_channel_segment_validity_plots(plot_dict):
+
+
+
+def make_channel_segment_validity_plots(fig,plot_dict):
 
     #TODO FIXME -- THIS IS A DUMMY IMPLEMENTATION, PLOTS ZEROS
     # This function constructs USB/LSB validity flag plots for the time-averaged segments of each channel
     n_seg = int(plot_dict["NSeg"])
     n_seg_plots = int(plot_dict["NPlots"])
     colw = 6
-
+    
+    gs = fig.add_gridspec(256, colw*n_seg_plots)
     #USB/LSB PLOTS
     for ch in range(0,n_seg_plots-1):
-        ax7 = plt.subplot2grid((256,colw*n_seg_plots),(152,colw*ch),rowspan=4,colspan=colw)
-        plt.subplots_adjust(wspace=0, hspace=0)
+        ax7 = fig.add_subplot(gs[152:156, colw*ch:colw*(ch+1)])
         ax7.plot(range(n_seg), np.zeros(n_seg),'co-',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
         ax7.set_xlim(0,n_seg)
         ax7.set_ylim(0,1)
@@ -253,8 +334,7 @@ def make_channel_segment_validity_plots(plot_dict):
             ax7.set_ylabel('U',fontsize=7, rotation=0, labelpad=5)
             ax7.yaxis.set_label_coords(-0.23,0.0)
 
-        ax7b = plt.subplot2grid((256,colw*n_seg_plots),(156,colw*ch),rowspan=4,colspan=colw)
-        plt.subplots_adjust(wspace=0, hspace=0)
+        ax7b = fig.add_subplot(gs[156:160, colw*ch:colw*(ch+1)])
         ax7b.plot(range(n_seg), np.zeros(n_seg),'co-',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
         ax7b.set_xlim(0,n_seg)
         ax7b.set_ylim(0,1)
@@ -268,9 +348,11 @@ def make_channel_segment_validity_plots(plot_dict):
         if ch == 0:
             ax7b.set_ylabel('L',fontsize=7, rotation=0, labelpad=5)
             ax7b.yaxis.set_label_coords(-0.23,0.0)
+            
+    plt.subplots_adjust(wspace=0, hspace=0)
 
 
-def make_pcal_plots(plot_dict):
+def make_pcal_plots(fig, plot_dict):
 
     colw = 6
     n_seg = int(plot_dict["NSeg"])
@@ -278,6 +360,7 @@ def make_pcal_plots(plot_dict):
     colw = 6
 
     #PCAL PLOTS
+    gs = fig.add_gridspec(255, colw*n_seg_plots)
     for ch in range(0,n_seg_plots-1):
         #first fill with manual pcal phases (should always be present)
         ref_pcal_phases = np.zeros(n_seg)
@@ -302,8 +385,9 @@ def make_pcal_plots(plot_dict):
         if n_seg_plots == 2:
             n_seg_plots = 1 #do not need 'all' plot if only one channel
 
-        ax8 = plt.subplot2grid((255,colw*n_seg_plots),(160,colw*ch),rowspan=16,colspan=colw)
-        plt.subplots_adjust(wspace=0, hspace=0)
+        #ax8 = plt.subplot2grid((255,colw*n_seg_plots),(160,colw*ch),rowspan=16,colspan=colw)
+        ax8 = fig.add_subplot(gs[160:176, colw*ch:colw*(ch+1)])
+
         ax8.plot(range(ref_n_seg), ref_pcal_phases, 'co',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
         ax8.plot(range(rem_n_seg), rem_pcal_phases, 'co',markersize=2, markerfacecolor='m', linewidth=0.5, markeredgewidth=0.0)
         ax8.set_xlim(0,n_seg)
@@ -873,18 +957,16 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     make_sbd_dtec_plot(plot_dict) #constructs the single-band delay and (ion-dTEC) twin plot
     make_xpower_plot(plot_dict) #constructs the cross-power spectrum phase/amp twin plot
     t2 = time.process_time()
-
-    #print("time for first few plots: ", t2 - t1)  #takes like 0.3 sec
+    print("time for first few plots: ", t2 - t1)  #takes like 0.3 sec
 
     #THESE PLOTS ARE SUPER SLOW
     t1 = time.process_time()
-    make_channel_segment_plots(plot_dict) #constructs the per-channel phase/amp plots
-    make_channel_segment_validity_plots(plot_dict) #constructs the USB/LSB validity flags
-    make_pcal_plots(plot_dict) #constructs the per-channel p-cal plots
+    make_channel_segment_plots_alt(fig, plot_dict) #constructs the per-channel phase/amp plots
+    make_channel_segment_validity_plots(fig, plot_dict) #constructs the USB/LSB validity flags
+    make_pcal_plots(fig, plot_dict) #constructs the per-channel p-cal plots
     make_channel_info_table(plot_dict) #constructs the channel/pcal info table
     t2 = time.process_time()
-
-    #print("time for slow functions: ", t2 - t1) #takes like 5.5 sec
+    print("time for slow functions: ", t2 - t1) #takes like 5.5 sec
 
     t1 = time.process_time()
     make_info_text_box(plot_dict) #constructs fringe summary text box
@@ -896,8 +978,9 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     make_window_table(plot_dict) #constructs the (sbd,mbd,dr,ion) window limits table
     make_data_stats_text(plot_dict) #constructs the data statistics/summary text
     t2 = time.process_time()
+    print("time for rest of text functions: ", t2 - t1) #takes like .05 sec
+    
 
-    #print("time for rest of text functions: ", t2 - t1) #takes like .05 sec
 
     if filename != "":
         pylab.savefig(filename)
