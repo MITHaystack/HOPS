@@ -506,6 +506,132 @@ MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts(const std::strin
     }
 }
 
+void 
+MHO_BasicFringeDataConfiguration::determine_passes(MHO_ParameterStore* cmdline_params, 
+                                                   std::string& cscans, 
+                                                   std::string& croots,
+                                                   std::string& cbaselines,
+                                                   std::string& cfgroups,
+                                                   std::string& cpolprods)
+{
+    //pass search order is: scans, then baselines, then fgroups, then pol-products
+    std::vector< std::string > scans; //list of scan directories
+    std::vector< std::pair< std::string, std::string > > baseline_files;
+    std::vector< std::string > fgroups;
+    std::vector< std::string > polproducts;
+    
+    //flattened pass parameters (for return values)
+    std::string concat_delim = ",";
+    cscans = "";
+    croots = "";
+    cbaselines = "";
+    cfgroups = "";
+    cpolprods = "";
+
+    //determine which directories contain scans to process
+    std::string initial_dir = cmdline_params->GetAs<std::string>("/cmdline/directory");
+    std::string cmd_bl = cmdline_params->GetAs<std::string>("/cmdline/baseline"); //if not passed, will be "??"
+    std::string cmd_fg = cmdline_params->GetAs<std::string>("/cmdline/frequency_group"); //if not passed, this will be "?"
+    std::string cmd_pp = cmdline_params->GetAs<std::string>("/cmdline/polprod"); //if not passed, this will be "??"
+    
+    determine_scans(initial_dir, scans);
+
+    //form all the data passes that must be processed
+    for(auto sc = scans.begin(); sc != scans.end(); sc++)
+    {
+        std::string scan_dir = *sc;
+        std::string root_file = find_associated_root_file(scan_dir);
+        if(root_file != "")
+        {
+            determine_baselines(scan_dir, cmd_bl, baseline_files);
+            for(auto bl = baseline_files.begin(); bl != baseline_files.end(); bl++)
+            {
+                std::string baseline = bl->first;
+                std::string corFile = bl->second;
+                determine_fgroups_polproducts(corFile, cmd_fg, cmd_pp, fgroups, polproducts);
+                for(auto fg = fgroups.begin(); fg != fgroups.end(); fg++)
+                {
+                    std::string fgroup = *fg;
+                    for(auto pprod = polproducts.begin(); pprod != polproducts.end(); pprod++)
+                    {
+                        std::string polprod = *pprod;
+                        //repeatedly append info for every work item
+                        //TODO FIXME we may want to rethink this
+                        cscans += scan_dir + concat_delim;
+                        croots  += root_file + concat_delim;
+                        cbaselines += baseline + concat_delim;
+                        cpolprods += polprod + concat_delim;
+                        cfgroups += fgroup + concat_delim;
+
+                    } //end of pol-product loop
+                } //end of frequency group loop
+            }//end of baseline loop
+        } //end only if root exists
+    } //end of scan loop
+}
+
+void MHO_BasicFringeDataConfiguration::split_passes(std::vector<mho_json>& pass_vector,
+                                                    const std::string& cscans, 
+                                                    const std::string& croots,
+                                                    const std::string& cbaselines,
+                                                    const std::string& cfgroups,
+                                                    const std::string& cpolprods)
+{
+    std::vector< std::string > sdirs;
+    std::vector< std::string > rts;
+    std::vector< std::string > blines;
+    std::vector< std::string > fgrps;
+    std::vector< std::string > ppds;
+
+    MHO_Tokenizer tokenizer;
+    std::string concat_delim = ",";
+    tokenizer.SetDelimiter(concat_delim);
+    tokenizer.SetIncludeEmptyTokensFalse();
+    tokenizer.SetString(&cscans);
+    tokenizer.GetTokens(&sdirs);
+    tokenizer.SetString(&croots);
+    tokenizer.GetTokens(&rts);
+    tokenizer.SetString(&cbaselines);
+    tokenizer.GetTokens(&blines);
+    tokenizer.SetString(&cfgroups);
+    tokenizer.GetTokens(&fgrps);
+    tokenizer.SetString(&cpolprods);
+    tokenizer.GetTokens(&ppds);
+
+    //TODO FIXME...all these vectors better have the same size!
+    std::size_t npass = sdirs.size();
+    std::size_t nroots = rts.size();
+    std::size_t nblines = blines.size();
+    std::size_t nfgrps = fgrps.size();
+    std::size_t nppds = ppds.size();
+
+    bool ok = true;
+    if(npass != nroots){ok = false;}
+    if(npass != nblines){ok = false;}
+    if(npass != nfgrps){ok = false;}
+    if(npass != nppds){ok = false;}
+
+    if(!ok)
+    {
+        msg_fatal("fringe", "error forming data passes, " <<
+                  "mismatched number of scans/roots/baselines/fgroups/polproducts - " <<
+                  npass<<"/"<<nroots<<"/"<<nblines<<"/"<<nfgrps<<"/"<<nppds<<eom);
+        std::exit(1);
+    }
+
+    pass_vector.clear();
+    for(std::size_t i=0; i<npass; i++)
+    {
+        mho_json pass;
+        pass["directory"] = sdirs[i];
+        pass["root_file"] = rts[i];
+        pass["baseline"] = blines[i];
+        pass["polprod"] = ppds[i];
+        pass["frequency_group"] = fgrps[i];
+        pass_vector.push_back(pass);
+    }
+}
+
 
 bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* paramStore, MHO_ScanDataStore* scanStore)
 {
