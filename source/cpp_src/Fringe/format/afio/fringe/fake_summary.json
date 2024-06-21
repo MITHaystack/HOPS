@@ -1,0 +1,14 @@
+{
+    "name": "fringe",
+    "default_version": 1,
+    "version_formats":
+    {
+        "1": ["fields_v1"]
+    },
+    "fields_v1":
+    [
+        "version",
+        "baseline",
+        "root_id"
+    ]
+}
