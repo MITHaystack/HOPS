@@ -22,6 +22,7 @@ set (FRINGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeFitter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IonosphericFringeFitter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AFileInfoExtractor.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AFileDefinitions.hh
 )
 
 #list source files #############################################################
@@ -43,6 +44,7 @@ set( FRINGE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeFitter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IonosphericFringeFitter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_AFileInfoExtractor.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_AFileDefinitions.cc
 )
 
 #declare header paths ##########################################################
@@ -51,12 +53,20 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 #list of c++ libraries
 set(FRINGE_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Containers MHO_Calibration MHO_Control MHO_Initialization)
 
+set_property( SOURCE ${FRINGE_SOURCEFILES}
+    APPEND PROPERTY COMPILE_DEFINITIONS HOPS_AFILE_FORMAT_DIR="${DATA_INSTALL_DIR}"
+)
+
 #compile and install library ###################################################
 add_library (MHO_Fringe SHARED ${FRINGE_SOURCEFILES})
 target_link_libraries (MHO_Fringe ${FRINGE_LIBS})
 
 hops_install_headers (${FRINGE_HEADERFILES})
 hops_install_libraries (MHO_Fringe )
+
+
+#install hops afio summary format specification
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/format)
 #
 # if (HOPS_ENABLE_TEST)
 #     add_subdirectory(test)
