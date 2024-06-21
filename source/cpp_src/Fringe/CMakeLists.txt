@@ -67,7 +67,7 @@ hops_install_libraries (MHO_Fringe )
 
 #install hops afio summary format specification
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/format)
-#
-# if (HOPS_ENABLE_TEST)
-#     add_subdirectory(test)
-# endif (HOPS_ENABLE_TEST)
+
+if (HOPS_ENABLE_TEST)
+    add_subdirectory(test)
+endif (HOPS_ENABLE_TEST)
