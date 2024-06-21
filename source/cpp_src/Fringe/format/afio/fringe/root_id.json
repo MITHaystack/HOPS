@@ -1,8 +1,8 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
-	"path": "",
-	"description": "",
+	"name": "root_id",
+	"type": "string",
+	"source_object": "tags",
+	"path": "/parameters/config/root_code",
+	"description": "6-character Mk4 root code",
 	"units": ""
 }

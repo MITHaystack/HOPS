@@ -1,4 +1,3 @@
-#include "MHO_AFileInfoExtractor.hh"
 
 #include "MHO_FileKey.hh"
 #include "MHO_BinaryFileInterface.hh"
@@ -7,17 +6,21 @@
 #include "MHO_ContainerFileInterface.hh"
 #include "MHO_ContainerStore.hh"
 
-// 
+#include "MHO_AFileDefinitions.hh"
+#include "MHO_AFileInfoExtractor.hh"
+
+
+//
 // #define CURRENT_VERSION 5
 // #define AFILEMX_VERSION 6
-// 
+//
 
-// 
-// 
+//
+//
 
-// 
+//
 
-// 
+//
 // typedef struct {
 //         short                   version;        /* Disk format version number */
 //         short                   expt_no;        /* Experiment serial # */
@@ -43,28 +46,28 @@
 //         float                   azimuth[3];     /* By station */
 //         short                   epoch[2];       /* reference epoch mins,secs */
 //         double                  ref_freq;       /* Reference frequency */
-// 
+//
 //                                         /* Added for version 3 */
-// 
+//
 //         short                   duration;       /* Nominal duration of scan (secs) */
 //         short                   offset;         /* mean time minus scan_time (sec) */
 //         char                    datatype[3];    /* Meaning TBD */
-// 
+//
 //                                         /* Added for version 4 */
-// 
+//
 //         short                   scan_offset;    /* time_tag minus scan time */
 //         int                     lags;           /* Number of lags in correlation */
 //         short                   cotime;         /* Coherence time of worst b'line */
-// 
+//
 //                                         /* Added for version 5 */
-// 
+//
 //         char                    scan_id[32];    /* From VEX, not necessarily scantime */
 // } trianglesum;
-// 
+//
 // /* The total length of this structure in bytes is 208 */
-// 
-// 
-// 
+//
+//
+//
 // typedef struct {
 //         short                   version;        /* Disk format version number */
 //         short                   expt_no;        /* Experiment serial # */
@@ -83,26 +86,26 @@
 //         float                   azimuth[4];     /* By station */
 //         short                   epoch[2];       /* reference epoch mins,secs */
 //         double                  ref_freq;       /* Reference frequency */
-// 
+//
 //                                         /* Added for version 3 */
-// 
+//
 //         short                   duration;       /* Nominal duration of scan (secs) */
 //         short                   offset;         /* mean time minus scan_time (sec) */
 //         char                    datatype[3];    /* Meaning TBD */
-// 
+//
 //                                         /* Added for version 4 */
-// 
+//
 //         short                   scan_offset;    /* time_tag minus scan time */
 //         int                     lags;           /* Number of lags in correlation */
-// 
+//
 //                                         /* Added for version 5 */
-// 
+//
 //         char                    scan_id[32];    /* From VEX, not necessarily scantime */
 // } quadsum;
-// 
-// 
-// 
-// 
+//
+//
+//
+//
 
 
 
@@ -112,8 +115,9 @@
 namespace hops
 {
 
-mho_json MHO_AFileInfoExtractor::summarize_root_file(std::string filename)
-{
+// mho_json MHO_AFileInfoExtractor::summarize_root_file(std::string filename)
+// {
+// }
     // typedef struct {
     //         short                   version;        /* Disk format version number */
     //         char                    fname[6];       /* FMGR name without "<" */
@@ -128,19 +132,19 @@ mho_json MHO_AFileInfoExtractor::summarize_root_file(std::string filename)
     //         char                    stations[20];   /* station list */
     //         char                    root_id[7];     /* Unique 6-char root id code */
     //         short                   archiv;         /* A-file number */
-    // 
+    //
     //                                         /* Added for version 5 */
-    // 
+    //
     //         char                    scan_id[32];    /* From VEX, not necessarily scantime */
     // } rootsum;
-    // 
+    //
     // /* The total length of this structure in bytes is 120 */
 
-}
 
-mho_json 
-MHO_AFileInfoExtractor::summarize_corel_file(std::string filename)
-{
+// mho_json
+// MHO_AFileInfoExtractor::summarize_corel_file(std::string filename)
+// {
+// }
     // typedef struct {
     //         short                   version;        /* Disk format version number */
     //         char                    fname[6];       /* FMGR name without "<" */
@@ -167,34 +171,42 @@ MHO_AFileInfoExtractor::summarize_corel_file(std::string filename)
     //         char                    root_id[7];     /* Unique 6-char root id code */
     //         int                     status;         /* Correlation status bits */
     //         short                   archiv;         /* A-file number */
-    // 
+    //
     //                                         /* Added for version 4 */
-    // 
+    //
     //         int                     lags;           /* Number of lags in correlation */
-    // 
+    //
     //                                         /* Added for version 5 */
-    // 
+    //
     //         char                    scan_id[32];    /* From VEX, not necessarily scantime */
     // } corelsum;
-    // 
+    //
     // /* The total length of this structure in bytes is 140 */
-}
 
-mho_json 
-MHO_AFileInfoExtractor::summarize_station_file(std::string filename)
-{
-    
-}
+// mho_json
+// MHO_AFileInfoExtractor::summarize_station_file(std::string filename)
+// {
+//
+// }
 
-mho_json 
+mho_json
 MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
 {
     // MHO_ContainerStore conStore;
     // MHO_ContainerFileInterface conInter;
     // conInter.SetFilename(std::string filename);
     // conInter.PopulateStoreFromFile(conStore);
-    
-    mho_json sum;
+
+    MHO_AFileDefinitions adef;
+    mho_json aformat = adef.GetAFileFormat();
+    mho_json fringe_format = aformat["fake_summary"];
+
+    int version = fringe_format["default_version"];
+    mho_json fields = fringe_format["fields_v1"];
+
+    std::cout<<"fields = "<<fields.dump(2)<<std::endl;
+
+    mho_json fsum;
 
     //to pull out fringe data, we are primarily interested in the 'MHO_ObjectTags' object
     //get uuid for MHO_ObjectTags object
@@ -232,6 +244,9 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
         if(ok)
         {
             //extract the info we need
+
+
+
         }
         else
         {
@@ -244,10 +259,11 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
         msg_error("fringe", "no MHO_ObjectTags object found in file: "<< filename << eom);
     }
 
-    
-    
-    
-    // 
+    return fsum;
+}
+
+
+    //
     // typedef struct {
     //         short                   version;        /* Disk format version number */
     //         char                    fname[6];       /* FMGR name without "<" */
@@ -282,9 +298,9 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
     //         float                   ambiguity;      /* mbdelay ambiguity */
     //         short                   pcals[4];       /* Phasecals deg,  ref1,reflast, */
     //         char                    root_id[7];     /* Unique 6-char root id code */
-    // 
+    //
     //                                         /* Added for version 2 */
-    // 
+    //
     //         double                  ref_freq;       /* Reference frequency */
     //         char                    datatype[3];    /* Origin and phase type */
     //         float                   ref_elev;       /* Reference elevation */
@@ -294,37 +310,37 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
     //         float                   u;              /* u in megalambda */
     //         float                   v;              /* v in megalambda */
     //         short                   parents[4];     /* Parent corel extent(s) */
-    // 
+    //
     //                                         /* Added for version 3 */
-    // 
+    //
     //         short                   duration;       /* Nominal duration of scan (secs) */
     //         short                   offset;         /* mean time minus scan_time (sec) */
-    // 
+    //
     //                                         /* Added for version 4 */
-    // 
+    //
     //         short                   scan_offset;    /* time_tag minus scan time */
     //         int                     lags;           /* Number of lags in correlation*/
     //         float                   phase_snr;      /* When independent of amp. snr */
     //         short                   srch_cotime;    /* Coh. time for max. snr (sec) */
     //         short                   noloss_cotime;  /* Coh. time for negligible loss (sec) */
-    // 
+    //
     //                                         /* Added for version 5 */
-    // 
+    //
     //         char                    scan_id[32];    /* From VEX, not necessarily scantime */
     //         char                    polarization[3]; /* RR, LL, RL or LR */
     //         char                    errcode;        /* for Mk3-style letter codes */
-    // 
+    //
     //                                         /* Added for version 6 */
-    // 
+    //
     //         float                   ra_hrs;         /* derived from sky_coord */
     //         float                   dec_deg;        /* derived from sky_coord */
-    // 
+    //
     //         float                   resid_delay;    /* N*AMB + MBD to match SBD */
-    // 
+    //
     // } fringesum;
-    // 
+    //
     // /* The total length of this structure in bytes is 280 */
-    // 
-}
+    //
+
 
 }//end namespace

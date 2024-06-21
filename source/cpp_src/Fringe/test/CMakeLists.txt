@@ -8,6 +8,7 @@ set (HOPS_TEST_LIBS
 
 set(SOURCE_BASENAMES
     TestAFileFormat
+    TestAFileFringeSummary
 )
 
 #compile and install library ###################################################

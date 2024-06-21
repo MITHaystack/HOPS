@@ -1,8 +1,8 @@
 {
 	"name": "baseline",
 	"type": "string",
-	"source_object": "",
-	"path": "",
+	"source_object": "tags",
+	"path": "/parameters/config/baseline",
 	"description": "standard baseline id",
 	"units": ""
 }

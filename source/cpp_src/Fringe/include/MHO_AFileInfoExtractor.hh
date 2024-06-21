@@ -35,9 +35,9 @@ class MHO_AFileInfoExtractor
 
     public:
 
-        static mho_json summarize_root_file(std::string filename);
-        static mho_json summarize_corel_file(std::string filename);
-        static mho_json summarize_station_file(std::string filename);
+        // static mho_json summarize_root_file(std::string filename);
+        // static mho_json summarize_corel_file(std::string filename);
+        // static mho_json summarize_station_file(std::string filename);
         static mho_json summarize_fringe_file(std::string filename);
 
         // static void extract_clock_early(const mho_json& clk, double& clock_early, std::string& clock_early_units, double& clock_rate, std::string& clock_rate_units, std::string& origin, std::string& validity);
