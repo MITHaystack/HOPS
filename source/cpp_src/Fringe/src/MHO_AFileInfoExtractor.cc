@@ -204,7 +204,24 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
     int version = fringe_format["default_version"];
     mho_json fields = fringe_format["fields_v1"];
 
-    std::cout<<"fields = "<<fields.dump(2)<<std::endl;
+    // std::cout<<"fields = "<<fields.dump(2)<<std::endl;
+    //
+
+    //extract the info we need
+    for(auto it = fields.begin(); it != fields.end(); it++)
+    {
+        std::string field_name = it->get<std::string>();
+        if(aformat.contains(field_name))
+        {
+            if(aformat[field_name].contains("path"))
+            {
+                std::string path = aformat[field_name]["path"].get<std::string>();
+                std::cout<< aformat[field_name].dump(2) << std::endl;
+                std::cout<< path <<std::endl;
+            }
+        }
+    }
+
 
     mho_json fsum;
 
@@ -243,9 +260,38 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
         bool ok = inter.Read(obj, obj_key);
         if(ok)
         {
+
+
             //extract the info we need
+            for(auto it = fields.begin(); it != fields.end(); it++)
+            {
+                std::string field_name = it->get<std::string>();
+                if(aformat.contains(field_name))
+                {
+                    if(aformat[field_name].contains("path"))
+                    {
+                        std::string path = aformat[field_name]["path"].get<std::string>();
+                        std::cout<< aformat[field_name].dump(2) << std::endl;
+                        std::cout<< path <<std::endl;
+                    }
+                }
+            }
 
 
+            // //extract the info we need
+            // for(auto it = fields.begin(); it != fields.end(); it++)
+            // {
+            //     if(tokens[token_idx].fValue == nothing){token_idx++;} //empty value, skip this element
+            //     else
+            //     {
+            //         std::string field_name = it->get<std::string>();
+            //         mho_json next_format =  format["parameters"][field_name];
+            //         std::string type_name = next_format["type"].get<std::string>();
+            //         tmp_tokens.push_back(tokens[token_idx]);
+            //         element_data[field_name] = ParseTokens(field_name, next_format, tmp_tokens);
+            //         token_idx++;
+            //     }
+            // }
 
         }
         else

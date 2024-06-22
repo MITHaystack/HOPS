@@ -67,7 +67,7 @@ MHO_AFileDefinitions::GetAFileFormat()
         bf_ifs.close();
     }
 
-    std::cout<<"format = "<<format_obj.dump(2)<<std::endl;
+    // std::cout<<"format = "<<format_obj.dump(2)<<std::endl;
 
     return format_obj;
 }
