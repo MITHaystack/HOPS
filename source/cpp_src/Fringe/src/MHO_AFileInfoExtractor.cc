@@ -258,9 +258,42 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
         //now pull the pol-products and frequency groups info
         //and check them agains the command line arguments
         bool ok = inter.Read(obj, obj_key);
+
+        std::vector< std::string > tags;
+        obj.DumpTags(tags);
+        for(auto it=tags.begin(); it !=tags.end(); it++)
+        {
+            std::cout<<"#### "<<*it<<std::endl;
+        }
+
+        std::cout<<obj.GetMetaDataAsJSON().dump(2)<<std::endl;
+
         if(ok)
         {
 
+            //pull the parameters
+            MHO_ParameterStore paramStore;
+            mho_json param_data;
+            bool param_ok = obj.GetTagValue("parameters", param_data);
+            if(param_ok)
+            {
+                std::cout<<"got some params"<<std::endl;
+            }
+            paramStore.FillData(param_data);
+
+            //paramStore.Dump();
+
+            //pull the plot data
+            MHO_ParameterStore plotData;
+            mho_json plot_data;
+            bool plot_ok = obj.GetTagValue("plot_data", plot_data);
+            plotData.FillData(plot_data);
+            if(param_ok)
+            {
+                std::cout<<"got some plot_data"<<std::endl;
+            }
+
+            //plotData.Dump();
 
             //extract the info we need
             for(auto it = fields.begin(); it != fields.end(); it++)
@@ -268,11 +301,21 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
                 std::string field_name = it->get<std::string>();
                 if(aformat.contains(field_name))
                 {
-                    if(aformat[field_name].contains("path"))
+                    if(aformat[field_name].contains("path") && aformat[field_name].contains("source_object") )
                     {
+                        std::string source_name = aformat[field_name]["source_object"].get<std::string>();
                         std::string path = aformat[field_name]["path"].get<std::string>();
                         std::cout<< aformat[field_name].dump(2) << std::endl;
+                        std::cout<< source_name <<std::endl;
                         std::cout<< path <<std::endl;
+
+                        if(source_name == "parameters")
+                        {
+                            //TODO need to switch on type
+                            std::string item_value = paramStore.GetAs<std::string>(path);
+                            std::cout<<"item value = "<<item_value<<std::endl;
+                        }
+
                     }
                 }
             }

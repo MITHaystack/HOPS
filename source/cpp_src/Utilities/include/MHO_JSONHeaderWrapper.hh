@@ -10,8 +10,11 @@ namespace nl=nlohmann;
 
 #include <sstream>
 #include <string>
+#include <type_traits>
+
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
+
 
 namespace hops
 {
@@ -89,8 +92,12 @@ class MHO_JSONWrapper
                 value = iter.value().get<XValueType>();
                 return true;
             }
-            else{return false;}
+            else
+            {
+                return false;
+            }
         }
+
 
         std::vector<std::string> DumpKeys() const
         {
@@ -118,6 +125,18 @@ class MHO_JSONWrapper
             else{return true;}
         }
 };
+
+
+
+//specialize for mho_json
+template<>
+inline bool MHO_JSONWrapper::Retrieve(const std::string& key, mho_json& value) const
+{
+    auto iter = fObject.find(key);
+    if(iter == fObject.end()){return false;}
+    value.update( fObject[key] );
+    return true;
+}
 
 }//end namespace
 
