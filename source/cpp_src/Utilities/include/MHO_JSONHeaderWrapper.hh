@@ -10,7 +10,6 @@ namespace nl=nlohmann;
 
 #include <sstream>
 #include <string>
-#include <type_traits>
 
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
