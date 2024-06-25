@@ -9,6 +9,7 @@
     [
         "version",
         "baseline",
-        "root_id"
+        "root_id",
+        "snr"
     ]
 }

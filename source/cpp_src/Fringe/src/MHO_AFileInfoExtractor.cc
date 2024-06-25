@@ -301,10 +301,13 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
                 std::string field_name = it->get<std::string>();
                 if(aformat.contains(field_name))
                 {
-                    if(aformat[field_name].contains("path") && aformat[field_name].contains("source_object") )
+                    if(aformat[field_name].contains("path") &&
+                       aformat[field_name].contains("source_object") &&
+                       aformat[field_name].contains("type") )
                     {
                         std::string source_name = aformat[field_name]["source_object"].get<std::string>();
                         std::string path = aformat[field_name]["path"].get<std::string>();
+                        std::string type = aformat[field_name]["type"].get<std::string>();
                         std::cout<< aformat[field_name].dump(2) << std::endl;
                         std::cout<< source_name <<std::endl;
                         std::cout<< path <<std::endl;
@@ -312,8 +315,35 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
                         if(source_name == "parameters")
                         {
                             //TODO need to switch on type
-                            std::string item_value = paramStore.GetAs<std::string>(path);
-                            std::cout<<"item value = "<<item_value<<std::endl;
+                            if(type == "string")
+                            {
+                                std::string item_value = paramStore.GetAs<std::string>(path);
+                                std::cout<<"item value = "<<item_value<<std::endl;
+                            }
+
+                            //TODO need to switch on type
+                            if(type == "double")
+                            {
+                                double item_value = paramStore.GetAs<double>(path);
+                                std::cout<<"item value = "<<item_value<<std::endl;
+                            }
+                        }
+
+                        if(source_name == "plot_data")
+                        {
+                            //TODO need to switch on type
+                            if(type == "string")
+                            {
+                                std::string item_value = plotData.GetAs<std::string>(path);
+                                std::cout<<"item value = "<<item_value<<std::endl;
+                            }
+
+                            //TODO need to switch on type
+                            if(type == "double")
+                            {
+                                double item_value = plotData.GetAs<double>(path);
+                                std::cout<<"item value = "<<item_value<<std::endl;
+                            }
                         }
 
                     }
