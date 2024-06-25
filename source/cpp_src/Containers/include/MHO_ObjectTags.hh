@@ -101,6 +101,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         template<typename XValueType>
         bool GetTagValue(const std::string& tag_name, XValueType& tag_value)
         {
+            std::cout<<"GETTING TAG: "<<tag_name<<std::endl;
             return this->Retrieve(tag_name, tag_value);
         }
 
