@@ -1,8 +1,8 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
-	"path": "",
-	"description": "",
+	"name": "snr",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/fringe/snr",
+	"description": "The signal to noise of the fringe",
 	"units": ""
 }
