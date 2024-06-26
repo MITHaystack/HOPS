@@ -1,8 +1,8 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
-	"path": "",
+	"name": "ref_az",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/ref_station/azimuth",
 	"description": "",
 	"units": ""
 }

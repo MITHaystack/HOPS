@@ -1,8 +1,8 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
-	"path": "",
+	"name": "ref_elev",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/ref_station/elevation",
 	"description": "",
 	"units": ""
 }
