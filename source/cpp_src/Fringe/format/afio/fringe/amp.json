@@ -1,8 +1,8 @@
 {
 	"name": "amp",
-	"type": "",
-	"source_object": "",
-	"path": "",
-	"description": "",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/fringe/famp",
+	"description": "Amplitude of the fringe",
 	"units": ""
 }

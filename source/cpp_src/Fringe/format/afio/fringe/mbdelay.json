@@ -1,8 +1,8 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
-	"path": "",
+	"name": "mbdelay",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/fringe/mbdelay",
 	"description": "",
 	"units": ""
 }

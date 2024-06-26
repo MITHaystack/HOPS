@@ -1,8 +1,8 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
-	"path": "",
-	"description": "",
+	"name": "errcode",
+	"type": "string",
+	"source_object": "parameters",
+	"path": "/fringe/error_code",
+	"description": "the fourfit error code",
 	"units": ""
 }

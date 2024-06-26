@@ -10,6 +10,21 @@
         "version",
         "baseline",
         "root_id",
-        "snr"
+        "snr",
+        "ambiguity",
+        "amp",
+        "delay_rate",
+        "errcode",
+        "expt_no",
+        "lags",
+        "mbdelay",
+        "quality",
+        "ref_az",
+        "ref_elev",
+        "rem_az",
+        "rem_elev",
+        "ref_freq",
+        "sbdelay",
+        "source"
     ]
 }

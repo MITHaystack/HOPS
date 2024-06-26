@@ -1,8 +1,8 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
-	"path": "",
+	"name": "ref_freq",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/control/config/ref_freq",
 	"description": "",
 	"units": ""
 }
