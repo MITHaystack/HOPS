@@ -23,8 +23,18 @@ namespace hops
 *@author
 *Email:
 *@date Wed Sep 20 16:12:23 2023 -0400
-*@brief extract useful information from .cor, .frng. and root files for afile generation
+*@brief extract useful inpformation from .cor, .frng. and root files for afile generation
 */
+
+enum par_type
+{
+    int_type,
+    double_type,
+    string_type,
+    bool_type,
+    unknown_type
+};
+
 
 class MHO_AFileInfoExtractor
 {
@@ -38,8 +48,37 @@ class MHO_AFileInfoExtractor
         // static mho_json summarize_root_file(std::string filename);
         // static mho_json summarize_corel_file(std::string filename);
         // static mho_json summarize_station_file(std::string filename);
-        static mho_json summarize_fringe_file(std::string filename);
+        mho_json summarize_fringe_file(std::string filename);
 
+
+    protected:
+
+
+
+        std::string RetrieveParameter(const MHO_ParameterStore& paramStore, const std::string& path, const std::string& type, const std::string& pformat = "");
+
+        par_type DetermineParameterType(std::string etype);
+
+        //convert a type to a string using the specified pformat
+        template< typename XValueType >
+        std::string ConvertToString(XValueType value, const std::string& pformat)
+        {
+            std::string output;
+            std::stringstream ss;
+            char tmp[80] = {0};
+            if(pformat != "")
+            {
+                snprintf(tmp, sizeof(tmp), pformat.c_str(), value);
+                ss << tmp;
+                output = ss.str();
+            }
+            else
+            {
+                ss << value;
+                output = ss.str();
+            }
+            return output;
+        }
 };
 
 }//end namespace
