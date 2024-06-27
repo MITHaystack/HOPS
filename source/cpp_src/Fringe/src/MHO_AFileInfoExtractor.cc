@@ -260,13 +260,13 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
         bool ok = inter.Read(obj, obj_key);
 
         std::vector< std::string > tags;
-        obj.DumpTags(tags);
+        //obj.DumpTags(tags);
         for(auto it=tags.begin(); it !=tags.end(); it++)
         {
             std::cout<<"#### "<<*it<<std::endl;
         }
 
-        std::cout<<obj.GetMetaDataAsJSON().dump(2)<<std::endl;
+        //std::cout<<obj.GetMetaDataAsJSON().dump(2)<<std::endl;
 
         if(ok)
         {
@@ -325,8 +325,6 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
                             std::string item_value = RetrieveParameter(plotData, path, type, pformat);
                             std::cout<<"item value = "<<item_value<<std::endl;
                         }
-
-
                     }
                 }
             }
