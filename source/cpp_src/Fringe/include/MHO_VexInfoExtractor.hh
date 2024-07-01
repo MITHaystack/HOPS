@@ -41,6 +41,9 @@ class MHO_VexInfoExtractor
         static void extract_sample_rate(const mho_json& vexInfo, MHO_ParameterStore* paramStore);
         static void extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore);
 
+        static double calculate_ra_hrs(std::string ra);
+        static double calculate_dec_deg(std::string dec);
+
 };
 
 }//end namespace

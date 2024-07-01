@@ -1,4 +1,5 @@
 #include "MHO_VexInfoExtractor.hh"
+#include "MHO_Tokenizer.hh"
 
 namespace hops
 {
@@ -364,6 +365,12 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     paramStore->Set("/vex/scan/source/ra", ra);
     paramStore->Set("/vex/scan/source/dec", dec);
 
+    //calculate the decimal equivalents (deg_deg and ra_hrs)
+    double ra_hrs = calculate_ra_hrs(ra);
+    double dec_deg = calculate_dec_deg(dec);
+    paramStore->Set("/vex/scan/source/ra_hrs", ra_hrs);
+    paramStore->Set("/vex/scan/source/dec_deg", dec_deg);
+
     //get the fourfit reference time
     std::string frt_loc = "/$SCHED/" + scnName + "/fourfit_reftime";
     mho_json::json_pointer frt_jptr(frt_loc);
@@ -402,6 +409,113 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     extract_sample_rate(vexInfo, paramStore);
 
 }
+
+double
+MHO_VexInfoExtractor::calculate_ra_hrs(std::string ra)
+{
+    //return right ascension in decimal hours
+    int ra_hrs = 0;
+    int ra_mins = 0;
+    double ra_secs = 0;
+
+    // "source": {
+    //   "dec": "73d27'30.0174\"",
+    //   "name": "0016+731",
+    //   "ra": "00h19m45.78642s"
+    // },
+
+    std::string delim3 = "h";
+    std::string delim4 = "m";
+
+    std::string tmp;
+    std::vector< std::string > tokens;
+    MHO_Tokenizer tokenizer;
+    tokenizer.SetUseMulticharacterDelimiterFalse();
+    tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+    tokenizer.SetIncludeEmptyTokensFalse();
+
+    tokenizer.SetDelimiter(delim3);
+    tokenizer.SetString(&ra);
+    tokenizer.GetTokens(&tokens);
+    if(tokens.size() != 2){ msg_error("fringe", "error parsing ra string: " << ra << " with delimiter" << delim3 << eom); return 1;}
+
+    tmp = tokens[0];
+    ra_hrs = std::atoi(tmp.c_str());
+    tmp = tokens[1];
+
+    tokenizer.SetDelimiter(delim4);
+    tokenizer.SetString(&tmp);
+    tokenizer.GetTokens(&tokens);
+    if(tokens.size() != 2){ msg_error("fringe", "error parsing ra string: " << ra << " with delimiter" << delim4 << eom); return 1;}
+
+    tmp = tokens[0];
+    ra_mins = std::atoi(tmp.c_str());
+    tmp = tokens[1];
+
+    std::size_t last2 = tokens[1].find_first_not_of("0123456789.e+-");
+    tmp = tokens[1].substr(0, last2);
+    ra_secs = std::atof(tmp.c_str());
+
+    double value = ra_hrs;
+    value += (1./60)*(double)ra_mins;
+    value += (1./3600.)*(double)ra_secs;
+
+    return value;
+}
+
+double
+MHO_VexInfoExtractor::calculate_dec_deg(std::string dec)
+{
+    //return declination in decimal degrees
+    int dec_degs = 0;
+    int dec_mins = 0;
+    double dec_secs = 0;
+
+    // "source": {
+    //   "dec": "73d27'30.0174\"",
+    //   "name": "0016+731",
+    //   "ra": "00h19m45.78642s"
+    // },
+
+    std::string delim1 = "d";
+    std::string delim2 = "'";
+
+    std::string tmp;
+    std::vector< std::string > tokens;
+    MHO_Tokenizer tokenizer;
+    tokenizer.SetUseMulticharacterDelimiterFalse();
+    tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+    tokenizer.SetIncludeEmptyTokensFalse();
+
+    tokenizer.SetDelimiter(delim1);
+    tokenizer.SetString(&dec);
+    tokenizer.GetTokens(&tokens);
+    if(tokens.size() != 2){ msg_error("fringe", "error parsing dec string: " << dec << " with delimiter" << delim1 << eom); return 1;}
+
+    tmp = tokens[0];
+    dec_degs = std::atoi(tmp.c_str());
+    tmp = tokens[1];
+
+    tokenizer.SetDelimiter(delim2);
+    tokenizer.SetString(&tmp);
+    tokenizer.GetTokens(&tokens);
+    if(tokens.size() != 2){ msg_error("fringe", "error parsing dec string: " << dec << " with delimiter" << delim2 << eom); return 1;}
+
+    tmp = tokens[0];
+    dec_mins = std::atoi(tmp.c_str());
+    tmp = tokens[1];
+
+    std::size_t last = tokens[1].find_first_not_of("0123456789.e+-");
+    tmp = tokens[1].substr(0, last);
+    dec_secs = std::atof(tmp.c_str());
+
+    double value = dec_degs;
+    value += (1./60)*(double)dec_mins;
+    value += (1./3600.)*(double)dec_secs;
+
+    return value;
+}
+
 
 
 }//end namespace
