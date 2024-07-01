@@ -4,5 +4,6 @@
 	"source_object": "",
 	"path": "",
 	"description": "scan time seconds, version 1 ",
+    "default": 0,
 	"units": "s"
 }

@@ -320,11 +320,11 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
                             std::cout<<"item value = "<<item_value<<std::endl;
                         }
 
-                        // if(source_name == "plot_data")
-                        // {
-                        //     std::string item_value = RetrieveParameter(plotData, path, type, pformat);
-                        //     std::cout<<"item value = "<<item_value<<std::endl;
-                        // }
+                        if(source_name == "plot_data")
+                        {
+                            std::string item_value = RetrieveParameter(plotData, path, type, pformat);
+                            std::cout<<"item value = "<<item_value<<std::endl;
+                        }
                     }
                 }
             }
@@ -371,14 +371,14 @@ MHO_AFileInfoExtractor::RetrieveParameter(const MHO_ParameterStore& paramStore, 
     {
         case int_type:
         {
-                int item_value = paramStore.GetAs<int>(path);
-                output = ConvertToString(item_value, format);
+            int item_value = paramStore.GetAs<int>(path);
+            output = ConvertToString(item_value, format);
         }
         break;
         case int64_type:
         {
-                int64_t item_value = paramStore.GetAs<int64_t>(path);
-                output = ConvertToString(item_value, format);
+            int64_t item_value = paramStore.GetAs<int64_t>(path);
+            output = ConvertToString(item_value, format);
         }
         break;
         case double_type:

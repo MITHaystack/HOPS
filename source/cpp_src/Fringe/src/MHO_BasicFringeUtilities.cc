@@ -73,6 +73,11 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
         MHO_BasicFringeInfo::leftpadzeros_integer(4, frt_ldate.year) + ":" +
         MHO_BasicFringeInfo::leftpadzeros_integer(3, frt_ldate.day);
 
+    //needed for alist output 'scan duration'
+    int64_t scan_duration = std::chrono::duration_cast<std::chrono::seconds>(stop_time - start_time).count();
+    paramStore->Set("/fringe/scan_duration", scan_duration);
+    std::cout<<"SCAN DURATION = "<<scan_duration<<std::endl;
+
     //figure out the legacy date/time stamps for start, stop, and FRT
     paramStore->Set("/fringe/year_doy", year_doy);
     paramStore->Set("/fringe/legacy_start_timestamp", MHO_BasicFringeInfo::make_legacy_datetime_format(start_ldate) );
