@@ -382,6 +382,12 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     std::string start_string = vexInfo.at(start_jptr).get<std::string>();
     paramStore->Set("/vex/scan/start", start_string);
 
+    //calculate the start time seconds since Jan 1 00:00 1980
+    //this is the epoch used by alist
+    int64_t start_since_epoch = calculate_start_time_seconds_since_1980(start_string);
+    std::cout<<"start since epoch = "<<start_since_epoch<<std::endl;
+    paramStore->Set("/vex/scan/start_time_since_1980", start_since_epoch);
+
     //get experiment info
     mho_json exper_section = vexInfo["$EXPER"];
     auto exper_info = exper_section.begin().value();
@@ -516,6 +522,14 @@ MHO_VexInfoExtractor::calculate_dec_deg(std::string dec)
     return value;
 }
 
-
+int64_t
+MHO_VexInfoExtractor::calculate_start_time_seconds_since_1980(std::string start_date)
+{
+    auto tp = hops_clock::from_vex_format(start_date);
+    std::string epoch1980_string = "1980-01-01T00:00:00.0Z";
+    auto epoch1980 = hops_clock::from_iso8601_format(epoch1980_string);
+    int64_t secs = std::chrono::duration_cast<std::chrono::seconds>(tp - epoch1980).count();
+    return secs;
+}
 
 }//end namespace

@@ -4,5 +4,6 @@
     "source_object": "",
     "path": "",
     "description": "From HP-1000 system ",
+    "default": 0,
     "units": ""
 }
