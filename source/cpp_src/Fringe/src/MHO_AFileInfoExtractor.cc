@@ -207,20 +207,20 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
     // std::cout<<"fields = "<<fields.dump(2)<<std::endl;
     //
 
-    //extract the info we need
-    for(auto it = fields.begin(); it != fields.end(); it++)
-    {
-        std::string field_name = it->get<std::string>();
-        if(aformat.contains(field_name))
-        {
-            if(aformat[field_name].contains("path"))
-            {
-                std::string path = aformat[field_name]["path"].get<std::string>();
-                std::cout<< aformat[field_name].dump(2) << std::endl;
-                std::cout<< path <<std::endl;
-            }
-        }
-    }
+    // //extract the info we need
+    // for(auto it = fields.begin(); it != fields.end(); it++)
+    // {
+    //     std::string field_name = it->get<std::string>();
+    //     if(aformat.contains(field_name))
+    //     {
+    //         if(aformat[field_name].contains("path"))
+    //         {
+    //             std::string path = aformat[field_name]["path"].get<std::string>();
+    //             std::cout<< aformat[field_name].dump(2) << std::endl;
+    //             std::cout<< path <<std::endl;
+    //         }
+    //     }
+    // }
 
 
     mho_json fsum;
@@ -303,14 +303,14 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
                 {
                     if(aformat[field_name].contains("path") &&
                        aformat[field_name].contains("source_object") &&
-                       aformat[field_name].contains("type") &&
-                       aformat[field_name].contains("format") )
+                       aformat[field_name].contains("type") )
+                       // aformat[field_name].contains("format") )
                     {
                         std::string source_name = aformat[field_name]["source_object"].get<std::string>();
                         std::string path = aformat[field_name]["path"].get<std::string>();
                         std::string type = aformat[field_name]["type"].get<std::string>();
-                        std::string pformat = aformat[field_name]["format"].get<std::string>();
-                        std::cout<< aformat[field_name].dump(2) << std::endl;
+                        std::string pformat = ""; //aformat[field_name]["format"].get<std::string>();
+                        //std::cout<< aformat[field_name].dump(2) << std::endl;
                         std::cout<< source_name <<std::endl;
                         std::cout<< path <<std::endl;
 
@@ -320,11 +320,11 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
                             std::cout<<"item value = "<<item_value<<std::endl;
                         }
 
-                        if(source_name == "plot_data")
-                        {
-                            std::string item_value = RetrieveParameter(plotData, path, type, pformat);
-                            std::cout<<"item value = "<<item_value<<std::endl;
-                        }
+                        // if(source_name == "plot_data")
+                        // {
+                        //     std::string item_value = RetrieveParameter(plotData, path, type, pformat);
+                        //     std::cout<<"item value = "<<item_value<<std::endl;
+                        // }
                     }
                 }
             }
@@ -395,7 +395,6 @@ MHO_AFileInfoExtractor::RetrieveParameter(const MHO_ParameterStore& paramStore, 
         break;
     };
 
-    std::cout<<"item value = "<<output<<std::endl;
     return output;
 }
 
