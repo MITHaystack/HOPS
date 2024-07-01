@@ -17,7 +17,7 @@ namespace hops
 *@file MHO_InitialFringeInfo.hh
 *@class MHO_InitialFringeInfo
 *@author J. Barrettj - barrettj@mit.edu
-*@date Wed Sep 20 16:12:23 2023 -0400 
+*@date Wed Sep 20 16:12:23 2023 -0400
 *@brief collection of helper functions to populate the parameter store
 * with a priori information know before fringe fitting
 */
@@ -30,6 +30,7 @@ class MHO_InitialFringeInfo
         virtual ~MHO_InitialFringeInfo(){};
 
     public:
+
         static void set_default_parameters_minimal(MHO_ParameterStore* paramStore);
         static void configure_reference_frequency(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
         static void calculate_freq_space(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);

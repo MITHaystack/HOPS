@@ -25,6 +25,8 @@
         "rem_elev",
         "ref_freq",
         "sbdelay",
-        "source"
+        "source",
+        "ra_hrs",
+        "dec_deg"
     ]
 }
