@@ -29,6 +29,7 @@ namespace hops
 enum par_type
 {
     int_type,
+    int64_type,
     double_type,
     string_type,
     bool_type,

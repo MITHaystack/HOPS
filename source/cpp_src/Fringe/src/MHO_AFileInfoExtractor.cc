@@ -375,6 +375,12 @@ MHO_AFileInfoExtractor::RetrieveParameter(const MHO_ParameterStore& paramStore, 
                 output = ConvertToString(item_value, format);
         }
         break;
+        case int64_type:
+        {
+                int64_t item_value = paramStore.GetAs<int64_t>(path);
+                output = ConvertToString(item_value, format);
+        }
+        break;
         case double_type:
         {
             double item_value = paramStore.GetAs<double>(path);
@@ -403,6 +409,7 @@ par_type
 MHO_AFileInfoExtractor::DetermineParameterType(std::string etype)
 {
     if(etype == "int"){return int_type;}
+    if(etype == "int64_t"){return int64_type;}
     if(etype == "double"){return double_type;}
     if(etype == "string"){return string_type;}
     if(etype == "bool"){return bool_type;}

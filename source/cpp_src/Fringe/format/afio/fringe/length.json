@@ -1,8 +1,8 @@
 {
     "name": "length",
-    "type": "",
-    "source_object": "",
-    "path": "",
-    "description": "scan length in seconds",
+    "type": "double",
+    "source_object": "plot_data",
+    "path": "/IntgTime",
+    "description": "scan length in seconds (rounded to nearest integer +0.5)",
     "units": ""
 }

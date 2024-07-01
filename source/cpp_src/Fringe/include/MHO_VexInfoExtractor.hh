@@ -44,6 +44,8 @@ class MHO_VexInfoExtractor
         static double calculate_ra_hrs(std::string ra);
         static double calculate_dec_deg(std::string dec);
 
+        static int64_t calculate_start_time_seconds_since_1980(std::string start_date);
+
 };
 
 }//end namespace
