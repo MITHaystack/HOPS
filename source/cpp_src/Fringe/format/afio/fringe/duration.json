@@ -1,8 +1,8 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
-	"path": "",
+	"name": "duration",
+	"type": "int64_t",
+	"source_object": "parameters",
+	"path": "/fringe/scan_duration",
 	"description": "",
-	"units": ""
+	"units": "s"
 }
