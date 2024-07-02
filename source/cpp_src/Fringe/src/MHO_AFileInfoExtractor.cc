@@ -301,31 +301,35 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
                 std::string field_name = it->get<std::string>();
                 if(aformat.contains(field_name))
                 {
-                    if(aformat[field_name].contains("path") &&
-                       aformat[field_name].contains("source_object") &&
-                       aformat[field_name].contains("type") )
-                       // aformat[field_name].contains("format") )
+                    if(aformat[field_name].contains("source_object"))
                     {
-                        std::string source_name = aformat[field_name]["source_object"].get<std::string>();
-                        std::string path = aformat[field_name]["path"].get<std::string>();
-                        std::string type = aformat[field_name]["type"].get<std::string>();
-                        std::string pformat = ""; //aformat[field_name]["format"].get<std::string>();
-                        //std::cout<< aformat[field_name].dump(2) << std::endl;
+                        std::string source_object = aformat[field_name]["source_object"].get<std::string>();
 
-                        if(source_name == "parameters")
+                        if(aformat[field_name].contains("path") &&
+                           aformat[field_name].contains("type") )
+                           // aformat[field_name].contains("format") )
                         {
-                            std::string item_value = RetrieveParameter(paramStore, path, type, pformat);
-                            // std::cout<< source_name <<std::endl;
-                            // std::cout<< path <<std::endl;
-                            std::cout<<field_name<<" = "<<item_value<<std::endl;
-                        }
 
-                        if(source_name == "plot_data")
-                        {
-                            std::string item_value = RetrieveParameter(plotData, path, type, pformat);
-                            // std::cout<< source_name <<std::endl;
-                            // std::cout<< path <<std::endl;
-                            std::cout<<field_name<<" = "<<item_value<<std::endl;
+                            std::string path = aformat[field_name]["path"].get<std::string>();
+                            std::string type = aformat[field_name]["type"].get<std::string>();
+                            std::string pformat = ""; //aformat[field_name]["format"].get<std::string>();
+                            //std::cout<< aformat[field_name].dump(2) << std::endl;
+
+                            if(source_object == "parameters")
+                            {
+                                std::string item_value = RetrieveParameter(paramStore, path, type, pformat);
+                                // std::cout<< source_object <<std::endl;
+                                // std::cout<< path <<std::endl;
+                                std::cout<<field_name<<" = "<<item_value<<std::endl;
+                            }
+
+                            if(source_object == "plot_data")
+                            {
+                                std::string item_value = RetrieveParameter(plotData, path, type, pformat);
+                                // std::cout<< source_object <<std::endl;
+                                // std::cout<< path <<std::endl;
+                                std::cout<<field_name<<" = "<<item_value<<std::endl;
+                            }
                         }
                     }
                 }
