@@ -311,18 +311,20 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
                         std::string type = aformat[field_name]["type"].get<std::string>();
                         std::string pformat = ""; //aformat[field_name]["format"].get<std::string>();
                         //std::cout<< aformat[field_name].dump(2) << std::endl;
-                        std::cout<< source_name <<std::endl;
-                        std::cout<< path <<std::endl;
 
                         if(source_name == "parameters")
                         {
                             std::string item_value = RetrieveParameter(paramStore, path, type, pformat);
+                            std::cout<< source_name <<std::endl;
+                            std::cout<< path <<std::endl;
                             std::cout<<"item value = "<<item_value<<std::endl;
                         }
 
                         if(source_name == "plot_data")
                         {
                             std::string item_value = RetrieveParameter(plotData, path, type, pformat);
+                            std::cout<< source_name <<std::endl;
+                            std::cout<< path <<std::endl;
                             std::cout<<"item value = "<<item_value<<std::endl;
                         }
                     }
