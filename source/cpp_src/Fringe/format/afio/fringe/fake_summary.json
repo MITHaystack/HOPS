@@ -39,6 +39,34 @@
         "total_sbresid",
         "ambiguity",
         "pcals",
-        "root_id"
+        "root_id",
+
+        "ref_freq",
+        "datatype",
+        "ref_elev",
+        "rem_elev",
+        "ref_az",
+        "rem_az",
+        "u",
+        "v",
+        "parents",
+        
+        "duration",
+        "offset",
+
+        "scan_offset",
+        "lags",
+        "phase_snr",
+        "srch_cotime",
+        "noloss_cotime",
+
+        "scan_id",
+        "polarization",
+        "errcode",
+
+        "ra_hrs",
+        "dec_deg",
+        "resid_delay"
     ]
+
 }

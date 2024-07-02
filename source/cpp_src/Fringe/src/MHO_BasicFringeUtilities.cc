@@ -14,6 +14,8 @@
 #include "MHO_InterpolateFringePeak.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 
+#include "MHO_LegacyDateConverter.hh"
+
 //construct_plot_data
 #include "MHO_ComputePlotData.hh"
 
@@ -87,6 +89,17 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     paramStore->Set("/fringe/legacy_stop_timestamp", MHO_BasicFringeInfo::make_legacy_datetime_format(stop_ldate) );
     paramStore->Set("/fringe/legacy_frt_timestamp", MHO_BasicFringeInfo::make_legacy_datetime_format(frt_ldate) );
     paramStore->Set("/fringe/procdate", tnow_vex );
+
+    legacy_hops_date proc_ldate  = MHO_LegacyDateConverter::ConvertFromVexFormat(tnow_vex);
+    std::string procdate_string = MHO_BasicFringeInfo::make_legacy_datetime_format_v2(proc_ldate);
+    paramStore->Set("/fringe/legacy_procdate_timestamp", procdate_string );
+
+    std::string corrdate_vex = paramStore->GetAs<std::string>("/config/correlation_date");
+    legacy_hops_date corr_ldate  = MHO_LegacyDateConverter::ConvertFromVexFormat(corrdate_vex);
+    std::string corrdate_string = MHO_BasicFringeInfo::make_legacy_datetime_format_v2(corr_ldate);
+    paramStore->Set("/fringe/legacy_corrdate_timestamp", corrdate_string );
+
+    //TODO FIXME -- add the software build date as a legacy timestamp
 
     //calculate SNR
     std::vector< std::string > pp_vec = paramStore->GetAs< std::vector< std::string > >("/config/polprod_set");
