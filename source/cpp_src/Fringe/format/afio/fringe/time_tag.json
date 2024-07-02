@@ -1,6 +1,6 @@
 {
     "name": "time_tag",
-    "type": "int64_t",
+    "type": "string",
     "source_object": "parameters",
     "path": "/vex/scan/start",
     "description": "scan start time",
