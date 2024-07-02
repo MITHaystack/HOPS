@@ -1,6 +1,6 @@
 {
     "name": "procdate",
-    "type": "",
+    "type": "string",
     "source_object": "parameters",
     "path": "/fringe/procdate",
     "description": "Creation date for this extent",

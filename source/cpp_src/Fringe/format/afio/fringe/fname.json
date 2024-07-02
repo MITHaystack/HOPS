@@ -1,7 +1,7 @@
 {
 	"name": "fname",
 	"type": "string",
-	"source_object": "parameters",
+	"source_object": "local_variable",
 	"path": "",
 	"description": "",
     "default": "00000",

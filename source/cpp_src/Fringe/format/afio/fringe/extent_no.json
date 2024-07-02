@@ -1,7 +1,7 @@
 {
     "name": "extent_no",
-    "type": "",
-    "source_object": "",
+    "type": "int",
+    "source_object": "local_variable",
     "path": "",
     "description": "From HP-1000 system ",
     "default": 0,

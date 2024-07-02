@@ -489,7 +489,7 @@ def make_info_text_box(plot_dict):
         'Start ' + '\n' + \
         'Stop ' + '\n' + \
         'FRT ' + '\n' + \
-        'Com/FF/build ' + '\n\n\n\n' + \
+        'Corr/FF/build ' + '\n\n\n\n' + \
         'RA & Dec (J2000)'
 
     textstr2 = str(plot_dict['Quality'].strip("'")) + '\n\n' + \

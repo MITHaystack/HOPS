@@ -100,8 +100,10 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["Start"] = paramStore->GetAs<std::string>("/fringe/legacy_start_timestamp");
     plot_dict["Stop"] = paramStore->GetAs<std::string>("/fringe/legacy_stop_timestamp");
     plot_dict["FRT"] = paramStore->GetAs<std::string>("/fringe/legacy_frt_timestamp");
-    plot_dict["CorrTime"] = "-";
-    plot_dict["FFTime"] = "-";
+    
+    
+    plot_dict["CorrTime"] = paramStore->GetAs<std::string>("/fringe/legacy_corrdate_timestamp");
+    plot_dict["FFTime"] = paramStore->GetAs<std::string>("/fringe/legacy_procdate_timestamp");
     plot_dict["BuildTime"] = "-";
 
     plot_dict["RA"] = paramStore->GetAs<std::string>("/vex/scan/source/ra");

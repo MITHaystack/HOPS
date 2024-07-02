@@ -26,6 +26,21 @@ MHO_BasicFringeInfo::make_legacy_datetime_format(legacy_hops_date ldate)
     return dt;
 }
 
+std::string
+MHO_BasicFringeInfo::make_legacy_datetime_format_v2(legacy_hops_date ldate)
+{
+    //formats the time as:
+    //YYYY:DDD:HHMMSS
+    int iyear = (int) ldate.year;
+    int iday = (int) ldate.day;
+    int isec = (int) ldate.second;
+    std::string dt;
+    dt = leftpadzeros_integer(4, iyear) + ":" +
+         leftpadzeros_integer(3, iday) + ":" + 
+         leftpadzeros_integer(2, ldate.hour) + leftpadzeros_integer(2, ldate.minute) + leftpadzeros_integer(2, isec);
+    return dt;
+}
+
 
 double
 MHO_BasicFringeInfo::calculate_snr(double effective_npol, double ap_period, double samp_period, double total_ap_frac, double amp, double bw_corr_factor)

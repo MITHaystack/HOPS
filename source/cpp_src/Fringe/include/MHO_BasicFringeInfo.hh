@@ -36,6 +36,7 @@ class MHO_BasicFringeInfo
         //helper functions
         static std::string leftpadzeros_integer(unsigned int n_places, int value);
         static std::string make_legacy_datetime_format(legacy_hops_date ldate);
+        static std::string make_legacy_datetime_format_v2(legacy_hops_date ldate);
         static double calculate_snr(double effective_npol, double ap_period, double samp_period, double total_ap_frac, double amp, double bw_corr_factor);
         static double calculate_mbd_no_ion_error(double freq_spread, double snr);
         static double calculate_sbd_error(double sbd_sep, double snr, double sbavg);
