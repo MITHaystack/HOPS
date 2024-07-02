@@ -2,7 +2,7 @@
     "name": "time_tag",
     "type": "int64_t",
     "source_object": "parameters",
-    "path": "/vex/scan/start_time_since_1980",
-    "description": "Seconds since 0h, Jan 1 1980 for scan start time",
+    "path": "/vex/scan/start",
+    "description": "scan start time",
     "units": "s"
 }

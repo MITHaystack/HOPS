@@ -382,10 +382,10 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     std::string start_string = vexInfo.at(start_jptr).get<std::string>();
     paramStore->Set("/vex/scan/start", start_string);
 
-    //calculate the scan start time in seconds since Jan 1 00:00 1980
-    //this is the epoch used by alist (this is only needed for output to alist)
-    int64_t start_since_epoch = calculate_start_time_seconds_since_1980(start_string);
-    paramStore->Set("/vex/scan/start_time_since_1980", start_since_epoch);
+    // //calculate the scan start time in seconds since Jan 1 00:00 1980
+    // //this is the epoch used by alist (this is only needed for output to alist)
+    // int64_t start_since_epoch = calculate_start_time_seconds_since_1980(start_string);
+    // paramStore->Set("/vex/scan/start_time_since_1980", start_since_epoch);
 
     //get experiment info
     mho_json exper_section = vexInfo["$EXPER"];
