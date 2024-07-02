@@ -83,6 +83,9 @@ set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
 set(PERLSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/perl_src)
 set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 
+
+
+
 ################################################################################
 #compiler settings
 #use c++11 standard by default
@@ -101,6 +104,13 @@ else()
     set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" )
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" )
 endif()
+
+################################################################################
+#create build timestamp...note: a consequence of this is that the build will not 
+#be reproducible.
+#This is required for legacy behavior of fringe plots (which report build time).
+string(TIMESTAMP BUILD_TIME "%Y-%m-%dT%H:%M:%SZ" UTC)
+message(STATUS "The build timestamp is ${BUILD_TIME}")
 
 ################################################################################
 

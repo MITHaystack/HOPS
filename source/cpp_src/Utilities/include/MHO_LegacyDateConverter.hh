@@ -29,6 +29,7 @@ class MHO_LegacyDateConverter
         static std::string ConvertToVexFormat(legacy_hops_date a_date);
 
         static legacy_hops_date ConvertFromVexFormat(std::string vex_date);
+        static legacy_hops_date ConvertFromISO8601Format(std::string iso_date);
         static legacy_hops_date Now();
         static legacy_hops_date HopsEpoch();
 

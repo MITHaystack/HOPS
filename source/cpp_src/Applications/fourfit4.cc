@@ -35,7 +35,16 @@
 //needed to export to mark4 fringe files
 #include "MHO_MK4FringeExport.hh"
 
+//wraps the MPI interface (in case it is not enabled)
 #include "MHO_MPIInterfaceWrapper.hh"
+
+//set build timestamp, for fourfit plots (legacy behavior)
+#ifdef HOPS_BUILD_TIME
+#define HOPS_BUILD_TIMESTAMP STRING(HOPS_BUILD_TIME)
+#else 
+//no build time defined...default
+#define HOPS_BUILD_TIMESTAMP "2000-01-01T00:00:00.0Z"
+#endif
 
 
 using namespace hops;
@@ -107,7 +116,8 @@ int main(int argc, char** argv)
             fringeData.GetParameterStore()->CopyFrom(cmdline_params); //copy in command line info
 
             //set the current pass info (directory, root_file, source, baseline, pol-product, frequency-group)
-            mho_json pass = pass_vector[pass_index]; 
+            mho_json pass = pass_vector[pass_index];
+            pass["build_time"] = HOPS_BUILD_TIMESTAMP; //set the build time stamp in the pass info
             fringeData.GetParameterStore()->Set("/pass", pass);
 
             //initializes the scan data store, reads the ovex file and sets the value of '/pass/source'

@@ -49,6 +49,9 @@ if(HOPS_USE_PYBIND11)
     list(APPEND HOPS_TEST_LIBS ${PYBIND_TEST_LIBS})
 endif(HOPS_USE_PYBIND11)
 
+#add the build time as a CXX flag for all these executables (mainly needed by fourfit)
+set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DHOPS_BUILD_TIME=${BUILD_TIME} ")
+
 foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS})
