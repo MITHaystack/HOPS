@@ -37,6 +37,22 @@ MHO_LegacyDateConverter::ConvertFromVexFormat(std::string vex_date)
     }
 }
 
+legacy_hops_date 
+MHO_LegacyDateConverter::ConvertFromISO8601Format(std::string iso_date)
+{
+    if(iso_date != "")
+    {
+        auto mstart = hops_clock::from_iso8601_format(iso_date);
+        return hops_clock::to_legacy_hops_date(mstart);
+    }
+    else
+    {
+        //return dummy value (start of epoch)
+        auto mstart = hops_clock::get_hops_epoch();
+        return hops_clock::to_legacy_hops_date(mstart);
+    }
+}
+
 
 legacy_hops_date
 MHO_LegacyDateConverter::Now()

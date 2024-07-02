@@ -100,6 +100,10 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     paramStore->Set("/fringe/legacy_corrdate_timestamp", corrdate_string );
 
     //TODO FIXME -- add the software build date as a legacy timestamp
+    std::string buildtime = paramStore->GetAs<std::string>("/pass/build_time");
+    legacy_hops_date build_ldate  = MHO_LegacyDateConverter::ConvertFromISO8601Format(buildtime);
+    std::string build_string = MHO_BasicFringeInfo::make_legacy_datetime_format_v2(build_ldate);
+    paramStore->Set("/fringe/legacy_build_timestamp", build_string );
 
     //calculate SNR
     std::vector< std::string > pp_vec = paramStore->GetAs< std::vector< std::string > >("/config/polprod_set");
