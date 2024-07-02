@@ -1,8 +1,8 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
-	"path": "",
+	"name": "scan_id",
+	"type": "string",
+	"source_object": "parameters",
+	"path": "/vex/scan/name",
 	"description": "",
 	"units": ""
 }

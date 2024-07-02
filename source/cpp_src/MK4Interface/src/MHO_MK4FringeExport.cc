@@ -177,24 +177,29 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     FillFloat(t202->ref_az, "/ref_station/azimuth");
     FillFloat(t202->rem_az, "/rem_station/azimuth");
 
-    double ref_freq;
-    FillDouble(ref_freq, "/control/config/ref_freq");
+    // double ref_freq;
+    // FillDouble(ref_freq, "/control/config/ref_freq");
 
-    double speed_of_light_Mm = 299.792458; // in mega-meters
-    double radians_to_arcsec = 4.848137e-6;
-    double lambda = speed_of_light_Mm / ref_freq; // wavelength (m)
-
-    double ref_u, ref_v;
-    double rem_u, rem_v;
-    FillDouble(ref_u, "/ref_station/u");
-    FillDouble(ref_v, "/ref_station/v");
-    FillDouble(rem_u, "/rem_station/u");
-    FillDouble(rem_v, "/rem_station/v");
-
-    double du = radians_to_arcsec * (rem_u - ref_u) / lambda;
-    double dv = radians_to_arcsec * (rem_v - ref_v) / lambda;
-    t202->u = (float) du;
-    t202->v = (float) dv;
+    // double speed_of_light_Mm = 299.792458; // in mega-meters
+    // double radians_to_arcsec = 4.848137e-6;
+    // double lambda = speed_of_light_Mm / ref_freq; // wavelength (m)
+    // 
+    // double ref_u, ref_v;
+    // double rem_u, rem_v;
+    // FillDouble(ref_u, "/ref_station/u");
+    // FillDouble(ref_v, "/ref_station/v");
+    // FillDouble(rem_u, "/rem_station/u");
+    // FillDouble(rem_v, "/rem_station/v");
+    // 
+    // double du = radians_to_arcsec * (rem_u - ref_u) / lambda;
+    // double dv = radians_to_arcsec * (rem_v - ref_v) / lambda;
+    // t202->u = (float) du;
+    // t202->v = (float) dv;
+    
+    FillDouble(t202->u, "/fringe/du");
+    FillDouble(t202->v, "/fringe/dv");
+    // paramStore->Set("/fringe/du", du);
+    // paramStore->Set("/fringe/dv", dv);
 
     return 0;
 }
