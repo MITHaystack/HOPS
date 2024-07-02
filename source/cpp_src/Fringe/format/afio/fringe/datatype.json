@@ -1,8 +1,9 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
+	"name": "datatype",
+	"type": "string",
+	"source_object": "deprecated",
 	"path": "",
 	"description": "",
-	"units": ""
+	"units": "",
+    "default": "Sf"
 }

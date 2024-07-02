@@ -3,7 +3,7 @@
     "type": "int",
     "source_object": "local_variable",
     "path": "",
-    "description": "From HP-1000 system ",
+    "description": "From HP-1000 system (file name extent number)",
     "default": 0,
     "units": ""
 }

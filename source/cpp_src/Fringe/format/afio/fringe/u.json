@@ -1,8 +1,8 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
-	"path": "",
+	"name": "u",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/fringe/du",
 	"description": "",
 	"units": ""
 }

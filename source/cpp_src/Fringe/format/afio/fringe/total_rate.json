@@ -1,8 +1,8 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
-	"path": "",
+	"name": "total_rate",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/fringe/total_drate",
 	"description": "",
 	"units": ""
 }

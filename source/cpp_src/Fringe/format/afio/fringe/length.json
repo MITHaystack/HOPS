@@ -3,6 +3,6 @@
     "type": "double",
     "source_object": "plot_data",
     "path": "/IntgTime",
-    "description": "scan length in seconds (rounded to nearest integer +0.5)",
+    "description": "scan length in seconds ",
     "units": ""
 }

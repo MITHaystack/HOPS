@@ -165,6 +165,10 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     paramStore->Set("/fringe/total_sbdelay", tot_sbd);
     paramStore->Set("/fringe/total_mbdelay", tot_mbd);
     paramStore->Set("/fringe/total_drate", tot_drate);
+    
+    //stored for alist
+    double total_sbresid = tot_sbd - tot_mbd;
+    paramStore->Set("/fringe/total_sbresid", total_sbresid);
 
     //totals computed at the reference station (instead of geocenter)
     //section is only needed to populate type_208s when exporting to mk4 output
@@ -228,6 +232,23 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
 
     paramStore->Set("/fringe/relative_clock_offset", clock_offset); //usec
     paramStore->Set("/fringe/relative_clock_rate", clock_rate*1e6); //usec/s
+    
+    //calculate the (U,V) coordinates
+    //TODO FIXME...move all constants to MHO_Constants
+    double speed_of_light_Mm = 299.792458; // in mega-meters
+    double radians_to_arcsec = 4.848137e-6;
+    double lambda = speed_of_light_Mm / ref_freq; // wavelength (m)
+
+    double ref_u = paramStore->GetAs<double>("/ref_station/u");
+    double ref_v = paramStore->GetAs<double>("/ref_station/v");
+    double rem_u = paramStore->GetAs<double>("/rem_station/u");
+    double rem_v = paramStore->GetAs<double>("/rem_station/v");
+
+    double du = radians_to_arcsec * (rem_u - ref_u) / lambda;
+    double dv = radians_to_arcsec * (rem_v - ref_v) / lambda;
+    paramStore->Set("/fringe/du", du);
+    paramStore->Set("/fringe/dv", dv);
+    
 }
 
 
