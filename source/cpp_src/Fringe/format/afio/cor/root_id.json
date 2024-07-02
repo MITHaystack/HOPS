@@ -1,0 +1,8 @@
+{
+	"name": "root_id",
+	"type": "string",
+	"source_object": "parameters",
+	"path": "/config/root_code",
+	"description": "6-character Mk4 root code",
+	"units": ""
+}

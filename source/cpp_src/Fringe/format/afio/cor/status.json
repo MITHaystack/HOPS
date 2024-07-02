@@ -1,0 +1,8 @@
+{
+    "name": "archiv",
+    "type": "string",
+    "source_object": "parameters",
+    "path": "/vex/experiment_number",
+    "description": "Deprecated -- same as experiment serial # ",
+    "units": ""
+}
