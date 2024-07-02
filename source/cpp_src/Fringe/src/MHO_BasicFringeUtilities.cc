@@ -76,13 +76,17 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     //needed for alist output 'scan duration'
     int64_t scan_duration = std::chrono::duration_cast<std::chrono::seconds>(stop_time - start_time).count();
     paramStore->Set("/fringe/scan_duration", scan_duration);
-    std::cout<<"SCAN DURATION = "<<scan_duration<<std::endl;
+
+        //get the current time as the time stamp for the 'fourfit' processing time
+    auto tnow = hops_clock::now();
+    std::string tnow_vex = hops_clock::to_vex_format(tnow);
 
     //figure out the legacy date/time stamps for start, stop, and FRT
     paramStore->Set("/fringe/year_doy", year_doy);
     paramStore->Set("/fringe/legacy_start_timestamp", MHO_BasicFringeInfo::make_legacy_datetime_format(start_ldate) );
     paramStore->Set("/fringe/legacy_stop_timestamp", MHO_BasicFringeInfo::make_legacy_datetime_format(stop_ldate) );
     paramStore->Set("/fringe/legacy_frt_timestamp", MHO_BasicFringeInfo::make_legacy_datetime_format(frt_ldate) );
+    paramStore->Set("/fringe/procdate", tnow_vex );
 
     //calculate SNR
     std::vector< std::string > pp_vec = paramStore->GetAs< std::vector< std::string > >("/config/polprod_set");

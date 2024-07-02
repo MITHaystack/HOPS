@@ -83,8 +83,13 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
     FillInt(t200->stop_offset, "/stop_offset", 0);
 
     //get the current time
-    legacy_hops_date now_date = MHO_LegacyDateConverter::Now();
-    FillDate(&(t200->fourfit_date), now_date);
+    // legacy_hops_date now_date = MHO_LegacyDateConverter::Now();
+    // FillDate(&(t200->fourfit_date), now_date);
+
+    //pull the processing date from the parameter store
+    std::string procdate_vex = fPStore->GetAs<std::string>("/fringe/procdate");
+    legacy_hops_date procdate = MHO_LegacyDateConverter::ConvertFromVexFormat(procdate_vex);
+    FillDate(&(t200->fourfit_date), procdate);
 
     //the correlation processing date
     FillDate(&(t200->corr_date), "/config/correlation_date");
