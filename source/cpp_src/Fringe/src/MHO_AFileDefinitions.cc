@@ -12,7 +12,7 @@ std::string
 MHO_AFileDefinitions::GetFormatDirectory()
 {
     std::string format_dir = HOPS_AFILE_FORMAT_DIR;
-    format_dir += "/afio/";
+    format_dir += "/afio/frng/";
     return format_dir;
 }
 
