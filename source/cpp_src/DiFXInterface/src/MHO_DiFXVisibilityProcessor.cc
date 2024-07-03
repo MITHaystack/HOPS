@@ -119,6 +119,10 @@ MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcess
                 //add the record to the appropriate baseline
                 allBaselineVisibilities[visRecord.baseline].AddRecord( new MHO_DiFXVisibilityRecord(visRecord) );
             }
+            else 
+            {
+                msg_error("difx_interface", "encountered unsupported header version: "<<visRecord.headerversion<<", while reading visibility record, expected version: 1" << eom);
+            }
         }
     }
 

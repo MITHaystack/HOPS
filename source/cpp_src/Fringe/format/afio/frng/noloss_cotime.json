@@ -1,8 +1,9 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
+	"name": "noloss_cotime",
+	"type": "double",
+	"source_object": "none",
 	"path": "",
 	"description": "",
-	"units": ""
+	"units": "",
+    "default": -1
 }

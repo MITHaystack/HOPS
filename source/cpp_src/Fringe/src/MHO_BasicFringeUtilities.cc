@@ -249,6 +249,10 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     paramStore->Set("/fringe/du", du);
     paramStore->Set("/fringe/dv", dv);
     
+    //needed by alist -- residual delay corrected by mbd_anchor=sbd
+    double alist_resid_delay = mbdelay + ambig * std::floor( ((sbdelay - mbdelay)/ambig) + 0.5);
+
+    paramStore->Set("/fringe/resid_delay", alist_resid_delay);
 }
 
 

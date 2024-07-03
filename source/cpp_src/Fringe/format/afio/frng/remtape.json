@@ -1,8 +1,9 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
+	"name": "remtape",
+	"type": "string",
+	"source_object": "none",
 	"path": "",
 	"description": "",
-	"units": ""
+	"units": "",
+    "default": ""
 }
