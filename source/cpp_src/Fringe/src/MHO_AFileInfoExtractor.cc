@@ -196,9 +196,10 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
     // MHO_ContainerFileInterface conInter;
     // conInter.SetFilename(std::string filename);
     // conInter.PopulateStoreFromFile(conStore);
+    std::string file_type = "frng";
 
     MHO_AFileDefinitions adef;
-    mho_json aformat = adef.GetAFileFormat();
+    mho_json aformat = adef.GetAFileFormat(file_type);
     mho_json fringe_format = aformat["fake_summary"];
 
     int version = fringe_format["default_version"];
