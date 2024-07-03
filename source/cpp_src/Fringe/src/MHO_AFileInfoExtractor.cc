@@ -192,38 +192,14 @@ namespace hops
 mho_json
 MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
 {
-    // MHO_ContainerStore conStore;
-    // MHO_ContainerFileInterface conInter;
-    // conInter.SetFilename(std::string filename);
-    // conInter.PopulateStoreFromFile(conStore);
+    //pull the fringe file definitions
     std::string file_type = "frng";
-
     MHO_AFileDefinitions adef;
     mho_json aformat = adef.GetAFileFormat(file_type);
     mho_json fringe_format = aformat["fake_summary"];
 
     int version = fringe_format["default_version"];
     mho_json fields = fringe_format["fields_v1"];
-
-    // std::cout<<"fields = "<<fields.dump(2)<<std::endl;
-    //
-
-    // //extract the info we need
-    // for(auto it = fields.begin(); it != fields.end(); it++)
-    // {
-    //     std::string field_name = it->get<std::string>();
-    //     if(aformat.contains(field_name))
-    //     {
-    //         if(aformat[field_name].contains("path"))
-    //         {
-    //             std::string path = aformat[field_name]["path"].get<std::string>();
-    //             std::cout<< aformat[field_name].dump(2) << std::endl;
-    //             std::cout<< path <<std::endl;
-    //         }
-    //     }
-    // }
-
-
     mho_json fsum;
 
     //to pull out fringe data, we are primarily interested in the 'MHO_ObjectTags' object
@@ -259,42 +235,31 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
         //now pull the pol-products and frequency groups info
         //and check them agains the command line arguments
         bool ok = inter.Read(obj, obj_key);
-
         std::vector< std::string > tags;
-        //obj.DumpTags(tags);
-        for(auto it=tags.begin(); it !=tags.end(); it++)
-        {
-            std::cout<<"#### "<<*it<<std::endl;
-        }
-
-        //std::cout<<obj.GetMetaDataAsJSON().dump(2)<<std::endl;
 
         if(ok)
         {
-
             //pull the parameters
             MHO_ParameterStore paramStore;
             mho_json param_data;
             bool param_ok = obj.GetTagValue("parameters", param_data);
-            if(param_ok)
+            if(!param_ok)
             {
-                std::cout<<"got some params"<<std::endl;
+                msg_error("fringe", "could not read parameters object from: "<< filename << eom);
+                return fsum;
             }
             paramStore.FillData(param_data);
-
-            //paramStore.Dump();
 
             //pull the plot data
             MHO_ParameterStore plotData;
             mho_json plot_data;
             bool plot_ok = obj.GetTagValue("plot_data", plot_data);
-            plotData.FillData(plot_data);
-            if(param_ok)
+            if(!plot_ok)
             {
-                std::cout<<"got some plot_data"<<std::endl;
+                msg_error("fringe", "could not read plot_data object from: "<< filename << eom);
+                return fsum;
             }
-
-            //plotData.Dump();
+            plotData.FillData(plot_data);
 
             //extract the info we need
             for(auto it = fields.begin(); it != fields.end(); it++)
@@ -308,50 +273,37 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
 
                         if(aformat[field_name].contains("path") &&
                            aformat[field_name].contains("type") )
-                           // aformat[field_name].contains("format") )
                         {
 
                             std::string path = aformat[field_name]["path"].get<std::string>();
                             std::string type = aformat[field_name]["type"].get<std::string>();
-                            std::string pformat = ""; //aformat[field_name]["format"].get<std::string>();
-                            //std::cout<< aformat[field_name].dump(2) << std::endl;
-
-                            if(source_object == "parameters")
+                            
+                            std::string pformat = "";
+                            if(aformat[field_name].contains("format") )
                             {
-                                std::string item_value = RetrieveParameter(paramStore, path, type, pformat);
-                                // std::cout<< source_object <<std::endl;
-                                // std::cout<< path <<std::endl;
-                                std::cout<<field_name<<" = "<<item_value<<std::endl;
+                                pformat = aformat[field_name]["format"].get<std::string>();
+                            }
+                            
+                            std::string units = ".";
+                            if(aformat[field_name].contains("units") )
+                            {
+                                std::string tmp_units = aformat[field_name]["units"].get<std::string>();
+                                if(tmp_units != ""){units = tmp_units;}
                             }
 
-                            if(source_object == "plot_data")
+                            if(source_object == "parameters"){RetrieveParameter(fsum, field_name, paramStore, path, type);}
+                            if(source_object == "plot_data"){RetrieveParameter(fsum, field_name, plotData, path, type);}
+
+                            if(source_object == "local_variable")
                             {
-                                std::string item_value = RetrieveParameter(plotData, path, type, pformat);
-                                // std::cout<< source_object <<std::endl;
-                                // std::cout<< path <<std::endl;
-                                std::cout<<field_name<<" = "<<item_value<<std::endl;
+                                //only a limited number of these, treat each one individually
+                                if(field_name == "fname"){fsum[field_name] = filename;}
+                                if(field_name == "version"){fsum[field_name] = version;}
                             }
                         }
                     }
                 }
             }
-
-
-            // //extract the info we need
-            // for(auto it = fields.begin(); it != fields.end(); it++)
-            // {
-            //     if(tokens[token_idx].fValue == nothing){token_idx++;} //empty value, skip this element
-            //     else
-            //     {
-            //         std::string field_name = it->get<std::string>();
-            //         mho_json next_format =  format["parameters"][field_name];
-            //         std::string type_name = next_format["type"].get<std::string>();
-            //         tmp_tokens.push_back(tokens[token_idx]);
-            //         element_data[field_name] = ParseTokens(field_name, next_format, tmp_tokens);
-            //         token_idx++;
-            //     }
-            // }
-
         }
         else
         {
@@ -368,47 +320,28 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
 }
 
 
-std::string
-MHO_AFileInfoExtractor::RetrieveParameter(const MHO_ParameterStore& paramStore, const std::string& path, const std::string& type, const std::string& format)
+void
+MHO_AFileInfoExtractor::RetrieveParameter(mho_json& obj, const std::string& name, const MHO_ParameterStore& paramStore, const std::string& path, const std::string& type)
 {
     par_type ptype = DetermineParameterType(type);
-    std::string output;
-
     switch( ptype )
     {
         case int_type:
-        {
-            int item_value = paramStore.GetAs<int>(path);
-            output = ConvertToString(item_value, format);
-        }
+            obj[name] = paramStore.GetAs<int>(path);
         break;
         case int64_type:
-        {
-            int64_t item_value = paramStore.GetAs<int64_t>(path);
-            output = ConvertToString(item_value, format);
-        }
+            obj[name] = paramStore.GetAs<int64_t>(path);
         break;
         case double_type:
-        {
-            double item_value = paramStore.GetAs<double>(path);
-            output = ConvertToString(item_value, format);
-        }
+            obj[name] = paramStore.GetAs<double>(path);
         break;
         case string_type:
-        {
-            std::string item_value = paramStore.GetAs<std::string>(path);
-            output = ConvertToString(item_value, format);
-        }
+            obj[name] = paramStore.GetAs<std::string>(path);
         break;
         case bool_type:
-        {
-            bool item_value = paramStore.GetAs<bool>(path);
-            output = ConvertToString(item_value, format);
-        }
+            obj[name] = paramStore.GetAs<bool>(path);
         break;
     };
-
-    return output;
 }
 
 

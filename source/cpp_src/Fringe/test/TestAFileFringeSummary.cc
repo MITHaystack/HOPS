@@ -22,5 +22,7 @@ int main(int argc, char** argv)
 
     mho_json fsum = ext.summarize_fringe_file(filename);
 
+    std::cout<<fsum.dump(2)<<std::endl;
+
     return 0;
 }
