@@ -55,8 +55,7 @@ class MHO_AFileInfoExtractor
     protected:
 
 
-
-        std::string RetrieveParameter(const MHO_ParameterStore& paramStore, const std::string& path, const std::string& type, const std::string& pformat = "");
+        void RetrieveParameter(mho_json& obj, const std::string& name, const MHO_ParameterStore& paramStore, const std::string& path, const std::string& type);
 
         par_type DetermineParameterType(std::string etype);
 
@@ -75,6 +74,7 @@ class MHO_AFileInfoExtractor
             }
             else
             {
+                ss << std::setprecision(15); //default to full double precision
                 ss << value;
                 output = ss.str();
             }
