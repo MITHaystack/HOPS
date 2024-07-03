@@ -15,7 +15,8 @@ int main(int argc, char** argv)
 
     MHO_AFileDefinitions adef;
 
-    mho_json format = adef.GetAFileFormat();
+    std::string file_type = "frng";
+    mho_json format = adef.GetAFileFormat(file_type);
 
     return 0;
 }

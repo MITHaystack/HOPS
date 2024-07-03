@@ -9,19 +9,20 @@ namespace hops
 
 
 std::string
-MHO_AFileDefinitions::GetFormatDirectory()
+MHO_AFileDefinitions::GetFormatDirectory(const std::string& file_type)
 {
+    //allowed file types are: root, frng, and cor
     std::string format_dir = HOPS_AFILE_FORMAT_DIR;
-    format_dir += "/afio/frng/";
+    format_dir += "/afio/" + file_type + "/";
     return format_dir;
 }
 
 std::vector< std::string >
-MHO_AFileDefinitions::GetKeywordNames()
+MHO_AFileDefinitions::GetKeywordNames(const std::string& file_type)
 {
 
     std::vector< std::string > keywords;
-    std::string format_dir = GetFormatDirectory();
+    std::string format_dir = GetFormatDirectory(file_type);
     MHO_DirectoryInterface dirInterface;
 
     dirInterface.SetCurrentDirectory(format_dir);
@@ -39,13 +40,13 @@ MHO_AFileDefinitions::GetKeywordNames()
 
 
 mho_json
-MHO_AFileDefinitions::GetAFileFormat()
+MHO_AFileDefinitions::GetAFileFormat(const std::string& file_type)
 {
     //load all of the .json format files here so they are in memory
     //TODO -- we may also want to combine all the format files into a single file
 
-    std::string format_dir = GetFormatDirectory();
-    std::vector< std::string > keywords = GetKeywordNames();
+    std::string format_dir = GetFormatDirectory(file_type);
+    std::vector< std::string > keywords = GetKeywordNames(file_type);
     mho_json format_obj;
 
     for(auto keyIt = keywords.begin(); keyIt != keywords.end(); keyIt++ )

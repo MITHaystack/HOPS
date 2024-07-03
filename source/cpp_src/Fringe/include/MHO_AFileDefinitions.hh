@@ -34,9 +34,9 @@ class MHO_AFileDefinitions
 
     public:
 
-        static std::string GetFormatDirectory();
-        static std::vector< std::string > GetKeywordNames();
-        static mho_json GetAFileFormat();
+        static std::string GetFormatDirectory(const std::string& file_type);
+        static std::vector< std::string > GetKeywordNames(const std::string& file_type);
+        static mho_json GetAFileFormat(const std::string& file_type);
 };
 
 }//end namespace
