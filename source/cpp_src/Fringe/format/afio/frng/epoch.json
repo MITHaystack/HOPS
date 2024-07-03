@@ -1,8 +1,8 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
-	"path": "",
-	"description": "",
+	"name": "epoch",
+	"type": "string",
+	"source_object": "parameters",
+	"path": "/vex/scan/fourfit_reftime",
+	"description": "reference epoch (fourfit reference time), only (mins,secs) are printed",
 	"units": ""
 }

@@ -1,8 +1,9 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
+	"name": "offset",
+	"type": "int",
+	"source_object": "none",
 	"path": "",
-	"description": "",
-	"units": ""
+	"description": "deprecated",
+	"units": "",
+    "default": 0
 }

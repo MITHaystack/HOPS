@@ -1,8 +1,9 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
+	"name": "mode",
+	"type": "string",
+	"source_object": "none",
 	"path": "",
 	"description": "",
-	"units": ""
+	"units": "",
+    "default": ""
 }

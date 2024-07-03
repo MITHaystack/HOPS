@@ -1,7 +1,7 @@
 {
 	"name": "ssec",
 	"type": "int",
-	"source_object": "",
+	"source_object": "none",
 	"path": "",
 	"description": "scan time seconds, version 1 ",
     "default": 0,
