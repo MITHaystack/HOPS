@@ -1,7 +1,7 @@
 {
 	"name": "sbdelay",
 	"type": "double",
-	"source_object": "/parameters",
+	"source_object": "parameters",
 	"path": "/fringe/sbdelay",
 	"description": "",
 	"units": ""

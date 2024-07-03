@@ -192,15 +192,41 @@ namespace hops
 mho_json
 MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
 {
-    //pull the fringe file definitions
+    mho_json fsum;
+    if(filename.find("frng") == std::string::npos)
+    {
+        //not a fringe file, skip this 
+        msg_error("fringe", "the file: "<< filename<<" is not a fringe file"<<eom);
+        return fsum;
+    }
+    
+    //split the filename (not strictly necessary, but used to extract the extent number)
+    //for example: 23 in 'GE.X.XX.345F47.23.frng'
+    MHO_Tokenizer tokenizer;
+    tokenizer.SetDelimiter(".");
+    tokenizer.SetIncludeEmptyTokensFalse();
+    tokenizer.SetString(&filename);
+    std::vector< std::string > tokens;
+    tokenizer.GetTokens(&tokens);
+    if(tokens.size() != 6)
+    {
+        //not a fringe file, skip this 
+        msg_error("fringe", "could not parse the file name: "<< filename<<eom);
+        return fsum;
+    }
+    //grab the extent number
+    std::stringstream ss;
+    ss << tokens[4];
+    int extent_no;
+    ss >> extent_no;
+    
+    //pull the fringe file format definition
     std::string file_type = "frng";
     MHO_AFileDefinitions adef;
     mho_json aformat = adef.GetAFileFormat(file_type);
     mho_json fringe_format = aformat["fake_summary"];
-
     int version = fringe_format["default_version"];
     mho_json fields = fringe_format["fields_v1"];
-    mho_json fsum;
 
     //to pull out fringe data, we are primarily interested in the 'MHO_ObjectTags' object
     //get uuid for MHO_ObjectTags object
@@ -261,7 +287,7 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
             }
             plotData.FillData(plot_data);
 
-            //extract the info we need
+            //loop over all the fields defined by the format and extract the info we need
             for(auto it = fields.begin(); it != fields.end(); it++)
             {
                 std::string field_name = it->get<std::string>();
@@ -270,36 +296,21 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
                     if(aformat[field_name].contains("source_object"))
                     {
                         std::string source_object = aformat[field_name]["source_object"].get<std::string>();
-
-                        if(aformat[field_name].contains("path") &&
-                           aformat[field_name].contains("type") )
+                        if(aformat[field_name].contains("path") && aformat[field_name].contains("type") )
                         {
-
                             std::string path = aformat[field_name]["path"].get<std::string>();
                             std::string type = aformat[field_name]["type"].get<std::string>();
-                            
-                            std::string pformat = "";
-                            if(aformat[field_name].contains("format") )
-                            {
-                                pformat = aformat[field_name]["format"].get<std::string>();
-                            }
-                            
-                            std::string units = ".";
-                            if(aformat[field_name].contains("units") )
-                            {
-                                std::string tmp_units = aformat[field_name]["units"].get<std::string>();
-                                if(tmp_units != ""){units = tmp_units;}
-                            }
-
                             if(source_object == "parameters"){RetrieveParameter(fsum, field_name, paramStore, path, type);}
                             if(source_object == "plot_data"){RetrieveParameter(fsum, field_name, plotData, path, type);}
-
                             if(source_object == "local_variable")
                             {
                                 //only a limited number of these, treat each one individually
                                 if(field_name == "fname"){fsum[field_name] = filename;}
                                 if(field_name == "version"){fsum[field_name] = version;}
+                                if(field_name == "extent_no"){fsum[field_name] = extent_no;}
                             }
+                            //deprecated or unavailable objects get a default value
+                            if(source_object == "none" && aformat[field_name].contains("default") ){fsum[field_name] = aformat[field_name]["default"];}
                         }
                     }
                 }
@@ -323,23 +334,29 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
 void
 MHO_AFileInfoExtractor::RetrieveParameter(mho_json& obj, const std::string& name, const MHO_ParameterStore& paramStore, const std::string& path, const std::string& type)
 {
+    //TODO...eventually replace missing values with default values specified from the format
     par_type ptype = DetermineParameterType(type);
     switch( ptype )
     {
         case int_type:
-            obj[name] = paramStore.GetAs<int>(path);
+            if( paramStore.IsPresent(path)){ obj[name] = paramStore.GetAs<int>(path); }
+            else{ obj[name] = 0;}
         break;
         case int64_type:
-            obj[name] = paramStore.GetAs<int64_t>(path);
+            if( paramStore.IsPresent(path)){ obj[name] = paramStore.GetAs<int64_t>(path); }
+            else{ obj[name] = 0;}
         break;
         case double_type:
-            obj[name] = paramStore.GetAs<double>(path);
+            if( paramStore.IsPresent(path)){ obj[name] = paramStore.GetAs<double>(path); }
+            else{ obj[name] = 0;}
         break;
         case string_type:
-            obj[name] = paramStore.GetAs<std::string>(path);
+            if( paramStore.IsPresent(path)){ obj[name] = paramStore.GetAs<std::string>(path); }
+            else{ obj[name] = "";}
         break;
         case bool_type:
-            obj[name] = paramStore.GetAs<bool>(path);
+            if( paramStore.IsPresent(path)){ obj[name] = paramStore.GetAs<bool>(path); }
+            else{ obj[name] = 0;}
         break;
     };
 }
