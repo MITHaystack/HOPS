@@ -1,8 +1,9 @@
 {
-	"name": "",
-	"type": "",
-	"source_object": "",
+	"name": "esdesp",
+	"type": "string",
+	"source_object": "none",
 	"path": "",
-	"description": "",
-	"units": ""
+	"description": "unknown",
+	"units": "",
+    "default": "099999"
 }
