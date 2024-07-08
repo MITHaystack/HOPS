@@ -32,6 +32,24 @@
 using namespace hops;
 
 
+bool matches_extension(const std::string& filename, const std::string& anExt)
+{
+    //from the current list of files, locate the ones which match the given extension
+    std::string basename = MHO_DirectoryInterface::GetBasename(filename);
+    std::size_t index = basename.find(anExt);
+    if(index != std::string::npos)
+    {
+        //make sure the extension is the very end of the string
+        std::string sub = basename.substr(index);
+        if(sub == anExt)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
 {
     //store the raw arguments in the parameter store
@@ -117,27 +135,44 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
 
     //catch no input case
     if(input.size() == 0){msg_fatal("main", "input directory/fringe file not set" << eom); std::exit(1);}
-
     std::size_t n_input = input.size();
     if(n_input == 1)
     {
         //either we have been passed a single fringe file or a directory
-        if(input[0].find(".frng") != std::string::npos){fringe_file_list.push_back(input[0]);}
+        if( matches_extension(input[0], "frng") ){fringe_file_list.push_back(input[0]);}
         else
         {
-            std::cout<<"DIR INPUT DISABLED"<<std::endl;
             // //assume this is a directory
-            // MHO_DirectoryInterface dirInterface;
-            // dirInterface.SetCurrentDirectory(input[0]);
-            // dirInterface.ReadCurrentDirectory();
+            MHO_DirectoryInterface dirInterface;
+            dirInterface.SetCurrentDirectory(input[0]);
+            dirInterface.ReadCurrentDirectory();
+            //get file list in this directory
+            std::vector< std::string > flist;
+            dirInterface.GetFilesMatchingExtention(flist, "frng");
+            if(flist.size() == 0 )
+            {
+                //no fringe files here, so recurse 1-level (only)
+                //and collect all fringe files found
+                std::vector< std::string > sdlist;
+                dirInterface.GetSubDirectoryList(sdlist);
+                for(std::size_t i=0; i<sdlist.size(); i++)
+                {
+                    dirInterface.SetCurrentDirectory(sdlist[i]);
+                    dirInterface.ReadCurrentDirectory();
+                    std::vector< std::string > tmp_flist;
+                    dirInterface.GetFilesMatchingExtention(tmp_flist, "frng");
+                    flist.insert(flist.end(), tmp_flist.begin(), tmp_flist.end());
+                }
+            }
+            fringe_file_list = flist;
         }
     }
     else
     {
-        //we've been given a list of fringe files
+        //we have a list of fringe files, just copy them
         for(std::size_t i=0; i<n_input; i++)
         {
-            if(input[0].find(".frng") != std::string::npos){fringe_file_list.push_back(input[i]);}
+            if(  matches_extension(input[i], "frng") ){fringe_file_list.push_back(input[i]);}
         }
     }
 
