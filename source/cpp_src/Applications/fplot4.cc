@@ -78,7 +78,7 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     paramStore->Set("/cmdline/args", arglist);
 
     //command line parameters
-    std::string diskfile_opt = "";
+    std::string diskfile = "";
     std::string baseline_opt = "??:?"; //'-b' baseline:frequency_group selection
     std::string baseline = "??"; // the baseline
     std::string freqgrp = "?"; // the frequency group
@@ -112,7 +112,7 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
 
     // Add custom flag that activates help
     auto *help = app.add_flag("-h,--help", "print this help message and exit");
-    app.add_option("-d,--diskfile", diskfile_opt, "name of the file in which to save the fringe plot");
+    app.add_option("-d,--diskfile", diskfile, "name of the file in which to save the fringe plot");
     app.add_option("-b,--baseline", baseline_opt, "baseline or baseline:frequency_group selection (e.g GE or GE:X)");
     app.add_option("-M,--message-categories", message_categories, msg_cat_help.c_str() )->delimiter(',');
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
@@ -199,16 +199,11 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     //for now we require these options to be set (may relax this once we allow mult-pass fringe fitting)
     MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(baseline_opt, baseline, freqgrp);
 
-    // //clean the directory string
-    // std::string directory = MHO_BasicFringeDataConfiguration::sanitize_directory(input);
-    // //if there is no root file (i.e. we were passed and experiment directory, we return an empty string)
-    // std::string root_file = MHO_BasicFringeDataConfiguration::find_associated_root_file(input);
-
     //pass the extracted command line info back in the parameter store
     paramStore->Set("/cmdline/baseline", baseline);
     paramStore->Set("/cmdline/frequency_group", freqgrp);
     paramStore->Set("/cmdline/polprod", polprod);
-    paramStore->Set("/cmdline/diskfile", diskfile_opt);
+    paramStore->Set("/cmdline/diskfile", diskfile);
     paramStore->Set("/cmdline/message_level", message_level);
     paramStore->Set("/cmdline/show_plot", show_plot);
     paramStore->Set("/cmdline/fringe_files", fringe_file_list);
@@ -216,6 +211,10 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     return 0;
 }
 
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 
 bool extract_plot_data(mho_json& plot_data, mho_json& param_data, std::string filename)
@@ -291,20 +290,24 @@ bool extract_plot_data(mho_json& plot_data, mho_json& param_data, std::string fi
 }
 
 
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
 int main(int argc, char** argv)
 {
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
-
-    MHO_ParameterStore paramStore;
-    parse_fplot_command_line(argc, argv, &paramStore);
 
     #ifdef USE_PYBIND11
     //start the interpreter and keep it alive, need this or we segfault
     //each process has its own interpreter
     py::scoped_interpreter guard{};
     configure_pypath();
-    #endif
+
+    MHO_ParameterStore paramStore;
+    parse_fplot_command_line(argc, argv, &paramStore);
 
     std::vector< std::string > ffiles = paramStore.GetAs< std::vector< std::string > >("/cmdline/fringe_files");
     std::size_t n_files = ffiles.size();
@@ -326,7 +329,6 @@ int main(int argc, char** argv)
         //call the plotting mechanism
         if(ok)
         {
-            #ifdef USE_PYBIND11
             msg_debug("main", "python plot generation enabled." << eom );
             py::dict plot_obj = plot_data; //convert to dictionary object
 
@@ -335,22 +337,23 @@ int main(int argc, char** argv)
             std::string obj_fgroup = param_data["pass"]["frequency_group"].get<std::string>();
             std::string obj_polprod = param_data["pass"]["polprod"].get<std::string>();
 
-            if( match_baseline(baseline, obj_baseline) && match_fgroup(fgroup, obj_fgroup) && match_polprod(polprod, obj_polprod) )
+            if( match_baseline(baseline, obj_baseline) &&
+                match_fgroup(fgroup, obj_fgroup) &&
+                match_polprod(polprod, obj_polprod) )
             {
                 //load our interface module -- this is extremely slow!
+                //TODO..allow for custom plot method to be called
                 auto vis_module = py::module::import("hops_visualization");
                 auto plot_lib = vis_module.attr("fourfit_plot");
                 //call a python function on the interface class instance
-                //TODO, pass filename to save plot if needed
-                std::cout<<"DISKFILE = "<<diskfile<<std::endl;
                 plot_lib.attr("make_fourfit_plot")(plot_obj, show_plot, diskfile);
-
-                #else //USE_PYBIND11
-                    msg_warn("main", "fplot is not enabled since HOPS was built without pybind11 support." << eom);
-                #endif
             }
         }
     }
+
+    #else //USE_PYBIND11
+        msg_warn("main", "fplot is not enabled since HOPS was built without pybind11 support." << eom);
+    #endif
 
     return 0;
 }
