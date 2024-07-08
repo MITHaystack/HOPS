@@ -17,7 +17,7 @@ EXP_NUM=1111
 #paths are used, but that doesn't work outside of a correlator environment.
 cd $EXP_DIR
 rm -rf $EXP_DIR/1111/
-difx2hops -e $EXP_NUM -s ./station.codes -i ./
+difx2hops -e $EXP_NUM -s ./station.codes -b X 0 100000 -i ./
 RET_VAL=$?
 
 SCAN_DIR=$(ls -1 $EXP_DIR/1111/)
