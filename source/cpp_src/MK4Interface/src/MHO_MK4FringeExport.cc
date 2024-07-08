@@ -183,19 +183,19 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     // double speed_of_light_Mm = 299.792458; // in mega-meters
     // double radians_to_arcsec = 4.848137e-6;
     // double lambda = speed_of_light_Mm / ref_freq; // wavelength (m)
-    // 
+    //
     // double ref_u, ref_v;
     // double rem_u, rem_v;
     // FillDouble(ref_u, "/ref_station/u");
     // FillDouble(ref_v, "/ref_station/v");
     // FillDouble(rem_u, "/rem_station/u");
     // FillDouble(rem_v, "/rem_station/v");
-    // 
+    //
     // double du = radians_to_arcsec * (rem_u - ref_u) / lambda;
     // double dv = radians_to_arcsec * (rem_v - ref_v) / lambda;
     // t202->u = (float) du;
     // t202->v = (float) dv;
-    
+
     FillDouble(t202->u, "/fringe/du");
     FillDouble(t202->v, "/fringe/dv");
     // paramStore->Set("/fringe/du", du);
@@ -764,7 +764,7 @@ MHO_MK4FringeExport::output()
         //e.g. chops/source/python_src/hopstest_module/hopstestb/hopstestb.py
         //around line 74 in the FourFitThread class.
         auto msglev = MHO_Message::GetInstance().GetMessageLevel();
-        if(msglev == eSpecial){fprintf(stderr,"ffit: %s \n",fringe_name);}
+        if(msglev == eSpecial){fprintf(stderr,"fourfit: %s \n",fringe_name);}
 
         int write_nbytes = write_mk4fringe(&fringe, fringe_name);
         //pause 5ms, if a lock file was created, delete it now
