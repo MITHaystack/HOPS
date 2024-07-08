@@ -12,6 +12,9 @@
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Tokenizer.hh"
+#include "MHO_DirectoryInterface.hh"
+#include "MHO_ParameterStore.hh"
+#include "MHO_BasicFringeDataConfiguration.hh"
 
 //pybind11 stuff to interface with python
 #ifdef USE_PYBIND11
@@ -26,8 +29,138 @@
 #endif
 
 
-
 using namespace hops;
+
+
+int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
+{
+    //store the raw arguments in the parameter store
+    std::vector<std::string> arglist;
+    for(int i=0; i<argc; i++){arglist.push_back( std::string(argv[i]) );}
+    paramStore->Set("/cmdline/args", arglist);
+
+    //command line parameters
+    std::string diskfile_opt = "";
+    std::string baseline_opt = "??:?"; //'-b' baseline:frequency_group selection
+    std::string baseline = "??"; // the baseline
+    std::string freqgrp = "?"; // the frequency group
+    int message_level = -1; //'-m' specifies the message verbosity level
+    std::vector< std::string > message_categories;  // -'M' limits the allowed message categories to those the user specifies
+    bool show_plot = false; //'-p' generates and shows fringe plot
+    std::string polprod = "??"; //'-P' polarization product argument (e.g XX or I or RR+LL)
+    std::vector< std::string > input; //either directory, individual file, or list of files
+    std::vector< std::string > fringe_file_list;
+
+    std::vector< std::string > msg_cats =
+    {
+        "main", "calibration", "containers", "control",
+        "fringe", "file", "initialization", "mk4interface",
+        "utilities", "vex", "python_bindings"
+    };
+
+    std::stringstream ss;
+    ss << "limit the allowed message categories to only those which the user specifies, the available categories are: \n";
+    for(auto it = msg_cats.begin(); it != msg_cats.end(); it++)
+    {
+        ss << "    "<< *it <<"\n";
+    }
+    ss <<"if the '-M' option is not used, the default is to allow all categories. ";
+    std::string msg_cat_help = ss.str();
+
+    CLI::App app{"fplot"};
+
+    // Remove help flag because it shortcuts all processing
+    app.set_help_flag();
+
+    // Add custom flag that activates help
+    auto *help = app.add_flag("-h,--help", "print this help message and exit");
+    app.add_option("-d,--diskfile", diskfile_opt, "name of the file in which to save the fringe plot");
+    app.add_option("-b,--baseline", baseline_opt, "baseline or baseline:frequency_group selection (e.g GE or GE:X)");
+    app.add_option("-M,--message-categories", message_categories, msg_cat_help.c_str() )->delimiter(',');
+    app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
+    app.add_flag("-p,--plot", show_plot, "display each fringe plot");
+    app.add_option("-P,--polprod", polprod, "plot only files matching this polarization product (e.g XX or I or RR+LL)");
+    app.add_option("input,-i,--input", input, "name of the input directory, firnge file, or list of fringe files")->required();
+
+    try
+    {
+        app.parse(argc, argv);
+        if(*help)
+        {
+            throw CLI::CallForHelp();
+        }
+    }
+    catch(const CLI::Error &e)
+    {
+        std::cout << app.help() << std::endl;
+        std::exit(1); //just exit don't bother returning to main
+    }
+
+    //clamp message level
+    if(message_level > 5){message_level = 5;}
+    if(message_level < -2){message_level = -2;}
+    MHO_Message::GetInstance().AcceptAllKeys();
+    MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
+
+    //check if any message categories were passed, if so, we limit the messages
+    //to only those categories
+    if(message_categories.size() != 0)
+    {
+        for(std::size_t m=0; m<message_categories.size(); m++)
+        {
+            MHO_Message::GetInstance().AddKey(message_categories[m]);
+        }
+        MHO_Message::GetInstance().LimitToKeySet();
+    }
+    //set the message level
+    MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
+
+    //catch no input case
+    if(input.size() == 0){msg_fatal("main", "input directory/fringe file not set" << eom); std::exit(1);}
+
+    std::size_t n_input = input.size();
+    if(n_input == 1)
+    {
+        //either we have been passed a single fringe file or a directory
+        if(input[0].find(".frng") != std::string::npos){fringe_file_list.push_back(input[0]);}
+        else
+        {
+            std::cout<<"DIR INPUT DISABLED"<<std::endl;
+            // //assume this is a directory
+            // MHO_DirectoryInterface dirInterface;
+            // dirInterface.SetCurrentDirectory(input[0]);
+            // dirInterface.ReadCurrentDirectory();
+        }
+    }
+    else
+    {
+        //we've been given a list of fringe files
+        for(std::size_t i=0; i<n_input; i++)
+        {
+            if(input[0].find(".frng") != std::string::npos){fringe_file_list.push_back(input[i]);}
+        }
+    }
+
+    //for now we require these options to be set (may relax this once we allow mult-pass fringe fitting)
+    MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(baseline_opt, baseline, freqgrp);
+
+    // //clean the directory string
+    // std::string directory = MHO_BasicFringeDataConfiguration::sanitize_directory(input);
+    // //if there is no root file (i.e. we were passed and experiment directory, we return an empty string)
+    // std::string root_file = MHO_BasicFringeDataConfiguration::find_associated_root_file(input);
+
+    //pass the extracted command line info back in the parameter store
+    paramStore->Set("/cmdline/baseline", baseline);
+    paramStore->Set("/cmdline/frequency_group", freqgrp);
+    // paramStore->Set("/cmdline/directory", directory); //sanitized directory path
+    paramStore->Set("/cmdline/polprod", polprod);
+    paramStore->Set("/cmdline/message_level", message_level);
+    paramStore->Set("/cmdline/show_plot", show_plot);
+    paramStore->Set("/cmdline/fringe_files", fringe_file_list);
+
+    return 0;
+}
+
 
 
 bool extract_plot_data(mho_json& plot_data, std::string filename)
@@ -114,6 +247,18 @@ bool extract_plot_data(mho_json& plot_data, std::string filename)
 
 int main(int argc, char** argv)
 {
+    MHO_Message::GetInstance().AcceptAllKeys();
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
+
+
+
+    // if(argc != 2){std::cout<<"filename argument missing"<<std::endl; std::exit(1);}
+    // //temporary...just one file for now
+    // std::string filename(argv[1]);
+
+    MHO_ParameterStore paramStore;
+    parse_fplot_command_line(argc, argv, &paramStore);
+
     #ifdef USE_PYBIND11
     //start the interpreter and keep it alive, need this or we segfault
     //each process has its own interpreter
@@ -121,38 +266,35 @@ int main(int argc, char** argv)
     configure_pypath();
     #endif
 
-    if(argc != 2){std::cout<<"filename argument missing"<<std::endl; std::exit(1);}
+    std::vector< std::string > ffiles = paramStore.GetAs< std::vector< std::string > >("/cmdline/fringe_files");
+    std::size_t n_files = ffiles.size();
 
-    //temporary...just one file for now
-    std::string filename(argv[1]);
-
-    MHO_Message::GetInstance().AcceptAllKeys();
-    MHO_Message::GetInstance().SetMessageLevel(eDebug);
-
-    mho_json plot_data;
-    bool ok = extract_plot_data(plot_data, filename);
-
-    //call the plotting mechanism
-    if(ok)
+    for(std::size_t i=0; i<n_files; i++)
     {
+        std::string filename = ffiles[i];
+        mho_json plot_data;
+        bool ok = extract_plot_data(plot_data, filename);
 
-        #ifdef USE_PYBIND11
-        msg_debug("main", "python plot generation enabled." << eom );
-        py::dict plot_obj = plot_data;
+        //call the plotting mechanism
+        if(ok)
+        {
+            #ifdef USE_PYBIND11
+            msg_debug("main", "python plot generation enabled." << eom );
+            py::dict plot_obj = plot_data; //convert to dictionary object
 
-        ////////////////////////////////////////////////////////////////////////
-        //load our interface module -- this is extremely slow!
-        auto vis_module = py::module::import("hops_visualization");
-        auto plot_lib = vis_module.attr("fourfit_plot");
-        //call a python function on the interface class instance
-        //TODO, pass filename to save plot if needed
-        plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
+            ////////////////////////////////////////////////////////////////////////
+            //load our interface module -- this is extremely slow!
+            auto vis_module = py::module::import("hops_visualization");
+            auto plot_lib = vis_module.attr("fourfit_plot");
+            //call a python function on the interface class instance
+            //TODO, pass filename to save plot if needed
+            plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
 
-        #else //USE_PYBIND11
-            msg_warn("main", "fplot is not enabled since HOPS was built without pybind11 support." << eom);
-        #endif
+            #else //USE_PYBIND11
+                msg_warn("main", "fplot is not enabled since HOPS was built without pybind11 support." << eom);
+            #endif
+        }
     }
-
 
     return 0;
 }
