@@ -208,6 +208,7 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     paramStore->Set("/cmdline/baseline", baseline);
     paramStore->Set("/cmdline/frequency_group", freqgrp);
     paramStore->Set("/cmdline/polprod", polprod);
+    paramStore->Set("/cmdline/diskfile", diskfile_opt);
     paramStore->Set("/cmdline/message_level", message_level);
     paramStore->Set("/cmdline/show_plot", show_plot);
     paramStore->Set("/cmdline/fringe_files", fringe_file_list);
@@ -330,21 +331,18 @@ int main(int argc, char** argv)
             py::dict plot_obj = plot_data; //convert to dictionary object
 
             //grab the selection info
-            std::cout<<param_data.dump(2)<<std::endl;
-            std::cout<<param_data["pass"].dump(2)<<std::endl;
             std::string obj_baseline = param_data["pass"]["baseline"].get<std::string>();
             std::string obj_fgroup = param_data["pass"]["frequency_group"].get<std::string>();
             std::string obj_polprod = param_data["pass"]["polprod"].get<std::string>();
 
             if( match_baseline(baseline, obj_baseline) && match_fgroup(fgroup, obj_fgroup) && match_polprod(polprod, obj_polprod) )
             {
-
-                ////////////////////////////////////////////////////////////////////////
                 //load our interface module -- this is extremely slow!
                 auto vis_module = py::module::import("hops_visualization");
                 auto plot_lib = vis_module.attr("fourfit_plot");
                 //call a python function on the interface class instance
                 //TODO, pass filename to save plot if needed
+                std::cout<<"DISKFILE = "<<diskfile<<std::endl;
                 plot_lib.attr("make_fourfit_plot")(plot_obj, show_plot, diskfile);
 
                 #else //USE_PYBIND11
