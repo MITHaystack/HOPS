@@ -1,5 +1,7 @@
 #include "MHO_MK4ScanConverter.hh"
 
+#include <set>
+
 namespace hops
 {
 
@@ -91,10 +93,44 @@ MHO_MK4ScanConverter::ConvertCorel(const std::string& root_file,
     }
     ch_bl_wdata->CopyTags(*bl_wdata);
 
+    //collect the object tags into something sensible
+    MHO_ObjectTags tags;
+    tags.CopyFrom(*ch_bl_data); //copy the basic tags from the visibilities
+    tags.SetTagValue("origin", "mk4");
+    tags.AddObjectUUID(ch_bl_data->GetObjectUUID()); //add the uuids
+    tags.AddObjectUUID(ch_bl_wdata->GetObjectUUID());
+
+    //last thing we do is to attach the pol-product set and freq-band set to the 'Tags' data
+    //this is allow a program reading this file to determine this information without streaming
+    //in the potentially very large visibility/weights data
+
+    //grab all the frequency bands present
+    std::set< std::string > fband_set;
+    auto chan_ax = std::get<CHANNEL_AXIS>(*ch_bl_data);
+    for(std::size_t i=0; i < chan_ax.GetSize(); i++)
+    {
+        std::string fb_value;
+        bool ok = chan_ax.RetrieveIndexLabelKeyValue(i, "frequency_band", fb_value);
+        if(ok){fband_set.insert(fb_value);}
+    }
+    std::vector< std::string > fband_vec(fband_set.begin(), fband_set.end());
+    tags.SetTagValue("frequency_band_set", fband_vec);
+
+    //grab all the polarization products present
+    std::vector< std::string > pprod_vec;
+    auto pp_ax = std::get<POLPROD_AXIS>(*ch_bl_data);
+    for(std::size_t i=0; i < pp_ax.GetSize(); i++)
+    {
+        pprod_vec.push_back(pp_ax.at(i));
+    }
+    tags.SetTagValue("polarization_product_set", pprod_vec);
+
+
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(output_file);
     if(status)
     {
+        inter.Write(tags, "tags");
         inter.Write(*ch_bl_data, "vis");
         inter.Write(*ch_bl_wdata, "weight");
     }

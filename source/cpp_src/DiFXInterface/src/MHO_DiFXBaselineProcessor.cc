@@ -295,7 +295,6 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fTags.SetTagValue("root_code", fRootCode);
         fTags.SetTagValue("origin", "difx");
 
-
         fV = new visibility_store_type();
         fW = new weight_store_type();
 
@@ -489,7 +488,6 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
             fTags.AddObjectUUID(fV->GetObjectUUID());
             fTags.AddObjectUUID(fW->GetObjectUUID());
             inter.Write(fTags, "tags");
-
             inter.Write(*fV, "vis");
             inter.Write(*fW, "weight");
             inter.Close();

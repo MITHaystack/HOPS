@@ -159,6 +159,7 @@ MHO_VisibilityChannelizer::ExecuteImpl(const uch_visibility_store_type* in, visi
                 std::string net_sb;
                 int channel_id;
                 std::string chan_id;
+                std::string fband;
 
                 mho_json fresh_ch_label;
                 sky_freq = ch_label["sky_freq"];
@@ -166,12 +167,14 @@ MHO_VisibilityChannelizer::ExecuteImpl(const uch_visibility_store_type* in, visi
                 net_sb = ch_label["net_sideband"];
                 channel_id = ch_label["channel"];
                 chan_id = ch_label["chan_id"];
+                fband = ch_label["frequency_band"];
 
                 fresh_ch_label["sky_freq"] = sky_freq;
                 fresh_ch_label["bandwidth"] = bw;
                 fresh_ch_label["net_sideband"] = net_sb;
                 fresh_ch_label["channel"] = channel_id;
                 fresh_ch_label["chan_id"] = chan_id;
+                fresh_ch_label["frequency_band"] = fband;
                 fresh_ch_label["index"] = ch;
                 out_channel_axis->SetLabelObject(fresh_ch_label,ch);
             }
