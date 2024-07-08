@@ -68,13 +68,13 @@ MHO_FringeData::WriteOutput()
         if(write_ok == 0)
         {
             std::rename(temp_name.c_str(), output_file.c_str());
-            //kludge to get ffit to feed the generated fringe file name
+            //kludge to get fourfit to feed the generated fringe file name
             //(but nothing else) as a return value to a
             //calling script (requires passing option "-m 4"); see
             //e.g. chops/source/python_src/hopstest_module/hopstestb/hopstestb.py
             //around line 74 in the FourFitThread class.
             auto msglev = MHO_Message::GetInstance().GetMessageLevel();
-            if(msglev == eSpecial){fprintf(stderr,"ffit: %s \n",output_file.c_str());}
+            if(msglev == eSpecial){fprintf(stderr,"fourfit: %s \n",output_file.c_str());}
         }
     }
 
