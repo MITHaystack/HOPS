@@ -80,7 +80,7 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
     app.add_flag("-p,--plot", show_plot, "display each fringe plot");
     app.add_option("-P,--polprod", polprod, "plot only files matching this polarization product (e.g XX or I or RR+LL)");
-    app.add_option("input,-i,--input", input, "name of the input directory, firnge file, or list of fringe files")->required();
+    app.add_option("input,-i,--input", input, "name of the input directory, fringe file, or list of fringe files")->required();
 
     try
     {
