@@ -28,6 +28,7 @@ set(SOURCE_BASENAMES
     CompareCorFiles
     TestPCalExtraction
     fourfit4
+    fplot4
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency
