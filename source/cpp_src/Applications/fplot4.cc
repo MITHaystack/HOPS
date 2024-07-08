@@ -49,6 +49,26 @@ bool matches_extension(const std::string& filename, const std::string& anExt)
     return false;
 }
 
+bool match_baseline(const std::string& baseline, const std::string& obj_baseline)
+{
+    if(baseline == "??"){return true;}
+    if(baseline[0] == '?' && baseline[1] == obj_baseline[1]){return true;}
+    if(baseline[1] == '?' && baseline[0] == obj_baseline[0]){return true;}
+    return baseline == obj_baseline;
+}
+
+bool match_fgroup(const std::string& fgroup, const std::string& obj_fgroup)
+{
+    if(fgroup == "?"){return true;}
+    return fgroup == obj_fgroup;
+}
+
+bool match_polprod(const std::string& polprod, const std::string& obj_polprod )
+{
+    if(polprod == "??"){return true;}
+    return polprod == obj_polprod;
+}
+
 
 int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
 {
@@ -187,7 +207,6 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     //pass the extracted command line info back in the parameter store
     paramStore->Set("/cmdline/baseline", baseline);
     paramStore->Set("/cmdline/frequency_group", freqgrp);
-    // paramStore->Set("/cmdline/directory", directory); //sanitized directory path
     paramStore->Set("/cmdline/polprod", polprod);
     paramStore->Set("/cmdline/message_level", message_level);
     paramStore->Set("/cmdline/show_plot", show_plot);
@@ -198,16 +217,8 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
 
 
 
-bool extract_plot_data(mho_json& plot_data, std::string filename)
+bool extract_plot_data(mho_json& plot_data, mho_json& param_data, std::string filename)
 {
-    mho_json fsum;
-    if(filename.find("frng") == std::string::npos)
-    {
-        //not a fringe file, skip this
-        msg_error("fringe", "the file: "<< filename<<" is not a fringe file"<<eom);
-        return fsum;
-    }
-
     //split the filename (not strictly necessary, but used to extract the extent number)
     //for example: 23 in 'GE.X.XX.345F47.23.frng'
     MHO_Tokenizer tokenizer;
@@ -220,9 +231,8 @@ bool extract_plot_data(mho_json& plot_data, std::string filename)
     {
         //not a fringe file, skip this
         msg_error("fringe", "could not parse the file name: "<< filename<<eom);
-        return fsum;
+        return false;
     }
-
 
     //to pull out fringe data, we are primarily interested in the 'MHO_ObjectTags' object
     //get uuid for MHO_ObjectTags object
@@ -259,8 +269,9 @@ bool extract_plot_data(mho_json& plot_data, std::string filename)
         {
             //pull the plot data
             bool plot_ok = obj.GetTagValue("plot_data", plot_data);
+            bool param_ok = obj.GetTagValue("parameters", param_data);
             inter.Close();
-            if(plot_ok){return true;}
+            if(plot_ok && param_ok){return true;}
             return false;
         }
         else
@@ -269,7 +280,6 @@ bool extract_plot_data(mho_json& plot_data, std::string filename)
             inter.Close();
             return false;
         }
-
     }
     else
     {
@@ -284,12 +294,6 @@ int main(int argc, char** argv)
 {
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
-
-
-
-    // if(argc != 2){std::cout<<"filename argument missing"<<std::endl; std::exit(1);}
-    // //temporary...just one file for now
-    // std::string filename(argv[1]);
 
     MHO_ParameterStore paramStore;
     parse_fplot_command_line(argc, argv, &paramStore);
@@ -308,7 +312,15 @@ int main(int argc, char** argv)
     {
         std::string filename = ffiles[i];
         mho_json plot_data;
-        bool ok = extract_plot_data(plot_data, filename);
+        mho_json param_data;
+        bool ok = extract_plot_data(plot_data, param_data, filename);
+
+        //check if this file matches any of the selection criteria (if passed)
+        std::string baseline = paramStore.GetAs<std::string>("/cmdline/baseline");
+        std::string fgroup = paramStore.GetAs<std::string>("/cmdline/frequency_group");
+        std::string polprod = paramStore.GetAs<std::string>("/cmdline/polprod");
+        std::string diskfile = paramStore.GetAs<std::string>("/cmdline/diskfile");
+        bool show_plot = paramStore.GetAs<bool>("/cmdline/show_plot");
 
         //call the plotting mechanism
         if(ok)
@@ -317,17 +329,28 @@ int main(int argc, char** argv)
             msg_debug("main", "python plot generation enabled." << eom );
             py::dict plot_obj = plot_data; //convert to dictionary object
 
-            ////////////////////////////////////////////////////////////////////////
-            //load our interface module -- this is extremely slow!
-            auto vis_module = py::module::import("hops_visualization");
-            auto plot_lib = vis_module.attr("fourfit_plot");
-            //call a python function on the interface class instance
-            //TODO, pass filename to save plot if needed
-            plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
+            //grab the selection info
+            std::cout<<param_data.dump(2)<<std::endl;
+            std::cout<<param_data["pass"].dump(2)<<std::endl;
+            std::string obj_baseline = param_data["pass"]["baseline"].get<std::string>();
+            std::string obj_fgroup = param_data["pass"]["frequency_group"].get<std::string>();
+            std::string obj_polprod = param_data["pass"]["polprod"].get<std::string>();
 
-            #else //USE_PYBIND11
-                msg_warn("main", "fplot is not enabled since HOPS was built without pybind11 support." << eom);
-            #endif
+            if( match_baseline(baseline, obj_baseline) && match_fgroup(fgroup, obj_fgroup) && match_polprod(polprod, obj_polprod) )
+            {
+
+                ////////////////////////////////////////////////////////////////////////
+                //load our interface module -- this is extremely slow!
+                auto vis_module = py::module::import("hops_visualization");
+                auto plot_lib = vis_module.attr("fourfit_plot");
+                //call a python function on the interface class instance
+                //TODO, pass filename to save plot if needed
+                plot_lib.attr("make_fourfit_plot")(plot_obj, show_plot, diskfile);
+
+                #else //USE_PYBIND11
+                    msg_warn("main", "fplot is not enabled since HOPS was built without pybind11 support." << eom);
+                #endif
+            }
         }
     }
 
