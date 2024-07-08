@@ -133,7 +133,7 @@ inline bool MHO_JSONWrapper::Retrieve(const std::string& key, mho_json& value) c
 {
     auto iter = fObject.find(key);
     if(iter == fObject.end()){return false;}
-    value.update( fObject[key] );
+    value = fObject[key];
     return true;
 }
 
