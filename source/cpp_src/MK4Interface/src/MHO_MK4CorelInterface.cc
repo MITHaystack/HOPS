@@ -386,7 +386,7 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
                 ch->second["sky_freq"] = ref_sky_freq;
                 ch->second["bandwidth"] = ref_bw;
                 ch->second["net_sideband"] = ref_net_sb;
-                //these channel ids aren't quite right (this only grabs the last see pol-product combo)
+                //these channel ids aren't quite right (this only grabs the last seen pol-product combo)
                 //it is sort of pointless to track these anyways because all they do is indicate:
                 //freq-group, channel-index, sideband, and pol, and these are already tracked by the axis labels.
                 ch->second["mk4_channel_id"] = ref_chan_id + ":" + rem_chan_id;
@@ -560,6 +560,12 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                     ch_label["lower_index"] = freq_count;
                     ch_label["upper_index"] = freq_count + fNSpectral;
                     ch_label["chan_id"] = mk4_channel_id;
+
+                    //use the mk4_channel_ids to construct the 'frequency_band' label
+                    //we use the first character of ref_chan_id
+                    std::string fband(1, mk4_channel_id[0]);
+                    ch_label["frequency_band"] = fband;
+
                     //ch_label.SetBounds(freq_count, freq_count + fNSpectral);
                     std::get<UCH_FREQ_AXIS>(*bl_data).SetIntervalLabelObject(ch_label, freq_count, freq_count+fNSpectral);
                     std::get<UCH_FREQ_AXIS>(*bl_wdata).SetIntervalLabelObject(ch_label, freq_count, freq_count+fNSpectral);
