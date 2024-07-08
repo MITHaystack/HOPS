@@ -1,5 +1,5 @@
 #declare exe name ############################################################
-set(EXENAME "fplot")
+set(EXENAME "fplot3")
 
 #list header files #############################################################
 
@@ -74,3 +74,8 @@ target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})
 
 hops_install_headers (${${EXENAME}_HEADERFILES})
 hops_install_executables(${EXENAME})
+
+#install a symlink as: fplot -> fplot3
+if(NOT HOPS_IS_HOPS4)
+    hops_install_symlink( "${BIN_INSTALL_DIR}/${EXENAME}" "${BIN_INSTALL_DIR}/fplot" )
+endif()

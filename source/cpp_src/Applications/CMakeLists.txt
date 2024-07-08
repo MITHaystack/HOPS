@@ -61,8 +61,9 @@ endforeach( BASENAME )
 hops_install_executables( ${SOURCE_BASENAMES} )
 
 #fourfit is fourfit4...so install a symlink as: fourfit -> fourfit4
-if(FOURFIT_IS_FOURFIT4)
+if(HOPS_IS_HOPS4)
     hops_install_symlink( "${BIN_INSTALL_DIR}/fourfit4" "${BIN_INSTALL_DIR}/fourfit" )
+    hops_install_symlink( "${BIN_INSTALL_DIR}/fplot4" "${BIN_INSTALL_DIR}/fplot" )
 endif()
 
 ################################################################################
