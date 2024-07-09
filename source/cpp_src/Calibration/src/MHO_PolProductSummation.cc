@@ -26,7 +26,8 @@ MHO_PolProductSummation::ExecuteInPlace(visibility_type* in)
     //average the weights across all summed pol-products
     bool wok = fWReducer.Execute();
     double n_polprod = fPolProductSet.size();
-    (*fWeights) *= 1.0/n_polprod;
+    // (*fWeights) *= 1.0/n_polprod;
+    fWeights->Insert("n_summed_polprod", n_polprod);
 
     return ok && wok;
 }
@@ -44,7 +45,9 @@ MHO_PolProductSummation::ExecuteOutOfPlace(const visibility_type* in, visibility
     //average the weights across all 4 pol-products
     bool wok = fWReducer.Execute();
     double n_polprod = fPolProductSet.size();
-    (*fWeights) *= 1.0/n_polprod;
+    // (*fWeights) *= 1.0/n_polprod;
+    
+    fWeights->Insert("n_summed_polprod", n_polprod);
 
     return ok && wok;
 }

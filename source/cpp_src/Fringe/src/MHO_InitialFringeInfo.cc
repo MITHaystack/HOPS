@@ -129,6 +129,7 @@ MHO_InitialFringeInfo::compute_total_summed_weights(MHO_ContainerStore* conStore
     wt_reducer.Initialize();
     wt_reducer.Execute();
     double total_ap_frac = temp_weights[0];
+
     paramStore->Set("/fringe/total_summed_weights", total_ap_frac);
     wt_data->Insert("total_summed_weights", total_ap_frac);
 }
