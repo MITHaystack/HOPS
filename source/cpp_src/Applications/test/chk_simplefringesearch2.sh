@@ -10,14 +10,15 @@ RET_VAL=0
 EXP_DIR=$DATADIR
 D2H_EXP_NUM=hops4
 D2M4_EXP_NUM=.
-SCAN_DIR=104-1228
+MK4_SCAN_DIR=104-1228
+SCAN_DIR=104-1228a
 cd $EXP_DIR
 
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
-echo "Running: fourfit4 -c ./test0.cf -b AS -P RR ./${D2H_EXP_NUM}/${SCAN_DIR}/ "
+echo "Running: fourfit4 -c ./test0.cf -b AS -P RR ./${SCAN_DIR}/ "
 
-time fourfit4 -c ./test0.cf -b AS -P RR ./${D2H_EXP_NUM}/${SCAN_DIR}/ | grep max555 | tee ./sfs.out
+time fourfit4 -c ./test0.cf -b AS -P RR ./${SCAN_DIR}/ | grep max555 | tee ./sfs.out
 
 sfs_mbd=$( cat ./sfs.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
 sfs_sbd=$( cat ./sfs.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
@@ -32,8 +33,8 @@ echo "simple fringe mbd: $sfs_mbd"
 echo "simple fringe sbd: $sfs_sbd"
 echo "simple fringe dr: $sfs_dr"
 
-echo "Running: fourfit -m 1 -t -c ./test0.cf -b AS -P RR ${EXP_DIR}/${SCAN_DIR}"
-time fourfit -m 1 -t -c ./test0.cf -b AS -P RR ${EXP_DIR}/${SCAN_DIR} 2>&1  | grep max555 | tee ./ff.out
+echo "Running: fourfit3 -m 1 -t -c ./test0.cf -b AS -P RR ${EXP_DIR}/${MK4_SCAN_DIR}"
+time fourfit3 -m 1 -t -c ./test0.cf -b AS -P RR ${EXP_DIR}/${MK4_SCAN_DIR} 2>&1  | grep max555 | tee ./ff.out
 
 ff_mbd=$( cat ./ff.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
 ff_sbd=$( cat ./ff.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
