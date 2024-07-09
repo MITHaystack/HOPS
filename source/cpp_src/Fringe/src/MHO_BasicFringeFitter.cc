@@ -149,15 +149,19 @@ void MHO_BasicFringeFitter::Initialize()
         if(vis_data->GetSize() == 0){msg_fatal("fringe", "no visibility data left after cuts." << eom); std::exit(1);}
         if(wt_data->GetSize() == 0){msg_fatal("fringe", "no weight data left after cuts." << eom); std::exit(1);}
 
-        //compute the sum of all weights and stash in the parameter store (before any other operations (e.g. passband, notches) modify them)
-        MHO_InitialFringeInfo::compute_total_summed_weights(fContainerStore, fParameterStore);
+
 
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
+
+
+
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
 
         //figure out the number of channels which have data with weights >0 in at least 1 AP
         MHO_InitialFringeInfo::determine_n_active_channels(fContainerStore, fParameterStore);
 
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
+        //compute the sum of all weights and stash in the parameter store (before any other operations (e.g. passband, notches) modify them)
+        MHO_InitialFringeInfo::compute_total_summed_weights(fContainerStore, fParameterStore);
 
         //initialize the fringe search operators ///////////////////////////////
         //create space for the visibilities transformed into single-band-delay space
