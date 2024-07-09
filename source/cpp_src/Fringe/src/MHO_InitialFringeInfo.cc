@@ -117,6 +117,7 @@ MHO_InitialFringeInfo::compute_total_summed_weights(MHO_ContainerStore* conStore
         std::exit(1);
     }
 
+
     //compute the sum of the data weights
     weight_type temp_weights;
     temp_weights.Copy(*wt_data);
