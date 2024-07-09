@@ -5,7 +5,7 @@ find_program (BC_PROGRAM bc)
 #awk/grep also needed
 if(BASH_PROGRAM)
 
-    set(TEST_SCRIPT_BASENAMES chk_simplefringesearch2) #chk_simplefringesearch2 has no python dependence just bash/bc
+    set(TEST_SCRIPT_BASENAMES chk_m42h chk_simplefringesearch2) #chk_simplefringesearch2 has no python dependence just bash/bc
 
     #check simple fringe search relies on difxio -> hops conversion of data before it can be run
     if(BC_PROGRAM AND HOPS_USE_DIFXIO)
