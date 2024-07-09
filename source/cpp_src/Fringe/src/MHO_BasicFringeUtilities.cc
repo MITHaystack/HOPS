@@ -108,15 +108,24 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     //calculate SNR
     std::vector< std::string > pp_vec = paramStore->GetAs< std::vector< std::string > >("/config/polprod_set");
     double eff_npols = 1.0;
-    if(pp_vec.size()  > 2 ){eff_npols = 2.0;}
+    if(pp_vec.size() > 2 ){eff_npols = 2.0;}
 
     double bw_corr_factor = calculate_snr_correction_factor(conStore, paramStore); //correction if notches/passband applied
     double snr = MHO_BasicFringeInfo::calculate_snr(eff_npols, ap_delta, samp_period, total_summed_weights, famp, bw_corr_factor);
     paramStore->Set("/fringe/snr", snr);
 
     //calculate integration time
+    double n_polprod;
+    weight_type* wt_data = conStore->GetObject<weight_type>(std::string("weight"));
+    if( wt_data == nullptr )
+    {
+        msg_fatal("fringe", "could not find visibility or weight objects with names (weight)." << eom);
+        std::exit(1);
+    }
+    bool ok2 = wt_data->Retrieve("n_summed_polprod", n_polprod);
+    if(!ok2){n_polprod = 1.0;}
     int nchan = paramStore->GetAs<int>("/config/nchannels");
-    double integration_time =  (total_summed_weights*ap_delta)/(double)nchan;
+    double integration_time =  (total_summed_weights*ap_delta)/( (n_polprod) * (double)nchan );
     paramStore->Set("/fringe/integration_time", integration_time);
 
     //residual phase in radians and degrees
@@ -425,7 +434,12 @@ MHO_BasicFringeUtilities::calculate_snr_correction_factor(MHO_ContainerStore* co
     double bw_corr = 1.0;
     if(net_ap > 0){bw_corr = std::sqrt(net_bw/net_ap); }
     msg_debug("fringe", "bandwidth correction factor (passband/notches) is: "<< bw_corr << eom );
-
+    
+    //correct for number of summed pol-products
+    double n_polprod;
+    bool ok2 = wt_data->Retrieve("n_summed_polprod", n_polprod);
+    if(!ok2){n_polprod = 1.0;}
+    bw_corr *= 1.0/std::sqrt(n_polprod);
 
     return bw_corr;
 }
