@@ -424,11 +424,8 @@ MHO_BasicFringeUtilities::calculate_snr_correction_factor(MHO_ContainerStore* co
 
     double bw_corr = 1.0;
     if(net_ap > 0){bw_corr = std::sqrt(net_bw/net_ap); }
+    msg_debug("fringe", "bandwidth correction factor (passband/notches) is: "<< bw_corr << eom );
 
-    if(bw_corr != 1.0)
-    {
-        msg_debug("fringe", "bandwidth correction factor due to passband/notches is: "<< bw_corr << eom );
-    }
 
     return bw_corr;
 }
