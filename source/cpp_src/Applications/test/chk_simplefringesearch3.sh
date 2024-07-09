@@ -8,18 +8,15 @@ export DATADIR=`cd $srcdir/3764; pwd`
 
 RET_VAL=0
 EXP_DIR=$DATADIR
-D2H_EXP_NUM=hops4
 D2M4_EXP_NUM=.
-SCAN_DIR=104-1228
+MK4_SCAN_DIR=104-1228
+SCAN_DIR=104-1228a
 cd $EXP_DIR
 
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
-# echo "Running: fourfit4 -c ./test0.cf -b AS -P RR ./${D2H_EXP_NUM}/${SCAN_DIR}"
-# time fourfit4 -c ./test0.cf -b AS -P RR ./${D2H_EXP_NUM}/${SCAN_DIR}  | tee ./sfs.out
-
-echo "Running: fourfit4 -m 4 -c ./test0.cf -b AS -P RR ./${D2H_EXP_NUM}/${SCAN_DIR}/"
-outfile=$(time fourfit4 -m 4 -c ./test0.cf -b AS -P RR ./${D2H_EXP_NUM}/${SCAN_DIR}/  2>&1)
+echo "Running: fourfit4 -m 4 -c ./test0.cf -b AS -P RR ./${SCAN_DIR}/"
+outfile=$(time fourfit4 -m 4 -c ./test0.cf -b AS -P RR ./${SCAN_DIR}/  2>&1)
 
 #parse the print out (fourfit4: <fringe_filename>) into just the fringe_filename
 echo "$outfile"
@@ -39,8 +36,8 @@ echo "jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" | tee 
 jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" | tee ./fdump.json
 
 
-echo "Running: fourfit -m 4 -c ./test0.cf -b AS -P RR ./${SCAN_DIR} set plot_data_dir ./chk3 "
-time fourfit -m 1 -c ./test0.cf -b AS -P RR ./${SCAN_DIR} set plot_data_dir ./chk3 2>&1  | tee ./ff.out
+echo "Running: fourfit3 -m 4 -c ./test0.cf -b AS -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk3 "
+time fourfit3 -m 1 -c ./test0.cf -b AS -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk3 2>&1  | tee ./ff.out
 
 compjsonpdd.py ./fdump.json ./chk3/104-1228-AS-B-RR.*
 RET_VAL=$?
