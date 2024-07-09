@@ -78,6 +78,28 @@ MHO_DirectoryInterface::DoesDirectoryExist(const std::string& dirname)
 }
 
 bool
+MHO_DirectoryInterface::IsDirectory(const std::string& name)
+{
+    struct stat st;
+    if(stat( name.c_str(), &st) == 0 )
+    {
+        if( S_ISDIR(st.st_mode) ){return true;}
+    }
+    return false;
+}
+
+bool
+MHO_DirectoryInterface::IsFile(const std::string& name)
+{
+    struct stat st;
+    if(stat( name.c_str(), &st) == 0 )
+    {
+        if( S_ISREG(st.st_mode) ){return true;}
+    }
+    return false;
+}
+
+bool
 MHO_DirectoryInterface::CreateDirectory(const std::string& dirname) const
 {
     std::string fullpath = GetDirectoryFullPath(dirname);

@@ -87,6 +87,7 @@ MHO_BasicFringeDataConfiguration::parse_set_string(const std::vector< std::strin
 std::string
 MHO_BasicFringeDataConfiguration::sanitize_directory(std::string dir)
 {
+
     //do not resolve the full path
     //just strip the root file if it exists in the dir name
     std::string path = dir;
@@ -96,9 +97,11 @@ MHO_BasicFringeDataConfiguration::sanitize_directory(std::string dir)
         path = dir.substr(0,dir_end) + "/";
     }
 
+    msg_debug("fringe", "sanitized directory path: " << path << eom );
+
     //check that this directory exists
     bool ok;
-    std::string fullpath = MHO_DirectoryInterface::GetDirectoryFullPath(dir);
+    std::string fullpath = MHO_DirectoryInterface::GetDirectoryFullPath(path);
     ok = MHO_DirectoryInterface::DoesDirectoryExist(fullpath);
     if(!ok)
     {
@@ -361,11 +364,11 @@ MHO_BasicFringeDataConfiguration::determine_scans(const std::string& initial_dir
         MHO_DirectoryInterface dirInterface;
         dirInterface.SetCurrentDirectory(initial_dir);
         dirInterface.ReadCurrentDirectory();
-        std::vector< std::string > subdirs; 
+        std::vector< std::string > subdirs;
         dirInterface.GetSubDirectoryList(subdirs);
-        
+
         //loop over all these directories and check if they have a root file
-        //if they do, then add them to the list, if not, skip 
+        //if they do, then add them to the list, if not, skip
         for(auto it = subdirs.begin(); it != subdirs.end(); it++)
         {
             std::string path = *it;
@@ -381,7 +384,7 @@ MHO_BasicFringeDataConfiguration::determine_scans(const std::string& initial_dir
             }
         }
     }
-    else 
+    else
     {
         //just one scan passed
         scans.push_back(initial_dir);
@@ -537,9 +540,9 @@ MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts(const std::strin
     }
 }
 
-void 
-MHO_BasicFringeDataConfiguration::determine_passes(MHO_ParameterStore* cmdline_params, 
-                                                   std::string& cscans, 
+void
+MHO_BasicFringeDataConfiguration::determine_passes(MHO_ParameterStore* cmdline_params,
+                                                   std::string& cscans,
                                                    std::string& croots,
                                                    std::string& cbaselines,
                                                    std::string& cfgroups,
@@ -551,7 +554,7 @@ MHO_BasicFringeDataConfiguration::determine_passes(MHO_ParameterStore* cmdline_p
     std::vector< std::pair< std::string, std::string > > baseline_files;
     std::vector< std::string > fgroups;
     std::vector< std::string > polproducts;
-    
+
     //flattened pass parameters (for return values)
     std::string concat_delim = ",";
     cscans = "";
@@ -565,7 +568,7 @@ MHO_BasicFringeDataConfiguration::determine_passes(MHO_ParameterStore* cmdline_p
     std::string cmd_bl = cmdline_params->GetAs<std::string>("/cmdline/baseline"); //if not passed, will be "??"
     std::string cmd_fg = cmdline_params->GetAs<std::string>("/cmdline/frequency_group"); //if not passed, this will be "?"
     std::string cmd_pp = cmdline_params->GetAs<std::string>("/cmdline/polprod"); //if not passed, this will be "??"
-    
+
     determine_scans(initial_dir, scans, roots);
 
     //form all the data passes that must be processed
@@ -603,7 +606,7 @@ MHO_BasicFringeDataConfiguration::determine_passes(MHO_ParameterStore* cmdline_p
 }
 
 void MHO_BasicFringeDataConfiguration::split_passes(std::vector<mho_json>& pass_vector,
-                                                    const std::string& cscans, 
+                                                    const std::string& cscans,
                                                     const std::string& croots,
                                                     const std::string& cbaselines,
                                                     const std::string& cfgroups,

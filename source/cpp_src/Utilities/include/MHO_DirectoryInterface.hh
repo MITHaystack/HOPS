@@ -28,6 +28,10 @@ class MHO_DirectoryInterface
         static std::string GetDirectoryFullPath(const std::string& dirname);
         static std::string GetDirectoryFullPathPreserveSymlinks(const std::string& dirname);
         static bool DoesDirectoryExist(const std::string& dirname);
+
+        static bool IsDirectory(const std::string& name);
+        static bool IsFile(const std::string& name);
+
         bool CreateDirectory(const std::string& dirname) const;
 
         void SetCurrentDirectory(const std::string& dirname);
