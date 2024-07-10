@@ -21,7 +21,6 @@ set(SOURCE_BASENAMES
     # TestConvertMk4Visibilities
     hopskeys
     mark42hops
-    hopsobj2json
     hops2json
     vex2json
     TestSignalFFT
