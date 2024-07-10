@@ -53,6 +53,11 @@ class MHO_BasicFringeInfo
 
         static void correct_phases_mbd_anchor_sbd(double ref_freq, double freq0, double frequency_spacing, double delta_mbd, double& totphase_deg, double& resphase_deg);
 
+        //only used by MHO_IonosphericFringeFitter...for computing the ionosphere dTEC covariance
+        static void ion_covariance(int nfreq, double famp, double snr, double ref_freq, 
+                                   const std::vector<double>& chan_freqs,
+                                   const std::vector< std::complex<double> >& chan_phasors);
+
 };
 
 }//end namespace
