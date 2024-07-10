@@ -37,6 +37,9 @@ hops_install_libraries (MHO_Vex2JSON)
 #install vex format specification
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/format)
 
+#install the vex2json executable 
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/applications)
+
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)
 endif (HOPS_ENABLE_TEST)

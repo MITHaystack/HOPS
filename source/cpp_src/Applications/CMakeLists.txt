@@ -22,7 +22,6 @@ set(SOURCE_BASENAMES
     hopskeys
     mark42hops
     hops2json
-    vex2json
     TestSignalFFT
     CompareCorFiles
     TestPCalExtraction
