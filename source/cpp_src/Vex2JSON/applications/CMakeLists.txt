@@ -8,6 +8,7 @@ set(EXE_LIBS
 
 set(SOURCE_BASENAMES
     vex2json
+    json2vex
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
