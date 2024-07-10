@@ -6,15 +6,17 @@
 
 #include "MHO_Message.hh"
 #include "MHO_VexParser.hh"
+#include "MHO_VexGenerator.hh"
 
 using namespace hops;
 
 int main(int argc, char** argv)
 {
-    std::string usage = "vex2json -i <input_file> -o <output_file>";
+    std::string usage = "json2vex -i <input_file> -o <output_file>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
+
     int message_level = 0;
     std::string input_file;
     std::string output_file;
@@ -58,15 +60,19 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 
-    //parse and convert
-    MHO_VexParser vparser;
-    vparser.SetVexFile(input_file);
-    mho_json vex = vparser.ParseVex();
+    std::ifstream ifs;
+    ifs.open( input_file.c_str(), std::ifstream::in );
 
-    //open and dump to file
-    std::ofstream outFile(output_file.c_str(), std::ofstream::out);
-    outFile << vex;
-    outFile.close();
+    mho_json root;
+    if(ifs.is_open())
+    {
+        root = mho_json::parse(ifs);
+    }
+    ifs.close();
+
+    MHO_VexGenerator gen;
+    gen.SetFilename(output_file);
+    gen.GenerateVex(root);
 
     return 0;
 }
