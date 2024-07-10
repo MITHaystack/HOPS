@@ -222,6 +222,9 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
         paramStore->Get("/fringe/ion_sigmas", ion_sigmas);
         mbd_error = 1e-3 * ion_sigmas[0]; //convert ns to us
         msg_debug("fringe", "mbd sigma w/ no ionosphere "<<mbd_no_ion_error<<" with ion " << mbd_error << eom);
+        
+        //set the dtec error 
+        paramStore->Set("/fringe/dtec_error", ion_sigmas[2]);
     }
 
     #pragma message("TODO FIXME, calculate SBAVG properly")

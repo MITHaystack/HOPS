@@ -440,7 +440,7 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     FillFloat(t208->prob_false, "/fringe/pfd");
     FillFloat(t208->totphase, "/fringe/tot_phase");
     FillFloat(t208->resphase, "/fringe/resid_phase");
-    FillFloat(t208->tec_error, "/fringe/tec_error"); //DOES NOT EXIST YET
+    FillFloat(t208->tec_error, "/fringe/dtec_error");
 
     return 0;
 
