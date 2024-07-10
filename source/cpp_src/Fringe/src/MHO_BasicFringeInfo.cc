@@ -1,4 +1,5 @@
 #include "MHO_BasicFringeInfo.hh"
+#include "MHO_MathUtilities.hh"
 
 namespace hops
 {
@@ -188,7 +189,8 @@ MHO_BasicFringeInfo::correct_phases_mbd_anchor_sbd(double ref_freq, double freq0
 void
 MHO_BasicFringeInfo::ion_covariance(int nfreq, double famp, double snr, double ref_freq, 
                                     const std::vector<double>& chan_freqs,
-                                    const std::vector< std::complex<double> >& chan_phasors)
+                                    const std::vector< std::complex<double> >& chan_phasors,
+                                    std::vector< double >& ion_sigmas)
 {
     int i, j, fr;
     double sigma_fr,
@@ -197,23 +199,26 @@ MHO_BasicFringeInfo::ion_covariance(int nfreq, double famp, double snr, double r
            w,
            A[3][3],                     // normal equation matrix
            C[3][3];                     // covariance matrix
+
     const double b = -1.3445;           // for correct TEC units
+    ion_sigmas.resize(3,0.0);
 
-    // extern struct type_status status;
-    // extern struct type_param param;
-
-
-    for (i=0; i<3; i++)                 // pre-clear the normal matrix
+    // pre-clear the normal matrix
+    for (i=0; i<3; i++)
+    {
         for (j=0; j<3; j++)
+        {
             A[i][j] = 0.0;
-
+        }
+    }
+    
     for (fr = 0; fr < nfreq; fr++)
     {
-                                        // increment normal equations
-        sigma_fr = sqrt ((double)nfreq) * famp / ( 2.0 * M_PI * snr * std::abs(chan_phasors[fr]) );
-                                        // coefficient matrix weight
+        // increment normal equations
+        sigma_fr = std::sqrt ((double)nfreq) * famp / ( 2.0 * M_PI * snr * std::abs(chan_phasors[fr]) );
+        // coefficient matrix weight
         w = 1.0 / (sigma_fr * sigma_fr);
-                                        // convenience variables to match rjc memo
+        // convenience variables to match rjc memo
         fk = 1e-3 * chan_freqs[fr]; //channel frequency;
         f0 = 1e-3 * ref_freq;     // (GHz)
 
@@ -227,24 +232,30 @@ MHO_BasicFringeInfo::ion_covariance(int nfreq, double famp, double snr, double r
     A[1][0] = A[0][1];                  // fill in rest of symmetric normal matrix
     A[2][0] = A[0][2];
     A[2][1] = A[1][2];
+    
+    int ecode = MHO_MathUtilities::minvert3(A,C);
+    if(ecode)
+    {
+        msg_error("fringe", "unable to compute ionosphere errors due to singular matrix" << eom);
+    }
 
-    //                                     // invert the normal matrix to get covariance matrix
-    // if (minvert3( A, C))              // error returned?
-    //     if (status.nion)
-    //         {                           // - yes
-    //         msg ("unable to compute ionosphere errors due to singular matrix", 2);
-    //         }
-    // 
-    // for (i=0; i<3; i++)             // std devs. are sqrt of diag of covariance matrix
-    //     status.ion_sigmas[i] = sqrt (C[i][i]);
-    // for (i=0; i<3; i++)             // normalize covariance to get correlation matrix
-    //     for (j=0; j<3; j++)
-    //         C[i][j] /= (status.ion_sigmas[i] * status.ion_sigmas[j]);
-    // msg ("ionospheric sigmas: delay %f (ps) phase %f (deg) dTEC %f", 0,
-    //       1e3 * status.ion_sigmas[0], 360 * status.ion_sigmas[1], status.ion_sigmas[2]);
-    // msg ("ionosphere correlation matrix:\n"
-    //      "%7.3f %7.3f %7.3f\n%7.3f %7.3f %7.3f\n%7.3f %7.3f %7.3f", 1,
-    //      C[0][0], C[0][1], C[0][2], C[1][0], C[1][1], C[1][2], C[2][0], C[2][1], C[2][2]);
+    // std devs. are sqrt of diag of covariance matrix
+    for(i=0; i<3; i++){ ion_sigmas[i] = std::sqrt(C[i][i]); }
+        
+    // normalize covariance to get correlation matrix
+    for(i=0; i<3; i++)
+    {
+        for(j=0; j<3; j++)
+        {
+            C[i][j] /= (ion_sigmas[i] * ion_sigmas[j]);
+        }
+    }
+    
+    msg_debug("fringe", "ionospheric sigmas: delay "<< 1e3*ion_sigmas[0] <<" (ps), phase "<< 360.0* ion_sigmas[1]<<" (deg), dTEC " << ion_sigmas[2] << eom);
+    msg_debug("fringe", "ionosphere correlation matrix: " << eol);
+    msg_debug("fringe", C[0][0] <<", "<<  C[0][1] <<", "<<  C[0][2] << eol);
+    msg_debug("fringe", C[1][0] <<", "<<  C[1][1] <<", "<<  C[1][2] << eol); 
+    msg_debug("fringe", C[2][0] <<", "<<  C[2][1] <<", "<<  C[2][2] << eom);
 }
 
 
