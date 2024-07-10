@@ -56,7 +56,8 @@ class MHO_BasicFringeInfo
         //only used by MHO_IonosphericFringeFitter...for computing the ionosphere dTEC covariance
         static void ion_covariance(int nfreq, double famp, double snr, double ref_freq, 
                                    const std::vector<double>& chan_freqs,
-                                   const std::vector< std::complex<double> >& chan_phasors);
+                                   const std::vector< std::complex<double> >& chan_phasors,
+                                   std::vector< double >& ion_sigmas);
 
 };
 

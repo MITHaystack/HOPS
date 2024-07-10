@@ -209,7 +209,20 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
 
     double sbd_sep = paramStore->GetAs<double>("/fringe/sbd_separation");
     double freq_spread = paramStore->GetAs<double>("/fringe/frequency_spread");
-    double mbd_error = MHO_BasicFringeInfo::calculate_mbd_no_ion_error(freq_spread, snr);
+    double mbd_no_ion_error = MHO_BasicFringeInfo::calculate_mbd_no_ion_error(freq_spread, snr);
+    double mbd_error = mbd_no_ion_error;
+    
+    //if we fit for ionosphere dTEC, calculate the covariance mx
+    bool do_ion = false;
+    paramStore->Get("/config/do_ion", do_ion);
+    if(do_ion)
+    {
+        calculate_ion_covariance(conStore, paramStore); 
+        std::vector< double > ion_sigmas;
+        paramStore->Get("/fringe/ion_sigmas", ion_sigmas);
+        mbd_error = 1e-3 * ion_sigmas[0]; //convert ns to us
+        msg_debug("fringe", "mbd sigma w/ no ionosphere "<<mbd_no_ion_error<<" with ion " << mbd_error << eom);
+    }
 
     #pragma message("TODO FIXME, calculate SBAVG properly")
     double sbavg = 1.0;
@@ -222,6 +235,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     //double drate_error = calculate_drate_error_v2(snr, ref_freq, integration_time);
 
     paramStore->Set("/fringe/mbd_error", mbd_error);
+    paramStore->Set("/fringe/mbd_no_ion_error", mbd_no_ion_error);
     paramStore->Set("/fringe/sbd_error", sbd_error);
     paramStore->Set("/fringe/drate_error", drate_error);
 
@@ -262,6 +276,8 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     double alist_resid_delay = mbdelay + ambig * std::floor( ((sbdelay - mbdelay)/ambig) + 0.5);
 
     paramStore->Set("/fringe/resid_delay", alist_resid_delay);
+    
+
 }
 
 
@@ -290,14 +306,13 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
 
     //now we are going to loop over all of the channels/AP
     //and perform the weighted sum of the data at the max-SBD bin
-    //with the fitted delay-rate rotation (but mbd=0) applied
+    //with the fitted delay-rate rotation applied
     auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_arr) );
     auto chan_ax = std::get<CHANNEL_AXIS>(*sbd_arr);
     auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
 
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
     paramStore->Set("/fringe/sbd_separation", sbd_delta);
-
 
     MHO_FringeRotation frot;
     frot.SetSBDSeparation(sbd_delta);
@@ -310,7 +325,6 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = chan_ax(ch);//sky freq of this channel
-
         std::string net_sideband = "?";
         bool key_present = chan_ax.RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
         if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
@@ -443,5 +457,112 @@ MHO_BasicFringeUtilities::calculate_snr_correction_factor(MHO_ContainerStore* co
 
     return bw_corr;
 }
+
+void 
+MHO_BasicFringeUtilities::calculate_ion_covariance(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
+{
+    double total_summed_weights = paramStore->GetAs<double>("/fringe/total_summed_weights");
+    double ref_freq = paramStore->GetAs<double>("/control/config/ref_freq");
+    double mbd = paramStore->GetAs<double>("/fringe/mbdelay");
+    double drate = paramStore->GetAs<double>("/fringe/drate");
+    double sbd = paramStore->GetAs<double>("/fringe/sbdelay");
+    double sbd_max_bin = paramStore->GetAs<double>("/fringe/max_sbd_bin");
+    double frt_offset = paramStore->GetAs<double>("/config/frt_offset");
+    double ap_delta =  paramStore->GetAs<double>("/config/ap_period");
+
+    auto weights = conStore->GetObject<weight_type>(std::string("weight"));
+    auto sbd_arr = conStore->GetObject<visibility_type>(std::string("sbd"));
+
+    std::size_t POLPROD = 0;
+    std::size_t nchan = sbd_arr->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = sbd_arr->GetDimension(TIME_AXIS);
+
+    //now we are going to loop over all of the channels/AP
+    //and perform the weighted sum of the data at the max-SBD bin
+    //with the fitted delay-rate rotation applied
+    auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_arr) );
+    auto chan_ax = std::get<CHANNEL_AXIS>(*sbd_arr);
+    auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
+
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+    paramStore->Set("/fringe/sbd_separation", sbd_delta);
+
+    MHO_FringeRotation frot;
+    frot.SetSBDSeparation(sbd_delta);
+    frot.SetSBDMaxBin(sbd_max_bin);
+    frot.SetNSBDBins(sbd_ax->GetSize()/4);  //this is nlags, FACTOR OF 4 is because sbd space is padded by a factor of 4
+    frot.SetSBDMax( sbd );
+
+    std::complex<double> sum_all = 0.0;
+    std::vector< std::complex<double> > chan_phasors; chan_phasors.resize(nchan, 0);
+    std::vector< double > chan_freqs; chan_freqs.resize(nchan, 0);
+    
+    std::string sidebandlabelkey = "net_sideband";
+    for(std::size_t ch=0; ch < nchan; ch++)
+    {
+        double freq = chan_ax(ch);//sky freq of this channel
+        chan_freqs[ch] = freq;
+
+        std::string net_sideband = "?";
+        bool key_present = chan_ax.RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
+        if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
+
+        frot.SetSideband(0); //DSB
+        if(net_sideband == "U")
+        {
+            frot.SetSideband(1);
+        }
+
+        if(net_sideband == "L")
+        {
+            frot.SetSideband(-1);
+        }
+
+        std::complex<double> ch_sum = 0.0;
+        double sumwt = 0.0;
+        for(std::size_t ap=0; ap < nap; ap++)
+        {
+            double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
+            std::complex<double> vis = (*sbd_arr)(POLPROD, ch, ap, sbd_max_bin); //pick out data at SBD max bin
+            std::complex<double> vr = frot.vrot(tdelta, freq, ref_freq, drate, mbd);
+            std::complex<double> z = vis*vr;
+            //apply weight and sum
+            double w = (*weights)(POLPROD, ch, ap, 0);
+            sumwt += w;
+            std::complex<double> wght_phsr = z*w;
+            if(net_sideband == "U")
+            {
+                sum_all += -1.0*wght_phsr;
+                ch_sum += -1.0*wght_phsr;
+            }
+            else
+            {
+                sum_all += wght_phsr;
+                ch_sum += wght_phsr;
+            }
+        }
+        chan_phasors[ch] = ch_sum;
+        
+        //divide out summed AP weights
+        double c = 0.0;
+        if(sumwt > 0){c = 1.0/sumwt;} //TODO replace 1.0 with amp_corr_fact
+        chan_phasors[ch] *= c;
+    }
+
+    double famp = paramStore->GetAs<double>("/fringe/famp");
+    double snr = paramStore->GetAs<double>("/fringe/snr");
+    
+    //only used by MHO_IonosphericFringeFitter...for computing the ionosphere dTEC covariance
+    std::vector< double > ion_sigmas;
+    MHO_BasicFringeInfo::ion_covariance(nchan, famp, snr, ref_freq, chan_freqs, chan_phasors, ion_sigmas);
+    paramStore->Set("/fringe/ion_sigmas", ion_sigmas);
+
+    //scale the ion_sigmas to (ps, deg, and dTEC units)
+    ion_sigmas[0] *= 1e3;
+    ion_sigmas[1] *= 360.0;
+    paramStore->Set("/fringe/scaled_ion_sigmas", ion_sigmas);
+
+}
+
 
 }//end namespace
