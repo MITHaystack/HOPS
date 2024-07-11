@@ -11,15 +11,21 @@ EXP_DIR=$DATADIR
 D2H_EXP_NUM=1111
 D2M4_EXP_NUM=1234
 SCAN_DIR=105-1800
+HOPS4_DIR=105-1800
 cd $EXP_DIR
-
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
+
+if [ ! -d "./${D2H_EXP_NUM}" ]; then
+    echo "difx2hops not run, using mark42hops converted data (105-1800a) for test"
+    D2H_EXP_NUM="."
+    HOPS4_DIR="105-1800a"
+fi
 
 # echo "Running: fourfit4 -c ./cf_test5 -b GE -P I ./${D2H_EXP_NUM}/${SCAN_DIR}"
 # time fourfit4 -c ./cf_test5 -b GE -P I ./${D2H_EXP_NUM}/${SCAN_DIR} | grep max555 | tee ./sfs.out
 
-echo "Running: fourfit4 -m 4 -c ./cf_test5 -b GE -P I ./${D2H_EXP_NUM}/${SCAN_DIR}/"
-outfile=$( fourfit4 -m 4 -c ./cf_test5 -b GE -P I ./${D2H_EXP_NUM}/${SCAN_DIR}/  2>&1)
+echo "Running: fourfit4 -m 4 -c ./cf_test5 -b GE -P I ./${D2H_EXP_NUM}/${HOPS4_DIR}/"
+outfile=$( fourfit4 -m 4 -c ./cf_test5 -b GE -P I ./${D2H_EXP_NUM}/${HOPS4_DIR}/  2>&1)
 
 #parse the print out (fourfit4: <fringe_filename>) into just the fringe_filename
 echo "$outfile"
@@ -38,8 +44,8 @@ hops2json ${output_file}
 echo "jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" | tee ./fdump.json"
 jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" | tee ./fdump.json
 
-echo "Running: fourfit -m 1 -t -c ./cf_test5 -b GE -P I ./${D2M4_EXP_NUM}/${SCAN_DIR}"
-time fourfit -m 1 -t -c ./cf_test5 -b GE -P I ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1  | grep max555 | tee ./ff.out
+echo "Running: fourfit3 -m 1 -t -c ./cf_test5 -b GE -P I ./${D2M4_EXP_NUM}/${SCAN_DIR}"
+time fourfit3 -m 1 -t -c ./cf_test5 -b GE -P I ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1  | grep max555 | tee ./ff.out
 
 #tolerance is 1.7% currently...need to work out the differences and reduce this
 compjsonpdd.py -r 0.017 ./fdump.json ./chk1/105-1800-GE-X-Ixy*
