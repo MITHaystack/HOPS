@@ -73,7 +73,8 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
 
         FFT_ENGINE_TYPE fFFTEngine;
 
-        std::size_t DetermineStationIndex(const visibility_type* in);
+        bool IsApplicable(const visibility_type* in);
+        
         bool PolMatch(std::size_t station_idx, std::string& pc_pol, std::string& polprod);
         void DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq);
         void DetermineChannelToneIndexes(double lower_freq, double upper_freq, std::size_t& lower_idx, std::size_t& upper_idx);

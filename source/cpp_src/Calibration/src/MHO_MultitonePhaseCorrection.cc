@@ -64,46 +64,11 @@ MHO_MultitonePhaseCorrection::~MHO_MultitonePhaseCorrection(){};
 bool
 MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
-    //ref = 0, rem = 1
+    //loop over reference (0) and remote (1) stations
     for(fStationIndex = 0; fStationIndex < 2; fStationIndex++)
     {
-        //determine if the p-cal corrections should be to this station (ref or rem)
-        bool apply_correction = false;
-        std::string val;
-        std::string mk4id_key;
-        std::string station_key;
-        if(fStationIndex == 0)
-        {
-            mk4id_key = fRefStationMk4IDKey;
-            station_key = fRefStationKey;
-        }
-        else
-        {
-            mk4id_key = fRemStationMk4IDKey;
-            station_key = fRemStationKey;
-        }
-
-        if(fMk4ID != "") //selection by mk4 id
-        {
-            in->Retrieve(mk4id_key, val);
-            if(fMk4ID == val || fMk4ID == "?"){apply_correction = true;}
-        }
-
-        if(fStationCode != "")//selection by 2-char station code
-        {
-            in->Retrieve(station_key, val);
-            if(fStationCode == val){apply_correction = true;}
-        }
-
-        // //figure out if refrence or remote station in this baseline
-        // fStationIndex = DetermineStationIndex(in);
-        // if(fStationIndex == 2)
-        // {
-        //     msg_error("calibration", "could not determine station index for multitone pcal operation." << eom);
-        //     return false;
-        // }
-
-        if(apply_correction)
+        //determine if the p-cal corrections should be applied to this station (ref or rem)
+        if( IsApplicable(in) )
         {
             RepairMK4PCData(in); //need to rebuild tone frequencies if imported from type_309s
 
@@ -328,15 +293,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         }
     }
 
-
-
-
-
-
-
-
-
-
     //here follows the 'sampler_delay.c' code which averages the pcal delays over all
     //channels and AP's which belong to the same sampler. We should investigate if
     //this is really needed, or if it improves the post-fit residuals. It doesn't
@@ -406,25 +362,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     //now loop over the channels and actually apply the processed pcal phase
     //and averaged-down delays
@@ -503,31 +440,40 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
 
 }
 
-
-std::size_t
-MHO_MultitonePhaseCorrection::DetermineStationIndex(const visibility_type* in)
+bool 
+MHO_MultitonePhaseCorrection::IsApplicable(const visibility_type* in)
 {
-    //determine if the p-cal corrections are being applied to the remote or reference station
+    bool apply_correction = false;
     std::string val;
+    std::string mk4id_key;
+    std::string station_key;
+
+    if(fStationIndex == 0)
+    {
+        mk4id_key = fRefStationMk4IDKey;
+        station_key = fRefStationKey;
+    }
+    else
+    {
+        mk4id_key = fRemStationMk4IDKey;
+        station_key = fRemStationKey;
+    }
+
     if(fMk4ID != "") //selection by mk4 id
     {
-        in->Retrieve(fRemStationMk4IDKey, val);
-        if(fMk4ID == val){return 1;}
-        in->Retrieve(fRefStationMk4IDKey, val);
-        if(fMk4ID == val){return 0;}
+        in->Retrieve(mk4id_key, val);
+        if(fMk4ID == val || fMk4ID == "?"){apply_correction = true;}
     }
 
-    if(fStationCode != "")//seletion by 2-char station code
+    if(fStationCode != "")//selection by 2-char station code
     {
-        in->Retrieve(fRemStationKey, val);
-        if(fStationCode == val){return 1;}
-        in->Retrieve(fRefStationKey, val);
-        if(fStationCode == val){return 0;}
+        in->Retrieve(station_key, val);
+        if(fStationCode == val || fStationCode == "??"){apply_correction = true;}
     }
 
-    msg_warn("calibration", "multitone pcal, remote/reference station do not match selection."<< eom );
-    return 2;
+    return apply_correction;
 }
+
 
 bool
 MHO_MultitonePhaseCorrection::PolMatch(std::size_t station_idx, std::string& pc_pol, std::string& polprod)
