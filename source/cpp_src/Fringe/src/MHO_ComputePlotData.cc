@@ -1413,7 +1413,6 @@ MHO_ComputePlotData::calc_error_code(const mho_json& plot_dict)
         for(auto pol_iter = ref_pols.begin(); pol_iter != ref_pols.end(); pol_iter++)
         {
             std::string pol = *pol_iter;
-            std::cout<<"refpol = "<<pol<<std::endl;
             //workspace for segment retrieval
             std::vector< double > pc_mag_segs;
             std::string pc_mag_key = "ref_mtpc_mag_" + pol;
@@ -1422,7 +1421,6 @@ MHO_ComputePlotData::calc_error_code(const mho_json& plot_dict)
             if(b1)
             {
                 double pc_amp = MHO_MathUtilities::average(pc_mag_segs);
-                std::cout<<"ref ch: "<<ch<<", pc_amp = "<<pc_amp<<" hcode thresh = "<<pc_amp_hcode<<std::endl;
                 if( pc_amp < pc_amp_hcode || pc_amp > 0.500){chan_ref_pcal_low &= true;}
                 else{chan_ref_pcal_low &= false;}
             }
@@ -1431,7 +1429,6 @@ MHO_ComputePlotData::calc_error_code(const mho_json& plot_dict)
         for(auto pol_iter = rem_pols.begin(); pol_iter != rem_pols.end(); pol_iter++)
         {
             std::string pol = *pol_iter;
-            std::cout<<"rempol = "<<pol<<std::endl;
             //workspace for segment retrieval
             std::vector< double > pc_mag_segs;
             std::string pc_mag_key = "rem_mtpc_mag_" + pol;
@@ -1439,7 +1436,6 @@ MHO_ComputePlotData::calc_error_code(const mho_json& plot_dict)
             if(b1)
             {
                 double pc_amp = MHO_MathUtilities::average(pc_mag_segs);
-                std::cout<<"rem ch: "<<ch<<", pc_amp = "<<pc_amp<<std::endl;
                 if( pc_amp < pc_amp_hcode || pc_amp > 0.500){chan_rem_pcal_low &= true;}
                 else{chan_rem_pcal_low &= false;}
             }
@@ -1448,14 +1444,8 @@ MHO_ComputePlotData::calc_error_code(const mho_json& plot_dict)
         if(chan_rem_pcal_low){rem_low_pcal = true;}
     }
 
-    if(rem_low_pcal){std::cout<<"have low rem pcal"<<std::endl;}
-    if(ref_low_pcal){std::cout<<"have low ref pcal"<<std::endl;}
-
     //only care about 'multitone', so far 'normal' pc_mode has not been implemented
-    if(  ref_low_pcal || rem_low_pcal  )
-    {
-        errcode = "H";
-    }
+    if(  ref_low_pcal || rem_low_pcal  ){ errcode = "H";}
 
     if(errcode != " ")
     {
