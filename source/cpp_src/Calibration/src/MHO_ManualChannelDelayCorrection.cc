@@ -36,10 +36,6 @@ MHO_ManualChannelDelayCorrection::~MHO_ManualChannelDelayCorrection(){};
 bool
 MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
 {
-    // std::size_t st_idx = DetermineStationIndex(in);
-    // 
-    // if(st_idx != 0 && st_idx != 1){return false;}
-
     //loop over reference (0) and remote (1) stations
     for(std::size_t st_idx = 0; st_idx < 2; st_idx++)
     {
@@ -176,38 +172,6 @@ MHO_ManualChannelDelayCorrection::IsApplicable(std::size_t st_idx, const visibil
 
     return apply_correction;
 }
-
-// std::size_t
-// MHO_ManualChannelDelayCorrection::DetermineStationIndex(const visibility_type* in)
-// {
-//     //determine if the p-cal corrections are being applied to the remote or reference station
-//     std::string val;
-//     std::string rem, ref;
-// 
-//     if(fMk4ID != "") //selection by mk4 id
-//     {
-//         in->Retrieve(fRemStationMk4IDKey, rem);
-//         in->Retrieve(fRefStationMk4IDKey, ref);
-//         if(fMk4ID == rem){return 1;}
-//         if(fMk4ID == ref){return 0;}
-//     }
-// 
-//     if(fStationCode != "")//seletion by 2-char station code
-//     {
-//         in->Retrieve(fRemStationKey, val);
-//         if(fStationCode == val){return 1;}
-//         in->Retrieve(fRefStationKey, val);
-//         if(fStationCode == val){return 0;}
-//     }
-// 
-//     //wildcard, it doesn't matter, so just return as rem station
-//     if(fStationCode == "??" || fMk4ID == "?"){return 1;}
-// 
-//     msg_warn("calibration", "manual per-channel delay correction, (remote,reference) " <<
-//         "stations: ("<<ref<<", "<<rem<<") do not match selection "<<fMk4ID<<"."<< eom );
-//     //msg_warn("calibration", "manual delay correction, remote/reference station do not match selection."<< eom );
-//     return 2;
-// }
 
 bool
 MHO_ManualChannelDelayCorrection::PolMatch(std::size_t station_idx, std::string& polprod)

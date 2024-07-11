@@ -54,7 +54,6 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
     private:
 
         bool IsApplicable(std::size_t st_idx, const visibility_type* in);
-        //std::size_t DetermineStationIndex(const visibility_type* in);
         bool PolMatch(std::size_t station_idx, std::string& polprod);
 
         //constants

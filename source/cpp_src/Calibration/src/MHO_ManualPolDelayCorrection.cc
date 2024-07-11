@@ -35,51 +35,55 @@ MHO_ManualPolDelayCorrection::~MHO_ManualPolDelayCorrection(){};
 bool
 MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
 {
-    std::size_t st_idx = DetermineStationIndex(in);
-    if(st_idx != 0 && st_idx != 1){return false;}
-
-    //loop over pol-products and apply pc-phases to the appropriate pol/channel/freq
-    auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
-    auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
-    std::string pp_label;
-    for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
+    //loop over reference (0) and remote (1) stations
+    for(std::size_t st_idx = 0; st_idx < 2; st_idx++)
     {
-        double delay = fDelayOffset*fNanoSecToSecond;
-        pp_label = pp_ax->at(pp);
-        if( PolMatch(st_idx, pp_label) )
+        if(IsApplicable(st_idx,in))
         {
-            std::string delay_offset_key;
-            std::string pol_code = std::string(1, pp_label[st_idx] ); //get the polarization for the appropriate station (ref/rem)
-            if(st_idx == 0){delay_offset_key = "ref_delayoff_";}
-            if(st_idx == 1){delay_offset_key = "rem_delayoff_";}
-            delay_offset_key += pol_code;
-
-            //now attach the manual delay offset value to this pol/station
-            //it may be better to stash this information in a new data type 
-            //rather than attaching it as meta data here...
-            //also, if multiple delay offsets are applied, this will only capture the last one 
-            pp_ax->InsertIndexLabelKeyValue(pp, delay_offset_key, fDelayOffset); //store as ns
-
-            for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
+            //loop over pol-products and apply pc-phases to the appropriate pol/channel/freq
+            auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
+            auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
+            std::string pp_label;
+            for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
             {
-                double chan_freq = chan_ax->at(ch);
-                double deltaf = fMHzToHz*(chan_freq - fRefFreq); //is this strictly correct?...this ignores slope across channel width
-                double theta = 2.0*fPi*deltaf*delay;
+                double delay = fDelayOffset*fNanoSecToSecond;
+                pp_label = pp_ax->at(pp);
+                if( PolMatch(st_idx, pp_label) )
+                {
+                    std::string delay_offset_key;
+                    std::string pol_code = std::string(1, pp_label[st_idx] ); //get the polarization for the appropriate station (ref/rem)
+                    if(st_idx == 0){delay_offset_key = "ref_delayoff_";}
+                    if(st_idx == 1){delay_offset_key = "rem_delayoff_";}
+                    delay_offset_key += pol_code;
 
-                visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
-                
-                // std::string net_sideband = "?";
-                // bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
-                // //conjugate phases for LSB data, but not for USB - TODO what about DSB?
-                // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
-                // if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
+                    //now attach the manual delay offset value to this pol/station
+                    //it may be better to stash this information in a new data type 
+                    //rather than attaching it as meta data here...
+                    //also, if multiple delay offsets are applied, this will only capture the last one 
+                    pp_ax->InsertIndexLabelKeyValue(pp, delay_offset_key, fDelayOffset); //store as ns
 
-                //first impl behavior...working for EHT test case, but not checked everywhere
-                if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
+                    for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
+                    {
+                        double chan_freq = chan_ax->at(ch);
+                        double deltaf = fMHzToHz*(chan_freq - fRefFreq); //is this strictly correct?...this ignores slope across channel width
+                        double theta = 2.0*fPi*deltaf*delay;
 
-                //retrieve and multiply the appropriate sub view of the visibility array
-                auto chunk = in->SubView(pp, ch);
-                chunk *= pc_phasor;
+                        visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
+                        
+                        // std::string net_sideband = "?";
+                        // bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+                        // //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                        // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
+                        // if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
+
+                        //first impl behavior...working for EHT test case, but not checked everywhere
+                        if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
+
+                        //retrieve and multiply the appropriate sub view of the visibility array
+                        auto chunk = in->SubView(pp, ch);
+                        chunk *= pc_phasor;
+                    }
+                }
             }
         }
     }
@@ -96,37 +100,40 @@ MHO_ManualPolDelayCorrection::ExecuteOutOfPlace(const visibility_type* in, visib
 }
 
 
-std::size_t
-MHO_ManualPolDelayCorrection::DetermineStationIndex(const visibility_type* in)
+bool 
+MHO_ManualPolDelayCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
-    //determine if the p-cal corrections are being applied to the remote or reference station
+    bool apply_correction = false;
     std::string val;
-    std::string rem, ref;
+    std::string mk4id_key;
+    std::string station_key;
+
+    if(st_idx == 0)
+    {
+        mk4id_key = fRefStationMk4IDKey;
+        station_key = fRefStationKey;
+    }
+    else
+    {
+        mk4id_key = fRemStationMk4IDKey;
+        station_key = fRemStationKey;
+    }
 
     if(fMk4ID != "") //selection by mk4 id
     {
-        in->Retrieve(fRemStationMk4IDKey, rem);
-        in->Retrieve(fRefStationMk4IDKey, ref);
-        if(fMk4ID == rem){return 1;}
-        if(fMk4ID == ref){return 0;}
+        in->Retrieve(mk4id_key, val);
+        if(fMk4ID == val || fMk4ID == "?"){apply_correction = true;}
     }
 
-    if(fStationCode != "")//seletion by 2-char station code
+    if(fStationCode != "")//selection by 2-char station code
     {
-        in->Retrieve(fRemStationKey, val);
-        if(fStationCode == val){return 1;}
-        in->Retrieve(fRefStationKey, val);
-        if(fStationCode == val){return 0;}
+        in->Retrieve(station_key, val);
+        if(fStationCode == val || fStationCode == "??"){apply_correction = true;}
     }
 
-    //wildcard, it doesn't matter, so just return as rem station
-    if(fStationCode == "??" || fMk4ID == "?"){return 0;}
-
-    msg_warn("calibration", "manual per-pol delay correction, (remote,reference) " <<
-        "stations: ("<<ref<<", "<<rem<<") do not match selection "<<fMk4ID<<"."<< eom );
-    return 2;
+    return apply_correction;
 }
-
+ 
 bool
 MHO_ManualPolDelayCorrection::PolMatch(std::size_t station_idx, std::string& polprod)
 {

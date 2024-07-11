@@ -51,7 +51,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
 
     private:
 
-        std::size_t DetermineStationIndex(const visibility_type* in);
+        bool IsApplicable(std::size_t st_idx, const visibility_type* in);
         bool PolMatch(std::size_t station_idx, std::string& polprod);
 
         //constants
