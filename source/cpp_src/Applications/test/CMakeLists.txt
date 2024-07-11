@@ -7,7 +7,7 @@ if(BASH_PROGRAM)
 
     set(TEST_SCRIPT_BASENAMES chk_m42h chk_simplefringesearch chk_simplefringesearch2) #chk_simplefringesearch2 has no python dependence just bash/bc
 
-    #check simple fringe search relies on difxio -> hops conversion of data before it can be run
+    #check relies on difxio -> hops conversion of data before it can be run
     if(BC_PROGRAM AND HOPS_USE_DIFXIO)
         list(APPEND TEST_SCRIPT_BASENAMES chk_dumpfileobjkeys)
     endif(BC_PROGRAM AND HOPS_USE_DIFXIO)
