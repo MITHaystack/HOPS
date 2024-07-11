@@ -34,7 +34,7 @@ endforeach( BASENAME )
 
 if(BASH_PROGRAM)
 
-    set(TEST_SCRIPT_BASENAMES chk_pyb11json chk_pyparams chk_pycontainers chk_pycontainers2) 
+    set(TEST_SCRIPT_BASENAMES chk_pyb11json chk_pyparams chk_pycontainers chk_pycontainers2 chk_pyvisaccess) 
 
     foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )
         configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/${BASENAME}.sh ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh @ONLY)

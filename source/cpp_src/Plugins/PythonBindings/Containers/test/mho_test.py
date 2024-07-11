@@ -17,6 +17,9 @@ def mod_mx(mx_obj):
     arr = np.array(mx_obj,copy=False) #[0,0] = 1000;
     arr[0,0] *= 1000;
     print(arr)
+    
+def close_event():
+    plt.close() #timer calls this to exit
 
 def test_inter(cstore_interface_obj, param_interface_obj):
 
@@ -119,6 +122,9 @@ def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
 
     print("plotting the visibilities of: pp = ", axis0[pp], " chan = ", axis1[ch]);
     fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+    
+    timer = fig.canvas.new_timer(interval = 500) #time of 300ms
+    timer.add_callback(close_event)
 
     time, freq = np.meshgrid(axis3, axis2)
     vis = np.array(vis_arr[pp,ch,:,:])
@@ -132,6 +138,7 @@ def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
 
     # Add a color bar which maps values to colors.
     fig.colorbar(surf, shrink=0.5, aspect=5)
+    timer.start()
     plt.show()
 
 
