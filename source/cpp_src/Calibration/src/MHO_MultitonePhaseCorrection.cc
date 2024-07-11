@@ -64,6 +64,7 @@ MHO_MultitonePhaseCorrection::~MHO_MultitonePhaseCorrection(){};
 bool
 MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
+    //ref = 0, rem = 1
     for(fStationIndex = 0; fStationIndex < 2; fStationIndex++)
     {
         //determine if the p-cal corrections should be to this station (ref or rem)

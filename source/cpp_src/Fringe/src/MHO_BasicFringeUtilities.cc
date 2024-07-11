@@ -174,7 +174,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     paramStore->Set("/fringe/total_sbdelay", tot_sbd);
     paramStore->Set("/fringe/total_mbdelay", tot_mbd);
     paramStore->Set("/fringe/total_drate", tot_drate);
-    
+
     //stored for alist
     double total_sbresid = tot_sbd - tot_mbd;
     paramStore->Set("/fringe/total_sbresid", total_sbresid);
@@ -211,20 +211,27 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     double freq_spread = paramStore->GetAs<double>("/fringe/frequency_spread");
     double mbd_no_ion_error = MHO_BasicFringeInfo::calculate_mbd_no_ion_error(freq_spread, snr);
     double mbd_error = mbd_no_ion_error;
-    
+
     //if we fit for ionosphere dTEC, calculate the covariance mx
     bool do_ion = false;
+
     paramStore->Get("/config/do_ion", do_ion);
+
     if(do_ion)
     {
-        calculate_ion_covariance(conStore, paramStore); 
-        std::vector< double > ion_sigmas;
-        paramStore->Get("/fringe/ion_sigmas", ion_sigmas);
-        mbd_error = 1e-3 * ion_sigmas[0]; //convert ns to us
-        msg_debug("fringe", "mbd sigma w/ no ionosphere "<<mbd_no_ion_error<<" with ion " << mbd_error << eom);
-        
-        //set the dtec error 
-        paramStore->Set("/fringe/dtec_error", ion_sigmas[2]);
+        int n_ion_pts = 0;
+        paramStore->Get("/control/fit/ion_npts", n_ion_pts);
+        if(n_ion_pts > 1)
+        {
+            calculate_ion_covariance(conStore, paramStore);
+            std::vector< double > ion_sigmas;
+            paramStore->Get("/fringe/ion_sigmas", ion_sigmas);
+            mbd_error = 1e-3 * ion_sigmas[0]; //convert ns to us
+            msg_debug("fringe", "mbd sigma w/ no ionosphere "<<mbd_no_ion_error<<" with ion " << mbd_error << eom);
+
+            //set the dtec error
+            paramStore->Set("/fringe/dtec_error", ion_sigmas[2]);
+        }
     }
 
     #pragma message("TODO FIXME, calculate SBAVG properly")
@@ -258,7 +265,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
 
     paramStore->Set("/fringe/relative_clock_offset", clock_offset); //usec
     paramStore->Set("/fringe/relative_clock_rate", clock_rate*1e6); //usec/s
-    
+
     //calculate the (U,V) coordinates
     //TODO FIXME...move all constants to MHO_Constants
     double speed_of_light_Mm = 299.792458; // in mega-meters
@@ -274,12 +281,12 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     double dv = radians_to_arcsec * (rem_v - ref_v) / lambda;
     paramStore->Set("/fringe/du", du);
     paramStore->Set("/fringe/dv", dv);
-    
+
     //needed by alist -- residual delay corrected by mbd_anchor=sbd
     double alist_resid_delay = mbdelay + ambig * std::floor( ((sbdelay - mbdelay)/ambig) + 0.5);
 
     paramStore->Set("/fringe/resid_delay", alist_resid_delay);
-    
+
 
 }
 
@@ -451,7 +458,7 @@ MHO_BasicFringeUtilities::calculate_snr_correction_factor(MHO_ContainerStore* co
     double bw_corr = 1.0;
     if(net_ap > 0){bw_corr = std::sqrt(net_bw/net_ap); }
     msg_debug("fringe", "bandwidth correction factor (passband/notches) is: "<< bw_corr << eom );
-    
+
     //correct for number of summed pol-products
     double n_polprod;
     bool ok2 = wt_data->Retrieve("n_summed_polprod", n_polprod);
@@ -461,7 +468,7 @@ MHO_BasicFringeUtilities::calculate_snr_correction_factor(MHO_ContainerStore* co
     return bw_corr;
 }
 
-void 
+void
 MHO_BasicFringeUtilities::calculate_ion_covariance(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     double total_summed_weights = paramStore->GetAs<double>("/fringe/total_summed_weights");
@@ -499,7 +506,7 @@ MHO_BasicFringeUtilities::calculate_ion_covariance(MHO_ContainerStore* conStore,
     std::complex<double> sum_all = 0.0;
     std::vector< std::complex<double> > chan_phasors; chan_phasors.resize(nchan, 0);
     std::vector< double > chan_freqs; chan_freqs.resize(nchan, 0);
-    
+
     std::string sidebandlabelkey = "net_sideband";
     for(std::size_t ch=0; ch < nchan; ch++)
     {
@@ -545,7 +552,7 @@ MHO_BasicFringeUtilities::calculate_ion_covariance(MHO_ContainerStore* conStore,
             }
         }
         chan_phasors[ch] = ch_sum;
-        
+
         //divide out summed AP weights
         double c = 0.0;
         if(sumwt > 0){c = 1.0/sumwt;} //TODO replace 1.0 with amp_corr_fact
@@ -554,7 +561,7 @@ MHO_BasicFringeUtilities::calculate_ion_covariance(MHO_ContainerStore* conStore,
 
     double famp = paramStore->GetAs<double>("/fringe/famp");
     double snr = paramStore->GetAs<double>("/fringe/snr");
-    
+
     //only used by MHO_IonosphericFringeFitter...for computing the ionosphere dTEC covariance
     std::vector< double > ion_sigmas;
     MHO_BasicFringeInfo::ion_covariance(nchan, famp, snr, ref_freq, chan_freqs, chan_phasors, ion_sigmas);
