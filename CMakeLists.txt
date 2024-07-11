@@ -116,7 +116,7 @@ message(STATUS "The build timestamp is ${BUILD_TIME}")
 
 #options for triggering additional dependencies
 option(HOPS_ENABLE_TEST "Build developer tests." ON)
-option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms" OFF)
+option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms" ON)
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" ON)
 option(HOPS_USE_ROOT "Use CERN ROOT libraries to enable plugin tools for plotting/debug/analysis." OFF)
@@ -133,8 +133,13 @@ endif()
 
 if(HOPS_USE_FFTW3)
     find_package(FFTW REQUIRED)
-    hops_external_include_directories (${FFTW_INCLUDE_DIRS})
-    hops_add_cxxflag(HOPS_USE_FFTW3)
+    if(FFTW_FOUND)
+        hops_external_include_directories (${FFTW_INCLUDE_DIRS})
+        hops_add_cxxflag(HOPS_USE_FFTW3)
+    else(FFTW_FOUND)
+        message(STATUS "Use of FFTW3 was requested but not found, disabling HOPS_USE_FFTW3")
+        set(HOPS_USE_FFTW3 OFF)
+    endif(FFTW_FOUND)
 endif (HOPS_USE_FFTW3)
 
 #link against difxio, and build difx2hops
