@@ -96,5 +96,9 @@ if(BASH_PROGRAM)
     #configure the environment script
     configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/chk_cmake_env.sh ${CMAKE_CURRENT_BINARY_DIR}/chk_env.sh @ONLY)
 
+    add_test(NAME HOPS_ENV_SETUP
+        COMMAND ${BASH_PROGRAM} ${CMAKE_CURRENT_BINARY_DIR}/chk_env.sh
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    )
 
 endif(BASH_PROGRAM)

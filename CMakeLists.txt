@@ -227,7 +227,7 @@ if(PY_EXE)
 else()
 
     #no python found so turn off pybind11 too
-    set(HOPS_USE_PYBIND11 OFF)
+    set(HOPS_USE_PYBIND11 OFF CACHE BOOL "Build python bindings with pybind11" FORCE)
 
 endif(PY_EXE)
 
