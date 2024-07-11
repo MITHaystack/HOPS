@@ -16,9 +16,9 @@ cd $EXP_DIR
 
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
-echo "Running: fourfit4 -c ./test0.cf -b AS -P RR ./${SCAN_DIR}/ "
+echo "Running: fourfit4 -m -2 -c ./test0.cf -b AS -P RR ./${SCAN_DIR}/ "
 
-time fourfit4 -c ./test0.cf -b AS -P RR ./${SCAN_DIR}/ | grep max555 | tee ./sfs.out
+time fourfit4 -m -2 -c ./test0.cf -b AS -P RR ./${SCAN_DIR}/ | grep max555 | tee ./sfs.out
 
 sfs_mbd=$( cat ./sfs.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
 sfs_sbd=$( cat ./sfs.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )

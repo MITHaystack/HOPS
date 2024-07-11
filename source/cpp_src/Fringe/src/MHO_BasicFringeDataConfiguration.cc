@@ -194,7 +194,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     std::string baseline = "??"; // the baseline
     std::string freqgrp = "?"; // the frequency group
     std::string control_file = ""; //'-c' specifies the control file
-    bool estimate_time = false; //'-e' estimate run time
+    bool exclude_autos = false; //'-e' estimate run time
     int first_plot_chan = 0; //'-n' specifies the first channel displayed in the fringe plot
     int message_level = -1; //'-m' specifies the message verbosity level
     std::vector< std::string > message_categories;  // -'M' limits the allowed message categories to those the user specifies
@@ -237,7 +237,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     app.add_flag("-a,--accounting", accounting, "perform run-time accounting/profiling");
     app.add_option("-b,--baseline", baseline_opt, "baseline or baseline:frequency_group selection (e.g GE or GE:X)");
     app.add_option("-c,--control-file", control_file, "specify the control file");
-    app.add_flag("-e,--estimate", estimate_time, "estimate run time (ignored, not yet implemented)");
+    app.add_flag("-e,--exclude-autocorrs", exclude_autos, "exclude auto-correlations from fring-fitting");
     app.add_option("-f,--first-plot-channel", first_plot_chan, "specifies the first channel displayed in the fringe plot");
     app.add_option("-M,--message-categories", message_categories, msg_cat_help.c_str() )->delimiter(',');
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
@@ -328,7 +328,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     paramStore->Set("/cmdline/directory", directory); //sanitized directory path
     paramStore->Set("/cmdline/root_file", root_file); //fully resolved (symlink free path to the root file)...or empty
 
-    //estimate_time = false; //not implemented
+    paramStore->Set("/cmdline/exclude_autos", exclude_autos);
     paramStore->Set("/cmdline/first_plot_channel", first_plot_chan); //TODO
     paramStore->Set("/cmdline/message_level", message_level);
     paramStore->Set("/cmdline/nplot_channels", nplot_chans); //TODO
@@ -568,6 +568,7 @@ MHO_BasicFringeDataConfiguration::determine_passes(MHO_ParameterStore* cmdline_p
     std::string cmd_bl = cmdline_params->GetAs<std::string>("/cmdline/baseline"); //if not passed, will be "??"
     std::string cmd_fg = cmdline_params->GetAs<std::string>("/cmdline/frequency_group"); //if not passed, this will be "?"
     std::string cmd_pp = cmdline_params->GetAs<std::string>("/cmdline/polprod"); //if not passed, this will be "??"
+    bool exclude_autos = cmdline_params->GetAs<bool>("/cmdline/exclude_autos");
 
     determine_scans(initial_dir, scans, roots);
 
@@ -582,24 +583,27 @@ MHO_BasicFringeDataConfiguration::determine_passes(MHO_ParameterStore* cmdline_p
             for(auto bl = baseline_files.begin(); bl != baseline_files.end(); bl++)
             {
                 std::string baseline = bl->first;
-                std::string corFile = bl->second;
-                determine_fgroups_polproducts(corFile, cmd_fg, cmd_pp, fgroups, polproducts);
-                for(auto fg = fgroups.begin(); fg != fgroups.end(); fg++)
+                if( !(exclude_autos && baseline[0] == baseline[1]) )
                 {
-                    std::string fgroup = *fg;
-                    for(auto pprod = polproducts.begin(); pprod != polproducts.end(); pprod++)
+                    std::string corFile = bl->second;
+                    determine_fgroups_polproducts(corFile, cmd_fg, cmd_pp, fgroups, polproducts);
+                    for(auto fg = fgroups.begin(); fg != fgroups.end(); fg++)
                     {
-                        std::string polprod = *pprod;
-                        //repeatedly append info for every work item
-                        //TODO FIXME we may want to rethink this
-                        cscans += scan_dir + concat_delim;
-                        croots  += root_file + concat_delim;
-                        cbaselines += baseline + concat_delim;
-                        cpolprods += polprod + concat_delim;
-                        cfgroups += fgroup + concat_delim;
+                        std::string fgroup = *fg;
+                        for(auto pprod = polproducts.begin(); pprod != polproducts.end(); pprod++)
+                        {
+                            std::string polprod = *pprod;
+                            //repeatedly append info for every work item
+                            //TODO FIXME we may want to rethink this
+                            cscans += scan_dir + concat_delim;
+                            croots  += root_file + concat_delim;
+                            cbaselines += baseline + concat_delim;
+                            cpolprods += polprod + concat_delim;
+                            cfgroups += fgroup + concat_delim;
 
-                    } //end of pol-product loop
-                } //end of frequency group loop
+                        } //end of pol-product loop
+                    } //end of frequency group loop
+                } //autocorr if-exclude
             }//end of baseline loop
         } //end only if root exists
     } //end of scan loop
@@ -694,6 +698,11 @@ bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
     //load root file and extract useful vex info into parameter store
     auto vexInfo = scanStore->GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(vexInfo, paramStore);
+    
+    std::string bl = paramStore->GetAs<std::string>("/pass/baseline");
+    std::string pp = paramStore->GetAs<std::string>("/pass/polprod");
+    std::string fg = paramStore->GetAs<std::string>("/pass/frequency_group");
+    msg_info("fringe", "fringing data for baseline: "<<bl<<", pol-product: "<<pp<<", freq-group: "<<fg<<", in directory: "<<directory<< eom);
 
     return true;
 }
