@@ -67,6 +67,7 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
 std::string
 MHO_ManualChannelPhaseCorrectionBuilder::ParsePolFromName(const std::string& name)
 {
+    if(name == "pc_phases"){return std::string("?");}
     if(name == "pc_phases_x"){return std::string("X");}
     if(name == "pc_phases_y"){return std::string("Y");}
     if(name == "pc_phases_r"){return std::string("R");}
