@@ -64,7 +64,7 @@ MHO_MultitonePhaseCorrection::~MHO_MultitonePhaseCorrection(){};
 bool
 MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
-    for(fStationIndex == 0; fStationIndex < 2; fStationIndex++)
+    for(fStationIndex = 0; fStationIndex < 2; fStationIndex++)
     {
         //determine if the p-cal corrections should be to this station (ref or rem)
         bool apply_correction = false;
@@ -85,7 +85,7 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
         if(fMk4ID != "") //selection by mk4 id
         {
             in->Retrieve(mk4id_key, val);
-            if(fMk4ID == val){apply_correction = true;}
+            if(fMk4ID == val || fMk4ID == "?"){apply_correction = true;}
         }
 
         if(fStationCode != "")//selection by 2-char station code
@@ -104,7 +104,6 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
 
         if(apply_correction)
         {
-
             RepairMK4PCData(in); //need to rebuild tone frequencies if imported from type_309s
 
             //grab the pc_tonemask data (if present)
