@@ -1445,7 +1445,8 @@ MHO_ComputePlotData::calc_error_code(const mho_json& plot_dict)
     }
 
     //only care about 'multitone', so far 'normal' pc_mode has not been implemented
-    if(  ref_low_pcal || rem_low_pcal  ){ errcode = "H";}
+    if(  ref_low_pcal && ref_pc_mode == "multitone"  ){ errcode = "H";}
+    if(  rem_low_pcal && rem_pc_mode == "multitone"  ){ errcode = "H";}
 
     if(errcode != " ")
     {
