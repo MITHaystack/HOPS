@@ -64,43 +64,78 @@ MHO_MultitonePhaseCorrection::~MHO_MultitonePhaseCorrection(){};
 bool
 MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
-    //figure out if refrence or remote station in this baseline
-    fStationIndex = DetermineStationIndex(in);
-    if(fStationIndex == 2)
+    //ref = 0, rem = 1
+    for(fStationIndex = 0; fStationIndex < 2; fStationIndex++)
     {
-        msg_error("calibration", "could not determine station index for multitone pcal operation." << eom);
-        return false;
-    }
-
-    RepairMK4PCData(in); //need to rebuild tone frequencies if imported from type_309s
-
-    //grab the pc_tonemask data (if present)
-    bool ok1 = fPCData->Retrieve(fPCToneMaskChannelsKey, fPCToneMaskChannels);
-    bool ok2 = fPCData->Retrieve(fPCToneMaskBitmasksKey, fPCToneMaskBitmasks);
-    fHavePCToneMask = (ok1 && ok2);
-
-    //loop over polarization in pcal data and pol-products
-    //so we can apply the phase-cal to the appropriate pol/channel/ap
-    auto pcal_pol_ax = &(std::get<MTPCAL_POL_AXIS>(*fPCData));
-    auto vis_pp_ax = &(std::get<POLPROD_AXIS>(*in) );
-
-    //loop over the p-cal polarizations
-    for(std::size_t pc_pol=0; pc_pol < pcal_pol_ax->GetSize(); pc_pol++)
-    {
-        std::string pc_pol_label = pcal_pol_ax->at(pc_pol);
-        //loop over the visibility pol-products
-        for(std::size_t vis_pp=0; vis_pp < vis_pp_ax->GetSize(); vis_pp++)
+        //determine if the p-cal corrections should be to this station (ref or rem)
+        bool apply_correction = false;
+        std::string val;
+        std::string mk4id_key;
+        std::string station_key;
+        if(fStationIndex == 0)
         {
-            std::string vis_pp_label = vis_pp_ax->at(vis_pp);
-            //check if this pcal-pol matches the station's pol for this pol-product
-            if( PolMatch(fStationIndex, pc_pol_label, vis_pp_label) )
+            mk4id_key = fRefStationMk4IDKey;
+            station_key = fRefStationKey;
+        }
+        else
+        {
+            mk4id_key = fRemStationMk4IDKey;
+            station_key = fRemStationKey;
+        }
+
+        if(fMk4ID != "") //selection by mk4 id
+        {
+            in->Retrieve(mk4id_key, val);
+            if(fMk4ID == val || fMk4ID == "?"){apply_correction = true;}
+        }
+
+        if(fStationCode != "")//selection by 2-char station code
+        {
+            in->Retrieve(station_key, val);
+            if(fStationCode == val){apply_correction = true;}
+        }
+
+        // //figure out if refrence or remote station in this baseline
+        // fStationIndex = DetermineStationIndex(in);
+        // if(fStationIndex == 2)
+        // {
+        //     msg_error("calibration", "could not determine station index for multitone pcal operation." << eom);
+        //     return false;
+        // }
+
+        if(apply_correction)
+        {
+            RepairMK4PCData(in); //need to rebuild tone frequencies if imported from type_309s
+
+            //grab the pc_tonemask data (if present)
+            bool ok1 = fPCData->Retrieve(fPCToneMaskChannelsKey, fPCToneMaskChannels);
+            bool ok2 = fPCData->Retrieve(fPCToneMaskBitmasksKey, fPCToneMaskBitmasks);
+            fHavePCToneMask = (ok1 && ok2);
+
+            //loop over polarization in pcal data and pol-products
+            //so we can apply the phase-cal to the appropriate pol/channel/ap
+            auto pcal_pol_ax = &(std::get<MTPCAL_POL_AXIS>(*fPCData));
+            auto vis_pp_ax = &(std::get<POLPROD_AXIS>(*in) );
+
+            //loop over the p-cal polarizations
+            for(std::size_t pc_pol=0; pc_pol < pcal_pol_ax->GetSize(); pc_pol++)
             {
-                //apply the phase-cal for all channels/APs
-                ApplyPCData(pc_pol, vis_pp, in);
+                std::string pc_pol_label = pcal_pol_ax->at(pc_pol);
+                //loop over the visibility pol-products
+                for(std::size_t vis_pp=0; vis_pp < vis_pp_ax->GetSize(); vis_pp++)
+                {
+                    std::string vis_pp_label = vis_pp_ax->at(vis_pp);
+                    //check if this pcal-pol matches the station's pol for this pol-product
+                    if( PolMatch(fStationIndex, pc_pol_label, vis_pp_label) )
+                    {
+                        //apply the phase-cal for all channels/APs
+                        ApplyPCData(pc_pol, vis_pp, in);
+                    }
+                }
             }
         }
-    }
 
+    }
     return true;
 }
 
