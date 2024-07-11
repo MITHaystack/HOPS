@@ -11,12 +11,19 @@ EXP_DIR=$DATADIR
 D2H_EXP_NUM=1111
 D2M4_EXP_NUM=1234
 SCAN_DIR=105-1800
+HOPS4_DIR=105-1800
 cd $EXP_DIR
 
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
-echo "Running: fourfit4 -m 4 -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${SCAN_DIR}/"
-outfile=$(fourfit4 -m 4 -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${SCAN_DIR}/ 2>&1)
+if [ ! -d "./${D2H_EXP_NUM}" ]; then
+    echo "difx2hops not run, using mark42hops converted data (105-1800a) for test"
+    D2H_EXP_NUM="."
+    HOPS4_DIR="105-1800a"
+fi
+
+echo "Running: fourfit4 -m 4 -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${HOPS4_DIR}/"
+outfile=$(fourfit4 -m 4 -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${HOPS4_DIR}/ 2>&1)
 
 #parse the print out (fourfit4: <fringe_filename>) into just the fringe_filename
 echo "$outfile"
@@ -36,8 +43,8 @@ echo "jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" | tee 
 jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" | tee ./fdump.json
 
 #run fourfit and dump its data to a 'plot_data_dir' file
-echo "Running: fourfit -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR}"
-time fourfit -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1
+echo "Running: fourfit3 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR}"
+time fourfit3 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1
 
 #finally compare the outputs
 compjsonpdd.py ./fdump.json ./chk1/105-1800-GE-X-XX*
