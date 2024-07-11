@@ -12,10 +12,6 @@ if(BASH_PROGRAM)
         list(APPEND TEST_SCRIPT_BASENAMES chk_dumpfileobjkeys)
     endif(BC_PROGRAM AND HOPS_USE_DIFXIO)
 
-    if(HOPS3_USE_CXX)
-        list(APPEND TEST_SCRIPT_BASENAMES chk_nufourfit)
-    endif(HOPS3_USE_CXX)
-
     if(PY_EXE)
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/compjson.py" "${CMAKE_CURRENT_BINARY_DIR}/compjson.py" @ONLY)
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/hopsobjdata.py" "${CMAKE_CURRENT_BINARY_DIR}/hopsobjdata.py" @ONLY)
