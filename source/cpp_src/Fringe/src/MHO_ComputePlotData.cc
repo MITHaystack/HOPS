@@ -1362,12 +1362,21 @@ MHO_ComputePlotData::calc_error_code(const mho_json& plot_dict)
     for( std::size_t i=0; i<nchan; i++)
     {
         //std::cout<<"comparing fringe amp @"<<i<<": "<<fFringe[i]<< " ? " <<(weak_channel * inc_avg_amp_freq)<<std::endl;
-
         if( std::abs(fFringe[i]) < (weak_channel * inc_avg_amp_freq) )
         {
             low_chan = true;
+            break;
         }
+    }
 
+    /* G-code means a weak channel when SNR>20 */
+    if( low_chan && snr > 20.0)
+    {
+        errcode = "G";
+    }
+
+    for( std::size_t i=0; i<nchan; i++)
+    {
         //TODO FIXME -- get rid of dependence on plot_dict, and just use raw pcal data  directly
         //this rough implementation is lazy
         if(ref_pc_mode == "multitone")
@@ -1375,20 +1384,63 @@ MHO_ComputePlotData::calc_error_code(const mho_json& plot_dict)
             double pc_amp = plot_dict["PLOT_INFO"]["PCAmpRf"][i].get<double>() / 1000.0;
             if( pc_amp < pc_amp_hcode || pc_amp > 0.500){ref_low_pcal = true;}
         }
-
+    
         if(rem_pc_mode == "multitone")
         {
             double pc_amp = plot_dict["PLOT_INFO"]["PCAmpRm"][i].get<double>() / 1000.0 ;
             if( pc_amp < pc_amp_hcode || pc_amp > 0.500){rem_low_pcal = true;}
         }
     }
-
-
-    /* G-code means a weak channel when SNR>20 */
-    if( low_chan && snr > 20.0)
-    {
-        errcode = "G";
-    }
+    // 
+    // //get the collection of pol-products used in this fringe
+    // std::vector< std::string > polprod_set;
+    // fParamStore->Get("/config/polprod_set", polprod_set); 
+    // 
+    // //figure out the reference and remote station pol sets 
+    // std::set< std::string > ref_pols;
+    // std::set< std::string > rem_pols;
+    // for(std::size_t i = 0; i < polprod_set.size(); i++)
+    // {
+    //     ref_pols.insert( std::string(1, polprod_set[i][0]) );
+    //     rem_pols.insert( std::string(1, polprod_set[i][1]) );
+    // }
+    // 
+    // auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
+    // 
+    // for( std::size_t ch=0; ch<nchan; ch++)
+    // {
+    //     bool ref_low_pcal = true;
+    //     bool rem_low_pcal = true;
+    //     //0 = ref, 1 = rem
+    //     for(auto pol_iter = ref_pols.begin(); pol_iter != ref_pols.end(); pol_iter++)
+    //     {
+    //         std::string pol = *pol_iter;
+    //         //workspace for segment retrieval
+    //         std::vector< double > pc_mag_segs;
+    //         std::string pc_mag_key = "ref_mtpc_mag_" + pol;
+    // 
+    //         bool b1 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
+    //         if(b1)
+    //         {
+    //             double pc_amp = MHO_MathUtilities::average(pc_mag_segs)*1000.0; //convert to fourfit units (1000?)
+    //             if( pc_amp < pc_amp_hcode || pc_amp > 0.500){ref_low_pcal &= true;} //must have bad pc_amp in same channel across all pols
+    //         }
+    //     }
+    // 
+    //     for(auto pol_iter = rem_pols.begin(); pol_iter != rem_pols.end(); pol_iter++)
+    //     {
+    //         std::string pol = *pol_iter;
+    //         //workspace for segment retrieval
+    //         std::vector< double > pc_mag_segs;
+    //         std::string pc_mag_key = "rem_mtpc_mag_" + pol;
+    //         bool b1 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
+    //         if(b1)
+    //         {
+    //             double pc_amp = MHO_MathUtilities::average(pc_mag_segs)*1000.0; //convert to fourfit units (1000?)
+    //             if( pc_amp < pc_amp_hcode || pc_amp > 0.500){rem_low_pcal &= true;} //must have bad pc_amp in same channel across all pols
+    //         }
+    //     }
+    // }
 
     //only care about 'multitone', so far 'normal' pc_mode has not been implemented
     if(  ref_low_pcal || rem_low_pcal  )
