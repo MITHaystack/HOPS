@@ -64,6 +64,7 @@ MHO_ManualChannelDelayCorrectionBuilder::Build()
 std::string
 MHO_ManualChannelDelayCorrectionBuilder::ParsePolFromName(const std::string& name)
 {
+    if(name == "delay_offs"){return std::string("?");}
     if(name == "delay_offs_x"){return std::string("X");}
     if(name == "delay_offs_y"){return std::string("Y");}
     if(name == "delay_offs_r"){return std::string("R");}

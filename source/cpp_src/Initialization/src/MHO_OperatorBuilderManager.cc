@@ -27,12 +27,14 @@ MHO_OperatorBuilderManager::CreateDefaultBuilders()
     AddBuilderType<MHO_ChannelLabelerBuilder>("chan_ids", "chan_ids");
 
     //manual per-channel pc phase corrections
+    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases", "pc_phases");
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_x", "pc_phases_x");
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_y", "pc_phases_y");
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_r", "pc_phases_r");
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_l", "pc_phases_l");
 
     //manual per-channel pc delay corrections
+    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs", "delay_offs");
     AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_x", "delay_offs_x");
     AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_y", "delay_offs_y");
     AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_r", "delay_offs_r");

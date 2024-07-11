@@ -176,6 +176,7 @@ MHO_ManualChannelDelayCorrection::IsApplicable(std::size_t st_idx, const visibil
 bool
 MHO_ManualChannelDelayCorrection::PolMatch(std::size_t station_idx, std::string& polprod)
 {
+    if(fPol == "?"){return true;} //wild card allows for the implementation of delay_offs (with no pol-specification)
     make_upper(polprod);
     return (fPol[0] == polprod[station_idx]);
 }

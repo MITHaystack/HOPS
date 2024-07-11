@@ -135,6 +135,7 @@ MHO_ManualChannelPhaseCorrection::IsApplicable(std::size_t st_idx, const visibil
 bool
 MHO_ManualChannelPhaseCorrection::PolMatch(std::size_t station_idx, std::string& polprod)
 {
+    if(fPol == "?"){return true;} //wild card allows for the implementation of pc_phases (with no pol-specification)
     make_upper(polprod);
     return (fPol[0] == polprod[station_idx]);
 }
