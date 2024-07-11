@@ -3,10 +3,24 @@
 
 #include "MHO_MK4ScanConverter.hh"
 
+//wraps the MPI interface (in case it is not enabled)
+#include "MHO_MPIInterfaceWrapper.hh"
+
 using namespace hops;
 
 int main(int argc, char** argv)
 {
+    int process_id = 0;
+    int local_id = 0;
+    int n_processes = 1;
+
+    #ifdef HOPS_USE_MPI
+    MHO_MPIInterface::GetInstance()->Initialize(&argc, &argv, true); //true -> run with no local even/odd split
+    process_id = MHO_MPIInterface::GetInstance()->GetGlobalProcessID();
+    local_id = MHO_MPIInterface::GetInstance()->GetLocalProcessID();
+    n_processes = MHO_MPIInterface::GetInstance()->GetNProcesses();
+    #endif
+    
     std::string in_dir = "";
     std::string out_dir = "";
     int message_level = 0;
@@ -48,51 +62,85 @@ int main(int argc, char** argv)
 
     if(dir_type == MK4_SCANDIR)
     {
-        msg_status("main", "will process a single scan from directory: "<< in_dir << eom);
-        MHO_MK4ScanConverter::ProcessScan(in_dir, out_dir);
+        MPI_SINGLE_PROCESS
+        {
+            msg_status("main", "will process a single scan from directory: "<< in_dir << eom);
+            MHO_MK4ScanConverter::ProcessScan(in_dir, out_dir);
+        }
         return 0;
     }
-
+    
     if(dir_type == MK4_EXPDIR)
     {
+        std::vector< std::string > allDirs;
+        std::vector< std::string > scanOutputDirs;
+        std::string c_input_scans = ""; //concatenated input scan string
+        std::string c_output_scans = ""; //concatenated input scan string
         //directory interface
         MHO_DirectoryInterface dirInterface;
         std::string exp_dir = dirInterface.GetDirectoryFullPath(in_dir);
         std::string output_dir = dirInterface.GetDirectoryFullPath(out_dir);
-        //we need to get a list of all the scan directories and process them one-by-one
-        std::vector< std::string > allDirs;
-        dirInterface.SetCurrentDirectory(exp_dir);
-        dirInterface.ReadCurrentDirectory();
-        dirInterface.GetSubDirectoryList(allDirs);
-        msg_status("main", "will process "<< allDirs.size() <<" scans from experiment directory: "<< exp_dir << eom);
-
-        //make sure output parent directory exists
-        if( !dirInterface.DoesDirectoryExist(output_dir) )
+        
+        MPI_SINGLE_PROCESS
         {
-            dirInterface.CreateDirectory(output_dir);
-        }
+            //we need to get a list of all the scan directories and process them one-by-one
+            dirInterface.SetCurrentDirectory(exp_dir);
+            dirInterface.ReadCurrentDirectory();
+            dirInterface.GetSubDirectoryList(allDirs);
+            msg_status("main", "will process "<< allDirs.size() <<" scans from experiment directory: "<< exp_dir << eom);
 
-        //TODO we may want to sanitize the sub directory list (to make sure we only have scan directories for sure)
+            //make sure output parent directory exists
+            if( !dirInterface.DoesDirectoryExist(output_dir) ){ dirInterface.CreateDirectory(output_dir);}
+            //TODO we may want to sanitize the sub directory list (to make sure we only have scan directories for sure)
+            for(std::size_t i=0; i<allDirs.size(); i++)
+            {
+                std::string scan_dir = allDirs[i];
+                std::string scan_name = MHO_DirectoryInterface::GetBasename(scan_dir);
+                //last char cannot be '/', strip just in case
+                if( scan_name.back() == '/'){scan_name.erase(scan_name.size()-1);}
+                std::string scan_output_dir = output_dir + "/" + scan_name ;
+                scanOutputDirs.push_back(scan_output_dir);
+                
+                c_input_scans += scan_dir + ":";
+                c_output_scans += scan_output_dir + ":";
+            }
+        } //end single process
 
-        std::vector< std::string > scanOutputDirs;
+        //use MPI bcast to send all of the pass information to the worker processes
+        #ifdef HOPS_USE_MPI
+            MHO_MPIInterface::GetInstance()->BroadcastString(c_input_scans);
+            MHO_MPIInterface::GetInstance()->BroadcastString(c_output_scans);
+            
+            //split the scan strings into lists 
+            allDirs.clear();
+            scanOutputDirs.clear();
+            MHO_Tokenizer tokenizer;
+            tokenizer.SetDelimiter(":");
+            tokenizer.SetIncludeEmptyTokensFalse();
+            tokenizer.SetString(&c_input_scans);
+            tokenizer.GetTokens(&allDirs);
+            tokenizer.SetString(&c_output_scans);
+            tokenizer.GetTokens(&scanOutputDirs);
+        #endif
+
         for(std::size_t i=0; i<allDirs.size(); i++)
         {
-            std::string scan_dir = allDirs[i];
-            std::string scan_name = MHO_DirectoryInterface::GetBasename(scan_dir);
-            //last char cannot be '/', strip just in case
-            if( scan_name.back() == '/'){scan_name.erase(scan_name.size()-1);}
-            std::string scan_output_dir = output_dir + "/" + scan_name ;
-            scanOutputDirs.push_back(scan_output_dir);
+            if(i % n_processes == process_id)
+            {
+                msg_status("main", "process_id: "<<process_id<<" converting scan directory: "<<allDirs[i]<<", to "<<scanOutputDirs[i]<< eom);
+                MHO_MK4ScanConverter::ProcessScan(allDirs[i], scanOutputDirs[i]);
+            }
         }
-
-        //TODO PARALLELIZE THIS with std::threads
-        for(std::size_t i=0; i<allDirs.size(); i++)
-        {
-            MHO_MK4ScanConverter::ProcessScan(allDirs[i], scanOutputDirs[i]);
-        }
-
+        
+        #ifdef HOPS_USE_MPI
+            MHO_MPIInterface::GetInstance()->GlobalBarrier();
+            MHO_MPIInterface::GetInstance()->Finalize();
+        #endif
+        
         return 0;
     }
+
+
 
     return 0;
 }
