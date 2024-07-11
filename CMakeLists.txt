@@ -138,7 +138,7 @@ if(HOPS_USE_FFTW3)
         hops_add_cxxflag(HOPS_USE_FFTW3)
     else(FFTW_FOUND)
         message(STATUS "Use of FFTW3 was requested but not found, disabling HOPS_USE_FFTW3")
-        set(HOPS_USE_FFTW3 OFF)
+        set(HOPS_USE_FFTW3 OFF CACHE BOOL "Use FFTW3 for fast fourier transforms" FORCE)
     endif(FFTW_FOUND)
 endif (HOPS_USE_FFTW3)
 
