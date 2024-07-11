@@ -214,24 +214,23 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
 
     //if we fit for ionosphere dTEC, calculate the covariance mx
     bool do_ion = false;
-
     paramStore->Get("/config/do_ion", do_ion);
-
     if(do_ion)
     {
         int n_ion_pts = 0;
         paramStore->Get("/control/fit/ion_npts", n_ion_pts);
-        if(n_ion_pts > 1)
+        if(n_ion_pts > 1) //only apply ion covariance when n_pts > 1
         {
             calculate_ion_covariance(conStore, paramStore);
             std::vector< double > ion_sigmas;
             paramStore->Get("/fringe/ion_sigmas", ion_sigmas);
             mbd_error = 1e-3 * ion_sigmas[0]; //convert ns to us
             msg_debug("fringe", "mbd sigma w/ no ionosphere "<<mbd_no_ion_error<<" with ion " << mbd_error << eom);
-
             //set the dtec error
             paramStore->Set("/fringe/dtec_error", ion_sigmas[2]);
         }
+        //set the dtec error
+        paramStore->Set("/fringe/dtec_error", 0.0);
     }
 
     #pragma message("TODO FIXME, calculate SBAVG properly")
