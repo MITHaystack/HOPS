@@ -22,6 +22,20 @@
 #define STR(str) #str
 #define STRING(str) STR(str)
 
+#ifdef HOPS_ENABLE_DEV_TODO
+    #if defined(__clang__)
+        #define DO_PRAGMA(x) _Pragma (#x)
+        #define TODO_FIXME_MSG(x) DO_PRAGMA(message #x)
+    #elif defined(__GNUC__)
+        #define DO_PRAGMA(x) _Pragma (#x)
+        #define TODO_FIXME_MSG(x) DO_PRAGMA(message #x)
+    #else
+        # error Unsupported compiler
+    #endif
+#else
+    #define TODO_FIXME_MSG(x)
+#endif
+
 namespace hops
 {
 

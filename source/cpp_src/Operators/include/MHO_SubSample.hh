@@ -217,7 +217,7 @@ class MHO_SubSample:
                     }
                     else
                     {
-                        #pragma message("TODO FIXME -- ensure that only the proper index tags are selected/copied here.")
+                        TODO_FIXME_MSG("ensure that only the proper index tags are selected/copied here.")
                         axis2.CopyTags(axis1); //copy the axis tags
                         //at this point axis2 should already be re-sized appropriately
                         auto it1 = axis1.cstride_begin(fStride);
