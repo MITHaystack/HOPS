@@ -124,7 +124,6 @@ option(HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing
 option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
 option(HOPS3_PYTHON_EXTRAS "Build python (ctypes) interface to hops3 libraries" ON)
 option(HOPS_IS_HOPS4 "Install the HOPS4 version of relevant executables (symlinked to expected names, e.g. fourfit, fplot)" OFF)
-option(HOPS_ENABLE_DEV_TODO "Enable developer to-do/fix-me compiler messages" OFF)
 
 if(HOPS3_USE_CXX)
     hops_add_cflag(HOPS3_USE_CXX)
@@ -154,9 +153,6 @@ if (HOPS_USE_MPI)
     find_package(MPI REQUIRED)
 endif(HOPS_USE_MPI)
 
-if(HOPS_ENABLE_DEV_TODO)
-    hops_add_cxxflag(HOPS_ENABLE_DEV_TODO)
-endif()
 
 ################################################################################
 #stuff for controlling testing/test-data location
