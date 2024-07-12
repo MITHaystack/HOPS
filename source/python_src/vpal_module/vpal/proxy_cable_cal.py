@@ -32,8 +32,8 @@ from .utility import limit_periodic_quantity_to_range
 from .utility import minimum_angular_difference
 
 #hops package python libs
-import mk4b
-import hopstestb as ht
+import mk4io
+import hops_test as ht
 import vexpy
 from . import pcc_delay_fitting
 
@@ -569,7 +569,7 @@ class StationScanPhaseCalibrationData(object):
             if self.verbosity > 2:
                 print(self.station_data_file)
 
-            station_data = mk4b.mk4sdata(self.station_data_file)
+            station_data = mk4io.mk4sdata(self.station_data_file)
 
             #construct a channel name and tone lookup-table
             tone_freq_to_index = dict()
@@ -601,7 +601,7 @@ class StationScanPhaseCalibrationData(object):
                     #extract the channel name, sky_frequency, bandwidth and polarization from the vex
                     scpc.phasor = np.zeros( (scpc.ntones, num_ap), dtype=complex )
                     scpc.phasor_integer = np.zeros( (scpc.ntones, num_ap), dtype='2uint32' )
-                
+
                     ch = channel_name_to_index[channel_name]
                     #look up the tone phasors:
                     for ti in list(range(0, scpc.ntones)):
@@ -636,7 +636,7 @@ class StationScanPhaseCalibrationData(object):
                 self.valid = True
 
             else:
-                # the list of channels in this station data file does not match 
+                # the list of channels in this station data file does not match
                 if self.verbosity > 2:
                     print('Missing channels! Station data file '+self.station_data_file+' has '+str(len(channel_name_to_index.keys()))+', we are expecting '+str(len(self.single_channel_phasor_collections.keys())))
                 self.valid = False
@@ -946,17 +946,17 @@ class ScanPccBandDelay(object):
             return False
         if self.station_code != scan_pcc_delay_object.station_code:
             return False
-        if mk4b.mk4fp_approximately_equal(self.phase_model_midband, scan_pcc_delay_object.phase_model_midband, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
+        if mk4io.mk4fp_approximately_equal(self.phase_model_midband, scan_pcc_delay_object.phase_model_midband, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
             return False
-        if mk4b.mk4fp_approximately_equal(self.phase_model_dc, scan_pcc_delay_object.phase_model_dc, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
+        if mk4io.mk4fp_approximately_equal(self.phase_model_dc, scan_pcc_delay_object.phase_model_dc, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
             return False
-        if mk4b.mk4fp_approximately_equal(self.delay_model_ps, scan_pcc_delay_object.delay_model_ps, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
+        if mk4io.mk4fp_approximately_equal(self.delay_model_ps, scan_pcc_delay_object.delay_model_ps, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
             return False
-        if mk4b.mk4fp_approximately_equal(self.phase_rmse, scan_pcc_delay_object.phase_rmse, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
+        if mk4io.mk4fp_approximately_equal(self.phase_rmse, scan_pcc_delay_object.phase_rmse, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
             return False
-        if mk4b.mk4fp_approximately_equal(self.azimuth, scan_pcc_delay_object.azimuth, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
+        if mk4io.mk4fp_approximately_equal(self.azimuth, scan_pcc_delay_object.azimuth, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
             return False
-        if mk4b.mk4fp_approximately_equal(self.elevation, scan_pcc_delay_object.elevation, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
+        if mk4io.mk4fp_approximately_equal(self.elevation, scan_pcc_delay_object.elevation, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
             return False
         return True
 
