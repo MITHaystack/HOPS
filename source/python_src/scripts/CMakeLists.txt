@@ -37,6 +37,19 @@ if (PY_EXE)
 
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/vgoscf_generate.py.in" "${CMAKE_CURRENT_BINARY_DIR}/vgoscf_generate.py" @ONLY)
         install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/vgoscf_generate.py" DESTINATION ${BIN_INSTALL_DIR})
+
+        configure_file("${CMAKE_CURRENT_SOURCE_DIR}/pcc_generate.py.in" "${CMAKE_CURRENT_BINARY_DIR}/pcc_generate.py" @ONLY)
+        install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/pcc_generate.py" DESTINATION ${BIN_INSTALL_DIR})
+
+        configure_file("${CMAKE_CURRENT_SOURCE_DIR}/pcc_plot.py.in" "${CMAKE_CURRENT_BINARY_DIR}/pcc_plot.py" @ONLY)
+        install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/pcc_plot.py" DESTINATION ${BIN_INSTALL_DIR})
+
+        configure_file("${CMAKE_CURRENT_SOURCE_DIR}/pcc_select.py.in" "${CMAKE_CURRENT_BINARY_DIR}/pcc_select.py" @ONLY)
+        install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/pcc_select.py" DESTINATION ${BIN_INSTALL_DIR})
+
+        configure_file("${CMAKE_CURRENT_SOURCE_DIR}/select_bandpols.py.in" "${CMAKE_CURRENT_BINARY_DIR}/select_bandpols.py" @ONLY)
+        install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/select_bandpols.py" DESTINATION ${BIN_INSTALL_DIR})
+
     endif(HOPS3_PYTHON_EXTRAS)
 
 endif (PY_EXE)

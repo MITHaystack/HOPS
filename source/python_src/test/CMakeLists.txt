@@ -10,6 +10,7 @@ if(BASH_PROGRAM)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/test_mk4io.py" "${CMAKE_CURRENT_BINARY_DIR}/test_mk4io.py" @ONLY)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/test_ffres2pcp.py" "${CMAKE_CURRENT_BINARY_DIR}/test_ffres2pcp.py" @ONLY)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/test_fourphase.py" "${CMAKE_CURRENT_BINARY_DIR}/test_fourphase.py" @ONLY)
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/test_pcc_generate.py" "${CMAKE_CURRENT_BINARY_DIR}/test_pcc_generate.py" @ONLY)
 
     if(HOPS3_PYTHON_EXTRAS)
     list(APPEND TEST_SCRIPT_BASENAMES "vpal_test_harness")
