@@ -1,4 +1,4 @@
-#!@PYTHON@
+#!@PY_EXE@
 #
 # Script to take proxy-cable cal .dat files and convert them to
 # the cable-cal file format

@@ -1,4 +1,4 @@
-#!@PYTHON@
+#!@PY_EXE@
 #
 # Script to take proxy-cable cal .dat files and plot the delay as a function of time
 # 08/08/18 first version jpb

@@ -1,4 +1,4 @@
-#!@PYTHON@
+#!@PY_EXE@
 #
 # Python port of Brian Corey's supermongo scripts to process extracted pcal
 # data for each station/band/pol and extract delays
