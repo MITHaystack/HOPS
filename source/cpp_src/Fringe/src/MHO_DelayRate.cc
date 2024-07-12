@@ -28,7 +28,7 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         out->CopyTags(*in1);
 
         //borrow this stupid routine from search_windows.c /////////////////////
-        #pragma message("Fix the DRSP size calculation to remove upper limit of 8192.")
+        TODO_FIXME_MSG("Fix the DRSP size calculation to remove upper limit of 8192.")
         fDRSPSize = 8192;
         while ( (fDRSPSize / 4) > fInDims[TIME_AXIS] ) {fDRSPSize /= 2;};
         msg_debug("fringe", "delay rate search space size = "<< fDRSPSize << eom );

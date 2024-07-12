@@ -84,7 +84,7 @@ void configure_data_library(MHO_ContainerStore* store)
     store->DeleteObject(vis_store_data);
     store->DeleteObject(wt_store_data);
 
-    #pragma message("TODO - if we plan to rely on short-names to identify objects, we need to validate them here")
+    TODO_FIXME_MSG("TODO - if we plan to rely on short-names to identify objects, we need to validate them here")
     //TODO make sure that the visibility object is called 'vis' and weights are called 'weights', etc.
     //TODO also validate the station data
 

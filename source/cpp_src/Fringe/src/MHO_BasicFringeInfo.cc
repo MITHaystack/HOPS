@@ -48,7 +48,7 @@ MHO_BasicFringeInfo::calculate_snr(double effective_npol, double ap_period, doub
 {
     //Poor imitation of SNR -- needs to be revisited and formalized
     //some hardcoded values used right now
-    #pragma message("TODO FIXME -- need to accommodate stations with non-2bit sampling")
+    TODO_FIXME_MSG("TODO FIXME -- need to accommodate stations with non-2bit sampling")
     double amp_corr_factor = 1.0;
     double fact1 = 1.0; //more than 16 lags
     double fact2 = 0.881; //2bit x 2bit

@@ -47,7 +47,7 @@ struct MHO_OpenCLTypeMap
 
 #else
 
-    #pragma message ("Warning : MHO_OpenCLPlugin is being built with float precision!")
+    TODO_FIXME_MSG ("Warning : MHO_OpenCLPlugin is being built with float precision!")
     #define CL_TYPE cl_float
     #define CL_TYPE2 cl_float2
     #define CL_TYPE4 cl_float4

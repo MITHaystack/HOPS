@@ -460,7 +460,7 @@ MHO_DiFXInputProcessor::ExtractDifxPolyModel(DifxPolyModel* m)
             poly["elcorr"].push_back(m->elcorr[i]);
             poly["elgeom"].push_back(m->elgeom[i]);
             // poly["parangle"].push_back(m->parangle[i]);
-            #pragma message("TODO FIXME, parallactic_angle in CALC may not yet be implemented, calculate it here or defer to fringe fitter")
+            TODO_FIXME_MSG("TODO FIXME, parallactic_angle in CALC may not yet be implemented, calculate it here or defer to fringe fitter")
             poly["parangle"].push_back(0.0);
             poly["u"].push_back(m->u[i]);
             poly["v"].push_back(m->v[i]);

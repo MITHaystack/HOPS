@@ -410,7 +410,7 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     FillDouble(t208->tot_sbd, "/fringe/total_sbdelay");
     FillDouble(t208->tot_rate, "/fringe/total_drate");
 
-    #pragma message("TODO FIXME -- the totals for the reference station are not yet calculated")
+    TODO_FIXME_MSG("TODO FIXME -- the totals for the reference station are not yet calculated")
     FillDouble(t208->tot_mbd_ref, "/fringe/total_mbdelay_ref");
     FillDouble(t208->tot_sbd_ref, "/fringe/total_sbdelay_ref");
     FillDouble(t208->tot_rate_ref, "/fringe/total_rate_ref");

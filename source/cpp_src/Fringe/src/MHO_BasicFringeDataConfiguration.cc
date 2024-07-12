@@ -168,7 +168,7 @@ MHO_BasicFringeDataConfiguration::sanity_check(MHO_ParameterStore* paramStore)
     //bool xpower_output = false;
     //std::string output_file = paramStore->GetAs<std::string>("/cmdline/output_file");
 
-    #pragma message("TODO FIXME - fill out the sanity_check function for command line arguments")
+    TODO_FIXME_MSG("TODO FIXME - fill out the sanity_check function for command line arguments")
     if( directory == "" || control_file == "")
     {
         return 1;

@@ -200,7 +200,7 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     win = paramStore->GetAs< std::vector<double> >("/fringe/mb_win");
     plot_dict["extra"]["mb_win"] = win;
     win = paramStore->GetAs< std::vector<double> >("/fringe/dr_win");
-    #pragma message("TODO FIXME -- perform proper accounting of window units, here we (convert to ns/s)")
+    TODO_FIXME_MSG("TODO FIXME -- perform proper accounting of window units, here we (convert to ns/s)")
     win[0] *= 1e3; win[1] *= 1e3;
     plot_dict["extra"]["dr_win"] = win;
 

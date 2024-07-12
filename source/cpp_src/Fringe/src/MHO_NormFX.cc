@@ -62,7 +62,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         fWorkspace.Resize(fWorkDims);
         fWorkspace.SetArray(std::complex<double>(0.0,0.0));
 
-        #pragma message("TODO FIXME, the following line casts away const-ness:")
+        TODO_FIXME_MSG("TODO FIXME, the following line casts away const-ness:")
         fNaNBroadcaster.SetArgs( const_cast<XArgType1*>(in1) );
         status = fNaNBroadcaster.Initialize();
         if(!status){msg_error("fringe", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
@@ -96,7 +96,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("fringe", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}
 
-        //#pragma message("TODO FIXME, the following line casts away const-ness:")
+        //TODO_FIXME_MSG("TODO FIXME, the following line casts away const-ness:")
         fConjBroadcaster.SetArgs( out );
         status = fConjBroadcaster.Initialize();
         if(!status){msg_error("fringe", "Could not initialize complex conjugation broadcast in MHO_NormFX." << eom); return false;}

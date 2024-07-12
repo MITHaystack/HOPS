@@ -429,7 +429,7 @@ MHO_ComputePlotData::calc_dr()
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
     //borrow this stupid routine from search_windows.c /////////////////////
 
-    #pragma message("Fix the DRSP size calculation to remove upper limit of 8192.")
+    TODO_FIXME_MSG("Fix the DRSP size calculation to remove upper limit of 8192.")
     std::size_t drsp_size = 8192;
     while ( (drsp_size / 4) > nap ) {drsp_size /= 2;};
     if(drsp_size < 256){drsp_size = 256;}
@@ -507,7 +507,7 @@ MHO_ComputePlotData::calc_dr()
     for(std::size_t i=0; i<drsp_size; i++)
     {
         fDRAmpWorkspace[i] = std::abs(fDRWorkspace[i])/total_summed_weights;
-        #pragma message("TODO FIXME, factor 1/1000 is due to need to plot axis in ns/s")
+        TODO_FIXME_MSG("TODO FIXME, factor 1/1000 is due to need to plot axis in ns/s")
         std::get<0>(fDRAmpWorkspace).at(i) = (std::get<0>(fDRWorkspace).at(i) )/(fRefFreq/1000.0);
     }
 
@@ -1066,7 +1066,7 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     plot_dict["extra"]["inc_avg_amp"] = inc_avg_amp;
     plot_dict["extra"]["inc_avg_amp_freq"] = inc_avg_amp_freq;
 
-    #pragma message("TODO FIXME -- store the rest of these incoherent/theory parameters in the store")
+    TODO_FIXME_MSG("TODO FIXME -- store the rest of these incoherent/theory parameters in the store")
     fParamStore->Set("/fringe/inc_avg_amp_freq", inc_avg_amp_freq);
 
 
@@ -1123,7 +1123,7 @@ MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, do
     freqrms_amp = 0;
     inc_avg_amp_freq = 0.0;
 
-    #pragma message("TODO FIXME -- implement amp_corr_fact.");
+    TODO_FIXME_MSG("TODO FIXME -- implement amp_corr_fact.");
     double amp_corr_fact = 1.0;
 
     for(std::size_t ch = 0; ch < nchan; ch++)
@@ -1144,7 +1144,7 @@ MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, do
         double c = std::arg(sum) - coh_avg_phase;
         // condition to lie in [-pi,pi] interval
         //TODO FIXME -- this is the original implementation, but it is incorrect!
-        #pragma message("TODO FIXME, this way of computing an average phase angle is incorrect, should compute the average vector first, then take the angle of that.")
+        TODO_FIXME_MSG("TODO FIXME, this way of computing an average phase angle is incorrect, should compute the average vector first, then take the angle of that.")
         c = std::fmod(c, 2.0 * M_PI);
         if (c > M_PI){c -= 2.0 * M_PI;}
         else if (c < - M_PI){c += 2.0 * M_PI;}
@@ -1175,7 +1175,7 @@ MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, std::s
                                   double coh_avg_phase, double fringe_amp, double total_summed_weights, double snr,
                                   double& timerms_phase, double& timerms_amp, double& inc_avg_amp)
 {
-    #pragma message("TODO FIXME -- implement amp_corr_fact.");
+    TODO_FIXME_MSG("TODO FIXME -- implement amp_corr_fact.");
     double amp_corr_fact = 1.0;
 
     timerms_phase = 0;
@@ -1303,7 +1303,7 @@ std::string
 MHO_ComputePlotData::calc_error_code(const mho_json& plot_dict)
 {
 
-    #pragma message("TODO FIXME -- implement error codes other than G and H, also move all param retrieval outside of this function and pass in data")
+    TODO_FIXME_MSG("TODO FIXME -- implement error codes other than G and H, also move all param retrieval outside of this function and pass in data")
 
     std::string errcode = " "; //default
 

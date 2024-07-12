@@ -63,7 +63,7 @@ MHO_ChannelLabelerBuilder::Build()
         }
 
         bool replace_duplicates = true; //replces the default labeler
-        #pragma message("TODO - figure out proper naming/retrieval scheme for operators")
+        TODO_FIXME_MSG("TODO - figure out proper naming/retrieval scheme for operators")
 
         vis_op->SetPriority(priority);
         wt_op->SetPriority(priority);
