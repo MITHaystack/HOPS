@@ -31,8 +31,10 @@ FFRES2PCP_PASS_FAIL=$?
 @PY_EXE@ -B @abs_srcdir@/test_fourphase.py $EXP_DIR
 FOURPHASE_PASS_FAIL=$?
 
+@PY_EXE@ -B @abs_srcdir@/test_pcc_generate.py $EXP_DIR
+PCC_PASS_FAIL=$?
 
-if [ "$MK4IO_PASS_FAIL" -eq 0 -a "$FFRES2PCP_PASS_FAIL" -eq 0 -a  "$FOURPHASE_PASS_FAIL" -eq 0 ]; then
+if [ "$MK4IO_PASS_FAIL" -eq 0 -a "$FFRES2PCP_PASS_FAIL" -eq 0 -a  "$FOURPHASE_PASS_FAIL" -eq 0 -a "$PCC_PASS_FAIL" -eq 0 ]; then
   echo "Full chops test suite passed."
   exit 0
 else

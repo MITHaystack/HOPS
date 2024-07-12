@@ -3,4 +3,4 @@ from @PYTHON_SETUP@ import setup
 setup(name='mk4io',
       version='0.1',
       package_dir={ '': '@abs_srcdir@' },
-  packages=['mk4io', 'afio', 'hops_test'])
+      packages=['mk4io', 'afio', 'hops_test', 'vexpy'])
