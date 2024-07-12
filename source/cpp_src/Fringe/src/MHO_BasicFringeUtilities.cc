@@ -8,7 +8,6 @@
 
 //basic_fringe_search
 #include "MHO_NormFX.hh"
-#include "MHO_DelayRate.hh"
 #include "MHO_MBDelaySearch.hh"
 
 #include "MHO_InterpolateFringePeak.hh"
