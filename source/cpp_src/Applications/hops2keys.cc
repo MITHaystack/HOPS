@@ -34,7 +34,7 @@ int main(int argc, char** argv)
     int message_level = 0;
     bool disable_dump = false;
 
-    CLI::App app{"hopskeys"};
+    CLI::App app{"hops2keys"};
 
     app.add_option("input,-i,--input-file", input_file, "name of the input (hops) file to be inspected")->required();
     app.add_option("output,-o,--output-file", output_file, "optional name of the output file (default format: json), if not given, no output file will be created");
