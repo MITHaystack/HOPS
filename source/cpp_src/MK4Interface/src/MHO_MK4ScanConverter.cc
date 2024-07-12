@@ -139,7 +139,7 @@ MHO_MK4ScanConverter::ConvertCorel(const std::string& root_file,
         msg_error("mk4interface", "Error opening corel output file: " << output_file << eom);
     }
 
-    #pragma message("TODO FIXME -- add an tags object for extraneous meta data");
+    TODO_FIXME_MSG("TODO FIXME -- add an tags object for extraneous meta data");
 
     inter.Close();
 

@@ -242,7 +242,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 }
 
                 //sum the tone phasors
-                #pragma message("TODO FIXME -- fix the phase cal phasor weights and implement pc_tonemask.")
+                TODO_FIXME_MSG("TODO FIXME -- fix the phase cal phasor weights and implement pc_tonemask.")
                 //TODO FIXME -- NOTE!! This implementation assumes all tones are sequential and there are no missing tones!
                 //true for now...but may not be once we add pc_tonemask support
                 double wght;
@@ -408,11 +408,11 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             double pcphase = pc_phase_segs[seg];
             double pcdelay = pc_delay_segs[seg];
 
-            #pragma message("TODO FIXME -- 'phase-shift' needs testing for both USB/LSB data as applied in norm_fx.c, line 396")
+            TODO_FIXME_MSG("TODO FIXME -- 'phase-shift' needs testing for both USB/LSB data as applied in norm_fx.c, line 396")
             double speriod = 1.0/(2.0*bandwidth*1e6);
             double phase_shift = -1.0 * pcdelay / (4.0*speriod) ;
 
-            #pragma message("TODO FIXME -- make sure proper treatment of LSB/USB sidebands is done here.")
+            TODO_FIXME_MSG("TODO FIXME -- make sure proper treatment of LSB/USB sidebands is done here.")
             std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*(pcphase) );
 
             //conjugate pc phasor when applied to reference station
@@ -523,7 +523,7 @@ MHO_MultitonePhaseCorrection::DetermineChannelToneIndexes(double lower_freq, dou
 void
 MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_freq, double sampler_delay, double* pcal_model)
 {
-    #pragma message("TODO FIXME -- need to retrieve the station delays for multitone pcal processing.")
+    TODO_FIXME_MSG("TODO FIXME -- need to retrieve the station delays for multitone pcal processing.")
     double station_delay = 0.0;
 
     //copy the averaged tone data for later use when calculating mean phase
@@ -594,7 +594,7 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
         mean_phasor += phasor;
     }
 
-    #pragma message("TODO FIXME -- verify all sign/conjugation operations work properly for USB/LSB data.")
+    TODO_FIXME_MSG("TODO FIXME -- verify all sign/conjugation operations work properly for USB/LSB data.")
     mean_phasor = std::conj( mean_phasor );
 
     pcal_model[0] = std::abs(mean_phasor); //magnitude
@@ -607,7 +607,7 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
 
 void MHO_MultitonePhaseCorrection::RepairMK4PCData(visibility_type* vis)
 {
-    #pragma message("TODO FIXME -- fix hardcoded pcal spacing!!")
+    TODO_FIXME_MSG("TODO FIXME -- fix hardcoded pcal spacing!!")
     double pcal_spacing = 5.0; //TODO FIXME HARDCODED PCAL SPACING
 
     //only perform this operation if the pcal data originated from mark4 type309s

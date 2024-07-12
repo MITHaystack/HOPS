@@ -142,7 +142,7 @@ int main(int argc, char** argv)
             //POST-CONFIGURE FOR COMPILE-TIME EXTENSIONS -- this should be reorganized with visitor pattern
             ////////////////////////////////////////////////////////////////////////////
             #ifdef USE_PYBIND11
-            #pragma message("TODO FIXME -- formalize the means by which plugin dependent operator builders are added to the configuration")
+            TODO_FIXME_MSG("TODO FIXME -- formalize the means by which plugin dependent operator builders are added to the configuration")
             ffit->GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_labeling", "python_labeling");
             ffit->GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_flagging", "python_flagging");
             ffit->GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_calibration", "python_calibration");

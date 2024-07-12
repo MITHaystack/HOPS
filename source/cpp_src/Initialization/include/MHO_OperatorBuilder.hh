@@ -57,7 +57,7 @@ class MHO_OperatorBuilder
         //but the default tries to check a few things
         virtual bool IsConfigurationOk()
         {
-            #pragma message("TODO FIXME -- improve checks on operator attributes in IsConfigurationOk)" )
+            TODO_FIXME_MSG("TODO FIXME -- improve checks on operator attributes in IsConfigurationOk)" )
             bool ok = true;
             //for compound statements, check that the fields are present
             if(fFormat["statement_type"] == "operator")

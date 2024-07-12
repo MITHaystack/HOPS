@@ -377,7 +377,7 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
         int nt = stop - start;
         for(int ti=0; ti < nt; ti++)
         {
-            #pragma message("TODO FIXME -- check 309 tone order and conjugation for USB data.")
+            TODO_FIXME_MSG("TODO FIXME -- check 309 tone order and conjugation for USB data.")
             int acc_idx = start + ti;  //USB should be: start + ti?
             if(sb == "L"){acc_idx = (stop-1) - ti;} //tone order for LSB channels
             for(ap=0; ap<naps; ap++)

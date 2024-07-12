@@ -232,7 +232,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
         paramStore->Set("/fringe/dtec_error", 0.0);
     }
 
-    #pragma message("TODO FIXME, calculate SBAVG properly")
+    TODO_FIXME_MSG("TODO FIXME, calculate SBAVG properly")
     double sbavg = 1.0;
 
     double sbd_error = MHO_BasicFringeInfo::calculate_sbd_error(sbd_sep, snr, sbavg);

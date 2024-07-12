@@ -394,7 +394,7 @@ MHO_BasicFringeFitter::interpolate_peak()
     int c_drmax = fParameterStore->GetAs<int>("/fringe/max_dr_bin");
 
     fPeakInterpolator.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
-    #pragma message("TODO FIXME -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace")
+    TODO_FIXME_MSG("TODO FIXME -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace")
 
     //TODO FIXME: Figure out how best to present this axis data to the fine-interp function.
     fPeakInterpolator.SetMBDAxis( fMBDSearch.GetMBDAxis() );

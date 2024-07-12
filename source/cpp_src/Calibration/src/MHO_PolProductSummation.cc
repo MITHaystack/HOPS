@@ -22,7 +22,7 @@ MHO_PolProductSummation::ExecuteInPlace(visibility_type* in)
     bool ok = fReducer.Execute();
     FixLabels(in);
 
-    #pragma message("TODO FIXME -- is this treatment (averaging) of the pol-product weights correct?")
+    TODO_FIXME_MSG("TODO FIXME -- is this treatment (averaging) of the pol-product weights correct?")
     //average the weights across all summed pol-products
     bool wok = fWReducer.Execute();
     double n_polprod = fPolProductSet.size();
@@ -41,7 +41,7 @@ MHO_PolProductSummation::ExecuteOutOfPlace(const visibility_type* in, visibility
     bool ok = fReducer.Execute();
     FixLabels(out);
 
-    #pragma message("TODO FIXME -- is this treatment (averaging) of the pol-product weights correct?")
+    TODO_FIXME_MSG("TODO FIXME -- is this treatment (averaging) of the pol-product weights correct?")
     //average the weights across all 4 pol-products
     bool wok = fWReducer.Execute();
     double n_polprod = fPolProductSet.size();
@@ -142,7 +142,7 @@ MHO_PolProductSummation::GetPrefactor(std::string pp_label)
     //depending on the telescope mount type, this may have varied dependance
     //on (delta) parallactic angle
 
-    #pragma message("FIXME TODO -- implement prefactor calculations for both linear and circular pol-products (XX, YY, RR, etc).")
+    TODO_FIXME_MSG("FIXME TODO -- implement prefactor calculations for both linear and circular pol-products (XX, YY, RR, etc).")
 
     return factor;
 }

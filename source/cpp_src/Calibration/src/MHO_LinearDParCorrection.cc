@@ -56,7 +56,7 @@ MHO_LinearDParCorrection::PreMultiply(visibility_type* in)
 std::complex<double>
 MHO_LinearDParCorrection::GetPrefactor(std::string pp_label)
 {
-    #pragma message("TODO FIXME...we need to implement proper treatment of X/Y vs H/V pols. Fourfit has the convention inverted." )
+    TODO_FIXME_MSG("TODO FIXME...we need to implement proper treatment of X/Y vs H/V pols. Fourfit has the convention inverted." )
     std::complex<double> factor = 0;
     //if we cannot find this label in the set, return zero
     if( std::find( fPolProductSet.begin(), fPolProductSet.end(), pp_label) == fPolProductSet.end()  ){return factor;}

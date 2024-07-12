@@ -76,7 +76,7 @@ MHO_VexInfoExtractor::extract_clock_model(const mho_json& vexInfo, MHO_Parameter
         std::exit(1);
     }
 
-    #pragma message("TODO FIXME - select the approprate clock interval closest to the FRT.")
+    TODO_FIXME_MSG("TODO FIXME - select the approprate clock interval closest to the FRT.")
     //std::string frt_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
 
     n_clocks = ref_clock["clock_early"].size();

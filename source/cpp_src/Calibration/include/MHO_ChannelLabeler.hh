@@ -38,7 +38,7 @@ class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >
         {
             //we inherited the set of 64 characters from fourfit
             //consider how we may want to change this in the future
-            #pragma message("TODO FIXME: re-think mult-char labeling scheme, what is most user friendly?")
+            TODO_FIXME_MSG("TODO FIXME: re-think mult-char labeling scheme, what is most user friendly?")
             fDefaultChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$%";
             fExtendedChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; //used beyond 64
             fIndexToChannelLabel.clear();
