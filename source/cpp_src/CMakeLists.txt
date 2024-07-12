@@ -26,6 +26,12 @@ if(ENABLE_STEPWISE_CHECK)
     hops_add_cxxflag(HOPS_ENABLE_STEPWISE_CHECK)
 endif(ENABLE_STEPWISE_CHECK)
 
+option(HOPS_ENABLE_DEV_TODO "Enable developer to-do/fix-me compiler messages" OFF)
+if(HOPS_ENABLE_DEV_TODO)
+    hops_add_cxxflag(HOPS_ENABLE_DEV_TODO)
+endif()
+
+
 #add the plugin directory definition, so we can search in this path
 add_compile_definitions("HOPS_DEFAULT_PLUGINS_DIR=${PLUGINS_INSTALL_DIR}")
 
