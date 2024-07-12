@@ -19,7 +19,7 @@ set(HOPS_TEST_LIBS
 set(SOURCE_BASENAMES
     TestMultiObjectStreaming
     # TestConvertMk4Visibilities
-    hopskeys
+    hops2keys
     mark42hops
     hops2json
     TestSignalFFT
