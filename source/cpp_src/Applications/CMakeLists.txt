@@ -18,7 +18,6 @@ set(HOPS_TEST_LIBS
 
 set(SOURCE_BASENAMES
     TestMultiObjectStreaming
-    # TestConvertMk4Visibilities
     hops2keys
     mark42hops
     hops2json
