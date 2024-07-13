@@ -35,8 +35,6 @@ endif()
 #add the plugin directory definition, so we can search in this path
 add_compile_definitions("HOPS_DEFAULT_PLUGINS_DIR=${PLUGINS_INSTALL_DIR}")
 
-hops_require_cpp11()
-
 #source sub directories (in order of dependence...this is important!)
 add_subdirectory(${CPPSOURCE}/Message) #the messaging library
 add_subdirectory(${CPPSOURCE}/Utilities) #other generic utilities

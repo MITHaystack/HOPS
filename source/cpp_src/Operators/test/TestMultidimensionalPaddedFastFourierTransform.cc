@@ -21,8 +21,6 @@ inline int positive_modulo(int i, int n) {
 
 int main(int argc, char** argv)
 {
-
-
     std::string usage = "TestMultidimensionalPaddedFastFourierTransform";
 
     MHO_Message::GetInstance().AcceptAllKeys();
