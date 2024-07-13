@@ -207,6 +207,7 @@ class FringeFileHandle(object):
         self.resid_phas = utility.limit_periodic_quantity_to_range( self.fringe_data.t208.contents.resphase, 0 , 360.0)
         self.sbdelay = self.fringe_data.t208.contents.resid_sbd
         self.mbdelay = self.fringe_data.t208.contents.resid_mbd
+        self.mbd_error = self.fringe_data.t208.contents.mbd_error
         self.delay_rate = self.fringe_data.t208.contents.resid_rate * 1.0E6
 
         self.ref_freq = self.fringe_data.t205.contents.ref_freq
@@ -258,6 +259,93 @@ class FringeFileHandle(object):
                 ch_tup = [ch_id, ch_index, ch_freq]
                 channel_tuples.append(ch_tup)
         return channel_tuples
+
+
+    def get_summary(self):
+        if self.is_valid is False:
+            self.load_file_data()
+            self.init_data_members()
+        if self.is_valid is True:
+            #construct a pandas data frame to store the summary of the scan (scalar values)
+            td = dict()
+            td["filename"] = self.filename
+            td["root_id"] = self.root_id
+            td["scan_name"] = self.scan_name
+            td["exp_name"] = self.exp_name
+            td["pol_product"] = self.pol_product
+            td["dtec"] = self.dtec
+            td["nchans"] = self.nchans
+            td["associated_root_file"] = self.associated_root_file
+            td["control_filename"] = self.control_filename
+
+            #these quantities mostly mirror the alist fringe sum
+            #TODO: MAKE SURE THESE ALL WORK
+            td["version"] = self.version
+            td["fname"] = self.fname
+            td["expt_no"] = self.expt_no
+            td["extent_no"] = self.extent_no
+            td["length"] = self.length
+            td["corel_vers"] = self.corel_vers
+            td["procdate"] = self.procdate
+            td["time_tag"] = self.time_tag
+            td["ssec"] = self.ssec
+            td["source"] = self.source
+            td["baseline"] = self.baseline
+            td["quality"] = self.quality
+
+            td["mode"] = self.mode
+            td["no_freq"] = self.no_freq
+            td["archiv"] = self.archiv
+            td["reftape"] = self.reftape
+            td["remtape"] = self.remtape
+            td["amp"] = self.amp
+            td["snr"] = self.snr
+            td["resid_phas"] = self.resid_phas
+            td["sbdelay"] = self.sbdelay
+            td["mbdelay"] = self.mbdelay
+            td["mbd_error"] = self.mbd_error
+            td["delay_rate"] = self.delay_rate
+
+            td["total_phas"] = self.total_phas
+            td["total_rate"] = self.total_rate
+            td["total_mbdelay"] = self.total_mbdelay
+            td["total_sbresid"] = self.total_sbresid
+            td["ambiguity"] = self.ambiguity
+            td["pcals"] = self.pcals
+            td["root_id"] = self.root_id
+            td["ref_freq"] = self.ref_freq
+
+            td["ref_elev"] = self.ref_elev
+            td["rem_elev"] = self.rem_elev
+            td["ref_az"] = self.ref_az
+            td["rem_az"] = self.rem_az
+            td["u"] = self.u
+            td["v"] = self.v
+            td["parents"] = self.parents
+            td["duration"] = self.duration
+
+            td["scan_offset"] = self.scan_offset
+            td["lags"] = self.lags
+            td["phase_snr"] = self.phase_snr
+            td["srch_cotime"] = self.srch_cotime
+            td["noloss_cotime"] = self.noloss_cotime
+            td["scan_id"] = self.scan_id
+            td["polarization"] = self.polarization
+            td["errcode"] = self.errcode
+
+            td["resid_delay"] = self.resid_delay
+
+            td["control_file_hash"] = self.control_file_hash
+            td["set_string_hash"] = self.set_string_hash
+
+            #these are residual quantities
+            td["phase"] = self.phase
+            td["sbdelay"] = self.sbdelay
+            td["mbdelay"] = self.mbdelay
+            td["delay_rate"] = self.delay_rate
+
+            return td
+
 
 ################################################################################
 
