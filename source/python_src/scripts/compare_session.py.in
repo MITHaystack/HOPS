@@ -380,7 +380,7 @@ def main():
             for n in list(range(0, len(times))):
                 times[n] = times[n] - first_tk
             snr = all_df[file_key]['snr']
-            snr_ref = all_df['haystack']['snr']
+            snr_ref = all_df[reference_key]['snr']
 
             snr_perc_diff = []
             for n in range(0,len(snr)):
