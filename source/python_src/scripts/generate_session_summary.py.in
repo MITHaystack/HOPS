@@ -106,9 +106,9 @@ def main():
             #loop over fringe files and generate summary dataframes
             summary_dataframe_list = list()
             for ff in ff_list:
-                ff_sum = ff.get_dataframe_summary()
+                ff_sum = ff.get_summary()
                 #convert to dataframe
-                ff_df = pd.DataFrame(td, index=[0])
+                ff_df = pd.DataFrame(ff_sum, index=[0])
                 summary_dataframe_list.append(ff_df)
             #merge the dataframes of each scan
             all_scan_df = pd.concat(summary_dataframe_list)
