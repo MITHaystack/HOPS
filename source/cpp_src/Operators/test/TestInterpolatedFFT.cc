@@ -10,12 +10,6 @@
 #include <iomanip>
 #include <iostream>
 
-// #ifdef USE_ROOT
-//     #include "TApplication.h"
-//     #include "MHO_RootCanvasManager.hh"
-//     #include "MHO_RootGraphManager.hh"
-// #endif
-
 using namespace hops;
 
 #ifdef HOPS_USE_FFTW3
@@ -223,81 +217,6 @@ int main(int argc, char** argv)
         /* re-normalize back to single lag */
         output[i] = xlag[j] / (double) (nlags / 2);
     }
-
-
-    // #ifdef USE_ROOT
-    //
-    // std::cout<<"starting root plotting"<<std::endl;
-    //
-    // //ROOT stuff for plots
-    // TApplication* App = new TApplication("Plot",&argc,argv);
-    //
-    // MHO_RootCanvasManager cMan;
-    // auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
-    //
-    // TGraph* g = new TGraph();
-    // TGraph* gint = new TGraph();
-    // TGraph* gunk = new TGraph();
-    // for(size_t i=0; i<N; i++)
-    // {
-    //     g->SetPoint(i,i,std::abs(array1[i]));
-    // }
-    //
-    // for(size_t i=0; i<NM; i++)
-    // {
-    //     double x = (double)i/(double)M;
-    //     gint->SetPoint(i,x, std::abs(expanded_array2[i]) );
-    // }
-    //
-    // for(size_t i=0; i<2*nlags;i++)
-    // {
-    //     double x=i;
-    //     x /= 8;
-    //     std::cout<<xlag[i]<<std::endl;
-    //     gunk->SetPoint(i, x, std::abs(xlag[i])/(nlags/2.));
-    // }
-    //
-    // g->SetMarkerColor(1);
-    // g->SetMarkerStyle(24);
-    // g->SetLineColor(1);
-    // g->SetLineWidth(4);
-    //
-    // gint->SetMarkerColor(2);
-    // gint->SetMarkerStyle(25);
-    // gint->SetLineColor(2);
-    //
-    // gunk->SetMarkerColor(4);
-    // gunk->SetMarkerStyle(21);
-    // gunk->SetLineColor(4);
-    //
-    // gunk->Draw("ALP");
-    // g->Draw("LPSAME");
-    // gint->Draw("LPSAME");
-    // //gunk->Draw("LPSAME");
-    //
-    // App->Run();
-    //
-    //
-    // #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     return 0;
 }
