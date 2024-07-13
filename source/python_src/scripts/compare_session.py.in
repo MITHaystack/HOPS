@@ -16,7 +16,7 @@ import copy
 #non-core imports
 #set the plotting back-end to 'agg' to avoid display
 import matplotlib as mpl
-# mpl.use('Agg')
+# mpl.use('TkAgg')
 import numpy as np
 import scipy.stats
 import pandas as pd
@@ -314,7 +314,7 @@ def main():
     reference_key = os.path.splitext( os.path.basename(reference_file_name) )[0]
     files_to_process[reference_key] = reference_file_name
 
-    all_keys = ["haystack", "vienna"] #['haystack', 'bonn', 'vienna', 'waco', 'shanghai'] #files_to_process.keys()
+    all_keys = files_to_process.keys()
     count = 0;
     marker_style_index = dict()
     marker_color = ['k','r','b','g', 'orange', 'c','m','y']
@@ -332,61 +332,6 @@ def main():
     all_df = dict()
     for file_key in all_keys:
         all_df[file_key] = pd.read_csv(files_to_process[file_key], sep='\t')
-
-    vienna_scan_name_translate = {
-        '290-1830a' : '290-183000',
-        '290-1830b' : '290-183048',
-        '290-1831' : '290-183136',
-        '290-1832' : '290-183224',
-        '290-1833' : '290-183322',
-        '290-1834a' : '290-183410',
-        '290-1834b' : '290-183458',
-        '290-1836' : '290-183626',
-        '290-1837' : '290-183754',
-        '290-1839' : '290-183922',
-        '290-1840' : '290-184050',
-        '290-1841' : '290-184138',
-        '290-1842' : '290-184226',
-        '290-1843' : '290-184314',
-        '290-1844' : '290-184442',
-        '290-1846' : '290-184610',
-        '290-1847' : '290-184714',
-        '290-1848' : '290-184802',
-        '290-1849' : '290-184930',
-        '290-1850' : '290-185058',
-        '290-1852' : '290-185226',
-        '290-1853' : '290-185314',
-        '290-1854' : '290-185442',
-        '290-1856' : '290-185610',
-        '290-1857' : '290-185736',
-        '290-1858' : '290-185824',
-        '290-1859' : '290-185934',
-        '290-1901' : '290-190100',
-        '290-1902' : '290-190228',
-        '290-1903' : '290-190316',
-        '290-1904' : '290-190444',
-        '290-1906' : '290-190612',
-        '290-1907' : '290-190740',
-        '290-1909' : '290-190906',
-        '290-1910' : '290-191032',
-        '290-1912' : '290-191200',
-        '290-1913' : '290-191328',
-        '290-1914' : '290-191456',
-        '290-1915' : '290-191548',
-        '290-1916' : '290-191636',
-        '290-1918' : '290-191804',
-        '290-1919' : '290-191930',
-        '290-1920' : '290-192056',
-        '290-1922' : '290-192224',
-        '290-1923' : '290-192352',
-        '290-1925' : '290-192518',
-        '290-1926' : '290-192606',
-        '290-1927' : '290-192700',
-        '290-1928' : '290-192828',
-        '290-1929' : '290-192954'
-    }
-
-    vienna_scan_name_translate_inverse = { val:key for key,val in vienna_scan_name_translate.items() }
 
     bad_scan_list = set()
 
@@ -554,9 +499,6 @@ def main():
                 ax3 = fig.add_subplot(111)
                 x0, x_trimmed, y_trimmed, y_err_trimmed, y_err, y_fit, y_res, x_out, y_out, name_out, param, perr, rmse, wrms, wmean = perform_least_squares_fit(times,delta[file_key],derr[file_key],scans,mode)
                 for n in range(0,len(name_out)):
-                    if file_key == 'vienna':
-                        sn2 = vienna_scan_name_translate_inverse[name_out[n]]
-                        name_out[n] = sn2
                     bad_scan_list.add(name_out[n])
                 print(file_key, "outlier scans = ", name_out)
                 #plot linear model
@@ -606,9 +548,6 @@ def main():
                 ax3 = fig.add_subplot(111)
                 x0, x_trimmed, y_trimmed, y_err_trimmed, y_err, y_fit, y_res, x_out, y_out, name_out, param, perr, rmse, wrms, wmean = perform_least_squares_fit(times,delta[file_key],derr[file_key],scans,mode)
                 for n in range(0,len(name_out)):
-                    if file_key == 'vienna':
-                        sn2 = vienna_scan_name_translate_inverse[name_out[n]]
-                        name_out[n] = sn2
                     bad_scan_list.add(name_out[n])
                 print(file_key, "outlier scans = ", name_out)
                 #plot linear model
@@ -642,19 +581,14 @@ def main():
         print("===========================")
         print("===========================")
         for file_key in all_keys:
-            bdv = vienna_scan_name_translate[bd]
             bdthis = bd
             corr = file_key
-            if corr == 'vienna':
-                bdthis = bdv
             df = all_df[file_key]
             #print(bdthis, bdv, corr)
             bd_row = df.loc[ df['scan_name'] == bdthis ]
             if len(bd_row) != 0:
                 print(corr, '&', bd , '&', bd_row.iloc[0]['source'], '&',  round(bd_row.iloc[0]['dtec'],2) , '&', \
                 bd_row.iloc[0]['quality'], '&', round(bd_row.iloc[0]['snr'],2) , '&', bd_row.iloc[0]['total_mbdelay'])
-
-
 
 
 
