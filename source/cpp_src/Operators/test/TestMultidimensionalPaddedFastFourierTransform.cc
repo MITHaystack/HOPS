@@ -8,11 +8,12 @@
 #include <iostream>
 #include <getopt.h>
 
-#ifdef USE_ROOT
-    #include "TApplication.h"
-    #include "MHO_RootCanvasManager.hh"
-    #include "MHO_RootGraphManager.hh"
-#endif
+// #ifdef USE_ROOT
+//     #include "TApplication.h"
+//     #include "MHO_RootCanvasManager.hh"
+//     #include "MHO_RootGraphManager.hh"
+// #endif
+
 using namespace hops;
 
 typedef double FPTYPE;
@@ -363,124 +364,124 @@ int main(int argc, char** argv)
     delete fft_engine;
     delete fft_engine3;
 
-    #ifdef USE_ROOT
-
-    //std::cout<<"starting root plotting"<<std::endl;
-
-    //ROOT stuff for plots
-    TApplication* App = new TApplication("Plot",&argc,argv);
-    MHO_RootCanvasManager cMan;
-    auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
-    c->Divide(1,2);
-
-    TGraph* g_real = new TGraph();
-    TGraph* g_imag = new TGraph();
-
-    TGraph* gint_real = new TGraph();
-    TGraph* gint_imag = new TGraph();
-
-    TGraph* gunk_real = new TGraph();
-    TGraph* gunk_imag = new TGraph();
-
-    TGraph* gunk2_real = new TGraph();
-    TGraph* gunk2_imag = new TGraph();
-
-    for(size_t i=0; i<N; i++)
-    {
-        g_real->SetPoint(i,i,array1[i].real() );
-        g_imag->SetPoint(i,i,array1[i].imag() );
-    }
-
-    for(size_t i=0; i<NM; i++)
-    {
-        double x = (double)i/(double)M; //rescale back to original spacing
-        gint_real->SetPoint(i,x,expanded_array1[i].real() );
-        gint_imag->SetPoint(i,x,expanded_array1[i].imag() );
-    }
-
-    //have to do the following in two parts to keep the ordering correct
-    //what purpose does the shift have?
-    size_t count=0;
-    for(size_t i=0; i<2*nlags;i++)
-    {
-        //double x = (i+nlags)%(2*nlags);
-        double x = (double)i/4.; //rescale and shift back to original spacing so we can compare
-        //std::cout<<output[i].real()<<std::endl;
-        gunk_real->SetPoint(count, x, output[i].real());
-        gunk_imag->SetPoint(count, x, output[i].imag());
-        count++;
-    }
-
-
-    for(size_t i=0; i<2*nlags;i++)
-    {
-        double x = (double)i/4.;
-        //x /= 4; //rescale and shift back to original spacing so we can compare
-        //std::cout<<output[i].real()<<std::endl;
-        gunk2_real->SetPoint(count, x, output2[i].real());
-        gunk2_imag->SetPoint(count, x, output2[i].imag());
-        count++;
-    }
-
-
-
-
-    g_real->SetMarkerColor(1);
-    g_real->SetMarkerStyle(24);
-    g_real->SetLineColor(1);
-    g_real->SetLineWidth(4);
-    g_imag->SetMarkerColor(1);
-    g_imag->SetMarkerStyle(24);
-    g_imag->SetLineColor(1);
-    g_imag->SetLineWidth(4);
-
-    gint_real->SetMarkerColor(2);
-    gint_real->SetMarkerStyle(25);
-    gint_real->SetLineColor(2);
-    gint_imag->SetMarkerColor(2);
-    gint_imag->SetMarkerStyle(25);
-    gint_imag->SetLineColor(2);
-
-    gunk_real->SetMarkerColor(4);
-    gunk_real->SetMarkerStyle(29);
-    gunk_real->SetLineColor(4);
-    gunk_real->SetLineWidth(5);
-
-    gunk_imag->SetMarkerColor(4);
-    gunk_imag->SetMarkerStyle(29);
-    gunk_imag->SetLineColor(4);
-    gunk_imag->SetLineWidth(5);
-
-    gunk2_real->SetMarkerColor(3);
-    gunk2_real->SetMarkerStyle(26);
-    gunk2_real->SetLineColor(3);
-    gunk2_imag->SetMarkerColor(3);
-    gunk2_imag->SetMarkerStyle(26);
-    gunk2_imag->SetLineColor(3);
-
-    c->cd(1);
-    //mg->Draw("ap");
-
-    gint_real->Draw("ALP");
-    gint_real->GetYaxis()->SetTitle("Real");
-    g_real->Draw("LPSAME");
-    gunk_real->Draw("LPSAME");
-    gunk2_real->Draw("LPSAME");
-
-    c->cd(2);
-
-    //gunk->Draw("ALP");
-    gunk_imag->Draw("ALP");
-    gunk_imag->GetYaxis()->SetTitle("Imag");
-    gint_imag->Draw("LPSAME");
-    g_imag->Draw("LPSAME");
-    gunk2_imag->Draw("LPSAME");
-    //gunk->Draw("LPSAME");
-
-    App->Run();
-
-
-    #endif
+    // #ifdef USE_ROOT
+    //
+    // //std::cout<<"starting root plotting"<<std::endl;
+    //
+    // //ROOT stuff for plots
+    // TApplication* App = new TApplication("Plot",&argc,argv);
+    // MHO_RootCanvasManager cMan;
+    // auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
+    // c->Divide(1,2);
+    //
+    // TGraph* g_real = new TGraph();
+    // TGraph* g_imag = new TGraph();
+    //
+    // TGraph* gint_real = new TGraph();
+    // TGraph* gint_imag = new TGraph();
+    //
+    // TGraph* gunk_real = new TGraph();
+    // TGraph* gunk_imag = new TGraph();
+    //
+    // TGraph* gunk2_real = new TGraph();
+    // TGraph* gunk2_imag = new TGraph();
+    //
+    // for(size_t i=0; i<N; i++)
+    // {
+    //     g_real->SetPoint(i,i,array1[i].real() );
+    //     g_imag->SetPoint(i,i,array1[i].imag() );
+    // }
+    //
+    // for(size_t i=0; i<NM; i++)
+    // {
+    //     double x = (double)i/(double)M; //rescale back to original spacing
+    //     gint_real->SetPoint(i,x,expanded_array1[i].real() );
+    //     gint_imag->SetPoint(i,x,expanded_array1[i].imag() );
+    // }
+    //
+    // //have to do the following in two parts to keep the ordering correct
+    // //what purpose does the shift have?
+    // size_t count=0;
+    // for(size_t i=0; i<2*nlags;i++)
+    // {
+    //     //double x = (i+nlags)%(2*nlags);
+    //     double x = (double)i/4.; //rescale and shift back to original spacing so we can compare
+    //     //std::cout<<output[i].real()<<std::endl;
+    //     gunk_real->SetPoint(count, x, output[i].real());
+    //     gunk_imag->SetPoint(count, x, output[i].imag());
+    //     count++;
+    // }
+    //
+    //
+    // for(size_t i=0; i<2*nlags;i++)
+    // {
+    //     double x = (double)i/4.;
+    //     //x /= 4; //rescale and shift back to original spacing so we can compare
+    //     //std::cout<<output[i].real()<<std::endl;
+    //     gunk2_real->SetPoint(count, x, output2[i].real());
+    //     gunk2_imag->SetPoint(count, x, output2[i].imag());
+    //     count++;
+    // }
+    //
+    //
+    //
+    //
+    // g_real->SetMarkerColor(1);
+    // g_real->SetMarkerStyle(24);
+    // g_real->SetLineColor(1);
+    // g_real->SetLineWidth(4);
+    // g_imag->SetMarkerColor(1);
+    // g_imag->SetMarkerStyle(24);
+    // g_imag->SetLineColor(1);
+    // g_imag->SetLineWidth(4);
+    //
+    // gint_real->SetMarkerColor(2);
+    // gint_real->SetMarkerStyle(25);
+    // gint_real->SetLineColor(2);
+    // gint_imag->SetMarkerColor(2);
+    // gint_imag->SetMarkerStyle(25);
+    // gint_imag->SetLineColor(2);
+    //
+    // gunk_real->SetMarkerColor(4);
+    // gunk_real->SetMarkerStyle(29);
+    // gunk_real->SetLineColor(4);
+    // gunk_real->SetLineWidth(5);
+    //
+    // gunk_imag->SetMarkerColor(4);
+    // gunk_imag->SetMarkerStyle(29);
+    // gunk_imag->SetLineColor(4);
+    // gunk_imag->SetLineWidth(5);
+    //
+    // gunk2_real->SetMarkerColor(3);
+    // gunk2_real->SetMarkerStyle(26);
+    // gunk2_real->SetLineColor(3);
+    // gunk2_imag->SetMarkerColor(3);
+    // gunk2_imag->SetMarkerStyle(26);
+    // gunk2_imag->SetLineColor(3);
+    //
+    // c->cd(1);
+    // //mg->Draw("ap");
+    //
+    // gint_real->Draw("ALP");
+    // gint_real->GetYaxis()->SetTitle("Real");
+    // g_real->Draw("LPSAME");
+    // gunk_real->Draw("LPSAME");
+    // gunk2_real->Draw("LPSAME");
+    //
+    // c->cd(2);
+    //
+    // //gunk->Draw("ALP");
+    // gunk_imag->Draw("ALP");
+    // gunk_imag->GetYaxis()->SetTitle("Imag");
+    // gint_imag->Draw("LPSAME");
+    // g_imag->Draw("LPSAME");
+    // gunk2_imag->Draw("LPSAME");
+    // //gunk->Draw("LPSAME");
+    //
+    // App->Run();
+    //
+    //
+    // #endif
 
 
 

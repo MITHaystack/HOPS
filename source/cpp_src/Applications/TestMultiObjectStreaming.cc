@@ -11,11 +11,11 @@
 
 #include "MHO_ContainerDefinitions.hh"
 
-#ifdef USE_ROOT
-    #include "TApplication.h"
-    #include "MHO_RootCanvasManager.hh"
-    #include "MHO_RootGraphManager.hh"
-#endif
+// #ifdef USE_ROOT
+//     #include "TApplication.h"
+//     #include "MHO_RootCanvasManager.hh"
+//     #include "MHO_RootGraphManager.hh"
+// #endif
 
 using namespace hops;
 
@@ -245,40 +245,40 @@ int main(int argc, char** argv)
 
 
 
-    #ifdef USE_ROOT
-
-    std::cout<<"starting root plotting"<<std::endl;
-
-    //ROOT stuff for plots
-
-    TApplication* App = new TApplication("test",&argc,argv);
-
-    MHO_RootCanvasManager cMan;
-    auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
-    c->Divide(1,3);
-
-    auto r_slice = ctable->SliceView(":", ":", 0);
-    auto g_slice = ctable->SliceView(":", ":", 1);
-    auto b_slice = ctable->SliceView(":", ":", 2);
-
-    MHO_RootGraphManager gMan;
-    auto gr = gMan.GenerateGraph2D(r_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
-    auto gg = gMan.GenerateGraph2D(g_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
-    auto gb = gMan.GenerateGraph2D(b_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
-
-    c->cd(1);
-    gr->Draw("PCOL");
-    c->Update();
-    c->cd(2);
-    gg->Draw("PCOL");
-    c->Update();
-    c->cd(3);
-    gb->Draw("PCOL");
-    c->Update();
-
-    App->Run();
-
-    #endif
+    // #ifdef USE_ROOT
+    //
+    // std::cout<<"starting root plotting"<<std::endl;
+    //
+    // //ROOT stuff for plots
+    //
+    // TApplication* App = new TApplication("test",&argc,argv);
+    //
+    // MHO_RootCanvasManager cMan;
+    // auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
+    // c->Divide(1,3);
+    //
+    // auto r_slice = ctable->SliceView(":", ":", 0);
+    // auto g_slice = ctable->SliceView(":", ":", 1);
+    // auto b_slice = ctable->SliceView(":", ":", 2);
+    //
+    // MHO_RootGraphManager gMan;
+    // auto gr = gMan.GenerateGraph2D(r_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
+    // auto gg = gMan.GenerateGraph2D(g_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
+    // auto gb = gMan.GenerateGraph2D(b_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
+    //
+    // c->cd(1);
+    // gr->Draw("PCOL");
+    // c->Update();
+    // c->cd(2);
+    // gg->Draw("PCOL");
+    // c->Update();
+    // c->cd(3);
+    // gb->Draw("PCOL");
+    // c->Update();
+    //
+    // App->Run();
+    //
+    // #endif
 
 
 
