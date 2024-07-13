@@ -5,16 +5,9 @@
 #include <getopt.h>
 #include <complex>
 
-// #ifdef USE_ROOT
-//     #include "TApplication.h"
-//     #include "MHO_RootCanvasManager.hh"
-//     #include "MHO_RootGraphManager.hh"
-// #endif
-
 #include "MHO_SingleToneSignal.hh"
 #include "MHO_GaussianWhiteNoiseSignal.hh"
 #include "MHO_ContainerDefinitions.hh"
-
 
 #include "MHO_FastFourierTransform.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
@@ -157,60 +150,6 @@ int main(int argc, char** argv)
     aCyclicRotator.SetArgs(&ft_sum_samples);
     status = aCyclicRotator.Initialize();
     status = aCyclicRotator.Execute();
-
-    // #ifdef USE_ROOT
-    //
-    // std::cout<<"starting root plotting"<<std::endl;
-    //
-    // //ROOT stuff for plots
-    // int dummy_argc = 0;
-    // char tmp = '\0';
-    // char* argv_placeholder = &tmp;
-    // char** dummy_argv = &argv_placeholder;
-    // TApplication* App = new TApplication("test",&dummy_argc,dummy_argv);
-    //
-    // MHO_RootCanvasManager cMan;
-    // auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
-    // c->Divide(1,3);
-    //
-    // MHO_RootGraphManager gMan;
-    // auto g1 = gMan.GenerateComplexGraph1D(noise_samples, std::get<0>(noise_samples), 0);
-    // auto g2 = gMan.GenerateComplexGraph1D(tone_samples, std::get<0>(tone_samples), 0 );
-    // auto g3 = gMan.GenerateComplexGraph1D(sum_samples, std::get<0>(sum_samples), 0 );
-    //
-    // c->cd(1);
-    // g1->Draw("APL");
-    // c->Update();
-    // c->cd(2);
-    // g2->Draw("APL");
-    // c->Update();
-    // c->cd(3);
-    // g3->Draw("APL");
-    // c->Update();
-    //
-    //
-    // auto c2= cMan.CreateCanvas(std::string("ft_test"), 800, 800);
-    // c2->Divide(1,3);
-    // c2->cd(1);
-    //
-    // //plot magnitude squared
-    // auto f1 = gMan.GenerateComplexGraph1D(ft_noise_samples, std::get<0>(ft_noise_samples), 4);
-    // auto f2 = gMan.GenerateComplexGraph1D(ft_tone_samples, std::get<0>(ft_tone_samples), 4 );
-    // auto f3 = gMan.GenerateComplexGraph1D(ft_sum_samples, std::get<0>(ft_sum_samples), 4 );
-    //
-    // c2->cd(1);
-    // f1->Draw("APL");
-    // c2->Update();
-    // c2->cd(2);
-    // f2->Draw("APL");
-    // c2->Update();
-    // c2->cd(3);
-    // f3->Draw("APL");
-    // c2->Update();
-    //
-    // App->Run();
-    //
-    // #endif
 
     return 0;
 

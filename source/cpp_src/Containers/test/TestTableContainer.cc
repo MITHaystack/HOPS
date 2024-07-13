@@ -197,41 +197,6 @@ int main(int argc, char** argv)
         std::cout<<" error opening file to read"<<std::endl;
     }
 
-    //
-    // #ifdef USE_ROOT
-    //
-    //     std::cout<<"starting root plotting"<<std::endl;
-    //     //ROOT stuff for plots
-    //
-    //     TApplication* App = new TApplication("test",&argc,argv);
-    //
-    //     MHO_RootCanvasManager cMan;
-    //     auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
-    //     c->Divide(1,3);
-    //
-    //     auto r_slice = test->SliceView(":", ":", 0);
-    //     auto g_slice = test->SliceView(":", ":", 1);
-    //     auto b_slice = test->SliceView(":", ":", 2);
-    //
-    //     MHO_RootGraphManager gMan;
-    //     auto gr = gMan.GenerateGraph2D(r_slice, std::get<0>(*test), std::get<1>(*test) );
-    //     auto gg = gMan.GenerateGraph2D(g_slice, std::get<0>(*test), std::get<1>(*test) );
-    //     auto gb = gMan.GenerateGraph2D(b_slice, std::get<0>(*test), std::get<1>(*test) );
-    //
-    //     c->cd(1);
-    //     gr->Draw("PCOL");
-    //     c->Update();
-    //     c->cd(2);
-    //     gg->Draw("PCOL");
-    //     c->Update();
-    //     c->cd(3);
-    //     gb->Draw("PCOL");
-    //     c->Update();
-    //
-    //     App->Run();
-    //
-    // #endif
-
     delete test;
     delete test2;
 
