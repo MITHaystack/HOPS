@@ -50,6 +50,13 @@ if (PY_EXE)
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/select_bandpols.py.in" "${CMAKE_CURRENT_BINARY_DIR}/select_bandpols.py" @ONLY)
         install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/select_bandpols.py" DESTINATION ${BIN_INSTALL_DIR})
 
+        configure_file("${CMAKE_CURRENT_SOURCE_DIR}/generate_session_summary.py.in" "${CMAKE_CURRENT_BINARY_DIR}/generate_session_summary.py" @ONLY)
+        install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/generate_session_summary.py" DESTINATION ${BIN_INSTALL_DIR})
+
+        configure_file("${CMAKE_CURRENT_SOURCE_DIR}/compare_session.py.in" "${CMAKE_CURRENT_BINARY_DIR}/compare_session.py" @ONLY)
+        install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/compare_session.py" DESTINATION ${BIN_INSTALL_DIR})
+
+
     endif(HOPS3_PYTHON_EXTRAS)
 
 endif (PY_EXE)
