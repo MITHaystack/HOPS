@@ -127,6 +127,8 @@ MHO_DelayModel::ComputeModel()
         rem_t = rem_tdiff - (rem_int_no * rem_model_interval);
 
         //evaluate delay, rate, accel
+        std::cout<<"ref_tdiff = "<<ref_tdiff<<std::endl;
+        std::cout<<"ref_model_interval = "<<ref_model_interval<<std::endl;
         std::cout<<"ref int no = "<<ref_int_no<<std::endl;
         ref_coeff = fRefData->SubView(DELAY_COEFF_INDEX, ref_int_no); //extract spline coeffs for delay at this interval;
         EvaluateDelaySpline(ref_coeff, ref_t, ref_dra);
@@ -157,11 +159,12 @@ MHO_DelayModel::CheckSplineInterval(int n_intervals, double tdiff, int& int_no, 
         std::exit(1);
     }
 
-    if(tdiff < 0.0)
+    if(tdiff < 0.0 || int_no < 0)
     {
         msg_warn("fringe", "fourfit reference time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
         int_no = 0;
     }
+
     if(int_no >= n_intervals )
     {
         msg_warn("fringe", "fourfit reference time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
