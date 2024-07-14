@@ -152,6 +152,13 @@ if (HOPS_USE_MPI)
     find_package(MPI REQUIRED)
 endif(HOPS_USE_MPI)
 
+#explicity set the command to for vpal library fringe fitter via env var
+if(HOPS_IS_HOPS4)
+    set(HOPS_VPAL_FOURFIT "fourfit4")
+else()
+    set(HOPS_VPAL_FOURFIT "fourfit")
+endif(HOPS_IS_HOPS4)
+
 
 ################################################################################
 #stuff for controlling testing/test-data location

@@ -36,7 +36,7 @@ def get_fourfit_cmd():
 
 
 def get_fourfit_return_prefix():
-    return "fourfit:" #get_fourfit_cmd() + ":"
+    return "fourfit:"
 
 def check_thread_is_alive( a_thread ):
     if sys.version_info[0] == 3 and sys.version_info[1] >= 10:
