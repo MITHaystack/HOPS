@@ -117,7 +117,7 @@ def main():
     all_scan_df = pd.concat(summary_dataframe_list)
 
     #sort by time_tag
-    all_scan_df.sort_values(by=['time_tag'],inplace=True)
+    all_scan_df.sort_values(by=['time_tag', 'baseline'],inplace=True)
 
     print(all_scan_df)
 
