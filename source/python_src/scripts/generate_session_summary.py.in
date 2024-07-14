@@ -64,8 +64,12 @@ def main():
     #determine all possible baselines
     baseline_list = vpal.processing.construct_valid_baseline_list(abs_exp_dir, stations[0], stations[1:], network_reference_baselines_only=False)
 
+    print("all possible baselines: ", baseline_list)
+
     #needed for plot-naming
     control_file_stripped = re.sub('[/\.]', '', control_file)
+    #loop over fringe files and generate summary dataframes
+    summary_dataframe_list = list()
 
     for bline in baseline_list:
         #default output filename
@@ -87,6 +91,7 @@ def main():
 
         ################################################################################
         #collect/compute fringe files, and apply cuts
+        print("processing baseline: ", bline)
         set_commands = "set gen_cf_record true"
         ff_list = vpal.processing.load_and_batch_fourfit( \
             os.path.abspath(exp_dir), bline[0], bline[1], os.path.abspath(control_file), set_commands, \
@@ -101,25 +106,23 @@ def main():
 
         if len(ff_list) == 0:
             print("Error: no fringe files available after cuts, skipping baseline: ", bline)
-
         else:
-            #loop over fringe files and generate summary dataframes
-            summary_dataframe_list = list()
             for ff in ff_list:
                 ff_sum = ff.get_summary()
                 #convert to dataframe
                 ff_df = pd.DataFrame(ff_sum, index=[0])
                 summary_dataframe_list.append(ff_df)
-            #merge the dataframes of each scan
-            all_scan_df = pd.concat(summary_dataframe_list)
 
-            #sort by time_tag
-            all_scan_df.sort_values(by=['time_tag'],inplace=True)
+    #merge the dataframes of each scan
+    all_scan_df = pd.concat(summary_dataframe_list)
 
-            print(all_scan_df)
+    #sort by time_tag
+    all_scan_df.sort_values(by=['time_tag'],inplace=True)
 
-            #dump to file
-            all_scan_df.to_csv(outfile, sep='\t', encoding='utf-8')
+    print(all_scan_df)
+
+    #dump to file
+    all_scan_df.to_csv(outfile, sep='\t', encoding='utf-8')
 
 
 if __name__ == '__main__':          # official entry point
