@@ -71,7 +71,7 @@ def load_directory_fringe_files(dir_name, baselines_list, frequency_group=None, 
             fringe_objects.append(f_obj)
 
     #print(len(fringe_objects), 'fringe files after opening fringe objects')
-    
+
     return fringe_objects
 
 ################################################################################
@@ -134,7 +134,7 @@ def gather_fringe_files(base_directory, control_file, blines, pol_products=['I']
 
     # Now we have a list of fringe files that used the prescribed control file.  Check for the correct polproduct:
     ff_list = []
-    
+
     # apply the check on pol products
     for ff in fringe_file_list:
         ff_pp_list = ht.get_file_polarization_product_provisional(ff)
@@ -635,7 +635,7 @@ def load_and_batch_fourfit(exp_directory, network_reference_station, remote_stat
     #strip out the ones which do not match the control file used
     #compute the control file hash so we know which fringe files to look for
     control_file_hash = ffcontrol.get_control_file_hash(control_file_path)
-    
+
     hash_filter = DiscreteQuantityFilter("control_file_hash", [control_file_hash])
     ff_list = list(filter(hash_filter.does_object_pass_filter, ff_list))
 
@@ -662,7 +662,7 @@ def load_and_batch_fourfit(exp_directory, network_reference_station, remote_stat
             # hack to fix issue in fringe files or something when ffm reads fringe files that replaces underscore with .
             if '4C39.25' in ff.associated_root_file:
                 ff.associated_root_file = ff.associated_root_file.replace('4C39.25', '4C39_25')
-            
+
             if ff.associated_root_file in root_file_bl_pp_dict:
                 if pp in pol_products: #only concern ourselves with pol-products in our to-do list
                     root_file_bl_pp_dict[ os.path.abspath(ff.associated_root_file) ].add( (ff_bl, pp) ) #add baseline, pol-product tuple
@@ -708,7 +708,7 @@ def load_and_batch_fourfit(exp_directory, network_reference_station, remote_stat
                                     sys.exit(1)
                             else:
                                 set_cmd = set_commands
-                                
+
                             #print(root, pol_opt, base)
                             arg_list.append( [ pol_opt, base, control_file_path, root, False, set_cmd, False ] )
 
@@ -719,8 +719,8 @@ def load_and_batch_fourfit(exp_directory, network_reference_station, remote_stat
     #print('Number of combinations missing from the fringe file list, with the needed correl file: '+str(missing_fringe_counter))
 
     print("load_and_batch_fourfit: will run a total of " + str(len(arg_list)) + " fourfit processes, with up to: " + str(num_processes) + " running simultaneously")
-    #for ii in range(len(arg_list)):
-    #	print(arg_list[ii])
+    for ii in range(len(arg_list)):
+    	print(arg_list[ii])
 
     #run the fourfit processes
     processed_args_list = []
@@ -747,7 +747,7 @@ def load_and_batch_fourfit(exp_directory, network_reference_station, remote_stat
                 ff_filtered2.append(ff)
 
     print(str(len(ff_filtered2)) + " fringe files remaining after filters.")
-                
+
     return ff_filtered2
 
 
@@ -761,7 +761,7 @@ def load_batch_cut_and_sort(exp_directory, network_reference_station, remote_sta
                             pol_products=None, frequency_group=None, use_progress_ticker=True, \
                             log_fourfit_processes=False):
 
-    """ convenience function to do a load-and-batch fourfit, followed by some filters, 
+    """ convenience function to do a load-and-batch fourfit, followed by some filters,
     then join fringe files associated with a single scan-baseline into collections """
 
     if start_scan_limit == None:
@@ -821,7 +821,7 @@ def load_batch_cut_and_sort_mixedmode(exp_directory, network_reference_station, 
                             only_complete=True, pol_products=None, frequency_group=None, \
                             use_progress_ticker=True, log_fourfit_processes=False):
 
-    """ convenience function to do a load-and-batch fourfit, followed by some filters, 
+    """ convenience function to do a load-and-batch fourfit, followed by some filters,
     then join fringe files associated with a single scan-baseline into collections """
 
     if valid_quality_code_list == None:
