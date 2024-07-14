@@ -127,6 +127,7 @@ MHO_DelayModel::ComputeModel()
         rem_t = rem_tdiff - (rem_int_no * rem_model_interval);
 
         //evaluate delay, rate, accel
+        std::cout<<"ref int no = "<<ref_int_no<<std::endl;
         ref_coeff = fRefData->SubView(DELAY_COEFF_INDEX, ref_int_no); //extract spline coeffs for delay at this interval;
         EvaluateDelaySpline(ref_coeff, ref_t, ref_dra);
 
