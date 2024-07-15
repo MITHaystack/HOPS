@@ -58,6 +58,14 @@ MHO_DelayModel::ComputeModel()
         //figure out which spline interval overlaps with the fourfit reference time
         int ref_int_no = std::floor(ref_tdiff/ref_model_interval);
         int rem_int_no = std::floor(rem_tdiff/rem_model_interval);
+
+        //evaluate delay, rate, accel
+        //std::cout<<"ref tdiff duration = "<< std::chrono::duration<double>(ref_tdiff_duration).count() << std::endl;
+        ////std::cout<<"ref_dra0 = "<<ref_dra[0]<<std::endl;
+        //std::cout<<"ref_tdiff = "<<ref_tdiff<<std::endl;
+        //std::cout<<"ref_model_interval = "<<ref_model_interval<<std::endl;
+        //std::cout<<"ref int no = "<<ref_int_no<<std::endl;
+
         CheckSplineInterval(fRefData->GetDimension(INTERVAL_AXIS), ref_tdiff, ref_int_no, ref_code);
         CheckSplineInterval(fRemData->GetDimension(INTERVAL_AXIS), rem_tdiff, rem_int_no, rem_code);
 
@@ -80,6 +88,13 @@ MHO_DelayModel::ComputeModel()
         fDelay = rem_dra[0] - ref_dra[0];
         fRate = rem_dra[1] - ref_dra[1];
         fAccel = rem_dra[2] - ref_dra[2];
+
+        //std::cout<<"ref_dra0 = "<<ref_dra[0]<<std::endl;
+        //std::cout<<"ref_dra1 = "<<ref_dra[1]<<std::endl;
+        //std::cout<<"ref_dra2 = "<<ref_dra[2]<<std::endl;
+        //std::cout<<"rem_dra0 = "<<rem_dra[0]<<std::endl;
+        //std::cout<<"rem_dra1 = "<<rem_dra[1]<<std::endl;
+        //std::cout<<"rem_dra2 = "<<rem_dra[2]<<std::endl;
 
         msg_debug("fringe", "delay model: offset, rate, accel = "<<fDelay<<", "<<fRate<<", "<<fAccel<< eom);
 
@@ -119,6 +134,14 @@ MHO_DelayModel::ComputeModel()
         //re-calculate which spline interval we are on
         ref_int_no = std::floor(ref_tdiff/ref_model_interval);
         rem_int_no = std::floor(rem_tdiff/rem_model_interval);
+
+        //evaluate delay, rate, accel
+        //std::cout<<"ref tdiff duration = "<< std::chrono::duration<double>(ref_tdiff_duration).count() << std::endl;
+        //std::cout<<"ref_dra0 = "<<ref_dra[0]<<std::endl;
+        //std::cout<<"ref_tdiff = "<<ref_tdiff<<std::endl;
+        //std::cout<<"ref_model_interval = "<<ref_model_interval<<std::endl;
+        //std::cout<<"ref int no = "<<ref_int_no<<std::endl;
+
         CheckSplineInterval(fRefData->GetDimension(INTERVAL_AXIS), ref_tdiff, ref_int_no, ref_code);
         CheckSplineInterval(fRemData->GetDimension(INTERVAL_AXIS), rem_tdiff, rem_int_no, rem_code);
 
@@ -126,10 +149,7 @@ MHO_DelayModel::ComputeModel()
         ref_t = ref_tdiff - (ref_int_no * ref_model_interval);
         rem_t = rem_tdiff - (rem_int_no * rem_model_interval);
 
-        //evaluate delay, rate, accel
-        std::cout<<"ref_tdiff = "<<ref_tdiff<<std::endl;
-        std::cout<<"ref_model_interval = "<<ref_model_interval<<std::endl;
-        std::cout<<"ref int no = "<<ref_int_no<<std::endl;
+
         ref_coeff = fRefData->SubView(DELAY_COEFF_INDEX, ref_int_no); //extract spline coeffs for delay at this interval;
         EvaluateDelaySpline(ref_coeff, ref_t, ref_dra);
 
