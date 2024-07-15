@@ -411,12 +411,11 @@ def main():
             times = list(all_df[file_key]['time_tag'])
             for n in list(range(0, len(times))):
                 times[n] = times[n] - first_tk
-            snr = all_df[file_key]['snr']
-            snr_ref = all_df[reference_key]['snr']
-
+            snr = list(all_df[file_key]['snr'])
+            snr_ref = list(all_df[reference_key]['snr'])
             snr_perc_diff = []
-            for n in range(0,len(snr)):
-                snr_perc_diff.append( 100*abs( snr[n] - snr_ref[n])/snr_ref[n] )
+            for n in range(0,len(snr_ref)):
+                snr_perc_diff.append( 100.0*abs( float(snr[n]) - float(snr_ref[n]))/float(snr_ref[n]) )
             print(file_key)
             print("min, max, mean, median =", np.min(np.array(snr_perc_diff)), np.max(np.array(snr_perc_diff)) , np.mean(np.array(snr_perc_diff)), np.median(np.array(snr_perc_diff)) )
             print("--------------------")
