@@ -588,11 +588,11 @@ def main():
                 sn = list(all_df[reference_key]['scan_name'])
                 snr = list(all_df[reference_key]['snr'])
                 ref = list(all_df[reference_key]['adelay'])
-                obj =list(all_df[file_key]['adelay'])
+                obj = list(all_df[file_key]['adelay'])
                 for n in list( range(0, min( len(ref), len(obj) ) ) ):
-                    delta_val = obj[n] - ref[n]
+                    delta_val = float(obj[n]) - float(ref[n])
                     delta_list.append(delta_val*us_to_ps)
-                    if abs(delta_val*us_to_ps) > 10:
+                    if abs(delta_val*us_to_ps) > 0.1:
                         print(uk[n], other_uk[n])
                         print("large difference in Apriori Delay: ", delta_val*us_to_ps, " ps, for: ", uk[n], " in: ", sn[n], " with snr: ", snr[n])
                 delta[file_key] = delta_list
