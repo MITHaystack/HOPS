@@ -80,6 +80,11 @@ class FringeFileHandle(object):
         self.pcals = 0
         self.root_id =  ""
         self.ref_freq =  0.0
+
+        self.adelay = 0.0
+        self.arate = 0.0
+        self.aaccel = 0.0
+
         # self.datatype =  ""
         self.ref_elev =  0.0
         self.rem_elev =  0.0
@@ -210,6 +215,10 @@ class FringeFileHandle(object):
         self.mbd_error = self.fringe_data.t208.contents.mbd_error
         self.delay_rate = self.fringe_data.t208.contents.resid_rate * 1.0E6
 
+        self.adelay = self.fringe_data.t208.contents.adelay
+        self.arate = self.fringe_data.t208.contents.arate
+        self.aaccel = self.fringe_data.t208.contents.aaccel
+
         self.ref_freq = self.fringe_data.t205.contents.ref_freq
         self.total_phas =  utility.limit_periodic_quantity_to_range( self.fringe_data.t208.contents.totphase, 0 , 360.0)
         self.total_rate = self.fringe_data.t208.contents.tot_rate
@@ -315,6 +324,10 @@ class FringeFileHandle(object):
             td["pcals"] = self.pcals
             td["root_id"] = self.root_id
             td["ref_freq"] = self.ref_freq
+
+            td["adelay"] = self.adelay
+            td["arate"] = self.arate
+            td["aaccel"] = self.aaccel
 
             td["ref_elev"] = self.ref_elev
             td["rem_elev"] = self.rem_elev

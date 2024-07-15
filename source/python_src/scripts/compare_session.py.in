@@ -251,7 +251,8 @@ def main():
         '3: total mbd delta hist\n'+ \
         '4: dtec delta hist\n'+ \
         '5: residual mbd delta vs. time\n'+ \
-        '6: total mbd delta vs. time\n', \
+        '6: total mbd delta vs. time\n' + \
+        '7: apriori delay hist \n', \
     required=True)
 
     args = parser.parse_args()
@@ -324,10 +325,6 @@ def main():
         #drop the relevant rows
         all_df[file_key].drop(drop_idx, inplace=True)
         all_df[file_key].sort_values(by=['unique_key'], inplace=True)
-
-    # for file_key in all_keys:
-    #     all_df[file_key] = all_df[file_key].filter(items=unique_keys, axis=0)
-    #     all_df[file_key].sort_values(by=['unique_key'])
 
     #use the time tags from the reference df to select rows
     time_tag_keys = all_df[reference_key]['time_tag']
@@ -409,11 +406,18 @@ def main():
         for file_key in all_keys:
             if file_key != reference_key:
                 delta_list = list()
+                uk = list(all_df[reference_key]['unique_key'])
+                other_uk = list(all_df[file_key]['unique_key'])
+                sn = list(all_df[reference_key]['scan_name'])
+                snr = list(all_df[reference_key]['snr'])
                 ref = list(all_df[reference_key]['mbdelay'])
                 obj = list(all_df[file_key]['mbdelay'])
                 for n in list( range(0, min( len(ref), len(obj) ) ) ):
                     delta_val = obj[n] - ref[n]
                     delta_list.append(delta_val*us_to_ps)
+                    if abs(delta_val*us_to_ps) > 100:
+                        print(uk[n], other_uk[n])
+                        print("large difference in total MBD: ", delta_val*us_to_ps, " ps, for: ", uk[n], " in: ", sn[n], " with snr: ", snr[n])
                 delta[file_key] = delta_list
                 fig = plt.figure(figsize=(8, 6))
                 ax3 = fig.add_subplot(111)
@@ -438,7 +442,7 @@ def main():
                 for n in list( range(0, min( len(ref), len(obj) ) ) ):
                     delta_val = obj[n] - ref[n]
                     delta_list.append(delta_val*us_to_ps)
-                    if abs(delta_val*us_to_ps) > 100:
+                    if abs(delta_val*us_to_ps) > 10:
                         print(uk[n], other_uk[n])
                         print("large difference in total MBD: ", delta_val*us_to_ps, " ps, for: ", uk[n], " in: ", sn[n], " with snr: ", snr[n])
                 delta[file_key] = delta_list
@@ -570,8 +574,38 @@ def main():
                 # ax3.annotate('RMSE = ' + str(round(rmse,2)) + " ps" , xycoords='axes fraction', xy=(0.05, -0.3) )
                 # ax3.annotate('Outliers eliminated = ' + str(name_out), xycoords='axes fraction', xy=(0.05, -0.35) )
                 fig.subplots_adjust(bottom=0.24)
-
                 plt.show()
+
+
+
+    if mode == 7:
+        delta = dict()
+        for file_key in all_keys:
+            if file_key != reference_key:
+                delta_list = list()
+                uk = list(all_df[reference_key]['unique_key'])
+                other_uk = list(all_df[file_key]['unique_key'])
+                sn = list(all_df[reference_key]['scan_name'])
+                snr = list(all_df[reference_key]['snr'])
+                ref = list(all_df[reference_key]['adelay'])
+                obj =list(all_df[file_key]['adelay'])
+                for n in list( range(0, min( len(ref), len(obj) ) ) ):
+                    delta_val = obj[n] - ref[n]
+                    delta_list.append(delta_val*us_to_ps)
+                    if abs(delta_val*us_to_ps) > 10:
+                        print(uk[n], other_uk[n])
+                        print("large difference in Apriori Delay: ", delta_val*us_to_ps, " ps, for: ", uk[n], " in: ", sn[n], " with snr: ", snr[n])
+                delta[file_key] = delta_list
+                fig = plt.figure(figsize=(8, 6))
+                ax3 = fig.add_subplot(111)
+                outlier_aware_hist( np.array(delta[file_key]), *calculate_bounds(np.array(delta[file_key]) ), nbins=100 )
+                ax3.set_title('$\Delta$ apriori delay for : (' + file_key + ' - ' + reference_key +')', fontsize=20)
+                ax3.set_ylabel('Number')
+                ax3.set_xlabel('APriori delay difference (ps)')
+                plt.show()
+
+
+
 
     for bd in bad_scan_list:
         print("===========================")
