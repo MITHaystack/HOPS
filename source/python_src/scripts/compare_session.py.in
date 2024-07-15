@@ -23,12 +23,6 @@ import pandas as pd
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 
-# import matplotlib.pyplot as plt
-# import matplotlib.colors as mcolors
-# import matplotlib.colorbar as mcbar
-# import matplotlib.cm as cmx
-# from matplotlib.ticker import MultipleLocator, FormatStrFormatter
-
 #HOPS module imports
 import vpal.processing
 import vpal.utility
@@ -41,6 +35,7 @@ def col_nan_scatter(x,y, **kwargs):
     y = df['y']
     plt.gca()
     plt.scatter(x,y)
+
 
 def col_nan_kde_histo(x, **kwargs):
     df = pd.DataFrame({'x':x[:]})
@@ -208,42 +203,7 @@ def perform_least_squares_fit(x,y,yerr,names,mode=0):
     rmse = math.sqrt(rmse)
     print("RMSE = ", rmse)
 
-
-    # # Number of observations, with count to not account for masked values
-    # n_obs = yres.size
-    # #n_obs = yres.count()
-    #
-    # # Degrees of freedom
-    # dof = n_obs - npars - 1
-    #
-    # # Sum of weighted residuals
-    # sumwr = np.sum( (yres * yres) / (yerr * yerr) )
-    #
-    # # Sum of weights
-    # sumw  = np.sum( 1 / (yerr * yerr) )
-    #
-    # # Weighted rms
-    # wrms  = np.sqrt( (n_obs / dof) * sumwr / sumw)
-    #
-    # # Chi2 per degree of freedom and normalized rms
-    # chi2dof = sumwr / dof
-    # nrms  = np.sqrt(chi2dof)
-    #
-    # # Return
-    # return (wrms, nrms, n_obs, dof)
-
-
-    # Sum of weighted residuals
-    #$sumwr = np.sum( (yres * yres) / (yerr * yerr) )
-
-    # Sum of weights
-    #$sumw  = np.sum( 1 / (yerr * yerr) )
-
-    # Weighted rms
-    #wrms  = np.sqrt( (n_obs / dof) * sumwr / sumw)
     n_obs = len(y_res)
-    #n_obs = yres.count()
-
     # Degrees of freedom
     dof = n_obs - 1
 
@@ -256,8 +216,6 @@ def perform_least_squares_fit(x,y,yerr,names,mode=0):
         wrms += yr*yr/(yre*yre)
         sumw += 1./(yre*yre)
         wmean += yr/(yre*yre)
-    #wrms /= len(y_res)
-    #wrms = math.sqrt(wrms)
 
     wmean = wmean/sumw
 
