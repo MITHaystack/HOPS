@@ -307,9 +307,10 @@ def main():
     for index, row in ref_df.iterrows():
         uk = row['unique_key']
         snr = row['snr']
-        if snr < 10.0:
+        errcode = str(row['errcode']).strip()
+        if snr < 10.0 or errcode != "":
             unique_key_set.remove(uk)
-            print("removing data from: ", uk, " with snr: ", snr)
+            print("removing data from: ", uk, " with snr: ", snr, " errocode: ", errcode)
 
     #convert to list
     unique_keys = list(unique_key_set)
