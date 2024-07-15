@@ -88,9 +88,10 @@ def mad(data):
     return mad
 
 def calculate_bounds(data, z_thresh=3.5):
+    #return (None,None)
     MAD = mad(data)
     median = np.median(data)
-    const = z_thresh * MAD / 0.6745
+    const = 5*( z_thresh * MAD / 0.6745 )
     return (median - const, median + const)
 
 
@@ -268,10 +269,12 @@ def perform_least_squares_fit(x,y,yerr,names,mode=0):
     return (x0, np.array(x_trimmed), np.array(y_trimmed), np.array(yerr_trimmed), np.array(y_err),  np.array(y_fit), np.array(y_res), np.array(x_outlier), np.array(y_outlier), name_outlier, np.array(params), np.array(perr), rmse, wrms, wmean )
 
 
+################################################################################
+#constants
+us_to_ps = 1e6
 
 
 ################################################################################
-
 def main():
 
     parser = argparse.ArgumentParser(
@@ -294,27 +297,87 @@ def main():
     required=True)
 
     args = parser.parse_args()
-    files_to_process = dict()
-
+    all_files = dict()
+    other_files = dict()
     mode = args.mode
-    print(mode)
-
-    us_to_ps = 1e6
 
     #construct dict of files to compare/process
     for x in args.summary_files:
         file_name = os.path.abspath(x)
         file_key = os.path.splitext( os.path.basename(file_name) )[0]
-        files_to_process[file_key] = file_name
-
-    other_keys = files_to_process.keys()
+        other_files[file_key] = file_name
+        all_files[file_key] = file_name
+    other_keys = other_files.keys()
 
     #add the reference file
     reference_file_name = os.path.abspath(args.reference_file)
     reference_key = os.path.splitext( os.path.basename(reference_file_name) )[0]
-    files_to_process[reference_key] = reference_file_name
+    all_files[reference_key] = reference_file_name
+    all_keys = all_files.keys()
 
-    all_keys = files_to_process.keys()
+    all_df = dict()
+
+    #read in the reference file and sort by unique_key
+    ref_df = pd.read_csv(all_files[reference_key], sep='\t')
+    ref_df.sort_values(by=['unique_key'])
+    all_df[reference_key] = ref_df
+
+    #load other file info, these should all be dataframe compatible csv files
+    #then sort by unique_key
+    other_df = dict()
+    for file_key in other_keys:
+        other_df[file_key] = pd.read_csv(all_files[file_key], sep='\t')
+        other_df[file_key].sort_values(by=['unique_key'])
+        all_df[file_key] = other_df[file_key]
+
+    #now we want to generate a set of unique_keys which are common among all files
+    uk_set_list = list()
+    for file_key in all_keys:
+        print( all_df[file_key]['unique_key'] )
+        uk_set_list.append( set( list(all_df[file_key]['unique_key']) ) )
+        if file_key == reference_key:
+            print("number of unique reference keys: ", len(all_df[file_key]['unique_key']) )
+
+    #find intersection
+    unique_key_set = set.intersection(*uk_set_list)
+
+    print("number of overlapping unique keys: ", len(unique_key_set))
+
+    #next move any unique_keys which are associated with an SNR lower than 10
+    #in the reference data-set
+    for index, row in ref_df.iterrows():
+        uk = row['unique_key']
+        snr = row['snr']
+        if snr < 10.0:
+            unique_key_set.remove(uk)
+            print("removing data from: ", uk, " with snr: ", snr)
+
+    #convert to list
+    unique_keys = list(unique_key_set)
+
+    #next thing we need to do filter out everything that is not in the unique_key set
+    for file_key in all_keys:
+        drop_idx = list()
+        for index, row in all_df[file_key].iterrows():
+            uk = row['unique_key']
+            if uk not in unique_keys:
+                drop_idx.append(index)
+                print("will drop data from: ", uk, "for: ", file_key)
+        #drop the relevant rows
+        all_df[file_key].drop(drop_idx, inplace=True)
+        all_df[file_key].sort_values(by=['unique_key'], inplace=True)
+
+    # for file_key in all_keys:
+    #     all_df[file_key] = all_df[file_key].filter(items=unique_keys, axis=0)
+    #     all_df[file_key].sort_values(by=['unique_key'])
+
+    #use the time tags from the reference df to select rows
+    time_tag_keys = all_df[reference_key]['time_tag']
+
+    #place to put bad scans
+    bad_scan_list = set()
+
+    #map files to plot styles...only good up to 8 files
     count = 0;
     marker_style_index = dict()
     marker_color = ['k','r','b','g', 'orange', 'c','m','y']
@@ -322,37 +385,6 @@ def main():
     for k in all_keys:
         marker_style_index[k] = count % len(marker_color)
         count += 1
-
-    # quantities_of_interest = ['time_tag', 'scan_name', 'source' 'snr', 'delay_rate', 'dtec', 'quality', 'resid_delay', 'resid_phas' 'sbdelay', 'mbdelay', 'total_mbdelay', 'total_phas', 'total_rate', 'total_sbresid' ]
-    quantities_of_interest = ['time_tag', 'scan_name', 'source', 'snr', 'delay_rate', 'dtec', 'quality', 'resid_delay', 'sbdelay', 'mbdelay', 'total_mbdelay', 'total_rate', 'total_sbresid' ]
-    quantities_to_compare = ['snr'] #'dtec', 'total_mbdelay']
-    quantities_to_difference = ['dtec', 'mbdelay', 'total_mbdelay', 'total_rate']
-
-    #load the file info, these should all be dataframe compatible csv files
-    all_df = dict()
-    for file_key in all_keys:
-        all_df[file_key] = pd.read_csv(files_to_process[file_key], sep='\t')
-
-    bad_scan_list = set()
-
-    #use the time tags from the reference df to select rows
-    time_tag_keys = all_df[reference_key]['time_tag']
-
-    all_qdf = dict()
-    for q in quantities_to_compare:
-        qd_list = list()
-        for tk in time_tag_keys:
-            q_at_tk = dict()
-            for file_key in all_keys:
-                series = all_df[file_key].loc[ all_df[file_key]['time_tag'] == tk ]
-                if series.empty is False:
-                    q_at_tk[file_key] = series.iloc[0][q]
-                else:
-                    q_at_tk[file_key] = np.nan
-            qd_list.append(q_at_tk)
-        qdf = pd.DataFrame(qd_list)
-        all_qdf[q] = qdf
-        # print(qdf)
 
     SMALL_SIZE = 10
     MEDIUM_SIZE = 18
@@ -379,12 +411,11 @@ def main():
             times = list(all_df[file_key]['time_tag'])
             for n in list(range(0, len(times))):
                 times[n] = times[n] - first_tk
-            snr = all_df[file_key]['snr']
-            snr_ref = all_df[reference_key]['snr']
-
+            snr = list(all_df[file_key]['snr'])
+            snr_ref = list(all_df[reference_key]['snr'])
             snr_perc_diff = []
-            for n in range(0,len(snr)):
-                snr_perc_diff.append( 100*abs( snr[n] - snr_ref[n])/snr_ref[n] )
+            for n in range(0,len(snr_ref)):
+                snr_perc_diff.append( 100.0*abs( float(snr[n]) - float(snr_ref[n]))/float(snr_ref[n]) )
             print(file_key)
             print("min, max, mean, median =", np.min(np.array(snr_perc_diff)), np.max(np.array(snr_perc_diff)) , np.mean(np.array(snr_perc_diff)), np.median(np.array(snr_perc_diff)) )
             print("--------------------")
@@ -402,14 +433,14 @@ def main():
             if file_key != reference_key:
                 delta_list = list()
                 ref = list(all_df[reference_key]['snr'])
-                obj =list(all_df[file_key]['snr'])
+                obj = list(all_df[file_key]['snr'])
                 for n in list( range(0, min( len(ref), len(obj) ) ) ):
                     delta_val = ref[n] - obj[n]
                     delta_list.append(delta_val)
                 delta[file_key] = delta_list
                 fig = plt.figure(figsize=(8, 6))
                 ax3 = fig.add_subplot(111)
-                outlier_aware_hist( np.array(delta[file_key]), *calculate_bounds(np.array(delta[file_key]) ), nbins=20 )
+                outlier_aware_hist( np.array(delta[file_key]), *calculate_bounds(np.array(delta[file_key]) ), nbins=100 )
                 ax3.set_title('$\Delta$ SNR for: (' + file_key + ' - ' + reference_key +')', fontsize=20)
                 ax3.set_ylabel('Number')
                 ax3.set_xlabel('$\Delta$ SNR')
@@ -428,7 +459,7 @@ def main():
                 delta[file_key] = delta_list
                 fig = plt.figure(figsize=(8, 6))
                 ax3 = fig.add_subplot(111)
-                outlier_aware_hist( np.array(delta[file_key]), *calculate_bounds(np.array(delta[file_key]) ), nbins=20 )
+                outlier_aware_hist( np.array(delta[file_key]), *calculate_bounds(np.array(delta[file_key]) ), nbins=100 )
                 ax3.set_title('$\Delta$ residual MBD for : (' + file_key + ' - ' + reference_key +')', fontsize=20)
                 ax3.set_ylabel('Number')
                 ax3.set_xlabel('Residual MBD difference (ps)')
@@ -440,15 +471,22 @@ def main():
         for file_key in all_keys:
             if file_key != reference_key:
                 delta_list = list()
+                uk = list(all_df[reference_key]['unique_key'])
+                other_uk = list(all_df[file_key]['unique_key'])
+                sn = list(all_df[reference_key]['scan_name'])
+                snr = list(all_df[reference_key]['snr'])
                 ref = list(all_df[reference_key]['total_mbdelay'])
                 obj =list(all_df[file_key]['total_mbdelay'])
                 for n in list( range(0, min( len(ref), len(obj) ) ) ):
                     delta_val = obj[n] - ref[n]
                     delta_list.append(delta_val*us_to_ps)
+                    if abs(delta_val*us_to_ps) > 100:
+                        print(uk[n], other_uk[n])
+                        print("large difference in total MBD: ", delta_val*us_to_ps, " ps, for: ", uk[n], " in: ", sn[n], " with snr: ", snr[n])
                 delta[file_key] = delta_list
                 fig = plt.figure(figsize=(8, 6))
                 ax3 = fig.add_subplot(111)
-                outlier_aware_hist( np.array(delta[file_key]), *calculate_bounds(np.array(delta[file_key]) ), nbins=20 )
+                outlier_aware_hist( np.array(delta[file_key]), *calculate_bounds(np.array(delta[file_key]) ), nbins=100 )
                 ax3.set_title('$\Delta$ total MBD for : (' + file_key + ' - ' + reference_key +')', fontsize=20)
                 ax3.set_ylabel('Number')
                 ax3.set_xlabel('Total MBD difference (ps)')
@@ -467,7 +505,7 @@ def main():
                 delta[file_key] = delta_list
                 fig = plt.figure(figsize=(8, 6))
                 ax3 = fig.add_subplot(111)
-                outlier_aware_hist( np.array(delta[file_key]), *calculate_bounds(np.array(delta[file_key]) ), nbins=20 )
+                outlier_aware_hist( np.array(delta[file_key]), *calculate_bounds(np.array(delta[file_key]) ), nbins=100 )
                 ax3.set_title('$\Delta$ dTEC for : (' + file_key + ' - ' + reference_key +')', fontsize=20)
                 ax3.set_ylabel('Number')
                 ax3.set_xlabel('$\Delta$ dTEC (TEC units)')
