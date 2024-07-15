@@ -56,6 +56,8 @@ if (PY_EXE)
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/compare_session.py.in" "${CMAKE_CURRENT_BINARY_DIR}/compare_session.py" @ONLY)
         install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/compare_session.py" DESTINATION ${BIN_INSTALL_DIR})
 
+        configure_file("${CMAKE_CURRENT_SOURCE_DIR}/compare_session2.py.in" "${CMAKE_CURRENT_BINARY_DIR}/compare_session2.py" @ONLY)
+        install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/compare_session2.py" DESTINATION ${BIN_INSTALL_DIR})
 
     endif(HOPS3_PYTHON_EXTRAS)
 
