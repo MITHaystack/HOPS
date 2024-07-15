@@ -93,11 +93,27 @@ MHO_DelayModel::EvaluateDelaySpline(const XCoeffVectorType& coeff, double delta_
     {
         c = coeff(p);
         tp = std::pow(delta_t, p);
-        tpm1 = std::pow(delta_t, p-1);
-        tpm2 = std::pow(delta_t, p-2);
+        tpm1 = 0.0;
+        tpm2 = 0.0;
+
+        //std::cout<<"-----------------"<<std::endl;
+        //std::cout<<"p="<<p<<std::endl;
+        //std::cout<<"c="<<c<<std::endl;
+        //std::cout<<"tpm1="<<tpm1<<std::endl;
+        //std::cout<<"tpm2="<<tpm2<<std::endl;
+
         results[DELAY_INDEX] += c*tp;
-        results[RATE_INDEX] += p*c*tpm1;
-        results[ACCEL_INDEX] += p*(p-1)*c*tpm2;
+        if(p >= 1)
+        {
+            tpm1 = std::pow(delta_t, p-1);
+            results[RATE_INDEX] += p*c*tpm1;
+        }
+
+        if(p >= 2)
+        {
+            tpm2 = std::pow(delta_t, p-2);
+            results[ACCEL_INDEX] += p*(p-1)*c*tpm2;
+        }
     }
 }
 
