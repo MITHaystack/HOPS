@@ -72,6 +72,9 @@ MHO_MK4CorelInterface::~MHO_MK4CorelInterface()
 {
     clear_mk4corel(fCorel);
     free(fCorel);
+    // 
+    // if(fExtractedVisibilities){delete fExtractedVisibilities;};
+    // if(fExtractedWeights){delete fExtractedWeights;}
 }
 
 void
@@ -471,7 +474,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
 
     uch_visibility_store_type* bl_data = nullptr;
     uch_weight_store_type* bl_wdata = nullptr;
-
+    
     if(fHaveCorel && fHaveVex)
     {
 
@@ -735,7 +738,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     bl_wdata->Insert(std::string("origin"), std::string("mark4")); //add tag to indicate this was converted from mark4 data
     bl_wdata->Insert(std::string("root_code"), fRootCode);
 
-
+    //entirely delegate memory managment to the caller (we do not delete these in the destructor)
     fExtractedVisibilities = bl_data;
     fExtractedWeights = bl_wdata;
 }
