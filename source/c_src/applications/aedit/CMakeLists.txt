@@ -90,4 +90,23 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     hops_install_headers (${${EXENAME}_HEADERFILES})
     hops_install_executables(${EXENAME})
 
+
+else()
+    
+    if( NOT PGPLOT_FOUND )
+        message(WARNING "PGPLOT library was not found, will not build and install aedit.")
+    endif()
+    
+    if( NOT FFTW_FOUND )
+            message(WARNING "FFTW3 library was not found, will not build and install aedit.")
+    endif()
+    
+    if( NOT X11_FOUND )
+            message(WARNING "X11 library was not found, will not build and install aedit.")
+    endif()
+    
+    if( NOT GFORTRAN_FOUND )
+            message(WARNING "gfortran compiler/library was not found, will not build and install aedit.")
+    endif()
+
 endif()

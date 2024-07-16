@@ -125,4 +125,22 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
         hops_install_symlink( "${BIN_INSTALL_DIR}/${EXENAME}" "${BIN_INSTALL_DIR}/fourfit" )
     endif()
 
+else()
+    
+    if( NOT PGPLOT_FOUND )
+        message(WARNING "PGPLOT library was not found, will not build and install fourfit3.")
+    endif()
+    
+    if( NOT FFTW_FOUND )
+            message(WARNING "FFTW3 library was not found, will not build and install fourfit3.")
+    endif()
+    
+    if( NOT X11_FOUND )
+            message(WARNING "X11 library was not found, will not build and install fourfit3.")
+    endif()
+    
+    if( NOT GFORTRAN_FOUND )
+            message(WARNING "gfortran compiler/library was not found, will not build and install fourfit3.")
+    endif()
+    
 endif()
