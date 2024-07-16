@@ -2,7 +2,7 @@
 #
 # $Id: chk_misc_3756.sh 3995 2023-06-09 20:39:39Z gbc $
 #
-# canonical test suite for fourfit
+# canonical test suite for fourfit3
 #
 
 verb=false
@@ -27,11 +27,11 @@ cat $DATADIR/3756/cf_3758_GEHIMSTVY_pstokes4 >> cf3756.misc
 
 rm -f ff-misc-3756*.ps
 $verb && echo \
-fourfit -t -d diskfile:ff-misc-3756-%d.ps \\ && echo \
+fourfit3 -t -d diskfile:ff-misc-3756-%d.ps \\ && echo \
     -c cf3756.misc \\ && echo \
     $DATADIR/3756/328-1800/1803+784.1TDGBD
 
-fourfit -t -d diskfile:ff-misc-3756-%d.ps \
+fourfit3 -t -d diskfile:ff-misc-3756-%d.ps \
     -c cf3756.misc \
     $DATADIR/3756/328-1800/1803+784.1TDGBD 1>&2
 

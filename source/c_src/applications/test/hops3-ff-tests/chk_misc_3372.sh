@@ -2,7 +2,7 @@
 #
 # $Id: chk_misc_3372.sh 3995 2023-06-09 20:39:39Z gbc $
 #
-# canonical test suite for fourfit
+# canonical test suite for fourfit3
 #
 
 verb=false
@@ -28,11 +28,11 @@ grep -v $os $DATADIR/3372/cf3372 >> ./cf3372.misc
 
 rm -f ff-misc-3372-*.ps
 $verb && echo \
-fourfit -t -d diskfile:ff-misc-3372-%02d.ps -b \\?\\?:X \\ && echo \
+fourfit3 -t -d diskfile:ff-misc-3372-%02d.ps -b \\?\\?:X \\ && echo \
     -c ./cf3372.misc \\ && echo \
     $DATADIR/3372/193-1757/0529+483.vtqbsq
 
-fourfit -t -d diskfile:ff-misc-3372-%02d.ps -b \?\?:X \
+fourfit3 -t -d diskfile:ff-misc-3372-%02d.ps -b \?\?:X \
     -c ./cf3372.misc \
     $DATADIR/3372/193-1757/0529+483.vtqbsq 2>/dev/null 1>&2
 

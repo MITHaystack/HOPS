@@ -39,10 +39,10 @@ $verb && ls -l $rdir
 for bs in AI AT IT
 do
     $verb && echo \
-    fourfit -b $bs $rdir/$targ.$time
+    fourfit3 -b $bs $rdir/$targ.$time
 
     # AIT
-    fourfit -b $bs $rdir/$targ.$time
+    fourfit3 -b $bs $rdir/$targ.$time
     mv $rdir/$bs.*.*.$time .
 done
 chgrp $grp ??.*.*.$time
