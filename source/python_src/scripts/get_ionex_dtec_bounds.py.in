@@ -1,4 +1,4 @@
-#!@PYTHON@
+#!@PY_EXE@
 
 #    get_ionex_dtec_bounds.py - script to retrieve IONEX maps for ionospheric
 #    TEC; parse scan calc files for station position, orientation, and time;
