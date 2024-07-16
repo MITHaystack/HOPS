@@ -1,6 +1,5 @@
 if (PY_EXE)
 
-
     set(SOURCE_BASENAMES
         hops_version
         test_hops_access
@@ -50,6 +49,5 @@ if (PY_EXE)
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/${BASENAME}.py.in" "${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.py" @ONLY)
         install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.py" DESTINATION ${BIN_INSTALL_DIR})
     endforeach( BASENAME )
-    
 
 endif (PY_EXE)
