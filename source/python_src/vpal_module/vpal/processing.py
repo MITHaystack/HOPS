@@ -719,8 +719,10 @@ def load_and_batch_fourfit(exp_directory, network_reference_station, remote_stat
     #print('Number of combinations missing from the fringe file list, with the needed correl file: '+str(missing_fringe_counter))
 
     print("load_and_batch_fourfit: will run a total of " + str(len(arg_list)) + " fourfit processes, with up to: " + str(num_processes) + " running simultaneously")
-    for ii in range(len(arg_list)):
-    	print(arg_list[ii])
+    if len(arg_list) > 1:
+        print(arg_list[0])
+    # for ii in range(len(arg_list)):
+    #     print(arg_list[ii])
 
     #run the fourfit processes
     processed_args_list = []
