@@ -83,11 +83,11 @@ def mad(data):
     return mad
 
 def calculate_bounds(data, z_thresh=3.5):
-    #return (None,None)
-    MAD = mad(data)
-    median = np.median(data)
-    const = 5*( z_thresh * MAD / 0.6745 )
-    return (median - const, median + const)
+    return (None,None)
+    # MAD = mad(data)
+    # median = np.median(data)
+    # const = 5*( z_thresh * MAD / 0.6745 )
+    # return (median - const, median + const)
 
 
 #a not really robust way of dealing with sig-figs
@@ -254,6 +254,8 @@ def main():
         '6: total mbd delta vs. time\n' + \
         '7: apriori delay hist \n', \
     required=True)
+    parser.add_argument('-s', '--snr-min', type=float, dest='snr_min', help='set minimum allowed snr threshold, default=10.', default=10.0)
+    parser.add_argument('-q', '--quality-limit', type=int, dest='quality_lower_limit', help='set the lower limit on fringe quality (inclusive), default=0.', default=0)
 
     args = parser.parse_args()
     all_files = dict()
@@ -304,13 +306,16 @@ def main():
 
     #next move any unique_keys which are associated with an SNR lower than 10
     #in the reference data-set
+    qlimit = args.quality_lower_limit
+    snr_limit = args.snr_min
     for index, row in ref_df.iterrows():
         uk = row['unique_key']
         snr = row['snr']
         errcode = str(row['errcode']).strip()
-        if snr < 10.0 or errcode != "":
+        qcode = row['quality']
+        if snr < snr_limit or qcode < qlimit or errcode != "":
             unique_key_set.remove(uk)
-            print("removing data from: ", uk, " with snr: ", snr, " errocode: ", errcode)
+            print("removing data from: ", uk, " with snr: ", snr, " errcode: ", errcode, " quality: ", qcode)
 
     #convert to list
     unique_keys = list(unique_key_set)
