@@ -87,14 +87,23 @@ MHO_BasicFringeDataConfiguration::parse_set_string(const std::vector< std::strin
 std::string
 MHO_BasicFringeDataConfiguration::sanitize_directory(std::string dir)
 {
-
-    //do not resolve the full path
-    //just strip the root file if it exists in the dir name
+    //first lets determine if this actually a directory (or if is a file)
+    bool is_dir = MHO_DirectoryInterface::IsDirectory(dir);
     std::string path = dir;
-    std::size_t dir_end = dir.find_last_of("/");
-    if(dir_end != std::string::npos)
+    if(is_dir)
     {
-        path = dir.substr(0,dir_end) + "/";
+        //this is really a directory, so just make sure it ends with a '/'
+        if( path.back() != '/' ){path += "/";}
+    }
+    else 
+    {
+        //this is actually a file (probably the root file)
+        //so strip the file and return the directory it is in 
+        std::size_t dir_end = dir.find_last_of("/");
+        if(dir_end != std::string::npos)
+        {
+            path = dir.substr(0,dir_end) + "/";
+        }
     }
 
     msg_debug("fringe", "sanitized directory path: " << path << eom );
