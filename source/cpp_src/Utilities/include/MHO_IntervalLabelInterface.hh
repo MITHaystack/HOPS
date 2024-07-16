@@ -98,7 +98,8 @@ class MHO_IntervalLabelInterface
             std::string ikey = ConstructKey(lower_index, upper_index);
             obj["lower_index"] = std::min(lower_index, upper_index);
             obj["upper_index"] = std::max(lower_index, upper_index);
-            (*fIntervalLabelObjectPtr).emplace(ikey,obj);
+            (*fIntervalLabelObjectPtr)[ikey] = obj;
+            // (*fIntervalLabelObjectPtr).emplace(ikey,obj);
         }
 
 

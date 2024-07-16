@@ -102,7 +102,8 @@ class MHO_IndexLabelInterface
                 if( !(fIndexLabelObjectPtr->contains(ikey) ) )
                 {
                     //no such object, so insert one, make sure it gets an 'index' value
-                    (*fIndexLabelObjectPtr).emplace(ikey, fDummy);
+                    // (*fIndexLabelObjectPtr).emplace(ikey, fDummy);
+                    (*fIndexLabelObjectPtr)[ikey] = fDummy;
                     (*fIndexLabelObjectPtr)[ ikey ]["index"] = index;
                 }
 
