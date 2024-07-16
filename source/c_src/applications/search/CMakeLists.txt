@@ -98,4 +98,18 @@ hops_install_headers (${${EXENAME}_HEADERFILES})
 hops_install_executables(${EXENAME})
 hops_install_executables(${EXENAME2})
 
+else()
+    
+    if( NOT PGPLOT_FOUND )
+        message(WARNING "PGPLOT library was not found, will not build and install search.")
+    endif()
+    
+    if( NOT X11_FOUND )
+            message(WARNING "X11 library was not found, will not build and install search.")
+    endif()
+    
+    if( NOT GFORTRAN_FOUND )
+            message(WARNING "gfortran compiler/library was not found, will not build and install search.")
+    endif()
+
 endif()
