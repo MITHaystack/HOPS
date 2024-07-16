@@ -34,7 +34,6 @@ def get_fourfit_cmd():
     else:
         return "fourfit"
 
-
 def get_fourfit_return_prefix():
     return "fourfit:"
 
