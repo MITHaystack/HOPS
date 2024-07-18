@@ -4,9 +4,9 @@ hops_internal_include_directories(../../../extern/cli11)
 
 #list header files #############################################################
 set (FRINGE_HEADERFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NormFX.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayRate.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MBDelaySearch.hh
+    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NormFX.hh
+    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayRate.hh
+    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MBDelaySearch.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InterpolateFringePeak.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ComputePlotData.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayModel.hh
@@ -27,9 +27,9 @@ set (FRINGE_HEADERFILES
 
 #list source files #############################################################
 set( FRINGE_SOURCEFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NormFX.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayRate.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MBDelaySearch.cc
+    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NormFX.cc
+    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayRate.cc
+    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MBDelaySearch.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InterpolateFringePeak.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ComputePlotData.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayModel.cc
@@ -53,6 +53,12 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 #list of c++ libraries
 set(FRINGE_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Containers MHO_Calibration MHO_Control MHO_Initialization)
 
+if(HOPS_USE_CUDA)
+    hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Plugins/CUDA/CUDAModules/include)
+    list(APPEND FRINGE_LIBS MHO_CUDAModules ${CUDA_LIBRARIES} ${CUDA_CUFFT_LIBRARIES} )
+endif(HOPS_USE_CUDA)
+
+
 set_property( SOURCE ${FRINGE_SOURCEFILES}
     APPEND PROPERTY COMPILE_DEFINITIONS HOPS_AFILE_FORMAT_DIR="${DATA_INSTALL_DIR}"
 )
@@ -63,7 +69,6 @@ target_link_libraries (MHO_Fringe ${FRINGE_LIBS})
 
 hops_install_headers (${FRINGE_HEADERFILES})
 hops_install_libraries (MHO_Fringe )
-
 
 #install hops afio summary format specification
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/format)

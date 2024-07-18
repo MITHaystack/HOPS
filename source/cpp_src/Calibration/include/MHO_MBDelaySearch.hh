@@ -109,6 +109,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         std::size_t fNGridPoints;
         std::size_t fNSBD;
         std::size_t fNDR;
+        std::size_t fNDRSP;
         std::map<std::size_t, std::size_t> fMBDBinMap;
         double fRefFreq;
         int fSBDStart;

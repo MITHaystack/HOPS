@@ -27,12 +27,8 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         // //copy the input data into the workspace
         out->CopyTags(*in1);
 
-        //borrow this stupid routine from search_windows.c /////////////////////
-        TODO_FIXME_MSG("Fix the DRSP size calculation to remove upper limit of 8192.")
-        fDRSPSize = 8192;
-        while ( (fDRSPSize / 4) > fInDims[TIME_AXIS] ) {fDRSPSize /= 2;};
+        fDRSPSize = CalculateSearchSpaceSize(fInDims[TIME_AXIS]);
         msg_debug("fringe", "delay rate search space size = "<< fDRSPSize << eom );
-        ////////////////////////////////////////////////////////////////////////
 
         std::size_t np = fDRSPSize*4;
         ConditionallyResizeOutput(&(fInDims[0]), np, out);
@@ -209,6 +205,16 @@ MHO_DelayRate::ConditionallyResizeOutput(const std::size_t* dims,
     if(have_to_resize){ out->Resize( &(out_dim[0]) );}
 }
 
+
+int 
+MHO_DelayRate::CalculateSearchSpaceSize(int input_size)
+{
+    //borrow this stupid routine from search_windows.c /////////////////////
+    TODO_FIXME_MSG("Fix the DRSP size calculation to remove upper limit of 8192.")
+    int drsp_size = 8192;
+    while ( (drsp_size / 4) > input_size ) {drsp_size /= 2;};
+    return drsp_size;
+}
 
 
 }//end of namespace

@@ -4,7 +4,6 @@
 #include "MHO_BasicFringeFitter.hh"
 #include "MHO_Tokenizer.hh"
 
-
 namespace hops
 {
 

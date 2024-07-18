@@ -116,13 +116,15 @@ message(STATUS "The build timestamp is ${BUILD_TIME}")
 
 #options for triggering additional dependencies
 option(HOPS_ENABLE_TEST "Build developer tests." ON)
-option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms" ON)
+option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms (optional, but highly recommended)" ON)
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" ON)
 option(HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
 option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
 option(HOPS3_PYTHON_EXTRAS "Build python (ctypes) interface to hops3 libraries" ON)
 option(HOPS_IS_HOPS4 "Install the HOPS4 version of relevant executables (symlinked to expected names, e.g. fourfit, fplot)" OFF)
+option (HOPS_USE_OPENCL "Use OpenCL via C++ wrapper API." OFF)
+option( HOPS_USE_CUDA "Build CUDA support." OFF)
 
 if(HOPS3_USE_CXX)
     hops_add_cflag(HOPS3_USE_CXX)
@@ -151,6 +153,11 @@ endif()
 if (HOPS_USE_MPI)
     find_package(MPI REQUIRED)
 endif(HOPS_USE_MPI)
+
+if(HOPS_USE_CUDA)
+    hops_add_cxxflag(HOPS_USE_CUDA)
+endif(HOPS_USE_CUDA)
+
 
 #explicity set the command to for vpal library fringe fitter via env var
 if(HOPS_IS_HOPS4)

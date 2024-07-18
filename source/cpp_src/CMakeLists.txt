@@ -46,18 +46,26 @@ add_subdirectory(${CPPSOURCE}/Operators) #data operator base classes and generic
 add_subdirectory(${CPPSOURCE}/Calibration) #VLBI specific data containers and operators
 add_subdirectory(${CPPSOURCE}/Control) #library to parse old-fourfit control files
 add_subdirectory(${CPPSOURCE}/Initialization) #library to build objects/operators
-add_subdirectory(${CPPSOURCE}/Fringe) #library of fringe-fitting related functionality
+
 add_subdirectory(${CPPSOURCE}/MK4Interface) #interface to MK4 data types and import
 
 
 if(HOPS_USE_DIFXIO)
-add_subdirectory(${CPPSOURCE}/DiFXInterface)
+add_subdirectory(${CPPSOURCE}/DiFXInterface) #difxio input support
 endif(HOPS_USE_DIFXIO)
-
-add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) #opencl plugin
 
 if(HOPS_USE_PYBIND11)
     add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings) #python bindings
 endif(HOPS_USE_PYBIND11)
+
+if(HOPS_USE_OPENCL)
+add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) #opencl plugin
+endif(HOPS_USE_OPENCL)
+
+if(HOPS_USE_CUDA)
+add_subdirectory(${CPPSOURCE}/Plugins/CUDA) #cuda plugin
+endif(HOPS_USE_CUDA)
+
+add_subdirectory(${CPPSOURCE}/Fringe) #library of fringe-fitting related functionality
 
 add_subdirectory(${CPPSOURCE}/Applications) #applications

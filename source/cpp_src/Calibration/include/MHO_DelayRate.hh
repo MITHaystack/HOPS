@@ -40,6 +40,8 @@ class MHO_DelayRate: public MHO_BinaryOperator<
 
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;};
         int GetDelayRateSearchSpaceSize() const {return fDRSPSize;}
+        
+        int CalculateSearchSpaceSize(int input_size);
 
     protected:
 
@@ -51,6 +53,7 @@ class MHO_DelayRate: public MHO_BinaryOperator<
         virtual bool ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) override;
 
     private:
+        
 
         std::size_t fInDims[VIS_NDIM];
         std::size_t fOutDims[VIS_NDIM];
