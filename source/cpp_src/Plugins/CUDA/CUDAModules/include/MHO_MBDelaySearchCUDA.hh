@@ -37,7 +37,11 @@ namespace hops
 *@class MHO_MBDelaySearchCUDA
 *@author J. Barrett - barrettj@mit.edu
 *@dateTue Jul 16 10:40:47 PM EDT 2024
-*@brief implements the coarse MBD/SBD/DR search, see search.c
+*@brief This is an ultra basic CUDA implementation of the 
+* the coarse MBD/SBD/DR search, its quite primitive and only calls the CUFFT library 
+* to speed up the inner-most loop over (DR,MBD) space. It is not optimized and 
+* has far too much movement of data between host <-> device, additional work is need 
+* to optimize this routing.
 */
 
 using mbd_axis_pack = MHO_AxisPack< time_axis_type >;
