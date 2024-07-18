@@ -8,6 +8,14 @@
 #include "MHO_MBDelaySearch.hh"
 #include "MHO_InterpolateFringePeak.hh"
 
+#ifdef HOPS_USE_CUDA
+    #include "MHO_MBDelaySearchCUDA.hh"
+    #define MBD_SEARCH_TYPE MHO_MBDelaySearchCUDA
+#else
+    #define MBD_SEARCH_TYPE MHO_MBDelaySearch
+#endif
+
+
 namespace hops
 {
 
@@ -47,7 +55,7 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         void interpolate_peak();
 
         MHO_NormFX fNormFXOp;
-        MHO_MBDelaySearch fMBDSearch;
+        MBD_SEARCH_TYPE fMBDSearch;
         MHO_InterpolateFringePeak fPeakInterpolator;
         visibility_type* vis_data;
         weight_type* wt_data;

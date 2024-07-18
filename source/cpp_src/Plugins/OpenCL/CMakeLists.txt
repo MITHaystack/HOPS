@@ -17,7 +17,6 @@ if (HOPS_ENFORCE_CLFINISH)
 set(ENFORCE_CL_FINISH 1)
 endif (HOPS_ENFORCE_CLFINISH)
 
-option (HOPS_USE_OPENCL "Use OpenCL via C++ wrapper API." OFF)
 if (HOPS_USE_OPENCL)
 
     message(STATUS "Looking for OpenCL enabled devices ...")
