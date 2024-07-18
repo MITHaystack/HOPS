@@ -83,11 +83,10 @@ def mad(data):
     return mad
 
 def calculate_bounds(data, z_thresh=3.5):
-    return (None,None)
-    # MAD = mad(data)
-    # median = np.median(data)
-    # const = 5*( z_thresh * MAD / 0.6745 )
-    # return (median - const, median + const)
+    MAD = mad(data)
+    median = np.median(data)
+    const = 5*( z_thresh * MAD / 0.6745 )
+    return (median - const, median + const)
 
 
 #a not really robust way of dealing with sig-figs
