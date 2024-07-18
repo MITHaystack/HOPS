@@ -27,7 +27,6 @@
 
 
 #include "MHO_MultidimensionalFastFourierTransform.hh"
-#include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
 
 #include "MHO_JSONHeaderWrapper.hh"
 
@@ -141,7 +140,6 @@ class MHO_ComputePlotData
         MHO_OperatorToolbox* fToolbox;
         mho_json fVexInfo;
 
-        MHO_MultidimensionalPaddedFastFourierTransform< xpower_type > fPaddedFFTEngine;
         MHO_MultidimensionalFastFourierTransform< xpower_type > fFFTEngine;
         MHO_CyclicRotator< xpower_type > fCyclicRotator;
 
