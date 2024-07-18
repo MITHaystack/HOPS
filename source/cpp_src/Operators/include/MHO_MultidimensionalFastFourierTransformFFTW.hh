@@ -3,13 +3,13 @@
 
 
 #include <cstring>
-#include <fftw3.h>
+
+#include "MHO_FFTWTypes.hh"
 
 #include "MHO_Meta.hh"
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_UnaryOperator.hh"
-#include "MHO_FFTWTypes.hh"
 
 #include "MHO_TableContainer.hh"
 #include "MHO_MultidimensionalFastFourierTransformInterface.hh"
