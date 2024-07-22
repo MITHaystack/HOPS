@@ -129,5 +129,34 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout<<vtest<<" as difx mjd  = "<<mjd<<std::endl;
 
+    int vdif_epoch;
+    int vdif_secs;
+
+    hops_clock::to_vdif_format(hops_now, vdif_epoch, vdif_secs);
+    std::cout<<"current time now vdif epoch-secs = "<<vdif_epoch<<"-"<<vdif_secs<<std::endl;
+
+    hops_clock::to_vdif_format(hops_tp5, vdif_epoch, vdif_secs);
+    std::cout<<"time: "<<vtest<<", as vdif epoch-secs = "<<vdif_epoch<<"-"<<vdif_secs<<std::endl;
+
+    //test the conversion of a random date
+    std::string test2 = "2024-07-01T00:00:00.0Z";
+    auto hops_tp6 = hops_clock::from_iso8601_format(test2);
+
+    hops_clock::to_vdif_format(hops_tp6, vdif_epoch, vdif_secs);
+    std::cout<<"time: "<<test2<<", as vdif epoch-secs = "<<vdif_epoch<<"-"<<vdif_secs<<std::endl;
+
+    //test the conversion of a random date
+    test2 = "2024-12-31T23:59:59.0Z";
+    hops_tp6 = hops_clock::from_iso8601_format(test2);
+
+    hops_clock::to_vdif_format(hops_tp6, vdif_epoch, vdif_secs);
+    std::cout<<"time: "<<test2<<", as vdif epoch-secs = "<<vdif_epoch<<"-"<<vdif_secs<<std::endl;
+
+    auto hops_tp7 = hops_clock::from_vdif_format(vdif_epoch, vdif_secs);
+
+    std::string vdif_date = hops_clock::to_iso8601_format(hops_tp7);
+    std::cout<<"vdif: "<<vdif_epoch<<"@"<<vdif_secs<<" = "<<vdif_date<<std::endl;
+
+
     return 0;
 }
