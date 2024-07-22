@@ -128,6 +128,13 @@ class hops_clock
         time_point
         from_vex_format(const std::string& timestamp);
 
+        static
+        time_point
+        from_vdif_format(int& vdif_epoch, int& vdif_seconds);
+
+        static
+        void
+        to_vdif_format(const time_point& tp, int& vdif_epoch, int& vdif_second);
 
         static
         time_point
@@ -585,6 +592,110 @@ hops_clock::to_vex_format(const time_point& tp, bool truncate_to_nearest_second)
     return ss.str();
 }
 
+
+inline
+void
+hops_clock::to_vdif_format(const time_point& tp, int& vdif_epoch, int& vdif_seconds)
+{
+    using namespace date;
+    using namespace std::chrono;
+
+    //convert the time point to sys time, and extract the date
+    auto sys_tp = hops_clock::to_sys(tp);
+    auto dp = sys_days( floor<date::days>( sys_tp ) );
+
+    //get all of the date information so we can figure out the epoch
+    year_month_day ymd{dp};
+    auto year = ymd.year();
+    auto month = ymd.month();
+    auto day = ymd.day();
+
+    //(we have two 6 month epochs per year, and count from start of century)
+    int iyear = static_cast<int>(year);
+    unsigned int imonth = static_cast<unsigned int>(month);
+    int epoch = (iyear%100)*2;
+
+    //now figure out if we are using the Jan 1st epoch, or the July 1st epoch
+    if( imonth < 7)
+    {
+        imonth = 1;
+    }
+    else
+    {
+        epoch += 1;
+        imonth = 7;
+    }
+    //set the day to the first of the month
+    day = date::day(1);
+    int hours = 0;
+    int minutes = 0;
+    int integer_sec = 0;
+
+    //now figure out the epoch date
+    //may want to eliminate string conversion in favor of something faster
+    std::stringstream ss;
+    ss << iyear;
+    ss << "-";
+    ss << std::setfill('0') << std::setw(2) << imonth;
+    ss << "-";
+    ss << std::setfill('0') << std::setw(2) << static_cast<unsigned int>(day);
+    ss << "T";
+    ss << std::setfill('0') << std::setw(2) << hours;
+    ss << ":";
+    ss << std::setfill('0') << std::setw(2) << minutes;
+    ss << ":";
+    ss << std::setfill('0') << std::setw(2) << integer_sec;
+    ss << "Z";
+    std::string epoch_iso8601 =  ss.str();
+    auto epoch_tp = from_iso8601_format(epoch_iso8601);
+    int secs = std::chrono::duration_cast<std::chrono::seconds>(tp - epoch_tp).count();
+
+    vdif_epoch = epoch;
+    vdif_seconds = secs;
+}
+
+
+inline
+hops_clock::time_point
+hops_clock::from_vdif_format(int& vdif_epoch, int& vdif_seconds)
+{
+    using namespace date;
+    using namespace std::chrono;
+
+    int start_year = 2000;
+    int n_years = std::floor(vdif_epoch/2);
+    int iyear = start_year + n_years;
+
+    std::cout<<"n_years = "<<n_years<<" iyear = "<<iyear<<std::endl;
+
+    unsigned int imonth = 1;
+    if(vdif_epoch%2 == 1){imonth = 7;} //second half of the year
+    unsigned int iday = 1;
+    int hours = 0;
+    int minutes = 0;
+    int integer_sec = 0;
+
+    //now figure out the epoch date
+    //may want to eliminate string conversion in favor of something faster
+    std::stringstream ss;
+    ss << iyear;
+    ss << "-";
+    ss << std::setfill('0') << std::setw(2) << imonth;
+    ss << "-";
+    ss << std::setfill('0') << std::setw(2) << iday;
+    ss << "T";
+    ss << std::setfill('0') << std::setw(2) << hours;
+    ss << ":";
+    ss << std::setfill('0') << std::setw(2) << minutes;
+    ss << ":";
+    ss << std::setfill('0') << std::setw(2) << integer_sec;
+    ss << "Z";
+    std::string epoch_iso8601 =  ss.str();
+    std::cout<<"epoch = "<<epoch_iso8601<<std::endl;
+    auto epoch_tp = from_iso8601_format(epoch_iso8601);
+    auto tp = epoch_tp + std::chrono::seconds(vdif_seconds);
+    return tp;
+}
 
 
 inline
