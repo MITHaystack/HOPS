@@ -144,7 +144,6 @@ class hops_clock
         double
         to_mjd(const time_point& mjd_epoch, const double& epoch_offset, const time_point& tp);
 
-
         static
         std::string
         to_vex_format(const time_point& tp, bool truncate_to_nearest_second = false);
