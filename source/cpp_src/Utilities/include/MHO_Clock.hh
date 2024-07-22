@@ -459,8 +459,8 @@ hops_clock::to_legacy_hops_date(const time_point& tp)
     //get all of the date information
     date::year_month_day ymd{dp};
     auto year = ymd.year();
-    auto month = ymd.month();
-    auto day = ymd.day();
+    // auto month = ymd.month();
+    // auto day = ymd.day();
 
     //get the ordinal day of the year
     auto ordinal_day = day_of_year(dp);
@@ -540,8 +540,8 @@ hops_clock::to_vex_format(const time_point& tp, bool truncate_to_nearest_second)
     //get all of the date information
     year_month_day ymd{dp};
     auto year = ymd.year();
-    auto month = ymd.month();
-    auto day = ymd.day();
+    // auto month = ymd.month();
+    // auto day = ymd.day();
 
     //get the ordinal day of the year
     auto ordinal_day = day_of_year(dp);
