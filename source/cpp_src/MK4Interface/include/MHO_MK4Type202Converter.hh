@@ -36,4 +36,4 @@ namespace hops
     json convertToJSON(const type_202& t);
 }
 
-#endif /* end of include guard: MHO_MKType200Converter */
+#endif /* end of include guard: MHO_MKType202Converter */

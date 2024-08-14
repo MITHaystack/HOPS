@@ -3,6 +3,7 @@
 #include "MHO_MultiTypeMap.hh"
 #include <array>
 #include <iostream>
+#include <fstream>
 #include <string>
 
 namespace hops
@@ -66,38 +67,27 @@ MHO_MK4FringeInterface::ExportFringeFilesToStructs()
 
 void MHO_MK4FringeInterface::ExportFringeStructsToJSON(){
     // Call typ200 functions here
-    json jsonDump = {{"type_200", MHO_MK4Type200Converter::convertToJSON(fFringe->t200)},
-                    {"type_201", MHO_MK4Type201Converter::convertToJSON(fFringe->t201)},
-                    {"type_202", MHO_MK4Type202Converter::convertToJSON(fFringe->t202)},
-                    {"type_203", MHO_MK4Type203Converter::convertToJSON(fFringe->t203)},
-                    {"type_204", MHO_MK4Type204Converter::convertToJSON(fFringe->t204)},
-                    {"type_205", MHO_MK4Type205Converter::convertToJSON(fFringe->t205)},
-                    {"type_206", MHO_MK4Type206Converter::convertToJSON(fFringe->t206)},
-                    {"type_207", MHO_MK4Type207Converter::convertToJSON(fFringe->t207)},
-                    {"type_208", MHO_MK4Type208Converter::convertToJSON(fFringe->t208)},
-                    {"type_210", MHO_MK4Type210Converter::convertToJSON(fFringe->t210)},
-                    {"type_212", MHO_MK4Type212Converter::convertToJSON(fFringe->t212)},
+    // TODO: change what is passed to the converter functions to instances of structs of each of those types.
+    json jsonDump = {{"type_200", MHO_MK4Type200Converter::convertToJSON(fFringe.t200)},
+                    {"type_201", MHO_MK4Type201Converter::convertToJSON(fFringe.t201)},
+                    {"type_202", MHO_MK4Type202Converter::convertToJSON(fFringe.t202)},
+                    {"type_203", MHO_MK4Type203Converter::convertToJSON(fFringe.t203)},
+                    {"type_204", MHO_MK4Type204Converter::convertToJSON(fFringe.t204)},
+                    {"type_205", MHO_MK4Type205Converter::convertToJSON(fFringe.t205)},
+                    {"type_206", MHO_MK4Type206Converter::convertToJSON(fFringe.t206)},
+                    {"type_207", MHO_MK4Type207Converter::convertToJSON(fFringe.t207)},
+                    {"type_208", MHO_MK4Type208Converter::convertToJSON(fFringe.t208)},
+                    {"type_210", MHO_MK4Type210Converter::convertToJSON(fFringe.t210)},
+                    {"type_212", MHO_MK4Type212Converter::convertToJSON(fFringe.t212)},
     }
-
-    // Print out fringe file data
-    //cout << fFringe;
-    std::ofstream o("type-200s-dump.json");
-    o << std::setw(4) << jsonDump << std::endl;
-
-    //  
+    // Write fringe file data to file.
+    std::ofstream output("type-200s-dump.json");
+    output << std::setw(4) << jsonDump << std::endl;
+    }
 }
 
-void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const std::string& inputFile){
-    // call ReadFringeFile
-    // call ExportFringeFilesToStructs
-    // call ExportFringeStructsToJSON
-    //std::cout << inputFile << endl;
-    // if (ReadFringeFile(inputFile)) {
-        // self.ExportFringeFilesToStructs();
-        // self.ExportFringeStructsToJSON();
-
-    //}
-
-}
+void MHO_MK4FringeInterface::ExportFringeFilesToJSON(){
+    //jsonDump = ExportFringeStructsToJSON();
+    //MHO_MK4FringeInterface::ExportFringeStructsToJSON();
 
 }

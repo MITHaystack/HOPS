@@ -1,6 +1,4 @@
-#ifndef MHO_MKType200Converter_HH__
-#define MHO_MKType200Converter_HH__
-
+#pragma once
 //include the mk4 IO library
 //The messy ifndef guards around the brackets are needed because the dfio library
 //can optionally be compiled as either c or c++
@@ -36,4 +34,3 @@ namespace hops
     json convertToJSON(const type_200& t);
 }
 
-#endif /* end of include guard: MHO_MKType200Converter */

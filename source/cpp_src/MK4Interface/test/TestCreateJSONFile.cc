@@ -6,7 +6,8 @@ using namespace hops;
 
 int main(int argc, char **argv) {
 
-  // Call all the type200 tests here
+  // Move all the code in the type200 tests that fills the structs with 
+  // data to their own files and return a pointer to the struct.
   //std::ofstream o("fringe-files.json");
 
   // Call interface to read fringe file

@@ -16,6 +16,7 @@ set (MK4INTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type210Converter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type212Converter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4JSONDateConverter.hh
+    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4FringeInterface.hh
 )
 
 #list source files #############################################################
@@ -36,6 +37,7 @@ set( MK4INTERFACE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type210Converter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type212Converter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4JSONDateConverter.cc
+    #${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4FringeInterface.cc
 )
 
 #declare header paths ##########################################################

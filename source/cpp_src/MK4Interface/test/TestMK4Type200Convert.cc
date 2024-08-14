@@ -46,6 +46,7 @@ int main(int argc, char **argv) {
   my200.frt.hour = 22;
   my200.frt.minute = 22;
   my200.frt.second = 22;
+  //fillType200(&my200);
 
   json obj = convertToJSON(my200);
 
