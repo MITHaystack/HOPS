@@ -70,18 +70,31 @@ void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const
      const type_205 &t205, const type_206 &t206, const type_207 &t207, const type_208 &t208, const type_210 &t210, const type_212 &t212){
     // Call typ200 functions here
     // TODO: change what is passed to the converter funcotions to instances of structs of each of those types.
-    json jsonDump = {{"type_200", MHO_MK4Type200Converter::convertToJSON(t200)},
-                    {"type_201", MHO_MK4Type201Converter::convertToJSON(t201)},
-                    {"type_202", MHO_MK4Type202Converter::convertToJSON(t202)},
-                    {"type_203", MHO_MK4Type203Converter::convertToJSON(t203)},
-                    {"type_204", MHO_MK4Type204Converter::convertToJSON(t204)},
-                    {"type_205", MHO_MK4Type205Converter::convertToJSON(t205)},
-                    {"type_206", MHO_MK4Type206Converter::convertToJSON(t206)},
-                    {"type_207", MHO_MK4Type207Converter::convertToJSON(t207)},
-                    {"type_208", MHO_MK4Type208Converter::convertToJSON(t208)},
-                    {"type_210", MHO_MK4Type210Converter::convertToJSON(t210)},
-                    {"type_212", MHO_MK4Type212Converter::convertToJSON(t212)},
-    }
+    // json jsonDump = {{"type_200", MHO_MK4Type200Converter::convertToJSON(t200)},
+    //                 {"type_201", MHO_MK4Type201Converter::convertToJSON(t201)},
+    //                 {"type_202", MHO_MK4Type202Converter::convertToJSON(t202)},
+    //                 {"type_203", MHO_MK4Type203Converter::convertToJSON(t203)},
+    //                 {"type_204", MHO_MK4Type204Converter::convertToJSON(t204)},
+    //                 {"type_205", MHO_MK4Type205Converter::convertToJSON(t205)},
+    //                 {"type_206", MHO_MK4Type206Converter::convertToJSON(t206)},
+    //                 {"type_207", MHO_MK4Type207Converter::convertToJSON(t207)},
+    //                 {"type_208", MHO_MK4Type208Converter::convertToJSON(t208)},
+    //                 {"type_210", MHO_MK4Type210Converter::convertToJSON(t210)},
+    //                 {"type_212", MHO_MK4Type212Converter::convertToJSON(t212)},
+    
+    json jsonDump = {{"type_200", convertToJSON(t200)},
+                    {"type_201", convertToJSON(t201)},
+                    {"type_202", convertToJSON(t202)},
+                    {"type_203", convertToJSON(t203)},
+                    {"type_204", convertToJSON(t204)},
+                    {"type_205", convertToJSON(t205)},
+                    {"type_206", convertToJSON(t206)},
+                    {"type_207", convertToJSON(t207)},
+                    {"type_208", convertToJSON(t208)},
+                    {"type_210", convertToJSON(t210)},
+                    {"type_212", convertToJSON(t212)},
+    };
+    
     // Write fringe file data to file.
     std::ofstream output("type-200s-dump.json");
     output << std::setw(4) << jsonDump << std::endl;
