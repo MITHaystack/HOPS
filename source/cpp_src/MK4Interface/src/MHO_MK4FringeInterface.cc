@@ -80,8 +80,7 @@ MHO_MK4FringeInterface::ExportFringeFilesToStructs()
 
 void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const type_201 &t201, const type_202 &t202, const type_203 &t203, const type_204 &t204,
      const type_205 &t205, const type_206 &t206, const type_207 &t207, const type_208 &t208, const type_210 &t210, const type_212 &t212){
-    // Call typ200 functions here
-    // TODO: change what is passed to the converter funcotions to instances of structs of each of those types.
+   
     json jsonDump = {{"type_200", convertToJSON(t200)},
                     {"type_201", convertToJSON(t201)},
                     {"type_202", convertToJSON(t202)},
@@ -94,6 +93,7 @@ void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const
                     {"type_210", convertToJSON(t210)},
                     {"type_212", convertToJSON(t212)},
     };
+    
     // Write fringe file data to file.
     std::ofstream output("type-200s-dump.json");
     output << std::setw(4) << jsonDump << std::endl;
