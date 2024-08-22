@@ -13,6 +13,7 @@
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_UnaryOperator.hh"
+#include "MHO_StationModel.hh"
 
 #include "MHO_Reducer.hh"
 
@@ -38,7 +39,8 @@ class MHO_CircularFieldRotationCorrection: public MHO_UnaryOperator< visibility_
 
         void SetPolProductSet(std::vector< std::string >& pp_vec){ fPolProductSet = pp_vec;};
 
-        //these data objects are not yet used to the fullest extent, 
+        void SetFourfitReferenceTimeVexString(std::string frt_vex_string){fFourfitRefTimeString = frt_vex_string;};
+        //these data objects are not yet used to the fullest extent,
         //but they could be if we want to apply a time-dependant corrections
         //to the pol-product pre-factors
         void SetReferenceStationCoordinateData(station_coord_type* ref_data){fRefData = ref_data;};
@@ -73,8 +75,19 @@ class MHO_CircularFieldRotationCorrection: public MHO_UnaryOperator< visibility_
 
         double fRefParAngle;
         double fRemParAngle;
+        double fRefElevation;
+        double fRemElevation;
+
+        std::string fFourfitRefTimeString;
+
         std::string fRefMountType;
         std::string fRemMountType;
+
+        station_coord_type* fRefData;
+        station_coord_type* fRemData;
+
+        MHO_StationModel fRefModel;
+        MHO_StationModel fRemModel;
 
 };
 

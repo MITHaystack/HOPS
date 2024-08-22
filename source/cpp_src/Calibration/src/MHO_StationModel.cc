@@ -22,6 +22,7 @@ MHO_StationModel::MHO_StationModel()
     fU = 0.0;
     fV = 0.0;
     fW = 0.0;
+    fEvalTimeString = "";
 };
 
 MHO_StationModel::~MHO_StationModel(){};
@@ -32,9 +33,6 @@ MHO_StationModel::ComputeModel()
 {
     if(fData !=nullptr)
     {
-        //convert time string to time point
-        auto eval_time = hops_clock::from_vex_format(fEvalTimeString);
-
         //get the station code
         std::string code = RetrieveTag<std::string>(fData, "station_code");
         msg_debug("fringe", "station code: " << code << eom );
@@ -43,6 +41,14 @@ MHO_StationModel::ComputeModel()
         std::string model_start = RetrieveTag<std::string>(fData, "model_start");
         //convert string to time point
         auto start = hops_clock::from_vex_format(model_start);
+
+        //if we have an evaluation time, then convert the vex string to a time point
+        //otherwise the default is to just use the start time of the model
+        auto eval_time = start;
+        if(fEvalTimeString != "")
+        {
+            eval_time = hops_clock::from_vex_format(fEvalTimeString);
+        }
 
         msg_debug("fringe", "evaluation time is: "<< hops_clock::to_iso8601_format(eval_time)<< eom);
         msg_debug("fringe", "model start time is: "<<hops_clock::to_iso8601_format(start)<< eom);
