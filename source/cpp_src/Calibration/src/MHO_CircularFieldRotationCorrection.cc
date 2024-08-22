@@ -11,7 +11,7 @@
 #define CASSEGRAIN      1
 #define NASMYTHLEFT     2
 #define NASMYTHRIGHT    3
- 
+
 //pol-product
 #define POL_LL 0
 #define POL_RR 1
@@ -40,10 +40,10 @@ compute_field_rotations_fixed(std::complex<double> cpolvalue[4], double *par_ang
     elmult[CASSEGRAIN]    = 0.0;
     elmult[NASMYTHLEFT]   = - 1.0;
     elmult[NASMYTHRIGHT]  = + 1.0;
-    for(pp = 0; pp < 4; pp++) 
+    for(pp = 0; pp < 4; pp++)
     {
         cpolvalue[pp] = 0.0;
-        switch(pp) 
+        switch(pp)
         {
             case POL_LL: radangle =
                 (+1) * (par_angle[0] + elmult[mount_type[0]]*elevation[0]) +
@@ -72,7 +72,18 @@ namespace hops
 {
 
 
-MHO_CircularFieldRotationCorrection::MHO_CircularFieldRotationCorrection(){};
+MHO_CircularFieldRotationCorrection::MHO_CircularFieldRotationCorrection()
+{
+    fRefParAngle = 0;
+    fRemParAngle = 0;
+    fRefElevation = 0;
+    fRemElevation = 0;
+    fFourfitRefTimeString = "";
+    fRefMountType = "";
+    fRemMountType = "";
+    fRefData = nullptr;
+    fRemData = nullptr;
+};
 
 MHO_CircularFieldRotationCorrection::~MHO_CircularFieldRotationCorrection(){};
 
@@ -94,7 +105,21 @@ MHO_CircularFieldRotationCorrection::ExecuteOutOfPlace(const visibility_type* in
 }
 
 bool
-MHO_CircularFieldRotationCorrection::InitializeInPlace(visibility_type* /*in*/){return true;}
+MHO_CircularFieldRotationCorrection::InitializeInPlace(visibility_type* /*in*/)
+{
+    //evaluate the elevation angles
+    //fRefModel.SetEvaluationTimeVexString(frt_vex_string);
+    fRefModel.SetStationData(fRefData);
+    fRefModel.ComputeModel();
+    fRefElevation = fRefModel.GetElevation();
+
+    //fRemModel.SetEvaluationTimeVexString(frt_vex_string);
+    fRemModel.SetStationData(fRemDatadata);
+    fRemModel.ComputeModel();
+    fRemElevation = fRemModel.GetElevation();
+
+    return true;
+}
 
 bool
 MHO_CircularFieldRotationCorrection::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/)
@@ -127,29 +152,29 @@ int DetermineMountCode(const std::string& mount) const
 std::complex<double>
 MHO_CircularFieldRotationCorrection::GetPrefactor(std::string pp_label)
 {
-    //this is not super efficient, since we recalculate 4 factors for each pol-product 
-    //could reorganize this, but its probably not that critical right now 
+    //this is not super efficient, since we recalculate 4 factors for each pol-product
+    //could reorganize this, but its probably not that critical right now
     std::complex<double> factor = 0;
-    
+
     //if we cannot find this label in the set, return zero
     if( std::find( fPolProductSet.begin(), fPolProductSet.end(), pp_label) == fPolProductSet.end()  ){return factor;}
-    
+
     std::complex<double> pp_factors[4];
     double par_angle[2];
     double elevation[2];
     int mount_type[2];
-    
+
     par_angle[0] = fRefParAngle;
     par_angle[1] = fRemParAngle;
-    
+
     //TODO FILL IN VALUES from station coords!!
     elevation[0] = 0.0;
     elevation[1] = 0.0;
-    
+
     mount_type[0] = DetermineMountCode(fRefMountType);
     mount_type[1] = DetermineMountCode(fRemMountType);
-    
-    //call Geoff's routine 
+
+    //call Geoff's routine
     compute_field_rotations_fixed(pp_factors, par_angle, elevation, mount_type);
 
     //return the value
