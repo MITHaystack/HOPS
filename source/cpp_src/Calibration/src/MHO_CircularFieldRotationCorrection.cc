@@ -107,8 +107,6 @@ MHO_CircularFieldRotationCorrection::ExecuteOutOfPlace(const visibility_type* in
 bool
 MHO_CircularFieldRotationCorrection::InitializeInPlace(visibility_type* /*in*/)
 {
-
-
     return true;
 }
 
@@ -127,11 +125,13 @@ MHO_CircularFieldRotationCorrection::PreMultiply(visibility_type* in)
     fRefModel.SetStationData(fRefData);
     fRefModel.ComputeModel();
     fRefElevation = fRefModel.GetElevation();
+    fRefParAngle = fRefModel.GetParallacticAngle();
 
     fRemModel.SetEvaluationTimeVexString(fFourfitRefTimeString);
     fRemModel.SetStationData(fRemDatadata);
     fRemModel.ComputeModel();
     fRemElevation = fRemModel.GetElevation();
+    fRemParAngle = fRemModel.GetParallacticAngle();
 
     //TODO this is an extremely basic implementation (single pre-factor per-pol product)
     //it is entirely possible to imagine a time dependent pre-factor for each pol-product
@@ -148,7 +148,13 @@ MHO_CircularFieldRotationCorrection::PreMultiply(visibility_type* in)
 
 int DetermineMountCode(const std::string& mount) const
 {
-    return 0;
+    if(mount == ""){return NO_MOUNT_TYPE;}
+    if(mount == "no_mount"){return NO_MOUNT_TYPE;}
+    if(mount == "cassegrain"){return CASSEGRAIN;}
+    if(mount == "nasmythleft"){return NASMYTHLEFT;}
+    if(mount == "nasmythright"){return NASMYTHRIGHT;}
+    msg_error("calibration", "could not determine antenna mount type from: "<<mount<< eom);
+    return NO_MOUNT_TYPE;
 }
 
 std::complex<double>
@@ -166,12 +172,11 @@ MHO_CircularFieldRotationCorrection::GetPrefactor(std::string pp_label)
     double elevation[2];
     int mount_type[2];
 
+    //fill in station coords
     par_angle[0] = fRefParAngle;
     par_angle[1] = fRemParAngle;
-
-    //TODO FILL IN VALUES from station coords!!
-    elevation[0] = 0.0;
-    elevation[1] = 0.0;
+    elevation[0] = fRefElevation;
+    elevation[1] = fRemElevation;
 
     mount_type[0] = DetermineMountCode(fRefMountType);
     mount_type[1] = DetermineMountCode(fRemMountType);

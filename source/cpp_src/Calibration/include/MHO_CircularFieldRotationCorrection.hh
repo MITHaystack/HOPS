@@ -46,10 +46,6 @@ class MHO_CircularFieldRotationCorrection: public MHO_UnaryOperator< visibility_
         void SetReferenceStationCoordinateData(station_coord_type* ref_data){fRefData = ref_data;};
         void SetRemoteStationCoordinateData(station_coord_type* rem_data){fRemData = rem_data;};
 
-        //parallactic angle values for each station (expects degrees)
-        void SetReferenceParallacticAngle(double p){fRefParAngle = p;}
-        void SetRemoteParallacticAngle(double p){fRemParAngle = p;}
-
         //set the station mount types
         void SetReferenceMountType(std::string mt){fRefMountType = mt;}
         void SetRemoteMountType(std::string mt){fRemMountType = mt;}
