@@ -107,16 +107,7 @@ MHO_CircularFieldRotationCorrection::ExecuteOutOfPlace(const visibility_type* in
 bool
 MHO_CircularFieldRotationCorrection::InitializeInPlace(visibility_type* /*in*/)
 {
-    //evaluate the elevation angles
-    //fRefModel.SetEvaluationTimeVexString(frt_vex_string);
-    fRefModel.SetStationData(fRefData);
-    fRefModel.ComputeModel();
-    fRefElevation = fRefModel.GetElevation();
 
-    //fRemModel.SetEvaluationTimeVexString(frt_vex_string);
-    fRemModel.SetStationData(fRemDatadata);
-    fRemModel.ComputeModel();
-    fRemElevation = fRemModel.GetElevation();
 
     return true;
 }
@@ -131,6 +122,17 @@ MHO_CircularFieldRotationCorrection::InitializeOutOfPlace(const visibility_type*
 void
 MHO_CircularFieldRotationCorrection::PreMultiply(visibility_type* in)
 {
+    //evaluate the elevation angles
+    fRefModel.SetEvaluationTimeVexString(fFourfitRefTimeString);
+    fRefModel.SetStationData(fRefData);
+    fRefModel.ComputeModel();
+    fRefElevation = fRefModel.GetElevation();
+
+    fRemModel.SetEvaluationTimeVexString(fFourfitRefTimeString);
+    fRemModel.SetStationData(fRemDatadata);
+    fRemModel.ComputeModel();
+    fRemElevation = fRemModel.GetElevation();
+
     //TODO this is an extremely basic implementation (single pre-factor per-pol product)
     //it is entirely possible to imagine a time dependent pre-factor for each pol-product
     //(e.g if parallactic angle is changing substantiall)
