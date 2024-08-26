@@ -114,16 +114,13 @@ MHO_CircularFieldRotationBuilder::Build()
         //set the arguments
         op->SetArgs(vis_data);
         op->SetPolProductSet(pp_set);
+        op->SetFourfitReferenceTimeVexString(frt_vex_string);
+        //set station coord data
         op->SetReferenceStationCoordinateData(ref_sta);
         op->SetRemoteStationCoordinateData(rem_sta);
-        op->SetFourfitReferenceTimeVexString(frt_vex_string);
-
         //set the station mount types
-        std::string ref_mount;
-        std::string rem_mount;
         op->SetReferenceMountType(ref_mount_type);
         op->SetRemoteMountType(rem_mount_type);
-
         op->SetName(op_name);
         op->SetPriority(priority);
 
