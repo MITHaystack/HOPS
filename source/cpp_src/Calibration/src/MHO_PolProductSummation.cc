@@ -46,7 +46,7 @@ MHO_PolProductSummation::ExecuteOutOfPlace(const visibility_type* in, visibility
     bool wok = fWReducer.Execute();
     double n_polprod = fPolProductSet.size();
     // (*fWeights) *= 1.0/n_polprod;
-    
+
     fWeights->Insert("n_summed_polprod", n_polprod);
 
     return ok && wok;
@@ -137,12 +137,17 @@ MHO_PolProductSummation::GetPrefactor(std::string pp_label)
         else{factor =  signum( std::sin(-1.*dpar) ); }
     }
 
+
     //this needs to compute the pol-product dependent scaling/rotation factor
     //for the given pol products
     //depending on the telescope mount type, this may have varied dependance
     //on (delta) parallactic angle
 
-    TODO_FIXME_MSG("FIXME TODO -- implement prefactor calculations for both linear and circular pol-products (XX, YY, RR, etc).")
+    TODO_FIXME_MSG("FIXME TODO -- implement prefactor calculations for both mixed linear and circular pol-products (XX, RX, RR, etc).")
+    if(pp_label == "RR"){factor = 1.0;}
+    if(pp_label == "LL"){factor = 1.0;}
+    if(pp_label == "RL"){factor = 1.0;}
+    if(pp_label == "LR"){factor = 1.0;}
 
     return factor;
 }
