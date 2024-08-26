@@ -135,7 +135,7 @@ MHO_InitialFringeInfo::compute_total_summed_weights(MHO_ContainerStore* conStore
     wt_data->Insert("total_summed_weights", total_ap_frac);
 }
 
-void 
+void
 MHO_InitialFringeInfo::determine_n_active_channels(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     //just loop over the weights and count the number of channels which contain an AP with weight > 0

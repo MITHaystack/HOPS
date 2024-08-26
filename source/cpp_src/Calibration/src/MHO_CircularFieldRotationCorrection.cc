@@ -123,6 +123,9 @@ MHO_CircularFieldRotationCorrection::InitializeOutOfPlace(const visibility_type*
 void
 MHO_CircularFieldRotationCorrection::PreMultiply(visibility_type* in)
 {
+
+    std::cout<<"IN CIRC POL ROT PreMultiply"<<std::endl;
+
     //evaluate the elevation angles
     fRefModel.SetEvaluationTimeVexString(fFourfitRefTimeString);
     fRefModel.SetStationData(fRefData);
