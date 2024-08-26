@@ -37,7 +37,7 @@ MHO_CircularFieldRotationBuilder::Build()
             msg_error("initialization", "fourfit reference time information missing for circular pol field rotation correction operation." << eom );
             return false;
         }
-        fourfit_reftime = this->fParameterStore->GetAs< std::vector< std::string > >("/vex/scan/fourfit_reftime");
+        fourfit_reftime = this->fParameterStore->GetAs< std::string >("/vex/scan/fourfit_reftime");
 
 
         //get the reference and remote station mk4ids
@@ -114,7 +114,7 @@ MHO_CircularFieldRotationBuilder::Build()
         //set the arguments
         op->SetArgs(vis_data);
         op->SetPolProductSet(pp_set);
-        op->SetFourfitReferenceTimeVexString(frt_vex_string);
+        op->SetFourfitReferenceTimeVexString(fourfit_reftime);
         //set station coord data
         op->SetReferenceStationCoordinateData(ref_sta);
         op->SetRemoteStationCoordinateData(rem_sta);
