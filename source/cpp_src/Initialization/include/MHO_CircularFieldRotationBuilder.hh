@@ -33,8 +33,6 @@ class MHO_CircularFieldRotationBuilder:
 
     private:
 
-        // std::string ParsePolFromName(const std::string& name);
-        // std::string ExtractStationMk4ID();
 };
 
 }//end namespace
