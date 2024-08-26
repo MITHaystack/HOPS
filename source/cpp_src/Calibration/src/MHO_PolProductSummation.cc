@@ -92,8 +92,9 @@ MHO_PolProductSummation::PreMultiply(visibility_type* in)
         prefac[i] = GetPrefactor(pp_ax->at(i));
         prefac_sum += std::abs(prefac[i]);
     }
+    // prefac_sum = std::sqrt( std::abs(prefac_sum) );
 
-    //specific to pseudo-Stokes-I (IXY) mode, explictly set to 2
+    //specific to pseudo-Stokes-I (IXY) mode, 4-polproducts explictly set to 2
     if(fSummedPolProdLabel == "I"){prefac_sum = 2.0;}
 
     for(std::size_t i=0; i < pp_ax->GetSize(); i++)
@@ -148,6 +149,9 @@ MHO_PolProductSummation::GetPrefactor(std::string pp_label)
     if(pp_label == "LL"){factor = 1.0;}
     if(pp_label == "RL"){factor = 1.0;}
     if(pp_label == "LR"){factor = 1.0;}
+
+    //std::cout<<"pol product = "<<pp_label<<std::endl;
+    //std::cout<<"POL FACTOR = "<<factor<<std::endl;
 
     return factor;
 }

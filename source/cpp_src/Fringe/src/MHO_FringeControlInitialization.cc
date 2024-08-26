@@ -103,6 +103,7 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     std::size_t npp = pp_vec.size();
     if(npp > 1)
     {
+        std::cout<<"ADDING A A POL PROD SUM OP"<<std::endl;
         add_polprod_sum_operator( (*(control_statements.begin()))["statements"] );
     }
     else if( npp == 1)
@@ -112,13 +113,14 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
         {
             add_dpar_sign_correction_operator( (*(control_statements.begin()))["statements"] );
         }
-
-        if(is_circular_polprod(pp_vec[0]))
-        {
-            add_circ_field_rotation_operator( (*(control_statements.begin()))["statements"] );
-        }
     }
 
+    //apply this is all circ-pol cases?
+    if(is_circular_polprod(pp_vec[0]))
+    {
+        std::cout<<"ADDING A CIRC POL FIELD ROTATION OP"<<std::endl;
+        add_circ_field_rotation_operator( (*(control_statements.begin()))["statements"] );
+    }
 
     //set some initial/default parameters (polprod, ref_freq)
     MHO_InitialFringeInfo::set_default_parameters_minimal(paramStore);
