@@ -1,5 +1,7 @@
-#include "MHO_CircularFieldRotationCorrection.hh"
 #include "MHO_Constants.hh"
+#include "MHO_Message.hh"
+
+#include "MHO_CircularFieldRotationCorrection.hh"
 
 #include <math.h>
 #include <stdlib.h>
@@ -18,6 +20,8 @@
 #define POL_LR 2
 #define POL_RL 3
 
+namespace hops
+{
 
 void
 compute_field_rotations_fixed(std::complex<double> cpolvalue[4], double *par_angle, double *elevation, int *mount_type)
@@ -64,12 +68,11 @@ compute_field_rotations_fixed(std::complex<double> cpolvalue[4], double *par_ang
             default:
                 msg_error("calibration", "error in field rotation correction while determining polarization product, this should not happen" << eom);
         }
-        cpolvalue[pp] = std::exp( -1.0 * MHO_Constants::imag_unit * radangle );
+        std::complex<double> iunit = MHO_Constants::imag_unit;
+        cpolvalue[pp] = std::exp( -1.0 * iunit * radangle );
     }
 }
 
-namespace hops
-{
 
 
 MHO_CircularFieldRotationCorrection::MHO_CircularFieldRotationCorrection()
@@ -128,7 +131,7 @@ MHO_CircularFieldRotationCorrection::PreMultiply(visibility_type* in)
     fRefParAngle = fRefModel.GetParallacticAngle();
 
     fRemModel.SetEvaluationTimeVexString(fFourfitRefTimeString);
-    fRemModel.SetStationData(fRemDatadata);
+    fRemModel.SetStationData(fRemData);
     fRemModel.ComputeModel();
     fRemElevation = fRemModel.GetElevation();
     fRemParAngle = fRemModel.GetParallacticAngle();
@@ -146,7 +149,8 @@ MHO_CircularFieldRotationCorrection::PreMultiply(visibility_type* in)
 }
 
 
-int DetermineMountCode(const std::string& mount) const
+int
+MHO_CircularFieldRotationCorrection::DetermineMountCode(const std::string& mount) const
 {
     if(mount == ""){return NO_MOUNT_TYPE;}
     if(mount == "no_mount"){return NO_MOUNT_TYPE;}

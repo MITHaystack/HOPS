@@ -12,6 +12,7 @@
 #include "MHO_PolProductSummationBuilder.hh"
 #include "MHO_SamplerLabelerBuilder.hh"
 #include "MHO_LinearDParCorrectionBuilder.hh"
+#include "MHO_CircularFieldRotationBuilder.hh"
 #include "MHO_PassbandBuilder.hh"
 #include "MHO_NotchesBuilder.hh"
 #include "MHO_DCBlockBuilder.hh"
@@ -51,7 +52,7 @@ MHO_OperatorBuilderManager::CreateDefaultBuilders()
     AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_y", "pc_delay_y");
     AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_r", "pc_delay_r");
     AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_l", "pc_delay_l");
-    
+
     //flagging operators
     AddBuilderType<MHO_PassbandBuilder>("passband", "passband");
     AddBuilderType<MHO_NotchesBuilder>("notches", "notches");
@@ -209,6 +210,12 @@ void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
     dpar_corr["operator_category"] = "calibration";
     dpar_corr["priority"] = 3.99;
     AddBuilderTypeWithFormat<MHO_LinearDParCorrectionBuilder>("dpar_corr", dpar_corr);
+
+    mho_json circ_field_rotation_corr;
+    dpar_corr["name"] = "circ_field_rotation_corr";
+    dpar_corr["operator_category"] = "calibration";
+    dpar_corr["priority"] = 3.99;
+    AddBuilderTypeWithFormat<MHO_CircularFieldRotationBuilder>("circ_field_rotation_corr", circ_field_rotation_corr);
 
 }
 
