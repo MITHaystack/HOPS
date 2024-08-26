@@ -59,7 +59,7 @@ MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
         if(fSBDStart == -1){fSBDStart = 0;}
         if(fSBDStop == -1){fSBDStop = fNSBD;}
 
-        msg_debug("fringe", "MBD search, N grid points = " << fNGridPoints << eom);
+        msg_debug("calibration", "MBD search, N grid points = " << fNGridPoints << eom);
 
         //resize workspaces (TODO...make conditional on current size -- if already configured)
         fMBDWorkspace.Resize(fNGridPoints);//, fNDR);
@@ -235,7 +235,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
     }
     else
     {
-        msg_error("fringe", "MHO_MBDelaySearch could not execute, intialization failure." << eom);
+        msg_error("calibration", "MHO_MBDelaySearch could not execute, intialization failure." << eom);
     }
 
     return false;
