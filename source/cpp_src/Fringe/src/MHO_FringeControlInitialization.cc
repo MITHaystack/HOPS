@@ -103,7 +103,6 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     std::size_t npp = pp_vec.size();
     if(npp > 1)
     {
-        std::cout<<"ADDING A A POL PROD SUM OP"<<std::endl;
         add_polprod_sum_operator( (*(control_statements.begin()))["statements"] );
     }
     else if( npp == 1)

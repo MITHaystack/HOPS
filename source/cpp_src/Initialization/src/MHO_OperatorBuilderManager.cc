@@ -136,6 +136,7 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
                         }
                         else
                         {
+                            msg_debug("initialization", "ignoring statement with name: " << name << eom);
                             stmt_iter++; //statement not in this category, skip
                         }
                     }
@@ -199,6 +200,12 @@ void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
     rem_mtpcal["priority"] = 3.1;
     AddBuilderTypeWithFormat<MHO_MultitonePhaseCorrectionBuilder>("rem_multitone_pcal", rem_mtpcal);
 
+    mho_json circ_field_rotation_corr;
+    circ_field_rotation_corr["name"] = "circ_field_rotation_corr";
+    circ_field_rotation_corr["operator_category"] = "calibration";
+    circ_field_rotation_corr["priority"] = 3.98;
+    AddBuilderTypeWithFormat<MHO_CircularFieldRotationBuilder>("circ_field_rotation_corr", circ_field_rotation_corr);
+
     mho_json polprod_sum;
     polprod_sum["name"] = "polproduct_sum";
     polprod_sum["operator_category"] = "calibration";
@@ -210,12 +217,6 @@ void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
     dpar_corr["operator_category"] = "calibration";
     dpar_corr["priority"] = 3.99;
     AddBuilderTypeWithFormat<MHO_LinearDParCorrectionBuilder>("dpar_corr", dpar_corr);
-
-    mho_json circ_field_rotation_corr;
-    dpar_corr["name"] = "circ_field_rotation_corr";
-    dpar_corr["operator_category"] = "calibration";
-    dpar_corr["priority"] = 3.99;
-    AddBuilderTypeWithFormat<MHO_CircularFieldRotationBuilder>("circ_field_rotation_corr", circ_field_rotation_corr);
 
 }
 
