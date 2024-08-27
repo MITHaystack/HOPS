@@ -166,31 +166,40 @@ else()
     set(HOPS_VPAL_FOURFIT "fourfit")
 endif(HOPS_IS_HOPS4)
 
-
 ################################################################################
 #stuff for controlling testing/test-data location
 set(TEST_DATA_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
-set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data) #actual location to put test data and do tests
+#location where test data should be dowloaded to (if the user runs testdata_download_all.sh)
+set(HOPS_CACHED_TEST_DATADIR "${DATA_INSTALL_DIR}/test_data" CACHE PATH "Location used to downlaod/cache HOPS test data." FORCE )
+#actual location to unpack the test data and do the tests
+set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data) 
 
-#look for an environmental variable pointing to a cache of test data
-set(HOPS_USE_CACHED_TEST_DATA OFF)
-set(HOPS_NEED_REMOTE_DATA ON)
-if (NOT "$ENV{HOPS_CACHED_TEST_DATADIR}" STREQUAL "")
-    set(HOPS_CACHED_TEST_DATADIR "$ENV{HOPS_CACHED_TEST_DATADIR}" CACHE STRING "Location of cached hops test data." FORCE)
-    mark_as_advanced(HOPS_CACHED_TEST_DATADIR)
-    set(HOPS_USE_CACHED_TEST_DATA ON)
-    set(HOPS_NEED_REMOTE_DATA OFF)
-endif()
+# #look for an environmental variable pointing to a cache of test data
+# set(HOPS_USE_CACHED_TEST_DATA OFF)
+# # set(HOPS_NEED_REMOTE_DATA ON)
+# if (NOT "${HOPS_CACHED_TEST_DATADIR}" STREQUAL "")
+# 
+#     #mark_as_advanced(HOPS_CACHED_TEST_DATADIR)
+#     set(HOPS_USE_CACHED_TEST_DATA ON)
+#     # set(HOPS_NEED_REMOTE_DATA OFF)
+# endif()
 
-#check that we can download test data if testing is enabled and there is no cache
-cmake_dependent_option( HOPS_ENABLE_REMOTE_TEST_DATA "Download remote data for developer tests." ${HOPS_NEED_REMOTE_DATA} "HOPS_ENABLE_TEST" OFF)
+# #check that we can download test data if testing is enabled and there is no cache
+# cmake_dependent_option( HOPS_ENABLE_REMOTE_TEST_DATA "Download remote data for developer tests." ${HOPS_NEED_REMOTE_DATA} "HOPS_ENABLE_TEST" OFF)
 
-if(HOPS_ENABLE_TEST)
-    if(NOT HOPS_ENABLE_REMOTE_TEST_DATA AND NOT HOPS_USE_CACHED_TEST_DATA)
-            #we are not downloading test data (and no local cache available), so force it off
-            set(HOPS_ENABLE_TEST OFF CACHE BOOL "Build developer tests." FORCE)
-    endif()
-endif(HOPS_ENABLE_TEST)
+# if(HOPS_ENABLE_TEST)
+#     if(NOT HOPS_ENABLE_REMOTE_TEST_DATA AND NOT HOPS_USE_CACHED_TEST_DATA)
+#             #we are not downloading test data (and no local cache available), so force it off
+#             set(HOPS_ENABLE_TEST OFF CACHE BOOL "Build developer tests." FORCE)
+#     endif()
+# endif(HOPS_ENABLE_TEST)
+
+# if(HOPS_ENABLE_TEST)
+#     if(NOT HOPS_USE_CACHED_TEST_DATA)
+#             #no local cached data available, so force it off
+#             set(HOPS_ENABLE_TEST OFF CACHE BOOL "Build developer tests." FORCE)
+#     endif()
+# endif(HOPS_ENABLE_TEST)
 
 if(HOPS_ENABLE_TEST)
     enable_testing()
