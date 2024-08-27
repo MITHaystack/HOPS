@@ -170,7 +170,7 @@ endif(HOPS_IS_HOPS4)
 #stuff for controlling testing/test-data location
 set(TEST_DATA_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
 #location where test data should be dowloaded to (if the user runs testdata_download_all.sh)
-set(HOPS_CACHED_TEST_DATADIR "${DATA_INSTALL_DIR}/test_data" CACHE PATH "Location used to downlaod/cache HOPS test data." FORCE )
+set(HOPS_CACHED_TEST_DATADIR "${DATA_INSTALL_DIR}/test_data" CACHE PATH "Location used to downlaod/cache HOPS test data.")
 #actual location to unpack the test data and do the tests
 set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data) 
 
