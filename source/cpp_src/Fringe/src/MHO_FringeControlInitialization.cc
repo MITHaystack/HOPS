@@ -114,10 +114,9 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
         }
     }
 
-    //apply this is all circ-pol cases?
+    //enable this in all circ-pol cases (what about mixed-mode?!)
     if(is_circular_polprod(pp_vec[0]))
     {
-        //std::cout<<"ADDING A CIRC POL FIELD ROTATION OP"<<std::endl;
         add_circ_field_rotation_operator( (*(control_statements.begin()))["statements"] );
     }
 
@@ -170,6 +169,7 @@ MHO_FringeControlInitialization::add_default_operator_format_def(mho_json& forma
     };
     format["coarse_selection"] = data_select_format;
 
+    //add a operator to label collections of channels by sampler
     mho_json sampler_labeler =
     {
         {"name", "sampler_labeler"},
@@ -202,6 +202,7 @@ MHO_FringeControlInitialization::add_default_operator_format_def(mho_json& forma
     };
     format["rem_multitone_pcal"] = rem_multitone_pcal_format;
 
+    //add a pol-product summation operator
     mho_json polprod_sum_format =
     {
         {"name", "polproduct_sum"},
@@ -212,6 +213,7 @@ MHO_FringeControlInitialization::add_default_operator_format_def(mho_json& forma
     };
     format["polproduct_sum"] = polprod_sum_format;
 
+    //add a delta-parallactic angle correction op for linear pols
     mho_json dpar_corr_format =
     {
         {"name", "dpar_corr"},
@@ -222,7 +224,7 @@ MHO_FringeControlInitialization::add_default_operator_format_def(mho_json& forma
     };
     format["dpar_corr"] = dpar_corr_format;
     
-    
+    //add a circular pol field rotation operator (depends on antenna mount_type)
     mho_json circ_field_rotation_corr = 
     {
         {"name", "circ_field_rotation_corr"},

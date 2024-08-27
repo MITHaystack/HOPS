@@ -10,8 +10,6 @@ namespace hops
 bool
 MHO_CircularFieldRotationBuilder::Build()
 {
-    std::cout<<"BUILDING CIRC POL ROT"<<std::endl;
-
     if( IsConfigurationOk() )
     {
         msg_debug("initialization", "building a circular pol field rotation correction operator."<< eom);

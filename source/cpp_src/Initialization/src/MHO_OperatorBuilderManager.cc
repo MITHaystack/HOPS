@@ -61,9 +61,6 @@ MHO_OperatorBuilderManager::CreateDefaultBuilders()
 
     //add builders for operators which are not accessible via control file
     CreateNullFormatBuilders();
-
-
-    std::cout<<"dumping format = "<<fFormat.dump(2)<<std::endl;
 }
 
 
