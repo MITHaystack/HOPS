@@ -123,9 +123,6 @@ MHO_CircularFieldRotationCorrection::InitializeOutOfPlace(const visibility_type*
 void
 MHO_CircularFieldRotationCorrection::PreMultiply(visibility_type* in)
 {
-
-    std::cout<<"IN CIRC POL ROT PreMultiply"<<std::endl;
-
     //evaluate the elevation angles
     fRefModel.SetEvaluationTimeVexString(fFourfitRefTimeString);
     fRefModel.SetStationData(fRefData);
@@ -184,9 +181,6 @@ MHO_CircularFieldRotationCorrection::GetPrefactor(std::string pp_label)
     par_angle[1] = fRemParAngle*MHO_Constants::deg_to_rad;;
     elevation[0] = fRefElevation*MHO_Constants::deg_to_rad;;
     elevation[1] = fRemElevation*MHO_Constants::deg_to_rad;;
-    
-    std::cout<<"par angle 0 = "<<par_angle[0]<<std::endl;
-    std::cout<<"par angle 1 = "<<par_angle[1]<<std::endl;
 
     mount_type[0] = DetermineMountCode(fRefMountType);
     mount_type[1] = DetermineMountCode(fRemMountType);
