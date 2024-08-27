@@ -7,7 +7,13 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/download_tarball2.sh.in ${CMAKE_CURR
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/download_tarball3.sh.in ${CMAKE_CURRENT_BINARY_DIR}/download_tarball3.sh @ONLY)
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/download_difx_tarball.sh.in ${CMAKE_CURRENT_BINARY_DIR}/download_difx_tarball.sh @ONLY)
 
+
+
 if(BASH_PROGRAM)
+
+    #install a script to manuall download the test data
+    configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/testdata_download_all.sh.in ${CMAKE_CURRENT_BINARY_DIR}/testdata_download_all.sh @ONLY)
+    install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/testdata_download_all.sh DESTINATION ${BIN_INSTALL_DIR} )
 
     if(HOPS_USE_CACHED_TEST_DATA)
 
@@ -55,7 +61,6 @@ if(BASH_PROGRAM)
         set(DATA_TARBALL3 ${CMAKE_CURRENT_BINARY_DIR}/3593.tar.gz)
         set(DIFX_DATA_TARBALL ${CMAKE_CURRENT_BINARY_DIR}/vt9105.tar.gz)
 
-        
     endif(HOPS_ENABLE_REMOTE_TEST_DATA)
 
     add_test(NAME TESTDATA_UNPACK
