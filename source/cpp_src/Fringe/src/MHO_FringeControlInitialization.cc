@@ -221,6 +221,17 @@ MHO_FringeControlInitialization::add_default_operator_format_def(mho_json& forma
         {"priority", 3.99}
     };
     format["dpar_corr"] = dpar_corr_format;
+    
+    
+    mho_json circ_field_rotation_corr = 
+    {
+        {"name", "circ_field_rotation_corr"},
+        {"statement_type", "operator"},
+        {"operator_category" , "calibration"},
+        {"type" , "empty"},
+        {"priority", 3.98}
+    };
+    format["circ_field_rotation_corr"] = circ_field_rotation_corr;
 }
 
 
