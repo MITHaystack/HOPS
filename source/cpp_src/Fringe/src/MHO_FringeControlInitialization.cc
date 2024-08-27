@@ -117,7 +117,7 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     //apply this is all circ-pol cases?
     if(is_circular_polprod(pp_vec[0]))
     {
-        std::cout<<"ADDING A CIRC POL FIELD ROTATION OP"<<std::endl;
+        //std::cout<<"ADDING A CIRC POL FIELD ROTATION OP"<<std::endl;
         add_circ_field_rotation_operator( (*(control_statements.begin()))["statements"] );
     }
 
