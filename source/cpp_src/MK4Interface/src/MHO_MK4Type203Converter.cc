@@ -26,7 +26,7 @@ const int NUMBEROFCHANNELS = 8 * MAXFREQ;
 //    struct ch_struct    channels[32];           /* channel-by-channel info */
 //    };
 
-//struct type_203 
+//struct type_203
 //    {
 //    char                record_id[3];           /* Standard 3-digit id */
 //    char                version_no[2];          /* Standard 2-digit version # */
@@ -44,7 +44,7 @@ mho_json convertToJSON(const type_203 &t) {
 
 mho_json convertChannelArrayToJSON(const type_203 &t) {
   int channel;
-  mho_json JSONChannels[NUMBEROFCHANNELS];
+  mho_json JSONChannels; //[NUMBEROFCHANNELS];
 
   for (channel = 0; channel < NUMBEROFCHANNELS; channel++) {
     JSONChannels[channel] = convertChannelToJSON(t.channels[channel]);
@@ -55,14 +55,14 @@ mho_json convertChannelArrayToJSON(const type_203 &t) {
 mho_json convertChannelToJSON(const ch_struct &t) {
   return {{"index", t.index},
           {"sample_rate", t.sample_rate},
-          {"refsb", t.refsb},
-          {"remsb", t.remsb},
-          {"refpol", t.refpol},
-          {"rempol", t.rempol},
+          {"refsb", std::string(&(t.refsb), 1).c_str() },
+          {"remsb", std::string(&(t.remsb), 1).c_str()},
+          {"refpol", std::string(&(t.refpol), 1).c_str()},
+          {"rempol", std::string(&(t.rempol), 1).c_str()},
           {"ref_freq", t.ref_freq},
           {"rem_freq", t.rem_freq},
-          {"ref_chan_id", t.rem_freq},
-          {"rem_chan_id", t.rem_chan_id}
+          {"ref_chan_id", std::string(t.ref_chan_id, 8).c_str()},
+          {"rem_chan_id", std::string(t.rem_chan_id, 8).c_str()}
 
   };
 }

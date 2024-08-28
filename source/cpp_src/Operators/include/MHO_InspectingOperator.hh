@@ -3,7 +3,17 @@
 
 #include "MHO_Operator.hh"
 
-namespace hops{
+namespace hops
+{
+
+
+/*!
+*@file MHO_InspectingOperator.hh
+*@class MHO_InspectingOperator
+*@author J. Barrett - barrettj@mit.edu
+*@date Tue Jan 10 16:42:53 2023 -0500
+*@brief
+*/
 
 //operates on a single const array (just to inspect it)
 template<class XArgType>
@@ -42,4 +52,4 @@ class MHO_InspectingOperator: public MHO_Operator
 
 }//end of namespace
 
-#endif /* __MHO_InspectingOperator_HH__ */
+#endif /*! __MHO_InspectingOperator_HH__ */

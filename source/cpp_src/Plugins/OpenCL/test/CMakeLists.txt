@@ -9,11 +9,13 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Math/include)
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Containers/include)
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Operators/include)
 
-set(HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_OpenCLPlugin)
+set(HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Operators MHO_OpenCLPlugin)
 
 set(SOURCE_BASENAMES
     TestOpenCLInterface
     TestOpenCLNDArrayBuffer
+    TestOpenCLNDFFTRadix2
+    TestOpenCLNDFFTBluestein
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

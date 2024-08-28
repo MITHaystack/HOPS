@@ -1,85 +1,86 @@
 #ifndef MHO_Taggable_HH__
 #define MHO_Taggable_HH__
 
-/*
-*File: MHO_Taggable.hh
-*Class: MHO_Taggable
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-*/
-
-#include <cstdint>
 #include <string>
 #include <utility>
 
-#include "MHO_MultiTypeMap.hh"
+#include "MHO_Types.hh"
+#include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Serializable.hh"
 
 namespace hops
 {
 
+/*!
+*@file MHO_Taggable.hh
+*@class MHO_Taggable
+*@author J. Barrett - barrettj@mit.edu
+*@date Fri Oct 16 11:17:19 2020 -0400
+*@brief
+*/
 
 class MHO_Taggable:
-    public MHO_CommonLabelMap,
+    public MHO_JSONWrapper,
     virtual public MHO_Serializable
 {
     public:
 
-        MHO_Taggable():MHO_CommonLabelMap(){};
-        MHO_Taggable(const MHO_Taggable& copy):MHO_CommonLabelMap(copy){};
+        MHO_Taggable():
+            MHO_JSONWrapper()
+        {
+        };
+
+        MHO_Taggable(const MHO_Taggable& copy):
+            MHO_JSONWrapper(copy)
+        {
+        };
+
         virtual ~MHO_Taggable(){};
-
-        bool HasKey(const std::string& key) const
-        {
-            if(this->ContainsKey<char>(key)){return true;}
-            if(this->ContainsKey<bool>(key)){return true;}
-            if(this->ContainsKey<int>(key)){return true;}
-            if(this->ContainsKey<double>(key)){return true;}
-            if(this->ContainsKey<std::string>(key)){return true;}
-            return false;
-        }
-
-        bool HasKey(const char* char_key) const
-        {
-            std::string key(char_key);
-            return HasKey(key);
-        }
 
         MHO_Taggable& operator=(const MHO_Taggable& rhs)
         {
             if(this != &rhs)
             {
-                this->CopyFrom<char>(rhs);
-                this->CopyFrom<bool>(rhs);
-                this->CopyFrom<int>(rhs);
-                this->CopyFrom<double>(rhs);
-                this->CopyFrom<std::string>(rhs);
+                fObject = rhs.fObject;
             }
             return *this;
         }
 
         virtual void CopyTags(const MHO_Taggable& rhs)
         {
-            if(this != &rhs)
+            if(this != &rhs && &fObject  && !(rhs.fObject.empty()) )
             {
-                this->CopyFrom<char>(rhs);
-                this->CopyFrom<bool>(rhs);
-                this->CopyFrom<int>(rhs);
-                this->CopyFrom<double>(rhs);
-                this->CopyFrom<std::string>(rhs);
+                fObject = rhs.fObject;
             }
         }
 
         void ClearTags()
         {
-            this->Clear<char>();
-            this->Clear<bool>();
-            this->Clear<int>();
-            this->Clear<double>();
-            this->Clear<std::string>();
+            fObject.clear();
         }
+
+        void CopyFrom(const MHO_Taggable& copy_from_obj)
+        {
+            if(this != &copy_from_obj)
+            {
+                fObject.clear();
+                fObject = copy_from_obj.fObject;
+            }
+        }
+
+        void CopyTo(MHO_Taggable& copy_to_obj) const
+        {
+            if(this != &copy_to_obj)
+            {
+                copy_to_obj.fObject.clear();
+                copy_to_obj.fObject = fObject;
+            }
+        }
+
+        mho_json GetMetaDataAsJSON() const {return fObject;}
+
+        //completely replaces fObject data (use with caution)
+        void SetMetaDataAsJSON(mho_json obj){fObject = obj;}
 
     public: //MHO_Serializable interface
 
@@ -90,11 +91,15 @@ class MHO_Taggable:
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion); //version number
 
-            total_size += cm_aggregate_serializable_item_size<char>(*this);
-            total_size += cm_aggregate_serializable_item_size<bool>(*this);
-            total_size += cm_aggregate_serializable_item_size<int>(*this);
-            total_size += cm_aggregate_serializable_item_size<double>(*this);
-            total_size += cm_aggregate_serializable_item_size<std::string>(*this);
+            //compute the serialized size of fObject in CBOR encoding.
+            //this is a somewhat inconvenient waste of time to encode the data
+            //just so we can find out the size (should we cache this serialized data?)
+            std::vector<std::uint8_t> data = mho_json::to_cbor(fObject);
+            uint64_t size = data.size();
+
+            total_size += sizeof(uint64_t);//for the encoded data-size parameter
+            total_size += sizeof(uint64_t);//for parameter that specifies the type of the JSON binary encoding
+            total_size += size*sizeof(std::uint8_t); //for the actual data
 
             return total_size;
         }
@@ -103,7 +108,7 @@ class MHO_Taggable:
         {
             MHO_ClassVersion vers;
             s >> vers;
-            switch(vers) 
+            switch(vers)
             {
                 case 0:
                     aData.StreamInData_V0(s);
@@ -118,15 +123,15 @@ class MHO_Taggable:
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_Taggable& aData)
         {
-            switch( aData.GetVersion() ) 
+            switch( aData.GetVersion() )
             {
                 case 0:
                     s << aData.GetVersion();
                     aData.StreamOutData_V0(s);
                 break;
                 default:
-                    msg_error("containers", 
-                        "error, cannot stream out MHO_Taggable object with unknown version: " 
+                    msg_error("containers",
+                        "error, cannot stream out MHO_Taggable object with unknown version: "
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -136,20 +141,12 @@ class MHO_Taggable:
 
         template<typename XStream> void StreamInData_V0(XStream& s)
         {
-            cm_stream_importer<XStream, char>(s, *this);
-            cm_stream_importer<XStream, bool>(s, *this);
-            cm_stream_importer<XStream, int>(s, *this);
-            cm_stream_importer<XStream, double>(s, *this);
-            cm_stream_importer<XStream, std::string>(s, *this);
+            s >> fObject;
         };
 
         template<typename XStream> void StreamOutData_V0(XStream& s) const
         {
-            cm_stream_exporter<XStream, char>(s, *this);
-            cm_stream_exporter<XStream, bool>(s, *this);
-            cm_stream_exporter<XStream, int>(s, *this);
-            cm_stream_exporter<XStream, double>(s, *this);
-            cm_stream_exporter<XStream, std::string>(s, *this);
+            s << fObject;
         };
 
         virtual MHO_UUID DetermineTypeUUID() const override
@@ -166,4 +163,4 @@ class MHO_Taggable:
 
 }
 
-#endif /* end of include guard: MHO_Taggable */
+#endif /*! end of include guard: MHO_Taggable */

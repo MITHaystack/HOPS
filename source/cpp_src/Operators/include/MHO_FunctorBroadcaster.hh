@@ -1,26 +1,25 @@
 #ifndef MHO_FunctorBroadcaster_HH__
 #define MHO_FunctorBroadcaster_HH__
 
+
+
 #include <algorithm>
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_UnaryOperator.hh"
 
-
-
-/*
-*File: MHO_FunctorBroadcaster.hh
-*Class: MHO_FunctorBroadcaster
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-*/
-
-
 namespace hops
 {
+
+/*!
+*@file MHO_FunctorBroadcaster.hh
+*@class MHO_FunctorBroadcaster
+*@author J. Barrett - barrettj@mit.edu
+*@date Fri Nov 20 17:44:28 2020 -0500
+*@brief
+*/
+
 
 template< class XArrayType, class XFunctorType >
 class MHO_FunctorBroadcaster: public MHO_UnaryOperator<XArrayType>
@@ -113,4 +112,4 @@ class MHO_FunctorBroadcaster: public MHO_UnaryOperator<XArrayType>
 }
 
 
-#endif /* MHO_FunctorBroadcaster_H__ */
+#endif /*! MHO_FunctorBroadcaster_H__ */

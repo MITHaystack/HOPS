@@ -1,14 +1,6 @@
 #ifndef MHO_ControlElementParser_HH__
 #define MHO_ControlElementParser_HH__
 
-/*
-*@file: MHO_ControlElementParser.hh
-*@class: MHO_ControlElementParser
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
-*/
 
 #include <vector>
 #include <list>
@@ -27,6 +19,14 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_ControlElementParser.hh
+*@class  MHO_ControlElementParser
+*@author  J. Barrett - barrettj@mit.edu
+*@date Thu May 26 16:55:16 2022 -0400
+*@brief
+*/
 
 class MHO_ControlElementParser
 {
@@ -51,4 +51,4 @@ class MHO_ControlElementParser
 }
 
 
-#endif /* end of include guard: MHO_ControlElementParser */
+#endif /*! end of include guard: MHO_ControlElementParser */

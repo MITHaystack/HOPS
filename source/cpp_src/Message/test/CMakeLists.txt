@@ -4,6 +4,8 @@ set (HOPS_TEST_LIBS MHO_Message)
 
 set(SOURCE_BASENAMES
     TestMessenger
+    TestTimer
+    TestProfiler
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

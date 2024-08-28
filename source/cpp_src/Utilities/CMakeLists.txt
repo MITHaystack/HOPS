@@ -2,9 +2,15 @@ hops_require_cpp11()
 
 include_directories(${EXTERN_HLIBS}/date/include)
 
+if(HOPS_USE_PYBIND11)
+include_directories(${EXTERN_HLIBS}/)
+endif(HOPS_USE_PYBIND11)
+
 #list header files #############################################################
 set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/picohash.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/legacy_hops_date.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Types.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TemplateTypenameDeduction.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Meta.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Constants.hh
@@ -13,7 +19,6 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UUID.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FileKey.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Units.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Timer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Tokenizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TimeStampConverter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultiTypeMap.hh
@@ -25,12 +30,16 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DirectoryInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ExtensibleElement.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_JSONHeaderWrapper.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IndexLabelInterface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabelInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ParameterStore.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LegacyRootCodeGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationCodeMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Clock.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MPIInterfaceWrapper.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_EncodeDecodeValue.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LockFileHandler.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LegacyDateConverter.hh
 )
 
 #set_source_files_properties(picohash.h PROPERTIES COMPILE_FLAGS -fpermissive)
@@ -38,7 +47,6 @@ set (UTILITIES_HEADERFILES
 #list source files #############################################################
 
 set( UTILITIES_SOURCEFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Timer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_TimeStampConverter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Tokenizer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BinaryFileStreamer.cc
@@ -46,6 +54,8 @@ set( UTILITIES_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DirectoryInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LegacyRootCodeGenerator.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationCodeMap.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LockFileHandler.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LegacyDateConverter.cc
 )
 
 if (HOPS_USE_MPI)
@@ -64,7 +74,7 @@ hops_internal_include_directories(${EXTERN_HLIBS}/json/include)
 
 #compile and install library ###################################################
 
-set(UTILITIES_LIBS MHO_Message)
+set(UTILITIES_LIBS MHO_Message date-tz)
 
 add_library (MHO_Utilities SHARED ${UTILITIES_SOURCEFILES})
 

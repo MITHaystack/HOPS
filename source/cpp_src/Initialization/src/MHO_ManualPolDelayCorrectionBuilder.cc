@@ -12,18 +12,19 @@ MHO_ManualPolDelayCorrectionBuilder::Build()
 {
     if( IsConfigurationOk() )
     {
-        msg_debug("initialization", "building a manual per-channel phase correction operator."<< eom);
+        msg_debug("initialization", "building a manual per-pol delay correction operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
 
         std::string op_name = fAttributes["name"].get<std::string>();
         std::string op_category = "calibration";
         double pc_delay_offset = fAttributes["value"].get<double>();
+        double priority = fFormat["priority"].get<double>();
 
         std::string pol = ParsePolFromName(op_name);
         std::string mk4id = ExtractStationMk4ID();
 
-        //grab the reference frequency from the parameter store 
-        double ref_freq = fParameterStore->GetAs<double>(std::string("ref_freq"));
+        //grab the reference frequency from the parameter store
+        double ref_freq = fParameterStore->GetAs<double>(std::string("/control/config/ref_freq"));
 
         //retrieve the arguments to operate on from the container store
         visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
@@ -42,6 +43,7 @@ MHO_ManualPolDelayCorrectionBuilder::Build()
         op->SetPolarization(pol);
         op->SetStationMk4ID(mk4id);
         op->SetName(op_name);
+        op->SetPriority(priority);
 
         msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<" pol: "<<pol<<"."<<eom);
 

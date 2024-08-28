@@ -1,0 +1,8 @@
+{
+    "name": "version",
+    "type": "int",
+    "source_object": "local_variable",
+    "path": "",
+    "description": "Disk format version number",
+    "units": ""
+}

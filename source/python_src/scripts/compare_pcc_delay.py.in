@@ -1,0 +1,203 @@
+#!@PY_EXE@
+
+"""plot proxy cable cal time series"""
+
+from __future__ import print_function
+from builtins import range
+
+import sys
+import os
+import argparse
+from datetime import datetime
+import math
+import copy
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+from matplotlib.ticker import FormatStrFormatter, ScalarFormatter
+from matplotlib import gridspec
+
+from matplotlib.dates import DateFormatter
+
+
+from scipy.optimize import curve_fit
+
+def prog_usage():
+    """
+    Parse input arguments
+    """
+
+    # Define arguments
+    parser = argparse.ArgumentParser(
+        description='''Utility to plot CDMS delay from a field-system log file''' \
+        )
+
+    parser._action_groups.pop()
+    required = parser.add_argument_group('required arguments')
+    optional = parser.add_argument_group('optional arguments')
+    required.add_argument("-p", "--pcmt-files", dest='pcmt_input_files', nargs='*', help="input pcmt files", required=True)
+    optional.add_argument("-o", "--output-file", dest='output_file', help="output file name", default="./plot.png")
+    optional.add_argument('-z', '--cut-threshold', dest='cut_threshold', type=float, help='cut sessions which are more than z-score threshold', default=3.5)
+    optional.add_argument("-g", "--grid", dest='use_grid', action='store_true', help="add grid to plots", default=False)
+    args = parser.parse_args()
+
+    print(args.pcmt_input_files)
+    # Return parsed arguments
+    return args
+
+
+def read_and_sort_pcmt(pcmt_filepath):
+    ''' Read data file'''
+
+    pcmt_data = []
+
+    print("reading =", pcmt_filepath)
+    with open(pcmt_filepath) as fp:
+        line = fp.readline()
+        while line:
+            if "#" not in line:
+                data = line.split()
+                if len(data) == 9:
+                    dyear = int(data[0])
+                    dmon = int(data[1])
+                    dday = int(data[2])
+                    dhh = int(data[3])
+                    dmm = int(data[4])
+                    dss = int(data[5])
+                    delay = float(data[6])
+                    data_datetime = datetime(year=dyear, month=dmon, day=dday, hour=dhh, minute=dmm, second=dss)
+                    print(data_datetime, delay)
+                    pcmt_data.append([data_datetime, delay])
+            line = fp.readline()
+
+    headers = ["time", "value"]
+    df = pd.DataFrame(pcmt_data, columns=headers)
+    df.sort_values(by=['time'],ascending=True, inplace=True)
+    return df
+
+def plot_time_series(time_delay_dataframe, name):
+    """ plot as a time series """
+
+    df = time_delay_dataframe
+
+    x = list(df['time'])
+    y = list(df['value'])
+
+    #make everything relative to mean value
+    mean = np.mean(y)
+    for i in range(0, len(y) ):
+        y[i] = y[i] - mean
+
+    # Plot residuals to linear fit with error bars
+    plt.figure(figsize=(9,6.2))
+
+    #plot data minus const offset
+    plt.plot(x, y)
+
+    # beautify the x-labels
+    plt.gcf().autofmt_xdate("HH:MM")
+    plt.savefig(name)
+    plt.close()
+
+
+
+#===== Main ==============================================
+
+def main():
+    """
+    plot time series of baseline length
+    """
+
+    # Parse input arguments
+    args = prog_usage()
+    outfile = args.output_file
+
+    files_to_process = dict()
+    #construct dict of files to compare/process
+    for x in args.pcmt_input_files:
+        print("x=",x)
+        file_name = os.path.abspath( x )
+        file_key = os.path.basename( os.path.dirname(file_name) )
+        files_to_process[file_key] = file_name
+
+    print(files_to_process)
+
+    all_keys = files_to_process.keys()
+    count = 0;
+    marker_style_index = dict()
+    marker_color = ['k', 'r','g','b', 'orange', 'c','m','y']
+    marker_style = ['o', 'x', '+', '*', '^', 'v', 'h']
+    lst = ['-', '--', '-.', ':', ':']
+    # for k in ['haystack', 'bonn', 'vienna', 'waco', 'shanghai']:
+    for k in ['haystack', 'vienna']:
+        marker_style_index[k] = count % len(marker_color)
+        count += 1
+
+    formatter = DateFormatter('%H:%M')
+
+    #read and sort by baseline
+
+    df_ref = read_and_sort_pcmt(files_to_process['haystack'])
+    y_ref = list(df_ref['value']*1e12)
+
+
+    auto_fig = plt.figure(figsize=(9.0,9.0))
+    gs = gridspec.GridSpec(2, 1, height_ratios=[3.0, 1.0])
+    plt.subplot(gs[0])
+    ax = plt.gca()
+
+    # for filekey in ['haystack', 'bonn', 'vienna', 'waco', 'shanghai']:
+    for filekey in ['haystack', 'vienna']:
+        filename = files_to_process[filekey]
+        print(filekey, filename)
+        df = read_and_sort_pcmt(filename)
+        #plot_time_series(pcmt_data, outfile)
+        x = list(df['time'])
+        y = list(df['value']*1e12)
+
+        y_delta = []
+        for n in range(0,len(y)):
+            y_delta.append(y[n] - y_ref[n])
+        print(y_delta)
+        #plot data minus const offset
+        ax.plot(copy.copy(x), copy.copy(y), color=marker_color[marker_style_index[filekey]], linestyle=lst[marker_style_index[filekey]], marker=marker_style[marker_style_index[filekey]],  label=filekey)
+
+        # beautify the x-labels
+
+    plt.legend()
+    plt.gca().set_title('Proxy cable-cal. delay vs time', fontsize=20)
+    plt.gca().set_ylabel('Proxy cable-cal. delay (ps)')
+
+    plt.subplot(gs[1], sharex=ax)
+    ax2 = plt.gca()
+    for filekey in files_to_process.keys():
+        filename = files_to_process[filekey]
+        print(filekey, filename)
+        df = read_and_sort_pcmt(filename)
+        #plot_time_series(pcmt_data, outfile)
+        x = list(df['time'])
+        y = list(df['value']*1e12)
+
+        y_delta = []
+        for n in range(0,len(y)):
+            y_delta.append(y[n] - y_ref[n])
+        print(y_delta)
+        #plot data minus const offset
+        ax2.plot(copy.copy(x), copy.copy(y_delta), color=marker_color[marker_style_index[filekey]], marker=marker_style[marker_style_index[filekey]],  label=filekey)
+        ax2.grid(True)
+
+    plt.gcf().axes[0].xaxis.set_major_formatter(formatter)
+    plt.gca().set_ylabel('$\Delta$ proxy cable-cal. delay \n w.r.t reference (Haystack) (ps)')
+    plt.gca().set_xlabel('Time during session (HH:MM)')
+    plt.show()
+
+
+
+
+#===== Official entry point ==============================
+
+if __name__ == '__main__':
+    main()
+    sys.exit(0)

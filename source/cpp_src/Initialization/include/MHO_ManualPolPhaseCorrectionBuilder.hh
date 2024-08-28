@@ -1,26 +1,26 @@
 #ifndef MHO_ManualPolPhaseCorrectionBuilderBuilder_HH__
 #define MHO_ManualPolPhaseCorrectionBuilderBuilder_HH__
 
-/*
-*File: MHO_ManualPolPhaseCorrectionBuilder.hh
-*Class: MHO_ManualPolPhaseCorrectionBuilder
-*Author:
-*Email:
-*Date:
-*Description:
-*/
 
 #include "MHO_OperatorBuilder.hh"
 
 namespace hops
 {
 
-class MHO_ManualPolPhaseCorrectionBuilder: 
+/*!
+*@file MHO_ManualPolPhaseCorrectionBuilder.hh
+*@class MHO_ManualPolPhaseCorrectionBuilder
+*@author J. Barrett - barrettj@mit.edu
+*@date Tue Jun 20 12:35:56 2023 -0400
+*@brief
+*/
+
+class MHO_ManualPolPhaseCorrectionBuilder:
     public MHO_OperatorBuilder
 {
     public:
 
-        MHO_ManualPolPhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox, 
+        MHO_ManualPolPhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox,
                                                 MHO_ContainerStore* cstore = nullptr,
                                                 MHO_ParameterStore* pstore = nullptr):
             MHO_OperatorBuilder(toolbox, cstore, pstore)
@@ -39,4 +39,4 @@ class MHO_ManualPolPhaseCorrectionBuilder:
 }//end namespace
 
 
-#endif /* end of include guard: MHO_ManualPolPhaseCorrectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_ManualPolPhaseCorrectionBuilderBuilder_HH__ */

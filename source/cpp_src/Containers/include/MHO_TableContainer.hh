@@ -1,20 +1,13 @@
 #ifndef MHO_TableContainer_HH__
 #define MHO_TableContainer_HH__
 
-/*
-*File: MHO_TableContainer.hh
-*Class: MHO_TableContainer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-15T20:22:00.867Z
-*Description:
-*/
 
 
 #include <tuple>
 #include <utility>
 #include <string>
 
+#include "MHO_Meta.hh"
 #include "MHO_Units.hh"
 #include "MHO_MultiTypeMap.hh"
 #include "MHO_NDArrayWrapper.hh"
@@ -27,7 +20,13 @@
 namespace hops
 {
 
-class MHO_TableContainerBase{}; //only needed for dependent template specializations
+/*!
+*@file MHO_TableContainer.hh
+*@class MHO_TableContainer
+*@author J. Barrett - barrettj@mit.edu
+*@date Sun Jan 24 14:03:03 2021 -0500
+*@brief
+*/
 
 template< typename XValueType, typename XAxisPackType >
 class MHO_TableContainer:
@@ -62,7 +61,7 @@ class MHO_TableContainer:
         //clone table shape, but leave contents/axes empty
         MHO_TableContainer* CloneEmpty()
         {
-            return new MHO_TableContainer( this->GetDimensions() ); 
+            return new MHO_TableContainer( this->GetDimensions() );
         }
 
         virtual ~MHO_TableContainer(){};
@@ -132,7 +131,7 @@ class MHO_TableContainer:
             MHO_ClassVersion vers;
             s >> vers;
 
-            switch(vers) 
+            switch(vers)
             {
                 case 0:
                     aData.StreamInData_V0(s);
@@ -148,15 +147,15 @@ class MHO_TableContainer:
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_TableContainer& aData)
         {
-            switch( aData.GetVersion() ) 
+            switch( aData.GetVersion() )
             {
                 case 0:
                     s << aData.GetVersion();
                     aData.StreamOutData_V0(s);
                 break;
                 default:
-                    msg_error("containers", 
-                        "error, cannot stream out MHO_TableContainer object with unknown version: " 
+                    msg_error("containers",
+                        "error, cannot stream out MHO_TableContainer object with unknown version: "
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -191,7 +190,7 @@ class MHO_TableContainer:
             s >> static_cast< MHO_Taggable& >(*this);
 
             //next stream the axis-pack
-            uint64_t tmp_dim; 
+            uint64_t tmp_dim;
             std::size_t dims[XAxisPackType::NAXES::value];
             for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
             {
@@ -222,7 +221,7 @@ class MHO_TableContainer:
                 }
             }
         }
-        
+
         virtual MHO_UUID DetermineTypeUUID() const override
         {
             MHO_MD5HashGenerator gen;
@@ -539,4 +538,4 @@ DefTableContainers(ComplexF);
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_TableContainer_HH__ */
+#endif /*! end of include guard: MHO_TableContainer_HH__ */

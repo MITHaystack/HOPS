@@ -5,22 +5,17 @@ find_program (BC_PROGRAM bc)
 #awk/grep also needed
 if(BASH_PROGRAM)
 
-    set(TEST_SCRIPT_BASENAMES "")
+    set(TEST_SCRIPT_BASENAMES chk_m42h chk_simplefringesearch chk_simplefringesearch2) #chk_simplefringesearch2 has no python dependence just bash/bc
 
-    #check simple fringe search relies on difxio -> hops conversion of data before it can be run
+    #check relies on difxio -> hops conversion of data before it can be run
     if(BC_PROGRAM AND HOPS_USE_DIFXIO)
-        list(APPEND TEST_SCRIPT_BASENAMES chk_simplefringesearch chk_simplefringesearch2 chk_dumpfileobjkeys)
+        list(APPEND TEST_SCRIPT_BASENAMES chk_dumpfileobjkeys)
     endif(BC_PROGRAM AND HOPS_USE_DIFXIO)
-
-    if(HOPS3_USE_CXX)
-        list(APPEND TEST_SCRIPT_BASENAMES chk_nufourfit)
-    endif(HOPS3_USE_CXX)
-
 
     if(PY_EXE)
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/compjson.py" "${CMAKE_CURRENT_BINARY_DIR}/compjson.py" @ONLY)
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/hopsobjdata.py" "${CMAKE_CURRENT_BINARY_DIR}/hopsobjdata.py" @ONLY)
-        list(APPEND TEST_SCRIPT_BASENAMES chk_convertvex2json chk_converthops2json)
+        list(APPEND TEST_SCRIPT_BASENAMES chk_convertvex2json chk_converthops2json chk_simplefringesearch3 chk_simplefringesearch4 chk_passband)
     endif(PY_EXE)
 
     foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )

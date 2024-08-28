@@ -6,7 +6,7 @@ const int REASONSARRAYSIZE = 64;
 const int NUMBEROFREASONARRAYS = 8;
 
 //typedef struct date
-//    {   
+//    {
 //    short year;
 //    short day;
 //    short hour;
@@ -19,7 +19,7 @@ const int NUMBEROFREASONARRAYS = 8;
 //    short               lsb;
 //    short               usb;
 //    };
-  
+
 //struct sbweights
 //    {
 //    double              lsb;
@@ -60,7 +60,7 @@ mho_json sidebandsToJSON(const sidebands &t) {
 
 mho_json sidebandsArrayToJSON(const sidebands t[64]) {
   int i;
-  mho_json JSONsidebandsArray[REASONSARRAYSIZE];
+  mho_json JSONsidebandsArray;//[REASONSARRAYSIZE];
 
   for (i = 0; i < REASONSARRAYSIZE; i++) {
     JSONsidebandsArray[i] = sidebandsToJSON(t[i]);
@@ -74,7 +74,7 @@ mho_json sbweightsToJSON(const sbweights &t) {
 
 mho_json sbweightsArrayToJSON(const sbweights t[64]) {
   int i;
-  mho_json JSONsidebandsArray[REASONSARRAYSIZE];
+  mho_json JSONsidebandsArray;//[REASONSARRAYSIZE];
 
   for (i = 0; i < REASONSARRAYSIZE; i++) {
     JSONsidebandsArray[i] = sbweightsToJSON(t[i]);

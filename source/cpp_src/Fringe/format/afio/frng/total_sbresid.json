@@ -1,0 +1,8 @@
+{
+	"name": "total_sbresid",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/fringe/total_sbresid",
+	"description": "",
+	"units": ""
+}

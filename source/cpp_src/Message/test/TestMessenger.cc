@@ -41,10 +41,14 @@ int main(int /*argc*/, char** /*argv*/)
 
     //try to pass a debug message
     msg_debug("core", "If you have enabled the option ENABLE_DEBUG_MSG you will see me." << eom);
-    
+
     #ifndef HOPS_ENABLE_DEBUG_MSG
     msg_info("core", "ENABLE_DEBUG_MSG is disabled, debug messages will be hidden." << eom);
     #endif
+
+    msg_warn("dummy", "This is a warning." << eom );
+
+    msg_fatal("dummy", "This is a fatal error." << eom );
 
     return 0;
 }

@@ -36,9 +36,8 @@ int main(int /*argc*/, char** /*argv*/)
 
     if(status)
     {
-        uint32_t label = 0xFF00FF00;
         std::string shortname = "tags";
-        inter.Write(test, shortname, label);
+        inter.Write(test, shortname);
         inter.Close();
     }
     else
@@ -56,13 +55,13 @@ int main(int /*argc*/, char** /*argv*/)
     {
         MHO_FileKey key;
         inter.Read(test2, key);
-        
+
         std::vector< std::string > keys;
         test2.DumpTags(keys);
         for(auto it = keys.begin(); it != keys.end(); it++)
         {
             std::cout<<"key = "<<*it<<std::endl;
-            std::cout<<"key value type = "<< test2.GetTagValueType(*it) << std::endl;
+            // std::cout<<"key value type = "<< test2.GetTagValueType(*it) << std::endl;
             std::cout<<"key value = "<<test2.GetTagValueAsString(*it) <<std::endl;
         }
     }

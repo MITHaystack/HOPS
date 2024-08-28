@@ -49,7 +49,7 @@ int main(int argc, char** argv)
     // {
     //     std::cout<<noise_samples[i]<<std::endl;
     // }
-    // 
+    //
     // std::cout<<"--------------"<<std::endl;
 
     // for(std::size_t i=0; i<n_samples; i++)

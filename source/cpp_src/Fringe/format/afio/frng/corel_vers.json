@@ -1,0 +1,9 @@
+{
+    "name": "corel_vers",
+    "type": "string",
+    "source_object": "none",
+    "path": "",
+    "description":  "Correlator version used",
+    "units": "",
+    "default": "difx"
+}

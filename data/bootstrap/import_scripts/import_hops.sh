@@ -74,7 +74,7 @@ $dif && {
 targets="afio dfio msg mk4util vex
     ffcontrol ffcore ffio ffmath ffplot ffsearch
     fourfit alist adump aedit average cofit fourmer
-    fplot fringex search snratio fftest legacy
+    fplot fringex search snratio fftest legacy data
 "
 [ $# -eq 0 ] && set -- $targets
 

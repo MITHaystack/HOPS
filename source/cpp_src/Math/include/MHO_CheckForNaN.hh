@@ -1,13 +1,12 @@
 #ifndef MHO_CheckForNaN_HH__
 #define MHO_CheckForNaN_HH__
 
-/*
-*File: MHO_CheckForNaN.hh
-*Class: MHO_CheckForNaN
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_CheckForNaN.hh
+*@class MHO_CheckForNaN
+*@author J. Barrett - barrettj@mit.edu
+*@date Thu Aug 12 11:16:36 2021 -0400
+*@brief
 */
 
 #include <cmath>
@@ -80,4 +79,4 @@ MHO_CheckForNaN< std::complex<long double> >::isnan(const std::complex<long doub
 
 
 
-#endif /* end of include guard: MHO_CheckForNaN */
+#endif /*! end of include guard: MHO_CheckForNaN */

@@ -1,0 +1,87 @@
+{
+    "block_name": "$SITE",
+    "version": "2.0",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "site_type": {"type": "string"},
+        "site_name": {"type": "string"},
+        "site_ID":
+        {
+            "type": "compound",
+            "parameters":
+            {
+                "standard": {"type": "string"},
+                "ad_hoc": {"type": "string"}
+            },
+            "fields": ["standard", "#ad_hoc"]
+        },
+        "site_position":
+        {
+            "type": "compound",
+            "parameters":
+            {
+                "x": {"type": "real", "dimension":"length"},
+                "y": {"type": "real", "dimension":"length"},
+                "z": {"type": "real", "dimension":"length"}
+            },
+            "fields": ["x", "y", "z"]
+        },
+        "site_position_epoch": {"type": "epoch"},
+        "site_position_ref": {"type": "string"},
+        "site_position_frame": {"type": "string"},
+        "site_velocity":
+        {
+            "type": "compound",
+            "parameters":
+            {
+                "x_velocity": {"type": "real", "dimension":"length/time"},
+                "y_velocity": {"type": "real", "dimension":"length/time"},
+                "z_velocity": {"type": "real", "dimension":"length/time"}
+            },
+            "fields": ["x_velocity", "y_velocity", "z_velocity"]
+        },
+        "horizon_map_az": {"type": "list_real", "dimension": "angle"},
+        "horizon_map_el": {"type": "list_real", "dimension": "angle"},
+        "zen_atmos": {"type": "real", "dimension": "time"},
+        "ocean_load_vert": {"type": "real", "dimension": "length"},
+        "ocean_load_horiz": {"type": "real", "dimension": "length"},
+        "occupation_code": {"type": "string"},
+        "inclination": {"type": "real", "dimension":"angle"},
+        "eccentricity":  {"type": "real", "dimension":"NA"},
+        "arg_perigee":  {"type": "real", "dimension":"angle"},
+        "ascending_node":  {"type": "real", "dimension":"angle"},
+        "mean_anomaly":  {"type": "real", "dimension":"angle"},
+        "semi-major_axis":  {"type": "real", "dimension":"length"},
+        "mean_motion":  {"type": "real", "dimension":"NA"},
+        "orbit_epoch": {"type": "epoch"}
+    },
+    "fields":
+    [
+        "site_type",
+        "site_name",
+        "site_id",
+        "site_position",
+        "site_position_epoch",
+        "site_position_ref",
+        "site_position_frame",
+        "site_velocity",
+        "horizon_map_az",
+        "horizon_map_el",
+        "zen_atmos",
+        "ocean_load_vert",
+        "ocean_load_horiz",
+        "occupation_code",
+        "inclination",
+        "eccentricity",
+        "arg_perigee",
+        "ascending_node",
+        "mean_anomaly",
+        "semi-major_axis",
+        "mean_motion",
+        "orbit_epoch"
+    ]
+}

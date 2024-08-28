@@ -1,14 +1,6 @@
 #ifndef MHO_NormFX_HH__
 #define MHO_NormFX_HH__
 
-/*
-*File: MHO_NormFX.hh
-*Class: MHO_NormFX
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-*/
 
 #include <cmath>
 #include <complex>
@@ -22,23 +14,24 @@
 #include "MHO_ComplexConjugator.hh"
 #include "MHO_CyclicRotator.hh"
 #include "MHO_SubSample.hh"
+#include "MHO_EndZeroPadder.hh"
+#include "MHO_MultidimensionalFastFourierTransform.hh"
 
 #ifdef HOPS_USE_FFTW3
-    #include "MHO_FFTWTypes.hh"
-    #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
-#else
-    #include "MHO_FastFourierTransform.hh"
+#include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
 #endif
-
-#include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
-
-
-
-
-
 
 namespace hops
 {
+
+/*!
+*@file MHO_NormFX.hh
+*@class MHO_NormFX
+*@author J. Barrett - barrettj@mit.edu
+*@date Fri Jul 9 11:47:00 2021 -0400
+*@brief implements a subset of the functionality found in norm_fx.c,
+*mainly the transform from frequency to delay space
+*/
 
 
 class MHO_NormFX: public MHO_BinaryOperator<
@@ -71,8 +64,14 @@ class MHO_NormFX: public MHO_BinaryOperator<
         MHO_FunctorBroadcaster<visibility_type, nanMaskerType> fNaNBroadcaster;
         MHO_FunctorBroadcaster<visibility_type, conjType> fConjBroadcaster;
 
-        MHO_MultidimensionalPaddedFastFourierTransform< visibility_type > fPaddedFFTEngine;
+        #ifdef HOPS_USE_FFTW3
+        using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< visibility_type >;
+        #else
+        using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< visibility_type >;
+        #endif
 
+        FFT_ENGINE_TYPE fFFTEngine;
+        MHO_EndZeroPadder< visibility_type > fZeroPadder;
         MHO_SubSample<sbd_type> fSubSampler;
         MHO_CyclicRotator<sbd_type> fCyclicRotator;
 
@@ -86,4 +85,4 @@ class MHO_NormFX: public MHO_BinaryOperator<
 }
 
 
-#endif /* end of include guard: MHO_NormFX */
+#endif /*! end of include guard: MHO_NormFX */

@@ -1,0 +1,8 @@
+{
+	"name": "polarization",
+	"type": "string",
+	"source_object": "parameters",
+	"path": "/pass/polprod",
+	"description": "The fringe polarization product",
+	"units": ""
+}

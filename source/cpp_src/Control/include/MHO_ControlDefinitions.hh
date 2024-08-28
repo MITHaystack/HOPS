@@ -1,14 +1,6 @@
 #ifndef MHO_ControlElements_HH__
 #define MHO_ControlElements_HH__
 
-/*
-*@file: MHO_ControlElements.hh
-*@class: MHO_ControlElements
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
-*/
 
 #include <string>
 #include <vector>
@@ -18,6 +10,14 @@
 
 namespace hops
 {
+
+/*!
+*@file  MHO_ControlElements.hh
+*@class  MHO_ControlElements
+*@author  J. Barrett - barrettj@mit.edu
+*@date Mon May 15 16:14:11 2023 -0400
+*@brief
+*/
 
 struct MHO_Token
 {
@@ -46,9 +46,11 @@ enum control_element_type
     control_real_type,
     control_string_type,
     control_list_string_type,
+    control_fixed_length_list_string_type,
     control_list_real_type,
     control_conditional_type,
     control_compound_type,
+    control_bool_type,
     control_unknown_type
 };
 
@@ -82,4 +84,4 @@ class MHO_ControlDefinitions
 
 }
 
-#endif /* end of include guard: MHO_ControlElements */
+#endif /*! end of include guard: MHO_ControlElements */

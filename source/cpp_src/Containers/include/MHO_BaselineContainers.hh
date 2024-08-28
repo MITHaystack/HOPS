@@ -7,27 +7,27 @@
 #endif
 
 
-/*
-*File: MHO_BaselineContainers.hh
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: Wed 21 Oct 2020 08:32:43 PM UTC
-*Description: Definitions for single-baseline visibility data and related quantities.
-* This will likely be re-worked as things progress.
-*/
+
 
 namespace hops
 {
 
+/*!
+*@file MHO_BaselineContainers.hh
+*@author J. Barrett - barrettj@mit.edu
+*@date Tue Apr 12 16:15:02 2022 -0400 Wed 21 Oct 2020 08:32:43 PM UTC
+*@brief Definitions for single-baseline visibility data and related quantities.
+* This will likely be re-worked as things progress.
+*/
 
 ////////////////////////////////////////////////////////////////////////////
 //the following definitions are for 'un-channelized data'
-//this doesn't necessarily mean that this data can't be made chunked into channels 
-//and labelled as such, just that these channels are all indexed 
-//along the same (possibly discontinuous) frequency axis 
+//this doesn't necessarily mean that this data can't be made chunked into channels
+//and labelled as such, just that these channels are all indexed
+//along the same (possibly discontinuous) frequency axis
 //(not along separate channel dimension), making this data 3-dimensional
 //This type of data layout is non-standard (and not used by original fourfit algo)
-//Currently these data types are only used as an intermediate state during mk4 types -> hops conversion 
+//Currently these data types are only used as an intermediate state during mk4 types -> hops conversion
 
 #define UCH_VIS_NDIM 3
 #define UCH_POLPROD_AXIS 0
@@ -40,7 +40,7 @@ using uch_weight_type = MHO_TableContainer< weight_element_type, uch_baseline_ax
 
 ////////////////////////////////////////////////////////////////////////////////
 //Definitions for visibilities and related quantities (in-memory types)
-//which have a separate channel axis. In this case all channels should have the 
+//which have a separate channel axis. In this case all channels should have the
 //same number of spectral points, or be padded out to the same size
 
 #define VIS_NDIM 4
@@ -59,7 +59,6 @@ using sbd_dr_type = visibility_type;
 
 using mbd_dr_type = MHO_TableContainer< visibility_element_type, mbd_dr_axis_pack >;
 using mbd_dr_amp_type = MHO_TableContainer< weight_element_type, mbd_dr_axis_pack >;
-
 
 //(here we are storing manual pcal as a rotation in 'degrees', should/could we use phasor instead?)
 using pcal_axis_pack = MHO_AxisPack< pol_axis_type, channel_axis_type>;
@@ -91,4 +90,4 @@ using uch_weight_store_type = MHO_TableContainer< weight_element_store_type, uch
 
 }//end of hops namespaces
 
-#endif /* end of include guard: MHO_BaselineContainers */
+#endif /*! end of include guard: MHO_BaselineContainers */

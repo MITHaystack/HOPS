@@ -1,0 +1,69 @@
+{
+    "block_name": "$EXPER",
+    "version": "2.0",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "exper_name":
+        {
+            "type": "compound",
+            "parameters":
+            {
+                "name": {"type": "string"},
+                "segment_code": {"type": "string"}
+            },
+            "fields": ["name", "#segment_code"]
+        },
+        "exper_description": {"type": "string"},
+        "exper_nominal_start":{"type": "epoch"},
+        "exper_nominal_stop": {"type": "epoch"},
+        "PI_name": {"type": "string"},
+        "PI_email": {"type": "string"},
+        "contact_name": {"type": "string"},
+        "contact_email": {"type": "string"},
+        "scheduler_name": {"type": "string"},
+        "scheduler_email": {"type": "string"},
+        "target_correlator": {"type": "string"},
+        "scheduling_software":
+        {
+            "type": "compound",
+            "parameters":
+            {
+                "program": {"type": "string"},
+                "version": {"type": "string"},
+                "date_created": {"type": "epoch"}
+            },
+            "fields": ["program", "#version", "#date_created"]
+        },
+        "VEX_file_writer":
+        {
+            "type": "compound",
+            "parameters":
+            {
+                "program": {"type": "string"},
+                "version": {"type": "string"},
+                "date_created": {"type": "epoch"}
+            },
+            "fields": ["program", "#version", "#date_created"]
+        }
+    },
+    "fields":
+    [
+        "exper_name",
+        "exper_description",
+        "exper_nominal_start",
+        "exper_nominal_stop",
+        "PI_name",
+        "PI_email",
+        "contact_name",
+        "contact_email",
+        "scheduler_name",
+        "scheduler_email",
+        "target_correlator",
+        "scheduling_software",
+        "VEX_file_writer"
+    ]
+}

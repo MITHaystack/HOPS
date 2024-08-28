@@ -3,10 +3,10 @@
 /* [a-z]x6 before this unix clock and [0-9A-Z]x6 after it */
 #define HOPS_ROOT_BREAK (1519659904)
 
-namespace hops 
+namespace hops
 {
 
-std::string 
+std::string
 MHO_LegacyRootCodeGenerator::GetCode()
 {
     fNow = time ((time_t *) NULL);
@@ -20,7 +20,7 @@ MHO_LegacyRootCodeGenerator::GetCode()
     return root_id_break (fNow, fYear, fDay, fHour, fMin, fSec);
 }
 
-std::vector<std::string> 
+std::vector<std::string>
 MHO_LegacyRootCodeGenerator::GetCodes(std::size_t N)
 {
     std::vector< std::string > codes;
@@ -41,7 +41,7 @@ MHO_LegacyRootCodeGenerator::GetCodes(std::size_t N)
     return codes;
 }
 
-int 
+int
 MHO_LegacyRootCodeGenerator::root_id_delta(time_t now)
 {
     int delta = 4;

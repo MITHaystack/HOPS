@@ -1,10 +1,9 @@
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_Message.hh"
 
-
 #define EXTRA_INTERP_DBG
 
-namespace hops 
+namespace hops
 {
 
 MHO_UniformGridPointsCalculator::MHO_UniformGridPointsCalculator()
@@ -15,23 +14,26 @@ MHO_UniformGridPointsCalculator::MHO_UniformGridPointsCalculator()
     fMaxSpacing = 0;
     fNGridPoints = 0;
     fAbsEps = 1e-30;
+    fAverageLocation = 0;
+    fSpread = 0;
     fDefaultGridPoints = 2;
-    #ifdef EXTRA_INTERP_DBG
-    fDefaultGridPoints = 256;
-    #endif
+    fSpacingError = false;
+    // #ifdef EXTRA_INTERP_DBG
+    // fDefaultGridPoints = 256;
+    // #endif
 }
 
 MHO_UniformGridPointsCalculator::~MHO_UniformGridPointsCalculator(){};
 
 
-void 
+void
 MHO_UniformGridPointsCalculator::SetPoints(const std::vector<double>& pts)
 {
     fPoints.clear();
     fPoints = pts;
 }
 
-void 
+void
 MHO_UniformGridPointsCalculator::SetPoints(const double* pts, std::size_t npts)
 {
     fPoints.clear();
@@ -39,14 +41,14 @@ MHO_UniformGridPointsCalculator::SetPoints(const double* pts, std::size_t npts)
     for(std::size_t i=0;i<npts;i++){fPoints[i] = pts[i];}
 }
 
-void 
+void
 MHO_UniformGridPointsCalculator::Calculate()
 {
     Calculate_v1();
     //Calculate_v2();
 }
 
-void 
+void
 MHO_UniformGridPointsCalculator::Calculate_v1()
 {
     //this function is a basic adaptation of freq_spacing (same hard-coded parameters, etc.)
@@ -65,6 +67,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
 
         //find the min freq, the average freq, spacing, etc.
         n_pts = fPoints.size();
+
         min_pts = std::numeric_limits<double>::max();
         min_space = std::numeric_limits<double>::max();
         ave_loc = 0.0;
@@ -81,31 +84,57 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
         }
         ave_loc /= (double)n_pts;
 
+        fAverageLocation = ave_loc;
+
+        //determine the spread about the average
+        double spread = 0.0;
+        for(std::size_t i=0; i<n_pts; i++)
+        {
+            double freq = fPoints[i];
+            double delta = freq - ave_loc;
+            spread += delta*delta;
+        }
+
+        if(n_pts > 1)
+        {
+            spread = std::sqrt(spread/(double)n_pts);
+        }
+        fSpread = spread;
+
+        //TODO FIXME (single channel)
+        // else
+        // {
+        //     spread = bandwidth/std::sqrt(12.0); //uniform distribution over bandwidth
+        // }
+
         div = 1;
-        bool spacing_err = false;
+        fSpacingError = false;
         std::map<std::size_t, double> chan_idx_to_mbd_idx;
         do
         {
             spacing_ok = 1;
             spacing = min_space / div;
             div++;
-            grid_pts = fDefaultGridPoints ; //use this value to simplify debugging of MBD search
+            grid_pts = fDefaultGridPoints; //use this value to simplify debugging of MBD search
 
             for(std::size_t fr = 0; fr < n_pts; fr++)
             {
                 index = (fPoints[fr] - min_pts) / spacing;
-                // Check whether all freqs lie on grid points 
+                // Check whether all freqs lie on grid points
                 if (fabs(index - (int)(index+0.5)) > fEpsilon){spacing_ok = 0;}
                 index = (double) (int)(index + 0.5);
-                // Make # of grid points the smallest power of 2 that will cover all points 
-                for(int i = 1; i < 8; i++)
+                // Make # of grid points the smallest power of 2 that will cover all points
+                for(int j = 1; j < 8; j++)
                 {
-                    if( (grid_pts - 1) < index){grid_pts *= 2;}
+                    if( (grid_pts - 1) < index)
+                    {
+                        grid_pts *= 2;
+                    }
                 }
 
                 if ((index > (MBD_GRID_PTS-1)) || (index < 0))
                 {
-                    spacing_err = true;
+                    fSpacingError = true;
                     chan_idx_to_mbd_idx[fr] = BOGUS_MBD_INDEX;
                     fIndexMap[fr] = (std::size_t) index;
                 }
@@ -119,11 +148,17 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
             fIndexMap[it->first] = (std::size_t) it->second;
         }
 
-        fSpacing = min_space;
+        fSpacing = spacing;
         fStart = min_pts;
+
+        if(grid_pts > MBD_GRID_PTS)
+        {
+            grid_pts = MBD_GRID_PTS;
+        }
+        grid_pts *= MBD_MULT;
         fNGridPoints = grid_pts;
     }
-    else 
+    else
     {
         msg_error("math", "cannot construct uniform grid with no points given." << eom);
     }
@@ -133,7 +168,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
 
 
 
-void 
+void
 MHO_UniformGridPointsCalculator::Calculate_v2()
 {
 
@@ -150,17 +185,17 @@ MHO_UniformGridPointsCalculator::Calculate_v2()
         std::size_t n_attempts = 0;
         double factor = 1;
 
-        do 
+        do
         {
             grid_pts = factor*start_grid_pts;
             grid_spacing = fMinSpacing/factor;
 
             max_delta = 0;
             for(std::size_t i=0; i<fPoints.size(); i++)
-            {   
+            {
                 double val = fPoints[i];
                 double location = val - fStart;
-                //find nearest grid point 
+                //find nearest grid point
                 std::size_t idx = std::round(location/grid_spacing);
                 fIndexMap[i] = idx;
                 double delta = location - idx*grid_spacing;
@@ -178,14 +213,14 @@ MHO_UniformGridPointsCalculator::Calculate_v2()
         fSpacing = grid_spacing;
         fNGridPoints = grid_pts;
     }
-    else 
+    else
     {
         msg_error("math", "cannot construct uniform grid with no points given." << eom);
     }
 
 }
 
-void 
+void
 MHO_UniformGridPointsCalculator::FindStartAndMinMaxSpacing()
 {
     if(fPoints.size() != 0)

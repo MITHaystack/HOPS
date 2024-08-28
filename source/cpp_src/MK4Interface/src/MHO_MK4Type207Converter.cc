@@ -39,7 +39,7 @@ mho_json sidebandsToJSON(const sbandf &t) {
 
 mho_json sidebandsArrayToJSON(const sbandf t[REFANDREMSIZE]) {
   int i;
-  mho_json JSONsidebandsArray[REFANDREMSIZE];
+  mho_json JSONsidebandsArray;//[REFANDREMSIZE];
 
   for (i = 0; i < REFANDREMSIZE; i++) {
     JSONsidebandsArray[i] = sidebandsToJSON(t[i]);

@@ -1,4 +1,5 @@
 #include <cstddef>
+#include <bitset>
 
 #include "MHO_Message.hh"
 #include "MHO_BitReversalPermutation.hh"
@@ -31,8 +32,7 @@ unsigned int
 MHO_BitReversalPermutation::TwoToThePowerOf(unsigned int N)
 {
     unsigned int val = 1;
-    for(unsigned int i=0; i<N; i++){val *= 2;}
-    return val;
+    return (val << N);
 }
 
 unsigned int
@@ -46,6 +46,18 @@ MHO_BitReversalPermutation::NextLowestPowerOfTwo(unsigned int N)
     }
 }
 
+//takes the input value x, and the number of bits, and returns
+//the number which is composed of the bits of x in reverse order
+unsigned int
+MHO_BitReversalPermutation::ReverseIndexBits(unsigned int nbits, unsigned int x)
+{
+    unsigned int val = 0;
+    for (unsigned int i = 0; i < nbits; i++)
+    {
+        val |= ( ( 1 & ((x & (1 << i)) >> i) ) << ( (nbits - 1) - i) );
+    }
+    return val;
+}
 
 bool MHO_BitReversalPermutation::IsPowerOfBase(unsigned int N, unsigned int B)
 {
@@ -100,8 +112,6 @@ MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(unsigned int N, uns
     //this is slow but simple
     //for details see
     //Fast Fourier Transforms by James S. Walker, CRC Press
-
-
     if( IsPowerOfTwo(N) && N != 0)
     {
         unsigned int p = LogBaseTwo(N);
@@ -133,79 +143,6 @@ MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(unsigned int N, uns
             }
         }
     }
-    else
-    {
-        msg_error("math", "MHO_BitReversalPermutation::ComputeBitReversedIndices: called with non-power of two array size."<< eom );
-    }
 }
-
-void MHO_BitReversalPermutation::ComputeBitReversedIndices(unsigned int N, unsigned int B, unsigned int* index_arr)
-{
-    //this function is the base B extention of the recursive Buneman algorithm to compute
-    //the bit reversed permutation of an array of length N
-
-    if( IsPowerOfBase(N,B) && N != 0)
-    {
-        unsigned int p = LogBaseB(N,B);
-
-        if(N == 1) //p = 0
-        {
-            index_arr[0] = 0;
-            return;
-        }
-
-        //p >= 1
-        for(unsigned int i=0; i<B; i++)
-        {
-            index_arr[i] = i;
-        }
-
-        if(N == B){return;};
-
-        //p >=2
-        unsigned int division;
-        for(unsigned int r=2; r <= p; r++)
-        {
-            division = RaiseBaseToThePower(B,r-1);
-            for(unsigned int q=0; q < division; q++)
-            {
-                index_arr[q] *= B;
-                for(unsigned int s=1; s<B; s++)
-                {
-                    index_arr[q + s*division] = index_arr[q] + s;
-                }
-            }
-        }
-    }
-    else
-    {
-        msg_error("math", "MHO_BitReversalPermutation::ComputeBitReversedIndices: error, called with non-power of " << B << " array size." <<  eom);
-    }
-}
-
-bool
-MHO_BitReversalPermutation::Factor(unsigned int N, unsigned int n_factors, unsigned int* factors, unsigned int* powers)
-{
-    unsigned int test  = 1;
-    for(unsigned int i=0; i<n_factors; i++)
-    {
-        unsigned int quotient = N;
-        powers[i] = 0;
-        while(quotient % factors[i] == 0)
-        {
-            quotient /= factors[i];
-            powers[i] += 1;
-            test *= factors[i];
-        }
-    }
-
-    if(test == N)
-    {
-        return true;
-    }
-
-    return false;
-}
-
 
 }

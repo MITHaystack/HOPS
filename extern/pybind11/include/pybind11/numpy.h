@@ -10,7 +10,10 @@
 #pragma once
 
 #include "pybind11.h"
+#include "detail/common.h"
 #include "complex.h"
+#include "gil_safe_call_once.h"
+#include "pytypes.h"
 
 #include <algorithm>
 #include <array>
@@ -35,6 +38,8 @@ static_assert(std::is_signed<Py_intptr_t>::value, "Py_intptr_t must be signed");
 // We now can reinterpret_cast between py::ssize_t and Py_intptr_t (MSVC + PyPy cares)
 
 PYBIND11_NAMESPACE_BEGIN(PYBIND11_NAMESPACE)
+
+PYBIND11_WARNING_DISABLE_MSVC(4127)
 
 class array; // Forward declaration
 
@@ -118,6 +123,20 @@ inline numpy_internals &get_numpy_internals() {
     return *ptr;
 }
 
+PYBIND11_NOINLINE module_ import_numpy_core_submodule(const char *submodule_name) {
+    module_ numpy = module_::import("numpy");
+    str version_string = numpy.attr("__version__");
+
+    module_ numpy_lib = module_::import("numpy.lib");
+    object numpy_version = numpy_lib.attr("NumpyVersion")(version_string);
+    int major_version = numpy_version.attr("major").cast<int>();
+
+    /* `numpy.core` was renamed to `numpy._core` in NumPy 2.0 as it officially
+        became a private module. */
+    std::string numpy_core_path = major_version >= 2 ? "numpy._core" : "numpy.core";
+    return module_::import((numpy_core_path + "." + submodule_name).c_str());
+}
+
 template <typename T>
 struct same_size {
     template <typename U>
@@ -190,8 +209,8 @@ struct npy_api {
     };
 
     static npy_api &get() {
-        static npy_api api = lookup();
-        return api;
+        PYBIND11_CONSTINIT static gil_safe_call_once_and_store<npy_api> storage;
+        return storage.call_once_and_store_result(lookup).get_stored();
     }
 
     bool PyArray_Check_(PyObject *obj) const {
@@ -261,9 +280,13 @@ private:
     };
 
     static npy_api lookup() {
-        module_ m = module_::import("numpy.core.multiarray");
+        module_ m = detail::import_numpy_core_submodule("multiarray");
         auto c = m.attr("_ARRAY_API");
         void **api_ptr = (void **) PyCapsule_GetPointer(c.ptr(), nullptr);
+        if (api_ptr == nullptr) {
+            raise_from(PyExc_SystemError, "FAILURE obtaining numpy _ARRAY_API pointer.");
+            throw error_already_set();
+        }
         npy_api api;
 #define DECL_NPY_API(Func) api.Func##_ = (decltype(api.Func##_)) api_ptr[API_##Func];
         DECL_NPY_API(PyArray_GetNDArrayCFeatureVersion);
@@ -537,7 +560,7 @@ PYBIND11_NAMESPACE_END(detail)
 
 class dtype : public object {
 public:
-    PYBIND11_OBJECT_DEFAULT(dtype, object, detail::npy_api::get().PyArrayDescr_Check_);
+    PYBIND11_OBJECT_DEFAULT(dtype, object, detail::npy_api::get().PyArrayDescr_Check_)
 
     explicit dtype(const buffer_info &info) {
         dtype descr(_dtype_from_pep3118()(pybind11::str(info.format)));
@@ -562,6 +585,8 @@ public:
         m_ptr = from_args(args).release().ptr();
     }
 
+    /// Return dtype for the given typenum (one of the NPY_TYPES).
+    /// https://numpy.org/devdocs/reference/c-api/array.html#c.PyArray_DescrFromType
     explicit dtype(int typenum)
         : object(detail::npy_api::get().PyArray_DescrFromType_(typenum), stolen_t{}) {
         if (m_ptr == nullptr) {
@@ -604,7 +629,7 @@ public:
     }
 
     /// type number of dtype.
-    ssize_t num() const {
+    int num() const {
         // Note: The signature, `dtype::num` follows the naming of NumPy's public
         // Python API (i.e., ``dtype.num``), rather than its internal
         // C API (``PyArray_Descr::type_num``).
@@ -621,13 +646,14 @@ public:
     char flags() const { return detail::array_descriptor_proxy(m_ptr)->flags; }
 
 private:
-    static object _dtype_from_pep3118() {
-        static PyObject *obj = module_::import("numpy.core._internal")
-                                   .attr("_dtype_from_pep3118")
-                                   .cast<object>()
-                                   .release()
-                                   .ptr();
-        return reinterpret_borrow<object>(obj);
+    static object &_dtype_from_pep3118() {
+        PYBIND11_CONSTINIT static gil_safe_call_once_and_store<object> storage;
+        return storage
+            .call_once_and_store_result([]() {
+                return detail::import_numpy_core_submodule("_internal")
+                    .attr("_dtype_from_pep3118");
+            })
+            .get_stored();
     }
 
     dtype strip_padding(ssize_t itemsize) {
@@ -641,10 +667,14 @@ private:
             pybind11::str name;
             object format;
             pybind11::int_ offset;
+            field_descr(pybind11::str &&name, object &&format, pybind11::int_ &&offset)
+                : name{std::move(name)}, format{std::move(format)}, offset{std::move(offset)} {};
         };
+        auto field_dict = attr("fields").cast<dict>();
         std::vector<field_descr> field_descriptors;
+        field_descriptors.reserve(field_dict.size());
 
-        for (auto field : attr("fields").attr("items")()) {
+        for (auto field : field_dict.attr("items")()) {
             auto spec = field.cast<tuple>();
             auto name = spec[0].cast<pybind11::str>();
             auto spec_fo = spec[1].cast<tuple>();
@@ -653,8 +683,8 @@ private:
             if ((len(name) == 0u) && format.kind() == 'V') {
                 continue;
             }
-            field_descriptors.push_back(
-                {(pybind11::str) name, format.strip_padding(format.itemsize()), offset});
+            field_descriptors.emplace_back(
+                std::move(name), format.strip_padding(format.itemsize()), std::move(offset));
         }
 
         std::sort(field_descriptors.begin(),
@@ -871,7 +901,7 @@ public:
      */
     template <typename T, ssize_t Dims = -1>
     detail::unchecked_mutable_reference<T, Dims> mutable_unchecked() & {
-        if (PYBIND11_SILENCE_MSVC_C4127(Dims >= 0) && ndim() != Dims) {
+        if (Dims >= 0 && ndim() != Dims) {
             throw std::domain_error("array has incorrect number of dimensions: "
                                     + std::to_string(ndim()) + "; expected "
                                     + std::to_string(Dims));
@@ -889,7 +919,7 @@ public:
      */
     template <typename T, ssize_t Dims = -1>
     detail::unchecked_reference<T, Dims> unchecked() const & {
-        if (PYBIND11_SILENCE_MSVC_C4127(Dims >= 0) && ndim() != Dims) {
+        if (Dims >= 0 && ndim() != Dims) {
             throw std::domain_error("array has incorrect number of dimensions: "
                                     + std::to_string(ndim()) + "; expected "
                                     + std::to_string(Dims));
@@ -1000,7 +1030,7 @@ protected:
     /// Create array from any object -- always returns a new reference
     static PyObject *raw_array(PyObject *ptr, int ExtraFlags = 0) {
         if (ptr == nullptr) {
-            PyErr_SetString(PyExc_ValueError, "cannot create a pybind11::array from a nullptr");
+            set_error(PyExc_ValueError, "cannot create a pybind11::array from a nullptr");
             return nullptr;
         }
         return detail::npy_api::get().PyArray_FromAny_(
@@ -1115,10 +1145,10 @@ public:
 
     /**
      * Returns a proxy object that provides const access to the array's data without bounds or
-     * dimensionality checking.  Unlike `unchecked()`, this does not require that the underlying
-     * array have the `writable` flag.  Use with care: the array must not be destroyed or reshaped
-     * for the duration of the returned object, and the caller must take care not to access invalid
-     * dimensions or dimension indices.
+     * dimensionality checking.  Unlike `mutable_unchecked()`, this does not require that the
+     * underlying array have the `writable` flag.  Use with care: the array must not be destroyed
+     * or reshaped for the duration of the returned object, and the caller must take care not to
+     * access invalid dimensions or dimension indices.
      */
     template <ssize_t Dims = -1>
     detail::unchecked_reference<T, Dims> unchecked() const & {
@@ -1147,7 +1177,7 @@ protected:
     /// Create array from any object -- always returns a new reference
     static PyObject *raw_array_t(PyObject *ptr) {
         if (ptr == nullptr) {
-            PyErr_SetString(PyExc_ValueError, "cannot create a pybind11::array_t from a nullptr");
+            set_error(PyExc_ValueError, "cannot create a pybind11::array_t from a nullptr");
             return nullptr;
         }
         return detail::npy_api::get().PyArray_FromAny_(ptr,
@@ -1277,12 +1307,16 @@ private:
 public:
     static constexpr int value = values[detail::is_fmt_numeric<T>::index];
 
-    static pybind11::dtype dtype() {
-        if (auto *ptr = npy_api::get().PyArray_DescrFromType_(value)) {
-            return reinterpret_steal<pybind11::dtype>(ptr);
-        }
-        pybind11_fail("Unsupported buffer format!");
-    }
+    static pybind11::dtype dtype() { return pybind11::dtype(/*typenum*/ value); }
+};
+
+template <typename T>
+struct npy_format_descriptor<T, enable_if_t<is_same_ignoring_cvref<T, PyObject *>::value>> {
+    static constexpr auto name = const_name("object");
+
+    static constexpr int value = npy_api::NPY_OBJECT_;
+
+    static pybind11::dtype dtype() { return pybind11::dtype(/*typenum*/ value); }
 };
 
 #define PYBIND11_DECL_CHAR_FMT                                                                    \
@@ -1397,7 +1431,7 @@ PYBIND11_NOINLINE void register_structured_dtype(any_container<field_descriptor>
     oss << '}';
     auto format_str = oss.str();
 
-    // Sanity check: verify that NumPy properly parses our buffer format string
+    // Smoke test: verify that NumPy properly parses our buffer format string
     auto &api = npy_api::get();
     auto arr = array(buffer_info(nullptr, itemsize, format_str, 1));
     if (!api.PyArray_EquivTypes_(dtype_ptr, arr.dtype().ptr())) {
@@ -1405,7 +1439,7 @@ PYBIND11_NOINLINE void register_structured_dtype(any_container<field_descriptor>
     }
 
     auto tindex = std::type_index(tinfo);
-    numpy_internals.registered_dtypes[tindex] = {dtype_ptr, format_str};
+    numpy_internals.registered_dtypes[tindex] = {dtype_ptr, std::move(format_str)};
     get_internals().direct_conversions[tindex].push_back(direct_converter);
 }
 
@@ -1465,7 +1499,7 @@ private:
         }
 
 // Extract name, offset and format descriptor for a struct field
-#    define PYBIND11_FIELD_DESCRIPTOR(T, Field) PYBIND11_FIELD_DESCRIPTOR_EX(T, Field, #    Field)
+#    define PYBIND11_FIELD_DESCRIPTOR(T, Field) PYBIND11_FIELD_DESCRIPTOR_EX(T, Field, #Field)
 
 // The main idea of this macro is borrowed from https://github.com/swansontec/map-macro
 // (C) William Swanson, Paul Fultz
@@ -1862,8 +1896,13 @@ private:
 
         auto result = returned_array::create(trivial, shape);
 
+        PYBIND11_WARNING_PUSH
+#ifdef PYBIND11_DETECTED_CLANG_WITH_MISLEADING_CALL_STD_MOVE_EXPLICITLY_WARNING
+        PYBIND11_WARNING_DISABLE_CLANG("-Wreturn-std-move")
+#endif
+
         if (size == 0) {
-            return std::move(result);
+            return result;
         }
 
         /* Call the function */
@@ -1874,7 +1913,8 @@ private:
             apply_trivial(buffers, params, mutable_data, size, i_seq, vi_seq, bi_seq);
         }
 
-        return std::move(result);
+        return result;
+        PYBIND11_WARNING_POP
     }
 
     template <size_t... Index, size_t... VIndex, size_t... BIndex>

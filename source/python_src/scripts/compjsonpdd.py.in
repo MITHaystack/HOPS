@@ -1,0 +1,162 @@
+#!@PY_EXE@
+
+import argparse
+import json
+import sys
+import os
+import math
+
+from hops_io import parse_PDD
+
+def main():
+
+    parser = argparse.ArgumentParser(
+         prog='compjsonpdd.py', \
+         description='''primitive utility to compare a json dump file and a pdd file''' \
+         )
+
+    parser.add_argument('-r', '--rel-tolerance', type=float, dest='reltol', help='the relative tolerance to use when comparing floating point numbers, default = 3e-4.', default=3e-4)
+    parser.add_argument('fileA', help='the HOPS4 json fringe data dump')
+    parser.add_argument('fileB', help='the HOPS3 (plot_data_dir) dump file')
+
+    args = parser.parse_args()
+
+    reltol = abs(args.reltol)
+    f1_name = os.path.abspath(args.fileA)
+    f2_name = os.path.abspath(args.fileB)
+
+    f1 = open(f1_name, "r")
+    j1 = json.loads(f1.read())
+    j2 = parse_PDD(f2_name)
+
+    #print(j1)
+    #print(f2)
+
+    #the fields we compare are quite limited for now, just list them here:
+    key_type_dict = {
+        #'RootScanBaseline',
+        #'PolStr':'string',
+        #'Quality': 'string',
+        'SNR': 'float',
+        'IntgTime':'float',
+        'Amp':'float',
+        'ResPhase':'float',
+        #'PFD':'float',
+        'ResidSbd(us)':'float',
+        'ResidMbd(us)':'float',
+        'FringeRate(Hz)': 'float',
+        'RefFreq(MHz)':'float',
+        'AP(sec)':'float',
+        'ExperName':'string',
+        #'ExperNum':'string', --not particularly critical
+        'YearDOY':'string',
+        'Start':'string',
+        'Stop':'string',
+        'FRT':'string',
+        # 'CorrTime':' "-";
+        # 'FFTime':' "-";
+        # 'BuildTime':' "-";
+        #'RA':'string',
+        #'Dec':'string',
+        'SbandDelay(usec)':'float',
+        #'DelayRate(ps/s)':'float', -- something is wrong with this one in pdd file, should be total delay rate, but it is residual delay rate
+        'PhaseDelay(usec)':'float',
+        'TotalPhase(deg)':'float',
+        'AprioriClock(usec)':'float',
+        'AprioriClockrate(us/s)':'float',
+        'AprioriDelay(usec)':'float',
+        'AprioriRate(us/s)':'float',
+        'AprioriAccel(us/s/s)':'float',
+        'ResidMbdelay(usec)':'float',
+        'ResidSbdelay(usec)':'float',
+        'ResidPhdelay(usec)':'float',
+        'ResidRate(us/s)':'float',
+        'ResidPhase(deg)':'float',
+        'ResidMbdelayError(usec)':'float',
+        'ResidSbdelayError(usec)':'float',
+        'ResidPhdelayError(usec)':'float',
+        'ResidRateError(us/s)':'float',
+        'ResidPhaseError(deg)':'float'
+    }
+
+    #the name of the total group delay parameter changes depending on whether or not 'mbd_anchor sbd'
+    #is in the control file, check if either is present, and compare only if it exists
+    optional_key_type_dict = {
+        'GroupDelayModel(usec)':'float',
+        'GroupDelaySBD(usec)':'float', # TODO -- this becomes GroupDelaySBD(usec) if mbd_anchor sbd is in the control file
+    }
+
+    bad_count = 0
+    bad_keys = []
+    
+    rel_percent_error = reltol*100;
+
+    print("tolerance is: ", rel_percent_error, " percent.")
+
+    for k,t in key_type_dict.items():
+        if t == 'string':
+            if(k in j1 and k in j2):
+                val1 = str(j1[k])
+                val2 = str(j2[k])
+                print(k, t, " : ", j1[k], " ? ", j2[k])
+                if val1 != val2:
+                    bad_count += 1
+                    bad_keys.append(k)
+            else:
+                if( not k in j1):
+                    print("missing ", k, " in ", f1_name)
+                if(not k in j2):
+                    print("missing ", k , " in ", f2_name)
+                bad_count += 1
+                bad_keys.append(k)
+
+        if t == 'float':
+            if(k in j1 and k in j2):
+                val1 = float(j1[k])
+                val2 = float(j2[k])
+                delta = val1 - val2
+                print(k, t, " : percent difference: ", (delta/val2)*100 )
+                if math.fabs(delta/val2)*100 > rel_percent_error:
+                    print(k, ": ", val1, " not close enough to: ", val2)
+                    bad_count += 1
+                    bad_keys.append(k)
+            else:
+                if( not k in j1):
+                    print("missing ", k, " in ", f1_name)
+                if(not k in j2):
+                    print("missing ", k , " in ", f2_name)
+                bad_count += 1
+                bad_keys.append(k)
+
+
+    for k,t in optional_key_type_dict.items():
+        if t == 'string':
+            if(k in j1 and k in j2):
+                val1 = str(j1[k])
+                val2 = str(j2[k])
+                print(k, t, " : ", j1[k], " ? ", j2[k])
+                if val1 != val2:
+                    bad_count += 1
+                    bad_keys.append(k)
+
+        if t == 'float':
+            if(k in j1 and k in j2):
+                val1 = float(j1[k])
+                val2 = float(j2[k])
+                delta = val1 - val2
+                print(k, t, " : percent difference: ", (delta/val2)*100 )
+                if math.fabs(delta/val2)*100 > rel_percent_error:
+                    print(k, ": ", val1, " not close enough to: ", val2)
+                    bad_count += 1
+                    bad_keys.append(k)
+
+
+    for k in bad_keys:
+        print("Error on value: ", k)
+
+    return bad_count
+
+
+if __name__ == '__main__':          #entry point
+    ret_val = main()
+    sys.exit(ret_val)

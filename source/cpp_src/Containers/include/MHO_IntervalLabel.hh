@@ -1,19 +1,11 @@
 #ifndef MHO_IntervalLabel_HH__
 #define MHO_IntervalLabel_HH__
 
-/*
-*File: MHO_IntervalLabel.hh
-*Class: MHO_IntervalLabel
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-*/
 
-#include <cstdint>
 #include <string>
 #include <utility>
 
+#include "MHO_Types.hh"
 #include "MHO_Interval.hh"
 #include "MHO_MultiTypeMap.hh"
 #include "MHO_Serializable.hh"
@@ -21,11 +13,20 @@
 namespace hops
 {
 
+/*!
+*@file MHO_IntervalLabel.hh
+*@class MHO_IntervalLabel
+*@author J. Barrett - barrettj@mit.edu
+*@date Fri Oct 16 11:17:19 2020 -0400
+*@brief
+*/
+
+
 
 class MHO_IntervalLabel:
     public MHO_Interval< std::size_t >,
     public MHO_CommonLabelMap,
-    virtual public MHO_Serializable
+    public MHO_Serializable
 {
     public:
 
@@ -35,6 +36,10 @@ class MHO_IntervalLabel:
         virtual ~MHO_IntervalLabel();
 
         bool HasKey(const std::string& key) const;
+
+        void SetIsValidFalse(){fIsValid = false;};
+        void SetIsValidTrue(){fIsValid = true;}
+        bool IsValid() const {return fIsValid;}
 
         MHO_IntervalLabel& operator=(const MHO_IntervalLabel& rhs)
         {
@@ -49,6 +54,10 @@ class MHO_IntervalLabel:
             }
             return *this;
         }
+
+    private:
+
+        bool fIsValid;
 
     public: //MHO_Serializable interface
 
@@ -65,15 +74,13 @@ class MHO_IntervalLabel:
             total_size += cm_aggregate_serializable_item_size<std::string>(*this);
 
             return total_size;
-
-            return total_size;
         }
 
         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_IntervalLabel& aData)
         {
             MHO_ClassVersion vers;
             s >> vers;
-            switch(vers) 
+            switch(vers)
             {
                 case 0:
                     aData.StreamInData_V0(s);
@@ -88,15 +95,15 @@ class MHO_IntervalLabel:
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_IntervalLabel& aData)
         {
-            switch( aData.GetVersion() ) 
+            switch( aData.GetVersion() )
             {
                 case 0:
                     s << aData.GetVersion();
                     aData.StreamOutData_V0(s);
                 break;
                 default:
-                    msg_error("containers", 
-                        "error, cannot stream out MHO_IntervalLabel object with unknown version: " 
+                    msg_error("containers",
+                        "error, cannot stream out MHO_IntervalLabel object with unknown version: "
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -146,4 +153,4 @@ class MHO_IntervalLabel:
 
 }
 
-#endif /* end of include guard: MHO_IntervalLabel */
+#endif /*! end of include guard: MHO_IntervalLabel */

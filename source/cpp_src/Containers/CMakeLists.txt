@@ -12,6 +12,7 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabel.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabelTree.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Taggable.hh
+    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IndexLabelInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ObjectTags.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper_0.hh
@@ -26,6 +27,7 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AxisTypes.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BaselineContainers.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationContainers.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeContainers.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerDefinitions.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SerializableObjectFactory.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ClassIdentityMap.hh
@@ -34,6 +36,8 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerFileInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerStore.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScanDataStore.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeData.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Snapshot.hh
 )
 
 set( CONTAINER_SOURCEFILES
@@ -43,6 +47,8 @@ set( CONTAINER_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerFileInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ScanDataStore.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerStore.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeData.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Snapshot.cc
 )
 
 #declare header paths ##########################################################
@@ -50,6 +56,9 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #install library (headers only) ################################################
 set(CONTAINER_LIBS MHO_Message MHO_Utilities)
+
+#add compile defines
+hops_add_cxxflag("HOPS_SNAPSHOT_DIR=${SNAPSHOT_INSTALL_DIR}")
 
 add_library(MHO_Containers SHARED ${CONTAINER_SOURCEFILES})
 target_link_libraries(MHO_Containers ${CONTAINER_LIBS})

@@ -1,6 +1,6 @@
 #include "MHO_DiFXInputProcessor.hh"
 #include <iostream>
-namespace hops 
+namespace hops
 {
 
 
@@ -13,16 +13,23 @@ MHO_DiFXInputProcessor::~MHO_DiFXInputProcessor()
     if(fD){deleteDifxInput(fD);}
 };
 
-void 
+void
 MHO_DiFXInputProcessor::LoadDiFXInputFile(std::string filename)
 {
+    msg_debug("difx_interface", "loading difx input file: " << filename << eom );
     fD = loadDifxInput(filename.c_str());
+    if(fD == nullptr)
+    {
+        msg_fatal("difx_interface", "failed to load difx input file" << eom );
+        std::exit(1);
+    }
+
 }
 
-void 
+void
 MHO_DiFXInputProcessor::ConvertToJSON(mho_json& input)
 {
-    //extract the quantities at the top level of the difx input struct 
+    //extract the quantities at the top level of the difx input struct
     ExtractBaseStructQuantities(input);
 
     //loop over jobs? -- ignore for now
@@ -36,15 +43,15 @@ MHO_DiFXInputProcessor::ConvertToJSON(mho_json& input)
 
     //difx rules? -- ignore for now
 
-    //loop over the freqs 
+    //loop over the freqs
     for(int i=0; i<fD->nFreq; i++)
     {
         input["freq"].push_back( ExtractFreqQuantities(i) );
     }
 
-    //freqSet? --seems to be DiFX2Fits specific, ignore for now 
+    //freqSet? --seems to be DiFX2Fits specific, ignore for now
 
-    //loop over antennas 
+    //loop over antennas
     for(int i=0; i<fD->nAntenna; i++)
     {
         input["antenna"].push_back( ExtractAntennaQuantities(i) );
@@ -62,24 +69,24 @@ MHO_DiFXInputProcessor::ConvertToJSON(mho_json& input)
         input["source"].push_back( ExtractSourceQuantities(i) );
     }
 
-    //loop over EOPs 
+    //loop over EOPs
     for(int i=0; i<fD->nSource; i++)
     {
         input["eop"].push_back( ExtractEOPQuantities(i) );
     }
 
-    //loop over datastreams 
+    //loop over datastreams
     for(int i=0; i<fD->nDatastream; i++)
     {
         input["datastream"].push_back( ExtractDatastreamQuantities(i) );
     }
 
-    //loop over baselines 
+    //loop over baselines
     for(int i=0; i<fD->nBaseline; i++)
     {
         input["baseline"].push_back( ExtractBaselineQuantities(i) );
     }
-    
+
 
     /****** SKIP THESE OPTIONAL TABLES FOR NOW ********************************/
     // DifxSpacecraft	*spacecraft;	/* optional table */
@@ -89,7 +96,7 @@ MHO_DiFXInputProcessor::ConvertToJSON(mho_json& input)
 
 }
 
-void 
+void
 MHO_DiFXInputProcessor::ExtractBaseStructQuantities(mho_json& input)
 {
     //just copy these struct quantities in
@@ -113,11 +120,11 @@ MHO_DiFXInputProcessor::ExtractBaseStructQuantities(mho_json& input)
     input["nPhasedArray"] = fD->nPhasedArray;
     input["nJob"] = fD->nJob;
     input["quantBits"] = fD->quantBits;
-    //there are more items in fD, but most are difx specific 
+    //there are more items in fD, but most are difx specific
     //and we probably don't need them for now
 }
 
-mho_json 
+mho_json
 MHO_DiFXInputProcessor::ExtractConfigQuantities(int n)
 {
     DifxConfig* c = &(fD->config[n]);
@@ -153,7 +160,7 @@ MHO_DiFXInputProcessor::ExtractConfigQuantities(int n)
 }
 
 
-mho_json 
+mho_json
 MHO_DiFXInputProcessor::ExtractFreqQuantities(int n)
 {
     DifxFreq* f = &(fD->freq[n]);
@@ -163,8 +170,8 @@ MHO_DiFXInputProcessor::ExtractFreqQuantities(int n)
         freq["freq"] = f->freq;
         freq["bw"] = f->bw;
         freq["sideband"] = std::string( &(f->sideband),1).c_str();
-        freq["nChan"] = f->nChan; //num spectral points 
-        freq["specAvg"] = f->specAvg; //not clear we need this 
+        freq["nChan"] = f->nChan; //num spectral points
+        freq["specAvg"] = f->specAvg; //not clear we need this
         freq["overSamp"] = f->overSamp;
         freq["decimation"] = f->decimation;
         freq["nTone"] = f->nTone;
@@ -181,7 +188,7 @@ MHO_DiFXInputProcessor::ExtractFreqQuantities(int n)
 
 
 
-mho_json 
+mho_json
 MHO_DiFXInputProcessor::ExtractAntennaQuantities(int n)
 {
     DifxAntenna* a = &(fD->antenna[n]);
@@ -189,7 +196,7 @@ MHO_DiFXInputProcessor::ExtractAntennaQuantities(int n)
     if(a != nullptr)
     {
         ant["name"] = std::string(a->name, DIFXIO_NAME_LENGTH).c_str();
-        ant["origId"] = a->origId; //not clear we need this 
+        ant["origId"] = a->origId; //not clear we need this
         ant["clockrefmjd"] = a->clockrefmjd;
         ant["clockorder"] = a->clockorder;
 
@@ -198,9 +205,9 @@ MHO_DiFXInputProcessor::ExtractAntennaQuantities(int n)
             ant["clockcoeff"].push_back(a->clockcoeff[i]);
         }
 
-        //encode a string for the mount type 
+        //encode a string for the mount type
         ant["mount"] = GetAntennaMountTypeString(a->mount);
-        //encode a string for the site type 
+        //encode a string for the site type
         ant["siteType"] = GetAntennaSiteTypeString(a->siteType);
 
         std::vector<double> ax_off;
@@ -228,21 +235,21 @@ MHO_DiFXInputProcessor::ExtractAntennaQuantities(int n)
 }
 
 
-std::string 
+std::string
 MHO_DiFXInputProcessor::GetAntennaMountTypeString(AntennaMountType type)
 {
     std::string mount_type = std::string( antennaMountTypeNames[type], MAX_ANTENNA_MOUNT_NAME_LENGTH).c_str();
     return mount_type;
 }
 
-std::string 
+std::string
 MHO_DiFXInputProcessor::GetAntennaSiteTypeString(AntennaSiteType type)
 {
     std::string site_type = std::string(antennaSiteTypeNames[type], MAX_ANTENNA_SITE_NAME_LENGTH).c_str();
     return site_type;
 }
 
-mho_json 
+mho_json
 MHO_DiFXInputProcessor::ExtractScanQuantities(int n)
 {
     DifxScan* s = &(fD->scan[n]);
@@ -302,23 +309,23 @@ MHO_DiFXInputProcessor::ExtractScanQuantities(int n)
 }
 
 
-mho_json 
+mho_json
 MHO_DiFXInputProcessor::ExtractSourceQuantities(int n)
 {
     DifxSource* s = &(fD->source[n]);
     mho_json source;
     if(s != nullptr)
     {
-        //how should we store the units of some of these quantities 
+        //how should we store the units of some of these quantities
         source["ra"] = s->ra; //radians
         source["dec"] = s->dec; //radians
         source["name"] = std::string(s->name, DIFXIO_NAME_LENGTH).c_str();
         source["calCode"] = std::string(s->calCode, DIFXIO_CALCODE_LENGTH).c_str();
         source["qual"] = s->qual;
         source["spacecraftId"] = s->spacecraftId;
-        
+
         //do we need numFitsSourceIds and fitsSourceIds??
-        
+
         source["pmRA"] = s->pmRA; /* arcsec/year */
         source["pmDec"] = s->pmDec; /* arcsec/year */
         source["parallax"] = s->parallax; /* arcsec/year */
@@ -328,7 +335,7 @@ MHO_DiFXInputProcessor::ExtractSourceQuantities(int n)
 }
 
 
-mho_json 
+mho_json
 MHO_DiFXInputProcessor::ExtractEOPQuantities(int n)
 {
     DifxEOP* e = &(fD->eop[n]);
@@ -346,7 +353,7 @@ MHO_DiFXInputProcessor::ExtractEOPQuantities(int n)
 
 
 
-mho_json 
+mho_json
 MHO_DiFXInputProcessor::ExtractDatastreamQuantities(int n)
 {
     DifxDatastream* d = &(fD->datastream[n]);
@@ -357,7 +364,7 @@ MHO_DiFXInputProcessor::ExtractDatastreamQuantities(int n)
         ds["tSys"] = d->tSys;
         ds["dataFormat"] = std::string(d->dataFormat, DIFXIO_FORMAT_LENGTH).c_str();
         ds["dataSampling"] = std::string( &(samplingTypeNames[d->dataSampling][0]), MAX_SAMPLING_NAME_LENGTH).c_str();
-        
+
         //do we need all these file descriptors? skip some for now
         ds["nFile"] = d->nFile;
         //         char **file;            /* list of files to correlate (if not VSN) */
@@ -397,7 +404,7 @@ MHO_DiFXInputProcessor::ExtractDatastreamQuantities(int n)
 }
 
 
-mho_json 
+mho_json
 MHO_DiFXInputProcessor::ExtractBaselineQuantities(int n)
 {
     DifxBaseline* b = &(fD->baseline[n]);
@@ -433,7 +440,7 @@ MHO_DiFXInputProcessor::ExtractBaselineQuantities(int n)
 }
 
 
-mho_json 
+mho_json
 MHO_DiFXInputProcessor::ExtractDifxPolyModel(DifxPolyModel* m)
 {
     //TODO FIXME -- WE NEED TO EXPORT THE UNITS OF THE POLYNOMIAL COEFF IN SOME WAY
@@ -452,7 +459,9 @@ MHO_DiFXInputProcessor::ExtractDifxPolyModel(DifxPolyModel* m)
             poly["az"].push_back(m->az[i]);
             poly["elcorr"].push_back(m->elcorr[i]);
             poly["elgeom"].push_back(m->elgeom[i]);
-            poly["parangle"].push_back(m->parangle[i]);
+            // poly["parangle"].push_back(m->parangle[i]);
+            TODO_FIXME_MSG("TODO FIXME, parallactic_angle in CALC may not yet be implemented, calculate it here or defer to fringe fitter")
+            poly["parangle"].push_back(0.0);
             poly["u"].push_back(m->u[i]);
             poly["v"].push_back(m->v[i]);
             poly["w"].push_back(m->w[i]);

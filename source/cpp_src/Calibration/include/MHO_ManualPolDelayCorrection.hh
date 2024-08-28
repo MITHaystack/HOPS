@@ -1,14 +1,7 @@
 #ifndef MHO_ManualPolDelayCorrection_HH__
 #define MHO_ManualPolDelayCorrection_HH__
 
-/*
-*File: MHO_ManualPolDelayCorrection.hh
-*Class: MHO_ManualPolDelayCorrection
-*Author:
-*Email:
-*Date:
-*Description:
-*/
+
 
 #include <cmath>
 #include <complex>
@@ -27,6 +20,13 @@
 namespace hops
 {
 
+/*!
+*@file MHO_ManualPolDelayCorrection.hh
+*@class MHO_ManualPolDelayCorrection
+*@author J. Barrett - barrettj@mit.edu
+*@date Thu Jan 27 10:36:00 2022 -0500
+*@brief
+*/
 
 class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
 {
@@ -51,7 +51,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
 
     private:
 
-        std::size_t DetermineStationIndex(const visibility_type* in);
+        bool IsApplicable(std::size_t st_idx, const visibility_type* in);
         bool PolMatch(std::size_t station_idx, std::string& polprod);
 
         //constants
@@ -64,7 +64,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         std::string fStationCode;
         std::string fMk4ID;
         std::string fPol;
-        
+
         //ref freq and pc delay
         double fRefFreq;
         double fDelayOffset;
@@ -75,6 +75,10 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         std::string fRefStationKey;
         std::string fRemStationMk4IDKey;
         std::string fRefStationMk4IDKey;
+
+        std::string fSidebandLabelKey;
+        std::string fLowerSideband;
+        std::string fUpperSideband;
 
         //minor helper function to make sure all strings are compared as upper-case only
         void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
@@ -87,4 +91,4 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
 }
 
 
-#endif /* end of include guard: MHO_ManualPolDelayCorrection */
+#endif /*! end of include guard: MHO_ManualPolDelayCorrection */

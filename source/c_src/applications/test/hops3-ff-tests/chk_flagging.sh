@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# $Id: chk_ff_3372.sh 870 2013-10-07 18:21:50Z rjc $
+# $Id: chk_flagging.sh 3995 2023-06-09 20:39:39Z gbc $
 #
 # modified version of chk_ff_3372.sh which turns off some data
 #
@@ -43,11 +43,11 @@ $verb && msg=$((2 - $testverb)) || msg=2
 
 rm -f ff-3372df.ps
 $verb && echo \
-fourfit -m$msg -t -d diskfile:ff-3372df.ps -b TV:X \\ && echo \
+fourfit3 -m$msg -t -d diskfile:ff-3372df.ps -b TV:X \\ && echo \
     -c ./cf3372df \\ && echo \
     $DATADIR/3372/193-1757/0529+483.vtqbsq
 
-fourfit -m$msg -t -d diskfile:ff-3372df.ps -b TV:X \
+fourfit3 -m$msg -t -d diskfile:ff-3372df.ps -b TV:X \
     -c ./cf3372df \
     $DATADIR/3372/193-1757/0529+483.vtqbsq 2>ff-3372df.out 1>&2
 [ -f ./ff-3372df.ps ] || { echo ./ff-3372df.ps missing && exit 2 ; }

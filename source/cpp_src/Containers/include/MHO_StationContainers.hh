@@ -1,5 +1,5 @@
-#ifndef MHO_StationCoordinates_HH__
-#define MHO_StationCoordinates_HH__
+#ifndef MHO_StationContainers_HH__
+#define MHO_StationContainers_HH__
 
 //this include file should not be used directly
 #ifndef MHO_ContainerDefinitions_HH__
@@ -29,6 +29,10 @@ using station_coord_type = MHO_TableContainer< spline_coeff_type, station_coord_
 using multitone_pcal_axis_type = MHO_AxisPack< pol_axis_type, time_axis_type, frequency_axis_type >;
 using multitone_pcal_type = MHO_TableContainer< pcal_phasor_type, multitone_pcal_axis_type >;
 
+// //reduced multi-tone pcal data (simple piecewise linear spline (phase + delay) for each channel/AP
+// using pcal_phase_delay_axis_type = MHO_AxisPack< pol_axis_type, channel_axis_type, time_axis_type, coeff_axis_type>;
+// using pcal_phase_delay_type = MHO_TableContainer< pcal_phdly_type, pcal_phase_delay_axis_type>;
+
 //manual (per-channel) pcal (phase) offsets
 using manual_pcal_axis_type = MHO_AxisPack< pol_axis_type, channel_axis_type >;
 using manual_pcal_type = MHO_TableContainer< manual_pcal_element_type, manual_pcal_axis_type >;
@@ -38,4 +42,4 @@ using manual_pcal_delay_type = MHO_TableContainer< manual_pcal_element_type, man
 
 }//end of hops namespaces
 
-#endif /* end of include guard: MHO_StationCoordinates */
+#endif /*! end of include guard: MHO_StationCoordinates */

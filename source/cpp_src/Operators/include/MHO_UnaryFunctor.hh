@@ -1,21 +1,21 @@
 #ifndef MHO_UnaryFunctor_HH__
 #define MHO_UnaryFunctor_HH__
 
+
+
 #include <algorithm>
 #include "MHO_NDArrayWrapper.hh"
 
-/*
-*File: MHO_UnaryFunctor.hh
-*Class: MHO_UnaryFunctor
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: abstract baseclass for an functor which takes array iterators
-*/
-
-
 namespace hops
 {
+
+/*!
+*@file MHO_UnaryFunctor.hh
+*@class MHO_UnaryFunctor
+*@author J. Barrett - barrettj@mit.edu
+*@date Fri Oct 15 12:58:01 2021 -0400
+*@brief abstract baseclass for an functor which takes array iterators
+*/
 
 template< class XArrayType >
 class MHO_UnaryFunctor
@@ -38,4 +38,4 @@ class MHO_UnaryFunctor
 }
 
 
-#endif /* MHO_UnaryFunctor_H__ */
+#endif /*! MHO_UnaryFunctor_H__ */

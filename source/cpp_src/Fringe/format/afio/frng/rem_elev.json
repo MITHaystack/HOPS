@@ -1,0 +1,8 @@
+{
+	"name": "rem_elev",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/rem_station/elevation",
+	"description": "",
+	"units": ""
+}

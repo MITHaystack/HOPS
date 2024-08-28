@@ -37,23 +37,30 @@ int fringe_search ( struct vex* root, struct type_pass* pass)
 
     extern int output (struct vex*, struct type_pass*);
 
-
-    msg  ("Baseline %c%c subgroup %c", 1, 
-           param.baseline[0], param.baseline[1], pass->pass_data[0].fgroup);
-
                                         /* Currently does default filtering */
     if (apply_filter (pass) != 0)
         {
         msg ("Error filtering data", 2);
         return (-1);
         }
-                                        /* Load in parameters needed for the */
-                                        /* fringe search; do all precorrections */
+                                        /* Load parameters needed for the */
+                                        /* search; do all precorrections */
     if (precorrect(root->ovex, pass) != 0)
         {
         msg ("Error precorrecting data", 2);
         return (-1);
         }
+                                        /* skip autos if requested */
+                                        /* pass_data[0] is first channel */
+    if (param.noautofringes && (param.baseline[0] == param.baseline[1]))
+        {
+        msg ("Skipping Autocorr %c%c subgroup %c", 2,
+            param.baseline[0], param.baseline[1], pass->pass_data[0].fgroup);
+        return (1);
+        }
+    msg ("Fringing Baseline %c%c subgroup %c", param.noautofringes ? 2 : 1, 
+        param.baseline[0], param.baseline[1], pass->pass_data[0].fgroup);
+
                                         /* Allocate memory for SBD functions */
                                         /* Should allocate only for unflagged */
                                         /* data points, but approach below will */

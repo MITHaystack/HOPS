@@ -2,7 +2,7 @@
 #include "MHO_MK4JSONDateConverter.hh"
 #include <iostream>
 
-const int NUMBEROFFFITCHAN = 16;
+const int NUMBEROFFFITCHAN = 64;
 
 //struct type_205_v0
 //    {
@@ -27,7 +27,7 @@ const int NUMBEROFFFITCHAN = 16;
 //    };
 
 //typedef struct date
-//    {   
+//    {
 //    short year;
 //    short day;
 //    short hour;

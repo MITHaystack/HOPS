@@ -1,14 +1,7 @@
 #ifndef MHO_ContainerFileInterface_HH__
 #define MHO_ContainerFileInterface_HH__
 
-/*
-*@file: MHO_ContainerFileInterface.hh
-*@class: MHO_ContainerFileInterface
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
-*/
+
 
 #include "MHO_Message.hh"
 #include "MHO_ContainerDictionary.hh"
@@ -18,8 +11,16 @@
 #include "MHO_ContainerStore.hh"
 
 
-namespace hops 
+namespace hops
 {
+
+/*!
+*@file  MHO_ContainerFileInterface.hh
+*@class  MHO_ContainerFileInterface
+*@author  J. Barrett - barrettj@mit.edu
+*@date Sun Feb 13 15:48:42 2022 -0500
+*@brief
+*/
 
 class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 {
@@ -36,9 +37,9 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
         void SetIndexFileName(std::string index_filename);
 
         //currently this function reads the file keys and then the all the file objects
-        //we may want to split this functionality so we can inspect the file first 
+        //we may want to split this functionality so we can inspect the file first
         //and then only read the objects of interest
-        void PopulateStoreFromFile(MHO_ContainerStore& store);
+        void PopulateStoreFromFile(MHO_ContainerStore& store, bool do_clear_store=false);
 
         void WriteStoreToFile(MHO_ContainerStore& store);
 
@@ -56,4 +57,4 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 
 } //end namespace
 
-#endif /* end of include guard: MHO_ContainerFileInterface */
+#endif /*! end of include guard: MHO_ContainerFileInterface */

@@ -53,7 +53,7 @@ int main(int argc, char** argv)
         //read and populate the station codes
         stcode_map.InitializeStationCodes(station_codes_file);
     }
-    
+
 
     std::vector< std::string > all_mk4_ids = stcode_map.GetAllMk4Ids();
 

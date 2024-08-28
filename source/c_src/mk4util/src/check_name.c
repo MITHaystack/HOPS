@@ -25,20 +25,21 @@
 int
 check_name(char *name, fstruct *f_info)
     {
-    char buf[256], *field1, *field2, *field3, *field4, *field5;
-    char *baseline, *filenum, *rootcode, *freq;
+    char buf[256], *field1, *field2, *field3, *field4;
+    char *baseline, *filenum, *rootcode, *freq, *poln, *pp;
     int i, len, nfield, errcode, l;
-                                        /* Init */
+                                    /* Init */
     clear_fstruct (f_info);
-                                        /* optimism */
+                                    /* optimism */
     errcode = 0;
-                                        /* Parsing below corrupts argument */
+                                    /* Parsing below corrupts argument */
     strcpy (buf, name);
-                                        /* Can't use strtok because it doesn't */
-                                        /* handle null fields, and can't use */
-                                        /* strsep because HP doesn't supply it */
-                                        /* with their C library, so we must do */
-                                        /* this manually */
+                                    /* Can't use strtok because it doesn't */
+                                    /* handle null fields, and can't use */
+                                    /* strsep because HP doesn't supply it */
+                                    /* with their C library, so we must do */
+                                    /* this manually */
+    // why would one want to?
     len = strlen (buf);
     field1 = buf;
     nfield = 1;
@@ -64,30 +65,27 @@ check_name(char *name, fstruct *f_info)
                 field4 = buf + i;
                 nfield++;
                 for (; i<len; i++) if (buf[i] == '.') break;
-                if (buf[i] == '.')
+                if (buf[i] == '.')  /* one '.' too many */
                     {
-                    buf[i] = '\0';
-                    i++;
-                    field5 = buf + i;
-                    nfield++;
+                    return (BADSTRING);
                     }
                 }
             }
         }
 
-    if (nfield == 1) return (BADSTRING);
-    (void) field5; //disable unused var compiler warning
-
+    // field1.field2.field3.field4 -> field1 field2 field3 field4
     switch (nfield)
         {
-                                        /* root file, e.g. "3C205.abcdef" */
-                                        /* If source name is "log", */
-                                        /* this is actually mk4 log file */
+        case 1:
+            return (BADSTRING);     /* too short */
+
+                                    /* root file, e.g. "3C205.abcdef" */
+                                    /* If source name is "log", */
+                                    /* this is actually mk4 log file */
         case 2:
             if (strcmp (field1, "log") == 0) f_info->type = 4;
-
-                                        /* Check source name ... should be */
-                                        /* up to 31 printable characters */
+                                    /* Check source name ... should be */
+                                    /* up to 31 printable characters */
             else
                 {
                 l = strlen (field1);
@@ -98,14 +96,14 @@ check_name(char *name, fstruct *f_info)
                 if (! (errcode & BADSRC)) strcpy (f_info->source, field1);
                 f_info->type = 0;
                 }
-                                        /* assign pointers */
+                                    /* assign pointers */
             rootcode = field2;
             baseline = NULL;
             filenum = NULL;
             freq = NULL;
             break;
-                                        /* corel file, e.g. "AB.nn.abcdef" */
-                                        /* or sdata file "A.nn.abcdef" */
+                                    /* corel file, e.g. "AB.nn.abcdef" */
+                                    /* or sdata file "A.nn.abcdef" */
         case 3:
             if (strlen (field1) == 1)
                 {
@@ -119,17 +117,17 @@ check_name(char *name, fstruct *f_info)
                 baseline = field1;
                 f_info->type = 1;
                 }
-                                        /* assign pointers */
+                                    /* assign pointers */
             filenum = field2;
             rootcode = field3;
             freq = NULL;
             break;
-                                        /* fringe file, e.g. "AB.X.nn.abcdef" */
+                                    /* fringe file, e.g. "AB.X.nn.abcdef" */
         case 4:
-                                        /* assign pointers */
+                                    /* assign pointers */
             baseline = field1;
             freq = field2;
-            filenum = field3;
+            filenum = field3;       /* "nn" */
             rootcode = field4;
             f_info->type = 2;
             break;
@@ -138,31 +136,50 @@ check_name(char *name, fstruct *f_info)
             return (BADFORM);
         }
 
-    if (baseline != NULL)                               /* Baseline, e.g. "AB" */
+    if (baseline != NULL)           /* Baseline, e.g. "AB" */
         {
         if (strlen (baseline) != 2) errcode |= BADBASE;
-        else if((! isalpha(baseline[0])) || (! isalpha(baseline[1]))) errcode |= BADBASE;
+        else if((! isalpha(baseline[0])) ||
+                (! isalpha(baseline[1]))) errcode |= BADBASE;
         else strcpy (f_info->baseline, baseline);
         }
 
-    if (freq != NULL)                                   /* Frequency code, e.g. "X" */
+    if (freq != NULL)               /* Frequency code, e.g. "X" */
         {
         if (! isalpha(freq[0])) errcode |= BADFREQ;
         else if (freq[1] != '\0') errcode |= BADFREQ;
         else f_info->freq_code = freq[0];
         }
-                                        /* Filenumbers only for type 2's in mk4 */
+                                    /* Filenumbers only for type 2's in mk4 */
+                                    /* originally; -PP for poln information */
     if ((filenum != NULL) && (f_info->type == 2))
         {
-        l = strlen(filenum);                            /* File #, e.g. (1-9999) */
-        if ((l == 0) || (l > 4)) errcode |= BADFNUM;
+        poln = strchr(filenum, '-');
+        if (poln != NULL) *poln++ = 0;
+        l = strlen(filenum);        /* File #, e.g. (1-9999) */
+        if ((l == 0) || (l > MAXFNDIGITS)) errcode |= BADFNUM;
         l--;
         for ( ; l >= 0; l--)
             if (! isdigit (filenum[l])) errcode |= BADFNUM;
-        if ((errcode & BADFNUM) == 0) sscanf (filenum, "%d", &(f_info->filenum));
+        if ((errcode & BADFNUM) == 0)
+            sscanf (filenum, "%d", &(f_info->filenum));
+                                    /* copy and check pol'n information */
+        if (poln != NULL)
+            {
+            for (l=0; l<2; l++, poln++)
+                /* check that each character is in the legal list */
+                if ((pp = strpbrk(poln, LEGALPOLCHARS)) &&
+                     pp == poln) f_info->poln[l] = *poln;
+                else
+                    errcode |= BADFNUM;
+            f_info->poln[2] = 0;
+            }
         }
 
-    if (strlen(rootcode) != 6) errcode |= BADROOT;      /* root id code, e.g. "abcdef" */
+    if (strlen(rootcode) != 6)
+        {
+        errcode |= BADROOT;         /* root id code, e.g. "abcdef" */
+        }
     else
         {
         for (l = 0; l < 6; l++)

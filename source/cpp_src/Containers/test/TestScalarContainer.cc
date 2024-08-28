@@ -19,6 +19,10 @@ int main(int /*argc*/, char** /*argv*/)
 
     A->SetValue(x);
 
+
+    A->Insert("foo", 1.0);
+    A->Insert("bar", "baz");
+
     std::cout<<"stored valued =  "<<A->GetValue()<<std::endl;
 
     std::string filename = "./test.bin";
@@ -28,10 +32,8 @@ int main(int /*argc*/, char** /*argv*/)
 
     if(status)
     {
-        uint32_t label = 0xFF00FF00;
         std::string shortname = "junk";
-        std::cout<<"A label = "<<label<<std::endl;
-        inter.Write(*A, shortname, label);
+        inter.Write(*A, shortname);
         inter.Close();
     }
     else
@@ -60,6 +62,15 @@ int main(int /*argc*/, char** /*argv*/)
     {
         std::cout<<" error opening file to read"<<std::endl;
     }
+
+    //see if we can get the tag values:
+    double t1;
+    std::string t2;
+    bool ok = B->Retrieve("foo", t1);
+    ok = B->Retrieve("bar", t2);
+
+    std::cout<<"foo = "<<t1<<", bar = "<<t2<<std::endl;
+
 
     inter.Close();
 

@@ -18,6 +18,7 @@ set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Math MHO_Containers MHO_MK4Int
 set(SOURCE_BASENAMES
     TestMK4VexInterface
     TestMK4Import
+    # TestMK4FringeExport
     TestMK4StationImport
     TestMK4Type200Convert
     TestMK4Type201Convert

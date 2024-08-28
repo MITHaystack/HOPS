@@ -1,15 +1,6 @@
 #ifndef MHO_MK4VexInterface_HH__
 #define MHO_MK4VexInterface_HH__
 
-/*
-*File: MHO_MK4VexInterface.hh
-*Class: MHO_MK4VexInterface
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-19T04:44:32.593Z
-*Description:
-*/
-
 
 #include <iostream>
 #include <string>
@@ -19,6 +10,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_MK4VexInterface.hh
+*@class MHO_MK4VexInterface
+*@author J. Barrett - barrettj@mit.edu
+*@date Tue May 19 01:47:28 2020 -0400 
+*@brief
+*/
+
 
 class MHO_MK4VexInterface
 {
@@ -44,4 +44,4 @@ class MHO_MK4VexInterface
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_MK4VexInterface */
+#endif /*! end of include guard: MHO_MK4VexInterface */

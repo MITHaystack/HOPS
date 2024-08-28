@@ -35,12 +35,14 @@ get_fileset(char *rootname, struct fileset *fset)
     regex_t preg;
     regmatch_t pmatch[3];
                                         /* Initialize */
-    fset->expno = 0;
-    fset->scandir[0] = '\0';
-    fset->scanname[0] = '\0';
-    fset->rootname[0] = '\0';
-    fset->maxfile = 0;
-    for (i=0; i<MAXFSET; i++) clear_fstruct (fset->file + i);
+//  fset->scandir[0] = '\0';
+//  fset->expno = 0;
+//  fset->scanname[0] = '\0';
+//  fset->rootname[0] = '\0';
+//  fset->maxfile = 0;
+//  for (i=0; i<MAXFSET; i++) clear_fstruct (fset->file + i);
+
+    memset(fset, 0, sizeof(struct fileset));
                                         /* Dissect input rootname */
                                         /* First check for sensible input */
     if (rootname[0] != '/')
@@ -131,8 +133,7 @@ get_fileset(char *rootname, struct fileset *fset)
                                         /* Store the information in fset */
         if (fstemp.filenum > fset->maxfile) fset->maxfile = fstemp.filenum;
         memcpy (fset->file + nfil, &fstemp, sizeof (fstruct));
-                                        /* This allocates memory, but only */
-                                        /* up to a max of 16 bytes/file, so we */
+                                        /* strdup() malloc's a dirent */
                                         /* ignore memory leak problem */
         fset->file[nfil].name = strdup (ds->d_name);
         nfil++;

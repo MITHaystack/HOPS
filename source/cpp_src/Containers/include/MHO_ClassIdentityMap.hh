@@ -1,14 +1,6 @@
 #ifndef MHO_ClassIdentityMap_HH__
 #define MHO_ClassIdentityMap_HH__
 
-/*
-*File: MHO_ClassIdentityMap.hh
-*Class: MHO_ClassIdentityMap
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-*/
 
 #include "MHO_ClassIdentity.hh"
 #include "MHO_MD5HashGenerator.hh"
@@ -23,6 +15,15 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_ClassIdentityMap.hh
+*@class MHO_ClassIdentityMap
+*@author J. Barrett - barrettj@mit.edu
+*@date Thu Apr 29 12:30:28 2021 -0400
+*@brief
+*/
+
 
 
 class MHO_ClassIdentityMap
@@ -136,7 +137,7 @@ class MHO_ClassIdentityMap
             return false;
         }
 
-        //returns a ptr to base class MHO_Serializable, but the underlying type 
+        //returns a ptr to base class MHO_Serializable, but the underlying type
         //is that which is associated with the uuid, if the uuid is not in the
         //factory map then nullptr is returned, memory managment is delegated to
         //the caller
@@ -169,4 +170,4 @@ class MHO_ClassIdentityMap
 
 }
 
-#endif /* end of include guard: MHO_ClassIdentityMap */
+#endif /*! end of include guard: MHO_ClassIdentityMap */

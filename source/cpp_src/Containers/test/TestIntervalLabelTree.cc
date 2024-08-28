@@ -42,21 +42,21 @@ int main(int /*argc*/, char** /*argv*/)
     auto label_vec1 = test.GetIntervalsWhichIntersect(5);
     for(auto iter = label_vec1.begin(); iter != label_vec1.end(); iter++)
     {
-        std::cout<<"label found for interval = ["<<(*iter)->GetLowerBound()<<", "<<(*iter)->GetUpperBound()<<") with key:val pairs = "<<std::endl;
-        (*iter)->DumpMap<char>();
-        (*iter)->DumpMap<std::string>();
-        (*iter)->DumpMap<int>();
-        (*iter)->DumpMap<double>();
+        std::cout<<"label found for interval = ["<<iter->GetLowerBound()<<", "<<iter->GetUpperBound()<<") with key:val pairs = "<<std::endl;
+        iter->DumpMap<char>();
+        iter->DumpMap<std::string>();
+        iter->DumpMap<int>();
+        iter->DumpMap<double>();
     }
 
     auto label_vec2 = test.GetIntervalsWithKeyValue(std::string("channel"), 'c');
     for(auto iter = label_vec2.begin(); iter != label_vec2.end(); iter++)
     {
-        std::cout<<"label found for interval = ["<<(*iter)->GetLowerBound()<<", "<<(*iter)->GetUpperBound()<<") with key:val pairs = "<<std::endl;
-        (*iter)->DumpMap<char>();
-        (*iter)->DumpMap<std::string>();
-        (*iter)->DumpMap<int>();
-        (*iter)->DumpMap<double>();
+        std::cout<<"label found for interval = ["<<iter->GetLowerBound()<<", "<<iter->GetUpperBound()<<") with key:val pairs = "<<std::endl;
+        iter->DumpMap<char>();
+        iter->DumpMap<std::string>();
+        iter->DumpMap<int>();
+        iter->DumpMap<double>();
     }
 
 
@@ -71,9 +71,8 @@ int main(int /*argc*/, char** /*argv*/)
 
     if(status)
     {
-        uint32_t label = 0xFF00FF00;
         std::string shortname = "junk";
-        inter.Write(test, shortname, label);
+        inter.Write(test, shortname);
         inter.Close();
     }
     else
@@ -96,11 +95,11 @@ int main(int /*argc*/, char** /*argv*/)
         auto label_vec1 = test2.GetIntervalsWhichIntersect(5);
         for(auto iter = label_vec1.begin(); iter != label_vec1.end(); iter++)
         {
-            std::cout<<"label found for interval = ["<<(*iter)->GetLowerBound()<<", "<<(*iter)->GetUpperBound()<<") with key:val pairs = "<<std::endl;
-            (*iter)->DumpMap<char>();
-            (*iter)->DumpMap<std::string>();
-            (*iter)->DumpMap<int>();
-            (*iter)->DumpMap<double>();
+            std::cout<<"label found for interval = ["<<iter->GetLowerBound()<<", "<<iter->GetUpperBound()<<") with key:val pairs = "<<std::endl;
+            iter->DumpMap<char>();
+            iter->DumpMap<std::string>();
+            iter->DumpMap<int>();
+            iter->DumpMap<double>();
         }
     }
     else

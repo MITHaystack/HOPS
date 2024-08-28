@@ -1,0 +1,8 @@
+{
+	"name": "freq_code",
+	"type": "string",
+	"source_object": "parameters",
+	"path": "/config/fgroup",
+	"description": "type 2 only",
+	"units": ""
+}

@@ -1,0 +1,8 @@
+{
+	"name": "total_phas",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/fringe/tot_phase",
+	"description": "",
+	"units": ""
+}

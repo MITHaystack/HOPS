@@ -1,0 +1,130 @@
+#!@PY_EXE@
+
+#core imports
+from __future__ import print_function
+from __future__ import division
+from builtins import str
+from builtins import range
+from past.utils import old_div
+import argparse
+import sys
+import os
+import math
+import re
+
+#non-core imports
+#set the plotting back-end to 'agg' to avoid display
+import matplotlib as mpl
+mpl.use('Agg')
+import numpy as np
+import scipy.stats
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+import matplotlib.colorbar as mcbar
+import matplotlib.cm as cmx
+from matplotlib.ticker import MultipleLocator, FormatStrFormatter
+
+#HOPS module imports
+import vpal.processing
+import vpal.utility
+import vpal.fringe_file_manipulation
+
+
+################################################################################
+
+def main():
+
+    parser = argparse.ArgumentParser(
+        prog='generate_session_summary.py', \
+        description='''utility to extract data from fringe files and construct a .csv summary file (like an alist file)''' \
+        )
+
+    parser.add_argument('control_file', help='the control file to be applied to all scans')
+    parser.add_argument('stations', help='concatenated string of single character codes for all stations to be fringe fit')
+    parser.add_argument('pol_product', help='the polarization-product to be fringe fit')
+    parser.add_argument('experiment_directory', help='relative path to directory containing experiment data')
+
+    parser.add_argument('-n', '--numproc', type=int, dest='num_proc', help='number of concurrent fourfit jobs to run, default=1', default=1)
+    parser.add_argument('-p', '--progress', action='store_true', dest='use_progress_ticker', help='monitor process with progress indicator', default=False)
+    parser.add_argument('-b', '--begin-scan', dest='begin_scan_limit', help='limit the earliest scan to be used e.g 244-1719', default="000-0000")
+    parser.add_argument('-e', '--end-scan', dest='end_scan_limit', help='limit the latest scan to be used, e.g. 244-2345', default="999-9999")
+    parser.add_argument('-o', '--output-filename', dest='output_filename', help='name of output csv file', default="session_summary.csv")
+
+    args = parser.parse_args()
+    control_file = args.control_file
+    stations = args.stations
+    polprod = args.pol_product
+    exp_dir = args.experiment_directory
+    outfile = args.output_filename
+
+    abs_exp_dir = os.path.abspath(exp_dir)
+    exp_name = os.path.split(os.path.abspath(exp_dir))[1]
+
+    #determine all possible baselines
+    baseline_list = vpal.processing.construct_valid_baseline_list(abs_exp_dir, stations[0], stations[1:], network_reference_baselines_only=False)
+
+    print("all possible baselines: ", baseline_list)
+
+    #needed for plot-naming
+    control_file_stripped = re.sub('[/\.]', '', control_file)
+    #loop over fringe files and generate summary dataframes
+    summary_dataframe_list = list()
+
+    for bline in baseline_list:
+        #default output filename
+        if not os.path.isfile(os.path.abspath(control_file)):
+            print("could not find control file: ", control_file)
+            sys.exit(1)
+
+        #pol product:
+        if polprod not in ['XX', 'YY', 'XY', 'YX', 'I']:
+            print("polarization product must be one of: XX, YY, XY, YX, or I")
+            sys.exit(1)
+
+        #need to:
+        #(1) collect all of the type_210 phase residuals,
+        #(2) apply the snr, and quality code cuts
+        #(3) for each channel, insert phase residual values and time stamps into array
+        #(4) compute mean phase residual for each channel and remove it
+        #(5) create plot for each channel, stamp it with the mean phase, and (possibly color it with a scalar paramter: e.g. amp, dtec, etc)
+
+        ################################################################################
+        #collect/compute fringe files, and apply cuts
+        print("processing baseline: ", bline)
+        set_commands = "set gen_cf_record true"
+        ff_list = vpal.processing.load_and_batch_fourfit( \
+            os.path.abspath(exp_dir), bline[0], bline[1], os.path.abspath(control_file), set_commands, \
+            num_processes=args.num_proc, start_scan_limit=args.begin_scan_limit, \
+            stop_scan_limit=args.end_scan_limit, pol_products=[polprod], use_progress_ticker=args.use_progress_ticker \
+        )
+
+        print("n fringe files  =", str(len(ff_list)))
+
+        #no cuts applied
+        filter_list = ff_list
+
+        if len(ff_list) == 0:
+            print("Error: no fringe files available after cuts, skipping baseline: ", bline)
+        else:
+            for ff in ff_list:
+                ff_sum = ff.get_summary()
+                #convert to dataframe
+                ff_df = pd.DataFrame(ff_sum, index=[0])
+                summary_dataframe_list.append(ff_df)
+
+    #merge the dataframes of each scan
+    all_scan_df = pd.concat(summary_dataframe_list)
+
+    #sort by time_tag
+    all_scan_df.sort_values(by=['time_tag', 'baseline'],inplace=True)
+
+    print(all_scan_df)
+
+    #dump to file
+    all_scan_df.to_csv(outfile, sep='\t', encoding='utf-8')
+
+
+if __name__ == '__main__':          # official entry point
+    main()
+    sys.exit(0)

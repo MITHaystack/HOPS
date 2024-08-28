@@ -43,7 +43,7 @@ struct c_block                     /* Elemental control block structure */
    short knot[4];                  /* knot[i] true when cond[i] "not-ed" */
 
 
-          /* Filter, corrections, etc. to apply to data within qualifying scan */
+         /* Filter, corrections, etc. to apply to data within qualifying scan */
 
    short skip;                     /* iff true, don't fourfit matching scans */
    double min_weight;              /* min t120->fw.weight for AP acceptance */
@@ -118,6 +118,9 @@ struct c_block                     /* Elemental control block structure */
    char vbp_file[2][256];          // if not null, specifies filename for video bandpass corr.
    int mount_type[2];              // non-zero implies field-rotation-corrections should be made.
    int mixed_mode_rot;             // iff true, rotate all RY and YR data by 90 degrees (geodesy mixed-mode feature) 
+   int noautofringes;              // when true, skip fringing of autocorrs
+   int mod4numbering;              // when true, fr.num % 4 is 0 (LL) 1 (RR) 2 (LR) 3 (RL)
+   int mbdrplopt[3];               // option(s) on MBD DRate SBD plots
    };
 
           /* Defined values for various structure variables */

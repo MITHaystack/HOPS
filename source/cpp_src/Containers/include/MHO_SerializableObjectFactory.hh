@@ -1,14 +1,6 @@
 #ifndef MHO_SerializableObjectFactory_HH__
 #define MHO_SerializableObjectFactory_HH__
 
-/*
-*@file: MHO_SerializableObjectFactory.hh
-*@class: MHO_SerializableObjectFactory
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
-*/
 
 #include "MHO_Message.hh"
 #include "MHO_Serializable.hh"
@@ -16,6 +8,15 @@
 
 namespace hops
 {
+
+
+/*!
+*@file  MHO_SerializableObjectFactory.hh
+*@class  MHO_SerializableObjectFactory
+*@author  J. Barrett - barrettj@mit.edu
+*@date Sun Feb 13 19:54:27 2022 -0500
+*@brief
+*/
 
 //base class does nothing
 class MHO_SerializableObjectFactory
@@ -25,12 +26,11 @@ class MHO_SerializableObjectFactory
         virtual ~MHO_SerializableObjectFactory(){};
 
         virtual MHO_Serializable* Build(){return nullptr;}
-        virtual MHO_Serializable* BuildFromFileInterface(MHO_BinaryFileInterface& /*inter*/){return nullptr;}
+        virtual MHO_Serializable* BuildFromFileInterface(MHO_BinaryFileInterface& /*!inter*/){return nullptr;}
 
-        virtual bool WriteToFileInterface(MHO_BinaryFileInterface& /*inter*/, 
-                                          const MHO_Serializable* /*object*/,
-                                          const std::string& shortname = "", 
-                                          const uint32_t label = 0)
+        virtual bool WriteToFileInterface(MHO_BinaryFileInterface& /*!inter*/,
+                                          const MHO_Serializable* /*!object*/,
+                                          const std::string& shortname = "")
         {
             return false;
         };
@@ -61,24 +61,23 @@ class MHO_SerializableObjectFactorySpecific: public MHO_SerializableObjectFactor
                 obj = new XClassType();
                 bool ok = inter.Read(*obj, read_key);
                 if(ok){return obj;}
-                else 
+                else
                 {
                     msg_debug("file", "failed to build object from file." << eom);
-                    delete obj; 
+                    delete obj;
                     obj = nullptr;
                 }
             }
-            else 
+            else
             {
                 msg_debug("file", "failed to build object from file, interface not open." << eom);
             }
             return obj;
         }
 
-        virtual bool WriteToFileInterface(MHO_BinaryFileInterface& inter, 
+        virtual bool WriteToFileInterface(MHO_BinaryFileInterface& inter,
                                           const MHO_Serializable* object,
-                                          const std::string& shortname = "", 
-                                          const uint32_t label = 0)
+                                          const std::string& shortname = "")
         {
 
             const XClassType* obj = dynamic_cast<const XClassType*>(object);
@@ -87,7 +86,7 @@ class MHO_SerializableObjectFactorySpecific: public MHO_SerializableObjectFactor
             {
                 if(inter.IsOpenForWrite())
                 {
-                    ok = inter.Write(*obj, shortname, label);
+                    ok = inter.Write(*obj, shortname);
                 }
             }
             if(!ok){msg_debug("file", "failed to write object to file." << eom);}
@@ -99,4 +98,4 @@ class MHO_SerializableObjectFactorySpecific: public MHO_SerializableObjectFactor
 
 }//end namespace
 
-#endif /* end of include guard: MHO_SerializableObjectFactory */
+#endif /*! end of include guard: MHO_SerializableObjectFactory */

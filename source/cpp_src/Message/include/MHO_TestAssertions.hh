@@ -1,13 +1,12 @@
 #ifndef MHO_TestAssertions_HH__
 #define MHO_TestAssertions_HH__
 
-/*
-*File: MHO_TestAssertions.hh
-*Class: MHO_TestAssertions
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+/*!
+*@file MHO_TestAssertions.hh
+*@class MHO_TestAssertions
+*@author J. Barrett - barrettj@mit.edu 
+*@date Thu Jul 15 11:30:15 2021 -0400
+*@brief
 */
 
 #include <stdexcept>
@@ -82,4 +81,4 @@
 
 
 
-#endif /* end of include guard: MHO_TestAssertions */
+#endif /*! end of include guard: MHO_TestAssertions */

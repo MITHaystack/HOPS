@@ -1,14 +1,7 @@
 #ifndef MHO_NaNMasker_HH__
 #define MHO_NaNMasker_HH__
 
-/*
-*File: MHO_NaNMasker.hh
-*Class: MHO_NaNMasker
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-*/
+
 
 #include <cmath>
 #include <complex>
@@ -18,6 +11,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_NaNMasker.hh
+*@class MHO_NaNMasker
+*@author J. Barrett - barrettj@mit.edu
+*@date Thu Aug 12 11:16:36 2021 -0400
+*@brief
+*/
 
 
 template< class XArrayType>
@@ -37,7 +38,7 @@ class MHO_NaNMasker: public MHO_UnaryFunctor< XArrayType >
             if( MHO_CheckForNaN< typename XArrayType::value_type >::isnan(*input) )
             {
                 *input = 0.0; //zero out
-                msg_debug("calibration", "Replacing NaN with 0.0." << eom); //TODO more debug?
+                //msg_debug("calibration", "Replacing NaN with 0.0." << eom); //TODO more debug?
             }
         }
 
@@ -47,7 +48,7 @@ class MHO_NaNMasker: public MHO_UnaryFunctor< XArrayType >
             if( MHO_CheckForNaN< typename XArrayType::value_type >::isnan(*input) )
             {
                 *output = 0.0; //zero out
-                msg_debug("calibration", "Replacing NaN with 0.0." << eom); //TODO more debug?
+                //msg_debug("calibration", "Replacing NaN with 0.0." << eom); //TODO more debug?
             }
             else{ *output = *input; } //pass through
         }
@@ -59,4 +60,4 @@ class MHO_NaNMasker: public MHO_UnaryFunctor< XArrayType >
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_NaNMasker */
+#endif /*! end of include guard: MHO_NaNMasker */

@@ -11,11 +11,11 @@ class chan_label_freq_predicate
         chan_label_freq_predicate(){};
         virtual ~chan_label_freq_predicate(){};
 
-    virtual bool operator()(const MHO_IntervalLabel* a, const MHO_IntervalLabel* b)
+    virtual bool operator()(const mho_json& a, const mho_json& b)
     {
         double a_frq, b_frq;
-        a->Retrieve(std::string("sky_freq"), a_frq);
-        b->Retrieve(std::string("sky_freq"), b_frq);
+        a_frq = a["sky_freq"];
+        b_frq = b["sky_freq"];
         return a_frq < b_frq;
     }
 };
@@ -46,7 +46,7 @@ MHO_VisibilityChannelizer::InitializeImpl(const uch_visibility_store_type* in, v
 
             //and determine the number of unique channel labels
             auto* freq_axis = &(std::get<UCH_FREQ_AXIS>( *(in) ) );
-            std::vector< const MHO_IntervalLabel* > channel_labels = freq_axis->GetIntervalsWithKey(std::string("channel"));
+            std::vector< mho_json > channel_labels = freq_axis->GetMatchingIntervalLabels(std::string("channel"));
             std::size_t num_channels = channel_labels.size();
 
             //make sure the are sorted by sky frequency
@@ -58,14 +58,17 @@ MHO_VisibilityChannelizer::InitializeImpl(const uch_visibility_store_type* in, v
             for(auto iter = channel_labels.begin(); iter != channel_labels.end(); iter++)
             {
                 double sf;
-                (*iter)->Retrieve(std::string("sky_freq"), sf);
-                msg_debug("calibration", "inserting channel of size: " << (*iter)->GetLength() << " with sky freq: " << sf << eom);
-                channel_sizes.insert( (*iter)->GetLength() );
+                sf = (*iter)["sky_freq"];
+                int upper = (*iter)["upper_index"];
+                int lower = (*iter)["lower_index"];
+                int length = upper - lower;
+                msg_debug("calibration", "inserting channel of size: " << length << " with sky freq: " << sf << eom);
+                channel_sizes.insert( length );
             }
 
             if(channel_sizes.size() != 1)
             {
-                msg_warn("calibration", "channel sizes are not a uniform number of spectral points." << eom);
+                msg_warn("calibration", "channel sizes are not a uniform number of spectral points, there are: "<< channel_sizes.size() <<" distinct sizes." << eom);
             }
             std::size_t channel_length = *( channel_sizes.begin() );
 
@@ -94,18 +97,11 @@ MHO_VisibilityChannelizer::InitializeImpl(const uch_visibility_store_type* in, v
                 out_pp_axis->at(pp) = in_pp_axis->at(pp);
             }
 
-            //label the output channel axis with channel sky frequency
+            //label the output channel axis with channel frequencies
             for(std::size_t ch=0; ch<num_channels; ch++)
             {
-                double sky_freq;
-                if( channel_labels[ch]->Retrieve(std::string("sky_freq"), sky_freq) ) //channel_labels[ch]->Retrieve(std::string("channel"), channel_id )
-                {
-                    out_channel_axis->at(ch) = sky_freq; //channel_id;
-                }
-                else
-                {
-                    msg_warn("calibration", "Warning channel id: "<< ch << " not found in channel labels." << eom);
-                }
+                double channel_sky_freq = channel_labels[ch]["sky_freq"];
+                out_channel_axis->at(ch) = channel_sky_freq;
             }
 
             //label the ouput array time axis
@@ -140,11 +136,11 @@ MHO_VisibilityChannelizer::ExecuteImpl(const uch_visibility_store_type* in, visi
         //pack the data into the appropriate place
         for(int ch=0; ch<out_channel_axis->GetSize(); ch++)
         {
-            auto ch_label = in_freq_axis->GetFirstIntervalWithKeyValue(std::string("channel"), ch);
-            if( ch_label )
+            auto ch_label = in_freq_axis->GetFirstIntervalWithKeyValue("channel", ch);
+            if( !(ch_label.empty()) )
             {
-                std::size_t low = ch_label->GetLowerBound();
-                std::size_t up = ch_label->GetUpperBound();
+                std::size_t low = ch_label["lower_index"];
+                std::size_t up = ch_label["upper_index"];
                 for(std::size_t pp=0; pp<in_pp_axis->GetSize(); pp++)
                 {
                     for(std::size_t t=0; t<in_time_axis->GetSize(); t++)
@@ -162,23 +158,25 @@ MHO_VisibilityChannelizer::ExecuteImpl(const uch_visibility_store_type* in, visi
                 double bw;
                 std::string net_sb;
                 int channel_id;
-                std::string chan_id; //mk4 style channel name
+                std::string chan_id;
+                std::string fband;
 
-                MHO_IntervalLabel fresh_ch_label(ch,ch);
-                ch_label->Retrieve(std::string("sky_freq"), sky_freq);
-                ch_label->Retrieve(std::string("bandwidth"), bw);
-                ch_label->Retrieve(std::string("net_sideband"), net_sb);
-                ch_label->Retrieve(std::string("channel"), channel_id); //channel positional index
-                ch_label->Retrieve(std::string("chan_id"), chan_id);
+                mho_json fresh_ch_label;
+                sky_freq = ch_label["sky_freq"];
+                bw = ch_label["bandwidth"];
+                net_sb = ch_label["net_sideband"];
+                channel_id = ch_label["channel"];
+                chan_id = ch_label["chan_id"];
+                fband = ch_label["frequency_band"];
 
-                fresh_ch_label.Insert(std::string("sky_freq"), sky_freq);
-                fresh_ch_label.Insert(std::string("bandwidth"), bw);
-                fresh_ch_label.Insert(std::string("net_sideband"), net_sb);
-                fresh_ch_label.Insert(std::string("channel"), channel_id);
-                fresh_ch_label.Insert(std::string("chan_id"), chan_id);
-                fresh_ch_label.SetBounds(ch,ch);
-
-                out_channel_axis->InsertLabel(fresh_ch_label);
+                fresh_ch_label["sky_freq"] = sky_freq;
+                fresh_ch_label["bandwidth"] = bw;
+                fresh_ch_label["net_sideband"] = net_sb;
+                fresh_ch_label["channel"] = channel_id;
+                fresh_ch_label["chan_id"] = chan_id;
+                fresh_ch_label["frequency_band"] = fband;
+                fresh_ch_label["index"] = ch;
+                out_channel_axis->SetLabelObject(fresh_ch_label,ch);
             }
         }
 
@@ -197,7 +195,7 @@ MHO_VisibilityChannelizer::ExecuteImpl(const uch_visibility_store_type* in, visi
         ap_axis->Insert(std::string("name"), std::string("time") );
         ap_axis->Insert(std::string("units"), std::string("s") );
 
-        //(sub-channel) frequency axis 
+        //(sub-channel) frequency axis
         auto* sp_axis = &(std::get<FREQ_AXIS>(*out));
         sp_axis->Insert(std::string("name"), std::string("frequency") );
         sp_axis->Insert(std::string("units"), std::string("MHz") );

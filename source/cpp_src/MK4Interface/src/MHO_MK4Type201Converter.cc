@@ -4,7 +4,7 @@
 const int PULSARPHASESIZE = 4;
 
 // the following struct is found in the hops directory in source/c_src/dfio/include/type_201.h
-//struct type_201 
+//struct type_201
 //    {
 //    char                record_id[3];           /* Standard 3-digit id */
 //    char                version_no[2];          /* Standard 2-digit version # */
@@ -32,7 +32,7 @@ const int PULSARPHASESIZE = 4;
 //    } sky_coord_struct;
 
 //typedef struct date
-//    {   
+//    {
 //    short year;
 //    short day;
 //    short hour;

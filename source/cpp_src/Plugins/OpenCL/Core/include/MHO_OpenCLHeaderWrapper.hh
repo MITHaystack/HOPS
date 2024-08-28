@@ -9,9 +9,17 @@
 #endif
 
 #if defined __APPLE__
-#include <OpenCL/cl.hpp>
+    #ifdef HOPS_OPENCL_VERSION2
+        #include <OpenCL/cl2.hpp>
+    #else
+        #include <OpenCL/cl.hpp>
+    #endif
 #else
-#include <CL/cl.hpp>
+    #ifdef HOPS_OPENCL_VERSION2
+        #include <CL/cl2.hpp>
+    #else
+        #include <CL/cl.hpp>
+    #endif
 #endif
 
-#endif /* MHO_OPENCLHEADERWRAPPER_DEF */
+#endif /*! MHO_OPENCLHEADERWRAPPER_DEF */

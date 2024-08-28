@@ -1,0 +1,17 @@
+{
+    "name": "python_calibration",
+    "statement_type": "operator",
+    "operator_category" : "calibration",
+    "type": "compound",
+    "priority": 3.9,
+    "parameters":
+    {
+        "module_name": {"type": "string"},
+        "function_name": {"type": "string"}
+    },
+    "fields":
+    [
+        "module_name",
+        "function_name"
+    ]
+}

@@ -1,15 +1,7 @@
 #ifndef MHO_BinaryFileStreamer_HH__
 #define MHO_BinaryFileStreamer_HH__
 
-/*
-*File: MHO_BinaryFileStreamer.hh
-*Class: MHO_BinaryFileStreamer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: variadic template parameter implemenation
-* of a gen scatter hierarchy streamer for POD types to a file stream
-*/
+
 
 #include <stdio.h>
 #include <stdint.h>
@@ -18,11 +10,23 @@
 #include <iostream>
 #include <string>
 #include <complex>
+#include <vector>
 
+#include "MHO_Types.hh"
+#include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_FileStreamer.hh"
 
 namespace hops
 {
+
+/*!
+*@file MHO_BinaryFileStreamer.hh
+*@class MHO_BinaryFileStreamer
+*@author J. Barrett - barrettj@mit.edu
+*@date Wed Apr 21 13:40:18 2021 -0400
+*@brief variadic template parameter implemenation
+* of a gen scatter hierarchy streamer for POD and JSON types to a file stream
+*/
 
 //forward declare our binary data streamer (for plain old data types ((POD))
 class MHO_BinaryFileStreamer;
@@ -103,6 +107,64 @@ template<> class MHO_BinaryFileStreamerSingleType<std::string>
         virtual MHO_BinaryFileStreamer& Self() = 0;
 };
 
+
+//specialization for mho_json type (special, because it needs to be encoded and gets a size parameter)
+template<> class MHO_BinaryFileStreamerSingleType<mho_json>
+{
+    public:
+        MHO_BinaryFileStreamerSingleType(){};
+        virtual ~MHO_BinaryFileStreamerSingleType(){};
+
+        //read in
+        friend inline MHO_BinaryFileStreamer& operator>>(MHO_BinaryFileStreamerSingleType<mho_json>& s, mho_json& obj)
+        {
+            uint64_t size;
+            uint64_t encoding;
+            s.GetStream().read(reinterpret_cast<char*>(&size), sizeof(uint64_t));
+            s.GetStream().read(reinterpret_cast<char*>(&encoding), sizeof(uint64_t));
+            std::vector<std::uint8_t> data;
+            data.resize(size);
+            s.GetStream().read(reinterpret_cast<char*>(&(data[0])), size);
+            //TODO FIXME - Add the ability to support other JSON encodings besides CBOR
+            //now decode from CBOR
+            if(encoding == 0)
+            {
+                obj = mho_json::from_cbor(data);
+            }
+            return s.Self();
+        }
+
+        //write out
+        friend inline MHO_BinaryFileStreamer& operator<<(MHO_BinaryFileStreamerSingleType<mho_json>& s, const mho_json& obj)
+        {
+
+            std::vector<std::uint8_t> data = mho_json::to_cbor(obj);
+            uint64_t size = data.size();
+            //must encode to CBOR
+            //TODO FIXME - Add the ability to support other JSON encodings
+            uint64_t encoding = 0; //CBOR is 0
+            s.GetStream().write(reinterpret_cast<const char*>(&size), sizeof(uint64_t));
+            s.GetStream().write(reinterpret_cast<const char*>(&encoding), sizeof(uint64_t));
+            s.GetStream().write(reinterpret_cast<const char*>(&(data[0])), size);
+            s.AddBytesWritten(sizeof(uint64_t));
+            s.AddBytesWritten(sizeof(uint64_t));
+            s.AddBytesWritten(size);
+            return s.Self();
+        }
+
+        virtual std::fstream& GetStream() = 0;
+
+        virtual void ResetByteCount() = 0;
+        virtual void AddBytesWritten(uint64_t) = 0;
+        virtual uint64_t GetNBytesWritten() const = 0;
+
+    protected:
+
+        virtual MHO_BinaryFileStreamer& Self() = 0;
+};
+
+
+
 //now declare a multi-type streamer with a variadic template parameter for the types to be streamed
 template <typename... XValueTypeS>
 class MHO_BinaryFileStreamerMultiType;
@@ -135,7 +197,8 @@ typedef MHO_BinaryFileStreamerMultiType<
     std::complex<float>,
     std::complex<double>,
     std::complex<long double>,
-    std::string>
+    std::string,
+    mho_json>
 MHO_BinaryFileStreamerBasicTypes;
 
 //now declare the concrete class which does the work for file streams
@@ -169,4 +232,4 @@ class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStre
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_BinaryFileStreamer */
+#endif /*! end of include guard: MHO_BinaryFileStreamer */

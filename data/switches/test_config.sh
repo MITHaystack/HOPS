@@ -1,26 +1,38 @@
 #!/bin/sh
 #
-# Configuration file for tests
+# Configuration file for tests -- this script is sourced
+#
+# At least one of tarballs, executables or something should be set
 #
 [ -z "$verb" ] && verb=false
 
 # initial checking to catch structural errors
 [ "x$tarballs" = xFIXME -o "x$executables" = xFIXME ] && {
-    echo tarballs or executables was not configured ; exit 99;
+    echo tarballs or executables were not coded in caller ; exit 99;
+}
+[ "x$tarballs" = x -a "x$executables" = x -a "x$something" = x ] && {
+    echo no tarballs, executables or something requested...
+    echo this is very likely incorrect
+    exit 99;
 }
 [ -n "$unpack" -o -n "$requirements" -o -n "$status" ] && {
     echo one of these is set: unpack requirements status
-    exit 99; }
+    echo that is an issue to fix
+    exit 99;
+}
 
-# so that if the script something is mentioned in $requirements...
-[ -z "$MHO_REGRESSION_REQUIREMENTS" ] &&
-    requirements=$MHO_REGRESSION_DATA/bootstrap/requirements.txt ||
-    requirements=$MHO_REGRESSION_REQUIREMENTS
-
-# ...we can access requirements database and set MHO_REGRESSION_REQ
-set -- `grep "^$something" $requirements`
-[ $# -eq 0 ] && MHO_REGRESSION_REQ='ok' ||
-    MHO_REGRESSION_REQ='REQUIREMENTS: '"$@"
+# setting MHO_REGRESSION_REQ likely should be optional.
+[ -n "$something" ] && {
+    [ "x$something" = xsomething ] && { echo something in error ; exit 99; }
+    # so that if the script something is mentioned in $requirements...
+    [ -z "$MHO_REGRESSION_REQUIREMENTS" ] &&
+        requirements=$MHO_REGRESSION_DATA/bootstrap/requirements.txt ||
+        requirements=$MHO_REGRESSION_REQUIREMENTS
+    # ...we can access requirements database and set MHO_REGRESSION_REQ
+    set -- `grep "^$something" $requirements`
+    [ $# -eq 0 ] && MHO_REGRESSION_REQ='ok' ||
+        MHO_REGRESSION_REQ='REQUIREMENTS: '"$@"
+}
 
 # now to make data available
 
@@ -37,15 +49,19 @@ unpack=$MHO_REGRESSION_DATA/switches/provider.sh
     echo unpack script $unpack is missing
     echo consider running bootstrap/legacy_update.sh ; exit 99; }
 
+# alternate unpack location
+$verb && [ -n "$MHO_REGRESSION_DEST" ] &&
+    echo Extraction will be to $MHO_REGRESSION_DEST
+
 # loop through the list of tarballs, unpacking and tracking what might is made
 [ -n "$tarballs" ] && $MHO_REGRESSION_EXTRACT && {
     for name in $tarballs
     do
-        dir=`$unpack $name`
+        thedata=`$unpack $name`
         # this could be considered an error 99
         [ $? -eq 0 ] || { echo unable to extract $name ; exit 77; }
-        $verb && echo EXTRACTed directory $dir
-        nukables="$nukables $dir"
+        $verb && echo EXTRACTed directory $thedata
+        nukables="$nukables $thedata"
     done
 }
 # if MHO_REGRESSION_EXTRACT=false we want to exit 77, but defer that

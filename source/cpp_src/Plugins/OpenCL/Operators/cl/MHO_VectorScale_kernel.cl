@@ -1,8 +1,8 @@
-#ifndef NTSVectorScale_Defined_H
-#define NTSVectorScale_Defined_H
+#ifndef MHO_VectorScale_Defined_H
+#define MHO_VectorScale_Defined_H
 
 #include "hopsocl_defines.h"
-#include "MHO_ComplexMultiply.cl"
+#include "MHO_ComplexUtils.cl"
 
 __kernel void
 VectorScale(const unsigned int array_size,

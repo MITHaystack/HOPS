@@ -8,17 +8,18 @@
 
 #include "MHO_Operator.hh"
 
-/*
-*File: MHO_OperatorToolbox.hh
-*Class: MHO_OperatorToolbox
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-*/
+
 
 namespace hops
 {
+
+/*!
+*@file MHO_OperatorToolbox.hh
+*@class MHO_OperatorToolbox
+*@author J. Barrett - barrettj@mit.edu
+*@date Sun Jun 4 17:43:54 2023 -0400
+*@brief
+*/
 
 class MHO_OperatorToolbox
 {
@@ -30,6 +31,7 @@ class MHO_OperatorToolbox
         //insertion
         void AddOperator(MHO_Operator* op, const std::string& name, const std::string& category, bool replace_duplicate=true)
         {
+            msg_debug("operators", "adding an operator to the toolbox with name: "<< name <<" in category: "<< category << eom);
             auto it = fNameToOperatorMap.find(name);
             if(it != fNameToOperatorMap.end() && replace_duplicate)
             {
@@ -68,9 +70,9 @@ class MHO_OperatorToolbox
             }
             return ptr;
         }
-        
+
         std::size_t GetNOperators(){return fOperators.size();}
-        
+
         //get all operators in the toolbox
         std::vector< MHO_Operator* > GetAllOperators()
         {
@@ -84,7 +86,7 @@ class MHO_OperatorToolbox
             std::sort(ops.begin(), ops.end(), op_pred);
             return ops;
         }
-        
+
         //get all operators within the priority range [low,high)
         std::vector< MHO_Operator* > GetOperatorsByPriorityRange(double lower_limit, double upper_limit)
         {
@@ -103,7 +105,7 @@ class MHO_OperatorToolbox
             return ops;
         }
 
-        //get all operators by category 
+        //get all operators by category
         std::vector< MHO_Operator* > GetOperatorsByCategory(const std::string& category)
         {
             std::vector< MHO_Operator* > ops;
@@ -111,12 +113,12 @@ class MHO_OperatorToolbox
             auto it2 = fCategoryToOperatorMap.upper_bound(category);
             if(it1 != fCategoryToOperatorMap.end() )
             {
-                while (it1 != it2)   
+                while (it1 != it2)
                 {
                     ops.push_back(it1->second);
                     it1++;
                 }
-            } 
+            }
             //sort in order of priority
             operator_predicate op_pred;
             std::sort(ops.begin(), ops.end(), op_pred);
@@ -125,7 +127,7 @@ class MHO_OperatorToolbox
 
 
     private:
-        
+
         void RemoveOperator(const std::string& name)
         {
             auto it = fNameToOperatorMap.find(name);
@@ -135,21 +137,21 @@ class MHO_OperatorToolbox
                 //remove from the operator set
                 auto op_iter = fOperators.find(op_ptr);
                 if(op_iter != fOperators.end()){fOperators.erase(op_iter);}
-                
-                //remove from the category map 
+
+                //remove from the category map
                 for(auto cat_iter = fCategoryToOperatorMap.begin(); cat_iter != fCategoryToOperatorMap.end(); cat_iter++)
                 {
                     if(cat_iter->second == op_ptr){fCategoryToOperatorMap.erase(cat_iter); break;}
                 }
-                
-                //remove from the named operator map 
+
+                //remove from the named operator map
                 fNameToOperatorMap.erase(it);
-                
-                //finally delete the operator 
+
+                //finally delete the operator
                 delete op_ptr;
             }
         }
-        
+
         void Clear()
         {
             //delete all the operators
@@ -167,8 +169,8 @@ class MHO_OperatorToolbox
 
         //look up operators by name
         std::map< std::string, MHO_Operator* > fNameToOperatorMap;
-        
-        //look up operators by category 
+
+        //look up operators by category
         std::multimap< std::string, MHO_Operator* > fCategoryToOperatorMap;
 
         //for sorting operator priorites
@@ -191,4 +193,4 @@ class MHO_OperatorToolbox
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_OperatorToolbox */
+#endif /*! end of include guard: MHO_OperatorToolbox */

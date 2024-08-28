@@ -16,14 +16,15 @@ extern "C"
 }
 #endif
 
-//include the json library stuff through the header wrapper 
-//that lives inc the utilities library 
+//include the json library stuff through the header wrapper
+//that lives inc the utilities library
 #include "MHO_JSONHeaderWrapper.hh"
 
 
-namespace hops 
+namespace hops
 {
-/**
+/*!*
+>>>>>>> 2244689b19d877f8c1684530a28c9cba07f7d6dd
 *@file MHO_MK4Type201Converter.hh
 *@author V. Pfeiffer - violetp@mit.edu
 * A function that accepts the data from a type 201 file in the form of a struct and converts it to a JSON string.
@@ -33,4 +34,4 @@ mho_json convertToJSON(const type_201& t);
 
 }
 
-#endif /* end of include guard: MHO_MKType200Converter */
+#endif /*! end of include guard: MHO_MKType200Converter */

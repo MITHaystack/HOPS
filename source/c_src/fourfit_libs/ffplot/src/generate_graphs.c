@@ -80,44 +80,56 @@ int generate_graphs (struct scan_struct *root,
     cpgdraw (1.0, 0.0);
     cpgdraw (0.0, 1.0);
     cpgsci (1);
-                                        /* Delay-rate spectrum */
-    xmin = xmax = 0;
+
     max_amp = 1e4 * fringe.t208->amplitude;
-    for(i=0; i<plot.dr_size_max; i++)
-        {                               /* Convert to ns/s */
-        drate = (double)i - (double)plot.dr_size_max / 2.0;
-        drate /= plot.dr_size_max * param.acc_period * fringe.t205->ref_freq;
-        drate *= 1000.0;
-        if (drate < xmin) xmin = drate;
-        if (drate > xmax) xmax = drate;
-        xr[i] = drate;
-        yr[i] = plot.d_rate[i];
-        }
-    cpgsvp (0.05, 0.80, 0.77, 0.95);
-    cpgswin(xmin, xmax, 0.0, max_amp);
-    cpgsch (0.5);
-    cpgbox ("BNST", 0.0, 0.0, "BNST", 0.0, 0.0);
-    cpgsch (0.7);
-    cpgsci (2);
-    cpgmtxt("L", 1.5, 0.5, 0.5, "amplitude");
-    cpgmtxt("B", 1.8, 0.5, 0.5, "delay rate (ns/s)");
-    cpgline(plot.dr_size_max, xr, yr);
-                                        /* Draw in search window */
-    max_dr_win = 0.5 / (param.acc_period * param.ref_freq);
-    if ((param.win_dr[0] > -max_dr_win) || (param.win_dr[1] < max_dr_win))
-        {   /* draw delay rate red bar */
-        cpgsvp (0.05, 0.80, 0.767, 0.768);
-        cpgswin (xmin, xmax, 0.0, 1.0);
-        xpos = param.win_dr[0] * 1.0e3;
-        cpgmove (xpos, 0.5);
-        xpos = param.win_dr[1] * 1.0e3;
-        cpgslw (3);
-        cpgdraw (xpos, 0.5);
-        cpgslw (1);
-                                        /* Restore viewport for MBD */
+
+    // original order: DR first, then MBD overlaid (if MBD exists)
+    if (param.mbdrplopt[0] == 0 || pass->nfreq == 1)
+        {
+                                            /* Delay-rate spectrum */
+        xmin = xmax = 0;
+        for(i=0; i<plot.dr_size_max; i++)
+            {                               /* Convert to ns/s */
+            drate = (double)i - (double)plot.dr_size_max / 2.0;
+            drate /= plot.dr_size_max * param.acc_period * fringe.t205->ref_freq;
+            drate *= 1000.0;
+            if (drate < xmin) xmin = drate;
+            if (drate > xmax) xmax = drate;
+            xr[i] = drate;
+            yr[i] = plot.d_rate[i];
+            }
+        if (param.mbdrplopt[1] > 1)
+            {
+            float xcen = (xmax + xmin)/2.0;
+            float xhwd = (xmax - xmin)/(2.0*(float)param.mbdrplopt[1]);
+            xmin = xcen - xhwd;
+            xmax = xcen + xhwd;
+            }
         cpgsvp (0.05, 0.80, 0.77, 0.95);
+        cpgswin(xmin, xmax, 0.0, max_amp);
+        cpgsch (0.5);
+        cpgbox ("BNST", 0.0, 0.0, "BNST", 0.0, 0.0);
+        cpgsch (0.7);
+        cpgsci (2);
+        cpgmtxt("L", 1.5, 0.5, 0.5, "amplitude");
+        cpgmtxt("B", 1.8, 0.5, 0.5, "delay rate (ns/s)");
+        cpgline(plot.dr_size_max, xr, yr);
+                                            /* Draw in search window */
+        max_dr_win = 0.5 / (param.acc_period * param.ref_freq);
+        if ((param.win_dr[0] > -max_dr_win) || (param.win_dr[1] < max_dr_win))
+            {   /* draw delay rate red bar */
+            cpgsvp (0.05, 0.80, 0.767, 0.768);
+            cpgswin (xmin, xmax, 0.0, 1.0);
+            xpos = param.win_dr[0] * 1.0e3;
+            cpgmove (xpos, 0.5);
+            xpos = param.win_dr[1] * 1.0e3;
+            cpgslw (3);
+            cpgdraw (xpos, 0.5);
+            cpgslw (1);
+            }
+        cpgsci (1);
         }
-    cpgsci (1);
+
                                         /* Multiband delay resolution function */
                                         // in some cases the MBDfunc reduces
                                         // to a flatline at the max amplitude
@@ -134,6 +146,7 @@ int generate_graphs (struct scan_struct *root,
             xr[i] = mbd;
             yr[i] = plot.mb_amp[i];
             }
+        cpgsvp (0.05, 0.80, 0.77, 0.95);
         cpgswin (xmin, xmax, 0.0, max_amp);
         cpgsch (0.5);
         cpgbox ("CMST", 0.0, 0.0, "CMST", 0.0, 0.0);
@@ -174,6 +187,54 @@ int generate_graphs (struct scan_struct *root,
         }
                                         /* No MBD, must complete the box */
     else cpgbox ("CST", 0.0, 0.0, "CST", 0.0, 0.0);
+
+    if (param.mbdrplopt[0] == 1 && pass->nfreq > 1)
+        {
+                                            /* Delay-rate spectrum */
+        xmin = xmax = 0;
+        for(i=0; i<plot.dr_size_max; i++)
+            {                               /* Convert to ns/s */
+            drate = (double)i - (double)plot.dr_size_max / 2.0;
+            drate /= plot.dr_size_max * param.acc_period * fringe.t205->ref_freq;
+            drate *= 1000.0;
+            if (drate < xmin) xmin = drate;
+            if (drate > xmax) xmax = drate;
+            xr[i] = drate;
+            yr[i] = plot.d_rate[i];
+            }
+        if (param.mbdrplopt[1] > 1)
+            {
+            float xcen = (xmax + xmin)/2.0;
+            float xhwd = (xmax - xmin)/(2.0*(float)param.mbdrplopt[1]);
+            xmin = xcen - xhwd;
+            xmax = xcen + xhwd;
+            }
+        cpgsvp (0.05, 0.80, 0.77, 0.95);
+        cpgswin(xmin, xmax, 0.0, max_amp);
+        cpgsch (0.5);
+        cpgbox ("BNST", 0.0, 0.0, "BNST", 0.0, 0.0);
+        cpgsch (0.7);
+        cpgsci (2);
+        cpgmtxt("L", 1.5, 0.5, 0.5, "amplitude");
+        cpgmtxt("B", 1.8, 0.5, 0.5, "delay rate (ns/s)");
+        cpgline(plot.dr_size_max, xr, yr);
+                                            /* Draw in search window */
+        max_dr_win = 0.5 / (param.acc_period * param.ref_freq);
+        if ((param.win_dr[0] > -max_dr_win) || (param.win_dr[1] < max_dr_win))
+            {   /* draw delay rate red bar */
+            cpgsvp (0.05, 0.80, 0.767, 0.768);
+            cpgswin (xmin, xmax, 0.0, 1.0);
+            xpos = param.win_dr[0] * 1.0e3;
+            cpgmove (xpos, 0.5);
+            xpos = param.win_dr[1] * 1.0e3;
+            cpgslw (3);
+            cpgdraw (xpos, 0.5);
+            cpgslw (1);
+            }
+        cpgsci (1);
+        }
+
+
                                         /* Singleband delay function */
     nsbd = 2 * param.nlags;
     xmin = xmax = 0;
@@ -185,6 +246,13 @@ int generate_graphs (struct scan_struct *root,
         if (sbd > xmax) xmax = sbd;
         xr[i] = sbd;
         yr[i] = plot.sb_amp[i];
+        }
+    if (param.mbdrplopt[2] > 1)
+        {
+        float xcen = (xmax + xmin)/2.0;
+        float xhwd = (xmax - xmin)/(2.0*(float)param.mbdrplopt[2]);
+        xmin = xcen - xhwd;
+        xmax = xcen + xhwd;
         }
     cpgsvp (0.05, 0.35, 0.63, 0.74);
     cpgswin (xmin, xmax, 0.0, max_amp);
@@ -199,28 +267,6 @@ int generate_graphs (struct scan_struct *root,
     cpgmtxt("L", 1.5, 0.5, 0.5, "amplitude");
     cpgline (nsbd, xr, yr);
     cpgsci (1);
-
-                                        // ion. search points (iff present)
-    if (status.nion > 0)
-        {
-        for(i=0; i<status.nion; i++)
-            {
-            xr[i] = status.dtec[i][0];
-            yr[i] = status.dtec[i][1];
-                                        // debug print
-            msg("TEC %f amp %f", 0, status.dtec[i][0], status.dtec[i][1]);
-            }
-        xmin = status.dtec[0][0];
-        xmax = status.dtec[status.nion-1][0];
-        cpgswin (xmin, xmax, 0.0, max_amp);
-        cpgsch (0.5);
-        cpgbox ("CMST", 0.0, 0.0, "", 0.0, 0.0);
-        cpgsch (0.7);
-        cpgsci (2);
-        cpgmtxt("T", 0.5, 0.5, 0.5, "ion. TEC");
-        cpgline (status.nion, xr, yr);
-        cpgsci (1);
-        }
 
                                         /* Draw search window bar */
     max_sb_win = 0.5e+06 * param.samp_period * 1e+3;
@@ -237,6 +283,29 @@ int generate_graphs (struct scan_struct *root,
         cpgslw (1);
         }
     cpgsci (1);
+
+                                        // ion. search points (iff present)
+    if (status.nion > 0)
+        {
+        for(i=0; i<status.nion; i++)
+            {
+            xr[i] = status.dtec[i][0];
+            yr[i] = status.dtec[i][1];
+                                        // debug print
+            msg("TEC %f amp %f", 0, status.dtec[i][0], status.dtec[i][1]);
+            }
+        xmin = status.dtec[0][0];
+        xmax = status.dtec[status.nion-1][0];
+        cpgsvp (0.05, 0.35, 0.63, 0.74);
+        cpgswin (xmin, xmax, 0.0, max_amp);
+        cpgsch (0.5);
+        cpgbox ("CMST", 0.0, 0.0, "", 0.0, 0.0);
+        cpgsch (0.7);
+        cpgsci (2);
+        cpgmtxt("T", 0.5, 0.5, 0.5, "ion. TEC");
+        cpgline (status.nion, xr, yr);
+        cpgsci (1);
+        }
 
 
                                         /* Cross-power spectrum - amplitude */

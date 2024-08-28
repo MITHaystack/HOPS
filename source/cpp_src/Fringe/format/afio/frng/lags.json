@@ -1,0 +1,8 @@
+{
+	"name": "lags",
+	"type": "int",
+	"source_object": "parameters",
+	"path": "/config/nlags",
+	"description": "",
+	"units": ""
+}

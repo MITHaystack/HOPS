@@ -1,6 +1,7 @@
 #ifndef MHO_UUIDGenerator_HH__
 #define MHO_UUIDGenerator_HH__
 
+
 #include <sstream>
 #include <random>
 #include <string>
@@ -9,14 +10,17 @@
 namespace hops
 {
 
-/**
+
+/*!
 *@file MHO_UUIDGenerator.hh
 *@class MHO_UUIDGenerator
+*@date Wed Apr 21 13:40:18 2021 -0400
 *@author J. Barrett - barrettj@mit.edu
 * A class to provide pseudo-randomly generated UUID strings,
 * based on RFC-4122, but with a non-standard 4 byte sync word as a prefix
 * https://tools.ietf.org/html/rfc4122
 */
+
 
 class MHO_UUIDGenerator
 {
@@ -24,19 +28,19 @@ class MHO_UUIDGenerator
         MHO_UUIDGenerator();
         virtual ~MHO_UUIDGenerator();
 
-        /** Generate a 128 bit psuedo-random UUID by following the RFC 4122 standard
+        /*!* Generate a 128 bit psuedo-random UUID by following the RFC 4122 standard
         * @param None
         * @returns uuid MHO_UUID
         */
         MHO_UUID GenerateUUID();
 
-        /** Convert the UUID to a string 
-        * @param uuid MHO_UUID& which is a UUID passed by reference 
+        /*!* Convert the UUID to a string
+        * @param uuid MHO_UUID& which is a UUID passed by reference
         * @returns ss string which is the string version of the UUID
         */
         std::string ConvertUUIDToString(MHO_UUID& uuid);
 
-        /** Create a MHO_UUID UUID and convert it to a string
+        /*!* Create a MHO_UUID UUID and convert it to a string
         * @param None
         * @returns uuid string
         */
@@ -54,4 +58,4 @@ class MHO_UUIDGenerator
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_UUIDGenerator */
+#endif /*! end of include guard: MHO_UUIDGenerator */

@@ -1,11 +1,12 @@
 #declare header paths ##########################################################
 hops_internal_include_directories()
 
-set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Operators pyMHO_Containers pyMHO_Operators pybind11::embed)
+set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Operators pybind11::embed pyMHO_Containers pyMHO_Operators)
 
 set(SOURCE_BASENAMES
-    TestPythonOperatorInheritance
-    TestPythonUnaryOperator
+    # TestPythonOperatorInheritance
+    TestPythonGenericOperator
+    #TestPythonUnaryOperator
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
@@ -16,6 +17,6 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 #temp work around until we do this properly
-install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/mho_operators.py" DESTINATION ${PYTHON_MODULE_INSTALL_DIR})
+install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/mho_operators.py" DESTINATION ${PLUGINS_INSTALL_DIR})
 
 hops_install_executables( ${SOURCE_BASENAMES} )

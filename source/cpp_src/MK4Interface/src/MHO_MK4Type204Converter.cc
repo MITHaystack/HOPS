@@ -3,7 +3,7 @@
 #include <iostream>
 
 //typedef struct date
-//    {   
+//    {
 //    short year;
 //    short day;
 //    short hour;
@@ -11,7 +11,7 @@
 //    float second;
 //    } date_struct;
 
-//struct type_204 
+//struct type_204
 //    {
 //    char                record_id[3];           /* Standard 3-digit id */
 //    char                version_no[2];          /* Standard 2-digit version # */

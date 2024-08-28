@@ -454,7 +454,8 @@ void norm_xf (struct type_pass *pass,
       //   }
 
 #if STATUS_AP_ACCOUNTING == 4
-#warning "STATUS_AP_ACCOUNTING == 4"
+// #warning "STATUS_AP_ACCOUNTING == 4"
+// warning disabled as this is how it has been for some time.
       for (ip=ips; ip<pass->pol+1; ip++)
         {
         if ((sb == 0 && usb_bypol[ip] == 0)

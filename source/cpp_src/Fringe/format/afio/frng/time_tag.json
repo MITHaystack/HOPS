@@ -1,0 +1,8 @@
+{
+    "name": "time_tag",
+    "type": "string",
+    "source_object": "parameters",
+    "path": "/vex/scan/start",
+    "description": "scan start time",
+    "units": "s"
+}

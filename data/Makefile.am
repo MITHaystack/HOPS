@@ -16,7 +16,7 @@ TESTS_ENVIRONMENT = \
 	MHO_REGRESSION_DATA=$(srcdir) \
 	MHO_REGRESSION_EXTRACT=true \
 	MHO_REGRESSION_TIDY=true \
-	MHO_REGRESSION_FAKE=.
+	MHO_REGRESSION_DEST=.
 
 TESTS = template.sh chk_template.sh chk_unpack.sh chk_lookup.sh \
 	import_from_hops3.sh
@@ -63,7 +63,7 @@ chk_template.sh: template.sh $(srcdir)/Makefile.am
 	mv $@.tmp $@ && chmod +x $@ && grep ok $@
 
 # use sed to make a test of unpacking, use make macros for clarity
-assign3= pdf=$$MHO_REGRESSION_FAKE/ff_testdata/misc/cmp-2843.pdf
+assign3= pdf=$$MHO_REGRESSION_DEST/ff_testdata/misc/cmp-2843.pdf
 assign4= [ -f $$pdf ] || { echo $$pdf missing ; passfail=1 ; }
 chk_unpack_sh_SOURCES =
 chk_unpack.sh: template.sh $(srcdir)/Makefile.am

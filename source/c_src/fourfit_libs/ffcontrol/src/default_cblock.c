@@ -89,6 +89,11 @@ default_cblock (struct c_block *cb_ptr)
     cb_ptr -> vbp_correct   = FALSE;
     cb_ptr -> vbp_fit       = FALSE;
     cb_ptr -> mixed_mode_rot = FALSE;
+    cb_ptr -> noautofringes = FALSE;
+    cb_ptr -> mod4numbering = FALSE;
+    cb_ptr -> mbdrplopt[0]  = 0;
+    cb_ptr -> mbdrplopt[1]  = 1;
+    cb_ptr -> mbdrplopt[2]  = 1;
 
     for (i=0; i<2; i++)                              // clear ref and rem values
         {

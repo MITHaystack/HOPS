@@ -1,14 +1,7 @@
 #ifndef MHO_FileStreamer_HH__
 #define MHO_FileStreamer_HH__
 
-/*
-*File: MHO_FileStreamer.hh
-*Class: MHO_FileStreamer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-*/
+
 
 #include "MHO_Message.hh"
 #include <fstream>
@@ -16,6 +9,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_FileStreamer.hh
+*@class MHO_FileStreamer
+*@author J. Barrett - barrettj@mit.edu
+*@date Wed Apr 21 13:40:18 2021 -0400
+*@brief
+*/
 
 class MHO_FileStreamer
 {
@@ -119,8 +120,8 @@ template< typename XStreamType >
 struct MHO_ObjectStreamState
 {
     //default behavior on an unknown XStreamType is to doing nothing
-    static void SetUnknown( XStreamType& /*s*/){};
-    static void Reset( XStreamType& /*s*/){};
+    static void SetUnknown( XStreamType& /*!s*/){};
+    static void Reset( XStreamType& /*!s*/){};
 };
 
 //NOTE: the use of the keyword 'inline' is necessary for the template specializations
@@ -141,4 +142,4 @@ MHO_ObjectStreamState<MHO_FileStreamer>::Reset(MHO_FileStreamer& s)
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_FileStreamer */
+#endif /*! end of include guard: MHO_FileStreamer */

@@ -1,6 +1,6 @@
 {
     "name": "ionosphere",
     "statement_type": "parameter",
-    "parameter_type": "fit",
+    "parameter_type": "station",
     "type": "real"
 }

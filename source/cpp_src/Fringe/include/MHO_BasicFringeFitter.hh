@@ -1,0 +1,75 @@
+#ifndef MHO_BasicFringeFitter_HH__
+#define MHO_BasicFringeFitter_HH__
+
+#include "MHO_FringeFitter.hh"
+#include "MHO_ContainerDefinitions.hh"
+
+#include "MHO_NormFX.hh"
+#include "MHO_MBDelaySearch.hh"
+#include "MHO_InterpolateFringePeak.hh"
+
+#ifdef HOPS_USE_CUDA
+    #include "MHO_MBDelaySearchCUDA.hh"
+    #define MBD_SEARCH_TYPE MHO_MBDelaySearchCUDA
+#else
+    #define MBD_SEARCH_TYPE MHO_MBDelaySearch
+#endif
+
+
+namespace hops
+{
+
+/*!
+*@file MHO_BasicFringeFitter.hh
+*@class MHO_BasicFringeFitter
+*@author J. Barrettj - barrettj@mit.edu
+*@date Wed Sep 20 15:37:46 2023 -0400
+*@brief basic single-baseline fringe fitter, no bells or whistles
+*/
+
+
+class MHO_BasicFringeFitter: public MHO_FringeFitter
+{
+
+    public:
+        MHO_BasicFringeFitter(MHO_FringeData* data);
+        virtual ~MHO_BasicFringeFitter();
+
+        //basic run scheme: configure, init, then while(!IsFinished() ){ pre-run, run, post-run }
+        virtual void Configure() override;
+        virtual void Initialize() override;
+        virtual void PreRun() override;
+        virtual void Run() override;
+        virtual void PostRun() override;
+        virtual void Finalize() override;
+        virtual bool IsFinished() override;
+
+    protected:
+
+        //void AddPolProductSummationOperator(std::string& polprod, std::vector< std::string >& pp_vec, mho_json& statements);
+        // void AddDefaultOperatorFormatDef(mho_json& format);
+        // void AddDefaultOperators(mho_json& statements);
+
+        //main work functions, operators and works space for basic fringe search function
+        void coarse_fringe_search();
+        void interpolate_peak();
+
+        MHO_NormFX fNormFXOp;
+        MBD_SEARCH_TYPE fMBDSearch;
+        MHO_InterpolateFringePeak fPeakInterpolator;
+        visibility_type* vis_data;
+        weight_type* wt_data;
+        visibility_type* sbd_data;
+
+        //ovex info
+        mho_json fVexInfo;
+
+
+
+
+
+};
+
+}//end namespace
+
+#endif /*! end of include guard: MHO_BasicFringeFitter_HH__ */

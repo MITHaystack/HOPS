@@ -3,7 +3,7 @@
 #include <fstream>
 #include <cctype>
 
-namespace hops 
+namespace hops
 {
 
 MHO_StationCodeMap::MHO_StationCodeMap(bool use_legacy_default_codes)
@@ -27,7 +27,7 @@ void MHO_StationCodeMap::InitializeStationCodes(std::string station_codes_file)
         std::ifstream file(station_codes_file.c_str());
         if(file.is_open())
         {
-            //read lines until end 
+            //read lines until end
             while( getline(file,fLine) )
             {
                 ProcessLine();
@@ -48,7 +48,7 @@ MHO_StationCodeMap::ProcessLine()
 {
     if(fLine.size() != 0)
     {
-        //parse line and covert to tokens 
+        //parse line and covert to tokens
         fTokens.clear();
         fTokenizer.SetString(&fLine);
         fTokenizer.GetTokens(&fTokens);
@@ -65,22 +65,22 @@ MHO_StationCodeMap::ProcessLine()
 
             if(!ok)
             {
-                msg_warn("utility", "ignoring duplicate station code mapping: "<< 
+                msg_warn("utility", "ignoring duplicate station code mapping: "<<
                 station_code<<"->"<<mk4id<<" in file: " << fFile << eom );
             }
-            else 
+            else
             {
                 InsertPair(station_code, mk4id);
             }
         }
-        else 
+        else
         {
             msg_warn("utility", "ignoring line with improper tokens: " << fLine  << eom );
         }
     }
 }
 
-void 
+void
 MHO_StationCodeMap::InsertPair(std::string station_code, std::string mk4id)
 {
     fStationCodes.insert(station_code);
@@ -90,7 +90,7 @@ MHO_StationCodeMap::InsertPair(std::string station_code, std::string mk4id)
     fMk4Id2CodeMap[mk4id] = station_code;
 }
 
-bool 
+bool
 MHO_StationCodeMap::TokensAreValid()
 {
     if(fTokens.size() != 2){return false;}
@@ -99,7 +99,7 @@ MHO_StationCodeMap::TokensAreValid()
     return true;
 }
 
-std::string 
+std::string
 MHO_StationCodeMap::GetStationCodeFromMk4Id(std::string mk4id)
 {
     std::string code = "";
@@ -124,17 +124,17 @@ MHO_StationCodeMap::GetMk4IdFromStationCode(std::string station_code)
     {
         mk4id = it->second;
     }
-    else 
+    else
     {
-        //we've encountered a new station code, so assign it a new Mk4 site ID 
-        //from the pool of free IDs 
+        //we've encountered a new station code, so assign it a new Mk4 site ID
+        //from the pool of free IDs
         if(fFreeMk4Ids.size() > 0)
         {
             mk4id = *(fFreeMk4Ids.begin());
             InsertPair(code, mk4id);
-            msg_debug("utility", "encountered new station code: "<<code<<" assigning it mk4 site ID: "<< mk4id << eom);
+            msg_debug("utility", "encountered new station code: "<<code<<", assigning it mk4 site ID: "<< mk4id << eom);
         }
-        else 
+        else
         {
             msg_warn("utility", "could not assign mk4 site ID for station code: "<<code<<", no free characters available. " <<eom );
         }
@@ -161,7 +161,7 @@ void MHO_StationCodeMap::Initialize()
         fFreeMk4Ids.insert(code);
         value++;
     }
-    
+
     fStationCodes.clear();
     fMk4Ids.clear();
     fMk4Id2CodeMap.clear();
@@ -188,7 +188,7 @@ void MHO_StationCodeMap::AddLegacyCodeMap()
     }
 }
 
-std::string 
+std::string
 MHO_StationCodeMap::ToUpperCase(std::string token)
 {
     std::string value;
@@ -202,7 +202,7 @@ MHO_StationCodeMap::ToUpperCase(std::string token)
 }
 
 
-std::string 
+std::string
 MHO_StationCodeMap::ToLowerCase(std::string token)
 {
     std::string value;
@@ -215,7 +215,7 @@ MHO_StationCodeMap::ToLowerCase(std::string token)
     return value;
 }
 
-std::string 
+std::string
 MHO_StationCodeMap::ToCanonicalCase(std::string token)
 {
     std::string value;
@@ -232,7 +232,7 @@ MHO_StationCodeMap::ToCanonicalCase(std::string token)
     return value;
 }
 
-std::vector<std::string> 
+std::vector<std::string>
 MHO_StationCodeMap::GetAllMk4Ids()
 {
     std::vector<std::string> mk4id_list;
@@ -243,7 +243,7 @@ MHO_StationCodeMap::GetAllMk4Ids()
     return mk4id_list;
 }
 
-std::vector<std::string> 
+std::vector<std::string>
 MHO_StationCodeMap::GetAllStationCodes()
 {
     std::vector<std::string> code_list;

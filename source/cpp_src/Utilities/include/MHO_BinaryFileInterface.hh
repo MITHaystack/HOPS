@@ -1,14 +1,7 @@
 #ifndef MHO_BinaryFileInterface_HH__
 #define MHO_BinaryFileInterface_HH__
 
-/*
-*File: MHO_BinaryFileInterface.hh
-*Class: MHO_BinaryFileInterface
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-*/
+
 
 #include "MHO_Message.hh"
 #include "MHO_ClassIdentity.hh"
@@ -20,6 +13,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_BinaryFileInterface.hh
+*@class MHO_BinaryFileInterface
+*@author J. Barrett - barrettj@mit.edu
+*@date Wed Apr 21 13:40:18 2021 -0400
+*@brief
+*/
 
 class MHO_BinaryFileInterface
 {
@@ -178,6 +179,64 @@ class MHO_BinaryFileInterface
             Close();
         }
 
+        //pulls out the object keys and the bytes offsets to the key entry of each object from the start of the file
+        bool ExtractFileObjectKeysAndOffsets(const std::string& filename, std::vector<MHO_FileKey>& keys, std::vector< std::size_t>& byte_offsets)
+        {
+            keys.clear();
+            std::size_t byte_count = 0;
+
+            if( fObjectStreamer.IsOpenForRead() || fObjectStreamer.IsOpenForWrite() ||
+                fKeyStreamer.IsOpenForRead() || fKeyStreamer.IsOpenForRead() )
+            {
+                msg_warn("file", "Cannot extract file keys with active stream. Close open file first." << eom);
+                return false;
+            }
+            else
+            {
+                fKeyStreamer.SetFilename(filename);
+                fKeyStreamer.OpenToRead();
+                if( fKeyStreamer.IsOpenForRead() )
+                {
+                    while( fKeyStreamer.GetStream().good() )
+                    {
+                        MHO_FileKey key;
+                        fKeyStreamer >> key;
+                        if( fKeyStreamer.GetStream().good() ) //make sure we haven't hit EOF
+                        {
+                            //first check if the sync word matches, if not then we have
+                            //gotten off track and are in unknown territory
+                            bool key_ok = true;
+                            if( key.fSync != MHO_FileKeySyncWord ){key_ok = false; }
+                            if(key_ok)
+                            {
+                                byte_offsets.push_back(byte_count);
+                                keys.push_back(key);
+                                byte_count += MHO_FileKeySize + key.fSize;
+                                //now skip ahead by the size of the object
+                                fKeyStreamer.SkipAhead(key.fSize);
+                            }
+                            else
+                            {
+                                msg_error("file", "Failed to read object key, sync word " << key.fSync << " not recognized." << eom);
+                                break;
+                            }
+                        }
+                        else{break;} //EOF
+                    }
+                    fKeyStreamer.Close();
+                    return true;
+                }
+                else
+                {
+                    msg_error("file", "Failed to read key, file not open for reading." << eom);
+                    fKeyStreamer.Close();
+                    return false; //non-recoverable error
+                }
+            }
+            Close();
+        }
+
+
 
         void Close()
         {
@@ -198,11 +257,11 @@ class MHO_BinaryFileInterface
             fCollectKeys = false;
         }
 
-        template<class XWriteType> bool Write(const XWriteType& obj, const std::string& shortname = "", const uint32_t label = 0)
+        template<class XWriteType> bool Write(const XWriteType& obj, const std::string& shortname = "")
         {
             if( fObjectStreamer.IsOpenForWrite() )
             {
-                MHO_FileKey key = GenerateObjectFileKey(obj, shortname, label);
+                MHO_FileKey key = GenerateObjectFileKey(obj, shortname);
                 fObjectStreamer.ResetByteCount();
                 fObjectStreamer << key;
                 msg_debug("file", "wrote object key of size: " << fObjectStreamer.GetNBytesWritten() <<" bytes." << eom);
@@ -231,10 +290,10 @@ class MHO_BinaryFileInterface
         }
 
         //overload for char array name
-        template<class XWriteType> bool Write(const XWriteType& obj, const char* shortname, const uint32_t label = 0)
+        template<class XWriteType> bool Write(const XWriteType& obj, const char* shortname)
         {
             std::string sshortname(shortname);
-            return this->Write(obj, sshortname, label);
+            return this->Write(obj, sshortname);
         }
 
         template<class XReadType> bool Read(XReadType& obj, MHO_FileKey& obj_key)
@@ -304,12 +363,11 @@ class MHO_BinaryFileInterface
 
         //generate the file object key
         template<class XWriteType>
-        MHO_FileKey GenerateObjectFileKey(const XWriteType& obj, const std::string& shortname, const uint32_t label)
+        MHO_FileKey GenerateObjectFileKey(const XWriteType& obj, const std::string& shortname)
         {
-            MHO_FileKey key;
-            //set sync word and user label
-            key.fSync = MHO_FileKeySyncWord;
-            key.fLabel = label;
+            MHO_FileKey key; //sync and label set in constructor
+
+            //add short name
             CopyTruncatedString(shortname, key.fName);
 
             fMD5Generator.Initialize();
@@ -347,4 +405,4 @@ class MHO_BinaryFileInterface
 }
 
 
-#endif /* end of include guard: MHO_BinaryFileInterface */
+#endif /*! end of include guard: MHO_BinaryFileInterface */

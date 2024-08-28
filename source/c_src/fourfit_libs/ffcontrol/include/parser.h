@@ -155,8 +155,11 @@ struct token_struct
 #define NASMYTHLEFT_       124
 #define NASMYTHRIGHT_      125
 #define MIXED_MODE_ROT_    126
+#define NOAUTOFRINGES_     127
+#define MOD4NUMBERING_     128
+#define MBDRPLOPT_         129
                                 /* add new tokens at the bottom of the list */
-#define MAX_TOKENS         127  /* increase to equal or exceed # tokens */
+#define MAX_TOKENS         130  /* increase to equal or exceed # tokens */
 
 
         /* Definitions of token categories */

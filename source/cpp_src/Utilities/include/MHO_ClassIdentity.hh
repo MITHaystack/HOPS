@@ -1,17 +1,9 @@
 #ifndef MHO_ClassIdentity_HH__
 #define MHO_ClassIdentity_HH__
 
-/*
-*File: MHO_ClassIdentity.hh
-*Class: MHO_ClassIdentity
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: template class to produce the name of XClassType at runtime
-*/
 
-#include <cstdint>
 #include <string>
+#include "MHO_Types.hh"
 #include "MHO_TemplateTypenameDeduction.hh"
 #include "MHO_Message.hh"
 #include "MHO_UUID.hh"
@@ -19,6 +11,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_ClassIdentity.hh
+*@class MHO_ClassIdentity
+*@author J. Barrett - barrettj@mit.edu
+*@date Wed Apr 21 13:40:18 2021 -0400
+*@brief template class to produce the name of XClassType at runtime
+*/
 
 typedef uint32_t MHO_ClassVersion;
 
@@ -71,4 +71,4 @@ struct MHO_ClassIdentity
 }
 
 
-#endif /* end of include guard:MHO_ClassIdentity */
+#endif /*! end of include guard:MHO_ClassIdentity */

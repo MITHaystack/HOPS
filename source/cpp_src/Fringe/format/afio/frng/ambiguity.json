@@ -1,0 +1,8 @@
+{
+	"name": "ambiguity",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/fringe/ambiguity",
+	"description": "",
+	"units": ""
+}

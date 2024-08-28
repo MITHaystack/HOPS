@@ -1,0 +1,9 @@
+{
+	"name": "datatype",
+	"type": "string",
+	"source_object": "none",
+	"path": "",
+	"description": "",
+	"units": "",
+    "default": "Sf"
+}

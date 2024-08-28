@@ -1,0 +1,7 @@
+from @PYTHON_SETUP@ import setup
+
+setup(name='hops',
+      version='@MODULE_VERSION_MAJOR@.@MODULE_VERSION_MINOR@.@MODULE_VERSION_PATCH@',
+      package_dir={ '': '@abs_srcdir@' },
+      packages=['hops', 'hops_io', 'hops_visualization'],
+      install_requires=['numpy','matplotlib','scipy','future', 'pandas'])

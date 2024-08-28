@@ -1,5 +1,7 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
-    "type": "unknown"
+    "name": "passband",
+    "statement_type": "operator",
+    "operator_category" : "flagging",
+    "type": "list_real",
+    "priority": 4.5
 }

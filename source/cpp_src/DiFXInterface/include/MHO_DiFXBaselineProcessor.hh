@@ -1,14 +1,6 @@
 #ifndef MHO_DiFXBaselineProcessor_HH__
 #define MHO_DiFXBaselineProcessor_HH__
 
-/*
-*@file: MHO_DiFXBaselineProcessor.hh
-*@class: MHO_DiFXBaselineProcessor
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief: accumulates visbility records from a single baseline, sorts and re-packs them into a visbility container
-*/
 
 #include <vector>
 #include <string>
@@ -21,11 +13,16 @@
 #include "MHO_StationCodeMap.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 
-
-
-
 namespace hops
 {
+
+/*!
+*@file  MHO_DiFXBaselineProcessor.hh
+*@class  MHO_DiFXBaselineProcessor
+*@author  J. Barrett - barrettj@mit.edu
+*@date Tue Mar 1 16:44:37 2022 -0500
+*@brief  accumulates visbility records from a single baseline, sorts and re-packs them into a visbility container
+*/
 
 class MHO_DiFXBaselineProcessor
 {
@@ -33,9 +30,12 @@ class MHO_DiFXBaselineProcessor
         MHO_DiFXBaselineProcessor();
         virtual ~MHO_DiFXBaselineProcessor();
 
-        int GetBaselineID() const {return fBaselineID;};
+        //needed for processing!
         void SetDiFXInputData(const mho_json* input){fInput = input;}
+
+        int GetBaselineID() const {return fBaselineID;};
         void SetRootCode(std::string rcode){fRootCode = rcode;}
+        void SetCorrelationDate(std::string corrdate){fCorrDate = corrdate;}
 
         //apply mk4 style visibility normalization
         void SetRescaleFalse(){fRescale = false;}
@@ -56,12 +56,24 @@ class MHO_DiFXBaselineProcessor
 
         void Clear();
 
+        void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
+        void SetFreqGroups(std::vector< std::string > fgroups){fOnlyFreqGroups = fgroups;}
+        void SetOnlyBandwidth(double bw)
+        {
+            fOnlyBandwidth = bw;
+            fSelectByBandwidth = true;
+        }
+
     private:
 
         void Organize();
         void DeleteDiFXVisRecords();
 
+        std::string DetermineFreqGroup(const double& freq);
+
+
         std::string fRootCode;
+        std::string fCorrDate;
         int fBaselineID;
         std::string fRefStation;
         std::string fRemStation;
@@ -86,11 +98,13 @@ class MHO_DiFXBaselineProcessor
         std::set<int> fFreqIndexSet;
         std::set<int> fAPSet;
         std::set<int> fSpecPointSet;
+        std::set<double> fBandwidthSet;
         std::size_t fNPolPairs;
         std::size_t fNChannels;
         std::size_t fNAPs;
         std::size_t fNSpectralPoints;
         bool fCanChannelize;
+        bool fHaveBaselineData;
 
         bool fRescale;
         std::map<int, double> fNBitsToFactor;
@@ -98,11 +112,18 @@ class MHO_DiFXBaselineProcessor
 
         //list of channel frequencies for this baseline, sorted in ascending order (freq)
         std::vector< std::pair<int, mho_json> > fBaselineFreqs;
+        std::set< std::string > fFreqBandLabelSet;
 
         //the baseline data in hops data containers
         weight_store_type* fW;
         visibility_store_type* fV;
         MHO_ObjectTags fTags;
+
+        //selection information
+        std::vector< std::tuple<std::string, double, double> > fFreqBands; //frequency band/group labels and ranges
+        std::vector< std::string > fOnlyFreqGroups; //limit output to matching frequency groups
+        bool fSelectByBandwidth;
+        double fOnlyBandwidth; //limit output to only channels of this bandwidth
 
         //comparison predicate for time-sorting visibility record data
         struct VisRecordTimeLess
@@ -127,11 +148,11 @@ class MHO_DiFXBaselineProcessor
         };
         FreqIndexPairLess fFreqPredicate;
 
-
+        std::string ConstructMK4ChannelID(std::string fgroup, int index, std::string sideband, char pol);
 
 
 };
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_DiFXBaselineProcessor */
+#endif /*! end of include guard: MHO_DiFXBaselineProcessor */

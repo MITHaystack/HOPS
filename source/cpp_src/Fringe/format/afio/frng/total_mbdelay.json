@@ -1,0 +1,8 @@
+{
+	"name": "total_mbdelay",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/fringe/total_mbdelay",
+	"description": "",
+	"units": ""
+}

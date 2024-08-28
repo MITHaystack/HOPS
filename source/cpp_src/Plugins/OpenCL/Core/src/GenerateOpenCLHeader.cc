@@ -1,5 +1,11 @@
 #define __CL_ENABLE_EXCEPTIONS
-#include <CL/cl.hpp>
+
+#ifdef HOPS_OPENCL_VERSION2
+    #include <CL/cl2.hpp>
+#else
+    #include <CL/cl.hpp>
+#endif
+
 #include <iostream>
 #include <string>
 #include <sstream>

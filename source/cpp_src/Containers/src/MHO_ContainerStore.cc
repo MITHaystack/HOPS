@@ -1,11 +1,11 @@
 #include "MHO_ContainerStore.hh"
 
-namespace hops 
+namespace hops
 {
 
-    
 
-void 
+
+void
 MHO_ContainerStore::Clear()
 {
     for(auto it = fObjectsToIds.begin(); it != fObjectsToIds.end(); it++)
@@ -17,32 +17,8 @@ MHO_ContainerStore::Clear()
     fIdsToObjects.clear();
 }
 
-
-// bool 
-// MHO_ContainerStore::AddObject(MHO_FileKey fkey, MHO_Serializable* obj)
-// {
-//     return AddObject(fkey.fTypeId, obj);
-// }
-
-// //add an object with type described by type_id, and generate/assign an object uuid for it
-// bool 
-// MHO_ContainerStore::AddObject(MHO_UUID type_id, MHO_Serializable* obj)
-// {
-//     if(obj == nullptr){return false;}
-//     if( type_id.is_empty() ){return false;}
-// 
-//     MHO_UUID obj_id = obj->GetObjectUUID();
-//     key_pair kp;
-//     kp.first = type_id;
-//     kp.second = obj_id;
-// 
-//     fIdsToObjects[kp] = obj;
-//     fObjectsToIds[obj] = kp;
-//     return true;
-// }
-
 //check if any object with the give object id is in the store
-bool 
+bool
 MHO_ContainerStore::IsObjectPresent(const MHO_UUID& obj_id) const
 {
     for(auto it = fIdsToObjects.begin(); it != fIdsToObjects.end(); it++)
@@ -55,7 +31,7 @@ MHO_ContainerStore::IsObjectPresent(const MHO_UUID& obj_id) const
 }
 
 //get an object via uuid (returns nullptr if not present)
-MHO_Serializable* 
+MHO_Serializable*
 MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
 {
     //this is a slow  O(N) way to take care of this
@@ -73,7 +49,7 @@ MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
     return ptr;
 }
 
-bool 
+bool
 MHO_ContainerStore::DeleteObject(const MHO_UUID& obj_id)
 {
     MHO_Serializable* ptr = GetObject(obj_id);
@@ -83,7 +59,7 @@ MHO_ContainerStore::DeleteObject(const MHO_UUID& obj_id)
 }
 
 
-void 
+void
 MHO_ContainerStore::GetAllTypeUUIDs(std::vector< MHO_UUID >& type_ids)
 {
     type_ids.clear();
@@ -101,7 +77,7 @@ MHO_ContainerStore::GetAllTypeUUIDs(std::vector< MHO_UUID >& type_ids)
     }
 }
 
-void 
+void
 MHO_ContainerStore::GetAllObjectUUIDsOfType(MHO_UUID type_id, std::vector< MHO_UUID >& obj_ids)
 {
     obj_ids.clear();
@@ -118,7 +94,7 @@ MHO_ContainerStore::GetAllObjectUUIDsOfType(MHO_UUID type_id, std::vector< MHO_U
 }
 
 
-bool 
+bool
 MHO_ContainerStore::SetShortName(const MHO_UUID& obj_id, const std::string& shortname)
 {
     if(shortname.size() != 0 && IsObjectPresent(obj_id))
@@ -133,7 +109,7 @@ MHO_ContainerStore::SetShortName(const MHO_UUID& obj_id, const std::string& shor
     return false;
 }
 
-MHO_UUID 
+MHO_UUID
 MHO_ContainerStore::GetObjectUUID(const std::string& shortname)
 {
     MHO_UUID obj_id;
@@ -144,10 +120,10 @@ MHO_ContainerStore::GetObjectUUID(const std::string& shortname)
 
 
 //provide retrival of object short name from uuid
-std::string 
+std::string
 MHO_ContainerStore::GetShortName(const MHO_UUID& obj_id)
 {
-    //brute force search 
+    //brute force search
     std::string value = "";
     for(auto it = fShortNameToIds.begin(); it != fShortNameToIds.end(); it++)
     {
@@ -157,7 +133,7 @@ MHO_ContainerStore::GetShortName(const MHO_UUID& obj_id)
 }
 
 
-void 
+void
 MHO_ContainerStore::GetAllShortNames(std::vector< std::string >& shortnames)
 {
     shortnames.clear();
@@ -167,27 +143,44 @@ MHO_ContainerStore::GetAllShortNames(std::vector< std::string >& shortnames)
     }
 }
 
-bool
-MHO_ContainerStore::SetObjectLabel(const MHO_UUID& obj_id, uint32_t label)
+
+MHO_UUID
+MHO_ContainerStore::GetObjectTypeUUID(const MHO_UUID& obj_id)
 {
-    if(IsObjectPresent(obj_id))
+    MHO_UUID ret_val;
+    for(auto it = fIdsToObjects.begin(); it != fIdsToObjects.end(); it++)
     {
-        fIdsToLabels[obj_id] = label;
-        return true;
+        key_pair item_ids = it->first;
+        MHO_UUID item_type_id = item_ids.first;
+        MHO_UUID item_object_id = item_ids.second;
+        if(obj_id == item_object_id)
+        {
+            ret_val = item_type_id;
+            break;
+        }
     }
-    return false;
+    return ret_val;
+
 }
 
-uint32_t 
-MHO_ContainerStore::GetObjectLabel(const MHO_UUID& obj_id)
+std::vector< std::tuple< std::string, std::string, std::string > >
+MHO_ContainerStore::GetAllObjectInfo()
 {
-    uint32_t value = 0;
-    auto it = fIdsToLabels.find(obj_id);
-    if(it != fIdsToLabels.end()){value = it->second;}
-    return value;
+    std::vector< std::tuple< std::string, std::string, std::string > >  info;
+    for(auto it = fIdsToObjects.begin(); it != fIdsToObjects.end(); it++)
+    {
+        std::tuple< std::string, std::string, std::string > obj_info;
+        key_pair item_ids = it->first;
+        MHO_UUID item_type_id = item_ids.first;
+        MHO_UUID item_object_id = item_ids.second;
+        std::string shortname = GetShortName(item_object_id);
+        std::get<0>(obj_info) = item_type_id.as_string();
+        std::get<1>(obj_info) = item_object_id.as_string();
+        std::get<2>(obj_info) = shortname;
+        info.push_back(obj_info);
+    }
+    return info;
 }
-
-
 
 
 }

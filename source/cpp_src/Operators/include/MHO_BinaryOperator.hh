@@ -1,11 +1,21 @@
 #ifndef MHO_BinaryOperator_HH__
 #define MHO_BinaryOperator_HH__
 
+
 #include "MHO_Operator.hh"
 
 #include <tuple>
 
-namespace hops{
+namespace hops
+{
+
+/*!
+*@file MHO_BinaryOperator.hh
+*@class MHO_BinaryOperator
+*@author J. Barrett - barrettj@mit.edu
+*@date Fri Oct 15 12:58:01 2021 -0400
+*@brief
+*/
 
 template<class XArgType1, class XArgType2 = XArgType1, class XArgType3 = XArgType2>
 class MHO_BinaryOperator: public MHO_Operator
@@ -43,8 +53,8 @@ class MHO_BinaryOperator: public MHO_Operator
         // using type2 = XArgType2;
         // using type3 = XArgType3;
 
-        virtual bool InitializeImpl(const XArgType1* /*in1*/, const XArgType2* /*in2*/, XArgType3* /*out*/) = 0;
-        virtual bool ExecuteImpl(const XArgType1* /*in1*/, const XArgType2* /*in2*/, XArgType3* /*out*/) = 0;
+        virtual bool InitializeImpl(const XArgType1* /*!in1*/, const XArgType2* /*!in2*/, XArgType3* /*!out*/) = 0;
+        virtual bool ExecuteImpl(const XArgType1* /*!in1*/, const XArgType2* /*!in2*/, XArgType3* /*!out*/) = 0;
 
     protected:
 
@@ -56,4 +66,4 @@ class MHO_BinaryOperator: public MHO_Operator
 }
 
 
-#endif /* __MHO_BinaryOperator_HH__ */
+#endif /*! __MHO_BinaryOperator_HH__ */

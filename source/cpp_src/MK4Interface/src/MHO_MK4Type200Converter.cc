@@ -21,7 +21,7 @@
 //     };
 
 //typedef struct date
-//    {   
+//    {
 //    short year;
 //    short day;
 //    short hour;

@@ -1,6 +1,7 @@
 #ifndef MHO_ParameterConfigurator_HH__
 #define MHO_ParameterConfigurator_HH__
 
+
 #include <string>
 #include <utility>
 #include <vector>
@@ -10,8 +11,17 @@
 #include "MHO_JSONHeaderWrapper.hh"
 
 
-namespace hops {
-    
+namespace hops
+{
+
+/*!
+*@file MHO_ParameterConfigurator.hh
+*@class MHO_ParameterConfigurator
+*@date Mon Jun 12 12:51:32 2023 -0400
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 class MHO_ParameterConfigurator
 {
 
@@ -30,8 +40,8 @@ class MHO_ParameterConfigurator
         virtual bool Configure();
 
     protected:
-        
-        /* data */
+
+        /*! data */
         enum class ParamType
         {
             config,
@@ -40,22 +50,23 @@ class MHO_ParameterConfigurator
             baseline,
             fit,
             plot,
-            generic,
             unknown
         };
-        
+
         enum class ParamValueType
         {
-            int_type,
-            real_type,
-            string_type,
-            list_int_type,
-            list_real_type,
-            list_string_type,
+            int_type,  //single integer parameter
+            real_type, //single float parameter
+            bool_type, //single boolean parameter
+            string_type, //single string parameter
+            list_int_type, //list of ints with arbitrary length
+            list_real_type, //list of floats with arbitrary length
+            list_string_type, //list of strings with arbitrary length
+            compound_type, //multiple elements of different types
             unknown
         };
-        
-        
+
+
         typedef ParamType param_t;
         typedef ParamValueType paramv_t;
 
@@ -68,6 +79,8 @@ class MHO_ParameterConfigurator
         template< typename XValueType >
         void SetVectorParameter(std::string path, const std::vector<XValueType>& values);
 
+        void SetCompoundParameter(std::string path, const mho_json& values);
+
         MHO_ParameterStore* fParameterStore;
         mho_json fFormat; //format description for each parameter
 
@@ -79,7 +92,7 @@ class MHO_ParameterConfigurator
 
 
 template< typename XValueType >
-void 
+void
 MHO_ParameterConfigurator::SetScalarParameter(std::string path, const XValueType& value)
 {
     bool ok = fParameterStore->Set(path, value);
@@ -95,8 +108,9 @@ void MHO_ParameterConfigurator::SetVectorParameter(std::string path, const std::
 
 
 
-} /* hops */
+
+} /*! hops */
 
 
 
-#endif /* end of include guard: MHO_ParameterConfigurator_HH__ */
+#endif /*! end of include guard: MHO_ParameterConfigurator_HH__ */

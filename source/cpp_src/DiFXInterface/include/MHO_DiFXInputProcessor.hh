@@ -2,20 +2,21 @@
 #define MHO_DiFXInputProcessor_HH__
 
 #include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_Message.hh"
 
-/*
-*@file: MHO_DiFXInputProcessor.hh
-*@class: MHO_DiFXInputProcessor
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
-*/
 
 #include "difxio/difx_input.h"
 
-namespace hops 
+namespace hops
 {
+
+/*!
+*@file  MHO_DiFXInputProcessor.hh
+*@class  MHO_DiFXInputProcessor
+*@author  J. Barrett - barrettj@mit.edu
+*@date Mon Feb 21 00:33:14 2022 -0500
+*@brief
+*/
 
 class MHO_DiFXInputProcessor
 {
@@ -50,4 +51,4 @@ class MHO_DiFXInputProcessor
 
 }
 
-#endif /* end of include guard: MHO_DiFXInputProcessor */
+#endif /*! end of include guard: MHO_DiFXInputProcessor */

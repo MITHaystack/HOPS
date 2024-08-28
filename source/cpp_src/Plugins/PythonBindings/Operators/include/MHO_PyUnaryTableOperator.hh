@@ -1,17 +1,6 @@
 #ifndef MHO_PyUnaryTableOperator_HH__
 #define MHO_PyUnaryTableOperator_HH__
 
-
-
-/*
-*@file: MHO_PyUnaryTableOperator.hh
-*@class: MHO_PyUnaryTableOperator
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
-*/
-
 #include "MHO_UnaryOperator.hh"
 #include "MHO_PyTableContainer.hh"
 
@@ -22,6 +11,15 @@ namespace py = pybind11;
 
 namespace hops
 {
+
+/*!
+*@file  MHO_PyUnaryTableOperator.hh
+*@class  MHO_PyUnaryTableOperator
+*@author  J. Barrett - barrettj@mit.edu
+*@date Thu Sep 23 16:03:48 2021 -0400
+*@brief
+*/
+
 
 
 class MHO_PyUnaryTableOperator: public MHO_Operator
@@ -136,4 +134,4 @@ class MHO_PyUnaryTableOperator: public MHO_Operator
 }//end of namespace
 
 
-#endif /* end of include guard: MHO_PyUnaryTableOperator */
+#endif /*! end of include guard: MHO_PyUnaryTableOperator */

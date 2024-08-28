@@ -6,8 +6,16 @@ namespace py = pybind11;
 
 #include "MHO_Message.hh"
 
-#include "MHO_PyNDArrayWrapper.hh"
-#include "MHO_PyContainerInterface.hh"
+#include "MHO_Message.hh"
+#include "MHO_FileKey.hh"
+
+#include "MHO_ContainerDefinitions.hh"
+#include "MHO_ContainerStore.hh"
+#include "MHO_PyContainerStoreInterface.hh"
+#include "MHO_PyConfigurePath.hh"
+
+#include "MHO_ParameterStore.hh"
+#include "MHO_PyParameterStoreInterface.hh"
 
 using namespace hops;
 
@@ -15,7 +23,9 @@ using namespace hops;
 int main()
 {
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive
+    configure_pypath();
 
+    std::cout<<"the python path directories: "<<std::endl;
     py::exec(R"(
         import sys
         import numpy
@@ -24,14 +34,13 @@ int main()
     )");
 
 
-    MHO_PyContainerInterface myInterface;
     //for now just create a vis object
     std::size_t dim[4] = {2,2,2,2};
     visibility_type* visibilities = new visibility_type(dim);
 
     auto ax0 = &( std::get<0>(*visibilities) );
-    (*ax0)[0] = "LL";
-    (*ax0)[1] = "RR";
+    (*ax0)[0] = "XX";
+    (*ax0)[1] = "YY";
 
     auto ax1 = &( std::get<1>(*visibilities) );
     (*ax1)[0] = 1;
@@ -78,11 +87,30 @@ int main()
 
     std::cout<<"*************** passing visibilities to python **************"<<std::endl;
 
-    myInterface.SetVisibilities(visibilities);
+    MHO_ContainerStore store;
+
+    MHO_FileKey key;
+    key.fLabel = 0;
+    strncpy(key.fName, "vis", 3);
+
+    //stuff something in the container store
+    store.AddObject(visibilities);
+    std::string shortname = std::string(key.fName, MHO_FileKeyNameLength ).c_str();
+    store.SetShortName(visibilities->GetObjectUUID(), shortname);
+
+    //now put the object uuid in the parameter store so we can look it up on the python side
+    MHO_ParameterStore paramStore;
+    std::string obj_uuid_string = visibilities->GetObjectUUID().as_string();
+
+    paramStore.Set("vis_uuid", obj_uuid_string);
+
+    //create the interfaces
+    MHO_PyContainerStoreInterface conInter(&store);
+    MHO_PyParameterStoreInterface parmInter(&paramStore);
 
     auto mho_test = py::module::import("mho_test");
 
-    mho_test.attr("test_inter")(myInterface);
+    mho_test.attr("test_inter")(conInter, parmInter);
 
     //print out on the c++ side
     for(size_t i=0; i<2; i++)
@@ -99,29 +127,8 @@ int main()
         }
     }
 
-
-    // //try the same with a matrix object
-    // std::size_t mxdims[2] = {2,2};
-    // MHO_NDArrayWrapper<double, 2>* mx = new MHO_NDArrayWrapper<double, 2>(mxdims);
-    // (*mx)(0,0) = 1;
-    // (*mx)(0,1) = 2;
-    // (*mx)(1,0) = 3;
-    // (*mx)(1,1) = 4;
-    //
-    // auto strides = mx->GetStrides();
-    // std::cout<<"arr strides for mx = "<<strides[0]<<", "<<strides[1]<<std::endl;
-    //
-    // auto bstrides = mx->GetByteStrides();
-    // std::cout<<"byte strides for mx = "<<bstrides[0]<<", "<<bstrides[1]<<std::endl;
-    //
-    // //print out the python values
-    // mho_test.attr("print_mx")(*mx);
-    //
-    // //try to modify the mx values using python
-    // mho_test.attr("mod_mx")(*mx);
-    //
-    // std::cout<<(*mx)(0,0) <<", "<<(*mx)(0,1)<<", "<<(*mx)(1,0)<<", "<<(*mx)(1,1)<<std::endl;
-
+    //check to see if the coordinate axis labels were appropriately modified
+    std::cout<<"pol axis labels from C++ side = ( " << (*ax0)[0] << ", "<< (*ax0)[1] <<" ) "<< std::endl;
 
     return 0;
 }

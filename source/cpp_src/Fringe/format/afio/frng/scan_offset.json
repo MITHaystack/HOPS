@@ -1,0 +1,9 @@
+{
+	"name": "scan_offset",
+	"type": "int",
+	"source_object": "none",
+	"path": "",
+	"description": "deprecated",
+	"units": "",
+    "default": 0
+}

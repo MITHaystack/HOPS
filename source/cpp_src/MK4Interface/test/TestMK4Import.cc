@@ -60,7 +60,7 @@ int main(int argc, char** argv)
     mk4inter.ExtractCorelFile();
 
     uch_visibility_store_type* bl_data = mk4inter.GetExtractedVisibilities();
-    uch_weight_store_type* bl_wdata = mk4inter.GetExtractedWeights(); 
+    uch_weight_store_type* bl_wdata = mk4inter.GetExtractedWeights();
 
     if(bl_data == nullptr)
     {

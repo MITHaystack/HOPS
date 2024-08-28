@@ -17,7 +17,6 @@ if (HOPS_ENFORCE_CLFINISH)
 set(ENFORCE_CL_FINISH 1)
 endif (HOPS_ENFORCE_CLFINISH)
 
-option (HOPS_USE_OPENCL "Use OpenCL via C++ wrapper API." OFF)
 if (HOPS_USE_OPENCL)
 
     message(STATUS "Looking for OpenCL enabled devices ...")
@@ -31,7 +30,13 @@ if (HOPS_USE_OPENCL)
     #construct the compiler call to build GenerateOpenCLHeader
     set(CL_HeaderGenCommand "${CMAKE_CXX_COMPILER}")
     list(APPEND CL_HeaderGenArgs "-DHOPS_OPENCL_PLATFORM=${HOPS_OPENCL_PLATFORM}" "-DHOPS_OPENCL_DEVICE_TYPE=${HOPS_OPENCL_DEVICE_TYPE}")
+    if(OPENCL_IS_VERSION2)
+        list(APPEND CL_HeaderGenArgs "-DHOPS_OPENCL_VERSION2")
+        set( ${CMAKE_CXX_FLAGS} "${CMAKE_CXX_FLAGS} -DHOPS_OPENCL_VERSION2")
+    endif(OPENCL_IS_VERSION2)
     list(APPEND CL_HeaderGenArgs "-o" "GenerateOpenCLHeader")
+
+
     foreach( DIR ${OPENCL_INCLUDE_DIRS} )
         list(APPEND CL_HeaderGenArgs "-I${DIR}" )  #be careful...this breaks if there is a leading whitespace before the '-I', why?!
     endforeach( DIR )
@@ -40,13 +45,13 @@ if (HOPS_USE_OPENCL)
     list(APPEND CL_HeaderGenArgs "-L${OPENCL_LIBDIR}")
     list(APPEND CL_HeaderGenArgs ${OPENCL_LIB_FLAG})
 
-    
+
     if(${CMAKE_VERSION} VERSION_GREATER "3.15.0")
         execute_process(COMMAND ${CMAKE_CXX_COMPILER} ${CL_HeaderGenArgs} WORKING_DIRECTORY ${CMAKE_BINARY_DIR} RESULT_VARIABLE CL_STATUS_OK ERROR_VARIABLE COMPILER_OUTPUT COMMAND_ECHO STDOUT)
     else()
-        execute_process(COMMAND ${CMAKE_CXX_COMPILER} ${CL_HeaderGenArg} WORKING_DIRECTORY ${CMAKE_BINARY_DIR} RESULT_VARIABLE CL_STATUS_OK ERROR_VARIABLE COMPILER_OUTPUT )
-        message(STATUS "Executing: ${CMAKE_CXX_COMPILER} ${CL_HeaderGenArg}")
-    endif()    
+        execute_process(COMMAND ${CMAKE_CXX_COMPILER} ${CL_HeaderGenArgs} WORKING_DIRECTORY ${CMAKE_BINARY_DIR} RESULT_VARIABLE CL_STATUS_OK ERROR_VARIABLE COMPILER_OUTPUT )
+        message(STATUS "Executing: ${CMAKE_CXX_COMPILER} ${CL_HeaderGenArgs}")
+    endif()
 
     if(CL_STATUS_OK AND NOT CL_STATUS_OK EQUAL 0)
       message(FATAL_ERROR "Could not build the OpenCL header generator. Status = ${CL_STATUS_OK}. Error = ${COMPILER_OUTPUT}." )
@@ -79,6 +84,9 @@ if (HOPS_USE_OPENCL)
         ${CMAKE_CURRENT_SOURCE_DIR}/Core/include/MHO_OpenCLKernelBuilder.hh
         #
         ${CMAKE_CURRENT_SOURCE_DIR}/Containers/include/MHO_OpenCLNDArrayBuffer.hh
+        #
+        ${CMAKE_CURRENT_SOURCE_DIR}/Operators/include/MHO_OpenCLScalarMultiply.hh
+        #${CMAKE_CURRENT_SOURCE_DIR}/Operators/include/MHO_OpenCLBatchedMultidimensionalFastFourierTransform.hh
     )
 
     #include directories
@@ -115,12 +123,16 @@ if (HOPS_USE_OPENCL)
         ${CMAKE_BINARY_DIR}/hopsocl_defines.h
         #
         ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_ArrayMath.cl
-        ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_ComplexMultiply.cl
-        ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_PointwiseComplexVectorAdd_kernel.cl
-        ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_PointwiseComplexVectorMultiply_kernel.cl
-        ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_ZeroComplexArray_kernel.cl
+        ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_ComplexUtils.cl
+        ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_BitReversalPermutation.cl
+        # ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_PointwiseComplexVectorAdd_kernel.cl
+        # ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_PointwiseComplexVectorMultiply_kernel.cl
+        # ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_ZeroComplexArray_kernel.cl
+        ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_FastFourierTransformUtilities.cl
         #
         ${CMAKE_CURRENT_SOURCE_DIR}/Operators/cl/MHO_VectorScale_kernel.cl
+        ${CMAKE_CURRENT_SOURCE_DIR}/Operators/cl/MHO_NDFFTRadix2Stage_kernel.cl
+        ${CMAKE_CURRENT_SOURCE_DIR}/Operators/cl/MHO_NDFFTBluestein_kernel.cl
     )
 
     install ( FILES ${OPENCLPLUGIN_CLFILES}  DESTINATION ${OPENCL_KERNEL_INSTALL_DIR} )
