@@ -1,25 +1,34 @@
 #ifndef MHO_EncodeValue_HH__
 #define MHO_EncodeValue_HH__
 
+
+
+
 #include <string>
 #include <stack>
-#include <cstdint>
 #include <limits>
 
-//functions to encode/decode an unsigned base-10 integer value in and out of 
-//another base, represented by the single-character symbols present in 
-//the specified character_set.
+#include "MHO_Types.hh"
 
-//for example, to encode a value, x, in standard base-16, one would call:
-//std::string eval = encode_value(x, std::string("0123456789ABCDEF") );
-//similarly to decode a base-16 encoded string, y, to a unsigned base-10 integer,
-//one would call:
-//uint64_t value = decode_value(y, std::string("0123456789ABCDEF") );
 
-//these functions are not particularly performant
-
-namespace hops 
+namespace hops
 {
+
+/*!
+*@file MHO_EncodeValue.hh
+*@class
+*@date Fri Jun 2 11:19:07 2023 -0400
+*@brief functions to encode/decode an unsigned base-10 integer value in and out of
+*another base, represented by the single-character symbols present in
+*the specified character_set.
+*for example, to encode a value, x, in standard base-16, one would call:
+*std::string eval = encode_value(x, std::string("0123456789ABCDEF") );
+*similarly to decode a base-16 encoded string, y, to a unsigned base-10 integer,
+*one would call:
+*uint64_t value = decode_value(y, std::string("0123456789ABCDEF") );
+*these functions are not particularly performant
+*@author J. Barrett - barrettj@mit.edu
+*/
 
 
 std::string
@@ -34,12 +43,12 @@ encode_value(const uint64_t& value, const std::string& character_set)
         q = value;
         do
         {
-            r = q%base; 
-            q = q/base; 
+            r = q%base;
+            q = q/base;
             cstack.push(character_set[r]);
         }
         while( q > 0);
-        
+
         while(cstack.size() != 0)
         {
             encoded_value += cstack.top();
@@ -64,7 +73,7 @@ decode_value(const std::string& code, const std::string& character_set)
             decoded_value += place_value*bpower;
             bpower *= base;
         }
-        else 
+        else
         {
             //out of range error
             return std::numeric_limits<uint64_t>::max();
@@ -78,4 +87,4 @@ decode_value(const std::string& code, const std::string& character_set)
 
 }//end namespace
 
-#endif /* end of include guard: MHO_EncodeValue_HH__ */
+#endif /*! end of include guard: MHO_EncodeValue_HH__ */

@@ -1,0 +1,6 @@
+from @PYTHON_SETUP@ import setup
+
+setup(name='ffcontrol',
+      version='0.1',
+      package_dir={ '': '@abs_srcdir@' },
+      packages=['ffcontrol'])

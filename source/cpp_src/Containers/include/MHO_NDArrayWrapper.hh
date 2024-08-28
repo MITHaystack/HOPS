@@ -1,15 +1,7 @@
 #ifndef MHO_NDArrayWrapper_HH__
 #define MHO_NDArrayWrapper_HH__
 
-/*
-*File: MHO_NDArrayWrapper.hh
-*Class: MHO_NDArrayWrapper
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-15T20:22:38.395Z
-*Description:
-* Thu 13 Aug 2020 02:53:11 PM EDT
-*/
+
 
 #include <cstring> //for memset
 #include <string>
@@ -33,6 +25,15 @@
 namespace hops
 {
 
+/*!
+*@file MHO_NDArrayWrapper.hh
+*@class MHO_NDArrayWrapper
+*@author J. Barrett - barrettj@mit.edu
+*@date Mon May 11 15:51:26 2020 -0400 
+*@brief
+* Thu 13 Aug 2020 02:53:11 PM EDT
+*/
+
 template< typename XValueType, std::size_t RANK>
 class MHO_NDArrayWrapper:
     public MHO_ExtensibleElement //any and all extensions are purely a runtime concept and do NOT get streamed for I/O
@@ -45,13 +46,13 @@ class MHO_NDArrayWrapper:
 
         //constructors
         //empty constructor, to be configured later
-        MHO_NDArrayWrapper(){Construct(nullptr, nullptr);}; 
+        MHO_NDArrayWrapper(){Construct(nullptr, nullptr);};
 
         //data is internally allocated
-        MHO_NDArrayWrapper(const std::size_t* dim){Construct(nullptr, dim);}; 
+        MHO_NDArrayWrapper(const std::size_t* dim){Construct(nullptr, dim);};
 
         //data is interally allocated, but copied in from an external source
-        MHO_NDArrayWrapper(XValueType* ptr, const std::size_t* dim){Construct(ptr,dim);}; 
+        MHO_NDArrayWrapper(XValueType* ptr, const std::size_t* dim){Construct(ptr,dim);};
 
         //copy constructor
         MHO_NDArrayWrapper(const MHO_NDArrayWrapper& obj)
@@ -93,7 +94,7 @@ class MHO_NDArrayWrapper:
         const std::size_t* GetDimensions() const {return &(fDims[0]);}
         void GetDimensions(std::size_t* dim) const { for(std::size_t i=0; i<RANK; i++){dim[i] = fDims[i];} }
         index_type GetDimensionArray() const {return fDims;}
-        std::size_t GetDimension(std::size_t idx) const 
+        std::size_t GetDimension(std::size_t idx) const
         {
             if(idx < RANK){return fDims[idx];}
             else{ throw std::out_of_range("MHO_NDArrayWrapper::GetDimension() index out of range."); }
@@ -195,7 +196,7 @@ class MHO_NDArrayWrapper:
         {
             return MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), index);
         }
-        
+
         //linear offset into the array
         index_type GetIndicesForOffset(std::size_t offset)
         {
@@ -222,8 +223,7 @@ class MHO_NDArrayWrapper:
             for(std::size_t i=0; i<RANK; i++){fTmp[i] = 0;}
             for(std::size_t i=0; i<leading_idx.size(); i++){fTmp[i] = leading_idx[i];}
             std::size_t offset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(fTmp[0]));
-            return  MHO_NDArrayView<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >( &(fData[offset]), &(fDims[nfixed_t]), &(fStrides[nfixed_t]) );
-            
+            return MHO_NDArrayView<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >( &(fData[offset]), &(fDims[nfixed_t]), &(fStrides[nfixed_t]) );
         }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -260,7 +260,7 @@ class MHO_NDArrayWrapper:
                     std::vector<std::size_t> free_idx; //list the indexs which are free to vary
 
                     //placeholder type sets index to zero
-                    void operator()(std::size_t i, const char* /*value*/){full_idx[i] = 0; free_idx.push_back(i);}
+                    void operator()(std::size_t i, const char* /*!value*/){full_idx[i] = 0; free_idx.push_back(i);}
                     //index types pass along their value
                     void operator()(std::size_t i, std::size_t value){full_idx[i] = value; fixed_idx.push_back(i);}
 
@@ -286,7 +286,7 @@ class MHO_NDArrayWrapper:
                 dim[i] = fDims[ filler.free_idx[i] ];
                 strides[i] = fStrides[ filler.free_idx[i] ];
             }
-            return  MHO_NDArrayView<XValueType, nfree_t >( &(fData[offset]), &(dim[0]), &(strides[0]) );
+            return MHO_NDArrayView<XValueType, nfree_t >( &(fData[offset]), &(dim[0]), &(strides[0]) );
         }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -449,7 +449,7 @@ namespace hops
 //utilities ////////////////////////////////////////////////////////////////////
 template< class XArrayType1, class XArrayType2 >
 static bool
-HaveSameRank(const XArrayType1* /*arr1*/, const XArrayType2* /*arr2*/)
+HaveSameRank(const XArrayType1* /*!arr1*/, const XArrayType2* /*!arr2*/)
 {
     return ( XArrayType1::rank::value == XArrayType2::rank::value );
 }
@@ -487,4 +487,4 @@ HaveSameDimensions(const XArrayType1* arr1, const XArrayType2* arr2)
 }//end of hops namespace
 
 
-#endif /* MHO_NDArrayWrapper_HH__ */
+#endif /*! MHO_NDArrayWrapper_HH__ */

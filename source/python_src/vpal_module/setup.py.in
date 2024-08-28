@@ -1,0 +1,12 @@
+#VGOS Postprocessing Auxiliary Libraries (VPAL) (excluding proxy cable cal)
+#requires: ['numpy', 'scipy', 'matplotlib']
+#optional: ['progress']
+
+from @PYTHON_SETUP@ import setup
+
+setup(name='vpal',
+    version='0.1',
+    package_dir={ '': '@abs_srcdir@' },
+    packages=['vpal'],
+    requires=['numpy', 'scipy', 'matplotlib']
+)

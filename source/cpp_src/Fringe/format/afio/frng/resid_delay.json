@@ -1,0 +1,8 @@
+{
+	"name": "resid_delay",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/fringe/resid_delay",
+	"description": "residual delay corrected by mbd_anchor=sbd",
+	"units": ""
+}

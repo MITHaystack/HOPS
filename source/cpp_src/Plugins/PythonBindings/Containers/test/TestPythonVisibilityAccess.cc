@@ -7,21 +7,94 @@
 #include <map>
 #include <getopt.h>
 
-#include "MHO_Message.hh"
-
-#include "MHO_DirectoryInterface.hh"
-#include "MHO_BinaryFileInterface.hh"
-
-#include "MHO_ContainerDefinitions.hh"
-
 #include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
 namespace py = pybind11;
 
-#include "MHO_PyContainerInterface.hh"
+#include "MHO_Message.hh"
 
+//needed to read hops files and extract objects from scan dir
+#include "MHO_ScanDataStore.hh"
+#include "MHO_ContainerDefinitions.hh"
+#include "MHO_ContainerStore.hh"
+#include "MHO_PyContainerStoreInterface.hh"
+#include "MHO_PyConfigurePath.hh"
+
+#include "MHO_ParameterStore.hh"
+#include "MHO_PyParameterStoreInterface.hh"
+#include "MHO_ElementTypeCaster.hh"
 
 using namespace hops;
+
+void configure_data_library(MHO_ContainerStore* store)
+{
+    //retrieve the (first) visibility and weight objects
+    //(currently assuming there is only one object per type)
+    visibility_store_type* vis_store_data = nullptr;
+    weight_store_type* wt_store_data = nullptr;
+
+    vis_store_data = store->GetObject<visibility_store_type>(0);
+    wt_store_data = store->GetObject<weight_store_type>(0);
+
+    if(vis_store_data == nullptr)
+    {
+        msg_fatal("main", "failed to read visibility data from the .cor file." <<eom);
+        std::exit(1);
+    }
+
+    if(wt_store_data == nullptr)
+    {
+        msg_fatal("main", "failed to read weight data from the .cor file." <<eom);
+        std::exit(1);
+    }
+
+    std::size_t n_vis = store->GetNObjects<visibility_store_type>();
+    std::size_t n_wt = store->GetNObjects<weight_store_type>();
+
+    if(n_vis != 1 || n_wt != 1)
+    {
+        msg_warn("main", "multiple visibility and/or weight types not yet supported" << eom);
+    }
+
+    auto vis_store_uuid = vis_store_data->GetObjectUUID();
+    auto wt_store_uuid = wt_store_data->GetObjectUUID();
+
+    std::string vis_shortname = store->GetShortName(vis_store_uuid);
+    std::string wt_shortname = store->GetShortName(wt_store_uuid);
+
+    visibility_type* vis_data = new visibility_type();
+    weight_type* wt_data = new weight_type();
+
+    //assign the storage UUID's to their up-casted counter-parts
+    //we do this so we can associate them to the file objects (w.r.t to program output, error messages, etc.)
+    vis_data->SetObjectUUID(vis_store_uuid);
+    wt_data->SetObjectUUID(wt_store_uuid);
+
+    MHO_ElementTypeCaster<visibility_store_type, visibility_type> up_caster;
+    up_caster.SetArgs(vis_store_data, vis_data);
+    up_caster.Initialize();
+    up_caster.Execute();
+
+    MHO_ElementTypeCaster< weight_store_type, weight_type> wt_up_caster;
+    wt_up_caster.SetArgs(wt_store_data, wt_data);
+    wt_up_caster.Initialize();
+    wt_up_caster.Execute();
+
+    //remove the original objects to save space
+    store->DeleteObject(vis_store_data);
+    store->DeleteObject(wt_store_data);
+
+    TODO_FIXME_MSG("TODO - if we plan to rely on short-names to identify objects, we need to validate them here")
+    //TODO make sure that the visibility object is called 'vis' and weights are called 'weights', etc.
+    //TODO also validate the station data
+
+    //now shove the double precision data into the container store with the same shortname
+    store->AddObject(vis_data);
+    store->AddObject(wt_data);
+    store->SetShortName(vis_data->GetObjectUUID(), vis_shortname);
+    store->SetShortName(wt_data->GetObjectUUID(), wt_shortname);
+}
+
 
 int main(int argc, char** argv)
 {
@@ -61,110 +134,96 @@ int main(int argc, char** argv)
         }
     }
 
-    //read the directory file list
-    std::vector< std::string > allFiles;
-    std::vector< std::string > corFiles;
-    std::vector< std::string > staFiles;
-    std::vector< std::string > jsonFiles;
-    MHO_DirectoryInterface dirInterface;
-    dirInterface.SetCurrentDirectory(directory);
-    dirInterface.ReadCurrentDirectory();
+    //provide necessary objects for operation
+    MHO_ParameterStore paramStore; //stores various parameters using string keys
+    MHO_ScanDataStore scanStore; //provides access to data associated with this scan
+    MHO_ContainerStore conStore; //stores data containers for in-use data
 
-    std::cout<<"directory = "<<dirInterface.GetCurrentDirectory()<<std::endl;
-    dirInterface.GetFileList(allFiles);
-    dirInterface.GetFilesMatchingExtention(corFiles, "cor");
-    dirInterface.GetFilesMatchingExtention(staFiles, "sta");
-    dirInterface.GetFilesMatchingExtention(jsonFiles, "json");
+    ////////////////////////////////////////////////////////////////////////////
+    //INITIALIZE SCAN DIRECTORY
+    ////////////////////////////////////////////////////////////////////////////
 
-
-    for(auto it = corFiles.begin(); it != corFiles.end(); it++)
+    //initialize the scan store from this directory
+    scanStore.SetDirectory(directory);
+    scanStore.Initialize();
+    if( !scanStore.IsValid() )
     {
-        std::cout<<"cor: "<< *it <<std::endl;
-    }
-
-    for(auto it = staFiles.begin(); it != staFiles.end(); it++)
-    {
-        std::cout<<"sta: "<< *it <<std::endl;
-    }
-
-
-    for(auto it = jsonFiles.begin(); it != jsonFiles.end(); it++)
-    {
-        std::cout<<"json: "<< *it <<std::endl;
-    }
-
-    //check that there is only one json file
-    std::string root_file = "";
-    if(jsonFiles.size() != 1)
-    {
-        msg_fatal("main", "There are: "<<jsonFiles.size()<<" root files." << eom);
-        std::exit(1);
-    }
-    else
-    {
-        root_file = jsonFiles[0];
-    }
-
-    //locate the corel file that contains the baseline of interest
-    std::string corel_file = "";
-    bool found_baseline = false;
-    for(auto it = corFiles.begin(); it != corFiles.end(); it++)
-    {
-        std::size_t index = it->find(baseline);
-        if(index != std::string::npos)
-        {
-            corel_file = *it;
-            found_baseline = true;
-        }
-    }
-
-    if(!found_baseline)
-    {
-        msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
+        msg_fatal("main", "cannot initialize a valid scan store from this directory: " << directory << eom);
         std::exit(1);
     }
 
-    std::cout<<"Will use root file: "<<root_file<<std::endl;
-    std::cout<<"Will use corel file: "<<corel_file<<std::endl;
+    //pass the directory and baseline into the parameter store
+    paramStore.Set("directory", directory);
+    paramStore.Set("baseline", baseline);
 
-    //now open and read the (channelized) baseline visibility data
-    visibility_type* bl_data = new visibility_type();
-    MHO_BinaryFileInterface inter;
-    bool status = inter.OpenToRead(corel_file);
-    if(status)
+    //load baseline data
+    scanStore.LoadBaseline(baseline, &conStore);
+    //configure_data_library(&conStore);//momentarily needed for float -> double cast
+    //load and rename station data according to reference/remote
+    std::string ref_station_mk4id = std::string(1,baseline[0]);
+    std::string rem_station_mk4id = std::string(1,baseline[1]);
+    scanStore.LoadStation(ref_station_mk4id, &conStore);
+    conStore.RenameObject("sta", "ref_sta");
+    scanStore.LoadStation(rem_station_mk4id, &conStore);
+    conStore.RenameObject("sta", "rem_sta");
+
+    configure_data_library(&conStore);
+
+    station_coord_type* ref_data = conStore.GetObject<station_coord_type>(std::string("ref_sta"));
+    station_coord_type* rem_data = conStore.GetObject<station_coord_type>(std::string("rem_sta"));
+    visibility_type* vis_data = conStore.GetObject<visibility_type>(std::string("vis"));
+    weight_type* wt_data = conStore.GetObject<weight_type>(std::string("weight"));
+    if( vis_data == nullptr)
     {
-        MHO_FileKey key;
-        inter.Read(*bl_data, key);
-        //std::cout<<"baseline object label = "<<blabel<<std::endl;
-        std::cout<<"Total size of baseline data = "<<bl_data->GetSerializedSize()<<std::endl;
-    }
-    else
-    {
-        std::cout<<" error opening file to read"<<std::endl;
-        inter.Close();
+        msg_fatal("main", "failed to load visibility object." << eom);
         std::exit(1);
     }
-    inter.Close();
 
-    std::size_t bl_dim[VIS_NDIM];
-    bl_data->GetDimensions(bl_dim);
+    if( wt_data == nullptr )
+    {
+        msg_fatal("main", "failed to load weight object." << eom);
+        std::exit(1);
+    }
+
+    if( ref_data == nullptr)
+    {
+        msg_fatal("main", "failed to load ref station object." << eom);
+        std::exit(1);
+    }
+
+    if( rem_data == nullptr)
+    {
+        msg_fatal("main", "failed to load rem station object." << eom);
+        std::exit(1);
+    }
+
+    //now put the object uuid in the parameter store so we can look it up on the python side
+    std::string vis_uuid = vis_data->GetObjectUUID().as_string();
+    std::string wt_uuid = wt_data->GetObjectUUID().as_string();
+    std::string ref_uuid = ref_data->GetObjectUUID().as_string();
+    std::string rem_uuid = rem_data->GetObjectUUID().as_string();
+
+    paramStore.Set("/uuid/visibilities", vis_uuid);
+    paramStore.Set("/uuid/weights", wt_uuid);
+    paramStore.Set("/uuid/ref_station", ref_uuid);
+    paramStore.Set("/uuid/rem_station", rem_uuid);
+
+    //create the interfaces
+    MHO_PyContainerStoreInterface conInter(&conStore);
+    MHO_PyParameterStoreInterface parmInter(&paramStore);
 
     //now we are going to pass the visibility data to python, and plot
     //the amp/phase of the visibilities for a particular channel
 
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive
-
-    MHO_PyContainerInterface myInterface;
-    myInterface.SetVisibilities(bl_data);
+    configure_pypath();
 
     std::cout<<"*************** passing visibilities to python **************"<<std::endl;
 
     //load our interface module
     auto mho_test = py::module::import("mho_test");
     //call a python functioin on the interface class instance
-    mho_test.attr("test_plot_visibilities")(myInterface);
-
-    delete bl_data;
+    mho_test.attr("test_plot_visibilities")(conInter, parmInter);
 
     return 0;
 }

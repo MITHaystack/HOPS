@@ -1,10 +1,11 @@
 #list header files #############################################################
 set (INITIALIZATION_HEADERFILES
-    #parameters 
+    #parameters
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ParameterConfigurator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ParameterManager.hh
-    #labelling operators 
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelLabellerBuilder.hh
+    #labeling operators
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelLabelerBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SamplerLabelerBuilder.hh
     #selection operators
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DataSelectionBuilder.hh
     #calibration operators
@@ -13,17 +14,25 @@ set (INITIALIZATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelDelayCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualPolPhaseCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualPolDelayCorrectionBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultitonePhaseCorrectionBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolProductSummationBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LinearDParCorrectionBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PassbandBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NotchesBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DCBlockBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MinWeightBuilder.hh
     #manager
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_OperatorBuilderManager.hh
 )
 
 #list source files #############################################################
 set( INITIALIZATION_SOURCEFILES
-    #parameters 
+    #parameters
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ParameterConfigurator.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ParameterManager.cc
-    #labelling operators 
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelLabellerBuilder.cc
+    #labeling operators
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelLabelerBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SamplerLabelerBuilder.cc
     #selection operators
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DataSelectionBuilder.cc
     #calibration operators
@@ -32,6 +41,13 @@ set( INITIALIZATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelDelayCorrectionBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualPolPhaseCorrectionBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualPolDelayCorrectionBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MultitonePhaseCorrectionBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PolProductSummationBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LinearDParCorrectionBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PassbandBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NotchesBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DCBlockBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MinWeightBuilder.cc
     #manager
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_OperatorBuilderManager.cc
 )

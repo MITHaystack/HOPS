@@ -1,5 +1,5 @@
-#ifndef NTSPointwiseComplexVectorAdd_Defined_H
-#define NTSPointwiseComplexVectorAdd_Defined_H
+#ifndef MHO_PointwiseComplexVectorAdd_Defined_H
+#define MHO_PointwiseComplexVectorAdd_Defined_H
 
 #include  "hopsocl_defines.h"
 

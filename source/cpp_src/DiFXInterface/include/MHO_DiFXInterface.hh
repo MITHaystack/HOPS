@@ -1,14 +1,6 @@
 #ifndef MHO_DiFXInterface_HH__
 #define MHO_DiFXInterface_HH__
 
-/*
-*@file: MHO_DiFXInterface.hh
-*@class: MHO_DiFXInterface
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
-*/
 
 #include <string>
 #include <vector>
@@ -28,6 +20,14 @@
 namespace hops
 {
 
+/*!
+*@file  MHO_DiFXInterface.hh
+*@class  MHO_DiFXInterface
+*@author  J. Barrett - barrettj@mit.edu
+*@date Fri Feb 4 13:56:11 2022 -0500
+*@brief
+*/
+
 class MHO_DiFXInterface
 {
     public:
@@ -43,12 +43,16 @@ class MHO_DiFXInterface
 
         void SetNormalizeFalse(){fNormalize = false;}
         void SetNormalizeTrue(){fNormalize = true;}
-        
+
         void SetPreserveDiFXScanNamesTrue(){fPreserveDiFXScanNames = true;}
         void SetPreserveDiFXScanNamesFalse(){fPreserveDiFXScanNames = false;};
 
-        void Initialize(); //read the directory and construct the scan file-lists 
-        void ProcessScans(); //convert the scans 
+        void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
+        void SetFreqGroups(std::vector< std::string > fgroups){fFreqGroups = fgroups;}
+        void SetOnlyBandwidth(double bw){fOnlyBandwidth = bw; fSelectByBandwidth = true;}
+
+        void Initialize(); //read the directory and construct the scan file-lists
+        void ProcessScans(); //convert the scans
 
     private:
 
@@ -61,10 +65,15 @@ class MHO_DiFXInterface
         bool fNormalize;
         bool fPreserveDiFXScanNames;
 
+        std::vector< std::tuple<std::string, double, double> > fFreqBands; //frequency band/group labels and ranges
+        std::vector< std::string > fFreqGroups; //limit output to matching frequency groups
+        bool fSelectByBandwidth;
+        double fOnlyBandwidth; //limit output to only channels of this bandwidth
+
         int fExperNum;
         MHO_DiFXScanProcessor fScanProcessor;
 };
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_DiFXInterface */
+#endif /*! end of include guard: MHO_DiFXInterface */

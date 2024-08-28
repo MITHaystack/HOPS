@@ -1,15 +1,7 @@
 #ifndef MHO_NDArrayView_HH__
 #define MHO_NDArrayView_HH__
 
-/*
-*File: MHO_NDArrayView.hh
-*Class: MHO_NDArrayView
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-15T20:22:38.395Z
-*Description:
-* Thu 13 Aug 2020 02:53:11 PM EDT
-*/
+
 
 #include <cstring> //for memset
 #include <string>
@@ -26,8 +18,18 @@
 #include "MHO_NDArrayMath.hh"
 #include "MHO_BidirectionalIndexedIterator.hh"
 
+
 namespace hops
 {
+
+/*!
+*@file MHO_NDArrayView.hh
+*@class MHO_NDArrayView
+*@author J. Barrett - barrettj@mit.edu
+*@date Mon Mar 28 10:47:46 2022 -0400
+*@brief
+* Thu 13 Aug 2020 02:53:11 PM EDT
+*/
 
 template< typename XValueType, std::size_t RANK>
 class MHO_NDArrayView
@@ -313,4 +315,4 @@ class MHO_NDArrayView
 
 }//end of namespace
 
-#endif /* MHO_NDArrayView_HH__ */
+#endif /*! MHO_NDArrayView_HH__ */

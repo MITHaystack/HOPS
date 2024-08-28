@@ -1,3 +1,4 @@
+#!@PY_EXE@
 
 import sys, os
 # temporary command to add modules to path

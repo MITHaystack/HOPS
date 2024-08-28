@@ -18,8 +18,8 @@ CM42H_DIR=105-1800a
 #are placed in. This is just a quirk of the difxio library. Normally, absolute
 #paths are used, but that doesn't work outside of a correlator environment.
 cd $EXP_DIR
-echo "Running: ConvertMk4Data -i ./${D2M4_EXP_NUM}/${SCAN_DIR} -o ./${CM42H_DIR}"
-ConvertMk4Data -i ./${D2M4_EXP_NUM}/${SCAN_DIR} -o ./${CM42H_DIR}
+echo "Running: mark42hops -i ./${D2M4_EXP_NUM}/${SCAN_DIR} -o ./${CM42H_DIR}"
+mark42hops -i ./${D2M4_EXP_NUM}/${SCAN_DIR} -o ./${CM42H_DIR}
 
 D2M4_GE_FILE=$(ls ./${CM42H_DIR}/GE.*.cor)
 D2H_GE_FILE=$(ls ./${D2H_EXP_NUM}/${SCAN_DIR}/GE.*.cor)

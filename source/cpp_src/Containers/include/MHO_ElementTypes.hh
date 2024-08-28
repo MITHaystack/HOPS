@@ -1,6 +1,7 @@
 #ifndef MHO_ElementTypes_H__
 #define MHO_ElementTypes_H__
 
+
 #include <complex>
 
 //this include file should not be used directly
@@ -10,6 +11,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_ElementTypes.hh
+*@date Tue Apr 12 16:15:02 2022 -0400
+*@brief typedefs and using statements for table container data element types
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 
 //global definition of floating point types for use in data containers. ////////
 //for in-memory use we use double precision
@@ -42,4 +51,4 @@ using weight_element_store_type = WFP_STORE_TYPE;
 
 }//end namespace
 
-#endif /* end of include guard: MHO_ElementTypes_H__ */
+#endif /*! end of include guard: MHO_ElementTypes_H__ */

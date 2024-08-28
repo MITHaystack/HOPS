@@ -17,7 +17,7 @@
 #include <unistd.h>
 
 #include "msg.h"
-#include "mk4_data.h"                       /* Definitions of data structures */
+#include "mk4_data.h"                   /* Definitions of data structures */
 #include "mk4_dfio.h"
 #include "mk4_util.h"
 //#include "print_page.h"
@@ -39,9 +39,9 @@ output (struct vex* root, struct type_pass* pass)
     extern int base, test_mode, do_accounting;
     extern struct mk4_fringe fringe;
     char **fplot;
+    int the_seq_no;
     static struct type_221 *t221;
     static struct type_222 *t222;
-    extern int max_seq_no;
     extern int msglev;
     extern struct type_param param;
     extern struct type_status status;
@@ -49,7 +49,8 @@ output (struct vex* root, struct type_pass* pass)
     extern struct type_plot plot;
 
     extern int make_plotdata(struct type_pass*);
-    extern int create_fname (struct scan_struct*, struct type_pass*, char fname[]);
+    extern int create_fname (struct scan_struct*,
+        struct type_pass*, int seq, char fname[]);
     extern int display_fplot (struct mk4_fringe*);
     extern int make_postplot (struct scan_struct*,
                        struct type_pass*,
@@ -57,37 +58,48 @@ output (struct vex* root, struct type_pass* pass)
                        struct type_221**);
     extern void est_pc_manual(int, char*, struct type_pass*);
 
-                                        /* Generate information to create fringe plot */
-                                        /* Some of this also goes into fringe file */
+    // for locking, see below and include/write_lock_mechanism.h
+    int lock_retval = LOCK_PROCESS_NO_PRIORITY;
+    char lockfile_name[512] = {'\0'};
+
+                                /* Generate information to create fringe plot */
+                                /* Some of this also goes into fringe file */
     if (make_plotdata (pass) != 0)
         {
         msg ("Error creating plot data", 2);
         return (1);
         }
         
-        //try to get a lock on the root directory in order to write the fringe
-        //this is used to signal any other possible fourfit processes in this
-        //directory that we are about to create a file so we can avoid name 
-        //collisions
-        int lock_retval = LOCK_PROCESS_NO_PRIORITY;
-        char lockfile_name[512] = {'\0'};
+    //try to get a lock on the root directory in order to write the fringe
+    //this is used to signal any other possible fourfit processes in this
+    //directory that we are about to create a file so we can avoid name 
+    //collisions.  The lock persists from point of acqusition until the
+    //eventual call to write_mk4fringe() below.
+    // FIXME: should worry about stale locks if ^C is hit.
+    if(!test_mode)
+        {
+        struct fileset fset;
+        //wait until we are the next process allowed to write an output file
+        lock_retval = wait_for_write_lock(root->ovex->filename,
+            lockfile_name, &fset);
+        //this is the last filenumber that exists on disk
+        the_seq_no = fset.maxfile;
+        }
+    else
+        {
+        // in test mode, nothing should be written, so the number is moot.
+        the_seq_no = -1;
+        }
 
-        if(!test_mode)
-            {
-            struct fileset fset;
-            //wait until we are the next process allowed to write an output file
-            lock_retval = wait_for_write_lock(root->ovex->filename, lockfile_name, &fset);
-            //make sure we have the correct file extent number
-            max_seq_no = fset.maxfile;
-            }
-
-                                        /* Figure out the correct, full pathname */
-    if (create_fname (root->ovex, pass, fringe_name) != 0)
+    /* create_fname() will put the next seq number into the fringe name */
+    the_seq_no++;
+                                    /* Figure out the correct, full pathname */
+    if (create_fname (root->ovex, pass, the_seq_no, fringe_name) != 0)
         {
         msg ("Error figuring out proper fringe filename", 2);
         return (1);
         }
-                                        /* Fill in fringe file structure */
+                                    /* Fill in fringe file structure */
     if (fill_fringe_info (root, pass, fringe_name) != 0)
         {
         msg ("Error filling fringe records", 2);
@@ -109,8 +121,8 @@ output (struct vex* root, struct type_pass* pass)
     fringe.allocated[fringe.nalloc] = fringe.t221;
     fringe.nalloc += 1;
     
-                                           /* Fill in the control file record */
-                                           /* if desired */
+                                       /* Fill in the control file record */
+                                       /* if desired */
     fringe.t222 = NULL;
     if(param.gen_cf_record)
         {
@@ -121,24 +133,26 @@ output (struct vex* root, struct type_pass* pass)
             }
         
         fringe.t222 = t222;
-                                            /* Record the memory allocation */
+                                        /* Record the memory allocation */
         fringe.allocated[fringe.nalloc] = fringe.t222;
         fringe.nalloc += 1;
         }
-                                            /* possibly dump the data */
+                                        /* possibly dump the data */
     DUMP_PLOT_DATA2DIR(root, pass, &param, &status, &meta, &plot, &fringe);
-                                            /* Actually write the output fringe file */
+                                        /* Actually write output fringe file */
     if( !test_mode)
         {
         if( lock_retval == LOCK_STATUS_OK)
             {
             //kludge to get fourfit to feed the generated fringe file name 
             //(but nothing else) as a return value to a
-            //a python calling script (requires passing option "-m 4")
+            //a python calling script (requires passing option "-m 4"); see
+            //e.g. chops/source/python_src/hopstest_module/hopstestb/hopstestb.py
+            //around line 74 in the FourFitThread class.
             if(msglev==4){msg ("%s",4,fringe_name);} //iff msglev=4
             if (write_mk4fringe (&fringe, fringe_name) < 0)
                 {
-                //if a lock file was created, delete it now
+                // pause 50ms, if a lock file was created, delete it now
                 usleep(50000); remove_lockfile();
                 msg ("Error writing fringe file", 2);
                 return (1);
@@ -152,14 +166,11 @@ output (struct vex* root, struct type_pass* pass)
             return (1);
             }
         }
-                                        /* This can be ascii plot, Xwindow plot, or */
-                                        /* neither */
+
     if (do_accounting) account ("Write output files/plots");
     dret = display_fplot (&fringe);
     if (do_accounting) account ("Wait for Godot");
     if (dret > 0) msg ("Display of fringe plot failed, continuing", 2);
-                                        /* Ascii plot need special free routine */
-
     if (dret < 0) return (-1);
     return (0);
     }

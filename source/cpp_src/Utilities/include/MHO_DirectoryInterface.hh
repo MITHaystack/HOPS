@@ -1,20 +1,23 @@
 #ifndef MHO_DirectoryInterface_HH__
 #define MHO_DirectoryInterface_HH__
 
-/*
-*File: MHO_DirectoryInterface.hh
-*Class: MHO_DirectoryInterface
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-*/
 
 #include <vector>
 #include <string>
 
+#include "MHO_Tokenizer.hh"
+
 namespace hops
 {
+
+/*!
+*@file MHO_DirectoryInterface.hh
+*@class MHO_DirectoryInterface
+*@author J. Barrett - barrettj@mit.edu
+*@date Tue Jun 1 16:14:04 2021 -0400
+*@brief implements utility functions to access a directory and locate files
+*/
+
 
 class MHO_DirectoryInterface
 {
@@ -22,15 +25,20 @@ class MHO_DirectoryInterface
         MHO_DirectoryInterface();
         virtual ~MHO_DirectoryInterface();
 
-        std::string GetDirectoryFullPath(const std::string& dirname) const;
-        bool DoesDirectoryExist(const std::string& dirname) const;
+        static std::string GetDirectoryFullPath(const std::string& dirname);
+        static std::string GetDirectoryFullPathPreserveSymlinks(const std::string& dirname);
+        static bool DoesDirectoryExist(const std::string& dirname);
+
+        static bool IsDirectory(const std::string& name);
+        static bool IsFile(const std::string& name);
+
         bool CreateDirectory(const std::string& dirname) const;
 
         void SetCurrentDirectory(const std::string& dirname);
         std::string GetCurrentDirectory() const;
         std::string GetCurrentParentDirectory() const;
 
-        void ReadCurrentDirectory();
+        bool ReadCurrentDirectory();
 
         void GetFileList(std::vector< std::string >& aFileList) const;
         void GetSubDirectoryList(std::vector< std::string >& aSubDirList) const;
@@ -48,6 +56,7 @@ class MHO_DirectoryInterface
         void GetRootFile(const std::vector<std::string>& files, std::string& root_file) const;
         void GetCorelFiles(const std::vector<std::string>& files, std::vector<std::string>& corel_files) const;
         void GetStationFiles(const std::vector<std::string>& files, std::vector<std::string>& station_files) const;
+        void GetFringeFiles(const std::vector<std::string>& files, std::vector<std::string>& fringe_files, int& max_sequence_num) const;
         void SplitCorelFileBasename(const std::string& corel_basename, std::string& st_pair, std::string& root_code) const;
         void SplitStationFileBasename(const std::string& station_basename, std::string& st, std::string& root_code) const;
 
@@ -60,8 +69,6 @@ class MHO_DirectoryInterface
         //number of chars in a string
         std::size_t count_number_of_matches(const std::string& aString, char elem) const;
 
-
-
         std::string fCurrentDirectoryFullPath;
         std::string fCurrentParentFullPath;
 
@@ -71,10 +78,10 @@ class MHO_DirectoryInterface
         std::vector<std::string> fCurrentFileList;
         std::vector<std::string> fCurrentSubDirectoryList;
 
-
+        mutable MHO_Tokenizer fTokenizer;
 };
 
 
 }
 
-#endif /* end of include guard: MHO_DirectoryInterface */
+#endif /*! end of include guard: MHO_DirectoryInterface */

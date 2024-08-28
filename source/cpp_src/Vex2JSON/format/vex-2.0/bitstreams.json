@@ -1,0 +1,65 @@
+{
+    "block_name": "$BITSTREAMS",
+    "version": "2.0",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "stream_def":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "channel_link": {"type": "link"},
+                "bitstream_sign_mag": {"type": "string"},
+                "bitstream_input_number": {"type": "int"},
+                "bitstream_on_disk_number": {"type": "int"},
+                "bitstream_link": {"type": "link"}
+            },
+            "fields":
+            [
+                "channel_link",
+                "bitstream_sign_mag",
+                "#bitstream_input_number",
+                "bitstream_on_disk_number",
+                "#bitstream_link"
+            ]
+        },
+        "stream_sample_rate":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "sample_rate": {"type": "real", "dimension": "sample_rate"},
+                "bitstream_link": {"type": "link"}
+            },
+            "fields":
+            [
+                "sample_rate",
+                "#bitstream_link"
+            ]
+        },
+        "stream_label":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "stream_label": {"type": "string"},
+                "bitstream_link": {"type": "link"}
+            },
+            "fields":
+            [
+                "stream_label",
+                "#bitstream_link"
+            ]
+        }
+    },
+    "fields":
+    [
+        "stream_def",
+        "stream_sample_rate",
+        "stream_label"
+    ]
+}

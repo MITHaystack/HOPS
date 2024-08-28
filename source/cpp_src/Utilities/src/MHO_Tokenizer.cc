@@ -34,7 +34,7 @@ void MHO_Tokenizer::SetString(const std::string* aString){fString = aString;};
 
 void MHO_Tokenizer::SetDelimiter(const std::string& aDelim){fDelim = aDelim;};
 
-void 
+void
 MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
 {
     if(tokens != NULL && fString != NULL)
@@ -47,7 +47,7 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
             if(!fMultiCharDelimiter){SingleCharTokenize(tokens);}
             else{MultiCharTokenize(tokens);}
         }
-        else 
+        else
         {
             std::size_t n_quote = IndexQuoteInstances(fString, &fQuotePairIndexes);
             if(n_quote == 0)
@@ -56,9 +56,9 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
                 if(!fMultiCharDelimiter){SingleCharTokenize(tokens);}
                 else{MultiCharTokenize(tokens);}
             }
-            else 
+            else
             {
-                //locate quotes, and only tokenize the portions which are outside of a closed pair 
+                //locate quotes, and only tokenize the portions which are outside of a closed pair
                 std::vector< std::pair< bool, std::string > > sections;
                 std::size_t prev = 0;
                 for(std::size_t i=0; i<n_quote; i++)
@@ -77,7 +77,7 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
                     {
                         tokens->push_back(sections[i].second); //treat quoted section as a single token
                     }
-                    else 
+                    else
                     {
                         fCurrentString = &(sections[i].second);
                         if(!fMultiCharDelimiter){SingleCharTokenize(tokens);}
@@ -90,10 +90,10 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
 }
 
 
-void 
+void
 MHO_Tokenizer::MultiCharTokenize(std::vector< std::string>* tokens)
 {
-    //the delimiter is a multi-character string 
+    //the delimiter is a multi-character string
     size_t start = 0;
     size_t end = 0;
     size_t length = 0;
@@ -111,7 +111,7 @@ MHO_Tokenizer::MultiCharTokenize(std::vector< std::string>* tokens)
                 std::string val = TrimLeadingAndTrailingWhitespace( fCurrentString->substr(start,length) );
                 if(val.size() > 0 || fIncludeEmptyTokens){ tokens->push_back( val ); }
             }
-            else 
+            else
             {
                 tokens->push_back( fCurrentString->substr(start,length) );
             }
@@ -122,7 +122,7 @@ MHO_Tokenizer::MultiCharTokenize(std::vector< std::string>* tokens)
     }
 }
 
-void 
+void
 MHO_Tokenizer::SingleCharTokenize(std::vector< std::string>* tokens)
 {
     //delimiters are single-characters only
@@ -144,7 +144,7 @@ MHO_Tokenizer::SingleCharTokenize(std::vector< std::string>* tokens)
                     std::string val = TrimLeadingAndTrailingWhitespace( fCurrentString->substr(start,length) );
                     if(val.size() > 0 || fIncludeEmptyTokens){ tokens->push_back( val ); }
                 }
-                else 
+                else
                 {
                     tokens->push_back( fCurrentString->substr(start,length) );
                 }
@@ -156,16 +156,16 @@ MHO_Tokenizer::SingleCharTokenize(std::vector< std::string>* tokens)
     }
 }
 
-std::size_t 
+std::size_t
 MHO_Tokenizer::IndexQuoteInstances(const std::string* aString, std::vector< std::pair< std::size_t, std::size_t> >* quotes)
-{   
+{
     quotes->clear();
     std::vector< std::size_t > positions;
     for(std::size_t i=0; i<aString->size(); i++)
     {
         if( (*aString)[i] == '\"'){positions.push_back(i);}
     }
-    
+
     if(positions.size() % 2 == 0 )
     {
         std::size_t n_quotes = positions.size()/2;
@@ -177,7 +177,7 @@ MHO_Tokenizer::IndexQuoteInstances(const std::string* aString, std::vector< std:
             quotes->push_back(q);
         }
     }
-    else 
+    else
     {
         //error we have an unmatched quote
         msg_warn("utility", "tokenizer unable to reliably parse a string with un-matched quotes, treating as unquoted text." << eom);
@@ -185,7 +185,7 @@ MHO_Tokenizer::IndexQuoteInstances(const std::string* aString, std::vector< std:
     return quotes->size();
 }
 
-std::string 
+std::string
 MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(const std::string& value)
 {
     std::string ret_val = "";
@@ -199,7 +199,7 @@ MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(const std::string& value)
 }
 
 
-std::vector< std::string > 
+std::vector< std::string >
 SplitString(const std::string& input, std::string delim)
 {
     std::vector< std::string > split;
@@ -224,4 +224,4 @@ SplitString(const std::string& input, std::string delim)
     return split;
 }
 
-}//end namespace 
+}//end namespace

@@ -1,14 +1,6 @@
 #ifndef MHO_ManualPolPhaseCorrection_HH__
 #define MHO_ManualPolPhaseCorrection_HH__
 
-/*
-*File: MHO_ManualPolPhaseCorrection.hh
-*Class: MHO_ManualPolPhaseCorrection
-*Author:
-*Email:
-*Date:
-*Description:
-*/
 
 #include <cmath>
 #include <complex>
@@ -26,6 +18,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_ManualPolPhaseCorrection.hh
+*@class MHO_ManualPolPhaseCorrection
+*@author J. Barrett - barrettj@mit.edu
+*@date Thu Jan 27 10:36:00 2022 -0500
+*@brief
+*/
 
 
 class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
@@ -50,7 +50,7 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
 
     private:
 
-        std::size_t DetermineStationIndex(const visibility_type* in);
+        bool IsApplicable(std::size_t st_idx, const visibility_type* in);
         bool PolMatch(std::size_t station_idx, std::string& polprod);
 
         //constants
@@ -61,8 +61,8 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
         std::string fStationCode;
         std::string fMk4ID;
         std::string fPol;
-        
-        //pc rotation 
+
+        //pc rotation
         double fPhaseOffset;
 
         //keys for tag retrieval
@@ -72,6 +72,10 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
         std::string fRemStationMk4IDKey;
         std::string fRefStationMk4IDKey;
         std::string fChannelLabelKey;
+        
+        std::string fSidebandLabelKey;
+        std::string fLowerSideband;
+        std::string fUpperSideband;
 
         //minor helper function to make sure all strings are compared as upper-case only
         void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
@@ -84,4 +88,4 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
 }
 
 
-#endif /* end of include guard: MHO_ManualPolPhaseCorrection */
+#endif /*! end of include guard: MHO_ManualPolPhaseCorrection */

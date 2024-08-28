@@ -43,31 +43,31 @@ int main(int /*argc*/, char** /*argv*/)
     }
 
     std::cout<<"data @ 3 = "<<std::get<FREQ_AXIS>(*test).at(3) <<std::endl;
-
-    MHO_IntervalLabel label1(0,4);
-    MHO_IntervalLabel label2(4,6);
-    MHO_IntervalLabel label3(6,9);
-    MHO_IntervalLabel label4(9,12);
-    MHO_IntervalLabel label5(0,6);
-    MHO_IntervalLabel label6(6,12);
-
-    label1.Insert(std::string("channel"), 'a');
-    label1.Insert(std::string("bandwidth"), 32.0e6);
-    label2.Insert(std::string("channel"), 'b');
-    label2.Insert(std::string("bandwidth"), 32.0e6);
-    label3.Insert(std::string("channel"), 'c');
-    label3.Insert(std::string("bandwidth"), 32.0e6);
-    label4.Insert(std::string("channel"), 'd');
-    label4.Insert(std::string("bandwidth"), 32.0e6);
-    label5.Insert(std::string("sampler"), std::string("r2dbe-1"));
-    label6.Insert(std::string("sampler"), std::string("r2dbe-2"));
-
-    std::get<FREQ_AXIS>(*test).InsertLabel(label1);
-    std::get<FREQ_AXIS>(*test).InsertLabel(label2);
-    std::get<FREQ_AXIS>(*test).InsertLabel(label3);
-    std::get<FREQ_AXIS>(*test).InsertLabel(label4);
-    std::get<FREQ_AXIS>(*test).InsertLabel(label5);
-    std::get<FREQ_AXIS>(*test).InsertLabel(label6);
+    //
+    // MHO_IntervalLabel label1(0,4);
+    // MHO_IntervalLabel label2(4,6);
+    // MHO_IntervalLabel label3(6,9);
+    // MHO_IntervalLabel label4(9,12);
+    // MHO_IntervalLabel label5(0,6);
+    // MHO_IntervalLabel label6(6,12);
+    //
+    // label1.Insert(std::string("channel"), 'a');
+    // label1.Insert(std::string("bandwidth"), 32.0e6);
+    // label2.Insert(std::string("channel"), 'b');
+    // label2.Insert(std::string("bandwidth"), 32.0e6);
+    // label3.Insert(std::string("channel"), 'c');
+    // label3.Insert(std::string("bandwidth"), 32.0e6);
+    // label4.Insert(std::string("channel"), 'd');
+    // label4.Insert(std::string("bandwidth"), 32.0e6);
+    // label5.Insert(std::string("sampler"), std::string("r2dbe-1"));
+    // label6.Insert(std::string("sampler"), std::string("r2dbe-2"));
+    //
+    // std::get<FREQ_AXIS>(*test).InsertLabel(label1);
+    // std::get<FREQ_AXIS>(*test).InsertLabel(label2);
+    // std::get<FREQ_AXIS>(*test).InsertLabel(label3);
+    // std::get<FREQ_AXIS>(*test).InsertLabel(label4);
+    // std::get<FREQ_AXIS>(*test).InsertLabel(label5);
+    // std::get<FREQ_AXIS>(*test).InsertLabel(label6);
 
     std::string filename = "./test-axis-pack.bin";
 
@@ -81,9 +81,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     if(status)
     {
-        uint32_t label = 0xFF00FF00;
-        std::cout<<"A label = "<<label<<std::endl;
-        inter.Write(*test, "axis-pack", label);
+        inter.Write(*test, "axis-pack");
         inter.Close();
     }
     else
@@ -113,14 +111,14 @@ int main(int /*argc*/, char** /*argv*/)
 
         std::cout<<"data @ 23 = "<<std::get<FREQ_AXIS>(*test2).at(23)<<std::endl;
 
-        auto label_vec1 = std::get<FREQ_AXIS>(*test2).GetIntervalsWhichIntersect(5);
-        for(auto iter = label_vec1.begin(); iter != label_vec1.end(); iter++)
-        {
-            std::cout<<"label found for interval = ["<<(*iter)->GetLowerBound()<<", "<<(*iter)->GetUpperBound()<<") with key:val pairs = "<<std::endl;
-            (*iter)->DumpMap<char>();
-            (*iter)->DumpMap<std::string>();
-            (*iter)->DumpMap<int>();
-        }
+        // auto label_vec1 = std::get<FREQ_AXIS>(*test2).GetIntervalsWhichIntersect(5);
+        // for(auto iter = label_vec1.begin(); iter != label_vec1.end(); iter++)
+        // {
+        //     std::cout<<"label found for interval = ["<<iter->GetLowerBound()<<", "<<iter->GetUpperBound()<<") with key:val pairs = "<<std::endl;
+        //     iter->DumpMap<char>();
+        //     iter->DumpMap<std::string>();
+        //     iter->DumpMap<int>();
+        // }
 
     }
     else

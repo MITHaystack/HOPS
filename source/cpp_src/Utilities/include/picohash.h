@@ -11,7 +11,7 @@
  * by Sam Hocevar <sam@hocevar.net> for LibTomCrypt.
  */
 
-/*
+/*!
 * J. Barrett: cloned from https://github.com/kazuho/picohash.git at commit ID:
 * 57fe0cb4c32527c71dab5973539673dcba0280c5 on Mar 12, 2021
 * Mar 16, 2021 : modified to strip out everything but md5

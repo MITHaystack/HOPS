@@ -20,12 +20,12 @@ def main():
 
     parser.add_argument('fileA', help='the first json file')
     parser.add_argument('fileB', help='the second json file')
- 
+
     args = parser.parse_args()
- 
+
     f1_name = args.fileA
     f2_name = args.fileB
-    
+
     f1 = open(f1_name, "r")
     f2 = open(f2_name, "r")
     j1 = json.loads(f1.read())

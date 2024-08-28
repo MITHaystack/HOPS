@@ -1,16 +1,6 @@
 #ifndef MHO_ContainerJSONConverter_HH__
 #define MHO_ContainerJSONConverter_HH__
 
-/*
-*File: MHO_ContainerJSONConverter.hh
-*Class: MHO_ContainerJSONConverter
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: Converts a given ndarray-based container into a JSON representation 
-* this isn't really intended for data transport/storage, but only as
-* conversion to an ascii-like representation for human inspection/debugging
-*/
 
 #include "MHO_ClassIdentity.hh"
 #include "MHO_JSONHeaderWrapper.hh"
@@ -27,6 +17,17 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_ContainerJSONConverter.hh
+*@class MHO_ContainerJSONConverter
+*@author J. Barrett - barrettj@mit.edu
+*@date Fri Feb 18 14:17:16 2022 -0500
+*@brief Converts a given ndarray-based container into a JSON representation
+* this isn't really intended for data transport/storage, but only as
+* conversion to an ascii-like representation for human inspection/debugging
+*/
+
 
 //verbosity controlling enum
 enum
@@ -60,12 +61,12 @@ using hops::eJSONAll;
 inline void FillJSONFromCommonMap(const MHO_CommonLabelMap* map, mho_json& obj_tags)
 {
     bool ok;
-    std::vector< std::string > keys; 
+    std::vector< std::string > keys;
     //only do the types in the "MHO_CommonLabelMap"
     keys = map->DumpKeys<char>();
     for(auto k = keys.begin(); k != keys.end(); k++)
     {
-        char c; ok = map->Retrieve(*k, c); 
+        char c; ok = map->Retrieve(*k, c);
         if(ok){obj_tags[*k] = std::string(&c,1);}
     }
     keys = map->DumpKeys<bool>();
@@ -90,7 +91,11 @@ inline void FillJSONFromCommonMap(const MHO_CommonLabelMap* map, mho_json& obj_t
     }
 }
 
-
+inline void FillJSONFromTaggable(const MHO_Taggable* map, mho_json& obj_tags)
+{
+    bool ok;
+    obj_tags = map->GetMetaDataAsJSON();
+}
 
 
 class MHO_JSONConverter
@@ -102,7 +107,7 @@ class MHO_JSONConverter
         void SetLevelOfDetail(int level){fLOD = level;};
         mho_json* GetJSON(){return &fJSON;}
 
-        virtual void SetObjectToConvert(MHO_Serializable* /*obj*/) = 0;
+        virtual void SetObjectToConvert(MHO_Serializable* /*!obj*/) = 0;
         virtual void ConstructJSONRepresentation() = 0;
 
     protected:
@@ -125,7 +130,7 @@ class MHO_JSONConverter
 
 
 
-template< typename XContainerType > 
+template< typename XContainerType >
 class MHO_ContainerJSONConverter: public MHO_JSONConverter
 {
     public:
@@ -150,13 +155,13 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
         virtual void ConstructJSONRepresentation()
         {
             if(fContainer != nullptr)
-            { 
+            {
                 ConstructJSON(fContainer);
-            } 
+            }
         }
 
     private:
-        
+
         XContainerType* fContainer;
 
     protected:
@@ -173,7 +178,7 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
         };
 
         //use SFINAE to generate specialization for the rest of the container types
-        //that we actually care about 
+        //that we actually care about
 
         //scalar specialization
         template< typename XCheckType = XContainerType >
@@ -194,7 +199,8 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
             if(fLOD >= eJSONTags)
             {
                 mho_json jtags;
-                FillJSONFromCommonMap(fContainer, jtags);
+                // FillJSONFromCommonMap(fContainer, jtags);
+                FillJSONFromTaggable(fContainer, jtags);
                 fJSON["tags"] = jtags;
             }
 
@@ -210,7 +216,7 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
         //vector specialization (but not an axis!)
         template< typename XCheckType = XContainerType >
         typename std::enable_if<
-                 (std::is_base_of<MHO_VectorContainerBase, XCheckType>::value && 
+                 (std::is_base_of<MHO_VectorContainerBase, XCheckType>::value &&
                  !std::is_base_of<MHO_AxisBase, XCheckType>::value), void >::type
         ConstructJSON(const XContainerType* obj)
         {
@@ -229,7 +235,8 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
             if(fLOD >= eJSONTags)
             {
                 mho_json jtags;
-                FillJSONFromCommonMap(fContainer ,jtags);
+                FillJSONFromTaggable(fContainer, jtags);
+                //FillJSONFromCommonMap(fContainer ,jtags);
                 fJSON["tags"] = jtags;
             }
 
@@ -266,7 +273,8 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
             if(fLOD >= eJSONTags)
             {
                 mho_json jtags;
-                FillJSONFromCommonMap(fContainer ,jtags);
+                FillJSONFromTaggable(fContainer, jtags);
+                //FillJSONFromCommonMap(fContainer ,jtags);
                 fJSON["tags"] = jtags;
             }
 
@@ -303,7 +311,8 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
             if(fLOD >= eJSONTags)
             {
                 mho_json jtags;
-                FillJSONFromCommonMap(fContainer, jtags);
+                FillJSONFromTaggable(fContainer, jtags);
+                //FillJSONFromCommonMap(fContainer, jtags);
                 fJSON["tags"] = jtags;
             }
 
@@ -329,8 +338,8 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
             }
 
         };
-                
-                
+
+
         class AxisDumper
         {
             public:
@@ -340,9 +349,9 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
                     fLOD(level)
                 {};
                 ~AxisDumper(){};
-        
+
                 void SetIndex(std::size_t idx){fIndex = idx;}
-        
+
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis)
                 {
@@ -361,10 +370,11 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
                     if(fLOD >= eJSONTags)
                     {
                         mho_json jtags;
-                        FillJSONFromCommonMap(&axis, jtags);
+                        FillJSONFromTaggable(&axis, jtags);
+                        //FillJSONFromCommonMap(&axis, jtags);
                         j["tags"] = jtags;
                     }
-        
+
                     //data goes out flat-packed into 1-d array
                     mho_json data;
                     for(auto it = axis.cbegin(); it != axis.cend(); it++)
@@ -372,23 +382,24 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
                         data.push_back(*it);
                     }
                     j["data"] = data;
-        
-                    if(fLOD >= eJSONWithLabels)
-                    {
-                        //dump the axis labels too
-                        mho_json jilabels;
-                        MHO_Interval<std::size_t> all(0, axis.GetSize() ); 
-                        std::vector< const MHO_IntervalLabel* > labels = axis.GetIntervalsWhichIntersect(&all);
-                        for(auto it = labels.begin(); it != labels.end(); it++)
-                        {
-                            mho_json label_obj;
-                            label_obj["lower_bound"] = (*it)->GetLowerBound();
-                            label_obj["upper_bound"] = (*it)->GetUpperBound();
-                            FillJSONFromCommonMap(*it, label_obj);
-                            jilabels.push_back(label_obj);
-                        }
-                        j["labels"] = jilabels;
-                    }
+
+                    // if(fLOD >= eJSONWithLabels)
+                    // {
+                    //     //dump the axis labels too
+                    //     mho_json jilabels;
+                    //     MHO_Interval<std::size_t> all(0, axis.GetSize() );
+                    //     std::vector< MHO_IntervalLabel > labels = axis.GetIntervalsWhichIntersect(all);
+                    //     for(auto it = labels.begin(); it != labels.end(); it++)
+                    //     {
+                    //         mho_json label_obj;
+                    //         label_obj["lower_bound"] = it->GetLowerBound();
+                    //         label_obj["upper_bound"] = it->GetUpperBound();
+                    //         FillJSONFromCommonMap(&(*it), label_obj);
+                    //         jilabels.push_back(label_obj);
+                    //     }
+                    //     j["labels"] = jilabels;
+                    // }
+
                     std::stringstream ss;
                     ss << "axis_" << fIndex;
                     (*fAxisJSON)[ss.str().c_str()] = j;
@@ -406,7 +417,7 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
 
 
 
-template<> 
+template<>
 class MHO_ContainerJSONConverter<MHO_ObjectTags>: public MHO_JSONConverter
 {
     public:
@@ -430,7 +441,7 @@ class MHO_ContainerJSONConverter<MHO_ObjectTags>: public MHO_JSONConverter
 
         virtual void ConstructJSONRepresentation()
         {
-            if(fContainer != nullptr){ ConstructJSON(fContainer);} 
+            if(fContainer != nullptr){ ConstructJSON(fContainer);}
         }
 
     private:
@@ -450,7 +461,8 @@ class MHO_ContainerJSONConverter<MHO_ObjectTags>: public MHO_JSONConverter
             }
 
             mho_json jtags;
-            FillJSONFromCommonMap(obj, jtags);
+            // FillJSONFromCommonMap(obj, jtags);
+            FillJSONFromTaggable(obj, jtags);
             fJSON["tags"] = jtags;
         };
 

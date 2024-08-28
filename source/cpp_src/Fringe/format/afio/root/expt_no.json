@@ -1,0 +1,8 @@
+{
+    "name": "expt_no",
+    "type": "string",
+    "source_object": "parameters",
+    "path": "/vex/experiment_number",
+    "description": "Experiment serial # ",
+    "units": ""
+}

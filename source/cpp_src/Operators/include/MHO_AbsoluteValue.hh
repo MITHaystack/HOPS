@@ -1,14 +1,7 @@
 #ifndef MHO_AbsoluteValue_HH__
 #define MHO_AbsoluteValue_HH__
 
-/*
-*File: MHO_AbsoluteValue.hh
-*Class: MHO_AbsoluteValue
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-*/
+
 
 #include <cmath>
 #include <complex>
@@ -17,6 +10,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_AbsoluteValue.hh
+*@class MHO_AbsoluteValue
+*@author J. Barrett - barrettj@mit.edu
+*@date Wed Aug 18 12:02:32 2021 -0400
+*@brief
+*/
 
 template< class XArrayType >
 class MHO_AbsoluteValue: public MHO_UnaryFunctor< XArrayType >
@@ -45,4 +46,4 @@ class MHO_AbsoluteValue: public MHO_UnaryFunctor< XArrayType >
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_AbsoluteValue */
+#endif /*! end of include guard: MHO_AbsoluteValue */

@@ -1,14 +1,6 @@
 #ifndef MHO_DiFXPCalProcessor_HH__
 #define MHO_DiFXPCalProcessor_HH__
 
-/*
-*@file: MHO_DiFXPCalProcessor.hh
-*@class: MHO_DiFXPCalProcessor
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
-*/
 
 #include <string>
 #include <vector>
@@ -18,8 +10,16 @@
 #include "MHO_Tokenizer.hh"
 #include "MHO_ContainerDefinitions.hh"
 
-namespace hops 
+namespace hops
 {
+
+/*!
+*@file  MHO_DiFXPCalProcessor.hh
+*@class  MHO_DiFXPCalProcessor
+*@author  J. Barrett - barrettj@mit.edu
+*@date Mon Mar 7 12:21:49 2022 -0500
+*@brief
+*/
 
 class MHO_DiFXPCalProcessor
 {
@@ -53,13 +53,13 @@ class MHO_DiFXPCalProcessor
         std::string fMJD_frac;
         std::string fStationCode;
 
-        //TODO this constant isn't used directly for conversion 
+        //TODO this constant isn't used directly for conversion
         //(just a tolerance check), but we should put this somewhere sensible
         double fSecondsPerDay;
         double fTolerance;
 
         //single pcal tone
-        struct pcal_phasor 
+        struct pcal_phasor
         {
             double tone_freq;
             pcal_phasor_type phasor;
@@ -72,7 +72,7 @@ class MHO_DiFXPCalProcessor
             double mjd;
             double mjd_period;
             int ap;
-            std::map< std::string, std::vector< pcal_phasor > > pc_phasors; 
+            std::map< std::string, std::vector< pcal_phasor > > pc_phasors;
         };
 
 
@@ -81,13 +81,13 @@ class MHO_DiFXPCalProcessor
         std::vector< pcal_period > fSortedPCalData;
         std::set< std::string> fPolSet;
 
-        //fully organized pcal data 
+        //fully organized pcal data
         multitone_pcal_type fPCal;
 
         //for sorting phasors by tone frequency
         struct ToneFreqLess
         {
-            bool operator()(const pcal_phasor& a, const pcal_phasor& b) const 
+            bool operator()(const pcal_phasor& a, const pcal_phasor& b) const
             {
                 return (a.tone_freq < b.tone_freq);
             }
@@ -97,7 +97,7 @@ class MHO_DiFXPCalProcessor
         //for sorting APs by time
         struct APIndexLess
         {
-            bool operator()(const pcal_period& a, const pcal_period& b) const 
+            bool operator()(const pcal_period& a, const pcal_period& b) const
             {
                 return (a.ap < b.ap);
             }
@@ -110,4 +110,4 @@ class MHO_DiFXPCalProcessor
 
 }//end namespace
 
-#endif /* end of include guard: MHO_DiFXPCalProcessor */
+#endif /*! end of include guard: MHO_DiFXPCalProcessor */

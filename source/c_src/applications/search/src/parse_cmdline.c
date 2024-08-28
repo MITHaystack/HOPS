@@ -107,5 +107,3 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp)
 
     return (0);
     }
-
-

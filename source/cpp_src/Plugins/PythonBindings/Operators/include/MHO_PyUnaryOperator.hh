@@ -1,14 +1,7 @@
 #ifndef MHO_PyOperator_HH__
 #define MHO_PyOperator_HH__
 
-/*
-*@file: MHO_PyOperator.hh
-*@class: MHO_PyOperator
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief: trampoline for unary data operator
-*/
+
 
 #include "MHO_PyTableContainer.hh"
 #include "MHO_PyOperator.hh"
@@ -19,6 +12,14 @@ namespace py = pybind11;
 
 namespace hops
 {
+
+/*!
+*@file  MHO_PyOperator.hh
+*@class  MHO_PyOperator
+*@author  J. Barrett - barrettj@mit.edu
+*@date Thu Sep 23 16:03:48 2021 -0400
+*@brief  trampoline for unary data operator
+*/
 
 class MHO_UnaryOperator:
 {
@@ -54,4 +55,4 @@ class MHO_PyUnaryOperator:
 
 }
 
-#endif /* end of include guard: MHO_PyOperator */
+#endif /*! end of include guard: MHO_PyOperator */

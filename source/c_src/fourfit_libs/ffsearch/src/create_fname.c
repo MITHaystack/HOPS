@@ -23,13 +23,12 @@
 #include "pass_struct.h"
 
 int
-create_fname (struct scan_struct *root, struct type_pass *pass, char fname[])
+create_fname (struct scan_struct *root, struct type_pass *pass,
+    int the_seq_no, char fname[])
     {
     static char buf[256], buf2[256];
     char *directory, *rname, *scan, *rootcode;
-    //char *strrchr(), *strtok(),
     extern struct type_param param;
-    extern int max_seq_no;
 
     strcpy (buf, root->filename);        /* Local copy is better */ 
 
@@ -38,9 +37,8 @@ create_fname (struct scan_struct *root, struct type_pass *pass, char fname[])
     directory = buf;
     rootcode = strrchr (rname, '.') + 1;
                                         /* Update sequence number */
-    max_seq_no++;
     sprintf (buf2, "%s/%c%c.%c.%d.%s", directory, param.baseline[0],
-             param.baseline[1], pass->pass_data[0].fgroup, max_seq_no, rootcode);
+         param.baseline[1], pass->pass_data[0].fgroup, the_seq_no, rootcode);
 
     msg ("fringe filename = %s",1, buf2);
     strcpy (fname, buf2);

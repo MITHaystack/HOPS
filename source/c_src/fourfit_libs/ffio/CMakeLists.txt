@@ -1,3 +1,8 @@
+find_package (FFTW)
+
+#only compile if the needed libraries are present
+if( FFTW_FOUND )
+
 #declare library name ##########################################################
 set(LIBNAME "ffio")
 
@@ -57,3 +62,5 @@ target_link_libraries (${LIBNAME} ${LIBLIST})
 
 hops_install_headers (${${LIBNAME}_HEADERFILES})
 hops_install_libraries (${LIBNAME})
+
+endif(FFTW_FOUND)

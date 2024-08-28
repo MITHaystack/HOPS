@@ -2,14 +2,6 @@
 #define MHO_Meta_HH__
 
 
-/*
-*File: MHO_Meta.hh
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-13T17:43:26.831Z
-*Description: template meta-programming helper functions, mostly tuple access/modification
-*/
-
 #include <type_traits>
 #include <tuple>
 #include <map>
@@ -17,6 +9,13 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_Meta.hh
+*@author J. Barrett - barrettj@mit.edu
+*@date Fri Oct 16 11:17:19 2020 -0400
+*@brief template meta-programming helper functions, mostly tuple access/modification
+*/
 
 //null and empty types
 class MHO_NullType {};
@@ -36,7 +35,7 @@ template< class... T > struct MHO_TypelistSizeImpl< MHO_Typelist< T... > >
 template< class L > using MHO_TypelistSize = typename MHO_TypelistSizeImpl<L>::type;
 
 
-//utility to return 1 if two types are the same, zero otherwise 
+//utility to return 1 if two types are the same, zero otherwise
 
 template<class T, class U>
 struct is_same_count
@@ -54,7 +53,7 @@ struct is_same_count<T, T>
 template<typename XCheckType, size_t N, typename... T > struct count_instances_of_type;
 
 //terminating case is N=0
-template<typename XCheckType, typename... T > 
+template<typename XCheckType, typename... T >
 struct count_instances_of_type<XCheckType, 0, T...>
 {
     using current_type = typename std::tuple_element<0, std::tuple<T...> >::type;
@@ -62,7 +61,7 @@ struct count_instances_of_type<XCheckType, 0, T...>
 };
 
 //N = sizeof...(T) - 1
-template<typename XCheckType, size_t N, typename... T > 
+template<typename XCheckType, size_t N, typename... T >
 struct count_instances_of_type
 {
     using current_type = typename std::tuple_element<N, std::tuple<T...> >::type;
@@ -244,7 +243,7 @@ apply_at2(XTupleType& tup1, XTupleType2& tup2, size_t index, XFunctorType& funct
 
 
 ////////////////////////////////////////////////////////////////////////////////
-//check structs for complex floating point types 
+//check structs for complex floating point types
 
 template <typename XValueType>
 struct is_complex: std::false_type {};
@@ -265,7 +264,7 @@ struct is_complex< std::complex<long double> >: std::true_type {};
 //of the 2nd container. Terminates at the end of whatever container stops first.
 
 template< typename XContainer1, typename XContainer2 >
-std::map< typename XContainer1::value_type, typename XContainer2::value_type > 
+std::map< typename XContainer1::value_type, typename XContainer2::value_type >
 zip_into_map(const XContainer1& c1, const XContainer2& c2)
 {
     auto it1 = c1.begin();
@@ -281,16 +280,16 @@ zip_into_map(const XContainer1& c1, const XContainer2& c2)
 }
 
 
-
-
-
-
-
-
-
+////////////////////////////////////////////////////////////////////////////////
+//empty classes for detecting classes derived from container types
+//only needed for dependent template specializations
+class MHO_AxisBase{};
+class MHO_TableContainerBase{};
+class MHO_VectorContainerBase{};  //only needed for dependent template specializations
+class MHO_ScalarContainerBase{}; //only needed for dependent template specializations
 
 ////////////////////////////////////////////////////////////////////////////////
 
 }//end of namespace
 
-#endif /* end of include guard: MHO_Meta */
+#endif /*! end of include guard: MHO_Meta */

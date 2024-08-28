@@ -20,6 +20,8 @@
 #include "MHO_OpenCLHeaderWrapper.hh"
 #include <vector>
 #include <complex>
+#include <string>
+#include <map>
 
 
 template< typename XValueType >
@@ -45,7 +47,7 @@ struct MHO_OpenCLTypeMap
 
 #else
 
-    #pragma message ("Warning : MHO_OpenCLPlugin is being built with float precision!")
+    TODO_FIXME_MSG ("Warning : MHO_OpenCLPlugin is being built with float precision!")
     #define CL_TYPE cl_float
     #define CL_TYPE2 cl_float2
     #define CL_TYPE4 cl_float4
@@ -86,7 +88,7 @@ struct MHO_OpenCLTypeMap
                         { \
                             std::cout<<"OpenCL Exception caught: "<<std::endl;\
                             std::cout<<__FILE__<<":"<<__LINE__<<std::endl; \
-                            std::cout<<error.what()<<"("<<error.err()<<")"<<std::endl; \
+                            std::cout<<error.what()<<"("<<error.err()<<") = "<<  MHO_OpenCLInterface::GetInstance()->GetErrorMessage(error.err() )  << std::endl; \
                             std::exit(1); \
                         }
 #else
@@ -104,10 +106,10 @@ namespace hops
 
             static MHO_OpenCLInterface* GetInstance();
 
-            cl::Context            GetContext() const { return *fContext; }
+            cl::Context GetContext() const { return *fContext; }
             CL_VECTOR_TYPE<cl::Device> GetDevices() const { return fDevices; }
-            cl::Device             GetDevice()  const { return fDevices[fCLDeviceID]; }
-            cl::CommandQueue&      GetQueue(int i=-1) const;
+            cl::Device GetDevice()  const { return fDevices[fCLDeviceID]; }
+            cl::CommandQueue& GetQueue(int i=-1) const;
 
             unsigned int GetNumberOfDevices() const
             {
@@ -120,24 +122,31 @@ namespace hops
             void SetKernelPath(std::string s) { fKernelPath = s; }
             std::string GetKernelPath() const { return fKernelPath; }
 
+            std::string GetErrorMessage(int code){return fOpenCLCode2ErrorMap[code];}
+
         protected:
 
             MHO_OpenCLInterface();
             virtual ~MHO_OpenCLInterface();
 
             void InitializeOpenCL();
+            void FillErrorCodeMaps();
 
             static MHO_OpenCLInterface* fOpenCLInterface;
 
             std::string fKernelPath;
 
             CL_VECTOR_TYPE<cl::Platform> fPlatforms;
-            CL_VECTOR_TYPE<cl::Device>   fDevices;
-            unsigned int                   fCLDeviceID;
-            cl::Context              *fContext;
+            CL_VECTOR_TYPE<cl::Device> fDevices;
+            unsigned int fCLDeviceID;
+            cl::Context* fContext;
             mutable std::vector<cl::CommandQueue*>  fQueues;
+
+            std::map<std::string, int> fOpenCLError2CodeMap;
+            std::map<int, std::string> fOpenCLCode2ErrorMap;
+
     };
 
 }
 
-#endif /* HOPS_OPENCLINTERFACE_DEF */
+#endif /*! HOPS_OPENCLINTERFACE_DEF */

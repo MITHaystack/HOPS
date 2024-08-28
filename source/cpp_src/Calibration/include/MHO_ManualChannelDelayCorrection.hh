@@ -1,14 +1,7 @@
 #ifndef MHO_ManualChannelDelayCorrection_HH__
 #define MHO_ManualChannelDelayCorrection_HH__
 
-/*
-*File: MHO_ManualChannelDelayCorrection.hh
-*Class: MHO_ManualChannelDelayCorrection
-*Author:
-*Email:
-*Date:
-*Description:
-*/
+
 
 #include <cmath>
 #include <complex>
@@ -28,6 +21,13 @@
 namespace hops
 {
 
+/*!
+*@file MHO_ManualChannelDelayCorrection.hh
+*@class MHO_ManualChannelDelayCorrection
+*@author J. Barrett - barrettj@mit.edu
+*@date Thu Jan 27 10:36:00 2022 -0500
+*@brief
+*/
 
 class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_type >
 {
@@ -53,7 +53,7 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
 
     private:
 
-        std::size_t DetermineStationIndex(const visibility_type* in);
+        bool IsApplicable(std::size_t st_idx, const visibility_type* in);
         bool PolMatch(std::size_t station_idx, std::string& polprod);
 
         //constants
@@ -79,6 +79,10 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
         std::string fRefStationMk4IDKey;
         std::string fChannelLabelKey;
         std::string fBandwidthKey;
+        
+        std::string fSidebandLabelKey;
+        std::string fLowerSideband;
+        std::string fUpperSideband;
 
         //minor helper function to make sure all strings are compared as upper-case only
         void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
@@ -91,4 +95,4 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
 }
 
 
-#endif /* end of include guard: MHO_ManualChannelDelayCorrection */
+#endif /*! end of include guard: MHO_ManualChannelDelayCorrection */

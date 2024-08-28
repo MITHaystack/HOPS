@@ -2,19 +2,6 @@
 #define MHO_SelectRepack_HH__
 
 
-/*
-*File: MHO_SelectRepack.hh
-*Class: MHO_SelectRepack
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: Thu 15 Dec 2022 02:42:45 PM EST
-*Description:
-* operator to select data from table and repack it into an entirely new table,
-* this typically would involve lots of copying (expensive), so it should be used
-* sparringly (e.g. initial or final coarse data selection)
-
-*/
-
 #include <map>
 #include <vector>
 
@@ -25,6 +12,19 @@
 
 namespace hops
 {
+
+
+/*!
+*@file MHO_SelectRepack.hh
+*@class MHO_SelectRepack
+*@author J. Barrett - barrettj@mit.edu
+*@date Thu Dec 15 16:45:22 2022 -0500
+*@brief
+* operator to select data from table and repack it into an entirely new table,
+* this typically would involve lots of copying (expensive), so it should be used
+* sparringly (e.g. initial or final coarse data selection)
+*/
+
 
 template< class XArgType>
 class MHO_SelectRepack:
@@ -74,7 +74,7 @@ class MHO_SelectRepack:
                 fInitialized = true;
                 return true;
             }
-            else 
+            else
             {
                 fInitialized = false;
                 return false;
@@ -102,7 +102,7 @@ class MHO_SelectRepack:
                     //all axes have data selected that we need to extract
                     for(std::size_t i=0; i<total_size; i++)
                     {
-                        //compute the indexes into the 'out' array 
+                        //compute the indexes into the 'out' array
                         MHO_NDArrayMath::RowMajorIndexFromOffset<XArgType::rank::value>(i, &(out_dim[0]), &(out_loc[0]) );
 
                         //compute the indexes into the 'in' array, remapping where needed
@@ -117,11 +117,11 @@ class MHO_SelectRepack:
                 }
                 else
                 {
-                    //some axes have data selected, an some do not (meaning all is passed)
-                    //so we need to sort through the mess 
+                    //some axes have data selected, and some do not (meaning all is passed)
+                    //so we need to sort through the mess
                     for(std::size_t i=0; i<total_size; i++)
                     {
-                        //compute the indexes into the 'out' array 
+                        //compute the indexes into the 'out' array
                         MHO_NDArrayMath::RowMajorIndexFromOffset<XArgType::rank::value>(i, &(out_dim[0]), &(out_loc[0]) );
 
                         //compute the indexes into the 'in' array, remapping where needed
@@ -132,7 +132,7 @@ class MHO_SelectRepack:
                             {
                                 in_loc[a] = out_loc[a];
                             }
-                            else 
+                            else
                             {
                                 in_loc[a] = (fAxisSelectionMap[a])[out_loc[a]];
                             }
@@ -167,7 +167,7 @@ class MHO_SelectRepack:
             }
             return out_dim;
         }
-        
+
         void ConditionallyResizeOutput(const std::array<std::size_t, XArgType::rank::value>& dims, XArgType* out)
         {
             auto out_dim = out->GetDimensionArray();
@@ -182,7 +182,7 @@ class MHO_SelectRepack:
         //default...does nothing
         template< typename XCheckType = XArgType >
         typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        IfTableSelectOnAxes(const XArgType* /*in*/, XArgType* /*out*/){};
+        IfTableSelectOnAxes(const XArgType* /*!in*/, XArgType* /*!out*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
         template< typename XCheckType = XArgType >
@@ -211,16 +211,25 @@ class MHO_SelectRepack:
                 {
                     if( fSelection.size() != 0 )
                     {
-                        //it doesn't make sense to copy the interval labels 
-                        //since we have changed the organization of this axis
+                        //copy all of the axis meta data
+                        axis2.CopyTags(axis1);
+                        //then remove the index labels
+                        axis2.ClearIndexLabels();
+                        //now copy back the selected index labels
                         for(std::size_t i=0; i<fSelection.size();i++)
                         {
                             axis2(i) = axis1( fSelection[i] );
+                            mho_json obj = axis1.GetLabelObject( fSelection[i] );
+                            axis2.SetLabelObject(obj, i);
                         }
-                        axis2.CopyTags(axis1); //copy the axis tags 
-                        axis2.CopyIntervalLabels(axis1); //copy labels
+
+                        TODO_FIXME_MSG("TODO FIXME -- ensure that only the proper interval tags are selected/copied here.")
+                        //axis2.ClearIntervalLabels();
+                        //it doesn't make sense to copy the original interval labels since we have changed the organization of this axis
+                        //what ought to do is figure out the overlap between previous interval labels and items of the new axis
+                        //and create new overlapping intervals with the appropriate tags.
                     }
-                    else 
+                    else
                     {
                         axis2.Copy(axis1); //no selection done on this axis, just copy everything
                     }
@@ -236,7 +245,7 @@ class MHO_SelectRepack:
         XArgType fWorkspace;
 
         //map which holds the indexes selected from each axis
-        //if no item is present for a particular axis, the assumption is that all pre-existing  
+        //if no item is present for a particular axis, the assumption is that all pre-existing
         //elements are selected/passed in the selection process
         std::map< std::size_t, std::vector< std::size_t > > fAxisSelectionMap;
 
@@ -254,4 +263,4 @@ class MHO_SelectRepack:
 };
 
 
-#endif /* end of include guard: MHO_SelectRepack_HH__ */
+#endif /*! end of include guard: MHO_SelectRepack_HH__ */

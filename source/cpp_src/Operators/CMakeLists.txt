@@ -1,3 +1,5 @@
+#declare header paths ##########################################################
+hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #list header files #############################################################
 set (OPERATOR_HEADERFILES
@@ -19,7 +21,7 @@ set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_CyclicRotator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SubSample.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SelectRepack.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalPaddedFastFourierTransform.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_EndZeroPadder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ElementTypeCaster.hh
 )
 
@@ -35,9 +37,6 @@ endif(HOPS_USE_FFTW3)
 set( OPERATOR_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Operator.cc
 )
-
-#declare header paths ##########################################################
-hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
 set(OPERATOR_LIBS MHO_Message MHO_Math MHO_Containers)

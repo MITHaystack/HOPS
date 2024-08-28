@@ -11,6 +11,7 @@ MHO_InterpolateFringePeak::MHO_InterpolateFringePeak()
     fSBDMaxBin = 0;
 
     fRefFreq = 1.0;
+    fFRTOffset = 0.0;
     fTotalSummedWeights = 1.0;
     fSBDArray = nullptr;
     fWeights = nullptr;
@@ -31,7 +32,7 @@ MHO_InterpolateFringePeak::Initialize()
     bool ok = fWeights->Retrieve("total_summed_weights", fTotalSummedWeights);
     if(!ok)
     {
-        msg_warn("calibration", "missing 'total_summed_weights' tag in weights object." << eom);
+        msg_warn("fringe", "missing 'total_summed_weights' tag in weights object." << eom);
         return false;
     }
 
@@ -57,6 +58,7 @@ MHO_InterpolateFringePeak::SetMaxBins(int sbd_max, int mbd_max, int dr_max)
 void
 MHO_InterpolateFringePeak::fine_peak_interpolation()
 {
+    profiler_start();
     //follow the algorithm of interp.c (SIMUL) mode, to fill out a cube and interpolate
     //double drf[5][5][5];// 5x5x5 cube of fringe values
     double xlim[3][2]; //cube limits each dim
@@ -64,7 +66,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     double drfmax;
 
     double total_ap_frac = fTotalSummedWeights;
-    // 
+
     // std::cout<<"total ap frac = "<<total_ap_frac<<std::endl;
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
@@ -83,12 +85,13 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     double dr_delta = fDRAxis.at(1) - fDRAxis.at(0);
     double mbd_delta = fMBDAxis.at(1) - fMBDAxis.at(0);
 
-    //TODO FIXME -- shoudl this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    // std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
-
-    //printf("max bin (sbd, mbd, dr) = %d, %d, %d\n", fSBDMaxBin, fMBDMaxBin, fDRMaxBin );
-    //printf("mbd delta, dr delta = %.7f, %.7f \n", mbd_delta, dr_delta/fRefFreq);
+    //use the fourfit reference time
+    //double fFRTOffset = fFRTOffset;//( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    // std::cout<<"time midpoint = "<<fFRTOffset<<std::endl;
+    // std::cout<<"dr delta = "<<dr_delta<<std::endl;
+    // std::cout<<"ref freq = "<<fRefFreq<<std::endl;
+    // printf("max bin (sbd, mbd, dr) = %d, %d, %d\n", fSBDMaxBin, fMBDMaxBin, fDRMaxBin );
+    // printf("mbd delta, dr delta = %.15f, %.15f \n", mbd_delta, dr_delta/fRefFreq);
 
     double sbd_lower = 1e30;
     double sbd_upper = -1e30;
@@ -97,7 +100,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     double dr_lower = 1e30;
     double dr_upper = -1e30;
 
-    MHO_FringeRotation frot;
+
     int sbd_bin, dr_bin, mbd_bin;
     double sbd, dr, mbd;
 
@@ -111,13 +114,16 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
                 std::complex<double> z = 0.0;
 
                 // calculate location of this tabular point (should modulo % axis size)
-                sbd_bin = (fSBDMaxBin + isbd - 2) % (int) sbd_ax->GetSize();
-                dr_bin = (fDRMaxBin + idr - 2 ) % (int) fDRAxis.GetSize() ;
-                mbd_bin = ( fMBDMaxBin + imbd - 2) % (int) fMBDAxis.GetSize() ;;
-                //
+                sbd_bin = ( (fSBDMaxBin + isbd - 2) % (int) sbd_ax->GetSize() + (int) sbd_ax->GetSize() ) % (int) sbd_ax->GetSize() ;
+                dr_bin = ( (fDRMaxBin + idr - 2 ) % (int) fDRAxis.GetSize() + (int) fDRAxis.GetSize() ) % (int) fDRAxis.GetSize() ;
+                mbd_bin = ( ( fMBDMaxBin + imbd - 2) % (int) fMBDAxis.GetSize() + (int) fMBDAxis.GetSize()) % (int) fMBDAxis.GetSize();
+
+                // std::cout<<"max bins sbd, mbd, dr = "<<fSBDMaxBin<<", "<<fMBDMaxBin<<", "<<fDRMaxBin<<std::endl;
+                // std::cout<<"sbd, dr, mbd bins = "<<sbd_bin<<", "<<dr_bin<<", "<<mbd_bin<<std::endl;
+
                 sbd = sbd_ax->at( (std::size_t) sbd_bin);
                 mbd = fMBDAxis.at(fMBDMaxBin) + 0.5 * (imbd - 2) * mbd_delta;
-                dr  = (fDRAxis.at(fDRMaxBin) + (0.5 * (idr - 2)  * dr_delta) )/fRefFreq;
+                dr  = (fDRAxis.at(fDRMaxBin) + (0.5 * (idr - 2)  * dr_delta) ); // /fRefFreq;
 
                 //printf("idr = %d and dr = %.8f \n", idr, dr);
 
@@ -130,25 +136,39 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
                 if(mbd < mbd_lower){mbd_lower = mbd;}
                 if(mbd > mbd_upper){mbd_upper = mbd;}
 
+                // std::cout<<"fMBDMaxBin = "<<fMBDMaxBin<<" max = "<<fMBDAxis.at(fMBDMaxBin)<<std::endl;
+                // std::cout<<"mbd delta = "<<mbd_delta<<std::endl;
+                // std::cout<<"mbd info = "<<mbd<<", "<<imbd<<std::endl;
+
                 // counter-rotate data from all freqs. and AP's
                 for(std::size_t fr = 0; fr < nchan; fr++)
                 {
                     double freq = (*chan_ax)(fr);//sky freq of this channel
+
+                    // std::string net_sideband = "?";
+                    // bool key_present = chan_ax->RetrieveIndexLabelKeyValue(fr, "net_sideband", net_sideband);
+                    // if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< fr << "." << eom);}
+                    //
+                    // fRot.SetSideband(0); //DSB
+                    // if(net_sideband == "U"){fRot.SetSideband(1);}
+                    // if(net_sideband == "L"){fRot.SetSideband(-1);}
+
                     for(std::size_t ap = 0; ap < nap; ap++)
                     {
-                        double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+                        double tdelta = ap_ax->at(ap) + ap_delta/2.0 - fFRTOffset; //time diff w.r.t FRT
                         visibility_element_type vis = (*fSBDArray)(0,fr,ap,sbd_bin);
-                        std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, dr, mbd);
+
+                        //std::cout<<"fr, ap ="<<fr<<", "<<ap<<" vrot input( "<<tdelta<<", "<<freq<<", "<<fRefFreq<<", "<<dr<<", "<<mbd<<")"<<std::endl;
+                        std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, dr, mbd);
                         std::complex<double> x = vis * vr;// vrot_mod(tdelta, dr, mbd, freq, fRefFreq);
                         x *= (*fWeights)(0,fr,ap,0); //multiply by the 'weight'
                         z = z + x;
                     }
                 }
-
                 z = z * 1.0 / total_ap_frac;
                 // drf[isbd][imbd][idr] = std::abs(z);
                 fDRF(isbd, imbd, idr) = std::abs(z);
-                //printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
+                // printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, fDRF(isbd, imbd, idr) );
             }
         }
     }
@@ -163,9 +183,9 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
 
     xlim[2][0] = -2;//dr_lower;// - status.dr_max_global) / status.rate_sep;
     xlim[2][1] = 2;//dr_upper;// - status.dr_max_global) / status.rate_sep;
-
+    //
     // std::cout<< "xlim's "<< xlim[0][0]<<", "<< xlim[0][1] <<", "<< xlim[1][0] <<", "<< xlim[1][1] <<", " << xlim[2][0] <<", "<< xlim[2][1] <<std::endl;
-                                // find maximum value within cube via interpolation
+    //                             // find maximum value within cube via interpolation
     max555(fDRF, xlim, xi, &drfmax);
 
     // std::cout<< "xi's "<< xi[0]<<", "<< xi[1] <<", "<< xi[2] <<std::endl;
@@ -186,12 +206,12 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     // std::cout<<"mbd_bin="<<mbd_bin<<std::endl;
 
     sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
-    dr =  (fDRAxis.at(dr_bin) )*(1.0/fRefFreq);
+    dr =  (fDRAxis.at(dr_bin) ); //*(1.0/fRefFreq);
     mbd = (fMBDAxis.at(mbd_bin));
 
     double sbd_change = xi[0] * sbd_delta;
     double mbd_change = xi[1] * 0.5 * mbd_delta;
-    double dr_change =  (xi[2] * 0.5 * dr_delta)/fRefFreq;
+    double dr_change =  (xi[2] * 0.5 * dr_delta); ///fRefFreq;
 
     double sbd_max = (sbd + sbd_change);
     double mbd_max_global = mbd + mbd_change;
@@ -200,12 +220,14 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     fSBDelay = sbd_max;
     fMBDelay = mbd_max_global;
     fDelayRate = dr_max_global;
-    fFringeRate = fDRAxis.at(dr_bin) + (xi[2] * 0.5 * dr_delta);
+    fFringeRate = ( fDRAxis.at(dr_bin) + (xi[2] * 0.5 * dr_delta) )*fRefFreq;
 
-    std::cout<< std::setprecision(15);
+    // std::cout<< std::setprecision(15);
     // std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
     // std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
-    std::cout<<"Peak max555, sbd "<<sbd_max<<" mbd "<<mbd_max_global<<" dr "<<dr_max_global<<std::endl;
+    msg_info("fringe", "Peak max555, sbd "<<sbd_max<<" mbd "<<mbd_max_global<<" dr "<<dr_max_global<<" amp "<< fFringeAmp << eom );
+
+    profiler_stop();
 
 }
 

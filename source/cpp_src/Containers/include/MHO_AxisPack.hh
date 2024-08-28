@@ -1,19 +1,21 @@
 #ifndef MHO_AxisPack_HH__
 #define MHO_AxisPack_HH__
 
-/*
-*File: MHO_AxisPack.hh
-*Class: MHO_AxisPack
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 17-08-2020 11:32
-*Description: set of axes (XAxisTypeS are expected to be MHO_VectorContainers)
-*/
 
 #include "MHO_Axis.hh"
 #include "MHO_Meta.hh"
 
-namespace hops{
+namespace hops
+{
+
+/*!
+*@file MHO_AxisPack.hh
+*@class MHO_AxisPack
+*@author J. Barrett - barrettj@mit.edu
+*@date Mon Aug 17 12:42:31 2020 -0400
+*@brief set of axes (XAxisTypeS are expected to be MHO_VectorContainers)
+*/
+
 
 template< typename...XAxisTypeS >
 class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Serializable
@@ -50,7 +52,7 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
             return total_size;
         }
 
-        virtual 
+        virtual
 
         //assignment operator
         MHO_AxisPack& operator=(const MHO_AxisPack& rhs)
@@ -64,7 +66,7 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
         //inductive access to all elements of the tuple, so we can re-size them from an array
         template<std::size_t N = 0>
         typename std::enable_if< ( N == sizeof...(XAxisTypeS) ), void >::type
-        resize_axis_pack( const std::size_t* /*dim*/){}; //terminating case, do nothing
+        resize_axis_pack( const std::size_t* /*!dim*/){}; //terminating case, do nothing
 
         template<std::size_t N = 0>
         typename std::enable_if< ( N < sizeof...(XAxisTypeS) ), void>::type
@@ -79,7 +81,7 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
         // //inductive access to all elements of the tuple, so we compute total size for streaming
         template<std::size_t N = 0>
         typename std::enable_if< ( N == sizeof...(XAxisTypeS) ), void >::type
-        compute_total_size(uint64_t& /*total_size*/) const {}; //terminating case, do nothing
+        compute_total_size(uint64_t& /*!total_size*/) const {}; //terminating case, do nothing
 
         template<std::size_t N = 0>
         typename std::enable_if< ( N < sizeof...(XAxisTypeS) ), void >::type
@@ -108,15 +110,15 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_AxisPack& aData)
         {
-            switch( aData.GetVersion() ) 
+            switch( aData.GetVersion() )
             {
                 case 0:
                     s << aData.GetVersion();
                     aData.StreamOutData_V0(s);
                 break;
                 default:
-                    msg_error("containers", 
-                        "error, cannot stream out MHO_Axis object with unknown version: " 
+                    msg_error("containers",
+                        "error, cannot stream out MHO_Axis object with unknown version: "
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -126,7 +128,7 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
         {
             MHO_ClassVersion vers;
             s >> vers;
-            switch(vers) 
+            switch(vers)
             {
                 case 0:
                     aData.StreamInData_V0(s);
@@ -343,4 +345,4 @@ DefAxisPack4(String, String, String, String);
 
 }
 
-#endif /* end of include guard: MHO_AxisPack */
+#endif /*! end of include guard: MHO_AxisPack */

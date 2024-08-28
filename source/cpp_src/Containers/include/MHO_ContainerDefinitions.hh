@@ -21,4 +21,7 @@
 //declare the container types for station data
 #include "MHO_StationContainers.hh"
 
-#endif /* end of include guard: MHO_ContainerDefinitions */
+//declare the container types for fringe output
+#include "MHO_FringeContainers.hh"
+
+#endif /*! end of include guard: MHO_ContainerDefinitions */

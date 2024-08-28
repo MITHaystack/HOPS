@@ -1,0 +1,8 @@
+{
+	"name": "no_freq",
+	"type": "int",
+	"source_object": "parameters",
+	"path": "/config/nchannels",
+	"description": "number of channels used",
+	"units": ""
+}

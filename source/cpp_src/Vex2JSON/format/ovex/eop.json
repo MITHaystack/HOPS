@@ -1,0 +1,30 @@
+{
+    "block_name": "$EOP",
+    "version": "1.5",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "TAI-UTC": {"type": "real", "dimension": "time"},
+        "A1-TAI": {"type": "real", "dimension": "time"},
+        "eop_ref_epoch" : {"type":"epoch"},
+        "num_eop_points" :{"type": "int"},
+        "eop_interval": {"type": "real", "dimension": "time"},
+        "ut1-utc": {"type":"list_real", "dimension": "time"},
+        "x_wobble": {"type":"list_real", "dimension": "angle"},
+        "y_wobble": {"type":"list_real", "dimension": "angle"}
+    },
+    "fields":
+    [
+        "TAI-UTC",
+        "A1-TAI",
+        "eop_ref_epoch",
+        "num_eop_points",
+        "eop_interval",
+        "ut1-utc",
+        "x_wobble",
+        "y_wobble"
+    ]
+}

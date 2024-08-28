@@ -1,5 +1,7 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
-    "type": "unknown"
+    "name": "dc_block",
+    "statement_type": "operator",
+    "operator_category" : "flagging",
+    "type": "bool",
+    "priority": 3.5
 }

@@ -1,5 +1,5 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
-    "type": "unknown"
+    "name": "index",
+    "statement_type": "deprecated",
+    "type": "deprecated"
 }

@@ -407,9 +407,12 @@ int parser (void)
                        else if (cb_ptr -> baseline[0] == WILDCARD) // rem station
                            cb_ptr -> mount_type[1] = tval;
                        }
-                    else if (toknum == MIXED_MODE_ROT_)
-                        cb_ptr -> mixed_mode_rot = tval;
-
+                   else if (toknum == MIXED_MODE_ROT_)
+                       cb_ptr -> mixed_mode_rot = tval;
+                   else if (toknum == NOAUTOFRINGES_)
+                       cb_ptr -> noautofringes = tval;
+                   else if (toknum == MOD4NUMBERING_)
+                       cb_ptr -> mod4numbering = tval;
 
                break;
 
@@ -762,6 +765,23 @@ int parser (void)
                            }
                        }
 
+                   else if (toknum == MBDRPLOPT_)
+                       {
+                       if (nv > 2)
+                           {
+                           msg ("Too many mbdrplopt integers",2);
+                           return (-1);
+                           }
+                       if (tokens[ntok].category == INTEGER)
+                           {
+                           cb_ptr -> mbdrplopt[nv] = tval;
+                           }
+                       else
+                           {
+                           msg ("mbdrplopt numbers must be integers",2);
+                           return (-1);
+                           }
+                       }
 
 // ##DELAY_OFFS##  for next clause
                    else if (toknum == DELAY_OFFS_) // is this a channel delay offset?

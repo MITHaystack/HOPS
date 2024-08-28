@@ -1,0 +1,8 @@
+{
+	"name": "resid_phase",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/fringe/resid_phase",
+	"description": "residual fringe phase (deg)",
+	"units": "deg"
+}

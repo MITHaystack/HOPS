@@ -1,6 +1,8 @@
 #ifndef MHO_OpenCLScalarMultiply_HH__
 #define MHO_OpenCLScalarMultiply_HH__
 
+
+
 #include <algorithm>
 
 #include "MHO_Message.hh"
@@ -11,17 +13,17 @@
 #include "MHO_OpenCLKernelBuilder.hh"
 #include "MHO_OpenCLNDArrayBuffer.hh"
 
-/*
-*File: MHO_OpenCLScalarMultiply.hh
-*Class: MHO_OpenCLScalarMultiply
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-*/
-
 namespace hops
 {
+
+/*!
+*@file MHO_OpenCLScalarMultiply.hh
+*@class MHO_OpenCLScalarMultiply
+*@author J. Barrett - barrettj@mit.edu
+*@date
+*@brief
+*/
+
 
 template< typename XFactorType, class XArrayType >
 class MHO_OpenCLScalarMultiply: public MHO_UnaryOperator< XArrayType >
@@ -218,4 +220,4 @@ class MHO_OpenCLScalarMultiply: public MHO_UnaryOperator< XArrayType >
 }
 
 
-#endif /* MHO_OpenCLScalarMultiply_H__ */
+#endif /*! MHO_OpenCLScalarMultiply_H__ */

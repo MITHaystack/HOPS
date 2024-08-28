@@ -1,16 +1,6 @@
 #ifndef MHO_MK4CorelInterface_HH__
 #define MHO_MK4CorelInterface_HH__
 
-/*
-*File: MHO_MK4CorelInterface.hh
-*Class: MHO_MK4CorelInterface
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-19T18:54:28.140Z
-*Description: This class implicitly assumes that the frequency/channel configuration
-* is shared among all polarization products (i.e. nlags), we may want to loosen this restriction
-* in the future
-*/
 
 #include <vector>
 #include <cstdlib>
@@ -39,6 +29,17 @@ struct mk4_corel;
 
 namespace hops
 {
+
+/*!
+*@file MHO_MK4CorelInterface.hh
+*@class MHO_MK4CorelInterface
+*@author J. Barrett - barrettj@mit.edu
+*@date Thu May 28 19:47:51 2020 -0400
+*@brief This class implicitly assumes that the frequency/channel configuration
+* is shared among all polarization products (i.e. nlags), we may want to loosen this restriction
+* in the future
+*/
+
 
 class MHO_MK4CorelInterface
 {
@@ -78,6 +79,7 @@ class MHO_MK4CorelInterface
         mho_json fVex;
         std::string fVexFile;
         std::string fCorelFile;
+        std::string fRootCode; //derived from corel file name
 
         //data dimensions related members
         void DetermineDataDimensions();
@@ -88,7 +90,7 @@ class MHO_MK4CorelInterface
         std::size_t fNChannelsPerPP;
         std::set< std::string > fPolProducts;
 
-        //meta-data information 
+        //meta-data information
         std::string fBaselineName; //e.g. Gs:Wf
         std::string fBaselineShortName; //e.g GE
         std::string fRefStation; //e.g. Gs
@@ -96,14 +98,13 @@ class MHO_MK4CorelInterface
         std::string fRefStationMk4Id; //e.g G
         std::string fRemStationMk4Id; //e.g.E
 
-
         //store all channel related data in interval labels for convenience
-        std::map< std::string, MHO_IntervalLabel > fAllChannelMap;
+        std::map< std::string, mho_json > fAllChannelMap;
 
         //this field stores pointers to channel labels on a per-pol product basis
         //the keys are pol-product labels (e.g. XX, RL, YY, etc)
         //the vectors are sorted by sky-frequency
-        std::map< std::string, std::vector< MHO_IntervalLabel* > > fPPSortedChannelInfo;
+        std::map< std::string, std::vector< mho_json* > > fPPSortedChannelInfo;
 
         //helper function to convert raw char arrays to strings
         std::string getstr(const char* char_array, size_t max_size);
@@ -119,4 +120,4 @@ class MHO_MK4CorelInterface
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_MK4CorelInterface */
+#endif /*! end of include guard: MHO_MK4CorelInterface */

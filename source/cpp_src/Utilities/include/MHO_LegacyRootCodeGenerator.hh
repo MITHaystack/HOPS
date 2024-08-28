@@ -1,22 +1,22 @@
 #ifndef MHO_LegacyRootCodeGenerator_HH__
 #define MHO_LegacyRootCodeGenerator_HH__
 
-/*
-*@file: MHO_LegacyRootCodeGenerator.hh
-*@class: MHO_LegacyRootCodeGenerator
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief: generate the 6-character timestamp-like root codes for converted filenames
-*/
 
 #include <ctime>
 #include <string>
 #include <vector>
 
 
-namespace hops 
+namespace hops
 {
+
+/*!
+*@file  MHO_LegacyRootCodeGenerator.hh
+*@class  MHO_LegacyRootCodeGenerator
+*@author  J. Barrett - barrettj@mit.edu
+*@date Wed Apr 27 11:59:40 2022 -0400
+*@brief  generate the 6-character timestamp-like root codes for converted filenames
+*/
 
 
 class MHO_LegacyRootCodeGenerator
@@ -30,7 +30,7 @@ class MHO_LegacyRootCodeGenerator
         std::string GetCode();
 
         //get a pre-assigned sequential list of N root codes
-        //to avoid collisions/duplicates if sub-Delta-T time intervals 
+        //to avoid collisions/duplicates if sub-Delta-T time intervals
         //are encountered when processing a single experiment;
         std::vector<std::string> GetCodes(std::size_t N);
 
@@ -47,7 +47,7 @@ class MHO_LegacyRootCodeGenerator
         //and converted to return a string
         int root_id_delta(time_t now);
         std::string root_id_later(time_t now);
-        /* original implementation follows */
+        /*! original implementation follows */
         std::string root_id(int year, int day, int hour, int min, int sec);
         std::string root_id_break(time_t now, int year, int day, int hour, int min, int sec);
 
@@ -55,4 +55,4 @@ class MHO_LegacyRootCodeGenerator
 
 }//end namespace
 
-#endif /* end of include guard: MHO_LegacyRootCodeGenerator */
+#endif /*! end of include guard: MHO_LegacyRootCodeGenerator */

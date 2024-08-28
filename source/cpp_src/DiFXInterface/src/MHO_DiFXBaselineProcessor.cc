@@ -11,6 +11,10 @@
 #define DIFX_BASE2ANT 256
 #define SCALE 10000.0
 
+//tolerance to use when selecting by bandwidth
+//and frequency band
+#define FREQ_EPS 0.001
+
 namespace hops
 {
 
@@ -21,6 +25,7 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
     fStationCodeMap(nullptr)
 {
     fRootCode = "unknown";
+    fCorrDate = "";
     fRescale = true;
     fScaleFactor = 1.0;
 
@@ -35,6 +40,11 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
     fNBitsToFactor.clear();
     fNBitsToFactor[1] = 1.25331;
     fNBitsToFactor[2] = 1.06448;
+
+    fFreqBands.clear();
+    fOnlyFreqGroups.clear();
+    fSelectByBandwidth = false;
+    fOnlyBandwidth = 0;
 };
 
 MHO_DiFXBaselineProcessor::~MHO_DiFXBaselineProcessor()
@@ -47,16 +57,68 @@ MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
 {
     //keep track of the baseline id on first insertion
     if(fRecords.size() == 0){fBaselineID = record->baseline;}
-    if(fBaselineID == record->baseline)
+    bool keep_record = true;
+
+    //discard if this record does not match our baseline (how did it get here?)
+    if(fBaselineID != record->baseline){keep_record = false;}
+
+    //figure out this records channel info (freq,bandwidth)
+    int freqidx = record->freqindex;
+    int points = record->nchan;
+    double freq = 0;
+    double bandwidth = 0;
+    std::string sideband = "";
+
+    //collect channel info
+    if(fInput && freqidx < (*fInput)["freq"].size() )
+    {
+        freq = (*fInput)["freq"][freqidx]["freq"].get<double>();
+        bandwidth = (*fInput)["freq"][freqidx]["bw"].get<double>();
+    }
+
+    if(fSelectByBandwidth)
+    {
+        if( std::fabs(fOnlyBandwidth - bandwidth) > FREQ_EPS)
+        {
+            keep_record = false; //discard, does not match our bandwidth selection
+        }
+    }
+
+    std::string fgroup = DetermineFreqGroup(freq);
+    bool in_fgroups = true;
+    if(fOnlyFreqGroups.size() != 0)
+    {
+        in_fgroups = false;
+        for(std::size_t i=0; i<fOnlyFreqGroups.size(); i++)
+        {
+            if(fgroup == fOnlyFreqGroups[i]){in_fgroups = true; break;}
+        }
+    }
+
+    //discard if not in the list of frequency groups
+    if(!in_fgroups){keep_record = false;}
+
+    if(keep_record)
     {
         std::string pp(record->polpair,2);
         int freqidx = record->freqindex;
         int points = record->nchan;
+        double bandwidth = 0.;
         fPolPairSet.insert(pp);
         fFreqIndexSet.insert(freqidx);
         fSpecPointSet.insert(points);
+        fBandwidthSet.insert(bandwidth);
         fRecords.push_back(record);
         fVisibilities[pp][freqidx].push_back(record);
+
+        record->bandwidth = bandwidth;
+        record->sky_freq = freq;
+        record->freq_band = fgroup;
+    }
+    else
+    {
+        //doesn't match our selection criteria, dump it
+        delete record;
     }
 }
 
@@ -64,15 +126,19 @@ MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
 void
 MHO_DiFXBaselineProcessor::Organize()
 {
+    fHaveBaselineData = true;
+
     if(fRecords.size() == 0)
     {
-        msg_debug("difx_interface", "no visiblity records available for baseline: " << fBaselineID << eom);
+        msg_warn("difx_interface", "no visiblity records available for baseline: " << fBaselineID << eom);
+        fHaveBaselineData = false;
         return;
     }
 
     if(fInput == nullptr)
     {
         msg_warn("difx_interface", "no difx input data set for baseline: " << fBaselineID << eom);
+        fHaveBaselineData = false;
         return;
     }
 
@@ -122,19 +188,27 @@ MHO_DiFXBaselineProcessor::Organize()
         {
             int freqidx = *frqit;
             std::sort( fVisibilities[pp][freqidx].begin(), fVisibilities[pp][freqidx].end(), fTimePredicate);
+            //msg_debug("difx_interface", "Number of APs on "<<fBaselineName<<" with ID: "<<fBaselineID<<" for polprod: "<<pp<<" and freqidx: "<<freqidx<< " is "<< fVisibilities[pp][freqidx].size() << eom);
             fAPSet.insert( fVisibilities[pp][freqidx].size() );
         }
     }
 
+    //TODO -- what happens when we have missing/extra APs (should we truncate as below, or pad?)
     //determine the number of APs
     fNAPs = 0;
-    if(!fAPSet.empty()){fNAPs = *(fAPSet.rbegin());} //sets are sorted in ascending order, so grab the max from end
+    if(!fAPSet.empty()){fNAPs = *(fAPSet.begin());} //sets are sorted in ascending order, so grab the max from end
     if(fAPSet.size() > 1 )
     {
-        msg_error("difx_interface", "channels do not have same number of APs on baseline: " << fBaselineName <<" will zero pad-out to max AP: "<< fNAPs << "."<< eom);
+        msg_error("difx_interface", "channels do not have same number of APs on baseline: " <<
+            fBaselineName <<", ID: "<<fBaselineID<<" truncating to lowest common number of APs: "<< fNAPs << "."<< eom);
+        // msg_error("difx_interface", "channels do not have same number of APs on baseline: " << fBaselineName <<" will zero pad-out to max AP: "<< fNAPs << "."<< eom);
+        // for(auto apit = fAPSet.begin(); apit != fAPSet.end(); apit++)
+        // {
+        //     std::cout<<"ap: "<<*apit<<std::endl;
+        // }
     }
 
-    //TODO!! CHECK FOR MISSING APs
+
 
     //construct the table of frequencies for this baseline and sort in asscending order
     fNChannels = fFreqIndexSet.size();
@@ -200,16 +274,26 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
     //fVisibilities contains the pol-pair and time sorted visibilities
     Organize();
 
-    if(fCanChannelize && fInput != nullptr)
-    {
-        //insert the difx input data as a json string
-        std::stringstream jss;
-        jss << *fInput;
-        fTags.SetTagValue("difx_input_json", jss.str());
+    //first construct a channelized visibility container
+    if(fV){delete fV; fV = nullptr;}
+    if(fW){delete fW; fW = nullptr;}
 
-    	//first construct a channelized visibility container
-        if(fV){delete fV; fV = nullptr;}
-        if(fW){delete fW; fW = nullptr;}
+    if(fHaveBaselineData && fCanChannelize && fInput != nullptr)
+    {
+        //insert the difx input data as a json object
+        fTags.SetTagValue("difx_input_json", *fInput);
+        fTags.SetTagValue("root_code", fRootCode);
+        //add a bug of tags from the visib/weight objects for ease of retrieval
+        fTags.SetTagValue("difx_baseline_index", fBaselineID);
+        fTags.SetTagValue("baseline", fBaselineName);
+        fTags.SetTagValue("baseline_shortname", fBaselineShortName);
+        fTags.SetTagValue("reference_station", fRefStation);
+        fTags.SetTagValue("remote_station", fRemStation);
+        fTags.SetTagValue("reference_station_mk4id", fRefStationMk4Id);
+        fTags.SetTagValue("remote_station_mk4id", fRemStationMk4Id);
+        fTags.SetTagValue("correlation_date", fCorrDate);
+        fTags.SetTagValue("root_code", fRootCode);
+        fTags.SetTagValue("origin", "difx");
 
         fV = new visibility_store_type();
         fW = new weight_store_type();
@@ -225,6 +309,9 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fV->Insert(std::string("remote_station"), fRemStation);
         fV->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
         fV->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
+        fV->Insert(std::string("correlation_date"), fCorrDate);
+        fV->Insert(std::string("root_code"), fRootCode);
+        fV->Insert(std::string("origin"), "difx");
 
         //tags for the weights
         fW->Resize(fNPolPairs, fNChannels, fNAPs, 1); //fNSpectralPoints -- we only have 1 weight value for each AP, so set dimension along the spectral point axis to 1
@@ -237,6 +324,9 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fW->Insert(std::string("remote_station"), fRemStation);
         fW->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
         fW->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
+        fW->Insert(std::string("correlation_date"), fCorrDate);
+        fW->Insert(std::string("root_code"), fRootCode);
+        fW->Insert(std::string("origin"), "difx");
 
         //polarization product axis
         auto* polprod_axis = &(std::get<POLPROD_AXIS>(*fV));
@@ -270,6 +360,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 
 
         int ppidx = 0;
+        fFreqIndexSet.clear();
         for(auto ppit = fPolPairSet.begin(); ppit != fPolPairSet.end(); ppit++)
         {
             std::string pp = *ppit;
@@ -289,24 +380,48 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 
                 if(ppidx == 0) //only one label needed for each channel
                 {
-                    MHO_IntervalLabel ch_label(chidx,chidx);
-                    ch_label.Insert(std::string("sky_freq"), sky_freq);
-                    ch_label.Insert(std::string("bandwidth"), bw);
-                    ch_label.Insert(std::string("net_sideband"), sideband);
-                    ch_label.Insert(std::string("difx_freqindex"), freqidx); //probably ought to be more systematic about creating channel names
-                    ch_label.Insert(std::string("channel"), chidx); //channel position index
+                    mho_json ch_label;
+                    ch_label["sky_freq"] =  sky_freq;
+                    ch_label["bandwidth"] = bw;
+                    ch_label["net_sideband"] = sideband;
+                    ch_label["difx_freqindex"] = freqidx; //probably ought to be more systematic about creating channel names
+                    ch_label["channel"] = chidx; //channel position index
+                    std::string fband = DetermineFreqGroup(sky_freq);
+                    fFreqBandLabelSet.insert(fband);//keep track of all the freq-band labels we've inserted
+                    ch_label["frequency_band"] = fband; //will be empty string if assignment can't be made
+
                      //TODO FIXME need to construct difx2mark4-style chan_id --
                     //or rather need to construct the chan_id which corresponds to the reference and remote station for this chunk
                     //this also needs to be able to support zoom bands
-                    ch_label.Insert(std::string("chan_id"), std::string("placeholder"));
+
+                    std::string ref_chan_id = ConstructMK4ChannelID(fband, chidx, sideband, pp[0]);
+                    std::string rem_chan_id = ConstructMK4ChannelID(fband, chidx, sideband, pp[1]);
+
+                    ch_label["mk4_channel_id"] = ref_chan_id + ":" + rem_chan_id;
 
                     ch_axis->at(chidx) = sky_freq; //channel axis is now sky frequency not chidx;
-                    wch_axis->at(chidx) = sky_freq; // chidx;
-                    ch_axis->InsertLabel(ch_label);
-                    wch_axis->InsertLabel(ch_label);
+                    wch_axis->at(chidx) = sky_freq;
+                    ch_axis->SetLabelObject(ch_label,chidx);
+                    wch_axis->SetLabelObject(ch_label,chidx);
+
+                    // MHO_IntervalLabel ch_label(chidx,chidx);
+                    // ch_label.Insert(std::string("sky_freq"), sky_freq);
+                    // ch_label.Insert(std::string("bandwidth"), bw);
+                    // ch_label.Insert(std::string("net_sideband"), sideband);
+                    // ch_label.Insert(std::string("difx_freqindex"), freqidx); //probably ought to be more systematic about creating channel names
+                    // ch_label.Insert(std::string("channel"), chidx); //channel position index
+                    //  //TODO FIXME need to construct difx2mark4-style chan_id --
+                    // //or rather need to construct the chan_id which corresponds to the reference and remote station for this chunk
+                    // //this also needs to be able to support zoom bands
+                    // ch_label.Insert(std::string("chan_id"), std::string("placeholder"));
+                    //
+                    // ch_axis->at(chidx) = sky_freq; //channel axis is now sky frequency not chidx;
+                    // wch_axis->at(chidx) = sky_freq; // chidx;
+                    // ch_axis->InsertLabel(ch_label);
+                    // wch_axis->InsertLabel(ch_label);
                 }
 
-                for(std::size_t ap = 0; ap<fVisibilities[pp][freqidx].size(); ap++)
+                for(std::size_t ap = 0; ap<fNAPs; ap++)
                 {
                     ap_axis->at(ap) = ap*fAPLength;
                     wap_axis->at(ap) = ap*fAPLength;
@@ -329,10 +444,20 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             ppidx++;
         }
 
+        //last thing we do is to attach the pol-product set and freq-band set to the 'Tags' data
+        //this is allow a program reading this file to determine this information without streaming
+        //in the potentially very large visibility/weights data
+        std::vector< std::string > fband_vec(fFreqBandLabelSet.begin(), fFreqBandLabelSet.end());
+        std::vector< std::string > pprod_vec(fPolPairSet.begin(), fPolPairSet.end() );
+        fTags.SetTagValue("frequency_band_set", fband_vec);
+        fTags.SetTagValue("polarization_product_set", pprod_vec);
     }
     else
     {
-        msg_error("difx_interface", "cannot channelize visibility data, as not all channels are equal length. Feature not yet supported" << eom );
+        if(fHaveBaselineData) //not an error if there is no data
+        {
+            msg_error("difx_interface", "cannot channelize visibility data, as not all channels are equal length. Feature not yet supported" << eom );
+        }
     }
 
     DeleteDiFXVisRecords();
@@ -342,38 +467,38 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 void
 MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
 {
-    //apply difx2mark4 style factor and Van Vleck correction before writing out
-    if(fRescale)
+    if(fV != nullptr && fW != nullptr) //only if we have data
     {
-        //apply a x10000 factor to convert to "Whitney's"
-        // and apply Van Vleck n-bit statistics normalization factor (only 2x2, 1x1, and 1x2 bit supported)
-        (*fV) *= fScaleFactor;
-    }
+        //apply difx2mark4 style factor and Van Vleck correction before writing out
+        if(fRescale)
+        {
+            //apply a x10000 factor to convert to "Whitney's"
+            // and apply Van Vleck n-bit statistics normalization factor (only 2x2, 1x1, and 1x2 bit supported)
+            (*fV) *= fScaleFactor;
+        }
 
-    //construct output file name
-    std::string root_code = fRootCode;
-    std::string output_file = output_dir + "/" + fBaselineShortName + "." + root_code + ".cor";
+        //construct output file name
+        std::string root_code = fRootCode;
+        std::string output_file = output_dir + "/" + fBaselineShortName + "." + root_code + ".cor";
 
-    MHO_BinaryFileInterface inter;
-    bool status = inter.OpenToWrite(output_file);
-    if(status)
-    {
-        uint32_t label = 0xFFFFFFFF; //someday make this mean something
-        fTags.AddObjectUUID(fV->GetObjectUUID());
-        fTags.AddObjectUUID(fW->GetObjectUUID());
-        inter.Write(fTags, "tags", label);
+        MHO_BinaryFileInterface inter;
+        bool status = inter.OpenToWrite(output_file);
+        if(status)
+        {
+            fTags.AddObjectUUID(fV->GetObjectUUID());
+            fTags.AddObjectUUID(fW->GetObjectUUID());
+            inter.Write(fTags, "tags");
+            inter.Write(*fV, "vis");
+            inter.Write(*fW, "weight");
+            inter.Close();
+        }
+        else
+        {
+            msg_error("file", "error opening corel output file: " << output_file << eom);
+        }
 
-        inter.Write(*fV, "vis", label);
-        inter.Write(*fW, "weight", label);
         inter.Close();
     }
-    else
-    {
-        msg_error("file", "error opening corel output file: " << output_file << eom);
-    }
-
-    inter.Close();
-
     delete fV; fV = nullptr;
     delete fW; fW = nullptr;
 };
@@ -402,6 +527,45 @@ MHO_DiFXBaselineProcessor::DeleteDiFXVisRecords()
     }
     fRecords.clear();
     malloc_trim(0); //for lots of small objects this may be helpful to flush pages back to OS
+}
+
+
+std::string
+MHO_DiFXBaselineProcessor::ConstructMK4ChannelID(std::string fgroup, int index, std::string sideband, char pol)
+{
+    std::stringstream ss;
+    ss << fgroup;
+    if(index < 10 ){ss << "0";} //pad with leading zero if less than 10
+    ss << index;
+    ss << sideband;
+    ss << pol;
+    return ss.str();
+}
+
+std::string
+MHO_DiFXBaselineProcessor::DetermineFreqGroup(const double& freq)
+{
+    //decide based on sky-freq of channel (we ignore bandwidth/sideband for now)
+    //so may not be correct for extra-wide channels...but if that is the case,
+    //probably some customize fband settings should be passed by user to specify the freq band labeling
+    std::string fband = "";
+    double fband_width = 1e30;
+
+    for(auto it = fFreqBands.begin(); it != fFreqBands.end(); it++)
+    {
+        std::string b = std::get<0>(*it);
+        double low = std::get<1>(*it);
+        double high = std::get<2>(*it);
+        if(high < low){double tmp = low; low = high; high = tmp;} //swap if mis-ordered
+        double width = high - low;
+        if(freq < high && low < freq && width < fband_width)
+        {
+            fband = b;
+            fband_width = width;
+            //do not break here, so that narrower freq-bands will override larger ones
+        }
+    }
+    return fband; //returns "" if no matching band assignment found
 }
 
 

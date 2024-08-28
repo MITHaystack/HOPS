@@ -1,14 +1,7 @@
 #ifndef MHO_ManualChannelPhaseCorrection_HH__
 #define MHO_ManualChannelPhaseCorrection_HH__
 
-/*
-*File: MHO_ManualChannelPhaseCorrection.hh
-*Class: MHO_ManualChannelPhaseCorrection
-*Author:
-*Email:
-*Date:
-*Description:
-*/
+
 
 #include <cmath>
 #include <complex>
@@ -28,6 +21,13 @@
 namespace hops
 {
 
+/*!
+*@file MHO_ManualChannelPhaseCorrection.hh
+*@class MHO_ManualChannelPhaseCorrection
+*@author J. Barrett - barrettj@mit.edu
+*@date Thu Jan 27 10:36:00 2022 -0500
+*@brief
+*/
 
 class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_type >
 {
@@ -53,7 +53,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
 
     private:
 
-        std::size_t DetermineStationIndex(const visibility_type* in);
+        bool IsApplicable(std::size_t st_idx, const visibility_type* in);
         bool PolMatch(std::size_t station_idx, std::string& polprod);
 
         //constants
@@ -68,13 +68,17 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
         //channel label -> pcal phases
         std::map< std::string, double > fPCMap;
 
-        //keys for tag retrieval
+        //keys for tag retrieval and matching
         std::string fStationKey;
         std::string fRemStationKey;
         std::string fRefStationKey;
         std::string fRemStationMk4IDKey;
         std::string fRefStationMk4IDKey;
         std::string fChannelLabelKey;
+        std::string fSidebandLabelKey;
+        std::string fLowerSideband;
+        std::string fUpperSideband;
+
 
         //minor helper function to make sure all strings are compared as upper-case only
         void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
@@ -87,4 +91,4 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
 }
 
 
-#endif /* end of include guard: MHO_ManualChannelPhaseCorrection */
+#endif /*! end of include guard: MHO_ManualChannelPhaseCorrection */

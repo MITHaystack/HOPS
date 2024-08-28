@@ -155,6 +155,18 @@ copy_cblock_parts ( struct c_block* f, struct c_block* t)
     if (f->mixed_mode_rot != NULLINT)
         t->mixed_mode_rot = f->mixed_mode_rot;
 
+    if (f->noautofringes != NULLINT)
+        t->noautofringes = f->noautofringes;
+
+    if (f->mod4numbering != NULLINT)
+        t->mod4numbering = f->mod4numbering;
+
+    for (i=0; i<3; i++)
+        {
+        if (f->mbdrplopt[i] != NULLINT)
+            t->mbdrplopt[i] = f->mbdrplopt[i];
+        }
+
     if (f->vbp_fit != NULLINT)
         t->vbp_fit = f->vbp_fit;
 

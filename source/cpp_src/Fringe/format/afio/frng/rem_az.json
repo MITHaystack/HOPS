@@ -1,0 +1,8 @@
+{
+	"name": "rem_az",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/rem_station/azimuth",
+	"description": "",
+	"units": ""
+}

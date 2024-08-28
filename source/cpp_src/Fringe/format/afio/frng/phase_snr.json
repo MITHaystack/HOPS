@@ -1,0 +1,9 @@
+{
+	"name": "phase_snr",
+	"type": "double",
+	"source_object": "none",
+	"path": "",
+	"description": "",
+	"units": "",
+    "default": 0.0
+}

@@ -1,9 +1,6 @@
 #include "MHO_Message.hh"
 #include "MHO_FastFourierTransform.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
-#ifdef HOPS_USE_FFTW3
-#include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
-#endif
 
 #include <cmath>
 #include <iomanip>
@@ -11,31 +8,23 @@
 
 using namespace hops;
 
-#ifdef HOPS_USE_FFTW3
 typedef double FPTYPE;
-#define ARRAY_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 3 > 
-#define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<ARRAY_TYPE>
-#else
-typedef double FPTYPE;
-#define ARRAY_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 3 > 
+#define ARRAY_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 3 >
 #define FFT_TYPE MHO_MultidimensionalFastFourierTransform<ARRAY_TYPE>
-#endif
 
+
+#define PRINT_DETAIL
 
 int main(int /*argc*/, char** /*argv*/)
 {
     const size_t ndim = 3;
-    const size_t dval = 19;
+    const size_t dval = 4;
     const size_t dim_size[ndim] = {dval, dval, dval};
     const size_t total_size = dim_size[0] * dim_size[1] * dim_size[2];
     ARRAY_TYPE input(dim_size);
 
     //fill up the array with a signal
     int count = 0;
-
-    #ifdef HOPS_USE_FFTW3
-    std::cout<<"using fftw3 for FFTs"<<std::endl;
-    #endif
 
     #ifdef PRINT_DETAIL
     std::cout << "original data = " << std::endl;
@@ -66,11 +55,9 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->SetForward();
     fft_engine->SetArgs(&input);
 
-#ifndef HOPS_USE_FFTW3 //test the axis selection feature (not implemented for FFTW)
     fft_engine->DeselectAllAxes();
     fft_engine->SelectAxis(0);
     fft_engine->SelectAxis(2);
-#endif
 
     fft_engine->Initialize();
     fft_engine->Execute();
@@ -88,7 +75,7 @@ int main(int /*argc*/, char** /*argv*/)
     }
     #endif
 
-#ifndef HOPS_USE_FFTW3
+
     //just do the middle data axis
     fft_engine->SetForward();
     fft_engine->SetArgs(&input);
@@ -110,17 +97,11 @@ int main(int /*argc*/, char** /*argv*/)
     }
     #endif
 
-#endif
-
-
-
     std::cout << "--------------------------------------------------------------" << std::endl;
 
     fft_engine->SetBackward();
     fft_engine->SetArgs(&input);
-#ifndef HOPS_USE_FFTW3
     fft_engine->SelectAllAxes();
-#endif
     fft_engine->Initialize();
     fft_engine->Execute();
 
@@ -136,6 +117,7 @@ int main(int /*argc*/, char** /*argv*/)
             for (size_t k = 0; k < dim_size[2]; k++) {
                 //normalize out the factor of N caused by FFT -> IFFT -> result
                 std::complex<FPTYPE> del = input(i,j,k) / norm;
+                std::cout << del << ", ";
                 del -= std::complex<FPTYPE>(count % 13, count % 17);
                 l2_norm += std::real(del) * std::real(del) + std::imag(del) * std::imag(del);
                 count++;

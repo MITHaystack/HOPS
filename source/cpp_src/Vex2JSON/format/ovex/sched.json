@@ -1,0 +1,55 @@
+{
+    "block_name": "$SCHED",
+    "version": "1.5",
+    "start_tag": "scan",
+    "stop_tag": "endscan",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "start": {"type": "epoch"},
+        "mode": {"type": "keyword"},
+        "source":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "source": {"type": "keyword"},
+                "is_pointing_center": {"type": "int"},
+                "correlate": {"type": "int"},
+                "station_list": {"type": "list_string"}
+            },
+            "fields":
+            [
+                "source",
+                "#is_pointing_center",
+                "#correlate",
+                "#station_list"
+            ]
+        },
+        "station":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "station": {"type": "keyword"},
+                "data_good": {"type": "real", "dimension": "time"},
+                "data_stop": {"type": "real", "dimension": "time"},
+                "media_position": {"type": "real", "dimension":"NA"},
+                "pass": {"type": "string"},
+                "wrap_id": {"type": "link"},
+                "record_flag": {"type": "int"}
+            },
+            "fields": ["station", "data_good", "data_stop", "#media_position", "#pass", "#wrap_id", "#record_flag"]
+        },
+        "fourfit_reftime": {"type": "epoch"}
+    },
+    "fields":
+    [
+        "start",
+        "mode",
+        "source",
+        "station",
+        "fourfit_reftime"
+    ]
+}

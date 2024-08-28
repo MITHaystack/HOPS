@@ -56,10 +56,10 @@ if(GS_EXE)
     set (GS_VER_ARG "--version")
     message(STATUS "Executing command: ${GS_EXE} ${GS_VER_ARG}")
     execute_process(COMMAND ${GS_EXE} ${GS_VER_ARG} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} RESULT_VARIABLE GS_RESULT OUTPUT_VARIABLE GS_VERSION_STRING)
+    string(STRIP "${GS_VERSION_STRING}" GS_VERSION_STRING)
     message(STATUS "Ghostscript version[${GS_RESULT}]: ${GS_VERSION_STRING}")
-    # string(REPLACE "." "" GS_VERSION_VALUE ${GS_VERSION_STRING}) #strip out '.' chars
+
     string(REPLACE "\n" "" GS_VERSION_VALUE ${GS_VERSION_STRING}) #strip out any errant newline chars
-    
 
     #default value
     set(GS_VERSION_FLAG "0")
@@ -113,6 +113,10 @@ else()
     endif(HOPS3_DISABLE_WARNINGS)
 endif(HOPS3_USE_CXX)
 
+option(HOPS3_USE_ADHOC_FLAGGING "Toggle adhoc flagging feature in fourfit (enabled by default)." ON)
+
+#locate ps2pdf
+find_package(LATEX COMPONENTS PS2PDF)
 
 #mk4 and vex c-libraries from old HOPS
 add_subdirectory(msg)

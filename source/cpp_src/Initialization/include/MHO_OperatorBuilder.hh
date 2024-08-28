@@ -14,27 +14,36 @@
 namespace hops
 {
 
+/*!
+*@file MHO_OperatorBuilder.hh
+*@class MHO_OperatorBuilder
+*@date Wed May 31 17:11:03 2023 -0400
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
+
 
 class MHO_OperatorBuilder
 {
 
     public:
-        MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox, 
+        MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox,
                             MHO_ContainerStore* cstore = nullptr,
                             MHO_ParameterStore* pstore = nullptr):
             fOperatorToolbox(toolbox),
             fContainerStore(cstore),
             fParameterStore(pstore)
         {};
-            
+
         virtual ~MHO_OperatorBuilder(){}; //delegate memory management to toolbox
-        
+
         virtual void SetToolbox(MHO_OperatorToolbox* toolbox){fOperatorToolbox = toolbox;}
-        virtual void SetParameterStore(MHO_ParameterStore* pstore){fParameterStore = pstore;} 
+        virtual void SetParameterStore(MHO_ParameterStore* pstore){fParameterStore = pstore;}
         virtual void SetContainerStore(MHO_ContainerStore* cstore){fContainerStore = cstore;}
 
         //json config for this operator (parsed from the control file and format directives)
-        virtual void SetFormat(const mho_json& format){fFormat = format;} //operator format 
+        virtual void SetFormat(const mho_json& format){fFormat = format;} //operator format
         virtual void SetConditions(const mho_json& cond){fConditions = cond;} //conditional statements
         virtual void SetAttributes(const mho_json& attr){fAttributes = attr;} //configuration parameters
 
@@ -43,10 +52,35 @@ class MHO_OperatorBuilder
         virtual bool Build() = 0;
 
     protected:
-        
+
         //provided for derived class to validate fAttributes against fFormat and/or fConditions
-        virtual bool IsConfigurationOk(){return true;}
-        
+        //but the default tries to check a few things
+        virtual bool IsConfigurationOk()
+        {
+            TODO_FIXME_MSG("TODO FIXME -- improve checks on operator attributes in IsConfigurationOk)" )
+            bool ok = true;
+            //for compound statements, check that the fields are present
+            if(fFormat["statement_type"] == "operator")
+            {
+                if(fFormat.contains("type") && fFormat["type"].get<std::string>() == "compound")
+                {
+
+                    for(auto it = fFormat["fields"].begin(); it != fFormat["fields"].end(); it++ )
+                    {
+                        if( !fAttributes["value"].contains(*it) )
+                        {
+                            msg_error("initialization", "missing attribute called "<< *it <<
+                                " in parameters of operator: "<< fFormat["name"].get<std::string>() <<", will not build "<< eom );
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return ok;
+
+        }
+
         //constructed operator gets stashed here
         MHO_OperatorToolbox* fOperatorToolbox;
 
@@ -63,4 +97,4 @@ class MHO_OperatorBuilder
 
 }
 
-#endif /* end of include guard: MHO_OperatorBuilder_HH__ */
+#endif /*! end of include guard: MHO_OperatorBuilder_HH__ */

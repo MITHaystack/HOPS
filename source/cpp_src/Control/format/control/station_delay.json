@@ -1,5 +1,6 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
-    "type": "unknown"
+    "name": "station_delay",
+    "statement_type": "parameter",
+    "parameter_type": "station",
+    "type": "real"
 }

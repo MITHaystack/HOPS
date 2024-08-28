@@ -21,10 +21,10 @@ fplot -p fplot-2843-%02d.ps 2843/321-1701_0552+398/*X*
 fplot -p fplot-2843-%02d.ps 2843/321-1701_0552+398/*X*
 
 $verb && echo \
-fourfit -pt -d ps2pdf:ps2pdf-ff-2843-%02d.ps -b AI:S \\ && echo \
+fourfit3 -pt -d ps2pdf:ps2pdf-ff-2843-%02d.ps -b AI:S \\ && echo \
     $DATADIR/2843/321-1701_0552+398/0552+398.oifhak \\ && echo \
     set start -3
-fourfit -pt -d ps2pdf:ps2pdf-ff-2843-%02d.ps -b AI:S \
+fourfit3 -pt -d ps2pdf:ps2pdf-ff-2843-%02d.ps -b AI:S \
     $DATADIR/2843/321-1701_0552+398/0552+398.oifhak \
     set start -3 2>/dev/null 1>&2
 

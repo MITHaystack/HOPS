@@ -1,0 +1,8 @@
+{
+    "name": "length",
+    "type": "double",
+    "source_object": "plot_data",
+    "path": "/IntgTime",
+    "description": "scan length in seconds ",
+    "units": ""
+}

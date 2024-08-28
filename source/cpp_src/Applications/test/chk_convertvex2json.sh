@@ -13,11 +13,11 @@ REF_JSON_FILE="$DATADIR/vt9105.vex.json"
 NEW_JSON_FILE="$DATADIR/tmp.json"
 cd $EXP_DIR
 
-#convert the vex file to a json file 
-echo "Running: ConvertVexToJSON -i $VEX_FILE -o $NEW_JSON_FILE"
-ConvertVexToJSON -i $VEX_FILE -o $NEW_JSON_FILE
+#convert the vex file to a json file
+echo "Running:  vex2json -i $VEX_FILE -o $NEW_JSON_FILE"
+vex2json -i $VEX_FILE -o $NEW_JSON_FILE
 
-#compare the json output to the reference 
+#compare the json output to the reference
 @PY_EXE@ @CMAKE_CURRENT_BINARY_DIR@/compjson.py $REF_JSON_FILE $NEW_JSON_FILE
 EQUIV=$?
 echo "Test value is $EQUIV (same if =0)."

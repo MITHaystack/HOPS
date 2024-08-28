@@ -1,6 +1,8 @@
 #ifndef MHO_MPIInterface_HH__
 #define MHO_MPIInterface_HH__
 
+
+
 #include "mpi.h"
 
 #include <string>
@@ -11,6 +13,14 @@
 
 namespace hops
 {
+
+/*!
+*@file MHO_MPIInterface.hh
+*@class MHO_MPIInterface
+*@date Sat Mar 11 18:35:02 2023 -0500
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
 
 class MHO_MPIInterface
 {
@@ -44,6 +54,9 @@ class MHO_MPIInterface
         //or the program will lock up, treat as a global barrier
         //use to safely print messages from each process without clobbering
         void PrintMessage(std::string msg);
+
+        //broadcast a string message to all processes
+        void BroadcastString(std::string& msg);
 
         //routines to be used by programs which split the processes into two
         //groups bases on even/odd local process rank
@@ -105,4 +118,4 @@ class MHO_MPIInterface
 
 }  //end of namespace hops
 
-#endif /* MHO_MPIInterface_HH__ */
+#endif /*! MHO_MPIInterface_HH__ */

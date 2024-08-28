@@ -13,6 +13,9 @@ MHO_ManualChannelPhaseCorrection::MHO_ManualChannelPhaseCorrection()
     fRemStationMk4IDKey = "remote_station_mk4id";
     fRefStationMk4IDKey = "reference_station_mk4id";
     fChannelLabelKey = "channel_label";
+    fSidebandLabelKey = "net_sideband";
+    fLowerSideband = "L";
+    fUpperSideband = "U";
 
     fStationCode = "";
     fMk4ID = "";
@@ -29,42 +32,60 @@ MHO_ManualChannelPhaseCorrection::~MHO_ManualChannelPhaseCorrection(){};
 bool
 MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
-    std::size_t st_idx = DetermineStationIndex(in);
-    if(st_idx != 0 && st_idx != 1){return false;}
-
-    //loop over pol-products and apply pc-phases to the appropriate pol/channel
-    auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
-    auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
-    std::string chan_label;
-    std::string pp_label;
-    for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
+    //loop over reference (0) and remote (1) stations
+    for(std::size_t st_idx = 0; st_idx < 2; st_idx++)
     {
-        pp_label = pp_ax->at(pp);
-        if( PolMatch(st_idx, pp_label) )
+        if(IsApplicable(st_idx,in))
         {
-            for(auto pcal_it = fPCMap.begin(); pcal_it != fPCMap.end(); pcal_it++)
+            //loop over pol-products and apply pc-phases to the appropriate pol/channel
+            auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
+            auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
+
+            std::string chan_label;
+            std::string pp_label;
+            std::string pc_phase_key;
+            std::string pol_code;
+            for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
             {
-                chan_label = pcal_it->first;
-                double pc_val = pcal_it->second;
-                //TODO, may need to re-work this mapping method if too slow
-                const MHO_IntervalLabel* ilabel = chan_ax->GetFirstIntervalWithKeyValue(fChannelLabelKey, chan_label);
-                if(ilabel != nullptr)
+                pp_label = pp_ax->at(pp);
+                if( PolMatch(st_idx, pp_label) )
                 {
-                    std::size_t ch = ilabel->GetLowerBound();
-                    visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
-                    
-                    //we always conjugate for USB/LSB?, TODO - but not for DSB??
-                    //should the behavior change depending on reference or remote station as is MHO_ManualPolPhaseCorrection???
-                    #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
-                    pc_phasor = std::conj(pc_phasor); 
-                    //retrieve and multiply the appropriate sub view of the visibility array
-                    auto chunk = in->SubView(pp, ch);
-                    chunk *= pc_phasor;
+                    pol_code = std::string(1, pp_label[st_idx] ); //get the polarization for the appropriate station (ref/rem)
+                    if(st_idx == 0){pc_phase_key = "ref_pcphase_";}
+                    if(st_idx == 1){pc_phase_key = "rem_pcphase_";}
+                    pc_phase_key += pol_code;
+                    for(auto pcal_it = fPCMap.begin(); pcal_it != fPCMap.end(); pcal_it++)
+                    {
+                        chan_label = pcal_it->first;
+                        double pc_val = pcal_it->second;
+                        auto idx_list = chan_ax->GetMatchingIndexes(fChannelLabelKey, chan_label);
+                        if(idx_list.size() == 1)
+                        {
+                            std::size_t ch = idx_list[0];
+                            std::string net_sideband = "?";
+                            bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+                            visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
+
+                            //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                            TODO_FIXME_MSG("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
+                            TODO_FIXME_MSG("TODO FIXME X2 - make sure we are not confusing ref/rem with USB/LSB signs.")
+                            if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
+                            if(st_idx == 0){pc_phasor = std::conj(pc_phasor);}
+
+                            //retrieve and multiply the appropriate sub view of the visibility array
+                            auto chunk = in->SubView(pp, ch);
+                            chunk *= pc_phasor;
+
+                            //now attach the manual pcal value to this channel/pol/station
+                            //it would probably be better to stash this information in
+                            //a new data type rather than attaching it as meta data here
+                            chan_ax->InsertIndexLabelKeyValue(ch, pc_phase_key, pc_val*fDegToRad);
+                        }
+                    }
                 }
             }
         }
     }
-
     return true;
 }
 
@@ -77,35 +98,44 @@ MHO_ManualChannelPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, v
 }
 
 
-std::size_t
-MHO_ManualChannelPhaseCorrection::DetermineStationIndex(const visibility_type* in)
+bool 
+MHO_ManualChannelPhaseCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
-    //determine if the p-cal corrections are being applied to the remote or reference station
+    bool apply_correction = false;
     std::string val;
+    std::string mk4id_key;
+    std::string station_key;
+
+    if(st_idx == 0)
+    {
+        mk4id_key = fRefStationMk4IDKey;
+        station_key = fRefStationKey;
+    }
+    else
+    {
+        mk4id_key = fRemStationMk4IDKey;
+        station_key = fRemStationKey;
+    }
 
     if(fMk4ID != "") //selection by mk4 id
     {
-        in->Retrieve(fRemStationMk4IDKey, val);
-        if(fMk4ID == val){return 1;}
-        in->Retrieve(fRefStationMk4IDKey, val);
-        if(fMk4ID == val){return 0;}
+        in->Retrieve(mk4id_key, val);
+        if(fMk4ID == val || fMk4ID == "?"){apply_correction = true;}
     }
 
-    if(fStationCode != "")//seletion by 2-char station code
+    if(fStationCode != "")//selection by 2-char station code
     {
-        in->Retrieve(fRemStationKey, val);
-        if(fStationCode == val){return 1;}
-        in->Retrieve(fRefStationKey, val);
-        if(fStationCode == val){return 0;}
+        in->Retrieve(station_key, val);
+        if(fStationCode == val || fStationCode == "??"){apply_correction = true;}
     }
 
-    msg_warn("calibration", "manual pcal, remote/reference station do not match selection."<< eom );
-    return 2;
+    return apply_correction;
 }
 
 bool
 MHO_ManualChannelPhaseCorrection::PolMatch(std::size_t station_idx, std::string& polprod)
 {
+    if(fPol == "?"){return true;} //wild card allows for the implementation of pc_phases (with no pol-specification)
     make_upper(polprod);
     return (fPol[0] == polprod[station_idx]);
 }

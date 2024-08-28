@@ -1,5 +1,5 @@
 #declare exe name ############################################################
-set(EXENAME "fplot")
+set(EXENAME "fplot3")
 
 #list header files #############################################################
 
@@ -55,6 +55,16 @@ set(INTERNAL_LIBLIST
 #math library
 set(EXTERNAL_LIBLIST m)
 
+
+#specify the ps2pdf converter executable
+if(PS2PDF_CONVERTER)
+    if(HOPS3_USE_CXX)
+        set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DPS2PDF=\\\"${PS2PDF_CONVERTER}\\\" ")
+    else()
+        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPS2PDF=\\\"${PS2PDF_CONVERTER}\\\" ")
+    endif(HOPS3_USE_CXX)
+endif(PS2PDF_CONVERTER)
+
 if(HOPS3_USE_CXX)
     SET_SOURCE_FILES_PROPERTIES(${${EXENAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
 endif(HOPS3_USE_CXX)
@@ -64,3 +74,8 @@ target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})
 
 hops_install_headers (${${EXENAME}_HEADERFILES})
 hops_install_executables(${EXENAME})
+
+#install a symlink as: fplot -> fplot3
+if(NOT HOPS_IS_HOPS4)
+    hops_install_symlink( "${BIN_INSTALL_DIR}/${EXENAME}" "${BIN_INSTALL_DIR}/fplot" )
+endif()

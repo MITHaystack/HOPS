@@ -1,14 +1,6 @@
 #ifndef MHO_ControlTokenProcessor_HH__
 #define MHO_ControlTokenProcessor_HH__
 
-/*
-*@file: MHO_ControlTokenProcessor.hh
-*@class: MHO_ControlTokenProcessor
-*@author: J. Barrett
-*@email: barrettj@mit.edu
-*@date:
-*@brief:
-*/
 
 #include "MHO_Message.hh"
 #include "MHO_JSONHeaderWrapper.hh"
@@ -23,6 +15,14 @@
 namespace hops
 {
 
+/*!
+*@file  MHO_ControlTokenProcessor.hh
+*@class  MHO_ControlTokenProcessor
+*@author  J. Barrett - barrettj@mit.edu
+*@date Mon Jun 13 22:27:21 2022 -0400
+*@brief
+*/
+
 class MHO_ControlTokenProcessor
 {
     public:
@@ -34,17 +34,19 @@ class MHO_ControlTokenProcessor
         mho_json ProcessReal(const MHO_Token& token);
         mho_json ProcessListInt(const std::vector< MHO_Token >& tokens);
         mho_json ProcessListString(const std::vector< MHO_Token >& tokens);
+        mho_json ProcessFixedLengthListString(const std::vector< MHO_Token >& tokens);
         mho_json ProcessListReal(const std::vector< MHO_Token >& tokens);
+        mho_json ProcessBool(const MHO_Token& token);
 
     private:
 
-
         bool ConvertFloat(const MHO_Token& token, double& val);
         bool ConvertInteger(const MHO_Token& token, int& val);
+        bool ConvertBool(const MHO_Token& token, bool& val);
 
 
 };
 
 }
 
-#endif /* end of include guard: MHO_ControlTokenProcessor */
+#endif /*! end of include guard: MHO_ControlTokenProcessor */

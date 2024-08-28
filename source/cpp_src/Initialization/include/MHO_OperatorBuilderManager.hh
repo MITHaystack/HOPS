@@ -11,12 +11,20 @@
 
 namespace hops
 {
-    
+
+/*!
+*@file MHO_OperatorBuilderManager.hh
+*@class MHO_OperatorBuilderManager
+*@date Thu Jun 8 17:05:29 2023 -0400
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 class MHO_OperatorBuilderManager
 {
     public:
-        
-        MHO_OperatorBuilderManager(MHO_OperatorToolbox* toolbox, 
+
+        MHO_OperatorBuilderManager(MHO_OperatorToolbox* toolbox,
                                    MHO_ContainerStore* cstore,
                                    MHO_ParameterStore* pstore,
                                    mho_json control_format
@@ -26,7 +34,6 @@ class MHO_OperatorBuilderManager
             fParameterStore(pstore)
         {
             fFormat = control_format;
-            CreateBuilders();
         };
 
         virtual ~MHO_OperatorBuilderManager()
@@ -40,44 +47,73 @@ class MHO_OperatorBuilderManager
             fCategoryToBuilderMap.clear();
         }
 
-        //pass in parsed control file elements 
+        //pass in parsed control file elements
         void SetControlStatements(mho_json* statements){fControl = statements;};
+
+        void CreateDefaultBuilders();
 
         void BuildOperatorCategory(const char* cat){std::string scat(cat); BuildOperatorCategory(scat);};
         void BuildOperatorCategory(const std::string& cat);
 
-    private:
-        
-        void CreateBuilders();
-        
+        //void AddBuilderType(const std::string& builder_name, const mho_json& format)
         template<typename XBuilderType>
-        void AddBuilderType(const char* builder_name, const mho_json& format)
+        void AddBuilderType(const std::string& builder_name, const std::string& format_key)
         {
-            std::string bn(builder_name);
-            AddBuilderType<XBuilderType>(bn, format);
+            auto format_it = fFormat.find(format_key);
+            if(format_it != fFormat.end() )
+            {
+                auto it = fNameToBuilderMap.find(builder_name);
+                if(it == fNameToBuilderMap.end() ) //not found, so make one
+                {
+                    auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
+                    builder->SetFormat(fFormat[format_key]);
+
+                    //the builder's operator category comes from the format specification
+                    std::string category = "unknown"; //default's to unknown
+                    if(format_it->contains("operator_category"))
+                    {
+                        category = (*format_it)["operator_category"].get<std::string>();
+                    }
+                    fAllBuilders.push_back(builder);
+                    fNameToBuilderMap.emplace(builder_name, builder);
+                    fCategoryToBuilderMap.emplace(category, builder);
+                }
+            }
+            else
+            {
+                msg_error("initialization", "cannot add builder for operator with format key: " << format_key << eom );
+            }
         };
-        
+
+
+    private:
+
+        void CreateNullFormatBuilders();
+
         template<typename XBuilderType>
-        void AddBuilderType(const std::string& builder_name, const mho_json& format)
+        void AddBuilderTypeWithFormat(const std::string& builder_name, const mho_json& format)
         {
             auto it = fNameToBuilderMap.find(builder_name);
-            if( it == fNameToBuilderMap.end()) //not found, so make one
+            if(it == fNameToBuilderMap.end() ) //not found, so make one
             {
                 auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
                 builder->SetFormat(format);
-                
+
                 //the builder's operator category comes from the format specification
                 std::string category = "unknown"; //default's to unknown
                 if(format.contains("operator_category"))
                 {
-                    category = format["operator_category"].get<std::string>(); 
+                    category = format["operator_category"].get<std::string>();
                 }
                 fAllBuilders.push_back(builder);
                 fNameToBuilderMap.emplace(builder_name, builder);
                 fCategoryToBuilderMap.emplace(category, builder);
             }
         };
-        
+
+
+
+
         //internal data
         mho_json fFormat; //control file statement formats
         mho_json* fControl; //control file statements
@@ -88,11 +124,11 @@ class MHO_OperatorBuilderManager
         //data container and parameter stores
         MHO_ContainerStore* fContainerStore;
         MHO_ParameterStore* fParameterStore;
-        
+
         //container to store all of the builders, for memory management
         std::vector< MHO_OperatorBuilder* > fAllBuilders;
 
-        //name -> builder map for lookup by name 
+        //name -> builder map for lookup by name
         std::map< std::string, MHO_OperatorBuilder* > fNameToBuilderMap;
 
         //operator category -> builder multimap for lookup by category
@@ -103,4 +139,4 @@ class MHO_OperatorBuilderManager
 }
 
 
-#endif /* end of include guard: MHO_OperatorBuilderManager_HH__ */
+#endif /*! end of include guard: MHO_OperatorBuilderManager_HH__ */

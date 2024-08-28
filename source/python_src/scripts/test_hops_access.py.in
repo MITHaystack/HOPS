@@ -1,0 +1,82 @@
+#!@PY_EXE@
+#
+# test executable
+#
+import pyMHO_Containers
+import os
+import sys
+import argparse
+
+import hops_visualization as hv
+
+
+def main():
+
+    parser = argparse.ArgumentParser(
+        prog='test_hops_access.py', \
+        description='''test utility to read a hops4 file''' \
+        )
+
+    parser.add_argument('-s', '--scan-dir', dest='scan_dir', help='the scan directory to be read')
+    args = parser.parse_args()
+
+    #get the scan directory associated with the file
+    scan_dir = os.path.abspath(args.scan_dir)
+
+    print("the scan directory = ", scan_dir)
+
+    scan_store = pyMHO_Containers.MHO_PyScanStoreInterface()
+    scan_store.set_directory(scan_dir)
+    scan_store.initialize()
+
+    if scan_store.is_valid():
+        stations = scan_store.get_station_list()
+        baselines = scan_store.get_baseline_list()
+        fringes = scan_store.get_fringe_list()
+        print("The number of stations = ", len(stations))
+        print("The number of baselines = ", len(baselines))
+        print("The number of fringes = ", len(fringes))
+    else:
+        print("The scan directory is not valid")
+        return 1
+
+
+    #loop over station data here
+    st_data = dict()
+    for st in stations:
+        scan_store.load_station(st)
+        std = scan_store.get_station_data(st)
+        st_data[st] = std
+        if std != None:
+            olist = std.get_object_id_list()
+            print(olist)
+
+    #loop over baseline data here
+    bl_data = dict()
+    for bl in baselines:
+        scan_store.load_baseline(bl)
+        bld = scan_store.get_baseline_data(bl)
+        bl_data[bl] = bld
+        if bld != None:
+            olist = bld.get_object_id_list()
+            print(olist)
+
+    #loop over fringe data here
+    fr_data = dict()
+    for fr in fringes:
+        scan_store.load_fringe(fr)
+        frd = scan_store.get_fringe_data(fr)
+        fr_data[fr] = frd
+        if frd != None:
+            olist = frd.get_object_id_list()
+            print(olist)
+
+
+
+if __name__ == '__main__':
+    main()
+    sys.exit(0)
+
+#
+# eof
+#

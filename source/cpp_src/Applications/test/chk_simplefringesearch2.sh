@@ -10,12 +10,15 @@ RET_VAL=0
 EXP_DIR=$DATADIR
 D2H_EXP_NUM=hops4
 D2M4_EXP_NUM=.
-SCAN_DIR=104-1228
+MK4_SCAN_DIR=104-1228
+SCAN_DIR=104-1228a
 cd $EXP_DIR
 
-echo "Running: SimpleFringeSearch -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./test0.cf -b AS -p RR"
+export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
-time SimpleFringeSearch -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./test0.cf -b AS -p RR | grep max555 | tee ./sfs.out
+echo "Running: fourfit4 -m -2 -c ./test0.cf -b AS -P RR ./${SCAN_DIR}/ "
+
+time fourfit4 -m -2 -c ./test0.cf -b AS -P RR ./${SCAN_DIR}/ | grep max555 | tee ./sfs.out
 
 sfs_mbd=$( cat ./sfs.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
 sfs_sbd=$( cat ./sfs.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
@@ -30,8 +33,8 @@ echo "simple fringe mbd: $sfs_mbd"
 echo "simple fringe sbd: $sfs_sbd"
 echo "simple fringe dr: $sfs_dr"
 
-echo "Running: fourfit -m 1 -t -c ./test0.cf -b AS -P RR ${EXP_DIR}/${SCAN_DIR}"
-time fourfit -m 1 -t -c ./test0.cf -b AS -P RR ${EXP_DIR}/${SCAN_DIR} 2>&1  | grep max555 | tee ./ff.out
+echo "Running: fourfit3 -m 1 -t -c ./test0.cf -b AS -P RR ${EXP_DIR}/${MK4_SCAN_DIR}"
+time fourfit3 -m 1 -t -c ./test0.cf -b AS -P RR ${EXP_DIR}/${MK4_SCAN_DIR} 2>&1  | grep max555 | tee ./ff.out
 
 ff_mbd=$( cat ./ff.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
 ff_sbd=$( cat ./ff.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
@@ -46,6 +49,7 @@ echo "fourfit mbd: $ff_mbd"
 echo "fourfit sbd: $ff_sbd"
 echo "fourfit dr: $ff_dr"
 
+#make this test more sophisticated...relative tolerance is not a great choice
 mbd_delta=$(echo "scale=14; 100.0*(($sfs_mbd - $ff_mbd)/$ff_mbd)" | bc)
 dr_delta=$(echo "scale=14; 100.0*(($sfs_dr - $ff_dr)/$ff_dr)" | bc)
 sbd_delta=$(echo "scale=14; 100.0*(($sfs_sbd - $ff_sbd)/$ff_sbd)" | bc)
@@ -68,7 +72,7 @@ echo "mbd aok is $aok_mbd, $mbd_delta, $low, $high"
 echo "dr aok is $aok_dr, $dr_delta, $low, $high"
 
 RET_VAL=1
-if [ "$aok_mbd" -eq 1 -a "$aok_sbd" -eq 1 -a "$aok_dr" -eq 1 ]; then 
+if [ "$aok_mbd" -eq 1 -a "$aok_sbd" -eq 1 -a "$aok_dr" -eq 1 ]; then
     RET_VAL=0
 fi
 

@@ -1,0 +1,8 @@
+{
+	"name": "quality",
+	"type": "string",
+	"source_object": "parameters",
+	"path": "/fringe/quality_code",
+	"description": "fringe quality code",
+	"units": ""
+}

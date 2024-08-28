@@ -1,0 +1,54 @@
+#!@PY_EXE@
+
+import argparse
+import json
+import sys
+import os
+import math
+
+from hops_io import parse_PDD
+from hops_visualization import make_fourfit_plot
+
+import os, sys
+import numpy as np
+import matplotlib
+#matplotlib.use("Agg", warn=False)
+
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+matplotlib.rcParams.update({'savefig.dpi':300})
+import pylab
+from matplotlib.ticker import FormatStrFormatter
+
+
+def main():
+
+    parser = argparse.ArgumentParser(
+         prog='pddjson2fplot.py', \
+         description='''primitive utility to convert fourfit PDD json file to fringe plot''' \
+         )
+
+    parser.add_argument('input_file', help='the HOPS4 json dump file')
+    parser.add_argument('output_file', help='the name of the output fringe plot file')
+
+    args = parser.parse_args()
+    in_name = os.path.abspath(args.input_file)
+    out_name = os.path.abspath(args.output_file)
+
+    plot_data = {}
+    if ".json" in in_name: #we were handed a json dict file
+        with open(in_name, "r") as json_file:
+            plot_data = json.load(json_file)
+    else:
+        plot_data = parse_PDD(in_name) #assume we are opening a plot_data_dir file
+
+    make_fourfit_plot(plot_data, out_name)
+    
+    return 0
+
+
+
+
+if __name__ == '__main__':          #entry point
+    ret_val = main()
+    sys.exit(ret_val)

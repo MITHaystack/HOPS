@@ -1,19 +1,10 @@
 #ifndef MHO_FFTWTypes_HH__
 #define MHO_FFTWTypes_HH__
 
+
+
 #include <fftw3.h>
 #include <complex>
-
-/*
-*File: MHO_FFTWTypes.hh
-*Class: MHO_FFTWTypes
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-* template declaration of common FFTW3 types (dependent on floating precision)
-* These are necessary to get around partial template specialization in the FFT x-form classes
-*/
 
 //avoids "no-args depending on template parameter error"
 int fftwf_alignment_of(float*) __attribute__((weak));
@@ -22,6 +13,16 @@ int fftwl_alignment_of(long double*) __attribute__((weak));
 
 namespace hops
 {
+
+/*!
+*@file MHO_FFTWTypes.hh
+*@class MHO_FFTWTypes
+*@author J. Barrett - barrettj@mit.edu
+*@date Tue Jun 22 14:53:20 2021 -0400
+*@brief
+* template declaration of common FFTW3 types (dependent on floating precision)
+* These are necessary to get around partial template specialization in the FFT x-form classes
+*/
 
 template< typename XFloatType = void>
 struct MHO_FFTWTypes;
@@ -87,4 +88,4 @@ struct MHO_FFTWTypes<long double>
 
 }
 
-#endif /* end of include guard: MHO_FFTWTypes */
+#endif /*! end of include guard: MHO_FFTWTypes */

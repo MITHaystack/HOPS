@@ -1,12 +1,22 @@
 #ifndef MHO_GaussianWhiteNoiseSignal_HH__
 #define MHO_GaussianWhiteNoiseSignal_HH__
 
+
+
 #include "MHO_SimulatedSignalGenerator.hh"
 
 #include <random>
 
 namespace hops
 {
+
+/*!
+*@file MHO_GaussianWhiteNoiseSignal.hh
+*@class MHO_GaussianWhiteNoiseSignal
+*@date Mon Dec 19 16:33:05 2022 -0500
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
 
 class MHO_GaussianWhiteNoiseSignal: public MHO_SimulatedSignalGenerator
 {
@@ -23,7 +33,7 @@ class MHO_GaussianWhiteNoiseSignal: public MHO_SimulatedSignalGenerator
 
     protected:
 
-        virtual bool GenerateSample(const double& /*sample_time*/, double& sample) const override;
+        virtual bool GenerateSample(const double& /*!sample_time*/, double& sample) const override;
 
         double fMean;
         double fStandardDeviation;
@@ -35,4 +45,4 @@ class MHO_GaussianWhiteNoiseSignal: public MHO_SimulatedSignalGenerator
 
 }
 
-#endif /* end of include guard: MHO_GaussianWhiteNoiseSignal_HH__ */
+#endif /*! end of include guard: MHO_GaussianWhiteNoiseSignal_HH__ */

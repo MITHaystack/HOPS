@@ -1,0 +1,45 @@
+{
+    "block_name": "$TRACKS",
+    "version": "2.0",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "fanout_def":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "subpass_id": {"type": "string"},
+                "chan_id": {"type": "link"},
+                "sign_or_magnitude": {"type": "string"},
+                "headstack_number": {"type": "int"},
+                "first_multiplex_track": {"type": "int"},
+                "second_multiplex_track": {"type": "int"},
+                "third_multiplex_track": {"type": "int"},
+                "fourth_multiplex_track": {"type": "int"}
+            },
+            "fields":
+            [
+                "#subpass_id",
+                "chan_id",
+                "sign_or_magnitude",
+                "headstack_number",
+                "first_multiplex_track",
+                "#second_multiplex_track",
+                "#third_multiplex_track",
+                "#fourth_multiplex_track"
+            ]
+        },
+        "track_frame_format": {"type": "string"},
+        "sample_rate": {"type": "real", "dimension": "time"}
+    },
+    "fields":
+    [
+        "fanout_def",
+        "track_frame_format",
+        "sample_rate"
+    ]
+}

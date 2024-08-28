@@ -1,19 +1,12 @@
 #ifndef MHO_VectorContainer_HH__
 #define MHO_VectorContainer_HH__
 
-/*
-*File: MHO_VectorContainer.hh
-*Class: MHO_VectorContainer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date: 2020-05-15T20:22:00.867Z
-*Description:
-*/
 
 
 #include <string>
 #include <complex>
 
+#include "MHO_Meta.hh"
 #include "MHO_Serializable.hh"
 #include "MHO_Taggable.hh"
 #include "MHO_NDArrayWrapper.hh"
@@ -21,7 +14,15 @@
 namespace hops
 {
 
-class MHO_VectorContainerBase{};  //only needed for dependent template specializations
+/*!
+*@file MHO_VectorContainer.hh
+*@class MHO_VectorContainer
+*@author J. Barrett - barrettj@mit.edu
+*
+*@date Fri Oct 16 11:17:19 2020 -0400
+*@brief
+*/
+
 
 template< typename XValueType >
 class MHO_VectorContainer:
@@ -79,7 +80,7 @@ class MHO_VectorContainer:
             {
                 //copy the array
                 MHO_NDArrayWrapper<XValueType,1>::Copy(rhs);
-                //then copy the tags 
+                //then copy the tags
                 this->CopyTags(rhs);
             }
         }
@@ -100,7 +101,7 @@ class MHO_VectorContainer:
         {
             MHO_ClassVersion vers;
             s >> vers;
-            switch(vers) 
+            switch(vers)
             {
                 case 0:
                     aData.StreamInData_V0(s);
@@ -116,15 +117,15 @@ class MHO_VectorContainer:
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_VectorContainer& aData)
         {
-            switch( aData.GetVersion() ) 
+            switch( aData.GetVersion() )
             {
                 case 0:
                     s << aData.GetVersion();
                     aData.StreamOutData_V0(s);
                 break;
                 default:
-                    msg_error("containers", 
-                        "error, cannot stream out MHO_VectorContainer object with unknown version: " 
+                    msg_error("containers",
+                        "error, cannot stream out MHO_VectorContainer object with unknown version: "
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -156,7 +157,7 @@ class MHO_VectorContainer:
                 s >> data_ptr[i];
             }
         }
-        
+
         virtual MHO_UUID DetermineTypeUUID() const override
         {
             MHO_MD5HashGenerator gen;
@@ -170,10 +171,10 @@ class MHO_VectorContainer:
 };
 
 
-//specialization for string elements 
+//specialization for string elements
 //(NOTE: we need to use 'inline' to satisfy one-definiton rule, otherwise we have to stash this in a .cc file)
 template<>
-inline uint64_t 
+inline uint64_t
 MHO_VectorContainer<std::string>::ComputeSerializedSize() const
 {
     uint64_t total_size = 0;
@@ -218,4 +219,4 @@ using MHO_VectorString = MHO_VectorContainer< std::string >;
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_VectorContainer_HH__ */
+#endif /*! end of include guard: MHO_VectorContainer_HH__ */

@@ -1,0 +1,8 @@
+{
+	"name": "dec_deg",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/vex/scan/source/dec_deg",
+	"description": "",
+	"units": ""
+}

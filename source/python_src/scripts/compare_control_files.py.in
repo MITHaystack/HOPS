@@ -1,0 +1,925 @@
+#!@PY_EXE@
+import matplotlib
+#matplotlib.use('TkAgg')
+import pylab
+
+import matplotlib.pyplot as plt
+import matplotlib.colors as colors
+import matplotlib.cm as cmx
+import matplotlib.gridspec as gridspec
+import matplotlib.dates as mdates
+from matplotlib.legend import Legend
+from matplotlib.dates import DateFormatter, YearLocator, MonthLocator
+from brokenaxes import brokenaxes
+# plt.style.use('ggplot')
+
+SMALL_SIZE = 14
+MEDIUM_SIZE = 17
+BIGGER_SIZE = 26
+
+#plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
+plt.rc('axes', titlesize=MEDIUM_SIZE)     # fontsize of the axes title
+plt.rc('axes', labelsize=MEDIUM_SIZE)    # fontsize of the x and y labels
+plt.rc('xtick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+plt.rc('legend', fontsize=MEDIUM_SIZE)    # legend fontsize
+plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
+
+import pandas as pd
+
+import os
+import sys
+import datetime
+
+import datetime
+import optparse
+import re
+import string
+import sys
+import os
+import math
+import numpy as np
+import shutil
+import tempfile
+import datetime
+from distutils.dir_util import copy_tree
+
+#fix the index positions of (left/x-pol) and (right/y-pol)
+LXH = 0
+RYV = 1
+
+#hops package python libs
+import ffcontrol
+import vpal
+
+MAXFREQ = 64
+
+class date_stamped_station_property(object):
+    def __init__(self):
+        self.station_id = ''
+        self.property_name = ''
+        self.date = datetime.date(1,1,1)
+        self.property_value = 0
+
+class experiment_properties(object):
+    #default values for init
+    def __init__(self):
+        self.correlator = ''
+        self.control_filename = ''
+        self.experiment_index = ''
+        self.experiment_number = 0
+        self.experiment_date = datetime.date(1,1,1)
+        self.reference_station = ''
+        self.remote_stations = ''
+
+class station_properties(object):
+    #default values for init
+    def __init__(self):
+        self.id = '?'
+        self.is_remote = True
+        self.pc_phases_lxh = []
+        self.pc_phases_ryv = []
+        self.phase_offset_lxh = 0
+        self.phase_offset_ryv = 0
+        self.delay_lxh = 0
+        self.delay_ryv = 0
+
+        # self.pc_phases = [[],[]]
+        # self.phase_offset = [0,0]
+        # self.delay = [0,0]
+
+class experiment_station_properties(object):
+    #default values for init
+    def __init__(self):
+        self.experiment_properties = experiment_properties()
+        self.station_properties_list = []
+
+#default is to assume station is remote, if is_remote is False, the reference
+#station values will be used
+def get_pcphases(station, control_filename, polarization, freq_group='X', source=' ', time=0, is_remote=True):
+    bl_string = '??'
+    if is_remote is True:
+        bl_string = '?' + station
+    else:
+        bl_string = station + '?'
+
+    #generate the control block
+    cblock = ffcontrol.get_control_block(control_filename, bl_string, source, freq_group, time)
+
+    #determine pol index
+    pol_index = 0
+    if polarization == 'L' or polarization == 'X' or polarization == 'l' or polarization == 'x' or polarization == LXH:
+        pol_index = LXH
+    elif polarization == 'R' or polarization == 'Y' or polarization == 'r' or polarization == 'y' or polarization == RYV:
+        pol_index = RYV
+
+    #now extract the pc_phases, these are indexed by fourfit channel
+    #however, since there might be gaps we need to read out all of them
+    #and discard null values after the fact
+    pc_phases = []
+    for i in range(0,MAXFREQ):
+        value = 0.0#ffcontrol.NULLFLOAT
+        if is_remote is True:
+            value = round( cblock.pc_phase[i][pol_index].rem, 1)
+        else:
+            value = round( cblock.pc_phase[i][pol_index].ref, 1)
+        pc_phases.append(value)
+
+    return pc_phases
+
+#default is to assume station is remote, if is_remote is False, the reference
+#station values will be used
+def get_phase_offset(station, control_filename, polarization, freq_group='X', source=' ', time=0, is_remote=True):
+    bl_string = '??'
+    if is_remote is True:
+        bl_string = '?' + station
+    else:
+        bl_string = station + '?'
+
+    #generate the control block
+    cblock = ffcontrol.get_control_block(control_filename, bl_string, source, freq_group, time)
+
+    #determine pol index
+    pol_index = 0
+    if polarization == 'L' or polarization == 'X' or polarization == 'l' or polarization == 'x' or polarization == LXH:
+        pol_index = LXH
+    elif polarization == 'R' or polarization == 'Y' or polarization == 'r' or polarization == 'y' or polarization == RYV:
+        pol_index = RYV
+
+    if is_remote is True:
+        return cblock.pc_phase_offset[pol_index].rem
+    else:
+        return cblock.pc_phase_offset[pol_index].ref
+
+
+
+#default is to assume station is remote, if is_remote is False, the reference
+#station values will be used
+def get_delay_offset(station, control_filename, polarization, freq_group='X', source=' ', time=0, is_remote=True):
+    bl_string = '??'
+    if is_remote is True:
+        bl_string = '?' + station
+    else:
+        bl_string = station + '?'
+
+    #generate the control block
+    cblock = ffcontrol.get_control_block(control_filename, bl_string, source, freq_group, time)
+
+    #determine pol index
+    pol_index = 0
+    if polarization == 'L' or polarization == 'X' or polarization == 'l' or polarization == 'x' or polarization == LXH:
+        pol_index = LXH
+    elif polarization == 'R' or polarization == 'Y' or polarization == 'r' or polarization == 'y' or polarization == RYV:
+        pol_index = RYV
+
+    if is_remote is True:
+        if pol_index == LXH:
+            return cblock.pc_delay_l.rem
+        elif pol_index == RYV:
+            return cblock.pc_delay_r.rem
+    else:
+        if pol_index == LXH:
+            return cblock.pc_delay_l.ref
+        elif pol_index == RYV:
+            return cblock.pc_delay_r.ref
+
+    #error
+    return ffcontrol.NULLFLOAT
+
+#this function does not fill the date
+def get_station_properties(station, control_filename, freq_group='X', source=' ', time=0, is_remote=True):
+
+    stprop = station_properties()
+
+    stprop.id = station
+    stprop.is_remote = is_remote
+
+    stprop.pc_phases_lxh = get_pcphases(station, control_filename, LXH, freq_group, source, time, is_remote)
+    stprop.pc_phases_ryv = get_pcphases(station, control_filename, RYV, freq_group, source, time, is_remote)
+
+    stprop.delay_lxh = get_delay_offset(station, control_filename, LXH, freq_group, source, time, is_remote)
+    stprop.delay_ryv = get_delay_offset(station, control_filename, RYV, freq_group, source, time, is_remote)
+
+    stprop.phase_offset_lxh = get_phase_offset(station, control_filename, LXH, freq_group, source, time, is_remote)
+    stprop.phase_offset_ryv = get_phase_offset(station, control_filename, RYV, freq_group, source, time, is_remote)
+
+    return stprop
+
+def get_all_station_properties(reference_station, remote_stations, control_filename, freq_group='X', source=' ', time=0):
+
+    station_properties_list = []
+    stprop = get_station_properties(reference_station, control_filename, freq_group, source, time, is_remote=False)
+    station_properties_list.append(stprop)
+    for x in remote_stations:
+        stprop = get_station_properties(x, control_filename, freq_group, source, time, is_remote=True)
+        station_properties_list.append(stprop)
+
+    return station_properties_list
+
+#doesn't allow for specification of source/time
+def get_station_properties_for_experiments(experiment_property_list, freq_group='X'):
+
+    all_exp_station_properities = []
+    for exp in experiment_property_list:
+        stproplist = get_all_station_properties(exp.reference_station, exp.remote_stations, exp.control_filename, freq_group)
+        exp_stprop = experiment_station_properties()
+        exp_stprop.experiment_properties = exp
+        exp_stprop.station_properties_list = stproplist
+        all_exp_station_properities.append(exp_stprop)
+
+    return all_exp_station_properities
+
+
+################################################################################
+#directory containing experiment control files, and index file
+#base_directory = "/home/barrettj/work/projects/vgos_fourfit_control/production"
+#production_list_filename = "production_list_second_session.csv"
+#production_list_filename = "production_list_ivtw.csv"
+#production_list_filename = "2019_production_list_no_bad_yebes.csv"
+#production_list_filename = "2019_production_list_no_bad_yebes_no_early_Ow.csv"
+#production_list_filename = "2019_production_list.csv"
+#production_list_filename = "all.csv"
+#base_directory = "/home/barrettj/Documents/LatexDocuments/vgos_int_blind_comp/original-control"
+base_directory = "/home/barrettj/work/projects/LatexDocuments/vgos_int_followup/follow_up_control"
+production_list_filename = "cf_summary.csv"
+
+
+def gather_by_common_property(object_list, property_name, property_value):
+    #given a list of objects with proprties, this collects the objects which
+    #share a property value and returns them in a list
+
+    object_collection = []
+    for obj in object_list:
+        if getattr(obj, property_name) == property_value:
+            object_collection.append(obj)
+
+    return object_collection
+
+def plot_station_scalar_property_over_time(experiment_data, stations, property_name, plot_prefix, index=0, scale_factor=1, xtitle="", ytitle="", title=""):
+
+    #now we can plot specific information for each station
+    prop_list = []
+    for exp_prop in experiment_data:
+        for station_prop in exp_prop.station_properties_list:
+            dssp = date_stamped_station_property()
+            dssp.station_id = station_prop.id
+            dssp.date = exp_prop.experiment_properties.experiment_date
+            dssp.property_name = property_name
+            dssp.property_value = getattr(station_prop, property_name)
+            prop_list.append(dssp)
+
+    #now gather by station and sort by time, then plot
+    marker_list=['s','D','x','+','p','d','<','>','^','v','o','*']
+    color_list=['C0', 'C1', 'C2',  'C3', 'C4', 'C5',  'C6',  'C7',   'C8', 'C9']
+    fig, ax = plt.subplots()
+    for n in range(0,len(stations)):
+        st = stations[n]
+        styd_list = gather_by_common_property(prop_list, "station_id", st)
+        #time sort
+        vpal.utility.sort_objects_by_quantity(styd_list, "date", False)
+        #now plot
+        time_stamps = []
+        values = []
+        for x in styd_list:
+            time_stamps.append(mdates.date2num(x.date))
+            if isinstance(x.property_value, list):
+                values.append(x.property_value[index]/scale_factor)
+            else:
+                values.append(x.property_value/scale_factor)
+        print "station ",st , " ", property_name, " = ", str(values)
+        ax.plot_date(time_stamps, values, linestyle='--', marker=marker_list[n], c=color_list[n], alpha=0.85, label=st)
+        #plt.legend(scatterpoints=1)
+        # Shrink current axis by 20%
+        # box = ax.get_position()
+        # ax.set_position([box.x0, box.y0, box.width * 0.75, box.height])
+        # ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),scatterpoints=1)
+        box = ax.get_position()
+        ax.set_position([box.x0, box.y0 + box.height * 0.1, box.width, box.height * 0.9])
+        # ax.legend(loc='right', bbox_to_anchor=(1.1, 0.5), fancybox=True, scatterpoints=1, ncol=5)
+        lgd = ax.legend(loc=2, bbox_to_anchor=(1.01, 1), fancybox=True, scatterpoints=1, borderaxespad=0)
+
+
+        ax.grid(True)
+
+    ax.set_xlabel(xtitle)
+    ax.set_ylabel(ytitle, labelpad=7)
+    plt.title(title, y=1.12)
+
+    fig.autofmt_xdate()
+    fig_name = plot_prefix + stations + ".png"
+    # plt.tight_layout()
+    fig.savefig(fig_name,bbox_extra_artists=(lgd,), bbox_inches='tight')
+
+
+
+def plot_station_scalar_property_deviation_over_time(experiment_data, stations, property_name, plot_prefix, index=0, scale_factor=1, xtitle="", ytitle="", title=""):
+
+    #now we can plot specific information for each station
+    prop_list = []
+    for exp_prop in experiment_data:
+        for station_prop in exp_prop.station_properties_list:
+            dssp = date_stamped_station_property()
+            dssp.station_id = station_prop.id
+            dssp.date = exp_prop.experiment_properties.experiment_date
+            dssp.property_name = property_name
+            dssp.property_value = getattr(station_prop, property_name)
+            prop_list.append(dssp)
+
+    #now gather by station and sort by time, then plot
+    marker_list=['s','D','x','+','p','d','<','>','^','v','o','*']
+    color_list=['C0', 'C1', 'C2',  'C3', 'C4', 'C5',  'C6',  'C7',   'C8', 'C9']
+    fig, ax = plt.subplots()
+    for n in range(0,len(stations)):
+        st = stations[n]
+        styd_list = gather_by_common_property(prop_list, "station_id", st)
+        #time sort
+        vpal.utility.sort_objects_by_quantity(styd_list, "date", False)
+        #now plot
+        time_stamps = []
+        values = []
+        value_diff_from_mean = []
+        for x in styd_list:
+            time_stamps.append(mdates.date2num(x.date))
+            if isinstance(x.property_value, list):
+                values.append(x.property_value[index]/scale_factor)
+            else:
+                values.append(x.property_value/scale_factor)
+        mean_value = np.mean(values)
+        for v in values:
+            value_diff_from_mean.append(v - mean_value)
+        print "station ",st , " ", property_name, " = ", str(values)
+        ax.plot_date(time_stamps, value_diff_from_mean, linestyle='--', marker=marker_list[n], c=color_list[n], alpha=0.85, label=st)
+        #plt.legend(scatterpoints=1)
+        # Shrink current axis by 20%
+        # box = ax.get_position()
+        # ax.set_position([box.x0, box.y0, box.width * 0.75, box.height])
+        # ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),scatterpoints=1)
+        box = ax.get_position()
+        ax.set_position([box.x0, box.y0 + box.height * 0.1, box.width, box.height * 0.9])
+        # ax.legend(loc='right', bbox_to_anchor=(1.1, 0.5), fancybox=True, scatterpoints=1, ncol=5)
+        lgd = ax.legend(loc=2, bbox_to_anchor=(1.01, 1), fancybox=True, scatterpoints=1, borderaxespad=0)
+
+
+        ax.grid(True)
+
+    ax.set_xlabel(xtitle)
+    ax.set_ylabel(ytitle, labelpad=7)
+    plt.title(title, y=1.12)
+
+    fig.autofmt_xdate()
+    fig_name = plot_prefix + stations + ".png"
+    # plt.tight_layout()
+    fig.savefig(fig_name,bbox_extra_artists=(lgd,), bbox_inches='tight')
+
+
+def get_station_property_time_series(experiment_data, station, property_name, index=0, scale_factor=1):
+
+    #now we can plot specific information for each station
+    prop_list = []
+    for exp_prop in experiment_data:
+        for station_prop in exp_prop.station_properties_list:
+            dssp = date_stamped_station_property()
+            dssp.station_id = station_prop.id
+            dssp.date = exp_prop.experiment_properties.experiment_date
+            dssp.property_name = property_name
+            dssp.property_value = getattr(station_prop, property_name)
+            prop_list.append(dssp)
+
+    #now gather by station and sort by time, then plot
+    styd_list = gather_by_common_property(prop_list, "station_id", station)
+    #time sort
+    vpal.utility.sort_objects_by_quantity(styd_list, "date", False)
+    #now plot
+    time_stamps = []
+    values = []
+    for x in styd_list:
+        # time_stamps.append(mdates.date2num(x.date))
+        time_stamps.append( x.date.strftime("%y-%m-%d") )
+        if isinstance(x.property_value, list):
+            values.append(x.property_value[index]/scale_factor)
+        else:
+            values.append(x.property_value/scale_factor)
+
+    ts = pd.Series(values, index=time_stamps)
+    return ts
+
+
+def get_station_pcphases_data_frame(experiment_data, correlator_name, station, chans, polarization, deltas_from_start=False):
+
+    print("chans = ", chans)
+    all_chans = 'abcdefghijklmnopqrstuvwxyzABCDEF'
+    start_index = 0 #all_chans.find(chans)
+
+    property_name = 'pc_phases_'
+
+    if polarization == 'L' or polarization == 'X' or polarization == 'l' or polarization == 'x' or polarization == LXH:
+        property_name += 'lxh'
+    elif polarization == 'R' or polarization == 'Y' or polarization == 'r' or polarization == 'y' or polarization == RYV:
+        property_name += 'ryv'
+
+    prop_list = []
+    for exp_prop in experiment_data:
+        if exp_prop.experiment_properties.correlator == correlator_name:
+            for station_prop in exp_prop.station_properties_list:
+                dssp = date_stamped_station_property()
+                dssp.station_id = station_prop.id
+                dssp.date = exp_prop.experiment_properties.experiment_date
+                dssp.property_name = property_name
+                dssp.property_value = getattr(station_prop, property_name)
+                prop_list.append(dssp)
+
+    #now gather by station and sort by time, then plot
+    station_list = gather_by_common_property(prop_list, "station_id", station)
+
+    #time sort
+    vpal.utility.sort_objects_by_quantity(station_list, "date", False)
+
+    #extract into 2d array
+    pc_phases_list = []
+    date_list = []
+    for x in station_list:
+        arr = x.property_value[start_index:start_index+len(chans)]
+        pc_phases_list.append(arr)
+        date_list.append( x.date )#.strftime("%y-%m-%d") )
+
+    if deltas_from_start is True:
+        for m in range(0, len(pc_phases_list) ):
+            for n in range(0,len(chans)):
+                pc_phases_list[m][n] = pc_phases_list[m][n] - pc_phases_list[0][n]
+
+    df = pd.DataFrame(data=pc_phases_list, columns=list(chans), index=date_list)
+    return df
+
+
+def plot_phases(df, filename, heading=None):
+
+    fig, ax = plt.subplots(figsize=(8, 4))
+
+    min_date = None
+    max_date = None
+    dates = df.index
+    for col_name in df.columns.values:
+
+        # plot the column
+        col = df[col_name]
+        col = col[col.notnull()] # drop NAs
+        ax.plot_date(x=dates, y=col, fmt='o-', label=col_name,
+            tz=None, xdate=True, ydate=False, linewidth=1.5)
+
+        # establish the date range for the data
+        if min_date:
+            min_date = min(min_date, min(dates))
+        else:
+            min_date = min(dates)
+        if max_date:
+            max_date = max(max_date, max(dates))
+        else:
+            max_date = max(dates)
+
+    # give a bit of space at each end of the plot - aesthetics
+    span = max_date - min_date
+    extra = int(span.days * 0.03) * datetime.timedelta(days=1)
+    ax.set_xlim([min_date - extra, max_date + extra])
+
+    # # format the x tick marks
+    # ax.xaxis.set_major_formatter(DateFormatter('%Y'))
+    # ax.xaxis.set_minor_formatter(DateFormatter('\n%b'))
+    # ax.xaxis.set_major_locator(YearLocator())
+    # ax.xaxis.set_minor_locator(MonthLocator(bymonthday=1, interval=1))
+
+    # using MatPlotLib date time locators and formatters doesn't work with new
+    # pandas datetime index
+    ax.xaxis.set_minor_locator(matplotlib.dates.WeekdayLocator(byweekday=(0), interval=2))
+    ax.xaxis.set_minor_formatter(matplotlib.dates.DateFormatter('%d\n%a'))
+    ax.xaxis.grid(True, which="minor")
+    ax.xaxis.grid(False, which="major")
+    ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter('\n\n\n%b%Y'))
+
+    # grid, legend and yLabel
+    ax.grid(True)
+    ax.legend(loc='best', prop={'size':'x-small'})
+    ax.set_ylabel('Applied PC phase adjustment (degrees)')
+
+    # heading
+    if heading:
+        fig.suptitle(heading, fontsize=12)
+    fig.tight_layout(pad=1.5)
+
+
+    # save to file
+    fig.savefig(filename)
+    plt.close()
+
+def plot_chan_properties_by_frequency(chan_pcp_mean, chan_pcp_stddev, station_code, pol_code):
+
+    deg_ticks = [0]*19
+    for i in range(0,19):
+        deg_ticks[i] = -90 + i*10
+
+    #TODO fix this static definition of the channel frequencies in case they change, we need to
+    #get the values from a vex of fringe file
+    chan_freqs=[3.0324, 3.0644, 3.0964, 3.2244, 3.3204, 3.3844, 3.4484, 3.4804, 5.2724, 5.3044, 5.3364, 5.4644, 5.5604, 5.6244, 5.6884, 5.7204, 6.3924, 6.4244, 6.4564, 6.5844, 6.6804, 6.7444, 6.8084, 6.8404, 10.2324, 10.2644, 10.2964, 10.4244, 10.5204, 10.5844, 10.6484, 10.6804]
+    chan_labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F' ]
+    chan_indexes = list(range(0, len(chan_labels) ) )
+
+    freq_buffer = 0.01
+
+    opt_corr_phases = chan_pcp_mean
+    auto_fig = plt.figure(figsize=(14,8))
+    bigax = auto_fig.add_subplot(111)
+    bigax.spines['top'].set_color('none')
+    bigax.spines['bottom'].set_color('none')
+    bigax.spines['left'].set_color('none')
+    bigax.spines['right'].set_color('none')
+    bigax.tick_params(top='off', bottom='off', left='on', right='off')
+    bigax.set_ylabel('Mean Phase Correction (deg)')
+    bigax.set_xlabel('Channel Frequency (GHz)', labelpad=20)
+    plt.title('Mean '+ pol_code + '-pol pc_phase corrections for station (' + station_code + ') by channel', y=1.05 )
+    bigax.set_yticks(deg_ticks)
+    bigax.set_xticks([])
+    bigax.xaxis.set_ticks_position('none')
+    bigax2 = bigax.twiny()
+    bigax2.set_xlim(bigax.get_xlim())
+    bigax2.set_xlabel('Channel Index', labelpad=20)
+    bigax2.set_xticklabels([])
+    bigax2.spines['top'].set_color('none')
+    bigax2.spines['bottom'].set_color('none')
+    bigax2.spines['left'].set_color('none')
+    bigax2.spines['right'].set_color('none')
+
+    # colorVal = scalarMap.to_rgba(opt_corr.snr)
+    for band in [1,2,3,4]:
+        ax = auto_fig.add_subplot(1,4,band)
+        ax.set_xlim(chan_freqs[(band-1)*8]-freq_buffer, chan_freqs[band*8-1]+freq_buffer)
+        ax.set_ylim(-90, 90)
+        ax.tick_params(top='off', bottom='on', left='on', right='off')
+        ax.errorbar(chan_freqs[(band-1)*8:band*8], opt_corr_phases[(band-1)*8:band*8], fmt='ro', yerr=chan_pcp_stddev[(band-1)*8:band*8] )
+        ax.grid(True)
+        ax.set_yticklabels([])
+        ax2 = ax.twiny()
+        ax2.set_xlim(chan_freqs[(band-1)*8]-freq_buffer, chan_freqs[band*8-1]+freq_buffer)
+        ax2.set_xticks(chan_freqs[(band-1)*8:band*8])
+        ax2.set_xticklabels(chan_labels[(band-1)*8:band*8])
+    auto_fig_name = "./mean_phase_" + station_code +"_" + pol_code + ".png"
+    plt.subplots_adjust(left=0.08, bottom=0.1, right=0.9, top=0.88, wspace=0.05, hspace=0.05)
+    auto_fig.savefig(auto_fig_name)
+    plt.close(auto_fig)
+
+
+
+def plot_chan_properties_by_frequency_both_pols(chan_pcp_mean_x, chan_pcp_stddev_x, chan_pcp_mean_y, chan_pcp_stddev_y, station_code):
+
+    for n in range(0,len(chan_pcp_mean_y)):
+        chan_pcp_mean_y[n] = round(chan_pcp_mean_y[n],1)
+
+    for n in range(0,len(chan_pcp_mean_x)):
+        chan_pcp_mean_x[n] = round(chan_pcp_mean_x[n],1)
+
+    print "station = ", station_code
+    print "mean pcp x = ", str(chan_pcp_mean_x)
+    print "mean pcp y = ", str(chan_pcp_mean_y)
+
+    ymin=-60
+    ymax=60
+    n_ticks = 13
+    deg_ticks = [0]*n_ticks
+    for i in range(0,n_ticks):
+        deg_ticks[i] = ymin + i*(ymax-ymin)/(n_ticks-1)
+
+    #TODO fix this static definition of the channel frequencies in case they change, we need to
+    #get the values from a vex of fringe file
+    chan_freqs=[3.0324, 3.0644, 3.0964, 3.2244, 3.3204, 3.3844, 3.4484, 3.4804, 5.2724, 5.3044, 5.3364, 5.4644, 5.5604, 5.6244, 5.6884, 5.7204, 6.3924, 6.4244, 6.4564, 6.5844, 6.6804, 6.7444, 6.8084, 6.8404, 10.2324, 10.2644, 10.2964, 10.4244, 10.5204, 10.5844, 10.6484, 10.6804]
+    chan_labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F' ]
+    chan_indexes = list(range(0, len(chan_labels) ) )
+
+    freq_buffer = 0.01
+    freq_bump = 0.0035
+    chan_freqs_offset = []
+    for x in chan_freqs:
+        chan_freqs_offset.append(x+freq_bump)
+
+
+    opt_corr_phases_x = chan_pcp_mean_x
+    opt_corr_phases_y = chan_pcp_mean_y
+    auto_fig = plt.figure(figsize=(14,8))
+    bigax = auto_fig.add_subplot(111)
+    bigax.spines['top'].set_color('none')
+    bigax.spines['bottom'].set_color('none')
+    bigax.spines['left'].set_color('none')
+    bigax.spines['right'].set_color('none')
+    bigax.tick_params(top='off', bottom='off', left='on', right='off')
+    bigax.set_ylabel('Mean Phase Correction (deg)')
+    bigax.set_xlabel('Channel Frequency (GHz)', labelpad=20)
+    plt.title('Mean pc_phase corrections for station (' + station_code + ') by channel', y=1.1 )
+    bigax.set_yticks(deg_ticks)
+    bigax.set_xticks([])
+    bigax.xaxis.set_ticks_position('none')
+    bigax2 = bigax.twiny()
+    bigax2.set_xlim(bigax.get_xlim())
+    bigax2.set_xlabel('Channel Index', labelpad=20)
+    bigax2.set_xticklabels([])
+    bigax2.spines['top'].set_color('none')
+    bigax2.spines['bottom'].set_color('none')
+    bigax2.spines['left'].set_color('none')
+    bigax2.spines['right'].set_color('none')
+
+    # colorVal = scalarMap.to_rgba(opt_corr.snr)
+    for band in [1,2,3,4]:
+        ax = auto_fig.add_subplot(1,4,band)
+        ax.set_xlim(chan_freqs[(band-1)*8]-freq_buffer, chan_freqs[band*8-1]+freq_buffer)
+        ax.set_ylim(ymin, ymax)
+        ax.tick_params(top='off', bottom='on', left='on', right='off')
+        ax.errorbar(chan_freqs[(band-1)*8:band*8], opt_corr_phases_x[(band-1)*8:band*8], fmt='-ro', alpha=0.7,  markerfacecolor='none', yerr=chan_pcp_stddev_x[(band-1)*8:band*8] )
+        ax.errorbar(chan_freqs_offset[(band-1)*8:band*8], opt_corr_phases_y[(band-1)*8:band*8], fmt='-bs', alpha=0.7,  markerfacecolor='none', yerr=chan_pcp_stddev_y[(band-1)*8:band*8] )
+        ax.grid(True)
+        ax.set_yticklabels([])
+        ax2 = ax.twiny()
+        ax2.set_xlim(chan_freqs[(band-1)*8]-freq_buffer, chan_freqs[band*8-1]+freq_buffer)
+        ax2.set_xticks(chan_freqs[(band-1)*8:band*8])
+        ax2.set_xticklabels(chan_labels[(band-1)*8:band*8])
+    auto_fig_name = "./mean_phase_" + station_code + ".png"
+    plt.subplots_adjust(left=0.08, bottom=0.1, right=0.9, top=0.88, wspace=0.05, hspace=0.05)
+    auto_fig.savefig(auto_fig_name)
+    plt.close(auto_fig)
+
+
+
+################################################################################
+
+
+def plot_chan_properties_by_frequency_for_corr(chan_pcp_mean, chan_pcp_stddev, station_code, pol_code, corr, auto_fig):
+
+    #TODO fix this static definition of the channel frequencies in case they change, we need to
+    #get the values from a vex of fringe file
+    chan_freqs=[3.0324, 3.0644, 3.0964, 3.2244, 3.3204, 3.3844, 3.4484, 3.4804, 5.2724, 5.3044, 5.3364, 5.4644, 5.5604, 5.6244, 5.6884, 5.7204, 6.3924, 6.4244, 6.4564, 6.5844, 6.6804, 6.7444, 6.8084, 6.8404, 10.2324, 10.2644, 10.2964, 10.4244, 10.5204, 10.5844, 10.6484, 10.6804]
+    chan_labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F' ]
+    chan_indexes = list(range(0, len(chan_labels) ) )
+
+    freq_buffer = 0.01
+    opt_corr_phases = chan_pcp_mean
+
+    # colorVal = scalarMap.to_rgba(opt_corr.snr)
+    for band in [1,2,3,4]:
+        ax = auto_fig.add_subplot(1,4,band)
+        ax.set_xlim(chan_freqs[(band-1)*8]-freq_buffer, chan_freqs[band*8-1]+freq_buffer)
+        ax.set_ylim(-90, 90)
+        ax.tick_params(top='off', bottom='on', left='on', right='off')
+        ax.errorbar(chan_freqs[(band-1)*8:band*8], opt_corr_phases[(band-1)*8:band*8], fmt='ro', yerr=chan_pcp_stddev[(band-1)*8:band*8] )
+        ax.grid(True)
+        ax.set_yticklabels([])
+        ax2 = ax.twiny()
+        ax2.set_xlim(chan_freqs[(band-1)*8]-freq_buffer, chan_freqs[band*8-1]+freq_buffer)
+        ax2.set_xticks(chan_freqs[(band-1)*8:band*8])
+        ax2.set_xticklabels(chan_labels[(band-1)*8:band*8])
+
+
+
+# def main():
+#
+#     #get meta data from csv file
+#     meta_df = pd.read_csv(os.path.join(base_directory,production_list_filename))
+#
+#     #current set of column headers:
+#     #['Experiment Name', 'Experiment Number', 'Year', 'DOY', 'Production Control File', 'Reference Station', 'Remote Stations']
+#     #column headers (#index starts at 0)
+#     meta_header = list(meta_df.columns.values)
+#
+#     #labels for pols
+#     pol_dict = dict()
+#     pol_dict[LXH] = 'x'
+#     pol_dict[RYV] = 'y'
+#
+#     #column data index starts at 1, the row index is given in column 0
+#     #generate list of experiment meta data
+#     correlator_list = []
+#     exp_prop_list = []
+#     for row in meta_df.itertuples():
+#         correlator = row[1]
+#         exp_name = row[2]
+#         exp_num = row[3]
+#         year = row[4]
+#         doy = row[5]
+#         cf_name = row[6]
+#         cf_path = os.path.join(base_directory, str(correlator), cf_name)
+#         exp_prop = experiment_properties()
+#         exp_prop.correlator = correlator
+#         correlator_list.append(correlator)
+#         exp_prop.control_filename = cf_path
+#         exp_prop.experiment_number = exp_num
+#         exp_prop.experiment_index = exp_name
+#         exp_prop.reference_station = row[7]
+#         exp_prop.remote_stations = row[8]
+#         exp_prop.experiment_date = datetime.date.fromordinal(datetime.date(year,1,1).toordinal() + (doy-1))
+#         exp_prop_list.append(exp_prop)
+#
+#     count = 0;
+#     marker_style_index = dict()
+#     line_style_index = dict()
+#     marker_color = ['k','r','b','g','c','m','y']
+#     line_style = ['-', '--', '-.', ':']
+#     marker_style = ['o', 'x', '+', '*', '^', 'v', 'h']
+#     for k in correlator_list:
+#         marker_style_index[k] = count % len(marker_color)
+#         line_style_index[k] = count % len(line_style)
+#         count += 1
+#
+#     #now retrieve the information we want from the control files
+#     all_exp_station_prop = get_station_properties_for_experiments(exp_prop_list)
+#
+#     #now for each correlator we want to plot the pc_phases of each station-pol in comparison with the others
+#     all_chans = 'abcdefghijklmnopqrstuvwxyzABCDEF'
+#     chan_freqs=[3.0324, 3.0644, 3.0964, 3.2244, 3.3204, 3.3844, 3.4484, 3.4804, 5.2724, 5.3044, 5.3364, 5.4644, 5.5604, 5.6244, 5.6884, 5.7204, 6.3924, 6.4244, 6.4564, 6.5844, 6.6804, 6.7444, 6.8084, 6.8404, 10.2324, 10.2644, 10.2964, 10.4244, 10.5204, 10.5844, 10.6484, 10.6804]
+#     chan_labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F' ]
+#     chan_indexes = list(range(0, len(chan_labels) ) )
+#
+#     pol_names = ["X", "Y"]
+#     stations = 'HV'
+#     corr_pcp_df = dict()
+#     for st in stations:
+#         for n in range(0, len(correlator_list)):
+#             corr = correlator_list[n]
+#             for pol in [LXH, RYV]:
+#                 df = get_station_pcphases_data_frame(all_exp_station_prop, corr, st, all_chans, pol, False)
+#                 key = corr + "-" + st + '-' + pol_dict[pol]
+#                 corr_pcp_df[key] = df
+#                 #print("got pcp for ", corr, st, pol, "key = ", key, df)
+#
+#
+#     deg_ticks = [0]*19
+#     for i in range(0,19):
+#         deg_ticks[i] = -90 + i*10
+#
+#     #plot pc_phases for each station-pol, for every correlator
+#     for st in stations:
+#         for pol in [LXH, RYV]:
+#             auto_fig = plt.figure(figsize=(14,8))
+#             bigax = auto_fig.add_subplot(111)
+#             bigax.spines['top'].set_color('none')
+#             bigax.spines['bottom'].set_color('none')
+#             bigax.spines['left'].set_color('none')
+#             bigax.spines['right'].set_color('none')
+#             bigax.tick_params(top='off', bottom='off', left='on', right='off')
+#             bigax.set_ylabel('Phase Correction (deg)')
+#             bigax.set_xlabel('Channel Frequency (GHz)', labelpad=20)
+#             #plt.title('Mean '+ pol_code + '-pol pc_phase corrections for station (' + station_code + ') by channel', y=1.05 )
+#             bigax.set_yticks(deg_ticks)
+#             bigax.set_xticks([])
+#             bigax.xaxis.set_ticks_position('none')
+#             bigax2 = bigax.twiny()
+#             bigax2.set_xlim(bigax.get_xlim())
+#             bigax2.set_xlabel('Channel Index', labelpad=20)
+#             bigax2.set_xticklabels([])
+#             bigax2.spines['top'].set_color('none')
+#             bigax2.spines['bottom'].set_color('none')
+#             bigax2.spines['left'].set_color('none')
+#             bigax2.spines['right'].set_color('none')
+#             core_plots = []
+#             for n in range(0, len(correlator_list)):
+#                 corr = correlator_list[n]
+#                 mkrs = marker_style[marker_style_index[corr]]
+#                 mkrc = marker_color[marker_style_index[corr]]
+#                 lst = line_style[line_style_index[corr]]
+#                 key = corr + "-" + st + '-' + pol_dict[pol]
+#                 df = corr_pcp_df[key]
+#                 y = [ df[ch][0] for ch in all_chans ]
+#                 y_err = [0]*len(y)
+#                 plot_chan_properties_by_frequency_for_corr(y, y_err, st, pol_dict[pol], corr, auto_fig)
+#                 freq_buffer = 0.01
+#                 for band in [1,2,3,4]:
+#                     ax = auto_fig.add_subplot(1,4,band)
+#                     ax.set_xlim(chan_freqs[(band-1)*8]-freq_buffer, chan_freqs[band*8-1]+freq_buffer)
+#                     ax.set_ylim(-90, 90)
+#                     ax.tick_params(top='off', bottom='on', left='on', right='off')
+#                     core_plots + ax.plot(chan_freqs[(band-1)*8:band*8], y[(band-1)*8:band*8], color=mkrc, marker=mkrs, linewidth=1, linestyle=lst, label=str(key))
+#                     ax.grid(True)
+#                     ax.set_yticklabels([])
+#                     ax2 = ax.twiny()
+#                     ax2.set_xlim(chan_freqs[(band-1)*8]-freq_buffer, chan_freqs[band*8-1]+freq_buffer)
+#                     ax2.set_xticks(chan_freqs[(band-1)*8:band*8])
+#                     ax2.set_xticklabels(chan_labels[(band-1)*8:band*8])
+#             plt.subplots_adjust(left=0.08, bottom=0.1, right=0.9, top=0.88, wspace=0.05, hspace=0.05)
+#             tmp_ax = plt.gca()
+#             leg = Legend(ax, core_plots, correlator_list, loc='lower right', title="correlator")
+#             tmp_ax.add_artist(leg)
+#             plt.show()
+#             #auto_fig.savefig(auto_fig_name)
+#             #plt.close(auto_fig)
+#
+#                 # plot_filename = "./pc_phases_" + st + "_" + band_names[n] + "_" + pol_names[pol] + ".png"
+#                 # plot_title = "Station: " + st + " " + pol_names[pol]+ "-Pol " + band_names[n]
+#                 # plot_phases(df,plot_filename,plot_title)
+#     # plt.grid(True)
+#     #df.plot(grid=True, figsize=(8, 11)); plt.legend(loc='best')
+#     # print df.to_string()
+
+def main():
+
+    #get meta data from csv file
+    meta_df = pd.read_csv(os.path.join(base_directory,production_list_filename))
+
+    #current set of column headers:
+    #['Experiment Name', 'Experiment Number', 'Year', 'DOY', 'Production Control File', 'Reference Station', 'Remote Stations']
+    #column headers (#index starts at 0)
+    meta_header = list(meta_df.columns.values)
+
+    print(meta_df)
+
+    #labels for pols
+    pol_dict = dict()
+    pol_dict[LXH] = 'x'
+    pol_dict[RYV] = 'y'
+
+    #column data index starts at 1, the row index is given in column 0
+    #generate list of experiment meta data
+    correlator_list = []
+    exp_prop_list = []
+    for row in meta_df.itertuples():
+        correlator = row[1]
+        exp_name = row[2]
+        exp_num = row[3]
+        year = row[4]
+        doy = row[5]
+        cf_name = row[6]
+        cf_path = os.path.join(base_directory, str(correlator), cf_name)
+        print(cf_path)
+        exp_prop = experiment_properties()
+        exp_prop.correlator = correlator
+        correlator_list.append(correlator)
+        exp_prop.control_filename = cf_path
+        exp_prop.experiment_number = exp_num
+        exp_prop.experiment_index = exp_name
+        exp_prop.reference_station = row[7]
+        exp_prop.remote_stations = row[8]
+        exp_prop.experiment_date = datetime.date.fromordinal(datetime.date(year,1,1).toordinal() + (doy-1))
+        exp_prop_list.append(exp_prop)
+
+    count = 0;
+    marker_style_index = dict()
+    line_style_index = dict()
+    marker_color = ['k','r','b','g','orange','m','y']
+    line_style = ['-', '--', '-.', ':']
+    marker_style = ['o', 'x', '+', '*', '^', 'v', 'h']
+    marker_size = [5,10,10,5,7,12,6,9]
+    for k in correlator_list:
+        marker_style_index[k] = count % len(marker_color)
+        line_style_index[k] = count % len(line_style)
+        count += 1
+
+    #now retrieve the information we want from the control files
+    all_exp_station_prop = get_station_properties_for_experiments(exp_prop_list)
+
+
+
+    #now for each correlator we want to plot the pc_phases of each station-pol in comparison with the others
+    all_chans = 'abcdefghijklmnopqrstuvwxyzABCDEF'
+    chan_freqs=[3.0324, 3.0644, 3.0964, 3.2244, 3.3204, 3.3844, 3.4484, 3.4804, 5.2724, 5.3044, 5.3364, 5.4644, 5.5604, 5.6244, 5.6884, 5.7204, 6.3924, 6.4244, 6.4564, 6.5844, 6.6804, 6.7444, 6.8084, 6.8404, 10.2324, 10.2644, 10.2964, 10.4244, 10.5204, 10.5844, 10.6484, 10.6804]
+    chan_labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F' ]
+    chan_indexes = list(range(0, len(chan_labels) ) )
+
+    pol_names = ["X", "Y"]
+    stations = 'HV'
+    corr_pcp_df = dict()
+    for st in stations:
+        for n in range(0, len(correlator_list)):
+            corr = correlator_list[n]
+            for pol in [LXH, RYV]:
+                df = get_station_pcphases_data_frame(all_exp_station_prop, corr, st, all_chans, pol, False)
+                key = corr + "-" + st + '-' + pol_dict[pol]
+                corr_pcp_df[key] = df
+                print("got pcp for ", corr, st, pol, "key = ", key, df)
+
+
+    deg_ticks = [0]*19
+    for i in range(0,19):
+        deg_ticks[i] = -90 + i*10
+
+    #plot pc_phases for each station-pol, for every correlator
+    for st in stations:
+        for pol in [LXH, RYV]:
+            auto_fig = plt.figure(figsize=(14,8))
+            bigax = brokenaxes(xlims=((chan_freqs[0], chan_freqs[7]), (chan_freqs[8], chan_freqs[15]), (chan_freqs[16], chan_freqs[23]), (chan_freqs[24], chan_freqs[31])), hspace=.05)
+            bigax.set_ylabel('Phase Correction (deg)')
+            bigax.set_xlabel('Channel Frequency (GHz)', labelpad=20)
+            plt.title('Comparison of '+ pol_names[pol] + '-pol manual pc_phase corrections for station (' + st + ') by channel', y=1.05 )
+            for n in range(0, len(correlator_list)):
+                corr = correlator_list[n]
+                mkrs = marker_style[marker_style_index[corr]]
+                mkrc = marker_color[marker_style_index[corr]]
+                lst = line_style[line_style_index[corr]]
+                mkrsize = marker_size[marker_style_index[corr]]
+                key = corr + "-" + st + '-' + pol_dict[pol]
+                df = corr_pcp_df[key]
+                y = [ df[ch][0] for ch in all_chans ]
+                y_err = [0]*len(y)
+                # plot_chan_properties_by_frequency_for_corr(y, y_err, st, pol_dict[pol], corr, auto_fig)
+                freq_buffer = 0.01
+                bigax.plot(chan_freqs, y, color=mkrc, marker=mkrs, linewidth=1, markersize=mkrsize, linestyle=lst, label=corr)
+            bigax.legend(loc='best')#loc='upper right', title="correlator")
+            plt.show()
+            #auto_fig.savefig(auto_fig_name)
+            #plt.close(auto_fig)
+
+
+
+if __name__ == '__main__':          # official entry point
+    main()

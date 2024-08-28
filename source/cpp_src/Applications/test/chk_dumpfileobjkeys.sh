@@ -15,7 +15,7 @@ SCAN_DIR=105-1800
 TMP_FILE="tmp.txt"
 cd $EXP_DIR
 
-DumpFileObjectKeys -f ./${D2H_EXP_NUM}/${SCAN_DIR}/GE.*.cor > ./${TMP_FILE}
+hops2keys ./${D2H_EXP_NUM}/${SCAN_DIR}/GE.*.cor > ./${TMP_FILE}
 
 #check the the dumped keys contain the class uuid's for visibilities, weights, and tags
 N_VIS=$(grep "a5c26065821b6dc92b06f780f8641d0e" ./${TMP_FILE} | wc -l)
@@ -28,9 +28,9 @@ echo "N tag objects = $N_TAGS"
 
 RET_VAL=1
 if [[ "$N_VIS" == "1" ]] && [[ "$N_WEIGHT" == "1" ]] && [[ "$N_TAGS" == "1" ]];
-then 
+then
     RET_VAL=0
-fi 
+fi
 
 echo "Test value is $RET_VAL (ok if =0)."
 

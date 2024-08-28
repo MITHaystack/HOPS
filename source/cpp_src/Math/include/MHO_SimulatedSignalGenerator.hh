@@ -1,11 +1,19 @@
 #ifndef MHO_SimulatedSignalGenerator_HH__
 #define MHO_SimulatedSignalGenerator_HH__
 
+
 #include <cmath>
 
 namespace hops
 {
 
+/*!
+*@file MHO_SimulatedSignalGenerator.hh
+*@class MHO_SimulatedSignalGenerator
+*@date Mon Dec 19 16:33:05 2022 -0500
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
 
 class MHO_SimulatedSignalGenerator
 {
@@ -37,4 +45,4 @@ class MHO_SimulatedSignalGenerator
 }
 
 
-#endif /* MHO_SimulatedSignalGenerator_H__ */
+#endif /*! MHO_SimulatedSignalGenerator_H__ */

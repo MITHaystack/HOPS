@@ -6,12 +6,6 @@
 #include "MHO_TableContainer.hh"
 #include "MHO_Axis.hh"
 
-#ifdef USE_ROOT
-    #include "TApplication.h"
-    #include "MHO_RootCanvasManager.hh"
-    #include "MHO_RootGraphManager.hh"
-#endif
-
 #include "MHO_BinaryFileStreamer.hh"
 #include "MHO_BinaryFileInterface.hh"
 
@@ -85,15 +79,15 @@ int main(int argc, char** argv)
 
     //now add some labels to the x_axis
     size_t chan_width = 32;
-    for(size_t i=0; i < x_axis_size/chan_width; i++)
-    {
-        MHO_IntervalLabel label;
-        label.SetBounds(i*chan_width, (i+1)*chan_width);
-        std::stringstream ss;
-        ss << "x-chan-" << i;
-        label.Insert(std::string("x-channel"), ss.str() );
-        x_axis->InsertLabel(label);
-    }
+    // for(size_t i=0; i < x_axis_size/chan_width; i++)
+    // {
+    //     MHO_IntervalLabel label;
+    //     label.SetBounds(i*chan_width, (i+1)*chan_width);
+    //     std::stringstream ss;
+    //     ss << "x-chan-" << i;
+    //     label.Insert(std::string("x-channel"), ss.str() );
+    //     x_axis->InsertLabel(label);
+    // }
 
     auto* y_axis = &(std::get<YDIM>(*test));
     size_t y_axis_size = y_axis->GetDimension(0);
@@ -104,15 +98,15 @@ int main(int argc, char** argv)
 
     //now add some labels to the y_axis
     chan_width = 64;
-    for(size_t i=0; i < x_axis_size/chan_width; i++)
-    {
-        MHO_IntervalLabel label;
-        label.SetBounds(i*chan_width, (i+1)*chan_width);
-        std::stringstream ss;
-        ss << "y-chan-" << i;
-        label.Insert(std::string("y-channel"), ss.str() );
-        y_axis->InsertLabel(label);
-    }
+    // for(size_t i=0; i < x_axis_size/chan_width; i++)
+    // {
+    //     MHO_IntervalLabel label;
+    //     label.SetBounds(i*chan_width, (i+1)*chan_width);
+    //     std::stringstream ss;
+    //     ss << "y-chan-" << i;
+    //     label.Insert(std::string("y-channel"), ss.str() );
+    //     y_axis->InsertLabel(label);
+    // }
 
     auto* z_axis = &(std::get<ZDIM>(*test));
     size_t z_axis_size = z_axis->GetDimension(0);
@@ -133,38 +127,38 @@ int main(int argc, char** argv)
     }
 
     //lets find interval associated with some channel names
-    auto labels = x_axis->GetIntervalsWithKeyValue(std::string("x-channel"), std::string("x-chan-5"));
-    size_t xlow;
-    size_t xup;
-    for( auto iter = labels.begin(); iter != labels.end(); iter++)
-    {
-        std::cout<<"bounds for x-chan-5 are: ["<<(*iter)->GetLowerBound()<<", "<<(*iter)->GetUpperBound()<<") "<<std::endl;
-        xlow = (*iter)->GetLowerBound();
-        xup = (*iter)->GetUpperBound();
-    }
+    // auto labels = x_axis->GetIntervalsWithKeyValue(std::string("x-channel"), std::string("x-chan-5"));
+    // size_t xlow;
+    // size_t xup;
+    // for( auto iter = labels.begin(); iter != labels.end(); iter++)
+    // {
+    //     std::cout<<"bounds for x-chan-5 are: ["<<iter->GetLowerBound()<<", "<<iter->GetUpperBound()<<") "<<std::endl;
+    //     xlow = iter->GetLowerBound();
+    //     xup = iter->GetUpperBound();
+    // }
 
-    auto label2 = y_axis->GetFirstIntervalWithKeyValue(std::string("y-channel"), std::string("y-chan-1"));
-    size_t ylow;
-    size_t yup;
-    if(label2 != nullptr)
-    {
-        ylow = label2->GetLowerBound();
-        yup = label2->GetUpperBound();
-        std::cout<<"bounds for y-chan-1 are: ["<<ylow<<", "<<yup<<") "<<std::endl;
-    }
+    // auto label2 = y_axis->GetFirstIntervalWithKeyValue(std::string("y-channel"), std::string("y-chan-1"));
+    // size_t ylow;
+    // size_t yup;
+    // if( label2.IsValid() )
+    // {
+    //     ylow = label2.GetLowerBound();
+    //     yup = label2.GetUpperBound();
+    //     std::cout<<"bounds for y-chan-1 are: ["<<ylow<<", "<<yup<<") "<<std::endl;
+    // }
 
 
     //zero out values which happen to lie inside x-chan-5 and y-chan-3
-    for(size_t i=xlow; i<xup; i++)
-    {
-        for(size_t j=ylow; j<yup; j++)
-        {
-            for(size_t k=0; k<z_axis_size; k++)
-            {
-                (*test)(i,j,k) = 0.0;
-            }
-        }
-    }
+    // for(size_t i=xlow; i<xup; i++)
+    // {
+    //     for(size_t j=ylow; j<yup; j++)
+    //     {
+    //         for(size_t k=0; k<z_axis_size; k++)
+    //         {
+    //             (*test)(i,j,k) = 0.0;
+    //         }
+    //     }
+    // }
 
 
     std::cout<<"Total serializable size of test data = "<<test->GetSerializedSize()<<std::endl;
@@ -177,10 +171,8 @@ int main(int argc, char** argv)
 
     if(status)
     {
-        uint32_t label = 0xFF00FF00;
         std::string shortname = "junk";
-        std::cout<<"A label = "<<label<<std::endl;
-        inter.Write(*test, shortname, label);
+        inter.Write(*test, shortname);
         inter.Close();
     }
     else
@@ -204,41 +196,6 @@ int main(int argc, char** argv)
     {
         std::cout<<" error opening file to read"<<std::endl;
     }
-
-
-    #ifdef USE_ROOT
-
-        std::cout<<"starting root plotting"<<std::endl;
-        //ROOT stuff for plots
-
-        TApplication* App = new TApplication("test",&argc,argv);
-
-        MHO_RootCanvasManager cMan;
-        auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
-        c->Divide(1,3);
-        
-        auto r_slice = test->SliceView(":", ":", 0);
-        auto g_slice = test->SliceView(":", ":", 1);
-        auto b_slice = test->SliceView(":", ":", 2);
-
-        MHO_RootGraphManager gMan;
-        auto gr = gMan.GenerateGraph2D(r_slice, std::get<0>(*test), std::get<1>(*test) );
-        auto gg = gMan.GenerateGraph2D(g_slice, std::get<0>(*test), std::get<1>(*test) );
-        auto gb = gMan.GenerateGraph2D(b_slice, std::get<0>(*test), std::get<1>(*test) );
-
-        c->cd(1);
-        gr->Draw("PCOL");
-        c->Update();
-        c->cd(2);
-        gg->Draw("PCOL");
-        c->Update();
-        c->cd(3);
-        gb->Draw("PCOL");
-        c->Update();
-
-        App->Run();
-
-    #endif
 
     delete test;
     delete test2;

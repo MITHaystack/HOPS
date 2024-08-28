@@ -1,10 +1,20 @@
 #ifndef MHO_NDArrayMath_HH__
 #define MHO_NDArrayMath_HH__
 
+
+
 #include <cmath>
 #include <cstddef>
 
 namespace hops{
+
+/*!
+*@file MHO_NDArrayMath.hh
+*@class MHO_NDArrayMath
+*@date Sun Jan 24 14:53:01 2021 -0500
+*@brief utility functions for multidimensional array access
+*@author J. Barrett - barrettj@mit.edu
+*/
 
 class MHO_NDArrayMath
 {
@@ -221,4 +231,4 @@ struct MHO_NDArrayMath::Divide<numerator, 1>
 
 }//end of namespace
 
-#endif /* MHO_NDArrayMath_HH__ */
+#endif /*! MHO_NDArrayMath_HH__ */

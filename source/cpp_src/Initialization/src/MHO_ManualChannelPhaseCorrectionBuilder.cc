@@ -15,16 +15,19 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
         msg_debug("initialization", "building a manual per-channel phase correction operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
 
-
         std::string op_name = fAttributes["name"].get<std::string>();
         std::string op_category = "calibration";
+
         std::string channel_name_str = fAttributes["value"]["channel_names"].get<std::string>();
         std::vector<double> pc_phases = fAttributes["value"]["pc_phases"].get< std::vector<double> >();
+        //construct channel -> pc_phase map
+        auto chan2pcp = MapChannelQuantities(channel_name_str, pc_phases);
+
+        double priority = fFormat["priority"].get<double>();
 
         std::string pol = ParsePolFromName(op_name);
         std::string mk4id = ExtractStationMk4ID();
-        //construct channel -> pc_phase map
-        auto chan2pcp = MapChannelQuantities(channel_name_str, pc_phases);
+
 
         if( chan2pcp.size() > 0)
         {
@@ -44,6 +47,7 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
             op->SetPolarization(pol);
             op->SetStationMk4ID(mk4id);
             op->SetName(op_name);
+            op->SetPriority(priority);
 
             msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<" pol: "<<pol<<"."<<eom);
 
@@ -63,6 +67,7 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
 std::string
 MHO_ManualChannelPhaseCorrectionBuilder::ParsePolFromName(const std::string& name)
 {
+    if(name == "pc_phases"){return std::string("?");}
     if(name == "pc_phases_x"){return std::string("X");}
     if(name == "pc_phases_y"){return std::string("Y");}
     if(name == "pc_phases_r"){return std::string("R");}

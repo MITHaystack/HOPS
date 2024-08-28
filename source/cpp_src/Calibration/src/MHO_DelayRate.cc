@@ -20,37 +20,42 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
     fInitialized = false;
     if(in1 != nullptr && in2 != nullptr && out != nullptr)
     {
-        bool status = true;
+        bool ok = true;
 
         in1->GetDimensions(fInDims);
 
-        //copy the input data into the workspace
-        fWorkspace.Copy(*in1);
+        // //copy the input data into the workspace
+        out->CopyTags(*in1);
 
-        //borrow this stupid routine from search_windows.c /////////////////////
-        #pragma message("Fix the DRSP size calculation to remove upper limit of 8192.")
-        fDRSPSize = 8192;
-        while ( (fDRSPSize / 4) > fInDims[TIME_AXIS] ) {fDRSPSize /= 2;};
-        msg_debug("calibration", "delay rate search space size = "<< fDRSPSize << eom );
-        ////////////////////////////////////////////////////////////////////////
+        fDRSPSize = CalculateSearchSpaceSize(fInDims[TIME_AXIS]);
+        msg_debug("fringe", "delay rate search space size = "<< fDRSPSize << eom );
 
         std::size_t np = fDRSPSize*4;
-        ConditionallyResizeOutput(&(fInDims[0]), np, &fWorkspace2);
+        ConditionallyResizeOutput(&(fInDims[0]), np, out);
 
-        fPaddedFFTEngine.SetArgs(&fWorkspace, &fWorkspace2);
-        fPaddedFFTEngine.DeselectAllAxes();
-        fPaddedFFTEngine.SelectAxis(TIME_AXIS); //only perform padded fft on frequency (to lag) axis
-        fPaddedFFTEngine.SetForward();//forward DFT
-        fPaddedFFTEngine.SetPaddedSize(np);
-        fPaddedFFTEngine.SetEndPadded();//pretty sure this is the default from delay_rate.c
+        fZeroPadder.SetArgs(in1, out);
+        fZeroPadder.DeselectAllAxes();
+        fZeroPadder.SelectAxis(TIME_AXIS); //only pad on the frequency (to lag) axis
+        fZeroPadder.SetPaddedSize(np);
+        fZeroPadder.SetEndPadded();
+        fZeroPadder.PreserveWorkspace();
+        fZeroPadder.DisableTagCopy();
 
-        status = fPaddedFFTEngine.Initialize();
-        if(!status){msg_error("operators", "Could not initialize padded FFT in MHO_DelayRate." << eom); return false;}
+        fFFTEngine.SetArgs(out);
+        fFFTEngine.DeselectAllAxes();
+        fFFTEngine.SelectAxis(TIME_AXIS); //only perform padded fft on frequency (to lag) axis
+        fFFTEngine.SetForward();//forward DFT
+
+        ok = fZeroPadder.Initialize();
+        if(!ok){msg_error("operators", "Could not initialize zero padder in MHO_DelayRate" << eom); return false;}
+
+        ok = fFFTEngine.Initialize();
+        if(!ok){msg_error("operators", "Could not initialize FFT in MHO_DelayRate" << eom); return false;}
 
         fCyclicRotator.SetOffset(TIME_AXIS, np/2);
-        fCyclicRotator.SetArgs(&fWorkspace2);
-        status = fCyclicRotator.Initialize();
-        if(!status){msg_error("operators", "Could not initialize cyclic rotation in MHO_DelayRate." << eom); return false;}
+        fCyclicRotator.SetArgs(out);
+        ok = fCyclicRotator.Initialize();
+        if(!ok){msg_error("operators", "Could not initialize cyclic rotation in MHO_DelayRate." << eom); return false;}
 
         fInitialized = true;
     }
@@ -68,43 +73,32 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
     if(fInitialized)
     {
-        //apply the data weights to the data in fWorkspace
-        std::size_t pprod = fWorkspace.GetDimension(POLPROD_AXIS);
-        std::size_t nch = fWorkspace.GetDimension(CHANNEL_AXIS);
-        std::size_t nap = fWorkspace.GetDimension(TIME_AXIS);
-        
+        //apply the data weights
+        std::size_t pprod = in1->GetDimension(POLPROD_AXIS);
+        std::size_t nch = in1->GetDimension(CHANNEL_AXIS);
+        std::size_t nap = in1->GetDimension(TIME_AXIS);
         double time_delta = std::get<TIME_AXIS>(*in1)(1) -  std::get<TIME_AXIS>(*in1)(0);
 
-        for(std::size_t pp=0; pp<pprod; pp++)
-        {
-            for(std::size_t ch=0; ch<nch; ch++)
-            {
-                for(std::size_t ap=0; ap<nap; ap++)
-                {
-                    fWorkspace.SliceView(pp, ch, ap, ":") *= (*in2)(pp, ch, ap, 0); //apply the data weights
-                }
-            }
-        }
-
-
-        //std::size_t nap = fInDims[TIME_AXIS];
         out->ZeroArray();
+        bool ok;
 
-        bool ok = fPaddedFFTEngine.Execute();
-        check_step_fatal(ok, "calibration", "fft engine execution." << eom );
+        ok = fZeroPadder.Execute();
+        if(!ok){msg_error("operators", "Could not execute zero padder in MHO_DelayRate" << eom); return false;}
 
+        ApplyDataWeights(in2, out);
+
+        ok = fFFTEngine.Execute();
+        if(!ok){msg_error("operators", "Could not execute FFT in MHO_DelayRate" << eom); return false;}
 
         ok = fCyclicRotator.Execute();
-        check_step_fatal(ok, "calibration", "cyclic rotation execution." << eom );
-        
+        check_step_fatal(ok, "fringe", "cyclic rotation execution." << eom );
 
         //linear interpolation, and conversion from fringe rate to delay rate step
         int sz = 4*fDRSPSize;
-        std::size_t nsbd = fWorkspace2.GetDimension(FREQ_AXIS);
-        out->Copy(fWorkspace2);
-        out->Resize(pprod, nch, fDRSPSize, nsbd);
-        out->ZeroArray();
+        std::size_t nsbd = out->GetDimension(FREQ_AXIS);
 
+        std::vector< sbd_type::value_type > workspace;
+        workspace.resize(fDRSPSize);
         for(std::size_t pp=0; pp<pprod; pp++)
         {
             for(std::size_t ch=0; ch<nch; ch++)
@@ -121,15 +115,16 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
                         int l_int = (int)l_fp;
                         if (l_int < 0){ l_int = 0; }
                         int l_int2 = l_int+1;
-                        //std::cout<<sz<<":"<<l_int<<": "<<l_int2<<std::endl;
                         if (l_int2 > (sz-1)){ l_int2 = sz - 1;}
-                        //std::cout<<sz<<":"<<l_int<<": "<<l_int2<<std::endl;
-                        sbd_type::value_type interp_val = fWorkspace2(pp, ch, l_int, sbd) * (1.0 - l_fp + l_int) + fWorkspace2(pp, ch, l_int2, sbd) * (l_fp - l_int);
-                        (*out)(pp, ch, dr, sbd) = interp_val;
-
+                        //evaluate and copy to temporary vector (TODO determine if this is strictly needed)
+                        sbd_type::value_type interp_val = (*out)(pp, ch, l_int, sbd) * (1.0 - l_fp + l_int) + (*out)(pp, ch, l_int2, sbd) * (l_fp - l_int);
+                        workspace[dr] = interp_val;
                         std::get<TIME_AXIS>(*out)(dr) = ( (double)dr - (double)(fDRSPSize/2) )*(1.0/(time_delta*(double)fDRSPSize) );
-                        //assign the axis value along dr axis
-                        //std::get<TIME_AXIS>(*out)(dr) = std::get<TIME_AXIS>(fWorkspace2)(l_int) * (1.0 - l_fp + l_int) + std::get<TIME_AXIS>(fWorkspace2)(l_int2) * (l_fp - l_int);
+
+                    }
+                    for(std::size_t dr=0; dr<fDRSPSize; dr++)
+                    {
+                        (*out)(pp, ch, dr, sbd) = workspace[dr];
                     }
                 }
             }
@@ -141,7 +136,44 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
     return false;
 };
 
+void
+MHO_DelayRate::ApplyDataWeights(const XArgType2* in2,  XArgType3* out)
+{
+    //apply the data weights to the data
+    std::size_t pprod = out->GetDimension(POLPROD_AXIS);
+    std::size_t nch = out->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = out->GetDimension(TIME_AXIS);
+    std::size_t nsbd = out->GetDimension(FREQ_AXIS);
+    
+    std::size_t wpprod = in2->GetDimension(POLPROD_AXIS);
+    std::size_t wnch = in2->GetDimension(CHANNEL_AXIS);
+    std::size_t wnap = in2->GetDimension(TIME_AXIS);
 
+    // if(pprod != wpprod){std::cout<<pprod<<" != "<<wpprod<<std::endl; std::exit(1);}
+    // if(nch != wnch){std::cout<<nch<<" != "<<wnch<<std::endl;std::exit(1);}
+    // if(nap != wnap){std::cout<<nap<<" != "<<wnap<<std::endl;std::exit(1);}
+
+    //make sure we don't over run the weight array bounds (since out array has been padded)
+    std::size_t nap_range = std::min(nap, wnap); 
+    
+    for(std::size_t pp=0; pp<pprod; pp++)
+    {
+        for(std::size_t ch=0; ch<nch; ch++)
+        {
+            for(std::size_t ap=0; ap<nap_range; ap++)
+            {
+                auto val = (*in2)(pp, ch, ap, 0);
+
+                for(std::size_t sbd=0; sbd<nsbd; sbd++)
+                {
+                    (*out)(pp,ch,ap,sbd) *= val;
+                }
+                //out->SliceView(pp, ch, ap, ":") *= (*in2)(pp, ch, ap, 0); //apply the data weights
+            }
+        }
+    }
+
+}
 
 
 void
@@ -173,6 +205,16 @@ MHO_DelayRate::ConditionallyResizeOutput(const std::size_t* dims,
     if(have_to_resize){ out->Resize( &(out_dim[0]) );}
 }
 
+
+int 
+MHO_DelayRate::CalculateSearchSpaceSize(int input_size)
+{
+    //borrow this stupid routine from search_windows.c /////////////////////
+    TODO_FIXME_MSG("Fix the DRSP size calculation to remove upper limit of 8192.")
+    int drsp_size = 8192;
+    while ( (drsp_size / 4) > input_size ) {drsp_size /= 2;};
+    return drsp_size;
+}
 
 
 }//end of namespace

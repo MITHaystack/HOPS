@@ -1,0 +1,8 @@
+{
+	"name": "ra_hrs",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/vex/scan/source/ra_hrs",
+	"description": "",
+	"units": ""
+}

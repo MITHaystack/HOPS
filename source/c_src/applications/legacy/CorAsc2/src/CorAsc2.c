@@ -62,7 +62,7 @@
 #define flip_float(a)   (flip ? r_float_reverse(a)  : a)
 #define flip_double(a)  (flip ? r_double_reverse(a) : a)
 
-#define MBUFF 100000        /* Length of buff[] */
+#define MBUFF 16777216        /* Length of buff[] */
 #define SYSCLK 32.0e6       /* Hz */
 //#define ERRMSG " ERROR: \007"
 #define ERRMSG " ERROR: "
@@ -487,7 +487,7 @@ int main (int argc, char *argv[])
                     "%s%s set_string_hash = %u at %dB\n",
                     me,DBGMSG,flip_int(t222->setstring_hash),tlast);
             }
-            nbuff = sizeof(struct type_222) + t222_sspad + t222_cfpad - k; 
+            nbuff = sizeof(struct type_222) + t222_sspad + t222_cfpad - k;
             // if (flip_short(t222->padded) && nbuff % 8 > 0)  /* Pad to 8 bytes? */
             //     nbuff += 8 - nbuff % 8; /* Yes */
             countt[24]++;       /* Increment record count */
@@ -1386,7 +1386,7 @@ int main (int argc, char *argv[])
             (void) printf (" set_string_hash = %u \n", flip_int(t222->setstring_hash));
             (void) printf (" control_hash = %u \n", flip_int(t222->control_hash));
             t222_sspad = ( ( flip_int(t222->setstring_length) + 7 ) & ~7) + 8;
-            t222_cfpad = ( ( flip_int(t222->cf_length) + 7 ) & ~7) + 8;            
+            t222_cfpad = ( ( flip_int(t222->cf_length) + 7 ) & ~7) + 8;
             (void) printf (" set_string contents = %s \n", t222->control_contents);
             (void) printf (" control_file contents = %s \n", &(t222->control_contents[t222_sspad]) );
             continue;

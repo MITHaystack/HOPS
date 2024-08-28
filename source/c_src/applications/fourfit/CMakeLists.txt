@@ -7,7 +7,7 @@ find_package (GFORTRAN)
 if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
 
     #declare exe name ############################################################
-    set(EXENAME "fourfit")
+    set(EXENAME "fourfit3")
 
     #list header files #############################################################
 
@@ -120,4 +120,27 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     hops_install_headers (${${EXENAME}_HEADERFILES})
     hops_install_executables(${EXENAME})
 
+    #fourfit is not fourfit4...so install a symlink as: fourfit -> fourfit3
+    if(NOT HOPS_IS_HOPS4)
+        hops_install_symlink( "${BIN_INSTALL_DIR}/${EXENAME}" "${BIN_INSTALL_DIR}/fourfit" )
+    endif()
+
+else()
+    
+    if( NOT PGPLOT_FOUND )
+        message(WARNING "PGPLOT library was not found, will not build and install fourfit3.")
+    endif()
+    
+    if( NOT FFTW_FOUND )
+            message(WARNING "FFTW3 library was not found, will not build and install fourfit3.")
+    endif()
+    
+    if( NOT X11_FOUND )
+            message(WARNING "X11 library was not found, will not build and install fourfit3.")
+    endif()
+    
+    if( NOT GFORTRAN_FOUND )
+            message(WARNING "gfortran compiler/library was not found, will not build and install fourfit3.")
+    endif()
+    
 endif()

@@ -1,26 +1,28 @@
 #ifndef MHO_DataSelectionBuilderBuilder_HH__
 #define MHO_DataSelectionBuilderBuilder_HH__
 
-/*
-*File: MHO_DataSelectionBuilder.hh
-*Class: MHO_DataSelectionBuilder
-*Author:
-*Email:
-*Date:
-*Description:
-*/
 
 #include "MHO_OperatorBuilder.hh"
+
+#include "MHO_Tokenizer.hh"
 
 namespace hops
 {
 
-class MHO_DataSelectionBuilder: 
+/*!
+*@file MHO_DataSelectionBuilder.hh
+*@class MHO_DataSelectionBuilder
+*@author J. Barrett - barrettj@mit.edu
+*@date Fri Jun 9 15:01:13 2023 -0400
+*@brief
+*/
+
+class MHO_DataSelectionBuilder:
     public MHO_OperatorBuilder
 {
     public:
 
-        MHO_DataSelectionBuilder(MHO_OperatorToolbox* toolbox, 
+        MHO_DataSelectionBuilder(MHO_OperatorToolbox* toolbox,
                                  MHO_ContainerStore* cstore = nullptr,
                                  MHO_ParameterStore* pstore = nullptr):
             MHO_OperatorBuilder(toolbox, cstore, pstore)
@@ -32,9 +34,11 @@ class MHO_DataSelectionBuilder:
 
     private:
 
+        MHO_Tokenizer fTokenizer;
+
 };
 
 }//end namespace
 
 
-#endif /* end of include guard: MHO_DataSelectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_DataSelectionBuilderBuilder_HH__ */

@@ -1,25 +1,28 @@
 #ifndef MHO_UUID_HH__
 #define MHO_UUID_HH__
 
-/*
-*File: MHO_UUID.hh
-*Class: MHO_UUID
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-*/
 
-#include <cstdint>
+
 #include <cstdlib>
 #include <string>
 #include <sstream>
 #include <iomanip>
 #include <algorithm>
+
+#include "MHO_Types.hh"
 #include "MHO_Message.hh"
 
 namespace hops
 {
+
+/*!
+*@file MHO_UUID.hh
+*@class MHO_UUID
+*@author J. Barrett - barrettj@mit.edu
+*@date Wed Apr 21 13:40:18 2021 -0400
+*@brief
+*/
+
 
 #define MHO_UUID_LENGTH 16
 
@@ -74,7 +77,7 @@ class MHO_UUID
                                                 &(rhs[MHO_UUID_LENGTH-1]));
         }
 
-        /**
+        /*!*
         * Truncate the UUID byte array to the first (last) 8 bytes and convert into a 64 bit int
         * @return A uint64_t composed of the first or last 8 bytes of the UUID
         */
@@ -87,7 +90,7 @@ class MHO_UUID
         }
 
 
-        /**
+        /*!*
         * Split the UUID byte array into two halves conver to uint64_t and return the sum
         * @return A uint64_t composed of the sum of the two halves of the uuid
         */
@@ -102,7 +105,7 @@ class MHO_UUID
         }
 
 
-        /**
+        /*!*
         * Convert the UUID byte array into a string
         * @return A std::string containing the hexadecimal digits of the UUID.
         */
@@ -121,7 +124,7 @@ class MHO_UUID
         }
 
 
-        /**
+        /*!*
         * Convert a formatted string into a UUID byte array and fill this object
         * @return update the uuid object from std::string containing the hexadecimal digits of the UUID.
         */
@@ -140,10 +143,10 @@ class MHO_UUID
                 }
                 return true;
             }
-            else 
+            else
             {
                 msg_error("utility", "could not convert string to uuid, length of " << uuid_str.size() << " != " <<2*MHO_UUID_LENGTH << " is incorrect" << eom );
-                return false; 
+                return false;
             }
         }
 
@@ -152,7 +155,7 @@ class MHO_UUID
             return MHO_UUID_LENGTH;
         }
 
-        bool is_empty() const 
+        bool is_empty() const
         {
             for(std::size_t i=0; i<MHO_UUID_LENGTH; i++){ if(fBytes[i] != 0){return false;} }
             return true;
@@ -162,7 +165,7 @@ class MHO_UUID
 
     protected:
 
-        typedef union 
+        typedef union
         {
             uint8_t byte_values[MHO_UUID_LENGTH];
             uint64_t uint_values[2];
@@ -196,4 +199,4 @@ template<typename XStream> XStream& operator<<(XStream& s, const MHO_UUID& uuid)
 
 }
 
-#endif /* end of include guard: MHO_UUID */
+#endif /*! end of include guard: MHO_UUID */

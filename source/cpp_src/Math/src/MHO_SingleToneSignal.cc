@@ -1,6 +1,6 @@
 #include "MHO_SingleToneSignal.hh"
 
-#include <iostream> 
+#include <iostream>
 
 namespace hops
 {

@@ -14,6 +14,10 @@ MHO_ManualChannelDelayCorrection::MHO_ManualChannelDelayCorrection()
     fRefStationMk4IDKey = "reference_station_mk4id";
     fChannelLabelKey = "channel_label";
     fBandwidthKey = "bandwidth";
+    
+    fSidebandLabelKey = "net_sideband";
+    fLowerSideband = "L";
+    fUpperSideband = "U";
 
     fStationCode = "";
     fMk4ID = "";
@@ -32,75 +36,91 @@ MHO_ManualChannelDelayCorrection::~MHO_ManualChannelDelayCorrection(){};
 bool
 MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
 {
-    std::size_t st_idx = DetermineStationIndex(in);
-
-    std::cout<<"man delay op, st_idx = "<<st_idx<<" my pol = "<<fPol<<std::endl;
-
-    if(st_idx != 0 && st_idx != 1){return false;}
-
-    //loop over pol-products and apply pc-phases to the appropriate pol/channel
-    auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
-    auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
-    auto freq_ax = &(std::get<FREQ_AXIS>(*in) );
-    
-    std::string chan_label;
-    std::string pp_label;
-    
-    for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
+    //loop over reference (0) and remote (1) stations
+    for(std::size_t st_idx = 0; st_idx < 2; st_idx++)
     {
-        pp_label = pp_ax->at(pp);
-        if( PolMatch(st_idx, pp_label) )
+        if(IsApplicable(st_idx,in))
         {
-            std::cout<<"POL MATCH = "<<pp_label<<" st idx = "<<st_idx<<std::endl;
-            for(auto pcal_it = fPCDelayMap.begin(); pcal_it != fPCDelayMap.end(); pcal_it++)
+
+            //loop over pol-products and apply pc-phases to the appropriate pol/channel
+            auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
+            auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
+            auto freq_ax = &(std::get<FREQ_AXIS>(*in) );
+
+            std::string chan_label;
+            std::string pp_label;
+            std::string bwkey = "bandwidth";
+
+            for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
             {
-                chan_label = pcal_it->first;
-                double delay = pcal_it->second;
-                //TODO, may need to re-work this mapping method if too slow
-                const MHO_IntervalLabel* ilabel = chan_ax->GetFirstIntervalWithKeyValue(fChannelLabelKey, chan_label);
-                if(ilabel != nullptr)
+                pp_label = pp_ax->at(pp);
+                if( PolMatch(st_idx, pp_label) )
                 {
-                    std::size_t ch = ilabel->GetLowerBound();
-                    
-                    //get the channels bandwidth to determine effective sampling period
-                    bool ok = false;
-                    double bandwidth = 0;
-                    double eff_sample_period = 0;
-                    auto other_labels = chan_ax->GetIntervalsWhichIntersect(ch);
-                    for(auto ol_it = other_labels.begin(); ol_it != other_labels.end(); ol_it++)
+                    for(auto pcal_it = fPCDelayMap.begin(); pcal_it != fPCDelayMap.end(); pcal_it++)
                     {
-                        if((*ol_it)->HasKey(fBandwidthKey))
+                        chan_label = pcal_it->first;
+                        double delay = pcal_it->second;
+
+                        auto idx_list = chan_ax->GetMatchingIndexes(fChannelLabelKey, chan_label);
+                        if(idx_list.size() == 1)
                         {
-                            ok = (*ol_it)->Retrieve(std::string("bandwidth"), bandwidth);
-                            if(ok)
+                            std::size_t ch = idx_list[0];
+                            double bandwidth = 0;
+                            bool bw_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, bwkey, bandwidth);
+                            
+                            std::string delay_offset_key;
+                            std::string pol_code = std::string(1, pp_label[st_idx] ); //get the polarization for the appropriate station (ref/rem)
+                            if(st_idx == 0){delay_offset_key = "ref_delayoff_";}
+                            if(st_idx == 1){delay_offset_key = "rem_delayoff_";}
+                            delay_offset_key += pol_code;
+
+                            //now attach the manual delay offset value to this pol/station
+                            //it may be better to stash this information in a new data type 
+                            //rather than attaching it as meta data here...
+                            //also, if multiple delay offsets are applied, this will only capture the last one 
+                            chan_ax->InsertIndexLabelKeyValue(ch, delay_offset_key, delay); //store as ns
+
+                            if( bw_key_present )
                             {
+                                //get the channels bandwidth to determine effective sampling period
+                                bool ok = false;
                                 //calculate effective sampling period for channel assuming Nyquist rate
                                 bandwidth *= fMHzToHz;
-                                eff_sample_period = 1.0/(2.0*bandwidth); 
-                                break;
+                                double eff_sample_period = 1.0/(2.0*bandwidth);
+
+                                //loop over spectral points calculating the phase correction from this delay at each point
+                                std::size_t nsp = freq_ax->GetSize();
+                                for(std::size_t sp=0; sp < nsp; sp++)
+                                {
+                                    double deltaf = freq_ax->at(sp)*fMHzToHz; //-2e-3 * i / (2e6 * param->samp_period * nlags);
+                                    double theta = -2.0*fPi*deltaf*delay*fNanoSecToSecond;
+
+                                    TODO_FIXME_MSG("TODO FIXME -- geodetic phase shift treatment needs implementation (see normfx. line 398)" )
+                                    double phase_shift = -2.0*fPi*(1.0/4.0)*delay*fNanoSecToSecond/eff_sample_period; //where does factor of 1/4 come from (see normfx)
+                                    phase_shift *=  -( (double)(2*nsp) - 2.0) / (double)(2*nsp); //factor of 2 is from the way normfx zero-pads the data
+                                    theta += phase_shift;
+
+                                    visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
+                                    
+                                    // std::string net_sideband = "?";
+                                    // bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+                                    // //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                                    // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
+                                    // if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
+
+                                    //first impl behavior...working for EHT test case, but not checked everywhere
+                                    if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
+
+                                    //retrieve and multiply the appropriate sub view of the visibility array
+                                    auto chunk = in->SliceView(pp, ch, ":", sp); //select this spectral point (for this pol/channel) across all APs
+                                    chunk *= pc_phasor;
+                                }
+                            }
+                            else
+                            {
+                                msg_error("calibration", "channel: "<<chan_label<<" is missing bandwidth tag."<<eom);
                             }
                         }
-                    }
-                    if(!ok){msg_error("calibration", "channel: "<<chan_label<<" is missing bandwidth tag."<<eom);}
-
-                    //loop over spectral points calculating the phase correction from this delay at each point
-                    std::size_t nsp = freq_ax->GetSize(); 
-                    for(std::size_t sp=0; sp < nsp; sp++)
-                    {
-                        double deltaf = freq_ax->at(sp)*fMHzToHz; //-2e-3 * i / (2e6 * param->samp_period * nlags);
-                        double theta = -2.0*fPi*deltaf*delay*fNanoSecToSecond;
-                        
-                        #pragma message("TODO FIXME -- geodetic phase shift treatment needs implementation (see normfx. line 398)" )
-                        double phase_shift = -2.0*fPi*(1.0/4.0)*delay*fNanoSecToSecond/eff_sample_period; //where does factor of 1/4 come from (see normfx)
-                        phase_shift *=  -( (double)(2*nsp) - 2.0) / (double)(2*nsp); //factor of 2 is from the way normfx zero-pads the data
-                        theta += phase_shift;
-                        
-                        visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
-                        if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
-                        
-                        //retrieve and multiply the appropriate sub view of the visibility array
-                        auto chunk = in->SliceView(pp, ch, ":", sp); //select this spectral point (for this pol/channel) across all APs
-                        chunk *= pc_phasor;
                     }
                 }
             }
@@ -119,35 +139,44 @@ MHO_ManualChannelDelayCorrection::ExecuteOutOfPlace(const visibility_type* in, v
 }
 
 
-std::size_t
-MHO_ManualChannelDelayCorrection::DetermineStationIndex(const visibility_type* in)
+bool 
+MHO_ManualChannelDelayCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
-    //determine if the p-cal corrections are being applied to the remote or reference station
+    bool apply_correction = false;
     std::string val;
+    std::string mk4id_key;
+    std::string station_key;
+
+    if(st_idx == 0)
+    {
+        mk4id_key = fRefStationMk4IDKey;
+        station_key = fRefStationKey;
+    }
+    else
+    {
+        mk4id_key = fRemStationMk4IDKey;
+        station_key = fRemStationKey;
+    }
 
     if(fMk4ID != "") //selection by mk4 id
     {
-        in->Retrieve(fRemStationMk4IDKey, val);
-        if(fMk4ID == val){return 1;}
-        in->Retrieve(fRefStationMk4IDKey, val);
-        if(fMk4ID == val){return 0;}
+        in->Retrieve(mk4id_key, val);
+        if(fMk4ID == val || fMk4ID == "?"){apply_correction = true;}
     }
 
-    if(fStationCode != "")//seletion by 2-char station code
+    if(fStationCode != "")//selection by 2-char station code
     {
-        in->Retrieve(fRemStationKey, val);
-        if(fStationCode == val){return 1;}
-        in->Retrieve(fRefStationKey, val);
-        if(fStationCode == val){return 0;}
+        in->Retrieve(station_key, val);
+        if(fStationCode == val || fStationCode == "??"){apply_correction = true;}
     }
 
-    msg_warn("calibration", "manual pcal, remote/reference station do not match selection."<< eom );
-    return 2;
+    return apply_correction;
 }
 
 bool
 MHO_ManualChannelDelayCorrection::PolMatch(std::size_t station_idx, std::string& polprod)
 {
+    if(fPol == "?"){return true;} //wild card allows for the implementation of delay_offs (with no pol-specification)
     make_upper(polprod);
     return (fPol[0] == polprod[station_idx]);
 }

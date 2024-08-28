@@ -1,0 +1,8 @@
+{
+	"name": "delay_rate",
+	"type": "double",
+	"source_object": "parameters",
+	"path": "/fringe/drate",
+	"description": "the fringe delay rate",
+	"units": ""
+}

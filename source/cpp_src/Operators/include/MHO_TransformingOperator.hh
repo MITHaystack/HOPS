@@ -1,11 +1,22 @@
 #ifndef MHO_TransformingOperator_HH__
 #define MHO_TransformingOperator_HH__
 
+
+
 #include "MHO_Operator.hh"
 
 #include <tuple>
 
-namespace hops{
+namespace hops
+{
+
+/*!
+*@file MHO_TransformingOperator.hh
+*@class MHO_TransformingOperator
+*@author J. Barrett - barrettj@mit.edu
+*@date Fri Oct 15 12:58:01 2021 -0400
+*@brief
+*/
 
 template<class XArgType1, class XArgType2>
 class MHO_TransformingOperator: public MHO_Operator
@@ -49,4 +60,4 @@ class MHO_TransformingOperator: public MHO_Operator
 
 }//end of namespace
 
-#endif /* __MHO_TransformingOperator_HH__ */
+#endif /*! __MHO_TransformingOperator_HH__ */

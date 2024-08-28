@@ -1,0 +1,39 @@
+{
+    "block_name": "$IF",
+    "version": "1.5",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "if_def":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "if_id": {"type": "link"},
+                "physical_if_id": {"type": "string"},
+                "polarization": {"type": "string"},
+                "effective_LO": {"type": "real", "dimension": "frequency"},
+                "net_sideband": {"type": "string"},
+                "phase_cal_interval": {"type": "real", "dimension": "frequency"},
+                "phase_cal_base": {"type": "real", "dimension": "frequency"}
+            },
+            "fields":
+            [
+                "if_id",
+                "physical_if_id",
+                "polarization",
+                "effective_LO",
+                "net_sideband",
+                "#phase_cal_interval",
+                "#phase_cal_base"
+            ]
+        }
+    },
+    "fields":
+    [
+        "if_def"
+    ]
+}

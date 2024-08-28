@@ -27,8 +27,37 @@
 
 #include "mk4_util.h"
 
+#if HAVE_STRCASECMP
+# define CMP    strncasecmp
+#else /* HAVE_STRCASECMP */
+# define CMP    strncmp
+#endif /* HAVE_STRCASECMP */
+
+/*
+ * synchronize with fourfit -d filename options:
+ * pshardcopy -> -h, hardcopy -> -l, xwindow or psscreen -> -x
+ * diskfile:<name> to -d <name> or ps2pdf:<name> to -p <name> .
+ */
+static void sync_fourfit(int *display, char **file_name)
+{
+    if        (!CMP(*file_name, "pshardcopy", strlen("pshardcopy"))) {
+        *display = HARDCOPY; *file_name = "NotUsedPsHardCopy"; return;
+    } else if (!CMP(*file_name, "hardcopy", strlen("hardcopy"))) {
+        *display = PRINTLPR; *file_name = "NotUsedHardCopy";   return;
+    } else if (!CMP(*file_name, "xwindow", strlen("xwindow"))) {
+        *display = XWINDOW;  *file_name = "NotUsedXwindow";    return;
+    } else if (!CMP(*file_name, "psscreen", strlen("psscreen"))) {
+        *display = GSDEVICE; *file_name = "NotUsedPsScreen";   return;
+    } else if (!CMP(*file_name, "diskfile", strlen("diskfile"))) {
+        *display = DISKFILE, *file_name = *file_name + 9;      return;
+    } else if (!CMP(*file_name, "ps2pdf", strlen("ps2pdf"))) {
+        *display = PSTOPDF,  *file_name = *file_name + 7;      return;
+    } /* else nothing needs to be done */
+}
+
 int
-parse_cmdline (int argc, char** argv, fstruct** files, int* display, char** file_name, int *poln)
+parse_cmdline (int argc, char** argv,
+    fstruct** files, int* display, char** file_name, int *poln)
     {
     int err;
     char c;
@@ -51,6 +80,7 @@ parse_cmdline (int argc, char** argv, fstruct** files, int* display, char** file
                 if (*display != NONE) err = TRUE;
                 else *display = DISKFILE;
                 *file_name = optarg;
+                sync_fourfit(display, file_name);
                 break;
 
             case 'p':

@@ -1,6 +1,8 @@
 #ifndef MHO_ExtremaSearch_HH__
 #define MHO_ExtremaSearch_HH__
 
+
+
 #include <algorithm>
 #include <cstdint>
 #include <limits>
@@ -11,19 +13,17 @@
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_TableContainer.hh"
 
-/*
-*File: MHO_ExtremaSearch.hh
-*Class: MHO_ExtremaSearch
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-
-*/
-
 
 namespace hops
 {
+
+/*!
+*@file MHO_ExtremaSearch.hh
+*@class MHO_ExtremaSearch
+*@author J. Barrett - barrettj@mit.edu
+*@date Thu Jan 5 09:13:09 2023 -0500
+*@brief
+*/
 
 template< class XArgType>
 class MHO_ExtremaSearch:
@@ -42,7 +42,7 @@ class MHO_ExtremaSearch:
 
     protected:
 
-        virtual bool InitializeImpl(const XArgType* /*in*/) override {return true;};
+        virtual bool InitializeImpl(const XArgType* /*!in*/) override {return true;};
         virtual bool ExecuteImpl(const XArgType* in) override { Search(in); return true;}
 
     private:
@@ -51,7 +51,7 @@ class MHO_ExtremaSearch:
         template< typename XCheckType = typename XArgType::value_type >
         typename std::enable_if< std::is_floating_point<XCheckType>::value, void >::type
         Search(const XArgType* in)
-        {   
+        {
             using fp_value_type = typename XArgType::value_type;
             fMaxLocation = 0;
             fMinLocation = 0;
@@ -112,4 +112,4 @@ class MHO_ExtremaSearch:
 
 
 
-#endif /* MHO_ExtremaSearch_H__ */
+#endif /*! MHO_ExtremaSearch_H__ */

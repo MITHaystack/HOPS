@@ -72,7 +72,6 @@ static_assert( std::is_trivially_move_assignable<iso_week::year>{}, "");
 
 static_assert(std::is_trivially_copyable<iso_week::year>{}, "");
 static_assert(std::is_standard_layout<iso_week::year>{}, "");
-static_assert(std::is_literal_type<iso_week::year>{}, "");
 
 static_assert( std::is_nothrow_constructible<iso_week::year, int>{}, "");
 static_assert(!std::is_convertible<int, iso_week::year>{}, "");
@@ -92,6 +91,9 @@ main()
     static_assert(year{2016} > 2015_y, "");
     static_assert(year{2015} <= 2015_y, "");
     static_assert(year{2016} >= 2015_y, "");
+
+    static_assert(year{2015}.is_leap(), "");
+    static_assert(!year{2016}.is_leap(), "");
 
     auto y = year{2014};
     assert(++y == year{2015});

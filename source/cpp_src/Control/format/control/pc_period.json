@@ -1,5 +1,6 @@
 {
     "name": "pc_period",
     "statement_type": "parameter",
+	"parameter_type": "station",
     "type": "int"
 }

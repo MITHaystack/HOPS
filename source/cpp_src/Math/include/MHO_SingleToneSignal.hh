@@ -1,10 +1,20 @@
 #ifndef MHO_SingleToneSignal_HH__
 #define MHO_SingleToneSignal_HH__
 
+
 #include "MHO_SimulatedSignalGenerator.hh"
 
 namespace hops
 {
+
+/*!
+*@file MHO_SingleToneSignal.hh
+*@class MHO_SingleToneSignal
+*@date Mon Dec 19 16:33:05 2022 -0500
+*@brief
+*@author J. Barrett - barrettj@mit.edu
+*/
+
 
 class MHO_SingleToneSignal: public MHO_SimulatedSignalGenerator
 {
@@ -20,7 +30,7 @@ class MHO_SingleToneSignal: public MHO_SimulatedSignalGenerator
 
     protected:
 
-        virtual bool GenerateSample(const double& /*sample_time*/, double& sample) const override;
+        virtual bool GenerateSample(const double& /*!sample_time*/, double& sample) const override;
 
         double fPhaseOffset;
         double fToneFrequency;
@@ -29,4 +39,4 @@ class MHO_SingleToneSignal: public MHO_SimulatedSignalGenerator
 
 }
 
-#endif /* end of include guard: MHO_SingleToneSignal_HH__ */
+#endif /*! end of include guard: MHO_SingleToneSignal_HH__ */

@@ -1,15 +1,7 @@
 #ifndef MHO_ObjectTags_HH__
 #define MHO_ObjectTags_HH__
 
-/*
-*File: MHO_ObjectTags.hh
-*Class: MHO_ObjectTags
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: container for tag/value meta-data to be attached to objects 
-*via association with their UUID
-*/
+
 
 #include <set>
 #include <string>
@@ -22,6 +14,14 @@
 
 namespace hops{
 
+/*!
+*@file MHO_ObjectTags.hh
+*@class MHO_ObjectTags
+*@author J. Barrett - barrettj@mit.edu
+*@date Thu May 13 10:44:24 2021 -0400
+*@brief container for tag/value meta-data to be attached to objects
+*via association with their UUID
+*/
 
 class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 {
@@ -53,7 +53,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         std::size_t GetNObjectUUIDs() const {return fObjectUUIDSet.size();}
 
         //grab all object uuids at once
-        std::vector< MHO_UUID > GetAllObjectUUIDs() const 
+        std::vector< MHO_UUID > GetAllObjectUUIDs() const
         {
             std::vector<MHO_UUID> obj_uuids;
             for(auto it = fObjectUUIDSet.begin(); it != fObjectUUIDSet.end(); it++)
@@ -63,21 +63,9 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             return obj_uuids;
         }
 
-        //get the number of tags present
-        std::size_t GetNTags() const
-        {
-            std::size_t n = 0;
-            n += this->MapSize<char>();
-            n += this->MapSize<bool>();
-            n += this->MapSize<int>();
-            n += this->MapSize<double>();
-            n += this->MapSize<std::string>();
-            return n;
-        }
-
         //check if a tag with the given name is present
         bool IsTagPresent(const std::string& tag_name) const
-        {   
+        {
             return this->HasKey(tag_name);
         }
 
@@ -105,7 +93,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         template<typename XValueType>
         bool GetTagValue(const char* tag_name, XValueType& tag_value)
         {
-            std::string tmp;
+            std::string tmp(tag_name);
             return GetTagValue(tmp, tag_value);
         }
 
@@ -117,59 +105,73 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         }
 
         //get the number of tags present
-        std::string GetTagValueType(const std::string& tag_name) const
-        {
-            //TODO FIXME, what if key is not unique among types?
-            if(this->ContainsKey<char>(tag_name)){return std::string("char");}
-            if(this->ContainsKey<bool>(tag_name)){return std::string("bool");}
-            if(this->ContainsKey<int>(tag_name)){return std::string("int");}
-            if(this->ContainsKey<double>(tag_name)){return std::string("double");}
-            if(this->ContainsKey<std::string>(tag_name)){return std::string("string");}
-            return std::string("");
-        }
-
-        //get the number of tags present
         std::string GetTagValueAsString(const std::string& tag_name) const
         {
             std::stringstream ss;
             //TODO FIXME, what if key is not unique among types?
-            if(this->ContainsKey<char>(tag_name))
+            if(this->ContainsKey(tag_name))
             {
-                char value;
-                this->Retrieve(tag_name,value);
-                ss << value;
-                return ss.str();
-            }
+                {
+                    char value;
+                    bool ok = this->Retrieve(tag_name,value);
+                    if(ok)
+                    {
+                        ss << value;
+                        return ss.str();
+                    }
+                }
 
-            if(this->ContainsKey<bool>(tag_name))
-            {
-                bool value;
-                this->Retrieve(tag_name,value);
-                ss << value;
-                return ss.str();
-            }
-            
-            if(this->ContainsKey<int>(tag_name))
-            {
-                int value;
-                this->Retrieve(tag_name,value);
-                ss << value;
-                return ss.str();
-            }
+                {
+                    bool value;
+                    bool ok = this->Retrieve(tag_name,value);
+                    if(ok)
+                    {
+                        ss << value;
+                        return ss.str();
+                    }
+                }
 
-            if(this->ContainsKey<double>(tag_name))
-            {
-                double value;
-                this->Retrieve(tag_name,value);
-                ss << value;
-                return ss.str();
-            }
 
-            if(this->ContainsKey<std::string>(tag_name))
-            {
-                std::string value;
-                this->Retrieve(tag_name,value);
-                return value;
+                {
+                    int value;
+                    bool ok = this->Retrieve(tag_name,value);
+                    if(ok)
+                    {
+                        ss << value;
+                        return ss.str();
+                    }
+                }
+
+
+                {
+                    double value;
+                    bool ok = this->Retrieve(tag_name,value);
+                    if(ok)
+                    {
+                        ss << value;
+                        return ss.str();
+                    }
+                }
+
+                {
+                    std::string value;
+                    bool ok = this->Retrieve(tag_name,value);
+                    if(ok)
+                    {
+                        return value;
+                    }
+                }
+
+                {
+                    mho_json value;
+                    bool ok = this->Retrieve(tag_name,value);
+                    if(ok)
+                    {
+                        std::stringstream jss;
+                        jss << value;
+                        return jss.str();
+                    }
+                }
             }
 
             //return nothing
@@ -182,26 +184,23 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         void DumpTags(std::vector< std::string >& tag_names) const
         {
             tag_names.clear();
-            std::vector<std::string> keys;
-            keys = this->DumpKeys<char>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
-            keys = this->DumpKeys<bool>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
-            keys = this->DumpKeys<int>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
-            keys = this->DumpKeys<double>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
-            keys = this->DumpKeys<std::string>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
+            tag_names = this->DumpKeys();
         }
+
+        std::set< MHO_UUID > GetTaggedObjectUUIDSet() const {return fObjectUUIDSet;}
 
     protected:
 
-        //all object UUIDs which are associated with the tags 
+        //all object UUIDs which are associated with the tags
         std::set< MHO_UUID > fObjectUUIDSet;
-    
+
     public:
 
         virtual uint64_t GetSerializedSize() const override
         {
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion); //version number
-            total_size += sizeof(uint64_t); //number of uuids 
+            total_size += sizeof(uint64_t); //number of uuids
             total_size += MHO_UUID::ByteSize()*(fObjectUUIDSet.size());
             total_size += MHO_Taggable::GetSerializedSize();
             return total_size;
@@ -212,7 +211,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         {
             MHO_ClassVersion vers;
             s >> vers;
-            switch(vers) 
+            switch(vers)
             {
                 case 0:
                     aData.StreamInData_V0(s);
@@ -227,15 +226,15 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_ObjectTags& aData)
         {
-            switch( aData.GetVersion() ) 
+            switch( aData.GetVersion() )
             {
                 case 0:
                     s << aData.GetVersion();
                     aData.StreamOutData_V0(s);
                 break;
                 default:
-                    msg_error("containers", 
-                        "error, cannot stream out MHO_Taggable object with unknown version: " 
+                    msg_error("containers",
+                        "error, cannot stream out MHO_Taggable object with unknown version: "
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -245,7 +244,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         template<typename XStream> void StreamInData_V0(XStream& s)
         {
-            //then do the number of object uuids 
+            //then do the number of object uuids
             uint64_t n_uuids = 0;
             s >> n_uuids;
             //then do object uuids
@@ -258,10 +257,10 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             //now do the taggable element;
             s >> static_cast< MHO_Taggable& >(*this);
         };
-        
+
         template<typename XStream> void StreamOutData_V0(XStream& s) const
         {
-            //then do the number of object uuids 
+            //then do the number of object uuids
             uint64_t n_uuids = this->fObjectUUIDSet.size();
             s << n_uuids;
             //then do object uuids
@@ -272,7 +271,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             //now do the taggable element;
             s << static_cast< const MHO_Taggable& >(*this);
         };
-        
+
         virtual MHO_UUID DetermineTypeUUID() const override
         {
             MHO_MD5HashGenerator gen;
@@ -288,4 +287,4 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_ObjectTags */
+#endif /*! end of include guard: MHO_ObjectTags */

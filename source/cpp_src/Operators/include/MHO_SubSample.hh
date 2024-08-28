@@ -1,6 +1,8 @@
 #ifndef MHO_SubSample_HH__
 #define MHO_SubSample_HH__
 
+
+
 #include <algorithm>
 #include <cstdint>
 
@@ -10,20 +12,19 @@
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_TableContainer.hh"
 
-/*
-*File: MHO_SubSample.hh
-*Class: MHO_SubSample
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
+namespace hops
+{
+
+/*!
+*@file MHO_SubSample.hh
+*@class MHO_SubSample
+*@author J. Barrett - barrettj@mit.edu
+*@date Tue Aug 24 15:18:04 2021 -0400
+*@brief
 * Sub-samples an array at the specified stride (e.g. select every-other point)
 * Can only be applied to a single-axis at a time.
 */
 
-
-namespace hops
-{
 
 template< class XArrayType>
 class MHO_SubSample:
@@ -67,11 +68,11 @@ class MHO_SubSample:
             bool status = ExecuteOutOfPlace(in, &fWorkspace);
             //"in-place" execution requires a copy from the workspace back to the object we are modifying
             in->Copy(fWorkspace);
-            
+
             // auto workspace_dim = fWorkspace.GetDimensionArray();
             // for(std::size_t i=0; i<workspace_dim.size(); i++){workspace_dim[i] = 0;}
             // fWorkspace.Resize(&(workspace_dim[0]));
-            
+
             return status;
         }
 
@@ -181,7 +182,7 @@ class MHO_SubSample:
         //default...does nothing
         template< typename XCheckType = XArrayType >
         typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        IfTableSubSampleAxis(const XArrayType* /*in*/, XArrayType* /*out*/){};
+        IfTableSubSampleAxis(const XArrayType* /*!in*/, XArrayType* /*!out*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
         template< typename XCheckType = XArrayType >
@@ -214,8 +215,9 @@ class MHO_SubSample:
                     {
                         axis2.Copy(axis1);
                     }
-                    else 
+                    else
                     {
+                        TODO_FIXME_MSG("ensure that only the proper index tags are selected/copied here.")
                         axis2.CopyTags(axis1); //copy the axis tags
                         //at this point axis2 should already be re-sized appropriately
                         auto it1 = axis1.cstride_begin(fStride);
@@ -251,4 +253,4 @@ class MHO_SubSample:
 
 
 
-#endif /* MHO_SubSample_H__ */
+#endif /*! MHO_SubSample_H__ */
