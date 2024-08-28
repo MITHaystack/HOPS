@@ -86,5 +86,8 @@ if( FFTW_FOUND )
 
     hops_install_headers (${${LIBNAME}_HEADERFILES})
     hops_install_libraries (${LIBNAME})
+    legacy_hops_install_headers (${${LIBNAME}_HEADERFILES})
+    legacy_hops_install_libraries (${LIBNAME})
+
 
 endif()

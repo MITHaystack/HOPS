@@ -51,3 +51,5 @@ target_link_libraries (${LIBNAME} ${LIBLIST})
 
 hops_install_headers (${${LIBNAME}_HEADERFILES})
 hops_install_libraries (${LIBNAME})
+legacy_hops_install_headers (${${LIBNAME}_HEADERFILES})
+legacy_hops_install_libraries (${LIBNAME})
