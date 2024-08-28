@@ -18,7 +18,7 @@
 ```
 >make && make install
 >source ../x86_64-4.00/bin/hops.bash
->ls ../x86_64-4.00/bin/hops.bash
+>ls ../x86_64-4.00/bin/
 >TestFile
 ```
 Where "TestFile" is the particular test file. Do not include the extension.
