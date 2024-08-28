@@ -12,11 +12,11 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-    size_t dim[CH_VIS_NDIM];
-    dim[CH_POLPROD_AXIS] = 4;
-    dim[CH_CHANNEL_AXIS] = 8;
-    dim[CH_TIME_AXIS] = 3;
-    dim[CH_FREQ_AXIS] = 3;
+    size_t dim[VIS_NDIM];
+    dim[POLPROD_AXIS] = 4;
+    dim[CHANNEL_AXIS] = 8;
+    dim[TIME_AXIS] = 3;
+    dim[FREQ_AXIS] = 3;
 
     ch_visibility_type vis;
     vis.Resize(dim);

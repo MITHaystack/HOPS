@@ -37,6 +37,7 @@ plot_srchdata (struct srchsummary srchdata[], int square)
     float grid[MAX_NRATE*MAX_NDELAY];
 #endif /* BIGGER */
     struct srchsummary *sb;
+    extern char* fringename(fringesum *fsumm);
 					/* How many baselines are there? */
     nbase = 0;
     while (srchdata[nbase].datum != NULL) nbase++;

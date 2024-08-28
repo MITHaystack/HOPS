@@ -65,12 +65,14 @@ MHO_MK4FringeInterface::ExportFringeFilesToStructs()
         MHO_MultiTypeMap< std::string, int, short, float, double, std::array<double, 4>, std::string> _m;
 
     }
+    //replace with the various MHO_MK4Type2XXXConverter from VP
+    //convert each type_2xx to json, and insert into a single root json object
 }
 
 void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const type_201 &t201, const type_202 &t202, const type_203 &t203, const type_204 &t204,
      const type_205 &t205, const type_206 &t206, const type_207 &t207, const type_208 &t208, const type_210 &t210, const type_212 &t212){
    
-    json jsonDump = {{"type_200", convertToJSON(t200)},
+    mho_json jsonDump = {{"type_200", convertToJSON(t200)},
                     {"type_201", convertToJSON(t201)},
                     {"type_202", convertToJSON(t202)},
                     {"type_203", convertToJSON(t203)},

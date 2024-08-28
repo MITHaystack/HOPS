@@ -1,0 +1,17 @@
+{
+    "name": "chan_ids",
+    "statement_type": "operator",
+    "operator_category" : "labelling",
+    "type" : "compound",
+    "priority": 0.1,
+    "parameters":
+    {
+        "channel_names": {"type": "string"},
+        "channel_frequencies": {"type": "list_real"}
+    },
+    "fields": 
+    [
+        "channel_names", 
+        "channel_frequencies"
+    ]
+}

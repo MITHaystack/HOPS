@@ -117,6 +117,7 @@ struct c_block                     /* Elemental control block structure */
    struct dstats vbp_coeffs[5];    // video bandpass model coeffs (deg)
    char vbp_file[2][256];          // if not null, specifies filename for video bandpass corr.
    int mount_type[2];              // non-zero implies field-rotation-corrections should be made.
+   int mixed_mode_rot;             // iff true, rotate all RY and YR data by 90 degrees (geodesy mixed-mode feature) 
    };
 
           /* Defined values for various structure variables */

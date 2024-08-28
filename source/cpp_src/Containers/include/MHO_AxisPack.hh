@@ -50,6 +50,7 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
             return total_size;
         }
 
+        virtual 
 
         //assignment operator
         MHO_AxisPack& operator=(const MHO_AxisPack& rhs)
@@ -107,9 +108,17 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_AxisPack& aData)
         {
-            s << aData.GetVersion();
-            // ostream_tuple<0, XStream, XAxisTypeS... >(s, static_cast< const std::tuple< XAxisTypeS... >& >(aData) );
-            ostream_tuple(s, aData);
+            switch( aData.GetVersion() ) 
+            {
+                case 0:
+                    s << aData.GetVersion();
+                    aData.StreamOutData_V0(s);
+                break;
+                default:
+                    msg_error("containers", 
+                        "error, cannot stream out MHO_Axis object with unknown version: " 
+                        << aData.GetVersion() << eom );
+            }
             return s;
         }
 
@@ -117,17 +126,39 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
         {
             MHO_ClassVersion vers;
             s >> vers;
-            if( vers != aData.GetVersion() )
+            switch(vers) 
             {
-                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
-                //Flag this as an unknown object version so we can skip over this data
-                MHO_ObjectStreamState<XStream>::SetUnknown(s);
-            }
-            else
-            {
-                istream_tuple(s, aData);
+                case 0:
+                    aData.StreamInData_V0(s);
+                break;
+                default:
+                    MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                    //Flag this as an unknown object version so we can skip over this data
+                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
             }
             return s;
+        }
+
+    private:
+
+        template<typename XStream> void StreamInData_V0(XStream& s)
+        {
+            istream_tuple(s, *this);
+        }
+
+        template<typename XStream> void StreamOutData_V0(XStream& s) const
+        {
+            ostream_tuple(s, *this);
+        }
+
+        virtual MHO_UUID DetermineTypeUUID() const override
+        {
+            MHO_MD5HashGenerator gen;
+            gen.Initialize();
+            std::string name = MHO_ClassIdentity::ClassName(*this);
+            gen << name;
+            gen.Finalize();
+            return gen.GetDigestAsUUID();
         }
 
 };

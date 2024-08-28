@@ -54,13 +54,13 @@ const int NUMBEROFREASONARRAYS = 8;
 //    };
 
 namespace hops {
-json sidebandsToJSON(const sidebands &t) {
+mho_json sidebandsToJSON(const sidebands &t) {
   return {{"lsb", t.lsb}, {"usb", t.usb}};
 }
 
-json sidebandsArrayToJSON(const sidebands t[64]) {
+mho_json sidebandsArrayToJSON(const sidebands t[64]) {
   int i;
-  json JSONsidebandsArray[REASONSARRAYSIZE];
+  mho_json JSONsidebandsArray[REASONSARRAYSIZE];
 
   for (i = 0; i < REASONSARRAYSIZE; i++) {
     JSONsidebandsArray[i] = sidebandsToJSON(t[i]);
@@ -68,13 +68,13 @@ json sidebandsArrayToJSON(const sidebands t[64]) {
   return JSONsidebandsArray;
 }
 
-json sbweightsToJSON(const sbweights &t) {
+mho_json sbweightsToJSON(const sbweights &t) {
   return {{"lsb", t.lsb}, {"usb", t.usb}};
 }
 
-json sbweightsArrayToJSON(const sbweights t[64]) {
+mho_json sbweightsArrayToJSON(const sbweights t[64]) {
   int i;
-  json JSONsidebandsArray[REASONSARRAYSIZE];
+  mho_json JSONsidebandsArray[REASONSARRAYSIZE];
 
   for (i = 0; i < REASONSARRAYSIZE; i++) {
     JSONsidebandsArray[i] = sbweightsToJSON(t[i]);
@@ -82,7 +82,7 @@ json sbweightsArrayToJSON(const sbweights t[64]) {
   return JSONsidebandsArray;
 }
 
-json convertToJSON(const type_206 &t) {
+mho_json convertToJSON(const type_206 &t) {
   return {
       {"record_id", std::string(t.record_id, 3).c_str()},
       {"version_no", std::string(t.version_no, 2).c_str()},

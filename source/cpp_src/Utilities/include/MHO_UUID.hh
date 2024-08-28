@@ -152,6 +152,12 @@ class MHO_UUID
             return MHO_UUID_LENGTH;
         }
 
+        bool is_empty() const 
+        {
+            for(std::size_t i=0; i<MHO_UUID_LENGTH; i++){ if(fBytes[i] != 0){return false;} }
+            return true;
+        }
+
         static uint64_t ByteSize(){return MHO_UUID_LENGTH*sizeof(uint8_t);};
 
     protected:

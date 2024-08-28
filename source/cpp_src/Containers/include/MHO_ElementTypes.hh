@@ -11,28 +11,34 @@
 namespace hops
 {
 
-//global definition of floating point types for use in data containers//////
-//we primarily use double for now...but may want to consider float 
-//(to reduce unecessary memory usage) or perhaps consider a separate float format
-//that can be used for disk-storage, while the double format is used 
-//for in-memory computation...we should look at trade-offs with this
+//global definition of floating point types for use in data containers. ////////
+//for in-memory use we use double precision
+//for storage format (converted from difx) we use single float precision
 
 typedef double VFP_TYPE;
-using visibility_element_type = std::complex<VFP_TYPE>;
-
 typedef double WFP_TYPE;
-using weight_element_type = WFP_TYPE;
-
-typedef double PCAL_TYPE;
-using pcal_phasor_type = std::complex<PCAL_TYPE>;
-
+typedef double PCFP_TYPE;
 typedef double SPLINE_TYPE;
+typedef char FLAG_TYPE;
+
+using visibility_element_type = std::complex<VFP_TYPE>;
+using weight_element_type = WFP_TYPE;
+using pcal_phasor_type = std::complex<PCFP_TYPE>;
+using manual_pcal_element_type = PCFP_TYPE;
 using spline_coeff_type = SPLINE_TYPE;
 
 //definitions of the type used in the flag table, we use char, as for the
 //the most part we only boolean-style flagging (good/bad)
-typedef char FLAG_TYPE;
 using flag_element_type = FLAG_TYPE;
+
+//specific definitions for storage types (e.g. on-disk)
+//since the double based-types take up twice as much space
+typedef float VFP_STORE_TYPE;
+typedef float WFP_STORE_TYPE;
+using visibility_element_store_type = std::complex<VFP_STORE_TYPE>;
+using weight_element_store_type = WFP_STORE_TYPE;
+
+
 
 }//end namespace
 

@@ -154,8 +154,9 @@ struct token_struct
 #define CASSEGRAIN_        123
 #define NASMYTHLEFT_       124
 #define NASMYTHRIGHT_      125
+#define MIXED_MODE_ROT_    126
                                 /* add new tokens at the bottom of the list */
-#define MAX_TOKENS         126  /* increase to equal or exceed # tokens */
+#define MAX_TOKENS         127  /* increase to equal or exceed # tokens */
 
 
         /* Definitions of token categories */

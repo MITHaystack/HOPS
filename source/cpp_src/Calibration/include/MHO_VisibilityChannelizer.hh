@@ -18,7 +18,7 @@
 namespace hops
 {
 
-class MHO_VisibilityChannelizer: public MHO_TransformingOperator< visibility_type, ch_visibility_type>
+class MHO_VisibilityChannelizer: public MHO_TransformingOperator< uch_visibility_store_type, visibility_store_type>
 {
     public:
         MHO_VisibilityChannelizer();
@@ -26,8 +26,8 @@ class MHO_VisibilityChannelizer: public MHO_TransformingOperator< visibility_typ
 
     protected:
 
-        virtual bool InitializeImpl(const visibility_type* in, ch_visibility_type* out);
-        virtual bool ExecuteImpl(const visibility_type* in, ch_visibility_type* out);
+        virtual bool InitializeImpl(const uch_visibility_store_type* in, visibility_store_type* out);
+        virtual bool ExecuteImpl(const uch_visibility_store_type* in, visibility_store_type* out);
 
     private:
 

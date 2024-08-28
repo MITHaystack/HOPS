@@ -6,6 +6,7 @@ set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers pyMHO_Containers py
 set(SOURCE_BASENAMES
     TestPythonContainers
     TestPythonVisibilityAccess
+    TestPybind11JSONInterface
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

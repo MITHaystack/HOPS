@@ -69,7 +69,7 @@ int main(int argc, char **argv) {
   my206.sbdsize = 2;
   strncpy(my206.unused2, "unuse", sizeof(my206.unused2));
 
-  json obj = convertToJSON(my206);
+  mho_json obj = convertToJSON(my206);
   std::cout << obj.dump(2) << std::endl;
 
   return 0;

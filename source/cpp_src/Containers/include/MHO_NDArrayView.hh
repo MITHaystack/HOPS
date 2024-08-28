@@ -48,6 +48,28 @@ class MHO_NDArrayView
         //clone functionality
         MHO_NDArrayView* Clone(){ return new MHO_NDArrayView(*this); }
 
+        //copy functionality, calling array view must have same shape as rhs
+        void Copy(const MHO_NDArrayView& rhs)
+        {
+            //check the sizes are the same
+            bool ok = true;
+            std::size_t j=0;
+            for(j=0; j<RANK; j++){  if(fDims[j] != rhs.fDims[j]){ok = false; break;} }
+            if(ok)
+            {
+                index_type idx; idx.fill(0);
+                for(std::size_t i=0; i<fSize; i++)
+                {
+                    MHO_NDArrayMath::IncrementIndices<RANK>(&(fDims[0]), &(idx[0]));
+                    this->ValueAt(idx) = rhs.ValueAt(idx);
+                }
+            }
+            else
+            {
+                msg_error("containers", "array view copy failed due to mismatched sizes on dimension: "<<j<<"." << eom);
+            }
+        }
+
         //get the total size of the array
         std::size_t GetRank() const {return RANK;}
         std::size_t GetSize() const {return fSize;};
@@ -102,7 +124,7 @@ class MHO_NDArrayView
         {
             if(this != &rhs)
             {
-                Construct(rhs.fDataPtr, &(rhs.fDims[0]), &(rhs.fStrides[0]) ); 
+                Construct(rhs.fDataPtr, &(rhs.fDims[0]), &(rhs.fStrides[0]) );
             }
             return *this;
         }
@@ -117,7 +139,7 @@ class MHO_NDArrayView
 
         //set all elements in the array to zero
         void ZeroArray()
-        { 
+        {
             auto bit = this->begin();
             auto eit = this->end();
             for(auto it = bit; it != eit; ++it){*it = 0; }
@@ -127,6 +149,14 @@ class MHO_NDArrayView
         std::size_t GetOffsetForIndices(const std::size_t* index)
         {
             return MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), index);
+        }
+
+        //linear offset into the array
+        index_type GetIndicesForOffset(std::size_t offset)
+        {
+            index_type index;
+            MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(offset, &(fDims[0]), &(index[0]) );
+            return index;
         }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -176,7 +206,7 @@ class MHO_NDArrayView
             auto it2 = bit2;
             for(std::size_t i=0; i<fSize; i++)
             {
-                (*it1) *= (*it2); 
+                (*it1) *= (*it2);
                 ++it1;
                 ++it2;
             }
@@ -193,7 +223,7 @@ class MHO_NDArrayView
             auto it2 = bit2;
             for(std::size_t i=0; i<fSize; i++)
             {
-                (*it1) += (*it2); 
+                (*it1) += (*it2);
                 ++it1;
                 ++it2;
             }
@@ -210,22 +240,15 @@ class MHO_NDArrayView
             auto it2 = bit2;
             for(std::size_t i=0; i<fSize; i++)
             {
-                (*it1) -= (*it2); 
+                (*it1) -= (*it2);
                 ++it1;
                 ++it2;
             }
             return *this;
         }
 
-    protected:
 
-        XValueType* fDataPtr; //data for an array view is always externally managed
-        index_type fDims; //size of each dimension
-        index_type fStrides; //strides between elements in each dimension
-        uint64_t fSize; //total size of array
-        mutable index_type fTmp; //temp index workspace
-
-        bool CheckIndexValidity(const index_type& idx)
+        bool CheckIndexValidity(const index_type& idx) const
         {
             return MHO_NDArrayMath::CheckIndexValidity<RANK>(&(fDims[0]), &(idx[0]) );
         }
@@ -240,6 +263,13 @@ class MHO_NDArrayView
             return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
         }
 
+    protected:
+
+        XValueType* fDataPtr; //data for an array view is always externally managed
+        index_type fDims; //size of each dimension
+        index_type fStrides; //strides between elements in each dimension
+        uint64_t fSize; //total size of array
+        mutable index_type fTmp; //temp index workspace
 
     private:
 

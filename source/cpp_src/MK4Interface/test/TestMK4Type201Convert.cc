@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
   my201.pulsar_epoch = 2;
   my201.dispersion = 2;
 
-  json obj = convertToJSON(my201);
+  mho_json obj = convertToJSON(my201);
 
   std::cout << obj.dump(2) << std::endl;
 

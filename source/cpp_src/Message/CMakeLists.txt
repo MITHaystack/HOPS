@@ -1,6 +1,6 @@
 #list header files #############################################################
 #add an option to turn on/off debug messages, off by default
-option(ENABLE_DEBUG_MSG "Enable passing of debug messages" OFF)
+
 
 set (MESSAGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Message.hh
@@ -18,10 +18,6 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
 set(MESSAGE_LIBS "")
-
-if(ENABLE_DEBUG_MSG)
-    hops_add_cxxflag(HOPS_ENABLE_DEBUG_MSG)
-endif(ENABLE_DEBUG_MSG)
 
 add_library (MHO_Message SHARED ${MESSAGE_SOURCEFILES})
 target_link_libraries (MHO_Message ${MESSAGE_LIBS})

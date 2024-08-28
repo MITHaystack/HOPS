@@ -10,6 +10,8 @@
 *Description:
 */
 
+#include <set>
+
 #include "MHO_VectorContainer.hh"
 #include "MHO_Interval.hh"
 #include "MHO_IntervalLabel.hh"
@@ -49,6 +51,144 @@ class MHO_Axis:
 
         virtual ~MHO_Axis(){};
 
+        //have to make base class functions visible
+        using MHO_VectorContainer<XValueType>::Resize;
+        using MHO_VectorContainer<XValueType>::GetData;
+        using MHO_VectorContainer<XValueType>::GetSize;
+        using MHO_VectorContainer<XValueType>::GetDimensions;
+        using MHO_VectorContainer<XValueType>::GetDimension;
+        using MHO_VectorContainer<XValueType>::GetOffsetForIndices;
+        using MHO_VectorContainer<XValueType>::operator();
+        using MHO_VectorContainer<XValueType>::operator[];
+
+
+        //index selection from matching axis values
+        std::vector< std::size_t >
+        SelectMatchingIndexes(const std::set<XValueType> label_values)
+        {
+            std::vector< std::size_t > selected_idx;
+            //dumb brute force search, for each label value
+            //check all the axis elements for a match
+            for(auto label_it = label_values.begin(); label_it != label_values.end(); label_it++)
+            {
+                for(std::size_t i = 0; i < this->GetSize(); i++)
+                {
+                    if( (*this)[i] == *label_it )
+                    {
+                        selected_idx.push_back(i);
+                    }
+                }
+            }
+            return selected_idx;
+        }
+
+        //index selection for matching axis values (given a single value)
+        std::vector< std::size_t >
+        SelectMatchingIndexes(const XValueType& label_value)
+        {
+            std::vector< std::size_t > selected_idx;
+            //dumb brute force search, for a single label value
+            //check all the axis elements for a match
+            for(std::size_t i = 0; i < this->GetSize(); i++)
+            {
+                if( (*this)[i] == label_value )
+                {
+                    selected_idx.push_back(i);
+                }
+            }
+            return selected_idx;
+        }
+
+
+        //index selection for first matching axis values (given a single value)
+        bool
+        SelectFirstMatchingIndex(const XValueType& label_value, std::size_t& result)
+        {
+            result = 0;
+            for(std::size_t i = 0; i < this->GetSize(); i++)
+            {
+                if( (*this)[i] == label_value )
+                {
+                    result = i;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //index selection from matching label values (e.g. gets the indices for
+        //which column is tagged with "channel_label":"a" etc.)
+        //extra dumb brute force, TODO make me smarter
+        template< typename XLabelValueType >
+        std::vector< std::size_t >
+        SelectMatchingIndexesByLabelValue(const std::string& label_key, const XLabelValueType& label_value)
+        {
+            std::vector< std::size_t > matching_idx;
+            for(std::size_t i=0; i < this->GetSize(); i++)
+            {
+                std::vector< MHO_IntervalLabel* > labels;
+                labels = this->GetIntervalsWhichIntersect(i);
+                for(std::size_t j=0; j < labels.size(); j++)
+                {
+                    XLabelValueType value;
+                    if(labels[j]->HasKey(label_key))
+                    {
+                        labels[j]->Retrieve(label_key, value);
+                        if(value == label_value){matching_idx.push_back(i);}
+                    }
+                }
+            }
+            return matching_idx;
+        }
+
+        //collect all indices which match any value in the set
+        template< typename XLabelValueType >
+        std::vector< std::size_t >
+        SelectMatchingIndexesByLabelValue(const std::string& label_key, const std::set<XLabelValueType>& label_values)
+        {
+            std::vector< std::size_t > matching_idx;
+            std::set< std::size_t > idx;
+            for(std::size_t i=0; i < this->GetSize(); i++)
+            {
+                std::vector< MHO_IntervalLabel* > labels;
+                labels = this->GetIntervalsWhichIntersect(i);
+                for(std::size_t j=0; j<labels.size(); j++)
+                {
+                    XLabelValueType value;
+                    if(labels[j]->HasKey(label_key))
+                    {
+                        labels[j]->Retrieve(label_key, value);
+                        if( label_values.find(value) != label_values.end() ){idx.insert(i);}
+                    }
+                }
+            }
+            std::copy(idx.begin(), idx.end(), std::inserter(matching_idx, matching_idx.end()));
+            return matching_idx;
+        }
+
+
+        template< typename XLabelValueType >
+        void CollectAxisElementLabelValues(const std::string& label_key, std::vector< XLabelValueType >& label_values )
+        {
+            label_values.clear();
+            for(std::size_t i=0; i < this->GetSize(); i++)
+            {
+                std::vector< MHO_IntervalLabel* > labels;
+                labels = this->GetIntervalsWhichIntersect(i);
+                for(std::size_t j=0; j < labels.size(); j++)
+                {
+                    XLabelValueType value;
+                    if(labels[j]->HasKey(label_key))
+                    {
+                        labels[j]->Retrieve(label_key, value);
+                        label_values.push_back(value);
+                        break;
+                    }
+                }
+            }
+        }
+
+
         virtual uint64_t GetSerializedSize() const override
         {
             uint64_t total_size = 0;
@@ -58,33 +198,76 @@ class MHO_Axis:
             return total_size;
         }
 
+        //expensive copy (as opposed to the assignment operator,
+        //pointers to exernally managed memory are not transferred)
+        virtual void Copy(const MHO_Axis& rhs)
+        {
+            if(&rhs != this)
+            {
+                MHO_VectorContainer<XValueType>::Copy(rhs); //copy the 1-d array
+                MHO_IntervalLabelTree::CopyIntervalLabels(rhs); //copy interval tree
+            }
+        }
+
+
         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_Axis& aData)
         {
             MHO_ClassVersion vers;
             s >> vers;
-            if( vers != aData.GetVersion() )
+            switch(vers)
             {
-                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
-                //Flag this as an unknown object version so we can skip over this data
-                MHO_ObjectStreamState<XStream>::SetUnknown(s);
-            }
-            else
-            {
-                s >> static_cast< MHO_VectorContainer< XValueType >& >(aData);
-                s >> static_cast< MHO_IntervalLabelTree& >(aData);
+                case 0:
+                    aData.StreamInData_V0(s);
+                break;
+                default:
+                    MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                    //Flag this as an unknown object version so we can skip over this data
+                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
             }
             return s;
         }
+
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_Axis& aData)
         {
-            s << aData.GetVersion();
-            s << static_cast< const MHO_VectorContainer< XValueType >& >(aData);
-            s << static_cast< const MHO_IntervalLabelTree& >(aData);
+            switch( aData.GetVersion() )
+            {
+                case 0:
+                    s << aData.GetVersion();
+                    aData.StreamOutData_V0(s);
+                break;
+                default:
+                    msg_error("containers",
+                        "error, cannot stream out MHO_Axis object with unknown version: "
+                        << aData.GetVersion() << eom );
+            }
             return s;
         }
 
-    protected:
+    private:
+
+        template<typename XStream> void StreamInData_V0(XStream& s)
+        {
+            s >> static_cast< MHO_VectorContainer< XValueType >& >(*this);
+            s >> static_cast< MHO_IntervalLabelTree& >(*this);
+        }
+
+        template<typename XStream> void StreamOutData_V0(XStream& s) const
+        {
+            s << static_cast< const MHO_VectorContainer< XValueType >& >(*this);
+            s << static_cast< const MHO_IntervalLabelTree& >(*this);
+        }
+
+        virtual MHO_UUID DetermineTypeUUID() const override
+        {
+            MHO_MD5HashGenerator gen;
+            gen.Initialize();
+            std::string name = MHO_ClassIdentity::ClassName(*this);
+            gen << name;
+            gen.Finalize();
+            return gen.GetDigestAsUUID();
+        }
+
 
 };
 

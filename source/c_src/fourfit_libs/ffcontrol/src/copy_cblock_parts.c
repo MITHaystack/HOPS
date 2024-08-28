@@ -151,6 +151,9 @@ copy_cblock_parts ( struct c_block* f, struct c_block* t)
 
     if (f->vbp_correct != NULLINT)
         t->vbp_correct = f->vbp_correct;
+        
+    if (f->mixed_mode_rot != NULLINT)
+        t->mixed_mode_rot = f->mixed_mode_rot;
 
     if (f->vbp_fit != NULLINT)
         t->vbp_fit = f->vbp_fit;

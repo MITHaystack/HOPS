@@ -78,7 +78,7 @@ int main(int argc, char** argv)
     conInter.PopulateStoreFromFile(conStore);
 
     //convert the selected object to json 
-    json obj_json;
+    mho_json obj_json;
     conInter.ConvertObjectInStoreToJSON(conStore, obj_uuid, obj_json, detail);
 
     //open and dump to file 

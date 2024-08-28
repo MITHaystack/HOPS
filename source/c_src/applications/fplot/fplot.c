@@ -36,7 +36,7 @@
 int
 main (int argc, char* argv[])
     {
-    int i, display, ret, mk4, size, quit, prompt;
+    int i, display, ret, mk4, size, quit, prompt, poln;
     char c, cmd[128], pmt[128], *file_name;
     struct mk4_fringe fringe4;
     fstruct *files;
@@ -52,16 +52,16 @@ main (int argc, char* argv[])
                                         /* by the name in each case */
     set_progname("fplot");
     set_msglev(2);
-    if (parse_cmdline (argc, argv, &files, &display, &file_name) != 0)
+    if (parse_cmdline (argc, argv, &files, &display, &file_name, &poln) != 0)
         {
         msg ("Fatal error interpreting command line", 2);
-        /* syntax("$HeadURL: https://vault.haystack.mit.edu/svn/hops/trunk/postproc/fplot/fplot.c $"); */
+        /* syntax("$HeadURL: https://barrettj@vault.haystack.mit.edu/svn/hops/trunk/postproc/fplot/fplot.c $"); */
         exit(1);
         }
     if (files[0].order == -1)
         {
         msg ("No valid type-2 files found/specified", 2);
-        /* syntax("$HeadURL: https://vault.haystack.mit.edu/svn/hops/trunk/postproc/fplot/fplot.c $"); */
+        /* syntax("$HeadURL: https://barrettj@vault.haystack.mit.edu/svn/hops/trunk/postproc/fplot/fplot.c $"); */
         exit (1);
         }
                                         /* Loop over all filenames */
@@ -75,6 +75,9 @@ main (int argc, char* argv[])
             msg ("Failure reading fringe file %s", 2, files[i-1].name);
             continue;
             }
+        if (poln >= 0 && fringe4.t203 != 0 && fringe4.t205 != 0 &&
+            skip_poln(files[i-1].name, fringe4.t203, fringe4.t205, poln))
+            continue;
                                     /* Display on screen if xwindow */
         if (display == XWINDOW || display == GSDEVICE)
             {

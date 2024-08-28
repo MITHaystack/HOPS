@@ -1,6 +1,6 @@
 ################################################################################
 #CMAKE version and policies
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.1)
 
 if(${CMAKE_VERSION} VERSION_GREATER "3.11.0")
 cmake_policy(SET CMP0074 OLD)
@@ -18,6 +18,15 @@ endif()
 # project version
 set(HOPS_VERSION_NUMBER "4.00")
 project(Hops VERSION ${HOPS_VERSION_NUMBER})
+
+#default build type
+set(default_build_type "Release")
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  message(STATUS "Setting build type to '${default_build_type}' as none was specified.")
+  set(CMAKE_BUILD_TYPE "${default_build_type}" CACHE STRING "Choose the type of build." FORCE)
+  set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
+endif()
+
 
 #includes for package finding
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake )
@@ -43,6 +52,7 @@ set(CONFIG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/config")
 set(DATA_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/data")
 set(DOC_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/doc")
 set(LOG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/log")
+set(SNAPSHOT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/snapshot")
 set(OPENCL_KERNEL_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/cl_kernel")
 set(SHARE_TEXT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/text")
 set(SHARE_VHELP_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/vhelp")
@@ -54,13 +64,16 @@ file(MAKE_DIRECTORY ${CONFIG_INSTALL_DIR})
 file(MAKE_DIRECTORY ${DATA_INSTALL_DIR})
 file(MAKE_DIRECTORY ${DOC_INSTALL_DIR})
 file(MAKE_DIRECTORY ${LOG_INSTALL_DIR})
+file(MAKE_DIRECTORY ${SNAPSHOT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${OPENCL_KERNEL_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_TEXT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_VHELP_INSTALL_DIR})
 ################################################################################
 
-#compiler flags (use c++11 standard)
+#compiler standard (use c++11 standard by default)
 hops_require_cpp11()
+#hops_require_cpp17()
+#hops_require_cpp20()
 
 option(EXTRA_WARNINGS "Turn on extra compiler warnings." OFF)
 if(EXTRA_WARNINGS)
@@ -78,14 +91,13 @@ message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 ################################################################################
 
 #options for triggering additional dependencies
-option(HOPS_ENABLE_TEST "Build developer tests." ON)
+option(HOPS_ENABLE_TEST "Build developer tests." OFF)
 option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
-option(HOPS_DEV_USE_OLD "Allow new C++ code to use old hops/fourfit C-libraries, beyond what is absolutely necessary." OFF)
 option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms" OFF)
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" OFF)
 option(HOPS_USE_ROOT "Use CERN ROOT libraries to enable plugin tools for plotting/debug/analysis." OFF)
-
+option(HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
 
 #convenience variables
 set(CSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/c_src)
@@ -94,6 +106,30 @@ set(SHSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/bash_src)
 set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
 set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 
+
+#stuff for controlling testing/test-data location
+set(TEST_DATA_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
+set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data) #actual location to put test data and do tests
+
+#look for an environmental variable pointing to a cache of test data
+set(HOPS_USE_CACHED_TEST_DATA OFF)
+set(HOPS_NEED_REMOTE_DATA ON)
+if (NOT "$ENV{HOPS_CACHED_TEST_DATADIR}" STREQUAL "")
+    set(HOPS_CACHED_TEST_DATADIR "$ENV{HOPS_CACHED_TEST_DATADIR}" CACHE STRING "Location of cached hops test data." FORCE)
+    mark_as_advanced(HOPS_CACHED_TEST_DATADIR)
+    set(HOPS_USE_CACHED_TEST_DATA ON)
+    set(HOPS_NEED_REMOTE_DATA OFF)
+endif()
+
+#check that we can download test data if testing is enabled and there is no cache
+cmake_dependent_option( HOPS_ENABLE_REMOTE_TEST_DATA "Download remote data for developer tests." ${HOPS_NEED_REMOTE_DATA} "HOPS_ENABLE_TEST" OFF)
+
+if(HOPS_ENABLE_TEST)
+    if(NOT HOPS_ENABLE_REMOTE_TEST_DATA AND NOT HOPS_USE_CACHED_TEST_DATA)
+            #we are not downloading test data (and no local cache available), so force it off
+            set(HOPS_ENABLE_TEST OFF CACHE BOOL "Build developer tests." FORCE)
+    endif()
+endif(HOPS_ENABLE_TEST)
 
 if(HOPS_ENABLE_TEST)
     enable_testing()
@@ -116,29 +152,62 @@ if(HOPS_USE_DIFXIO)
     pkg_search_module(DIFXIO REQUIRED difxio)
 endif()
 
+#find MPI devel if needed
+if (HOPS_USE_MPI)
+    find_package(MPI REQUIRED)
+endif(HOPS_USE_MPI)
+
+
 ################################################################################
 
 #python package setup
-find_package(PythonInterp REQUIRED)
-find_package(PythonLibs REQUIRED)
 
-if (PYTHON_EXECUTABLE)
-    #figure out the python install path
-    #so we can add it to PYTHONPATH
-    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pypath.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
-      FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
-      GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
-    )
-    execute_process(COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/pypath.py"  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_VARIABLE PYTHON_SITE_PREFIX)
-    message(STATUS "Python path = ${PYTHON_SITE_PREFIX}")
+if(${CMAKE_VERSION} VERSION_GREATER "3.12.0")
 
-    string(STRIP "${PYTHON_SITE_PREFIX}" PYTHON_SITE_PREFIX)
 
-    set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
+  find_package (Python3 COMPONENTS Interpreter Development)
 
-    #now add the python source dir
-    add_subdirectory(${PYSOURCE})
-endif (PYTHON_EXECUTABLE)
+  if (Python3_EXECUTABLE)
+      #figure out the python install path
+      #so we can add it to PYTHONPATH
+      file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pypath.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
+        FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+        GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
+      )
+      execute_process(COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/pypath.py"  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_VARIABLE PYTHON_SITE_PREFIX)
+      message(STATUS "Python path = ${PYTHON_SITE_PREFIX}")
+      string(STRIP "${PYTHON_SITE_PREFIX}" PYTHON_SITE_PREFIX)
+      set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
+      set(PY_EXE ${Python3_EXECUTABLE})
+
+      #now add the python source dir
+      add_subdirectory(${PYSOURCE})
+  endif (Python3_EXECUTABLE)
+
+else()
+
+  #if CMAKE version < 3.12 use old style find package to figure out where python is
+  find_package(PythonInterp REQUIRED)
+  find_package(PythonLibs REQUIRED)
+
+  if (PYTHON_EXECUTABLE)
+      #figure out the python install path
+      #so we can add it to PYTHONPATH
+      file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pypath.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
+        FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+        GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
+      )
+      execute_process(COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/pypath.py"  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_VARIABLE PYTHON_SITE_PREFIX)
+      message(STATUS "Python path = ${PYTHON_SITE_PREFIX}")
+      string(STRIP "${PYTHON_SITE_PREFIX}" PYTHON_SITE_PREFIX)
+      set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
+      set(PY_EXE ${PYTHON_EXECUTABLE})
+
+      #now add the python source dir
+      add_subdirectory(${PYSOURCE})
+  endif (PYTHON_EXECUTABLE)
+
+endif()
 
 ################################################################################
 
@@ -149,6 +218,12 @@ install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/hops.bash DESTINATION ${BIN_INSTAL
 ################################################################################
 #call build in the subdirectories
 add_subdirectory(${EXTERN_HLIBS}) #external (mostly header-only) dependencies, but date (tz) library must be built
+
+#optional directory for test-data
+if(HOPS_ENABLE_TEST)
+add_subdirectory(${TEST_DATA_SOURCE})
+endif(HOPS_ENABLE_TEST)
+
 add_subdirectory(${CSOURCE})
 add_subdirectory(${CPPSOURCE})
 add_subdirectory(doc)

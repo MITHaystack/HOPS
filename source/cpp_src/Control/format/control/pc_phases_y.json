@@ -1,0 +1,17 @@
+{
+    "name": "pc_phases_y",
+    "statement_type": "operator",
+    "operator_category" : "calibration",
+    "type" : "compound",
+    "priority": 3.5,
+    "parameters":
+    {
+        "channel_names": {"type": "string"},
+        "pc_phases": {"type": "list_real"}
+    },
+    "fields": 
+    [
+        "channel_names", 
+        "pc_phases"
+    ]
+}

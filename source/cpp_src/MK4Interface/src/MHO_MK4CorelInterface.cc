@@ -34,8 +34,8 @@ class chan_label_freq_predicate
     virtual bool operator()(const MHO_IntervalLabel* a, const MHO_IntervalLabel* b)
     {
         double a_frq, b_frq;
-        a->Retrieve(std::string("ref_sky_freq"), a_frq);
-        b->Retrieve(std::string("ref_sky_freq"), b_frq);
+        a->Retrieve(std::string("sky_freq"), a_frq);
+        b->Retrieve(std::string("sky_freq"), b_frq);
         return a_frq < b_frq;
     }
 };
@@ -58,6 +58,12 @@ MHO_MK4CorelInterface::MHO_MK4CorelInterface():
     fPolProducts.clear();
     fAllChannelMap.clear();
     fPPSortedChannelInfo.clear();
+    fBaselineName = "";
+    fBaselineShortName= "";
+    fRefStation= "";
+    fRemStation = "";
+    fRefStationMk4Id = "";
+    fRemStationMk4Id = "";
 }
 
 MHO_MK4CorelInterface::~MHO_MK4CorelInterface()
@@ -90,6 +96,13 @@ MHO_MK4CorelInterface::ReadCorelFile()
         fHaveCorel = true;
         msg_debug("mk4interface", "Successfully read corel file."<< fCorelFile << eom);
     }
+
+    fBaselineName = "";
+    fBaselineShortName= "";
+    fRefStation= "";
+    fRemStation = "";
+    fRefStationMk4Id = "";
+    fRemStationMk4Id = "";
 }
 
 
@@ -133,6 +146,7 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     //std::set< int > valid_aps;
 
     std::string baseline = getstr(fCorel->t100->baseline, 2);
+    fBaselineShortName = baseline;
     msg_debug("mk4interface", "Reading data for baseline: " << baseline << eom);
 
     // struct mk4_corel::index_tag* idx;
@@ -177,6 +191,9 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     fNAPs += 1;
     //fNAPs = valid_aps.size();
 
+
+
+
     #ifdef  HOPS_ENABLE_DEBUG_MSG
     msg_debug("mk4interface", "Total number of channel pairs = "<< fNChannels << eom );
     for(auto it = fAllChannelMap.begin(); it != fAllChannelMap.end(); it++)
@@ -201,10 +218,9 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     int nst = scan["station"].size(); // number of stations;
 
     //maps to resolve links
-    std::map< std::string, std::string > stationCodeToSiteID;
-    std::map< std::string, std::string > stationCodeToMk4ID;
-    std::map< std::string, std::string > stationCodeToFreqTableName;
-    std::map< std::string, std::string > mk4IDToFreqTableName;  
+    // std::map< std::string, std::string > stationCodeToFreqTableName;
+    std::map< std::string, std::string > mk4IDToFreqTableName;
+    std::map< std::string, std::string > mk4IDToStationCode;
 
     auto mode = fVex["$MODE"][mode_key];
     //TODO FIXME -- this is incorrect if there are multple BBC/IFs defined
@@ -223,11 +239,12 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
             for(std::size_t q=0; q<n_qual; q++)
             {
                 std::string station_code = (*it)["qualifiers"][q].get<std::string>();
-                stationCodeToFreqTableName[station_code] = keyword;
+                // stationCodeToFreqTableName[station_code] = keyword;
                 //std::string site_key = 
                 std::string site_key = fVex["$STATION"][station_code]["$SITE"][0]["keyword"].get<std::string>();
                 std::string mk4_id = fVex["$SITE"][site_key]["mk4_site_ID"].get<std::string>();
                 mk4IDToFreqTableName[mk4_id] = keyword;
+                mk4IDToStationCode[mk4_id] = station_code;
             }
         }
     }
@@ -236,8 +253,14 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     // TODO FIXME -- refactor the following section --
     //the ovex data retrieval (just to get the channel polariztaion!!!) is rather convoluted
     // we may want to add a feature to resolve vex link-words to json objects or json paths
+    //which would simplfy this mess
     std::string ref_st = std::string(&(baseline[0]),1);
     std::string rem_st = std::string(&(baseline[1]),1);
+    fRefStationMk4Id = ref_st;
+    fRemStationMk4Id = rem_st;
+    fRefStation = mk4IDToStationCode[ref_st];
+    fRemStation = mk4IDToStationCode[rem_st];
+    fBaselineName = fRefStation + ":" + fRemStation;
     double ref_sky_freq, ref_bw, rem_sky_freq, rem_bw;
     std::string ref_net_sb, rem_net_sb, ref_pol, rem_pol;
     bool found_ref = false;
@@ -374,15 +397,17 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         pp_chan_set_map[*it] = std::set<MHO_IntervalLabel*>();
         fPPSortedChannelInfo[*it] = std::vector< MHO_IntervalLabel* >();
     }
+
     //now separate out channel labels by pol-product
     for(auto it = fAllChannelMap.begin(); it != fAllChannelMap.end(); it++)
     {
-        char pol1, pol2;
+        std::string pol1, pol2;
         it->second.Retrieve("ref_polarization", pol1);
         it->second.Retrieve("rem_polarization", pol2);
         std::string ppkey;
-        ppkey.append(1,pol1);
-        ppkey.append(1,pol2);
+        ppkey.append(pol1);
+        ppkey.append(pol2);
+
         auto indicator = pp_chan_set_map[ppkey].insert( &(it->second) );
         if(indicator.second)
         {
@@ -423,8 +448,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     ReadCorelFile();
     ReadVexFile();
 
-    visibility_type* bl_data = nullptr;
-    weight_type* bl_wdata = nullptr;
+    uch_visibility_store_type* bl_data = nullptr;
+    uch_weight_store_type* bl_wdata = nullptr;
 
     if(fHaveCorel && fHaveVex)
     {
@@ -434,7 +459,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         double ap_time_length = 1.0; //defaults to 1 sec
         if(fVex.contains("$EVEX") && fVex["$EVEX"].size() == 1)
         {
-            double ap_time_length = (fVex["$EVEX"].begin().value())["AP_length"]["value"].get<double>();
+            ap_time_length = (fVex["$EVEX"].begin().value())["AP_length"]["value"].get<double>();
         }
         else 
         {
@@ -449,8 +474,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         msg_debug("mk4interface", "Number of spectral points = " << fNSpectral << eom);
 
         std::size_t bl_dim[VIS_NDIM] = {fNPPs, fNAPs, (fNChannelsPerPP*fNSpectral)};
-        bl_data = new visibility_type(bl_dim);
-        bl_wdata = new weight_type(bl_dim);
+        bl_data = new uch_visibility_store_type(bl_dim);
+        bl_wdata = new uch_weight_store_type(bl_dim);
 
         //first label the pol-product axis
         std::size_t pp_count = 0;
@@ -458,16 +483,16 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         for(auto it = fPolProducts.begin(); it != fPolProducts.end(); it++)
         {
             pp_index_lookup[*it] = pp_count;
-            std::get<POLPROD_AXIS>(*bl_data)[pp_count] = *it;
-            std::get<POLPROD_AXIS>(*bl_wdata)[pp_count] = *it;
+            std::get<UCH_POLPROD_AXIS>(*bl_data)[pp_count] = *it;
+            std::get<UCH_POLPROD_AXIS>(*bl_wdata)[pp_count] = *it;
             pp_count++;
         }
 
         //now assign values to the time (0-th dim) axis
         for(size_t ap=0; ap<fNAPs; ap++)
         {
-            std::get<TIME_AXIS>(*bl_data)[ap] = ap_time_length*ap;
-            std::get<TIME_AXIS>(*bl_wdata)[ap] = ap_time_length*ap;
+            std::get<UCH_TIME_AXIS>(*bl_data)[ap] = ap_time_length*ap;
+            std::get<UCH_TIME_AXIS>(*bl_wdata)[ap] = ap_time_length*ap;
         }
 
         //finally we need to label the frequency axis
@@ -492,9 +517,10 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                 (*it)->SetBounds(freq_count, freq_count + fNSpectral);
                 //add a common channel ID, for now this is just an integer
                 //but eventually it could be anything
-                // std::stringstream ss;
-                // ss << ch_count;
                 (*it)->Insert(std::string("channel"), ch_count);
+
+                //ought to add mk4 style channel ids, e.g. X08LX:X08LY?
+                (*it)->Insert(std::string("chan_id"), std::string("placeholder"));//placeholder for now
 
                 //if not present, insert a clean channel label on this axis
                 auto indicator = inserted_channel_labels.insert(ch_count);
@@ -506,8 +532,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                     ch_label.Insert(std::string("net_sideband"), net_sb);
                     ch_label.Insert(std::string("channel"), ch_count);
                     ch_label.SetBounds(freq_count, freq_count + fNSpectral);
-                    std::get<FREQ_AXIS>(*bl_data).InsertLabel(ch_label);
-                    std::get<FREQ_AXIS>(*bl_wdata).InsertLabel(ch_label);
+                    std::get<UCH_FREQ_AXIS>(*bl_data).InsertLabel(ch_label);
+                    std::get<UCH_FREQ_AXIS>(*bl_wdata).InsertLabel(ch_label);
                 }
 
                 //set up this portion of the frequency axis
@@ -517,8 +543,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                     if(net_sb == "U"){findex = sp;};
                     if(net_sb == "L"){findex = fNSpectral-sp-1;}
                     double freq = calc_freq_bin(sky_freq, bw, net_sb, fNSpectral, findex);
-                    std::get<FREQ_AXIS>(*bl_data).at(freq_count) = freq;
-                    std::get<FREQ_AXIS>(*bl_wdata).at(freq_count) = freq;
+                    std::get<UCH_FREQ_AXIS>(*bl_data).at(freq_count) = freq;
+                    std::get<UCH_FREQ_AXIS>(*bl_wdata).at(freq_count) = freq;
                     freq_count++;
                 }
                 ch_count++;
@@ -527,20 +553,20 @@ MHO_MK4CorelInterface::ExtractCorelFile()
 
         #ifdef HOPS_ENABLE_DEBUG_MSG
         //lets print out the pol, time and freq axes now:
-        for(std::size_t i=0; i< std::get<POLPROD_AXIS>(*bl_data).GetSize(); i++)
+        for(std::size_t i=0; i< std::get<UCH_POLPROD_AXIS>(*bl_data).GetSize(); i++)
         {
-            msg_debug("mk4interface", "pol_axis: "<<i<<" = "<<std::get<POLPROD_AXIS>(*bl_data).at(i)<< eom);
+            msg_debug("mk4interface", "pol_axis: "<<i<<" = "<<std::get<UCH_POLPROD_AXIS>(*bl_data).at(i)<< eom);
         }
         
-        for(std::size_t i=0; i< std::get<TIME_AXIS>(*bl_data).GetSize(); i++)
+        for(std::size_t i=0; i< std::get<UCH_TIME_AXIS>(*bl_data).GetSize(); i++)
         {
-            msg_debug("mk4interface", "time_axis: "<<i<<" = "<<std::get<TIME_AXIS>(*bl_data).at(i)<<eom);
+            msg_debug("mk4interface", "time_axis: "<<i<<" = "<<std::get<UCH_TIME_AXIS>(*bl_data).at(i)<<eom);
         }
         
-        for(std::size_t i=0; i< std::get<FREQ_AXIS>(*bl_data).GetSize(); i++)
-        {
-            msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<FREQ_AXIS>(*bl_data).at(i)<<eom);
-        }
+        // for(std::size_t i=0; i< std::get<UCH_FREQ_AXIS>(*bl_data).GetSize(); i++)
+        // {
+        //     msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<UCH_FREQ_AXIS>(*bl_data).at(i)<<eom);
+        // }
         #endif
 
         //now fill in the actual visibility data
@@ -574,9 +600,9 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                                 ch_label.Retrieve(std::string("pol_product"), ppkey);
                                 std::size_t pol_index = pp_index_lookup[ppkey];
                                 int nlags = t120->nlags;
-                                msg_debug("mk4interface",
-                                          "Adding freq data for ap: "<<ap
-                                          <<" channel: "<< key << eom);
+                                // msg_debug("mk4interface",
+                                //           "Adding freq data for ap: "<<ap
+                                //           <<" channel: "<< key << eom);
 
 
                                 for(int j=0; j<nlags; j++)
@@ -609,8 +635,28 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     }
     else
     {
-        msg_error("mk4interface", "Failed to ready both corel and vex file." << eom);
+        msg_error("mk4interface", "Failed to read both corel and vex file." << eom);
     }
+
+    bl_data->Insert(std::string("name"), std::string("visibilities"));
+    bl_data->Insert(std::string("baseline"), fBaselineName);
+    bl_data->Insert(std::string("baseline_shortname"), fBaselineShortName);
+    bl_data->Insert(std::string("reference_station"), fRefStation);
+    bl_data->Insert(std::string("remote_station"), fRemStation);
+    bl_data->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
+    bl_data->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
+
+    bl_wdata->Insert(std::string("name"), std::string("weights"));
+    bl_wdata->Insert(std::string("baseline"), fBaselineName);
+    bl_wdata->Insert(std::string("baseline_shortname"), fBaselineShortName);
+    bl_wdata->Insert(std::string("reference_station"), fRefStation);
+    bl_wdata->Insert(std::string("remote_station"), fRemStation);
+    bl_wdata->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
+    bl_wdata->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
+
+
+
+
 
     fExtractedVisibilities = bl_data;
     fExtractedWeights = bl_wdata;

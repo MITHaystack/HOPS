@@ -48,28 +48,28 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     mk4inter.SetCorelFile(input_file);
     mk4inter.SetVexFile(root_file);
     mk4inter.ExtractCorelFile();
-    visibility_type* bl_data = mk4inter.GetExtractedVisibilities();
-    weight_type* bl_wdata = mk4inter.GetExtractedWeights();
+    uch_visibility_store_type* bl_data = mk4inter.GetExtractedVisibilities();
+    uch_weight_store_type* bl_wdata = mk4inter.GetExtractedWeights();
 
     MHO_VisibilityChannelizer channelizer;
-    ch_visibility_type* ch_bl_data = new ch_visibility_type();
+    visibility_store_type* ch_bl_data = new visibility_store_type();
     channelizer.SetArgs(bl_data, ch_bl_data);
-    // channelizer.SetInput(bl_data);
-    // channelizer.SetOutput(ch_bl_data);
     bool init = channelizer.Initialize();
     if(init)
     {
         bool exe = channelizer.Execute();
     }
+    ch_bl_data->CopyTags(*bl_data);
 
     MHO_WeightChannelizer wchannelizer;
-    ch_weight_type* ch_bl_wdata = new ch_weight_type();
+    weight_store_type* ch_bl_wdata = new weight_store_type();
     wchannelizer.SetArgs(bl_wdata, ch_bl_wdata);
     bool winit = wchannelizer.Initialize();
     if(winit)
     {
         bool wexe = wchannelizer.Execute();
     }
+    ch_bl_wdata->CopyTags(*bl_wdata);
 
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(output_file);
@@ -78,7 +78,11 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
         uint32_t label = 0xFFFFFFFF; //someday make this mean something
         inter.Write(*ch_bl_data, "vis", label);
         inter.Write(*ch_bl_wdata, "weight", label);
-        inter.Close();
+        // 
+        // // //TODO AFTER DEBUG RETURN TO ch_* data
+        // inter.Write(*bl_data, "uch_vis", label);
+        // inter.Write(*bl_wdata, "uch_weight", label);
+        // inter.Close();
     }
     else
     {
@@ -195,7 +199,7 @@ int main(int argc, char** argv)
 
     MHO_MK4VexInterface vexInter;
     vexInter.OpenVexFile(root_file);
-    json ovex;
+    mho_json ovex;
     bool ovex_ok = vexInter.ExportVexFileToJSON(ovex);
     if(ovex_ok)
     {

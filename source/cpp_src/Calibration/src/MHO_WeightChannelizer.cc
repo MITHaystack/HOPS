@@ -29,7 +29,7 @@ MHO_WeightChannelizer::MHO_WeightChannelizer()
 MHO_WeightChannelizer::~MHO_WeightChannelizer(){}
 
 bool
-MHO_WeightChannelizer::InitializeImpl(const weight_type* in, ch_weight_type* out)
+MHO_WeightChannelizer::InitializeImpl(const uch_weight_store_type* in, weight_store_type* out)
 {
     fInitialized = false;
     if(in != nullptr && out != nullptr)
@@ -41,11 +41,11 @@ MHO_WeightChannelizer::InitializeImpl(const weight_type* in, ch_weight_type* out
         else
         {
             //now we need figure out the dimensions of the ouput array
-            std::size_t input_dim[weight_type::rank::value];
+            std::size_t input_dim[uch_weight_store_type::rank::value];
             in->GetDimensions(input_dim);
 
             //and determine the number of unique channel labels
-            auto* freq_axis = &(std::get<FREQ_AXIS>( *(in) ) );
+            auto* freq_axis = &(std::get<UCH_FREQ_AXIS>( *(in) ) );
             std::vector< const MHO_IntervalLabel* > channel_labels = freq_axis->GetIntervalsWithKey(std::string("channel"));
             std::size_t num_channels = channel_labels.size();
 
@@ -59,34 +59,34 @@ MHO_WeightChannelizer::InitializeImpl(const weight_type* in, ch_weight_type* out
             {
                 double sf;
                 (*iter)->Retrieve(std::string("sky_freq"), sf);
-                msg_debug("calibration", "Inserting channel of size: " << (*iter)->GetLength() << "with sky freq: " << sf << eom);
+                msg_debug("calibration", "inserting channel of size: " << (*iter)->GetLength() << " with sky freq: " << sf << eom);
                 channel_sizes.insert( (*iter)->GetLength() );
             }
 
             if(channel_sizes.size() != 1)
             {
-                msg_warn("calibration", "Channel sizes are not a uniform number of spectral points." << eom);
+                msg_warn("calibration", "channel sizes are not a uniform number of spectral points." << eom);
             }
-            std::size_t channel_length = *( channel_sizes.begin() );
+            std::size_t channel_length = 1; //only one weight per channel-ap //*( channel_sizes.begin() );
 
             //finally we can re-size the output array so that it is ready
             //to recieve data from each channel
-            std::size_t output_dim[ch_weight_type::rank::value];
-            output_dim[CH_POLPROD_AXIS] = input_dim[POLPROD_AXIS];
-            output_dim[CH_CHANNEL_AXIS] = num_channels;
-            output_dim[CH_TIME_AXIS] = input_dim[TIME_AXIS];
-            output_dim[CH_FREQ_AXIS] = channel_length;
+            std::size_t output_dim[weight_store_type::rank::value];
+            output_dim[POLPROD_AXIS] = input_dim[UCH_POLPROD_AXIS];
+            output_dim[CHANNEL_AXIS] = num_channels;
+            output_dim[TIME_AXIS] = input_dim[UCH_TIME_AXIS];
+            output_dim[FREQ_AXIS] = channel_length;
 
             out->Resize(output_dim[0], output_dim[1], output_dim[2], output_dim[3]);
 
-            auto* in_pp_axis = &(std::get<POLPROD_AXIS>( *(in) ) );
-            auto* in_time_axis = &(std::get<TIME_AXIS>( *(in) ) );
-            auto* in_freq_axis = &(std::get<FREQ_AXIS>( *(in) ) );
+            auto* in_pp_axis = &(std::get<UCH_POLPROD_AXIS>( *(in) ) );
+            auto* in_time_axis = &(std::get<UCH_TIME_AXIS>( *(in) ) );
+            auto* in_freq_axis = &(std::get<UCH_FREQ_AXIS>( *(in) ) );
 
-            auto* out_pp_axis = &(std::get<CH_POLPROD_AXIS>( *(out) ) );
-            auto* out_channel_axis = &(std::get<CH_CHANNEL_AXIS>( *(out) ) );
-            auto* out_time_axis = &(std::get<CH_TIME_AXIS>( *(out) ) );
-            auto* out_freq_axis = &(std::get<CH_FREQ_AXIS>( *(out) ) );
+            auto* out_pp_axis = &(std::get<POLPROD_AXIS>( *(out) ) );
+            auto* out_channel_axis = &(std::get<CHANNEL_AXIS>( *(out) ) );
+            auto* out_time_axis = &(std::get<TIME_AXIS>( *(out) ) );
+            auto* out_freq_axis = &(std::get<FREQ_AXIS>( *(out) ) );
 
             //label the output array polarization axis
             for(std::size_t pp=0; pp<in_pp_axis->GetSize(); pp++)
@@ -97,14 +97,14 @@ MHO_WeightChannelizer::InitializeImpl(const weight_type* in, ch_weight_type* out
             //label the output channel axis with channel id's
             for(std::size_t ch=0; ch<num_channels; ch++)
             {
-                int channel_id;
-                if( channel_labels[ch]->Retrieve(std::string("channel"), channel_id ) )
+                double channel_sky_freq;
+                if( channel_labels[ch]->Retrieve(std::string("sky_freq"), channel_sky_freq ) )
                 {
-                    out_channel_axis->at(ch) = channel_id;
+                    out_channel_axis->at(ch) = channel_sky_freq;
                 }
                 else
                 {
-                    msg_warn("calibration", "Warning channel id: "<< channel_id << " not found in channel labels." << eom);
+                    msg_warn("calibration", "Warning channel sky_freq for channel:" <<ch<<" not found in channel labels." << eom);
                 }
             }
 
@@ -113,11 +113,11 @@ MHO_WeightChannelizer::InitializeImpl(const weight_type* in, ch_weight_type* out
             {
                 out_time_axis->at(t) = in_time_axis->at(t);
             }
+
             //label the output array frequency axis (common to all channels!)
             for(std::size_t f=0; f<channel_length; f++)
             {
-                //this works temporarily, but may not be ideal
-                out_freq_axis->at(f) = in_freq_axis->at(f) - in_freq_axis->at(0);
+                out_freq_axis->at(f) = 0; //in_freq_axis->at(f) - in_freq_axis->at(0);
             }
 
             fInitialized = true;
@@ -128,19 +128,19 @@ MHO_WeightChannelizer::InitializeImpl(const weight_type* in, ch_weight_type* out
 }
 
 bool
-MHO_WeightChannelizer::ExecuteImpl(const weight_type* in, ch_weight_type* out)
+MHO_WeightChannelizer::ExecuteImpl(const uch_weight_store_type* in, weight_store_type* out)
 {
     if(fInitialized)
     {
-        auto* in_pp_axis = &(std::get<POLPROD_AXIS>( *(in) ) );
-        auto* in_time_axis = &(std::get<TIME_AXIS>( *(in) ) );
-        auto* in_freq_axis = &(std::get<FREQ_AXIS>( *(in) ) );
-        auto* out_channel_axis = &(std::get<CH_CHANNEL_AXIS>( *(out) ) );
+        auto* in_pp_axis = &(std::get<UCH_POLPROD_AXIS>( *(in) ) );
+        auto* in_time_axis = &(std::get<UCH_TIME_AXIS>( *(in) ) );
+        auto* in_freq_axis = &(std::get<UCH_FREQ_AXIS>( *(in) ) );
+        auto* out_channel_axis = &(std::get<CHANNEL_AXIS>( *(out) ) );
 
         //pack the data into the appropriate place
-        for(std::size_t ch=0; ch<out_channel_axis->GetSize(); ch++)
+        for(int ch=0; ch<out_channel_axis->GetSize(); ch++)
         {
-            auto ch_label = in_freq_axis->GetFirstIntervalWithKeyValue(std::string("channel"), out_channel_axis->at(ch));
+            auto ch_label = in_freq_axis->GetFirstIntervalWithKeyValue(std::string("channel"), ch);
             if( ch_label )
             {
                 std::size_t low = ch_label->GetLowerBound();
@@ -149,38 +149,64 @@ MHO_WeightChannelizer::ExecuteImpl(const weight_type* in, ch_weight_type* out)
                 {
                     for(std::size_t t=0; t<in_time_axis->GetSize(); t++)
                     {
-                        for(std::size_t f=low; f<up; f++)
-                        {
-                            std::size_t f_offset = f-low;
-                            (*out)(pp, ch, t, f_offset) = (*in)(pp, t, f);
-                        }
+                        (*out)(pp, ch, t, 0) = (*in)(pp, t, low);
+                        // for(std::size_t f=low; f<up; f++)
+                        // {
+                        //     std::size_t f_offset = f-low;
+                        //     (*out)(pp, ch, t, f_offset) = (*in)(pp, t, f);
+                        // }
                     }
                 }
 
                 //attach a fresh channel label here:
                 double sky_freq;
                 double bw;
-                char net_sb;
+                std::string net_sb;
                 int channel_id;
+                std::string chan_id;
 
                 MHO_IntervalLabel fresh_ch_label;
                 ch_label->Retrieve(std::string("sky_freq"), sky_freq);
                 ch_label->Retrieve(std::string("bandwidth"), bw);
                 ch_label->Retrieve(std::string("net_sideband"), net_sb);
                 ch_label->Retrieve(std::string("channel"), channel_id);
+                ch_label->Retrieve(std::string("chan_id"), chan_id);
 
                 fresh_ch_label.Insert(std::string("sky_freq"), sky_freq);
                 fresh_ch_label.Insert(std::string("bandwidth"), bw);
                 fresh_ch_label.Insert(std::string("net_sideband"), net_sb);
                 fresh_ch_label.Insert(std::string("channel"), channel_id);
-
+                fresh_ch_label.Insert(std::string("chan_id"), chan_id);
+                fresh_ch_label.SetBounds(ch,ch);
                 out_channel_axis->InsertLabel(fresh_ch_label);
             }
         }
+
+        //polarization product axis
+        auto* wpolprod_axis = &(std::get<POLPROD_AXIS>(*out));
+        wpolprod_axis->Insert(std::string("name"), std::string("polarization_product") );
+
+        //channel axis
+        auto* wch_axis = &(std::get<CHANNEL_AXIS>(*out));
+        wch_axis->Insert(std::string("name"), std::string("channel") );
+        wch_axis->Insert(std::string("units"), std::string("MHz") );
+
+        //AP axis
+        auto* wap_axis = &(std::get<TIME_AXIS>(*out));
+        wap_axis->Insert(std::string("name"), std::string("time") );
+        wap_axis->Insert(std::string("units"), std::string("s") );
+
+        //(sub-channel) frequency axis 
+        auto* wsp_axis = &(std::get<FREQ_AXIS>(*out));
+        wsp_axis->Insert(std::string("name"), std::string("frequency") );
+        wsp_axis->Insert(std::string("units"), std::string("MHz") );
+
+
         return true;
     }
     else
     {
+        msg_error("calibration", "weight channelizer not initialized." << eom);
         return false;
     }
 

@@ -44,7 +44,7 @@ MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store)
         if(!ok){msg_error("containers", "could not extract file object keys" << eom); return;}
     }
 
-    //open file and read each object, and stuff it in the storerary
+    //open file and read each object, and stuff it in the store
     ok = fFileInterface.OpenToRead(fFilename);
     if(!ok)
     {
@@ -63,7 +63,10 @@ MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store)
             MHO_Serializable* obj = factory->second->BuildFromFileInterface(fFileInterface);
             if(obj != nullptr)
             {
-                store.AddContainerObject(obj,key);
+                store.AddObject(obj);
+                store.SetObjectLabel(obj->GetObjectUUID(), key.fLabel);
+                std::string shortname = std::string(key.fName, MHO_FileKeyNameLength ).c_str();
+                store.SetShortName(obj->GetObjectUUID(), shortname);
             }
             else 
             {
@@ -107,9 +110,11 @@ MHO_ContainerFileInterface::WriteStoreToFile(MHO_ContainerStore& store)
             store.GetAllObjectUUIDsOfType(*it, obj_ids);
             for(auto it2 = obj_ids.begin(); it2 != obj_ids.end(); it2++)
             {
-                MHO_Serializable* obj = store.RetrieveObject(*it, *it2);
-                std::pair<std::string, uint32_t> name_label = store.GetObjectNameLabel(*it,*it2);
-                bool ok = factory->second->WriteToFileInterface(fFileInterface, obj, name_label.first, name_label.second);
+                MHO_Serializable* obj = store.GetObject(*it2);
+                std::string shortname = store.GetShortName(*it2);
+                uint32_t ilabel = store.GetObjectLabel(*it2);
+
+                bool ok = factory->second->WriteToFileInterface(fFileInterface, obj, shortname, ilabel);
                 if(!ok)
                 {
                     msg_warn("containers", "factory failed to write object to file with type: "<< fUUID2ClassName[*it] << eom );
@@ -123,7 +128,7 @@ MHO_ContainerFileInterface::WriteStoreToFile(MHO_ContainerStore& store)
 
 
 void 
-MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, json& json_obj, int level_of_detail)
+MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, mho_json& json_obj, int level_of_detail)
 {
     std::vector< MHO_UUID > type_ids;
     store.GetAllTypeUUIDs(type_ids);
@@ -137,13 +142,13 @@ MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, json& 
             store.GetAllObjectUUIDsOfType(*it, obj_ids);
             for(auto it2 = obj_ids.begin(); it2 != obj_ids.end(); it2++)
             {
-                MHO_Serializable* obj = store.RetrieveObject(*it, *it2);
+                MHO_Serializable* obj = store.GetObject(*it2);
                 if(obj != nullptr)
                 {
                     converter->second->SetObjectToConvert(obj);
                     converter->second->SetLevelOfDetail(level_of_detail);
                     converter->second->ConstructJSONRepresentation();
-                    json j = *(converter->second->GetJSON());
+                    mho_json j = *(converter->second->GetJSON());
                     std::string object_uuid = it2->as_string();
                     json_obj[object_uuid] = j;
                 }
@@ -156,7 +161,7 @@ MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, json& 
 void 
 MHO_ContainerFileInterface::ConvertObjectInStoreToJSON(MHO_ContainerStore& store,
                                                        const MHO_UUID& obj_uuid,
-                                                       json& json_obj, 
+                                                       mho_json& json_obj, 
                                                        int level_of_detail)
 {
     std::vector< MHO_UUID > type_ids;
@@ -172,13 +177,13 @@ MHO_ContainerFileInterface::ConvertObjectInStoreToJSON(MHO_ContainerStore& store
             {
                 if(obj_uuid == *it2)
                 {
-                    MHO_Serializable* obj = store.RetrieveObject(*it, *it2);
+                    MHO_Serializable* obj = store.GetObject(*it2);
                     if(obj != nullptr)
                     {
                         converter->second->SetObjectToConvert(obj);
                         converter->second->SetLevelOfDetail(level_of_detail);
                         converter->second->ConstructJSONRepresentation();
-                        json j = *(converter->second->GetJSON());
+                        mho_json j = *(converter->second->GetJSON());
                         std::string object_uuid = it2->as_string();
                         json_obj[object_uuid] = j;
                     }

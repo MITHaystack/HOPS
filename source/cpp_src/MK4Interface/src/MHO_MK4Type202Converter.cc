@@ -40,7 +40,7 @@
 
 namespace hops {
 
-json convertToJSON(const type_202 &t) {
+mho_json convertToJSON(const type_202 &t) {
   return {// logic to handle edge cases where the following strings are longer
           // than expected
           // this is a holdover from the previous fortran code and is an issue

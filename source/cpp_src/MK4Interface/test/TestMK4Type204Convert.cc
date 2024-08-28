@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
   my204.ffcf_date.second = 22;
   strncpy(my204.override, "bar", sizeof(my204.override));
 
-  json obj = convertToJSON(my204);
+  mho_json obj = convertToJSON(my204);
   std::cout << obj.dump(2) << std::endl;
 
   return 0;

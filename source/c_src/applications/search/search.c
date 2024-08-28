@@ -32,7 +32,7 @@
 int datatype = 0;
 int space = 500;
 
-main (int argc, char* argv[])
+int main (int argc, char* argv[])
     {
     int i, navg, nout, scan_boundary, order, oldtime, bno, npt, plot;
     int rate_index, delay_index, oldextent, square;
@@ -44,7 +44,14 @@ main (int argc, char* argv[])
     extern int optind;
     set_progname(BIGGER ? "search": "soirch");
     set_msglev(1);
-    environment();
+
+    //declare helper functions
+    extern int read_data (avg_data** data, char* filename, int* navg);
+    extern int sort_data (avg_data* data, int navg);
+    extern void clear_srchdata (struct srchsummary srchdata[]);
+    extern int fit_peaks (struct srchsummary *srchdata);
+    extern int write_srchdata (struct srchsummary *srchdata, FILE* fpout);
+
 					/* Allocate some space to start */
     data = (avg_data *) calloc (space, sizeof (avg_data));
     if (data == NULL)
@@ -141,4 +148,6 @@ main (int argc, char* argv[])
 
     if (plot) cpgend();
     exit (0);
+
+    return 0;
     }

@@ -54,6 +54,23 @@ class MHO_BinaryFileInterface
             return fObjectStreamer.IsOpenForWrite();
         }
 
+
+        bool OpenToAppend(const std::string& obj_filename, const std::string& index_filename = "")
+        {
+            fObjectStreamer.SetFilename(obj_filename);
+            fObjectStreamer.OpenToAppend();
+
+            if(index_filename != "") //stream keys to a separate index file
+            {
+                fCollectKeys = true;
+                fKeyStreamer.SetFilename(index_filename);
+                fKeyStreamer.OpenToAppend();
+                return fObjectStreamer.IsOpenForWrite() && fKeyStreamer.IsOpenForWrite();
+            }
+
+            return fObjectStreamer.IsOpenForWrite();
+        }
+
         bool OpenToRead(const std::string& filename)
         {
             fObjectStreamer.SetFilename(filename);

@@ -20,7 +20,7 @@ MHO_DiFXInputProcessor::LoadDiFXInputFile(std::string filename)
 }
 
 void 
-MHO_DiFXInputProcessor::ConvertToJSON(json& input)
+MHO_DiFXInputProcessor::ConvertToJSON(mho_json& input)
 {
     //extract the quantities at the top level of the difx input struct 
     ExtractBaseStructQuantities(input);
@@ -90,7 +90,7 @@ MHO_DiFXInputProcessor::ConvertToJSON(json& input)
 }
 
 void 
-MHO_DiFXInputProcessor::ExtractBaseStructQuantities(json& input)
+MHO_DiFXInputProcessor::ExtractBaseStructQuantities(mho_json& input)
 {
     //just copy these struct quantities in
     input["fracSecondStartTime"] = fD->fracSecondStartTime;
@@ -117,11 +117,11 @@ MHO_DiFXInputProcessor::ExtractBaseStructQuantities(json& input)
     //and we probably don't need them for now
 }
 
-json 
+mho_json 
 MHO_DiFXInputProcessor::ExtractConfigQuantities(int n)
 {
     DifxConfig* c = &(fD->config[n]);
-    json config;
+    mho_json config;
 
     if(c != nullptr)
     {
@@ -153,11 +153,11 @@ MHO_DiFXInputProcessor::ExtractConfigQuantities(int n)
 }
 
 
-json 
+mho_json 
 MHO_DiFXInputProcessor::ExtractFreqQuantities(int n)
 {
     DifxFreq* f = &(fD->freq[n]);
-    json freq;
+    mho_json freq;
     if(f != nullptr)
     {
         freq["freq"] = f->freq;
@@ -181,11 +181,11 @@ MHO_DiFXInputProcessor::ExtractFreqQuantities(int n)
 
 
 
-json 
+mho_json 
 MHO_DiFXInputProcessor::ExtractAntennaQuantities(int n)
 {
     DifxAntenna* a = &(fD->antenna[n]);
-    json ant;
+    mho_json ant;
     if(a != nullptr)
     {
         ant["name"] = std::string(a->name, DIFXIO_NAME_LENGTH).c_str();
@@ -242,11 +242,11 @@ MHO_DiFXInputProcessor::GetAntennaSiteTypeString(AntennaSiteType type)
     return site_type;
 }
 
-json 
+mho_json 
 MHO_DiFXInputProcessor::ExtractScanQuantities(int n)
 {
     DifxScan* s = &(fD->scan[n]);
-    json scan;
+    mho_json scan;
     if(s != nullptr)
     {
         scan["mjdStart"] = s->mjdStart;
@@ -275,13 +275,13 @@ MHO_DiFXInputProcessor::ExtractScanQuantities(int n)
         /* NOTE : im[ant] can be zero -> no data */
 
         //TODO FIXME: WE NEED TO RELATE THE UNITS OF THE POLYMODEL SOMEHOW
-        std::vector< std::vector< std::vector< json > > > polys;
+        std::vector< std::vector< std::vector< mho_json > > > polys;
         for(int i=0; i < s->nAntenna; i++)
         {
-            std::vector< std::vector< json > > pj;
+            std::vector< std::vector< mho_json > > pj;
             for(int j=0; j <= s->nPhaseCentres; j++)
             {
-                std::vector< json > pk;
+                std::vector< mho_json > pk;
                 for(int k=0; k < s->nPoly; k++)
                 {
                     pk.push_back( ExtractDifxPolyModel( &(s->im[i][j][k]) ) );
@@ -302,11 +302,11 @@ MHO_DiFXInputProcessor::ExtractScanQuantities(int n)
 }
 
 
-json 
+mho_json 
 MHO_DiFXInputProcessor::ExtractSourceQuantities(int n)
 {
     DifxSource* s = &(fD->source[n]);
-    json source;
+    mho_json source;
     if(s != nullptr)
     {
         //how should we store the units of some of these quantities 
@@ -328,11 +328,11 @@ MHO_DiFXInputProcessor::ExtractSourceQuantities(int n)
 }
 
 
-json 
+mho_json 
 MHO_DiFXInputProcessor::ExtractEOPQuantities(int n)
 {
     DifxEOP* e = &(fD->eop[n]);
-    json eop;
+    mho_json eop;
     if(e != nullptr)
     {
         eop["mjd"] = e->mjd;
@@ -346,11 +346,11 @@ MHO_DiFXInputProcessor::ExtractEOPQuantities(int n)
 
 
 
-json 
+mho_json 
 MHO_DiFXInputProcessor::ExtractDatastreamQuantities(int n)
 {
     DifxDatastream* d = &(fD->datastream[n]);
-    json ds;
+    mho_json ds;
     if(d != nullptr)
     {
         ds["antennaId"] = d->antennaId;
@@ -397,11 +397,11 @@ MHO_DiFXInputProcessor::ExtractDatastreamQuantities(int n)
 }
 
 
-json 
+mho_json 
 MHO_DiFXInputProcessor::ExtractBaselineQuantities(int n)
 {
     DifxBaseline* b = &(fD->baseline[n]);
-    json base;
+    mho_json base;
     if(b != nullptr)
     {
         base["dsA"] = b->dsA;
@@ -433,11 +433,11 @@ MHO_DiFXInputProcessor::ExtractBaselineQuantities(int n)
 }
 
 
-json 
+mho_json 
 MHO_DiFXInputProcessor::ExtractDifxPolyModel(DifxPolyModel* m)
 {
     //TODO FIXME -- WE NEED TO EXPORT THE UNITS OF THE POLYNOMIAL COEFF IN SOME WAY
-    json poly;
+    mho_json poly;
     if(m != nullptr)
     {
         poly["mjd"] = m->mjd;
@@ -459,17 +459,6 @@ MHO_DiFXInputProcessor::ExtractDifxPolyModel(DifxPolyModel* m)
         }
     }
     return poly;
-}
-
-void 
-MHO_DiFXInputProcessor::FillFrequencyTable()
-{
-    struct CommandLineOptions opts;
-    opts.verbose = 2;
-    for(int i=0; i<16; i++){opts.fgroups[i] = '\0';}
-    for(int i=0; i<8; i++){opts.bandwidth[i] = '\0';}
-    struct fblock_tag fblock[MAX_FPPAIRS];
-    int val = fill_fblock (fD, &opts, &(fblock[0]));
 }
 
 }//end namespace

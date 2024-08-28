@@ -6,7 +6,10 @@ namespace hops
 MHO_DiFXInterface::MHO_DiFXInterface():
     fInputDirectory(""),
     fOutputDirectory("")
-{};
+{
+    fNormalize = false;
+    fPreserveDiFXScanNames = false;
+};
 
 MHO_DiFXInterface::~MHO_DiFXInterface(){};
 
@@ -75,8 +78,8 @@ MHO_DiFXInterface::Initialize()
     fDirInterface.GetFilesMatchingExtention(tmpFiles, "v2d");
     if(tmpFiles.size() != 1)
     {
-        msg_fatal("difx_interface", tmpFiles.size() << " .v2d files found in " << fInputDirectory << eom );
-        std::exit(1);
+        msg_info("difx_interface", tmpFiles.size() << " .v2d files found in " << fInputDirectory << eom );
+        fV2DFile = ""; //no v2d file
     }
     fV2DFile = tmpFiles[0];
     tmpFiles.clear();
@@ -225,8 +228,15 @@ MHO_DiFXInterface::ProcessScans()
 
     for(std::size_t i=0; i<fScanFileSetList.size(); i++)
     {
+        msg_debug("difx_interface", "processing scan: "<< fScanFileSetList[i].fScanName << " and assigning root code: "<< scan_codes[i] << eom);
         fScanProcessor.SetExperimentNumber(fExperNum);
         fScanProcessor.SetRootCode(scan_codes[i]);
+        fScanProcessor.SetNormalizeFalse();
+        if(fNormalize){fScanProcessor.SetNormalizeTrue();}
+        
+        if(fPreserveDiFXScanNames){ fScanProcessor.SetPreserveDiFXScanNamesTrue();}
+        else{ fScanProcessor.SetPreserveDiFXScanNamesFalse(); }
+
         fScanProcessor.ProcessScan(fScanFileSetList[i]);
     }
 }

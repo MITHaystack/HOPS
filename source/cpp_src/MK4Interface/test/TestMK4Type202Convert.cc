@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
   my202.ref_elev = 2;
   my202.rem_elev = 2;
 
-  json obj = convertToJSON(my202);
+  mho_json obj = convertToJSON(my202);
 
   std::cout << obj.dump(2) << std::endl;
 

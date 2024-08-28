@@ -50,6 +50,8 @@ class MHO_DiFXScanProcessor
         void SetStationCodes(MHO_StationCodeMap* code_map);
         void ProcessScan(MHO_DiFXScanFileSet& fileSet);
 
+        void SetNormalizeFalse(){fNormalize = false;}
+        void SetNormalizeTrue(){fNormalize = true;}
 
         void SetPreserveDiFXScanNamesTrue(){fPreserveDiFXScanNames = true;}
         void SetPreserveDiFXScanNamesFalse(){fPreserveDiFXScanNames = false;};
@@ -70,6 +72,7 @@ class MHO_DiFXScanProcessor
         void LoadInputFile();
         void CreateRootFileObject(std::string vexfile);
         void ConvertVisibilityFileObjects();
+        void NormalizeVisibilities();
         void ConvertStationFileObjects();
 
         void ExtractPCalData();
@@ -77,13 +80,14 @@ class MHO_DiFXScanProcessor
         void CleanUp();
 
         //the DiFX input file structure 
-        json fInput;
+        mho_json fInput;
 
         //the root code assigned to this scan 
         std::string fRootCode;
 
         //integer experiment number 
         int fExperNum;
+        bool fNormalize;
 
         //the output directory for this scan 
         std::string fOutputDirectory;
