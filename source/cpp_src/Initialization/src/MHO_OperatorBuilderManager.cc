@@ -1,0 +1,145 @@
+#include "MHO_OperatorBuilderManager.hh"
+
+
+//builders
+#include "MHO_ChannelLabellerBuilder.hh"
+#include "MHO_DataSelectionBuilder.hh"
+#include "MHO_ManualChannelPhaseCorrectionBuilder.hh"
+#include "MHO_ManualChannelDelayCorrectionBuilder.hh"
+#include "MHO_ManualPolPhaseCorrectionBuilder.hh"
+#include "MHO_ManualPolDelayCorrectionBuilder.hh"
+
+namespace hops
+{
+
+void
+MHO_OperatorBuilderManager::CreateBuilders()
+{
+
+    //we have a very limited number of operators enabled currently
+    AddBuilderType<MHO_ChannelLabellerBuilder>("chan_ids", fFormat["chan_ids"]);
+    
+    //TODO FIXME -- do we need a different labels, should these be consolidated?
+    
+    //manual per-channel pc phase corrections
+    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_x", fFormat["pc_phases_x"]); 
+    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_y", fFormat["pc_phases_y"]);
+    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_r", fFormat["pc_phases_r"]);
+    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_l", fFormat["pc_phases_l"]);
+    
+    //manual per-channel pc delay corrections
+    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_x", fFormat["delay_offs_x"]); 
+    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_y", fFormat["delay_offs_y"]);
+    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_r", fFormat["delay_offs_r"]);
+    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_l", fFormat["delay_offs_l"]);
+    
+    //manual per-pol pc phase corrections
+    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_x", fFormat["pc_phase_offset_x"]); 
+    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_y", fFormat["pc_phase_offset_y"]);
+    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_r", fFormat["pc_phase_offset_r"]);
+    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_l", fFormat["pc_phase_offset_l"]);
+    
+    //manual per-pol pc delay corrections
+    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_x", fFormat["pc_delay_x"]); 
+    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_y", fFormat["pc_delay_y"]);
+    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_r", fFormat["pc_delay_r"]);
+    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_l", fFormat["pc_delay_l"]);
+
+    //the below additions are some operators which have to be applied but are not
+    //always specified via control file (data selection and default channel labels)
+    #pragma message("fix this horrible hack")
+    //this one is special since it is not an operator specified via control file
+    mho_json special;
+    special["operator_category"] = "selection";
+    special["priority"] = 1.1;
+    AddBuilderType<MHO_DataSelectionBuilder>("coarse_selection", special);
+
+    //this one is also special (default channel labeling behavior)
+    mho_json special2;
+    special2["operator_category"] = "default";
+    special2["priority"] = 0.1;
+    AddBuilderType<MHO_ChannelLabellerBuilder>("default_chan_ids", special2);
+}
+
+
+
+void
+MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
+{
+    //check that the category is supported (listed below)
+    bool ok = false;
+    if(cat == "default"){ok = true;}
+    if(cat == "labelling"){ok = true;}
+    if(cat == "selection"){ok = true;}
+    if(cat == "flagging"){ok = true;}
+    if(cat == "calibration"){ok = true;}
+
+    if(true)
+    {
+        msg_debug("initialization", "building operator category: "<<cat<<"."<<eom);
+        //default category requires no control input
+        if(cat == "default")
+        {
+            auto it1 = fCategoryToBuilderMap.lower_bound(cat);
+            auto it2 = fCategoryToBuilderMap.upper_bound(cat);
+            if(it1 != fCategoryToBuilderMap.end() )
+            {
+                while (it1 != it2)
+                {
+                    //no control attributes need (default builders)
+                    it1->second->Build();
+                    it1++;
+                }
+            }
+        }
+        else
+        {
+            for(auto ctrl_iter = fControl->begin(); ctrl_iter != fControl->end(); ctrl_iter++)
+            {
+                auto statements = &( (*ctrl_iter)["statements"] );
+                for(auto stmt_iter = statements->begin(); stmt_iter != statements->end(); )
+                {
+                    std::string name = (*stmt_iter)["name"];
+                    bool build_op = false;
+                    if( fFormat.contains(name) && fFormat[name].contains("operator_category") )
+                    {
+                        if(cat == fFormat[name]["operator_category"].get<std::string>() )
+                        {
+                            build_op = true;
+                        }
+                    }
+
+                    if(build_op)
+                    {
+                        auto builder_it = fNameToBuilderMap.find(name);
+                        if(builder_it != fNameToBuilderMap.end())
+                        {
+                            msg_debug("initialization", "building operator with name: "<<name<<" in category: "<<cat<<"."<<eom);
+                            builder_it->second->SetConditions(*ctrl_iter);
+                            builder_it->second->SetAttributes(*stmt_iter);
+                            builder_it->second->Build();
+                            stmt_iter = statements->erase(stmt_iter);
+                        }
+                        else //couldn't find a builder for this operator, skip
+                        {
+                            stmt_iter++;
+                            msg_debug("initialization", "operator: "<< name <<" not yet supported."<<eom);
+                        }
+                    }
+                    else
+                    {
+                        stmt_iter++; //statement not in this category, skip
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        msg_warn("initialization", "operator category: "<< cat<< " is not supported." << eom);
+    }
+
+}
+
+
+}//end namespace

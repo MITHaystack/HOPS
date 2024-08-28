@@ -1,0 +1,7 @@
+{
+    "name": "pc_phases_offset_l",
+    "statement_type": "operator",
+    "operator_category" : "calibration",
+    "type" : "real",
+    "priority": 3.5
+}

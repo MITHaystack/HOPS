@@ -22,6 +22,7 @@
 #include "MHO_Axis.hh"
 #include "MHO_AxisPack.hh"
 
+#include "MHO_FileStreamer.hh"
 
 namespace hops
 {
@@ -59,7 +60,10 @@ class MHO_TableContainer:
         MHO_TableContainer* Clone(){ return new MHO_TableContainer(*this); }
 
         //clone table shape, but leave contents/axes empty
-        MHO_TableContainer* CloneEmpty(){ return new MHO_TableContainer( this->fDims ); }
+        MHO_TableContainer* CloneEmpty()
+        {
+            return new MHO_TableContainer( this->GetDimensions() ); 
+        }
 
         virtual ~MHO_TableContainer(){};
 
@@ -72,7 +76,7 @@ class MHO_TableContainer:
             total_size += XAxisPackType::NAXES::value*sizeof(uint64_t);
             total_size += XAxisPackType::GetSerializedSize();
             total_size += MHO_Taggable::GetSerializedSize();
-            total_size += (this->fSize)*sizeof(XValueType);
+            total_size += ( this->GetSize() )*sizeof(XValueType);
             return total_size;
         }
 
@@ -95,81 +99,138 @@ class MHO_TableContainer:
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetSize;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimensions;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimension;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimensionArray;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetOffsetForIndices;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetIndicesForOffset;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::SubView;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::SliceView;
 
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::at;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator();
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator[];
-
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::ValueAt;
 
         //expensive copy (as opposed to the assignment operator,
-        //pointers to exernally managed memory are not transfer)
+        //pointers to exernally managed memory are not transferred)
         virtual void Copy(const MHO_TableContainer& rhs)
         {
-            //copy the array, then copy the axis pack
-            MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::Copy(rhs);
-            *( this->GetAxisPack() ) = *(rhs.GetAxisPack());
+            if(&rhs != this)
+            {
+                //copy the array
+                MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::Copy(rhs);
+                //copy the axis pack
+                *( this->GetAxisPack() ) = *(rhs.GetAxisPack());
+                //finally copy the table tags
+                this->CopyTags(rhs);
+            }
         }
-
-    protected:
-
-        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fData;
-        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fDims;
-        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fSize;
 
     public:
-
-        template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_TableContainer& aData)
-        {
-            //first stream version and dimensions
-            s << aData.GetVersion();
-            s << static_cast< const MHO_Taggable& >(aData);
-            for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
-            {
-                s << aData.fDims[i];
-            }
-            //then dump axes
-            s << static_cast< const XAxisPackType& >(aData);
-            //finally dump the array data
-            for(size_t i=0; i<aData.fSize; i++)
-            {
-                s << aData.fData[i];
-            }
-            return s;
-        }
 
         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_TableContainer& aData)
         {
             MHO_ClassVersion vers;
             s >> vers;
-            if( vers != aData.GetVersion() )
+
+            switch(vers) 
             {
-                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
-                //Flag this as an unknown object version so we can skip over this data
-                MHO_ObjectStreamState<XStream>::SetUnknown(s);
+                case 0:
+                    aData.StreamInData_V0(s);
+                break;
+                default:
+                    MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                    //Flag this as an unknown object version so we can skip over this data
+                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
+            }
+            return s;
+        }
+
+
+        template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_TableContainer& aData)
+        {
+            switch( aData.GetVersion() ) 
+            {
+                case 0:
+                    s << aData.GetVersion();
+                    aData.StreamOutData_V0(s);
+                break;
+                default:
+                    msg_error("containers", 
+                        "error, cannot stream out MHO_TableContainer object with unknown version: " 
+                        << aData.GetVersion() << eom );
+            }
+            return s;
+        }
+
+
+    private:
+
+        template<typename XStream> void StreamOutData_V0(XStream& s) const
+        {
+            //first stream version and dimensions
+            s << static_cast< const MHO_Taggable& >(*this);
+            auto dims = this->GetDimensionArray();
+            for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
+            {
+                s << (uint64_t) dims[i];
+            }
+            //then dump axes
+            s << static_cast< const XAxisPackType& >(*this);
+
+            //finally dump the array data
+            std::size_t dsize = this->GetSize();
+            auto data_ptr = this->GetData();
+            for(size_t i=0; i<dsize; i++)
+            {
+                s << data_ptr[i];
+            }
+        }
+
+        template<typename XStream> void StreamInData_V0(XStream& s)
+        {
+            s >> static_cast< MHO_Taggable& >(*this);
+
+            //next stream the axis-pack
+            uint64_t tmp_dim; 
+            std::size_t dims[XAxisPackType::NAXES::value];
+            for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
+            {
+                s >> tmp_dim;
+                dims[i] = tmp_dim;
+            }
+            this->Resize(dims);
+
+            //now stream in the axes
+            s >> static_cast< XAxisPackType& >(*this);
+
+            //ask for the file stream directly so we can optimize the read in chunks
+            //this is not so bueno, breaking ecapsulation of the file streamer class
+            auto fs_ptr = dynamic_cast< MHO_FileStreamer* >(&s);
+            std::size_t dsize = this->GetSize();
+            auto data_ptr = this->GetData();
+            if(fs_ptr != nullptr)
+            {
+                std::fstream& pfile = fs_ptr->GetStream();
+                pfile.read(reinterpret_cast<char*>(data_ptr), dsize*sizeof(XValueType));
             }
             else
             {
-                s >> static_cast< MHO_Taggable& >(aData);
-
-                //next stream the axis-pack
-                std::size_t dims[XAxisPackType::NAXES::value];
-                for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
+                //otherwise stream the mult-dim array data generically
+                for(size_t i=0; i<dsize; i++)
                 {
-                    s >> dims[i];
-                }
-                aData.Resize(dims);
-                //now stream in the axes
-                s >> static_cast< XAxisPackType& >(aData);
-                //now stream the mult-dim array data
-                for(size_t i=0; i<aData.fSize; i++)
-                {
-                    s >> aData.fData[i];
+                    s >> data_ptr[i];
                 }
             }
-            return s;
+        }
+        
+        virtual MHO_UUID DetermineTypeUUID() const override
+        {
+            MHO_MD5HashGenerator gen;
+            gen.Initialize();
+            std::string name = MHO_ClassIdentity::ClassName(*this);
+            gen << name;
+            gen.Finalize();
+            return gen.GetDigestAsUUID();
         }
 
 };

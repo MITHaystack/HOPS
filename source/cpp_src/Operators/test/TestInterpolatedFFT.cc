@@ -121,10 +121,10 @@ int main(int argc, char** argv)
             expanded_array1(loc2+1+i) = array2(mid+1+i);
         }
 
-        for(size_t i=0; i<NM; i++)
-        {
-            std::cout<<"expanded array1 @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
-        }
+        // for(size_t i=0; i<NM; i++)
+        // {
+        //     std::cout<<"expanded array1 @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
+        // }
 
     }
 
@@ -153,15 +153,15 @@ int main(int argc, char** argv)
 
 
     for(size_t i=0; i<N; i++)
-    {
-        std::cout<<"array @ "<<i<<" = "<<array1[i]<<std::endl;
-    }
-
-
-    for(size_t i=0; i<NM; i++)
-    {
-        std::cout<<"expanded array2 @ "<<i<<" = "<<expanded_array2[i]<<std::endl;
-    }
+    // {
+    //     std::cout<<"array @ "<<i<<" = "<<array1[i]<<std::endl;
+    // }
+    // 
+    // 
+    // for(size_t i=0; i<NM; i++)
+    // {
+    //     std::cout<<"expanded array2 @ "<<i<<" = "<<expanded_array2[i]<<std::endl;
+    // }
 
 
 

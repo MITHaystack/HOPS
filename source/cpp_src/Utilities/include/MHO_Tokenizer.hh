@@ -47,7 +47,7 @@ class MHO_Tokenizer{
         */
         void SetString(const std::string* aString);
 
-        /** Set the delimeter to be used to parse the string in SetString 
+        /** Set the delimiter to be used to parse the string in SetString 
         * @param aDelim string a string to be used as a delimiter
         * @returns None
         */
@@ -79,6 +79,16 @@ class MHO_Tokenizer{
         const std::string* fCurrentString;
         std::vector< std::pair< std::size_t, std::size_t>  > fQuotePairIndexes;
 };
+
+
+
+//fuction which splits a single string into a vector of tokens
+//if the default (no delimiter) is used, then each character is split into a new token
+//otherwise the string is split on the specified delimiter
+std::vector< std::string > SplitString(const std::string& input, std::string delim = "");
+
+
+
 
 } // end of hops namespace
 

@@ -167,7 +167,6 @@ MHO_DiFXChannelNameConstructor::AddChannelNames(mho_json& vex_root)
             //now construct the channel name 
             std::string chan_name;
             chan_name = band + chan_no + net_sb + pol;
-            std::cout<<"in table "<<freq_table<<" setting channel name = "<<chan_name<<std::endl;
             vex_root["$FREQ"][freq_table]["chan_def"][nch]["channel_name"] = chan_name;
         }
     }

@@ -31,8 +31,6 @@ class MHO_SubSample:
 {
     public:
 
-        static_assert(XArrayType::rank::value == XArrayType::rank::value, "Input/Output array ranks are not equal.");
-
         MHO_SubSample()
         {
             fInitialized = false;
@@ -69,6 +67,11 @@ class MHO_SubSample:
             bool status = ExecuteOutOfPlace(in, &fWorkspace);
             //"in-place" execution requires a copy from the workspace back to the object we are modifying
             in->Copy(fWorkspace);
+            
+            // auto workspace_dim = fWorkspace.GetDimensionArray();
+            // for(std::size_t i=0; i<workspace_dim.size(); i++){workspace_dim[i] = 0;}
+            // fWorkspace.Resize(&(workspace_dim[0]));
+            
             return status;
         }
 
@@ -98,15 +101,15 @@ class MHO_SubSample:
 
             std::size_t d = fDimIndex;
             //now we loop over all dimensions not specified by d
-            //first compute the number of arrays we need to rotate
-            size_t n_rot = 1;
+            //first compute the number of arrays we need to sub-sample
+            size_t n_srow = 1;
             size_t count = 0;
             size_t in_stride = in->GetStride(d);
             for(size_t i = 0; i < XArrayType::rank::value; i++)
             {
                 if(i != d)
                 {
-                    n_rot *= in->GetDimension(i);
+                    n_srow *= in->GetDimension(i);
                     non_active_dimension_index[count] = i;
                     non_active_dimension_size[count] = in->GetDimension(i);
                     count++;
@@ -114,7 +117,7 @@ class MHO_SubSample:
             }
 
             //loop over the number of rows we need to sub-sample
-            for(size_t n=0; n<n_rot; n++)
+            for(size_t n=0; n<n_srow; n++)
             {
                 //invert place in list to obtain indices of block in array
                 MHO_NDArrayMath::RowMajorIndexFromOffset<XArrayType::rank::value-1>(n, non_active_dimension_size, non_active_dimension_value);
@@ -134,7 +137,7 @@ class MHO_SubSample:
                 size_t out_data_location;
                 out_data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<XArrayType::rank::value>(out->GetDimensions(), index);
 
-                //now rotate the array by the specified amount
+                //now sample the array by the specified amount
                 auto in_iter = in->cstride_iterator_at(in_data_location, fStride*in_stride);
                 auto out_iter = out->stride_iterator_at(out_data_location, out->GetStride(d));
                 auto in_end = in_iter + in->GetDimension(d);
@@ -153,8 +156,6 @@ class MHO_SubSample:
 
             return true;
         }
-
-
 
 
     private:
@@ -187,8 +188,14 @@ class MHO_SubSample:
         typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
         IfTableSubSampleAxis(const XArrayType* in, XArrayType* out)
         {
-            SubSampleAxis axis_sub_sampler(fStride);
-            apply_at2< typename XArrayType::axis_pack_tuple_type, SubSampleAxis >( *in, *out, fDimIndex, axis_sub_sampler);
+            for(size_t i = 0; i < XArrayType::rank::value; i++) //apply to all axes
+            {
+                std::size_t stride = 1; //non-sub-sampled axis are just copied directly (stride of 1)
+                if(i == fDimIndex){stride = fStride;}
+                SubSampleAxis axis_sub_sampler(stride);
+                apply_at2< typename XArrayType::axis_pack_tuple_type, SubSampleAxis >( *in, *out, i, axis_sub_sampler);
+            }
+            out->CopyTags(*in); //make sure the table tags get copied
         }
 
 
@@ -203,14 +210,22 @@ class MHO_SubSample:
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
-                    //at this point axis2 should already be re-sized appropriately
-                    auto it1 = axis1.cstride_begin(fStride);
-                    auto end1 = axis1.cstride_end(fStride);
-                    auto it2 = axis2.begin();
-                    auto end2 = axis2.end();
-                    while(it1 != end1 && it2 != end2)
+                    if(fStride == 1)
                     {
-                        *it2++ = *it1++;
+                        axis2.Copy(axis1);
+                    }
+                    else 
+                    {
+                        axis2.CopyTags(axis1); //copy the axis tags
+                        //at this point axis2 should already be re-sized appropriately
+                        auto it1 = axis1.cstride_begin(fStride);
+                        auto end1 = axis1.cstride_end(fStride);
+                        auto it2 = axis2.begin();
+                        auto end2 = axis2.end();
+                        while(it1 != end1 && it2 != end2)
+                        {
+                            *it2++ = *it1++;
+                        }
                     }
                 }
 

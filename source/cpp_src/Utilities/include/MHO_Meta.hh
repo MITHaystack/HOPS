@@ -12,6 +12,8 @@
 
 #include <type_traits>
 #include <tuple>
+#include <map>
+#include <complex>
 
 namespace hops
 {
@@ -242,8 +244,52 @@ apply_at2(XTupleType& tup1, XTupleType2& tup2, size_t index, XFunctorType& funct
 
 
 ////////////////////////////////////////////////////////////////////////////////
+//check structs for complex floating point types 
+
+template <typename XValueType>
+struct is_complex: std::false_type {};
+
+template <>
+struct is_complex< std::complex<float> >: std::true_type {};
+
+template <>
+struct is_complex< std::complex<double> >: std::true_type {};
+
+template <>
+struct is_complex< std::complex<long double> >: std::true_type {};
 
 
+////////////////////////////////////////////////////////////////////////////////
+//zip elements of two iterable (probably STL) containers (which define a value_type)
+//into a map which takes the i-th element of the 1st container to the i-th element
+//of the 2nd container. Terminates at the end of whatever container stops first.
+
+template< typename XContainer1, typename XContainer2 >
+std::map< typename XContainer1::value_type, typename XContainer2::value_type > 
+zip_into_map(const XContainer1& c1, const XContainer2& c2)
+{
+    auto it1 = c1.begin();
+    auto it2 = c2.begin();
+    std::map< typename XContainer1::value_type, typename XContainer2::value_type > zip;
+    while( it1 != c1.end() && it2 != c2.end() )
+    {
+        zip[ *it1 ] = *it2;
+        ++it1;
+        ++it2;
+    }
+    return zip;
+}
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
 
 }//end of namespace
 

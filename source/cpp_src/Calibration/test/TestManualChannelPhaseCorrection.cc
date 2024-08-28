@@ -13,8 +13,7 @@
 #include "MHO_WeightChannelizer.hh"
 #include "MHO_FFTWTypes.hh"
 
-#include "MHO_ManualChannelPhaseCorrection_v1.hh"
-#include "MHO_ManualChannelPhaseCorrection_v2.hh"
+#include "MHO_ManualChannelPhaseCorrection.hh"
 
 using namespace hops;
 
@@ -125,10 +124,10 @@ int main(int argc, char** argv)
     }
     inter.Close();
 
-    std::size_t bl_dim[CH_VIS_NDIM];
+    std::size_t bl_dim[VIS_NDIM];
     bl_data->GetDimensions(bl_dim);
     //print the dimensions of this array of visibilities
-    for(std::size_t i=0;i<CH_VIS_NDIM; i++)
+    for(std::size_t i=0;i<VIS_NDIM; i++)
     {
         std::cout<<"Data dimension: "<<i<<" has size: "<<bl_dim[i]<<std::endl;
     }
@@ -140,35 +139,19 @@ int main(int argc, char** argv)
 
 
 
-    //OPTION 1 ////////////////////////////////////////////////////////////////
-    //Unary operator, p-cal data set via custom function
-
-    //now construct the manual phase cal operator and apply it to bl_data    
-    MHO_ManualChannelPhaseCorrection_v1 phase_corrector1;
-    phase_corrector1.SetArgs(bl_data);
-
-    //set the phase corrections here (need to define a function to do this...)
-    status = phase_corrector1.Initialize();
-    status = phase_corrector1.Execute();
-
-    //verify the output
-
-
-
-
 
 
     //OPTION 2 /////////////////////////////////////////////////////////////////
     //binary operator, p-cal data is yet another table container
 
     //table for the pcal corrections
-    ch_pcal_phase_type* pcal_data = new ch_pcal_phase_type();
+    manual_pcal_type* pcal_data = new manual_pcal_type();
     pcal_data->Resize(bl_dim[0], bl_dim[1]); //resize 2d array (polprods x channels)
 
     //set the phase corrections here (eventually this will be filled in via control file or other routine)
 
     //now construct the manual phase cal operator and apply it to bl_data
-    MHO_ManualChannelPhaseCorrection_v2 phase_corrector2;
+    MHO_ManualChannelPhaseCorrection phase_corrector2;
     phase_corrector2.SetArgs(bl_data, pcal_data, bl_data);
 
     status = phase_corrector2.Initialize();

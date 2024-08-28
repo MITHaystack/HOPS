@@ -68,6 +68,9 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     #include exe headers
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+    #special include for hops_config.h (which is generated at build time)
+    include_directories(${CMAKE_CURRENT_BINARY_DIR}/../../../c_src/)
+
     #include external library headers
     include_directories(${PGPLOT_INCLUDE_DIR})
     include_directories(${FFTW_INCLUDE_DIR})
@@ -92,19 +95,34 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
         hops_add_cflag(${FF_VER_NO_DEF})
     endif(HOPS3_USE_CXX)
 
+    #collect all the other include dir
+    hops_internal_include_directories("./")
+
     # set library lists ############################################################
     set(INTERNAL_LIBLIST
-        "msg"
-        "mk4util"
-        "afio"
-        "dfio"
-        "vex"
-        "ffcontrol"
-        "ffmath"
-        "ffcore"
-        "ffio"
-        "ffsearch"
-        "ffplot"
+        msg
+        mk4util
+        afio
+        dfio
+        vex
+        ffcontrol
+        ffmath
+        ffcore
+        ffio
+        ffsearch
+        ffplot
+    )
+
+    #add the new C++ libraries, so we can use them too
+    list(APPEND INTERNAL_LIBLIST
+        MHO_Message
+        MHO_Utilities
+        vex2json
+        MHO_Math
+        MHO_Containers
+        MHO_Snapshot
+        MHO_Operators
+        MHO_Calibration
     )
 
     set(EXTERNAL_LIBLIST

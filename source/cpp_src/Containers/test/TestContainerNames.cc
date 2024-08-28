@@ -41,12 +41,15 @@ class LocalDictionary: public MHO_ContainerDictionary
             {
                 MHO_UUID type_uuid = it->first;
                 MHO_Serializable* obj = it->second;
-                MHO_UUID object_uuid = gen.GenerateUUID(); //random object id
-                // std::cout<<type_uuid.as_string()<<" - "<<object_uuid.as_string()<<std::endl;
-                // std::cout<<type_uuid.as_string()<<" - "<<fAllObjectTypeNames[type_uuid]<<std::endl;
+                MHO_UUID object_uuid = obj->GetObjectUUID(); //gen.GenerateUUID(); //random object id
+                std::cout<<type_uuid.as_string()<<" - "<<object_uuid.as_string()<<std::endl;
+                std::cout<<type_uuid.as_string()<<" - "<<fAllObjectTypeNames[type_uuid]<<std::endl;
+                std::cout<<"object thinks its type uuid = "<<obj->GetTypeUUID().as_string()<<std::endl;
                 std::string shortname = "test";
                 uint32_t label = 1;
-                bool ok = lib.AddContainerObject(obj, type_uuid, object_uuid, shortname, label);
+                // bool ok = lib.AddContainerObject(obj, type_uuid, object_uuid, shortname, label);
+                bool ok = lib.AddObject(obj);// type_uuid, object_uuid, shortname, label);
+
             }
             fAllObjects.clear();// we've handed ownership of these objects off to the container library
         }
@@ -100,7 +103,8 @@ int main(int argc, char** argv)
     conDict.PopulateStore(conStore);
 
     //all file objects are now in memory
-    std::cout<<"store has: "<<conStore.GetNObjects()<<" objects."<<std::endl;
+    std::size_t n_objs_start = conStore.GetNObjects();
+    std::cout<<"store has: "<<n_objs_start<<" objects."<<std::endl;
 
     MHO_ContainerFileInterface conInter;
     conInter.SetFilename(filename);
@@ -112,7 +116,23 @@ int main(int argc, char** argv)
     conInter.PopulateStoreFromFile(conStore2);
 
     //all file objects are now in memory
-    std::cout<<"store has: "<<conStore2.GetNObjects()<<" objects."<<std::endl;
-
-    return 0;
+    std::size_t n_objs_end = conStore2.GetNObjects();
+    std::cout<<"store has: "<<n_objs_end<<" objects."<<std::endl;
+    
+    
+    //explicitly delete the visibility type object;
+    std::vector< MHO_UUID > obj_ids;
+    MHO_UUID vis_type_id = conStore2.GetTypeUUID<visibility_type>();
+    conStore2.GetAllObjectUUIDsOfType(vis_type_id, obj_ids);
+    for(auto it = obj_ids.begin(); it != obj_ids.end(); it++)
+    {
+        std::cout<<"deleting object of visibility_type with object uuid: "<<(*it).as_string()<<std::endl;
+        conStore2.DeleteObject(*it);
+    }
+    
+    conStore.Clear();
+    conStore2.Clear();
+    
+    if(n_objs_start == n_objs_end){return 0;} //test passes
+    return 1; //test fails
 }

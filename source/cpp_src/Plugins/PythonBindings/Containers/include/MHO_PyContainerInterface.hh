@@ -7,6 +7,7 @@
 
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h> //this is important to have for std::complex<T> support!
+
 namespace py = pybind11;
 
 /*
@@ -30,18 +31,18 @@ class MHO_PyContainerInterface
         virtual ~MHO_PyContainerInterface(){};
 
         //single access point to visiblity object
-        void SetVisibilities(ch_visibility_type* vis){fVisibilities = vis;};
-        ch_visibility_type& GetVisibilities(){return *fVisibilities;}
+        void SetVisibilities(visibility_type* vis){fVisibilities = vis;};
+        visibility_type& GetVisibilities(){return *fVisibilities;}
 
-        MHO_PyTableContainer< ch_visibility_type >& GetVisibilityTable()
+        MHO_PyTableContainer< visibility_type >& GetVisibilityTable()
         {
-            if( fVisibilities->HasExtension< MHO_PyTableContainer< ch_visibility_type > >() )
+            if( fVisibilities->HasExtension< MHO_PyTableContainer< visibility_type > >() )
             {
-                return *( fVisibilities->AsExtension< MHO_PyTableContainer< ch_visibility_type > >() );
+                return *( fVisibilities->AsExtension< MHO_PyTableContainer< visibility_type > >() );
             }
             else
             {
-                return *(fVisibilities->MakeExtension< MHO_PyTableContainer< ch_visibility_type > >() );
+                return *(fVisibilities->MakeExtension< MHO_PyTableContainer< visibility_type > >() );
             }
         }
 
@@ -49,7 +50,7 @@ class MHO_PyContainerInterface
     private:
 
         //pointers to objects which have been registered
-        ch_visibility_type* fVisibilities;
+        visibility_type* fVisibilities;
 
 };
 

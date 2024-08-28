@@ -61,6 +61,11 @@ int __fringe_search ( struct vex* root, struct type_pass* pass)
                                         /* pass parameters reflect user restrictions */
                                         /* on data extent */
     size = 2 * param.nlags * pass->nfreq * pass->num_ap;
+    
+    printf("sbdelay total size alloc = %d\n", size);
+    printf("param.nlags = %d\n", param.nlags);
+    printf("pass.nfreq = %d\n", pass->nfreq);
+    printf("pass.num_ap = %d\n", pass->num_ap);
 
     sbarray = (hops_complex *)calloc (size, sizeof (hops_complex));
     if (sbarray == NULL)

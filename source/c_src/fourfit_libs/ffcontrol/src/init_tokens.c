@@ -12,7 +12,7 @@
 #define tokenize(aa,bb,cc) {token_string[aa] = bb; token_cat[aa] = cc;}
 
 //could use the below lines to actually allocate memory for the strings instead (would need to be freed)
-//since the current implementation compiled under c++ renders:
+//since the currenct implementation compiled under c++ renders:
 //warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
  
 //#include <string.h>
@@ -158,6 +158,7 @@ init_tokens ()
     tokenize (CASSEGRAIN_,    "cassegrain",   INT_CONST + CASSEGRAIN)
     tokenize (NASMYTHLEFT_,   "nasmythleft",  INT_CONST + NASMYTHLEFT)
     tokenize (NASMYTHRIGHT_,  "nasmythright", INT_CONST + NASMYTHRIGHT)
+    tokenize (MIXED_MODE_ROT_, "mixed_pol_yshift90", INT_PARAM)
 
     //return value needed to correct function signature (value is not used, this function should be void)
     //if this return value is not present, fourfit segfaults when compiled as C++...how interesting

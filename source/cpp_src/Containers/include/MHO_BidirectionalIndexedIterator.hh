@@ -7,7 +7,7 @@
 *@author: J. Barrett
 *@email: barrettj@mit.edu
 *@date:
-*@brief: This is an interator for more complicated n-darrays (primarily array "slices").
+*@brief: This is an iterator for more complicated n-darrays (primarily array "slices").
 * Because we cannot guarantee that adjacent elements (in index space) are contiguous in
 * memory for an array slice, we need to ensure that the proper strided access takes place.
 */

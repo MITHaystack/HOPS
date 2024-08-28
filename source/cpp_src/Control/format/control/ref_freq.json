@@ -1,0 +1,6 @@
+{
+    "name": "ref_freq",
+    "statement_type": "parameter",
+    "parameter_type": "config",
+    "type": "real"
+}

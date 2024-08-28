@@ -25,8 +25,15 @@ class MHO_FileStreamer
         {
             fFileState = FileState::undefined;
             fObjectState = ObjectState::unset;
+            //fBufferSize = 64*1024; ///64KB chunk
+            fBufferSize = 2*1024*1024; ///2MB chunk
+            fBuffer = new char[fBufferSize];
         };
-        virtual ~MHO_FileStreamer(){};
+
+        virtual ~MHO_FileStreamer()
+        {
+            delete[] fBuffer;
+        };
 
         void SetFilename(const std::string filename)
         {
@@ -38,6 +45,7 @@ class MHO_FileStreamer
 
         //let derived class specify the exact handling of file
         virtual void OpenToRead() = 0;
+        virtual void OpenToAppend() = 0;
         virtual void OpenToWrite() = 0;
         virtual void Close() = 0;
 
@@ -99,6 +107,9 @@ class MHO_FileStreamer
         std::fstream fFile;
         FileState fFileState;
         ObjectState fObjectState;
+
+        std::streamsize fBufferSize;
+        char* fBuffer;
 
 };
 

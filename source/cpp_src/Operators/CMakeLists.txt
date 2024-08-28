@@ -2,7 +2,9 @@
 #list header files #############################################################
 set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Operator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_OperatorToolbox.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UnaryOperator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InspectingOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TransformingOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UnaryFunctor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BinaryOperator.hh
@@ -12,13 +14,13 @@ set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Reducer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FunctorBroadcaster.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NaNMasker.hh
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScalarMultiply.hh
-    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PointwiseMultiply.hh
-    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PointwiseAdd.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ComplexConjugator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AbsoluteValue.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_CyclicRotator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SubSample.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SelectRepack.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalPaddedFastFourierTransform.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ElementTypeCaster.hh
 )
 
 if(HOPS_USE_FFTW3)
@@ -38,7 +40,7 @@ set( OPERATOR_SOURCEFILES
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
-set(OPERATOR_LIBS MHO_Message MHO_Math)
+set(OPERATOR_LIBS MHO_Message MHO_Math MHO_Containers)
 
 if(HOPS_USE_FFTW3)
     list(APPEND OPERATOR_LIBS ${FFTW_LIBRARIES} ${FFTW_SINGLE_LIBRARIES} ${FFTW_LONG_LIBRARIES})

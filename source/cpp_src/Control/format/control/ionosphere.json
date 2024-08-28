@@ -1,0 +1,6 @@
+{
+    "name": "ionosphere",
+    "statement_type": "parameter",
+    "parameter_type": "fit",
+    "type": "real"
+}

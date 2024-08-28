@@ -55,12 +55,12 @@ if( FFTW_FOUND )
     #external includes
     include_directories(${FFTW_INCLUDE_DIR})
 
-    if(HOPS_DEV_USE_OLD)
-    #add a compiler define to cut link between ffplot and ffsearch in fringe_search (this breaks fourfit)
-    #however it is needed to do testing with the C++ code without pulling in all the
-    #plotting libraries (pgplot)
-    hops_add_cflag(DISABLE_OUTPUT)
-    endif(HOPS_DEV_USE_OLD)
+    # if(HOPS_DEV_USE_OLD)
+    # #add a compiler define to cut link between ffplot and ffsearch in fringe_search (this breaks fourfit)
+    # #however it is needed to do testing with the C++ code without pulling in all the
+    # #plotting libraries (pgplot)
+    # hops_add_cflag(DISABLE_OUTPUT)
+    # endif(HOPS_DEV_USE_OLD)
 
 
     #build/link/install library ####################################################

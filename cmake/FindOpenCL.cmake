@@ -50,7 +50,7 @@ ELSE (APPLE)
 	GET_FILENAME_COMPONENT(_OPENCL_INC_CAND ${OPENCL_LIB_DIR}/../../include ABSOLUTE)
 
     message(STATUS "Expecting OpenCL library in: ${OPENCL_LIB_DIR}")
-    message(STATUS "OpenCL libary found is: ${OPENCL_LIBRARIES}")
+    message(STATUS "OpenCL library found is: ${OPENCL_LIBRARIES}")
 
     #if the system has an environmental variable called OPENCL_INCLUDE
     #which is the compiler flag for the include files, we strip the leading -I

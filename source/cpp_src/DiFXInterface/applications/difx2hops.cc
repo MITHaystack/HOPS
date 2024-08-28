@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <vector>
 #include <algorithm>
 #include <set>
@@ -28,21 +29,28 @@ int main(int argc, char** argv)
 {
     std::string usage = "difx2hops -e <exp. number> -i <input_directory> -c <station_codes_file> -o <output_directory>";
 
-    MHO_Message::GetInstance().AcceptAllKeys();
+    //MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
+    MHO_Message::GetInstance().AddKey("difx_interface");
 
     std::string input_dir = "./";
     std::string output_dir = "./";
+    bool output_dir_specified = false;
     std::string station_codes_file = "";
     int exper_num = 1234;
+    bool normalize = true;
+    bool preserve = false;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
                                           {"input_directory", required_argument, 0, 'i'},
                                           {"station_codes", required_argument, 0, 'c'},
                                           {"experiment_number", required_argument, 0, 'e'},
-                                          {"output_directory", required_argument, 0, 'o'}};
+                                          {"output_directory", required_argument, 0, 'o'},
+                                          {"raw", no_argument, 0, 'r'}, //turns on 'raw' mode, no normalization done
+                                          {"preserve", no_argument, 0, 'p'} //uses original difx scan names to name the scans (otherwise uses DOY-HHMM)
+                                        };
 
-    static const char* optString = "hi:c:e:o:";
+    static const char* optString = "hi:c:e:o:rp";
 
     while(true)
     {
@@ -65,11 +73,27 @@ int main(int argc, char** argv)
                 break;
             case ('o'):
                 output_dir = std::string(optarg);
+                output_dir_specified = true;
+                break;
+            case ('r'):
+                normalize = false;
+                break;
+            case ('p'):
+                preserve = true;
                 break;
             default:
                 std::cout << usage << std::endl;
                 return 1;
         }
+    }
+
+    //if not output directory was specified assume we are going to dump the
+    //converted data into <input_directory>/exper_num
+    if(!output_dir_specified)
+    {
+        std::stringstream ss;
+        ss << exper_num;
+        output_dir = input_dir + "/" + ss.str();
     }
 
     //if the output directory doesn't exist, then create it
@@ -92,6 +116,9 @@ int main(int argc, char** argv)
     difxInterface.SetOutputDirectory(output_directory);
     difxInterface.SetStationCodes(&stcode_map);
     difxInterface.SetExperimentNumber(exper_num);
+    difxInterface.SetNormalizeFalse();
+    if(normalize){difxInterface.SetNormalizeTrue();}
+    if(preserve){difxInterface.SetPreserveDiFXScanNamesTrue();}
 
     difxInterface.Initialize();
     difxInterface.ProcessScans();

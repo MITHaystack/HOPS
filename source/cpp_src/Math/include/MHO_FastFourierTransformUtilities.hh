@@ -318,7 +318,7 @@ class MHO_FastFourierTransformUtilities
 //template specializations for float, double, and long double
 
 template<>
-void
+inline void
 MHO_FastFourierTransformUtilities<float>::ComputeTwiddleFactors(unsigned int N, std::complex< float >* twiddle)
 {
     //using std::cos and std::sin is more accurate than the recursive method
@@ -334,7 +334,7 @@ MHO_FastFourierTransformUtilities<float>::ComputeTwiddleFactors(unsigned int N, 
 
 
 template<>
-void
+inline void
 MHO_FastFourierTransformUtilities<double>::ComputeTwiddleFactors(unsigned int N, std::complex< double >* twiddle)
 {
     //using std::cos and std::sin is more accurate than the recursive method
@@ -350,7 +350,7 @@ MHO_FastFourierTransformUtilities<double>::ComputeTwiddleFactors(unsigned int N,
 
 
 template<>
-void
+inline void
 MHO_FastFourierTransformUtilities<long double>::ComputeTwiddleFactors(unsigned int N, std::complex< long double >* twiddle)
 {
     //using std::cos and std::sin is more accurate than the recursive method
@@ -366,7 +366,7 @@ MHO_FastFourierTransformUtilities<long double>::ComputeTwiddleFactors(unsigned i
 
 
 template<>
-void
+inline void
 MHO_FastFourierTransformUtilities<float>::ComputeBluesteinScaleFactors(unsigned int N, std::complex< float >* scale)
 {
     //STEP A
@@ -390,7 +390,7 @@ MHO_FastFourierTransformUtilities<float>::ComputeBluesteinScaleFactors(unsigned 
 }
 
 template<>
-void
+inline void
 MHO_FastFourierTransformUtilities<double>::ComputeBluesteinScaleFactors(unsigned int N, std::complex< double >* scale)
 {
     //STEP A
@@ -414,7 +414,7 @@ MHO_FastFourierTransformUtilities<double>::ComputeBluesteinScaleFactors(unsigned
 }
 
 template<>
-void
+inline void
 MHO_FastFourierTransformUtilities<long double>::ComputeBluesteinScaleFactors(unsigned int N, std::complex< long double >* scale)
 {
     //STEP A

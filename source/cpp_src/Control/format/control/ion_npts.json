@@ -1,0 +1,6 @@
+{
+    "name": "ion_npts",
+    "statement_type": "parameter",
+    "parameter_type": "fit",
+    "type": "int"
+}

@@ -12,12 +12,18 @@ class MHO_NDArrayMath
         MHO_NDArrayMath(){};
         virtual ~MHO_NDArrayMath(){};
 
+        // //modulus of two integers
+        // static std::size_t Modulus(int arg, int n)
+        // {
+        //     //returns positive arg mod n, may want to optimize this for speed
+        //     double div = ( (double)arg )/( (double) n);
+        //     return (std::size_t)(std::fabs( (double)arg - std::floor(div)*((double)n) ) );
+        // }
+
         //modulus of two integers
-        static std::size_t Modulus(int arg, int n)
+        static std::size_t Modulus(std::size_t arg, std::size_t n)
         {
-            //returns positive arg mod n, may want to optimize this for speed
-            double div = ( (double)arg )/( (double) n);
-            return (std::size_t)(std::fabs( (double)arg - std::floor(div)*((double)n) ) );
+            return arg % n;
         }
 
         //for a multidimensional array (using row major indexing) which has the

@@ -27,7 +27,7 @@ int main()
     MHO_PyContainerInterface myInterface;
     //for now just create a vis object
     std::size_t dim[4] = {2,2,2,2};
-    ch_visibility_type* visibilities = new ch_visibility_type(dim);
+    visibility_type* visibilities = new visibility_type(dim);
 
     auto ax0 = &( std::get<0>(*visibilities) );
     (*ax0)[0] = "LL";

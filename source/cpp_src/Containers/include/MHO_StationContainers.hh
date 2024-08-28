@@ -17,6 +17,11 @@ namespace hops
 #define NCOORD 7 //delay, az, el, par-angle, u, v, w
 #define NCOEFF 6 //hard coded in mk4 library, but can be flexible
 
+#define MTPCAL_NDIM 3
+#define MTPCAL_POL_AXIS 0
+#define MTPCAL_TIME_AXIS 1
+#define MTPCAL_FREQ_AXIS 2
+
 using station_coord_axis_pack = MHO_AxisPack< coord_axis_type, time_axis_type, coeff_axis_type>;
 using station_coord_type = MHO_TableContainer< spline_coeff_type, station_coord_axis_pack >;
 
@@ -24,9 +29,12 @@ using station_coord_type = MHO_TableContainer< spline_coeff_type, station_coord_
 using multitone_pcal_axis_type = MHO_AxisPack< pol_axis_type, time_axis_type, frequency_axis_type >;
 using multitone_pcal_type = MHO_TableContainer< pcal_phasor_type, multitone_pcal_axis_type >;
 
-//manual (per-channel) pcal offsets
+//manual (per-channel) pcal (phase) offsets
 using manual_pcal_axis_type = MHO_AxisPack< pol_axis_type, channel_axis_type >;
-using manual_pcal_type = MHO_TableContainer< pcal_phasor_type, manual_pcal_axis_type >;
+using manual_pcal_type = MHO_TableContainer< manual_pcal_element_type, manual_pcal_axis_type >;
+
+//manual (per-channel) pcal (delay) offsets
+using manual_pcal_delay_type = MHO_TableContainer< manual_pcal_element_type, manual_pcal_axis_type >;
 
 }//end of hops namespaces
 

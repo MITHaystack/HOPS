@@ -1,0 +1,5 @@
+{
+    "name": "pc_period",
+    "statement_type": "parameter",
+    "type": "int"
+}

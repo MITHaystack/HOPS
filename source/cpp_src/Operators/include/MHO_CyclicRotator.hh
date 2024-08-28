@@ -7,6 +7,7 @@
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_UnaryOperator.hh"
+#include "MHO_TableContainer.hh"
 
 
 
@@ -87,6 +88,7 @@ class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
                         fModuloOffsets[i] = positive_modulo(fOffsets[i], fDimensionSize[i]);
                     }
                     else{fModuloOffsets[i] = 0;}
+                    IfTableRotateAxis(in, in, i);
                 }
 
                 size_t index[XArrayType::rank::value];
@@ -94,7 +96,7 @@ class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
                 size_t non_active_dimension_value[XArrayType::rank::value-1];
                 size_t non_active_dimension_index[XArrayType::rank::value-1];
 
-                //select the dimension on which to perform the FFT
+                //select the dimension on which to perform the rotation
                 for(size_t d = 0; d < XArrayType::rank::value; d++)
                 {
                     if(fOffsets[d] !=0)
@@ -179,6 +181,7 @@ class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
                     {
                         fModuloOffsets[i] = positive_modulo(fOffsets[i], fDimensionSize[i]);
                     }
+                    IfTableRotateAxis(in, out, i);
                 }
                 //first get the indices of the input iterator
                 auto in_iter =  in->cbegin();
@@ -188,7 +191,6 @@ class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
                 std::array<std::size_t, XArrayType::rank::value > in_loc;
                 while( in_iter != in_iter_end)
                 {
-                    //in_loc = in_iter.GetIndexObject();
                     MHO_NDArrayMath::RowMajorIndexFromOffset< XArrayType::rank::value >(in_iter.GetOffset(), in_dim, &(in_loc[0]) );
                     for(std::size_t i=0; i<XArrayType::rank::value;i++)
                     {
@@ -204,6 +206,57 @@ class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
         }
 
     private:
+
+
+        //default...does nothing
+        template< typename XCheckType = XArrayType >
+        typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
+        IfTableRotateAxis(const XArrayType* /*in*/, XArrayType* /*out*/, std::size_t /*dim*/){};
+
+        //use SFINAE to generate specialization for MHO_TableContainer types
+        template< typename XCheckType = XArrayType >
+        typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
+        IfTableRotateAxis(const XArrayType* in, XArrayType* out, std::size_t dim)
+        {
+            RotateAxis axis_rot(fOffsets[dim]);
+            apply_at2< typename XArrayType::axis_pack_tuple_type, RotateAxis >( *in, *out, dim, axis_rot);
+        }
+
+        class RotateAxis
+        {
+            public:
+                RotateAxis(std::size_t offset):
+                    fOffset(offset)
+                {};
+                ~RotateAxis(){};
+
+                template< typename XAxisType >
+                void operator()(const XAxisType& axis1, XAxisType& axis2)
+                {
+                    if(fOffset != 0)
+                    {
+                        XAxisType tmp;
+                        tmp.Copy(axis1);
+                        axis2.Copy(axis1); //copy the axis first to get tags, etc.
+                        //now rotate the elements by the offset 
+                        std::size_t a, b;
+                        int64_t i, j;
+                        int64_t n = axis2.GetSize();
+                        for(i=0; i<n; i++)
+                        {
+                            j = ( (i-fOffset) % n + n) % n;
+                            a = i;
+                            b = j;
+                            axis2(a) = tmp(b);
+                        }
+                    }
+                    else{ axis2.Copy(axis1); }
+                }
+
+            private:
+                int64_t fOffset;
+        };
+
 
 
         //note: using the modulo is a painfully slow to do this

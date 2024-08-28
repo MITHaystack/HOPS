@@ -23,7 +23,7 @@ foreach( BASENAME ${${EXENAME}_SOURCE_BASENAMES} )
 	list( APPEND ${EXENAME}_SOURCEFILES ${${EXENAME}_SOURCE_PATH}/${BASENAME} )
 endforeach( BASENAME )
 
-# list(INSERT ${EXENAME}_SOURCEFILES 0 ${CMAKE_CURRENT_SOURCE_DIR}/fplot.c)
+list(INSERT ${EXENAME}_SOURCEFILES 0 ${CMAKE_CURRENT_SOURCE_DIR}/fplot.c)
 
 #declare relative paths to internal headers/libs ###############################
 set(MSG_RELPATH "../../msg")
@@ -54,6 +54,10 @@ set(INTERNAL_LIBLIST
 
 #math library
 set(EXTERNAL_LIBLIST m)
+
+if(HOPS3_USE_CXX)
+    SET_SOURCE_FILES_PROPERTIES(${${EXENAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
+endif(HOPS3_USE_CXX)
 
 add_executable (${EXENAME} ${${EXENAME}_SOURCEFILES} )
 target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})

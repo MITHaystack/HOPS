@@ -71,11 +71,20 @@ class MHO_VectorContainer:
         using MHO_NDArrayWrapper<XValueType,1>::operator();
         using MHO_NDArrayWrapper<XValueType,1>::operator[];
 
-    protected:
+        //expensive copy
+        //pointers to exernally managed memory are not transferred)
+        virtual void Copy(const MHO_VectorContainer& rhs)
+        {
+            if(&rhs != this)
+            {
+                //copy the array
+                MHO_NDArrayWrapper<XValueType,1>::Copy(rhs);
+                //then copy the tags 
+                this->CopyTags(rhs);
+            }
+        }
 
-        using MHO_NDArrayWrapper<XValueType,1>::fData;
-        using MHO_NDArrayWrapper<XValueType,1>::fDims;
-        using MHO_NDArrayWrapper<XValueType,1>::fSize;
+    public:
 
         uint64_t ComputeSerializedSize() const
         {
@@ -83,7 +92,7 @@ class MHO_VectorContainer:
             total_size += sizeof(MHO_ClassVersion);
             total_size += MHO_Taggable::GetSerializedSize();
             total_size += sizeof(uint64_t);
-            total_size += this->fSize*sizeof(XValueType); //all elements have the same size
+            total_size += this->GetSize()*sizeof(XValueType); //all elements have the same size
             return total_size;
         }
 
@@ -91,36 +100,71 @@ class MHO_VectorContainer:
         {
             MHO_ClassVersion vers;
             s >> vers;
-            if( vers != aData.GetVersion() )
+            switch(vers) 
             {
-                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
-                //Flag this as an unknown object version so we can skip over this data
-                MHO_ObjectStreamState<XStream>::SetUnknown(s);
-            }
-            else
-            {
-                s >> static_cast< MHO_Taggable& >(aData);
-                size_t total_size[1];
-                s >> total_size[0];
-                aData.Resize(total_size);
-                for(size_t i=0; i<aData.fSize; i++)
-                {
-                    s >> aData.fData[i];
-                }
+                case 0:
+                    aData.StreamInData_V0(s);
+                break;
+                default:
+                    MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                    //Flag this as an unknown object version so we can skip over this data
+                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
             }
             return s;
         }
 
+
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_VectorContainer& aData)
         {
-            s << aData.GetVersion();
-            s << static_cast<const MHO_Taggable& >(aData);
-            s << aData.fSize;
-            for(size_t i=0; i<aData.fSize; i++)
+            switch( aData.GetVersion() ) 
             {
-                s << aData.fData[i];
+                case 0:
+                    s << aData.GetVersion();
+                    aData.StreamOutData_V0(s);
+                break;
+                default:
+                    msg_error("containers", 
+                        "error, cannot stream out MHO_VectorContainer object with unknown version: " 
+                        << aData.GetVersion() << eom );
             }
             return s;
+        }
+
+    private:
+
+        template<typename XStream> void StreamOutData_V0(XStream& s) const
+        {
+            s << static_cast<const MHO_Taggable& >(*this);
+            uint64_t dsize = this->GetSize();
+            s << (uint64_t) dsize;
+            auto data_ptr = this->GetData();
+            for(size_t i=0; i<dsize; i++)
+            {
+                s << data_ptr[i];
+            }
+        }
+
+        template<typename XStream> void StreamInData_V0(XStream& s)
+        {
+            s >> static_cast< MHO_Taggable& >(*this);
+            size_t total_size[1];
+            s >> total_size[0];
+            this->Resize(total_size);
+            auto data_ptr = this->GetData();
+            for(size_t i=0; i<total_size[0]; i++)
+            {
+                s >> data_ptr[i];
+            }
+        }
+        
+        virtual MHO_UUID DetermineTypeUUID() const override
+        {
+            MHO_MD5HashGenerator gen;
+            gen.Initialize();
+            std::string name = MHO_ClassIdentity::ClassName(*this);
+            gen << name;
+            gen.Finalize();
+            return gen.GetDigestAsUUID();
         }
 
 };
@@ -136,10 +180,12 @@ MHO_VectorContainer<std::string>::ComputeSerializedSize() const
     total_size += sizeof(MHO_ClassVersion);
     total_size += MHO_Taggable::GetSerializedSize();
     total_size += sizeof(uint64_t);
-    for(size_t i=0; i<this->fSize; i++)
+    std::size_t dsize = this->GetSize();
+    auto data_ptr = this->GetData();
+    for(size_t i=0; i<dsize; i++)
     {
         total_size += sizeof(uint64_t); //every string get streamed with a size
-        total_size += this->fData[i].size();
+        total_size += data_ptr[i].size(); //n char in each string
     }
     return total_size;
 }

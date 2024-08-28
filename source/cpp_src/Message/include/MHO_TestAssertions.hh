@@ -13,6 +13,9 @@
 #include <stdexcept>
 #include <string>
 #include <sstream>
+#include "MHO_Message.hh"
+
+
 
 #define HOPS_THROW                                                  \
 {                                                                   \
@@ -74,6 +77,9 @@
     );                                                              \
   }                                                                 \
 }
+
+
+
 
 
 #endif /* end of include guard: MHO_TestAssertions */

@@ -40,22 +40,24 @@ class MHO_NDArrayWrapper:
     public:
 
         using value_type = XValueType;
-        using index_type = std::array<std::size_t, RANK>;
+        using index_type = std::array< std::size_t, RANK>;
         typedef std::integral_constant< std::size_t, RANK > rank;
 
         //constructors
-        MHO_NDArrayWrapper(){Construct(nullptr, nullptr);}; //empty constructor, to be configured later
-        MHO_NDArrayWrapper(const std::size_t* dim){Construct(nullptr, dim);}; //data is internally allocated
-        MHO_NDArrayWrapper(XValueType* ptr, const std::size_t* dim){Construct(ptr,dim);}; //data is externally allocated/managed
+        //empty constructor, to be configured later
+        MHO_NDArrayWrapper(){Construct(nullptr, nullptr);}; 
 
+        //data is internally allocated
+        MHO_NDArrayWrapper(const std::size_t* dim){Construct(nullptr, dim);}; 
+
+        //data is interally allocated, but copied in from an external source
+        MHO_NDArrayWrapper(XValueType* ptr, const std::size_t* dim){Construct(ptr,dim);}; 
+
+        //copy constructor
         MHO_NDArrayWrapper(const MHO_NDArrayWrapper& obj)
         {
-            if(obj.fExternallyManaged){Construct(obj.fDataPtr, &(obj.fDims[0]) );}
-            else
-            {
-                Construct(nullptr, &(obj.fDims[0]) );
-                if(fSize != 0){std::copy(obj.fData.begin(), obj.fData.end(), fData.begin() );}
-            }
+            Construct(nullptr, &(obj.fDims[0]) );
+            std::copy(obj.fData.begin(), obj.fData.end(), fData.begin() );
         }
 
     public:
@@ -66,15 +68,9 @@ class MHO_NDArrayWrapper:
         //clone functionality
         MHO_NDArrayWrapper* Clone(){ return new MHO_NDArrayWrapper(*this); }
 
-        //resize functions
+        //resize function -- destroys contents
         virtual void Resize(const std::size_t* dim)
         {
-            if(fExternallyManaged)
-            {
-                msg_warn("containers", "Resize operation called on a wrapper pointing to " <<
-                          "an exernally managed array will replace it with internally " <<
-                          "managed memory. This may result in unexpected behavior." << eom);
-            }
             Construct(nullptr, dim);
         }
 
@@ -88,18 +84,20 @@ class MHO_NDArrayWrapper:
 
         //set pointer to externally managed array with associated dimensions
         void SetExternalData(XValueType* ptr, const std::size_t* dim){Construct(ptr, dim);}
-        
-        bool IsExternallyManaged() const {return fExternallyManaged;}
 
         //get the total size of the array
         std::size_t GetRank() const {return RANK;}
-        std::size_t GetSize() const {return fSize;};
+        std::size_t GetSize() const {return fData.size();};
 
         //get the dimensions/shape of the array
         const std::size_t* GetDimensions() const {return &(fDims[0]);}
         void GetDimensions(std::size_t* dim) const { for(std::size_t i=0; i<RANK; i++){dim[i] = fDims[i];} }
         index_type GetDimensionArray() const {return fDims;}
-        std::size_t GetDimension(std::size_t idx) const {return fDims[idx];}
+        std::size_t GetDimension(std::size_t idx) const 
+        {
+            if(idx < RANK){return fDims[idx];}
+            else{ throw std::out_of_range("MHO_NDArrayWrapper::GetDimension() index out of range."); }
+        }
 
         //get element strides
         const std::size_t* GetStrides() const {return &(fStrides[0]);}
@@ -141,29 +139,22 @@ class MHO_NDArrayWrapper:
         }
 
         //access to underlying data pointer, this can be used unsafely
-        XValueType* GetData(){return fDataPtr;};
-        const XValueType* GetData() const {return fDataPtr;};
+        XValueType* GetData(){return &(fData[0]);};
+        const XValueType* GetData() const {return &(fData[0]);};
 
         //fast access operator by 1-dim index (absolute-position) into the array
-        //this assumes the data is contiguous in memory, which may not be true 
+        //this assumes the data is contiguous in memory, which may not be true
         //if the array wrapper is a slice of a larger array
-        XValueType& operator[](std::size_t i){return fDataPtr[i];}
-        const XValueType& operator[](std::size_t i) const {return fDataPtr[i];}
+        XValueType& operator[](std::size_t i){return fData[i];}
+        const XValueType& operator[](std::size_t i) const {return fData[i];}
 
         //assignment operator
         MHO_NDArrayWrapper& operator=(const MHO_NDArrayWrapper& rhs)
         {
             if(this != &rhs)
             {
-                if(rhs.fExternallyManaged)
-                {
-                    Construct(rhs.fDataPtr, &(rhs.fDims[0]) );
-                }
-                else
-                {
-                    Construct(nullptr,  &(rhs.fDims[0]) );
-                    if(fSize != 0){std::copy(rhs.fData.begin(), rhs.fData.end(), this->fData.begin() );}
-                }
+                Construct(nullptr,  &(rhs.fDims[0]) );
+                std::copy(rhs.fData.begin(), rhs.fData.end(), this->fData.begin() );
             }
             return *this;
         }
@@ -171,40 +162,31 @@ class MHO_NDArrayWrapper:
         //set all elements in the array to a certain value
         void SetArray(const XValueType& obj)
         {
-            for(std::size_t i=0; i < fSize; i++){fDataPtr[i] = obj; }
+            for(auto it = fData.begin(); it != fData.end(); it++){*it = obj;}
         }
 
-        //set all elements in the array to zero
+        //set memory of elements in the array to zero
         void ZeroArray()
-        { 
-            std::memset(fDataPtr, 0, fSize*sizeof(XValueType) );
+        {
+            std::memset(&(fData[0]), 0, (fData.size())*sizeof(XValueType) );
         }
 
-        //expensive copy (as opposed to the assignment operator,
-        //pointers to exernally managed memory are not transfer)
+        //copy, effectively the same as assignment operator
         virtual void Copy(const MHO_NDArrayWrapper& rhs)
         {
             if(this != &rhs)
             {
                 Construct(nullptr,  &(rhs.fDims[0]));
-                if(fSize != 0){std::copy(rhs.fData.begin(), rhs.fData.end(), this->fData.begin() );}
+                std::copy(rhs.fData.begin(), rhs.fData.end(), this->fData.begin() );
             }
         }
 
-        //expensive copy (as opposed to the assignment operator,
-        //pointers to exernally managed memory are not transferred)
+        //copy, but from an array view with the same rank
         virtual void Copy(const MHO_NDArrayView<XValueType,RANK>& rhs)
         {
             auto dims = rhs.GetDimensionArray();
             Construct(nullptr,  &(dims[0]));
-            // auto bit = rhs.cbegin();
-            // auto rhs_it = bit;
-            // for(std::size_t i=0; i<fSize; i++)
-            // {
-            //     this->fData[i] = *rhs_it;
-            //     ++rhs_it;
-            // }
-            if(fSize != 0){std::copy(rhs.cbegin(), rhs.cend(), this->fData.begin() );}
+            std::copy(rhs.cbegin(), rhs.cend(), this->fData.begin() );
         }
 
 
@@ -213,6 +195,15 @@ class MHO_NDArrayWrapper:
         {
             return MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), index);
         }
+        
+        //linear offset into the array
+        index_type GetIndicesForOffset(std::size_t offset)
+        {
+            index_type index;
+            MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(offset, &(fDims[0]), &(index[0]) );
+            return index;
+        }
+
 
         //sub-view of the array (given n < RANK leading indexes), return the remaining
         //chunk of the array with freely spanning indexes
@@ -222,37 +213,36 @@ class MHO_NDArrayWrapper:
         template <typename ...XIndexTypeS >
         typename std::enable_if<
             (sizeof...(XIndexTypeS) < RANK),
-            MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) > 
+            MHO_NDArrayView<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >
         >::type
         SubView(XIndexTypeS...idx)
         {
+            constexpr typename std::integral_constant< std::size_t, sizeof...(XIndexTypeS) > nfixed_t;
             std::array<std::size_t, sizeof...(XIndexTypeS) > leading_idx = {{static_cast<size_t>(idx)...}};
             for(std::size_t i=0; i<RANK; i++){fTmp[i] = 0;}
             for(std::size_t i=0; i<leading_idx.size(); i++){fTmp[i] = leading_idx[i];}
             std::size_t offset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(fTmp[0]));
-            std::array<std::size_t, RANK - (sizeof...(XIndexTypeS)) > dim;
-            for(std::size_t i=0; i<dim.size(); i++){dim[i] = fDims[i + (sizeof...(XIndexTypeS) )];}
-            return  MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
+            return  MHO_NDArrayView<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >( &(fData[offset]), &(fDims[nfixed_t]), &(fStrides[nfixed_t]) );
+            
         }
 
 ////////////////////////////////////////////////////////////////////////////////
 
         //slice-view of the array (given n < RANK indexes), return the remaining
-        //chunk of the array with freely spanning indexes 
+        //chunk of the array with freely spanning indexes
         //the placeholder for the free-spanning indexes is the char ":"
         //for example: a ndarray X of RANK=3, and sizes [4,12,32], then SliceView(":",3,":")
         //returns an ndarray of RANK=2, and dimensions [4,32] starting at the
         //location of X(0,3,0), and spanning the data covered by X(":",3,":")
         //Data of the slice-view points to data owned by original array X
         template <typename ...XIndexTypeS >
-        typename std::enable_if< 
-            (sizeof...(XIndexTypeS) == RANK), 
+        typename std::enable_if<
+            (sizeof...(XIndexTypeS) == RANK),
             MHO_NDArrayView< XValueType, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value >
         >::type
         SliceView(XIndexTypeS...idx)
         {
-            typedef std::integral_constant< std::size_t, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfree_t;
-            typedef std::integral_constant< std::size_t, RANK - count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfixed_t;
+            constexpr typename std::integral_constant< std::size_t, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfree_t;
 
             class index_filler
             {
@@ -277,26 +267,26 @@ class MHO_NDArrayWrapper:
                     //make sure the indexes are listed in increasing order
                     void reorder()
                     {
-                        std::sort(free_idx.begin(), free_idx.end() ); 
+                        std::sort(free_idx.begin(), free_idx.end() );
                         std::sort(fixed_idx.begin(), fixed_idx.end() ); //make sure they are in increasing order
                     }
             };
 
-            index_filler filler;    
+            index_filler filler;
             std::tuple< XIndexTypeS... > input_idx = std::make_tuple( idx... );
             indexed_tuple_visit<RANK>::visit(input_idx, filler);
             filler.reorder();
 
             std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &( filler.full_idx[0]));
 
-            std::array<std::size_t, nfree_t::value > dim;
-            std::array<std::size_t, nfree_t::value > strides;
+            std::array<std::size_t, nfree_t > dim;
+            std::array<std::size_t, nfree_t > strides;
             for(std::size_t i=0; i<dim.size(); i++)
             {
                 dim[i] = fDims[ filler.free_idx[i] ];
                 strides[i] = fStrides[ filler.free_idx[i] ];
             }
-            return  MHO_NDArrayView<XValueType, nfree_t::value >(&(fDataPtr[offset]) , &(dim[0]), &(strides[0]) );
+            return  MHO_NDArrayView<XValueType, nfree_t >( &(fData[offset]), &(dim[0]), &(strides[0]) );
         }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -308,7 +298,8 @@ class MHO_NDArrayWrapper:
         typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayWrapper& >::type
         inline operator*=(T aScalar)
         {
-            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] *= aScalar;}
+            std::size_t length = fData.size();
+            for(std::size_t i=0; i<length; i++){fData[i] *= aScalar;}
             return *this;
         }
 
@@ -317,7 +308,8 @@ class MHO_NDArrayWrapper:
         typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayWrapper& >::type
         inline operator+=(T aScalar)
         {
-            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] += aScalar;}
+            std::size_t length = fData.size();
+            for(std::size_t i=0; i<length; i++){fData[i] += aScalar;}
             return *this;
         }
 
@@ -326,7 +318,8 @@ class MHO_NDArrayWrapper:
         typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayWrapper& >::type
         inline operator-=(T aScalar)
         {
-            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] -= aScalar;}
+            std::size_t length = fData.size();
+            for(std::size_t i=0; i<length; i++){fData[i] -= aScalar;}
             return *this;
         }
 
@@ -334,15 +327,17 @@ class MHO_NDArrayWrapper:
         inline MHO_NDArrayWrapper& operator*=(const MHO_NDArrayWrapper& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayWrapper::*= size mismatch.");}
-            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] *= anArray.fDataPtr[i];}
+            std::size_t length = fData.size();
+            for(std::size_t i=0; i<length; i++){fData[i] *= anArray.fData[i];}
             return *this;
         }
 
-        //in place point-wise addition by another array
+        //in place point-wise addition by another array of the same type
         inline MHO_NDArrayWrapper& operator+=(const MHO_NDArrayWrapper& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayWrapper::+= size mismatch.");}
-            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] += anArray.fDataPtr[i];}
+            std::size_t length = fData.size();
+            for(std::size_t i=0; i<length; i++){fData[i] += anArray.fData[i];}
             return *this;
         }
 
@@ -350,71 +345,48 @@ class MHO_NDArrayWrapper:
         inline MHO_NDArrayWrapper& operator-=(const MHO_NDArrayWrapper& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayWrapper::-= size mismatch.");}
-            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] -= anArray.fDataPtr[i];}
+            std::size_t length = fData.size();
+            for(std::size_t i=0; i<length; i++){fData[i] -= anArray.fData[i];}
             return *this;
         }
 
-
-    protected:
-
-        // //only meta-data types we store are a name, and unit type
-        // std::string fName;
-        // //until we develop a proper units/dimensions type, 
-        // //we just store units as a string (the units class must be able to convert to <-> from a string)
-        // std::string fUnits;
-
-        XValueType* fDataPtr;
-        bool fExternallyManaged; //if true, fDataPtr points to memory handled by an external object
-        std::vector< XValueType > fData; //used for internally managed data
-        index_type fDims; //size of each dimension
-        index_type fStrides; //strides between elements in each dimension
-        uint64_t fSize; //total size of array
-        mutable index_type fTmp; //temp index workspace
-
-        bool CheckIndexValidity(const index_type& idx)
+        bool CheckIndexValidity(const index_type& idx) const
         {
             return MHO_NDArrayMath::CheckIndexValidity<RANK>(&(fDims[0]), &(idx[0]) );
         }
 
         XValueType& ValueAt(const index_type& idx)
         {
-            return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
+            return fData[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
         }
 
         const XValueType& ValueAt(const index_type& idx) const
         {
-            return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
+            return fData[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
         }
 
-
     private:
+
+        std::vector< XValueType > fData; //used for internally managed data
+        index_type fDims; //size of each dimension
+        index_type fStrides; //strides between elements in each dimension
+        mutable index_type fTmp; //temp index workspace
 
         void Construct(XValueType* ptr, const std::size_t* dim)
         {
             //default construction (empty)
             for(std::size_t i=0; i<RANK; i++){fDims[i] = 0; fStrides[0] = 0;}
-            fSize = 0;
-            fDataPtr = nullptr;
-            fExternallyManaged = false;
             if(ptr == nullptr && dim == nullptr){return;}
 
-            //dimensions known
+            //dimensions known, so create array but don't fill it
             if(dim != nullptr){for(std::size_t i=0; i<RANK; i++){fDims[i] = dim[i];}}
-            fSize = MHO_NDArrayMath::TotalArraySize<RANK>(&(fDims[0]));
+            std::size_t length = MHO_NDArrayMath::TotalArraySize<RANK>(&(fDims[0]));
             ComputeStrides();
+            fData.resize(length);
 
-            if(ptr != nullptr) //using externally managed memory
+            if(ptr != nullptr) //if given a ptr, copy in data from this location
             {
-                //effectively de-allocate anything we might have had before
-                std::vector< XValueType >().swap(fData);
-                fDataPtr = ptr;
-                fExternallyManaged = true;
-            }
-            else //use internally managed memory
-            {
-                fData.resize(fSize);
-                fDataPtr = &(fData[0]);
-                fExternallyManaged = false;
+                std::memcpy(&(fData[0]), ptr, length*sizeof(XValueType) );
             }
         }
 
@@ -437,29 +409,29 @@ class MHO_NDArrayWrapper:
         using iterator = MHO_BidirectionalIterator<XValueType>;
         using stride_iterator = MHO_BidirectionalStrideIterator<XValueType>;
 
-        using const_iterator = MHO_BidirectionalIterator<XValueType>;
-        using const_stride_iterator = MHO_BidirectionalStrideIterator<XValueType>;
+        using const_iterator = MHO_BidirectionalConstIterator<XValueType>;
+        using const_stride_iterator = MHO_BidirectionalConstStrideIterator<XValueType>;
 
-        iterator begin(){ return iterator(fDataPtr, fDataPtr, fSize);}
-        iterator end(){ return iterator(fDataPtr, fDataPtr + fSize, fSize);}
-        iterator iterator_at(std::size_t offset){return iterator(fDataPtr, fDataPtr + std::min(offset, fSize), fSize);}
+        iterator begin(){ return iterator(&(fData[0]), &(fData[0]), fData.size());}
+        iterator end(){ return iterator(&(fData[0]), &(fData[0]) + fData.size(), fData.size());}
+        iterator iterator_at(std::size_t offset){return iterator(&(fData[0]), &(fData[0]) + std::min(offset, fData.size()), fData.size());}
 
-        const_iterator cbegin() const{ return const_iterator(fDataPtr, fDataPtr, fSize);}
-        const_iterator cend() const { return const_iterator(fDataPtr, fDataPtr + fSize, fSize);}
-        const_iterator citerator_at(std::size_t offset) const {return const_iterator(fDataPtr, fDataPtr + std::min(offset, fSize), fSize);}
+        const_iterator cbegin() const{ return const_iterator(&(fData[0]), &(fData[0]), fData.size());}
+        const_iterator cend() const { return const_iterator(&(fData[0]), &(fData[0]) + fData.size(), fData.size());}
+        const_iterator citerator_at(std::size_t offset) const {return const_iterator(&(fData[0]), &(fData[0]) + std::min(offset, fData.size()), fData.size());}
 
-        stride_iterator stride_begin(std::size_t stride){ return stride_iterator(fDataPtr, fDataPtr, fSize, stride);}
-        stride_iterator stride_end(std::size_t stride){ return stride_iterator(fDataPtr, fDataPtr + fSize, fSize, stride);}
+        stride_iterator stride_begin(std::size_t stride){ return stride_iterator(&(fData[0]), &(fData[0]), fData.size(), stride);}
+        stride_iterator stride_end(std::size_t stride){ return stride_iterator(&(fData[0]), &(fData[0]) + fData.size(), fData.size(), stride);}
         stride_iterator stride_iterator_at(std::size_t offset, std::size_t stride)
         {
-            return stride_iterator(fDataPtr, fDataPtr + std::min(offset, fSize), fSize, stride);
+            return stride_iterator(&(fData[0]), &(fData[0]) + std::min(offset, fData.size()), fData.size(), stride);
         }
 
-        const_stride_iterator cstride_begin(std::size_t stride) const { return stride_iterator(fDataPtr, fDataPtr, fSize, stride);}
-        const_stride_iterator cstride_end(std::size_t stride) const { return stride_iterator(fDataPtr, fDataPtr + fSize, fSize, stride);}
+        const_stride_iterator cstride_begin(std::size_t stride) const { return const_stride_iterator(&(fData[0]), &(fData[0]), fData.size(), stride);}
+        const_stride_iterator cstride_end(std::size_t stride) const { return const_stride_iterator(&(fData[0]), &(fData[0]) + fData.size(), fData.size(), stride);}
         const_stride_iterator cstride_iterator_at(std::size_t offset, std::size_t stride) const
         {
-            return stride_iterator(fDataPtr, fDataPtr + std::min(offset, fSize), fSize, stride);
+            return const_stride_iterator(&(fData[0]), &(fData[0]) + std::min(offset, fData.size()), fData.size(), stride);
         }
 
 };
@@ -467,7 +439,7 @@ class MHO_NDArrayWrapper:
 
 }//end of namespace
 
-//include the partial specializations for RANK=0 and RANL=1
+//include the partial specializations for RANK=0 and RANK=1
 #include "MHO_NDArrayWrapper_0.hh"
 #include "MHO_NDArrayWrapper_1.hh"
 

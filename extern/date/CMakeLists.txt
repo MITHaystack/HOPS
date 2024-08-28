@@ -15,7 +15,7 @@
 
 #]===================================================================]
 
-cmake_minimum_required( VERSION 3.6 )
+cmake_minimum_required( VERSION 3.7 )
 
 project( date VERSION 3.0.1 )
 set(ABI_VERSION 3) # used as SOVERSION, increment when ABI changes
@@ -73,7 +73,7 @@ target_sources( date INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include/date/iso_week.h>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include/date/julian.h>
 )
-if (CMAKE_VERSION VERSION_GREATER 3.15)
+if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.15)
     # public headers will get installed:
     set_target_properties( date PROPERTIES PUBLIC_HEADER include/date/date.h )
 endif ()

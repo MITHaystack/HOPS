@@ -9,6 +9,10 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayMath.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayView.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BidirectionalIndexedIterator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabel.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabelTree.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Taggable.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ObjectTags.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper_0.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper_1.hh
@@ -23,22 +27,22 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BaselineContainers.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationContainers.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerDefinitions.hh
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityType.hh
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Visibilities.hh
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelizedVisibilities.hh
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationCoordinates.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SerializableObjectFactory.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ClassIdentityMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerDictionary.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerJSONConverter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerFileInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerStore.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScanDataStore.hh
 )
 
 set( CONTAINER_SOURCEFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IntervalLabel.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IntervalLabelTree.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerDictionary.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerStore.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerFileInterface.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ScanDataStore.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerStore.cc
 )
 
 #declare header paths ##########################################################
