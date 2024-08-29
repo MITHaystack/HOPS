@@ -53,6 +53,7 @@ target_link_libraries (${LIBNAME} ${LIBLIST})
 
 hops_install_headers (${${LIBNAME}_HEADERFILES})
 hops_install_libraries (${LIBNAME})
+
 legacy_hops_install_headers (${${LIBNAME}_HEADERFILES})
 legacy_hops_install_libraries (${LIBNAME})
 
@@ -60,3 +61,7 @@ legacy_hops_install_libraries (${LIBNAME})
 
 hops_install_share_text( ${CMAKE_CURRENT_SOURCE_DIR}/text/blk_stmt.txt )
 hops_install_share_text( ${CMAKE_CURRENT_SOURCE_DIR}/text/pformat.txt )
+
+#for path compatibility with vgosDbMake
+legacy_hops_install_share_text( ${CMAKE_CURRENT_SOURCE_DIR}/text/blk_stmt.txt )
+legacy_hops_install_share_text( ${CMAKE_CURRENT_SOURCE_DIR}/text/pformat.txt )

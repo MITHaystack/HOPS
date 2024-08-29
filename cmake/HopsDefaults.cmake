@@ -50,6 +50,11 @@ macro(hops_install_doc)
 endmacro()
 
 #to match automake build
+macro(legacy_hops_install_share_text)
+    install(FILES ${ARGN} DESTINATION ${SHARE_INSTALL_DIR}/hops/text)
+endmacro()
+
+#to match automake build
 macro(hops_install_share_text)
     install(FILES ${ARGN} DESTINATION ${SHARE_TEXT_INSTALL_DIR})
 endmacro()
