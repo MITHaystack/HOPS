@@ -2,7 +2,7 @@
 
 # How to run the tests
 
-1. Dependencies: nmp, jsonlint
+1. Development dependencies (only for TestCreateJSONFile.cc): nmp, jsonlint
 2. Ubuntu installation instructions:
 ```
 >sudo apt install npm
