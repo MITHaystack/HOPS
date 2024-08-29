@@ -12,6 +12,7 @@
 #include "MHO_PolProductSummationBuilder.hh"
 #include "MHO_SamplerLabelerBuilder.hh"
 #include "MHO_LinearDParCorrectionBuilder.hh"
+#include "MHO_CircularFieldRotationBuilder.hh"
 #include "MHO_PassbandBuilder.hh"
 #include "MHO_NotchesBuilder.hh"
 #include "MHO_DCBlockBuilder.hh"
@@ -51,7 +52,7 @@ MHO_OperatorBuilderManager::CreateDefaultBuilders()
     AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_y", "pc_delay_y");
     AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_r", "pc_delay_r");
     AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_l", "pc_delay_l");
-    
+
     //flagging operators
     AddBuilderType<MHO_PassbandBuilder>("passband", "passband");
     AddBuilderType<MHO_NotchesBuilder>("notches", "notches");
@@ -135,6 +136,7 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
                         }
                         else
                         {
+                            msg_debug("initialization", "ignoring statement with name: " << name << eom);
                             stmt_iter++; //statement not in this category, skip
                         }
                     }
@@ -197,6 +199,12 @@ void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
     rem_mtpcal["operator_category"] = "calibration";
     rem_mtpcal["priority"] = 3.1;
     AddBuilderTypeWithFormat<MHO_MultitonePhaseCorrectionBuilder>("rem_multitone_pcal", rem_mtpcal);
+
+    mho_json circ_field_rotation_corr;
+    circ_field_rotation_corr["name"] = "circ_field_rotation_corr";
+    circ_field_rotation_corr["operator_category"] = "calibration";
+    circ_field_rotation_corr["priority"] = 3.98;
+    AddBuilderTypeWithFormat<MHO_CircularFieldRotationBuilder>("circ_field_rotation_corr", circ_field_rotation_corr);
 
     mho_json polprod_sum;
     polprod_sum["name"] = "polproduct_sum";
