@@ -208,7 +208,7 @@ int MHO_MK4FringeExport::fill_203( struct type_203 *t203)
 {
     clear_203(t203);
     std::size_t nchannels = MAX_CHAN;
-    FillChannels( &(t203->channels[0]) , nchannels);
+    FillChannels( &(t203->channels[0]) );
     return 0;
 }
 
@@ -945,7 +945,7 @@ MHO_MK4FringeExport::FillDate(struct date* destination, struct legacy_hops_date&
     destination->second = a_date.second;
 }
 
-void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array, std::size_t nchannels)
+void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array)
 {
     visibility_type* vis_data = fCStore->GetObject<visibility_type>(std::string("vis"));
     if( vis_data == nullptr )
@@ -953,65 +953,104 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array, std::size_t
         msg_fatal("fringe", "could not find visibility object with name: vis." << eom);
         std::exit(1);
     }
+
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*vis_data) );
+    std::size_t nchannels = chan_ax->GetSize();
 
-
-    std::string polprod;
-    bool ok = fPStore->Get("/config/polprod", polprod);
-    char refpol = ' ';
-    char rempol  = ' ';
-    if(ok && polprod.size() == 2)
-    {
-        refpol = polprod[0];
-        rempol = polprod[1];
-    }
-    if(ok && polprod.size() == 1)
-    {
-        refpol = polprod[0];
-        rempol = polprod[0];
-    }
+    std::vector< std::string > polprod_set;
+    bool ok = fPStore->Get("/config/polprod_set", polprod_set);
 
     //limit to supported number of channels
-    std::size_t nchan = 32;// chan_ax->GetSize();
-    nchan = std::min(nchan, nchannels);
-    for(std::size_t ch=0; ch < nchan; ch++)
+    std::size_t max_chan_records = 8*64; //8*MAXFREQ
+    std::size_t counter = 0;
+
+    for(std::size_t ppi=0; ppi < polprod_set.size(); ppi++)
     {
-        int findex = ch;
-        double bandwidth = 0;
-        short index = 0;
-        unsigned short int sample_rate = 0;
-        std::string refsb = "";
-        std::string remsb = "";
+        std::string polprod = polprod_set.at(ppi);
+        
+        char refpol = ' ';
+        char rempol  = ' ';
+        if(ok && polprod.size() == 2)
+        {
+            refpol = polprod[0];
+            rempol = polprod[1];
+        }
+        
+        if(ok && polprod.size() == 1)
+        {
+            refpol = polprod[0];
+            rempol = polprod[0];
+        }
+        
+        for(std::size_t ch=0; ch < nchannels; ch++)
+        {
+            int findex = counter;
+            double bandwidth = 0;
+            short index = 0;
+            unsigned short int sample_rate = 0;
+            std::string refsb = "";
+            std::string remsb = "";
 
-        double ref_freq = 0;
-        double rem_freq = 0;
-        std::string ref_chan_id = "";
-        std::string rem_chan_id = "";
+            double ref_freq = 0;
+            double rem_freq = 0;
+            std::string ref_chan_id = "";
+            std::string rem_chan_id = "";
+            std::string temp_chan_id = "";
 
-        chan_ax->RetrieveIndexLabelKeyValue(ch, "index", findex);
-        chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", refsb);
-        chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", remsb);
-        chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", ref_freq);
-        chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", rem_freq);
-        chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bandwidth);
-        chan_ax->RetrieveIndexLabelKeyValue(ch, "chan_id", rem_chan_id);
-        chan_ax->RetrieveIndexLabelKeyValue(ch, "chan_id", ref_chan_id);
+            chan_ax->RetrieveIndexLabelKeyValue(ch, "index", findex);
+            chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", refsb);
+            chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", remsb);
+            chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", ref_freq);
+            chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", rem_freq);
+            chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bandwidth);
+            chan_ax->RetrieveIndexLabelKeyValue(ch, "chan_id", temp_chan_id);
+            //chan_ax->RetrieveIndexLabelKeyValue(ch, "chan_id", ref_chan_id);
+            
+            //split the temporary-channel id on the ":" character
+            std::vector< std::string > tokens;
+            fTokenizer.SetUseMulticharacterDelimiterFalse();
+            fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+            fTokenizer.SetIncludeEmptyTokensFalse();
 
-        index = (short)findex;
-        sample_rate = (unsigned short int)  (2.0*bandwidth*1000.0); //sample rate = 2 x bandwidth (MHz) x (1000KHz/MHz)
+            fTokenizer.SetDelimiter(":");
+            fTokenizer.SetString(&temp_chan_id);
+            fTokenizer.GetTokens(&tokens);
+            
+            //these are dummy channel ids
+            if(tokens.size() == 2)
+            {
+                ref_chan_id = tokens[0];
+                rem_chan_id = tokens[1];
+            }
 
-        chan_array[ch].index = index;
-        chan_array[ch].sample_rate = sample_rate;
-        chan_array[ch].refsb = refsb[0];
-        chan_array[ch].remsb = remsb[0];
-        chan_array[ch].refpol = refpol;
-        chan_array[ch].rempol = rempol;
-        chan_array[ch].ref_freq = ref_freq*1e6; //convert to Hz
-        chan_array[ch].rem_freq = rem_freq*1e6; //convert to Hz
-        char_clear(&(chan_array[ch].ref_chan_id[0]),8);
-        char_clear(&(chan_array[ch].rem_chan_id[0]),8);
-        strncpy( &(chan_array[ch].ref_chan_id[0]), ref_chan_id.c_str(), std::min(7, (int) ref_chan_id.size() ) );
-        strncpy( &(chan_array[ch].rem_chan_id[0]), rem_chan_id.c_str(), std::min(7, (int) rem_chan_id.size() ) );
+            //replace the last character with the pol-label from the polprod 
+            ref_chan_id.back() = refpol;
+            rem_chan_id.back() = rempol;
+
+            index = (short)findex;
+            sample_rate = (unsigned short int)  (2.0*bandwidth*1000.0); //sample rate = 2 x bandwidth (MHz) x (1000KHz/MHz)
+
+            chan_array[ch].index = index;
+            chan_array[ch].sample_rate = sample_rate;
+            chan_array[ch].refsb = refsb[0];
+            chan_array[ch].remsb = remsb[0];
+            chan_array[ch].refpol = refpol;
+            chan_array[ch].rempol = rempol;
+            chan_array[ch].ref_freq = ref_freq*1e6; //convert to Hz
+            chan_array[ch].rem_freq = rem_freq*1e6; //convert to Hz
+            char_clear(&(chan_array[ch].ref_chan_id[0]),8);
+            char_clear(&(chan_array[ch].rem_chan_id[0]),8);
+            strncpy( &(chan_array[ch].ref_chan_id[0]), ref_chan_id.c_str(), std::min(7, (int) ref_chan_id.size() ) );
+            strncpy( &(chan_array[ch].rem_chan_id[0]), rem_chan_id.c_str(), std::min(7, (int) rem_chan_id.size() ) );
+            
+            counter++;
+            
+            if(counter >= max_chan_records)
+            {
+                msg_warn("mk4interface", "too many channel records, ("<<counter<<"), to export to type_203" << eom);
+                break;
+            }
+        }
     }
 
 }
