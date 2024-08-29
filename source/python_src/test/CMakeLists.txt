@@ -13,7 +13,8 @@ if(BASH_PROGRAM)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/test_pcc_generate.py" "${CMAKE_CURRENT_BINARY_DIR}/test_pcc_generate.py" @ONLY)
 
     if(HOPS3_PYTHON_EXTRAS)
-    list(APPEND TEST_SCRIPT_BASENAMES "vpal_test_harness")
+    list(APPEND TEST_SCRIPT_BASENAMES "vpal_test_harness3")
+    list(APPEND TEST_SCRIPT_BASENAMES "vpal_test_harness4")
     endif(HOPS3_PYTHON_EXTRAS)
 
     foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )
