@@ -338,8 +338,41 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     // struct sbweights    weights[64];            /* Samples per channel/sideband */
     // float               accept_ratio;           /* % ratio min/max data accepted */
     // float               discard;                /* % data discarded */
+    
+    
+    visibility_type* vis_data = fCStore->GetObject<visibility_type>(std::string("vis"));
+    if( vis_data == nullptr )
+    {
+        msg_fatal("fringe", "could not find visibility object with name: vis." << eom);
+        std::exit(1);
+    }
 
-    // struct sidebands reason1-reason8 are not populated in the original code - so ignore
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*vis_data) );
+    std::size_t nchannels = chan_ax->GetSize();
+    
+    double acc_period;
+    double samp_period;
+    bool ok = fPStore->Get("/config/ap_period", acc_period);
+    ok = fPStore->Get("/vex/scan/sample_period/value", samp_period);
+    
+    //TODO FIXME ....these are fake/dummy values!! treating as if there are no edits
+    // double samp_per_ap = acc_period / samp_period;
+    // for(std::size_t fr=0; fr < nchannels; fr++)
+    // {
+    //     std::string sb;
+    //     chan_ax->RetrieveIndexLabelKeyValue(fr, "net_sideband", sb);
+    //     double usb = 0.;
+    //     double lsb = 0.;
+    //     if(sb == "U"){usb = 1.0; lsb = 0.0;}
+    //     if(sb == "U"){usb = 0.0; lsb = 1.0;}
+    //     t206->accepted[fr].usb = usb*(last-first);
+    //     t206->accepted[fr].lsb = lsb*(last-first);
+    //     t206->weights[fr].usb = usb*samp_per_ap;
+    //     t206->weights[fr].lsb = lsb*samp_per_ap;
+    // }
+    //ignore cuts ...fake/dummy values
+    t206->accept_ratio = 100;
+    t206->discard = 0.0;
 
     return 0;
 }
