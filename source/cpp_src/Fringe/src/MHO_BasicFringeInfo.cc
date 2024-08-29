@@ -37,7 +37,7 @@ MHO_BasicFringeInfo::make_legacy_datetime_format_v2(legacy_hops_date ldate)
     int isec = (int) ldate.second;
     std::string dt;
     dt = leftpadzeros_integer(4, iyear) + ":" +
-         leftpadzeros_integer(3, iday) + ":" + 
+         leftpadzeros_integer(3, iday) + ":" +
          leftpadzeros_integer(2, ldate.hour) + leftpadzeros_integer(2, ldate.minute) + leftpadzeros_integer(2, isec);
     return dt;
 }
@@ -56,6 +56,7 @@ MHO_BasicFringeInfo::calculate_snr(double effective_npol, double ap_period, doub
     double whitneys = 1e4; //unit conversion to 'Whitneys'
     double inv_sigma = fact1 * fact2 * fact3 * std::sqrt(ap_period/samp_period);
     double snr = bw_corr_factor * amp * inv_sigma *  sqrt(total_ap_frac * effective_npol)/(whitneys * amp_corr_factor);
+
     return snr;
 }
 
@@ -187,7 +188,7 @@ MHO_BasicFringeInfo::correct_phases_mbd_anchor_sbd(double ref_freq, double freq0
 }
 
 void
-MHO_BasicFringeInfo::ion_covariance(int nfreq, double famp, double snr, double ref_freq, 
+MHO_BasicFringeInfo::ion_covariance(int nfreq, double famp, double snr, double ref_freq,
                                     const std::vector<double>& chan_freqs,
                                     const std::vector< std::complex<double> >& chan_phasors,
                                     std::vector< double >& ion_sigmas)
@@ -211,7 +212,7 @@ MHO_BasicFringeInfo::ion_covariance(int nfreq, double famp, double snr, double r
             A[i][j] = 0.0;
         }
     }
-    
+
     for (fr = 0; fr < nfreq; fr++)
     {
         // increment normal equations
@@ -232,7 +233,7 @@ MHO_BasicFringeInfo::ion_covariance(int nfreq, double famp, double snr, double r
     A[1][0] = A[0][1];                  // fill in rest of symmetric normal matrix
     A[2][0] = A[0][2];
     A[2][1] = A[1][2];
-    
+
     int ecode = MHO_MathUtilities::minvert3(A,C);
     if(ecode)
     {
@@ -241,7 +242,7 @@ MHO_BasicFringeInfo::ion_covariance(int nfreq, double famp, double snr, double r
 
     // std devs. are sqrt of diag of covariance matrix
     for(i=0; i<3; i++){ ion_sigmas[i] = std::sqrt(C[i][i]); }
-        
+
     // normalize covariance to get correlation matrix
     for(i=0; i<3; i++)
     {
@@ -250,11 +251,11 @@ MHO_BasicFringeInfo::ion_covariance(int nfreq, double famp, double snr, double r
             C[i][j] /= (ion_sigmas[i] * ion_sigmas[j]);
         }
     }
-    
+
     msg_debug("fringe", "ionospheric sigmas: delay "<< 1e3*ion_sigmas[0] <<" (ps), phase "<< 360.0* ion_sigmas[1]<<" (deg), dTEC " << ion_sigmas[2] << eom);
     msg_debug("fringe", "ionosphere correlation matrix: " << eol);
     msg_debug("fringe", C[0][0] <<", "<<  C[0][1] <<", "<<  C[0][2] << eol);
-    msg_debug("fringe", C[1][0] <<", "<<  C[1][1] <<", "<<  C[1][2] << eol); 
+    msg_debug("fringe", C[1][0] <<", "<<  C[1][1] <<", "<<  C[1][2] << eol);
     msg_debug("fringe", C[2][0] <<", "<<  C[2][1] <<", "<<  C[2][2] << eom);
 }
 

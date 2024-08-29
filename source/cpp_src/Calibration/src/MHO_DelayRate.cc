@@ -28,7 +28,7 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         out->CopyTags(*in1);
 
         fDRSPSize = CalculateSearchSpaceSize(fInDims[TIME_AXIS]);
-        msg_debug("fringe", "delay rate search space size = "<< fDRSPSize << eom );
+        msg_debug("calibration", "delay rate search space size = "<< fDRSPSize << eom );
 
         std::size_t np = fDRSPSize*4;
         ConditionallyResizeOutput(&(fInDims[0]), np, out);
@@ -144,7 +144,7 @@ MHO_DelayRate::ApplyDataWeights(const XArgType2* in2,  XArgType3* out)
     std::size_t nch = out->GetDimension(CHANNEL_AXIS);
     std::size_t nap = out->GetDimension(TIME_AXIS);
     std::size_t nsbd = out->GetDimension(FREQ_AXIS);
-    
+
     std::size_t wpprod = in2->GetDimension(POLPROD_AXIS);
     std::size_t wnch = in2->GetDimension(CHANNEL_AXIS);
     std::size_t wnap = in2->GetDimension(TIME_AXIS);
@@ -154,8 +154,8 @@ MHO_DelayRate::ApplyDataWeights(const XArgType2* in2,  XArgType3* out)
     // if(nap != wnap){std::cout<<nap<<" != "<<wnap<<std::endl;std::exit(1);}
 
     //make sure we don't over run the weight array bounds (since out array has been padded)
-    std::size_t nap_range = std::min(nap, wnap); 
-    
+    std::size_t nap_range = std::min(nap, wnap);
+
     for(std::size_t pp=0; pp<pprod; pp++)
     {
         for(std::size_t ch=0; ch<nch; ch++)
@@ -206,7 +206,7 @@ MHO_DelayRate::ConditionallyResizeOutput(const std::size_t* dims,
 }
 
 
-int 
+int
 MHO_DelayRate::CalculateSearchSpaceSize(int input_size)
 {
     //borrow this stupid routine from search_windows.c /////////////////////

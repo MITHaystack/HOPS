@@ -114,6 +114,12 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
         }
     }
 
+    //enable this in all circ-pol cases (what about mixed-mode?!)
+    if(is_circular_polprod(pp_vec[0]))
+    {
+        add_circ_field_rotation_operator( (*(control_statements.begin()))["statements"] );
+    }
+
     //set some initial/default parameters (polprod, ref_freq)
     MHO_InitialFringeInfo::set_default_parameters_minimal(paramStore);
 
@@ -163,6 +169,7 @@ MHO_FringeControlInitialization::add_default_operator_format_def(mho_json& forma
     };
     format["coarse_selection"] = data_select_format;
 
+    //add a operator to label collections of channels by sampler
     mho_json sampler_labeler =
     {
         {"name", "sampler_labeler"},
@@ -195,6 +202,7 @@ MHO_FringeControlInitialization::add_default_operator_format_def(mho_json& forma
     };
     format["rem_multitone_pcal"] = rem_multitone_pcal_format;
 
+    //add a pol-product summation operator
     mho_json polprod_sum_format =
     {
         {"name", "polproduct_sum"},
@@ -205,6 +213,7 @@ MHO_FringeControlInitialization::add_default_operator_format_def(mho_json& forma
     };
     format["polproduct_sum"] = polprod_sum_format;
 
+    //add a delta-parallactic angle correction op for linear pols
     mho_json dpar_corr_format =
     {
         {"name", "dpar_corr"},
@@ -214,6 +223,17 @@ MHO_FringeControlInitialization::add_default_operator_format_def(mho_json& forma
         {"priority", 3.99}
     };
     format["dpar_corr"] = dpar_corr_format;
+    
+    //add a circular pol field rotation operator (depends on antenna mount_type)
+    mho_json circ_field_rotation_corr = 
+    {
+        {"name", "circ_field_rotation_corr"},
+        {"statement_type", "operator"},
+        {"operator_category" , "calibration"},
+        {"type" , "empty"},
+        {"priority", 3.98}
+    };
+    format["circ_field_rotation_corr"] = circ_field_rotation_corr;
 }
 
 
@@ -298,5 +318,30 @@ bool MHO_FringeControlInitialization::is_linear_polprod(std::string pp)
     if(pp == "VH"){return true;}
     return false;
 }
+
+
+bool
+MHO_FringeControlInitialization::is_circular_polprod(std::string pp)
+{
+    if(pp == "RR"){return true;}
+    if(pp == "LL"){return true;}
+    if(pp == "RL"){return true;}
+    if(pp == "LR"){return true;}
+    return false;
+}
+
+
+void
+MHO_FringeControlInitialization::add_circ_field_rotation_operator(mho_json& statements)
+{
+    mho_json circ_field_rotation_corr_hack =
+    {
+       {"name", "circ_field_rotation_corr"},
+       {"statement_type", "operator"},
+       {"operator_category" , "calibration"}
+    };
+    statements.push_back(circ_field_rotation_corr_hack);
+}
+
 
 }//end namespace
