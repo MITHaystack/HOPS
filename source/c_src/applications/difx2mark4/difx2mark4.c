@@ -26,11 +26,16 @@
 #include <time.h>
 #include <difxio.h>
 #include "difx2mark4.h"
-#include "d2m4_config.h"
+//#include "d2m4_config.h"
 
-const char program[] = PACKAGE_NAME;
-const char author[]  = PACKAGE_BUGREPORT;
-const char version[] = VERSION;
+// const char program[] = PACKAGE_NAME;
+// const char author[]  = PACKAGE_BUGREPORT;
+// const char version[] = VERSION;
+
+const char program[] = "difx2mark4";
+const char author[]  = "hops-dev@mit.edu";
+const char version[] = "0.0.0";
+
 
 static int usage (const char *pgm)
     {
