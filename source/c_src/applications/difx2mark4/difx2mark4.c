@@ -50,12 +50,12 @@ static int usage (const char *pgm)
     fprintf (stderr, "  <baseFilename>.im       Polynomial model and UVW\n");
     fprintf (stderr, "  <expFilename>.vex       Vex file for this expt.\n");
     fprintf (stderr, "where <expFilename> is <baseFilename w/o _<#> suffix\n");
-        
+
     fprintf (stderr, "\nThe output fileset <outfile> will be written in "
         "mark4 format similar\n");
     fprintf (stderr, "to that created by mark4 HW correlators.\n");
     fprintf (stderr, "\nAvailable options are:\n");
-    fprintf (stderr, "  -h or --help              Print this help message\n\n"); 
+    fprintf (stderr, "  -h or --help              Print this help message\n\n");
     fprintf (stderr, "  -v or --verbose           Be verbose.  -v -v for more!\n\n");
     fprintf (stderr, "  -d or --difx              Run on all .difx files in directory\n\n");
     fprintf (stderr, "  -o or --override-version  Ignore difx versions\n\n");
@@ -90,10 +90,10 @@ struct fbands fband[MAX_FBANDS] = {{'B',      0.0, 999999.9},  // default to ban
                                    {'Q',  36000.0,  46000.0},
                                    {'V',  46000.0,  56000.0},
                                    {'W',  56000.0, 100000.0},
-                                   {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
+                                   {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0},
                                    {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
-                                   
-  
+
+
 int newScan(DifxInput *,  struct CommandLineOptions*, char *, int, int *);
 
 int main(int argc, char **argv)
@@ -120,10 +120,17 @@ int main(int argc, char **argv)
     if(opts == 0)
         return 0;
 
-    //TODO...ifdef this in/out depending on the version of difxio, this showed up in 2020 on difx svn r9563
+    //TODO...ifdef this in/out depending on the version of difxio/difx,
+    //this showed up in 2020 on difx svn r9563, but is only available in the 2.8 branch or later
+    //however, the DIFXIO version numbers are still set at 3.7.0
+    //so we may need to find some other way to determine how to trigger it
+    //probably the way to is to check the environmental variable DIFX_VERSION at configure
+    //time and pass a define flag if >2.8.1
     // /* pass along the desire */
+    // #if DIFXIO_VERSION_MAJOR > 3 && DIFXIO_VERSION_MINOR >= 7
     // difxioSetOption(DIFXIO_OPT_VERBOSITY, &(opts->verbose));
     // difxioSetOption(DIFXIO_OPT_LOCALDIR, &(opts->localdir));
+    // #endif
 
     /* merge as many jobs as possible and process */
     for(;;)
@@ -142,7 +149,7 @@ int main(int argc, char **argv)
         printf ("\n*** Warning -- not all input files converted!\n");
 
     printf ("\n");
-    
+
     deleteCommandLineOptions (opts);
 
     return 0;
@@ -172,30 +179,30 @@ int convertMark4 (struct CommandLineOptions *opts, int *nScan, int *nScanTot)
 
         if(opts->verbose > 1)
             printf ("Loading %s\n", opts->baseFile[i]);
-             
+
         D2 = loadDifxInput(opts->baseFile[i]);
         if(!D2)
             {
             fprintf (stderr, "loadDifxInput failed on <%s>.\n",
                 opts->baseFile[i]);
             opts->baseFile[i] = 0;
-            continue; 
+            continue;
             }
         if(opts->specAvg)
             D2->specAvg = opts->specAvg;
-             
+
         if(opts->nOutChan >= 1)
             D2->nOutChan = opts->nOutChan;
-             
+
         else if(opts->nOutChan > 0.0) /* interpret in fractional sense */
             D2->nOutChan = D2->freq[0].nChan*opts->nOutChan/D->freq[0].specAvg;
-             
+
         if(opts->startChan >= 1)
             D2->startChan = opts->startChan;
-             
+
         else if(opts->startChan > 0.0)
             D2->startChan = (D2->freq[0].nChan*opts->startChan) + 0.5;
-             
+
 
         if(D)
             {
@@ -224,21 +231,21 @@ int convertMark4 (struct CommandLineOptions *opts, int *nScan, int *nScanTot)
                 fprintf (stderr, "Merging failed on <%s>.\n",
                     opts->baseFile[i]);
                 opts->baseFile[i] = 0;
-                continue; 
+                continue;
                 }
             }
         else
             D = D2;
-             
+
         opts->baseFile[i] = 0;
         nConverted++;
         if(opts->dontCombine)
             break;
-             
+
         }
     if(!D)
         return 0;                   // no more work; force quit
-         
+
     if(opts->verbose > 2)
         printDifxInput(D);
 
@@ -248,7 +255,7 @@ int convertMark4 (struct CommandLineOptions *opts, int *nScan, int *nScanTot)
         {
         printf ("updateDifxInput failed.  Aborting\n");
         opts->baseFile[i] = 0;
-        return 0; 
+        return 0;
         }
 
     if(difxVersion && D->job->difxVersion[0])
@@ -256,7 +263,7 @@ int convertMark4 (struct CommandLineOptions *opts, int *nScan, int *nScanTot)
         if(strncmp(difxVersion, D->job->difxVersion, 63))
             {
             fprintf (stderr, "Attempting to run difx2mark4, version %s,\n"
-                             " on a job processed with version %s\n", 
+                             " on a job processed with version %s\n",
                      difxVersion, D->job->difxVersion);
             if(opts->overrideVersion)
                 {
@@ -269,7 +276,7 @@ int convertMark4 (struct CommandLineOptions *opts, int *nScan, int *nScanTot)
                 fprintf (stderr, " Not converting:  use --override-version\n"
                                  "  if you are sure it is safe to proceed.\n");
                 deleteDifxInput(D);
-                return 0; 
+                return 0;
                 }
             }
         }
@@ -282,7 +289,7 @@ int convertMark4 (struct CommandLineOptions *opts, int *nScan, int *nScanTot)
     if(D->nIF <= 0 || D->nPolar <= 0)
         {
         fprintf (stderr, "Data geometry changes during obs\n");
-        return 0; 
+        return 0;
         }
                                 // add in this batch of scans to total
     *nScanTot += D->nScan;
@@ -316,14 +323,14 @@ int convertMark4 (struct CommandLineOptions *opts, int *nScan, int *nScanTot)
 
         if(!opts->keepOrder)
             DifxInputSortAntennas(D, opts->verbose);
-             
+
 
         if(opts->verbose > 2)
             printDifxInput(D);
 
         scanId=0;
         oldJobId = -2;
-        
+
         printf("\n");
         while (jobId < D->nJob)
             {
@@ -336,7 +343,7 @@ int convertMark4 (struct CommandLineOptions *opts, int *nScan, int *nScanTot)
                 {
                 fprintf(stderr, "Developer Error (difxio) scanId %d has no scan identifier!\n", scanId);
                 scanId++;
-                return 0; 
+                return 0;
                 }
             printf("  Processing scan %d/%d: %s\n", scanId, D->nScan, D->scan[scanId].identifier);
                                                 // convert scan
@@ -366,7 +373,7 @@ int convertMark4 (struct CommandLineOptions *opts, int *nScan, int *nScanTot)
         }
     return 0;
     }
-    
+
 int newScan(DifxInput *D, struct CommandLineOptions *opts, char *node, int scanId, int *jobId)
 {
     int startJobId,
@@ -374,7 +381,7 @@ int newScan(DifxInput *D, struct CommandLineOptions *opts, char *node, int scanI
         nextScanId,
         i,
         err;
-    static int first = TRUE, 
+    static int first = TRUE,
                year, day, hour, min, sec;
     static time_t now;
     struct tm *t;
@@ -409,7 +416,7 @@ int newScan(DifxInput *D, struct CommandLineOptions *opts, char *node, int scanI
 
                                 // generate 6-char rootcode timestamp
     rcode = root_id_break (now, year, day, hour, min, sec);
-                 
+
                                 // make scan directory
     snprintf(path, DIFXIO_FILENAME_LENGTH, "%s/%s", node, D->scan[scanId].identifier);
     err = stat(path, &stat_s);
@@ -433,7 +440,7 @@ int newScan(DifxInput *D, struct CommandLineOptions *opts, char *node, int scanI
                 return 0;
             }
         }
-    
+
                                 // initialise stns with all DiFX antennas
     for (i = 0; i < D->nAntenna; i++)
         {
@@ -469,7 +476,7 @@ int newScan(DifxInput *D, struct CommandLineOptions *opts, char *node, int scanI
         }
     fprintf (stdout, "    Completed root file %s\n", rootname);
     return(nextScanId);
-    
+
     free(fblock);
 }
 
@@ -477,9 +484,9 @@ struct CommandLineOptions *newCommandLineOptions()
     {
     struct CommandLineOptions *opts;
 
-    opts = (struct CommandLineOptions *)calloc(1, 
+    opts = (struct CommandLineOptions *)calloc(1,
         sizeof(struct CommandLineOptions));
-    
+
     opts->sniffTime = 30.0;
     opts->jobMatrixDeltaT = 20.0;
     opts->phaseCentre = 0;
@@ -597,7 +604,7 @@ struct CommandLineOptions *parseCommandLine(int argc, char **argv)
                         printf("Warning: experiment number must be 4 digits.  Keeping default '1234'\n");
                         continue;
                         }
-                            
+
                         for(j=0; j<4; j++)
                             {
                             if(!isdigit(argv[i][j]))
@@ -679,7 +686,7 @@ struct CommandLineOptions *parseCommandLine(int argc, char **argv)
                 deleteCommandLineOptions(opts);
                 return 0;
                 }
-            opts->baseFile[opts->nBaseFile] = 
+            opts->baseFile[opts->nBaseFile] =
                 strdup(argv[i]);
             opts->nBaseFile++;
             }
