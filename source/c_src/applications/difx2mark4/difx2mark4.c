@@ -34,7 +34,7 @@
 
 const char program[] = "difx2mark4";
 const char author[]  = "hops-dev@mit.edu";
-const char version[] = "0.0.0";
+const char version[] = "1.8.1";
 
 
 static int usage (const char *pgm)
