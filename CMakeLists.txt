@@ -37,7 +37,9 @@ include(CMakeDependentOption)
 include(FindGFORTRAN)
 include(FindPGPLOT)
 
-#include(CPack) not ready for this yet
+#not ready for these yet
+#include(CPack) -- use to create system packages (e.g. .deb/.rpm)
+#include(CMakePackageConfigHelpers) -- use to create pkgconfig .pc files for external projects
 
 #install prefix
 message(STATUS "Architecture is ${CMAKE_SYSTEM_PROCESSOR}")
@@ -174,13 +176,13 @@ set(TEST_DATA_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
 #location where test data should be dowloaded to (if the user runs testdata_download_all.sh)
 set(HOPS_CACHED_TEST_DATADIR "${DATA_INSTALL_DIR}/test_data" CACHE PATH "Location used to downlaod/cache HOPS test data.")
 #actual location to unpack the test data and do the tests
-set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data) 
+set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data)
 
 # #look for an environmental variable pointing to a cache of test data
 # set(HOPS_USE_CACHED_TEST_DATA OFF)
 # # set(HOPS_NEED_REMOTE_DATA ON)
 # if (NOT "${HOPS_CACHED_TEST_DATADIR}" STREQUAL "")
-# 
+#
 #     #mark_as_advanced(HOPS_CACHED_TEST_DATADIR)
 #     set(HOPS_USE_CACHED_TEST_DATA ON)
 #     # set(HOPS_NEED_REMOTE_DATA OFF)
