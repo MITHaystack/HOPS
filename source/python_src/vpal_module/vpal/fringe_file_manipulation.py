@@ -275,7 +275,7 @@ class FringeFileHandle(object):
             self.load_file_data()
             self.init_data_members()
         if self.is_valid is True:
-            #construct a pandas data frame to store the summary of the scan (scalar values)
+            #construct a dict to store the summary of the scan (scalar values)
             td = dict()
             td["unique_key"] =  self.baseline + "-" + self.source + "-" + str(self.time_tag) #TODO add pol_product
             td["filename"] = self.filename
