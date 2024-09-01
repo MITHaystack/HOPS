@@ -11,9 +11,8 @@
 #include "MHO_Message.hh"
 #include "MHO_ContainerDefinitions.hh"
 
-//needed to export to mark4 fringe files
-#include "MHO_MK4FringeExport.hh"
-#include "MHO_MPIInterfaceWrapper.hh"
+#include "MHO_AFileDefinitions.hh"
+#include "MHO_AFileInfoExtractor.hh"
 
 
 using namespace hops;
@@ -67,9 +66,14 @@ int main(int argc, char** argv)
     std::cout<<version<<std::endl;
 
     std::cout<<"input files:"<<std::endl;
+    std::vector<mho_json> results;
+    MHO_AFileInfoExtractor ext;
     for(std::size_t i=0; i<input_files.size(); i++)
     {
         std::cout<<input_files[i]<<std::endl;
+        mho_json fsum = ext.summarize_fringe_file(input_files[i]);
+        results.push_back(fsum);
+        std::cout<<fsum.dump(2)<<std::endl;
     }
 
     return 0;
