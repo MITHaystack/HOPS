@@ -26,6 +26,7 @@ set(SOURCE_BASENAMES
     TestPCalExtraction
     fourfit4
     fplot4
+    alist4
 )
 
 if(HOPS_USE_PYBIND11)
