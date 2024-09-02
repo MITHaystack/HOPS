@@ -51,7 +51,8 @@ class MHO_AFileInfoExtractor
         // static mho_json summarize_station_file(std::string filename);
         mho_json SummarizeFringeFile(std::string filename);
 
-        std::string ConvertToAlistRow(const mho_json& fringe_data, const std::string& delim);
+        //version 6 only
+        std::string ConvertToAlistRow(const mho_json& data); //const std::string& delim);
 
 
     protected:
