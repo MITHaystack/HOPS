@@ -73,10 +73,15 @@ int main(int argc, char** argv)
         std::cout<<input_files[i]<<std::endl;
         mho_json fsum = ext.SummarizeFringeFile(input_files[i]);
         results.push_back(fsum);
-        afile_contents << ext.ConvertToAlistRow(fsum, delimiter);
+        afile_contents << ext.ConvertToAlistRow(fsum);// delimiter);
         if(i != input_files.size()-1 ){afile_contents << "\n";}
-        //std::cout<<fsum.dump(2)<<std::endl;
+        std::cout<<fsum.dump(2)<<std::endl;
+        afile_contents << "\n";
     }
+
+    std::cout<<afile_contents.str()<<std::endl;
+
+
 
     return 0;
 }

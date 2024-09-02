@@ -9,6 +9,16 @@
 #include "MHO_AFileDefinitions.hh"
 #include "MHO_AFileInfoExtractor.hh"
 
+//we only support alist v6
+char *fformat_v6 = "%1d %s 2 %2d %3d %3d %3d %4d %8s %04d%03d-%02d%02d%02d\
+ %4d %03d-%02d%02d%02d %3d %32s %2s %c%c\
+ %c%02d %2s %5d\
+ %#13.8g %#13.8g %11.6f %#11.6g %2s\
+ %+12.9f %+12.9f %11.9f\
+ %+11.6f %5.2f %5.2f %6.2f %6.2f %7.4g %7.4g %06d\
+ %02d%02d %9.3f %10.6f %11.8f\
+ %13.6f %+9.6f %8d %8d %+10.6f %+10.6f %+13.10f\n";
+
 
 //
 // #define CURRENT_VERSION 5
@@ -332,37 +342,101 @@ MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename)
 
 
 std::string
-MHO_AFileInfoExtractor::ConvertToAlistRow(const mho_json& fringe_data, const std::string& delim)
+MHO_AFileInfoExtractor::ConvertToAlistRow(const mho_json& data) //, const std::string& delim)
 {
-    std::stringstream row_data;
+    /* Version 6 EHT Era */
+    int pyear, pday, phour, pmin, psec, syear, sday, shour, smin, ssec = 0;
+    int esdesp = 99999;
+    int epoch0 = 0;
+    int epoch1 = 0;
 
-    //pull the fringe file format definition
-    std::string file_type = "frng";
-    MHO_AFileDefinitions adef;
-    mho_json aformat = adef.GetAFileFormat(file_type);
-    mho_json fringe_format = aformat["fake_summary"];
-    int version = fringe_format["default_version"];
-    mho_json fields = fringe_format["fields_v1"];
 
-    //loop over all the fields defined by the format and extract the info we need
-    for(auto it = fields.begin(); it != fields.end(); it++)
-    {
-        std::string field_name = it->get<std::string>();
-        if(aformat.contains(field_name) && fringe_data.contains(field_name) )
-        {
-            if(aformat[field_name].contains("pformat") && aformat[field_name].contains("type") )
-            {
-                std::string type = aformat[field_name]["type"].get<std::string>();
-                std::string pformat = aformat[field_name]["pformat"].get<std::string>();
-                std::string print_value = RetrieveParameterAsString(fringe_data, field_name, type, pformat );
-                row_data << print_value;
-                //if not the last element push out a delimiter
-                auto it2 = it;
-                if(it2++ != fields.end()){row_data << delim;}
-            }
-        }
-    }
-    return row_data.str();
+    char buf[512];
+
+    for(std::size_t i=0; i<512; i++){buf[i] = '\0';}
+
+    //the 'epoch' parameters are the min,sec of the reference time
+    std::string fourfit_reftime = data["epoch"].get<std::string>();
+    auto epoch_ldate = hops_clock::to_legacy_hops_date( hops_clock::from_vex_format(fourfit_reftime) );
+    epoch0 = epoch_ldate.minute;
+    epoch1 = epoch_ldate.second;
+
+
+    auto proc_ldate = hops_clock::to_legacy_hops_date( hops_clock::from_vex_format( data["procdate"].get<std::string>() ) );
+    pyear = proc_ldate.year;
+    pday = proc_ldate.day;
+    phour = proc_ldate.hour;
+    pmin = proc_ldate.minute;
+    psec = proc_ldate.second;
+
+    auto time_tag_ldate = hops_clock::to_legacy_hops_date( hops_clock::from_vex_format(data["time_tag"].get<std::string>()) );
+    syear = time_tag_ldate.year;
+    sday = time_tag_ldate.day;
+    shour = time_tag_ldate.hour;
+    smin = time_tag_ldate.minute;
+    ssec = time_tag_ldate.second;
+
+    sprintf(buf, fformat_v6,
+        data["version"].get<int>(), //%ld
+        data["root_id"].get<std::string>().c_str(), //%s
+        //2
+        data["extent_no"].get<int>(), //%2d
+        data["duration"].get<int64_t>(), //%3d
+        data["length"].get<int>(), //%3d
+        data["offset"].get<int>(), //%3d
+        std::atoi( data["expt_no"].get<std::string>().c_str() ), //%4d
+        data["scan_id"].get<std::string>().c_str(), //%8s
+        pyear, //%04d
+        pday, // %03d-
+        phour, // %02d
+        pmin, // %02d
+        psec, // %02d
+        syear,  //%04d
+        sday, // %03d-
+        shour, // %02d
+        smin, // %02d
+        ssec, // %02d
+        data["scan_offset"].get<int>(), //%3d
+        data["source"].get<std::string>().c_str(), //%32s
+        data["baseline"].get<std::string>().c_str(), //2s
+        data["quality"].get<std::string>()[0], //%c //TODO FIXME!
+        data["errcode"].get<std::string>()[0], //  %c //TODO FIXME
+        data["freq_code"].get<std::string>()[0], //%c
+        data["no_freq"].get<int>(), //%02d
+        data["polarization"].get<std::string>().c_str(), // %2s
+        data["lags"].get<int>(), //%5d
+        data["amp"].get<double>(), // %#13.8g
+        data["snr"].get<double>(), //%#13.8g
+        data["resid_phas"].get<double>(), // %11.6f
+        data["phase_snr"].get<double>(), // %#11.6g
+        data["datatype"].get<std::string>().c_str(), //  %2s
+        data["sbdelay"].get<double>(), //  %+12.9f
+        data["mbdelay"].get<double>(), // %+12.9f
+        data["ambiguity"].get<double>(), // %11.9f
+        data["delay_rate"].get<double>(), // %+11.6f
+        data["ref_elev"].get<double>(), // %5.2f
+        data["rem_elev"].get<double>(), // %5.2f
+        data["ref_az"].get<double>(), // %6.2f
+        data["rem_az"].get<double>(), // %6.2f
+        data["u"].get<double>(), // %7.4g
+        data["v"].get<double>(), // %7.4g
+        std::atoi( data["esdesp"].get<std::string>().c_str() ), // %06d
+        epoch0, // %02d
+        epoch1, // %02d
+        data["ref_freq"].get<double>(), //  %9.3f
+        data["total_phas"].get<double>(), // %10.6f
+        data["total_rate"].get<double>(), // %11.8f
+        data["total_mbdelay"].get<double>(), // %13.6f
+        data["total_sbresid"].get<double>(), // %+9.6f
+        data["srch_cotime"].get<int>(), // %8d
+        data["noloss_cotime"].get<int>(), // %8d
+        data["ra_hrs"].get<double>(), // %+10.6f
+        data["dec_deg"].get<double>(), // %+10.6f
+        data["resid_delay"].get<double>() //%+13.10f
+    );
+
+    std::string ret_value(buf, strlen(buf));
+    return ret_value;
 }
 
 void

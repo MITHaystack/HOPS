@@ -50,7 +50,7 @@
         "u",
         "v",
         "parents",
-        
+
         "duration",
         "offset",
 
@@ -68,5 +68,4 @@
         "dec_deg",
         "resid_delay"
     ]
-
 }
