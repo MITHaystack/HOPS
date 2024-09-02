@@ -18,8 +18,6 @@
 using namespace hops;
 
 
-
-
 int main(int argc, char** argv)
 {
     MHO_Message::GetInstance().AcceptAllKeys();
@@ -68,12 +66,16 @@ int main(int argc, char** argv)
     std::cout<<"input files:"<<std::endl;
     std::vector<mho_json> results;
     MHO_AFileInfoExtractor ext;
+    std::stringstream afile_contents;
+
     for(std::size_t i=0; i<input_files.size(); i++)
     {
         std::cout<<input_files[i]<<std::endl;
-        mho_json fsum = ext.summarize_fringe_file(input_files[i]);
+        mho_json fsum = ext.SummarizeFringeFile(input_files[i]);
         results.push_back(fsum);
-        std::cout<<fsum.dump(2)<<std::endl;
+        afile_contents << ext.ConvertToAlistRow(fsum, delimiter);
+        if(i != input_files.size()-1 ){afile_contents << "\n";}
+        //std::cout<<fsum.dump(2)<<std::endl;
     }
 
     return 0;
