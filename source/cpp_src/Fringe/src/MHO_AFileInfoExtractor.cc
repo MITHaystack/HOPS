@@ -190,16 +190,16 @@ namespace hops
 // }
 
 mho_json
-MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
+MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename)
 {
     mho_json fsum;
     if(filename.find("frng") == std::string::npos)
     {
-        //not a fringe file, skip this 
-        msg_error("fringe", "the file: "<< filename<<" is not a fringe file"<<eom);
+        //not a fringe file, skip this
+        msg_error("fringe", "the file: "<< filename<<" is not a HOPS4 fringe (.frng) file"<<eom);
         return fsum;
     }
-    
+
     //split the filename (not strictly necessary, but used to extract the extent number)
     //for example: 23 in 'GE.X.XX.345F47.23.frng'
     MHO_Tokenizer tokenizer;
@@ -210,7 +210,7 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
     tokenizer.GetTokens(&tokens);
     if(tokens.size() != 6)
     {
-        //not a fringe file, skip this 
+        //not a fringe file, skip this
         msg_error("fringe", "could not parse the file name: "<< filename<<eom);
         return fsum;
     }
@@ -219,7 +219,7 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
     ss << tokens[4];
     int extent_no;
     ss >> extent_no;
-    
+
     //pull the fringe file format definition
     std::string file_type = "frng";
     MHO_AFileDefinitions adef;
@@ -331,8 +331,45 @@ MHO_AFileInfoExtractor::summarize_fringe_file(std::string filename)
 }
 
 
+std::string
+MHO_AFileInfoExtractor::ConvertToAlistRow(const mho_json& fringe_data, const std::string& delim)
+{
+    std::stringstream row_data;
+
+    //pull the fringe file format definition
+    std::string file_type = "frng";
+    MHO_AFileDefinitions adef;
+    mho_json aformat = adef.GetAFileFormat(file_type);
+    mho_json fringe_format = aformat["fake_summary"];
+    int version = fringe_format["default_version"];
+    mho_json fields = fringe_format["fields_v1"];
+
+    //loop over all the fields defined by the format and extract the info we need
+    for(auto it = fields.begin(); it != fields.end(); it++)
+    {
+        std::string field_name = it->get<std::string>();
+        if(aformat.contains(field_name) && fringe_data.contains(field_name) )
+        {
+            if(aformat[field_name].contains("pformat") && aformat[field_name].contains("type") )
+            {
+                std::string type = aformat[field_name]["type"].get<std::string>();
+                std::string pformat = aformat[field_name]["pformat"].get<std::string>();
+                std::string print_value = RetrieveParameterAsString(fringe_data, field_name, type, pformat );
+                row_data << print_value;
+                //if not the last element push out a delimiter
+                auto it2 = it;
+                if(it2++ != fields.end()){row_data << delim;}
+            }
+        }
+    }
+    return row_data.str();
+}
+
 void
-MHO_AFileInfoExtractor::RetrieveParameter(mho_json& obj, const std::string& name, const MHO_ParameterStore& paramStore, const std::string& path, const std::string& type)
+MHO_AFileInfoExtractor::RetrieveParameter(mho_json& obj, const std::string& name,
+                                          const MHO_ParameterStore& paramStore,
+                                          const std::string& path,
+                                          const std::string& type)
 {
     //TODO...eventually replace missing values with default values specified from the format
     par_type ptype = DetermineParameterType(type);
@@ -372,6 +409,57 @@ MHO_AFileInfoExtractor::DetermineParameterType(std::string etype)
     if(etype == "bool"){return bool_type;}
     return unknown_type;
 }
+
+
+std::string MHO_AFileInfoExtractor::RetrieveParameterAsString(const mho_json& obj,
+                                                              const std::string& name,
+                                                              const std::string& type,
+                                                              const std::string& pformat)
+{
+    par_type ptype = DetermineParameterType(type);
+    switch( ptype )
+    {
+        case int_type:
+        {
+                int value = 0;
+                if( obj.contains(name) ){value = obj[name].get<int>(); }
+                return ConvertToString(value, pformat);
+        }
+        break;
+        case int64_type:
+        {
+            int64_t value = 0;
+            if( obj.contains(name)){value = obj[name].get<int64_t>(); }
+            return ConvertToString(value, pformat);
+        }
+        break;
+        case double_type:
+        {
+            double value = 0;
+            if( obj.contains(name)){value = obj[name].get<double>(); }
+            return ConvertToString(value, pformat);
+        }
+        break;
+        case string_type:
+        {
+            std::string value;
+            if( obj.contains(name)){value = obj[name].get<std::string>(); }
+            return ConvertToString(value, pformat);
+        }
+        break;
+        case bool_type:
+        {
+            bool value;
+            if( obj.contains(name)){value = obj[name].get<bool>();}
+            return ConvertToString(value, pformat);
+        }
+        break;
+    };
+
+    //if we made it here just return empty string
+    return std::string("");
+}
+
 
 
     //

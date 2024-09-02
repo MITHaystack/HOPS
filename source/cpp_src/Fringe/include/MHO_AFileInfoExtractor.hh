@@ -49,13 +49,18 @@ class MHO_AFileInfoExtractor
         // static mho_json summarize_root_file(std::string filename);
         // static mho_json summarize_corel_file(std::string filename);
         // static mho_json summarize_station_file(std::string filename);
-        mho_json summarize_fringe_file(std::string filename);
+        mho_json SummarizeFringeFile(std::string filename);
+
+        std::string ConvertToAlistRow(const mho_json& fringe_data, const std::string& delim);
 
 
     protected:
 
-
+        //retrieve from the parameter store
         void RetrieveParameter(mho_json& obj, const std::string& name, const MHO_ParameterStore& paramStore, const std::string& path, const std::string& type);
+
+        //retrieve from a json object, convert to string
+        std::string RetrieveParameterAsString(const mho_json& obj, const std::string& name, const std::string& type, const std::string& pformat);
 
         par_type DetermineParameterType(std::string etype);
 
