@@ -49,7 +49,7 @@ class MHO_AFileInfoExtractor
         // static mho_json summarize_root_file(std::string filename);
         // static mho_json summarize_corel_file(std::string filename);
         // static mho_json summarize_station_file(std::string filename);
-        mho_json SummarizeFringeFile(std::string filename);
+        bool SummarizeFringeFile(std::string filename, mho_json& fsum);
 
         //version 5 or 6 only
         std::string ConvertToAlistRow(const mho_json& data, int version);

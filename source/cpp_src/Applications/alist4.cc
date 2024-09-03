@@ -65,8 +65,9 @@ int main(int argc, char** argv)
     std::vector<mho_json> results;
     for(std::size_t i=0; i<input_files.size(); i++)
     {
-        mho_json fsum = ext.SummarizeFringeFile(input_files[i]);
-        results.push_back(fsum);
+        mho_json fsum;
+        bool ok = ext.SummarizeFringeFile(input_files[i], fsum);
+        if(ok){results.push_back(fsum);}
     }
 
     //TODO -- sort the data here (if requested)
