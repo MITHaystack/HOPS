@@ -206,15 +206,14 @@ MHO_AFileInfoExtractor::GetAlistHeader(int version, int type, char comment_char)
     return afile_header(version, type, comment_char);
 }
 
-mho_json
-MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename)
+bool
+MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename, mho_json& fsum)
 {
-    mho_json fsum;
     if(filename.find("frng") == std::string::npos)
     {
         //not a fringe file, skip this
         msg_error("fringe", "the file: "<< filename<<" is not a HOPS4 fringe (.frng) file"<<eom);
-        return fsum;
+        return false;
     }
 
     //split the filename (not strictly necessary, but used to extract the extent number)
@@ -229,7 +228,7 @@ MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename)
     {
         //not a fringe file, skip this
         msg_error("fringe", "could not parse the file name: "<< filename<<eom);
-        return fsum;
+        return false;
     }
     //grab the extent number
     std::stringstream ss;
@@ -241,9 +240,10 @@ MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename)
     std::string file_type = "frng";
     MHO_AFileDefinitions adef;
     mho_json aformat = adef.GetAFileFormat(file_type);
-    mho_json fringe_format = aformat["fake_summary"];
-    int version = fringe_format["default_version"];
-    mho_json fields = fringe_format["fields_v1"];
+    mho_json fringe_format = aformat["fringe_summary"];
+    //default is to extract everything in v6 (alist formatting is handled elsewhere)
+    int version = 6;
+    mho_json fields = fringe_format["fields_v6"]; 
 
     //to pull out fringe data, we are primarily interested in the 'MHO_ObjectTags' object
     //get uuid for MHO_ObjectTags object
@@ -269,6 +269,7 @@ MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename)
         }
     }
 
+    bool ok = false;
     if(found)
     {
         inter.OpenToReadAtOffset(filename, offset_bytes);
@@ -277,7 +278,7 @@ MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename)
         //we read the tags object
         //now pull the pol-products and frequency groups info
         //and check them agains the command line arguments
-        bool ok = inter.Read(obj, obj_key);
+        ok = inter.Read(obj, obj_key);
         std::vector< std::string > tags;
 
         if(ok)
@@ -289,7 +290,7 @@ MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename)
             if(!param_ok)
             {
                 msg_error("fringe", "could not read parameters object from: "<< filename << eom);
-                return fsum;
+                return false;
             }
             paramStore.FillData(param_data);
 
@@ -300,7 +301,7 @@ MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename)
             if(!plot_ok)
             {
                 msg_error("fringe", "could not read plot_data object from: "<< filename << eom);
-                return fsum;
+                return false;
             }
             plotData.FillData(plot_data);
 
@@ -336,15 +337,19 @@ MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename)
         else
         {
             msg_error("fringe", "could not read MHO_ObjectTags from: "<< filename << eom);
+            return false;
         }
         inter.Close();
     }
     else
     {
         msg_error("fringe", "no MHO_ObjectTags object found in file: "<< filename << eom);
+        return false;
     }
-
-    return fsum;
+    
+    //extracted ok
+    if(ok){return true;}
+    else{return false;}
 }
 
 
@@ -356,7 +361,7 @@ MHO_AFileInfoExtractor::ConvertToAlistRow(const mho_json& data, int version)
     int epoch1 = 0;
     char buf[CHAR_BUF_SIZE];
 
-    if(version != 5 && version !=6 )
+    if( !(version == 5 || version == 6 ) )
     {
         msg_error("fringe", "alist format version: "<< version <<", not supported (only 5 or 6)" << eom);
         return "";
@@ -389,7 +394,7 @@ MHO_AFileInfoExtractor::ConvertToAlistRow(const mho_json& data, int version)
     if(version == 5)
     {
         sprintf(buf, fformat_v5,
-            data["version"].get<int>(), //%ld
+            version, //%ld
             data["root_id"].get<std::string>().c_str(), //%s
             //2
             data["extent_no"].get<int>(), //%2d
@@ -449,7 +454,7 @@ MHO_AFileInfoExtractor::ConvertToAlistRow(const mho_json& data, int version)
     if(version == 6)
     {
         sprintf(buf, fformat_v6,
-            data["version"].get<int>(), //%ld
+            version, //%ld
             data["root_id"].get<std::string>().c_str(), //%s
             //2
             data["extent_no"].get<int>(), //%2d

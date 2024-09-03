@@ -20,9 +20,11 @@ int main(int argc, char** argv)
 
     MHO_AFileInfoExtractor ext;
 
-    mho_json fsum = ext.SummarizeFringeFile(filename);
+    mho_json fsum;
+    bool ok = ext.SummarizeFringeFile(filename, fsum);
 
-    std::cout<<fsum.dump(2)<<std::endl;
+    if(ok){std::cout<<fsum.dump(2)<<std::endl;}
+    else{std::cout<<"could not extract file: "<< filename<<std::endl;}
 
     return 0;
 }
