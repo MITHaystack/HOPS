@@ -71,7 +71,6 @@ class MHO_DiFXBaselineProcessor
 
         std::string DetermineFreqGroup(const double& freq);
 
-
         std::string fRootCode;
         std::string fCorrDate;
         int fBaselineID;
@@ -81,6 +80,7 @@ class MHO_DiFXBaselineProcessor
         std::string fRemStationMk4Id;
         std::string fBaselineName;
         std::string fBaselineShortName;
+        std::string fBaselineDelim;
         int fRefStationBits;
         int fRemStationBits;
         double fAPLength;

@@ -17,9 +17,7 @@ MHO_ManualPolPhaseCorrection::MHO_ManualPolPhaseCorrection()
     fSidebandLabelKey = "net_sideband";
     fLowerSideband = "L";
     fUpperSideband = "U";
-
-    fStationCode = "";
-    fMk4ID = "";
+    fStationIdentity = "";
 
     fImagUnit = MHO_Constants::imag_unit;
     fDegToRad = MHO_Constants::deg_to_rad;
@@ -99,33 +97,34 @@ MHO_ManualPolPhaseCorrection::IsApplicable(std::size_t st_idx, const visibility_
     bool apply_correction = false;
     std::string val;
     std::string mk4id_key;
-    std::string station_key;
+    std::string station_code_key;
 
     if(st_idx == 0)
     {
         mk4id_key = fRefStationMk4IDKey;
-        station_key = fRefStationKey;
+        station_code_key = fRefStationKey;
     }
     else
     {
         mk4id_key = fRemStationMk4IDKey;
-        station_key = fRemStationKey;
+        station_code_key = fRemStationKey;
     }
 
-    if(fMk4ID != "") //selection by mk4 id
+    if(fStationIdentity.size() == 1) //selection by mk4 id
     {
         in->Retrieve(mk4id_key, val);
-        if(fMk4ID == val || fMk4ID == "?"){apply_correction = true;}
+        if(fStationIdentity == val || fStationIdentity == "?"){apply_correction = true;}
     }
 
-    if(fStationCode != "")//selection by 2-char station code
+    if(fStationIdentity.size() == 2)//selection by 2-char station code
     {
-        in->Retrieve(station_key, val);
-        if(fStationCode == val || fStationCode == "??"){apply_correction = true;}
+        in->Retrieve(station_code_key, val);
+        if(fStationIdentity == val || fStationIdentity == "??"){apply_correction = true;}
     }
 
     return apply_correction;
 }
+
 
 bool
 MHO_ManualPolPhaseCorrection::PolMatch(std::size_t station_idx, std::string& polprod)

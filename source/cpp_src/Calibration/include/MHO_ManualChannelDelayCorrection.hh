@@ -36,8 +36,11 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
         MHO_ManualChannelDelayCorrection();
         virtual ~MHO_ManualChannelDelayCorrection();
 
-        void SetStation(std::string station){fStationCode = station;}; //2-char station code
-        void SetStationMk4ID(std::string station_id){fMk4ID = station_id;} //1-char mk4id
+        //treated as follows:
+        //1-char => mk4 id 
+        //2-char => 2char station code 
+        void SetStationIdentifier(std::string station_id){fStationIdentity = station_id;}
+        
         void SetPolarization(const std::string& pol){fPol = pol; make_upper(fPol);};
 
          //channel label -> pc_phases
@@ -64,8 +67,7 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
         double fPi;
 
         //selection
-        std::string fStationCode;
-        std::string fMk4ID;
+        std::string fStationIdentity;
         std::string fPol;
 
         //channel label -> pc delay

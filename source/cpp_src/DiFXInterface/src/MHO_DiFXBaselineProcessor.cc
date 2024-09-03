@@ -28,6 +28,7 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
     fCorrDate = "";
     fRescale = true;
     fScaleFactor = 1.0;
+    fBaselineDelim = "-";
 
     /* The following coefficients are taken directly from difx2mark4 new_type1.c */
 
@@ -153,7 +154,7 @@ MHO_DiFXBaselineProcessor::Organize()
     fRefStation = std::string() + (char) std::toupper(fRefStation[0]) + (char) std::tolower(fRefStation[1]);
     fRemStation = std::string() + (char) std::toupper(fRemStation[0]) + (char) std::tolower(fRemStation[1]);
 
-    fBaselineName = fRefStation + ":" + fRemStation;
+    fBaselineName = fRefStation + fBaselineDelim + fRemStation;
     fRefStationMk4Id = fStationCodeMap->GetMk4IdFromStationCode(fRefStation);
     fRemStationMk4Id = fStationCodeMap->GetMk4IdFromStationCode(fRemStation);
     fBaselineShortName = fRefStationMk4Id + fRemStationMk4Id;
