@@ -36,6 +36,16 @@
 
 enum booleans {FALSE, TRUE};
 
+//define these if some how they were not passed at compile time
+#ifndef DIFXIO_VERSION_MAJOR
+#define DIFXIO_VERSION_MAJOR 0
+#endif 
+
+#ifndef DIFXIO_VERSION_MINOR
+#define DIFXIO_VERSION_MINOR 0
+#endif
+
+
 struct CommandLineOptions
     {
     char exp_no[EXP_CODE_LEN+1];

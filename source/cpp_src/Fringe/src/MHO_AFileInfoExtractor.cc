@@ -10,7 +10,7 @@
 #include "MHO_AFileInfoExtractor.hh"
 
 //we only support alist v6
-char *fformat_v6 = "%1d %s 2 %2d %3d %3d %3d %4d %8s %04d%03d-%02d%02d%02d\
+const char *fformat_v6 = "%1d %s 2 %2d %3d %3d %3d %4d %8s %04d%03d-%02d%02d%02d\
  %4d %03d-%02d%02d%02d %3d %32s %2s %c%c\
  %c%02d %2s %5d\
  %#13.8g %#13.8g %11.6f %#11.6g %2s\
