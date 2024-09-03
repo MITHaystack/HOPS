@@ -17,29 +17,31 @@
 
 using namespace hops;
 
+#define DEFAULT_ALIST_VERS 6
+
 
 int main(int argc, char** argv)
 {
     MHO_Message::GetInstance().AcceptAllKeys();
 
     std::vector< std::string > input_files;
-    std::string delimiter = "\t";
+    std::string comment_char = "*";
     std::string output_file = "alist.out";
-    int message_level = 0;
-    int version = 6; //default format version
+    int message_level = 5;
+    int version = DEFAULT_ALIST_VERS; //default format version is alist v6 (only 5 or 6 supported)
 
     CLI::App app{"alist"};
 
     app.add_option("input_files,-i,--input-files", input_files, "list of the files to process")->required();
     app.add_option("-o,--output-file", output_file, "name of the output file (default: alist.out)");
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
-    app.add_option("-c,--column-delimiter", delimiter, "the column delimiter for the alist output (default: <tab>)");
+    app.add_option("-c,--comment-character", comment_char, "the character indicating a comment line, default is '*'");
     app.add_option("-v,--version", version, "the alist version (default: 6)");
 
     //options of original alist program are:
     //'-o' to specify the output file name
     //'-m' to specify the message level
-    //'-c' to set the afile delimiter character/string
+    //'-c' to specify the comment character
     //'-v' to specify the format version
     //the rest of the args are a positional list of files to process
 
@@ -57,31 +59,27 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 
-    std::cout<<"options:"<<std::endl;
-    std::cout<<delimiter<<std::endl;
-    std::cout<<output_file<<std::endl;
-    std::cout<<message_level<<std::endl;
-    std::cout<<version<<std::endl;
-
-    std::cout<<"input files:"<<std::endl;
     std::vector<mho_json> results;
     MHO_AFileInfoExtractor ext;
     std::stringstream afile_contents;
+    
+    char com_char = comment_char[0];
+    std::string afile_header = ext.GetAlistHeader(version, 2, com_char);
+    afile_contents << afile_header;
 
     for(std::size_t i=0; i<input_files.size(); i++)
     {
         std::cout<<input_files[i]<<std::endl;
         mho_json fsum = ext.SummarizeFringeFile(input_files[i]);
         results.push_back(fsum);
-        afile_contents << ext.ConvertToAlistRow(fsum);// delimiter);
+        afile_contents << ext.ConvertToAlistRow(fsum, version);
         if(i != input_files.size()-1 ){afile_contents << "\n";}
-        std::cout<<fsum.dump(2)<<std::endl;
-        afile_contents << "\n";
     }
 
-    std::cout<<afile_contents.str()<<std::endl;
-
-
+    //open file and dump
+    std::ofstream outFile(output_file.c_str(), std::ofstream::out);
+    if(outFile.is_open()){outFile << afile_contents.str();}
+    outFile.close();
 
     return 0;
 }
