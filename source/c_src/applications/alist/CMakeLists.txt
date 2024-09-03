@@ -1,5 +1,5 @@
 #declare exe name ############################################################
-set(EXENAME "alist")
+set(EXENAME "alist3")
 
 #list header files #############################################################
 
@@ -66,3 +66,8 @@ target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})
 
 hops_install_headers (${${EXENAME}_HEADERFILES})
 hops_install_executables(${EXENAME})
+
+#hops is not hops4...so install a symlink as: alist -> alist3
+if(NOT HOPS_IS_HOPS4)
+    hops_install_symlink( "${BIN_INSTALL_DIR}/${EXENAME}" "${BIN_INSTALL_DIR}/alist" )
+endif()
