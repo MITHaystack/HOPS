@@ -51,6 +51,7 @@ hops_install_executables( ${SOURCE_BASENAMES} )
 if(HOPS_IS_HOPS4)
     hops_install_symlink( "${BIN_INSTALL_DIR}/fourfit4" "${BIN_INSTALL_DIR}/fourfit" )
     hops_install_symlink( "${BIN_INSTALL_DIR}/fplot4" "${BIN_INSTALL_DIR}/fplot" )
+    hops_install_symlink( "${BIN_INSTALL_DIR}/alist4" "${BIN_INSTALL_DIR}/alist" )
 endif()
 
 ################################################################################
