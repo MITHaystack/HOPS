@@ -91,6 +91,16 @@ class MHO_DiFXScanProcessor
         void ExtractPCalData();
         void ExtractStationCoords();
         void CleanUp();
+        
+        std::string ConstructRootFileName(const std::string& output_dir,
+                                         const std::string& root_code,
+                                         const std::string& src_name);
+                                         
+                                         
+        std::string ConstructStaFileName(const std::string& output_dir,
+                                         const std::string& root_code,
+                                         const std::string& station_code,
+                                         const std::string& station_mk4id);
 
         //the DiFX input file structure
         mho_json fInput;
