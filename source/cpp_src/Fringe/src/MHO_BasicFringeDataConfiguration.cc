@@ -95,10 +95,10 @@ MHO_BasicFringeDataConfiguration::sanitize_directory(std::string dir)
         //this is really a directory, so just make sure it ends with a '/'
         if( path.back() != '/' ){path += "/";}
     }
-    else 
+    else
     {
         //this is actually a file (probably the root file)
-        //so strip the file and return the directory it is in 
+        //so strip the file and return the directory it is in
         std::size_t dir_end = dir.find_last_of("/");
         if(dir_end != std::string::npos)
         {
@@ -427,6 +427,7 @@ MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& dir, co
         {
             if(tok[0].size() == 2)
             {
+                //we have a traditional mk4 2-character baseline code
                 std::string bl = tok[0];
                 bool keep = false;
                 if(baseline == "??"){keep = true;}
@@ -438,6 +439,11 @@ MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& dir, co
                     baseline_files.push_back( std::make_pair(bl, corFiles[i]) );
                 }
             }
+            // else if( tok[0].find("-") != std::string::npos)
+            // {
+            //     //we have a new 2char station pair (e.g. Gs-Wf) as the baseline code
+            //
+            // }
         }
     }
 }
@@ -707,7 +713,7 @@ bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
     //load root file and extract useful vex info into parameter store
     auto vexInfo = scanStore->GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(vexInfo, paramStore);
-    
+
     std::string bl = paramStore->GetAs<std::string>("/pass/baseline");
     std::string pp = paramStore->GetAs<std::string>("/pass/polprod");
     std::string fg = paramStore->GetAs<std::string>("/pass/frequency_group");
