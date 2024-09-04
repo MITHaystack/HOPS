@@ -131,6 +131,11 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
     std::vector<double> sampler_delays;
     pcal_pol_ax->RetrieveIndexLabelKeyValue(pc_pol, "sampler_delays", sampler_delays);
 
+    if(sampler_delays.size() == 0)
+    {
+        msg_warn("calibration", "no sampler delays assigned, no delay averaging or ambiguity resolution will be attempted" << eom);
+    }
+
     //now loop over the channels
     for(std::size_t ch=0; ch < vis_chan_ax->GetSize(); ch++)
     {
@@ -185,7 +190,10 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             else
             {
                 sampler_delay = 0.0;
-                msg_warn("calibration", "failed to retrieve sampler delay for station: "<< fMk4ID <<" channel: "<<ch<<"."<<eom);
+                if(sampler_delays.size() != 0)
+                {
+                    msg_warn("calibration", "failed to retrieve sampler delay for station: "<< fMk4ID <<" channel: "<<ch<<"."<<eom);
+                }
             }
 
             //figure out tone masks for this channel (if present)
@@ -388,12 +396,10 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         std::string pc_seg_end_key = st_prefix + "_mtpc_apseg_end_" + pc_pol_code;
         // std::string pc_mag_key = st_prefix + "_mtpc_mag_" + pc_pol_code;
         std::string pc_phase_key = st_prefix + "_mtpc_phase_" + pc_pol_code;
-
         std::string pc_delay_key = st_prefix + "_mtpc_delays_applied_" + pc_pol_code;
 
-        //the string below is the old behavior (above is closer to the fourfit sampler_delays.c behavior)
-        // std::string pc_delay_key = st_prefix + "_mtpc_delays_" + pc_pol_code;
-
+        //using the pc_delay_key commented below retrieves the raw pc_delays (without sampler-delay averaging)
+        //std::string pc_delay_key = st_prefix + "_mtpc_delays_" + pc_pol_code;
 
         vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_seg_start_key, seg_start_aps);
         vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_seg_end_key, seg_end_aps);
@@ -401,12 +407,25 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_phase_key, pc_phase_segs);
         vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
 
+        //if now sampler delays were assigned in the control file,
+        //the average pc_delays will be empty, in that case we'll
+        //just used the raw pc_delays of each channel
+        if(pc_delay_segs.size() == 0)
+        {
+            pc_delay_key = st_prefix + "_mtpc_delays_" + pc_pol_code;
+            vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
+        }
+
         for(std::size_t seg=0; seg < seg_start_aps.size(); seg++)
         {
             std::size_t seg_start_ap = seg_start_aps[seg];
             std::size_t seg_end_ap = seg_end_aps[seg];
-            double pcphase = pc_phase_segs[seg];
-            double pcdelay = pc_delay_segs[seg];
+
+            //guard against missing data
+            double pcphase = 0;
+            if(seg < pc_phase_segs.size()){pcphase = pc_phase_segs[seg]; }
+            double pcdelay = 0;
+            if(seg < pc_delay_segs.size()){pcdelay = pc_delay_segs[seg]; }
 
             TODO_FIXME_MSG("TODO FIXME -- 'phase-shift' needs testing for both USB/LSB data as applied in norm_fx.c, line 396")
             double speriod = 1.0/(2.0*bandwidth*1e6);
@@ -440,7 +459,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
 
 }
 
-bool 
+bool
 MHO_MultitonePhaseCorrection::IsApplicable(const visibility_type* in)
 {
     bool apply_correction = false;
