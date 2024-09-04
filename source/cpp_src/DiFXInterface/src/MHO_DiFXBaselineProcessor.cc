@@ -147,12 +147,39 @@ MHO_DiFXBaselineProcessor::Organize()
     /* The baseline number (256*A1 + A2, 1 indexed) */
     int ant1 = (fBaselineID / DIFX_BASE2ANT) - 1;
     int ant2 = (fBaselineID % DIFX_BASE2ANT) - 1;
-    fRefStation = (*fInput)["antenna"][ant1]["name"];
-    fRemStation = (*fInput)["antenna"][ant2]["name"];
+    std::string difx_ref_station = (*fInput)["antenna"][ant1]["name"];
+    std::string difx_rem_station = (*fInput)["antenna"][ant2]["name"];
 
     //convert the 2-char codes from all-caps to mk4-convention of 1-cap, 1-lower case
-    fRefStation = std::string() + (char) std::toupper(fRefStation[0]) + (char) std::tolower(fRefStation[1]);
-    fRemStation = std::string() + (char) std::toupper(fRemStation[0]) + (char) std::tolower(fRemStation[1]);
+    if(fDiFX2VexStationCodes.find(difx_ref_station) != fDiFX2VexStationCodes.end()){fRefStation = fDiFX2VexStationCodes[difx_ref_station];}
+    else
+    {
+        fRefStation = std::string() + (char) std::toupper(difx_ref_station[0]) + (char) std::tolower(difx_ref_station[1]);
+        msg_warn("difx_interface", "could not locate vex 2-char ID associated with difx station: "<< difx_ref_station << ", assigning mk4 convention: "<< fRefStation <<eom);
+    }
+    
+    if(fDiFX2VexStationCodes.find(difx_rem_station) != fDiFX2VexStationCodes.end()){fRemStation = fDiFX2VexStationCodes[difx_rem_station];}
+    else
+    {
+        fRemStation = std::string() + (char) std::toupper(difx_rem_station[0]) + (char) std::tolower(difx_rem_station[1]);
+        msg_warn("difx_interface", "could not locate vex 2-char ID associated with difx station: "<< difx_rem_station << ", assigning mk4 convention: "<< fRefStation <<eom);
+    }
+    
+    
+    //figure out the station names
+    if(fDiFX2VexStationNames.find(difx_ref_station) != fDiFX2VexStationNames.end()){fRefStationName = fDiFX2VexStationNames[difx_ref_station];}
+    else
+    {
+        fRefStationName = difx_ref_station;
+        msg_warn("difx_interface", "could not locate vex station name associated with difx station: "<< difx_ref_station << ", using: "<< fRefStationName <<eom);
+    }
+    
+    if(fDiFX2VexStationNames.find(difx_rem_station) != fDiFX2VexStationNames.end()){fRemStationName = fDiFX2VexStationNames[difx_rem_station];}
+    else
+    {
+        fRemStationName = difx_rem_station;
+        msg_warn("difx_interface", "could not locate vex station name associated with difx station: "<< difx_rem_station << ", using: "<< fRemStationName <<eom);
+    }
 
     fBaselineName = fRefStation + fBaselineDelim + fRemStation;
     fRefStationMk4Id = fStationCodeMap->GetMk4IdFromStationCode(fRefStation);
@@ -290,6 +317,8 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fTags.SetTagValue("baseline_shortname", fBaselineShortName);
         fTags.SetTagValue("reference_station", fRefStation);
         fTags.SetTagValue("remote_station", fRemStation);
+        fTags.SetTagValue("reference_station_name", fRefStationName);
+        fTags.SetTagValue("remote_station_name", fRemStationName);
         fTags.SetTagValue("reference_station_mk4id", fRefStationMk4Id);
         fTags.SetTagValue("remote_station_mk4id", fRemStationMk4Id);
         fTags.SetTagValue("correlation_date", fCorrDate);
@@ -308,6 +337,8 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fV->Insert(std::string("baseline_shortname"), fBaselineShortName);
         fV->Insert(std::string("reference_station"), fRefStation);
         fV->Insert(std::string("remote_station"), fRemStation);
+        fV->Insert(std::string("reference_station_name"), fRefStationName);
+        fV->Insert(std::string("remote_station_name"), fRemStationName);
         fV->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
         fV->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
         fV->Insert(std::string("correlation_date"), fCorrDate);
@@ -323,6 +354,8 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fW->Insert(std::string("baseline_shortname"), fBaselineShortName);
         fW->Insert(std::string("reference_station"), fRefStation);
         fW->Insert(std::string("remote_station"), fRemStation);
+        fW->Insert(std::string("reference_station_name"), fRefStationName);
+        fW->Insert(std::string("remote_station_name"), fRemStationName);
         fW->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
         fW->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
         fW->Insert(std::string("correlation_date"), fCorrDate);
@@ -575,7 +608,7 @@ MHO_DiFXBaselineProcessor::ConstructCorFileName(const std::string& output_dir,
                                                 const std::string& baseline,
                                                 const std::string& baseline_shortname)
 {
-    std::string output_file = output_dir + "/" + baseline + "." + baseline_shortname + "." + root_code + ".cor";
+    std::string output_file = output_dir + "/" + baseline_shortname + "." + baseline + "." + root_code + ".cor";
     return output_file;
 }
 
