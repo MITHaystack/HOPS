@@ -13,7 +13,7 @@ MHO_ManualPolPhaseCorrection::MHO_ManualPolPhaseCorrection()
     fRemStationMk4IDKey = "remote_station_mk4id";
     fRefStationMk4IDKey = "reference_station_mk4id";
     fChannelLabelKey = "channel_label";
-    
+
     fSidebandLabelKey = "net_sideband";
     fLowerSideband = "L";
     fUpperSideband = "U";
@@ -53,9 +53,9 @@ MHO_ManualPolPhaseCorrection::ExecuteInPlace(visibility_type* in)
                     pc_phase_offset_key += pol_code;
 
                     //now attach the manual pc phase offset value to this pol/station
-                    //it may be better to stash this information in a new data type 
+                    //it may be better to stash this information in a new data type
                     //rather than attaching it as meta data here...
-                    //also, if multiple phase offsets are applied, this will only capture the last one 
+                    //also, if multiple phase offsets are applied, this will only capture the last one
                     pp_ax->InsertIndexLabelKeyValue(pp, pc_phase_offset_key, fPhaseOffset*fDegToRad);
 
                     //loop over the channels and apply the phase offset
@@ -63,7 +63,7 @@ MHO_ManualPolPhaseCorrection::ExecuteInPlace(visibility_type* in)
                     for(std::size_t ch=0; ch < chan_ax->GetSize(); ch++)
                     {
                         visibility_element_type pc_phasor = std::exp( fImagUnit*fPhaseOffset*fDegToRad );
-                    
+
                         std::string net_sideband = "?";
                         bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
                         //conjugate phases for LSB data, but not for USB - TODO what about DSB?
@@ -91,7 +91,7 @@ MHO_ManualPolPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, visib
     return ExecuteInPlace(out);
 }
 
-bool 
+bool
 MHO_ManualPolPhaseCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
     bool apply_correction = false;
@@ -108,6 +108,11 @@ MHO_ManualPolPhaseCorrection::IsApplicable(std::size_t st_idx, const visibility_
     {
         mk4id_key = fRemStationMk4IDKey;
         station_code_key = fRemStationKey;
+    }
+
+    if(fStationIdentity.size() > 2)
+    {
+        msg_error("calibration", "station identiy: "<<fStationIdentity<<" is not a recognizable Mk4 of 2-character code" << eom);
     }
 
     if(fStationIdentity.size() == 1) //selection by mk4 id

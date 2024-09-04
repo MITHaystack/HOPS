@@ -96,7 +96,7 @@ MHO_ManualChannelPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, v
 }
 
 
-bool 
+bool
 MHO_ManualChannelPhaseCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
     bool apply_correction = false;
@@ -113,6 +113,11 @@ MHO_ManualChannelPhaseCorrection::IsApplicable(std::size_t st_idx, const visibil
     {
         mk4id_key = fRemStationMk4IDKey;
         station_code_key = fRemStationKey;
+    }
+
+    if(fStationIdentity.size() > 2)
+    {
+        msg_error("calibration", "station identiy: "<<fStationIdentity<<" is not a recognizable Mk4 of 2-character code" << eom);
     }
 
     if(fStationIdentity.size() == 1) //selection by mk4 id
