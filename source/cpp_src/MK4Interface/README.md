@@ -4,7 +4,8 @@
 
 Optional: Enable tests in HOPS if running tests the first time.
 ```
->hops-dir/ccmake
+>cd hops-dir/build
+>ccmake ../
 ```
 - Once in the ccmake GUI use vim keys to select the test options you want to enable/disable.
 - Press "ENTER" to enable/disable.
