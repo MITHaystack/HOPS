@@ -480,7 +480,7 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
 
         //construct output file name
         std::string root_code = fRootCode;
-        std::string output_file = output_dir + "/" + fBaselineShortName + "." + root_code + ".cor";
+        std::string output_file = ConstructCorFileName(output_dir, root_code, fBaselineName, fBaselineShortName);
 
         MHO_BinaryFileInterface inter;
         bool status = inter.OpenToWrite(output_file);
@@ -569,6 +569,14 @@ MHO_DiFXBaselineProcessor::DetermineFreqGroup(const double& freq)
     return fband; //returns "" if no matching band assignment found
 }
 
-
+std::string 
+MHO_DiFXBaselineProcessor::ConstructCorFileName(const std::string& output_dir, 
+                                                const std::string& root_code, 
+                                                const std::string& baseline,
+                                                const std::string& baseline_shortname)
+{
+    std::string output_file = output_dir + "/" + baseline + "." + baseline_shortname + "." + root_code + ".cor";
+    return output_file;
+}
 
 }//end namespace

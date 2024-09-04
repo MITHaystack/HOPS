@@ -244,13 +244,14 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
         //and/or adapt the channel defintions to deal with zoom bands
         //std::string tmp = vex_root["$FREQ"]["VGOS_std"]["chan_def"][0]["channel_name"].get<std::string>();
 
-        MHO_VexGenerator gen;
-        std::string output_file = fOutputDirectory + "/" + src_name + "." + fRootCode;
-        gen.SetFilename(output_file);
-        gen.GenerateVex(vex_root);
+        //below would generate a traditional 'ovex' file
+        // MHO_VexGenerator gen;
+        // std::string output_file = fOutputDirectory + "/" + src_name + "." + fRootCode;
+        // gen.SetFilename(output_file);
+        // gen.GenerateVex(vex_root);
 
-        //we also write out the 'ovex'/'vex' json object as a json file
-        output_file = fOutputDirectory + "/" + src_name + "." + fRootCode + ".root.json";
+        //write out the 'ovex'/'vex' json object as a json file
+        std::string output_file = fOutputDirectory + "/" + src_name + "." + fRootCode + ".root.json";
         //open and dump to file
         std::ofstream outFile(output_file.c_str(), std::ofstream::out);
         outFile << vex_root.dump(2);
@@ -472,7 +473,7 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
         //figure out the output file name
         std::string station_mk4id = fStationCodeMap->GetMk4IdFromStationCode(station_code);
         std::string root_code = fRootCode;
-        std::string output_file = fOutputDirectory + "/" + station_mk4id + "." + root_code + ".sta";
+        std::string output_file = fOutputDirectory + "/" + station_code + "." + station_mk4id + "." + root_code + ".sta";
 
         station_coord_data_ptr->Insert(std::string("station_mk4id"), station_mk4id);
         station_coord_data_ptr->Insert(std::string("name"), std::string("station_data"));
