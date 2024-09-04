@@ -251,7 +251,8 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
         // gen.GenerateVex(vex_root);
 
         //write out the 'ovex'/'vex' json object as a json file
-        std::string output_file = fOutputDirectory + "/" + src_name + "." + fRootCode + ".root.json";
+
+        std::string output_file = ConstructRootFileName(fOutputDirectory, fRootCode, src_name);
         //open and dump to file
         std::ofstream outFile(output_file.c_str(), std::ofstream::out);
         outFile << vex_root.dump(2);
@@ -473,7 +474,8 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
         //figure out the output file name
         std::string station_mk4id = fStationCodeMap->GetMk4IdFromStationCode(station_code);
         std::string root_code = fRootCode;
-        std::string output_file = fOutputDirectory + "/" + station_code + "." + station_mk4id + "." + root_code + ".sta";
+        std::string output_file = ConstructStaFileName(fOutputDirectory, root_code, station_code, station_mk4id);
+
 
         station_coord_data_ptr->Insert(std::string("station_mk4id"), station_mk4id);
         station_coord_data_ptr->Insert(std::string("name"), std::string("station_data"));
@@ -887,6 +889,26 @@ void MHO_DiFXScanProcessor::calculateZerothOrderParallacticAngle(station_coord_t
     }
 }
 
+std::string 
+MHO_DiFXScanProcessor::ConstructRootFileName(const std::string& output_dir,
+                                             const std::string& root_code,
+                                             const std::string& src_name)
+{
+    std::string output_file = output_dir + "/" + src_name + "." + root_code + ".root.json";
+    return output_file;
+}
 
+
+std::string 
+MHO_DiFXScanProcessor::ConstructStaFileName(const std::string& output_dir,
+                                            const std::string& root_code,
+                                            const std::string& station_code,
+                                            const std::string& station_mk4id)
+{
+    //use mk4 standard (1 char is upper, 2 char is lower case)
+    std::string mk4_station_code = std::string() + (char) std::toupper(station_code[0]) + (char) std::tolower(station_code[1]);
+    std::string output_file = output_dir + "/" + mk4_station_code + "." + station_mk4id + "." + root_code + ".sta";
+    return output_file;
+}
 
 }//end of namespace
