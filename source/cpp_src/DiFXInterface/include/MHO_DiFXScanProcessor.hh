@@ -121,6 +121,12 @@ class MHO_DiFXScanProcessor
 
         std::map< std::string, multitone_pcal_type* > fStationCode2PCal;
         std::map< std::string, station_coord_type* > fStationCode2Coords;
+        
+        //difx -> vex (2 char) station code map
+        //this is needed because DiFX arbitrarily converts all 2-character 
+        //station codes to upper case 
+        std::map< std::string, std::string> fDiFX2VexStationCodes; 
+        std::map< std::string, std::string> fDiFX2VexStationNames; 
 
         //generates the channel names (zoom bands not yet supported)
         //TODO -- allow band <-> freq range to be set externally

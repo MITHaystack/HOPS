@@ -44,6 +44,9 @@ class MHO_DiFXBaselineProcessor
         void AddRecord(MHO_DiFXVisibilityRecord* record);
 
         void SetStationCodes(MHO_StationCodeMap* code_map);
+        void SetDiFXCodes2VexCodes(const std::map<std::string, std::string>& d2v_map){fDiFX2VexStationCodes = d2v_map;};
+        void SetDiFXCodes2VexNames(const std::map<std::string, std::string>& d2v_map){fDiFX2VexStationNames = d2v_map;};
+
         void ConstructVisibilityFileObjects();
         void WriteVisibilityObjects(std::string output_dir);
 
@@ -81,6 +84,8 @@ class MHO_DiFXBaselineProcessor
         int fBaselineID;
         std::string fRefStation;
         std::string fRemStation;
+        std::string fRefStationName;
+        std::string fRemStationName;
         std::string fRefStationMk4Id;
         std::string fRemStationMk4Id;
         std::string fBaselineName;
@@ -92,6 +97,11 @@ class MHO_DiFXBaselineProcessor
 
         //the station 2-char to 1-char code map (user specified)
         MHO_StationCodeMap* fStationCodeMap;
+        
+        //the station 2-char to 2-char code map (to deal with DiFX capitalization issue)
+        std::map<std::string, std::string> fDiFX2VexStationCodes;
+        //the difx station 2-char to vex station name map
+        std::map< std::string, std::string> fDiFX2VexStationNames;
 
         const mho_json* fInput;
         std::vector< MHO_DiFXVisibilityRecord* > fRecords;

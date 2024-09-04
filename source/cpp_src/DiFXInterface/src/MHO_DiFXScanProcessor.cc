@@ -58,9 +58,9 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     bool ok = CreateScanOutputDirectory();
     if(ok)
     {
+        CreateRootFileObject(fileSet.fVexFile); //create the equivalent to the Mk4 'ovex' root file
         ConvertVisibilityFileObjects(); //convert visibilities and data weights
         ConvertStationFileObjects(); //convert the station splines, and pcal data
-        CreateRootFileObject(fileSet.fVexFile); //create the equivalent to the Mk4 'ovex' root file
     }
     else
     {
@@ -155,17 +155,20 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
 
         //make sure the mk4_site_id single-character codes are specified for each site
         //also create a map of DiFX input file station codes (all upper-case) to vex station codes (any-case)
-        std::map< std::string, std::string> difx2vex; //station code map
+        fDiFX2VexStationCodes.clear(); //station code map
+        fDiFX2VexStationNames.clear(); //station name map
         for(auto it = vex_root["$SITE"].begin(); it != vex_root["$SITE"].end(); ++it)
         {
-            std::string station_code = (*it)["site_ID"];
-            (*it)["mk4_site_ID"] = fStationCodeMap->GetMk4IdFromStationCode(station_code);
+            std::string vex_station_code = (*it)["site_ID"];
+            std::string vex_station_name = (*it)["site_name"];
+            (*it)["mk4_site_ID"] = fStationCodeMap->GetMk4IdFromStationCode(vex_station_code);
             //Careful!! this will break if there are two stations that only differ by case
             //needed because while the DiFX input-file makes all station codes upper-case
             //the vex file does not (and we want to preserve the vex codes) - jpb 02/15/24
-            std::string difx_station_code = station_code;
+            std::string difx_station_code = vex_station_code;
             std::transform(difx_station_code.begin(), difx_station_code.end(), difx_station_code.begin(), ::toupper);
-            difx2vex[difx_station_code] = station_code;
+            fDiFX2VexStationCodes[difx_station_code] = vex_station_code;
+            fDiFX2VexStationNames[difx_station_code] = vex_station_name;
         }
 
         //This assumes all datastreams at a antenna are all sampled with the same bit depth
@@ -221,7 +224,7 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
                 tracks_section[trax_name] = trax;
             }
             //add the (vex) station code to the list of stations attached to this trax specification
-            trax2codes[trax_name].push_back( difx2vex[ it->first ] );
+            trax2codes[trax_name].push_back( fDiFX2VexStationCodes[ it->first ] );
         }
 
         //insert our new trax info
@@ -292,6 +295,8 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
         it->second.SetRootCode(fRootCode);
         it->second.SetCorrelationDate(fCorrDate);
         it->second.SetStationCodes(fStationCodeMap);
+        it->second.SetDiFXCodes2VexCodes(fDiFX2VexStationCodes);
+        it->second.SetDiFXCodes2VexNames(fDiFX2VexStationNames);
         it->second.SetDiFXInputData(&fInput);
         it->second.ConstructVisibilityFileObjects();
     }
@@ -463,22 +468,42 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
     for(auto it = fStationCode2Coords.begin(); it != fStationCode2Coords.end(); it++)
     {
         //grab the station coordinate data
-        std::string station_code = it->first;
+        std::string difx_station_code = it->first;
         station_coord_type* station_coord_data_ptr = it->second;
 
-        //if there is pcal data, make sure we grab it too
+        //figure out the 2-char vex code (if it exists)
+        std::string vex_station_code = difx_station_code;
+        if(fDiFX2VexStationCodes.find(difx_station_code) != fDiFX2VexStationCodes.end()){vex_station_code = fDiFX2VexStationCodes[difx_station_code];}
+
+        std::string vex_station_name = difx_station_code;
+        if(fDiFX2VexStationNames.find(difx_station_code) != fDiFX2VexStationNames.end()){vex_station_name = fDiFX2VexStationNames[difx_station_code];}
+
+        std::string station_mk4id = fStationCodeMap->GetMk4IdFromStationCode(difx_station_code);
+
+        //if there is pcal data, make sure we grab it too, and add some tags to it
         multitone_pcal_type* pcal_data_ptr = nullptr;
-        auto pcal_it = fStationCode2PCal.find(station_code);
-        if(pcal_it != fStationCode2PCal.end()){pcal_data_ptr = pcal_it->second;}
+        auto pcal_it = fStationCode2PCal.find(difx_station_code);
+        if(pcal_it != fStationCode2PCal.end())
+        {
+            pcal_data_ptr = pcal_it->second;
+            pcal_data_ptr->Insert(std::string("difx_station_code"), difx_station_code);
+            pcal_data_ptr->Insert(std::string("station_code"), vex_station_code);
+            pcal_data_ptr->Insert(std::string("station_mk4id"), station_mk4id);
+            pcal_data_ptr->Insert(std::string("station_name"), vex_station_name);
+            pcal_data_ptr->Insert(std::string("name"), std::string("pcal"));
+        }
+        
+        //add some tags to the station coord data
+        station_coord_data_ptr->Insert(std::string("difx_station_code"), difx_station_code);
+        station_coord_data_ptr->Insert(std::string("station_code"), vex_station_code);
+        station_coord_data_ptr->Insert(std::string("station_mk4id"), station_mk4id);
+        station_coord_data_ptr->Insert(std::string("station_name"), vex_station_name);
+        station_coord_data_ptr->Insert(std::string("name"), std::string("station_data"));
+
 
         //figure out the output file name
-        std::string station_mk4id = fStationCodeMap->GetMk4IdFromStationCode(station_code);
         std::string root_code = fRootCode;
-        std::string output_file = ConstructStaFileName(fOutputDirectory, root_code, station_code, station_mk4id);
-
-
-        station_coord_data_ptr->Insert(std::string("station_mk4id"), station_mk4id);
-        station_coord_data_ptr->Insert(std::string("name"), std::string("station_data"));
+        std::string output_file = ConstructStaFileName(fOutputDirectory, root_code, vex_station_code, station_mk4id);
 
         MHO_BinaryFileInterface inter;
         bool status = inter.OpenToWrite(output_file);
@@ -610,9 +635,9 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
     for(std::size_t n=0; n<nAntenna; n++)
     {
         //first get antenna name for an ID (later we need to map this to the 2 char code)
-        std::string station_code = fInput["antenna"][n]["name"];
+        std::string difx_station_code = fInput["antenna"][n]["name"];
         station_coord_type* st_coord = new station_coord_type();
-        fStationCode2Coords[station_code] = st_coord;
+        fStationCode2Coords[difx_station_code] = st_coord;
 
         //get the spline model for the stations quantities
         mho_json antenna_poly = fInput["scan"][scan_index]["DifxPolyModel"][n][phase_center];
@@ -696,8 +721,8 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         apply_delay_model_clock_correction(ant, antenna_poly, st_coord);
 
         //tag the station data structure with all the meta data from the type_300
-        st_coord->Insert(std::string("station_code"), station_code);
-        st_coord->Insert(std::string("station_name"), station_name);
+        // st_coord->Insert(std::string("difx_station_code"), station_code);
+        // st_coord->Insert(std::string("difx_station_name"), station_name);
         st_coord->Insert(std::string("model_interval"), duration);
         st_coord->Insert(std::string("model_start"), model_start);
 
@@ -905,9 +930,7 @@ MHO_DiFXScanProcessor::ConstructStaFileName(const std::string& output_dir,
                                             const std::string& station_code,
                                             const std::string& station_mk4id)
 {
-    //use mk4 standard (1 char is upper, 2 char is lower case)
-    std::string mk4_station_code = std::string() + (char) std::toupper(station_code[0]) + (char) std::tolower(station_code[1]);
-    std::string output_file = output_dir + "/" + mk4_station_code + "." + station_mk4id + "." + root_code + ".sta";
+    std::string output_file = output_dir + "/" + station_mk4id + "." + station_code + "."  + root_code + ".sta";
     return output_file;
 }
 
