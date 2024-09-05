@@ -260,13 +260,10 @@ else()
 
 endif(PY_EXE)
 
-################################################################################
-#configure the environment set-up script
-configure_file( ${SHSOURCE}/hopsenv.sh.cmake ${CMAKE_CURRENT_BINARY_DIR}/hops.bash @ONLY)
-install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/hops.bash DESTINATION ${BIN_INSTALL_DIR} )
 
 ################################################################################
 #call build in the subdirectories
+add_subdirectory(${SHSOURCE}) #shell scripts
 add_subdirectory(${EXTERN_HLIBS}) #external (mostly header-only) dependencies, but date (tz) library must be built
 add_subdirectory(${CSOURCE}) #mostly hops3 source
 add_subdirectory(${CPPSOURCE}) #mostly hops4 source
