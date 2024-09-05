@@ -3,19 +3,23 @@ if(PY_EXE)
     #just wholesale copy the entire python source directory into the build directory
     #because the pythonic wizards who wrote setuptools like to pollute the source
     #directory with egg.info garbage
-    file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/")
+    if( NOT ("${CMAKE_CURRENT_SOURCE_DIR}/" EQUAL  "${CMAKE_CURRENT_BINARY_DIR}/" ) )
+        file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/")
+    endif()
 
     set(abs_srcdir "${CMAKE_CURRENT_BINARY_DIR}")
 
-    #need this target to refresh our copy if anything in the source has changed
     # add_custom_target( hops4py_copy_src ALL
     #                    COMMAND ${CMAKE_COMMAND} -E copy_directory
     #                    "${CMAKE_CURRENT_SOURCE_DIR}/" "${CMAKE_CURRENT_BINARY_DIR}/"
     # )
 
-    add_custom_target( hops4py_copy_src ALL
-                       COMMAND cp -r "${CMAKE_CURRENT_SOURCE_DIR}/" "${CMAKE_CURRENT_BINARY_DIR}/"
-    )
+    #need this target to refresh our copy if anything in the source has changed
+    if( NOT "${CMAKE_CURRENT_SOURCE_DIR}/" EQUAL  "${CMAKE_CURRENT_BINARY_DIR}/" )
+        add_custom_target( hops4py_copy_src ALL
+                           COMMAND cp -r "${CMAKE_CURRENT_SOURCE_DIR}/" "${CMAKE_CURRENT_BINARY_DIR}/"
+        )
+    endif()
 
     #setup-no-deps.py.in assumes that the system already has the python dependencies
     #needed (numpy, matplotlib, future, scipy) and makes not attempt to manage or
