@@ -517,15 +517,45 @@ int MHO_MK4FringeExport::fill_212(int fr, struct type_212 *t212)
     t212->channel = fr;
     t212->sbd_chan = fPStore->GetAs<int>("/fringe/max_sbd_bin");//status->max_delchan;
     
-    
     //retrieve the 'phasor' object from the container store
-
-    //TODO FIXME -- dummy implementation for now
-    for(int ap = 0; ap < nap; ap++)
+    auto phasor_data = fCStore->GetObject<phasor_type>(std::string("phasors"));
+    auto wt_data = fCStore->GetObject<weight_type>(std::string("weight"));
+    if(phasor_data != nullptr && wt_data != nullptr)
     {
+        std::size_t p_nchan = phasor_data->GetDimension(0);
+        std::size_t p_nap = phasor_data->GetDimension(1);
+        std::size_t w_nchan = wt_data->GetDimension(CHANNEL_AXIS);
+        std::size_t w_nap = wt_data->GetDimension(TIME_AXIS);
+    
+        for(int ap = 0; ap < nap; ap++)
+        {
+            std::complex<double> pvalue = 0;
+            double wvalue = 0.0;
+            if(fr < p_nchan && ap < p_nap && fr < w_nchan && ap < w_nap)
+            {
+                pvalue = phasor_data->at(fr, ap);
+                wvalue = wt_data->at(0,fr,ap,0);
+                t212->data[ap].amp = std::abs(pvalue);
+                t212->data[ap].phase = std::arg(pvalue);
+                t212->data[ap].weight = wvalue;
+            }
+            else 
+            {
+                t212->data[ap].amp = -1.0;
+                t212->data[ap].phase = 0.0;
+                t212->data[ap].weight = 0.0;
+            }
+        }
+    }
+    else 
+    {
+        msg_warn("mk4_interface", "could not retrieve phasor data for channel "<<fr<<", type_212's will be populated with dummy data" << eom);
+        for(int ap = 0; ap < nap; ap++)
+        {
             t212->data[ap].amp = -1.0;
             t212->data[ap].phase = 0.0;
             t212->data[ap].weight = 0.0;
+        }
     }
 
     return 0;
