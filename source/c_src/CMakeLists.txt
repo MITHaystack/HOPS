@@ -38,12 +38,15 @@ check_include_file(string.h HAVE_STRING_H)
 check_include_file(sys/socket.h HAVE_SYS_SOCKET_H)
 check_include_file(unistd.h HAVE_UNISTD_H)
 
-set(HOPS_SVN_REV_VALUE 0)
-set(HOPS_REVISION_VALUE ${MODULE_VERSION_NUMBER})
-set(PACKAGE_VERSION ${MODULE_VERSION_NUMBER})
+#update these values whenever hops3 source code is synchronized
+set(HOPS_SVN_REV_VALUE 4270)
+set(HOPS_REVISION_VALUE 3.26)
+set(PACKAGE_VERSION "\"${HOPS_REVISION_VALUE}\"")
+
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/hops_config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/hops_config.h)
 hops_install_headers(${CMAKE_CURRENT_BINARY_DIR}/hops_config.h)
 hops_include_directories(${CMAKE_CURRENT_BINARY_DIR})
+
 hops_add_cflag(HAVE_CONFIG_H)
 hops_add_cxxflag(HAVE_CONFIG_H)
 
