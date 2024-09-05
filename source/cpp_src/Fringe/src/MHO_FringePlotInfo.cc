@@ -49,7 +49,10 @@ MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_Parame
     std::string scan_name = sched_section.begin().key();
     auto sched_info = sched_section.begin().value();
     plot_dict["RootScanBaseline"] = root_file + ", " + scan_name + ", " + baseline;
-    plot_dict["CorrVers"] = "HOPS4/DiFX fourfit rev 4.0";
+    
+    std::string corr_vers = "HOPS4/DiFX";
+    std::string software_vers = paramStore->GetAs<std::string>("/config/software_version");
+    plot_dict["CorrVers"] = corr_vers + " fourfit rev " + software_vers;
 
     auto ref_name = paramStore->GetAs<std::string>("/ref_station/site_name");
     auto rem_name = paramStore->GetAs<std::string>("/rem_station/site_name");
