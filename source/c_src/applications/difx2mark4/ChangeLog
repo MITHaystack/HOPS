@@ -1,0 +1,61 @@
+Version 1.8.1
+~~~~~~~~~~
+* jpb 2024.8.29
+* migration to HOPS4
+
+Version 1.8
+~~~~~~~~~~~
+* gbc 2023.9.20
+* migration to HOPS3
+
+Version 1.7
+~~~~~~~~~~~
+* rjc 2020.6.26
+* fix parallactic angle bug in first t303 record
+* Version for DiFX-2.8, Nov 4, 2022
+
+Version 1.6
+~~~~~~~~~~~
+* Post DiFX-2.6
+
+Version 1.6
+~~~~~~~~~~~
+* rjc 2019.1.4
+* new -w feature to allow one difx pass of mixed-bandwidth data
+* rjc 2018.9.14
+* trap too many channels, add -g feature to filter for freq groups
+* rjc 2018.8.10
+* fixed bug in case of multiple different bandwidths
+* rjc 2018.7.17
+* Fixed too-many-pcal-tones bug for many tone case
+* Version for DiFX-2.6, Mar 4, 2019
+
+Version 1.5
+~~~~~~~~~~~
+* Added crossed auto correlations to type 1 files
+* Version for DiFX-2.5, May 16, 2017
+
+Version 1.4
+~~~~~~~~~~~
+* support mixed/zoom mode correlations
+* support version 1 file format for pcal
+* in mixed mode denote sidebands as upper for hops
+* Version for DiFX-2.4, Nov 4, 2014
+
+Version 1.3
+~~~~~~~~~~~
+* put data weights into type 120 record
+* Version for DiFX-2.3, Dec 20, 2013
+
+Version 1.2
+~~~~~~~~~~~
+* Version for DiFX-2.2, June 1, 2013
+
+Version 1.1
+~~~~~~~~~~~
+* Post DiFX 2.0.1
+* Version for DiFX-2.1, May 4, 2012
+
+Version 1.0
+~~~~~~~~~~~
+* For DiFX 2.0.1, tagged June 12, 2011

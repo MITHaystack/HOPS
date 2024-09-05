@@ -225,6 +225,7 @@ MHO_MK4ScanConverter::ProcessScan(const std::string& in_dir, const std::string& 
     vexInter.OpenVexFile(root_file);
     mho_json ovex;
     bool ovex_ok = vexInter.ExportVexFileToJSON(ovex);
+    std::map< std::string, std::string> mk4id2station;
     if(ovex_ok)
     {
         //write out to a json file
@@ -242,6 +243,27 @@ MHO_MK4ScanConverter::ProcessScan(const std::string& in_dir, const std::string& 
             jfile << std::setw(4) << ovex;
             jfile.close();
         }
+
+        //now construct the mk4id (single char) to 2 char station code map
+        mho_json::json_pointer site_pointer("/$SITE");
+        auto sites = ovex.at(site_pointer);
+        if(sites.size() < 1)
+        {
+            msg_error("mk4interface", "root file contains missing or ambiguous $SITE information." << eom );
+            std::exit(1);
+        }
+
+        //loop looking for sites which match the mk4 site ids
+        for(auto site = sites.begin(); site != sites.end(); site++)
+        {
+            if(site->contains("mk4_site_ID"))
+            {
+                std::string mk4id = site->at("mk4_site_ID").get<std::string>();
+                std::string site_id = site->at("site_ID").get<std::string>();
+                mk4id2station[mk4id] = site_id;
+            }
+        }
+
     }
     else
     {
@@ -254,7 +276,16 @@ MHO_MK4ScanConverter::ProcessScan(const std::string& in_dir, const std::string& 
         std::string st_pair, root_code;
         std::string input_basename = dirInterface.GetBasename(*it);
         dirInterface.SplitCorelFileBasename(input_basename, st_pair, root_code);
-        std::string output_file = output_dir + "/" + st_pair + "." + root_code + ".cor";
+
+        //figure out the 2 char station codes
+        std::string ref_mk4id = std::string(1,st_pair[0]);
+        std::string rem_mk4id = std::string(1,st_pair[1]);
+        std::string ref_code = ref_mk4id;
+        std::string rem_code = rem_mk4id;
+        if(mk4id2station.find(ref_mk4id) != mk4id2station.end()){ref_code = mk4id2station[ref_mk4id];}
+        if(mk4id2station.find(rem_mk4id) != mk4id2station.end()){rem_code = mk4id2station[rem_mk4id];}
+
+        std::string output_file = output_dir + "/" + st_pair + "." + ref_code + "-" + rem_code + "." + root_code + ".cor";
         ConvertCorel(root_file, *it, output_file);
     }
 
@@ -264,7 +295,12 @@ MHO_MK4ScanConverter::ProcessScan(const std::string& in_dir, const std::string& 
         std::string st, root_code;
         std::string input_basename = dirInterface.GetBasename(*it);
         dirInterface.SplitStationFileBasename(input_basename, st, root_code);
-        std::string output_file = output_dir + "/" + st + "." + root_code + ".sta";
+
+        //figure out the 2 char station code
+        std::string sta_code = st;
+        if(mk4id2station.find(st) != mk4id2station.end()){sta_code = mk4id2station[st];}
+
+        std::string output_file = output_dir + "/" + st + "." + sta_code + "." + root_code + ".sta";
         ConvertStation(root_file, *it, output_file);
     }
 }

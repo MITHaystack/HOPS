@@ -29,4 +29,4 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 
-hops_install_executables( ${SOURCE_BASENAMES} )
+hops_install_test_executables( ${SOURCE_BASENAMES} )

@@ -21,7 +21,7 @@ namespace hops
 *@file MHO_FringeData.hh
 *@class MHO_FringeData
 *@author
-*@date Sun Feb 4 20:25:51 2024 -0500 
+*@date Sun Feb 4 20:25:51 2024 -0500
 *@brief simple class to contain fringe data objects
 */
 
@@ -52,6 +52,24 @@ class MHO_FringeData
     protected:
 
         int WriteDataObjects(std::string filename);
+
+        std::string ConstructFrngFileName(const std::string directory,
+                                          const std::string& baseline,
+                                          const std::string& ref_station,
+                                          const std::string& rem_station,
+                                          const std::string& frequency_group,
+                                          const std::string& polprod,
+                                          const std::string& root_code,
+                                          int seq_no);
+
+        std::string ConstructTempFileName(const std::string directory,
+                                          const std::string& baseline,
+                                          const std::string& ref_station,
+                                          const std::string& rem_station,
+                                          const std::string& frequency_group,
+                                          const std::string& polprod,
+                                          const std::string& root_code,
+                                          const std::string& temp_id);
 
         //data objects
         MHO_ParameterStore fParameterStore; //stores various parameters using string keys

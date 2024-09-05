@@ -14,13 +14,11 @@ MHO_ManualChannelDelayCorrection::MHO_ManualChannelDelayCorrection()
     fRefStationMk4IDKey = "reference_station_mk4id";
     fChannelLabelKey = "channel_label";
     fBandwidthKey = "bandwidth";
-    
+
     fSidebandLabelKey = "net_sideband";
     fLowerSideband = "L";
     fUpperSideband = "U";
-
-    fStationCode = "";
-    fMk4ID = "";
+    fStationIdentity = "";
 
     fImagUnit = MHO_Constants::imag_unit;
     fDegToRad = MHO_Constants::deg_to_rad;
@@ -67,7 +65,7 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                             std::size_t ch = idx_list[0];
                             double bandwidth = 0;
                             bool bw_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, bwkey, bandwidth);
-                            
+
                             std::string delay_offset_key;
                             std::string pol_code = std::string(1, pp_label[st_idx] ); //get the polarization for the appropriate station (ref/rem)
                             if(st_idx == 0){delay_offset_key = "ref_delayoff_";}
@@ -75,9 +73,9 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                             delay_offset_key += pol_code;
 
                             //now attach the manual delay offset value to this pol/station
-                            //it may be better to stash this information in a new data type 
+                            //it may be better to stash this information in a new data type
                             //rather than attaching it as meta data here...
-                            //also, if multiple delay offsets are applied, this will only capture the last one 
+                            //also, if multiple delay offsets are applied, this will only capture the last one
                             chan_ax->InsertIndexLabelKeyValue(ch, delay_offset_key, delay); //store as ns
 
                             if( bw_key_present )
@@ -101,7 +99,7 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                                     theta += phase_shift;
 
                                     visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
-                                    
+
                                     // std::string net_sideband = "?";
                                     // bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
                                     // //conjugate phases for LSB data, but not for USB - TODO what about DSB?
@@ -139,35 +137,40 @@ MHO_ManualChannelDelayCorrection::ExecuteOutOfPlace(const visibility_type* in, v
 }
 
 
-bool 
+bool
 MHO_ManualChannelDelayCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
     bool apply_correction = false;
     std::string val;
     std::string mk4id_key;
-    std::string station_key;
+    std::string station_code_key;
 
     if(st_idx == 0)
     {
         mk4id_key = fRefStationMk4IDKey;
-        station_key = fRefStationKey;
+        station_code_key = fRefStationKey;
     }
     else
     {
         mk4id_key = fRemStationMk4IDKey;
-        station_key = fRemStationKey;
+        station_code_key = fRemStationKey;
     }
 
-    if(fMk4ID != "") //selection by mk4 id
+    if(fStationIdentity.size() > 2)
+    {
+        msg_error("calibration", "station identiy: "<<fStationIdentity<<" is not a recognizable Mk4 of 2-character code" << eom);
+    }
+
+    if(fStationIdentity.size() == 1) //selection by mk4 id
     {
         in->Retrieve(mk4id_key, val);
-        if(fMk4ID == val || fMk4ID == "?"){apply_correction = true;}
+        if(fStationIdentity == val || fStationIdentity == "?"){apply_correction = true;}
     }
 
-    if(fStationCode != "")//selection by 2-char station code
+    if(fStationIdentity.size() == 2)//selection by 2-char station code
     {
-        in->Retrieve(station_key, val);
-        if(fStationCode == val || fStationCode == "??"){apply_correction = true;}
+        in->Retrieve(station_code_key, val);
+        if(fStationIdentity == val || fStationIdentity == "??"){apply_correction = true;}
     }
 
     return apply_correction;

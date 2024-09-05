@@ -19,7 +19,7 @@ endif()
 set(MODULE_VERSION_MAJOR 4)
 set(MODULE_VERSION_MINOR 0)
 set(MODULE_VERSION_PATCH 0)
-set(HOPS_VERSION_NUMBER "${MODULE_VERSION_MAJOR}.${MODULE_VERSION_MINOR}${MODULE_VERSION_PATCH}")
+set(HOPS_VERSION_NUMBER "${MODULE_VERSION_MAJOR}.${MODULE_VERSION_MINOR}.${MODULE_VERSION_PATCH}")
 project(Hops VERSION ${HOPS_VERSION_NUMBER})
 
 #default build type
@@ -37,7 +37,9 @@ include(CMakeDependentOption)
 include(FindGFORTRAN)
 include(FindPGPLOT)
 
-#include(CPack) not ready for this yet
+#not ready for these yet
+#include(CPack) -- use to create system packages (e.g. .deb/.rpm)
+#include(CMakePackageConfigHelpers) -- use to create pkgconfig .pc files for external projects
 
 #install prefix
 message(STATUS "Architecture is ${CMAKE_SYSTEM_PROCESSOR}")
@@ -52,6 +54,7 @@ endif()
 set(INCLUDE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/include")
 set(LIB_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
 set(BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin")
+set(TEST_BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin/test")
 set(CONFIG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/config")
 set(DATA_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/data")
 set(DOC_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/doc")
@@ -59,18 +62,21 @@ set(LOG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/log")
 set(PLUGINS_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/plugin_scripts") #user and other python-plugin scripts
 set(SNAPSHOT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/snapshot")
 set(OPENCL_KERNEL_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/cl_kernel")
+set(SHARE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share")
 set(SHARE_TEXT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/text")
 set(SHARE_VHELP_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/vhelp")
 
 file(MAKE_DIRECTORY ${INCLUDE_INSTALL_DIR})
 file(MAKE_DIRECTORY ${LIB_INSTALL_DIR})
 file(MAKE_DIRECTORY ${BIN_INSTALL_DIR})
+file(MAKE_DIRECTORY ${TEST_BIN_INSTALL_DIR})
 file(MAKE_DIRECTORY ${CONFIG_INSTALL_DIR})
 file(MAKE_DIRECTORY ${DATA_INSTALL_DIR})
 file(MAKE_DIRECTORY ${DOC_INSTALL_DIR})
 file(MAKE_DIRECTORY ${LOG_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SNAPSHOT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${OPENCL_KERNEL_INSTALL_DIR})
+file(MAKE_DIRECTORY ${SHARE_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_TEXT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_VHELP_INSTALL_DIR})
 file(MAKE_DIRECTORY ${PLUGINS_INSTALL_DIR})
@@ -82,8 +88,6 @@ set(SHSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/bash_src)
 set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
 set(PERLSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/perl_src)
 set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
-
-
 
 
 ################################################################################
@@ -120,11 +124,13 @@ option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms (optional, but high
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" ON)
 option(HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
-option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
 option(HOPS3_PYTHON_EXTRAS "Build python (ctypes) interface to hops3 libraries" ON)
 option(HOPS_IS_HOPS4 "Install the HOPS4 version of relevant executables (symlinked to expected names, e.g. fourfit, fplot)" OFF)
-option (HOPS_USE_OPENCL "Use OpenCL via C++ wrapper API." OFF)
-option( HOPS_USE_CUDA "Build CUDA support." OFF)
+option(HOPS_USE_OPENCL "Use OpenCL via C++ wrapper API." OFF)
+option(HOPS_USE_CUDA "Build CUDA support." OFF)
+
+option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
+mark_as_advanced(HOPS3_USE_CXX)
 
 if(HOPS3_USE_CXX)
     hops_add_cflag(HOPS3_USE_CXX)
@@ -166,31 +172,40 @@ else()
     set(HOPS_VPAL_FOURFIT "fourfit")
 endif(HOPS_IS_HOPS4)
 
-
 ################################################################################
 #stuff for controlling testing/test-data location
 set(TEST_DATA_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
-set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data) #actual location to put test data and do tests
+#location where test data should be dowloaded to (if the user runs testdata_download_all.sh)
+set(HOPS_CACHED_TEST_DATADIR "${DATA_INSTALL_DIR}/test_data" CACHE PATH "Location used to downlaod/cache HOPS test data.")
+#actual location to unpack the test data and do the tests
+set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data)
 
-#look for an environmental variable pointing to a cache of test data
-set(HOPS_USE_CACHED_TEST_DATA OFF)
-set(HOPS_NEED_REMOTE_DATA ON)
-if (NOT "$ENV{HOPS_CACHED_TEST_DATADIR}" STREQUAL "")
-    set(HOPS_CACHED_TEST_DATADIR "$ENV{HOPS_CACHED_TEST_DATADIR}" CACHE STRING "Location of cached hops test data." FORCE)
-    mark_as_advanced(HOPS_CACHED_TEST_DATADIR)
-    set(HOPS_USE_CACHED_TEST_DATA ON)
-    set(HOPS_NEED_REMOTE_DATA OFF)
-endif()
+# #look for an environmental variable pointing to a cache of test data
+# set(HOPS_USE_CACHED_TEST_DATA OFF)
+# # set(HOPS_NEED_REMOTE_DATA ON)
+# if (NOT "${HOPS_CACHED_TEST_DATADIR}" STREQUAL "")
+#
+#     #mark_as_advanced(HOPS_CACHED_TEST_DATADIR)
+#     set(HOPS_USE_CACHED_TEST_DATA ON)
+#     # set(HOPS_NEED_REMOTE_DATA OFF)
+# endif()
 
-#check that we can download test data if testing is enabled and there is no cache
-cmake_dependent_option( HOPS_ENABLE_REMOTE_TEST_DATA "Download remote data for developer tests." ${HOPS_NEED_REMOTE_DATA} "HOPS_ENABLE_TEST" OFF)
+# #check that we can download test data if testing is enabled and there is no cache
+# cmake_dependent_option( HOPS_ENABLE_REMOTE_TEST_DATA "Download remote data for developer tests." ${HOPS_NEED_REMOTE_DATA} "HOPS_ENABLE_TEST" OFF)
 
-if(HOPS_ENABLE_TEST)
-    if(NOT HOPS_ENABLE_REMOTE_TEST_DATA AND NOT HOPS_USE_CACHED_TEST_DATA)
-            #we are not downloading test data (and no local cache available), so force it off
-            set(HOPS_ENABLE_TEST OFF CACHE BOOL "Build developer tests." FORCE)
-    endif()
-endif(HOPS_ENABLE_TEST)
+# if(HOPS_ENABLE_TEST)
+#     if(NOT HOPS_ENABLE_REMOTE_TEST_DATA AND NOT HOPS_USE_CACHED_TEST_DATA)
+#             #we are not downloading test data (and no local cache available), so force it off
+#             set(HOPS_ENABLE_TEST OFF CACHE BOOL "Build developer tests." FORCE)
+#     endif()
+# endif(HOPS_ENABLE_TEST)
+
+# if(HOPS_ENABLE_TEST)
+#     if(NOT HOPS_USE_CACHED_TEST_DATA)
+#             #no local cached data available, so force it off
+#             set(HOPS_ENABLE_TEST OFF CACHE BOOL "Build developer tests." FORCE)
+#     endif()
+# endif(HOPS_ENABLE_TEST)
 
 if(HOPS_ENABLE_TEST)
     enable_testing()
@@ -245,13 +260,10 @@ else()
 
 endif(PY_EXE)
 
-################################################################################
-#configure the environment set-up script
-configure_file( ${SHSOURCE}/hopsenv.sh.cmake ${CMAKE_CURRENT_BINARY_DIR}/hops.bash @ONLY)
-install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/hops.bash DESTINATION ${BIN_INSTALL_DIR} )
 
 ################################################################################
 #call build in the subdirectories
+add_subdirectory(${SHSOURCE}) #shell scripts
 add_subdirectory(${EXTERN_HLIBS}) #external (mostly header-only) dependencies, but date (tz) library must be built
 add_subdirectory(${CSOURCE}) #mostly hops3 source
 add_subdirectory(${CPPSOURCE}) #mostly hops4 source

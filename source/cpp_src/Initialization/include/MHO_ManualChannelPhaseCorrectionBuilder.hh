@@ -36,7 +36,7 @@ class MHO_ManualChannelPhaseCorrectionBuilder:
     private:
 
         std::string ParsePolFromName(const std::string& name);
-        std::string ExtractStationMk4ID();
+        std::string ExtractStationIdentifier();
 };
 
 }//end namespace

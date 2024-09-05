@@ -1,6 +1,7 @@
 #ifndef MHO_BasicFringeDataConfiguration_HH__
 #define MHO_BasicFringeDataConfiguration_HH__
 
+#include "hops_version.hh"
 
 //global messaging util
 #include "MHO_Message.hh"

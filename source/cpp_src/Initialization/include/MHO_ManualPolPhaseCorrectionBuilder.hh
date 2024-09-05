@@ -33,7 +33,7 @@ class MHO_ManualPolPhaseCorrectionBuilder:
     private:
 
         std::string ParsePolFromName(const std::string& name);
-        std::string ExtractStationMk4ID();
+        std::string ExtractStationIdentifier();
 };
 
 }//end namespace

@@ -32,7 +32,7 @@ MHO_InterpolateFringePeak::Initialize()
     bool ok = fWeights->Retrieve("total_summed_weights", fTotalSummedWeights);
     if(!ok)
     {
-        msg_warn("fringe", "missing 'total_summed_weights' tag in weights object." << eom);
+        msg_warn("calibration", "missing 'total_summed_weights' tag in weights object." << eom);
         return false;
     }
 
@@ -147,7 +147,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
 
                     // std::string net_sideband = "?";
                     // bool key_present = chan_ax->RetrieveIndexLabelKeyValue(fr, "net_sideband", net_sideband);
-                    // if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< fr << "." << eom);}
+                    // if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< fr << "." << eom);}
                     //
                     // fRot.SetSideband(0); //DSB
                     // if(net_sideband == "U"){fRot.SetSideband(1);}
@@ -225,7 +225,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     // std::cout<< std::setprecision(15);
     // std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
     // std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
-    msg_info("fringe", "Peak max555, sbd "<<sbd_max<<" mbd "<<mbd_max_global<<" dr "<<dr_max_global<<" amp "<< fFringeAmp << eom );
+    msg_info("calibration", "Peak max555, sbd "<<sbd_max<<" mbd "<<mbd_max_global<<" dr "<<dr_max_global<<" amp "<< fFringeAmp << eom );
 
     profiler_stop();
 

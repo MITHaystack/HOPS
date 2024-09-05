@@ -25,6 +25,11 @@ else()
     add_subdirectory(search)
     add_subdirectory(snratio)
     add_subdirectory(legacy/CorAsc2)
+    
+    if(HOPS_USE_DIFXIO)
+    add_subdirectory(difx2mark4)
+    endif(HOPS_USE_DIFXIO)
+
 endif()
 
 if(HOPS_ENABLE_TEST)

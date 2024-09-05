@@ -16,9 +16,7 @@ MHO_ManualChannelPhaseCorrection::MHO_ManualChannelPhaseCorrection()
     fSidebandLabelKey = "net_sideband";
     fLowerSideband = "L";
     fUpperSideband = "U";
-
-    fStationCode = "";
-    fMk4ID = "";
+    fStationIdentity = "";
 
     fImagUnit = MHO_Constants::imag_unit;
     fDegToRad = MHO_Constants::deg_to_rad;
@@ -98,39 +96,45 @@ MHO_ManualChannelPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, v
 }
 
 
-bool 
+bool
 MHO_ManualChannelPhaseCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
     bool apply_correction = false;
     std::string val;
     std::string mk4id_key;
-    std::string station_key;
+    std::string station_code_key;
 
     if(st_idx == 0)
     {
         mk4id_key = fRefStationMk4IDKey;
-        station_key = fRefStationKey;
+        station_code_key = fRefStationKey;
     }
     else
     {
         mk4id_key = fRemStationMk4IDKey;
-        station_key = fRemStationKey;
+        station_code_key = fRemStationKey;
     }
 
-    if(fMk4ID != "") //selection by mk4 id
+    if(fStationIdentity.size() > 2)
+    {
+        msg_error("calibration", "station identiy: "<<fStationIdentity<<" is not a recognizable Mk4 of 2-character code" << eom);
+    }
+
+    if(fStationIdentity.size() == 1) //selection by mk4 id
     {
         in->Retrieve(mk4id_key, val);
-        if(fMk4ID == val || fMk4ID == "?"){apply_correction = true;}
+        if(fStationIdentity == val || fStationIdentity == "?"){apply_correction = true;}
     }
 
-    if(fStationCode != "")//selection by 2-char station code
+    if(fStationIdentity.size() == 2)//selection by 2-char station code
     {
-        in->Retrieve(station_key, val);
-        if(fStationCode == val || fStationCode == "??"){apply_correction = true;}
+        in->Retrieve(station_code_key, val);
+        if(fStationIdentity == val || fStationIdentity == "??"){apply_correction = true;}
     }
 
     return apply_correction;
 }
+
 
 bool
 MHO_ManualChannelPhaseCorrection::PolMatch(std::size_t station_idx, std::string& polprod)

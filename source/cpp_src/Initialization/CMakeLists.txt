@@ -17,6 +17,7 @@ set (INITIALIZATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultitonePhaseCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolProductSummationBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LinearDParCorrectionBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_CircularFieldRotationBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PassbandBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NotchesBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DCBlockBuilder.hh
@@ -44,6 +45,7 @@ set( INITIALIZATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MultitonePhaseCorrectionBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PolProductSummationBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LinearDParCorrectionBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_CircularFieldRotationBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PassbandBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NotchesBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DCBlockBuilder.cc

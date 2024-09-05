@@ -35,6 +35,11 @@ endif()
 #add the plugin directory definition, so we can search in this path
 add_compile_definitions("HOPS_DEFAULT_PLUGINS_DIR=${PLUGINS_INSTALL_DIR}")
 
+#configure the version header
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/hops_version.hh.cmake ${CMAKE_CURRENT_BINARY_DIR}/hops_version.hh)
+hops_install_headers(${CMAKE_CURRENT_BINARY_DIR}/hops_version.hh)
+hops_include_directories(${CMAKE_CURRENT_BINARY_DIR})
+
 #source sub directories (in order of dependence...this is important!)
 add_subdirectory(${CPPSOURCE}/Message) #the messaging library
 add_subdirectory(${CPPSOURCE}/Utilities) #other generic utilities

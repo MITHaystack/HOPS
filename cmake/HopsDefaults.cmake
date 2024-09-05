@@ -8,8 +8,24 @@ macro(hops_install_libraries)
     set_target_properties(${ARGN} PROPERTIES INSTALL_NAME_DIR ${LIB_INSTALL_DIR})
 endmacro()
 
+#this installs into a prefixed directory '.../include/hops'
+macro(legacy_hops_install_headers)
+    install(FILES ${ARGN} DESTINATION ${INCLUDE_INSTALL_DIR}/hops)
+endmacro()
+
+#this installs into a prefixed directory '.../include/hops'
+macro(legacy_hops_install_libraries)
+    install(TARGETS ${ARGN} EXPORT hopsTargets DESTINATION ${LIB_INSTALL_DIR}/hops)
+    set_property(GLOBAL APPEND PROPERTY MODULE_TARGETS ${ARGN})
+    set_target_properties(${ARGN} PROPERTIES INSTALL_NAME_DIR ${LIB_INSTALL_DIR}/hops)
+endmacro()
+
 macro(hops_install_executables)
     install(TARGETS ${ARGN} EXPORT hopsTargets DESTINATION ${BIN_INSTALL_DIR})
+endmacro()
+
+macro(hops_install_test_executables)
+    install(TARGETS ${ARGN} EXPORT hopsTargets DESTINATION ${TEST_BIN_INSTALL_DIR})
 endmacro()
 
 macro(hops_install_symlink filepath sympath)
@@ -35,6 +51,11 @@ endmacro()
 
 macro(hops_install_doc)
     install(FILES ${ARGN} DESTINATION ${${PROJECT_NAME}_DOC_INSTALL_DIR})
+endmacro()
+
+#to match automake build
+macro(legacy_hops_install_share_text)
+    install(FILES ${ARGN} DESTINATION ${SHARE_INSTALL_DIR}/hops/text)
 endmacro()
 
 #to match automake build

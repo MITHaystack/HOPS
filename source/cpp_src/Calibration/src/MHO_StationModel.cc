@@ -22,6 +22,7 @@ MHO_StationModel::MHO_StationModel()
     fU = 0.0;
     fV = 0.0;
     fW = 0.0;
+    fEvalTimeString = "";
 };
 
 MHO_StationModel::~MHO_StationModel(){};
@@ -32,20 +33,26 @@ MHO_StationModel::ComputeModel()
 {
     if(fData !=nullptr)
     {
-        //convert time string to time point
-        auto eval_time = hops_clock::from_vex_format(fEvalTimeString);
-
         //get the station code
         std::string code = RetrieveTag<std::string>(fData, "station_code");
-        msg_debug("fringe", "station code: " << code << eom );
+        msg_debug("calibration", "station code: " << code << eom );
 
         //get the ref/rem station delay model start times
         std::string model_start = RetrieveTag<std::string>(fData, "model_start");
         //convert string to time point
         auto start = hops_clock::from_vex_format(model_start);
 
-        msg_debug("fringe", "evaluation time is: "<< hops_clock::to_iso8601_format(eval_time)<< eom);
-        msg_debug("fringe", "model start time is: "<<hops_clock::to_iso8601_format(start)<< eom);
+        //if we have an evaluation time, then convert the vex string to a time point
+        //otherwise the default is to just use the start time of the model
+        auto eval_time = start;
+        if(fEvalTimeString == "")
+        {
+            msg_warn("calibration", "station model evaluation time not set, using model start time" << eom);
+            eval_time = hops_clock::from_vex_format(fEvalTimeString);
+        }
+
+        msg_debug("calibration", "evaluation time is: "<< hops_clock::to_iso8601_format(eval_time)<< eom);
+        msg_debug("calibration", "model start time is: "<<hops_clock::to_iso8601_format(start)<< eom);
 
         //calculate time differences
         auto tdiff_duration = eval_time - start;
@@ -60,7 +67,7 @@ MHO_StationModel::ComputeModel()
         //calculate seconds into target interval
         double dt = tdiff - (int_no * model_interval);
 
-        msg_debug("fringe", "model interval: "<< int_no <<" and time offset: "<< dt << eom);
+        msg_debug("calibration", "model interval: "<< int_no <<" and time offset: "<< dt << eom);
 
         //evaluate the station model: delay, azimuth, elevation, par_angle, u, v, w
         auto dcoeff = fData->SubView(DELAY_INDEX, int_no); //extract spline coeffs
@@ -86,8 +93,8 @@ MHO_StationModel::ComputeModel()
         auto wcoeff = fData->SubView(W_INDEX, int_no); //extract spline coeffs
         EvaluateSpline(wcoeff, dt, fW);
 
-        msg_debug("fringe", "station coord model: (delay, azimuth, elevation, par_angle, u, v, w) = " << eol);
-        msg_debug("fringe", "(" <<
+        msg_debug("calibration", "station coord model: (delay, azimuth, elevation, par_angle, u, v, w) = " << eol);
+        msg_debug("calibration", "(" <<
             fDelay <<", "<<
             fAzimuth <<", "<<
             fElevation <<", "<<
@@ -99,7 +106,7 @@ MHO_StationModel::ComputeModel()
     }
     else
     {
-        msg_fatal("fringe", "cannot compute station coordinate model, missing station data. " << eom );
+        msg_fatal("calibration", "cannot compute station coordinate model, missing station data. " << eom );
         std::exit(1);
     }
 }
@@ -109,18 +116,18 @@ MHO_StationModel::CheckSplineInterval(int n_intervals, double tdiff, int& int_no
 {
     if(n_intervals == 0)
     {
-        msg_fatal("fringe", "number of spline intervals is 0, missing or malformed data?" << eom );
+        msg_fatal("calibration", "number of spline intervals is 0, missing or malformed data?" << eom );
         std::exit(1);
     }
 
     if(tdiff < 0.0)
     {
-        msg_warn("fringe", "evaluation time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
+        msg_warn("calibration", "evaluation time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
         int_no = 0;
     }
     if(int_no >= n_intervals )
     {
-        msg_warn("fringe", "evaluation time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
+        msg_warn("calibration", "evaluation time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
         int_no = n_intervals-1;
     }
 }

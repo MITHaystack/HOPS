@@ -14,4 +14,4 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
     add_test(NAME ${BASENAME}_test COMMAND ${BASENAME})
 endforeach( BASENAME )
 
-hops_install_executables( ${SOURCE_BASENAMES} )
+hops_install_test_executables( ${SOURCE_BASENAMES} )

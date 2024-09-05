@@ -33,7 +33,7 @@ class MHO_ManualPolDelayCorrectionBuilder:
     private:
 
         std::string ParsePolFromName(const std::string& name);
-        std::string ExtractStationMk4ID();
+        std::string ExtractStationIdentifier();
 };
 
 }//end namespace

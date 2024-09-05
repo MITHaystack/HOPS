@@ -46,7 +46,7 @@ MHO_PolProductSummation::ExecuteOutOfPlace(const visibility_type* in, visibility
     bool wok = fWReducer.Execute();
     double n_polprod = fPolProductSet.size();
     // (*fWeights) *= 1.0/n_polprod;
-    
+
     fWeights->Insert("n_summed_polprod", n_polprod);
 
     return ok && wok;
@@ -93,7 +93,7 @@ MHO_PolProductSummation::PreMultiply(visibility_type* in)
         prefac_sum += std::abs(prefac[i]);
     }
 
-    //specific to pseudo-Stokes-I (IXY) mode, explictly set to 2
+    //specific to pseudo-Stokes-I (IXY) mode, (4 involved pol-products) explictly set to 2
     if(fSummedPolProdLabel == "I"){prefac_sum = 2.0;}
 
     for(std::size_t i=0; i < pp_ax->GetSize(); i++)
@@ -142,7 +142,11 @@ MHO_PolProductSummation::GetPrefactor(std::string pp_label)
     //depending on the telescope mount type, this may have varied dependance
     //on (delta) parallactic angle
 
-    TODO_FIXME_MSG("FIXME TODO -- implement prefactor calculations for both linear and circular pol-products (XX, YY, RR, etc).")
+    TODO_FIXME_MSG("FIXME TODO -- implement prefactor calculations for both mixed linear and circular pol-products (XX, RX, RR, etc).")
+    if(pp_label == "RR"){factor = 1.0;}
+    if(pp_label == "LL"){factor = 1.0;}
+    if(pp_label == "RL"){factor = 1.0;}
+    if(pp_label == "LR"){factor = 1.0;}
 
     return factor;
 }

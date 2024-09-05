@@ -24,16 +24,22 @@ MHO_FringeData::WriteOutput()
     std::string root_code;
     std::string frequency_group;
     std::string polprod;
+    std::string ref_code;
+    std::string rem_code;
 
     bool ok1 = fParameterStore.Get("/config/baseline", baseline);
     bool ok2 = fParameterStore.Get("/config/root_code", root_code);
     bool ok3 = fParameterStore.Get("/config/frequency_group", frequency_group);
     bool ok4 = fParameterStore.Get("/config/polprod", polprod);
+    bool ok5 = fParameterStore.Get("/config/reference_station", ref_code);
+    bool ok6 = fParameterStore.Get("/config/remote_station", rem_code);
 
     if(!ok1){baseline = "??";}
     if(!ok2){root_code = "XXXXXX";}
     if(!ok3){frequency_group = "X";}
     if(!ok4){polprod = "?";}
+    if(!ok5){ref_code = "??";}
+    if(!ok6){rem_code = "??";}
 
     //write out the data to disk (don't bother waiting for a directory write lock)
     //because we are going to write it to a unique temporary name
@@ -42,12 +48,7 @@ MHO_FringeData::WriteOutput()
     //ideally this should reduce the amount of time each independent process waits to access the directory
     //since they can write in parallel and only need to queue up to rename their files
 
-    std::string temp_name;
-    std::string output_file;
-
-    std::stringstream ss;
-    ss << directory << "/" << baseline << "." << frequency_group << "." << polprod << "." << root_code << ".frng." << temp_id;
-    temp_name = ss.str();
+    std::string temp_name = ConstructTempFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, temp_id);
     int write_ok = WriteDataObjects(temp_name);
 
     // for locking
@@ -60,9 +61,7 @@ MHO_FringeData::WriteOutput()
 
     if(lock_retval == LOCK_STATUS_OK && the_seq_no > 0)
     {
-        std::stringstream ss2;
-        ss2 << directory << "/" << baseline << "." << frequency_group << "." << polprod<< "." << root_code << "." << the_seq_no << ".frng";
-        output_file = ss2.str();
+        std::string output_file = ConstructFrngFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, the_seq_no);
 
         //rename the temp file to the proper output name
         if(write_ok == 0)
@@ -77,8 +76,6 @@ MHO_FringeData::WriteOutput()
             if(msglev == eSpecial){fprintf(stderr,"fourfit: %s \n",output_file.c_str());}
         }
     }
-
-    usleep(5);
     MHO_LockFileHandler::GetInstance().RemoveWriteLock();
 
     return write_ok;
@@ -166,6 +163,45 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
     }
 
     return 0;
+}
+
+
+std::string
+MHO_FringeData::ConstructFrngFileName(const std::string directory,
+                                      const std::string& baseline,
+                                      const std::string& ref_station,
+                                      const std::string& rem_station,
+                                      const std::string& frequency_group,
+                                      const std::string& polprod,
+                                      const std::string& root_code,
+                                      int seq_no)
+{
+    std::stringstream ss;
+    ss << directory << "/" << baseline << ".";
+    ss << ref_station << "-" << rem_station << ".";
+    ss << frequency_group << "." << polprod << ".";
+    ss << root_code << "." << seq_no << ".frng";
+    return ss.str();
+}
+
+
+
+std::string
+MHO_FringeData::ConstructTempFileName(const std::string directory,
+                                  const std::string& baseline,
+                                  const std::string& ref_station,
+                                  const std::string& rem_station,
+                                  const std::string& frequency_group,
+                                  const std::string& polprod,
+                                  const std::string& root_code,
+                                  const std::string& temp_id)
+{
+    std::stringstream ss;
+    ss << directory << "/" << baseline << ".";
+    ss << ref_station << "-" << rem_station << ".";
+    ss << frequency_group << "." << polprod << ".";
+    ss << root_code << ".frng." << temp_id;
+    return ss.str();
 }
 
 }//end namespace
