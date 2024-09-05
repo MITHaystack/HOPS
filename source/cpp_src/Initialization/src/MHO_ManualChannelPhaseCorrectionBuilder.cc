@@ -26,7 +26,7 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
         double priority = fFormat["priority"].get<double>();
 
         std::string pol = ParsePolFromName(op_name);
-        std::string mk4id = ExtractStationMk4ID();
+        std::string station_id = ExtractStationIdentifier();
 
 
         if( chan2pcp.size() > 0)
@@ -45,11 +45,11 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
             op->SetArgs(vis_data);
             op->SetChannelToPCPhaseMap(chan2pcp);
             op->SetPolarization(pol);
-            op->SetStationMk4ID(mk4id);
+            op->SetStationIdentifier(station_id);
             op->SetName(op_name);
             op->SetPriority(priority);
 
-            msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<" pol: "<<pol<<"."<<eom);
+            msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<station_id<<" pol: "<<pol<<"."<<eom);
 
             bool replace_duplicates = false;
             this->fOperatorToolbox->AddOperator(op,op->GetName(),op_category,replace_duplicates);
@@ -77,9 +77,9 @@ MHO_ManualChannelPhaseCorrectionBuilder::ParsePolFromName(const std::string& nam
 
 
 std::string
-MHO_ManualChannelPhaseCorrectionBuilder::ExtractStationMk4ID()
+MHO_ManualChannelPhaseCorrectionBuilder::ExtractStationIdentifier()
 {
-    std::string station_id = "?";
+    std::string station_id = "??";
     std::vector< std::string > condition_values = fConditions["value"].get< std::vector< std::string > >();
 
     for(auto it = condition_values.begin(); it != condition_values.end(); it++)

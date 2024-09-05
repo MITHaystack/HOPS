@@ -95,10 +95,10 @@ MHO_BasicFringeDataConfiguration::sanitize_directory(std::string dir)
         //this is really a directory, so just make sure it ends with a '/'
         if( path.back() != '/' ){path += "/";}
     }
-    else 
+    else
     {
         //this is actually a file (probably the root file)
-        //so strip the file and return the directory it is in 
+        //so strip the file and return the directory it is in
         std::size_t dir_end = dir.find_last_of("/");
         if(dir_end != std::string::npos)
         {
@@ -402,7 +402,9 @@ MHO_BasicFringeDataConfiguration::determine_scans(const std::string& initial_dir
 }
 
 void
-MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& dir, const std::string& baseline, std::vector< std::pair< std::string, std::string > >& baseline_files)
+MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& dir,
+                                                      const std::string& baseline,
+                                                      std::vector< std::pair< std::string, std::string > >& baseline_files)
 {
     baseline_files.clear();
     std::vector< std::string > corFiles;
@@ -411,32 +413,36 @@ MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& dir, co
     dirInterface.ReadCurrentDirectory();
     dirInterface.GetFilesMatchingExtention(corFiles, "cor");
 
-    //loop over 'cor' files and extract the 2-character baseline code
-    //TODO...eventually we want to eliminate the need to single-char station codes
-    //(so that things like 'Gs-Wf.ABCDEF.cor' are also possible)
+    //loop over 'cor' files and extract the baseline information
+    //we expect that baseline visibility data to be stored in files with names of the form:
+    //GE.Gs-Wf.ABCDEF.cor = <2-char baseline code>.<ref_station-rem_station>.<root code>.cor
+    //this is a little redundant, but preserves some backwards compatibility with
+    //single-char station mk4id's while also allowing identification with 2-char codes
+
     MHO_Tokenizer tokenizer;
     tokenizer.SetDelimiter(".");
     tokenizer.SetIncludeEmptyTokensFalse();
+
     for(std::size_t i=0; i<corFiles.size(); i++)
     {
         std::string bname = MHO_DirectoryInterface::GetBasename(corFiles[i]);
         tokenizer.SetString( &bname );
         std::vector< std::string > tok;
         tokenizer.GetTokens(&tok);
-        if(tok.size() == 3)
+
+        //we have a traditional mk4 style 2-character baseline code
+        if(baseline.size() == 2 && tok[0].size() == 2)
         {
-            if(tok[0].size() == 2)
+
+            std::string bl = tok[0];
+            bool keep = false;
+            if(baseline == "??"){keep = true;}
+            if(baseline[0]  == '?' && baseline[1] == bl[1]){keep = true;}
+            if(baseline[1] == '?' && baseline[0] == bl[0]){keep = true;}
+            if(baseline == bl){keep = true;}
+            if(keep)
             {
-                std::string bl = tok[0];
-                bool keep = false;
-                if(baseline == "??"){keep = true;}
-                if(baseline[0]  == '?' && baseline[1] == bl[1]){keep = true;}
-                if(baseline[1] == '?' && baseline[0] == bl[0]){keep = true;}
-                if(baseline == bl){keep = true;}
-                if(keep)
-                {
-                    baseline_files.push_back( std::make_pair(bl, corFiles[i]) );
-                }
+                baseline_files.push_back( std::make_pair(bl, corFiles[i]) );
             }
         }
     }
@@ -707,7 +713,7 @@ bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
     //load root file and extract useful vex info into parameter store
     auto vexInfo = scanStore->GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(vexInfo, paramStore);
-    
+
     std::string bl = paramStore->GetAs<std::string>("/pass/baseline");
     std::string pp = paramStore->GetAs<std::string>("/pass/polprod");
     std::string fg = paramStore->GetAs<std::string>("/pass/frequency_group");
