@@ -1,7 +1,6 @@
 #ifndef MHO_InitialFringeInfo_HH__
 #define MHO_InitialFringeInfo_HH__
 
-
 //global messaging util
 #include "MHO_Message.hh"
 
