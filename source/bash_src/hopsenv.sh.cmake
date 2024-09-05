@@ -12,20 +12,20 @@ OLD_PATH="NULL"
 if [ -n "$HOPS_SYS" ]
     then
         export OLD_HOPS_SYS="$HOPS_SYS"
-        OLD_PATH=$OLD_HOPS_SYS/bin:
+        OLD_PATH=$OLD_HOPS_SYS/bin:$OLD_HOPS_SYS/bin/test:
         OLD_LD_LIBPATH=$OLD_HOPS_SYS/lib:
         OLD_CMAKE_PREF=$OLD_HOPS_SYS:
 fi
 
-if [ -n "$HOPS_SYSPY" ]
+if [ -n "$HOPS_SYS_PY" ]
     then
-        export OLD_HOPS_SYS_PY="$HOPS_SYSPY"
+        export OLD_HOPS_SYS_PY="$HOPS_SYS_PY"
 fi
 
 if [ -n "$HOPS_INSTALL" ]
     then
         export OLD_HOPS_INSTALL="$HOPS_INSTALL"
-        OLD_PATH=$OLD_HOPS_INSTALL/bin:
+        OLD_PATH=$OLD_HOPS_INSTALL/bin:$OLD_HOPS_INSTALL/bin/test:
         OLD_LD_LIBPATH=$OLD_HOPS_INSTALL/lib:
         OLD_CMAKE_PREF=$OLD_HOPS_INSTALL:
 fi
@@ -52,7 +52,7 @@ export HOPS_DEFAULT_PLUGINS_DIR=@PLUGINS_INSTALL_DIR@
 
 #replace old (system) variable instances with new values
 NEW_PATH=$(printf '%s\n' "$PATH" | sed "s|$OLD_PATH||g")
-NEW_PATH="$HOPS_INSTALL/bin:$NEW_PATH"
+NEW_PATH="$HOPS_INSTALL/bin:$HOPS_INSTALL/bin/test:$NEW_PATH"
 export PATH="$NEW_PATH"
 
 NEW_LD_LIBRARY_PATH=$(printf '%s\n' "$LD_LIBRARY_PATH" | sed "s|$OLD_LD_LIBPATH||g")

@@ -27,14 +27,14 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
     target_link_libraries( ${BASENAME} PRIVATE ${HOPS_TEST_LIBS})
 endforeach( BASENAME )
 
-# 
+#
 # foreach( BASENAME ${TEST_BASENAMES} )
 #     add_test(NAME ${BASENAME}_test COMMAND ${BASENAME})
 # endforeach( BASENAME )
 
 if(BASH_PROGRAM)
 
-    set(TEST_SCRIPT_BASENAMES chk_pyb11json chk_pyparams chk_pycontainers chk_pycontainers2 chk_pyvisaccess) 
+    set(TEST_SCRIPT_BASENAMES chk_pyb11json chk_pyparams chk_pycontainers chk_pycontainers2 chk_pyvisaccess)
 
     foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )
         configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/${BASENAME}.sh ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh @ONLY)
@@ -50,4 +50,4 @@ install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/mho_param_test.py" DESTINATION ${P
 install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/mho_container_store_test.py" DESTINATION ${PLUGINS_INSTALL_DIR})
 install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/mho_test_access.py" DESTINATION ${PLUGINS_INSTALL_DIR})
 
-hops_install_executables( ${SOURCE_BASENAMES} )
+hops_install_test_executables( ${SOURCE_BASENAMES} )

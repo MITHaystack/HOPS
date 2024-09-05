@@ -21,12 +21,12 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS})
 endforeach( BASENAME )
 
-hops_install_executables( ${SOURCE_BASENAMES} )
+hops_install_test_executables( ${SOURCE_BASENAMES} )
 
-#testing scripts 
+#testing scripts
 
 
-set(TEST_SCRIPT_BASENAMES chk_v2j) 
+set(TEST_SCRIPT_BASENAMES chk_v2j)
 
 foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )
     configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/${BASENAME}.sh ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh @ONLY)
