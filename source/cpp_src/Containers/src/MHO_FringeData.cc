@@ -48,7 +48,7 @@ MHO_FringeData::WriteOutput()
     //ideally this should reduce the amount of time each independent process waits to access the directory
     //since they can write in parallel and only need to queue up to rename their files
 
-    std::string temp_name = ConstructFrngFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, temp_id);
+    std::string temp_name = ConstructTempFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, temp_id);
     int write_ok = WriteDataObjects(temp_name);
 
     // for locking
@@ -61,10 +61,7 @@ MHO_FringeData::WriteOutput()
 
     if(lock_retval == LOCK_STATUS_OK && the_seq_no > 0)
     {
-        std::stringstream ss2;
-        ss2 << the_seq_no;
-        std::string seq_code = ss2.str();
-        std::string output_file = ConstructFrngFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, seq_code);
+        std::string output_file = ConstructFrngFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, the_seq_no);
 
         //rename the temp file to the proper output name
         if(write_ok == 0)
@@ -169,22 +166,42 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
 }
 
 
-std::string MHO_FringeData::ConstructFrngFileName(const std::string directory,
-                                                  const std::string& baseline,
-                                                  const std::string& ref_station,
-                                                  const std::string& rem_station,
-                                                  const std::string& frequency_group,
-                                                  const std::string& polprod,
-                                                  const std::string& root_code,
-                                                  const std::string& temp_id)
+std::string
+MHO_FringeData::ConstructFrngFileName(const std::string directory,
+                                      const std::string& baseline,
+                                      const std::string& ref_station,
+                                      const std::string& rem_station,
+                                      const std::string& frequency_group,
+                                      const std::string& polprod,
+                                      const std::string& root_code,
+                                      int seq_no)
 {
     std::stringstream ss;
     ss << directory << "/" << baseline << ".";
     ss << ref_station << "-" << rem_station << ".";
     ss << frequency_group << "." << polprod << ".";
-    ss << root_code << "." << temp_id << ".frng";
+    ss << root_code << "." << seq_no << ".frng";
     return ss.str();
 }
 
+
+
+std::string
+MHO_FringeData::ConstructTempFileName(const std::string directory,
+                                  const std::string& baseline,
+                                  const std::string& ref_station,
+                                  const std::string& rem_station,
+                                  const std::string& frequency_group,
+                                  const std::string& polprod,
+                                  const std::string& root_code,
+                                  const std::string& temp_id)
+{
+    std::stringstream ss;
+    ss << directory << "/" << baseline << ".";
+    ss << ref_station << "-" << rem_station << ".";
+    ss << frequency_group << "." << polprod << ".";
+    ss << root_code << ".frng." << temp_id;
+    return ss.str();
+}
 
 }//end namespace

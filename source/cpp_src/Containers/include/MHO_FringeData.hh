@@ -60,6 +60,15 @@ class MHO_FringeData
                                           const std::string& frequency_group,
                                           const std::string& polprod,
                                           const std::string& root_code,
+                                          int seq_no);
+
+        std::string ConstructTempFileName(const std::string directory,
+                                          const std::string& baseline,
+                                          const std::string& ref_station,
+                                          const std::string& rem_station,
+                                          const std::string& frequency_group,
+                                          const std::string& polprod,
+                                          const std::string& root_code,
                                           const std::string& temp_id);
 
         //data objects
