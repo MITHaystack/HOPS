@@ -1,16 +1,11 @@
 {
     "name": "fringe",
-    "default_version": 5,
+    "default_version": 6,
     "version_formats":
     {
-        "1": ["fields_v1"],
-        "2": ["fields_v1", "fields_v2"],
-        "3": ["fields_v1", "fields_v2", "fields_v3"],
-        "4": ["fields_v1", "fields_v2", "fields_v3", "fields_v4"],
-        "5": ["fields_v1", "fields_v2", "fields_v3", "fields_v4", "fields_v5"],
-        "6": ["fields_v1", "fields_v2", "fields_v3", "fields_v4", "fields_v5", "fields_v6"]
+        "6": ["fields_v6"]
     },
-    "fields_v1":
+    "fields_v6":
     [
         "version",
         "fname",
@@ -28,7 +23,7 @@
         "mode",
         "no_freq",
         "archiv",
-        "reftap",
+        "reftape",
         "remtape",
         "amp",
         "snr",
@@ -44,10 +39,8 @@
         "total_sbresid",
         "ambiguity",
         "pcals",
-        "root_id"
-    ],
-    "fields_v2":
-    [
+        "root_id",
+
         "ref_freq",
         "datatype",
         "ref_elev",
@@ -56,29 +49,21 @@
         "rem_az",
         "u",
         "v",
-        "parents"
-    ],
-    "fields_v3":
-    [
+        "parents",
+
         "duration",
-        "offset"
-    ],
-    "fields_v4":
-    [
+        "offset",
+
         "scan_offset",
         "lags",
         "phase_snr",
         "srch_cotime",
-        "noloss_cotime"
-    ],
-    "fields_v5":
-    [
+        "noloss_cotime",
+
         "scan_id",
         "polarization",
-        "errcode"
-    ],
-    "fields_v6":
-    [
+        "errcode",
+
         "ra_hrs",
         "dec_deg",
         "resid_delay"

@@ -695,7 +695,7 @@ def make_coord_text(plot_dict):
     if 'extra' in plot_dict:
         ref_mk4id = plot_dict["extra"]["ref_station_mk4id"]
         ref_az = plot_dict['extra']['ref_station']['az']
-        ref_el = plot_dict['extra']['ref_station']['al']
+        ref_el = plot_dict['extra']['ref_station']['el']
         ref_pa = plot_dict['extra']['ref_station']['pa']
         ref_u = plot_dict['extra']['ref_station']['u']
         ref_v = plot_dict['extra']['ref_station']['v']
@@ -705,7 +705,7 @@ def make_coord_text(plot_dict):
         refbtmtextstr += " pa " + str(np.round(float(ref_pa),1))
         rem_mk4id = plot_dict["extra"]["rem_station_mk4id"]
         rem_az = plot_dict['extra']['rem_station']['az']
-        rem_el = plot_dict['extra']['rem_station']['al']
+        rem_el = plot_dict['extra']['rem_station']['el']
         rem_pa = plot_dict['extra']['rem_station']['pa']
         rem_u = plot_dict['extra']['rem_station']['u']
         rem_v = plot_dict['extra']['rem_station']['v']

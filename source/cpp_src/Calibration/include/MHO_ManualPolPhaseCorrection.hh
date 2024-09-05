@@ -35,8 +35,10 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
         MHO_ManualPolPhaseCorrection();
         virtual ~MHO_ManualPolPhaseCorrection();
 
-        void SetStation(std::string station){fStationCode = station;}; //2-char station code
-        void SetStationMk4ID(std::string station_id){fMk4ID = station_id;} //1-char mk4id
+        //treated as follows:
+        //1-char => mk4 id 
+        //2-char => 2char station code 
+        void SetStationIdentifier(std::string station_id){fStationIdentity = station_id;}
         void SetPolarization(const std::string& pol){fPol = pol; make_upper(fPol);};
         void SetPCPhaseOffset(const double& pc_phase_offset){fPhaseOffset = pc_phase_offset;}
 
@@ -58,8 +60,7 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
         double fDegToRad;
 
         //selection
-        std::string fStationCode;
-        std::string fMk4ID;
+        std::string fStationIdentity;
         std::string fPol;
 
         //pc rotation

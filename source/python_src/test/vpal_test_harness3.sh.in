@@ -1,0 +1,50 @@
+#!/bin/bash
+verb=false
+[ -n "$testverb" ] && verb=true
+
+[ -d "$srcdir" ] || { echo srcdir not set; exit 1; }
+${HOPS_SETUP-'false'} || . $srcdir/chk_env.sh
+export DATADIR=`cd $srcdir/3593; pwd`
+
+EXP_DIR=$DATADIR
+cd $EXP_DIR
+
+#explicitly set the fringe fitter to fourfit3
+HOPS_VPAL_FRINGE_FITTER=fourfit3
+
+#remove any previously generated fringe files
+rm $EXP_DIR/059-0000/??.X.*.??????
+rm $EXP_DIR/059-0019/??.X.*.??????
+rm $EXP_DIR/059-0116/??.X.*.??????
+
+mark42hops -i $EXP_DIR/059-0000 -o $EXP_DIR/059-0000
+mark42hops -i $EXP_DIR/059-0019 -o $EXP_DIR/059-0019
+mark42hops -i $EXP_DIR/059-0116 -o $EXP_DIR/059-0116
+
+################################################################################
+#run the test suite (environmental var DATADIR should be set before running this)
+#the -B option is makes sure that python doesn't produce any __pycache__ (.pyc)
+#files that we have to clean up later
+@PY_EXE@ -B @abs_srcdir@/test_mk4io.py $EXP_DIR
+MK4IO_PASS_FAIL=$?
+
+@PY_EXE@ -B @abs_srcdir@/test_ffres2pcp.py $EXP_DIR
+FFRES2PCP_PASS_FAIL=$?
+
+@PY_EXE@ -B @abs_srcdir@/test_fourphase.py $EXP_DIR
+FOURPHASE_PASS_FAIL=$?
+
+@PY_EXE@ -B @abs_srcdir@/test_pcc_generate.py $EXP_DIR
+PCC_PASS_FAIL=$?
+
+if [ "$MK4IO_PASS_FAIL" -eq 0 -a "$FFRES2PCP_PASS_FAIL" -eq 0 -a  "$FOURPHASE_PASS_FAIL" -eq 0 -a "$PCC_PASS_FAIL" -eq 0 ]; then
+  echo "Full chops test suite passed."
+  exit 0
+else
+  echo "Full chops test suite failed."
+  exit 1
+fi
+
+#
+# eof
+#

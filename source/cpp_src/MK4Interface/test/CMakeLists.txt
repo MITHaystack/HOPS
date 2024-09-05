@@ -23,14 +23,15 @@ set(SOURCE_BASENAMES
     TestMK4Type200Convert
     TestMK4Type201Convert
     TestMK4Type202Convert
-   # TestMK4Type203Convert
+    TestMK4Type203Convert
     TestMK4Type204Convert
     TestMK4Type205Convert
-   # TestMK4Type206Convert
-   # TestMK4Type207Convert
+    TestMK4Type206Convert
+    TestMK4Type207Convert
     TestMK4Type208Convert
-   # TestMK4Type210Convert
-   # TestMK4Type212Convert
+    TestMK4Type210Convert
+    TestMK4Type212Convert
+    TestCreateJSONFile
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
@@ -38,4 +39,4 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS})
 endforeach( BASENAME )
 
-hops_install_executables( ${SOURCE_BASENAMES} )
+hops_install_test_executables( ${SOURCE_BASENAMES} )

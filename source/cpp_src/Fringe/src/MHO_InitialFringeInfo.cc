@@ -135,7 +135,7 @@ MHO_InitialFringeInfo::compute_total_summed_weights(MHO_ContainerStore* conStore
     wt_data->Insert("total_summed_weights", total_ap_frac);
 }
 
-void 
+void
 MHO_InitialFringeInfo::determine_n_active_channels(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     //just loop over the weights and count the number of channels which contain an AP with weight > 0
@@ -180,9 +180,21 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
         std::exit(1);
     }
 
+    bool ok = false;
+    //retrieve the station codes
+    std::string ref_code;
+    ok = vis_data->Retrieve("reference_station", ref_code);
+    if(!ok){ref_code = "";}
+    paramStore->Set("/config/reference_station", ref_code);
+
+    std::string rem_code;
+    ok = vis_data->Retrieve("remote_station", rem_code);
+    if(!ok){rem_code = "";}
+    paramStore->Set("/config/remote_station", rem_code);
+
     //retrieve the root code from the visib (only needed if we export to mk4)
     std::string root_code;
-    bool ok = vis_data->Retrieve("root_code", root_code);
+    ok = vis_data->Retrieve("root_code", root_code);
     if(!ok){root_code = "XXXXXX";}
     paramStore->Set("/config/root_code", root_code); //should this get stuffed in config?
 

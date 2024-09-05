@@ -479,13 +479,14 @@ MHO_LockFileHandler::get_max_seq_number(std::string dir)
         for(auto it = fringe_files.begin(); it != fringe_files.end(); it++)
         {
             std::string basename = MHO_DirectoryInterface::GetBasename(*it);
-            //format looks like "GE.X.XY.0VSI1M.1.frng"
+            //format looks like "GE.Gs-Wf.X.XY.0VSI1M.1.frng"
             tokens.clear();
             fTokenizer.SetString(&basename);
             fTokenizer.GetTokens(&tokens);
-            if(tokens.size() >= 6)
+            if(tokens.size() >= 7)
             {
-                int seq_no = std::atoi(tokens[ tokens.size()-2 ].c_str()); //2nd to last token is extent no.
+                std::string seq_tok = tokens[ tokens.size()-2 ];
+                int seq_no = std::atoi(seq_tok.c_str()); //2nd to last token is extent no.
                 if(seq_no > max_seq_no){max_seq_no = seq_no;}
             }
         }

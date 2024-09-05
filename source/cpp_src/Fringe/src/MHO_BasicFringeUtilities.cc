@@ -107,7 +107,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     //calculate SNR
     std::vector< std::string > pp_vec = paramStore->GetAs< std::vector< std::string > >("/config/polprod_set");
     double eff_npols = 1.0;
-    if(pp_vec.size() > 2 ){eff_npols = 2.0;}
+    if(pp_vec.size() >= 2 ){eff_npols = 2.0;}
 
     double bw_corr_factor = calculate_snr_correction_factor(conStore, paramStore); //correction if notches/passband applied
     double snr = MHO_BasicFringeInfo::calculate_snr(eff_npols, ap_delta, samp_period, total_summed_weights, famp, bw_corr_factor);

@@ -360,10 +360,12 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
 
     mho_json src_section = vexInfo["$SOURCE"];
     auto src_info = src_section.begin().value();
-    std::string ra = src_info["ra"];
-    std::string dec = src_info["dec"];
+    std::string ref_coord_frame = src_info["ref_coord_frame"].get<std::string>();
+    std::string ra = src_info["ra"].get<std::string>();
+    std::string dec = src_info["dec"].get<std::string>();
     paramStore->Set("/vex/scan/source/ra", ra);
     paramStore->Set("/vex/scan/source/dec", dec);
+    paramStore->Set("/vex/scan/source/ref_coord_frame", ref_coord_frame);
 
     //calculate the decimal equivalents (deg_deg and ra_hrs)
     double ra_hrs = calculate_ra_hrs(ra);

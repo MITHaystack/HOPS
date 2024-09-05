@@ -1,0 +1,50 @@
+TLDR: difx2mark4 is to HOPS as difx2fits is to AIPS
+
+Some background on DiFX to Mark4
+
+difx2mark4 was developed to convert native DiFX output (in the
+so-called SWIN[burne] format) into the Mark4 fileset for use
+with the HOPS (Haystack Observatory Postprocessing System)
+package and integrated fully within the DiFX (SVN) code base.
+The primary author (Roger Capallo) developed the tool ca 2010
+and installed it with DiFX in May of 2010 (r2198) and his last
+commit was in June of 2020 (r9575).  Geoff Crew supported the
+integration and maintenance starting in 2010.
+
+After Roger's retirement, John Barrett took over maintenance.
+
+In late 2023 (15th DiFX meeting in Socorro) it was decided to
+retire the DiFX SVN in favor of a leaner DiFX GIT repository
+(https://github.com/difx) and a decision was taken to eventually
+de-integrate difx2mark4 and HOPS from the main DiFX repository.
+In some sense both were provided as "vendor branch" offerings
+to SVN and as HOPS is slated to migrate to a public GIT as well,
+the vendor branch is no longer needed.  That migration is likely
+to complete in 2024.
+
+The first step of this migration is to integrate the difx2mark4
+build into the HOPS (version 3) SVN repository to be built there.
+Note that difx2mark4 relies on the DiFX code for its input, so
+it is hardly a standalone program.  Nevertheless the 'archival'
+directory contains Roger's notes on putting the pieces together
+without actually having DiFX installed (assuming you grabbed
+the appropriate sources).  As this installation is a transitional
+step until HOPS (version 4) is ready and difx2hops provides the
+equivalent functionality, well, we'll drop support for that.
+
+The integration with HOPS3 is accomplished via arguments that
+allow the configure.ac to be used from this directory more-or
+less as was done in the DiFX integration.  $DIFXROOT is required
+to locate the appropriate things in $DIFXROOT/lib or include.
+
+INSTALL contains appropriate instructions if you want to build
+difx2mark4 without the rest of HOPS.
+
+One complication is that that difx2mark4 requires mark4 library
+includes and code; these were duplicated into DiFX, but with the
+integration into HOPS this is no longer needed (and preferable).
+The offending code has been moved to src-dup and compilation with
+the HOPS3 sources are implicit.  Arrangements to do otherwise may
+be made if the need arises....
+
+eof

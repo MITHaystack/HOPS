@@ -23,8 +23,8 @@ extern "C"
 
 namespace hops
 {
-
 /*!*
+>>>>>>> 2244689b19d877f8c1684530a28c9cba07f7d6dd
 *@file MHO_MK4Type207Converter.hh
 *@author V. Pfeiffer - violetp@mit.edu
 * A function that accepts the data from a type 207 file in the form of a struct and converts it to a JSON object.

@@ -107,7 +107,7 @@ class MHO_MK4FringeExport
         void FillFloat(float& destination, std::string param_path, float default_value = 0);
         void FillDate(struct date* destination, std::string param_path);
         void FillDate(struct date* destination, struct legacy_hops_date& a_date);
-        void FillChannels(struct ch_struct* chan_array, std::size_t nchannels);
+        void FillChannels(struct ch_struct* chan_array);
 
         //the filling functions for each type
         int fill_200( struct type_200 *t200);

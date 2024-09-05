@@ -23,7 +23,6 @@ extern "C"
 
 namespace hops
 {
-
 /*!*
 *@file MHO_MK4Type205Converter.hh
 *@author V. Pfeiffer - violetp@mit.edu

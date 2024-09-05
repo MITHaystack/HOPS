@@ -221,16 +221,16 @@ bool extract_plot_data(mho_json& plot_data, mho_json& param_data, std::string fi
 {
     //split the filename (not strictly necessary, but used to extract the extent number)
     //for example: 23 in 'GE.X.XX.345F47.23.frng'
-    MHO_Tokenizer tokenizer;
-    tokenizer.SetDelimiter(".");
-    tokenizer.SetIncludeEmptyTokensFalse();
-    tokenizer.SetString(&filename);
-    std::vector< std::string > tokens;
-    tokenizer.GetTokens(&tokens);
-    if(tokens.size() != 6)
+    // MHO_Tokenizer tokenizer;
+    // tokenizer.SetDelimiter(".");
+    // tokenizer.SetIncludeEmptyTokensFalse();
+    // tokenizer.SetString(&filename);
+    // std::vector< std::string > tokens;
+    // tokenizer.GetTokens(&tokens);
+    if(filename.find("frng") == std::string::npos)
     {
         //not a fringe file, skip this
-        msg_error("fringe", "could not parse the file name: "<< filename<<eom);
+        msg_error("fringe", "could not parse the file name: "<< filename <<eom);
         return false;
     }
 

@@ -95,10 +95,10 @@ MHO_BasicFringeDataConfiguration::sanitize_directory(std::string dir)
         //this is really a directory, so just make sure it ends with a '/'
         if( path.back() != '/' ){path += "/";}
     }
-    else 
+    else
     {
         //this is actually a file (probably the root file)
-        //so strip the file and return the directory it is in 
+        //so strip the file and return the directory it is in
         std::size_t dir_end = dir.find_last_of("/");
         if(dir_end != std::string::npos)
         {
@@ -215,7 +215,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     bool update_mode = false; //'-u' not yet enabled
     std::string polprod = "??"; //'-P' polarization product argument (e.g XX or I or RR+LL)
     std::string reftime = ""; //'-T' specify the fourfit reference time - not yet enabled
-    bool xwindows; //'-x' same as option '-p' we no long use pgplot/xwindows
+    //bool xwindows; //'-x' same as option '-p' we no long use pgplot/xwindows
     bool xpower_output = false; //-X export xpower spectrum
     bool use_mk4_output = false;
     std::string input;
@@ -246,26 +246,25 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     app.add_flag("-a,--accounting", accounting, "perform run-time accounting/profiling");
     app.add_option("-b,--baseline", baseline_opt, "baseline or baseline:frequency_group selection (e.g GE or GE:X)");
     app.add_option("-c,--control-file", control_file, "specify the control file");
-    app.add_flag("-e,--exclude-autocorrs", exclude_autos, "exclude auto-correlations from fring-fitting");
-    app.add_option("-f,--first-plot-channel", first_plot_chan, "specifies the first channel displayed in the fringe plot");
+    app.add_flag("-e,--exclude-autocorrs", exclude_autos, "exclude auto-correlations from fringe-fitting");
+    app.add_option("-f,--first-plot-channel", first_plot_chan, "specifies the first channel displayed in the fringe plot (ignored, not yet implemented)");
     app.add_option("-M,--message-categories", message_categories, msg_cat_help.c_str() )->delimiter(',');
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
-    app.add_option("-n,--nplot-channels", nplot_chans, "specifies the number of channels to display in the fringe plot");
+    app.add_option("-n,--nplot-channels", nplot_chans, "specifies the number of channels to display in the fringe plot (ignored, not yet implemented)");
     app.add_flag("-p,--plot", show_plot, "generate and shows fringe plot on completion");
     app.add_option("-r,--refringe-alist", refringe_alist_file, "alist file for refringing (ignored, not yet implemented)");
     app.add_option("-s,--ap-per-segment", ap_per_seg, "specify the APs to be averaged per plot-segment");
     app.add_flag("-t,--test-mode", test_mode, "if passed, then no output is written");
     app.add_flag("-u,--update-mode", update_mode, "(ignored, not yet implemented)");
-    app.add_option("-P,--polprod", polprod, "polarization product argument (e.g XX or I or RR+LL)");
+    app.add_option("-P,--polprod", polprod, "polarization product argument (e.g XX or I or RR+LL, etc.)");
     app.add_option("-T,--reftime", reftime, "specify the fourfit reference time (ignored, not yet implemented)");
-    app.add_flag("-x,--xwindows", xwindows, "display plot using xwindows (ignored, not yet implemented)");
+    //app.add_flag("-x,--xwindows", xwindows, "display plot using xwindows (ignored, deprecated)");
     app.add_flag("-X,--xpower-output", xpower_output, "output spectral cross power data (visibilities with corrections/residual fringe solution applied)");
     app.add_option("input,-i,--input", input, "name of the input directory (scan) or root file")->required();
     app.add_flag("-k,--mark4-output", use_mk4_output, "write output files in mark4 type_2xx format");
 
     //add the 'set' command for control file parameter overrides
     auto *setcom = app.add_subcommand("set", "pass control file parameters and related syntax on the command line")->prefix_command();
-    //setcom->alias("--set");
 
     try
     {
@@ -402,7 +401,9 @@ MHO_BasicFringeDataConfiguration::determine_scans(const std::string& initial_dir
 }
 
 void
-MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& dir, const std::string& baseline, std::vector< std::pair< std::string, std::string > >& baseline_files)
+MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& dir,
+                                                      const std::string& baseline,
+                                                      std::vector< std::pair< std::string, std::string > >& baseline_files)
 {
     baseline_files.clear();
     std::vector< std::string > corFiles;
@@ -411,32 +412,36 @@ MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& dir, co
     dirInterface.ReadCurrentDirectory();
     dirInterface.GetFilesMatchingExtention(corFiles, "cor");
 
-    //loop over 'cor' files and extract the 2-character baseline code
-    //TODO...eventually we want to eliminate the need to single-char station codes
-    //(so that things like 'Gs-Wf.ABCDEF.cor' are also possible)
+    //loop over 'cor' files and extract the baseline information
+    //we expect that baseline visibility data to be stored in files with names of the form:
+    //GE.Gs-Wf.ABCDEF.cor = <2-char baseline code>.<ref_station-rem_station>.<root code>.cor
+    //this is a little redundant, but preserves some backwards compatibility with
+    //single-char station mk4id's while also allowing identification with 2-char codes
+
     MHO_Tokenizer tokenizer;
     tokenizer.SetDelimiter(".");
     tokenizer.SetIncludeEmptyTokensFalse();
+
     for(std::size_t i=0; i<corFiles.size(); i++)
     {
         std::string bname = MHO_DirectoryInterface::GetBasename(corFiles[i]);
         tokenizer.SetString( &bname );
         std::vector< std::string > tok;
         tokenizer.GetTokens(&tok);
-        if(tok.size() == 3)
+
+        //we have a traditional mk4 style 2-character baseline code
+        if(baseline.size() == 2 && tok[0].size() == 2)
         {
-            if(tok[0].size() == 2)
+
+            std::string bl = tok[0];
+            bool keep = false;
+            if(baseline == "??"){keep = true;}
+            if(baseline[0]  == '?' && baseline[1] == bl[1]){keep = true;}
+            if(baseline[1] == '?' && baseline[0] == bl[0]){keep = true;}
+            if(baseline == bl){keep = true;}
+            if(keep)
             {
-                std::string bl = tok[0];
-                bool keep = false;
-                if(baseline == "??"){keep = true;}
-                if(baseline[0]  == '?' && baseline[1] == bl[1]){keep = true;}
-                if(baseline[1] == '?' && baseline[0] == bl[0]){keep = true;}
-                if(baseline == bl){keep = true;}
-                if(keep)
-                {
-                    baseline_files.push_back( std::make_pair(bl, corFiles[i]) );
-                }
+                baseline_files.push_back( std::make_pair(bl, corFiles[i]) );
             }
         }
     }
@@ -707,7 +712,7 @@ bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
     //load root file and extract useful vex info into parameter store
     auto vexInfo = scanStore->GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(vexInfo, paramStore);
-    
+
     std::string bl = paramStore->GetAs<std::string>("/pass/baseline");
     std::string pp = paramStore->GetAs<std::string>("/pass/polprod");
     std::string fg = paramStore->GetAs<std::string>("/pass/frequency_group");
@@ -736,10 +741,15 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     //INITIALIZE PARAMETERS
     ////////////////////////////////////////////////////////////////////////////
 
+
     //set up the file section of the parameter store to record the directory, root file, and control file
     paramStore->Set("/files/control_file", control_file);
     paramStore->Set("/files/directory", directory);
     //paramStore->Set("/files/output_file", paramStore->GetAs<std::string>("/cmdline/output_file"));
+    
+    
+    //set the software version info 
+    paramStore->Set("/config/software_version", std::string(HOPS_VERSION));
 
     //put the baseline and pol product selection into the parameter store
     paramStore->Set("/config/polprod", polprod);

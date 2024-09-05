@@ -49,7 +49,10 @@ MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_Parame
     std::string scan_name = sched_section.begin().key();
     auto sched_info = sched_section.begin().value();
     plot_dict["RootScanBaseline"] = root_file + ", " + scan_name + ", " + baseline;
-    plot_dict["CorrVers"] = "HOPS4/DiFX fourfit rev 4.0";
+    
+    std::string corr_vers = "HOPS4/DiFX";
+    std::string software_vers = paramStore->GetAs<std::string>("/config/software_version");
+    plot_dict["CorrVers"] = corr_vers + " fourfit rev " + software_vers;
 
     auto ref_name = paramStore->GetAs<std::string>("/ref_station/site_name");
     auto rem_name = paramStore->GetAs<std::string>("/rem_station/site_name");
@@ -100,8 +103,8 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["Start"] = paramStore->GetAs<std::string>("/fringe/legacy_start_timestamp");
     plot_dict["Stop"] = paramStore->GetAs<std::string>("/fringe/legacy_stop_timestamp");
     plot_dict["FRT"] = paramStore->GetAs<std::string>("/fringe/legacy_frt_timestamp");
-    
-    
+
+
     plot_dict["CorrTime"] = paramStore->GetAs<std::string>("/fringe/legacy_corrdate_timestamp");
     plot_dict["FFTime"] = paramStore->GetAs<std::string>("/fringe/legacy_procdate_timestamp");
     plot_dict["BuildTime"] = paramStore->GetAs<std::string>("/fringe/legacy_build_timestamp");
@@ -150,18 +153,19 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
 
     plot_dict["extra"]["ambiguity"] =  paramStore->GetAs<double>("/fringe/ambiguity");
 
+
     plot_dict["extra"]["ref_station"]["az"] = paramStore->GetAs<double>("/ref_station/azimuth");
-    plot_dict["extra"]["ref_station"]["al"] = paramStore->GetAs<double>("/ref_station/elevation");
+    plot_dict["extra"]["ref_station"]["el"] = paramStore->GetAs<double>("/ref_station/elevation");
     plot_dict["extra"]["ref_station"]["pa"] = paramStore->GetAs<double>("/ref_station/parallactic_angle");
 
     double refu = paramStore->GetAs<double>("/ref_station/u");
     double refv = paramStore->GetAs<double>("/ref_station/v");
-
     plot_dict["extra"]["ref_station"]["u"] = refu;
     plot_dict["extra"]["ref_station"]["v"] = refv;
     plot_dict["extra"]["ref_station"]["w"] = paramStore->GetAs<double>("/ref_station/w");
+
     plot_dict["extra"]["rem_station"]["az"] = paramStore->GetAs<double>("/rem_station/azimuth");
-    plot_dict["extra"]["rem_station"]["al"] = paramStore->GetAs<double>("/rem_station/elevation");
+    plot_dict["extra"]["rem_station"]["el"] = paramStore->GetAs<double>("/rem_station/elevation");
     plot_dict["extra"]["rem_station"]["pa"] = paramStore->GetAs<double>("/rem_station/parallactic_angle");
 
     double remu = paramStore->GetAs<double>("/rem_station/u");

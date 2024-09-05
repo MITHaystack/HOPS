@@ -16,4 +16,4 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS})
 endforeach( BASENAME )
 
-hops_install_executables( ${SOURCE_BASENAMES} )
+hops_install_test_executables( ${SOURCE_BASENAMES} )

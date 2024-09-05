@@ -1,0 +1,55 @@
+Notes and limitations:
+
+- only major executables which have been ported to the new framework are:
+fourfit4
+fplot4
+alist4
+
+- export to mk4 fringe types from fourfit4 is enabled with the '-k' flag. However, the following types are not populated:
+type_207 -- phase cal info 
+type_221 -- postscript plot
+type_230 -- visibilities with fringe solution applied
+
+- mixed LSB/USB and double sideband data is not yet supported but will be
+
+- the command line options of fourfit4 have been kept as a similar as possible, options can be printed with fourfit4 --help 
+- notably some options that are not yet implemented:
+
+  -f,--first-plot-channel INT specifies the first channel displayed in the fringe plot (ignored, not yet implemented)
+  -n,--nplot-channels INT     specifies the number of channels to display in the fringe plot (ignored, not yet implemented)
+  -r,--refringe-alist TEXT    alist file for refringing (ignored, not yet implemented)
+  -T,--reftime TEXT           specify the fourfit reference time (ignored, not yet implemented)
+  -X,--xpower-output          output spectral cross power data (visibilities with corrections/residual fringe solution applied)
+
+- also the '-x' option for 'xwindows' plotting has been removed/deprecated, while the '-k' option has been added for mark4 fringe output. 
+
+- there is a table of control file keywords which are or are not supported <here>
+
+- notably adhoc_flag and adhoc_phase files have not yet been implemented, but will be
+
+- some fringe plot features have not yet been implemented, mainly the 'validity' tick marks for USB/LSB that sit under the channel residual phase plots 
+
+- also pcal amp/phase is not plotted in pStokes-I mode (previously pcal from an arbitrary pol-product was plotted).
+
+- keywords and associated features which are now deprecated are:
+
+switched
+index
+max_parity float
+x_crc
+x_slip_sync
+y_crc
+y_slip_sync
+gates
+period
+ra_offset
+dec_offset
+pc_freqs
+use_samples
+interpolator
+fmatch_bw_pct
+
+- the VGOS postprocessing scripts provided in this package work with either fourfit3 or fourfit4 (with the -k mark4 output option), but will eventually be ported to the native fourfit4 format 
+- you can control which fringe fitter is used by the VGOS post-proc scripts by setting HOPS_VPAL_FRINGE_FITTER = to fourfit3 or fourfit4
+
+the names fourfit, fplot, alist are symlinks to the v3 or v4 exectuables. The default is to point to the version 3 exectuables, however this can be toggled by the cmake flag HOPS_IS_HOPS4

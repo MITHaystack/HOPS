@@ -23,7 +23,6 @@ extern "C"
 
 namespace hops
 {
-
 /*!*
 *@file MHO_MK4Type204Converter.hh
 *@author V. Pfeiffer - violetp@mit.edu
@@ -36,7 +35,6 @@ namespace hops
 */
 
 mho_json convertToJSON(const type_204& t);
-
 }
 
 #endif /*! end of include guard: MHO_MKType204Converter */

@@ -9,6 +9,9 @@ export DATADIR=`cd $srcdir/3593; pwd`
 EXP_DIR=$DATADIR
 cd $EXP_DIR
 
+#explicitly set the fringe fitter to fourfit4
+HOPS_VPAL_FRINGE_FITTER=fourfit4
+
 #remove any previously generated fringe files
 rm $EXP_DIR/059-0000/??.X.*.??????
 rm $EXP_DIR/059-0019/??.X.*.??????

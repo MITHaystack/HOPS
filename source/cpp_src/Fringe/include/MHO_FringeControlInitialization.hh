@@ -22,7 +22,7 @@ namespace hops
 *@file MHO_FringeControlInitialization.hh
 *@class MHO_FringeControlInitialization
 *@author J. Barrettj - barrettj@mit.edu
-*@date Mon Feb 5 13:59:09 2024 -0500 
+*@date Mon Feb 5 13:59:09 2024 -0500
 *@brief collection of helper functions for fringe fitter start-up
 */
 
@@ -43,6 +43,9 @@ class MHO_FringeControlInitialization
 
         static bool is_linear_polprod(std::string pp);
         static void add_dpar_sign_correction_operator(mho_json& statements);
+
+        static bool is_circular_polprod(std::string pp);
+        static void add_circ_field_rotation_operator(mho_json& statements);
 
         //checks if the special ionospheric fringe fitter is needed
         static bool need_ion_search(mho_json* control);
