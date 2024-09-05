@@ -264,7 +264,7 @@ int MHO_MK4FringeExport::fill_205( struct type_203 *t203, struct type_205 *t205)
     FillDate(&(t205->utc_central), "/vex/scan/fourfit_reftime");
     t205->offset = 0.0;
 
-    //ffmode and filter are not used/populated
+    //ffmode and filter are not used/populated, so we skip them too
 
     //fill out the search windows used
     std::vector<double> sb_win;
@@ -1073,7 +1073,7 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array)
             chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", ref_freq);
             chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", rem_freq);
             chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bandwidth);
-            chan_ax->RetrieveIndexLabelKeyValue(ch, "chan_id", temp_chan_id);
+            chan_ax->RetrieveIndexLabelKeyValue(ch, "mk4_channel_id", temp_chan_id);
             //chan_ax->RetrieveIndexLabelKeyValue(ch, "chan_id", ref_chan_id);
             
             //split the temporary-channel id on the ":" character
@@ -1091,11 +1091,10 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array)
             {
                 ref_chan_id = tokens[0];
                 rem_chan_id = tokens[1];
+                //replace the last character with the pol-label from the polprod 
+                ref_chan_id.back() = refpol;
+                rem_chan_id.back() = rempol;
             }
-
-            //replace the last character with the pol-label from the polprod 
-            ref_chan_id.back() = refpol;
-            rem_chan_id.back() = rempol;
 
             index = (short)findex;
             sample_rate = (unsigned short int)  (2.0*bandwidth*1000.0); //sample rate = 2 x bandwidth (MHz) x (1000KHz/MHz)
