@@ -17,16 +17,19 @@ set(HOPS_APP_LIBS
 )
 
 set(SOURCE_BASENAMES
-    TestMultiObjectStreaming
     hops2keys
     mark42hops
     hops2json
-    TestSignalFFT
     CompareCorFiles
-    TestPCalExtraction
     fourfit4
     fplot4
     alist4
+)
+
+set(TEST_BASENAMES
+    TestMultiObjectStreaming
+    TestSignalFFT
+    TestPCalExtraction
 )
 
 if(HOPS_USE_PYBIND11)
@@ -46,6 +49,13 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 hops_install_executables( ${SOURCE_BASENAMES} )
+
+foreach( BASENAME ${TEST_BASENAMES} )
+    add_executable( ${BASENAME} ${BASENAME}.cc )
+    target_link_libraries( ${BASENAME} ${HOPS_APP_LIBS})
+endforeach( BASENAME )
+
+hops_install_test_executables( ${TEST_BASENAMES} )
 
 #fourfit is fourfit4...so install a symlink as: fourfit -> fourfit4
 if(HOPS_IS_HOPS4)

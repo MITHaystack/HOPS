@@ -24,6 +24,10 @@ macro(hops_install_executables)
     install(TARGETS ${ARGN} EXPORT hopsTargets DESTINATION ${BIN_INSTALL_DIR})
 endmacro()
 
+macro(hops_install_test_executables)
+    install(TARGETS ${ARGN} EXPORT hopsTargets DESTINATION ${TEST_BIN_INSTALL_DIR})
+endmacro()
+
 macro(hops_install_symlink filepath sympath)
     install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${filepath} ${sympath})")
     install(CODE "message(\"-- Created symlink: ${sympath} -> ${filepath}\")")

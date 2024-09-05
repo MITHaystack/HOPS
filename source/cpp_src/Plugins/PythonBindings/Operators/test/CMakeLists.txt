@@ -19,4 +19,4 @@ endforeach( BASENAME )
 #temp work around until we do this properly
 install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/mho_operators.py" DESTINATION ${PLUGINS_INSTALL_DIR})
 
-hops_install_executables( ${SOURCE_BASENAMES} )
+hops_install_test_executables( ${SOURCE_BASENAMES} )
