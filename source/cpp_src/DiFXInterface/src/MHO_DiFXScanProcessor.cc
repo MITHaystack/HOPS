@@ -247,11 +247,11 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
         //and/or adapt the channel defintions to deal with zoom bands
         //std::string tmp = vex_root["$FREQ"]["VGOS_std"]["chan_def"][0]["channel_name"].get<std::string>();
 
-        //below would generate a traditional 'ovex' file
-        // MHO_VexGenerator gen;
-        // std::string output_file = fOutputDirectory + "/" + src_name + "." + fRootCode;
-        // gen.SetFilename(output_file);
-        // gen.GenerateVex(vex_root);
+        //generate a traditional 'ovex' file too...for backwards compatibility
+        MHO_VexGenerator gen;
+        std::string ovex_output_file = fOutputDirectory + "/" + src_name + "." + fRootCode;
+        gen.SetFilename(ovex_output_file);
+        gen.GenerateVex(vex_root);
 
         //write out the 'ovex'/'vex' json object as a json file
 
@@ -492,7 +492,7 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
             pcal_data_ptr->Insert(std::string("station_name"), vex_station_name);
             pcal_data_ptr->Insert(std::string("name"), std::string("pcal"));
         }
-        
+
         //add some tags to the station coord data
         station_coord_data_ptr->Insert(std::string("difx_station_code"), difx_station_code);
         station_coord_data_ptr->Insert(std::string("station_code"), vex_station_code);
@@ -914,7 +914,7 @@ void MHO_DiFXScanProcessor::calculateZerothOrderParallacticAngle(station_coord_t
     }
 }
 
-std::string 
+std::string
 MHO_DiFXScanProcessor::ConstructRootFileName(const std::string& output_dir,
                                              const std::string& root_code,
                                              const std::string& src_name)
@@ -924,7 +924,7 @@ MHO_DiFXScanProcessor::ConstructRootFileName(const std::string& output_dir,
 }
 
 
-std::string 
+std::string
 MHO_DiFXScanProcessor::ConstructStaFileName(const std::string& output_dir,
                                             const std::string& root_code,
                                             const std::string& station_code,
