@@ -215,7 +215,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     bool update_mode = false; //'-u' not yet enabled
     std::string polprod = "??"; //'-P' polarization product argument (e.g XX or I or RR+LL)
     std::string reftime = ""; //'-T' specify the fourfit reference time - not yet enabled
-    bool xwindows; //'-x' same as option '-p' we no long use pgplot/xwindows
+    //bool xwindows; //'-x' same as option '-p' we no long use pgplot/xwindows
     bool xpower_output = false; //-X export xpower spectrum
     bool use_mk4_output = false;
     std::string input;
@@ -246,26 +246,25 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     app.add_flag("-a,--accounting", accounting, "perform run-time accounting/profiling");
     app.add_option("-b,--baseline", baseline_opt, "baseline or baseline:frequency_group selection (e.g GE or GE:X)");
     app.add_option("-c,--control-file", control_file, "specify the control file");
-    app.add_flag("-e,--exclude-autocorrs", exclude_autos, "exclude auto-correlations from fring-fitting");
-    app.add_option("-f,--first-plot-channel", first_plot_chan, "specifies the first channel displayed in the fringe plot");
+    app.add_flag("-e,--exclude-autocorrs", exclude_autos, "exclude auto-correlations from fringe-fitting");
+    app.add_option("-f,--first-plot-channel", first_plot_chan, "specifies the first channel displayed in the fringe plot (ignored, not yet implemented)");
     app.add_option("-M,--message-categories", message_categories, msg_cat_help.c_str() )->delimiter(',');
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
-    app.add_option("-n,--nplot-channels", nplot_chans, "specifies the number of channels to display in the fringe plot");
+    app.add_option("-n,--nplot-channels", nplot_chans, "specifies the number of channels to display in the fringe plot (ignored, not yet implemented)");
     app.add_flag("-p,--plot", show_plot, "generate and shows fringe plot on completion");
     app.add_option("-r,--refringe-alist", refringe_alist_file, "alist file for refringing (ignored, not yet implemented)");
     app.add_option("-s,--ap-per-segment", ap_per_seg, "specify the APs to be averaged per plot-segment");
     app.add_flag("-t,--test-mode", test_mode, "if passed, then no output is written");
     app.add_flag("-u,--update-mode", update_mode, "(ignored, not yet implemented)");
-    app.add_option("-P,--polprod", polprod, "polarization product argument (e.g XX or I or RR+LL)");
+    app.add_option("-P,--polprod", polprod, "polarization product argument (e.g XX or I or RR+LL, etc.)");
     app.add_option("-T,--reftime", reftime, "specify the fourfit reference time (ignored, not yet implemented)");
-    app.add_flag("-x,--xwindows", xwindows, "display plot using xwindows (ignored, not yet implemented)");
+    //app.add_flag("-x,--xwindows", xwindows, "display plot using xwindows (ignored, deprecated)");
     app.add_flag("-X,--xpower-output", xpower_output, "output spectral cross power data (visibilities with corrections/residual fringe solution applied)");
     app.add_option("input,-i,--input", input, "name of the input directory (scan) or root file")->required();
     app.add_flag("-k,--mark4-output", use_mk4_output, "write output files in mark4 type_2xx format");
 
     //add the 'set' command for control file parameter overrides
     auto *setcom = app.add_subcommand("set", "pass control file parameters and related syntax on the command line")->prefix_command();
-    //setcom->alias("--set");
 
     try
     {
