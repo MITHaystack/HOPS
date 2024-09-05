@@ -81,7 +81,7 @@ int main(int argc, char** argv)
         for(std::size_t i=0; i<results.size(); i++)
         {
             afile_contents << ext.ConvertToAlistRow(results[i], version);
-            if(i != input_files.size()-1 ){afile_contents << "\n";}
+            //if(i != input_files.size()-1 ){afile_contents << "\n";}
         }
     }
     else 

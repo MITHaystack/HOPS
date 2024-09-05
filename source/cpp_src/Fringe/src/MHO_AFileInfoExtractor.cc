@@ -224,7 +224,7 @@ MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename, mho_json& fsum
     tokenizer.SetString(&filename);
     std::vector< std::string > tokens;
     tokenizer.GetTokens(&tokens);
-    if(tokens.size() != 6)
+    if(tokens.size() < 6)
     {
         //not a fringe file, skip this
         msg_error("fringe", "could not parse the file name: "<< filename<<eom);
@@ -232,7 +232,7 @@ MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename, mho_json& fsum
     }
     //grab the extent number
     std::stringstream ss;
-    ss << tokens[4];
+    ss << tokens[ tokens.size() - 2 ];
     int extent_no;
     ss >> extent_no;
 
