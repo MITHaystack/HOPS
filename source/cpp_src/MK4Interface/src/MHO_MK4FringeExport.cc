@@ -337,12 +337,7 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     int nlags = fPStore->GetAs<int>("/config/nlags");
     t206->sbdsize = (short) 4*nlags;
 
-    //TODO FIXME fill these in
-    // struct sidebands    accepted[64];           /* APs accepted by chan/sband */
-    // struct sbweights    weights[64];            /* Samples per channel/sideband */
-    // float               accept_ratio;           /* % ratio min/max data accepted */
-    // float               discard;                /* % data discarded */
-    
+
     
     visibility_type* vis_data = fCStore->GetObject<visibility_type>(std::string("vis"));
     if( vis_data == nullptr )
@@ -359,21 +354,28 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     bool ok = fPStore->Get("/config/ap_period", acc_period);
     ok = fPStore->Get("/vex/scan/sample_period/value", samp_period);
     
-    //TODO FIXME ....these are fake/dummy values!! treating as if there are no edits
-    // double samp_per_ap = acc_period / samp_period;
-    // for(std::size_t fr=0; fr < nchannels; fr++)
-    // {
-    //     std::string sb;
-    //     chan_ax->RetrieveIndexLabelKeyValue(fr, "net_sideband", sb);
-    //     double usb = 0.;
-    //     double lsb = 0.;
-    //     if(sb == "U"){usb = 1.0; lsb = 0.0;}
-    //     if(sb == "U"){usb = 0.0; lsb = 1.0;}
-    //     t206->accepted[fr].usb = usb*(last-first);
-    //     t206->accepted[fr].lsb = lsb*(last-first);
-    //     t206->weights[fr].usb = usb*samp_per_ap;
-    //     t206->weights[fr].lsb = lsb*samp_per_ap;
-    // }
+    //TODO FIXME ...THESE ARE DUMMY values
+    // we need to check these values, for now we are treating these values
+    // as if there are no per-channel/per-ap data edits!
+    // struct sidebands    accepted[64];           /* APs accepted by chan/sband */
+    // struct sbweights    weights[64];            /* Samples per channel/sideband */
+    // float               accept_ratio;           /* % ratio min/max data accepted */
+    // float               discard;                /* % data discarded */
+    double samp_per_ap = acc_period / samp_period;
+    for(std::size_t fr=0; fr < nchannels; fr++)
+    {
+        std::string sb;
+        chan_ax->RetrieveIndexLabelKeyValue(fr, "net_sideband", sb);
+        double usb = 0.;
+        double lsb = 0.;
+        if(sb == "U"){usb = 1.0; lsb = 0.0;}
+        if(sb == "L"){usb = 0.0; lsb = 1.0;}
+        t206->accepted[fr].usb = usb*(last-first);
+        t206->accepted[fr].lsb = lsb*(last-first);
+        //NOTE: the use of integration time here ignores individual channel edits!
+        t206->weights[fr].usb = t206->intg_time*(usb*samp_per_ap);
+        t206->weights[fr].lsb = t206->intg_time*(lsb*samp_per_ap);
+    }
     //ignore cuts ...fake/dummy values
     t206->accept_ratio = 100;
     t206->discard = 0.0;
