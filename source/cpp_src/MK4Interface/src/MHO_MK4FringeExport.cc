@@ -1,5 +1,7 @@
 #include "MHO_MK4FringeExport.hh"
 
+#include "hops_version.hh"
+
 //mk4 IO library
 #ifndef HOPS3_USE_CXX
 extern "C"
@@ -121,10 +123,12 @@ int MHO_MK4FringeExport::fill_201( struct type_201 *t201)
     t201->coord.dec_mins = src_coords.dec_mins;
     t201->coord.dec_secs = src_coords.dec_secs;
 
-    //TODO FIXME, just use 2000 for now
-    //this may be stored optionally in the root file as "ref_coord_frame", but we have yet to extract it and add to the parameter store
+    //default to year 2000
     t201->epoch = 2000;
-    ///t201->epoch = 1950;
+    std::string ref_coord_frame;
+    FillString(ref_coord_frame, "/vex/scan/source/ref_coord_frame");
+    if(ref_coord_frame.find("1950") != std::string::npos){t201->epoch = 1950;}
+    if(ref_coord_frame.find("2000") != std::string::npos){t201->epoch = 2000;}
 
     //TODO FIXME, this optional parameter (src.position_epoch) may or may not be present in the vex/root file
     FillDate(&(t201->coord_date), "/vex/scan/source/source_position_epoch");
@@ -216,9 +220,9 @@ int MHO_MK4FringeExport::fill_204( struct type_204 *t204)
 {
     clear_204(t204);
 
-    //TODO FIXME -- what should these values be?
-    t204->ff_version[0] = 4;
-    t204->ff_version[1] = 0;
+    //use major and minor version (no patch version)
+    t204->ff_version[0] = HOPS_VERSION_MAJOR;
+    t204->ff_version[1] = HOPS_VERSION_MINOR;
 
     std::string tmp = "";
     char* env = secure_getenv("HOPS_ARCH");
@@ -512,6 +516,9 @@ int MHO_MK4FringeExport::fill_212(int fr, struct type_212 *t212)
     t212->first_ap = 0;//pass->ap_off;
     t212->channel = fr;
     t212->sbd_chan = fPStore->GetAs<int>("/fringe/max_sbd_bin");//status->max_delchan;
+    
+    
+    //retrieve the 'phasor' object from the container store
 
     //TODO FIXME -- dummy implementation for now
     for(int ap = 0; ap < nap; ap++)
