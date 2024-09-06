@@ -106,6 +106,8 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
 
         //now convert the 'vex' to 'ovex' (using only subset of information)
         vex_root[ MHO_VexDefinitions::VexRevisionFlag() ] = "ovex";
+        //add the version info
+        vex_root["$OVEX_REV"]["rev"] = "1.5";
 
         //add the experiment number
         (*(vex_root["$EXPER"].begin()))["exper_num"] = fExperNum;
@@ -173,6 +175,34 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
             std::transform(difx_station_code.begin(), difx_station_code.end(), difx_station_code.begin(), ::toupper);
             fDiFX2VexStationCodes[difx_station_code] = vex_station_code;
             fDiFX2VexStationNames[difx_station_code] = vex_station_name;
+        }
+
+        //loop over the antenna''s inserting the addtional 'axis_type' parameter
+        //for the axis_offset quantity, default to 'el'
+        //once again...needed by pedantic HOPS3 ovex parser
+        for(auto it = vex_root["$ANTENNA"].begin(); it != vex_root["$ANTENNA"].end(); ++it)
+        {
+            //first grab the existing value (just a quantity in vex)
+            mho_json offset = (*it)["axis_offset"];
+            mho_json aoff_obj;
+            aoff_obj["axis_type"] = "el";
+            aoff_obj["offset"] = offset;
+            it->erase("axis_offset");
+            (*it)["axis_offset"] = aoff_obj;
+        }
+
+        //next we need to link the $STATION's with the $CLOCKS assigned to each one
+        //if they haven't already been linked (again..HOPS3 ovex parser)
+        std::cout<<vex_root["$STATION"].dump(2)<<std::endl;
+        for(auto& element: vex_root["$CLOCK"].items() )
+        {
+            std::string key = element.key();
+            if(vex_root["$STATION"].contains(key))
+            {
+                mho_json clock_ref;
+                clock_ref["keyword"] = key;
+                vex_root["$STATION"][key]["$CLOCK"].push_back(clock_ref);
+            }
         }
 
         //This assumes all datastreams at a antenna are all sampled with the same bit depth
@@ -245,17 +275,26 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
             vex_root["$MODE"][mode_name]["$TRACKS"].push_back(trax_obj);
         }
 
-        //make sure we link to an $EOP object (only necessary for pedantic HOPS3 ovex parser)
-        // vex_root["$MODE"][mode_name]["$EOP"].clear();
-        // for(auto it = trax2codes.begin(); it != trax2codes.end(); it++)
-        // {
-        //     mho_json trax_obj;
-        //     trax_obj["keyword"] = it->first;
-        //     trax_obj["qualifiers"] = it->second;
-        //     vex_root["$MODE"][mode_name]["$TRACKS"].push_back(trax_obj);
-        // }
-
-
+        //make sure we link to an $EOP object...use the 1st if it exists,
+        //otherwise create a fake one
+        //this is only necessary for pedantic HOPS3 ovex parser
+        vex_root["$GLOBAL"]["$EOP"].clear();
+        if(vex_root["$EOP"].size() > 0)
+        {
+            std::string eop_key = vex_root["$EOP"].begin().key();
+            mho_json eop_obj;
+            eop_obj["keyword"] = eop_key;
+            //eop_obj["qualifiers"] = "";
+            vex_root["$GLOBAL"]["$EOP"].push_back(eop_obj);
+        }
+        else
+        {
+            //add a dummy EOP reference
+            mho_json eop_obj;
+            eop_obj["keyword"] = "EOP_DIFX_INPUT";
+            //eop_obj["qualifiers"] = "";
+            vex_root["$GLOBAL"]["$EOP"].push_back(eop_obj);
+        }
 
         //lastly we need to insert the traditional mk4 channel names for each frequency
         //TODO FIXME -- need to support zoom bands (requires difx .input data)
