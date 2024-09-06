@@ -25,7 +25,9 @@ project(Hops VERSION ${HOPS_VERSION_NUMBER})
 #we store the git hash (6 chars) of the last tagged revision in this file
 #this must be updated on each release with before running git-archive:
 #git-revision.sh | tee ./tag-rev.last
-file(READ "${CMAKE_CURRENT_SOURCE_DIR}/tag-rev.last" HOPS_LAST_GIT_REV)
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/tag-rev.last" GIT_REV_VALUE)
+string(STRIP "${GIT_REV_VALUE}" HOPS_LAST_GIT_REV)
+message(STATUS "Last tagged revision: ${HOPS_LAST_GIT_REV}")
 
 #default build type
 set(default_build_type "Release")
