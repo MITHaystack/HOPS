@@ -25,7 +25,20 @@
                 "#axis_orientation"
             ]
         },
-        "axis_offset" : {"type" : "real", "dimension" : "length"},
+        "axis_offset" :
+        {
+            "type": "compound",
+            "parameters":
+            {
+                "axis_type": {"type": "string"},
+                "offset": {"type" : "real", "dimension" : "length"}
+            },
+            "fields":
+            [
+                "axis_type",
+                "offset"
+            ]
+        },
         "antenna_motion" :
         {
             "type": "list_compound",

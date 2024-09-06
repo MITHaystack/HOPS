@@ -30,17 +30,28 @@ void MHO_VexGenerator::GenerateVex(mho_json& root)
         std::string version_line = fVexRevisionFlag + MHO_VexDefinitions::AssignmentOp() + vers + MHO_VexDefinitions::StatementLineEnd();
         all_lines.push_back(version_line);
     }
-    //open block-names file for this version
+    else if(vers == "ovex")
+    {
+        //ovex is 'special'
+        std::string version_line1 = "$OVEX_REV" + MHO_VexDefinitions::StatementLineEnd();
+        std::string version_line2 = "rev = 1.5" + MHO_VexDefinitions::StatementLineEnd();
+        all_lines.push_back(version_line1);
+        all_lines.push_back(version_line2);
+    }
 
+    //open block-names file for this version
     //loop over blocks, and extract the data from from the root and append them
     for(auto blk_it = fBlockNames.begin(); blk_it != fBlockNames.end(); blk_it++)
     {
         std::string block_name = *blk_it;
-        std::vector< std::string > block_lines;
-        std::string block_opening = block_name + MHO_VexDefinitions::StatementLineEnd();
-        all_lines.push_back(block_opening);
-        ConstructBlockLines(root, block_name, block_lines);
-        all_lines.insert(all_lines.end(), block_lines.begin(), block_lines.end());
+        if(block_name != "$OVEX_REV")
+        {
+            std::vector< std::string > block_lines;
+            std::string block_opening = block_name + MHO_VexDefinitions::StatementLineEnd();
+            all_lines.push_back(block_opening);
+            ConstructBlockLines(root, block_name, block_lines);
+            all_lines.insert(all_lines.end(), block_lines.begin(), block_lines.end());
+        }
     }
 
     //open and dump to file
