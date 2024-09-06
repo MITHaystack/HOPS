@@ -23,14 +23,14 @@
             },
             "fields":
             [
-                "#subpass_id",
+                "!subpass_id",
                 "chan_id",
                 "sign_or_magnitude",
                 "headstack_number",
                 "first_multiplex_track",
-                "#second_multiplex_track",
-                "#third_multiplex_track",
-                "#fourth_multiplex_track"
+                "!second_multiplex_track",
+                "!third_multiplex_track",
+                "!fourth_multiplex_track"
             ]
         },
         "track_frame_format": {"type": "string"},

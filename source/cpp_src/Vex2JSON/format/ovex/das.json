@@ -15,7 +15,7 @@
                 "transport_type": {"type": "string"},
                 "revision_level": {"type": "string"}
             },
-            "fields": ["transport_type", "#revision_level"]
+            "fields": ["transport_type", "!revision_level"]
         },
         "electronics_rack_type": {"type": "string"},
         "number_drives": {"type": "int"},
@@ -40,7 +40,7 @@
                 "s2_tape_speed": {"type": "string"},
                 "s2_n_cassettes": {"type": "int"}
             },
-            "fields": ["tape_length", "#s2_tape_speed", "#s2_n_cassettes"]
+            "fields": ["tape_length", "!s2_tape_speed", "!s2_n_cassettes"]
         },
         "recording_system_ID": {"type": "int"},
         "record_transport_name": {"type": "string"},
@@ -56,7 +56,7 @@
                 "late_stop_time": {"type": "real", "dimension":"time"},
                 "minimum_gap": {"type": "real", "dimension": "time"}
             },
-            "fields": ["tape_motion", "early_start_time", "#late_stop_time", "#minimum_gap"]
+            "fields": ["tape_motion", "early_start_time", "!late_stop_time", "!minimum_gap"]
         },
         "tape_control": {"type":"string"}
     },

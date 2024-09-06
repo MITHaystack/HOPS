@@ -141,7 +141,6 @@ MHO_VexDefinitions::DetermineType(std::string etype)
 bool
 MHO_VexDefinitions::IsOptionalField(std::string& field_name)
 {
-    if( field_name == "corr_exp#"){return false;} //special check for ovex EVEX
     if( field_name.find_first_of( OptionalFlag() ) != std::string::npos){return true;}
     return false;
 }

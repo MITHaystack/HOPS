@@ -17,7 +17,7 @@
                 "equipment_link":{"type": "link"},
                 "label": {"type": "string"}
             },
-            "fields": ["equipment_type", "device", "equipment_link", "#label"]
+            "fields": ["equipment_type", "device", "equipment_link", "!label"]
         },
         "composite_equip":
         {
@@ -38,7 +38,7 @@
                 "function": {"type": "string"},
                 "settings": {"type": "list_string"}
             },
-            "fields": ["equipment_link", "function", "#settings"]
+            "fields": ["equipment_link", "function", "!settings"]
         },
         "equip_info":
         {
@@ -49,7 +49,7 @@
                 "name": {"type": "string"},
                 "values": {"type": "list_string"}
             },
-            "fields": ["equipment_link", "name", "#values"]
+            "fields": ["equipment_link", "name", "!values"]
         },
         "connection":
         {
@@ -62,7 +62,7 @@
                 "direction": {"type": "string"},
                 "type": {"type": "string"}
             },
-            "fields": ["signal_link", "equipment_link", "label", "#direction", "#type"]
+            "fields": ["signal_link", "equipment_link", "label", "!direction", "!type"]
         },
         "record_method":
         {
