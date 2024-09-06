@@ -746,10 +746,10 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     paramStore->Set("/files/control_file", control_file);
     paramStore->Set("/files/directory", directory);
     //paramStore->Set("/files/output_file", paramStore->GetAs<std::string>("/cmdline/output_file"));
-    
-    
-    //set the software version info 
-    paramStore->Set("/config/software_version", std::string(HOPS_VERSION));
+
+
+    //set the software version info
+    paramStore->Set("/config/software_version", std::string(HOPS_VERSION) + "-" + std::string(HOPS_GIT_REV) );
 
     //put the baseline and pol product selection into the parameter store
     paramStore->Set("/config/polprod", polprod);
