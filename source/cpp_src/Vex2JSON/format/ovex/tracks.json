@@ -7,6 +7,7 @@
     "block_type": "primitive",
     "parameters" :
     {
+        "bits/sample": {"type": "int"},
         "fanout_def":
         {
             "type": "list_compound",
@@ -120,6 +121,7 @@
     },
     "fields":
     [
+        "bits/sample",
         "fanout_def",
         "fanin_def",
         "track_frame_format",

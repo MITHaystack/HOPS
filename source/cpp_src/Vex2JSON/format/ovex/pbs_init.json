@@ -3,8 +3,8 @@
     "version": "1.5",
     "start_tag": "def",
     "stop_tag": "enddef",
-    "type" : "unsupported",
-    "block_type": "unsupported",
+    "type" : "primitive",
+    "block_type": "primitive",
     "parameters" : {},
     "fields": []
 }
