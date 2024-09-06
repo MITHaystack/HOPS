@@ -56,7 +56,16 @@ class MHO_DiFXScanProcessor
         void SetPreserveDiFXScanNamesTrue(){fPreserveDiFXScanNames = true;}
         void SetPreserveDiFXScanNamesFalse(){fPreserveDiFXScanNames = false;};
 
-        void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands){fFreqBands = fbands;}
+        void SetFrequencyBands(std::vector< std::tuple<std::string, double, double> > fbands)
+        {
+            fFreqBands = fbands;
+            for(std::size_t i=0; i<fFreqBands.size(); i++)
+            {
+                auto btup = fFreqBands[i];
+                fChanNameConstructor.AddBandLabel(std::get<0>(btup), std::get<1>(btup), std::get<2>(btup));
+            }
+        }
+
         void SetFreqGroups(std::vector< std::string > fgroups){fFreqGroups = fgroups;}
         void SetOnlyBandwidth(double bw){fOnlyBandwidth = bw; fSelectByBandwidth = true;}
 
