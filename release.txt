@@ -1,18 +1,167 @@
-Notes and limitations:
+HOPS4 RELEASE NOTES:
 
-- only major executables which have been ported to the new framework are:
-fourfit4
-fplot4
-alist4
+--- Introduction ---
 
-- export to mk4 fringe types from fourfit4 is enabled with the '-k' flag. However, the following types are not populated:
-type_207 -- phase cal info 
-type_221 -- postscript plot
-type_230 -- visibilities with fringe solution applied
+The HOPS4 software package is a ground-up re-write of the original HOPS software
+intended to create a more modular framework for fringe-fitting calibration and
+other post-correlation tasks. It is primarily written in C/C++ and python.
 
-- mixed LSB/USB and double sideband data is not yet supported but will be
+Presently, only three major executables have been ported to the new framework.
+These are:
+    fourfit4
+    fplot4
+    alist4
+future work will focus on augmenting these tools as well as porting additional
+legacy tools to the new framework (e.g. fringex, aedit, etc)
 
-- the command line options of fourfit4 have been kept as a similar as possible, options can be printed with fourfit4 --help 
+In addition to the new HOPS4 tools, the majority of the legacy HOPS3 software is
+also distributed and (provided the dependencies are met) can be installed
+alongside the new software for the purpose of backwards compatibility and testing.
+
+--- Installation ---
+
+The software installation is supported on GNU/Linux OSes and depends on the
+following packages:
+
+Minimum required (HOPS4) dependencies:
+
+    (A.1) A C/C++ compiler with C++11 standard (gcc > 4.8, or clang > 3.3)
+    (A.2) Build tools: cmake, cmake-curses-gui, make, and bash
+    (A.3) Python3 and pip (optionally distutils can be used instead of pip for python <3.10)
+
+Recommended optional dependencies for HOPS4:
+    (1) The fast fourier transform library FFTW3 (http://fftw.org/)
+    (2) The command line utilities wget and jq
+    (3) The command line utility jless (https://jless.io/ -- for viewing/inspecting json files)
+
+Legacy (HOPS3) required dependencies -- these are optional if you do not need
+the legacy HOP3 software to be built:
+
+    (B.1) FFTW3
+    (B.2) PGPLOT v5.2
+    (B.3) X11
+    (B.4) GNU Fortran
+
+Additional optional (and experimental) dependencies (HOP4):
+
+    (C.1) DiFX -- the difxio library (if you wish to build the conversion utilities difx2hops and difx2mark4)
+    (C.2) MPI -- if you wish to paralellize fourfit4 with MPI
+    (C.3) CUDA -- *experimental*, enables a small portion of the fringe-fitting algorithm to be run on the GPU
+    (C.4) OpenCL -- experimental
+
+
+--- Notable differences between fourfit4 and fourfit3 ---
+
+(1) If you have the required dependencies, then both fourfit4 and the legacy program (fourfit3) will be installed. The name 'fourfit'
+is reserved for a symlink which points to the selected executable (the default is to select fourfit3). You can redirect the symlink to fourfit4
+by toggling the cmake option HOPS_IS_HOPS4 to "ON" at configuration time. The same is true for alist and fplot.
+
+(2) The executable fourfit4 operates on an entirely new data format. The data directory structure is similar to the legacy system, consisting of an experiment
+directory containing individual scan directories with baseline and station data. The experiment directory is no longer required to be a 4-digit code (still recommended).
+The naming scheme for the files under the scan directory is reminiscent of the original mark4 types but are not binary compatible. A typical scan directory
+will contain files like:
+
+ls ./105-1800/
+    0016+731.3EMZCY    0016+731.3EMZCY.root.json    E.Wf.3EMZCY.sta    G.Gs.3EMZCY.sta    GE.Gs-Wf.3EMZCY.cor
+
+These are broken down into the following types (.json, .sta, and .cor):
+
+    (1) 0016+731.3EMZCY.root.json  -- the json equivalent of the legacy 'ovex' files for scan meta data.
+    (2) E.Wf.3EMZCY.sta -- the station data files (model splines, pcal, etc.)
+    (3) GE.Gs-Wf.3EMZCY.cor -- the baseline data files (visibilities)
+    (4) 0016+731.3EMZCY -- this is the legacy ovex file for backwards compatibility (for vgosDbMake)
+
+When run fourfit4 will generate output fringe (.frng) files named in the the form of:
+
+GE.Gs-Wf.X.XY.3EMZCY.1.frng
+
+The naming scheme of which is A.B.C.D.E.F.frng where:
+
+A = the 2 character baseline code, using legacy 1-char mk4 station IDs (e.g. GE)
+B = the full baseline code using 2-char station IDs (e.g. Gs-Wf)
+C = the selected frequency band label (X)
+D = the selected polarization-product (XX, YY, RR, I, etc.)
+E = the 6-char root code (time based)
+F = the sequence number (the main purpose of which is to prevent file overwrites)
+
+Export to legacy mk4 fringe files (type_2xx's) from fourfit4 is also supported. This can be enabled by passing '-k' flag at run time.
+However, note that currently, the following types in the legacy fringe files are not populated:
+
+    type_207 -- phase cal info
+    type_221 -- compressed postscript plot
+    type_230 -- visibilities with fringe solution applied
+
+For command line option help, fourfit4 can be passed the flag --help, which will print:
+
+fourfit
+Usage: fourfit4 [OPTIONS] input [SUBCOMMAND]
+
+Positionals:
+  input TEXT REQUIRED         name of the input directory (scan) or root file
+
+Options:
+  -h,--help                   print this help message and exit
+  -a,--accounting             perform run-time accounting/profiling
+  -b,--baseline TEXT          baseline or baseline:frequency_group selection (e.g GE or GE:X)
+  -c,--control-file TEXT      specify the control file
+  -e,--exclude-autocorrs      exclude auto-correlations from fringe-fitting
+  -f,--first-plot-channel INT specifies the first channel displayed in the fringe plot (ignored, not yet implemented)
+  -M,--message-categories TEXT ...
+                              limit the allowed message categories to only those which the user specifies, the available categories are:
+                                  main
+                                  calibration
+                                  containers
+                                  control
+                                  fringe
+                                  file
+                                  initialization
+                                  mk4interface
+                                  utilities
+                                  vex
+                                  python_bindings
+                              if the '-M' option is not used, the default is to allow all categories.
+  -m,--message-level INT      message level to be used, range: -2 (debug) to 5 (silent)
+  -n,--nplot-channels INT     specifies the number of channels to display in the fringe plot (ignored, not yet implemented)
+  -p,--plot                   generate and shows fringe plot on completion
+  -r,--refringe-alist TEXT    alist file for refringing (ignored, not yet implemented)
+  -s,--ap-per-segment INT     specify the APs to be averaged per plot-segment
+  -t,--test-mode              if passed, then no output is written
+  -u,--update-mode            (ignored, not yet implemented)
+  -P,--polprod TEXT           polarization product argument (e.g XX or I or RR+LL, etc.)
+  -T,--reftime TEXT           specify the fourfit reference time (ignored, not yet implemented)
+  -X,--xpower-output          output spectral cross power data (visibilities with corrections/residual fringe solution applied)
+  -i,--input TEXT REQUIRED    name of the input directory (scan) or root file
+  -k,--mark4-output           write output files in mark4 type_2xx format
+
+Subcommands:
+  set                         pass control file parameters and related syntax on the command line
+
+
+Control file keywords and syntax for fourfit4 follow that of the original HOPS3 software, excluding the caveats listed below and in the limitations section.
+
+Keywords and associated features which are now deprecated are:
+
+    switched
+    index
+    max_parity float
+    x_crc
+    x_slip_sync
+    y_crc
+    y_slip_sync
+    gates
+    period
+    ra_offset
+    dec_offset
+    pc_freqs
+    use_samples
+    interpolator
+    fmatch_bw_pct
+
+--- Limitations ---
+
+(1) Mixed LSB/USB and double sideband data is not yet supported. This will be, but is not yet implemented.
+
+(2) The command line options of fourfit4 have been kept as a similar as possible, options can be printed with fourfit4 --help
 - notably some options that are not yet implemented:
 
   -f,--first-plot-channel INT specifies the first channel displayed in the fringe plot (ignored, not yet implemented)
@@ -21,35 +170,22 @@ type_230 -- visibilities with fringe solution applied
   -T,--reftime TEXT           specify the fourfit reference time (ignored, not yet implemented)
   -X,--xpower-output          output spectral cross power data (visibilities with corrections/residual fringe solution applied)
 
-- also the '-x' option for 'xwindows' plotting has been removed/deprecated, while the '-k' option has been added for mark4 fringe output. 
+(3) The flag '-e' has a different meaning now, it is now used to exclude autocorr fringing, previously this flag was used to estimate run time.
 
-- there is a table of control file keywords which are or are not supported <here>
+(4) The '-x' option for 'xwindows' plotting has been removed/deprecated, plotting is now done via python.
 
-- notably adhoc_flag and adhoc_phase files have not yet been implemented, but will be
+(5) The '-k' option has been added to signal the generation of mark4 fringe output.
 
-- some fringe plot features have not yet been implemented, mainly the 'validity' tick marks for USB/LSB that sit under the channel residual phase plots 
+(6) Support for adhoc_flag and adhoc_phase files has not yet been implemented. This will be available in a future release.
 
-- also pcal amp/phase is not plotted in pStokes-I mode (previously pcal from an arbitrary pol-product was plotted).
+(7) Some fringe plot features have not yet been implemented. Notably, the 'validity' tick marks for USB/LSB that sit under the channel residual phase plots,
+and the ability to limit the range of channels plotting in the fringe plot (--firs-plot-channel and --nplot-channels). These will be available in a future release.
 
-- keywords and associated features which are now deprecated are:
+(8) Pcal amp/phase is not plotted in pStokes-I mode, but will instead appear as zeros. Previously the pcal information plotted was chosen from an arbitrary
+ pol-product in the set of pol-products that were summed. This will be replaced in the future with an average or some other pcal-quality indicator.
 
-switched
-index
-max_parity float
-x_crc
-x_slip_sync
-y_crc
-y_slip_sync
-gates
-period
-ra_offset
-dec_offset
-pc_freqs
-use_samples
-interpolator
-fmatch_bw_pct
+(9) The VGOS post-processing (vpal) scripts provided with this package work with either fourfit3 or fourfit4 (when the -k flag is passed). Eventually
+    these will be ported to work with the  native fourfit4 (.frng) format.
 
-- the VGOS postprocessing scripts provided in this package work with either fourfit3 or fourfit4 (with the -k mark4 output option), but will eventually be ported to the native fourfit4 format 
-- you can control which fringe fitter is used by the VGOS post-proc scripts by setting HOPS_VPAL_FRINGE_FITTER = to fourfit3 or fourfit4
-
-the names fourfit, fplot, alist are symlinks to the v3 or v4 exectuables. The default is to point to the version 3 exectuables, however this can be toggled by the cmake flag HOPS_IS_HOPS4
+(10) The user can control which fringe fitter is used by the VGOS post-processing scripts by setting the environmental variable HOPS_VPAL_FRINGE_FITTER to
+either fourfit3 or fourfit4.
