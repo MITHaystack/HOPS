@@ -19,10 +19,10 @@
             },
             "fields":
             [
-                "#start_validity_epoch",
+                "!start_validity_epoch",
                 "clock_early_offset",
-                "#origin_epoch",
-                "#clock_rate"
+                "!origin_epoch",
+                "!clock_rate"
             ]
         }
     },

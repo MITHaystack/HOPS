@@ -7,6 +7,7 @@
     "block_type": "primitive",
     "parameters" :
     {
+        "bits/sample": {"type": "int"},
         "fanout_def":
         {
             "type": "list_compound",
@@ -28,9 +29,9 @@
                 "sign_or_magnitude",
                 "headstack_number",
                 "first_multiplex_track",
-                "#second_multiplex_track",
-                "#third_multiplex_track",
-                "#fourth_multiplex_track"
+                "!second_multiplex_track",
+                "!third_multiplex_track",
+                "!fourth_multiplex_track"
             ]
         },
         "fanin_def":
@@ -57,11 +58,11 @@
                 "track_number",
                 "chan_id1",
                 "sign_or_magnitude1",
-                "#chan_id2",
-                "#sign_or_magnitude2",
-                "#chan_id3",
-                "#sign_or_magnitude3",
-                "#chan_id4",
+                "!chan_id2",
+                "!sign_or_magnitude2",
+                "!chan_id3",
+                "!sign_or_magnitude3",
+                "!chan_id4",
                 "3sign_or_magnitude4"
             ]
         },
@@ -120,6 +121,7 @@
     },
     "fields":
     [
+        "bits/sample",
         "fanout_def",
         "fanin_def",
         "track_frame_format",

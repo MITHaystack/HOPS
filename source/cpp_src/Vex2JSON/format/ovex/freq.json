@@ -25,14 +25,14 @@
             "fields":
             [
                 "channel_name",
-                "#band_id",
+                "!band_id",
                 "sky_frequency",
                 "net_sideband",
                 "bandwidth",
                 "channel_id",
                 "bbc_id",
                 "phase_cal_id",
-                "#freq_state"
+                "!freq_state"
             ]
         },
         "switching_cycle":

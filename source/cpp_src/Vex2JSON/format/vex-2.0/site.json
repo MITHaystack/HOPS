@@ -17,7 +17,7 @@
                 "standard": {"type": "string"},
                 "ad_hoc": {"type": "string"}
             },
-            "fields": ["standard", "#ad_hoc"]
+            "fields": ["standard", "!ad_hoc"]
         },
         "site_position":
         {

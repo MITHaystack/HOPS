@@ -20,7 +20,7 @@
             [
                 "datastream_link",
                 "datastream_format",
-                "#datastream_label"
+                "!datastream_label"
             ]
         },
         "thread":

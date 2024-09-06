@@ -22,13 +22,13 @@
             },
             "fields":
             [
-                "#start_validity_epoch",
+                "!start_validity_epoch",
                 "clock_early_offset",
-                "#origin_epoch",
-                "#clock_rate",
-                "#second_order_coeff",
-                "#third_order_coeff",
-                "#fmout2gps"
+                "!origin_epoch",
+                "!clock_rate",
+                "!second_order_coeff",
+                "!third_order_coeff",
+                "!fmout2gps"
             ]
         }
     },

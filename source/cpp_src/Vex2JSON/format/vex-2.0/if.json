@@ -28,9 +28,9 @@
                 "polarization",
                 "effective_LO",
                 "net_sideband",
-                "#phase_cal_interval",
-                "#phase_cal_base",
-                "#if_sample_rate"
+                "!phase_cal_interval",
+                "!phase_cal_base",
+                "!if_sample_rate"
             ]
         },
         "receiver_name":
@@ -72,7 +72,7 @@
                 "amplitude": {"type": "string"},
                 "switching_frequency": {"type": "real", "dimension": "frequency"}
             },
-            "fields": ["if_id", "amplitude", "#switching_frequency"]
+            "fields": ["if_id", "amplitude", "!switching_frequency"]
         }
     },
     "fields":

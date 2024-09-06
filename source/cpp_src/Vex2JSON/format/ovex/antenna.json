@@ -21,11 +21,24 @@
             "fields":
             [
                 "primary_axis",
-                "#secondary_axis",
-                "#axis_orientation"
+                "!secondary_axis",
+                "!axis_orientation"
             ]
         },
-        "axis_offset" : {"type" : "real", "dimension" : "length"},
+        "axis_offset" :
+        {
+            "type": "compound",
+            "parameters":
+            {
+                "axis_type": {"type": "string"},
+                "offset": {"type" : "real", "dimension" : "length"}
+            },
+            "fields":
+            [
+                "axis_type",
+                "offset"
+            ]
+        },
         "antenna_motion" :
         {
             "type": "list_compound",
@@ -61,9 +74,9 @@
                 "axis1_type",
                 "axis1_lower_limit",
                 "axis1_upper_limit",
-                "#axis2_type",
-                "#axis2_lower_limit",
-                "#axis2_upper_limit"
+                "!axis2_type",
+                "!axis2_lower_limit",
+                "!axis2_upper_limit"
             ]
         }
     },
@@ -73,7 +86,7 @@
         "antenna_name",
         "axis_type",
         "axis_offset",
-        "#antenna_motion",
-        "#pointing_sector"
+        "!antenna_motion",
+        "!pointing_sector"
     ]
 }
