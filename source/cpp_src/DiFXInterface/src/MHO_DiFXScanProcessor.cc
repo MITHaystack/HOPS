@@ -108,7 +108,11 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
         vex_root[ MHO_VexDefinitions::VexRevisionFlag() ] = "ovex";
 
         //add the experiment number
-        vex_root["$EXPER"]["exper_num"] = fExperNum;
+        (*(vex_root["$EXPER"].begin()))["exper_num"] = fExperNum;
+
+        //always replace the target correlator with difx
+        //(so we are compatible with HOP3 vex parser)
+        (*(vex_root["$EXPER"].begin()))["target_correlator"] = "difx";
 
         std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
         std::vector< std::string > source_ids;
@@ -240,6 +244,18 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
             trax_obj["qualifiers"] = it->second;
             vex_root["$MODE"][mode_name]["$TRACKS"].push_back(trax_obj);
         }
+
+        //make sure we link to an $EOP object (only necessary for pedantic HOPS3 ovex parser)
+        // vex_root["$MODE"][mode_name]["$EOP"].clear();
+        // for(auto it = trax2codes.begin(); it != trax2codes.end(); it++)
+        // {
+        //     mho_json trax_obj;
+        //     trax_obj["keyword"] = it->first;
+        //     trax_obj["qualifiers"] = it->second;
+        //     vex_root["$MODE"][mode_name]["$TRACKS"].push_back(trax_obj);
+        // }
+
+
 
         //lastly we need to insert the traditional mk4 channel names for each frequency
         //TODO FIXME -- need to support zoom bands (requires difx .input data)
