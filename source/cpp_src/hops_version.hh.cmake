@@ -6,6 +6,8 @@
 #define HOPS_VERSION_PATCH @MODULE_VERSION_PATCH@
 #define HOPS_VERSION "@HOPS_VERSION_NUMBER@"
 
+#define HOPS_GIT_REV "@HOPS_LAST_GIT_REV@"
+
 #endif /* end of include guard: MHO_VERSION */
 
 //

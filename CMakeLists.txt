@@ -22,6 +22,11 @@ set(MODULE_VERSION_PATCH 0)
 set(HOPS_VERSION_NUMBER "${MODULE_VERSION_MAJOR}.${MODULE_VERSION_MINOR}.${MODULE_VERSION_PATCH}")
 project(Hops VERSION ${HOPS_VERSION_NUMBER})
 
+#we store the git hash (6 chars) of the last tagged revision in this file
+#this must be updated on each release with before running git-archive:
+#git-revision.sh | tee ./tag-rev.last
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/tag-rev.last" HOPS_LAST_GIT_REV)
+
 #default build type
 set(default_build_type "Release")
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
@@ -111,7 +116,7 @@ endif()
 
 ################################################################################
 #create build timestamp...note: a consequence of this is that the build will not
-#be reproducible.
+#be reproducible, and we will be forced to rebuild more files more often
 #This is required for legacy behavior of fringe plots (which report build time).
 string(TIMESTAMP BUILD_TIME "%Y-%m-%dT%H:%M:%SZ" UTC)
 message(STATUS "The build timestamp is ${BUILD_TIME}")
