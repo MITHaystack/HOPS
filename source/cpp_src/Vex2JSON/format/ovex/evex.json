@@ -7,7 +7,7 @@
     "block_type": "primitive",
     "parameters" :
     {
-        "core_exp#": {"type": "int"},
+        "corr_exp#": {"type": "int"},
         "ovex_file": {"type": "string"},
         "cvex_file": {"type": "string"},
         "svex_file": {"type": "string"},
@@ -16,7 +16,7 @@
     },
     "fields":
     [
-        "core_exp#",
+        "corr_exp#",
         "ovex_file",
         "cvex_file",
         "svex_file",

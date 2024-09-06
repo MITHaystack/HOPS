@@ -44,7 +44,7 @@ void MHO_VexGenerator::GenerateVex(mho_json& root)
     for(auto blk_it = fBlockNames.begin(); blk_it != fBlockNames.end(); blk_it++)
     {
         std::string block_name = *blk_it;
-        if(block_name != "$OVEX_REV")
+        if( block_name != "$OVEX_REV")
         {
             std::vector< std::string > block_lines;
             std::string block_opening = block_name + MHO_VexDefinitions::StatementLineEnd();
