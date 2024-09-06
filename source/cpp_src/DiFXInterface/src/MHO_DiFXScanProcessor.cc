@@ -1097,8 +1097,7 @@ MHO_DiFXScanProcessor::ConstructStaFileName(const std::string& output_dir,
 void
 MHO_DiFXScanProcessor::PatchOvexStructures(mho_json& vex_root, std::string mode_name)
 {
-    // //add the version info
-    // vex_root["$OVEX_REV"]["rev"] = "1.5";
+    //all the OVEX/EVEX/IVEX/LVEX version info is handled explicity in the vex generator
 
     //add the experiment number
     (*(vex_root["$EXPER"].begin()))["exper_num"] = fExperNum;
@@ -1106,6 +1105,12 @@ MHO_DiFXScanProcessor::PatchOvexStructures(mho_json& vex_root, std::string mode_
     //always replace the target correlator with difx
     //(so we are compatible with HOP3 vex parser)
     (*(vex_root["$EXPER"].begin()))["target_correlator"] = "difx";
+
+    //clear the $DAS section because HOPS3 ovex parser can't handle it
+    for(auto it = vex_root["$DAS"].begin(); it != vex_root["$DAS"].end(); ++it)
+    {
+        it->clear();
+    }
 
     //make sure the mk4_site_id single-character codes are specified for each site
     //also create a map of DiFX input file station codes (all upper-case) to vex station codes (any-case)
@@ -1244,14 +1249,14 @@ MHO_DiFXScanProcessor::PatchOvexStructures(mho_json& vex_root, std::string mode_
 
     //insert the boiler plate useless junk
     mho_json evex_obj;
-    evex_obj["corr_exp"] = 1234;
+    evex_obj["corr_exp#"] = fExperNum;
     evex_obj["ovex_file"] = "dummy";
     evex_obj["cvex_file"] = "dummy";
     evex_obj["svex_file"] = "dummy";
-    evex_obj["AP_length"]["value"] = 1.0;
-    evex_obj["AP_length"]["units"] = "s";
+    evex_obj["AP_length"]["value"] = 1.0; //TODO FIXME...although this isn't even used
+    evex_obj["AP_length"]["units"] = "sec";
     evex_obj["speedup_factor"]["value"] = 1.0;
-    evex_obj["speedup_factor"]["units"] = "s";
+    evex_obj["speedup_factor"]["units"] = "";
     //add dummy references
     mho_json dummy_obj1;
     mho_json dummy_obj2;
@@ -1273,42 +1278,7 @@ MHO_DiFXScanProcessor::PatchOvexStructures(mho_json& vex_root, std::string mode_
     vex_root["$LOG"]["log_std"] = log_obj;
 
     mho_json pbs_obj2;
-    vex_root["$PBS_INIT"]["$PBS_DUMMY"] = pbs_obj2;
-
-    //this stuff must be present for the HOPS3 ovex parser
-    // $EVEX_REV;
-    // rev = 1.0;
-    // $EVEX;
-    // def 1234_std;
-    // corr_exp#   = 1234;
-    // ovex_file   = dummy;
-    // cvex_file   = dummy;
-    // svex_file   = dummy;
-    // AP_length =  1.0000 sec;
-    // speedup_factor = 1.0;
-    // ref $CORR_CONFIG = CDUM;
-    // ref $SU_CONFIG  = SDUM;
-    // enddef;
-    // $IVEX_REV;
-    // rev = 1.0;
-    // $CORR_INIT;
-    // def INIT_DUMMY;
-    // system_tempo = 1.00;
-    // bocf_period = 160000;
-    // *subintNS = 5000000;
-    // ref $PBS_INIT = PBS_DUMMY;
-    // enddef;
-    // $PBS_INIT;
-    // def PBS_DUMMY;
-    // enddef;
-    // $LVEX_REV;
-    // rev = 1.0;
-    // $LOG;
-    // def log_dummy;
-    // enddef;
-
-
-
+    vex_root["$PBS_INIT"]["PBS_DUMMY"] = pbs_obj2;
 }
 
 }//end of namespace
