@@ -12,7 +12,7 @@
         "cvex_file": {"type": "string"},
         "svex_file": {"type": "string"},
         "AP_length": {"type": "real", "dimension": "time"},
-        "speedup_factor": {"type": "real", "dimension": "time"},
+        "speedup_factor": {"type": "real", "dimension": "NA"},
         "$CORR_CONFIG": {"type": "reference"},
         "$SU_CONFIG": {"type": "reference"}
     },

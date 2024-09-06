@@ -143,10 +143,14 @@ MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std::str
         std::string raw_field_name = field.value().get<std::string>();
         //remove # prefix indicating optional elements
         std::string field_name = raw_field_name;
-        if(raw_field_name[0] == hash[0]) //additional check needed for EVEX
+        if(raw_field_name[0] == hash[0])
         {
-            field_name = std::regex_replace(raw_field_name,std::regex(hash),nothing);
+            if(field_name != "corr_exp#") //additional check needed for ovex $EVEX structure
+            {
+                field_name = std::regex_replace(raw_field_name,std::regex(hash),nothing);
+            }
         }
+
         if(element.contains(field_name))
         {
             std::string par_type = fBlockFormat["parameters"][field_name]["type"].get<std::string>();
