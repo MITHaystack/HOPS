@@ -296,6 +296,62 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
             vex_root["$GLOBAL"]["$EOP"].push_back(eop_obj);
         }
 
+        // //insert the boiler plate useless junk
+        // mho_json evex_obj;
+        // evex_obj["corr_exp"] = 1234;
+        // evex_obj["ovex_file"] = "dummy";
+        // evex_obj["cvex_file"] = "dummy";
+        // evex_obj["svex_file"] = "dummy";
+        // evex_obj["AP_length"]["value"] = 1.0;
+        // evex_obj["AP_length"]["units"] = "s";
+        // evex_obj["speedup_factor"]["value"] = 1.0;
+        // evex_obj["speedup_factor"]["units"] = "s";
+        // vex_root["$EVEX"]["std"] = evex_obj;
+        //
+        // mho_json corr_obj;
+        // corr_obj["system_tempo"] = 1.00;;
+        // corr_obj["bocf_period"] = 160000;
+        // corr_obj["sub"] = "dummy";
+        // corr_obj["svex_file"] = "dummy";
+        // corr_obj["AP_length"]["value"] = 1.0;
+        // evex_obj["AP_length"]["units"] = "s";
+        // evex_obj["speedup_factor"]["value"] = 1.0;
+        // evex_obj["speedup_factor"]["units"] = "s";
+        // vex_root["$CORR_INIT"]["INIT_DUMMY"] = corr_obj;
+
+
+        //this stuff must be present for the HOPS3 ovex parser
+        // $EVEX_REV;
+        // rev = 1.0;
+        // $EVEX;
+        // def 1234_std;
+        // corr_exp#   = 1234;
+        // ovex_file   = dummy;
+        // cvex_file   = dummy;
+        // svex_file   = dummy;
+        // AP_length =  1.0000 sec;
+        // speedup_factor = 1.0;
+        // ref $CORR_CONFIG = CDUM;
+        // ref $SU_CONFIG  = SDUM;
+        // enddef;
+        // $IVEX_REV;
+        // rev = 1.0;
+        // $CORR_INIT;
+        // def INIT_DUMMY;
+        // system_tempo = 1.00;
+        // bocf_period = 160000;
+        // *subintNS = 5000000;
+        // ref $PBS_INIT = PBS_DUMMY;
+        // enddef;
+        // $PBS_INIT;
+        // def PBS_DUMMY;
+        // enddef;
+        // $LVEX_REV;
+        // rev = 1.0;
+        // $LOG;
+        // def log_dummy;
+        // enddef;
+
         //lastly we need to insert the traditional mk4 channel names for each frequency
         //TODO FIXME -- need to support zoom bands (requires difx .input data)
         //fChanNameConstructor.AddChannelNames(vex_root);
