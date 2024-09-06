@@ -62,6 +62,9 @@ class MHO_VexGenerator
         void ConstructReferenceLines(mho_json& element, std::vector< std::string >& lines);
         MHO_VexElementLineGenerator fLineGen;
 
+        //special conditions
+        bool IsExcludedOvex(std::string block_name);
+
 };
 
 }//end namespace

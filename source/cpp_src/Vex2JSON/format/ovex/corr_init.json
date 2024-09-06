@@ -3,8 +3,18 @@
     "version": "1.5",
     "start_tag": "def",
     "stop_tag": "enddef",
-    "type" : "unsupported",
-    "block_type": "unsupported",
-    "parameters" : {},
-    "fields": []
+    "type" : "primitive",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "system_tempo": {"type" : "int"},
+        "bocf_period": { "type" : "int"},
+        "$PBS_INIT": {"type": "reference"}
+    },
+    "fields":
+    [
+        "system_tempo",
+        "bocf_period",
+        "$PBS_INIT"
+    ]
 }

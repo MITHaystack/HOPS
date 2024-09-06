@@ -22,9 +22,9 @@
             "fields":
             [
                 "source",
-                "#is_pointing_center",
-                "#correlate",
-                "#station_list"
+                "!is_pointing_center",
+                "!correlate",
+                "!station_list"
             ]
         },
         "station":
@@ -40,7 +40,7 @@
                 "wrap_id": {"type": "link"},
                 "record_flag": {"type": "int"}
             },
-            "fields": ["station", "data_good", "data_stop", "#media_position", "#pass", "#wrap_id", "#record_flag"]
+            "fields": ["station", "data_good", "data_stop", "!media_position", "!pass", "!wrap_id", "!record_flag"]
         },
         "data_transfer":
         {
@@ -78,7 +78,7 @@
                 "coord2": {"type": "string"},
                 "offset2":  {"type": "real", "dimension": "angle"}
             },
-            "fields": ["#station", "coord1", "offset1", "coord2", "offset2"]
+            "fields": ["!station", "coord1", "offset1", "coord2", "offset2"]
         }
     },
     "fields":

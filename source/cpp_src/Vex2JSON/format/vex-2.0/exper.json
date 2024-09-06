@@ -15,7 +15,7 @@
                 "name": {"type": "string"},
                 "segment_code": {"type": "string"}
             },
-            "fields": ["name", "#segment_code"]
+            "fields": ["name", "!segment_code"]
         },
         "exper_description": {"type": "string"},
         "exper_nominal_start":{"type": "epoch"},
@@ -36,7 +36,7 @@
                 "version": {"type": "string"},
                 "date_created": {"type": "epoch"}
             },
-            "fields": ["program", "#version", "#date_created"]
+            "fields": ["program", "!version", "!date_created"]
         },
         "VEX_file_writer":
         {
@@ -47,7 +47,7 @@
                 "version": {"type": "string"},
                 "date_created": {"type": "epoch"}
             },
-            "fields": ["program", "#version", "#date_created"]
+            "fields": ["program", "!version", "!date_created"]
         }
     },
     "fields":

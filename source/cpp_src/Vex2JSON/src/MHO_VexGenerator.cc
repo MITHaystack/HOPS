@@ -25,22 +25,37 @@ void MHO_VexGenerator::GenerateVex(mho_json& root)
     //first line is always version line
     std::string vers = root[fVexRevisionFlag].get<std::string>();
     SetVexVersion(vers);
-    if(vers != "ovex") //only output this line for vex not ovex
+    if(vers != "ovex") //only output this line for vex, not ovex
     {
         std::string version_line = fVexRevisionFlag + MHO_VexDefinitions::AssignmentOp() + vers + MHO_VexDefinitions::StatementLineEnd();
         all_lines.push_back(version_line);
     }
-    //open block-names file for this version
+    else if(vers == "ovex")
+    {
+        //handle the 'special' case of ovex and insert all this completely useless info
+        all_lines.push_back( "$OVEX_REV" + MHO_VexDefinitions::StatementLineEnd() );
+        all_lines.push_back( "rev = 1.5" + MHO_VexDefinitions::StatementLineEnd() );
+        all_lines.push_back( "$EVEX_REV" + MHO_VexDefinitions::StatementLineEnd() );
+        all_lines.push_back( "rev = 1.0" + MHO_VexDefinitions::StatementLineEnd() );
+        all_lines.push_back( "$IVEX_REV" + MHO_VexDefinitions::StatementLineEnd() );
+        all_lines.push_back( "rev = 1.0" + MHO_VexDefinitions::StatementLineEnd() );
+        all_lines.push_back( "$LVEX_REV" + MHO_VexDefinitions::StatementLineEnd() );
+        all_lines.push_back( "rev = 1.0" + MHO_VexDefinitions::StatementLineEnd() );
+    }
 
+    //open block-names file for this version
     //loop over blocks, and extract the data from from the root and append them
     for(auto blk_it = fBlockNames.begin(); blk_it != fBlockNames.end(); blk_it++)
     {
         std::string block_name = *blk_it;
-        std::vector< std::string > block_lines;
-        std::string block_opening = block_name + MHO_VexDefinitions::StatementLineEnd();
-        all_lines.push_back(block_opening);
-        ConstructBlockLines(root, block_name, block_lines);
-        all_lines.insert(all_lines.end(), block_lines.begin(), block_lines.end());
+        if( !IsExcludedOvex(block_name) )
+        {
+            std::vector< std::string > block_lines;
+            std::string block_opening = block_name + MHO_VexDefinitions::StatementLineEnd();
+            all_lines.push_back(block_opening);
+            ConstructBlockLines(root, block_name, block_lines);
+            all_lines.insert(all_lines.end(), block_lines.begin(), block_lines.end());
+        }
     }
 
     //open and dump to file
@@ -82,6 +97,11 @@ MHO_VexGenerator::ConstructBlockLines(mho_json& root, std::string block_name, st
                 std::string start_line = fPad + start_tag + " " + element_key + MHO_VexDefinitions::StatementLineEnd();
                 lines.push_back(start_line);
                 ConstructElementLines(root[block_name][element.key()], lines);
+                //ovex is also special
+                if(block_name == "$EVEX" || block_name == "$CORR_INIT")
+                {
+                    ConstructReferenceLines(root[block_name][element.key()], lines);
+                }
                 std::string stop_line = fPad + stop_tag + MHO_VexDefinitions::StatementLineEnd();
                 lines.push_back(stop_line);
             }
@@ -116,17 +136,18 @@ MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std::str
     fPad += fIndentPad;
 
     //loop over items in format, and extract from element
-    std::string hash = MHO_VexDefinitions::OptionalFlag();
+    std::string bang = MHO_VexDefinitions::OptionalFlag();
     std::string nothing = "";
     for(auto field: fBlockFormat["fields"].items())
     {
         std::string raw_field_name = field.value().get<std::string>();
         //remove # prefix indicating optional elements
         std::string field_name = raw_field_name;
-        if(raw_field_name[0] == hash[0]) //additional check needed for EVEX
+        if(raw_field_name[0] == bang[0])
         {
-            field_name = std::regex_replace(raw_field_name,std::regex(hash),nothing);
+            field_name = std::regex_replace(raw_field_name,std::regex(bang),nothing);
         }
+
         if(element.contains(field_name))
         {
             std::string par_type = fBlockFormat["parameters"][field_name]["type"].get<std::string>();
@@ -142,6 +163,10 @@ MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std::str
             {
                 std::string line = fPad + fLineGen.ConstructElementLine(field_name, element[field_name], fBlockFormat["parameters"][field_name]);
                 if(line.size() != 0){lines.push_back(line);}
+            }
+            else if (par_type.find("reference") != std::string::npos)
+            {
+                //skip...this is a special case for 'ovex' (EVEX and CORR_INIT)
             }
             else
             {
@@ -232,5 +257,14 @@ MHO_VexGenerator::GetBlockFormatFileName(std::string block_name)
     return file_name;
 }
 
+
+bool MHO_VexGenerator::IsExcludedOvex(std::string block_name)
+{
+    if(block_name == "$OVEX_REV"){return true;}
+    if(block_name == "$EVEX_REV"){return true;}
+    if(block_name == "$IVEX_REV"){return true;}
+    if(block_name == "$LVEX_REV"){return true;}
+    return false;
+}
 
 }//end of namespace

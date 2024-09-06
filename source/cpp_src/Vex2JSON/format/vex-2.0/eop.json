@@ -24,7 +24,7 @@
                 "date": {"type": "epoch"},
                 "info_source_version": {"type": "string"}
             },
-            "fields": ["eop_info_type", "#date", "#info_source_version"]
+            "fields": ["eop_info_type", "!date", "!info_source_version"]
         },
         "nut_ref_epoch" : {"type":"epoch"},
         "num_nut_points": {"type": "int"},

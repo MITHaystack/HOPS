@@ -27,8 +27,8 @@
                 "polarization",
                 "effective_LO",
                 "net_sideband",
-                "#phase_cal_interval",
-                "#phase_cal_base"
+                "!phase_cal_interval",
+                "!phase_cal_base"
             ]
         }
     },

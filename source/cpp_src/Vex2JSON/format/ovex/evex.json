@@ -7,20 +7,24 @@
     "block_type": "primitive",
     "parameters" :
     {
-        "core_exp#": {"type": "int"},
+        "corr_exp#": {"type": "int"},
         "ovex_file": {"type": "string"},
         "cvex_file": {"type": "string"},
         "svex_file": {"type": "string"},
         "AP_length": {"type": "real", "dimension": "time"},
-        "speedup_factor": {"type": "real", "dimension": "time"}
+        "speedup_factor": {"type": "real", "dimension": "NA"},
+        "$CORR_CONFIG": {"type": "reference"},
+        "$SU_CONFIG": {"type": "reference"}
     },
     "fields":
     [
-        "core_exp#",
+        "corr_exp#",
         "ovex_file",
         "cvex_file",
         "svex_file",
         "AP_length",
-        "speedup_factor"
+        "speedup_factor",
+        "$CORR_CONFIG",
+        "$SU_CONFIG"
     ]
 }
