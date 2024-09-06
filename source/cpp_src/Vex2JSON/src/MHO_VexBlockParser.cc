@@ -484,7 +484,7 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
     std::size_t n_all_fields = fields.size();
 
     std::size_t token_idx = 0;
-    std::string hash = MHO_VexDefinitions::OptionalFlag();
+    std::string bang = MHO_VexDefinitions::OptionalFlag();
     std::string nothing = "";
     for(auto it = fields.begin(); it != fields.end(); it++)
     {
@@ -494,11 +494,7 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
             else
             {
                 std::string raw_field_name = it->get<std::string>();
-                std::string field_name = raw_field_name;
-                if(raw_field_name != "corr_exp#") //stupid ovex exception
-                {
-                    field_name = std::regex_replace(raw_field_name,std::regex(hash),nothing);
-                }
+                std::string field_name = std::regex_replace(raw_field_name,std::regex(bang),nothing);
                 mho_json next_format =  format["parameters"][field_name];
                 std::string type_name = next_format["type"].get<std::string>();
                 std::vector< std::string > tmp_tokens;

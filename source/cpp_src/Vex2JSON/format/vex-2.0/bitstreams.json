@@ -22,9 +22,9 @@
             [
                 "channel_link",
                 "bitstream_sign_mag",
-                "#bitstream_input_number",
+                "!bitstream_input_number",
                 "bitstream_on_disk_number",
-                "#bitstream_link"
+                "!bitstream_link"
             ]
         },
         "stream_sample_rate":
@@ -38,7 +38,7 @@
             "fields":
             [
                 "sample_rate",
-                "#bitstream_link"
+                "!bitstream_link"
             ]
         },
         "stream_label":
@@ -52,7 +52,7 @@
             "fields":
             [
                 "stream_label",
-                "#bitstream_link"
+                "!bitstream_link"
             ]
         }
     },

@@ -4,7 +4,7 @@
 /*!
 *@file  MHO_VexDefinitions.hh
 *@class  MHO_VexDefinitions
-*@author  J. Barrett - barrettj@mit.edu 
+*@author  J. Barrett - barrettj@mit.edu
 *@date Tue Jun 21 11:08:31 2022 -0400
 *@brief  Basic definitions of various tokens and utilities
 */
@@ -65,7 +65,7 @@ class MHO_VexDefinitions
         static std::string StatementEndFlag() {return std::string(";");};
         static std::string StatementLineEnd() {return std::string(";\n");};
 
-        static std::string OptionalFlag() {return std::string("#");};
+        static std::string OptionalFlag() {return std::string("!");};
 
         static vex_element_type DetermineType(std::string etype);
 

@@ -21,9 +21,9 @@
             "fields":
             [
                 "primary_axis",
-                "#secondary_axis",
-                "#secondary_axis_az",
-                "#secondary_axis_el"
+                "!secondary_axis",
+                "!secondary_axis_az",
+                "!secondary_axis_el"
             ]
         },
         "axis_offset" : {"type" : "real", "dimension" : "length"},
@@ -42,7 +42,7 @@
                 "axis_type",
                 "slew_rate",
                 "constant",
-                "#acceleration"
+                "!acceleration"
             ]
         },
         "pointing_sector" :
@@ -65,9 +65,9 @@
                 "axis1_type",
                 "axis1_lower_limit",
                 "axis1_upper_limit",
-                "#axis2_type",
-                "#axis2_lower_limit",
-                "#axis2_upper_limit",
+                "!axis2_type",
+                "!axis2_lower_limit",
+                "!axis2_upper_limit",
                 "sector_name"
             ]
         },
@@ -87,8 +87,8 @@
         "antenna_diam",
         "axis_type",
         "axis_offset",
-        "#antenna_motion",
-        "#pointing_sector",
+        "!antenna_motion",
+        "!pointing_sector",
         "nasmyth"
     ]
 }

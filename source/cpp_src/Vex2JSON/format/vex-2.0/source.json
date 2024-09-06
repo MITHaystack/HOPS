@@ -16,7 +16,7 @@
                 "experiment_type": {"type": "string"},
                 "coordinate_system": {"type": "string"}
             },
-            "fields": ["physical_type", "#experiment_type", "#coordinate_system"]
+            "fields": ["physical_type", "!experiment_type", "!coordinate_system"]
         },
         "source_name": {"type": "string"},
         "IAU_name": {"type": "string"},
@@ -83,9 +83,9 @@
                 "time",
                 "ra",
                 "dec",
-                "#ra_rate",
-                "#dec_rate",
-                "#ref_coord_frame"
+                "!ra_rate",
+                "!dec_rate",
+                "!ref_coord_frame"
             ]
         }
     },

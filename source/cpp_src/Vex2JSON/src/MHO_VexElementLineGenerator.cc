@@ -200,18 +200,13 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
 {
     std::vector< std::string > components;
     //loop over items in format, and extract from element
-    std::string hash = MHO_VexDefinitions::OptionalFlag();
+    std::string bang = MHO_VexDefinitions::OptionalFlag();
     std::string nothing = "";
 
     for(std::size_t i=0; i<format["fields"].size(); i++)
     {
         std::string raw_field_name = format["fields"][i].get<std::string>();
-        std::string field_name = raw_field_name;
-        //remove # prefix indicating optional elements
-        if(raw_field_name != "corr_exp#") //additional check needed for ovex $EVEX structure
-        {
-            field_name = std::regex_replace(raw_field_name,std::regex(hash),nothing);
-        }
+        std::string field_name = std::regex_replace(raw_field_name,std::regex(bang),nothing);
 
         if(element.contains(field_name))
         {

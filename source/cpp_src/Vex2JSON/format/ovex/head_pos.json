@@ -22,9 +22,9 @@
             [
                 "position_ref_number",
                 "headstack1_position",
-                "#headstack2_position",
-                "#headstack3_position",
-                "#headstack4_position"
+                "!headstack2_position",
+                "!headstack3_position",
+                "!headstack4_position"
             ]
         }
     },
