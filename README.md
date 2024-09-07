@@ -95,11 +95,12 @@ several additional dependencies, these are:
 3. `PGPLOT`
 4. `X11`
 5. `GNU Fortran`
+6. `Ghostscript`
 
 On Ubuntu 22.04 or Debian based systems these can be installed with:
 
 ```
-sudo apt-get install python3-dev python3-pip pgplot5 libgfortran5 libfftw3-dev libx11-dev gnuplot binutils libx11-dev libxpm-dev
+sudo apt-get install python3-dev python3-pip pgplot5 libgfortran5 libfftw3-dev libx11-dev gnuplot binutils libx11-dev libxpm-dev ghostscript ghostscript-x
 ```
 
 ## Testing
