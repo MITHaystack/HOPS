@@ -11,12 +11,12 @@ To configure with defaults and compile the code with cmake, run the following:
 `$ cmake ../` \
 `$ make && make install`
 
-If you want a faster build it is preferable to paralellize it by passing `make` with the `-j N` option (e.g. `make -j 8`).
+If you want a faster build it is preferable to paralellize it by passing the `-j N` option to `make` (e.g. `make -j 8`).
 After the build is complete, you will need to put the hops binary installation location in your PATH by running:
 
 `source <hops-install>/bin/hops.bash`
 
-where `<hops-install>` is the HOPS4 installation directory. On the x86 architecture, the installation directory name defaults to: `<hops-source>/x86_64-4.00`.
+where `<hops-install>` is the HOPS4 installation directory. On the x86 architecture, the installation directory name defaults to: `<hops-source>/x86_64-4.00`, but can be changed at configuration time.
 
 To change the default options or if a needed library is not automatically detected you
 use the command line interface `ccmake` (cmake-curses-gui) in place of `cmake` to edit options. This command will open a CLI
