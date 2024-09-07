@@ -1,7 +1,7 @@
 # HOPS-4.0
 
 Authors: John Barrett, Geoff Crew, Dan Hoak, Violet Pfeiffer  
-Legacy Authors (HOPS3): Roger Cappallo, Geoff Colin Lonsdale, Cris Niell, and others  
+Legacy Authors (HOPS3): Roger Cappallo, Colin Lonsdale, Cris Niell, and others  
 
 To configure with defaults and compile the code with cmake, run the following:  
 
