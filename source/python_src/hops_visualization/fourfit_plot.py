@@ -550,6 +550,10 @@ def make_top_info_text(plot_dict):
     plt.text(0.05,0.98,plot_dict['CorrVers'].strip("'"),transform=plt.gcf().transFigure,
              fontsize=12,verticalalignment='top',family='sans-serif',horizontalalignment='left',fontweight='bold')
 
+    #ALPHA RELEASE WARNING
+    plt.text(0.05,0.96, "NOT FOR PRODUCTION",transform=plt.gcf().transFigure, color='r',
+             fontsize=10,verticalalignment='top',family='sans-serif',horizontalalignment='left',fontweight='bold')
+
     plt.text(0.965,0.96, plot_dict['PolStr'].strip("'"),transform=plt.gcf().transFigure,
              fontsize=10,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
 
