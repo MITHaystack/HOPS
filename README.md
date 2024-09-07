@@ -1,9 +1,9 @@
 # HOPS-4.0
 
-Authors: John Barrett, Geoff Crew, Dan Hoak, Violet Pfeiffer
-Legacy Authors (HOPS3): Roger Cappallo, Geoff Colin Lonsdale, Cris Niell, and others
+Authors: John Barrett, Geoff Crew, Dan Hoak, Violet Pfeiffer  
+Legacy Authors (HOPS3): Roger Cappallo, Geoff Colin Lonsdale, Cris Niell, and others  
 
-To configure with defaults and compile the code with cmake, run the following:
+To configure with defaults and compile the code with cmake, run the following:  
 
 `$ cd <hops-source>` \
 `$ mkdir build` \
@@ -78,9 +78,7 @@ The absolute minimum dependencies are:
 On Ubuntu 22.04 or Debian based systems these can be installed with:
 
 ```
-sudo apt-get install build-essential cmake cmake-curses-gui
-sudo apt-get install python3-dev python3-pip
-sudo apt-get install wget jq
+sudo apt-get install build-essential cmake cmake-curses-gui python3-dev python3-pip wget jq
 ```
 While not strictly required by HOPS4, the Fast Fourier Transform library fftw is highly recommended and can be installed with:
 ```
@@ -101,12 +99,7 @@ several additional dependencies, these are:
 On Ubuntu 22.04 or Debian based systems these can be installed with:
 
 ```
-sudo apt-get install python3-dev python3-pip
-sudo apt-get install pgplot5 libgfortran5
-sudo apt-get install libfftw3-dev
-sudo apt-get install libx11-dev
-sudo apt-get install gnuplot
-sudo apt-get install binutils libx11-dev libxpm-dev
+sudo apt-get install python3-dev python3-pip pgplot5 libgfortran5 libfftw3-dev libx11-dev gnuplot binutils libx11-dev libxpm-dev
 ```
 
 ## Testing
