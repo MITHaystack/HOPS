@@ -20,7 +20,7 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FileKey.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Units.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Tokenizer.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TimeStampConverter.hh
+    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TimeStampConverter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultiTypeMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Interval.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BinaryFileStreamer.hh
@@ -47,7 +47,7 @@ set (UTILITIES_HEADERFILES
 #list source files #############################################################
 
 set( UTILITIES_SOURCEFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_TimeStampConverter.cc
+    #${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_TimeStampConverter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Tokenizer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BinaryFileStreamer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_UUIDGenerator.cc
