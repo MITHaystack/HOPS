@@ -93,4 +93,8 @@ void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const
     //std::ofstream output("type-200s-dump.json");
     output << std::setw(4) << jsonDump << std::endl;
     }
+
+    void MHO_MK4FringeInterface::ExportFringeFiles () {
+
+    }
 }

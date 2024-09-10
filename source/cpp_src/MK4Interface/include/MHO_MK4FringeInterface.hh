@@ -57,6 +57,7 @@ class MHO_MK4FringeInterface
      const type_205 &t205, const type_206 &t206, const type_207 &t207, const type_208 &t208, const type_210 &t210, const type_212 &t212);
 
         //void ExportFringeFilesToJSON();
+        void ExportFringeFiles ();
 
     private:
 
