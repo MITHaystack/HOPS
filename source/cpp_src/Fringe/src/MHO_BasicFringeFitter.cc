@@ -304,7 +304,7 @@ void MHO_BasicFringeFitter::Finalize()
 
 
 void
-MHO_BasicFringeFitter::coarse_fringe_search()
+MHO_BasicFringeFitter::coarse_fringe_search(bool set_windows)
 {
     profiler_start();
     ////////////////////////////////////////////////////////////////////////////
@@ -320,19 +320,19 @@ MHO_BasicFringeFitter::coarse_fringe_search()
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
 
     //set the coarse SBD/MBD/DR search windows here
-    if(fParameterStore->IsPresent("/control/fit/sb_win"))
+    if(fParameterStore->IsPresent("/control/fit/sb_win") && set_windows)
     {
         std::vector<double> sbwin = fParameterStore->GetAs< std::vector<double> >("/control/fit/sb_win");
         fMBDSearch.SetSBDWindow(sbwin[0], sbwin[1]); //units are microsec
     }
 
-    if(fParameterStore->IsPresent("/control/fit/mb_win"))
+    if(fParameterStore->IsPresent("/control/fit/mb_win") && set_windows)
     {
         std::vector<double> mbwin = fParameterStore->GetAs< std::vector<double> >("/control/fit/mb_win");
         fMBDSearch.SetMBDWindow(mbwin[0], mbwin[1]); //units are microsec
     }
 
-    if(fParameterStore->IsPresent("/control/fit/dr_win"))
+    if(fParameterStore->IsPresent("/control/fit/dr_win") && set_windows)
     {
         std::vector<double> drwin = fParameterStore->GetAs< std::vector<double> >("/control/fit/dr_win");
         fMBDSearch.SetDRWindow(drwin[0], drwin[1]);

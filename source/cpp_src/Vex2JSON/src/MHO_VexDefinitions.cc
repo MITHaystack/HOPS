@@ -18,6 +18,8 @@ MHO_VexDefinitions::~MHO_VexDefinitions(){}
 
 void MHO_VexDefinitions::SetVexVersion(std::string version)
 {
+    msg_debug("vex", "setting vex version to: "<< version << eom);
+    
     fVexVersion = "1.5";
     if(version.find("1.5") != std::string::npos ){fVexVersion = "1.5";}
     else if(version.find("2.0") != std::string::npos ){fVexVersion = "2.0";}
@@ -48,12 +50,12 @@ void MHO_VexDefinitions::SetVexVersion(std::string version)
     }
 }
 
-void
-MHO_VexDefinitions::SetVexVersion(const char* version)
-{
-    std::string vers(version);
-    SetVexVersion(vers);
-}
+// void
+// MHO_VexDefinitions::SetVexVersion(const char* version)
+// {
+//     std::string vers(version);
+//     SetVexVersion(vers);
+// }
 
 std::string
 MHO_VexDefinitions::GetFormatDirectory() const
@@ -67,6 +69,8 @@ MHO_VexDefinitions::GetFormatDirectory() const
     {
         format_dir += "/vex-" + fVexVersion + "/";
     }
+    msg_debug("vex", "format directory for version: "<<fVexVersion << ", is: "<< format_dir << eom);
+    
     return format_dir;
 }
 
@@ -103,6 +107,7 @@ MHO_VexDefinitions::DetermineFileVersion(std::string filename)
         else if (contents.find( OVexRevisionFlag() ) != std::string::npos) //check for ovex
         {
             revision = "ovex";
+            msg_debug("vex", "file: "<<filename<<" is an ovex file"<< eom);
         }
         else
         {

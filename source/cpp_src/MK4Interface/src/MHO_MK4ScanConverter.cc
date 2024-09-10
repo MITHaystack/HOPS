@@ -161,7 +161,7 @@ MHO_MK4ScanConverter::ConvertStation(const std::string& root_file,
 
     msg_status("mk4interface", "Converting station input file: " << input_file << eom);
     mk4inter.SetStationFile(input_file);
-    // mk4inter.SetVexFile(root_file);
+    mk4inter.SetVexFile(root_file);
     station_coord_type* st_data = mk4inter.ExtractStationFile();
 
     std::size_t n_pcal_obj = mk4inter.GetNPCalObjects();

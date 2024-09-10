@@ -113,7 +113,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
     if(fInitialized && fNSBD > 1)
     {
         fSBDAxis = std::get<FREQ_AXIS>(*in);
-        fSBDBinSep = fSBDAxis.at(1) - fSBDAxis.at(0);
+        fSBDBinSep = fSBDAxis(1) - fSBDAxis(0);
         //loop over the single-band delay 'lags', computing the MBD/DR function
         //find the max for each SBD, and globally
         fMax = -0.0;
@@ -121,10 +121,12 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         bool first = true;
         for(std::size_t sbd_idx=0; sbd_idx<fNSBD; sbd_idx++)
         {
-            double sbd = (fSBDAxis.at(sbd_idx));
+            double sbd = fSBDAxis(sbd_idx);
             bool do_sbd_search = (fSBDWin[0] <= sbd) && (sbd <= fSBDWin[1]);
             if(!fSBDWinSet || do_sbd_search)
             {
+                //msg_debug("calibration", "performing mbdsearch on sbd index: "<<sbd_idx<<eom);
+                
                 //first select the slice of visibilities which correspond to this SBD
                 //and copy this slice into local workspace table container
                 auto sbd_dims = fSBDDrWorkspace.GetDimensionArray();
@@ -146,13 +148,13 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 {
                     fDRAxis = std::get<TIME_AXIS>(sbd_dr_data); //upon retrieval this here is fringe-rate
                     fDRAxis *= 1.0/fRefFreq; //now convert to delay rate by dividing by reference frequency
-                    fDRBinSep = fDRAxis.at(1) - fDRAxis.at(0);
+                    fDRBinSep = fDRAxis(1) - fDRAxis(0);
                 }
 
                 auto NDRBin = fDRAxis.GetSize() ;//sbd_dr_data.GetDimensionArray();
                 for(std::size_t dr_idx=0; dr_idx < NDRBin; dr_idx++)
                 {
-                    double dr = fDRAxis.at(dr_idx);
+                    double dr = fDRAxis(dr_idx);
                     bool do_dr_search = (fDRWin[0] <= dr) && (dr <= fDRWin[1]);
                     if(!fDRWinSet || do_dr_search)
                     {
@@ -175,7 +177,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                             auto mbd_ax = &(std::get<0>(fMBDWorkspace) );
                             for(std::size_t i=0; i<fNGridPoints;i++)
                             {
-                                mbd_ax->at(i) = fGridStart + i*fGridSpace;
+                                (*mbd_ax)(i) = fGridStart + i*fGridSpace;
                             }
                         }
 
@@ -189,7 +191,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                             //turn off for all other iterations
                             fFFTEngine.DisableAxisLabelTransformation();
                             first = false;
-                            fMBDBinSep = fMBDAxis.at(1) - fMBDAxis.at(0);
+                            fMBDBinSep = fMBDAxis(1) - fMBDAxis(0);
                         }
 
                         check_step_fatal(ok, "fringe", "MBD search fft engine execution." << eom );
@@ -197,7 +199,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
                         for(std::size_t i=0; i<total_mbd_dr_size; i++)
                         {
-                            double mbd = (fMBDAxis.at(i));
+                            double mbd = fMBDAxis(i);
                             bool do_mbd_search = (fMBDWin[0] <= mbd) && (mbd <= fMBDWin[1]);
                             if(!fMBDWinSet || do_mbd_search)
                             {
@@ -255,6 +257,7 @@ MHO_MBDelaySearch::GetNPointsSearched() const
 void
 MHO_MBDelaySearch::SetSBDWindow(double low, double high)
 {
+    msg_debug("calibration", "mbd search SBD window set to ("<<low<<", "<<high<<")" << eom );
     fSBDWinSet = true;
     if(low <= high){fSBDWin[0] = low; fSBDWin[1] = high;}
     else{fSBDWin[1] = low; fSBDWin[0] = high;}
@@ -263,6 +266,7 @@ MHO_MBDelaySearch::SetSBDWindow(double low, double high)
 void
 MHO_MBDelaySearch::SetMBDWindow(double low, double high)
 {
+    msg_debug("calibration", "mbd search MBD window set to ("<<low<<", "<<high<<")" << eom );
     fMBDWinSet = true;
     if(low <= high){fMBDWin[0] = low; fMBDWin[1] = high;}
     else{fMBDWin[1] = low; fMBDWin[0] = high;}
@@ -271,6 +275,7 @@ MHO_MBDelaySearch::SetMBDWindow(double low, double high)
 void
 MHO_MBDelaySearch::SetDRWindow(double low, double high)
 {
+    msg_debug("calibration", "mbd search DR window set to ("<<low<<", "<<high<<")" << eom );
     fDRWinSet = true;
     if(low <= high){fDRWin[0] = low; fDRWin[1] = high;}
     else{fDRWin[1] = low; fDRWin[0] = high;}
