@@ -51,7 +51,7 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         // void AddDefaultOperators(mho_json& statements);
 
         //main work functions, operators and works space for basic fringe search function
-        void coarse_fringe_search();
+        void coarse_fringe_search(bool set_windows = true);
         void interpolate_peak();
 
         MHO_NormFX fNormFXOp;
