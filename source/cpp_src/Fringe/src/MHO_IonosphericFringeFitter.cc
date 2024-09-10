@@ -422,7 +422,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 double sbdelay = fParameterStore->GetAs<double>("/fringe/sbdelay");
                 double sbdsep = fMBDSearch.GetSBDBinSeparation();
                 msg_debug("fringe", "ionospheric fringe search cached SBD window to: ("<<sbdelay<<", "<<sbdelay<< ")"<<eom);
-                fMBDSearch.SetSBDWindow(sbdelay, sbdelay);
+                fMBDSearch.SetSBDWindow(sbdelay-sbdsep, sbdelay+sbdsep);
                 first_pass = false;
             }
 
@@ -795,7 +795,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
                 double sbdelay = fParameterStore->GetAs<double>("/fringe/sbdelay");
                 double sbdsep = fMBDSearch.GetSBDBinSeparation();
                 msg_debug("fringe", "ionospheric fringe search cached SBD window to: ("<<sbdelay<<", "<<sbdelay<< ")"<<eom);
-                fMBDSearch.SetSBDWindow(sbdelay, sbdelay);
+                fMBDSearch.SetSBDWindow(sbdelay-sbdsep, sbdelay+sbdsep);
                 first_pass = false;
             }
             
