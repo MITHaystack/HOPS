@@ -11,6 +11,7 @@
 #include <set>
 
 #include "MHO_ContainerDefinitions.hh"
+#include "MHO_MK4VexInterface.hh"
 
 #include "MHO_Message.hh"
 
@@ -47,7 +48,8 @@ class MHO_MK4StationInterface
 
         MHO_MK4StationInterface();
         virtual ~MHO_MK4StationInterface();
-
+        
+        void SetVexFile(const std::string& vex){fVexFile = vex;}
         void SetStationFile(const std::string& station){fStationFile = station;}
 
         mk4_sdata* GetStationData(){return fStation;};
@@ -70,10 +72,16 @@ class MHO_MK4StationInterface
         }
 
         void ReadStationFile();
+        
+        void ReadVexFile();
 
         //pcal stuff
         void ExtractPCal(int n309, type_309** t309);
         void FillPCalArray(const std::string& fgroup, const std::string& pol, int pol_idx, multitone_pcal_type* pc, int n309, type_309** t309);
+        //void RepairMK4PCData();
+        
+        //builds a visibility channel axis from the ovex info
+        channel_axis_type ConstructChannelAxis();
 
         //converts a mk4 channel id into its components, returns true if successful
         bool ExtractChannelInfo(const std::string& ch_name, std::string& fgroup, std::string& sb, std::string& pol, int& index);
@@ -91,6 +99,8 @@ class MHO_MK4StationInterface
         std::vector< std::pair< std::string, int>  > GetFreqGroupPolInfo(int n309, type_309** t309, const std::string& fg, bool& same_size);
 
 
+
+
         bool fHaveStation;
         struct mk4_sdata* fStation;
         std::string fStationName;
@@ -101,10 +111,15 @@ class MHO_MK4StationInterface
         std::vector< multitone_pcal_type > fFreqGroupPCal; //multitone_pcal_type dims = pol x time x freq
 
         std::string fStationFile;
+        std::string fVexFile;
         std::string fRootCode;
         std::size_t fNCoeffs;
         std::size_t fNIntervals;
         std::size_t fNCoord;
+
+        //vex info
+        bool fHaveVex;
+        mho_json fVex;
 
 
 };
