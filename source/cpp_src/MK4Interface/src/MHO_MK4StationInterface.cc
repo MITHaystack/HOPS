@@ -325,8 +325,8 @@ MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
         //indicate this is not frequency! no units
         std::get<MTPCAL_FREQ_AXIS>(fFreqGroupPCal[n]).Insert(std::string("name"), std::string("tone_index"));
 
-        //repair the tone frequency info
-        RepairMK4PCData(fFreqGroupPCal[n]);
+        //repair the tone frequency axis info
+        RepairMK4PCData(fgroups[n], fFreqGroupPCal[n]);
 
         //tag this pcal data
         fFreqGroupPCal[n].Insert(std::string("name"), std::string("pcal"));
@@ -541,12 +541,12 @@ MHO_MK4StationInterface::ComputePhasor(uint32_t real, uint32_t imag, double acc_
 }
 
 void 
-MHO_MK4StationInterface::RepairMK4PCData(multitone_pcal_type& pc_data)
+MHO_MK4StationInterface::RepairMK4PCData(std::string freqGroup, multitone_pcal_type& pc_data)
 {
     //we don't have visibility data at this point, so we are going to take the ovex 
     //and construct an equivalent channel axis, then we will use that to work out 
     //the tone frequencies -- obviously, we are trusting that the ovex is correct
-    auto per_pol_chan_ax = ConstructPerPolChannelAxis();
+    auto per_pol_chan_ax = ConstructPerPolChannelAxis(freqGroup);
     if(per_pol_chan_ax.size() == 0)
     {
         msg_error("mk4interface", "cannot determine channel information for pcal tone repair" << eom);
@@ -648,7 +648,7 @@ MHO_MK4StationInterface::RepairMK4PCData(multitone_pcal_type& pc_data)
 }
 
 std::map< std::string, channel_axis_type >
-MHO_MK4StationInterface::ConstructPerPolChannelAxis()
+MHO_MK4StationInterface::ConstructPerPolChannelAxis(std::string freqGroup)
 {
     std::map< std::string, channel_axis_type> per_pol_chan_ax;
     
@@ -730,7 +730,10 @@ MHO_MK4StationInterface::ConstructPerPolChannelAxis()
                     ch_label["net_sideband"] = net_sb;
                     ch_label["channel_name"] = chan_name;
                     ch_label["pol"] = pol;
-                    channel_info[pol].push_back(ch_label);
+                    
+                    std::string fg = FreqGroupFromMK4ChannelID(chan_name);
+                    //only insert channel info which is part of this frequency group
+                    if(fg == freqGroup){ channel_info[pol].push_back(ch_label); }
                     
                     std::cout<<"channel info = "<<chan_name<<", "<<sky_freq<<", "<<bw<<", "<<net_sb<<", "<<bbc_id<<", "<<pol<<std::endl;
                 }
