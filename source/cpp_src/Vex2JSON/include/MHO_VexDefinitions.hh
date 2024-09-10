@@ -42,7 +42,6 @@ class MHO_VexDefinitions
         virtual ~MHO_VexDefinitions();
 
         void SetVexVersion(std::string version);
-        void SetVexVersion(const char* version);
 
         std::string GetFormatDirectory() const;
         std::vector< std::string > GetBlockNames() const {return fBlockNames;}
