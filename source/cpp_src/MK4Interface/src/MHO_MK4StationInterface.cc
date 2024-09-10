@@ -559,8 +559,14 @@ MHO_MK4StationInterface::RepairMK4PCData(std::string freqGroup, multitone_pcal_t
         return;
     }
 
-    TODO_FIXME_MSG("TODO FIXME -- fix hardcoded pcal spacing!!")
-    double pcal_spacing = 5.0; //TODO FIXME HARDCODED PCAL SPACING
+    //need the pcal tone spacing
+    double pcal_spacing = 0;
+    bool ok = chan_ax.Retrieve("pcal_interval_MHz", pcal_spacing);
+    if(!ok)
+    {
+        msg_error("mk4interface", "could not find pcal spacing information, will not be able to repair tone frequency axis."<< eom );
+        return;
+    }
 
     //only perform this operation if the pcal data originated from mark4 type309s
     std::string data_origin;
@@ -707,17 +713,26 @@ MHO_MK4StationInterface::ConstructPerPolChannelAxis(std::string freqGroup)
                     std::string net_sb = fVex["$FREQ"][freq_table]["chan_def"][nch]["net_sideband"].get<std::string>();
                     std::string bbc_id = fVex["$FREQ"][freq_table]["chan_def"][nch]["bbc_id"].get<std::string>();
                     std::string pol = "-";
+                    double pcal_interval_MHz = 0;
                     for(std::size_t nbbc=0; nbbc< fVex["$BBC"][bbc_name]["BBC_assign"].size(); nbbc++)
                     {
                         if( fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_bbc_id"].get<std::string>() == bbc_id )
                         {
                             std::string if_id = fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_if"].get<std::string>();
-                            //finally retrieve the polarization
+                            //finally retrieve the polarization and the pcal interval!
                             for(std::size_t nif = 0; nif < fVex["$IF"][if_name]["if_def"].size(); nif++)
                             {
                                 if(fVex["$IF"][if_name]["if_def"][nif]["if_id"].get<std::string>() == if_id)
                                 {
                                     pol = fVex["$IF"][if_name]["if_def"][nif]["polarization"].get<std::string>();
+                                    pcal_interval_MHz = fVex["$IF"][if_name]["if_def"][nif]["phase_cal_interval"]["value"].get<double>(); 
+                                    
+                                    //assuming MHz, check a few other units
+                                    std::string units = fVex["$IF"][if_name]["if_def"][nif]["phase_cal_interval"]["units"].get<std::string>();
+                                    if(units == "Hz"){pcal_interval_MHz /= 1e6;}
+                                    if(units == "kHz"){pcal_interval_MHz /= 1e3;}
+                                    if(units == "GHz"){pcal_interval_MHz *= 1e3;}
+                                    
                                     break;
                                 }
                             }
@@ -729,6 +744,7 @@ MHO_MK4StationInterface::ConstructPerPolChannelAxis(std::string freqGroup)
                     ch_label["bandwidth"] = bw;
                     ch_label["net_sideband"] = net_sb;
                     ch_label["channel_name"] = chan_name;
+                    ch_label["pcal_interval_MHz"] = pcal_interval_MHz;
                     ch_label["pol"] = pol;
                     
                     std::string fg = FreqGroupFromMK4ChannelID(chan_name);
@@ -748,6 +764,7 @@ MHO_MK4StationInterface::ConstructPerPolChannelAxis(std::string freqGroup)
     }
 
     //construct the channel axis for each pol
+    std::set<double> pcal_intervals;
     for(auto it = channel_info.begin(); it != channel_info.end(); it++)
     {
         std::size_t nchan = it->second.size();
@@ -757,10 +774,32 @@ MHO_MK4StationInterface::ConstructPerPolChannelAxis(std::string freqGroup)
             mho_json ch_label = it->second.at(i);
             ch_label["channel"] = i;
             double sky_freq = ch_label["sky_freq"].get<double>();
+            double pcal_space = ch_label["pcal_interval_MHz"].get<double>();
+            pcal_intervals.insert(pcal_space);
             ax.at(i) = sky_freq;
             ax.SetLabelObject(ch_label, i);
         }
         std::string pol = it->first;
+        
+        //attach a p-cal interval label for this axis 
+        double pcal_intr = 0;
+        if(pcal_intervals.size() == 1)
+        {
+            pcal_intr = *(pcal_intervals.begin());
+            ax.Insert( "pcal_interval_MHz", pcal_intr );
+            msg_debug("mk4interface", "pcal interval for frequency group: "<<freqGroup<<", is assigned: "<< pcal_intr <<" MHz" << eom );
+        }
+        else if(pcal_intervals.size() > 1)
+        {
+            pcal_intr = *(pcal_intervals.begin());
+            ax.Insert( "pcal_interval_MHz", pcal_intr );
+            msg_warn("mk4interface", "multiple pcal intervals for a single frequency group is not supported, using: "<< pcal_intr <<" MHz" << eom );
+        }
+        else
+        {
+            msg_warn("mk4interface", "could not determine the pcal tone spacing interval for frequency group: "<< freqGroup << eom );
+        }
+        
         per_pol_chan_ax[pol] = ax;
     }
 
