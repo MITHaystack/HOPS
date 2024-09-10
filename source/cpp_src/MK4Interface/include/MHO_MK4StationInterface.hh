@@ -11,6 +11,7 @@
 #include <set>
 
 #include "MHO_ContainerDefinitions.hh"
+#include "MHO_MK4VexInterface.hh"
 
 #include "MHO_Message.hh"
 
@@ -47,7 +48,8 @@ class MHO_MK4StationInterface
 
         MHO_MK4StationInterface();
         virtual ~MHO_MK4StationInterface();
-
+        
+        void SetVexFile(const std::string& vex){fVexFile = vex;}
         void SetStationFile(const std::string& station){fStationFile = station;}
 
         mk4_sdata* GetStationData(){return fStation;};
@@ -70,10 +72,17 @@ class MHO_MK4StationInterface
         }
 
         void ReadStationFile();
+        
+        void ReadVexFile();
 
         //pcal stuff
         void ExtractPCal(int n309, type_309** t309);
         void FillPCalArray(const std::string& fgroup, const std::string& pol, int pol_idx, multitone_pcal_type* pc, int n309, type_309** t309);
+        void RepairMK4PCData(std::string freqGroup, multitone_pcal_type& pc_data);
+        void DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq);
+        
+        //builds a visibility channel axis from the ovex info for each pol
+        std::map< std::string, channel_axis_type > ConstructPerPolChannelAxis(std::string freqGroup);
 
         //converts a mk4 channel id into its components, returns true if successful
         bool ExtractChannelInfo(const std::string& ch_name, std::string& fgroup, std::string& sb, std::string& pol, int& index);
@@ -90,7 +99,6 @@ class MHO_MK4StationInterface
         //returns a vector of pols and tone-count for each pol found in 309 data
         std::vector< std::pair< std::string, int>  > GetFreqGroupPolInfo(int n309, type_309** t309, const std::string& fg, bool& same_size);
 
-
         bool fHaveStation;
         struct mk4_sdata* fStation;
         std::string fStationName;
@@ -101,10 +109,44 @@ class MHO_MK4StationInterface
         std::vector< multitone_pcal_type > fFreqGroupPCal; //multitone_pcal_type dims = pol x time x freq
 
         std::string fStationFile;
+        std::string fVexFile;
         std::string fRootCode;
         std::size_t fNCoeffs;
         std::size_t fNIntervals;
         std::size_t fNCoord;
+
+        //vex info
+        bool fHaveVex;
+        mho_json fVex;
+        
+        
+        //comparison predicate for sorting channel frequency info
+        struct ChannelLess
+        {
+            bool operator()(const mho_json& a, const mho_json& b) const
+            {
+                double a_freq = a["sky_freq"].get<double>();
+                double b_freq = b["sky_freq"].get<double>();
+                double a_bw = a["bandwidth"].get<double>();
+                double b_bw = b["bandwidth"].get<double>();
+                std::string a_sb = a["net_sideband"].get<std::string>();
+                std::string b_sb = b["net_sideband"].get<std::string>();
+                
+                double a_sgn = 0;
+                if(a_sb == "L"){a_sgn = -1.0;}
+                if(a_sb == "U"){a_sgn = 1.0;}
+
+                double b_sgn = 0;
+                if(b_sb == "L"){b_sgn = -1.0;}
+                if(b_sb == "U"){b_sgn = 1.0;}
+                
+                double a_center_freq = a_freq + a_bw*a_sgn/2.0;
+                double b_center_freq = b_freq + b_bw*b_sgn/2.0;
+                
+                return a_center_freq < b_center_freq;
+            }
+        };
+        ChannelLess fChannelPredicate;
 
 
 };
