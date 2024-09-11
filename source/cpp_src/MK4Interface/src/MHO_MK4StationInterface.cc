@@ -267,6 +267,8 @@ MHO_MK4StationInterface::GetFreqGroupPolInfo(int n309, type_309** t309, const st
 
     same_size = true;
     int ntones = pol_count.begin()->second;
+
+    std::cout<<"ntones??! "<<ntones<<std::endl;
     for(auto it = pol_set.begin(); it != pol_set.end(); it++)
     {
         int count =  pol_count[*it];
@@ -301,6 +303,8 @@ MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
         {
             std::size_t total_ntones = pol_info.begin()->second;
             //resize the pcal data array
+            std::cout<<"freq group"<<fgroups[n]<<" pcal sizes = "<<npols<<", "<<naps<<", "<<total_ntones<<std::endl;
+
             fFreqGroupPCal[n].Resize(npols, naps, total_ntones);
             fFreqGroupPCal[n].ZeroArray();
 
@@ -346,6 +350,8 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
     //loop over all channels that match this freq group and pol
     //count the number of tones they each have and then order them by index
 
+    std::cout<<"filling pcal array for fgroup: "<<fgroup<<" pol: "<<pol<<std::endl;
+
     //channel index -> <channel location, ntones>
     std::map< int, std::pair< int, int > > chan2ntones;
     std::map< int, std::pair< int, int > > chan2start;
@@ -361,6 +367,7 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
         std::string ch_name = getstr(&(t309[ap]->chan[ch].chan_name[0]), 8);
         if( ExtractChannelInfo(ch_name, fg, sb, p, idx ) && fgroup == fg && pol == p )
         {
+            std::cout<<"channel name = "<<ch_name<<" idx = "<<idx<<std::endl;
             channel_idx_set.insert(idx);
             int ntones = t309[ap]->ntones;
             int count = 0;
@@ -378,6 +385,8 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
             chan2start[idx] = std::make_pair(ch, start);
             chan2name[idx] = ch_name;
             chan2sideband[idx] = sb;
+            std::cout<<"side band = "<<sb<<std::endl;
+            std::cout<<"n tones in channel: "<<ch_name<<" is "<<count<<std::endl;
         }
     }
 
@@ -389,6 +398,8 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
     //now loop over channels and AP's collecting tone phasors
     int naps = pc->GetDimension(MTPCAL_TIME_AXIS);
     int tone_idx = 0;
+
+    std::cout<<"channel idx size = "<<channel_idx.size()<<std::endl;
     for(std::size_t i=0; i<channel_idx.size(); i++)
     {
         int ch = channel_idx[i];
@@ -399,6 +410,8 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
         std::string sb = chan2sideband[ch];
 
         int nt = stop - start;
+
+        std::cout<<"channel: "<<ch<<" has: "<<nt<<" tones"<<std::endl;
         for(int ti=0; ti < nt; ti++)
         {
             TODO_FIXME_MSG("TODO FIXME -- check 309 tone order and conjugation for USB data.")
@@ -417,6 +430,9 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
                 //LSB tone's are flipped and conjugated (we ignore 2012 sign flip)
                 if(sb == "L"){ph = -1.0*std::conj(ph);}
                 pc->at(pol_idx, ap, tone_idx) = ph;
+
+                //std::cout<<"phasor @ = "<<pol_idx<<", "<<ap<<", "<<tone_idx<<"  = "<<ph<<std::endl;
+
                 std::get<MTPCAL_TIME_AXIS>(*pc).at(ap) = ap*acc_period;
 
             }
@@ -552,7 +568,11 @@ MHO_MK4StationInterface::RepairMK4PCData(std::string freqGroup, multitone_pcal_t
         msg_error("mk4interface", "cannot determine channel information for pcal tone repair" << eom);
         return;
     }
+
     auto chan_ax = per_pol_chan_ax.begin()->second; //TODO FIXME , just using one (first) pol
+
+    std::cout<<"freq group: "<<freqGroup<<" channel axis: "<<chan_ax<<std::endl;
+
     if(chan_ax.GetSize() == 0)
     {
         msg_error("mk4interface", "cannot determine channel information for pcal tone repair" << eom);
@@ -568,12 +588,17 @@ MHO_MK4StationInterface::RepairMK4PCData(std::string freqGroup, multitone_pcal_t
         return;
     }
 
+    std::cout<<"pcal_spacing = "<<pcal_spacing<<std::endl;
+
     //only perform this operation if the pcal data originated from mark4 type309s
     std::string data_origin;
     pc_data.Retrieve("origin", data_origin);
 
     //first loop over the pcal freq axis and extract the channel indexes and ranges
     auto pc_tone_ax = &(std::get<MTPCAL_FREQ_AXIS>(pc_data));
+
+
+    std::cout<<"PCAL TONE AX =  "<<*pc_tone_ax<<std::endl;
 
     std::map< std::size_t, std::pair<std::size_t, std::size_t> > chanidx2range;
 
@@ -603,15 +628,19 @@ MHO_MK4StationInterface::RepairMK4PCData(std::string freqGroup, multitone_pcal_t
         for(ch_idx=0; ch_idx<chan_ax.GetSize(); ch_idx++)
         {
             int chid = -1;
-            chan_ax.RetrieveIndexLabelKeyValue(ch_idx, "channel", chid);
+            chan_ax.RetrieveIndexLabelKeyValue(ch_idx, "channel_index", chid);
             if(chid == ch)
             {
+                std::cout<<"found channel: "<<chid<<" <-> "<<ch_idx<<" <-> "<<ch<<std::endl;
                 // std::string channel_label;
                 // chan_ax.RetrieveIndexLabelKeyValue(ch_idx, "channel_label", channel_label);
                 break;
             }
         }
 
+        std::cout<<"ch = ?"<<ch<<std::endl;
+        std::cout<<"ch_idx = "<<ch_idx<<std::endl;
+        std::cout<<"chan ax size = "<<chan_ax.GetSize()<<std::endl;
         if( ch_idx < chan_ax.GetSize() ) //will be equal to chan_ax size if channel not found
         {
             //get the channel frequency info and range
@@ -621,6 +650,7 @@ MHO_MK4StationInterface::RepairMK4PCData(std::string freqGroup, multitone_pcal_t
             bool key_present = chan_ax.RetrieveIndexLabelKeyValue(ch_idx, "net_sideband", net_sideband);
             if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch_idx << " with sky_freq: "<<sky_freq << eom); }
             key_present = chan_ax.RetrieveIndexLabelKeyValue(ch_idx, "bandwidth", bandwidth);
+            std::cout<<"got a bandwidth value of: "<<bandwidth<<std::endl;
             if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch_idx << " with sky_freq: "<<sky_freq << eom);}
 
             //figure out the upper/lower frequency limits for this channel
@@ -642,6 +672,8 @@ MHO_MK4StationInterface::RepairMK4PCData(std::string freqGroup, multitone_pcal_t
                     //loop over the tone indexes and figure out the tone frequencies
                     //which are multiples of the pcal spacing within the channel
                     pc_tone_ax->at(start+ti) = (c+ti)*pcal_spacing;
+
+                    std::cout<<"setting pcal tone @ "<<start+ti<<" to "<<(c+ti)*pcal_spacing<<std::endl;
                 }
             }
         }
@@ -649,6 +681,10 @@ MHO_MK4StationInterface::RepairMK4PCData(std::string freqGroup, multitone_pcal_t
 
     //rescale all the phasors by the sample_period
     double sample_period = 1.0/(2.0*bandwidth*1e6);
+
+    std::cout<<"bandwidth = "<<bandwidth<<std::endl;
+    std::cout<<"SAMPLE PERIOD = "<<sample_period<<std::endl;
+
     (pc_data) *= sample_period;
 
 }
@@ -710,6 +746,7 @@ MHO_MK4StationInterface::ConstructPerPolChannelAxis(std::string freqGroup)
                     std::string chan_name = fVex["$FREQ"][freq_table]["chan_def"][nch]["channel_name"].get<std::string>(); //ovex specialty
                     double sky_freq = fVex["$FREQ"][freq_table]["chan_def"][nch]["sky_frequency"]["value"].get<double>();
                     double bw = fVex["$FREQ"][freq_table]["chan_def"][nch]["bandwidth"]["value"].get<double>();
+                    std::cout<<"ROOT FILE BANDWIDTH = "<<bw<<" FOR CHAN: "<<chan_name<<std::endl;
                     std::string net_sb = fVex["$FREQ"][freq_table]["chan_def"][nch]["net_sideband"].get<std::string>();
                     std::string bbc_id = fVex["$FREQ"][freq_table]["chan_def"][nch]["bbc_id"].get<std::string>();
                     std::string pol = "-";
@@ -739,6 +776,7 @@ MHO_MK4StationInterface::ConstructPerPolChannelAxis(std::string freqGroup)
                             break;
                         }
                     }
+
                     mho_json ch_label;
                     ch_label["sky_freq"] =  sky_freq;
                     ch_label["bandwidth"] = bw;
@@ -747,6 +785,13 @@ MHO_MK4StationInterface::ConstructPerPolChannelAxis(std::string freqGroup)
                     ch_label["pcal_interval_MHz"] = pcal_interval_MHz;
                     ch_label["pol"] = pol;
                     
+                    std::string extra_fg, extra_pol, extra_sb;
+                    int idx;
+                    if( ExtractChannelInfo(chan_name, extra_fg, extra_sb, extra_pol, idx ) )
+                    {
+                        ch_label["channel_index"] = idx;
+                    }
+
                     std::string fg = FreqGroupFromMK4ChannelID(chan_name);
                     //only insert channel info which is part of this frequency group
                     if(fg == freqGroup){ channel_info[pol].push_back(ch_label); }
