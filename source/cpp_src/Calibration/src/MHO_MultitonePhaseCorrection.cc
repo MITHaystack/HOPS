@@ -593,6 +593,8 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     // find bounds of allowable resolved delay
     double lo = station_delay + sampler_delay - pc_amb / 2.0;
     double hi = station_delay + sampler_delay + pc_amb / 2.0;
+    msg_debug("calibration", "resolving sampler delays within bounds: ("<<low<<", "<<hi<<") for ambiguity of "<< pc_amb << eom);
+
     while (hi < delay)  // shift delay left if necessary
         delay -= pc_amb;
     while (lo > delay)  // shift delay right if necessary
