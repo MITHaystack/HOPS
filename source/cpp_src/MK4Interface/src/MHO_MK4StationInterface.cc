@@ -425,6 +425,7 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& fgroup, const std::str
             tone_idx++;
         }
         int channel_stop = tone_idx;
+        //std::cout<<"filled tones for pol: "<<pol<<" channel: "<<chan2name[ch]<<" start/stop: "<<channel_start<<"/"<<channel_stop<<std::endl;
         std::string name_key = "channel_mk4id_";
         std::string index_key = "channel_index";
         name_key += pol;
@@ -656,7 +657,9 @@ std::map< std::string, channel_axis_type >
 MHO_MK4StationInterface::ConstructPerPolChannelAxis(std::string freqGroup)
 {
     std::map< std::string, channel_axis_type> per_pol_chan_ax;
-
+    
+    std::cout<<"Station info: "<<fStationName<<", "<<fStationCode<<", "<<fStationMK4ID<<std::endl;
+    
     //assume we now have all ovex/vex in the fVex object, and that we only have a single scan
     //should only have a single 'scan' element under the schedule section, so find it
     auto sched = fVex["$SCHED"];
@@ -696,6 +699,9 @@ MHO_MK4StationInterface::ConstructPerPolChannelAxis(std::string freqGroup)
             std::string station_code = (*it)["qualifiers"][q].get<std::string>();
             if(station_code == fStationCode)
             {
+                std::cout<<"found the station code:"<<fStationCode<<std::endl;
+                std::cout<<"assuming mk4id :"<<fStationMK4ID<<std::endl;
+                
                 std::string freq_table = keyword;
                 
                 //get the channel information for this station
@@ -744,6 +750,8 @@ MHO_MK4StationInterface::ConstructPerPolChannelAxis(std::string freqGroup)
                     std::string fg = FreqGroupFromMK4ChannelID(chan_name);
                     //only insert channel info which is part of this frequency group
                     if(fg == freqGroup){ channel_info[pol].push_back(ch_label); }
+                    
+                    std::cout<<"channel info = "<<chan_name<<", "<<sky_freq<<", "<<bw<<", "<<net_sb<<", "<<bbc_id<<", "<<pol<<std::endl;
                 }
             }
         }
