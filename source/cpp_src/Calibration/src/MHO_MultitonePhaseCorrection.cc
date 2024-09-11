@@ -557,7 +557,7 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     }
 
     //calulate the pc delay ambiguity
-    double pc_amb = 1.0/(std::get<0>(fPCWorkspace)(1) - std::get<0>(fPCWorkspace)(0));
+    double pc_amb = std::fabs( 1.0/(std::get<0>(fPCWorkspace)(1) - std::get<0>(fPCWorkspace)(0)) );
     pc_amb *= 1e-6; //TODO FIXME - document units (converts to ns)
 
     //fFFTEngine already points to fPCWorkspace, so just execute
