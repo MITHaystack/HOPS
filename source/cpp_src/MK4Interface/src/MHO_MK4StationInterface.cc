@@ -672,7 +672,6 @@ MHO_MK4StationInterface::RepairMK4PCData(std::string freqGroup, multitone_pcal_t
                     //loop over the tone indexes and figure out the tone frequencies
                     //which are multiples of the pcal spacing within the channel
                     pc_tone_ax->at(start+ti) = (c+ti)*pcal_spacing;
-
                     std::cout<<"setting pcal tone @ "<<start+ti<<" to "<<(c+ti)*pcal_spacing<<std::endl;
                 }
             }
