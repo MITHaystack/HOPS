@@ -56,12 +56,17 @@ class MHO_MK4StationInterface
 
         station_coord_type* ExtractStationFile();
 
-        std::size_t GetNPCalObjects(){return fFreqGroupPCal.size();}
+        std::size_t GetNPCalObjects()
+        {
+            if(fFreqGroupPCal.size() == 0){return 0;}
+            return 1;
+        }
+
         multitone_pcal_type* GetPCalObject(std::size_t index)
         {
-            if(index < fFreqGroupPCal.size() ){ return &(fFreqGroupPCal[index]); }
+            if(index < fFreqGroupPCal.size()){ return &(fAllPCalData); }
             else{ return nullptr; }
-        };
+        }
 
     private:
 
@@ -99,14 +104,20 @@ class MHO_MK4StationInterface
         //returns a vector of pols and tone-count for each pol found in 309 data
         std::vector< std::pair< std::string, int>  > GetFreqGroupPolInfo(int n309, type_309** t309, const std::string& fg, bool& same_size);
 
+        //merge the pcal data from multiple frequency groups into a single object
+        void MergePCal();
+
         bool fHaveStation;
         struct mk4_sdata* fStation;
         std::string fStationName;
         std::string fStationCode;
         std::string fStationMK4ID;
 
-        //pcal data
+        //pcal data separated by frequency group
         std::vector< multitone_pcal_type > fFreqGroupPCal; //multitone_pcal_type dims = pol x time x freq
+
+        //all pcal data 
+        multitone_pcal_type fAllPCalData;
 
         std::string fStationFile;
         std::string fVexFile;
