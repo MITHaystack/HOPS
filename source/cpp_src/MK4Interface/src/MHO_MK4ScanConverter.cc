@@ -164,8 +164,6 @@ MHO_MK4ScanConverter::ConvertStation(const std::string& root_file,
     mk4inter.SetVexFile(root_file);
     station_coord_type* st_data = mk4inter.ExtractStationFile();
 
-    std::size_t n_pcal_obj = mk4inter.GetNPCalObjects();
-
     MHO_BinaryFileInterface inter;
     //std::string index_file = output_file + ".index";
     //bool status = inter.OpenToWrite(output_file, index_file);
@@ -174,11 +172,8 @@ MHO_MK4ScanConverter::ConvertStation(const std::string& root_file,
     if(status)
     {
         inter.Write(*st_data, "sta"); //write out station data
-        //write out pcal objects
-        for(std::size_t i=0; i<n_pcal_obj; i++)
-        {
-            inter.Write( *(mk4inter.GetPCalObject(i)), "pcal");
-        }
+        auto pcal_data = mk4inter.GetPCalObject();
+        if(pcal_data != nullptr){ inter.Write( *(pcal_data), "pcal"); }
         inter.Close();
     }
     else
