@@ -77,6 +77,8 @@ class MHO_MK4StationInterface
         
         //builds a visibility channel axis from the ovex info for each pol
         std::map< std::string, channel_axis_type > ConstructPerPolChannelAxis();
+        
+        std::map< std::string, std::vector< mho_json > > ConstructChannelInfo();
 
         //converts a mk4 channel id into its components, returns true if successful
         bool ExtractChannelInfo(const std::string& ch_name, std::string& fgroup, std::string& sb, std::string& pol, int& index);
