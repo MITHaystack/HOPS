@@ -494,6 +494,7 @@ MHO_DiFXScanProcessor::ExtractPCalData()
 {
     for(auto it = fFileSet->fPCALFileList.begin(); it != fFileSet->fPCALFileList.end(); it++)
     {
+        msg_debug("difx_interface", "extracting phase-cal data from: "<< *it << eom );
         fPCalProcessor.SetFilename(*it);
         double ap_length = fInput["config"][0]["tInt"]; //config is a list element, grab the first item
         fPCalProcessor.SetAccumulationPeriod(ap_length);
@@ -524,8 +525,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
     //Note: with the exception of the phase-spline polynomial (type_302), all of these other quantities
     //do not depend on the channel/frequency.
 
-
-    std::size_t scan_index = 0;
+    std::size_t scan_index = fFileSet->fIndex;
     std::size_t nAntenna = fInput["scan"][scan_index]["nAntenna"];
 
     std::size_t nPhaseCenters = fInput["scan"][scan_index]["nPhaseCentres"];
