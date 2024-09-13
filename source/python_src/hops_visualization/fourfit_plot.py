@@ -298,14 +298,14 @@ def make_pcal_plots(fig, plot_dict):
 
         if "extra" in plot_dict:
             if "ref_mtpc_phase_segs" in plot_dict["extra"]:
-                if len(plot_dict["extra"]["ref_mtpc_phase_segs"]) < ch:
+                if  ch < len(plot_dict["extra"]["ref_mtpc_phase_segs"]):
                     ref_pcal_phases = plot_dict["extra"]["ref_mtpc_phase_segs"][ch]
                     ref_n_seg = len(ref_pcal_phases)
                 else:
                     ref_pcal_phases = np.zeros(n_seg)
                     ref_n_seg = n_seg;
             if "rem_mtpc_phase_segs" in plot_dict["extra"]:
-                if len(  plot_dict["extra"]["rem_mtpc_phase_segs"] ) < ch:
+                if ch < len(  plot_dict["extra"]["rem_mtpc_phase_segs"] ):
                     rem_pcal_phases = plot_dict["extra"]["rem_mtpc_phase_segs"][ch]
                     rem_n_seg = len(rem_pcal_phases)
                 else:
