@@ -557,7 +557,7 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     }
 
     //calulate the pc delay ambiguity
-    double pc_amb = 1.0/(std::get<0>(fPCWorkspace)(1) - std::get<0>(fPCWorkspace)(0));
+    double pc_amb = std::fabs( 1.0/(std::get<0>(fPCWorkspace)(1) - std::get<0>(fPCWorkspace)(0)) );
     pc_amb *= 1e-6; //TODO FIXME - document units (converts to ns)
 
     //fFFTEngine already points to fPCWorkspace, so just execute
@@ -593,6 +593,8 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     // find bounds of allowable resolved delay
     double lo = station_delay + sampler_delay - pc_amb / 2.0;
     double hi = station_delay + sampler_delay + pc_amb / 2.0;
+    msg_debug("calibration", "resolving sampler delays within bounds: ("<<lo<<", "<<hi<<") for ambiguity of "<< pc_amb << eom);
+
     while (hi < delay)  // shift delay left if necessary
         delay -= pc_amb;
     while (lo > delay)  // shift delay right if necessary
