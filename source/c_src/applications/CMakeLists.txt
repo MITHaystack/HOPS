@@ -1,3 +1,5 @@
+option(ENABLE_BUILD_D2M4 "Enable build of difx2mark4." OFF)
+
 if(HOPS3_USE_CXX)
     #only the following applications have been upgraded to be compiled as C++
     add_subdirectory(adump)
@@ -27,7 +29,9 @@ else()
     add_subdirectory(legacy/CorAsc2)
     
     if(HOPS_USE_DIFXIO)
-    add_subdirectory(difx2mark4)
+        if(ENABLE_BUILD_D2M4)
+            add_subdirectory(difx2mark4)
+        endif(ENABLE_BUILD_D2M4)
     endif(HOPS_USE_DIFXIO)
 
 endif()
