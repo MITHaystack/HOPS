@@ -55,13 +55,7 @@ class MHO_MK4StationInterface
         mk4_sdata* GetStationData(){return fStation;};
 
         station_coord_type* ExtractStationFile();
-
-        std::size_t GetNPCalObjects(){return fFreqGroupPCal.size();}
-        multitone_pcal_type* GetPCalObject(std::size_t index)
-        {
-            if(index < fFreqGroupPCal.size() ){ return &(fFreqGroupPCal[index]); }
-            else{ return nullptr; }
-        };
+        multitone_pcal_type* GetPCalObject(){return &fAllPCalData;}
 
     private:
 
@@ -72,17 +66,17 @@ class MHO_MK4StationInterface
         }
 
         void ReadStationFile();
-        
         void ReadVexFile();
 
         //pcal stuff
         void ExtractPCal(int n309, type_309** t309);
-        void FillPCalArray(const std::string& fgroup, const std::string& pol, int pol_idx, multitone_pcal_type* pc, int n309, type_309** t309);
-        void RepairMK4PCData(std::string freqGroup, multitone_pcal_type& pc_data);
+        void FillPCalArray(const std::string& pol, int pol_idx, multitone_pcal_type* pc, int n309, type_309** t309);
         void DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq);
         
         //builds a visibility channel axis from the ovex info for each pol
-        std::map< std::string, channel_axis_type > ConstructPerPolChannelAxis(std::string freqGroup);
+        std::map< std::string, channel_axis_type > ConstructPerPolChannelAxis();
+        
+        std::map< std::string, std::vector< mho_json > > ConstructChannelInfo();
 
         //converts a mk4 channel id into its components, returns true if successful
         bool ExtractChannelInfo(const std::string& ch_name, std::string& fgroup, std::string& sb, std::string& pol, int& index);
@@ -105,8 +99,8 @@ class MHO_MK4StationInterface
         std::string fStationCode;
         std::string fStationMK4ID;
 
-        //pcal data
-        std::vector< multitone_pcal_type > fFreqGroupPCal; //multitone_pcal_type dims = pol x time x freq
+        //all pcal data 
+        multitone_pcal_type fAllPCalData;
 
         std::string fStationFile;
         std::string fVexFile;
