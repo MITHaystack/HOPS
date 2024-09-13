@@ -66,13 +66,11 @@ class MHO_MK4StationInterface
         }
 
         void ReadStationFile();
-        
         void ReadVexFile();
 
         //pcal stuff
         void ExtractPCal(int n309, type_309** t309);
         void FillPCalArray(const std::string& pol, int pol_idx, multitone_pcal_type* pc, int n309, type_309** t309);
-        void RepairMK4PCData(multitone_pcal_type& pc_data);
         void DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq);
         
         //builds a visibility channel axis from the ovex info for each pol
