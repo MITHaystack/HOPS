@@ -522,18 +522,12 @@ MHO_MultitonePhaseCorrection::DetermineChannelToneIndexes(double lower_freq, dou
 {
     auto tone_freq_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCData));
 
-    std::cout<<"tone freq AX = "<<*tone_freq_ax<<std::endl;
-
     double start_tone_frequency = 0;
     start_idx = 0;
     ntones = 0;
 
-    std::cout<<"lower freq = "<<lower_freq<<std::endl;
-    std::cout<<"upper_freq = "<<upper_freq<<std::endl;
-    std::cout<<"start idx = "<<start_idx<<std::endl;
     for(std::size_t j=0; j<tone_freq_ax->GetSize(); j++)
     {
-        std::cout<<"tone freq ax @ "<<j<<" = "<<tone_freq_ax->at(j)<<std::endl;
         if( lower_freq <= tone_freq_ax->at(j) && tone_freq_ax->at(j) < upper_freq )
         {
             if(ntones == 0)
@@ -544,8 +538,6 @@ MHO_MultitonePhaseCorrection::DetermineChannelToneIndexes(double lower_freq, dou
             ntones++;
         }
     }
-    std::cout<<"start tone freq = "<<start_tone_frequency<<std::endl;
-    std::cout<<"ntones = "<<ntones<<std::endl;
 }
 
 
