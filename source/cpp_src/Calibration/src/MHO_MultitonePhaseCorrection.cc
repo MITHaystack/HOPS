@@ -520,17 +520,19 @@ MHO_MultitonePhaseCorrection::DetermineChannelFrequencyLimits(double sky_freq, d
 void
 MHO_MultitonePhaseCorrection::DetermineChannelToneIndexes(double lower_freq, double upper_freq, std::size_t& start_idx, std::size_t& ntones)
 {
-    auto tone_freq_ax = std::get<MTPCAL_FREQ_AXIS>(*fPCData);
+    auto tone_freq_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCData));
+
     double start_tone_frequency = 0;
     start_idx = 0;
     ntones = 0;
-    for(std::size_t j=0; j<tone_freq_ax.GetSize(); j++)
+
+    for(std::size_t j=0; j<tone_freq_ax->GetSize(); j++)
     {
-        if( lower_freq <= tone_freq_ax(j) && tone_freq_ax(j) < upper_freq )
+        if( lower_freq <= tone_freq_ax->at(j) && tone_freq_ax->at(j) < upper_freq )
         {
             if(ntones == 0)
             {
-                start_tone_frequency = tone_freq_ax(j);
+                start_tone_frequency = tone_freq_ax->at(j);
                 start_idx = j;
             }
             ntones++;
