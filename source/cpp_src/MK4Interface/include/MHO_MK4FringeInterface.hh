@@ -59,6 +59,8 @@ class MHO_MK4FringeInterface
         //void ExportFringeFilesToJSON();
         void ExportFringeFiles ();
 
+        mho_json handleT212Array ();
+
     private:
 
         bool fHaveFringe;

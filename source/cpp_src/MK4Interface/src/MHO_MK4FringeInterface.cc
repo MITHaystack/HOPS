@@ -82,7 +82,8 @@ void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const
                     {"type_207", convertToJSON(t207)},
                     {"type_208", convertToJSON(t208)},
                     {"type_210", convertToJSON(t210)},
-                    {"type_212", convertToJSON(t212)},
+                    //{"type_212", convertToJSON(t212)},
+                    {"type_212", handleT212Array()},
     };
     
     // Write JSON fringe file data to file.
@@ -95,6 +96,19 @@ void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const
     }
 
     void MHO_MK4FringeInterface::ExportFringeFiles () {
+        ExportFringeFilesToJSON(*(fFringe.t200), *(fFringe.t201), *(fFringe.t202), *(fFringe.t203),
+        *(fFringe.t204), *(fFringe.t205), *(fFringe.t206), *(fFringe.t207), *(fFringe.t208),
+        *(fFringe.t210), **(fFringe.t212));
 
+    }
+    mho_json MHO_MK4FringeInterface::handleT212Array () {
+        mho_json t212Json;
+
+         for (const auto& s: fFringe.t212) {
+        // for (int i = 0; i < len(fFringe.t212); i++)) {
+             t212Json.push_back(convertToJSON(fFringe.t212[s]));
+             //t212Json.push_back(convertToJSON(fFringe.t212[i]));
+         }
+        return t212Json;
     }
 }

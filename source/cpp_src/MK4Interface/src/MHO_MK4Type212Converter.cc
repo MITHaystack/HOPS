@@ -2,7 +2,9 @@
 #include "MHO_MK4JSONDateConverter.hh"
 #include <iostream>
 
-const int DATASIZE = 1;
+// TO DO: change DATASIZE to size 30??
+// TO Do: change DATASIZE to preprocessor define directive
+const int DATASIZE = 1; 
 
 //struct newphasor
 //    {
