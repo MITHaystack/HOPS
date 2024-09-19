@@ -105,10 +105,11 @@ void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const
         mho_json t212Json;
 
          for (const auto& s: fFringe.t212) {
-        // for (int i = 0; i < len(fFringe.t212); i++)) {
-             t212Json.push_back(convertToJSON(fFringe.t212[s]));
-             //t212Json.push_back(convertToJSON(fFringe.t212[i]));
+             t212Json.push_back(convertToJSON(*s));
          }
+        // for (int i = 0; i < len(fFringe.t212); i++)) {
+             //t212Json.push_back(convertToJSON(*fFringe.t212[i]));
+         // }
         return t212Json;
     }
 }
