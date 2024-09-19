@@ -21,6 +21,7 @@ set(SOURCE_BASENAMES
     mark42hops
     hops2json
     CompareCorFiles
+    ComparePcal
     fourfit4
     fplot4
     alist4
