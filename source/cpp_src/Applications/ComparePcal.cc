@@ -79,6 +79,25 @@ int main(int argc, char** argv)
     double L1_norm = 0;
     double rel_L1_norm = 0;
 
+
+    msg_debug("main", "pcal object 'A' has size: ("
+    << pcal1->GetDimension(0)<<", "
+    << pcal1->GetDimension(1)<<", "
+    << pcal1->GetDimension(2)<<") " << eom );
+
+    msg_debug("main", "pcal object 'B' has size: ("
+    << pcal2->GetDimension(0)<<", "
+    << pcal2->GetDimension(1)<<", "
+    << pcal2->GetDimension(2)<<") " << eom );
+
+    std::size_t npol1 = pcal1->GetDimension(0);
+    std::size_t nap1 =  pcal1->GetDimension(1);
+    std::size_t nfreq1 = pcal1->GetDimension(2);
+
+    std::size_t npol2 = pcal2->GetDimension(0);
+    std::size_t nap2 =  pcal2->GetDimension(1);
+    std::size_t nfreq2 = pcal2->GetDimension(2);
+
     if(size1 == size2)
     {
         for(std::size_t i=0; i<size1; i++)
@@ -100,7 +119,59 @@ int main(int argc, char** argv)
         std::cout<<"pcal absolute L2 norm difference = "<<L2_norm<<std::endl;
         std::cout<<"pcal average absolute L2 norm difference = "<<L2_norm/(double)size1<<std::endl;
     }
-    else
+    else if( npol1 == npol2 && nap1 == nap1)
+    {
+        //try to do a comparison across just the tones which match in frequency 
+        double freq_tol = 0.001;
+    
+        auto tone_ax1 = &(std::get<MTPCAL_FREQ_AXIS>(*pcal1));
+        auto tone_ax2 = &(std::get<MTPCAL_FREQ_AXIS>(*pcal2));
+
+        for(std::size_t p=0;p<npol1;p++)
+        {
+            for(std::size_t ap=0;ap<nap1;ap++)
+            {
+                for(std::size_t tf1=0; tf1<nfreq1; tf1++)
+                {
+                    double f1 = tone_ax1->at(tf1);
+                    for(std::size_t tf2=0; tf2<nfreq2; tf2++)
+                    {
+                        double f2 = tone_ax2->at(tf2);
+                        if( std::fabs(f2-f1) < freq_tol)
+                        {
+
+                            
+                            std::complex<double> a = (*pcal1)(p,ap,tf1);
+                            std::complex<double> b = (*pcal2)(p,ap,tf2);
+                            std::complex<double> delta = a-b;
+                            double geom_mean_mag = std::sqrt( std::abs(a) * std::abs(b) );
+
+
+                            if(ap == 0)
+                            {
+                                std::cout<<f1<<", "<<f2<<", "<<a<<", "<<b<<std::endl;
+                            }
+
+                            L2_norm += std::real( delta*std::conj(delta) );
+                            double abs_del = std::abs(delta);
+                            double rel_del = abs_del/geom_mean_mag;
+                            if(L1_norm < abs_del){L1_norm = abs_del;}
+                            if(rel_L1_norm < rel_del){rel_L1_norm = rel_del;};
+
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        std::cout<<"pcal absolute L1_norm difference = "<<L1_norm<<std::endl;
+        std::cout<<"pcal relative L1 norm difference = "<<rel_L1_norm<<std::endl;
+        std::cout<<"pcal absolute L2 norm difference = "<<L2_norm<<std::endl;
+        std::cout<<"pcal average absolute L2 norm difference = "<<L2_norm/(double)size1<<std::endl;
+
+    }
+    else 
     {
         msg_fatal("main", "pcal objects have different sizes, cannot compare." <<eom);
         std::exit(1);
