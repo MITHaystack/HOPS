@@ -435,8 +435,11 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& pol, int pol_idx, mult
         {
             TODO_FIXME_MSG("TODO FIXME -- check 309 tone order and conjugation for USB data.")
             int acc_idx = start + ti;  //USB should be: start + ti?
-            // if(sb == "L"){acc_idx = (stop-1) - ti;} //tone order for LSB channels
-            acc_idx = (stop-1) - ti; //tone order for LSB and USB channels
+
+            //tone order for LSB channels....but also for USB channels that were created from LSB channels (zoom-bands)
+            //how can we detect the zoom-bands issue?
+            if(sb == "L"){acc_idx = (stop-1) - ti;}
+            // acc_idx = (stop-1) - ti; //tone order for LSB channels
             for(ap=0; ap<naps; ap++)
             {
                 double acc_period = t309[ap]->acc_period;

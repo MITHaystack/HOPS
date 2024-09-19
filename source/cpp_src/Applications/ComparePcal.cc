@@ -98,28 +98,28 @@ int main(int argc, char** argv)
     std::size_t nap2 =  pcal2->GetDimension(1);
     std::size_t nfreq2 = pcal2->GetDimension(2);
 
-    if(size1 == size2)
-    {
-        for(std::size_t i=0; i<size1; i++)
-        {
-            std::complex<double> delta = (*pcal1)[i] - (*pcal2)[i];
-            double geom_mean_mag = std::sqrt( std::abs( (*pcal1)[i] ) * std::abs( (*pcal2)[i] ) );
-
-            L2_norm += std::real( delta*std::conj(delta) );
-            double abs_del = std::abs(delta);
-            double rel_del = abs_del/geom_mean_mag;
-            if(L1_norm < abs_del){L1_norm = abs_del;}
-            if(rel_L1_norm < rel_del){rel_L1_norm = rel_del;};
-        }
-
-        L2_norm = std::sqrt(L2_norm);
-
-        std::cout<<"pcal absolute L1_norm difference = "<<L1_norm<<std::endl;
-        std::cout<<"pcal relative L1 norm difference = "<<rel_L1_norm<<std::endl;
-        std::cout<<"pcal absolute L2 norm difference = "<<L2_norm<<std::endl;
-        std::cout<<"pcal average absolute L2 norm difference = "<<L2_norm/(double)size1<<std::endl;
-    }
-    else if( npol1 == npol2 && nap1 == nap1)
+    // if(size1 == size2)
+    // {
+    //     for(std::size_t i=0; i<size1; i++)
+    //     {
+    //         std::complex<double> delta = (*pcal1)[i] - (*pcal2)[i];
+    //         double geom_mean_mag = std::sqrt( std::abs( (*pcal1)[i] ) * std::abs( (*pcal2)[i] ) );
+    // 
+    //         L2_norm += std::real( delta*std::conj(delta) );
+    //         double abs_del = std::abs(delta);
+    //         double rel_del = abs_del/geom_mean_mag;
+    //         if(L1_norm < abs_del){L1_norm = abs_del;}
+    //         if(rel_L1_norm < rel_del){rel_L1_norm = rel_del;};
+    //     }
+    // 
+    //     L2_norm = std::sqrt(L2_norm);
+    // 
+    //     std::cout<<"pcal absolute L1_norm difference = "<<L1_norm<<std::endl;
+    //     std::cout<<"pcal relative L1 norm difference = "<<rel_L1_norm<<std::endl;
+    //     std::cout<<"pcal absolute L2 norm difference = "<<L2_norm<<std::endl;
+    //     std::cout<<"pcal average absolute L2 norm difference = "<<L2_norm/(double)size1<<std::endl;
+    // }
+    if( npol1 == npol2 && nap1 == nap1)
     {
         //try to do a comparison across just the tones which match in frequency 
         double freq_tol = 0.001;
