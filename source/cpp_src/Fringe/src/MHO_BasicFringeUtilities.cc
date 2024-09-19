@@ -357,7 +357,14 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
             //apply weight and sum
             double w = (*weights)(POLPROD, ch, ap, 0);
             std::complex<double> wght_phsr = z*w;
-            sum_all += wght_phsr;
+            if(net_sideband == "U")
+            {
+                sum_all += -1.0*wght_phsr;
+            }
+            else
+            {
+                sum_all += wght_phsr;
+            }
         }
     }
 
@@ -531,8 +538,16 @@ MHO_BasicFringeUtilities::calculate_ion_covariance(MHO_ContainerStore* conStore,
             double w = (*weights)(POLPROD, ch, ap, 0);
             sumwt += w;
             std::complex<double> wght_phsr = z*w;
-            sum_all += wght_phsr;
-            ch_sum += wght_phsr;
+            if(net_sideband == "U")
+            {
+                sum_all += -1.0*wght_phsr;
+                ch_sum += -1.0*wght_phsr;
+            }
+            else
+            {
+                sum_all += wght_phsr;
+                ch_sum += wght_phsr;
+            }
         }
         chan_phasors[ch] = ch_sum;
 
