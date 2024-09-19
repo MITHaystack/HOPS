@@ -128,6 +128,9 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         std::string fPCToneMaskChannels;
         std::vector< int > fPCToneMaskBitmasks;
 
+        //controls if pc delays are applied (no -- if there are no sampler delays)
+        bool fApplyPCDelay;
+
 
         //minor helper function to make sure all strings are compared as upper-case only
         void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };

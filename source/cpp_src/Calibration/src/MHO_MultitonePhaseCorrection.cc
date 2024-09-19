@@ -131,9 +131,11 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
     std::vector<double> sampler_delays;
     pcal_pol_ax->RetrieveIndexLabelKeyValue(pc_pol, "sampler_delays", sampler_delays);
 
+    fApplyPCDelay = true;
     if(sampler_delays.size() == 0)
     {
-        msg_warn("calibration", "no sampler delays assigned, no delay averaging or ambiguity resolution will be attempted" << eom);
+        msg_warn("calibration", "no sampler delays assigned, no delay averaging or ambiguity resolution will be attempted, and pc_delays will not be applied." << eom);
+        fApplyPCDelay = false;
     }
 
     //now loop over the channels
@@ -447,16 +449,19 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
 
                 //std::cout<<"pol, ch, ap, phase/delay = "<<vis_pp<<", "<<ch<<", "<<dap<<", "<<pcphase<<", "<<1e9*pcdelay<<std::endl;
 
-                //apply delay correction
-                double sb_sign = 1.0;
-                if(net_sideband == "U"){sb_sign = -1.0;}
-                for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
+                //apply delay correction (but only if sampler delays are defined...fourfit3 will not apply pc delay if no sampler delays available)
+                if(fApplyPCDelay)
                 {
-                    double deltaf = ( (*vis_freq_ax)(sp) - bandwidth/2.0 )*1e6; //Hz
-                    std::complex<double> pc_delay_phasor = std::exp( -2.0*sb_sign*M_PI*fImagUnit*(pcdelay*deltaf + phase_shift ) );
-                    //conjugate pc phasor when applied to reference station
-                    if(fStationIndex == 0){pc_delay_phasor = std::conj(pc_delay_phasor);}
-                    (*in)(vis_pp, ch, dap, sp) *= pc_delay_phasor;
+                    double sb_sign = 1.0;
+                    if(net_sideband == "U"){sb_sign = -1.0;}
+                    for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
+                    {
+                        double deltaf = ( (*vis_freq_ax)(sp) - bandwidth/2.0 )*1e6; //Hz
+                        std::complex<double> pc_delay_phasor = std::exp( -2.0*sb_sign*M_PI*fImagUnit*(pcdelay*deltaf + phase_shift ) );
+                        //conjugate pc phasor when applied to reference station
+                        if(fStationIndex == 0){pc_delay_phasor = std::conj(pc_delay_phasor);}
+                        (*in)(vis_pp, ch, dap, sp) *= pc_delay_phasor;
+                    }
                 }
             }
         }
