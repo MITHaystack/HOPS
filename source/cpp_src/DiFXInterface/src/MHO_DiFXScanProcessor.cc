@@ -317,9 +317,9 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
                 bool issue_once = true;
                 if(!ref_ok || !rem_ok)
                 {
-                    msg_error("difx_interface",
-                        "error missing data in autocorrs needed to normalize: "
-                        <<baseline<<":"<<polprod<<" "<<pp<<"."<<eom);
+                    msg_error("difx_interface", "error missing data in autocorrs needed to normalize baseline:pol-product: " <<baseline<<":"<<polprod<<" "<<pp<<"."<<eom);
+                    if(!ref_ok){msg_error("difx_interface", "reference station: "<<ref_st<<" autocorr data is missing"<<eom);}
+                    if(!rem_ok){msg_error("difx_interface", "remote station: "<<rem_st<<" autocorr data is missing"<<eom);}
                 }
                 else
                 {
