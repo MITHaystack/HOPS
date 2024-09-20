@@ -435,20 +435,23 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& pol, int pol_idx, mult
         {
             TODO_FIXME_MSG("TODO FIXME -- check 309 tone order and conjugation for USB data.")
             int acc_idx = start + ti;  //USB should be: start + ti?
-            if(sb == "L"){acc_idx = (stop-1) - ti;} //tone order for LSB channels
+
+            //tone order for LSB channels....but also for USB channels that were created from LSB channels (zoom-bands)
+            //how can we detect the zoom-bands issue?
+            if(sb == "L"){acc_idx = (stop-1) - ti;}
+            // acc_idx = (stop-1) - ti; //tone order for LSB channels
             for(ap=0; ap<naps; ap++)
             {
                 double acc_period = t309[ap]->acc_period;
                 uint32_t rc = t309[ap]->chan[ch_loc].acc[ acc_idx ][0];
                 uint32_t ic = t309[ap]->chan[ch_loc].acc[ acc_idx ][1];
-                //have to rescal the amplitude by the sample period
+                //have to rescale the amplitude by the sample period
                 auto ph = ComputePhasor(rc, ic, acc_period, sample_period );
 
                 //LSB tone's are flipped and conjugated (we ignore 2012 sign flip)
                 if(sb == "L"){ph = -1.0*std::conj(ph);}
 
                 pc->at(pol_idx, ap, tone_idx) = ph;
-
                 std::get<MTPCAL_TIME_AXIS>(*pc).at(ap) = ap*acc_period;
             }
 

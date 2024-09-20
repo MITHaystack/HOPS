@@ -65,6 +65,7 @@ MHO_DiFXPCalProcessor::ReadPCalFile()
         fPCalData.clear();
         fSortedPCalData.clear();
         fPCal.ZeroArray();
+        fPolSet.clear();
         if(fFilename != "")
         {
             //open file

@@ -158,6 +158,9 @@ int main(int argc, char** argv)
             }
             ffit->Finalize();
 
+            //determine if this pass was skipped 
+            bool is_skipped = fringeData.GetParameterStore()->GetAs<bool>("/status/skipped");
+
             ////////////////////////////////////////////////////////////////////////////
             //OUTPUT/PLOTTING -- this should be reorganized with visitor pattern
             ////////////////////////////////////////////////////////////////////////////
@@ -173,7 +176,7 @@ int main(int argc, char** argv)
             fringeData.GetParameterStore()->Set("/profile/events", event_list);
 
             //open and dump to file -- should we profile this as well?
-            if(!test_mode)
+            if(!test_mode && !is_skipped)
             {
                 bool use_mk4_output = false;
                 fringeData.GetParameterStore()->Get("/cmdline/mk4format_output", use_mk4_output);
@@ -193,7 +196,7 @@ int main(int argc, char** argv)
             }
 
             #ifdef USE_PYBIND11
-            if(show_plot)
+            if(show_plot && !is_skipped)
             {
                 msg_debug("main", "python plot generation enabled." << eom );
                 py::dict plot_obj = plot_data;
@@ -220,7 +223,7 @@ int main(int argc, char** argv)
                 plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
             }
             #else //USE_PYBIND11
-            if(show_plot)
+            if(show_plot && !is_skipped)
             {
                 msg_warn("main", "plot output requested, but not enabled since HOPS was built without pybind11 support, ignoring." << eom);
             }
