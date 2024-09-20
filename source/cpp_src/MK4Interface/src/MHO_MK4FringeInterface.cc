@@ -70,7 +70,7 @@ MHO_MK4FringeInterface::ExportFringeFilesToStructs()
 }
 
 void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const type_201 &t201, const type_202 &t202, const type_203 &t203, const type_204 &t204,
-     const type_205 &t205, const type_206 &t206, const type_207 &t207, const type_208 &t208, const type_210 &t210, const type_212 &t212){
+     const type_205 &t205, const type_206 &t206, const type_207 &t207, const type_208 &t208, const type_210 &t210){
    
     mho_json jsonDump = {{"type_200", convertToJSON(t200)},
                     {"type_201", convertToJSON(t201)},
@@ -85,32 +85,31 @@ void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const
                     //{"type_212", convertToJSON(t212)},
                     {"type_212", handleT212Array()},
     };
+
+    //std::cout << jsonDump << std::endl;
+    //std::cout << std::setw(4) << jsonDump << std::endl;
     
     // Write JSON fringe file data to file.
     std::string homeDir = getenv("HOME"); 
     std::string filePath = homeDir+"/type-200s-dump.json";
     std::cout << "JSON file dumped to:" << filePath << std::endl;
     std::ofstream output(filePath);
-    std::cout << jsonDump << std::endl;
     output << std::setw(4) << jsonDump << std::endl;
-    }
+}
 
     void MHO_MK4FringeInterface::ExportFringeFiles () {
         ExportFringeFilesToJSON(*(fFringe.t200), *(fFringe.t201), *(fFringe.t202), *(fFringe.t203),
         *(fFringe.t204), *(fFringe.t205), *(fFringe.t206), *(fFringe.t207), *(fFringe.t208),
-        *(fFringe.t210), **(fFringe.t212));
+        *(fFringe.t210));
 
     }
     mho_json MHO_MK4FringeInterface::handleT212Array () {
         mho_json t212Json;
         std::cout << "Converting type 212 data" << std::endl;
-        //for (const auto& s: fFringe.t212) {
-        //    std::cout << "Made it in the for loop!" << std::endl;
-        //     t212Json.push_back(convertToJSON(*s));
-        //}
-        //for (int i = 0; i < 64; i++) { // MAXFREQ = 64
+
+        // Note: n212 is the number of type 212 records.
         for (int i = 0; i < fFringe.n212; i++) {
-            t212Json.push_back(convertToJSON(*fFringe.t212[i]));
+            t212Json.push_back(convertToJSON(*fFringe.t212[i], fFringe.t212[0]->nap));
         }
         return t212Json;
     }
@@ -120,8 +119,8 @@ void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const
         return fFringe.n212;
     }
 
-    int MHO_MK4FringeInterface::getType212DataSize() {
-        std::cout << "fFringe.t212[0]->data is: " << (sizeof(fFringe.t212[0]->data) / sizeof(fFringe.t212[0]->data[0])) << std::endl;
-        return 0;
+    int MHO_MK4FringeInterface::getType212DataSize(int index) {
+        std::cout << "fFringe.t212[" << index << "]->nap is :" << fFringe.t212[index]->nap << std::endl;
+        return fFringe.t212[index]->nap;
     }
 }

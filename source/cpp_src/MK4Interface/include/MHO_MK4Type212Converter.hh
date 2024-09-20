@@ -34,7 +34,7 @@ namespace hops
 * @return JSON string
 */
 
-mho_json convertToJSON(const type_212& t);
+mho_json convertToJSON(const type_212& t, int dataSize);
 
 }
 

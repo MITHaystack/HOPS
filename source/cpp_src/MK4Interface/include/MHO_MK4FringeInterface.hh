@@ -54,7 +54,7 @@ class MHO_MK4FringeInterface
         void ExportFringeFilesToStructs();
 
         void ExportFringeFilesToJSON(const type_200 &t200, const type_201 &t201, const type_202 &t202, const type_203 &t203, const type_204 &t204,
-     const type_205 &t205, const type_206 &t206, const type_207 &t207, const type_208 &t208, const type_210 &t210, const type_212 &t212);
+     const type_205 &t205, const type_206 &t206, const type_207 &t207, const type_208 &t208, const type_210 &t210);
 
         //void ExportFringeFilesToJSON();
         void ExportFringeFiles ();
@@ -62,7 +62,7 @@ class MHO_MK4FringeInterface
         mho_json handleT212Array ();
 
         int getN212Size ();
-        int getType212DataSize ();
+        int getType212DataSize (int index);
 
     private:
 

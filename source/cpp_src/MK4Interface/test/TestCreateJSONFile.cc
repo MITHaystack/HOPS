@@ -384,7 +384,7 @@ int main(int argc, char **argv) {
   std::cout << "Structs created and filled!" << std::endl;
   std::cout << "Converting to JSON..." << std::endl;
   mk4FringeInterface.ExportFringeFilesToJSON(my200, my201, my202, my203, my204, my205, my206,
-                                              my207, my208, my210, my212);
+                                              my207, my208, my210);
 
   std::string homeDir = getenv("HOME"); 
   std::string filePath = homeDir+"/type-200s-dump.json";

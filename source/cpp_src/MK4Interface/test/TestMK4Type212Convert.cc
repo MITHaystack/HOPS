@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
     my212.data[i].weight = 22.22;
   }
 
-  mho_json obj = convertToJSON(my212);
+  mho_json obj = convertToJSON(my212, 1);
   std::cout << obj.dump(2) << std::endl;
 
   return 0;

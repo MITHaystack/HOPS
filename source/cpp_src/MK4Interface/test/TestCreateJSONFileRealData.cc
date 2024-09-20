@@ -22,8 +22,8 @@ int main(int argc, char **argv) {
   mk4FringeInterface.ReadFringeFile(fringeFile);
   
   // Convert the fringe struct to JSON.
-  const int DATASIZE = mk4FringeInterface.getN212Size();
-  mk4FringeInterface.getType212DataSize();
+  const int DATASIZE = mk4FringeInterface.getType212DataSize(0);
+  const int meh = mk4FringeInterface.getN212Size();
   std::cout << "Converting struct to JSON..." << std::endl;
   mk4FringeInterface.ExportFringeFiles();
 
