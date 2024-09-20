@@ -284,13 +284,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     double alist_resid_delay = mbdelay + ambig * std::floor( ((sbdelay - mbdelay)/ambig) + 0.5);
 
     paramStore->Set("/fringe/resid_delay", alist_resid_delay);
-
-
 }
-
-
-
-
 
 
 double
