@@ -81,9 +81,9 @@ void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const
                     {"type_206", convertToJSON(t206)},
                     {"type_207", convertToJSON(t207)},
                     {"type_208", convertToJSON(t208)},
-                    {"type_210", convertToJSON(t210)}
+                    {"type_210", convertToJSON(t210)},
                     //{"type_212", convertToJSON(t212)},
-                    //{"type_212", handleT212Array()},
+                    {"type_212", handleT212Array()},
     };
     
     // Write JSON fringe file data to file.
@@ -91,6 +91,7 @@ void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const
     std::string filePath = homeDir+"/type-200s-dump.json";
     std::cout << "JSON file dumped to:" << filePath << std::endl;
     std::ofstream output(filePath);
+    std::cout << jsonDump << std::endl;
     output << std::setw(4) << jsonDump << std::endl;
     }
 
@@ -103,13 +104,24 @@ void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const
     mho_json MHO_MK4FringeInterface::handleT212Array () {
         mho_json t212Json;
         std::cout << "Converting type 212 data" << std::endl;
-         for (const auto& s: fFringe.t212) {
-             t212Json.push_back(convertToJSON(*s));
-         }
+        //for (const auto& s: fFringe.t212) {
+        //    std::cout << "Made it in the for loop!" << std::endl;
+        //     t212Json.push_back(convertToJSON(*s));
+        //}
+        //for (int i = 0; i < 64; i++) { // MAXFREQ = 64
+        for (int i = 0; i < fFringe.n212; i++) {
+            t212Json.push_back(convertToJSON(*fFringe.t212[i]));
+        }
         return t212Json;
     }
     
-    //int MHO_MK4FringeInterface::getType212DataSize () {
-        //return fFringe.t212.[0].data.size();
-    //}
+    int MHO_MK4FringeInterface::getN212Size () {
+        std::cout << "fFringe.n212 is: " << fFringe.n212 << std::endl;
+        return fFringe.n212;
+    }
+
+    int MHO_MK4FringeInterface::getType212DataSize() {
+        std::cout << "fFringe.t212[0]->data is: " << (sizeof(fFringe.t212[0]->data) / sizeof(fFringe.t212[0]->data[0])) << std::endl;
+        return 0;
+    }
 }

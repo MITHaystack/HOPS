@@ -61,7 +61,8 @@ class MHO_MK4FringeInterface
 
         mho_json handleT212Array ();
 
-        //int MHO_MK4FringeInterface::getType212DataSize ();
+        int getN212Size ();
+        int getType212DataSize ();
 
     private:
 

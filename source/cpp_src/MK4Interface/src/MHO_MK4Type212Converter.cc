@@ -4,7 +4,7 @@
 
 // TO DO: change DATASIZE to size 30??
 // TO Do: change DATASIZE to preprocessor define directive
-const int DATASIZE = 1; 
+const int DATASIZE = 32; 
 
 //struct newphasor
 //    {

@@ -7,18 +7,23 @@ const int NUMBEROFFFITCHAN = 16;
 const int NUMBEROFSIDEBANDSANDSBWEIGHTS = 64;
 const int REFANDREMSIZE = 64;
 const int AMPPHASE = 64;
-const int DATASIZE = 30;
+//const int DATASIZE = 30;
 
 using namespace hops;
 
 int main(int argc, char **argv) {
 
   MHO_MK4FringeInterface mk4FringeInterface;
+  //std::setlocale(LC_ALL, "en_US.UTF-8");
 
-  // Read fringe file
+  // Read fringe file.
   std::string fringeFile = "/home/violetp/code-projects/hops/hops-git/x86_64-4.00/data/test_data/testdata/3562/141-0002/GH.X.3.yxhoyl";
   std::cout << "Converting supplied fringe file to a struct..." << std::endl;
   mk4FringeInterface.ReadFringeFile(fringeFile);
+  
+  // Convert the fringe struct to JSON.
+  const int DATASIZE = mk4FringeInterface.getN212Size();
+  mk4FringeInterface.getType212DataSize();
   std::cout << "Converting struct to JSON..." << std::endl;
   mk4FringeInterface.ExportFringeFiles();
 
