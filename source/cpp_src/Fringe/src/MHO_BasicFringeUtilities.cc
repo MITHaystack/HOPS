@@ -292,79 +292,6 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
 
 
 
-// 
-// double
-// MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
-// {
-//     double total_summed_weights = paramStore->GetAs<double>("/fringe/total_summed_weights");
-//     double ref_freq = paramStore->GetAs<double>("/control/config/ref_freq");
-//     double mbd = paramStore->GetAs<double>("/fringe/mbdelay");
-//     double drate = paramStore->GetAs<double>("/fringe/drate");
-//     double sbd = paramStore->GetAs<double>("/fringe/sbdelay");
-//     double sbd_max_bin = paramStore->GetAs<double>("/fringe/max_sbd_bin");
-//     double frt_offset = paramStore->GetAs<double>("/config/frt_offset");
-//     double ap_delta =  paramStore->GetAs<double>("/config/ap_period");
-// 
-//     auto weights = conStore->GetObject<weight_type>(std::string("weight"));
-//     auto sbd_arr = conStore->GetObject<visibility_type>(std::string("sbd"));
-// 
-//     std::size_t POLPROD = 0;
-//     std::size_t nchan = sbd_arr->GetDimension(CHANNEL_AXIS);
-//     std::size_t nap = sbd_arr->GetDimension(TIME_AXIS);
-// 
-//     //now we are going to loop over all of the channels/AP
-//     //and perform the weighted sum of the data at the max-SBD bin
-//     //with the fitted delay-rate rotation applied
-//     auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_arr) );
-//     auto chan_ax = std::get<CHANNEL_AXIS>(*sbd_arr);
-//     auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
-// 
-//     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-//     paramStore->Set("/fringe/sbd_separation", sbd_delta);
-// 
-//     MHO_FringeRotation frot;
-//     frot.SetSBDSeparation(sbd_delta);
-//     frot.SetSBDMaxBin(sbd_max_bin);
-//     frot.SetNSBDBins(sbd_ax->GetSize()/4);  //this is nlags, FACTOR OF 4 is because sbd space is padded by a factor of 4
-//     frot.SetSBDMax( sbd );
-// 
-//     std::complex<double> sum_all = 0.0;
-//     std::string sidebandlabelkey = "net_sideband";
-//     for(std::size_t ch=0; ch < nchan; ch++)
-//     {
-//         double freq = chan_ax(ch);//sky freq of this channel
-//         std::string net_sideband = "?";
-//         bool key_present = chan_ax.RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
-//         if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
-// 
-//         frot.SetSideband(0); //DSB
-//         if(net_sideband == "U")
-//         {
-//             frot.SetSideband(1);
-//         }
-// 
-//         if(net_sideband == "L")
-//         {
-//             frot.SetSideband(-1);
-//         }
-// 
-//         for(std::size_t ap=0; ap < nap; ap++)
-//         {
-//             double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
-//             std::complex<double> vis = (*sbd_arr)(POLPROD, ch, ap, sbd_max_bin); //pick out data at SBD max bin
-//             std::complex<double> vr = frot.vrot(tdelta, freq, ref_freq, drate, mbd);
-//             std::complex<double> z = vis*vr;
-//             //apply weight and sum
-//             double w = (*weights)(POLPROD, ch, ap, 0);
-//             std::complex<double> wght_phsr = z*w;
-//             sum_all += wght_phsr;
-//         }
-//     }
-// 
-//     double coh_avg_phase = std::arg(sum_all);
-//     return coh_avg_phase; //radians
-// }
-
 
 double
 MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
@@ -387,77 +314,56 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
 
     //now we are going to loop over all of the channels/AP
     //and perform the weighted sum of the data at the max-SBD bin
-    //with the fitted delay-rate rotation (but mbd=0) applied
-    auto chan_ax = &( std::get<CHANNEL_AXIS>(*sbd_arr) );
-    auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
+    //with the fitted delay-rate rotation applied
     auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_arr) );
-    // double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+    auto chan_ax = std::get<CHANNEL_AXIS>(*sbd_arr);
+    auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
+
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
     paramStore->Set("/fringe/sbd_separation", sbd_delta);
 
-
-    MHO_FringeRotation fRot;
-    fRot.SetSBDSeparation(sbd_delta);
-    fRot.SetSBDMaxBin(sbd_max_bin);
-    fRot.SetNSBDBins(sbd_ax->GetSize()/2);  //this is effective nlags
-    fRot.SetSBDMax( sbd );
-    // double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
-
-    xpower_type fFringe;
-    fFringe.Resize(nchan);
+    MHO_FringeRotation frot;
+    frot.SetSBDSeparation(sbd_delta);
+    frot.SetSBDMaxBin(sbd_max_bin);
+    frot.SetNSBDBins(sbd_ax->GetSize()/2);  //effective nlags
+    frot.SetSBDMax( sbd );
 
     std::complex<double> sum_all = 0.0;
     std::string sidebandlabelkey = "net_sideband";
     for(std::size_t ch=0; ch < nchan; ch++)
     {
-        double freq = (*chan_ax)(ch);//sky freq of this channel
-
-        std::get<0>(fFringe).at(ch) = freq; //set the fringe element freq label
-
+        double freq = chan_ax(ch);//sky freq of this channel
         std::string net_sideband = "?";
-        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
+        bool key_present = chan_ax.RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
         if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
 
-        fRot.SetSideband(0); //DSB
+        frot.SetSideband(0); //DSB
         if(net_sideband == "U")
         {
-            fRot.SetSideband(1);
+            frot.SetSideband(1);
         }
 
         if(net_sideband == "L")
         {
-            fRot.SetSideband(-1);
+            frot.SetSideband(-1);
         }
 
-        std::complex<double> fringe_phasor = 0.0;
-        double sumwt = 0.0;
         for(std::size_t ap=0; ap < nap; ap++)
         {
             double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
             std::complex<double> vis = (*sbd_arr)(POLPROD, ch, ap, sbd_max_bin); //pick out data at SBD max bin
-            std::complex<double> vr = fRot.vrot(tdelta, freq, ref_freq, drate, mbd);
+            std::complex<double> vr = frot.vrot(tdelta, freq, ref_freq, drate, mbd);
             std::complex<double> z = vis*vr;
             //apply weight and sum
             double w = (*weights)(POLPROD, ch, ap, 0);
-            sumwt += w;
             std::complex<double> wght_phsr = z*w;
             sum_all += wght_phsr;
-            fringe_phasor += wght_phsr;
         }
-
-        //set the fringe phasor
-        //NOTE we have NOT applied the correction factor (see make_plotdata.c line 356)
-        //c = (sumwt > 0.0) ? status.amp_corr_fact/sumwt : 0.0;
-        fFringe[ch] = fringe_phasor/sumwt;
     }
 
-
     double coh_avg_phase = std::arg(sum_all);
-
-    return coh_avg_phase; //not quite the value which is displayed in the fringe plot (see fill type 208)
+    return coh_avg_phase; //radians
 }
-
-
 
 void
 MHO_BasicFringeUtilities::determine_sample_rate(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
