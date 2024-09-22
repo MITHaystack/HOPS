@@ -7,8 +7,7 @@ namespace hops
 
 
 MHO_NormFX::MHO_NormFX():
-    fInitialized(false),
-    fIsUSB(true)
+    fInitialized(false)
 {};
 
 MHO_NormFX::~MHO_NormFX(){};
@@ -32,9 +31,6 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         std::size_t n_usb_chan = usb_chan.size();
         std::size_t n_lsb_chan = lsb_chan.size();
-        // if(n_usb_chan != 0){fIsUSB = true;}
-        // if(n_lsb_chan != 0){fIsUSB = false;}
-
         if(n_lsb_chan != 0){msg_debug("calibration", "MHO_NormFX operating on LSB data, N LSB channels: " << n_lsb_chan <<eom );}
         if(n_usb_chan != 0){msg_debug("calibration", "MHO_NormFX operating on USB data, N USB channels: " << n_usb_chan <<eom );}
 
