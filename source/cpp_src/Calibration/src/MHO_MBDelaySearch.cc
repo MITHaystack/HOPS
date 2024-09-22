@@ -45,7 +45,27 @@ MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
     {
         //calculate the frequency grid for MBD search
         MHO_UniformGridPointsCalculator fGridCalc;
-        fGridCalc.SetPoints( std::get<CHANNEL_AXIS>(*in).GetData(), std::get<CHANNEL_AXIS>(*in).GetSize() );
+
+        //set the channel frequency points...we will use the channel center frequencies 
+        std::vector<double> freq_pts;
+        auto chan_ax = &(std::get<CHANNEL_AXIS>(*in));
+        for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
+        {
+            double sky_freq = (*chan_ax)(ch);
+            std::string net_sideband;
+            double bandwidth;
+            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+            if(!key_present){msg_error("calibration", "mbd search missing net_sideband label for channel "<< ch << eom); }
+            key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bandwidth);
+            if(!key_present){msg_error("calibration", "mbd search missing bandwidth label for channel "<< ch << eom); }
+            double center_freq = sky_freq;
+            if(net_sideband == "L"){center_freq -= bandwidth/2.0;}
+            if(net_sideband == "U"){center_freq += bandwidth/2.0;}
+            freq_pts.push_back(center_freq);
+        }
+        fGridCalc.SetPoints(freq_pts);
+
+        //fGridCalc.SetPoints( std::get<CHANNEL_AXIS>(*in).GetData(), std::get<CHANNEL_AXIS>(*in).GetSize() );
         fGridCalc.Calculate();
 
         fGridStart = fGridCalc.GetGridStart();

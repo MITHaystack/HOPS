@@ -85,7 +85,6 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         status = fFFTEngine.Initialize();
         if(!status){msg_error("calibration", "Could not initialize FFT in MHO_NormFX." << eom); return false;}
 
-
         fSubSampler.SetDimensionAndStride(FREQ_AXIS, 2);
         fSubSampler.SetArgs(&fWorkspace, out);
         status = fSubSampler.Initialize();
@@ -95,18 +94,6 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         fCyclicRotator.SetArgs(out);
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("calibration", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}
-
-        // auto chan_ax = &(std::get<CHANNEL_AXIS>(out));
-        // for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
-        // {
-        // 
-        //     key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
-        //     if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch_label << ", with sky_freq: "<<sky_freq << eom); }
-        // 
-        //     fConjBroadcaster.SetArgs( out );
-        //     status = fConjBroadcaster.Initialize();
-        //     if(!status){msg_error("calibration", "Could not initialize complex conjugation broadcast in MHO_NormFX." << eom); return false;}
-        // }
 
         //double it
         nlags *= 2;
@@ -145,30 +132,17 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
         if(!status){msg_error("calibration", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
 
         //for lower sideband we complex conjugate the data
-        // if(!fIsUSB)
-        // {
-            //loop over all channels, for LSB channels we must conjugate the output
-
-            // status = fConjBroadcaster.Execute();
-            // if(!status){msg_error("calibration", "Could not execute complex conjugation in MHO_NormFX." << eom); return false;}
-        // }
-
         auto chan_ax = &(std::get<CHANNEL_AXIS>(*out));
         for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
         {
             std::string net_sideband;
             bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
             if(!key_present){msg_error("calibration", "norm_fx missing net_sideband label for channel "<< ch << eom); }
-
             if(net_sideband == "L")
             {
                 //just the slice that matches this channel
                 auto slice = out->SliceView(":", ch, ":", ":");
                 for(auto it = slice.begin(); it != slice.end(); it++){*it = std::conj(*it);}
-                // fConjBroadcaster.SetArgs( slice );
-                // status = fConjBroadcaster.Initialize();
-                // status = fConjBroadcaster.Execute();
-                // if(!status){msg_error("calibration", "Could not execute complex conjugation broadcast in MHO_NormFX for channel: "<< ch << eom); return false;}
             }
         }
 
