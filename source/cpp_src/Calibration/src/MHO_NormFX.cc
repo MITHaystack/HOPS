@@ -32,17 +32,17 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         std::size_t n_usb_chan = usb_chan.size();
         std::size_t n_lsb_chan = lsb_chan.size();
-        if(n_usb_chan != 0){fIsUSB = true;}
-        if(n_lsb_chan != 0){fIsUSB = false;}
+        // if(n_usb_chan != 0){fIsUSB = true;}
+        // if(n_lsb_chan != 0){fIsUSB = false;}
 
-        if(!fIsUSB){msg_debug("calibration", "MHO_NormFX operating on LSB data, N LSB channels: " << n_lsb_chan <<eom );}
-        else{msg_debug("calibration", "MHO_NormFX operating on USB data, N USB channels: " << n_usb_chan <<eom );}
+        if(n_lsb_chan != 0){msg_debug("calibration", "MHO_NormFX operating on LSB data, N LSB channels: " << n_lsb_chan <<eom );}
+        if(n_usb_chan != 0){msg_debug("calibration", "MHO_NormFX operating on USB data, N USB channels: " << n_usb_chan <<eom );}
 
-        if(n_usb_chan != 0 && n_lsb_chan != 0)
-        {
-            msg_error("calibration", "problem initializing MHO_NormFX, mixed USB/LSB data not yet supported." << eom);
-            //return false;
-        }
+        // if(n_usb_chan != 0 && n_lsb_chan != 0)
+        // {
+        //     msg_error("calibration", "problem initializing MHO_NormFX, mixed USB/LSB data not yet supported." << eom);
+        //     //return false;
+        // }
 
         in1->GetDimensions(fInDims);
         out->GetDimensions(fOutDims);
@@ -96,10 +96,17 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("calibration", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}
 
-        //TODO_FIXME_MSG("TODO FIXME, the following line casts away const-ness:")
-        fConjBroadcaster.SetArgs( out );
-        status = fConjBroadcaster.Initialize();
-        if(!status){msg_error("calibration", "Could not initialize complex conjugation broadcast in MHO_NormFX." << eom); return false;}
+        // auto chan_ax = &(std::get<CHANNEL_AXIS>(out));
+        // for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
+        // {
+        // 
+        //     key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+        //     if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch_label << ", with sky_freq: "<<sky_freq << eom); }
+        // 
+        //     fConjBroadcaster.SetArgs( out );
+        //     status = fConjBroadcaster.Initialize();
+        //     if(!status){msg_error("calibration", "Could not initialize complex conjugation broadcast in MHO_NormFX." << eom); return false;}
+        // }
 
         //double it
         nlags *= 2;
@@ -138,12 +145,32 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
         if(!status){msg_error("calibration", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
 
         //for lower sideband we complex conjugate the data
-        if(!fIsUSB)
-        {
-            status = fConjBroadcaster.Execute();
-            if(!status){msg_error("calibration", "Could not execute complex conjugation in MHO_NormFX." << eom); return false;}
-        }
+        // if(!fIsUSB)
+        // {
+            //loop over all channels, for LSB channels we must conjugate the output
 
+            // status = fConjBroadcaster.Execute();
+            // if(!status){msg_error("calibration", "Could not execute complex conjugation in MHO_NormFX." << eom); return false;}
+        // }
+
+        auto chan_ax = &(std::get<CHANNEL_AXIS>(*out));
+        for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
+        {
+            std::string net_sideband;
+            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+            if(!key_present){msg_error("calibration", "norm_fx missing net_sideband label for channel "<< ch << eom); }
+
+            if(net_sideband == "L")
+            {
+                //just the slice that matches this channel
+                auto slice = out->SliceView(":", ch, ":", ":");
+                for(auto it = slice.begin(); it != slice.end(); it++){*it = std::conj(*it);}
+                // fConjBroadcaster.SetArgs( slice );
+                // status = fConjBroadcaster.Initialize();
+                // status = fConjBroadcaster.Execute();
+                // if(!status){msg_error("calibration", "Could not execute complex conjugation broadcast in MHO_NormFX for channel: "<< ch << eom); return false;}
+            }
+        }
 
         //normalize the array
         double norm =  1.0/(double)fInDims[FREQ_AXIS];
