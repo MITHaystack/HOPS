@@ -52,7 +52,7 @@ class MHO_UniformGridPointsCalculator
 
     protected:
 
-        void Calculate_v1(); //based on original implementation (freq_spacing.c)
+        void Calculate_v1(int max_pts = 8192); //based on original implementation (freq_spacing.c)
         void Calculate_v2();
 
         void FindStartAndMinMaxSpacing();
