@@ -1,6 +1,8 @@
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_Message.hh"
 
+#include <limits>
+
 #define EXTRA_INTERP_DBG
 
 namespace hops
@@ -44,15 +46,29 @@ MHO_UniformGridPointsCalculator::SetPoints(const double* pts, std::size_t npts)
 void
 MHO_UniformGridPointsCalculator::Calculate()
 {
-    Calculate_v1();
+    int n_pts = 8192; //default
+    do 
+    {
+        Calculate_v1(n_pts);
+        //crude hack, keep trying if we get a spacing error...
+        n_pts *= 2;
+        //detect integer overflow and abort
+        if(n_pts >= std::numeric_limits<int>::max()/2 )
+        {
+            Calculate_v1(8192); //go back to default, and abort search
+            msg_error("math", "could not determine proper uniform grid for given set of points" << eom);
+            break;
+        }
+    } 
+    while(fSpacingError);
     //Calculate_v2();
 }
 
 void
-MHO_UniformGridPointsCalculator::Calculate_v1()
+MHO_UniformGridPointsCalculator::Calculate_v1(int max_pts)
 {
     //this function is a basic adaptation of freq_spacing (same hard-coded parameters, etc.)
-    std::size_t MBD_MAXPTS = 8192;
+    std::size_t MBD_MAXPTS = max_pts; //default is 8192
     std::size_t MBD_MULT = 4;
     std::size_t MBD_GRID_PTS = MBD_MAXPTS / MBD_MULT;
     std::size_t BOGUS_MBD_INDEX = MBD_GRID_PTS*MBD_MULT + 1;
@@ -100,12 +116,6 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
             spread = std::sqrt(spread/(double)n_pts);
         }
         fSpread = spread;
-
-        //TODO FIXME (single channel)
-        // else
-        // {
-        //     spread = bandwidth/std::sqrt(12.0); //uniform distribution over bandwidth
-        // }
 
         div = 1;
         fSpacingError = false;
