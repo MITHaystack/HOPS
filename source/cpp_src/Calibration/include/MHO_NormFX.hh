@@ -76,7 +76,6 @@ class MHO_NormFX: public MHO_BinaryOperator<
 
         sbd_type fWorkspace;
         bool fInitialized;
-        bool fIsUSB;
 
 };
 
