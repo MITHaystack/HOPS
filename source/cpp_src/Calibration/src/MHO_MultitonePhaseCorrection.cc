@@ -70,7 +70,7 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
         //determine if the p-cal corrections should be applied to this station (ref or rem)
         if( IsApplicable(in) )
         {
-            RepairMK4PCData(in); //need to rebuild tone frequencies if imported from type_309s
+            // RepairMK4PCData(in); //need to rebuild tone frequencies if imported from type_309s
 
             //grab the pc_tonemask data (if present)
             bool ok1 = fPCData->Retrieve(fPCToneMaskChannelsKey, fPCToneMaskChannels);
@@ -131,9 +131,11 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
     std::vector<double> sampler_delays;
     pcal_pol_ax->RetrieveIndexLabelKeyValue(pc_pol, "sampler_delays", sampler_delays);
 
+    fApplyPCDelay = true;
     if(sampler_delays.size() == 0)
     {
-        msg_warn("calibration", "no sampler delays assigned, no delay averaging or ambiguity resolution will be attempted" << eom);
+        msg_warn("calibration", "no sampler delays assigned, no delay averaging or ambiguity resolution will be attempted, and pc_delays will not be applied." << eom);
+        fApplyPCDelay = false;
     }
 
     //now loop over the channels
@@ -273,7 +275,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                     if( navg > 0.0 )
                     {
                         for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) /= navg;}
-                        FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model);
+                        FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model, net_sideband);
                     }
                     seg_start_aps.push_back(seg_start_ap);
                     seg_end_aps.push_back(seg_end_ap);
@@ -427,15 +429,18 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             double pcdelay = 0;
             if(seg < pc_delay_segs.size()){pcdelay = pc_delay_segs[seg]; }
 
+
             TODO_FIXME_MSG("TODO FIXME -- 'phase-shift' needs testing for both USB/LSB data as applied in norm_fx.c, line 396")
             double speriod = 1.0/(2.0*bandwidth*1e6);
-            double phase_shift = -1.0 * pcdelay / (4.0*speriod) ;
+            double phase_shift = 0.0;//-1.0 * pcdelay / (4.0*speriod);
+            //if(net_sideband == "U"){phase_shift *= -1.0;}
 
             TODO_FIXME_MSG("TODO FIXME -- make sure proper treatment of LSB/USB sidebands is done here.")
             std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*(pcphase) );
 
             //conjugate pc phasor when applied to reference station
             if(fStationIndex == 0){pc_phasor = std::conj(pc_phasor);}
+            if(net_sideband == "U"){pc_phasor = std::conj(pc_phasor);}
 
             for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
             {
@@ -444,14 +449,19 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
 
                 //std::cout<<"pol, ch, ap, phase/delay = "<<vis_pp<<", "<<ch<<", "<<dap<<", "<<pcphase<<", "<<1e9*pcdelay<<std::endl;
 
-                //apply delay correction
-                for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
+                //apply delay correction (but only if sampler delays are defined...fourfit3 will not apply pc delay if no sampler delays available)
+                if(fApplyPCDelay)
                 {
-                    double deltaf = ( (*vis_freq_ax)(sp) )*1e6; //Hz
-                    std::complex<double> pc_delay_phasor = std::exp( -2.0*M_PI*fImagUnit*(pcdelay*deltaf + phase_shift ) );
-                    //conjugate pc phasor when applied to reference station
-                    if(fStationIndex == 0){pc_delay_phasor = std::conj(pc_delay_phasor);}
-                    (*in)(vis_pp, ch, dap, sp) *= pc_delay_phasor;
+                    double sb_sign = 1.0;
+                    if(net_sideband == "U"){sb_sign = -1.0;}
+                    for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
+                    {
+                        double deltaf = ( (*vis_freq_ax)(sp) - bandwidth/2.0 )*1e6; //Hz
+                        std::complex<double> pc_delay_phasor = std::exp( -2.0*sb_sign*M_PI*fImagUnit*(pcdelay*deltaf + phase_shift ) );
+                        //conjugate pc phasor when applied to reference station
+                        if(fStationIndex == 0){pc_delay_phasor = std::conj(pc_delay_phasor);}
+                        (*in)(vis_pp, ch, dap, sp) *= pc_delay_phasor;
+                    }
                 }
             }
         }
@@ -520,17 +530,19 @@ MHO_MultitonePhaseCorrection::DetermineChannelFrequencyLimits(double sky_freq, d
 void
 MHO_MultitonePhaseCorrection::DetermineChannelToneIndexes(double lower_freq, double upper_freq, std::size_t& start_idx, std::size_t& ntones)
 {
-    auto tone_freq_ax = std::get<MTPCAL_FREQ_AXIS>(*fPCData);
+    auto tone_freq_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCData));
+
     double start_tone_frequency = 0;
     start_idx = 0;
     ntones = 0;
-    for(std::size_t j=0; j<tone_freq_ax.GetSize(); j++)
+
+    for(std::size_t j=0; j<tone_freq_ax->GetSize(); j++)
     {
-        if( lower_freq <= tone_freq_ax(j) && tone_freq_ax(j) < upper_freq )
+        if( lower_freq <= tone_freq_ax->at(j) && tone_freq_ax->at(j) < upper_freq )
         {
             if(ntones == 0)
             {
-                start_tone_frequency = tone_freq_ax(j);
+                start_tone_frequency = tone_freq_ax->at(j);
                 start_idx = j;
             }
             ntones++;
@@ -540,7 +552,7 @@ MHO_MultitonePhaseCorrection::DetermineChannelToneIndexes(double lower_freq, dou
 
 
 void
-MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_freq, double sampler_delay, double* pcal_model)
+MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_freq, double sampler_delay, double* pcal_model, std::string net_sideband)
 {
     TODO_FIXME_MSG("TODO FIXME -- need to retrieve the station delays for multitone pcal processing.")
     double station_delay = 0.0;
@@ -557,7 +569,7 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     }
 
     //calulate the pc delay ambiguity
-    double pc_amb = 1.0/(std::get<0>(fPCWorkspace)(1) - std::get<0>(fPCWorkspace)(0));
+    double pc_amb = std::fabs( 1.0/(std::get<0>(fPCWorkspace)(1) - std::get<0>(fPCWorkspace)(0)) );
     pc_amb *= 1e-6; //TODO FIXME - document units (converts to ns)
 
     //fFFTEngine already points to fPCWorkspace, so just execute
@@ -588,11 +600,16 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     MHO_MathUtilities::parabola(y, -1.0, 1.0, &ymax, &ampmax, q);
     double delay = (max_idx+ymax)*delay_delta;
 
-    delay *= 1e-6; //TODO FIXME - document proper units! (this is seconds)
+    double sb_sign = 1.0;
+    if(net_sideband == "U"){sb_sign = -1.0;}
+
+    delay *= sb_sign*1e-6; //TODO FIXME - document proper units! (this is seconds)
 
     // find bounds of allowable resolved delay
     double lo = station_delay + sampler_delay - pc_amb / 2.0;
     double hi = station_delay + sampler_delay + pc_amb / 2.0;
+    msg_debug("calibration", "resolving sampler delays within bounds: ("<<lo<<", "<<hi<<") for ambiguity of "<< pc_amb << eom);
+
     while (hi < delay)  // shift delay left if necessary
         delay -= pc_amb;
     while (lo > delay)  // shift delay right if necessary
@@ -607,113 +624,21 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
         double tone_freq = (*tone_freq_ax)(i);
         double deltaf = (chan_center_freq - tone_freq)*1e6; //Hz
         // std::cout<<"deltaf = "<<deltaf<<std::endl;
-        double theta = 2.0 * M_PI * delay * deltaf;
+        double theta = sb_sign*2.0 * M_PI * delay * deltaf;
         // std::cout<<"theta = "<<theta*(180.0/M_PI)<<std::endl;
         phasor *= std::exp(fImagUnit*theta );
         mean_phasor += phasor;
     }
 
     TODO_FIXME_MSG("TODO FIXME -- verify all sign/conjugation operations work properly for USB/LSB data.")
-    mean_phasor = std::conj( mean_phasor );
+    
+    mean_phasor = std::conj( sb_sign*mean_phasor );
+
 
     pcal_model[0] = std::abs(mean_phasor); //magnitude
     pcal_model[1] = std::arg(mean_phasor); //phase
     pcal_model[2] = delay; //delay
 
-}
-
-
-
-void MHO_MultitonePhaseCorrection::RepairMK4PCData(visibility_type* vis)
-{
-    TODO_FIXME_MSG("TODO FIXME -- fix hardcoded pcal spacing!!")
-    double pcal_spacing = 5.0; //TODO FIXME HARDCODED PCAL SPACING
-
-    //only perform this operation if the pcal data originated from mark4 type309s
-    std::string data_origin;
-    fPCData->Retrieve("origin", data_origin);
-    if(data_origin == "mark4")
-    {
-        //first loop over the pcal freq axis and extract the channel indexes and ranges
-        auto pc_tone_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCData));
-        auto chan_ax = &(std::get<CHANNEL_AXIS>(*vis));
-        std::map< std::size_t, std::pair<std::size_t, std::size_t> > chanidx2range;
-
-        auto interval_objs = pc_tone_ax->GetMatchingIntervalLabels("channel_index");
-        for(std::size_t i=0; i<interval_objs.size(); i++)
-        {
-            std::size_t channel_idx = interval_objs[i]["channel_index"].get<int>();
-            std::size_t low = interval_objs[i]["lower_index"].get<int>();
-            std::size_t high = interval_objs[i]["upper_index"].get<int>();
-            chanidx2range[channel_idx] = std::make_pair(low, high);
-        }
-
-        double sky_freq = 0;
-        double bandwidth = 0;
-        std::string net_sideband;
-
-        //fix the tone frequency axis (deduce this from the channel boundaries and pcal tone spacing)
-        for(auto it = chanidx2range.begin(); it != chanidx2range.end(); it++)
-        {
-            std::size_t ch = it->first; //channel index
-            std::size_t start = it->second.first; //tone start index
-            std::size_t stop = it->second.second; //tone stop index
-
-            //make sure to grab the channel that matches the channel index
-            //we need to do this in case the 'freqs' command has been applied to sub-select channels
-            std::size_t ch_idx = 0;
-            for(ch_idx=0; ch_idx<chan_ax->GetSize(); ch_idx++)
-            {
-                int chid = -1;
-                chan_ax->RetrieveIndexLabelKeyValue(ch_idx, "channel", chid);
-                if(chid == ch)
-                {
-                    std::string channel_label;
-                    chan_ax->RetrieveIndexLabelKeyValue(ch_idx, "channel_label", channel_label);
-                    break;
-                }
-            }
-
-            if( ch_idx < chan_ax->GetSize() ) //will be equal to chan_ax size if channel not found
-            {
-                //get the channel frequency info and range
-                sky_freq = (*chan_ax)(ch_idx); //get the sky frequency of this channel
-                bandwidth = 0;
-                net_sideband;
-                bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch_idx, fSidebandLabelKey, net_sideband);
-                if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch_idx << " with sky_freq: "<<sky_freq << eom); }
-                key_present = chan_ax->RetrieveIndexLabelKeyValue(ch_idx, fBandwidthKey, bandwidth);
-                if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch_idx << " with sky_freq: "<<sky_freq << eom);}
-
-                //figure out the upper/lower frequency limits for this channel
-                double lower_freq, upper_freq;
-                std::size_t start_idx, ntones;
-                DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
-
-                //figure out the number of tones in this channel (better match stop-start)
-                int c = std::floor(lower_freq/pcal_spacing);
-                if( (lower_freq - c*pcal_spacing) > 0 ){c += 1;} //first tone in channel is c*pcal_spacing
-                int d = std::floor(upper_freq/pcal_spacing);
-                if( (upper_freq - d*pcal_spacing) > 0 ){d += 1;} //d is first tone just beyond the channel
-
-                if( (d - c) == (stop - start) ) //number of tones matches
-                {
-                    std::size_t ntones = stop - start;
-                    for(std::size_t ti=0; ti < ntones; ti++)
-                    {
-                        //loop over the tone indexes and figure out the tone frequencies
-                        //which are multiples of the pcal spacing within the channel
-                        pc_tone_ax->at(start+ti) = (c+ti)*pcal_spacing;
-                    }
-                }
-            }
-        }
-
-        //rescale all the phasors by the sample_period
-        double sample_period = 1.0/(2.0*bandwidth*1e6);
-        (*fPCData) *= sample_period;
-
-    }
 }
 
 }//end of namespace

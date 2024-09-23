@@ -284,13 +284,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     double alist_resid_delay = mbdelay + ambig * std::floor( ((sbdelay - mbdelay)/ambig) + 0.5);
 
     paramStore->Set("/fringe/resid_delay", alist_resid_delay);
-
-
 }
-
-
-
-
 
 
 double
@@ -325,7 +319,7 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
     MHO_FringeRotation frot;
     frot.SetSBDSeparation(sbd_delta);
     frot.SetSBDMaxBin(sbd_max_bin);
-    frot.SetNSBDBins(sbd_ax->GetSize()/4);  //this is nlags, FACTOR OF 4 is because sbd space is padded by a factor of 4
+    frot.SetNSBDBins(sbd_ax->GetSize()/2);  //effective nlags
     frot.SetSBDMax( sbd );
 
     std::complex<double> sum_all = 0.0;
@@ -357,21 +351,13 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
             //apply weight and sum
             double w = (*weights)(POLPROD, ch, ap, 0);
             std::complex<double> wght_phsr = z*w;
-            if(net_sideband == "U")
-            {
-                sum_all += -1.0*wght_phsr;
-            }
-            else
-            {
-                sum_all += wght_phsr;
-            }
+            sum_all += wght_phsr;
         }
     }
 
     double coh_avg_phase = std::arg(sum_all);
     return coh_avg_phase; //radians
 }
-
 
 void
 MHO_BasicFringeUtilities::determine_sample_rate(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
@@ -538,16 +524,8 @@ MHO_BasicFringeUtilities::calculate_ion_covariance(MHO_ContainerStore* conStore,
             double w = (*weights)(POLPROD, ch, ap, 0);
             sumwt += w;
             std::complex<double> wght_phsr = z*w;
-            if(net_sideband == "U")
-            {
-                sum_all += -1.0*wght_phsr;
-                ch_sum += -1.0*wght_phsr;
-            }
-            else
-            {
-                sum_all += wght_phsr;
-                ch_sum += wght_phsr;
-            }
+            sum_all += wght_phsr;
+            ch_sum += wght_phsr;
         }
         chan_phasors[ch] = ch_sum;
 
