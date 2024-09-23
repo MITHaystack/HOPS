@@ -2,10 +2,6 @@
 #include "MHO_MK4JSONDateConverter.hh"
 #include <iostream>
 
-// TO DO: change DATASIZE to size 30??
-// TO Do: change DATASIZE to preprocessor define directive
-//const int DATASIZE = 30; 
-
 //struct newphasor
 //    {
 //    float amp;
@@ -32,12 +28,10 @@ mho_json newphasorToJSON(const newphasor &t) {
   return {{"amp", t.amp}, {"phase", t.phase}, {"weight", t.weight}};
 }
 
-//mho_json dataToJSON(const newphasor t[DATASIZE], int dataSize) {
 mho_json dataToJSON(const newphasor *t, int dataSize) {
   int i;
   mho_json JSONArray;
 
-  //for (i = 0; i < DATASIZE; i++) {
   for (i = 0; i < dataSize; i++) {
     JSONArray.push_back(newphasorToJSON(t[i]));
   }
@@ -48,12 +42,10 @@ mho_json dataToJSON(const newphasor *t, int dataSize) {
 mho_json convertToJSON(const type_212 &t, int dataSize) {
   return {{"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
-          //{"unused", std::string(&(t.unused), 1).c_str()},
           {"nap", t.nap},
           {"first_ap", t.first_ap},
           {"channel", t.channel},
           {"sbd_chan", t.sbd_chan},
-          //{"unused2", std::string(t.unused2, 2).c_str()},
           {"data", dataToJSON(t.data, t.nap)}};
 }
 

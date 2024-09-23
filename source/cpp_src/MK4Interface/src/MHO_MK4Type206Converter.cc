@@ -86,7 +86,6 @@ mho_json convertToJSON(const type_206 &t) {
   return {
       {"record_id", std::string(t.record_id, 3).c_str()},
       {"version_no", std::string(t.version_no, 2).c_str()},
-      {"unused1", std::string(t.unused1, 3).c_str()},
       {"start", convertDateToJSON(t.start)},
       {"first_ap", t.first_ap},
       {"last_ap", t.last_ap},
@@ -107,7 +106,6 @@ mho_json convertToJSON(const type_206 &t) {
       {"ratesize", t.ratesize},
       {"mbdsize", t.mbdsize},
       {"sbdsize", t.sbdsize},
-      {"unused2", std::string(t.unused2, 6).c_str()},
   };
 }
 

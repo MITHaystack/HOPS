@@ -63,11 +63,9 @@ mho_json convertToJSON(const type_201 &t) {
           // function and cause a memory overflow
           {"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
-          {"unused1", std::string(t.unused1, 3).c_str()},
           {"source", std::string(t.source, 32).c_str()},
           {"coord ra_hrs", skyCoordToJSON(t.coord)},
           {"epoch", t.epoch},
-          {"unused2", std::string(t.unused2, 2).c_str()},
           {"coord_date", skyCoordToJSON(t.coord)},
           {"ra_rate", t.ra_rate},
           {"dec_rate", t.dec_rate},

@@ -49,7 +49,6 @@ mho_json convertToJSON(const type_202 &t) {
           // passed to these functions and cause a memory overflow
           {"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
-          {"unused1", std::string(t.unused1, 3).c_str()},
           {"baseline", std::string(t.baseline, 2).c_str()},
           {"ref_intl_id", std::string(t.ref_intl_id, 2).c_str()},
           {"rem_intl_id", std::string(t.rem_intl_id, 2).c_str()},
