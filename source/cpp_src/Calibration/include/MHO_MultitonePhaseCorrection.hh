@@ -83,11 +83,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         void ApplyPCData(std::size_t pc_pol, std::size_t vis_pp, visibility_type* in);
 
         //fit a mean pcal offset and delay from this set of tones
-        void FitPCData(std::size_t ntones, double chan_center_freq, double sampler_delay, double* phase_spline);
-
-        //mk4 converted pcal data does not have tone-frequencies
-        //so we have to repair the data first (also rescale by sample period)
-        void RepairMK4PCData(visibility_type* vis);
+        void FitPCData(std::size_t ntones, double chan_center_freq, double sampler_delay, double* phase_spline, std::string net_sideband);
 
         //constants
         std::complex<double> fImagUnit;
@@ -131,6 +127,9 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         bool fHavePCToneMask;
         std::string fPCToneMaskChannels;
         std::vector< int > fPCToneMaskBitmasks;
+
+        //controls if pc delays are applied (no -- if there are no sampler delays)
+        bool fApplyPCDelay;
 
 
         //minor helper function to make sure all strings are compared as upper-case only

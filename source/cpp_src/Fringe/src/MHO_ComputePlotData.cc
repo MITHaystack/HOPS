@@ -579,16 +579,8 @@ MHO_ComputePlotData::calc_phase()
             double w = (*fWeights)(POLPROD, ch, ap, 0);
             sumwt += w;
             std::complex<double> wght_phsr = z*w;
-            if(net_sideband == "U")
-            {
-                sum_all += -1.0*wght_phsr;
-                fringe_phasor += -1.0*wght_phsr;
-            }
-            else
-            {
-                sum_all += wght_phsr;
-                fringe_phasor += wght_phsr;
-            }
+            sum_all += wght_phsr;
+            fringe_phasor += wght_phsr;
         }
 
         //set the fringe phasor
@@ -600,6 +592,7 @@ MHO_ComputePlotData::calc_phase()
 
     double coh_avg_phase = std::arg(sum_all);
 
+    // std::cout<<"coh_avg_phase = "<<coh_avg_phase<<std::endl;
 
     return coh_avg_phase; //not quite the value which is displayed in the fringe plot (see fill type 208)
 }
@@ -845,6 +838,8 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     // ok = fContainerStore->SetShortName(cvis->GetObjectUUID(), "cvis");
 
     double coh_avg_phase_deg = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
+    // std::cout<<"coh avg phase deg = "<<coh_avg_phase_deg<<std::endl;
+
     fParamStore->Set("/fringe/raw_resid_phase", coh_avg_phase_deg);
 
     //calculate AP period

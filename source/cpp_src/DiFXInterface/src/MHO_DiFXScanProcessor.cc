@@ -317,9 +317,9 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
                 bool issue_once = true;
                 if(!ref_ok || !rem_ok)
                 {
-                    msg_error("difx_interface",
-                        "error missing data in autocorrs needed to normalize: "
-                        <<baseline<<":"<<polprod<<" "<<pp<<"."<<eom);
+                    msg_error("difx_interface", "error missing data in autocorrs needed to normalize baseline:pol-product: " <<baseline<<":"<<polprod<<" "<<pp<<"."<<eom);
+                    if(!ref_ok){msg_error("difx_interface", "reference station: "<<ref_st<<" autocorr data is missing"<<eom);}
+                    if(!rem_ok){msg_error("difx_interface", "remote station: "<<rem_st<<" autocorr data is missing"<<eom);}
                 }
                 else
                 {
@@ -494,6 +494,7 @@ MHO_DiFXScanProcessor::ExtractPCalData()
 {
     for(auto it = fFileSet->fPCALFileList.begin(); it != fFileSet->fPCALFileList.end(); it++)
     {
+        msg_debug("difx_interface", "extracting phase-cal data from: "<< *it << eom );
         fPCalProcessor.SetFilename(*it);
         double ap_length = fInput["config"][0]["tInt"]; //config is a list element, grab the first item
         fPCalProcessor.SetAccumulationPeriod(ap_length);
@@ -524,8 +525,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
     //Note: with the exception of the phase-spline polynomial (type_302), all of these other quantities
     //do not depend on the channel/frequency.
 
-
-    std::size_t scan_index = 0;
+    std::size_t scan_index = fFileSet->fIndex;
     std::size_t nAntenna = fInput["scan"][scan_index]["nAntenna"];
 
     std::size_t nPhaseCenters = fInput["scan"][scan_index]["nPhaseCentres"];

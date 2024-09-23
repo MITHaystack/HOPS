@@ -79,8 +79,19 @@ void MHO_BasicFringeFitter::Initialize()
         }
 
         //safety check
-        if(vis_data->GetSize() == 0){msg_fatal("fringe", "visibility data has size zero." << eom); std::exit(1);}
-        if(wt_data->GetSize() == 0){msg_fatal("fringe", "weight data has size zero." << eom); std::exit(1);}
+        if(vis_data->GetSize() == 0)
+        {
+            msg_error("fringe", "visibility data has size 0, skipping." << eom);
+            fParameterStore->Set("/status/skipped", true);
+            fParameterStore->Set("/status/is_finished", true);
+        }
+
+        if(wt_data->GetSize() == 0)
+        {
+            msg_error("fringe", "weight data has size 0, skipping." << eom);
+            fParameterStore->Set("/status/skipped", true);
+            fParameterStore->Set("/status/is_finished", true);
+        }
 
         std::string vis_uuid = vis_data->GetObjectUUID().as_string();
         std::string wt_uuid = wt_data->GetObjectUUID().as_string();
@@ -146,57 +157,73 @@ void MHO_BasicFringeFitter::Initialize()
         //calculate useful quantities to stash in the parameter store
         MHO_InitialFringeInfo::precalculate_quantities(fContainerStore, fParameterStore);
         //safety check
-        if(vis_data->GetSize() == 0){msg_fatal("fringe", "no visibility data left after cuts." << eom); std::exit(1);}
-        if(wt_data->GetSize() == 0){msg_fatal("fringe", "no weight data left after cuts." << eom); std::exit(1);}
-        
-        //compute the sum of all weights and stash in the parameter store (before any other operations (e.g. passband, notches) modify them)
-        MHO_InitialFringeInfo::compute_total_summed_weights(fContainerStore, fParameterStore);
-        //figure out the number of channels which have data with weights >0 in at least 1 AP
-        MHO_InitialFringeInfo::determine_n_active_channels(fContainerStore, fParameterStore);
-
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
-
-        //initialize the fringe search operators ///////////////////////////////
-        //create space for the visibilities transformed into single-band-delay space
-        std::size_t bl_dim[visibility_type::rank::value];
-        vis_data->GetDimensions(bl_dim);
-        sbd_data = fContainerStore->GetObject<visibility_type>(std::string("sbd"));
-        if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
+        if(vis_data->GetSize() == 0)
         {
-            sbd_data = vis_data->Clone();
-            fContainerStore->AddObject(sbd_data);
-            fContainerStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
-            bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
-            sbd_data->Resize(bl_dim);
-            sbd_data->ZeroArray();
+            msg_warn("fringe", "no visibility data left after cuts, skipping." << eom);
+            fParameterStore->Set("/status/skipped", true);
+            fParameterStore->Set("/status/is_finished", true);
         }
 
-        //initialize norm-fx (x-form to SBD space)
-        fNormFXOp.SetArgs(vis_data, wt_data, sbd_data);
-        bool ok = fNormFXOp.Initialize();
-        check_step_fatal(ok, "fringe", "normfx initialization." << eom );
+        if(wt_data->GetSize() == 0)
+        {
+            msg_warn("fringe", "no weight data left after cuts, skipping." << eom);
+            fParameterStore->Set("/status/skipped", true);
+            fParameterStore->Set("/status/is_finished", true);
+        }
+        
+        bool is_skipped = fParameterStore->GetAs<bool>("/status/skipped");
 
-        //configure the coarse SBD/DR/MBD search
-        double ref_freq = fParameterStore->GetAs<double>("/control/config/ref_freq");
-        fMBDSearch.SetWeights(wt_data);
-        fMBDSearch.SetReferenceFrequency(ref_freq);
-        fMBDSearch.SetArgs(sbd_data);
-        ok = fMBDSearch.Initialize();
-        check_step_fatal(ok, "fringe", "mbd initialization." << eom );
+        if(!is_skipped)
+        {
+            //compute the sum of all weights and stash in the parameter store (before any other operations (e.g. passband, notches) modify them)
+            MHO_InitialFringeInfo::compute_total_summed_weights(fContainerStore, fParameterStore);
+            //figure out the number of channels which have data with weights >0 in at least 1 AP
+            MHO_InitialFringeInfo::determine_n_active_channels(fContainerStore, fParameterStore);
 
-        //configure the fringe-peak interpolator
-        bool optimize_closure_flag = false;
-        bool is_oc_set = fParameterStore->Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag );
-        double frt_offset = fParameterStore->GetAs<double>("/config/frt_offset");
-        //NOTE: the optimize_closure_flag has no effect on fringe-phase when
-        //using the 'simul' algorithm, which is currently the only one implemented
-        //This is also true of the legacy code 'simul' implementation.
-        if(optimize_closure_flag){fPeakInterpolator.EnableOptimizeClosure();}
-        fPeakInterpolator.SetReferenceFrequency(ref_freq);
-        fPeakInterpolator.SetReferenceTimeOffset(frt_offset);
-        fPeakInterpolator.SetSBDArray(sbd_data);
-        fPeakInterpolator.SetWeights(wt_data);
+            MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
+            MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
+
+            //initialize the fringe search operators ///////////////////////////////
+            //create space for the visibilities transformed into single-band-delay space
+            std::size_t bl_dim[visibility_type::rank::value];
+            vis_data->GetDimensions(bl_dim);
+            sbd_data = fContainerStore->GetObject<visibility_type>(std::string("sbd"));
+            if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
+            {
+                sbd_data = vis_data->Clone();
+                fContainerStore->AddObject(sbd_data);
+                fContainerStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
+                bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
+                sbd_data->Resize(bl_dim);
+                sbd_data->ZeroArray();
+            }
+
+            //initialize norm-fx (x-form to SBD space)
+            fNormFXOp.SetArgs(vis_data, wt_data, sbd_data);
+            bool ok = fNormFXOp.Initialize();
+            check_step_fatal(ok, "fringe", "normfx initialization." << eom );
+
+            //configure the coarse SBD/DR/MBD search
+            double ref_freq = fParameterStore->GetAs<double>("/control/config/ref_freq");
+            fMBDSearch.SetWeights(wt_data);
+            fMBDSearch.SetReferenceFrequency(ref_freq);
+            fMBDSearch.SetArgs(sbd_data);
+            ok = fMBDSearch.Initialize();
+            check_step_fatal(ok, "fringe", "mbd initialization." << eom );
+
+            //configure the fringe-peak interpolator
+            bool optimize_closure_flag = false;
+            bool is_oc_set = fParameterStore->Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag );
+            double frt_offset = fParameterStore->GetAs<double>("/config/frt_offset");
+            //NOTE: the optimize_closure_flag has no effect on fringe-phase when
+            //using the 'simul' algorithm, which is currently the only one implemented
+            //This is also true of the legacy code 'simul' implementation.
+            if(optimize_closure_flag){fPeakInterpolator.EnableOptimizeClosure();}
+            fPeakInterpolator.SetReferenceFrequency(ref_freq);
+            fPeakInterpolator.SetReferenceTimeOffset(frt_offset);
+            fPeakInterpolator.SetSBDArray(sbd_data);
+            fPeakInterpolator.SetWeights(wt_data);
+        }
 
     }
 
@@ -304,7 +331,7 @@ void MHO_BasicFringeFitter::Finalize()
 
 
 void
-MHO_BasicFringeFitter::coarse_fringe_search()
+MHO_BasicFringeFitter::coarse_fringe_search(bool set_windows)
 {
     profiler_start();
     ////////////////////////////////////////////////////////////////////////////
@@ -320,19 +347,19 @@ MHO_BasicFringeFitter::coarse_fringe_search()
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
 
     //set the coarse SBD/MBD/DR search windows here
-    if(fParameterStore->IsPresent("/control/fit/sb_win"))
+    if(fParameterStore->IsPresent("/control/fit/sb_win") && set_windows)
     {
         std::vector<double> sbwin = fParameterStore->GetAs< std::vector<double> >("/control/fit/sb_win");
         fMBDSearch.SetSBDWindow(sbwin[0], sbwin[1]); //units are microsec
     }
 
-    if(fParameterStore->IsPresent("/control/fit/mb_win"))
+    if(fParameterStore->IsPresent("/control/fit/mb_win") && set_windows)
     {
         std::vector<double> mbwin = fParameterStore->GetAs< std::vector<double> >("/control/fit/mb_win");
         fMBDSearch.SetMBDWindow(mbwin[0], mbwin[1]); //units are microsec
     }
 
-    if(fParameterStore->IsPresent("/control/fit/dr_win"))
+    if(fParameterStore->IsPresent("/control/fit/dr_win") && set_windows)
     {
         std::vector<double> drwin = fParameterStore->GetAs< std::vector<double> >("/control/fit/dr_win");
         fMBDSearch.SetDRWindow(drwin[0], drwin[1]);
