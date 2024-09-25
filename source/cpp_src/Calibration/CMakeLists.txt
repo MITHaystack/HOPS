@@ -4,6 +4,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SamplerLabeler.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityChannelizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_WeightChannelizer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DoubleSidebandChannelLabeler.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelDelayCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualPolPhaseCorrection.hh
