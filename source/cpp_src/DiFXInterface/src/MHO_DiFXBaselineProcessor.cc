@@ -231,11 +231,6 @@ MHO_DiFXBaselineProcessor::Organize()
     {
         msg_error("difx_interface", "channels do not have same number of APs on baseline: " <<
             fBaselineName <<", ID: "<<fBaselineID<<" truncating to lowest common number of APs: "<< fNAPs << "."<< eom);
-        // msg_error("difx_interface", "channels do not have same number of APs on baseline: " << fBaselineName <<" will zero pad-out to max AP: "<< fNAPs << "."<< eom);
-        // for(auto apit = fAPSet.begin(); apit != fAPSet.end(); apit++)
-        // {
-        //     std::cout<<"ap: "<<*apit<<std::endl;
-        // }
     }
 
 

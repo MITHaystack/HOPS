@@ -78,6 +78,7 @@ class MHO_DoubleSidebandChannelLabeler: public MHO_UnaryOperator< XArrayType >
                         if(nsb1_present && nsb2_present)
                         {
                             //1st channel is LSB, 2nd channel is USB --> we have a 'double-sideband' channel
+                            //note: we ignore the oddball case where U and L are inverted
                             if(nsb1 == "L" && nsb2 == "U")
                             {
                                 bool value = true;
