@@ -112,12 +112,11 @@ MHO_MK4ScanConverter::ConvertCorel(const std::string& root_file,
     MHO_DoubleSidebandChannelLabeler< weight_store_type > wt_dsb_detect;
     wt_dsb_detect.SetArgs(ch_bl_wdata);
     winit = wt_dsb_detect.Initialize();
-    if(init)
+    if(winit)
     {
         bool exe = wt_dsb_detect.Execute();
         if(!exe){msg_error("mk4interface", "failed to execute DSB channel detection on weights" << eom);}
     }
-
 
     //collect the object tags into something sensible
     MHO_ObjectTags tags;
