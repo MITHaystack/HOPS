@@ -34,10 +34,22 @@ class chan_label_freq_predicate
 
     virtual bool operator()(const mho_json* a, const mho_json* b)
     {
-        double a_frq, b_frq;
-        a_frq = (*a)["sky_freq"];
-        b_frq = (*b)["sky_freq"];
-        return a_frq < b_frq;
+        double a_freq = (*a)["sky_freq"];
+        double b_freq = (*b)["sky_freq"];
+        double a_bw = (*a)["bandwidth"];
+        double b_bw = (*b)["bandwidth"];
+        std::string a_sb = (*a)["net_sideband"];
+        std::string b_sb = (*a)["net_sideband"];
+        double a_sign = 0;
+        double b_sign = 0;
+        if(a_sb == "U"){a_sign = 1.0;}
+        if(a_sb == "L"){a_sign = -1.0;}
+        if(b_sb == "U"){b_sign = 1.0;}
+        if(b_sb == "L"){b_sign = -1.0;}
+        //figure out the channel center frequencies and compare using that
+        double a_center = a_freq + a_sign*(a_bw/2.0);
+        double b_center = b_freq + b_sign*(b_bw/2.0);
+        return a_center < b_center;
     }
 };
 
