@@ -1,5 +1,7 @@
 #include "MHO_MK4ScanConverter.hh"
 
+#include "MHO_DoubleSidebandChannelLabeler.hh"
+
 #include <set>
 
 namespace hops
@@ -68,9 +70,12 @@ MHO_MK4ScanConverter::ConvertCorel(const std::string& root_file,
     mk4inter.SetCorelFile(input_file);
     mk4inter.SetVexFile(root_file);
     mk4inter.ExtractCorelFile();
+    //extract un-channelize data (pol-products X time X frequency)
     uch_visibility_store_type* bl_data = mk4inter.GetExtractedVisibilities();
     uch_weight_store_type* bl_wdata = mk4inter.GetExtractedWeights();
 
+
+    //now 'channelize' the visibilities by grouping same bandwidth chunks
     MHO_VisibilityChannelizer channelizer;
     visibility_store_type* ch_bl_data = new visibility_store_type();
     channelizer.SetArgs(bl_data, ch_bl_data);
@@ -82,6 +87,7 @@ MHO_MK4ScanConverter::ConvertCorel(const std::string& root_file,
     }
     ch_bl_data->CopyTags(*bl_data);
 
+    //do the same with the weights
     MHO_WeightChannelizer wchannelizer;
     weight_store_type* ch_bl_wdata = new weight_store_type();
     wchannelizer.SetArgs(bl_wdata, ch_bl_wdata);
@@ -92,6 +98,26 @@ MHO_MK4ScanConverter::ConvertCorel(const std::string& root_file,
         if(!wexe){msg_error("mk4interface", "failed to channelize weight data." << eom);}
     }
     ch_bl_wdata->CopyTags(*bl_wdata);
+    
+    //finally, we need to label channels which occur in 'double-sideband' pairs
+    MHO_DoubleSidebandChannelLabeler< visibility_store_type > vis_dsb_detect;
+    vis_dsb_detect.SetArgs(ch_bl_data);
+    init = vis_dsb_detect.Initialize();
+    if(init)
+    {
+        bool exe = vis_dsb_detect.Execute();
+        if(!exe){msg_error("mk4interface", "failed to execute DSB channel detection on visibilities" << eom);}
+    }
+    
+    MHO_DoubleSidebandChannelLabeler< weight_store_type > wt_dsb_detect;
+    wt_dsb_detect.SetArgs(ch_bl_wdata);
+    winit = wt_dsb_detect.Initialize();
+    if(init)
+    {
+        bool exe = wt_dsb_detect.Execute();
+        if(!exe){msg_error("mk4interface", "failed to execute DSB channel detection on weights" << eom);}
+    }
+
 
     //collect the object tags into something sensible
     MHO_ObjectTags tags;
