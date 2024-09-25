@@ -12,8 +12,6 @@
 #include "MHO_StationCodeMap.hh"
 
 #include "MHO_ContainerDefinitions.hh"
-#include "MHO_VisibilityChannelizer.hh"
-#include "MHO_WeightChannelizer.hh"
 
 #include "MHO_BinaryFileStreamer.hh"
 #include "MHO_BinaryFileInterface.hh"
