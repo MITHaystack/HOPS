@@ -70,7 +70,7 @@ MHO_MK4FringeInterface::ExportFringeFilesToStructs()
 }
 
 void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const type_201 &t201, const type_202 &t202, const type_203 &t203, const type_204 &t204,
-     const type_205 &t205, const type_206 &t206, const type_207 &t207, const type_208 &t208, const type_210 &t210){
+     const type_205 &t205, const type_206 &t206, const type_207 &t207, const type_208 &t208, const type_210 &t210, std::string& JSONFile){
    
     mho_json jsonDump = {{"type_200", convertToJSON(t200)},
                     {"type_201", convertToJSON(t201)},
@@ -87,16 +87,17 @@ void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const
 
     // Write JSON fringe file data to file.
     std::string homeDir = getenv("HOME"); 
-    std::string filePath = homeDir+"/type-200s-dump.json";
+    std::string filePath = homeDir+"/"+JSONFile;
+    //std::string filePath = homeDir+"/type-200s-dump.json";
     std::ofstream output(filePath);
     output << std::setw(4) << jsonDump << std::endl;
     std::cout << "JSON file dumped to:" << filePath << std::endl;
 }
 
-    void MHO_MK4FringeInterface::ExportFringeFiles () {
+    void MHO_MK4FringeInterface::ExportFringeFiles (std::string& JSONFile) {
         ExportFringeFilesToJSON(*(fFringe.t200), *(fFringe.t201), *(fFringe.t202), *(fFringe.t203),
         *(fFringe.t204), *(fFringe.t205), *(fFringe.t206), *(fFringe.t207), *(fFringe.t208),
-        *(fFringe.t210));
+        *(fFringe.t210), JSONFile);
 
     }
     mho_json MHO_MK4FringeInterface::handleT212Array () {

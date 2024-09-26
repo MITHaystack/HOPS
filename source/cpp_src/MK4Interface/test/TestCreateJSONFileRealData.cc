@@ -7,17 +7,31 @@ const int NUMBEROFFFITCHAN = 16;
 const int NUMBEROFSIDEBANDSANDSBWEIGHTS = 64;
 const int REFANDREMSIZE = 64;
 const int AMPPHASE = 64;
-//const int DATASIZE = 30;
 
 using namespace hops;
 
 int main(int argc, char **argv) {
 
   MHO_MK4FringeInterface mk4FringeInterface;
-  //std::setlocale(LC_ALL, "en_US.UTF-8");
+  std::string fringeFile;
+  std::string JSONfile;
 
-  // Read fringe file.
-  std::string fringeFile = "/home/violetp/code-projects/hops/hops-git/x86_64-4.00/data/test_data/testdata/3562/141-0002/GH.X.3.yxhoyl";
+  // Get path for the fringe file from the user.
+  std::cout << "Enter the path for the fringe file: " << std::endl;
+  std::cin >> fringeFile;
+  std::string fooBar = "ls "+fringeFile;
+  const char* lsFringeFile = fooBar.c_str();
+  std::cout << "Enter the name of the file: " << std::endl;
+  std::cin >> JSONfile;
+
+  // Do error checking on the provided fringe file path.
+  if (system(lsFringeFile) == 2) {
+    //std::cout << "Error: Fringe file not found." << std::endl;
+    std::cerr << "Error: Fringe file not found '" << fringeFile << "'" << std::endl;
+    std::exit(1);
+  }
+
+  // Read the fringe file.
   std::cout << "Converting supplied fringe file to a struct..." << std::endl;
   mk4FringeInterface.ReadFringeFile(fringeFile);
   
@@ -25,7 +39,7 @@ int main(int argc, char **argv) {
   const int DATASIZE = mk4FringeInterface.getType212DataSize(0);
   const int meh = mk4FringeInterface.getN212Size();
   std::cout << "Converting struct to JSON..." << std::endl;
-  mk4FringeInterface.ExportFringeFiles();
+  mk4FringeInterface.ExportFringeFiles(JSONfile);
 
   std::cout << "Validating JSON..." << std::endl;
   std::string homeDir = getenv("HOME"); 
