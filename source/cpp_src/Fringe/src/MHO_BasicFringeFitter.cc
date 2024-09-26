@@ -185,22 +185,17 @@ void MHO_BasicFringeFitter::Initialize()
 
             //initialize the fringe search operators ///////////////////////////////
             //create space for the visibilities transformed into single-band-delay space
-            std::size_t bl_dim[visibility_type::rank::value];
-            vis_data->GetDimensions(bl_dim);
             sbd_data = fContainerStore->GetObject<visibility_type>(std::string("sbd"));
             if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
             {
-                sbd_data = vis_data->Clone();
+                sbd_data = new sbd_type(); //vis_data->Clone();
                 fContainerStore->AddObject(sbd_data);
                 fContainerStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
-                bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
-                sbd_data->Resize(bl_dim);
-                sbd_data->ZeroArray();
             }
 
             //initialize norm-fx (x-form to SBD space)
             fNormFXOp.SetArgs(vis_data, wt_data, sbd_data);
-            bool ok = fNormFXOp.Initialize();
+            bool ok = fNormFXOp.Initialize(); //initialize takes care of properly re-sizing SBD data
             check_step_fatal(ok, "fringe", "normfx initialization." << eom );
 
             //configure the coarse SBD/DR/MBD search
