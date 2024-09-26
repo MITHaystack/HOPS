@@ -188,7 +188,7 @@ void MHO_BasicFringeFitter::Initialize()
             sbd_data = fContainerStore->GetObject<visibility_type>(std::string("sbd"));
             if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
             {
-                sbd_data = new sbd_type(); //vis_data->Clone();
+                sbd_data = new sbd_type();
                 fContainerStore->AddObject(sbd_data);
                 fContainerStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
             }
