@@ -13,18 +13,18 @@ using namespace hops;
 int main(int argc, char **argv) {
 
   MHO_MK4FringeInterface mk4FringeInterface;
-  std::string fringeFile;
-  std::string JSONfile;
+  std::string fringeFile = argv[1];
+  std::string JSONfile = argv[2];
 
-  // Get path for the fringe file from the user.
-  std::cout << "Enter the path for the fringe file: " << std::endl;
-  std::cin >> fringeFile;
-  std::string fooBar = "ls "+fringeFile;
-  const char* lsFringeFile = fooBar.c_str();
-  std::cout << "Enter the name of the file: " << std::endl;
-  std::cin >> JSONfile;
+  // Check that arguments were passed.
+  if (argc != 3) {
+    std::cerr << "Usage: " << argv[0] << "fringe/file/path data.json" << std::endl;
+    return 1;
+  }
 
   // Do error checking on the provided fringe file path.
+  std::string fooBar = "ls "+fringeFile;
+  const char* lsFringeFile = fooBar.c_str();
   if (system(lsFringeFile) == 2) {
     //std::cout << "Error: Fringe file not found." << std::endl;
     std::cerr << "Error: Fringe file not found '" << fringeFile << "'" << std::endl;
@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
 
   std::cout << "Validating JSON..." << std::endl;
   std::string homeDir = getenv("HOME"); 
-  std::string filePath = homeDir+"/type-200s-dump.json";
+  std::string filePath = homeDir+"/"+JSONfile;
   std::string foo = "ls "+filePath;
   const char* lsCommand = foo.c_str();
 
