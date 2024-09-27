@@ -45,7 +45,6 @@ MHO_ParameterConfigurator::Configure()
 
             for(auto tokit = fConditions.begin(); tokit != fConditions.end(); tokit++)
             {
-                //std::cout<<"condition token: "<< *tokit <<std::endl;
                 if(*tokit == "station") //next token must be station MK4 ID
                 {
                     std::string mk4id = *(++tokit);
@@ -61,7 +60,6 @@ MHO_ParameterConfigurator::Configure()
             explicit_paths.push_back(default_path);
         }
 
-        // std::string path = name;
         switch( DetermineParamValueType(value_type) )
         {
             case ParamValueType::int_type:
