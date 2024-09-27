@@ -18,7 +18,7 @@ MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
     {
         bool status = true;
         //figure out if we have USB or LSB data (or a mixture)
-        auto* channel_axis = &(std::get<CHANNEL_AXIS>( *(in) ) );
+        auto channel_axis = &(std::get<CHANNEL_AXIS>( *(in) ) );
 
         std::string sb_key = "net_sideband";
         std::string usb_flag = "U";
@@ -31,9 +31,17 @@ MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
         if(n_lsb_chan != 0){msg_debug("calibration", "MHO_NormFX operating on LSB data, N LSB channels: " << n_lsb_chan <<eom );}
         if(n_usb_chan != 0){msg_debug("calibration", "MHO_NormFX operating on USB data, N USB channels: " << n_usb_chan <<eom );}
 
+        //mixed sideband data should be ok, but warn user since it is not well tested
         if(n_usb_chan != 0 && n_lsb_chan != 0)
         {
-            msg_error("calibration", "problem initializing MHO_NormFX, mixed USB/LSB data not yet supported." << eom);
+            msg_warn("calibration", "support for data with mixed USB/LSB is experimental" << eom);
+        }
+
+        std::vector< mho_json > dsb_labels = channel_axis->GetMatchingIntervalLabels("double_sideband");
+        std::size_t n_dsb_chan = dsb_labels.size();
+        if(n_dsb_chan != 0)
+        {
+            msg_error("calibration", "MHO_NormFX discovered: "<< n_dsb_chan <<" double-sideband channels, this data type is not yet supported" <<eom );
             return false;
         }
 
