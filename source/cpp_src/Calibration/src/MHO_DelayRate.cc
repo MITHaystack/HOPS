@@ -35,7 +35,7 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
 
         fZeroPadder.SetArgs(in1, out);
         fZeroPadder.DeselectAllAxes();
-        fZeroPadder.SelectAxis(TIME_AXIS); //only pad on the frequency (to lag) axis
+        fZeroPadder.SelectAxis(TIME_AXIS); //only pad on the time (to delay rate) axis
         fZeroPadder.SetPaddedSize(np);
         fZeroPadder.SetEndPadded();
         fZeroPadder.PreserveWorkspace();
@@ -43,7 +43,7 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
 
         fFFTEngine.SetArgs(out);
         fFFTEngine.DeselectAllAxes();
-        fFFTEngine.SelectAxis(TIME_AXIS); //only perform padded fft on frequency (to lag) axis
+        fFFTEngine.SelectAxis(TIME_AXIS); //only perform padded fft on time (to delay rate) axis
         fFFTEngine.SetForward();//forward DFT
 
         ok = fZeroPadder.Initialize();
