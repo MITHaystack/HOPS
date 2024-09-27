@@ -275,6 +275,11 @@ MHO_ComputePlotData::calc_segs()
         std::string ch_label;
         bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, chan_label_key, ch_label);
         if(key_present){channel_labels.push_back(ch_label);}
+        else
+        {
+            msg_warn("fringe", "unlabeled channel at index: "<<ch<<", using '?' "<<eom);
+            channel_labels.push_back("?");
+        }
     }
 
     std::string sidebandlabelkey = "net_sideband";

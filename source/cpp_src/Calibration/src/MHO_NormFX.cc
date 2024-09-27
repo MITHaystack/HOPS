@@ -3,22 +3,18 @@
 namespace hops
 {
 
-//#define USE_OLD
-
 
 MHO_NormFX::MHO_NormFX():
-    fInitialized(false),
-    fIsUSB(true)
+    fInitialized(false)
 {};
 
 MHO_NormFX::~MHO_NormFX(){};
 
-
 bool
-MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
+MHO_NormFX::InitializeOutOfPlace(const XArgType* in1, XArgType* out)
 {
     fInitialized = false;
-    if(in1 != nullptr && in2 != nullptr && out != nullptr)
+    if(in1 != nullptr && out != nullptr)
     {
         bool status = true;
         //figure out if we have USB or LSB data (or a mixture)
@@ -32,17 +28,27 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         std::size_t n_usb_chan = usb_chan.size();
         std::size_t n_lsb_chan = lsb_chan.size();
-        if(n_usb_chan != 0){fIsUSB = true;}
-        if(n_lsb_chan != 0){fIsUSB = false;}
-
-        if(!fIsUSB){msg_debug("calibration", "MHO_NormFX operating on LSB data, N LSB channels: " << n_lsb_chan <<eom );}
-        else{msg_debug("calibration", "MHO_NormFX operating on USB data, N USB channels: " << n_usb_chan <<eom );}
+        if(n_lsb_chan != 0){msg_debug("calibration", "MHO_NormFX operating on LSB data, N LSB channels: " << n_lsb_chan <<eom );}
+        if(n_usb_chan != 0){msg_debug("calibration", "MHO_NormFX operating on USB data, N USB channels: " << n_usb_chan <<eom );}
 
         if(n_usb_chan != 0 && n_lsb_chan != 0)
         {
             msg_error("calibration", "problem initializing MHO_NormFX, mixed USB/LSB data not yet supported." << eom);
-            //return false;
+            return false;
         }
+
+        //allocate the SBD space
+        std::size_t sbd_dim[visibility_type::rank::value];
+        in1->GetDimensions(sbd_dim);
+        sbd_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
+        out->Resize(sbd_dim);
+        out->ZeroArray();
+
+        //copy all axes but sub-channel frequency
+        std::get<POLPROD_AXIS>(*out).Copy( std::get<POLPROD_AXIS>(*in1) );
+        std::get<CHANNEL_AXIS>(*out).Copy( std::get<CHANNEL_AXIS>(*in1) );
+        std::get<TIME_AXIS>(*out).Copy( std::get<TIME_AXIS>(*in1) );
+
 
         in1->GetDimensions(fInDims);
         out->GetDimensions(fOutDims);
@@ -63,7 +69,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         fWorkspace.SetArray(std::complex<double>(0.0,0.0));
 
         TODO_FIXME_MSG("TODO FIXME, the following line casts away const-ness:")
-        fNaNBroadcaster.SetArgs( const_cast<XArgType1*>(in1) );
+        fNaNBroadcaster.SetArgs( const_cast<XArgType*>(in1) );
         status = fNaNBroadcaster.Initialize();
         if(!status){msg_error("calibration", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
 
@@ -85,7 +91,6 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         status = fFFTEngine.Initialize();
         if(!status){msg_error("calibration", "Could not initialize FFT in MHO_NormFX." << eom); return false;}
 
-
         fSubSampler.SetDimensionAndStride(FREQ_AXIS, 2);
         fSubSampler.SetArgs(&fWorkspace, out);
         status = fSubSampler.Initialize();
@@ -95,11 +100,6 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         fCyclicRotator.SetArgs(out);
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("calibration", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}
-
-        //TODO_FIXME_MSG("TODO FIXME, the following line casts away const-ness:")
-        fConjBroadcaster.SetArgs( out );
-        status = fConjBroadcaster.Initialize();
-        if(!status){msg_error("calibration", "Could not initialize complex conjugation broadcast in MHO_NormFX." << eom); return false;}
 
         //double it
         nlags *= 2;
@@ -113,7 +113,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
 
 bool
-MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
+MHO_NormFX::ExecuteOutOfPlace(const XArgType* in1, XArgType* out)
 {
 
     if(fInitialized)
@@ -138,14 +138,21 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
         if(!status){msg_error("calibration", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
 
         //for lower sideband we complex conjugate the data
-        if(!fIsUSB)
+        auto chan_ax = &(std::get<CHANNEL_AXIS>(*out));
+        for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
         {
-            status = fConjBroadcaster.Execute();
-            if(!status){msg_error("calibration", "Could not execute complex conjugation in MHO_NormFX." << eom); return false;}
+            std::string net_sideband;
+            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+            if(!key_present){msg_error("calibration", "norm_fx missing net_sideband label for channel "<< ch << eom); }
+            if(net_sideband == "L")
+            {
+                //just the slice that matches this channel
+                auto slice = out->SliceView(":", ch, ":", ":");
+                for(auto it = slice.begin(); it != slice.end(); it++){*it = std::conj(*it);}
+            }
         }
 
-
-        //normalize the array
+        //normalize the array (due to FFT)
         double norm =  1.0/(double)fInDims[FREQ_AXIS];
         *(out) *= norm;
 
@@ -154,6 +161,28 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
 
     return false;
 };
+
+
+
+bool 
+MHO_NormFX::InitializeInPlace(XArgType* in)
+{
+    XArgType* tmp = new XArgType();
+    bool status = InitializeOutOfPlace(in, tmp);
+    in->Copy(*tmp);
+    delete tmp;
+    return status;
+}
+
+bool 
+MHO_NormFX::ExecuteInPlace(XArgType* in)
+{
+    XArgType* tmp = new XArgType();
+    bool status = ExecuteOutOfPlace(in, tmp);
+    in->Copy(*tmp);
+    delete tmp;
+    return status;
+}
 
 
 }//end of namespace

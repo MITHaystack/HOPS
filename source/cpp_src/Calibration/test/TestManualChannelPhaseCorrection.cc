@@ -8,9 +8,6 @@
 #include "MHO_BinaryFileInterface.hh"
 
 #include "MHO_ContainerDefinitions.hh"
-
-#include "MHO_VisibilityChannelizer.hh"
-#include "MHO_WeightChannelizer.hh"
 #include "MHO_FFTWTypes.hh"
 
 #include "MHO_ManualChannelPhaseCorrection.hh"

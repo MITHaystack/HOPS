@@ -36,11 +36,12 @@ class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >
 
         MHO_ChannelLabeler()
         {
-            //we inherited the set of 64 characters from fourfit
-            //consider how we may want to change this in the future
             TODO_FIXME_MSG("TODO FIXME: re-think mult-char labeling scheme, what is most user friendly?")
+            //we inherited the set of 64 characters from fourfit
+            //consider how we may want to change this in the future:
             fDefaultChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$%";
-            fExtendedChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; //used beyond 64
+            //this character set is used for >64 channels when constructing multi-character labels
+            fExtendedChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
             fIndexToChannelLabel.clear();
             fEps = 1e-4; //tolerance when mapping freq to indices
             fChannelLabelKey = "channel_label";
@@ -93,20 +94,44 @@ class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >
                 auto chan_axis_ptr = &( std::get<CHANNEL_AXIS>(*in) );
                 std::size_t nchans = chan_axis_ptr->GetSize();
 
+                //grab info about DSB channels (if it exists)
+                std::vector< mho_json > dsb_labels = chan_axis_ptr->GetMatchingIntervalLabels("double_sideband");
+
+
                 if(fChannelLabelToFrequency.size() == 0)
                 {
                     //apply default channel labels
                     FillDefaultMap(nchans);
+                    std::size_t label_count = 0;
                     for(std::size_t i=0; i<nchans; i++)
                     {
-                        chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, fIndexToChannelLabel[i]);
+                        std::string ch_label = fIndexToChannelLabel[label_count];
+
+                        std::string dummy; //check if this channel was already labeled
+                        bool already_labeled = chan_axis_ptr->RetrieveIndexLabelKeyValue(i, "channel_label", dummy);
+                        if(!already_labeled)
+                        {
+                            chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, ch_label);
+                            //check if this channel is a member of a double-sideband pair, 
+                            //and if so make sure its partner gets the same label
+                            if(dsb_labels.size() != 0)
+                            {
+                                int partner_idx;
+                                bool has_dsb_partner = chan_axis_ptr->RetrieveIndexLabelKeyValue(i, "dsb_partner", partner_idx);
+                                if(has_dsb_partner)
+                                {
+                                    chan_axis_ptr->InsertIndexLabelKeyValue(partner_idx, fChannelLabelKey, ch_label);
+                                }
+                            }
+                            label_count++;
+                        }
                     }
                 }
                 else
                 {
                     if(fChannelLabelToFrequency.size() < nchans)
                     {
-                        msg_warn("calibration", "not all channels given a user specified label, "
+                        msg_error("calibration", "not all channels given a user specified label, "
                                   << "some channels will remain un-labelled." << eom);
                     }
 
@@ -122,11 +147,21 @@ class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >
                             if( std::abs(freq - ch_freq) < fEps )
                             {
                                 chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, ch_label);
+                                //check if this channel is a member of a double-sideband pair, 
+                                //and if so make sure its partner gets the same label
+                                if(dsb_labels.size() != 0)
+                                {
+                                    int partner_idx;
+                                    bool has_dsb_partner = chan_axis_ptr->RetrieveIndexLabelKeyValue(i, "dsb_partner", partner_idx);
+                                    if(has_dsb_partner)
+                                    {
+                                        chan_axis_ptr->InsertIndexLabelKeyValue(partner_idx, fChannelLabelKey, ch_label);
+                                    }
+                                }
                                 break;
                             }
                         }
                     }
-
                 }
                 return true;
             }
