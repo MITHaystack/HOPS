@@ -2,6 +2,8 @@
 #include "MHO_BinaryFileInterface.hh"
 
 #include "MHO_ElementTypeCaster.hh"
+#include "MHO_DoubleSidebandChannelLabeler.hh"
+
 
 #include <cctype>
 #include <cmath>
@@ -229,11 +231,6 @@ MHO_DiFXBaselineProcessor::Organize()
     {
         msg_error("difx_interface", "channels do not have same number of APs on baseline: " <<
             fBaselineName <<", ID: "<<fBaselineID<<" truncating to lowest common number of APs: "<< fNAPs << "."<< eom);
-        // msg_error("difx_interface", "channels do not have same number of APs on baseline: " << fBaselineName <<" will zero pad-out to max AP: "<< fNAPs << "."<< eom);
-        // for(auto apit = fAPSet.begin(); apit != fAPSet.end(); apit++)
-        // {
-        //     std::cout<<"ap: "<<*apit<<std::endl;
-        // }
     }
 
 
@@ -477,8 +474,27 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             }
             ppidx++;
         }
+        
+        //finally, we need to label channels which occur in 'double-sideband' pairs
+        MHO_DoubleSidebandChannelLabeler< visibility_store_type > vis_dsb_detect;
+        vis_dsb_detect.SetArgs(fV);
+        bool init = vis_dsb_detect.Initialize();
+        if(init)
+        {
+            bool exe = vis_dsb_detect.Execute();
+            if(!exe){msg_error("difx_interface", "failed to execute DSB channel detection on visibilities" << eom);}
+        }
+        
+        MHO_DoubleSidebandChannelLabeler< weight_store_type > wt_dsb_detect;
+        wt_dsb_detect.SetArgs(fW);
+        bool winit = wt_dsb_detect.Initialize();
+        if(winit)
+        {
+            bool exe = wt_dsb_detect.Execute();
+            if(!exe){msg_error("difx_interface", "failed to execute DSB channel detection on weights" << eom);}
+        }
 
-        //last thing we do is to attach the pol-product set and freq-band set to the 'Tags' data
+        //the very last thing we do is to attach the pol-product set and freq-band set to the 'Tags' data
         //this is allow a program reading this file to determine this information without streaming
         //in the potentially very large visibility/weights data
         std::vector< std::string > fband_vec(fFreqBandLabelSet.begin(), fFreqBandLabelSet.end());

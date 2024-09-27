@@ -34,10 +34,7 @@ namespace hops
 */
 
 
-class MHO_NormFX: public MHO_BinaryOperator<
-    visibility_type,
-    weight_type,
-    sbd_type >
+class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
 {
     public:
         MHO_NormFX();
@@ -45,12 +42,16 @@ class MHO_NormFX: public MHO_BinaryOperator<
 
     protected:
 
-        using XArgType1 = visibility_type;
-        using XArgType2 = weight_type;
-        using XArgType3 = sbd_type;
+        using XArgType = visibility_type;
 
-        virtual bool InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) override;
-        virtual bool ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) override;
+        virtual bool InitializeInPlace(XArgType* in) override;
+        virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) override;
+
+        virtual bool ExecuteInPlace(XArgType* in) override;
+        virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override;
+
+        // virtual bool InitializeInPlace(const XArgType* in1, XArgType* out) override;
+        // virtual bool Execute(const XArgType* in1, XArgType* out) override;
 
     private:
 
@@ -59,10 +60,9 @@ class MHO_NormFX: public MHO_BinaryOperator<
         std::size_t fOutDims[VIS_NDIM];
 
         typedef MHO_NaNMasker<visibility_type> nanMaskerType;
-        typedef MHO_ComplexConjugator<sbd_type> conjType;
+        typedef MHO_ComplexConjugator<visibility_type> conjType;
 
         MHO_FunctorBroadcaster<visibility_type, nanMaskerType> fNaNBroadcaster;
-        MHO_FunctorBroadcaster<visibility_type, conjType> fConjBroadcaster;
 
         #ifdef HOPS_USE_FFTW3
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< visibility_type >;
@@ -72,12 +72,11 @@ class MHO_NormFX: public MHO_BinaryOperator<
 
         FFT_ENGINE_TYPE fFFTEngine;
         MHO_EndZeroPadder< visibility_type > fZeroPadder;
-        MHO_SubSample<sbd_type> fSubSampler;
-        MHO_CyclicRotator<sbd_type> fCyclicRotator;
+        MHO_SubSample<visibility_type> fSubSampler;
+        MHO_CyclicRotator<visibility_type> fCyclicRotator;
 
-        sbd_type fWorkspace;
+        visibility_type fWorkspace;
         bool fInitialized;
-        bool fIsUSB;
 
 };
 
