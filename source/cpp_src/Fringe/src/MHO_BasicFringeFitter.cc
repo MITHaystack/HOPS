@@ -246,8 +246,14 @@ void MHO_BasicFringeFitter::Run()
         //execute the basic fringe search algorithm
         //basic_fringe_search();
         coarse_fringe_search();
-        interpolate_peak();
+    }
 
+    //check again since, if there is an error during the fringe search we should skip this pass
+    is_finished = fParameterStore->GetAs<bool>("/status/is_finished");
+    skipped = fParameterStore->GetAs<bool>("/status/skipped");
+    if( !is_finished  && !skipped) //execute if we are not finished and are not skipping
+    {
+        interpolate_peak();
         // MHO_BasicFringeUtilities::basic_fringe_search(fContainerStore, fParameterStore);
         fParameterStore->Set("/status/is_finished", true);
         //have sampled all grid points, find the solution and finalize
@@ -384,22 +390,28 @@ MHO_BasicFringeFitter::coarse_fringe_search(bool set_windows)
 
     if(c_mbdmax < 0 || c_sbdmax < 0 || c_drmax < 0)
     {
+        msg_fatal("fringe", "coarse fringe search could not locate peak, bin (sbd, mbd, dr) = (" <<c_sbdmax << ", " << c_mbdmax <<"," << c_drmax<< "), skipping this pass" << eom );
+        #ifdef HOPS_ENABLE_DEBUG_MSG
+        msg_fatal("fringe", "dumping parameter store for debugging" << eom);
         fParameterStore->Dump();
-        msg_fatal("fringe", "coarse fringe search could not locate peak, bin (sbd, mbd, dr) = (" <<c_sbdmax << ", " << c_mbdmax <<"," << c_drmax<< ")." << eom );
-        std::exit(1);
+        #endif
+        fParameterStore->Set("/status/skipped", true);
+        fParameterStore->Set("/status/is_finished", true);
     }
+    else 
+    {
+        //get the coarse maximum and re-scale by the total weights
+        double search_max_amp = fMBDSearch.GetSearchMaximumAmplitude();
+        double total_summed_weights = fParameterStore->GetAs<double>("/fringe/total_summed_weights");
 
-    //get the coarse maximum and re-scale by the total weights
-    double search_max_amp = fMBDSearch.GetSearchMaximumAmplitude();
-    double total_summed_weights = fParameterStore->GetAs<double>("/fringe/total_summed_weights");
+        fParameterStore->Set("/fringe/coarse_search_max_amp", search_max_amp/total_summed_weights);
+        fParameterStore->Set("/fringe/max_mbd_bin", c_mbdmax);
+        fParameterStore->Set("/fringe/max_sbd_bin", c_sbdmax);
+        fParameterStore->Set("/fringe/max_dr_bin", c_drmax);
 
-    fParameterStore->Set("/fringe/coarse_search_max_amp", search_max_amp/total_summed_weights);
-    fParameterStore->Set("/fringe/max_mbd_bin", c_mbdmax);
-    fParameterStore->Set("/fringe/max_sbd_bin", c_sbdmax);
-    fParameterStore->Set("/fringe/max_dr_bin", c_drmax);
-
-    double coarse_sbdelay = fMBDSearch.GetCoarseSBD();
-    fParameterStore->Set("/fringe/sbdelay", coarse_sbdelay);
+        double coarse_sbdelay = fMBDSearch.GetCoarseSBD();
+        fParameterStore->Set("/fringe/sbdelay", coarse_sbdelay);
+    }
 
     profiler_stop();
 }
