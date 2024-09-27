@@ -50,8 +50,8 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteInPlace(XArgType* in) override;
         virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override;
 
-        // virtual bool InitializeInPlace(const XArgType* in1, XArgType* out) override;
-        // virtual bool Execute(const XArgType* in1, XArgType* out) override;
+        // virtual bool InitializeInPlace(const XArgType* in, XArgType* out) override;
+        // virtual bool Execute(const XArgType* in, XArgType* out) override;
 
     private:
 
