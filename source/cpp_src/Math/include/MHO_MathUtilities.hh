@@ -6,6 +6,7 @@
 #include <complex>
 #include <cmath>
 #include <vector>
+#include <string>
 
 
 namespace hops
@@ -36,6 +37,25 @@ class MHO_MathUtilities
 
         //returns the average of the values in a vector assuming they are angles (radians)
         static double angular_average(std::vector<double>& vec);
+
+        static void DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq)
+        {
+            if(net_sideband == "U")
+            {
+                lower_freq = sky_freq;
+                upper_freq = sky_freq + bandwidth;
+                return;
+            }
+            if(net_sideband == "L")
+            {
+                upper_freq = sky_freq;
+                lower_freq = sky_freq - bandwidth;
+                return;
+            }
+            //not upper or lower sideband...assume double sideband (sky_freq is center)
+            upper_freq = sky_freq + bandwidth;
+            lower_freq = sky_freq - bandwidth;
+        }
 
         template< typename XValueType >
         static int FindIntersection(XValueType a, XValueType b, XValueType c, XValueType d, XValueType result[2])

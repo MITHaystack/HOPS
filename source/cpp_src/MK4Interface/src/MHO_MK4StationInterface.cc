@@ -1,6 +1,8 @@
 #include "MHO_MK4StationInterface.hh"
 #include "MHO_LegacyDateConverter.hh"
 
+#include "MHO_MathUtilities.hh"
+
 #include <vector>
 #include <cstdlib>
 #include <cstring>
@@ -422,7 +424,7 @@ MHO_MK4StationInterface::FillPCalArray(const std::string& pol, int pol_idx, mult
         //so we can set the tone frequencies
         double lower_freq, upper_freq;
         std::size_t start_idx, ntones;
-        DetermineChannelFrequencyLimits(sky_freq, bandwidth, sb, lower_freq, upper_freq);
+        MHO_MathUtilities::DetermineChannelFrequencyLimits(sky_freq, bandwidth, sb, lower_freq, upper_freq);
 
         //figure out the number of tones in this channel (better match stop-start)
         int c = std::floor(lower_freq/pcal_spacing);
@@ -677,27 +679,6 @@ MHO_MK4StationInterface::ConstructChannelInfo()
 
     return channel_info;
 
-}
-
-
-
-void
-MHO_MK4StationInterface::DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq)
-{
-    lower_freq = sky_freq;
-    upper_freq = sky_freq;    
-    
-    if(net_sideband == "U")
-    {
-        lower_freq = sky_freq;
-        upper_freq = sky_freq + bandwidth;
-    }
-    
-    if(net_sideband == "L")
-    {
-        upper_freq = sky_freq;
-        lower_freq = sky_freq - bandwidth;
-    }
 }
 
 
