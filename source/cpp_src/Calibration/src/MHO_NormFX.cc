@@ -31,11 +31,11 @@ MHO_NormFX::InitializeOutOfPlace(const XArgType* in1, XArgType* out)
         if(n_lsb_chan != 0){msg_debug("calibration", "MHO_NormFX operating on LSB data, N LSB channels: " << n_lsb_chan <<eom );}
         if(n_usb_chan != 0){msg_debug("calibration", "MHO_NormFX operating on USB data, N USB channels: " << n_usb_chan <<eom );}
 
-        // if(n_usb_chan != 0 && n_lsb_chan != 0)
-        // {
-        //     msg_error("calibration", "problem initializing MHO_NormFX, mixed USB/LSB data not yet supported." << eom);
-        //     //return false;
-        // }
+        if(n_usb_chan != 0 && n_lsb_chan != 0)
+        {
+            msg_error("calibration", "problem initializing MHO_NormFX, mixed USB/LSB data not yet supported." << eom);
+            return false;
+        }
 
         //allocate the SBD space
         std::size_t sbd_dim[visibility_type::rank::value];
@@ -167,13 +167,21 @@ MHO_NormFX::ExecuteOutOfPlace(const XArgType* in1, XArgType* out)
 bool 
 MHO_NormFX::InitializeInPlace(XArgType* in)
 {
-    msg_error("calibration", "in place norm_fx not implemented" <<eom);
+    XArgType* tmp = new XArgType();
+    bool status = InitializeOutOfPlace(in, tmp);
+    in->Copy(*tmp);
+    delete tmp;
+    return status;
 }
 
 bool 
 MHO_NormFX::ExecuteInPlace(XArgType* in)
 {
-    msg_error("calibration", "in place norm_fx not implemented" <<eom);
+    XArgType* tmp = new XArgType();
+    bool status = ExecuteOutOfPlace(in, tmp);
+    in->Copy(*tmp);
+    delete tmp;
+    return status;
 }
 
 
