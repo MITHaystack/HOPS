@@ -1,5 +1,6 @@
 #include "MHO_IonosphericPhaseCorrection.hh"
 #include "MHO_Constants.hh"
+#include "MHO_MathUtilities.hh"
 
 namespace hops
 {
@@ -49,7 +50,7 @@ MHO_IonosphericPhaseCorrection::ExecuteInPlace(visibility_type* in)
             //figure out the upper/lower frequency limits for this channel
             //std::cout<<"working on channel: "<<ch<<" with sky freq: "<<sky_freq<<" sideband: "<<net_sideband<< std::endl;
             double lower_freq, upper_freq;
-            DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
+            MHO_MathUtilities::DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
             double chan_center_freq = 0.5*(lower_freq+upper_freq);
 
             //calculate the differential ionospheric phase rotation (assume constant over length of scan)
@@ -76,22 +77,6 @@ MHO_IonosphericPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, vis
 {
     out->Copy(*in);
     return ExecuteInPlace(out);
-}
-
-
-void
-MHO_IonosphericPhaseCorrection::DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq)
-{
-    if(net_sideband == fUpperSideband)
-    {
-        lower_freq = sky_freq;
-        upper_freq = sky_freq + bandwidth;
-    }
-    else //lower sideband
-    {
-        upper_freq = sky_freq;
-        lower_freq = sky_freq - bandwidth;
-    }
 }
 
 
