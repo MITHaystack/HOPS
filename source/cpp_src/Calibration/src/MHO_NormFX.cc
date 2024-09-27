@@ -11,14 +11,14 @@ MHO_NormFX::MHO_NormFX():
 MHO_NormFX::~MHO_NormFX(){};
 
 bool
-MHO_NormFX::InitializeOutOfPlace(const XArgType* in1, XArgType* out)
+MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
 {
     fInitialized = false;
-    if(in1 != nullptr && out != nullptr)
+    if(in != nullptr && out != nullptr)
     {
         bool status = true;
         //figure out if we have USB or LSB data (or a mixture)
-        auto* channel_axis = &(std::get<CHANNEL_AXIS>( *(in1) ) );
+        auto* channel_axis = &(std::get<CHANNEL_AXIS>( *(in) ) );
 
         std::string sb_key = "net_sideband";
         std::string usb_flag = "U";
@@ -39,18 +39,18 @@ MHO_NormFX::InitializeOutOfPlace(const XArgType* in1, XArgType* out)
 
         //allocate the SBD space
         std::size_t sbd_dim[visibility_type::rank::value];
-        in1->GetDimensions(sbd_dim);
+        in->GetDimensions(sbd_dim);
         sbd_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
         out->Resize(sbd_dim);
         out->ZeroArray();
 
         //copy all axes but sub-channel frequency
-        std::get<POLPROD_AXIS>(*out).Copy( std::get<POLPROD_AXIS>(*in1) );
-        std::get<CHANNEL_AXIS>(*out).Copy( std::get<CHANNEL_AXIS>(*in1) );
-        std::get<TIME_AXIS>(*out).Copy( std::get<TIME_AXIS>(*in1) );
+        std::get<POLPROD_AXIS>(*out).Copy( std::get<POLPROD_AXIS>(*in) );
+        std::get<CHANNEL_AXIS>(*out).Copy( std::get<CHANNEL_AXIS>(*in) );
+        std::get<TIME_AXIS>(*out).Copy( std::get<TIME_AXIS>(*in) );
 
 
-        in1->GetDimensions(fInDims);
+        in->GetDimensions(fInDims);
         out->GetDimensions(fOutDims);
 
         //check that the output dimensions are correct
@@ -69,11 +69,11 @@ MHO_NormFX::InitializeOutOfPlace(const XArgType* in1, XArgType* out)
         fWorkspace.SetArray(std::complex<double>(0.0,0.0));
 
         TODO_FIXME_MSG("TODO FIXME, the following line casts away const-ness:")
-        fNaNBroadcaster.SetArgs( const_cast<XArgType*>(in1) );
+        fNaNBroadcaster.SetArgs( const_cast<XArgType*>(in) );
         status = fNaNBroadcaster.Initialize();
         if(!status){msg_error("calibration", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
 
-        fZeroPadder.SetArgs(in1, &fWorkspace);
+        fZeroPadder.SetArgs(in, &fWorkspace);
         fZeroPadder.DeselectAllAxes();
         //fZeroPadder.EnableNormFXMode(); //doesnt seem to make any difference
         fZeroPadder.SelectAxis(FREQ_AXIS); //only pad on the frequency (to lag) axis
@@ -113,7 +113,7 @@ MHO_NormFX::InitializeOutOfPlace(const XArgType* in1, XArgType* out)
 
 
 bool
-MHO_NormFX::ExecuteOutOfPlace(const XArgType* in1, XArgType* out)
+MHO_NormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* out)
 {
 
     if(fInitialized)
