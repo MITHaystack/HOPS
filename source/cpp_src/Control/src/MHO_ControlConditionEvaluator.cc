@@ -286,7 +286,7 @@ MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
     //if we have more than one boolean state at the end, we by default and them all together
     //this could happen if someone wrote: "if (station A) (station B)", and failed to put an explicit 'and' in the middle
     if(states.size() > 1)
-    
+    {
         msg_warn("control", "ambiguous boolean statement on line "<<fStartLineNumber<<", assuming implied 'AND' condition" << eom);
         for(auto it = states.begin(); it != states.end(); it++){if( *it == FALSE_STATE){return FALSE_STATE;} }
         return TRUE_STATE;

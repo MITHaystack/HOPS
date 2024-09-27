@@ -45,6 +45,7 @@ MHO_ParameterConfigurator::Configure()
 
             for(auto tokit = fConditions.begin(); tokit != fConditions.end(); tokit++)
             {
+                //std::cout<<"condition token: "<< *tokit <<std::endl;
                 if(*tokit == "station") //next token must be station MK4 ID
                 {
                     std::string mk4id = *(++tokit);
