@@ -194,7 +194,7 @@ void MHO_BasicFringeFitter::Initialize()
             }
 
             //initialize norm-fx (x-form to SBD space)
-            fNormFXOp.SetArgs(vis_data, wt_data, sbd_data);
+            fNormFXOp.SetArgs(vis_data, sbd_data);
             bool ok = fNormFXOp.Initialize(); //initialize takes care of properly re-sizing SBD data
             check_step_fatal(ok, "fringe", "normfx initialization." << eom );
 

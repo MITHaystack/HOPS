@@ -11,10 +11,10 @@ MHO_NormFX::MHO_NormFX():
 MHO_NormFX::~MHO_NormFX(){};
 
 bool
-MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
+MHO_NormFX::InitializeOutOfPlace(const XArgType* in1, XArgType* out)
 {
     fInitialized = false;
-    if(in1 != nullptr && in2 != nullptr && out != nullptr)
+    if(in1 != nullptr && out != nullptr)
     {
         bool status = true;
         //figure out if we have USB or LSB data (or a mixture)
@@ -69,7 +69,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         fWorkspace.SetArray(std::complex<double>(0.0,0.0));
 
         TODO_FIXME_MSG("TODO FIXME, the following line casts away const-ness:")
-        fNaNBroadcaster.SetArgs( const_cast<XArgType1*>(in1) );
+        fNaNBroadcaster.SetArgs( const_cast<XArgType*>(in1) );
         status = fNaNBroadcaster.Initialize();
         if(!status){msg_error("calibration", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
 
@@ -113,7 +113,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
 
 bool
-MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
+MHO_NormFX::ExecuteOutOfPlace(const XArgType* in1, XArgType* out)
 {
 
     if(fInitialized)
@@ -161,6 +161,20 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
 
     return false;
 };
+
+
+
+bool 
+MHO_NormFX::InitializeInPlace(XArgType* in)
+{
+    msg_error("calibration", "in place norm_fx not implemented" <<eom);
+}
+
+bool 
+MHO_NormFX::ExecuteInPlace(XArgType* in)
+{
+    msg_error("calibration", "in place norm_fx not implemented" <<eom);
+}
 
 
 }//end of namespace
