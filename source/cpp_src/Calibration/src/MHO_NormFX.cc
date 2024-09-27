@@ -42,17 +42,30 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         std::size_t n_dsb_chan = dsb_labels.size();
         if(n_usb_chan != 0){msg_debug("calibration", "MHO_NormFX operating on DSB data, N DSB channel pairs: " << n_dsb_chan <<eom );}
 
-        //allocate the SBD space
-        std::size_t bl_dim[visibility_type::rank::value];
-        in1->GetDimensions(bl_dim);
-        bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
-        out->Resize(bl_dim);
+        //allocate the SBD space (expand the freq axis by 4x)
+        std::size_t sbd_dim[visibility_type::rank::value];
+        in1->GetDimensions(sbd_dim);
+        sbd_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
+
+        //DSB channels combine the LSB and USB halves...so the number of 'channels' 
+        //is reduced by 1 for every DSB pair we have 
+        std::size_t n_sbd_chan = sbd_dim[CHANNEL_AXIS] - n_dsb_chan;
+        sbd_dim[CHANNEL_AXIS] = n_sbd_chan;
+
+        out->Resize(sbd_dim);
         out->ZeroArray();
 
-        //copy all axes but sub-channel frequency
+        //copy the pol-product and time axes (as they are the same)
         std::get<POLPROD_AXIS>(*out).Copy( std::get<POLPROD_AXIS>(*in1) );
-        std::get<CHANNEL_AXIS>(*out).Copy( std::get<CHANNEL_AXIS>(*in1) );
+
         std::get<TIME_AXIS>(*out).Copy( std::get<TIME_AXIS>(*in1) );
+
+        //now deal with the channel axis...this has a different size, because we 
+        //need to merge any DSB channels 
+        in_chan_ax = &(std::get<CHANNEL_AXIS>(*in1));
+        out_chan_ax =&(std::get<CHANNEL_AXIS>(*out));
+        //loop, copying info over
+
 
         in1->GetDimensions(fInDims);
         out->GetDimensions(fOutDims);
@@ -207,10 +220,10 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         // }
 
         //allocate the SBD space
-        std::size_t bl_dim[visibility_type::rank::value];
-        in1->GetDimensions(bl_dim);
-        bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
-        out->Resize(bl_dim);
+        std::size_t sbd_dim[visibility_type::rank::value];
+        in1->GetDimensions(sbd_dim);
+        sbd_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
+        out->Resize(sbd_dim);
         out->ZeroArray();
 
         //copy all axes but sub-channel frequency
