@@ -6,12 +6,21 @@
 Welcome to HOPS's documentation!
 ================================
 
+
 .. toctree::
     :maxdepth: 2
     :caption: Contents:
 
-    test
+    Introduction <introduction.rst>
+    Getting Started <compiling.rst>
+    Examples <examples.rst>
+    
+    Tests <tests.rst>
+    License <license.rst>
+    Authors <authors.rst>
+
     chapter1
+
 
 
 Indices and tables
