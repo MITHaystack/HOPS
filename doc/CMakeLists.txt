@@ -34,6 +34,8 @@ if( BUILD_SPHINX_DOCS)
         #careful...this file copy directive is only executed once
         #(it does not update if the .rst source files are changed, only if the build directory is removed!)
         file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/reference/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/reference/)
+        configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/reference/source/conf.py.in ${CMAKE_CURRENT_BINARY_DIR}/reference/source/conf.py @ONLY)
+
         add_custom_target(reference
             ${SPHINX_EXECUTABLE} -b html ${CMAKE_CURRENT_BINARY_DIR}/reference/source ${REF_BUILD_DIR}
             WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/reference/source
