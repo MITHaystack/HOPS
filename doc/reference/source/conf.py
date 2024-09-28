@@ -49,6 +49,17 @@ exclude_patterns = []
 #
 html_theme = 'alabaster'
 
+
+#Doxylink tag files to pull in doxygen generated API
+# to make this work we need to doxylink 
+# pip3 install sphinxcontrib-doxylink
+# doxylink = {
+#         'HOPS' : ('./_static/common.tag', './_static/html/')
+# }
+# 
+
+
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
