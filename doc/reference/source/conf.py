@@ -33,6 +33,10 @@ release = '4.0'
 extensions = [
 ]
 
+# extensions = [
+#   'breathe'
+# ]
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -47,17 +51,18 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+#html_theme = 'alabaster'
+# need: pip3 install sphinx-rtd-theme
+html_theme = 'sphinx_rtd_theme'
+
+# -- Options for HTML output --------------------------
 
 
 #Doxylink tag files to pull in doxygen generated API
 # to make this work we need to doxylink 
-# pip3 install sphinxcontrib-doxylink
-# doxylink = {
-#         'HOPS' : ('./_static/common.tag', './_static/html/')
+# breathe_projects = {
+#   "HOPS": "./_build/doxygen/xml"
 # }
-# 
-
 
 
 # Add any paths that contain custom static files (such as style sheets) here,
