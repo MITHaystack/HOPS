@@ -22,7 +22,6 @@ set(SOURCE_BASENAMES
     hops2json
     CompareCorFiles
     ComparePcal
-    fourfit4
     fplot4
     alist4
 )
@@ -41,15 +40,18 @@ if(HOPS_USE_PYBIND11)
     list(APPEND HOPS_APP_LIBS ${PYBIND_APP_LIBS})
 endif(HOPS_USE_PYBIND11)
 
-#add the build time as a CXX flag for all these executables (mainly needed by fourfit)
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DHOPS_BUILD_TIME=${BUILD_TIME} ")
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
     target_link_libraries( ${BASENAME} ${HOPS_APP_LIBS})
 endforeach( BASENAME )
 
-hops_install_executables( ${SOURCE_BASENAMES} )
+hops_install_executables( ${SOURCE_BASENAMES})
+
+#do fourfit4 separately since it needs a build time stamp
+add_executable(fourfit4 fourfit4.cc )
+target_compile_options(fourfit4 PRIVATE -DHOPS_BUILD_TIME=${BUILD_TIME})
+target_link_libraries(fourfit4 ${HOPS_APP_LIBS})
 
 foreach( BASENAME ${TEST_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
