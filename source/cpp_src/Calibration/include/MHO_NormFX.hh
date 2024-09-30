@@ -30,7 +30,8 @@ namespace hops
 *@author J. Barrett - barrettj@mit.edu
 *@date Fri Jul 9 11:47:00 2021 -0400
 *@brief implements a subset of the functionality found in norm_fx.c,
-*mainly the transform from frequency to delay space
+*mainly the transform from frequency to delay space with a reduced 
+*zero padding factor (2x smaller than original implementation)
 */
 
 

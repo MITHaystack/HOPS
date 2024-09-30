@@ -5,8 +5,14 @@
 #include "MHO_ContainerDefinitions.hh"
 
 #include "MHO_NormFX.hh"
+#include "MHO_NormFXExtraPadding.hh"
+
 #include "MHO_MBDelaySearch.hh"
 #include "MHO_InterpolateFringePeak.hh"
+
+
+namespace hops
+{
 
 #ifdef HOPS_USE_CUDA
     #include "MHO_MBDelaySearchCUDA.hh"
@@ -16,8 +22,12 @@
 #endif
 
 
-namespace hops
-{
+#ifdef NORMFX_USE_EXTRA_PADDING
+    using normfx_type = MHO_NormFXExtraPadding; //8x padding like legacy implementation
+#else
+    using normfx_type = MHO_NormFX; //this is the default
+#endif
+
 
 /*!
 *@file MHO_BasicFringeFitter.hh
@@ -54,7 +64,7 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         void coarse_fringe_search(bool set_windows = true);
         void interpolate_peak();
 
-        MHO_NormFX fNormFXOp;
+        normfx_type fNormFXOp;
         MBD_SEARCH_TYPE fMBDSearch;
         MHO_InterpolateFringePeak fPeakInterpolator;
         visibility_type* vis_data;
