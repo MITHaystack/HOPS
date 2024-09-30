@@ -20,6 +20,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DCBlock.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MinWeight.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NormFX.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NormFXExtraPadding.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayRate.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MBDelaySearch.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InterpolateFringePeak.hh
@@ -46,6 +47,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DCBlock.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MinWeight.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NormFX.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NormFXExtraPadding.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayRate.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MBDelaySearch.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InterpolateFringePeak.cc
