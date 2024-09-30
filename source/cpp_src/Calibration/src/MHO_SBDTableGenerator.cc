@@ -222,14 +222,6 @@ MHO_SBDTableGenerator::ConditionallyResizeOutput(const XArgType1* in, XArgType2*
 
     std::size_t nlags = fInDims[FREQ_AXIS]; //in the original norm_fx, nlags is 2x this number
 
-    //temp fWorkspace
-    out->GetDimensions(fWorkDims);
-    fWorkDims[FREQ_AXIS] *= 2;
-    fWorkspace.Resize(fWorkDims);
-    fWorkspace.SetArray(std::complex<double>(0.0,0.0));
-
-
-
     //figure out if we have USB, LSB data, a mixture, and/or double-sideband data
     auto channel_axis = &(std::get<CHANNEL_AXIS>( *(in) ) );
 
