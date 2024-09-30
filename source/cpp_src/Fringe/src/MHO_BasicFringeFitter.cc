@@ -25,6 +25,8 @@
 //TODO FIXME -- remove this
 #include "MHO_EstimatePCManual.hh"
 
+//#define DUMP_PARAMS_ON_ERROR
+
 namespace hops
 {
 
@@ -392,8 +394,10 @@ MHO_BasicFringeFitter::coarse_fringe_search(bool set_windows)
     {
         msg_fatal("fringe", "coarse fringe search could not locate peak, bin (sbd, mbd, dr) = (" <<c_sbdmax << ", " << c_mbdmax <<"," << c_drmax<< "), skipping this pass" << eom );
         #ifdef HOPS_ENABLE_DEBUG_MSG
-        msg_fatal("fringe", "dumping parameter store for debugging" << eom);
-        fParameterStore->Dump();
+        #ifdef DUMP_PARAMS_ON_ERROR
+            msg_fatal("fringe", "dumping parameter store for debugging" << eom);
+            fParameterStore->Dump();
+        #endif
         #endif
         fParameterStore->Set("/status/skipped", true);
         fParameterStore->Set("/status/is_finished", true);
