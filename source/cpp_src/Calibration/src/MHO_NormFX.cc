@@ -70,51 +70,32 @@ MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
 
         std::size_t nlags = fInDims[FREQ_AXIS]; //in the original norm_fx, nlags is 2x this number
 
-        //temp fWorkspace
-        out->GetDimensions(fWorkDims);
-        //fWorkDims[FREQ_AXIS] *= 2;
-        fWorkspace.Resize(fWorkDims);
-        fWorkspace.SetArray(std::complex<double>(0.0,0.0));
-
-        TODO_FIXME_MSG("TODO FIXME, the following line casts away const-ness:")
-        fNaNBroadcaster.SetArgs( const_cast<XArgType*>(in) );
-        status = fNaNBroadcaster.Initialize();
-        if(!status){msg_error("calibration", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
-
         // fZeroPadder.SetArgs(in, &fWorkspace);
         fZeroPadder.SetArgs(in, out);
         fZeroPadder.DeselectAllAxes();
         //fZeroPadder.EnableNormFXMode(); //doesnt seem to make any difference
         fZeroPadder.SelectAxis(FREQ_AXIS); //only pad on the frequency (to lag) axis
-        // fZeroPadder.SetPaddingFactor(8);
-        fZeroPadder.SetPaddingFactor(4);
+        fZeroPadder.SetPaddingFactor(4); //original padding factor was 8...but then data was subsampled by factor of 2
         fZeroPadder.SetEndPadded(); //for both LSB and USB (what about DSB?)
-
-        // fFFTEngine.SetArgs(&fWorkspace);
-        fFFTEngine.SetArgs(out);
-        fFFTEngine.DeselectAllAxes();
-        fFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
-        fFFTEngine.SetForward();//forward DFT
 
         status = fZeroPadder.Initialize();
         if(!status){msg_error("calibration", "Could not initialize zero padder in MHO_NormFX." << eom); return false;}
 
+        fNaNBroadcaster.SetArgs(out);
+        status = fNaNBroadcaster.Initialize();
+        if(!status){msg_error("calibration", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
+
+        fFFTEngine.SetArgs(out);
+        fFFTEngine.DeselectAllAxes();
+        fFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
+        fFFTEngine.SetForward();//forward DFT
         status = fFFTEngine.Initialize();
         if(!status){msg_error("calibration", "Could not initialize FFT in MHO_NormFX." << eom); return false;}
 
-        // fSubSampler.SetDimensionAndStride(FREQ_AXIS, 2);
-        // fSubSampler.SetArgs(&fWorkspace, out);
-        // status = fSubSampler.Initialize();
-        // if(!status){msg_error("calibration", "Could not initialize sub-sampler in MHO_NormFX." << eom); return false;}
-
-        // fCyclicRotator.SetOffset(FREQ_AXIS, 2*nlags);
         fCyclicRotator.SetOffset(FREQ_AXIS, sbd_dim[FREQ_AXIS]/2);
         fCyclicRotator.SetArgs(out);
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("calibration", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}
-
-        // //double it
-        // nlags *= 2;
 
         fInitialized = true;
     }
@@ -131,25 +112,21 @@ MHO_NormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* out)
     if(fInitialized)
     {
         bool status;
-
-        //first thing we do is filter out any NaNs
-        //(ADHOC flagging would likely also be implemented in a similar fashion)
-        status = fNaNBroadcaster.Execute();
-        if(!status){msg_error("calibration", "Could not execute NaN masker MHO_NormFX." << eom); return false;}
-
+        //copy in the visibility data in a zero-padded fashion
         status = fZeroPadder.Execute();
         if(!status){msg_error("calibration", "Could not execute zero padder in MHO_NormFX." << eom); return false;}
+
+        //filter out any NaNs
+        status = fNaNBroadcaster.Execute();
+        if(!status){msg_error("calibration", "Could not execute NaN masker MHO_NormFX." << eom); return false;}
 
         status = fFFTEngine.Execute();
         if(!status){msg_error("calibration", "Could not execute FFT in MHO_NormFX." << eom); return false;}
 
-        // status = fSubSampler.Execute();
-        // if(!status){msg_error("calibration", "Could not execute sub-sampler in MHO_NormFX." << eom); return false;}
-
         status = fCyclicRotator.Execute();
         if(!status){msg_error("calibration", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
 
-        //for lower sideband we complex conjugate the data
+        //for lower sideband we complex conjugate the data (could do this before FFT)
         auto chan_ax = &(std::get<CHANNEL_AXIS>(*out));
         for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
         {

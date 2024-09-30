@@ -50,13 +50,9 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteInPlace(XArgType* in) override;
         virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override;
 
-        // virtual bool InitializeInPlace(const XArgType* in, XArgType* out) override;
-        // virtual bool Execute(const XArgType* in, XArgType* out) override;
-
     private:
 
         std::size_t fInDims[VIS_NDIM];
-        std::size_t fWorkDims[VIS_NDIM];
         std::size_t fOutDims[VIS_NDIM];
 
         typedef MHO_NaNMasker<visibility_type> nanMaskerType;
@@ -72,10 +68,7 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
 
         FFT_ENGINE_TYPE fFFTEngine;
         MHO_EndZeroPadder< visibility_type > fZeroPadder;
-        MHO_SubSample<visibility_type> fSubSampler;
         MHO_CyclicRotator<visibility_type> fCyclicRotator;
-
-        visibility_type fWorkspace;
         bool fInitialized;
 
 };
