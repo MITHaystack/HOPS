@@ -1,5 +1,5 @@
-#ifndef MHO_NormFX_HH__
-#define MHO_NormFX_HH__
+#ifndef MHO_NormFXExtraPadding_HH__
+#define MHO_NormFXExtraPadding_HH__
 
 
 #include <cmath>
@@ -25,21 +25,23 @@ namespace hops
 {
 
 /*!
-*@file MHO_NormFX.hh
-*@class MHO_NormFX
+*@file MHO_NormFXExtraPadding.hh
+*@class MHO_NormFXExtraPadding
 *@author J. Barrett - barrettj@mit.edu
 *@date Fri Jul 9 11:47:00 2021 -0400
 *@brief implements a subset of the functionality found in norm_fx.c,
-*mainly the transform from frequency to delay space with a reduced 
-*zero padding factor (2x smaller than original implementation)
+*mainly the transform from frequency to delay space -- this implementation is
+*closer to the original since it preserves the extra padding factor (8x), which 
+*is later followed by a factor of 2 sub-sampling. The original motivation for 
+*this extra computation appears to be lost.
 */
 
 
-class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
+class MHO_NormFXExtraPadding: public MHO_UnaryOperator< visibility_type >
 {
     public:
-        MHO_NormFX();
-        virtual ~MHO_NormFX();
+        MHO_NormFXExtraPadding();
+        virtual ~MHO_NormFXExtraPadding();
 
     protected:
 
@@ -51,9 +53,13 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteInPlace(XArgType* in) override;
         virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override;
 
+        // virtual bool InitializeInPlace(const XArgType* in, XArgType* out) override;
+        // virtual bool Execute(const XArgType* in, XArgType* out) override;
+
     private:
 
         std::size_t fInDims[VIS_NDIM];
+        std::size_t fWorkDims[VIS_NDIM];
         std::size_t fOutDims[VIS_NDIM];
 
         typedef MHO_NaNMasker<visibility_type> nanMaskerType;
@@ -69,7 +75,10 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
 
         FFT_ENGINE_TYPE fFFTEngine;
         MHO_EndZeroPadder< visibility_type > fZeroPadder;
+        MHO_SubSample<visibility_type> fSubSampler;
         MHO_CyclicRotator<visibility_type> fCyclicRotator;
+
+        visibility_type fWorkspace;
         bool fInitialized;
 
 };
@@ -78,4 +87,4 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
 }
 
 
-#endif /*! end of include guard: MHO_NormFX */
+#endif /*! end of include guard: MHO_NormFXExtraPadding */
