@@ -1,5 +1,7 @@
 #include "MHO_NormFX.hh"
 
+#define PADDING_FACTOR 4
+
 namespace hops
 {
 
@@ -17,6 +19,13 @@ MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
     if(in != nullptr && out != nullptr)
     {
         bool status = true;
+
+        //first we initialize the SBD array, by resizing if necessary 
+        fSBDGen.SetArgs(in, out);
+        fSBDGen.Initialize();
+        fSBDGen.Execute(); //this is a no-op
+
+
         //figure out if we have USB or LSB data (or a mixture)
         auto channel_axis = &(std::get<CHANNEL_AXIS>( *(in) ) );
 
@@ -45,37 +54,38 @@ MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
             return false;
         }
 
-        //allocate the SBD space
-        std::size_t sbd_dim[visibility_type::rank::value];
-        in->GetDimensions(sbd_dim);
-        sbd_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
-        out->Resize(sbd_dim);
-        out->ZeroArray();
-
-        //copy all axes but sub-channel frequency
-        std::get<POLPROD_AXIS>(*out).Copy( std::get<POLPROD_AXIS>(*in) );
-        std::get<CHANNEL_AXIS>(*out).Copy( std::get<CHANNEL_AXIS>(*in) );
-        std::get<TIME_AXIS>(*out).Copy( std::get<TIME_AXIS>(*in) );
-
+        // //allocate the SBD space
+        // std::size_t sbd_dim[visibility_type::rank::value];
+        // in->GetDimensions(sbd_dim);
+        // sbd_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
+        // out->Resize(sbd_dim);
+        // out->ZeroArray();
+        // 
+        // //copy all axes but sub-channel frequency
+        // std::get<POLPROD_AXIS>(*out).Copy( std::get<POLPROD_AXIS>(*in) );
+        // std::get<CHANNEL_AXIS>(*out).Copy( std::get<CHANNEL_AXIS>(*in) );
+        // std::get<TIME_AXIS>(*out).Copy( std::get<TIME_AXIS>(*in) );
+        // 
 
         in->GetDimensions(fInDims);
         out->GetDimensions(fOutDims);
+        // fInDims[FREQ_AXIS] -- in the original norm_fx, nlags is 2x this number
 
-        //check that the output dimensions are correct
-        if(fInDims[POLPROD_AXIS] != fOutDims[POLPROD_AXIS]){status = false;}
-        if(fInDims[CHANNEL_AXIS] != fOutDims[CHANNEL_AXIS]){status = false;}
-        if(fInDims[TIME_AXIS] != fOutDims[TIME_AXIS]){status = false;}
-        if(4*fInDims[FREQ_AXIS] != fOutDims[FREQ_AXIS]){status = false;}
-        if(!status){msg_error("calibration", "Could not initialize MHO_NormFX, in/out dimension mis-match." << eom); return false;}
 
-        std::size_t nlags = fInDims[FREQ_AXIS]; //in the original norm_fx, nlags is 2x this number
+        // //check that the output dimensions are correct
+        // if(fInDims[POLPROD_AXIS] != fOutDims[POLPROD_AXIS]){status = false;}
+        // if(fInDims[CHANNEL_AXIS] != fOutDims[CHANNEL_AXIS]){status = false;}
+        // if(fInDims[TIME_AXIS] != fOutDims[TIME_AXIS]){status = false;}
+        // if(4*fInDims[FREQ_AXIS] != fOutDims[FREQ_AXIS]){status = false;}
+        // if(!status){msg_error("calibration", "Could not initialize MHO_NormFX, in/out dimension mis-match." << eom); return false;}
+
 
         // fZeroPadder.SetArgs(in, &fWorkspace);
         fZeroPadder.SetArgs(in, out);
         fZeroPadder.DeselectAllAxes();
         //fZeroPadder.EnableNormFXMode(); //doesnt seem to make any difference
         fZeroPadder.SelectAxis(FREQ_AXIS); //only pad on the frequency (to lag) axis
-        fZeroPadder.SetPaddingFactor(4); //original padding factor was 8...but then data was subsampled by factor of 2
+        fZeroPadder.SetPaddingFactor(PADDING_FACTOR); //original padding factor was 8...but then data was subsampled by factor of 2
         fZeroPadder.SetEndPadded(); //for both LSB and USB (what about DSB?)
 
         status = fZeroPadder.Initialize();
@@ -92,7 +102,7 @@ MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
         status = fFFTEngine.Initialize();
         if(!status){msg_error("calibration", "Could not initialize FFT in MHO_NormFX." << eom); return false;}
 
-        fCyclicRotator.SetOffset(FREQ_AXIS, sbd_dim[FREQ_AXIS]/2);
+        fCyclicRotator.SetOffset(FREQ_AXIS, fOutDims[FREQ_AXIS]/2);
         fCyclicRotator.SetArgs(out);
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("calibration", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}

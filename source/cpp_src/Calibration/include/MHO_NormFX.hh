@@ -13,8 +13,8 @@
 #include "MHO_FunctorBroadcaster.hh"
 #include "MHO_ComplexConjugator.hh"
 #include "MHO_CyclicRotator.hh"
-#include "MHO_SubSample.hh"
 #include "MHO_EndZeroPadder.hh"
+#include "MHO_SBDTableGenerator.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 
 #ifdef HOPS_USE_FFTW3
@@ -70,6 +70,7 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
         FFT_ENGINE_TYPE fFFTEngine;
         MHO_EndZeroPadder< visibility_type > fZeroPadder;
         MHO_CyclicRotator<visibility_type> fCyclicRotator;
+        MHO_SBDTableGenerator fSBDGen;
         bool fInitialized;
 
 };
