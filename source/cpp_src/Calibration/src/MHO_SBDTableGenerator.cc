@@ -19,12 +19,13 @@ MHO_SBDTableGenerator::InitializeImpl(const XArgType1* in, XArgType2* out)
 {
     //in is raw visibilities 
     //out is the single-band-delay table (workspace/output for normfx)
+    //we need to check the dimensions of the 'out' object (sbd_type)
+    //if it has not been properly sized at this point, we need to resize it
     fInitialized = false;
     if(in != nullptr && out != nullptr)
     {
-        //first we need to check the dimensions of the 'out' object (sbd_type)
-        //if it has not been properly sized at this point, we need to resize it
-        std::vector< mho_json > dsb_labels = channel_axis->GetMatchingIntervalLabels("double_sideband");
+        //check if there are DSB channel pairs (these channels will be merged)
+        std::vector< mho_json > dsb_labels = std::get<CHANNEL_AXIS>(*in).GetMatchingIntervalLabels("double_sideband");
         std::size_t n_dsb_chan = dsb_labels.size();
 
         if(n_dsb_chan == 0){ConditionallyResizeOutput(in,out);}
@@ -76,14 +77,12 @@ MHO_SBDTableGenerator::ConditionallyResizeOutput(const XArgType1* in, XArgType2*
     msg_debug("calibration", "resizing single-band-delay table container frequency axis"); 
 
     //allocate the SBD space (expand the freq axis by the padding factor)
-    std::size_t sbd_dim[visibility_type::rank::value];
-    in->GetDimensions(sbd_dim);
+    in->GetDimensions(sbd_dim); //get input dimensions
     sbd_dim[FREQ_AXIS] = PADDING_FACTOR*vis_dim[FREQ_AXIS]; //normfx implementation demands this
-
     out->Resize(sbd_dim);
     out->ZeroArray();
 
-    //copy the pol-product and time axes (as they are the same)
+    //copy the pol-product and time axes (as they are the same size as input table)
     std::get<POLPROD_AXIS>(*out).Copy( std::get<POLPROD_AXIS>(*in) );
     std::get<CHANNEL_AXIS>(*out).Copy( std::get<CHANNEL_AXIS>(*in) );
     std::get<TIME_AXIS>(*out).Copy( std::get<TIME_AXIS>(*in) );
@@ -94,7 +93,7 @@ MHO_SBDTableGenerator::ConditionallyResizeOutput(const XArgType1* in, XArgType2*
 void 
 MHO_SBDTableGenerator::ConditionallyResizeOutputDSB(const XArgType1* in, XArgType2* out)
 {
-    msg_error("calibration", "MHO_NormFX discovered: "<< n_dsb_chan <<" double-sideband channels, this data type is not yet supported" <<eom );
+    msg_error("calibration", "MHO_NormFX discovered 1 or more double-sideband channels, this data type is not yet supported" <<eom );
     ConditionallyResizeOutput(in,out);
 
     TODO_FIXME_MSG("implemented double sideband SBD table resizing");
