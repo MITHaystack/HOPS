@@ -23,9 +23,9 @@ int main(int argc, char **argv) {
   std::string JSONfile = argv[2];
 
   // Do error checking on the provided fringe file path.
-  std::string lsFringeF = "ls "+fringeFile;
-  const char* lsFringeFile = lsFringeF.c_str();
-  if (system(lsFringeFile) == 2) {
+  std::string statFringeF = "stat "+fringeFile;
+  const char* statFringeFile = statFringeF.c_str();
+  if (system(statFringeFile) == 2) {
     //std::cout << "Error: Fringe file not found." << std::endl;
     std::cerr << "Error: Fringe file not found '" << fringeFile << "'" << std::endl;
     std::exit(1);
@@ -41,11 +41,11 @@ int main(int argc, char **argv) {
   mk4FringeInterface.ExportFringeFiles(JSONfile);
 
   std::cout << "Validating JSON..." << std::endl;
-  std::string lsComm = "ls "+JSONfile;
-  const char* lsCommand = lsComm.c_str();
+  std::string statComm = "stat "+JSONfile;
+  const char* statCommand = statComm.c_str();
 
   // Check if JSON file exists.
-  if (system(lsCommand) == 2) {
+  if (system(statCommand) == 2) {
     std::cout << "Error: type-200s-dump.json not found." << std::endl;
     exit(1);
   }
