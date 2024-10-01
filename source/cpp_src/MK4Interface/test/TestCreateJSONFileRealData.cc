@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
 
   // Check that arguments were passed.
   if (argc != 3) {
-    std::cerr << "Usage: " << argv[0] << "fringe/file/path data.json" << std::endl;
+    std::cerr << "Usage: " << argv[0] << " fringe/file/path data.json" << std::endl;
     return 1;
   }
 
