@@ -12,15 +12,16 @@ using namespace hops;
 
 int main(int argc, char **argv) {
 
-  MHO_MK4FringeInterface mk4FringeInterface;
-  std::string fringeFile = argv[1];
-  std::string JSONfile = argv[2];
-
   // Check that arguments were passed.
   if (argc != 3) {
     std::cerr << "Usage: " << argv[0] << "fringe/file/path data.json" << std::endl;
     return 1;
   }
+
+
+  MHO_MK4FringeInterface mk4FringeInterface;
+  std::string fringeFile = argv[1];
+  std::string JSONfile = argv[2];
 
   // Do error checking on the provided fringe file path.
   std::string fooBar = "ls "+fringeFile;
