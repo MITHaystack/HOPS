@@ -25,6 +25,8 @@
 //TODO FIXME -- remove this
 #include "MHO_EstimatePCManual.hh"
 
+//#define DUMP_PARAMS_ON_ERROR
+
 namespace hops
 {
 
@@ -185,22 +187,17 @@ void MHO_BasicFringeFitter::Initialize()
 
             //initialize the fringe search operators ///////////////////////////////
             //create space for the visibilities transformed into single-band-delay space
-            std::size_t bl_dim[visibility_type::rank::value];
-            vis_data->GetDimensions(bl_dim);
             sbd_data = fContainerStore->GetObject<visibility_type>(std::string("sbd"));
             if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
             {
-                sbd_data = vis_data->Clone();
+                sbd_data = new sbd_type();
                 fContainerStore->AddObject(sbd_data);
                 fContainerStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
-                bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
-                sbd_data->Resize(bl_dim);
-                sbd_data->ZeroArray();
             }
 
             //initialize norm-fx (x-form to SBD space)
-            fNormFXOp.SetArgs(vis_data, wt_data, sbd_data);
-            bool ok = fNormFXOp.Initialize();
+            fNormFXOp.SetArgs(vis_data, sbd_data);
+            bool ok = fNormFXOp.Initialize(); //initialize takes care of properly re-sizing SBD data
             check_step_fatal(ok, "fringe", "normfx initialization." << eom );
 
             //configure the coarse SBD/DR/MBD search
@@ -251,8 +248,14 @@ void MHO_BasicFringeFitter::Run()
         //execute the basic fringe search algorithm
         //basic_fringe_search();
         coarse_fringe_search();
-        interpolate_peak();
+    }
 
+    //check again since, if there is an error during the fringe search we should skip this pass
+    is_finished = fParameterStore->GetAs<bool>("/status/is_finished");
+    skipped = fParameterStore->GetAs<bool>("/status/skipped");
+    if( !is_finished  && !skipped) //execute if we are not finished and are not skipping
+    {
+        interpolate_peak();
         // MHO_BasicFringeUtilities::basic_fringe_search(fContainerStore, fParameterStore);
         fParameterStore->Set("/status/is_finished", true);
         //have sampled all grid points, find the solution and finalize
@@ -389,22 +392,30 @@ MHO_BasicFringeFitter::coarse_fringe_search(bool set_windows)
 
     if(c_mbdmax < 0 || c_sbdmax < 0 || c_drmax < 0)
     {
-        fParameterStore->Dump();
-        msg_fatal("fringe", "coarse fringe search could not locate peak, bin (sbd, mbd, dr) = (" <<c_sbdmax << ", " << c_mbdmax <<"," << c_drmax<< ")." << eom );
-        std::exit(1);
+        msg_fatal("fringe", "coarse fringe search could not locate peak, bin (sbd, mbd, dr) = (" <<c_sbdmax << ", " << c_mbdmax <<"," << c_drmax<< "), skipping this pass" << eom );
+        #ifdef HOPS_ENABLE_DEBUG_MSG
+        #ifdef DUMP_PARAMS_ON_ERROR
+            msg_fatal("fringe", "dumping parameter store for debugging" << eom);
+            fParameterStore->Dump();
+        #endif
+        #endif
+        fParameterStore->Set("/status/skipped", true);
+        fParameterStore->Set("/status/is_finished", true);
     }
+    else 
+    {
+        //get the coarse maximum and re-scale by the total weights
+        double search_max_amp = fMBDSearch.GetSearchMaximumAmplitude();
+        double total_summed_weights = fParameterStore->GetAs<double>("/fringe/total_summed_weights");
 
-    //get the coarse maximum and re-scale by the total weights
-    double search_max_amp = fMBDSearch.GetSearchMaximumAmplitude();
-    double total_summed_weights = fParameterStore->GetAs<double>("/fringe/total_summed_weights");
+        fParameterStore->Set("/fringe/coarse_search_max_amp", search_max_amp/total_summed_weights);
+        fParameterStore->Set("/fringe/max_mbd_bin", c_mbdmax);
+        fParameterStore->Set("/fringe/max_sbd_bin", c_sbdmax);
+        fParameterStore->Set("/fringe/max_dr_bin", c_drmax);
 
-    fParameterStore->Set("/fringe/coarse_search_max_amp", search_max_amp/total_summed_weights);
-    fParameterStore->Set("/fringe/max_mbd_bin", c_mbdmax);
-    fParameterStore->Set("/fringe/max_sbd_bin", c_sbdmax);
-    fParameterStore->Set("/fringe/max_dr_bin", c_drmax);
-
-    double coarse_sbdelay = fMBDSearch.GetCoarseSBD();
-    fParameterStore->Set("/fringe/sbdelay", coarse_sbdelay);
+        double coarse_sbdelay = fMBDSearch.GetCoarseSBD();
+        fParameterStore->Set("/fringe/sbdelay", coarse_sbdelay);
+    }
 
     profiler_stop();
 }

@@ -11,6 +11,7 @@
 
 #include "MHO_Message.hh"
 #include "MHO_Constants.hh"
+#include "MHO_MathUtilities.hh"
 
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
@@ -67,8 +68,6 @@ class MHO_Notches: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
-
-        void DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq);
 
         std::string fBandwidthKey;
         std::string fSidebandLabelKey;

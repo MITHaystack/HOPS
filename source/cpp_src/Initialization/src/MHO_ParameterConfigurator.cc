@@ -60,7 +60,6 @@ MHO_ParameterConfigurator::Configure()
             explicit_paths.push_back(default_path);
         }
 
-        // std::string path = name;
         switch( DetermineParamValueType(value_type) )
         {
             case ParamValueType::int_type:

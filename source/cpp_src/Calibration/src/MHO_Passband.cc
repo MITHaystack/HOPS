@@ -46,7 +46,7 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
 
             //figure out the upper/lower frequency limits for this channel
             double lower_freq, upper_freq;
-            DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
+            MHO_MathUtilities::DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
             double sb = 1.0;
             if(net_sideband == fLowerSideband){sb = -1.0;}
 
@@ -103,7 +103,7 @@ MHO_Passband::ExecuteInPlace(visibility_type* in)
 
             //figure out the upper/lower frequency limits for this channel
             double lower_freq, upper_freq;
-            DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
+            MHO_MathUtilities::DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
             double sb = 1.0;
             if(net_sideband == fLowerSideband){sb = -1.0;}
             
@@ -173,23 +173,5 @@ MHO_Passband::InitializeInPlace(visibility_type* /*in*/){ return true;}
 
 bool
 MHO_Passband::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/){return true;}
-
-
-
-void
-MHO_Passband::DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq)
-{
-    if(net_sideband == fUpperSideband)
-    {
-        lower_freq = sky_freq;
-        upper_freq = sky_freq + bandwidth;
-    }
-    else //lower sideband
-    {
-        upper_freq = sky_freq;
-        lower_freq = sky_freq - bandwidth;
-    }
-}
-
 
 }//end of namespace

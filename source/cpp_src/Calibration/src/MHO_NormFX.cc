@@ -1,28 +1,34 @@
 #include "MHO_NormFX.hh"
 
+#define PADDING_FACTOR 4
+
 namespace hops
 {
 
-//#define USE_OLD
-
 
 MHO_NormFX::MHO_NormFX():
-    fInitialized(false),
-    fIsUSB(true)
+    fInitialized(false)
 {};
 
 MHO_NormFX::~MHO_NormFX(){};
 
-
 bool
-MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
+MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
 {
     fInitialized = false;
-    if(in1 != nullptr && in2 != nullptr && out != nullptr)
+    if(in != nullptr && out != nullptr)
     {
         bool status = true;
+
+        //first we initialize the SBD array, by resizing if necessary 
+        //all this does is expand the frequency axis by 4, unless there
+        //are double sideband channels (which have to be merged once we fill things in)
+        fSBDGen.SetArgs(in, out);
+        fSBDGen.Initialize();
+        fSBDGen.Execute(); //this is a no-op
+
         //figure out if we have USB or LSB data (or a mixture)
-        auto* channel_axis = &(std::get<CHANNEL_AXIS>( *(in1) ) );
+        auto channel_axis = &(std::get<CHANNEL_AXIS>( *(in) ) );
 
         std::string sb_key = "net_sideband";
         std::string usb_flag = "U";
@@ -32,120 +38,97 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         std::size_t n_usb_chan = usb_chan.size();
         std::size_t n_lsb_chan = lsb_chan.size();
-        if(n_usb_chan != 0){fIsUSB = true;}
-        if(n_lsb_chan != 0){fIsUSB = false;}
+        if(n_lsb_chan != 0){msg_debug("calibration", "MHO_NormFX operating on LSB data, N LSB channels: " << n_lsb_chan <<eom );}
+        if(n_usb_chan != 0){msg_debug("calibration", "MHO_NormFX operating on USB data, N USB channels: " << n_usb_chan <<eom );}
 
-        if(!fIsUSB){msg_debug("calibration", "MHO_NormFX operating on LSB data, N LSB channels: " << n_lsb_chan <<eom );}
-        else{msg_debug("calibration", "MHO_NormFX operating on USB data, N USB channels: " << n_usb_chan <<eom );}
-
+        //mixed sideband data should be ok, but warn user since it is not well tested
         if(n_usb_chan != 0 && n_lsb_chan != 0)
         {
-            msg_error("calibration", "problem initializing MHO_NormFX, mixed USB/LSB data not yet supported." << eom);
-            //return false;
+            msg_warn("calibration", "support for data with mixed USB/LSB is experimental" << eom);
         }
 
-        in1->GetDimensions(fInDims);
+        std::vector< mho_json > dsb_labels = channel_axis->GetMatchingIntervalLabels("double_sideband");
+        std::size_t n_dsb_chan = dsb_labels.size();
+        if(n_dsb_chan != 0)
+        {
+            msg_error("calibration", "MHO_NormFX discovered: "<< n_dsb_chan <<" double-sideband channels, this data type is not yet supported" <<eom );
+            return false;
+        }
+
+        in->GetDimensions(fInDims);
         out->GetDimensions(fOutDims);
+        // fInDims[FREQ_AXIS] -- in the original norm_fx, nlags is 2x this number
 
-        //check that the output dimensions are correct
-        if(fInDims[POLPROD_AXIS] != fOutDims[POLPROD_AXIS]){status = false;}
-        if(fInDims[CHANNEL_AXIS] != fOutDims[CHANNEL_AXIS]){status = false;}
-        if(fInDims[TIME_AXIS] != fOutDims[TIME_AXIS]){status = false;}
-        if(4*fInDims[FREQ_AXIS] != fOutDims[FREQ_AXIS]){status = false;}
-        if(!status){msg_error("calibration", "Could not initialize MHO_NormFX, in/out dimension mis-match." << eom); return false;}
-
-        std::size_t nlags = fInDims[FREQ_AXIS]; //in the original norm_fx, nlags is 2x this number
-
-        //temp fWorkspace
-        out->GetDimensions(fWorkDims);
-        fWorkDims[FREQ_AXIS] *= 2;
-        fWorkspace.Resize(fWorkDims);
-        fWorkspace.SetArray(std::complex<double>(0.0,0.0));
-
-        TODO_FIXME_MSG("TODO FIXME, the following line casts away const-ness:")
-        fNaNBroadcaster.SetArgs( const_cast<XArgType1*>(in1) );
-        status = fNaNBroadcaster.Initialize();
-        if(!status){msg_error("calibration", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
-
-        fZeroPadder.SetArgs(in1, &fWorkspace);
+        fZeroPadder.SetArgs(in, out);
         fZeroPadder.DeselectAllAxes();
         //fZeroPadder.EnableNormFXMode(); //doesnt seem to make any difference
         fZeroPadder.SelectAxis(FREQ_AXIS); //only pad on the frequency (to lag) axis
-        fZeroPadder.SetPaddingFactor(8);
+        fZeroPadder.SetPaddingFactor(PADDING_FACTOR); //original padding factor was 8...but then data was subsampled by factor of 2
         fZeroPadder.SetEndPadded(); //for both LSB and USB (what about DSB?)
-
-        fFFTEngine.SetArgs(&fWorkspace);
-        fFFTEngine.DeselectAllAxes();
-        fFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
-        fFFTEngine.SetForward();//forward DFT
 
         status = fZeroPadder.Initialize();
         if(!status){msg_error("calibration", "Could not initialize zero padder in MHO_NormFX." << eom); return false;}
 
+        fNaNBroadcaster.SetArgs(out);
+        status = fNaNBroadcaster.Initialize();
+        if(!status){msg_error("calibration", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
+
+        fFFTEngine.SetArgs(out);
+        fFFTEngine.DeselectAllAxes();
+        fFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
+        fFFTEngine.SetForward();//forward DFT
         status = fFFTEngine.Initialize();
         if(!status){msg_error("calibration", "Could not initialize FFT in MHO_NormFX." << eom); return false;}
 
-
-        fSubSampler.SetDimensionAndStride(FREQ_AXIS, 2);
-        fSubSampler.SetArgs(&fWorkspace, out);
-        status = fSubSampler.Initialize();
-        if(!status){msg_error("calibration", "Could not initialize sub-sampler in MHO_NormFX." << eom); return false;}
-
-        fCyclicRotator.SetOffset(FREQ_AXIS, 2*nlags);
+        fCyclicRotator.SetOffset(FREQ_AXIS, fOutDims[FREQ_AXIS]/2);
         fCyclicRotator.SetArgs(out);
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("calibration", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}
-
-        //TODO_FIXME_MSG("TODO FIXME, the following line casts away const-ness:")
-        fConjBroadcaster.SetArgs( out );
-        status = fConjBroadcaster.Initialize();
-        if(!status){msg_error("calibration", "Could not initialize complex conjugation broadcast in MHO_NormFX." << eom); return false;}
-
-        //double it
-        nlags *= 2;
 
         fInitialized = true;
     }
 
     return fInitialized;
-
 }
 
 
 bool
-MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
+MHO_NormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* out)
 {
 
     if(fInitialized)
     {
         bool status;
-
-        //first thing we do is filter out any NaNs
-        //(ADHOC flagging would likely also be implemented in a similar fashion)
-        status = fNaNBroadcaster.Execute();
-        if(!status){msg_error("calibration", "Could not execute NaN masker MHO_NormFX." << eom); return false;}
-
+        //copy in the visibility data in a zero-padded fashion
         status = fZeroPadder.Execute();
         if(!status){msg_error("calibration", "Could not execute zero padder in MHO_NormFX." << eom); return false;}
+
+        //filter out any NaNs
+        status = fNaNBroadcaster.Execute();
+        if(!status){msg_error("calibration", "Could not execute NaN masker MHO_NormFX." << eom); return false;}
 
         status = fFFTEngine.Execute();
         if(!status){msg_error("calibration", "Could not execute FFT in MHO_NormFX." << eom); return false;}
 
-        status = fSubSampler.Execute();
-        if(!status){msg_error("calibration", "Could not execute sub-sampler in MHO_NormFX." << eom); return false;}
-
         status = fCyclicRotator.Execute();
         if(!status){msg_error("calibration", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
 
-        //for lower sideband we complex conjugate the data
-        if(!fIsUSB)
+        //for lower sideband we complex conjugate the data (could do this before FFT)
+        auto chan_ax = &(std::get<CHANNEL_AXIS>(*out));
+        for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
         {
-            status = fConjBroadcaster.Execute();
-            if(!status){msg_error("calibration", "Could not execute complex conjugation in MHO_NormFX." << eom); return false;}
+            std::string net_sideband;
+            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+            if(!key_present){msg_error("calibration", "norm_fx missing net_sideband label for channel "<< ch << eom); }
+            if(net_sideband == "L")
+            {
+                //just the slice that matches this channel
+                auto slice = out->SliceView(":", ch, ":", ":");
+                for(auto it = slice.begin(); it != slice.end(); it++){*it = std::conj(*it);}
+            }
         }
 
-
-        //normalize the array
+        //normalize the array (due to FFT)
         double norm =  1.0/(double)fInDims[FREQ_AXIS];
         *(out) *= norm;
 
@@ -154,6 +137,28 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
 
     return false;
 };
+
+
+
+bool 
+MHO_NormFX::InitializeInPlace(XArgType* in)
+{
+    XArgType* tmp = new XArgType();
+    bool status = InitializeOutOfPlace(in, tmp);
+    in->Copy(*tmp);
+    delete tmp;
+    return status;
+}
+
+bool 
+MHO_NormFX::ExecuteInPlace(XArgType* in)
+{
+    XArgType* tmp = new XArgType();
+    bool status = ExecuteOutOfPlace(in, tmp);
+    in->Copy(*tmp);
+    delete tmp;
+    return status;
+}
 
 
 }//end of namespace

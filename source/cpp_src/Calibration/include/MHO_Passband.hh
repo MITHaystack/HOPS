@@ -69,8 +69,6 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
 
     private:
 
-        void DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq);
-
         bool fIsExclusion;
         double fLow;
         double fHigh;

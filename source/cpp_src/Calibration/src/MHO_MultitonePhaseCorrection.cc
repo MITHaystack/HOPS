@@ -157,7 +157,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         //figure out the upper/lower frequency limits for this channel
         double lower_freq, upper_freq;
         std::size_t start_idx, ntones;
-        DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
+        MHO_MathUtilities::DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
         double chan_center_freq = 0.5*(lower_freq+upper_freq);
         //determine the pcal tones indices associated with this channel
         DetermineChannelToneIndexes(lower_freq, upper_freq, start_idx, ntones);
@@ -510,21 +510,6 @@ MHO_MultitonePhaseCorrection::PolMatch(std::size_t station_idx, std::string& pc_
     make_upper(polprod);
     make_upper(pc_pol);
     return (pc_pol[0] == polprod[station_idx]);
-}
-
-void
-MHO_MultitonePhaseCorrection::DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq)
-{
-    if(net_sideband == fUpperSideband)
-    {
-        lower_freq = sky_freq;
-        upper_freq = sky_freq + bandwidth;
-    }
-    else //lower sideband
-    {
-        upper_freq = sky_freq;
-        lower_freq = sky_freq - bandwidth;
-    }
 }
 
 void

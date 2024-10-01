@@ -151,14 +151,31 @@ class MHO_DiFXBaselineProcessor
         };
         VisRecordTimeLess fTimePredicate;
 
-        //comparison predicate for sorting index-frequency record pairs
+        //comparison predicate for sorting index-frequency record pairs (use center-frequency)
         struct FreqIndexPairLess
         {
             bool operator()(const std::pair<int, mho_json>& a, const std::pair<int, mho_json>& b) const
             {
                 double a_freq = a.second["freq"];
                 double b_freq = b.second["freq"];
-                return a_freq < b_freq;
+
+                double a_bw = a.second["bw"];
+                double b_bw = b.second["bw"];
+
+                std::string a_sb = a.second["sideband"];
+                std::string b_sb = b.second["sideband"];
+                double a_sign = 0;
+                double b_sign = 0;
+                if(a_sb == "U"){a_sign = 1.0;}
+                if(a_sb == "L"){a_sign = -1.0;}
+                if(b_sb == "U"){b_sign = 1.0;}
+                if(b_sb == "L"){b_sign = -1.0;}
+
+                //figure out the channel center frequencies and compare using that
+                double a_center = a_freq + a_sign*(a_bw/2.0);
+                double b_center = b_freq + b_sign*(b_bw/2.0);
+
+                return a_center < b_center;
             }
         };
         FreqIndexPairLess fFreqPredicate;
