@@ -21,6 +21,8 @@ MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
         bool status = true;
 
         //first we initialize the SBD array, by resizing if necessary 
+        //all this does is expand the frequency axis by 4, unless there
+        //are double sideband channels (which have to be merged once we fill things in)
         fSBDGen.SetArgs(in, out);
         fSBDGen.Initialize();
         fSBDGen.Execute(); //this is a no-op
