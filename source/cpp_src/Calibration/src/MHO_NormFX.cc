@@ -19,12 +19,11 @@ MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
     if(in != nullptr && out != nullptr)
     {
         bool status = true;
-
         //first we initialize the SBD array, by resizing if necessary 
         //all this does is expand the frequency axis by 4, unless there
         //are double sideband channels (which have to be merged once we fill things in)
         fSBDGen.SetArgs(in, out);
-        fSBDGen.Initialize();
+        fSBDGen.Initialize(); //re-size the sbd (out) array if needed
         fSBDGen.Execute(); //this is a no-op
 
         //figure out if we have USB or LSB data (or a mixture)
@@ -59,31 +58,32 @@ MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
         out->GetDimensions(fOutDims);
         // fInDims[FREQ_AXIS] -- in the original norm_fx, nlags is 2x this number
 
+        //this operator fills the SBD table from the input visibilities
+        //but is only used where there are no double-sideband channels
         fZeroPadder.SetArgs(in, out);
         fZeroPadder.DeselectAllAxes();
         //fZeroPadder.EnableNormFXMode(); //doesnt seem to make any difference
         fZeroPadder.SelectAxis(FREQ_AXIS); //only pad on the frequency (to lag) axis
         fZeroPadder.SetPaddingFactor(PADDING_FACTOR); //original padding factor was 8...but then data was subsampled by factor of 2
-        fZeroPadder.SetEndPadded(); //for both LSB and USB (what about DSB?)
-
+        fZeroPadder.SetEndPadded(); 
         status = fZeroPadder.Initialize();
-        if(!status){msg_error("calibration", "Could not initialize zero padder in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("calibration", "could not initialize zero padder in MHO_NormFX" << eom); return false;}
 
         fNaNBroadcaster.SetArgs(out);
         status = fNaNBroadcaster.Initialize();
-        if(!status){msg_error("calibration", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("calibration", "could not initialize NaN mask broadcast in MHO_NormFX" << eom); return false;}
 
         fFFTEngine.SetArgs(out);
         fFFTEngine.DeselectAllAxes();
         fFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
         fFFTEngine.SetForward();//forward DFT
         status = fFFTEngine.Initialize();
-        if(!status){msg_error("calibration", "Could not initialize FFT in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("calibration", "could not initialize FFT in MHO_NormFX" << eom); return false;}
 
         fCyclicRotator.SetOffset(FREQ_AXIS, fOutDims[FREQ_AXIS]/2);
         fCyclicRotator.SetArgs(out);
         status = fCyclicRotator.Initialize();
-        if(!status){msg_error("calibration", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("calibration", "could not initialize cyclic rotation in MHO_NormFX" << eom); return false;}
 
         fInitialized = true;
     }
@@ -99,19 +99,23 @@ MHO_NormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* out)
     if(fInitialized)
     {
         bool status;
-        //copy in the visibility data in a zero-padded fashion
-        status = fZeroPadder.Execute();
-        if(!status){msg_error("calibration", "Could not execute zero padder in MHO_NormFX." << eom); return false;}
+
+        //set the freq axis units (FFT handles the tranform to SBD delay units)
+        std::vector< mho_json > dsb_labels = std::get<CHANNEL_AXIS>( *(in) ).GetMatchingIntervalLabels("double_sideband");
+        std::size_t n_dsb_chan = dsb_labels.size();
+
+        if(n_dsb_chan == 0){FillSBDTableNoDSB(in,out); }//fill the table as normal, no dsb channels
+        else{FillSBDTableWithDSB(in, out);} //deal with the complication caused by dsb channels
 
         //filter out any NaNs
         status = fNaNBroadcaster.Execute();
-        if(!status){msg_error("calibration", "Could not execute NaN masker MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("calibration", "could not execute NaN masker MHO_NormFX" << eom); return false;}
 
         status = fFFTEngine.Execute();
-        if(!status){msg_error("calibration", "Could not execute FFT in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("calibration", "could not execute FFT in MHO_NormFX" << eom); return false;}
 
         status = fCyclicRotator.Execute();
-        if(!status){msg_error("calibration", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("calibration", "could not execute cyclic-rotation MHO_NormFX" << eom); return false;}
 
         //for lower sideband we complex conjugate the data (could do this before FFT)
         auto chan_ax = &(std::get<CHANNEL_AXIS>(*out));
@@ -139,7 +143,7 @@ MHO_NormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* out)
 };
 
 
-
+//not used
 bool 
 MHO_NormFX::InitializeInPlace(XArgType* in)
 {
@@ -159,6 +163,25 @@ MHO_NormFX::ExecuteInPlace(XArgType* in)
     delete tmp;
     return status;
 }
+
+
+bool 
+MHO_NormFX::FillSBDTableNoDSB(const XArgType* /*in*/, XArgType* /* out */)
+{
+    //copy in the visibility data in a zero-padded fashion (zeros go on the end)
+    //this is only valid when there are no double-sideband channels that need to 
+    //be merged
+    bool status = fZeroPadder.Execute(); //use pre-configured zero-padder operator
+    if(!status){msg_error("calibration", "could not execute zero padder in MHO_NormFX" << eom); return false;}
+    return status;
+}
+
+bool 
+MHO_NormFX::FillSBDTableWithDSB(const XArgType* /*in*/, XArgType* /*out*/)
+{
+    return false;
+}
+
 
 
 }//end of namespace
