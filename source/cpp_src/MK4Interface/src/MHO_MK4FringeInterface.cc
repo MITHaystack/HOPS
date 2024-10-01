@@ -86,12 +86,11 @@ void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const type_200 &t200, const
     };
 
     // Write JSON fringe file data to file.
-    std::string homeDir = getenv("HOME"); 
-    std::string filePath = homeDir+"/"+JSONFile;
-    //std::string filePath = homeDir+"/type-200s-dump.json";
-    std::ofstream output(filePath);
+    //std::string homeDir = getenv("HOME"); 
+    //std::string filePath = homeDir+"/"+JSONFile;
+    std::ofstream output(JSONFile);
     output << std::setw(4) << jsonDump << std::endl;
-    std::cout << "JSON file dumped to:" << filePath << std::endl;
+    std::cout << "JSON file dumped to:" << JSONFile << std::endl;
 }
 
     void MHO_MK4FringeInterface::ExportFringeFiles (std::string& JSONFile) {

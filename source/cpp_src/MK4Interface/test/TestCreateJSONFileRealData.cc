@@ -18,14 +18,13 @@ int main(int argc, char **argv) {
     return 1;
   }
 
-
   MHO_MK4FringeInterface mk4FringeInterface;
   std::string fringeFile = argv[1];
   std::string JSONfile = argv[2];
 
   // Do error checking on the provided fringe file path.
-  std::string fooBar = "ls "+fringeFile;
-  const char* lsFringeFile = fooBar.c_str();
+  std::string lsFringeF = "ls "+fringeFile;
+  const char* lsFringeFile = lsFringeF.c_str();
   if (system(lsFringeFile) == 2) {
     //std::cout << "Error: Fringe file not found." << std::endl;
     std::cerr << "Error: Fringe file not found '" << fringeFile << "'" << std::endl;
@@ -43,10 +42,8 @@ int main(int argc, char **argv) {
   mk4FringeInterface.ExportFringeFiles(JSONfile);
 
   std::cout << "Validating JSON..." << std::endl;
-  std::string homeDir = getenv("HOME"); 
-  std::string filePath = homeDir+"/"+JSONfile;
-  std::string foo = "ls "+filePath;
-  const char* lsCommand = foo.c_str();
+  std::string lsComm = "ls "+JSONfile;
+  const char* lsCommand = lsComm.c_str();
 
   // Check if JSON file exists.
   if (system(lsCommand) == 2) {
@@ -55,7 +52,7 @@ int main(int argc, char **argv) {
   }
 
   // Check if JSON file was encoded correctly.
-  std::string commandString = "jsonlint -q "+filePath+" 2> error.txt";
+  std::string commandString = "jsonlint -q "+JSONfile+" 2> error.txt";
   const char* command = commandString.c_str();
   if (system(command) == 0){
     std::cout << "Test passed!" << std::endl;
