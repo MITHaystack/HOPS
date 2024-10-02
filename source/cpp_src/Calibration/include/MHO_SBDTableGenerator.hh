@@ -70,8 +70,8 @@ class MHO_SBDTableGenerator: public MHO_TransformingOperator< visibility_type, s
         //function to resize the sbd array if needed -- no double-sideband data
         void ConditionallyResizeOutput(const XArgType1* in, XArgType2* out);
 
-        //function to resize the sbd array if needed with double-sideband data
-        void ConditionallyResizeOutputDSB(const XArgType1* in, XArgType2* out);
+        // //function to resize the sbd array if needed with double-sideband data
+        // void ConditionallyResizeOutputDSB(const XArgType1* in, XArgType2* out);
 
 
         bool fInitialized;
