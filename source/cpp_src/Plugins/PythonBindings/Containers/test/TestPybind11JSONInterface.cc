@@ -1,11 +1,11 @@
 #include <iostream>
 
+#include <map>
 #include <string>
 #include <vector>
-#include <map>
 
-#include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
+#include <pybind11/pybind11.h>
 
 #include "pybind11_json/pybind11_json.hpp"
 
@@ -18,13 +18,12 @@ using namespace pybind11::literals;
 
 using namespace hops;
 
-
 int main()
 {
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
-    configure_pypath(); //don't really need this since we are not looking for a plugin
+    configure_pypath();             //don't really need this since we are not looking for a plugin
 
-    py::dict obj = py::dict("number"_a=1234, "hello"_a="world");
+    py::dict obj = py::dict("number"_a = 1234, "hello"_a = "world");
 
     // Automatic py::dict->nl::json conversion
     nl::json j = obj;
@@ -41,8 +40,7 @@ int main()
     nl::json map_obj = channel_phases;
     py::dict map_dict = map_obj;
 
-    std::cout<<"dumping map obj = "<<map_obj.dump(2)<<std::endl;
-
+    std::cout << "dumping map obj = " << map_obj.dump(2) << std::endl;
 
     return 0;
 }

@@ -1,26 +1,22 @@
 #ifndef MHO_BidirectionalIterator_HH__
 #define MHO_BidirectionalIterator_HH__
 
-
-
 #include <iterator>
 
 namespace hops
 {
 
 /*!
-*@file  MHO_BidirectionalIterator.hh
-*@class  MHO_BidirectionalIterator
-*@author  J. Barrett - barrettj@mit.edu
-*@date Sat Oct 2 04:34:18 2021 -0400
-*@brief
-*/
+ *@file  MHO_BidirectionalIterator.hh
+ *@class  MHO_BidirectionalIterator
+ *@author  J. Barrett - barrettj@mit.edu
+ *@date Sat Oct 2 04:34:18 2021 -0400
+ *@brief
+ */
 
-template< typename XValueType >
-class MHO_BidirectionalIterator
+template< typename XValueType > class MHO_BidirectionalIterator
 {
     public:
-
         //typedef MHO_BidirectionalIterator self_type;
         // typedef XValueType value_type;
         // typedef XValueType& reference;
@@ -35,17 +31,10 @@ class MHO_BidirectionalIterator
         using iterator_category = std::bidirectional_iterator_tag;
         using difference_type = std::ptrdiff_t;
 
-        MHO_BidirectionalIterator(pointer begin_ptr, pointer ptr, std::size_t length):
-            fBegin(begin_ptr),
-            fPtr(ptr),
-            fLength(length)
-        {};
+        MHO_BidirectionalIterator(pointer begin_ptr, pointer ptr, std::size_t length)
+            : fBegin(begin_ptr), fPtr(ptr), fLength(length){};
 
-        MHO_BidirectionalIterator(const self_type& copy):
-            fBegin(copy.fBegin),
-            fPtr(copy.fPtr),
-            fLength(copy.fLength)
-        {};
+        MHO_BidirectionalIterator(const self_type& copy): fBegin(copy.fBegin), fPtr(copy.fPtr), fLength(copy.fLength){};
 
         virtual ~MHO_BidirectionalIterator(){};
 
@@ -75,10 +64,7 @@ class MHO_BidirectionalIterator
             return ret_val;
         }
 
-        difference_type operator-(const self_type& iter)
-        {
-            return std::distance(iter.GetPtr(), fPtr);
-        }
+        difference_type operator-(const self_type& iter) { return std::distance(iter.GetPtr(), fPtr); }
 
         self_type operator+=(const std::ptrdiff_t& diff)
         {
@@ -108,9 +94,11 @@ class MHO_BidirectionalIterator
 
         //access to underlying array item object
         reference operator*() { return *fPtr; }
+
         const reference operator*() const { return *fPtr; }
 
         pointer operator->() { return fPtr; }
+
         const pointer operator->() const { return fPtr; }
 
         self_type operator=(const self_type& rhs)
@@ -123,47 +111,31 @@ class MHO_BidirectionalIterator
             return *this;
         }
 
-        bool operator==(const self_type& rhs) const
-        {
-            return fPtr == rhs.fPtr;
-        }
+        bool operator==(const self_type& rhs) const { return fPtr == rhs.fPtr; }
 
-        bool operator!=(const self_type& rhs) const
-        {
-            return fPtr != rhs.fPtr;
-        }
+        bool operator!=(const self_type& rhs) const { return fPtr != rhs.fPtr; }
 
-        pointer GetPtr(){return fPtr;}
-        const pointer GetPtr() const {return fPtr;}
+        pointer GetPtr() { return fPtr; }
 
-        std::size_t GetOffset() const
-        {
-            return std::distance(fBegin, fPtr);
-        }
+        const pointer GetPtr() const { return fPtr; }
 
-        bool IsValid() const
-        {
-            return ( (fBegin <= fPtr) && (fPtr < fBegin + fLength ) );
-        }
+        std::size_t GetOffset() const { return std::distance(fBegin, fPtr); }
+
+        bool IsValid() const { return ((fBegin <= fPtr) && (fPtr < fBegin + fLength)); }
 
     protected:
-
         pointer fBegin;
         pointer fPtr;
         std::size_t fLength;
 };
 
-
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-
-template< typename XValueType >
-class MHO_BidirectionalConstIterator
+template< typename XValueType > class MHO_BidirectionalConstIterator
 {
     public:
-
         using self_type = MHO_BidirectionalConstIterator;
         using value_type = XValueType;
         using reference = const XValueType&;
@@ -171,17 +143,11 @@ class MHO_BidirectionalConstIterator
         using iterator_category = std::bidirectional_iterator_tag;
         using difference_type = std::ptrdiff_t;
 
-        MHO_BidirectionalConstIterator(pointer begin_ptr, pointer ptr, std::size_t length):
-            fBegin(begin_ptr),
-            fPtr( const_cast<XValueType*>(ptr) ), //we promise not to touch the contents
-            fLength(length)
-        {};
+        MHO_BidirectionalConstIterator(pointer begin_ptr, pointer ptr, std::size_t length)
+            : fBegin(begin_ptr), fPtr(const_cast< XValueType* >(ptr)), //we promise not to touch the contents
+              fLength(length){};
 
-        MHO_BidirectionalConstIterator(const self_type& copy):
-            fBegin(copy.fBegin),
-            fPtr(copy.fPtr),
-            fLength(copy.fLength)
-        {};
+        MHO_BidirectionalConstIterator(const self_type& copy): fBegin(copy.fBegin), fPtr(copy.fPtr), fLength(copy.fLength){};
 
         virtual ~MHO_BidirectionalConstIterator(){};
 
@@ -211,10 +177,7 @@ class MHO_BidirectionalConstIterator
             return ret_val;
         }
 
-        difference_type operator-(const self_type& iter)
-        {
-            return std::distance(iter.GetPtr(), fPtr);
-        }
+        difference_type operator-(const self_type& iter) { return std::distance(iter.GetPtr(), fPtr); }
 
         self_type operator+=(const std::ptrdiff_t& diff)
         {
@@ -244,6 +207,7 @@ class MHO_BidirectionalConstIterator
 
         //access to underlying array item object is always const
         reference operator*() const { return *fPtr; }
+
         pointer operator->() const { return fPtr; }
 
         self_type operator=(const self_type& rhs)
@@ -256,37 +220,22 @@ class MHO_BidirectionalConstIterator
             return *this;
         }
 
-        bool operator==(const self_type& rhs) const
-        {
-            return fPtr == rhs.fPtr;
-        }
+        bool operator==(const self_type& rhs) const { return fPtr == rhs.fPtr; }
 
-        bool operator!=(const self_type& rhs) const
-        {
-            return fPtr != rhs.fPtr;
-        }
+        bool operator!=(const self_type& rhs) const { return fPtr != rhs.fPtr; }
 
-        pointer GetPtr() const {return fPtr;}
+        pointer GetPtr() const { return fPtr; }
 
-        std::size_t GetOffset() const
-        {
-            return std::distance(fBegin, fPtr);
-        }
+        std::size_t GetOffset() const { return std::distance(fBegin, fPtr); }
 
-        bool IsValid() const
-        {
-            return ( (fBegin <= fPtr) && (fPtr < fBegin + fLength ) );
-        }
+        bool IsValid() const { return ((fBegin <= fPtr) && (fPtr < fBegin + fLength)); }
 
     protected:
-
         const pointer fBegin;
         pointer fPtr;
         std::size_t fLength;
 };
 
-
-
-}//end of namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_BidirectionalIterator */

@@ -1,15 +1,14 @@
 #ifndef MHO_BasicFringeFitter_HH__
 #define MHO_BasicFringeFitter_HH__
 
-#include "MHO_FringeFitter.hh"
 #include "MHO_ContainerDefinitions.hh"
+#include "MHO_FringeFitter.hh"
 
 #include "MHO_NormFX.hh"
 #include "MHO_NormFXExtraPadding.hh"
 
-#include "MHO_MBDelaySearch.hh"
 #include "MHO_InterpolateFringePeak.hh"
-
+#include "MHO_MBDelaySearch.hh"
 
 namespace hops
 {
@@ -21,22 +20,19 @@ namespace hops
     #define MBD_SEARCH_TYPE MHO_MBDelaySearch
 #endif
 
-
 #ifdef NORMFX_USE_EXTRA_PADDING
-    using normfx_type = MHO_NormFXExtraPadding; //8x padding like legacy implementation
+using normfx_type = MHO_NormFXExtraPadding; //8x padding like legacy implementation
 #else
-    using normfx_type = MHO_NormFX; //this is the default
+using normfx_type = MHO_NormFX; //this is the default
 #endif
 
-
 /*!
-*@file MHO_BasicFringeFitter.hh
-*@class MHO_BasicFringeFitter
-*@author J. Barrettj - barrettj@mit.edu
-*@date Wed Sep 20 15:37:46 2023 -0400
-*@brief basic single-baseline fringe fitter, no bells or whistles
-*/
-
+ *@file MHO_BasicFringeFitter.hh
+ *@class MHO_BasicFringeFitter
+ *@author J. Barrettj - barrettj@mit.edu
+ *@date Wed Sep 20 15:37:46 2023 -0400
+ *@brief basic single-baseline fringe fitter, no bells or whistles
+ */
 
 class MHO_BasicFringeFitter: public MHO_FringeFitter
 {
@@ -55,7 +51,6 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         virtual bool IsFinished() override;
 
     protected:
-
         //void AddPolProductSummationOperator(std::string& polprod, std::vector< std::string >& pp_vec, mho_json& statements);
         // void AddDefaultOperatorFormatDef(mho_json& format);
         // void AddDefaultOperators(mho_json& statements);
@@ -73,13 +68,8 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
 
         //ovex info
         mho_json fVexInfo;
-
-
-
-
-
 };
 
-}//end namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_BasicFringeFitter_HH__ */

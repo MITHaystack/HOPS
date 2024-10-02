@@ -4,24 +4,22 @@
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
 
-
 #include "difxio/difx_input.h"
 
 namespace hops
 {
 
 /*!
-*@file  MHO_DiFXInputProcessor.hh
-*@class  MHO_DiFXInputProcessor
-*@author  J. Barrett - barrettj@mit.edu
-*@date Mon Feb 21 00:33:14 2022 -0500
-*@brief
-*/
+ *@file  MHO_DiFXInputProcessor.hh
+ *@class  MHO_DiFXInputProcessor
+ *@author  J. Barrett - barrettj@mit.edu
+ *@date Mon Feb 21 00:33:14 2022 -0500
+ *@brief
+ */
 
 class MHO_DiFXInputProcessor
 {
     public:
-
         MHO_DiFXInputProcessor();
         virtual ~MHO_DiFXInputProcessor();
 
@@ -29,7 +27,6 @@ class MHO_DiFXInputProcessor
         void ConvertToJSON(mho_json& input);
 
     private:
-
         void ExtractBaseStructQuantities(mho_json& input);
         mho_json ExtractConfigQuantities(int n);
         mho_json ExtractFreqQuantities(int n);
@@ -45,10 +42,8 @@ class MHO_DiFXInputProcessor
         std::string GetAntennaSiteTypeString(AntennaSiteType type);
 
         DifxInput* fD;
-
-
 };
 
-}
+} // namespace hops
 
 #endif /*! end of include guard: MHO_DiFXInputProcessor */

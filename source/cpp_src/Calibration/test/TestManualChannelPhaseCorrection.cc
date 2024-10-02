@@ -1,11 +1,11 @@
+#include <getopt.h>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <getopt.h>
 
-#include "MHO_Message.hh"
-#include "MHO_DirectoryInterface.hh"
 #include "MHO_BinaryFileInterface.hh"
+#include "MHO_DirectoryInterface.hh"
+#include "MHO_Message.hh"
 
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_FFTWTypes.hh"
@@ -24,26 +24,28 @@ int main(int argc, char** argv)
     std::string directory;
     std::string baseline;
 
-    static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
-                                          {"directory", required_argument, 0, 'd'},
-                                          {"baseline", required_argument, 0, 'b'}};
+    static struct option longOptions[] = {
+        {"help",      no_argument,       0, 'h'},
+        {"directory", required_argument, 0, 'd'},
+        {"baseline",  required_argument, 0, 'b'}
+    };
 
     static const char* optString = "hd:b:";
 
     while(true)
     {
         char optId = getopt_long(argc, argv, optString, longOptions, NULL);
-        if (optId == -1)
+        if(optId == -1)
             break;
         switch(optId)
         {
-            case ('h'):  // help
+            case('h'): // help
                 std::cout << usage << std::endl;
                 return 0;
-            case ('d'):
+            case('d'):
                 directory = std::string(optarg);
                 break;
-            case ('b'):
+            case('b'):
                 baseline = std::string(optarg);
                 break;
             default:
@@ -62,7 +64,7 @@ int main(int argc, char** argv)
     dirInterface.SetCurrentDirectory(directory);
     dirInterface.ReadCurrentDirectory();
 
-    std::cout<<"Using directory = "<<dirInterface.GetCurrentDirectory()<<std::endl;
+    std::cout << "Using directory = " << dirInterface.GetCurrentDirectory() << std::endl;
 
     dirInterface.GetFileList(allFiles);
     dirInterface.GetFilesMatchingExtention(corFiles, "cor");
@@ -73,7 +75,7 @@ int main(int argc, char** argv)
     std::string root_file = "";
     if(jsonFiles.size() != 1)
     {
-        msg_fatal("main", "There are: "<<jsonFiles.size()<<" root files." << eom);
+        msg_fatal("main", "There are: " << jsonFiles.size() << " root files." << eom);
         std::exit(1);
     }
     else
@@ -96,12 +98,12 @@ int main(int argc, char** argv)
 
     if(!found_baseline)
     {
-        msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
+        msg_fatal("main", "Could not find a file for baseline: " << baseline << eom);
         std::exit(1);
     }
 
-    std::cout<<"Will use root file: "<<root_file<<std::endl;
-    std::cout<<"Will use corel file: "<<corel_file<<std::endl;
+    std::cout << "Will use root file: " << root_file << std::endl;
+    std::cout << "Will use corel file: " << corel_file << std::endl;
 
     //now open and read the (channelized) baseline visibility data
     ch_visibility_type* bl_data = new ch_visibility_type();
@@ -111,11 +113,11 @@ int main(int argc, char** argv)
     {
         MHO_FileKey key;
         inter.Read(*bl_data, key);
-        std::cout<<"Total size of baseline data = "<<bl_data->GetSerializedSize()<<std::endl;
+        std::cout << "Total size of baseline data = " << bl_data->GetSerializedSize() << std::endl;
     }
     else
     {
-        std::cout<<"Error opening file to read"<<std::endl;
+        std::cout << "Error opening file to read" << std::endl;
         inter.Close();
         std::exit(1);
     }
@@ -124,19 +126,10 @@ int main(int argc, char** argv)
     std::size_t bl_dim[VIS_NDIM];
     bl_data->GetDimensions(bl_dim);
     //print the dimensions of this array of visibilities
-    for(std::size_t i=0;i<VIS_NDIM; i++)
+    for(std::size_t i = 0; i < VIS_NDIM; i++)
     {
-        std::cout<<"Data dimension: "<<i<<" has size: "<<bl_dim[i]<<std::endl;
+        std::cout << "Data dimension: " << i << " has size: " << bl_dim[i] << std::endl;
     }
-
-
-
-
-
-
-
-
-
 
     //OPTION 2 /////////////////////////////////////////////////////////////////
     //binary operator, p-cal data is yet another table container
@@ -155,8 +148,6 @@ int main(int argc, char** argv)
     status = phase_corrector2.Execute();
 
     //verify the output
-
-
 
     //clean up
     delete bl_data;

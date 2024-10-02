@@ -1,13 +1,13 @@
-#include <iostream>
-#include <string>
 #include <cmath>
+#include <iostream>
 #include <sstream>
+#include <string>
 
-#include "MHO_TableContainer.hh"
 #include "MHO_Axis.hh"
+#include "MHO_TableContainer.hh"
 
-#include "MHO_BinaryFileStreamer.hh"
 #include "MHO_BinaryFileInterface.hh"
+#include "MHO_BinaryFileStreamer.hh"
 
 using namespace hops;
 
@@ -15,36 +15,34 @@ using namespace hops;
 #define XDIM 0
 #define YDIM 1
 #define ZDIM 2
-typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis< std::string > > axis_pack_test;
-typedef MHO_TableContainer<double, axis_pack_test > test_table_type;
-
+typedef MHO_AxisPack< MHO_Axis< double >, MHO_Axis< double >, MHO_Axis< std::string > > axis_pack_test;
+typedef MHO_TableContainer< double, axis_pack_test > test_table_type;
 
 class MHO_NameExtension
 {
     public:
         MHO_NameExtension(MHO_ExtensibleElement*){};
         virtual ~MHO_NameExtension(){};
-        void SetName(std::string name){fName = name;}
-        std::string GetName(){return fName;}
+
+        void SetName(std::string name) { fName = name; }
+
+        std::string GetName() { return fName; }
 
     private:
         std::string fName;
 };
 
-
-class MHO_NameVisitor:
-    public MHO_ExtendedElement< MHO_NameExtension >::ExtendedVisitor
+class MHO_NameVisitor: public MHO_ExtendedElement< MHO_NameExtension >::ExtendedVisitor
 {
     public:
         MHO_NameVisitor(){};
         ~MHO_NameVisitor(){};
 
     public:
-
-        virtual void VisitExtendedElement(MHO_ExtendedElement<MHO_NameExtension>* anElement) override
+        virtual void VisitExtendedElement(MHO_ExtendedElement< MHO_NameExtension >* anElement) override
         {
-            std::cout<<"visiting an extended element with name:"<<std::endl;
-            std::cout<< anElement->GetName() <<std::endl;
+            std::cout << "visiting an extended element with name:" << std::endl;
+            std::cout << anElement->GetName() << std::endl;
         }
 };
 
@@ -54,27 +52,26 @@ int main(int argc, char** argv)
     size_t dim[NDIM];
     dim[0] = 256; //x
     dim[1] = 256; //y
-    dim[2] = 3; // r,g,b
+    dim[2] = 3;   // r,g,b
 
     test_table_type* test = new test_table_type(dim);
 
-
-    test->MakeExtension< MHO_NameExtension >()->SetName( std::string("myTest") );
+    test->MakeExtension< MHO_NameExtension >()->SetName(std::string("myTest"));
 
     MHO_NameVisitor myVisitor;
     test->Accept(&myVisitor);
 
-    for(size_t i=0; i<NDIM; i++)
+    for(size_t i = 0; i < NDIM; i++)
     {
-        std::cout<<"dimension @ "<<i<<" ="<<test->GetDimension(i)<<std::endl;
+        std::cout << "dimension @ " << i << " =" << test->GetDimension(i) << std::endl;
     }
 
     //set up the axis labels
-    auto* x_axis = &(std::get<XDIM>(*test));
+    auto* x_axis = &(std::get< XDIM >(*test));
     size_t x_axis_size = x_axis->GetDimension(0);
-    for(size_t i=0; i<x_axis_size; i++)
+    for(size_t i = 0; i < x_axis_size; i++)
     {
-        x_axis->at(i) = i*(2.0*M_PI/(double)x_axis_size);
+        x_axis->at(i) = i * (2.0 * M_PI / (double)x_axis_size);
     }
 
     //now add some labels to the x_axis
@@ -89,11 +86,11 @@ int main(int argc, char** argv)
     //     x_axis->InsertLabel(label);
     // }
 
-    auto* y_axis = &(std::get<YDIM>(*test));
+    auto* y_axis = &(std::get< YDIM >(*test));
     size_t y_axis_size = y_axis->GetDimension(0);
-    for(size_t i=0; i<y_axis_size; i++)
+    for(size_t i = 0; i < y_axis_size; i++)
     {
-        y_axis->at(i) = i*(2.0*M_PI/(double)y_axis_size);
+        y_axis->at(i) = i * (2.0 * M_PI / (double)y_axis_size);
     }
 
     //now add some labels to the y_axis
@@ -108,20 +105,20 @@ int main(int argc, char** argv)
     //     y_axis->InsertLabel(label);
     // }
 
-    auto* z_axis = &(std::get<ZDIM>(*test));
+    auto* z_axis = &(std::get< ZDIM >(*test));
     size_t z_axis_size = z_axis->GetDimension(0);
     z_axis->at(0) = "r";
     z_axis->at(1) = "g";
     z_axis->at(2) = "b";
 
-    for(size_t i=0; i<x_axis_size; i++)
+    for(size_t i = 0; i < x_axis_size; i++)
     {
-        for(size_t j=0; j<y_axis_size; j++)
+        for(size_t j = 0; j < y_axis_size; j++)
         {
-            for(size_t k=0; k<z_axis_size; k++)
+            for(size_t k = 0; k < z_axis_size; k++)
             {
-                double value = std::cos( 2*(k+1)*x_axis->at(i) )*std::sin( 2*(k+1)*y_axis->at(j) );
-                (*test)(i,j,k) = value;
+                double value = std::cos(2 * (k + 1) * x_axis->at(i)) * std::sin(2 * (k + 1) * y_axis->at(j));
+                (*test)(i, j, k) = value;
             }
         }
     }
@@ -147,7 +144,6 @@ int main(int argc, char** argv)
     //     std::cout<<"bounds for y-chan-1 are: ["<<ylow<<", "<<yup<<") "<<std::endl;
     // }
 
-
     //zero out values which happen to lie inside x-chan-5 and y-chan-3
     // for(size_t i=xlow; i<xup; i++)
     // {
@@ -160,8 +156,7 @@ int main(int argc, char** argv)
     //     }
     // }
 
-
-    std::cout<<"Total serializable size of test data = "<<test->GetSerializedSize()<<std::endl;
+    std::cout << "Total serializable size of test data = " << test->GetSerializedSize() << std::endl;
 
     std::string filename = "./test-table.bin";
     std::string index_filename = "./test-table.index";
@@ -177,7 +172,7 @@ int main(int argc, char** argv)
     }
     else
     {
-        std::cout<<"error opening file"<<std::endl;
+        std::cout << "error opening file" << std::endl;
     }
 
     inter.Close();
@@ -190,11 +185,11 @@ int main(int argc, char** argv)
         MHO_FileKey key;
         inter.Read(*test2, key);
         //std::cout<<"B object label = "<<blabel<<std::endl;
-        std::cout<<"Total serializable size of (read-back) test data = "<<test2->GetSerializedSize()<<std::endl;
+        std::cout << "Total serializable size of (read-back) test data = " << test2->GetSerializedSize() << std::endl;
     }
     else
     {
-        std::cout<<" error opening file to read"<<std::endl;
+        std::cout << " error opening file to read" << std::endl;
     }
 
     delete test;

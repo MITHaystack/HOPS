@@ -3,7 +3,7 @@
 
 //this include file should not be used directly
 #ifndef MHO_ContainerDefinitions_HH__
-#error "Do not include MHO_StationContainers.hh directly; use MHO_ContainerDefinitions.hh instead."
+    #error "Do not include MHO_StationContainers.hh directly; use MHO_ContainerDefinitions.hh instead."
 #endif
 
 namespace hops
@@ -22,7 +22,7 @@ namespace hops
 #define MTPCAL_TIME_AXIS 1
 #define MTPCAL_FREQ_AXIS 2
 
-using station_coord_axis_pack = MHO_AxisPack< coord_axis_type, time_axis_type, coeff_axis_type>;
+using station_coord_axis_pack = MHO_AxisPack< coord_axis_type, time_axis_type, coeff_axis_type >;
 using station_coord_type = MHO_TableContainer< spline_coeff_type, station_coord_axis_pack >;
 
 //multi-tone pcal data
@@ -40,6 +40,6 @@ using manual_pcal_type = MHO_TableContainer< manual_pcal_element_type, manual_pc
 //manual (per-channel) pcal (delay) offsets
 using manual_pcal_delay_type = MHO_TableContainer< manual_pcal_element_type, manual_pcal_axis_type >;
 
-}//end of hops namespaces
+} // namespace hops
 
 #endif /*! end of include guard: MHO_StationCoordinates */

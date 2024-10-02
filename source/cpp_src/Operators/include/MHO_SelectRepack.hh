@@ -1,7 +1,6 @@
 #ifndef MHO_SelectRepack_HH__
 #define MHO_SelectRepack_HH__
 
-
 #include <map>
 #include <vector>
 
@@ -13,25 +12,20 @@
 namespace hops
 {
 
-
 /*!
-*@file MHO_SelectRepack.hh
-*@class MHO_SelectRepack
-*@author J. Barrett - barrettj@mit.edu
-*@date Thu Dec 15 16:45:22 2022 -0500
-*@brief
-* operator to select data from table and repack it into an entirely new table,
-* this typically would involve lots of copying (expensive), so it should be used
-* sparringly (e.g. initial or final coarse data selection)
-*/
+ *@file MHO_SelectRepack.hh
+ *@class MHO_SelectRepack
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Thu Dec 15 16:45:22 2022 -0500
+ *@brief
+ * operator to select data from table and repack it into an entirely new table,
+ * this typically would involve lots of copying (expensive), so it should be used
+ * sparringly (e.g. initial or final coarse data selection)
+ */
 
-
-template< class XArgType>
-class MHO_SelectRepack:
-    public MHO_UnaryOperator< XArgType >
+template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XArgType >
 {
     public:
-
         MHO_SelectRepack()
         {
             fInitialized = false;
@@ -40,22 +34,18 @@ class MHO_SelectRepack:
 
         virtual ~MHO_SelectRepack(){};
 
-        void Reset(){fAxisSelectionMap.clear();}
+        void Reset() { fAxisSelectionMap.clear(); }
 
-        void SelectAxisItems(std::size_t axis_index, const std::vector<std::size_t>& valid_indexes)
+        void SelectAxisItems(std::size_t axis_index, const std::vector< std::size_t >& valid_indexes)
         {
             fAxisSelectionMap[axis_index] = valid_indexes;
             //sort to make sure the selected elements are given in increasing order
-            std::sort( fAxisSelectionMap[axis_index].begin(), fAxisSelectionMap[axis_index].end() );
+            std::sort(fAxisSelectionMap[axis_index].begin(), fAxisSelectionMap[axis_index].end());
             fInitialized = false;
         }
 
     protected:
-
-        virtual bool InitializeInPlace(XArgType* in) override
-        {
-            return InitializeOutOfPlace(in, &fWorkspace);
-        }
+        virtual bool InitializeInPlace(XArgType* in) override { return InitializeOutOfPlace(in, &fWorkspace); }
 
         virtual bool ExecuteInPlace(XArgType* in) override
         {
@@ -69,7 +59,7 @@ class MHO_SelectRepack:
         {
             if(in != nullptr && out != nullptr)
             {
-                std::array<std::size_t, XArgType::rank::value> out_dim = DetermineOutputDimensions(in);
+                std::array< std::size_t, XArgType::rank::value > out_dim = DetermineOutputDimensions(in);
                 ConditionallyResizeOutput(out_dim, out);
                 fInitialized = true;
                 return true;
@@ -85,11 +75,11 @@ class MHO_SelectRepack:
         {
             if(fInitialized)
             {
-                std::array<std::size_t, XArgType::rank::value> out_dim;
-                std::array<std::size_t, XArgType::rank::value> out_loc;
-                std::array<std::size_t, XArgType::rank::value> in_loc;
+                std::array< std::size_t, XArgType::rank::value > out_dim;
+                std::array< std::size_t, XArgType::rank::value > out_loc;
+                std::array< std::size_t, XArgType::rank::value > in_loc;
 
-                out->GetDimensions( &(out_dim[0]) );
+                out->GetDimensions(&(out_dim[0]));
                 std::size_t total_size = out->GetSize();
 
                 if(fAxisSelectionMap.size() == 0)
@@ -100,33 +90,33 @@ class MHO_SelectRepack:
                 else if(fAxisSelectionMap.size() == XArgType::rank::value)
                 {
                     //all axes have data selected that we need to extract
-                    for(std::size_t i=0; i<total_size; i++)
+                    for(std::size_t i = 0; i < total_size; i++)
                     {
                         //compute the indexes into the 'out' array
-                        MHO_NDArrayMath::RowMajorIndexFromOffset<XArgType::rank::value>(i, &(out_dim[0]), &(out_loc[0]) );
+                        MHO_NDArrayMath::RowMajorIndexFromOffset< XArgType::rank::value >(i, &(out_dim[0]), &(out_loc[0]));
 
                         //compute the indexes into the 'in' array, remapping where needed
                         //from the selections
-                        for(std::size_t a=0; a < XArgType::rank::value; a++)
+                        for(std::size_t a = 0; a < XArgType::rank::value; a++)
                         {
                             in_loc[a] = (fAxisSelectionMap[a])[out_loc[a]];
                             out->ValueAt(out_loc) = in->ValueAt(in_loc);
                         }
                     }
-                    IfTableSelectOnAxes(in,out);
+                    IfTableSelectOnAxes(in, out);
                 }
                 else
                 {
                     //some axes have data selected, and some do not (meaning all is passed)
                     //so we need to sort through the mess
-                    for(std::size_t i=0; i<total_size; i++)
+                    for(std::size_t i = 0; i < total_size; i++)
                     {
                         //compute the indexes into the 'out' array
-                        MHO_NDArrayMath::RowMajorIndexFromOffset<XArgType::rank::value>(i, &(out_dim[0]), &(out_loc[0]) );
+                        MHO_NDArrayMath::RowMajorIndexFromOffset< XArgType::rank::value >(i, &(out_dim[0]), &(out_loc[0]));
 
                         //compute the indexes into the 'in' array, remapping where needed
                         //from the selections
-                        for(std::size_t a=0; a < XArgType::rank::value; a++)
+                        for(std::size_t a = 0; a < XArgType::rank::value; a++)
                         {
                             if(fAxisSelectionMap.count(a) == 0)
                             {
@@ -141,23 +131,22 @@ class MHO_SelectRepack:
                     }
                 }
 
-                IfTableSelectOnAxes(in,out);
+                IfTableSelectOnAxes(in, out);
 
                 return true;
             }
-            else{ return false;}
+            else
+            {
+                return false;
+            }
         }
 
-
-
-
     private:
-
-        std::array<std::size_t, XArgType::rank::value> DetermineOutputDimensions(const XArgType* in)
+        std::array< std::size_t, XArgType::rank::value > DetermineOutputDimensions(const XArgType* in)
         {
-            std::array<std::size_t, XArgType::rank::value> out_dim;
-            in->GetDimensions( &(out_dim[0]) ); //initialize all dimensions to be the same as input
-            for(std::size_t a=0; a < XArgType::rank::value; a++)
+            std::array< std::size_t, XArgType::rank::value > out_dim;
+            in->GetDimensions(&(out_dim[0])); //initialize all dimensions to be the same as input
+            for(std::size_t a = 0; a < XArgType::rank::value; a++)
             {
                 //reduce output dimensions for those axes which have selections
                 if(fAxisSelectionMap.count(a) != 0)
@@ -168,58 +157,60 @@ class MHO_SelectRepack:
             return out_dim;
         }
 
-        void ConditionallyResizeOutput(const std::array<std::size_t, XArgType::rank::value>& dims, XArgType* out)
+        void ConditionallyResizeOutput(const std::array< std::size_t, XArgType::rank::value >& dims, XArgType* out)
         {
             auto out_dim = out->GetDimensionArray();
             bool have_to_resize = false;
-            for(std::size_t i=0; i<XArgType::rank::value; i++)
+            for(std::size_t i = 0; i < XArgType::rank::value; i++)
             {
-                if(out_dim[i] != dims[i] ){have_to_resize = true;}
+                if(out_dim[i] != dims[i])
+                {
+                    have_to_resize = true;
+                }
             }
-            if(have_to_resize){ out->Resize( &(dims[0]) );}
+            if(have_to_resize)
+            {
+                out->Resize(&(dims[0]));
+            }
         }
 
         //default...does nothing
         template< typename XCheckType = XArgType >
-        typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
+        typename std::enable_if< !std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableSelectOnAxes(const XArgType* /*!in*/, XArgType* /*!out*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
         template< typename XCheckType = XArgType >
-        typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
+        typename std::enable_if< std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableSelectOnAxes(const XArgType* in, XArgType* out)
         {
-            for(std::size_t a=0; a<XArgType::rank::value; a++) //apply to all axes
+            for(std::size_t a = 0; a < XArgType::rank::value; a++) //apply to all axes
             {
-                SelectOnAxis axis_sub_sampler( fAxisSelectionMap[a] );
-                apply_at2< typename XArgType::axis_pack_tuple_type, SelectOnAxis >( *in, *out, a, axis_sub_sampler);
+                SelectOnAxis axis_sub_sampler(fAxisSelectionMap[a]);
+                apply_at2< typename XArgType::axis_pack_tuple_type, SelectOnAxis >(*in, *out, a, axis_sub_sampler);
             }
             out->CopyTags(*in); //make sure the table tags get copied
         }
 
-
         class SelectOnAxis
         {
             public:
-                SelectOnAxis(std::vector< std::size_t > selection):
-                    fSelection(selection)
-                {};
+                SelectOnAxis(std::vector< std::size_t > selection): fSelection(selection){};
                 ~SelectOnAxis(){};
 
-                template< typename XAxisType >
-                void operator()(const XAxisType& axis1, XAxisType& axis2)
+                template< typename XAxisType > void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
-                    if( fSelection.size() != 0 )
+                    if(fSelection.size() != 0)
                     {
                         //copy all of the axis meta data
                         axis2.CopyTags(axis1);
                         //then remove the index labels
                         axis2.ClearIndexLabels();
                         //now copy back the selected index labels
-                        for(std::size_t i=0; i<fSelection.size();i++)
+                        for(std::size_t i = 0; i < fSelection.size(); i++)
                         {
-                            axis2(i) = axis1( fSelection[i] );
-                            mho_json obj = axis1.GetLabelObject( fSelection[i] );
+                            axis2(i) = axis1(fSelection[i]);
+                            mho_json obj = axis1.GetLabelObject(fSelection[i]);
                             axis2.SetLabelObject(obj, i);
                         }
 
@@ -237,9 +228,7 @@ class MHO_SelectRepack:
 
             private:
                 std::vector< std::size_t > fSelection;
-
         };
-
 
         bool fInitialized;
         XArgType fWorkspace;
@@ -248,19 +237,8 @@ class MHO_SelectRepack:
         //if no item is present for a particular axis, the assumption is that all pre-existing
         //elements are selected/passed in the selection process
         std::map< std::size_t, std::vector< std::size_t > > fAxisSelectionMap;
-
-
-
-
 };
 
-
-
-
-
-
-
-};
-
+}; // namespace hops
 
 #endif /*! end of include guard: MHO_SelectRepack_HH__ */

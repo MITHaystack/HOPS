@@ -1,46 +1,39 @@
 #ifndef MHO_PyUnaryTableOperator_HH__
 #define MHO_PyUnaryTableOperator_HH__
 
-#include "MHO_UnaryOperator.hh"
 #include "MHO_PyTableContainer.hh"
+#include "MHO_UnaryOperator.hh"
 
-
-#include <pybind11/pybind11.h>
 #include <pybind11/numpy.h> //this is important to have for std::complex<T> support!
+#include <pybind11/pybind11.h>
 namespace py = pybind11;
 
 namespace hops
 {
 
 /*!
-*@file  MHO_PyUnaryTableOperator.hh
-*@class  MHO_PyUnaryTableOperator
-*@author  J. Barrett - barrettj@mit.edu
-*@date Thu Sep 23 16:03:48 2021 -0400
-*@brief
-*/
-
-
+ *@file  MHO_PyUnaryTableOperator.hh
+ *@class  MHO_PyUnaryTableOperator
+ *@author  J. Barrett - barrettj@mit.edu
+ *@date Thu Sep 23 16:03:48 2021 -0400
+ *@brief
+ */
 
 class MHO_PyUnaryTableOperator: public MHO_Operator
 {
     public:
+        MHO_PyUnaryTableOperator(): fHelper(nullptr), fInitialized(false){};
 
-        MHO_PyUnaryTableOperator():
-            fHelper(nullptr),
-            fInitialized(false)
-        {};
+        virtual ~MHO_PyUnaryTableOperator() { delete fHelper; };
 
-        virtual ~MHO_PyUnaryTableOperator()
+        template< typename XTableType > void SetInput(XTableType* in)
         {
-            delete fHelper;
-        };
-
-        template< typename XTableType >
-        void SetInput(XTableType* in)
-        {
-            if(fHelper != nullptr){delete fHelper; fHelper = nullptr;}
-            fHelper = new helper_specific<XTableType>(in);
+            if(fHelper != nullptr)
+            {
+                delete fHelper;
+                fHelper = nullptr;
+            }
+            fHelper = new helper_specific< XTableType >(in);
         };
 
         void SetModuleFunctionName(std::string module_name, std::string function_name)
@@ -60,7 +53,6 @@ class MHO_PyUnaryTableOperator: public MHO_Operator
             return fInitialized;
         };
 
-
         virtual bool Execute() override
         {
             if(fInitialized)
@@ -73,15 +65,15 @@ class MHO_PyUnaryTableOperator: public MHO_Operator
         }
 
     private:
-
         class helper_base
         {
             public:
                 helper_base(){};
                 virtual ~helper_base(){};
 
-                void SetModuleName(std::string mod){fModuleName = mod;}
-                void SetFunctionName(std::string func){fFunctionName = func;};
+                void SetModuleName(std::string mod) { fModuleName = mod; }
+
+                void SetFunctionName(std::string func) { fFunctionName = func; };
 
                 virtual bool exe() = 0;
 
@@ -90,35 +82,35 @@ class MHO_PyUnaryTableOperator: public MHO_Operator
                 std::string fFunctionName;
         };
 
-
-        template< typename XTableType >
-        class helper_specific: public helper_base
+        template< typename XTableType > class helper_specific: public helper_base
         {
             public:
-
-                helper_specific(XTableType* ptr):fPtr(ptr){};
+                helper_specific(XTableType* ptr): fPtr(ptr){};
                 virtual ~helper_specific(){};
 
                 virtual bool exe() override
                 {
-                    if( !( fPtr->template HasExtension< MHO_PyTableContainer< XTableType > >() ) )
+                    if(!(fPtr->template HasExtension< MHO_PyTableContainer< XTableType > >()))
                     {
-                        fPtr->template MakeExtension< MHO_PyTableContainer< XTableType > >() ;
+                        fPtr->template MakeExtension< MHO_PyTableContainer< XTableType > >();
                     }
                     //assume the python interpreter is already running (should we use try/catch?)
                     auto mod = py::module::import(fModuleName.c_str());
                     auto extension = fPtr->template AsExtension< MHO_PyTableContainer< XTableType > >();
-                    MHO_PyTableContainer< XTableType >* container = dynamic_cast< MHO_PyTableContainer< XTableType >* >(extension);
+                    MHO_PyTableContainer< XTableType >* container =
+                        dynamic_cast< MHO_PyTableContainer< XTableType >* >(extension);
                     if(container != nullptr)
                     {
                         mod.attr(fFunctionName.c_str())(*container);
                         return true;
                     }
-                    else{return false;}
+                    else
+                    {
+                        return false;
+                    }
                 }
 
             private:
-
                 XTableType* fPtr;
         };
 
@@ -127,11 +119,8 @@ class MHO_PyUnaryTableOperator: public MHO_Operator
         bool fInitialized;
         std::string fModuleName;
         std::string fFunctionName;
-
-
 };
 
-}//end of namespace
-
+} // namespace hops
 
 #endif /*! end of include guard: MHO_PyUnaryTableOperator */

@@ -1,27 +1,24 @@
 #ifndef MHO_VexTokenProcessor_HH__
 #define MHO_VexTokenProcessor_HH__
 
-
+#include "MHO_DirectoryInterface.hh"
+#include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
-#include "MHO_JSONHeaderWrapper.hh"
-#include "MHO_DirectoryInterface.hh"
 
-#include "MHO_VexLine.hh"
 #include "MHO_VexDefinitions.hh"
-
+#include "MHO_VexLine.hh"
 
 namespace hops
 {
 
 /*!
-*@file  MHO_VexTokenProcessor.hh
-*@class  MHO_VexTokenProcessor
-*@author  J. Barrett - barrettj@mit.edu
-*@date Mon Jun 13 22:27:21 2022 -0400
-*@brief
-*/
-
+ *@file  MHO_VexTokenProcessor.hh
+ *@class  MHO_VexTokenProcessor
+ *@author  J. Barrett - barrettj@mit.edu
+ *@date Mon Jun 13 22:27:21 2022 -0400
+ *@brief
+ */
 
 class MHO_VexTokenProcessor
 {
@@ -38,11 +35,10 @@ class MHO_VexTokenProcessor
         bool ContainsWhitespace(std::string value);
 
     private:
-
         std::string fWhitespaceDelim;
         MHO_Tokenizer fTokenizer;
 };
 
-}
+} // namespace hops
 
 #endif /*! end of include guard: MHO_VexTokenProcessor */

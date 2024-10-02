@@ -1,23 +1,23 @@
-#include <iostream>
-#include <vector>
-#include <memory>
+#include <cmath>
 #include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <memory>
+#include <random>
 #include <sstream>
 #include <thread>
 #include <unistd.h>
-#include <iomanip>
-#include <random>
-#include <cmath>
+#include <vector>
 
 // CUDA includes
 #include <cuComplex.h>
+#include <cuda.h>
+#include <cuda_runtime_api.h>
 #include <cufft.h>
 #include <stdint.h>
-#include <cuda_runtime_api.h>
-#include <cuda.h>
 
-
-int main() {
+int main()
+{
     // Define the dimensions of the 4D array
     const int dim1 = 1;
     const int dim2 = 32;

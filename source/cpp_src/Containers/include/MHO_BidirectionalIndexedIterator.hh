@@ -1,8 +1,6 @@
 #ifndef MHO_BidirectionalIndexedIterator_HH__
 #define MHO_BidirectionalIndexedIterator_HH__
 
-
-
 #include <iterator>
 
 #include "MHO_Message.hh"
@@ -12,44 +10,43 @@ namespace hops
 {
 
 /*!
-*@file  MHO_BidirectionalIndexedIterator.hh
-*@class  MHO_BidirectionalIndexedIterator
-*@author  J. Barrett - barrettj@mit.edu
-*@date Tue Mar 29 21:13:12 2022 -0400
-*@brief  This is an iterator for more complicated n-darrays (primarily array "slices").
-* Because we cannot guarantee that adjacent elements (in index space) are contiguous in
-* memory for an array slice, we need to ensure that the proper strided access takes place.
-*/
+ *@file  MHO_BidirectionalIndexedIterator.hh
+ *@class  MHO_BidirectionalIndexedIterator
+ *@author  J. Barrett - barrettj@mit.edu
+ *@date Tue Mar 29 21:13:12 2022 -0400
+ *@brief  This is an iterator for more complicated n-darrays (primarily array "slices").
+ * Because we cannot guarantee that adjacent elements (in index space) are contiguous in
+ * memory for an array slice, we need to ensure that the proper strided access takes place.
+ */
 
-
-template< typename XValueType, std::size_t RANK>
-class MHO_BidirectionalIndexedIterator
+template< typename XValueType, std::size_t RANK > class MHO_BidirectionalIndexedIterator
 {
     public:
-
         typedef MHO_BidirectionalIndexedIterator self_type;
         typedef XValueType value_type;
         typedef XValueType& reference;
         typedef XValueType* pointer;
         typedef std::bidirectional_iterator_tag iterator_category;
         typedef std::ptrdiff_t difference_type;
-        typedef std::array<std::size_t, RANK> index_type;
+        typedef std::array< std::size_t, RANK > index_type;
 
-        MHO_BidirectionalIndexedIterator(pointer begin_ptr, std::size_t position_offset, const std::size_t* dims, const std::size_t* strides):
-            fBegin(begin_ptr),
-            fPositionOffset(position_offset)
+        MHO_BidirectionalIndexedIterator(pointer begin_ptr, std::size_t position_offset, const std::size_t* dims,
+                                         const std::size_t* strides)
+            : fBegin(begin_ptr), fPositionOffset(position_offset)
         {
-            for(std::size_t i=0; i<RANK; i++){fDimensions[i] = dims[i]; fStrides[i] = strides[i];}
-            fLength = MHO_NDArrayMath::TotalArraySize<RANK>(&(fDimensions[0])); //determine size of array
+            for(std::size_t i = 0; i < RANK; i++)
+            {
+                fDimensions[i] = dims[i];
+                fStrides[i] = strides[i];
+            }
+            fLength = MHO_NDArrayMath::TotalArraySize< RANK >(&(fDimensions[0])); //determine size of array
             CalculateOffsets();
             fPtr = fBegin + fMemoryOffset;
         }
 
-        MHO_BidirectionalIndexedIterator(const self_type& copy):
-            fBegin(copy.fBegin),
-            fPositionOffset(copy.fPositionOffset)
+        MHO_BidirectionalIndexedIterator(const self_type& copy): fBegin(copy.fBegin), fPositionOffset(copy.fPositionOffset)
         {
-            for(std::size_t i=0; i<RANK; i++)
+            for(std::size_t i = 0; i < RANK; i++)
             {
                 fDimensions[i] = copy.fDimensions[i];
                 fStrides[i] = copy.fStrides[i];
@@ -60,7 +57,6 @@ class MHO_BidirectionalIndexedIterator
             fPtr = copy.fPtr;
         }
 
-
         virtual ~MHO_BidirectionalIndexedIterator(){};
 
         self_type operator++()
@@ -68,11 +64,14 @@ class MHO_BidirectionalIndexedIterator
             fPositionOffset++;
             if(fPositionOffset < fLength)
             {
-                MHO_NDArrayMath::IncrementIndices<RANK>(&(fDimensions[0]), &(fIdx[0]));
+                MHO_NDArrayMath::IncrementIndices< RANK >(&(fDimensions[0]), &(fIdx[0]));
             }
-            else{CalculateOffsets();}
+            else
+            {
+                CalculateOffsets();
+            }
 
-            fMemoryOffset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(fIdx[0]) );
+            fMemoryOffset = MHO_NDArrayMath::OffsetFromStrideIndex< RANK >(&(fStrides[0]), &(fIdx[0]));
             fPtr = fBegin + fMemoryOffset;
             return *this;
         }
@@ -82,7 +81,7 @@ class MHO_BidirectionalIndexedIterator
             if(fPositionOffset > 0)
             {
                 fPositionOffset--;
-                MHO_NDArrayMath::DecrementIndices<RANK>(&(fDimensions[0]), &(fIdx[0]));
+                MHO_NDArrayMath::DecrementIndices< RANK >(&(fDimensions[0]), &(fIdx[0]));
             }
             else
             {
@@ -90,7 +89,7 @@ class MHO_BidirectionalIndexedIterator
                 CalculateOffsets();
             }
 
-            fMemoryOffset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(fIdx[0]) );
+            fMemoryOffset = MHO_NDArrayMath::OffsetFromStrideIndex< RANK >(&(fStrides[0]), &(fIdx[0]));
             fPtr = fBegin + fMemoryOffset;
             return *this;
         }
@@ -109,16 +108,13 @@ class MHO_BidirectionalIndexedIterator
             return ret_val;
         }
 
-        difference_type operator-(const self_type& iter)
-        {
-            return fPositionOffset - iter.GetPositionOffset();
-        }
+        difference_type operator-(const self_type& iter) { return fPositionOffset - iter.GetPositionOffset(); }
 
         self_type operator+=(const std::ptrdiff_t& diff)
         {
             fPositionOffset += diff; //TODO CHECK AGAINST out_of_range ERRORS
             CalculateOffsets();
-            fPtr = fBegin + fMemoryOffset;//*!sizeof(XValueType);
+            fPtr = fBegin + fMemoryOffset; //*!sizeof(XValueType);
             return *this;
         }
 
@@ -146,8 +142,11 @@ class MHO_BidirectionalIndexedIterator
 
         //access to underlying array item object
         reference operator*() { return *fPtr; }
+
         pointer operator->() { return fPtr; }
+
         reference operator*() const { return *fPtr; }
+
         const pointer operator->() const { return fPtr; }
 
         self_type operator=(const self_type& rhs)
@@ -156,7 +155,7 @@ class MHO_BidirectionalIndexedIterator
             {
                 fBegin = rhs.fBegin;
                 fPositionOffset = rhs.fPositionOffset;
-                for(std::size_t i=0; i<RANK; i++)
+                for(std::size_t i = 0; i < RANK; i++)
                 {
                     fDimensions[i] = rhs.fDimensions[i];
                     fStrides[i] = rhs.fStrides[i];
@@ -169,36 +168,21 @@ class MHO_BidirectionalIndexedIterator
             return *this;
         }
 
-        bool operator==(const self_type& rhs) const
-        {
-            return fPtr == rhs.fPtr;
-        }
+        bool operator==(const self_type& rhs) const { return fPtr == rhs.fPtr; }
 
-        bool operator!=(const self_type& rhs) const
-        {
-            return fPtr != rhs.fPtr;
-        }
+        bool operator!=(const self_type& rhs) const { return fPtr != rhs.fPtr; }
 
-        pointer GetPtr(){return fPtr;}
-        const pointer GetPtr() const {return fPtr;}
+        pointer GetPtr() { return fPtr; }
 
-        difference_type GetPositionOffset() const
-        {
-            return fPositionOffset;
-        }
+        const pointer GetPtr() const { return fPtr; }
 
-        difference_type GetMemoryOffset() const
-        {
-            return std::distance(fBegin, fPtr);
-        }
+        difference_type GetPositionOffset() const { return fPositionOffset; }
 
-        bool IsValid() const
-        {
-            return ( (fBegin <= fPtr) && (fPtr < fBegin + fLength ) );
-        }
+        difference_type GetMemoryOffset() const { return std::distance(fBegin, fPtr); }
+
+        bool IsValid() const { return ((fBegin <= fPtr) && (fPtr < fBegin + fLength)); }
 
     protected:
-
         //array description
         pointer fBegin;
         index_type fDimensions;
@@ -208,31 +192,29 @@ class MHO_BidirectionalIndexedIterator
         //current position in array
         pointer fPtr;
         std::size_t fPositionOffset; //the position in the flattened array [0,fLength)
-        std::size_t fMemoryOffset; //absolute difference in memory from fBegin
+        std::size_t fMemoryOffset;   //absolute difference in memory from fBegin
         index_type fIdx;
-
 
         void CalculateOffsets()
         {
             if(fPositionOffset < fLength)
             {
-                MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(fPositionOffset, &(fDimensions[0]), &(fIdx[0]) ); //determine current indexes
-                fMemoryOffset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(fIdx[0]) );
+                MHO_NDArrayMath::RowMajorIndexFromOffset< RANK >(fPositionOffset, &(fDimensions[0]),
+                                                                 &(fIdx[0])); //determine current indexes
+                fMemoryOffset = MHO_NDArrayMath::OffsetFromStrideIndex< RANK >(&(fStrides[0]), &(fIdx[0]));
             }
             else
             {
                 //clamp to the end of the array + 1 (the 'end')
-                fPositionOffset = fLength-1;
-                MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(fPositionOffset, &(fDimensions[0]), &(fIdx[0]) );
-                fIdx[RANK-1] += 1; //this index is now out of range (1 past the end)
-                fMemoryOffset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(fIdx[0]) );
+                fPositionOffset = fLength - 1;
+                MHO_NDArrayMath::RowMajorIndexFromOffset< RANK >(fPositionOffset, &(fDimensions[0]), &(fIdx[0]));
+                fIdx[RANK - 1] += 1; //this index is now out of range (1 past the end)
+                fMemoryOffset = MHO_NDArrayMath::OffsetFromStrideIndex< RANK >(&(fStrides[0]), &(fIdx[0]));
                 fPositionOffset = fLength;
             }
-
         }
-
 };
 
-}//end of namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_BidirectionalIndexedIterator */

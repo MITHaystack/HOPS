@@ -4,12 +4,11 @@
 namespace hops
 {
 
-void
-MHO_BinaryFileStreamer::OpenToRead()
+void MHO_BinaryFileStreamer::OpenToRead()
 {
     //open file for binary reading
     fFile.open(fFilename.c_str(), std::fstream::in | std::ios::binary);
-    if( !fFile.is_open() || !fFile.good() )
+    if(!fFile.is_open() || !fFile.good())
     {
         msg_error("file", "Failed to open for reading, file: " << fFilename << eom);
         fFileState = FileState::closed;
@@ -21,13 +20,12 @@ MHO_BinaryFileStreamer::OpenToRead()
     }
 }
 
-void
-MHO_BinaryFileStreamer::OpenToAppend()
+void MHO_BinaryFileStreamer::OpenToAppend()
 {
     //open file for binary reading
-    fFile.open(fFilename.c_str(), std::fstream::out | std::ios::binary | std::ios::app  );
+    fFile.open(fFilename.c_str(), std::fstream::out | std::ios::binary | std::ios::app);
 
-    if( !fFile.is_open() || !fFile.good() )
+    if(!fFile.is_open() || !fFile.good())
     {
         msg_error("file", "Failed to open for writing, file: " << fFilename << eom);
         fFileState = FileState::closed;
@@ -38,14 +36,12 @@ MHO_BinaryFileStreamer::OpenToAppend()
     }
 }
 
-
-void
-MHO_BinaryFileStreamer::OpenToWrite()
+void MHO_BinaryFileStreamer::OpenToWrite()
 {
     //open file for binary writing
     fFile.open(fFilename.c_str(), std::fstream::out | std::ios::binary);
 
-    if( !fFile.is_open() || !fFile.good() )
+    if(!fFile.is_open() || !fFile.good())
     {
         msg_error("file", "Failed to open for writing, file: " << fFilename << eom);
         fFileState = FileState::closed;
@@ -56,8 +52,7 @@ MHO_BinaryFileStreamer::OpenToWrite()
     }
 }
 
-void
-MHO_BinaryFileStreamer::Close()
+void MHO_BinaryFileStreamer::Close()
 {
     if(fFile.is_open())
     {
@@ -66,4 +61,4 @@ MHO_BinaryFileStreamer::Close()
     }
 }
 
-}//end of namespace
+} // namespace hops

@@ -1,27 +1,24 @@
 #ifndef MHO_IntervalLabelTree_HH__
 #define MHO_IntervalLabelTree_HH__
 
-
-
 #include <iostream>
 #include <vector>
 
-#include "MHO_Message.hh"
 #include "MHO_IntervalLabel.hh"
+#include "MHO_Message.hh"
 #include "MHO_Serializable.hh"
-
 
 namespace hops
 {
 
 /*!
-*@file MHO_IntervalLabelTree.hh
-*@class MHO_IntervalLabelTree
-*@author J. Barrett - barrettj@mit.edu
-*@date Fri Oct 16 11:17:19 2020 -0400
-*@brief Inteval-tree stucture, to allow for fast location of an interval
-* currently un-implemented...just does a dumb brute force O(n) search.
-*/
+ *@file MHO_IntervalLabelTree.hh
+ *@class MHO_IntervalLabelTree
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Fri Oct 16 11:17:19 2020 -0400
+ *@brief Inteval-tree stucture, to allow for fast location of an interval
+ * currently un-implemented...just does a dumb brute force O(n) search.
+ */
 
 class MHO_IntervalLabelTree: virtual public MHO_Serializable
 {
@@ -37,55 +34,51 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
 
         void ClearLabels();
 
-        std::vector< MHO_IntervalLabel > GetAllIntervalLabels() const {return fIntervals;};
+        std::vector< MHO_IntervalLabel > GetAllIntervalLabels() const { return fIntervals; };
+
         std::vector< MHO_IntervalLabel > GetIntervalsWhichIntersect(const std::size_t& idx) const;
-        std::vector< MHO_IntervalLabel > GetIntervalsWhichIntersect(const MHO_Interval<std::size_t>& interval) const;
+        std::vector< MHO_IntervalLabel > GetIntervalsWhichIntersect(const MHO_Interval< std::size_t >& interval) const;
 
         std::vector< MHO_IntervalLabel > GetIntervalsWithKey(const std::string& key) const;
 
-        template<typename XLabelValueType>
-        std::size_t
-        GetNIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value) const;
+        template< typename XLabelValueType >
+        std::size_t GetNIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value) const;
 
-        template<typename XLabelValueType>
-        std::vector< MHO_IntervalLabel >
-        GetIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value) const ;
+        template< typename XLabelValueType >
+        std::vector< MHO_IntervalLabel > GetIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value) const;
 
-        template<typename XLabelValueType>
-        MHO_IntervalLabel
-        GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value) const;
+        template< typename XLabelValueType >
+        MHO_IntervalLabel GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value) const;
 
         virtual void CopyIntervalLabels(const MHO_IntervalLabelTree& obj)
         {
             fIntervals.clear();
             for(auto iter = obj.fIntervals.begin(); iter != obj.fIntervals.end(); iter++)
             {
-                fIntervals.push_back( *iter );
+                fIntervals.push_back(*iter);
             }
         }
 
     protected:
-
         //we are storing them all in a vector currently, this probably
         //fine for storage, but the access interface needs to to be
         //replaced with a tree-like data structure for faster lookup
         std::vector< MHO_IntervalLabel > fIntervals;
 
     public:
-
         virtual uint64_t GetSerializedSize() const override
         {
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion); //version number
-            total_size += sizeof(std::size_t); //number of intervals
-            for(std::size_t i=0; i<fIntervals.size(); i++)
+            total_size += sizeof(std::size_t);      //number of intervals
+            for(std::size_t i = 0; i < fIntervals.size(); i++)
             {
                 total_size += fIntervals[i].GetSerializedSize();
             }
             return total_size;
         }
 
-        template<typename XStream> friend XStream& operator>>(XStream& s, MHO_IntervalLabelTree& aData)
+        template< typename XStream > friend XStream& operator>>(XStream& s, MHO_IntervalLabelTree& aData)
         {
             MHO_ClassVersion vers;
             s >> vers;
@@ -93,38 +86,36 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
             {
                 case 0:
                     aData.StreamInData_V0(s);
-                break;
+                    break;
                 default:
                     MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
                     //Flag this as an unknown object version so we can skip over this data
-                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
+                    MHO_ObjectStreamState< XStream >::SetUnknown(s);
             }
             return s;
         }
 
-        template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_IntervalLabelTree& aData)
+        template< typename XStream > friend XStream& operator<<(XStream& s, const MHO_IntervalLabelTree& aData)
         {
-            switch( aData.GetVersion() )
+            switch(aData.GetVersion())
             {
                 case 0:
                     s << aData.GetVersion();
                     aData.StreamOutData_V0(s);
-                break;
+                    break;
                 default:
-                    msg_error("containers",
-                        "error, cannot stream out MHO_IntervalLabel object with unknown version: "
-                        << aData.GetVersion() << eom );
+                    msg_error("containers", "error, cannot stream out MHO_IntervalLabel object with unknown version: "
+                                                << aData.GetVersion() << eom);
             }
             return s;
         }
 
     private:
-
-        template<typename XStream> void StreamInData_V0(XStream& s)
+        template< typename XStream > void StreamInData_V0(XStream& s)
         {
             std::size_t n_labels;
             s >> n_labels;
-            for(std::size_t i=0; i<n_labels; i++)
+            for(std::size_t i = 0; i < n_labels; i++)
             {
                 MHO_IntervalLabel tmp;
                 s >> tmp;
@@ -132,10 +123,10 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
             }
         }
 
-        template<typename XStream> void StreamOutData_V0(XStream& s) const
+        template< typename XStream > void StreamOutData_V0(XStream& s) const
         {
             s << this->fIntervals.size();
-            for(std::size_t i=0; i<this->fIntervals.size(); i++)
+            for(std::size_t i = 0; i < this->fIntervals.size(); i++)
             {
                 s << this->fIntervals[i];
             }
@@ -152,42 +143,36 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
         }
 };
 
-
-
-
-
-
-
-
-
-template<typename XLabelValueType>
-std::size_t
-MHO_IntervalLabelTree::GetNIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value) const
+template< typename XLabelValueType >
+std::size_t MHO_IntervalLabelTree::GetNIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value) const
 {
     std::size_t count = 0;
     XLabelValueType tmp_value;
-    for(std::size_t i=0; i<fIntervals.size(); i++)
+    for(std::size_t i = 0; i < fIntervals.size(); i++)
     {
-        if( fIntervals[i].Retrieve(key,tmp_value) )
+        if(fIntervals[i].Retrieve(key, tmp_value))
         {
-            if(tmp_value == value){++count;}
+            if(tmp_value == value)
+            {
+                ++count;
+            }
         }
     }
     return count;
 }
 
-template<typename XLabelValueType>
-std::vector< MHO_IntervalLabel >
-MHO_IntervalLabelTree::GetIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value) const
+template< typename XLabelValueType >
+std::vector< MHO_IntervalLabel > MHO_IntervalLabelTree::GetIntervalsWithKeyValue(const std::string& key,
+                                                                                 const XLabelValueType& value) const
 {
     std::vector< MHO_IntervalLabel > labels;
     XLabelValueType tmp_value;
     //dumb brute force search over all intervals O(n)
     //we may want to make this smarter
 
-    for(std::size_t i=0; i<fIntervals.size(); i++)
+    for(std::size_t i = 0; i < fIntervals.size(); i++)
     {
-        if( fIntervals[i].Retrieve(key,tmp_value) )
+        if(fIntervals[i].Retrieve(key, tmp_value))
         {
             if(tmp_value == value)
             {
@@ -198,10 +183,9 @@ MHO_IntervalLabelTree::GetIntervalsWithKeyValue(const std::string& key, const XL
     return labels;
 }
 
-
-template<typename XLabelValueType>
-MHO_IntervalLabel
-MHO_IntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value) const
+template< typename XLabelValueType >
+MHO_IntervalLabel MHO_IntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key,
+                                                                      const XLabelValueType& value) const
 {
     MHO_IntervalLabel label;
     label.SetIsValidFalse();
@@ -210,9 +194,9 @@ MHO_IntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, cons
     //dumb brute force search over all intervals O(n)
     //we may want to make this smarter
 
-    for(std::size_t i=0; i<fIntervals.size(); i++)
+    for(std::size_t i = 0; i < fIntervals.size(); i++)
     {
-        if( fIntervals[i].Retrieve(key,tmp_value) )
+        if(fIntervals[i].Retrieve(key, tmp_value))
         {
             if(tmp_value == value)
             {
@@ -223,6 +207,6 @@ MHO_IntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, cons
     return label;
 }
 
-}//end namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_IntervalLabelTree */

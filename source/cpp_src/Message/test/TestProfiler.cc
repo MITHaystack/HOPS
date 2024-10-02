@@ -1,10 +1,10 @@
-#include <iostream>
 #include <chrono>
+#include <iostream>
 #include <istream>
 #include <unistd.h>
 
-#include "MHO_Profiler.hh"
 #include "MHO_Message.hh"
+#include "MHO_Profiler.hh"
 
 using namespace hops;
 

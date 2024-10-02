@@ -1,56 +1,54 @@
 #ifndef MHO_ContainerStore_HH__
 #define MHO_ContainerStore_HH__
 
-
-
-#include <set>
 #include <map>
+#include <set>
 #include <utility>
 #include <vector>
 
-#include "MHO_Types.hh"
+#include "MHO_ContainerDictionary.hh"
 #include "MHO_Message.hh"
 #include "MHO_Serializable.hh"
+#include "MHO_Types.hh"
 #include "MHO_UUID.hh"
 #include "MHO_UUIDGenerator.hh"
-#include "MHO_ContainerDictionary.hh"
 
 namespace hops
 {
 
 /*!
-*@file  MHO_ContainerStore.hh
-*@class  MHO_ContainerStore
-*@author  J. Barrett - barrettj@mit.edu
-*@date Sat Feb 12 17:54:26 2022 -0500
-*@brief  holds a collection of objects all pointed to by base class MHO_Serializable*
-* retrieval is through type/object ids
-*/
+ *@file  MHO_ContainerStore.hh
+ *@class  MHO_ContainerStore
+ *@author  J. Barrett - barrettj@mit.edu
+ *@date Sat Feb 12 17:54:26 2022 -0500
+ *@brief  holds a collection of objects all pointed to by base class MHO_Serializable*
+ * retrieval is through type/object ids
+ */
 
 class MHO_ContainerStore
 {
     public:
-
         MHO_ContainerStore(){};
-        virtual ~MHO_ContainerStore(){Clear();};
+
+        virtual ~MHO_ContainerStore() { Clear(); };
 
         //deletes all objects in the store
         void Clear();
 
         //add an object with specific type
-        template<typename XClassType> bool AddObject(XClassType* obj);
+        template< typename XClassType > bool AddObject(XClassType* obj);
         //get an object of a specific type via object uuid (returns nullptr if not present)
-        template < typename XClassType > XClassType* GetObject(const MHO_UUID& obj_id);
+        template< typename XClassType > XClassType* GetObject(const MHO_UUID& obj_id);
         //provides retrieval of an object via nickname, returns nullptr on failure
-        template < typename XClassType > XClassType* GetObject(const std::string& shortname);
+        template< typename XClassType > XClassType* GetObject(const std::string& shortname);
         //get an object of a specific type via index (returns nullptr if not present)
-        template < typename XClassType > XClassType* GetObject(std::size_t index);
+        template< typename XClassType > XClassType* GetObject(std::size_t index);
         //destroy an object in the store, returns true if successful
-        template < typename XClassType > bool DeleteObject(XClassType* obj_ptr);
+        template< typename XClassType > bool DeleteObject(XClassType* obj_ptr);
         //get the type uuid for a specific type (if it is supported) - if unsupported uuid will be zero
-        template < typename XClassType > MHO_UUID GetTypeUUID();
+        template< typename XClassType > MHO_UUID GetTypeUUID();
         //get the number of objects of a specific type
-        template < typename XClassType > std::size_t GetNObjects() const;
+        template< typename XClassType > std::size_t GetNObjects() const;
 
         //check if any object with the give object id is in the store
         bool IsObjectPresent(const MHO_UUID& obj_id) const;
@@ -62,8 +60,9 @@ class MHO_ContainerStore
         void GetAllTypeUUIDs(std::vector< MHO_UUID >& type_ids);
         //get every object uuid associated with the type
         void GetAllObjectUUIDsOfType(MHO_UUID type_id, std::vector< MHO_UUID >& obj_ids);
+
         //get total number of objects in store
-        std::size_t GetNObjects() const {return fObjectsToIds.size();}
+        std::size_t GetNObjects() const { return fObjectsToIds.size(); }
 
         //provide the ability to attach a nicknames to object uuids
         //all nicknames must be unique
@@ -94,13 +93,11 @@ class MHO_ContainerStore
         {
             for(auto it = fShortNameToIds.begin(); it != fShortNameToIds.end(); it++)
             {
-                std::cout<<it->first<<" : "<<it->second.as_string()<<std::endl;
+                std::cout << it->first << " : " << it->second.as_string() << std::endl;
             }
         }
 
-
     protected:
-
         using key_pair = std::pair< MHO_UUID, MHO_UUID >;
 
         //object dictionary...currently we only have one dictionary implementation
@@ -120,22 +117,21 @@ class MHO_ContainerStore
         //maps string names to object uuids
         std::map< std::string, MHO_UUID > fShortNameToIds;
         std::set< std::string > fShortNameSet;
-
-
-
-
 };
 
-
-template<typename XClassType>
-bool
-MHO_ContainerStore::AddObject(XClassType* obj)
+template< typename XClassType > bool MHO_ContainerStore::AddObject(XClassType* obj)
 {
-    if(obj == nullptr){return false;}
+    if(obj == nullptr)
+    {
+        return false;
+    }
 
     //attempt to cast to our storage/serialization type
     auto ptr = static_cast< MHO_Serializable* >(obj);
-    if(ptr == nullptr){return false;}
+    if(ptr == nullptr)
+    {
+        return false;
+    }
 
     MHO_UUID obj_id = obj->GetObjectUUID();
     MHO_UUID type_id = obj->GetTypeUUID();
@@ -149,11 +145,9 @@ MHO_ContainerStore::AddObject(XClassType* obj)
     return true;
 }
 
-template < typename XClassType >
-XClassType*
-MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
+template< typename XClassType > XClassType* MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
 {
-    MHO_UUID type_id = fDictionary.GetUUIDFor<XClassType>();
+    MHO_UUID type_id = fDictionary.GetUUIDFor< XClassType >();
 
     key_pair kp;
     kp.first = type_id;
@@ -164,34 +158,30 @@ MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
     if(it != fIdsToObjects.end())
     {
         MHO_Serializable* obj = it->second;
-        ptr = dynamic_cast<XClassType*>(obj);
+        ptr = dynamic_cast< XClassType* >(obj);
     }
     return ptr;
 }
 
-template < typename XClassType >
-XClassType*
-MHO_ContainerStore::GetObject(const std::string& shortname)
+template< typename XClassType > XClassType* MHO_ContainerStore::GetObject(const std::string& shortname)
 {
     XClassType* ptr = nullptr;
     MHO_UUID obj_id = GetObjectUUID(shortname);
-    if( !obj_id.is_empty() )
+    if(!obj_id.is_empty())
     {
-        ptr = GetObject<XClassType>(obj_id);
+        ptr = GetObject< XClassType >(obj_id);
     }
     return ptr;
 }
 
-template < typename XClassType >
-XClassType*
-MHO_ContainerStore::GetObject(std::size_t index)
+template< typename XClassType > XClassType* MHO_ContainerStore::GetObject(std::size_t index)
 {
     XClassType* ptr = nullptr;
-    std::size_t n_objects = GetNObjects<XClassType>();
+    std::size_t n_objects = GetNObjects< XClassType >();
     std::size_t count = 0;
     if(index < n_objects)
     {
-        MHO_UUID type_id = fDictionary.GetUUIDFor<XClassType>();
+        MHO_UUID type_id = fDictionary.GetUUIDFor< XClassType >();
         for(auto it = fIdsToObjects.begin(); it != fIdsToObjects.end(); it++)
         {
             key_pair item_ids = it->first;
@@ -201,7 +191,7 @@ MHO_ContainerStore::GetObject(std::size_t index)
                 if(count == index)
                 {
                     MHO_Serializable* obj = it->second;
-                    ptr = dynamic_cast<XClassType*>(obj);
+                    ptr = dynamic_cast< XClassType* >(obj);
                     break;
                 }
                 count++;
@@ -212,20 +202,27 @@ MHO_ContainerStore::GetObject(std::size_t index)
     return ptr;
 }
 
-template < typename XClassType >
-bool
-MHO_ContainerStore::DeleteObject(XClassType* obj_ptr)
+template< typename XClassType > bool MHO_ContainerStore::DeleteObject(XClassType* obj_ptr)
 {
-    MHO_Serializable* ptr = static_cast<MHO_Serializable*>(obj_ptr);
-    if(ptr == nullptr){return false;}
+    MHO_Serializable* ptr = static_cast< MHO_Serializable* >(obj_ptr);
+    if(ptr == nullptr)
+    {
+        return false;
+    }
 
     auto it = fObjectsToIds.find(ptr);
-    if(it == fObjectsToIds.end()){return false;}
+    if(it == fObjectsToIds.end())
+    {
+        return false;
+    }
 
     key_pair kp = it->second;
     MHO_UUID obj_id = kp.second;
     auto it2 = fIdsToObjects.find(kp);
-    if(it2 == fIdsToObjects.end()){return false;}
+    if(it2 == fIdsToObjects.end())
+    {
+        return false;
+    }
 
     //remove entries related to this object
     fObjectsToIds.erase(it);
@@ -247,31 +244,29 @@ MHO_ContainerStore::DeleteObject(XClassType* obj_ptr)
     return true;
 }
 
-template < typename XClassType >
-MHO_UUID
-MHO_ContainerStore::GetTypeUUID()
+template< typename XClassType > MHO_UUID MHO_ContainerStore::GetTypeUUID()
 {
-    MHO_UUID type_id = fDictionary.GetUUIDFor<XClassType>();
+    MHO_UUID type_id = fDictionary.GetUUIDFor< XClassType >();
     return type_id;
 }
 
-template < typename XClassType >
-std::size_t
-MHO_ContainerStore::GetNObjects() const
+template< typename XClassType > std::size_t MHO_ContainerStore::GetNObjects() const
 {
-    MHO_UUID type_id = fDictionary.GetUUIDFor<XClassType>();
+    MHO_UUID type_id = fDictionary.GetUUIDFor< XClassType >();
     std::size_t count = 0;
     for(auto it = fIdsToObjects.begin(); it != fIdsToObjects.end(); it++)
     {
         key_pair item_ids = it->first;
         MHO_UUID item_type_id = item_ids.first;
-        if(type_id == item_type_id){count++;}
+        if(type_id == item_type_id)
+        {
+            count++;
+        }
     }
     return count;
 }
 
-inline void
-MHO_ContainerStore::RenameObject(const std::string& current_shortname, const std::string& new_shortname)
+inline void MHO_ContainerStore::RenameObject(const std::string& current_shortname, const std::string& new_shortname)
 {
     MHO_UUID obj_uuid = GetObjectUUID(current_shortname);
     if(obj_uuid.as_long() != 0)
@@ -282,10 +277,6 @@ MHO_ContainerStore::RenameObject(const std::string& current_shortname, const std
     }
 }
 
-
-
-
-
-} //end namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_ContainerStore */

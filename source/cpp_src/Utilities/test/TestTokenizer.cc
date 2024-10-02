@@ -1,10 +1,8 @@
-#include <vector>
-#include <string>
 #include <iostream>
-
+#include <string>
+#include <vector>
 
 #include "MHO_Tokenizer.hh"
-
 
 using namespace hops;
 
@@ -26,13 +24,12 @@ int main(int /*argc*/, char** /*argv*/)
     std::string delim3 = "| \t\r\n";
     std::string delim4 = "<d>";
 
-    std::vector<std::string> tok1;
-    std::vector<std::string> tok2;
-    std::vector<std::string> tok3;
-    std::vector<std::string> tok4;
-    std::vector<std::string> tok5;
-    std::vector<std::string> tok6;
-
+    std::vector< std::string > tok1;
+    std::vector< std::string > tok2;
+    std::vector< std::string > tok3;
+    std::vector< std::string > tok4;
+    std::vector< std::string > tok5;
+    std::vector< std::string > tok6;
 
     tokenizer.SetDelimiter(delim1);
     tokenizer.SetString(&test1);
@@ -62,19 +59,36 @@ int main(int /*argc*/, char** /*argv*/)
     tokenizer.SetString(&test5);
     tokenizer.GetTokens(&tok6);
 
-    for(std::size_t i=0; i<tok1.size(); i++){std::cout<<tok1[i]<<" ";}
-    std::cout<<std::endl;
-    for(std::size_t i=0; i<tok2.size(); i++){std::cout<<tok2[i]<<" ";}
-    std::cout<<std::endl;
-    for(std::size_t i=0; i<tok3.size(); i++){std::cout<<tok3[i]<<" ";}
-    std::cout<<std::endl;
-    for(std::size_t i=0; i<tok4.size(); i++){std::cout<<tok4[i]<<" ";}
-    std::cout<<std::endl;
-    for(std::size_t i=0; i<tok5.size(); i++){std::cout<<tok5[i]<<" ";}
-    std::cout<<std::endl;
-    for(std::size_t i=0; i<tok6.size(); i++){std::cout<<tok6[i]<<" ";}
-    std::cout<<std::endl;
-
+    for(std::size_t i = 0; i < tok1.size(); i++)
+    {
+        std::cout << tok1[i] << " ";
+    }
+    std::cout << std::endl;
+    for(std::size_t i = 0; i < tok2.size(); i++)
+    {
+        std::cout << tok2[i] << " ";
+    }
+    std::cout << std::endl;
+    for(std::size_t i = 0; i < tok3.size(); i++)
+    {
+        std::cout << tok3[i] << " ";
+    }
+    std::cout << std::endl;
+    for(std::size_t i = 0; i < tok4.size(); i++)
+    {
+        std::cout << tok4[i] << " ";
+    }
+    std::cout << std::endl;
+    for(std::size_t i = 0; i < tok5.size(); i++)
+    {
+        std::cout << tok5[i] << " ";
+    }
+    std::cout << std::endl;
+    for(std::size_t i = 0; i < tok6.size(); i++)
+    {
+        std::cout << tok6[i] << " ";
+    }
+    std::cout << std::endl;
 
     std::string val = "    mean_motion = 0.; ";
     std::string fAssignmentDelim = "=;";
@@ -87,7 +101,6 @@ int main(int /*argc*/, char** /*argv*/)
     tokenizer.SetString(&val);
     tokenizer.GetTokens(&tok7);
 
-
     std::string polprod = "XX+YY";
     std::vector< std::string > tok9;
     //we have a pol-product summation like (RR+LL) or XX+YY, or RX+RY
@@ -98,13 +111,17 @@ int main(int /*argc*/, char** /*argv*/)
     tokenizer.SetIncludeEmptyTokensFalse();
     tokenizer.SetString(&polprod);
     tokenizer.GetTokens(&tok9);
-    for(std::size_t i=0; i<tok9.size(); i++){std::cout<<tok9[i]<<" ";}
-    std::cout<<std::endl;
+    for(std::size_t i = 0; i < tok9.size(); i++)
+    {
+        std::cout << tok9[i] << " ";
+    }
+    std::cout << std::endl;
 
-
-
-    for(std::size_t i=0; i<tok7.size(); i++){std::cout<<tok7[i]<<"|";}
-    std::cout<<std::endl;
+    for(std::size_t i = 0; i < tok7.size(); i++)
+    {
+        std::cout << tok7[i] << "|";
+    }
+    std::cout << std::endl;
 
     return 0;
 }

@@ -5,16 +5,14 @@
 namespace hops
 {
 
-MHO_DelayRate::MHO_DelayRate():
-    fInitialized(false)
+MHO_DelayRate::MHO_DelayRate(): fInitialized(false)
 {
     fRefFreq = 1.0;
 };
 
 MHO_DelayRate::~MHO_DelayRate(){};
 
-bool
-MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
+bool MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
 {
 
     fInitialized = false;
@@ -28,9 +26,9 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         out->CopyTags(*in1);
 
         fDRSPSize = CalculateSearchSpaceSize(fInDims[TIME_AXIS]);
-        msg_debug("calibration", "delay rate search space size = "<< fDRSPSize << eom );
+        msg_debug("calibration", "delay rate search space size = " << fDRSPSize << eom);
 
-        std::size_t np = fDRSPSize*4;
+        std::size_t np = fDRSPSize * 4;
         ConditionallyResizeOutput(&(fInDims[0]), np, out);
 
         fZeroPadder.SetArgs(in1, out);
@@ -44,31 +42,38 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         fFFTEngine.SetArgs(out);
         fFFTEngine.DeselectAllAxes();
         fFFTEngine.SelectAxis(TIME_AXIS); //only perform padded fft on time (to delay rate) axis
-        fFFTEngine.SetForward();//forward DFT
+        fFFTEngine.SetForward();          //forward DFT
 
         ok = fZeroPadder.Initialize();
-        if(!ok){msg_error("operators", "Could not initialize zero padder in MHO_DelayRate" << eom); return false;}
+        if(!ok)
+        {
+            msg_error("operators", "Could not initialize zero padder in MHO_DelayRate" << eom);
+            return false;
+        }
 
         ok = fFFTEngine.Initialize();
-        if(!ok){msg_error("operators", "Could not initialize FFT in MHO_DelayRate" << eom); return false;}
+        if(!ok)
+        {
+            msg_error("operators", "Could not initialize FFT in MHO_DelayRate" << eom);
+            return false;
+        }
 
-        fCyclicRotator.SetOffset(TIME_AXIS, np/2);
+        fCyclicRotator.SetOffset(TIME_AXIS, np / 2);
         fCyclicRotator.SetArgs(out);
         ok = fCyclicRotator.Initialize();
-        if(!ok){msg_error("operators", "Could not initialize cyclic rotation in MHO_DelayRate." << eom); return false;}
+        if(!ok)
+        {
+            msg_error("operators", "Could not initialize cyclic rotation in MHO_DelayRate." << eom);
+            return false;
+        }
 
         fInitialized = true;
     }
 
     return fInitialized;
-
 }
 
-
-
-
-bool
-MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
+bool MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
 {
 
     if(fInitialized)
@@ -77,52 +82,67 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         std::size_t pprod = in1->GetDimension(POLPROD_AXIS);
         std::size_t nch = in1->GetDimension(CHANNEL_AXIS);
         std::size_t nap = in1->GetDimension(TIME_AXIS);
-        double time_delta = std::get<TIME_AXIS>(*in1)(1) -  std::get<TIME_AXIS>(*in1)(0);
+        double time_delta = std::get< TIME_AXIS >(*in1)(1) - std::get< TIME_AXIS >(*in1)(0);
 
         out->ZeroArray();
         bool ok;
 
         ok = fZeroPadder.Execute();
-        if(!ok){msg_error("operators", "Could not execute zero padder in MHO_DelayRate" << eom); return false;}
+        if(!ok)
+        {
+            msg_error("operators", "Could not execute zero padder in MHO_DelayRate" << eom);
+            return false;
+        }
 
         ApplyDataWeights(in2, out);
 
         ok = fFFTEngine.Execute();
-        if(!ok){msg_error("operators", "Could not execute FFT in MHO_DelayRate" << eom); return false;}
+        if(!ok)
+        {
+            msg_error("operators", "Could not execute FFT in MHO_DelayRate" << eom);
+            return false;
+        }
 
         ok = fCyclicRotator.Execute();
-        check_step_fatal(ok, "fringe", "cyclic rotation execution." << eom );
+        check_step_fatal(ok, "fringe", "cyclic rotation execution." << eom);
 
         //linear interpolation, and conversion from fringe rate to delay rate step
-        int sz = 4*fDRSPSize;
+        int sz = 4 * fDRSPSize;
         std::size_t nsbd = out->GetDimension(FREQ_AXIS);
 
         std::vector< sbd_type::value_type > workspace;
         workspace.resize(fDRSPSize);
-        for(std::size_t pp=0; pp<pprod; pp++)
+        for(std::size_t pp = 0; pp < pprod; pp++)
         {
-            for(std::size_t ch=0; ch<nch; ch++)
+            for(std::size_t ch = 0; ch < nch; ch++)
             {
-                double chan_freq = (std::get<CHANNEL_AXIS>(*in1) )(ch);
-                double b = ( (chan_freq / fRefFreq) * sz) / fDRSPSize;
+                double chan_freq = (std::get< CHANNEL_AXIS >(*in1))(ch);
+                double b = ((chan_freq / fRefFreq) * sz) / fDRSPSize;
 
-                for(std::size_t sbd=0; sbd<nsbd; sbd++)
+                for(std::size_t sbd = 0; sbd < nsbd; sbd++)
                 {
-                    for(std::size_t dr=0; dr<fDRSPSize; dr++)
+                    for(std::size_t dr = 0; dr < fDRSPSize; dr++)
                     {
-                        double num = ( (double)dr - (double)(fDRSPSize/2) ) * b + ( (double)sz * 1.5);
-                        double l_fp = fmod(  num , (double) sz) ;
+                        double num = ((double)dr - (double)(fDRSPSize / 2)) * b + ((double)sz * 1.5);
+                        double l_fp = fmod(num, (double)sz);
                         int l_int = (int)l_fp;
-                        if (l_int < 0){ l_int = 0; }
-                        int l_int2 = l_int+1;
-                        if (l_int2 > (sz-1)){ l_int2 = sz - 1;}
+                        if(l_int < 0)
+                        {
+                            l_int = 0;
+                        }
+                        int l_int2 = l_int + 1;
+                        if(l_int2 > (sz - 1))
+                        {
+                            l_int2 = sz - 1;
+                        }
                         //evaluate and copy to temporary vector (TODO determine if this is strictly needed)
-                        sbd_type::value_type interp_val = (*out)(pp, ch, l_int, sbd) * (1.0 - l_fp + l_int) + (*out)(pp, ch, l_int2, sbd) * (l_fp - l_int);
+                        sbd_type::value_type interp_val =
+                            (*out)(pp, ch, l_int, sbd) * (1.0 - l_fp + l_int) + (*out)(pp, ch, l_int2, sbd) * (l_fp - l_int);
                         workspace[dr] = interp_val;
-                        std::get<TIME_AXIS>(*out)(dr) = ( (double)dr - (double)(fDRSPSize/2) )*(1.0/(time_delta*(double)fDRSPSize) );
-
+                        std::get< TIME_AXIS > (*out)(dr) =
+                            ((double)dr - (double)(fDRSPSize / 2)) * (1.0 / (time_delta * (double)fDRSPSize));
                     }
-                    for(std::size_t dr=0; dr<fDRSPSize; dr++)
+                    for(std::size_t dr = 0; dr < fDRSPSize; dr++)
                     {
                         (*out)(pp, ch, dr, sbd) = workspace[dr];
                     }
@@ -136,8 +156,7 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
     return false;
 };
 
-void
-MHO_DelayRate::ApplyDataWeights(const XArgType2* in2,  XArgType3* out)
+void MHO_DelayRate::ApplyDataWeights(const XArgType2* in2, XArgType3* out)
 {
     //apply the data weights to the data
     std::size_t pprod = out->GetDimension(POLPROD_AXIS);
@@ -156,34 +175,29 @@ MHO_DelayRate::ApplyDataWeights(const XArgType2* in2,  XArgType3* out)
     //make sure we don't over run the weight array bounds (since out array has been padded)
     std::size_t nap_range = std::min(nap, wnap);
 
-    for(std::size_t pp=0; pp<pprod; pp++)
+    for(std::size_t pp = 0; pp < pprod; pp++)
     {
-        for(std::size_t ch=0; ch<nch; ch++)
+        for(std::size_t ch = 0; ch < nch; ch++)
         {
-            for(std::size_t ap=0; ap<nap_range; ap++)
+            for(std::size_t ap = 0; ap < nap_range; ap++)
             {
                 auto val = (*in2)(pp, ch, ap, 0);
 
-                for(std::size_t sbd=0; sbd<nsbd; sbd++)
+                for(std::size_t sbd = 0; sbd < nsbd; sbd++)
                 {
-                    (*out)(pp,ch,ap,sbd) *= val;
+                    (*out)(pp, ch, ap, sbd) *= val;
                 }
                 //out->SliceView(pp, ch, ap, ":") *= (*in2)(pp, ch, ap, 0); //apply the data weights
             }
         }
     }
-
 }
 
-
-void
-MHO_DelayRate::ConditionallyResizeOutput(const std::size_t* dims,
-                               std::size_t size,
-                               XArgType3* out)
+void MHO_DelayRate::ConditionallyResizeOutput(const std::size_t* dims, std::size_t size, XArgType3* out)
 {
     auto out_dim = out->GetDimensionArray();
     bool have_to_resize = false;
-    for(std::size_t i=0; i<XArgType3::rank::value; i++)
+    for(std::size_t i = 0; i < XArgType3::rank::value; i++)
     {
         if(i == TIME_AXIS)
         {
@@ -202,19 +216,22 @@ MHO_DelayRate::ConditionallyResizeOutput(const std::size_t* dims,
             }
         }
     }
-    if(have_to_resize){ out->Resize( &(out_dim[0]) );}
+    if(have_to_resize)
+    {
+        out->Resize(&(out_dim[0]));
+    }
 }
 
-
-int
-MHO_DelayRate::CalculateSearchSpaceSize(int input_size)
+int MHO_DelayRate::CalculateSearchSpaceSize(int input_size)
 {
     //borrow this stupid routine from search_windows.c /////////////////////
     TODO_FIXME_MSG("Fix the DRSP size calculation to remove upper limit of 8192.")
     int drsp_size = 8192;
-    while ( (drsp_size / 4) > input_size ) {drsp_size /= 2;};
+    while((drsp_size / 4) > input_size)
+    {
+        drsp_size /= 2;
+    };
     return drsp_size;
 }
 
-
-}//end of namespace
+} // namespace hops

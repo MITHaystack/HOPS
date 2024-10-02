@@ -1,7 +1,7 @@
 #include "MHO_Tokenizer.hh"
 
-#include <vector>
 #include <string>
+#include <vector>
 
 namespace hops
 {
@@ -16,26 +16,63 @@ MHO_Tokenizer::MHO_Tokenizer()
     fPreserveQuotes = false;
     fRemoveLeadingTrailingWhitespace = false;
 };
-MHO_Tokenizer::~MHO_Tokenizer(){;};
 
-void MHO_Tokenizer::SetIncludeEmptyTokensTrue(){fIncludeEmptyTokens = true;};
-void MHO_Tokenizer::SetIncludeEmptyTokensFalse(){fIncludeEmptyTokens = false;};
+MHO_Tokenizer::~MHO_Tokenizer()
+{
+    ;
+};
 
-void MHO_Tokenizer::SetUseMulticharacterDelimiterTrue(){fMultiCharDelimiter = true;};
-void MHO_Tokenizer::SetUseMulticharacterDelimiterFalse(){fMultiCharDelimiter = false;};
+void MHO_Tokenizer::SetIncludeEmptyTokensTrue()
+{
+    fIncludeEmptyTokens = true;
+};
 
-void MHO_Tokenizer::SetPreserveQuotesTrue(){fPreserveQuotes = true;};
-void MHO_Tokenizer::SetPreserveQuotesFalse(){fPreserveQuotes = false;};
+void MHO_Tokenizer::SetIncludeEmptyTokensFalse()
+{
+    fIncludeEmptyTokens = false;
+};
 
-void MHO_Tokenizer::SetRemoveLeadingTrailingWhitespaceTrue(){fRemoveLeadingTrailingWhitespace = true;};
-void MHO_Tokenizer::SetRemoveLeadingTrailingWhitespaceFalse(){fRemoveLeadingTrailingWhitespace = false;};
+void MHO_Tokenizer::SetUseMulticharacterDelimiterTrue()
+{
+    fMultiCharDelimiter = true;
+};
 
-void MHO_Tokenizer::SetString(const std::string* aString){fString = aString;};
+void MHO_Tokenizer::SetUseMulticharacterDelimiterFalse()
+{
+    fMultiCharDelimiter = false;
+};
 
-void MHO_Tokenizer::SetDelimiter(const std::string& aDelim){fDelim = aDelim;};
+void MHO_Tokenizer::SetPreserveQuotesTrue()
+{
+    fPreserveQuotes = true;
+};
 
-void
-MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
+void MHO_Tokenizer::SetPreserveQuotesFalse()
+{
+    fPreserveQuotes = false;
+};
+
+void MHO_Tokenizer::SetRemoveLeadingTrailingWhitespaceTrue()
+{
+    fRemoveLeadingTrailingWhitespace = true;
+};
+
+void MHO_Tokenizer::SetRemoveLeadingTrailingWhitespaceFalse()
+{
+    fRemoveLeadingTrailingWhitespace = false;
+};
+
+void MHO_Tokenizer::SetString(const std::string* aString)
+{
+    fString = aString;
+};
+
+void MHO_Tokenizer::SetDelimiter(const std::string& aDelim)
+{
+    fDelim = aDelim;
+};
+
+void MHO_Tokenizer::GetTokens(std::vector< std::string >* tokens)
 {
     if(tokens != NULL && fString != NULL)
     {
@@ -44,8 +81,14 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
         if(!fPreserveQuotes)
         {
             fCurrentString = fString;
-            if(!fMultiCharDelimiter){SingleCharTokenize(tokens);}
-            else{MultiCharTokenize(tokens);}
+            if(!fMultiCharDelimiter)
+            {
+                SingleCharTokenize(tokens);
+            }
+            else
+            {
+                MultiCharTokenize(tokens);
+            }
         }
         else
         {
@@ -53,25 +96,35 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
             if(n_quote == 0)
             {
                 fCurrentString = fString;
-                if(!fMultiCharDelimiter){SingleCharTokenize(tokens);}
-                else{MultiCharTokenize(tokens);}
+                if(!fMultiCharDelimiter)
+                {
+                    SingleCharTokenize(tokens);
+                }
+                else
+                {
+                    MultiCharTokenize(tokens);
+                }
             }
             else
             {
                 //locate quotes, and only tokenize the portions which are outside of a closed pair
                 std::vector< std::pair< bool, std::string > > sections;
                 std::size_t prev = 0;
-                for(std::size_t i=0; i<n_quote; i++)
+                for(std::size_t i = 0; i < n_quote; i++)
                 {
                     std::string sec = fString->substr(prev, fQuotePairIndexes[i].first - prev);
-                    std::string quote = fString->substr(fQuotePairIndexes[i].first, fQuotePairIndexes[i].second - fQuotePairIndexes[i].first );
+                    std::string quote =
+                        fString->substr(fQuotePairIndexes[i].first, fQuotePairIndexes[i].second - fQuotePairIndexes[i].first);
                     prev = fQuotePairIndexes[i].second;
-                    if(sec.size() != 0){sections.push_back( std::make_pair(false, sec) );}
-                    sections.push_back( std::make_pair(true, quote) );
+                    if(sec.size() != 0)
+                    {
+                        sections.push_back(std::make_pair(false, sec));
+                    }
+                    sections.push_back(std::make_pair(true, quote));
                 }
-                sections.push_back( std::make_pair(false, fString->substr(prev) ) ); //catch any trailing portion
+                sections.push_back(std::make_pair(false, fString->substr(prev))); //catch any trailing portion
 
-                for(std::size_t i=0; i<sections.size(); i++)
+                for(std::size_t i = 0; i < sections.size(); i++)
                 {
                     if(sections[i].first == true)
                     {
@@ -80,8 +133,14 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
                     else
                     {
                         fCurrentString = &(sections[i].second);
-                        if(!fMultiCharDelimiter){SingleCharTokenize(tokens);}
-                        else{MultiCharTokenize(tokens);}
+                        if(!fMultiCharDelimiter)
+                        {
+                            SingleCharTokenize(tokens);
+                        }
+                        else
+                        {
+                            MultiCharTokenize(tokens);
+                        }
                     }
                 }
             }
@@ -89,41 +148,53 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
     }
 }
 
-
-void
-MHO_Tokenizer::MultiCharTokenize(std::vector< std::string>* tokens)
+void MHO_Tokenizer::MultiCharTokenize(std::vector< std::string >* tokens)
 {
     //the delimiter is a multi-character string
     size_t start = 0;
     size_t end = 0;
     size_t length = 0;
-    while( end != std::string::npos )
+    while(end != std::string::npos)
     {
         end = fCurrentString->find(fDelim, start);
 
-        if(end == std::string::npos){ length = std::string::npos;}
-        else{length = end - start;}
+        if(end == std::string::npos)
+        {
+            length = std::string::npos;
+        }
+        else
+        {
+            length = end - start;
+        }
 
-        if( fIncludeEmptyTokens || ( (length > 0 ) && ( start < fCurrentString->size() ) ) )
+        if(fIncludeEmptyTokens || ((length > 0) && (start < fCurrentString->size())))
         {
             if(fRemoveLeadingTrailingWhitespace)
             {
-                std::string val = TrimLeadingAndTrailingWhitespace( fCurrentString->substr(start,length) );
-                if(val.size() > 0 || fIncludeEmptyTokens){ tokens->push_back( val ); }
+                std::string val = TrimLeadingAndTrailingWhitespace(fCurrentString->substr(start, length));
+                if(val.size() > 0 || fIncludeEmptyTokens)
+                {
+                    tokens->push_back(val);
+                }
             }
             else
             {
-                tokens->push_back( fCurrentString->substr(start,length) );
+                tokens->push_back(fCurrentString->substr(start, length));
             }
         }
 
-        if( end > std::string::npos - fDelim.size() ){ start = std::string::npos;}
-        else{start = end + fDelim.size();}
+        if(end > std::string::npos - fDelim.size())
+        {
+            start = std::string::npos;
+        }
+        else
+        {
+            start = end + fDelim.size();
+        }
     }
 }
 
-void
-MHO_Tokenizer::SingleCharTokenize(std::vector< std::string>* tokens)
+void MHO_Tokenizer::SingleCharTokenize(std::vector< std::string >* tokens)
 {
     //delimiters are single-characters only
     if(fDelim.size() > 0)
@@ -131,81 +202,100 @@ MHO_Tokenizer::SingleCharTokenize(std::vector< std::string>* tokens)
         size_t start = 0;
         size_t end = 0;
         size_t length = 0;
-        while( end != std::string::npos )
+        while(end != std::string::npos)
         {
             end = fCurrentString->find_first_of(fDelim, start);
-            if(end == std::string::npos){ length = std::string::npos;}
-            else{length = end - start;}
+            if(end == std::string::npos)
+            {
+                length = std::string::npos;
+            }
+            else
+            {
+                length = end - start;
+            }
 
-            if( fIncludeEmptyTokens || ( (length > 0 ) && ( start < fCurrentString->size() ) ) )
+            if(fIncludeEmptyTokens || ((length > 0) && (start < fCurrentString->size())))
             {
                 if(fRemoveLeadingTrailingWhitespace)
                 {
-                    std::string val = TrimLeadingAndTrailingWhitespace( fCurrentString->substr(start,length) );
-                    if(val.size() > 0 || fIncludeEmptyTokens){ tokens->push_back( val ); }
+                    std::string val = TrimLeadingAndTrailingWhitespace(fCurrentString->substr(start, length));
+                    if(val.size() > 0 || fIncludeEmptyTokens)
+                    {
+                        tokens->push_back(val);
+                    }
                 }
                 else
                 {
-                    tokens->push_back( fCurrentString->substr(start,length) );
+                    tokens->push_back(fCurrentString->substr(start, length));
                 }
             }
 
-            if( end > std::string::npos - 1 ){ start = std::string::npos;}
-            else{start = end + 1;}
+            if(end > std::string::npos - 1)
+            {
+                start = std::string::npos;
+            }
+            else
+            {
+                start = end + 1;
+            }
         }
     }
 }
 
-std::size_t
-MHO_Tokenizer::IndexQuoteInstances(const std::string* aString, std::vector< std::pair< std::size_t, std::size_t> >* quotes)
+std::size_t MHO_Tokenizer::IndexQuoteInstances(const std::string* aString,
+                                               std::vector< std::pair< std::size_t, std::size_t > >* quotes)
 {
     quotes->clear();
     std::vector< std::size_t > positions;
-    for(std::size_t i=0; i<aString->size(); i++)
+    for(std::size_t i = 0; i < aString->size(); i++)
     {
-        if( (*aString)[i] == '\"'){positions.push_back(i);}
+        if((*aString)[i] == '\"')
+        {
+            positions.push_back(i);
+        }
     }
 
-    if(positions.size() % 2 == 0 )
+    if(positions.size() % 2 == 0)
     {
-        std::size_t n_quotes = positions.size()/2;
-        for(std::size_t j=0; j<n_quotes; j++)
+        std::size_t n_quotes = positions.size() / 2;
+        for(std::size_t j = 0; j < n_quotes; j++)
         {
             std::pair< std::size_t, std::size_t > q;
-            q.first = positions[2*j];
-            q.second = positions[2*j + 1]+1;
+            q.first = positions[2 * j];
+            q.second = positions[2 * j + 1] + 1;
             quotes->push_back(q);
         }
     }
     else
     {
         //error we have an unmatched quote
-        msg_warn("utility", "tokenizer unable to reliably parse a string with un-matched quotes, treating as unquoted text." << eom);
+        msg_warn("utility",
+                 "tokenizer unable to reliably parse a string with un-matched quotes, treating as unquoted text." << eom);
     }
     return quotes->size();
 }
 
-std::string
-MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(const std::string& value)
+std::string MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(const std::string& value)
 {
     std::string ret_val = "";
     std::string whitespace = " \t";
     auto start = value.find_first_not_of(whitespace);
-    if(start == std::string::npos){return ret_val;}
+    if(start == std::string::npos)
+    {
+        return ret_val;
+    }
     auto stop = value.find_last_not_of(whitespace);
     std::size_t length = stop - start + 1;
     ret_val = value.substr(start, length);
     return ret_val;
 }
 
-
-std::vector< std::string >
-SplitString(const std::string& input, std::string delim)
+std::vector< std::string > SplitString(const std::string& input, std::string delim)
 {
     std::vector< std::string > split;
     if(delim == "") //split string at every character
     {
-        for(std::size_t i=0; i<input.size(); i++)
+        for(std::size_t i = 0; i < input.size(); i++)
         {
             std::string c = "";
             c += input[i];
@@ -224,4 +314,4 @@ SplitString(const std::string& input, std::string delim)
     return split;
 }
 
-}//end namespace
+} // namespace hops

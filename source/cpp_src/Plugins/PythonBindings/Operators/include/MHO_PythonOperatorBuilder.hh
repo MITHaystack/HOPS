@@ -1,8 +1,6 @@
 #ifndef MHO_PythonOperatorBuilderBuilder_HH__
 #define MHO_PythonOperatorBuilderBuilder_HH__
 
-
-
 #include "MHO_OperatorBuilder.hh"
 #include "MHO_PyGenericOperator.hh"
 
@@ -10,30 +8,27 @@ namespace hops
 {
 
 /*!
-*@file MHO_PythonOperatorBuilder.hh
-*@class MHO_PythonOperatorBuilder
-*@author J. Barrett - barrettj@mit.edu
-*@date Mon Sep 18 17:22:44 2023 -0400
-*@brief
-*/
+ *@file MHO_PythonOperatorBuilder.hh
+ *@class MHO_PythonOperatorBuilder
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Mon Sep 18 17:22:44 2023 -0400
+ *@brief
+ */
 
 class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
 {
     public:
-
-        MHO_PythonOperatorBuilder(MHO_OperatorToolbox* toolbox,
-                                   MHO_ContainerStore* cstore = nullptr,
-                                   MHO_ParameterStore* pstore = nullptr):
-            MHO_OperatorBuilder(toolbox, cstore, pstore)
-        {};
+        MHO_PythonOperatorBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
+                                  MHO_ParameterStore* pstore = nullptr)
+            : MHO_OperatorBuilder(toolbox, cstore, pstore){};
 
         virtual ~MHO_PythonOperatorBuilder(){};
 
         virtual bool Build() override
         {
-            if( IsConfigurationOk() )
+            if(IsConfigurationOk())
             {
-                msg_debug("initialization", "building python operator."<< eom);
+                msg_debug("initialization", "building python operator." << eom);
 
                 MHO_PyGenericOperator* op = new MHO_PyGenericOperator();
 
@@ -42,11 +37,11 @@ class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
                 op->SetContainerStore(this->fContainerStore);
 
                 //retrieve pass the module/function name info from the control file
-                std::string op_name = this->fFormat["name"].get<std::string>();
-                std::string op_category = this->fFormat["operator_category"].get<std::string>();
-                std::string module_name = fAttributes["value"]["module_name"].get<std::string>();
-                std::string function_name = fAttributes["value"]["function_name"].get<std::string>();
-                double priority = this->fFormat["priority"].get<double>();
+                std::string op_name = this->fFormat["name"].get< std::string >();
+                std::string op_category = this->fFormat["operator_category"].get< std::string >();
+                std::string module_name = fAttributes["value"]["module_name"].get< std::string >();
+                std::string function_name = fAttributes["value"]["function_name"].get< std::string >();
+                double priority = this->fFormat["priority"].get< double >();
 
                 op->SetPriority(priority);
                 op->SetName(module_name + ":" + function_name);
@@ -55,9 +50,8 @@ class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
 
                 //TODO handle naming scheme for multiple python operators (should they have a name parameter?)
                 bool replace_duplicates = false;
-                this->fOperatorToolbox->AddOperator(op,op->GetName(),op_category,replace_duplicates);
+                this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
                 return true;
-
             }
             else
             {
@@ -67,10 +61,8 @@ class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
         }
 
     private:
-
 };
 
-}//end namespace
-
+} // namespace hops
 
 #endif /*! end of include guard: MHO_PythonOperatorBuilderBuilder_HH__ */

@@ -1,41 +1,37 @@
 #ifndef MHO_Passband_HH__
 #define MHO_Passband_HH__
 
-
+#include <cctype>
 #include <cmath>
 #include <complex>
-#include <vector>
 #include <map>
-#include <cctype>
+#include <vector>
 
-#include "MHO_Message.hh"
 #include "MHO_Constants.hh"
+#include "MHO_Message.hh"
 
-#include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
+#include "MHO_TableContainer.hh"
 #include "MHO_UnaryOperator.hh"
-
 
 namespace hops
 {
 
 /*!
-*@file MHO_Passband.hh
-*@class MHO_Passband
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief Tue Apr  2 09:41:24 AM EDT 2024
-*/
-
+ *@file MHO_Passband.hh
+ *@class MHO_Passband
+ *@author J. Barrett - barrettj@mit.edu
+ *@date
+ *@brief Tue Apr  2 09:41:24 AM EDT 2024
+ */
 
 class MHO_Passband: public MHO_UnaryOperator< visibility_type >
 {
     public:
-
         MHO_Passband();
         virtual ~MHO_Passband();
 
-        void SetWeights(weight_type* weights){fWeights = weights;};
+        void SetWeights(weight_type* weights) { fWeights = weights; };
 
         void SetPassband(const double& first, const double& second)
         {
@@ -56,11 +52,9 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
                 fLow = first;
                 fHigh = second;
             }
-
         }
 
     protected:
-
         virtual bool InitializeInPlace(visibility_type* in) override;
         virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
@@ -68,7 +62,6 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
-
         bool fIsExclusion;
         double fLow;
         double fHigh;
@@ -77,14 +70,10 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
         std::string fSidebandLabelKey;
         std::string fLowerSideband;
         std::string fUpperSideband;
-        
+
         weight_type* fWeights;
-
-
 };
 
-
-}
-
+} // namespace hops
 
 #endif /*! end of include guard: MHO_Passband */

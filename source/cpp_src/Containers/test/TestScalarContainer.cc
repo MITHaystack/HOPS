@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
 
-#include "MHO_ScalarContainer.hh"
+#include "MHO_BinaryFileInterface.hh"
 #include "MHO_BinaryFileStreamer.hh"
 #include "MHO_FileKey.hh"
+#include "MHO_ScalarContainer.hh"
 #include "MHO_UUIDGenerator.hh"
-#include "MHO_BinaryFileInterface.hh"
 
 using namespace hops;
 
@@ -19,11 +19,10 @@ int main(int /*argc*/, char** /*argv*/)
 
     A->SetValue(x);
 
-
     A->Insert("foo", 1.0);
     A->Insert("bar", "baz");
 
-    std::cout<<"stored valued =  "<<A->GetValue()<<std::endl;
+    std::cout << "stored valued =  " << A->GetValue() << std::endl;
 
     std::string filename = "./test.bin";
 
@@ -38,11 +37,11 @@ int main(int /*argc*/, char** /*argv*/)
     }
     else
     {
-        std::cout<<"error opening file"<<std::endl;
+        std::cout << "error opening file" << std::endl;
     }
 
-    std::cout<<" class name: "<<  MHO_ClassIdentity::ClassName(*A) <<std::endl;
-    std::cout<<" class version: "<< A->GetVersion()<<std::endl;
+    std::cout << " class name: " << MHO_ClassIdentity::ClassName(*A) << std::endl;
+    std::cout << " class version: " << A->GetVersion() << std::endl;
 
     inter.Close();
 
@@ -56,11 +55,11 @@ int main(int /*argc*/, char** /*argv*/)
         MHO_FileKey key;
         inter.Read(*B, key);
         //std::cout<<"B object label = "<<blabel<<std::endl;
-        std::cout<<"B object value = "<< B->GetValue()<<std::endl;
+        std::cout << "B object value = " << B->GetValue() << std::endl;
     }
     else
     {
-        std::cout<<" error opening file to read"<<std::endl;
+        std::cout << " error opening file to read" << std::endl;
     }
 
     //see if we can get the tag values:
@@ -69,8 +68,7 @@ int main(int /*argc*/, char** /*argv*/)
     bool ok = B->Retrieve("foo", t1);
     ok = B->Retrieve("bar", t2);
 
-    std::cout<<"foo = "<<t1<<", bar = "<<t2<<std::endl;
-
+    std::cout << "foo = " << t1 << ", bar = " << t2 << std::endl;
 
     inter.Close();
 

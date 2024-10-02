@@ -1,29 +1,28 @@
-#include <iostream>
-#include <string>
-#include <vector>
 #include <algorithm>
-#include <set>
-#include <utility>
-#include <map>
 #include <getopt.h>
+#include <iostream>
+#include <map>
+#include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
 #include "MHO_Message.hh"
 
-#include "MHO_ScanDataStore.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_ContainerStore.hh"
-#include "MHO_PyContainerStoreInterface.hh"
 #include "MHO_ElementTypeCaster.hh"
+#include "MHO_PyContainerStoreInterface.hh"
+#include "MHO_ScanDataStore.hh"
 
-#include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
+#include <pybind11/pybind11.h>
 namespace py = pybind11;
 
-#include "MHO_PyGenericOperator.hh"
 #include "MHO_PyConfigurePath.hh"
+#include "MHO_PyGenericOperator.hh"
 
 using namespace hops;
-
 
 void configure_data_library(MHO_ContainerStore* store)
 {
@@ -32,41 +31,41 @@ void configure_data_library(MHO_ContainerStore* store)
     visibility_store_type* vis_store_data = nullptr;
     weight_store_type* wt_store_data = nullptr;
 
-    vis_store_data = store->GetObject<visibility_store_type>(0);
-    wt_store_data = store->GetObject<weight_store_type>(0);
+    vis_store_data = store->GetObject< visibility_store_type >(0);
+    wt_store_data = store->GetObject< weight_store_type >(0);
 
     if(vis_store_data == nullptr)
     {
-        msg_fatal("main", "failed to read visibility data from the .cor file." <<eom);
+        msg_fatal("main", "failed to read visibility data from the .cor file." << eom);
         std::exit(1);
     }
 
     if(wt_store_data == nullptr)
     {
-        msg_fatal("main", "failed to read weight data from the .cor file." <<eom);
+        msg_fatal("main", "failed to read weight data from the .cor file." << eom);
         std::exit(1);
     }
 
-    std::size_t n_vis = store->GetNObjects<visibility_store_type>();
-    std::size_t n_wt = store->GetNObjects<weight_store_type>();
+    std::size_t n_vis = store->GetNObjects< visibility_store_type >();
+    std::size_t n_wt = store->GetNObjects< weight_store_type >();
 
     if(n_vis != 1 || n_wt != 1)
     {
         msg_warn("main", "multiple visibility and/or weight types not yet supported" << eom);
     }
 
-    std::string vis_shortname = store->GetShortName(vis_store_data->GetObjectUUID() );
-    std::string wt_shortname = store->GetShortName(wt_store_data->GetObjectUUID() );
+    std::string vis_shortname = store->GetShortName(vis_store_data->GetObjectUUID());
+    std::string wt_shortname = store->GetShortName(wt_store_data->GetObjectUUID());
 
     visibility_type* vis_data = new visibility_type();
     weight_type* wt_data = new weight_type();
 
-    MHO_ElementTypeCaster<visibility_store_type, visibility_type> up_caster;
+    MHO_ElementTypeCaster< visibility_store_type, visibility_type > up_caster;
     up_caster.SetArgs(vis_store_data, vis_data);
     up_caster.Initialize();
     up_caster.Execute();
 
-    MHO_ElementTypeCaster< weight_store_type, weight_type> wt_up_caster;
+    MHO_ElementTypeCaster< weight_store_type, weight_type > wt_up_caster;
     wt_up_caster.SetArgs(wt_store_data, wt_data);
     wt_up_caster.Initialize();
     wt_up_caster.Execute();
@@ -86,10 +85,6 @@ void configure_data_library(MHO_ContainerStore* store)
     store->SetShortName(wt_data->GetObjectUUID(), wt_shortname);
 }
 
-
-
-
-
 int main(int argc, char** argv)
 {
     std::string usage = "TestPythonGenericOperator -d <directory> -b <baseline>";
@@ -100,26 +95,28 @@ int main(int argc, char** argv)
     std::string directory;
     std::string baseline;
 
-    static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
-                                          {"directory", required_argument, 0, 'd'},
-                                          {"baseline", required_argument, 0, 'b'}};
+    static struct option longOptions[] = {
+        {"help",      no_argument,       0, 'h'},
+        {"directory", required_argument, 0, 'd'},
+        {"baseline",  required_argument, 0, 'b'}
+    };
 
     static const char* optString = "hd:b:";
 
     while(true)
     {
         char optId = getopt_long(argc, argv, optString, longOptions, NULL);
-        if (optId == -1)
+        if(optId == -1)
             break;
         switch(optId)
         {
-            case ('h'):  // help
+            case('h'): // help
                 std::cout << usage << std::endl;
                 return 0;
-            case ('d'):
+            case('d'):
                 directory = std::string(optarg);
                 break;
-            case ('b'):
+            case('b'):
                 baseline = std::string(optarg);
                 break;
             default:
@@ -130,8 +127,8 @@ int main(int argc, char** argv)
 
     //provide necessary objects for operation
     MHO_ParameterStore paramStore; //stores various parameters using string keys
-    MHO_ScanDataStore scanStore; //provides access to data associated with this scan
-    MHO_ContainerStore conStore; //stores data containers for in-use data
+    MHO_ScanDataStore scanStore;   //provides access to data associated with this scan
+    MHO_ContainerStore conStore;   //stores data containers for in-use data
 
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE SCAN DIRECTORY
@@ -140,7 +137,7 @@ int main(int argc, char** argv)
     //initialize the scan store from this directory
     scanStore.SetDirectory(directory);
     scanStore.Initialize();
-    if( !scanStore.IsValid() )
+    if(!scanStore.IsValid())
     {
         msg_fatal("main", "cannot initialize a valid scan store from this directory: " << directory << eom);
         std::exit(1);
@@ -154,8 +151,8 @@ int main(int argc, char** argv)
     scanStore.LoadBaseline(baseline, &conStore);
     //configure_data_library(&conStore);//momentarily needed for float -> double cast
     //load and rename station data according to reference/remote
-    std::string ref_station_mk4id = std::string(1,baseline[0]);
-    std::string rem_station_mk4id = std::string(1,baseline[1]);
+    std::string ref_station_mk4id = std::string(1, baseline[0]);
+    std::string rem_station_mk4id = std::string(1, baseline[1]);
     scanStore.LoadStation(ref_station_mk4id, &conStore);
     conStore.RenameObject("sta", "ref_sta");
     scanStore.LoadStation(rem_station_mk4id, &conStore);
@@ -163,29 +160,29 @@ int main(int argc, char** argv)
 
     configure_data_library(&conStore);
 
-    station_coord_type* ref_data = conStore.GetObject<station_coord_type>(std::string("ref_sta"));
-    station_coord_type* rem_data = conStore.GetObject<station_coord_type>(std::string("rem_sta"));
-    visibility_type* vis_data = conStore.GetObject<visibility_type>(std::string("vis"));
-    weight_type* wt_data = conStore.GetObject<weight_type>(std::string("weight"));
-    if( vis_data == nullptr)
+    station_coord_type* ref_data = conStore.GetObject< station_coord_type >(std::string("ref_sta"));
+    station_coord_type* rem_data = conStore.GetObject< station_coord_type >(std::string("rem_sta"));
+    visibility_type* vis_data = conStore.GetObject< visibility_type >(std::string("vis"));
+    weight_type* wt_data = conStore.GetObject< weight_type >(std::string("weight"));
+    if(vis_data == nullptr)
     {
         msg_fatal("main", "failed to load visibility object." << eom);
         std::exit(1);
     }
 
-    if( wt_data == nullptr )
+    if(wt_data == nullptr)
     {
         msg_fatal("main", "failed to load weight object." << eom);
         std::exit(1);
     }
 
-    if( ref_data == nullptr)
+    if(ref_data == nullptr)
     {
         msg_fatal("main", "failed to load ref station object." << eom);
         std::exit(1);
     }
 
-    if( rem_data == nullptr)
+    if(rem_data == nullptr)
     {
         msg_fatal("main", "failed to load rem station object." << eom);
         std::exit(1);
@@ -202,7 +199,6 @@ int main(int argc, char** argv)
     paramStore.Set("/uuid/ref_station", ref_uuid);
     paramStore.Set("/uuid/rem_station", rem_uuid);
 
-
     MHO_PyGenericOperator pyOper;
     pyOper.SetModuleName("mho_test");
     pyOper.SetFunctionName("test_plot_visibilities");
@@ -212,7 +208,7 @@ int main(int argc, char** argv)
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive
     configure_pypath();
 
-    std::cout<<"*************** executing operation via python **************"<<std::endl;
+    std::cout << "*************** executing operation via python **************" << std::endl;
 
     pyOper.Initialize();
     pyOper.Execute();
