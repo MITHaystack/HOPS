@@ -150,7 +150,7 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                     {
                         if(net_sideband == "L")  
                         {
-                            fSBDDrWorkspace(0, i, j, 0) = std::conj( (*in)(0, i, j, sbd_idx) ); 
+                            fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, sbd_idx);//std::conj( ( (*in)(0, i, j, remapped_sbd_idx) ) ); 
                         }
                         else 
                         {
@@ -190,7 +190,7 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                             auto val = sbd_dr_data(0, ch, dr_idx, 0);
                             // if(net_sideband == "L")
                             // {
-                            //     val = std::conj( fNSBD);
+                            //     val *= std::conj(val);
                             // }
                             fMBDWorkspace(mbd_bin) += val;
                         }
