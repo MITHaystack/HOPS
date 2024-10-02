@@ -95,6 +95,8 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         virtual bool InitializeImpl(const XArgType* in) override;
         virtual bool ExecuteImpl(const XArgType* in) override;
 
+        std::vector<double> DetermineFrequencyPoints(const XArgType* in);
+
     private:
         //workspace
         bool fInitialized;
