@@ -73,6 +73,10 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
         MHO_SBDTableGenerator fSBDGen;
         bool fInitialized;
 
+        //fill the SBD array...in the case where there are no double sideband channels
+        bool FillSBDTableNoDSB(const XArgType* in, XArgType* out);
+        bool FillSBDTableWithDSB(const XArgType* in, XArgType* out);
+
 };
 
 
