@@ -1,54 +1,51 @@
 #ifndef MHO_MBDelaySearchCUDA_HH__
 #define MHO_MBDelaySearchCUDA_HH__
 
-
 #include <cmath>
 #include <complex>
 
 #include "MHO_AxisPack.hh"
-#include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
-#include "MHO_InspectingOperator.hh"
 #include "MHO_CyclicRotator.hh"
-#include "MHO_UniformGridPointsCalculator.hh"
-#include "MHO_ExtremaSearch.hh"
 #include "MHO_DelayRate.hh"
-
+#include "MHO_ExtremaSearch.hh"
+#include "MHO_InspectingOperator.hh"
+#include "MHO_TableContainer.hh"
+#include "MHO_UniformGridPointsCalculator.hh"
 
 #ifdef HOPS_USE_FFTW3
-#include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
+    #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
 #else
-#include "MHO_MultidimensionalFastFourierTransform.hh"
+    #include "MHO_MultidimensionalFastFourierTransform.hh"
 #endif
 
 // CUDA includes
 #include <cuComplex.h>
+#include <cuda.h>
+#include <cuda_runtime_api.h>
 #include <cufft.h>
 #include <stdint.h>
-#include <cuda_runtime_api.h>
-#include <cuda.h>
-#include <cufft.h>
 
 namespace hops
 {
 
 /*!
-*@file MHO_MBDelaySearchCUDA.hh
-*@class MHO_MBDelaySearchCUDA
-*@author J. Barrett - barrettj@mit.edu
-*@dateTue Jul 16 10:40:47 PM EDT 2024
-*@brief This is an ultra basic CUDA implementation of the 
-* the coarse MBD/SBD/DR search, its quite primitive and only calls the CUFFT library 
-* to speed up the inner-most loop over (DR,MBD) space. It is not optimized and 
-* has far too much movement of data between host <-> device, additional work is need 
-* to optimize this routing.
-*/
+ *@file MHO_MBDelaySearchCUDA.hh
+ *@class MHO_MBDelaySearchCUDA
+ *@author J. Barrett - barrettj@mit.edu
+ *@dateTue Jul 16 10:40:47 PM EDT 2024
+ *@brief This is an ultra basic CUDA implementation of the
+ * the coarse MBD/SBD/DR search, its quite primitive and only calls the CUFFT library
+ * to speed up the inner-most loop over (DR,MBD) space. It is not optimized and
+ * has far too much movement of data between host <-> device, additional work is need
+ * to optimize this routing.
+ */
 
 using mbd_axis_pack = MHO_AxisPack< time_axis_type >;
 using mbd_dr_axis_pack = MHO_AxisPack< delay_rate_axis_type, time_axis_type >;
 using mbd_type = MHO_TableContainer< visibility_element_type, mbd_axis_pack >;
 using mbd_amp_type = MHO_TableContainer< double, mbd_axis_pack >;
-using mbd_dr_type = MHO_TableContainer< visibility_element_type, mbd_dr_axis_pack>;
+using mbd_dr_type = MHO_TableContainer< visibility_element_type, mbd_dr_axis_pack >;
 
 class MHO_MBDelaySearchCUDA: public MHO_InspectingOperator< visibility_type >
 {
@@ -56,8 +53,9 @@ class MHO_MBDelaySearchCUDA: public MHO_InspectingOperator< visibility_type >
         MHO_MBDelaySearchCUDA();
         virtual ~MHO_MBDelaySearchCUDA();
 
-        void SetWeights(weight_type* wt_data){fWeights = wt_data;}
-        void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
+        void SetWeights(weight_type* wt_data) { fWeights = wt_data; }
+
+        void SetReferenceFrequency(double ref_freq) { fRefFreq = ref_freq; }
 
         //configure the search windows (using floating point limits)
         //default is the full range
@@ -70,39 +68,47 @@ class MHO_MBDelaySearchCUDA: public MHO_InspectingOperator< visibility_type >
         void GetMBDWindow(double& low, double& high) const;
         void GetDRWindow(double& low, double& high) const;
 
-        int GetMBDMaxBin() const {return fMBDMaxBin;}
-        int GetSBDMaxBin() const {return fSBDMaxBin;}
-        int GetDRMaxBin() const {return fDRMaxBin;}
+        int GetMBDMaxBin() const { return fMBDMaxBin; }
 
-        double GetCoarseMBD() const {return fCoarseMBD;}
-        double GetCoarseSBD() const {return fCoarseSBD;}
-        double GetCoarseDR() const {return fCoarseDR;}
+        int GetSBDMaxBin() const { return fSBDMaxBin; }
 
-        double GetSBDBinSeparation() const {return fSBDBinSep;}
+        int GetDRMaxBin() const { return fDRMaxBin; }
 
-        int GetNMBDBins() const {return fNGridPoints;};
-        int GetNSBDBins() const {return fNSBD;};
-        int GetNDRBins() const {return fNDR;};
-        int GetNDRSPBins() const {return fDelayRateCalc.GetDelayRateSearchSpaceSize(); }
+        double GetCoarseMBD() const { return fCoarseMBD; }
+
+        double GetCoarseSBD() const { return fCoarseSBD; }
+
+        double GetCoarseDR() const { return fCoarseDR; }
+
+        double GetSBDBinSeparation() const { return fSBDBinSep; }
+
+        int GetNMBDBins() const { return fNGridPoints; };
+
+        int GetNSBDBins() const { return fNSBD; };
+
+        int GetNDRBins() const { return fNDR; };
+
+        int GetNDRSPBins() const { return fDelayRateCalc.GetDelayRateSearchSpaceSize(); }
 
         double GetNPointsSearched() const;
 
-        double GetSearchMaximumAmplitude() const {return fMax;}
-        double GetFrequencySpacing() const {return fGridSpace;}
-        double GetAverageFrequency() const {return fAverageFreq;}
+        double GetSearchMaximumAmplitude() const { return fMax; }
 
-        time_axis_type* GetMBDAxis(){ return &fMBDAxis; };
-        delay_rate_axis_type* GetDRAxis(){ return &fDRAxis; };
+        double GetFrequencySpacing() const { return fGridSpace; }
+
+        double GetAverageFrequency() const { return fAverageFreq; }
+
+        time_axis_type* GetMBDAxis() { return &fMBDAxis; };
+
+        delay_rate_axis_type* GetDRAxis() { return &fDRAxis; };
 
     protected:
-
         using XArgType = visibility_type;
 
         virtual bool InitializeImpl(const XArgType* in) override;
         virtual bool ExecuteImpl(const XArgType* in) override;
 
     private:
-
         //workspace
         bool fInitialized;
         std::vector< double > fChannelFreqs;
@@ -123,7 +129,7 @@ class MHO_MBDelaySearchCUDA: public MHO_InspectingOperator< visibility_type >
         std::size_t fNSBD;
         std::size_t fNDR;
         std::size_t fNDRSP;
-        std::map<std::size_t, std::size_t> fMBDBinMap;
+        std::map< std::size_t, std::size_t > fMBDBinMap;
         double fRefFreq;
         int fSBDStart;
         int fSBDStop;
@@ -155,9 +161,9 @@ class MHO_MBDelaySearchCUDA: public MHO_InspectingOperator< visibility_type >
         //the number of points searched
         double fNPointsSearched;
 
-        MHO_Axis<double> fSBDAxis;
-        MHO_Axis<double> fMBDAxis;
-        MHO_Axis<double> fDRAxis;
+        MHO_Axis< double > fSBDAxis;
+        MHO_Axis< double > fMBDAxis;
+        MHO_Axis< double > fDRAxis;
 
         MHO_UniformGridPointsCalculator fGridCalc;
         MHO_DelayRate fDelayRateCalc; //delay rate calculator
@@ -169,23 +175,19 @@ class MHO_MBDelaySearchCUDA: public MHO_InspectingOperator< visibility_type >
         //the cuFFT plan
         cufftHandle fCUFFTPlan;
 
-        #ifdef HOPS_USE_FFTW3
-        using FFT_ENGINE_TYPE =  MHO_MultidimensionalFastFourierTransformFFTW< mbd_type >;
-        #else
-        using FFT_ENGINE_TYPE =  MHO_MultidimensionalFastFourierTransform< mbd_type >;
-        #endif
+#ifdef HOPS_USE_FFTW3
+        using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< mbd_type >;
+#else
+        using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< mbd_type >;
+#endif
 
         FFT_ENGINE_TYPE fFFTEngine;
 
         MHO_CyclicRotator< mbd_type > fCyclicRotator;
 
         MHO_ExtremaSearch< mbd_amp_type > fMaxSearch;
-
 };
 
-
-}
-
-
+} // namespace hops
 
 #endif /*! end of include guard: MHO_MBDelaySearchCUDA_HH__ */

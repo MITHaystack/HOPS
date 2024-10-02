@@ -1,11 +1,11 @@
 #include "MHO_LockFileHandler.hh"
 
-#include <sys/types.h>
-#include <sys/time.h>
-#include <stdio.h>
-#include <string.h>
 #include <dirent.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sys/time.h>
+#include <sys/types.h>
 
 //wait time allowed before a lock file is declared stale (5 min)
 #define LOCK_STALE_SEC 300
@@ -18,45 +18,41 @@
 #define LOCK_VALID 0
 #define LOCK_INVALID -1
 
-
 namespace hops
 {
-
-
 
 //initialization to nullptr
 MHO_LockFileHandler* MHO_LockFileHandler::fInstance = nullptr;
 
 //function to handle signals (to ensure we clean up lockfiles if we get interrupted)
-void
-MHO_LockFileHandler::HandleSignal(int signal_value)
+void MHO_LockFileHandler::HandleSignal(int signal_value)
 {
     MHO_LockFileHandler::GetInstance().RemoveWriteLock();
     signal(signal_value, SIG_DFL); //reset the handler for this particular signal to default
-    kill(getpid(), signal_value); //re-send the signal to this process
+    kill(getpid(), signal_value);  //re-send the signal to this process
 }
 
 //set the write directory
-void
-MHO_LockFileHandler::SetDirectory(std::string dir)
+void MHO_LockFileHandler::SetDirectory(std::string dir)
 {
     fDirectory = dir;
     //make sure our directory is terminated with a "/"
     //this needs to be the case for the dir/file parsing code
-    if(fDirectory.size() !=0)
+    if(fDirectory.size() != 0)
     {
-        if( fDirectory[fDirectory.size()-1] != '/'){fDirectory += "/";}
+        if(fDirectory[fDirectory.size() - 1] != '/')
+        {
+            fDirectory += "/";
+        }
     }
 }
 
-void
-MHO_LockFileHandler::RemoveWriteLock()
+void MHO_LockFileHandler::RemoveWriteLock()
 {
     remove_lockfile(&fProcessLockFileData);
 }
 
-int
-MHO_LockFileHandler::WaitForWriteLock(std::string directory, int& next_seq_no)
+int MHO_LockFileHandler::WaitForWriteLock(std::string directory, int& next_seq_no)
 {
     SetDirectory(directory);
     return wait_for_write_lock(next_seq_no);
@@ -70,16 +66,25 @@ void MHO_LockFileHandler::init_lockfile_data(lockfile_data* data)
     data->time_sec = 0;
     data->time_usec = 0;
     int i = 0;
-    for(i=0; i<256; i++){data->hostname[i] = '\0';}
-    for(i=0; i<MAX_LOCKNAME_LEN; i++){data->active_directory[i] = '\0';}
-    for(i=0; i<MAX_LOCKNAME_LEN; i++){data->lockfile_name[i] = '\0';}
+    for(i = 0; i < 256; i++)
+    {
+        data->hostname[i] = '\0';
+    }
+    for(i = 0; i < MAX_LOCKNAME_LEN; i++)
+    {
+        data->active_directory[i] = '\0';
+    }
+    for(i = 0; i < MAX_LOCKNAME_LEN; i++)
+    {
+        data->lockfile_name[i] = '\0';
+    }
 }
 
 void MHO_LockFileHandler::remove_lockfile(lockfile_data* data)
 {
     if(data->validity == LOCK_VALID)
     {
-        msg_debug("utilities", "removing write lock file: "<< std::string(data->lockfile_name) << eom);
+        msg_debug("utilities", "removing write lock file: " << std::string(data->lockfile_name) << eom);
         remove(data->lockfile_name);
     }
     init_lockfile_data(data);
@@ -96,28 +101,58 @@ int MHO_LockFileHandler::parse_lockfile_name(char* lockfile_name_base, lockfile_
     char* ptr;
     ptr = strtok(lockfile_name_base, ".");
 
-    if(ptr != NULL){sscanf(ptr, "%u", &(result->pid));}
-    else{return LOCK_PARSE_ERROR;}
+    if(ptr != NULL)
+    {
+        sscanf(ptr, "%u", &(result->pid));
+    }
+    else
+    {
+        return LOCK_PARSE_ERROR;
+    }
 
     ptr = strtok(NULL, ".");
 
-    if(ptr != NULL){sscanf(ptr, "%u", &(result->seq_number));}
-    else{return LOCK_PARSE_ERROR;}
+    if(ptr != NULL)
+    {
+        sscanf(ptr, "%u", &(result->seq_number));
+    }
+    else
+    {
+        return LOCK_PARSE_ERROR;
+    }
 
     ptr = strtok(NULL, ".");
 
-    if(ptr != NULL){sscanf(ptr, "%lx", &(result->time_sec));}
-    else{return LOCK_PARSE_ERROR;}
+    if(ptr != NULL)
+    {
+        sscanf(ptr, "%lx", &(result->time_sec));
+    }
+    else
+    {
+        return LOCK_PARSE_ERROR;
+    }
 
     ptr = strtok(NULL, ".");
 
-    if(ptr != NULL){sscanf(ptr, "%lx", &(result->time_usec));}
-    else{return LOCK_PARSE_ERROR;}
+    if(ptr != NULL)
+    {
+        sscanf(ptr, "%lx", &(result->time_usec));
+    }
+    else
+    {
+        return LOCK_PARSE_ERROR;
+    }
 
     ptr = strtok(NULL, ".");
 
-    if(ptr != NULL){sscanf(ptr, "%s", &(result->hostname[0]));}
-    else{return LOCK_PARSE_ERROR;}
+    if(ptr != NULL)
+    {
+        sscanf(ptr, "%s", &(result->hostname[0]));
+    }
+    else
+    {
+        return LOCK_PARSE_ERROR;
+    }
 
     result->validity = LOCK_VALID;
     return 0;
@@ -134,20 +169,19 @@ int MHO_LockFileHandler::check_stale(lockfile_data* other)
     unsigned long int epoch_sec = timevalue.tv_sec;
     unsigned long int micro_sec = timevalue.tv_usec;
 
-    if( other->time_sec < epoch_sec )
+    if(other->time_sec < epoch_sec)
     {
-        if( (epoch_sec - other->time_sec) > LOCK_STALE_SEC )
+        if((epoch_sec - other->time_sec) > LOCK_STALE_SEC)
         {
             //issue warning, we do not have priority
-            msg_warn("utilities", "stale lock file detected: "<<
-                std::string(other->active_directory) + std::string(other->lockfile_name) << eom);
+            msg_warn("utilities", "stale lock file detected: "
+                                      << std::string(other->active_directory) + std::string(other->lockfile_name) << eom);
             return LOCK_STALE_ERROR;
         }
     }
 
     return LOCK_STATUS_OK;
 }
-
 
 int MHO_LockFileHandler::lock_has_priority(lockfile_data* ours, lockfile_data* other)
 {
@@ -170,15 +204,15 @@ int MHO_LockFileHandler::lock_has_priority(lockfile_data* ours, lockfile_data* o
     {
         return LOCK_PROCESS_HAS_PRIORITY;
     }
-    else if( ours->pid == other->pid)    // tie-break w/time
+    else if(ours->pid == other->pid) // tie-break w/time
     {
-        if( ours->time_sec < other->time_sec )
+        if(ours->time_sec < other->time_sec)
         {
             return LOCK_PROCESS_HAS_PRIORITY;
         }
-        else if ( ours->time_sec == other->time_sec)
+        else if(ours->time_sec == other->time_sec)
         {
-            if( ours->time_usec < other->time_usec)
+            if(ours->time_usec < other->time_usec)
             {
                 return LOCK_PROCESS_HAS_PRIORITY;
             }
@@ -187,7 +221,7 @@ int MHO_LockFileHandler::lock_has_priority(lockfile_data* ours, lockfile_data* o
                 return LOCK_PROCESS_NO_PRIORITY;
             }
         }
-        else    // ours is > other->pid
+        else // ours is > other->pid
         {
             return LOCK_PROCESS_NO_PRIORITY;
         }
@@ -196,11 +230,9 @@ int MHO_LockFileHandler::lock_has_priority(lockfile_data* ours, lockfile_data* o
     {
         return LOCK_PROCESS_NO_PRIORITY;
     }
-
 }
 
-int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_name,
-                                         lockfile_data* lock_data, int max_seq_no)
+int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_name, lockfile_data* lock_data, int max_seq_no)
 {
     //max_seq_no is the max file extent number seen at time of lock file creation
     //e.g. the '2' in GE.X.2.ABCDEF
@@ -209,7 +241,7 @@ int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_n
     //in case we have multiple machines modifying the same NFS space
     char host_name[256] = {'\0'};
     int ret_val = gethostname(host_name, 256);
-    if( ret_val != 0)
+    if(ret_val != 0)
     {
         msg_fatal("utilities", "error retrieving host name in create_lockfile." << eom);
         std::exit(1);
@@ -228,18 +260,20 @@ int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_n
 
     //dump the process id into a string to create the filename
     unsigned int i = 0;
-    for(i=0; i<MAX_LOCKNAME_LEN; i++){lockfile_name[i] = '\0';}
+    for(i = 0; i < MAX_LOCKNAME_LEN; i++)
+    {
+        lockfile_name[i] = '\0';
+    }
 
     //copy in the scan directory and append the filename
 
-    strcpy(lockfile_name, directory);//fDirectory.c_str());
+    strcpy(lockfile_name, directory); //fDirectory.c_str());
     char* end_ptr = strrchr(lockfile_name, '/');
     end_ptr++;
-    sprintf(end_ptr, "%u.%u.%lx.%lx.%s.lock",
-    pid, sequence_to_reserve, epoch_sec, micro_sec, host_name);
+    sprintf(end_ptr, "%u.%u.%lx.%lx.%s.lock", pid, sequence_to_reserve, epoch_sec, micro_sec, host_name);
 
-    FILE* lockfile = fopen(lockfile_name, "w+" );
-    if (lockfile!=NULL)
+    FILE* lockfile = fopen(lockfile_name, "w+");
+    if(lockfile != NULL)
     {
         char time_buffer[100] = {'\0'};
         sprintf(time_buffer, "%lu\n", epoch_sec);
@@ -259,7 +293,7 @@ int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_n
         strcpy(lock_data->hostname, host_name);
         strcpy(lock_data->active_directory, directory);
         strcpy(lock_data->lockfile_name, lockfile_name);
-        msg_debug("utilities", "creating write lock file: "<< std::string(lock_data->lockfile_name) << eom);
+        msg_debug("utilities", "creating write lock file: " << std::string(lock_data->lockfile_name) << eom);
     }
     else
     {
@@ -269,13 +303,10 @@ int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_n
     return LOCK_STATUS_OK;
 }
 
-
-
 //returns LOCK_PROCESS_HAS_PRIORITY if this process is at the front of the queue
 //returns LOCK_PROCESS_NO_PRIORITY if otherwise
 //returns and error code (various, see write_lock_mechanism.h) if an error
-int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name,
-                                  lockfile_data* lock_data, int cand_seq_no)
+int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name, lockfile_data* lock_data, int cand_seq_no)
 {
 
     //figure out root directory
@@ -295,7 +326,7 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name,
     d = opendir(root_dir);
     if(d)
     {
-        while( (dir = readdir(d)) != NULL)
+        while((dir = readdir(d)) != NULL)
         {
             if(strstr(dir->d_name, ".lock") != NULL)
             {
@@ -309,7 +340,7 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name,
                 strcpy(temp_lock_struct.active_directory, root_dir);
                 if(error_code != LOCK_STATUS_OK)
                 {
-                    msg_error("utilities", "un-parsable lock file name: "<< std::string(dir->d_name) << eom);
+                    msg_error("utilities", "un-parsable lock file name: " << std::string(dir->d_name) << eom);
                     return LOCK_PARSE_ERROR;
                 }
                 int stale_lock = check_stale(&temp_lock_struct);
@@ -324,12 +355,15 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name,
     }
     else
     {
-        msg_error("utilities", "cannot access the directory: "<< root_dir << eom );
+        msg_error("utilities", "cannot access the directory: " << root_dir << eom);
         return LOCK_FILE_ERROR;
     }
 
     //don't have priority, bail out
-    if(process_priority != LOCK_PROCESS_HAS_PRIORITY){return process_priority;};
+    if(process_priority != LOCK_PROCESS_HAS_PRIORITY)
+    {
+        return process_priority;
+    };
 
     //no other locks present, so go ahead and try to create a lock file
     int lock_retval = create_lockfile(directory, lockfile_name, lock_data, cand_seq_no);
@@ -349,7 +383,7 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name,
         d = opendir(root_dir);
         if(d)
         {
-            while( (dir = readdir(d)) != NULL)
+            while((dir = readdir(d)) != NULL)
             {
                 if(strstr(dir->d_name, ".lock") != NULL)
                 {
@@ -395,14 +429,12 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name,
 
         //made it here so this process has write priority
         return process_priority;
-
     }
     else
     {
         //msg ("Error: could not create write lock on directory: %s ", 3, root_dir);
         return LOCK_FILE_ERROR;
     }
-
 }
 
 int MHO_LockFileHandler::wait_for_write_lock(int& next_seq_no)
@@ -419,20 +451,23 @@ int MHO_LockFileHandler::wait_for_write_lock(int& next_seq_no)
         max_seq_no = get_max_seq_number(fDirectory);
         if(n_checks == 0)
         {
-            msg_debug("utilities", "detected max sequence number of: "<< max_seq_no << ", in: " << fDirectory << eom);
+            msg_debug("utilities", "detected max sequence number of: " << max_seq_no << ", in: " << fDirectory << eom);
         }
         //provisionally fset->maxfile is the largest fringe number on disk
         //but we need to check that WE are allowed to take the successor:
-        is_at_front = at_front(fDirectory.c_str(), lockfile_name, &fProcessLockFileData, max_seq_no+1);
+        is_at_front = at_front(fDirectory.c_str(), lockfile_name, &fProcessLockFileData, max_seq_no + 1);
         n_checks++;
-        if(is_at_front == LOCK_PROCESS_NO_PRIORITY){usleep(100000);}
+        if(is_at_front == LOCK_PROCESS_NO_PRIORITY)
+        {
+            usleep(100000);
+        }
     }
-    while( is_at_front == LOCK_PROCESS_NO_PRIORITY && n_checks < LOCK_TIMEOUT );
+    while(is_at_front == LOCK_PROCESS_NO_PRIORITY && n_checks < LOCK_TIMEOUT);
 
     //couldn't get a write lock because of time out
     if(n_checks >= LOCK_TIMEOUT)
     {
-        msg_error("utilities", "lock file time-out error associated with dir: "<< fDirectory<< eom);
+        msg_error("utilities", "lock file time-out error associated with dir: " << fDirectory << eom);
         return LOCK_TIMEOUT_ERROR;
     }
 
@@ -443,16 +478,14 @@ int MHO_LockFileHandler::wait_for_write_lock(int& next_seq_no)
     }
 
     max_seq_no = get_max_seq_number(fDirectory);
-    next_seq_no = max_seq_no+1;
+    next_seq_no = max_seq_no + 1;
 
-    msg_debug("utilities", "acquired write lock for sequence number: "<< next_seq_no << eom);
+    msg_debug("utilities", "acquired write lock for sequence number: " << next_seq_no << eom);
 
     return LOCK_STATUS_OK;
 }
 
-
-int
-MHO_LockFileHandler::get_max_seq_number(std::string dir)
+int MHO_LockFileHandler::get_max_seq_number(std::string dir)
 {
 
     int max_seq_no = 0;
@@ -485,15 +518,16 @@ MHO_LockFileHandler::get_max_seq_number(std::string dir)
             fTokenizer.GetTokens(&tokens);
             if(tokens.size() >= 7)
             {
-                std::string seq_tok = tokens[ tokens.size()-2 ];
+                std::string seq_tok = tokens[tokens.size() - 2];
                 int seq_no = std::atoi(seq_tok.c_str()); //2nd to last token is extent no.
-                if(seq_no > max_seq_no){max_seq_no = seq_no;}
+                if(seq_no > max_seq_no)
+                {
+                    max_seq_no = seq_no;
+                }
             }
         }
     }
     return max_seq_no;
 }
 
-
-
-}//end namesace
+} // namespace hops

@@ -1,26 +1,24 @@
 #ifndef MHO_ControlConditionEvaluator_HH__
 #define MHO_ControlConditionEvaluator_HH__
 
-
-
-#include "MHO_Message.hh"
 #include "MHO_ControlDefinitions.hh"
+#include "MHO_Message.hh"
 
-#include <string>
-#include <vector>
 #include <list>
 #include <stack>
+#include <string>
+#include <vector>
 
 namespace hops
 {
 
 /*!
-*@file MHO_ControlConditionEvaluator.hh
-*@class MHO_ControlConditionEvaluator
-*@date Fri May 19 13:08:22 2023 -0400
-*@brief evaluates conditional statements encounterd in control file syntax
-*@author J. Barrett - barrettj@mit.edu
-*/
+ *@file MHO_ControlConditionEvaluator.hh
+ *@class MHO_ControlConditionEvaluator
+ *@date Fri May 19 13:08:22 2023 -0400
+ *@brief evaluates conditional statements encounterd in control file syntax
+ *@author J. Barrett - barrettj@mit.edu
+ */
 
 class MHO_ControlConditionEvaluator
 {
@@ -38,7 +36,6 @@ class MHO_ControlConditionEvaluator
         bool Evaluate(mho_json& control_condition);
 
     private:
-
         using token_iter = std::vector< std::string >::iterator;
 
         int ProcessToken(token_iter& it, token_iter& it_end);
@@ -67,8 +64,6 @@ class MHO_ControlConditionEvaluator
         std::size_t fStartLineNumber;
 };
 
-
-
-}
+} // namespace hops
 
 #endif /*! end of include guard: MHO_ControlConditionEvaluator_HH__ */

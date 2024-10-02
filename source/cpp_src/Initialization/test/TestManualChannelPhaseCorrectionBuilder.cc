@@ -1,6 +1,5 @@
-#include <string>
 #include <iostream>
-
+#include <string>
 
 #include "MHO_Message.hh"
 
@@ -38,14 +37,14 @@ int main(int argc, char** argv)
 
     //construct some trivial visibilities
     visibility_type* vis = new visibility_type();
-    vis->Insert( std::string("reference_station_mk4id"), std::string("E") );
+    vis->Insert(std::string("reference_station_mk4id"), std::string("E"));
     vis->Resize(1, 32, 1, 1);
 
     store.AddObject(vis);
     store.SetShortName(vis->GetObjectUUID(), std::string("vis"));
 
     //add a default channel labeler
-    MHO_ChannelLabeler<visibility_type> ch_labeler;
+    MHO_ChannelLabeler< visibility_type > ch_labeler;
     ch_labeler.SetArgs(vis);
     ch_labeler.Initialize();
     ch_labeler.Execute();
@@ -58,7 +57,10 @@ int main(int argc, char** argv)
     mho_json attrib;
     std::string chan_ids = "abcdefghijklmnopqrstuvwxyzABCDEF";
     std::vector< double > pc_phases;
-    for(std::size_t i=0; i<chan_ids.size(); i++){pc_phases.push_back(90.0*(i%4) );}
+    for(std::size_t i = 0; i < chan_ids.size(); i++)
+    {
+        pc_phases.push_back(90.0 * (i % 4));
+    }
 
     attrib["name"] = "pc_phases_x";
     attrib["channel_names"] = chan_ids;
@@ -74,23 +76,24 @@ int main(int argc, char** argv)
 
     if(op != nullptr)
     {
-        for(std::size_t i=0; i<vis->GetSize(); i++){ (*vis)[i] = 1.0;}
-        auto pol_axis_ptr  = &(std::get<POLPROD_AXIS>(*vis));
-        auto chan_axis_ptr = &(std::get<CHANNEL_AXIS>(*vis));
+        for(std::size_t i = 0; i < vis->GetSize(); i++)
+        {
+            (*vis)[i] = 1.0;
+        }
+        auto pol_axis_ptr = &(std::get< POLPROD_AXIS >(*vis));
+        auto chan_axis_ptr = &(std::get< CHANNEL_AXIS >(*vis));
         pol_axis_ptr->at(0) = "XX";
         bool ok = op->Initialize();
-        std::cout<<"ok = "<<ok<<std::endl;
+        std::cout << "ok = " << ok << std::endl;
         ok = op->Execute();
-        std::cout<<"ok = "<<ok<<std::endl;
+        std::cout << "ok = " << ok << std::endl;
 
-        for(std::size_t i=0; i<chan_axis_ptr->GetSize(); i++)
+        for(std::size_t i = 0; i < chan_axis_ptr->GetSize(); i++)
         {
-            std::cout<< vis->at(0,i,0,0)<<std::endl;
+            std::cout << vis->at(0, i, 0, 0) << std::endl;
         }
 
-
         return 0;
-
     }
 
     //error

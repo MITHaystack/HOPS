@@ -7,9 +7,9 @@ namespace hops
 MHO_Operator::MHO_Operator()
 {
     fName = "unknown";
-    fPriority = std::numeric_limits<double>::max();
+    fPriority = std::numeric_limits< double >::max();
 };
 
 MHO_Operator::~MHO_Operator(){};
 
-}//end namespace
+} // namespace hops

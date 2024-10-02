@@ -7,22 +7,19 @@
 namespace hops
 {
 
-std::string
-MHO_LegacyDateConverter::ConvertToISO8601Format(legacy_hops_date a_date)
+std::string MHO_LegacyDateConverter::ConvertToISO8601Format(legacy_hops_date a_date)
 {
     auto mstart = hops_clock::from_legacy_hops_date(a_date);
     return hops_clock::to_iso8601_format(mstart);
 }
 
-std::string
-MHO_LegacyDateConverter::ConvertToVexFormat(legacy_hops_date a_date)
+std::string MHO_LegacyDateConverter::ConvertToVexFormat(legacy_hops_date a_date)
 {
     auto mstart = hops_clock::from_legacy_hops_date(a_date);
     return hops_clock::to_vex_format(mstart);
 }
 
-legacy_hops_date
-MHO_LegacyDateConverter::ConvertFromVexFormat(std::string vex_date)
+legacy_hops_date MHO_LegacyDateConverter::ConvertFromVexFormat(std::string vex_date)
 {
     if(vex_date != "")
     {
@@ -37,8 +34,7 @@ MHO_LegacyDateConverter::ConvertFromVexFormat(std::string vex_date)
     }
 }
 
-legacy_hops_date 
-MHO_LegacyDateConverter::ConvertFromISO8601Format(std::string iso_date)
+legacy_hops_date MHO_LegacyDateConverter::ConvertFromISO8601Format(std::string iso_date)
 {
     if(iso_date != "")
     {
@@ -53,9 +49,7 @@ MHO_LegacyDateConverter::ConvertFromISO8601Format(std::string iso_date)
     }
 }
 
-
-legacy_hops_date
-MHO_LegacyDateConverter::Now()
+legacy_hops_date MHO_LegacyDateConverter::Now()
 {
     //get the current time
     auto tnow = hops_clock::now();
@@ -65,12 +59,10 @@ MHO_LegacyDateConverter::Now()
     return now_date;
 }
 
-legacy_hops_date
-MHO_LegacyDateConverter::HopsEpoch()
+legacy_hops_date MHO_LegacyDateConverter::HopsEpoch()
 {
     auto epoch_start = hops_clock::get_hops_epoch();
     return hops_clock::to_legacy_hops_date(epoch_start);
 }
 
-
-}//end namespace
+} // namespace hops

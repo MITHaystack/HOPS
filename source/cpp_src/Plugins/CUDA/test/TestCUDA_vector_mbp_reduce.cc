@@ -1,24 +1,24 @@
-#include <iostream>
-#include <vector>
-#include <memory>
 #include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <memory>
 #include <sstream>
 #include <thread>
 #include <unistd.h>
-#include <iomanip>
+#include <vector>
 
 // CUDA includes
 #include <cuComplex.h>
+#include <cuda.h>
+#include <cuda_runtime_api.h>
 #include <cufft.h>
 #include <stdint.h>
-#include <cuda_runtime_api.h>
-#include <cuda.h>
 
 #include "vector_mbp_reduce.h"
 
 int main(int /*argc*/, char** /*argv*/)
 {
-    int n = 25165824;//100000000;
+    int n = 25165824; //100000000;
 
     // Host input vectors
     float* h_a;
@@ -31,18 +31,18 @@ int main(int /*argc*/, char** /*argv*/)
 
     int i;
     // Initialize vectors on host
-    for( i = 0; i < n; i++ )
+    for(i = 0; i < n; i++)
     {
         h_a[i] = i; //1.0;
     }
 
     vector_mbp_reduce(h_a, h_c, n);
 
-    std::cout << std::setprecision(14)<<std::endl;
+    std::cout << std::setprecision(14) << std::endl;
 
-    float result = ( (float)n*( ( (float)n+1.0) ))/2.0;
-    std::cout<< "expected result : " << result <<std::endl;
-    std::cout<< "final result : " << h_c[0] <<std::endl;
+    float result = ((float)n * (((float)n + 1.0))) / 2.0;
+    std::cout << "expected result : " << result << std::endl;
+    std::cout << "final result : " << h_c[0] << std::endl;
 
     delete[] h_a;
     delete[] h_c;

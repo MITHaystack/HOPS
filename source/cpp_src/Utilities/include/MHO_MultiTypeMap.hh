@@ -1,49 +1,41 @@
 #ifndef MHO_MultiTypeMap_HH__
 #define MHO_MultiTypeMap_HH__
 
-
-
-
-#include <set>
-#include <map>
-#include <string>
 #include <iostream>
+#include <map>
+#include <set>
+#include <string>
 #include <vector>
 
-#include "MHO_Types.hh"
 #include "MHO_Meta.hh"
+#include "MHO_Types.hh"
 
 namespace hops
 {
 
 /*!
-*@file MHO_MultiTypeMap.hh
-*@class MHO_MultiTypeMap
-*@author J. Barrett - barrettj@mit.edu
-*@date Tue May 12 16:19:28 2020 -0400
-*@brief
-*/
+ *@file MHO_MultiTypeMap.hh
+ *@class MHO_MultiTypeMap
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Tue May 12 16:19:28 2020 -0400
+ *@brief
+ */
 
-template< typename XKeyType, typename XValueType >
-class MHO_SingleTypeMap
+template< typename XKeyType, typename XValueType > class MHO_SingleTypeMap
 {
     public:
-
         MHO_SingleTypeMap(){};
         virtual ~MHO_SingleTypeMap(){};
 
-        std::size_t MapSize() const {return fMap.size(); }
+        std::size_t MapSize() const { return fMap.size(); }
 
         void Insert(const XKeyType& key, const XValueType& value)
         {
-            fMap[key] = value;//allow replacement of values (as opposed to line below)
+            fMap[key] = value; //allow replacement of values (as opposed to line below)
             //fMap.insert( std::pair<XKeyType, XValueType>(key,value) );
         }
 
-        void Clear()
-        {
-            fMap.clear();
-        }
+        void Clear() { fMap.clear(); }
 
         bool Retrieve(const XKeyType& key, XValueType& value) const
         {
@@ -59,7 +51,7 @@ class MHO_SingleTypeMap
             }
         }
 
-        std::vector<XKeyType> DumpKeys() const
+        std::vector< XKeyType > DumpKeys() const
         {
             std::vector< XKeyType > keys;
             for(auto iter = fMap.begin(); iter != fMap.end(); iter++)
@@ -73,18 +65,24 @@ class MHO_SingleTypeMap
         {
             for(auto iter = fMap.begin(); iter != fMap.end(); iter++)
             {
-                std::cout<<iter->first<<" : "<<iter->second<<std::endl;
+                std::cout << iter->first << " : " << iter->second << std::endl;
             }
         }
 
         bool ContainsKey(const XKeyType& key) const
         {
             auto iter = fMap.find(key);
-            if(iter == fMap.end()){return false;}
-            else{return true;}
+            if(iter == fMap.end())
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
-        void CopyFrom(const MHO_SingleTypeMap<XKeyType, XValueType>& copy_from_obj)
+        void CopyFrom(const MHO_SingleTypeMap< XKeyType, XValueType >& copy_from_obj)
         {
             if(this != &copy_from_obj)
             {
@@ -93,7 +91,7 @@ class MHO_SingleTypeMap
             }
         }
 
-        void CopyTo(MHO_SingleTypeMap<XKeyType, XValueType>& copy_to_obj) const
+        void CopyTo(MHO_SingleTypeMap< XKeyType, XValueType >& copy_to_obj) const
         {
             if(this != &copy_to_obj)
             {
@@ -103,16 +101,14 @@ class MHO_SingleTypeMap
         }
 
     private:
-
         std::map< XKeyType, XValueType > fMap;
 };
 
 //declare a multi-type map which takes a key type, and variadic template parameter for the types to be stored
-template <typename XKeyType, typename... XValueTypeS>
-class MHO_MultiTypeMap;
+template< typename XKeyType, typename... XValueTypeS > class MHO_MultiTypeMap;
 
 //declare the specialization for the base case of the recursion (in which the parameter XValueType is just a single type)
-template <typename  XKeyType, typename XValueType>
+template< typename XKeyType, typename XValueType >
 class MHO_MultiTypeMap< XKeyType, XValueType >: public MHO_SingleTypeMap< XKeyType, XValueType >
 {
     public:
@@ -126,60 +122,58 @@ class MHO_MultiTypeMap< XKeyType, XValueType >: public MHO_SingleTypeMap< XKeyTy
         using MHO_SingleTypeMap< XKeyType, XValueType >::CopyTo;
         using MHO_SingleTypeMap< XKeyType, XValueType >::Clear;
 
-        template<typename U = XValueType> typename std::enable_if< std::is_same<U,XValueType >::value, std::size_t >::type
-        MapSize() const
+        template< typename U = XValueType >
+        typename std::enable_if< std::is_same< U, XValueType >::value, std::size_t >::type MapSize() const
         {
-            return static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->MapSize();
+            return static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >(this)->MapSize();
         };
 
-        template<typename U = XValueType> typename std::enable_if< std::is_same<U,XValueType>::value, std::vector<XKeyType> >::type
-        DumpKeys() const
+        template< typename U = XValueType >
+        typename std::enable_if< std::is_same< U, XValueType >::value, std::vector< XKeyType > >::type DumpKeys() const
         {
-            return static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->DumpKeys();
+            return static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >(this)->DumpKeys();
         };
 
-        template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
-        DumpMap() const
+        template< typename U = XValueType >
+        typename std::enable_if< std::is_same< U, XValueType >::value >::type DumpMap() const
         {
-            static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->DumpMap();
+            static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >(this)->DumpMap();
         };
 
-        template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value, bool>::type
-        ContainsKey(const XKeyType& key) const
+        template< typename U = XValueType >
+        typename std::enable_if< std::is_same< U, XValueType >::value, bool >::type ContainsKey(const XKeyType& key) const
         {
-            return static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->ContainsKey(key);
+            return static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >(this)->ContainsKey(key);
         };
 
-        template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
-        CopyFrom(const MHO_MultiTypeMap<XKeyType, XValueType>& copy_from_obj)
+        template< typename U = XValueType >
+        typename std::enable_if< std::is_same< U, XValueType >::value >::type
+        CopyFrom(const MHO_MultiTypeMap< XKeyType, XValueType >& copy_from_obj)
         {
-            static_cast< MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->
-            CopyFrom( *(static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >(&copy_from_obj)) );
+            static_cast< MHO_SingleTypeMap< XKeyType, XValueType >* >(this)->CopyFrom(
+                *(static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >(&copy_from_obj)));
         };
 
-        template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
-        CopyTo(MHO_MultiTypeMap<XKeyType, XValueType>& copy_to_obj) const
+        template< typename U = XValueType >
+        typename std::enable_if< std::is_same< U, XValueType >::value >::type
+        CopyTo(MHO_MultiTypeMap< XKeyType, XValueType >& copy_to_obj) const
         {
-            static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->
-            CopyTo( *(static_cast< MHO_SingleTypeMap< XKeyType, XValueType >* >(&copy_to_obj)) );
+            static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >(this)->CopyTo(
+                *(static_cast< MHO_SingleTypeMap< XKeyType, XValueType >* >(&copy_to_obj)));
         };
 
-        template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
-        Clear()
+        template< typename U = XValueType > typename std::enable_if< std::is_same< U, XValueType >::value >::type Clear()
         {
-            static_cast< MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->Clear();
+            static_cast< MHO_SingleTypeMap< XKeyType, XValueType >* >(this)->Clear();
         };
-
-
-
 };
 
 //now set up the recursion
 template< typename XKeyType, typename XValueType, typename... XValueTypeS >
-class MHO_MultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHO_MultiTypeMap< XKeyType, XValueType >, public MHO_MultiTypeMap< XKeyType, XValueTypeS... >
+class MHO_MultiTypeMap< XKeyType, XValueType, XValueTypeS... >: public MHO_MultiTypeMap< XKeyType, XValueType >,
+                                                                public MHO_MultiTypeMap< XKeyType, XValueTypeS... >
 {
     public:
-
         using MHO_MultiTypeMap< XKeyType, XValueType >::MapSize;
         using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::MapSize;
 
@@ -206,7 +200,6 @@ class MHO_MultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHO_MultiT
 
         using MHO_MultiTypeMap< XKeyType, XValueType >::Clear;
         using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::Clear;
-
 };
 
 //convenience definitions below ////////////////////////////////////////////////
@@ -216,32 +209,28 @@ class MHO_MultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHO_MultiT
 //TODO_FIXME_MSG("TODO FIXME -- need to specify fixed sized types in MHO_MultiTypeMap from cstdint for portability.")
 typedef MHO_MultiTypeMap< std::string, char, bool, int, double, std::string > MHO_CommonLabelMap;
 
-template< typename XItemType >
-struct cm_size_calculator
+template< typename XItemType > struct cm_size_calculator
 {
-    const XItemType* item;
-    uint64_t get_item_size()
-    {
-        return (uint64_t) sizeof(XItemType);
-    }
+        const XItemType* item;
+
+        uint64_t get_item_size() { return (uint64_t)sizeof(XItemType); }
 };
 
-template<>
-struct cm_size_calculator<std::string>
+template<> struct cm_size_calculator< std::string >
 {
-    const std::string* item;
-    uint64_t get_item_size()
-    {
-        //every string get streamed with a 'size'
-        uint64_t total_size = 0;
-        total_size += sizeof(uint64_t);
-        total_size += item->size();
-        return total_size;
-    }
+        const std::string* item;
+
+        uint64_t get_item_size()
+        {
+            //every string get streamed with a 'size'
+            uint64_t total_size = 0;
+            total_size += sizeof(uint64_t);
+            total_size += item->size();
+            return total_size;
+        }
 };
 
-template<typename XItemType >
-uint64_t cm_aggregate_serializable_item_size(const MHO_CommonLabelMap& aMap)
+template< typename XItemType > uint64_t cm_aggregate_serializable_item_size(const MHO_CommonLabelMap& aMap)
 {
     uint64_t total_size = 0;
     std::vector< std::string > keys;
@@ -249,9 +238,9 @@ uint64_t cm_aggregate_serializable_item_size(const MHO_CommonLabelMap& aMap)
     total_size += sizeof(uint64_t); //for the number of keys
 
     //calculate the size of each key and item in the map
-    cm_size_calculator<std::string> str_calc;
-    cm_size_calculator<XItemType> itm_calc;
-    for(std::size_t i=0; i<keys.size(); i++)
+    cm_size_calculator< std::string > str_calc;
+    cm_size_calculator< XItemType > itm_calc;
+    for(std::size_t i = 0; i < keys.size(); i++)
     {
         XItemType val;
         aMap.Retrieve(keys[i], val);
@@ -264,12 +253,11 @@ uint64_t cm_aggregate_serializable_item_size(const MHO_CommonLabelMap& aMap)
     return total_size;
 }
 
-template<typename XStream, typename XImportType >
-void cm_stream_importer(XStream& s, MHO_CommonLabelMap& aMap)
+template< typename XStream, typename XImportType > void cm_stream_importer(XStream& s, MHO_CommonLabelMap& aMap)
 {
     std::size_t n_elem;
     s >> n_elem;
-    for(std::size_t i=0; i<n_elem; i++)
+    for(std::size_t i = 0; i < n_elem; i++)
     {
         std::string key;
         XImportType val;
@@ -279,13 +267,12 @@ void cm_stream_importer(XStream& s, MHO_CommonLabelMap& aMap)
     }
 }
 
-template<typename XStream, typename XExportType>
-void cm_stream_exporter(XStream& s, const MHO_CommonLabelMap& aMap)
+template< typename XStream, typename XExportType > void cm_stream_exporter(XStream& s, const MHO_CommonLabelMap& aMap)
 {
     std::vector< std::string > keys;
     keys = aMap.DumpKeys< XExportType >();
-    s << (uint64_t) keys.size();
-    for(std::size_t i=0; i<keys.size(); i++)
+    s << (uint64_t)keys.size();
+    for(std::size_t i = 0; i < keys.size(); i++)
     {
         XExportType val;
         aMap.Retrieve(keys[i], val);
@@ -294,6 +281,6 @@ void cm_stream_exporter(XStream& s, const MHO_CommonLabelMap& aMap)
     }
 }
 
-}//end of namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_MultiTypeMap_HH__ */

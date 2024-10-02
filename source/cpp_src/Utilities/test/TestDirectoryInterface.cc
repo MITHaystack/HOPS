@@ -1,13 +1,12 @@
+#include <getopt.h>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <getopt.h>
 
-#include "MHO_Message.hh"
 #include "MHO_DirectoryInterface.hh"
+#include "MHO_Message.hh"
 
 using namespace hops;
-
 
 int main(int argc, char** argv)
 {
@@ -18,22 +17,24 @@ int main(int argc, char** argv)
 
     std::string dir;
 
-    static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
-                                          {"directory", required_argument, 0, 'd'}};
+    static struct option longOptions[] = {
+        {"help",      no_argument,       0, 'h'},
+        {"directory", required_argument, 0, 'd'}
+    };
 
     static const char* optString = "hd:";
 
     while(true)
     {
         char optId = getopt_long(argc, argv, optString, longOptions, NULL);
-        if (optId == -1)
+        if(optId == -1)
             break;
         switch(optId)
         {
-            case ('h'):  // help
+            case('h'): // help
                 std::cout << usage << std::endl;
                 return 0;
-            case ('d'):
+            case('d'):
                 dir = std::string(optarg);
                 break;
             default:
@@ -41,7 +42,6 @@ int main(int argc, char** argv)
                 return 1;
         }
     }
-
 
     std::vector< std::string > allFiles;
     std::vector< std::string > allDirectories;
@@ -54,12 +54,12 @@ int main(int argc, char** argv)
 
     for(auto it = allFiles.begin(); it != allFiles.end(); it++)
     {
-        std::cout<<"file: "<<*it<<std::endl;
+        std::cout << "file: " << *it << std::endl;
     }
 
     for(auto it = allDirectories.begin(); it != allDirectories.end(); it++)
     {
-        std::cout<<"dir: "<<*it<<std::endl;
+        std::cout << "dir: " << *it << std::endl;
     }
 
     return 0;

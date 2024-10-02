@@ -5,28 +5,22 @@
 namespace hops
 {
 
-
 MHO_MK4VexInterface::MHO_MK4VexInterface()
 {
     fHaveVex = false;
 };
 
-
 MHO_MK4VexInterface::~MHO_MK4VexInterface(){};
 
-
-void
-MHO_MK4VexInterface::OpenVexFile(std::string file_path)
+void MHO_MK4VexInterface::OpenVexFile(std::string file_path)
 {
     MHO_VexParser vparser;
     vparser.SetVexFile(file_path);
     fVex = vparser.ParseVex();
     fHaveVex = true;
-
 }
 
-mho_json
-MHO_MK4VexInterface::GetVex()
+mho_json MHO_MK4VexInterface::GetVex()
 {
     if(fHaveVex)
     {
@@ -39,13 +33,17 @@ MHO_MK4VexInterface::GetVex()
     }
 }
 
-
-bool
-MHO_MK4VexInterface::ExportVexFileToJSON(mho_json& json_obj)
+bool MHO_MK4VexInterface::ExportVexFileToJSON(mho_json& json_obj)
 {
-    if(fHaveVex){json_obj = fVex; return true;}
-    else{return false;}
+    if(fHaveVex)
+    {
+        json_obj = fVex;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
-
-}
+} // namespace hops

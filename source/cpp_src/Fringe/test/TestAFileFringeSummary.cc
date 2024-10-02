@@ -1,6 +1,6 @@
-#include <string>
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <string>
 
 #include "MHO_Message.hh"
 
@@ -11,7 +11,11 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-    if(argc != 2){std::cout<<"filename argument missing"<<std::endl; std::exit(1);}
+    if(argc != 2)
+    {
+        std::cout << "filename argument missing" << std::endl;
+        std::exit(1);
+    }
 
     std::string filename(argv[1]);
 
@@ -23,8 +27,14 @@ int main(int argc, char** argv)
     mho_json fsum;
     bool ok = ext.SummarizeFringeFile(filename, fsum);
 
-    if(ok){std::cout<<fsum.dump(2)<<std::endl;}
-    else{std::cout<<"could not extract file: "<< filename<<std::endl;}
+    if(ok)
+    {
+        std::cout << fsum.dump(2) << std::endl;
+    }
+    else
+    {
+        std::cout << "could not extract file: " << filename << std::endl;
+    }
 
     return 0;
 }

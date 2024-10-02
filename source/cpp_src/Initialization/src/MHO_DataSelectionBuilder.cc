@@ -4,12 +4,11 @@
 namespace hops
 {
 
-bool
-MHO_DataSelectionBuilder::Build()
+bool MHO_DataSelectionBuilder::Build()
 {
-    if( IsConfigurationOk() )
+    if(IsConfigurationOk())
     {
-        msg_debug("initialization", "building data selection operators."<< eom);
+        msg_debug("initialization", "building data selection operators." << eom);
 
         bool do_select_fgroup = false;
         std::string fgroup_key = "/config/fgroup";
@@ -20,7 +19,7 @@ MHO_DataSelectionBuilder::Build()
             if(fgroup != "")
             {
                 do_select_fgroup = true;
-                msg_debug("initialization", "will select data by frequency group: "<<fgroup<< eom);
+                msg_debug("initialization", "will select data by frequency group: " << fgroup << eom);
             }
         }
 
@@ -33,7 +32,7 @@ MHO_DataSelectionBuilder::Build()
 
         bool do_select_polprods = false;
         std::string polprod_set_key = "/config/polprod_set";
-        std::vector<std::string> pp_vec;
+        std::vector< std::string > pp_vec;
         if(fParameterStore->IsPresent(polprod_set_key))
         {
             do_select_polprods = fParameterStore->Get(polprod_set_key, pp_vec);
@@ -41,12 +40,15 @@ MHO_DataSelectionBuilder::Build()
             if(do_select_polprods)
             {
                 std::stringstream ss;
-                for(std::size_t i=0; i<pp_vec.size(); i++)
+                for(std::size_t i = 0; i < pp_vec.size(); i++)
                 {
                     ss << pp_vec[i];
-                    if(i != pp_vec.size() - 1){ss <<", "; }
+                    if(i != pp_vec.size() - 1)
+                    {
+                        ss << ", ";
+                    }
                 }
-                msg_debug("initialization", "will select data by pol-products: {"<<ss.str()<<"}."<< eom);
+                msg_debug("initialization", "will select data by pol-products: {" << ss.str() << "}." << eom);
             }
         }
 
@@ -59,12 +61,15 @@ MHO_DataSelectionBuilder::Build()
             if(do_select_chans)
             {
                 std::stringstream ss;
-                for(std::size_t i=0; i<chans.size(); i++)
+                for(std::size_t i = 0; i < chans.size(); i++)
                 {
                     ss << chans[i];
-                    if(i != chans.size() - 1){ss <<", "; }
+                    if(i != chans.size() - 1)
+                    {
+                        ss << ", ";
+                    }
                 }
-                msg_debug("initialization", "will select data by channels: "<<ss.str()<<"."<< eom);
+                msg_debug("initialization", "will select data by channels: " << ss.str() << "." << eom);
             }
         }
 
@@ -73,15 +78,19 @@ MHO_DataSelectionBuilder::Build()
         std::string stop_key = "/control/selection/stop";
         int start = 0;
         int stop = 0;
-        if(fParameterStore->IsPresent(start_key) || fParameterStore->IsPresent(stop_key) )
+        if(fParameterStore->IsPresent(start_key) || fParameterStore->IsPresent(stop_key))
         {
             fParameterStore->Get(start_key, start);
             fParameterStore->Get(stop_key, stop);
-            if(start != 0 || stop != 0){do_select_aps = true;}
+            if(start != 0 || stop != 0)
+            {
+                do_select_aps = true;
+            }
 
             if(do_select_aps)
             {
-                msg_debug("initialization", "will select data by AP, start offset: "<<start<<" and stop offset: "<<stop<<"." << eom);
+                msg_debug("initialization",
+                          "will select data by AP, start offset: " << start << " and stop offset: " << stop << "." << eom);
             }
 
             //negative values are seconds past scan start or before stop
@@ -92,17 +101,17 @@ MHO_DataSelectionBuilder::Build()
             }
         }
 
-        if( !do_select_chans && !do_select_polprods && !do_select_aps && !do_select_fgroup)
+        if(!do_select_chans && !do_select_polprods && !do_select_aps && !do_select_fgroup)
         {
             msg_info("initialization", "no pol/freq data selection needed." << eom);
             return false;
         }
 
         //retrieve the arguments to operate on from the container store
-        visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
-        weight_type* wt_data = fContainerStore->GetObject<weight_type>(std::string("weight"));
+        visibility_type* vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
+        weight_type* wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
 
-        if( vis_data == nullptr || wt_data == nullptr )
+        if(vis_data == nullptr || wt_data == nullptr)
         {
             msg_error("initialization", "cannot construct MHO_SelectRepack without visibility or weight data." << eom);
             return false;
@@ -112,31 +121,34 @@ MHO_DataSelectionBuilder::Build()
         //APPLY COARSE DATA SELECTION
         ////////////////////////////////////////////////////////////////////////////
         //select data repack
-        auto spack = new MHO_SelectRepack<visibility_type>();
-        auto wtspack = new MHO_SelectRepack<weight_type>();
+        auto spack = new MHO_SelectRepack< visibility_type >();
+        auto wtspack = new MHO_SelectRepack< weight_type >();
 
         //first find indexes which corresponds to the specified pol product
         if(do_select_polprods)
         {
-            std::set<std::string> pp_set;
+            std::set< std::string > pp_set;
             std::vector< std::size_t > selected_pp;
-            pp_set.insert(pp_vec.begin(), pp_vec.end() );
+            pp_set.insert(pp_vec.begin(), pp_vec.end());
 
             std::stringstream ss;
-            for(std::size_t i=0; i<pp_vec.size(); i++)
+            for(std::size_t i = 0; i < pp_vec.size(); i++)
             {
                 ss << pp_vec[i];
-                if(i != pp_vec.size() - 1){ss <<", "; }
+                if(i != pp_vec.size() - 1)
+                {
+                    ss << ", ";
+                }
             }
-            msg_debug("initialization", "data selection, selecting for pol-product set: {"<< ss.str() <<"}."<< eom);
+            msg_debug("initialization", "data selection, selecting for pol-product set: {" << ss.str() << "}." << eom);
 
-            selected_pp = (&(std::get<POLPROD_AXIS>(*vis_data)))->SelectMatchingIndexes(pp_set);
+            selected_pp = (&(std::get< POLPROD_AXIS >(*vis_data)))->SelectMatchingIndexes(pp_set);
             if(selected_pp.size() == 0)
             {
                 msg_warn("initialization", "pol-product selection failed to match any data." << eom);
             }
-            spack->SelectAxisItems(POLPROD_AXIS,selected_pp);
-            wtspack->SelectAxisItems(POLPROD_AXIS,selected_pp);
+            spack->SelectAxisItems(POLPROD_AXIS, selected_pp);
+            wtspack->SelectAxisItems(POLPROD_AXIS, selected_pp);
         }
 
         std::vector< std::size_t > fgroup_idx;
@@ -144,27 +156,31 @@ MHO_DataSelectionBuilder::Build()
         {
             //get all of channels in this frequency group
             std::string fgroup_label_key = "frequency_band";
-            fgroup_idx = (&(std::get<CHANNEL_AXIS>(*vis_data)))->GetMatchingIndexes(fgroup_label_key, fgroup);
+            fgroup_idx = (&(std::get< CHANNEL_AXIS >(*vis_data)))->GetMatchingIndexes(fgroup_label_key, fgroup);
             if(fgroup_idx.size() == 0)
             {
-                msg_warn("initialization", "frequency band/group selection by " << fgroup<< ", failed to match any data." << eom);
+                msg_warn("initialization",
+                         "frequency band/group selection by " << fgroup << ", failed to match any data." << eom);
             }
         }
 
-        std::vector<std::size_t> selected_ch;
+        std::vector< std::size_t > selected_ch;
         if(do_select_chans)
         {
             std::set< std::string > chan_set; //set of channels selected by control
-            for(auto it = chans.begin(); it != chans.end(); it++){chan_set.insert(*it);}
+            for(auto it = chans.begin(); it != chans.end(); it++)
+            {
+                chan_set.insert(*it);
+            }
             std::string chan_label_key = "channel_label";
 
             for(auto it = chan_set.begin(); it != chan_set.end(); it++)
             {
-                auto tmp_ch = (&(std::get<CHANNEL_AXIS>(*vis_data)))->GetMatchingIndexes(chan_label_key, *it);
-                selected_ch.insert(selected_ch.end(), tmp_ch.begin(), tmp_ch.end() );
+                auto tmp_ch = (&(std::get< CHANNEL_AXIS >(*vis_data)))->GetMatchingIndexes(chan_label_key, *it);
+                selected_ch.insert(selected_ch.end(), tmp_ch.begin(), tmp_ch.end());
             }
 
-            msg_debug("initialization", "data selection, selecting "<<selected_ch.size() << " channels." << eom);
+            msg_debug("initialization", "data selection, selecting " << selected_ch.size() << " channels." << eom);
             if(selected_ch.size() == 0)
             {
                 msg_warn("initialization", "channel selection failed to match any data." << eom);
@@ -180,7 +196,7 @@ MHO_DataSelectionBuilder::Build()
             channel_selection = selected_ch; //only channel selection
         }
 
-        if(do_select_fgroup&& !do_select_chans)
+        if(do_select_fgroup && !do_select_chans)
         {
             channel_selection = fgroup_idx; //only freq group selection
         }
@@ -191,14 +207,21 @@ MHO_DataSelectionBuilder::Build()
         {
             channel_selection.clear();
             //dumb brute force O(N^2) union
-            for(auto fit = fgroup_idx.begin(); fit !=fgroup_idx.end(); fit++)
+            for(auto fit = fgroup_idx.begin(); fit != fgroup_idx.end(); fit++)
             {
                 bool include = false;
-                for(auto cit = selected_ch.begin(); cit !=selected_ch.end(); cit++)
+                for(auto cit = selected_ch.begin(); cit != selected_ch.end(); cit++)
                 {
-                    if(*fit == *cit){include = true; break;}
+                    if(*fit == *cit)
+                    {
+                        include = true;
+                        break;
+                    }
                 }
-                if(include){channel_selection.push_back(*fit);}
+                if(include)
+                {
+                    channel_selection.push_back(*fit);
+                }
             }
             std::sort(channel_selection.begin(), channel_selection.end());
         }
@@ -206,35 +229,39 @@ MHO_DataSelectionBuilder::Build()
         //finally assign the selected channels
         if(do_select_fgroup || do_select_chans)
         {
-            spack->SelectAxisItems(CHANNEL_AXIS,channel_selection);
-            wtspack->SelectAxisItems(CHANNEL_AXIS,channel_selection);
+            spack->SelectAxisItems(CHANNEL_AXIS, channel_selection);
+            wtspack->SelectAxisItems(CHANNEL_AXIS, channel_selection);
         }
 
         if(do_select_aps)
         {
-            std::vector<std::size_t> selected_aps;
-            auto ap_ax_ptr = &(std::get<TIME_AXIS>(*vis_data));
+            std::vector< std::size_t > selected_aps;
+            auto ap_ax_ptr = &(std::get< TIME_AXIS >(*vis_data));
             std::size_t naps = ap_ax_ptr->GetSize();
             double first_t = ap_ax_ptr->at(0);
-            double last_t = ap_ax_ptr->at(naps-1);
+            double last_t = ap_ax_ptr->at(naps - 1);
             //TODO may want to clean up with selection process
-            TODO_FIXME_MSG("The stop/start parameters are passed as integers (n seconds), which works fine for 1 sec APs, but for smaller APs maybe we should pass them as floats?")
-            for(std::size_t i=0; i<naps; i++)
+            TODO_FIXME_MSG("The stop/start parameters are passed as integers (n seconds), which works fine for 1 sec APs, but "
+                           "for smaller APs maybe we should pass them as floats?")
+            for(std::size_t i = 0; i < naps; i++)
             {
                 double t = (*ap_ax_ptr)(i);
                 //std::cout<<" t, stop, start, begin, end = "<< t <<", "<< (last_t + stop)<<", "<< (first_t - start)<<", " << first_t<<", "<<last_t<< std::endl;
-                if( t <= (last_t + (double)stop) && t >= (first_t - (double)start) ){selected_aps.push_back(i);}
+                if(t <= (last_t + (double)stop) && t >= (first_t - (double)start))
+                {
+                    selected_aps.push_back(i);
+                }
             }
 
-            msg_debug("initialization", "data selection, selecting "<<selected_aps.size()<<" APs."<< eom);
+            msg_debug("initialization", "data selection, selecting " << selected_aps.size() << " APs." << eom);
 
             if(selected_aps.size() == 0)
             {
                 msg_warn("initialization", "AP selection eliminated all data." << eom);
             }
 
-            spack->SelectAxisItems(TIME_AXIS,selected_aps);
-            wtspack->SelectAxisItems(TIME_AXIS,selected_aps);
+            spack->SelectAxisItems(TIME_AXIS, selected_aps);
+            wtspack->SelectAxisItems(TIME_AXIS, selected_aps);
         }
 
         spack->SetArgs(vis_data);
@@ -247,7 +274,7 @@ MHO_DataSelectionBuilder::Build()
 
         TODO_FIXME_MSG("TODO - coarse selection must also be applied to pcal data (particularly AP select) if available!!")
 
-        double priority = fFormat["priority"].get<double>();
+        double priority = fFormat["priority"].get< double >();
         spack->SetName(op_name + ":vis");
         wtspack->SetName(op_name + ":weight");
         spack->SetPriority(priority);
@@ -261,4 +288,4 @@ MHO_DataSelectionBuilder::Build()
     return false;
 }
 
-}//end namespace
+} // namespace hops

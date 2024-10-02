@@ -1,14 +1,14 @@
-#include <iostream>
-#include <string>
-#include <vector>
 #include <algorithm>
-#include <set>
-#include <utility>
-#include <map>
 #include <getopt.h>
+#include <iostream>
+#include <map>
+#include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
-#include "MHO_Message.hh"
 #include "MHO_DirectoryInterface.hh"
+#include "MHO_Message.hh"
 
 #include "MHO_DiFXInterface.hh"
 #include "MHO_DiFXVexStripper.hh"
@@ -21,7 +21,7 @@ int main(int argc, char** argv)
 
     if(argc != 3)
     {
-        std::cout<<"Usage: "<<usage<<std::endl;
+        std::cout << "Usage: " << usage << std::endl;
         return 1;
     }
 
@@ -35,7 +35,6 @@ int main(int argc, char** argv)
     stripper.SetSessionVexFile(input_file);
     stripper.SetOutputFileName(output_file);
     stripper.ExtractScan();
-
 
     return 0;
 }

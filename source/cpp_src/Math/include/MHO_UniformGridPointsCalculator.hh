@@ -1,8 +1,6 @@
 #ifndef MHO_UniformGridPointsCalculator_HH__
 #define MHO_UniformGridPointsCalculator_HH__
 
-
-
 #include <cmath>
 #include <limits>
 #include <map>
@@ -27,36 +25,38 @@ class MHO_UniformGridPointsCalculator
         MHO_UniformGridPointsCalculator();
         ~MHO_UniformGridPointsCalculator();
 
-        void SetEpsilon(double eps){fEpsilon = std::fabs(eps);};
-        void SetDefaultGridPoints(std::size_t n){fDefaultGridPoints = n;};
+        void SetEpsilon(double eps) { fEpsilon = std::fabs(eps); };
+
+        void SetDefaultGridPoints(std::size_t n) { fDefaultGridPoints = n; };
 
         //expects points to be given in increasing order
-        void SetPoints(const std::vector<double>& pts);
+        void SetPoints(const std::vector< double >& pts);
         void SetPoints(const double* pts, std::size_t npts);
         void Calculate();
 
-        void GetGridPoints(std::vector<double>* grid_pts);//fill vector with grid points
+        void GetGridPoints(std::vector< double >* grid_pts); //fill vector with grid points
 
-        double GetGridStart() const {return fStart;};//get value of start
-        double GetGridSpacing() const {return fSpacing;}; //the distance between points on the uniform grid
-        double GetGridAverage() const {return fAverageLocation;} //the average point location
-        double GetSpread() const {return fSpread;} //the spread about the average
-        std::size_t GetNGridPoints() const {return fNGridPoints;}; //the number of points in the uniform grid
+        double GetGridStart() const { return fStart; }; //get value of start
 
-        bool GetSpacingErrorStatus() const {return fSpacingError;};
+        double GetGridSpacing() const { return fSpacing; }; //the distance between points on the uniform grid
 
+        double GetGridAverage() const { return fAverageLocation; } //the average point location
+
+        double GetSpread() const { return fSpread; } //the spread about the average
+
+        std::size_t GetNGridPoints() const { return fNGridPoints; }; //the number of points in the uniform grid
+
+        bool GetSpacingErrorStatus() const { return fSpacingError; };
 
         //maps the indexes of the original points to their new locations in the
         //uniform grid array
-        std::map<std::size_t, std::size_t> GetGridIndexMap(){return fIndexMap;}
+        std::map< std::size_t, std::size_t > GetGridIndexMap() { return fIndexMap; }
 
     protected:
-
         void Calculate_v1(int max_pts = 8192); //based on original implementation (freq_spacing.c)
         void Calculate_v2();
 
         void FindStartAndMinMaxSpacing();
-
 
         double fEpsilon;
         double fStart;
@@ -66,15 +66,14 @@ class MHO_UniformGridPointsCalculator
         double fAverageLocation;
         double fNGridPoints;
         double fSpread;
-        std::vector<double> fPoints;
-        std::map<std::size_t, std::size_t> fIndexMap;
+        std::vector< double > fPoints;
+        std::map< std::size_t, std::size_t > fIndexMap;
 
         int fDefaultGridPoints;
         bool fSpacingError;
         double fAbsEps; //use to check that value is not zero
-
 };
 
-}
+} // namespace hops
 
 #endif /*! end of include guard: MHO_UniformGridPointsCalculator_HH__ */

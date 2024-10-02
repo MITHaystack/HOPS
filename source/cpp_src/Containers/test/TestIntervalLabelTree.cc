@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 
-#include "MHO_IntervalLabelTree.hh"
 #include "MHO_BinaryFileInterface.hh"
+#include "MHO_IntervalLabelTree.hh"
 
 using namespace hops;
 
@@ -10,12 +10,12 @@ int main(int /*argc*/, char** /*argv*/)
 {
     MHO_IntervalLabelTree test;
 
-    MHO_IntervalLabel label1(0,4);
-    MHO_IntervalLabel label2(4,6);
-    MHO_IntervalLabel label3(6,9);
-    MHO_IntervalLabel label4(9,12);
-    MHO_IntervalLabel label5(0,6);
-    MHO_IntervalLabel label6(6,12);
+    MHO_IntervalLabel label1(0, 4);
+    MHO_IntervalLabel label2(4, 6);
+    MHO_IntervalLabel label3(6, 9);
+    MHO_IntervalLabel label4(9, 12);
+    MHO_IntervalLabel label5(0, 6);
+    MHO_IntervalLabel label6(6, 12);
 
     label1.Insert(std::string("channel"), 'a');
     label1.Insert(std::string("bandwidth"), 32.0e6);
@@ -42,29 +42,28 @@ int main(int /*argc*/, char** /*argv*/)
     auto label_vec1 = test.GetIntervalsWhichIntersect(5);
     for(auto iter = label_vec1.begin(); iter != label_vec1.end(); iter++)
     {
-        std::cout<<"label found for interval = ["<<iter->GetLowerBound()<<", "<<iter->GetUpperBound()<<") with key:val pairs = "<<std::endl;
-        iter->DumpMap<char>();
-        iter->DumpMap<std::string>();
-        iter->DumpMap<int>();
-        iter->DumpMap<double>();
+        std::cout << "label found for interval = [" << iter->GetLowerBound() << ", " << iter->GetUpperBound()
+                  << ") with key:val pairs = " << std::endl;
+        iter->DumpMap< char >();
+        iter->DumpMap< std::string >();
+        iter->DumpMap< int >();
+        iter->DumpMap< double >();
     }
 
     auto label_vec2 = test.GetIntervalsWithKeyValue(std::string("channel"), 'c');
     for(auto iter = label_vec2.begin(); iter != label_vec2.end(); iter++)
     {
-        std::cout<<"label found for interval = ["<<iter->GetLowerBound()<<", "<<iter->GetUpperBound()<<") with key:val pairs = "<<std::endl;
-        iter->DumpMap<char>();
-        iter->DumpMap<std::string>();
-        iter->DumpMap<int>();
-        iter->DumpMap<double>();
+        std::cout << "label found for interval = [" << iter->GetLowerBound() << ", " << iter->GetUpperBound()
+                  << ") with key:val pairs = " << std::endl;
+        iter->DumpMap< char >();
+        iter->DumpMap< std::string >();
+        iter->DumpMap< int >();
+        iter->DumpMap< double >();
     }
-
-
-
 
     std::string filename = "./test-label-tree.bin";
 
-    std::cout<<" number of bytes of this object: "<< test.GetSerializedSize()<<std::endl;
+    std::cout << " number of bytes of this object: " << test.GetSerializedSize() << std::endl;
 
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(filename);
@@ -77,12 +76,12 @@ int main(int /*argc*/, char** /*argv*/)
     }
     else
     {
-        std::cout<<"error opening file"<<std::endl;
+        std::cout << "error opening file" << std::endl;
     }
 
     inter.Close();
 
-    std::cout<<"-------- Now testing read back of object --------- "<<std::endl;
+    std::cout << "-------- Now testing read back of object --------- " << std::endl;
 
     MHO_IntervalLabelTree test2;
     status = inter.OpenToRead(filename);
@@ -95,20 +94,20 @@ int main(int /*argc*/, char** /*argv*/)
         auto label_vec1 = test2.GetIntervalsWhichIntersect(5);
         for(auto iter = label_vec1.begin(); iter != label_vec1.end(); iter++)
         {
-            std::cout<<"label found for interval = ["<<iter->GetLowerBound()<<", "<<iter->GetUpperBound()<<") with key:val pairs = "<<std::endl;
-            iter->DumpMap<char>();
-            iter->DumpMap<std::string>();
-            iter->DumpMap<int>();
-            iter->DumpMap<double>();
+            std::cout << "label found for interval = [" << iter->GetLowerBound() << ", " << iter->GetUpperBound()
+                      << ") with key:val pairs = " << std::endl;
+            iter->DumpMap< char >();
+            iter->DumpMap< std::string >();
+            iter->DumpMap< int >();
+            iter->DumpMap< double >();
         }
     }
     else
     {
-        std::cout<<" error opening file to read"<<std::endl;
+        std::cout << " error opening file to read" << std::endl;
     }
 
     inter.Close();
-
 
     return 0;
 }

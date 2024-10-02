@@ -1,10 +1,9 @@
 #include "MHO_PolProductSummation.hh"
 
-#define signum(a) (a>=0 ? 1.0 : -1.0)
+#define signum(a) (a >= 0 ? 1.0 : -1.0)
 
 namespace hops
 {
-
 
 MHO_PolProductSummation::MHO_PolProductSummation()
 {
@@ -14,9 +13,7 @@ MHO_PolProductSummation::MHO_PolProductSummation()
 
 MHO_PolProductSummation::~MHO_PolProductSummation(){};
 
-
-bool
-MHO_PolProductSummation::ExecuteInPlace(visibility_type* in)
+bool MHO_PolProductSummation::ExecuteInPlace(visibility_type* in)
 {
     PreMultiply(in);
     bool ok = fReducer.Execute();
@@ -32,9 +29,7 @@ MHO_PolProductSummation::ExecuteInPlace(visibility_type* in)
     return ok && wok;
 }
 
-
-bool
-MHO_PolProductSummation::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
+bool MHO_PolProductSummation::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
 {
     out->Copy(*in);
     PreMultiply(out);
@@ -52,89 +47,113 @@ MHO_PolProductSummation::ExecuteOutOfPlace(const visibility_type* in, visibility
     return ok && wok;
 }
 
-bool
-MHO_PolProductSummation::InitializeInPlace(visibility_type* in)
+bool MHO_PolProductSummation::InitializeInPlace(visibility_type* in)
 {
     fWReducer.SetArgs(fWeights);
     fWReducer.ReduceAxis(POLPROD_AXIS);
 
     fReducer.SetArgs(in);
     fReducer.ReduceAxis(POLPROD_AXIS);
-    return (fReducer.Initialize() && fWReducer.Initialize() );
+    return (fReducer.Initialize() && fWReducer.Initialize());
 }
 
-bool
-MHO_PolProductSummation::InitializeOutOfPlace(const visibility_type* in, visibility_type* out)
+bool MHO_PolProductSummation::InitializeOutOfPlace(const visibility_type* in, visibility_type* out)
 {
     fWReducer.SetArgs(fWeights);
     fWReducer.ReduceAxis(POLPROD_AXIS);
 
     fReducer.SetArgs(out);
     fReducer.ReduceAxis(POLPROD_AXIS);
-    return (fReducer.Initialize() && fWReducer.Initialize() );
+    return (fReducer.Initialize() && fWReducer.Initialize());
 }
 
-
-void
-MHO_PolProductSummation::PreMultiply(visibility_type* in)
+void MHO_PolProductSummation::PreMultiply(visibility_type* in)
 {
     //TODO this is an extremely basic implementation (single pre-factor per-pol product)
     //it is entirely possible to imagine a time dependent pre-factor for each pol-product
     //(e.g if parallactic angle is changing substantially)
     //or other more complex pre-multiplication
-    auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
+    auto pp_ax = &(std::get< POLPROD_AXIS >(*in));
 
     double prefac_sum = 0.0;
-    std::vector< std::complex<double> > prefac;
-    prefac.resize( pp_ax->GetSize() );
-    for(std::size_t i=0; i < pp_ax->GetSize(); i++)
+    std::vector< std::complex< double > > prefac;
+    prefac.resize(pp_ax->GetSize());
+    for(std::size_t i = 0; i < pp_ax->GetSize(); i++)
     {
         prefac[i] = GetPrefactor(pp_ax->at(i));
         prefac_sum += std::abs(prefac[i]);
     }
 
     //specific to pseudo-Stokes-I (IXY) mode, (4 involved pol-products) explictly set to 2
-    if(fSummedPolProdLabel == "I"){prefac_sum = 2.0;}
-
-    for(std::size_t i=0; i < pp_ax->GetSize(); i++)
+    if(fSummedPolProdLabel == "I")
     {
-        in->SubView(i) *= prefac[i]/prefac_sum;
+        prefac_sum = 2.0;
+    }
+
+    for(std::size_t i = 0; i < pp_ax->GetSize(); i++)
+    {
+        in->SubView(i) *= prefac[i] / prefac_sum;
     }
 }
 
-
-std::complex<double>
-MHO_PolProductSummation::GetPrefactor(std::string pp_label)
+std::complex< double > MHO_PolProductSummation::GetPrefactor(std::string pp_label)
 {
-    std::complex<double> factor = 0;
+    std::complex< double > factor = 0;
     //if we cannot find this label in the set, return zero
-    if( std::find( fPolProductSet.begin(), fPolProductSet.end(), pp_label) == fPolProductSet.end()  ){return factor;}
+    if(std::find(fPolProductSet.begin(), fPolProductSet.end(), pp_label) == fPolProductSet.end())
+    {
+        return factor;
+    }
 
     //calculate the parallactic angle difference
-    double dpar = (fRemParAngle - fRefParAngle)*(M_PI/180.);
+    double dpar = (fRemParAngle - fRefParAngle) * (M_PI / 180.);
 
     if(pp_label == "XX")
     {
-        if(fPolProductSet.size() > 1){factor = std::cos(dpar); }
-        else{factor =  signum( std::cos(dpar) ); }
+        if(fPolProductSet.size() > 1)
+        {
+            factor = std::cos(dpar);
+        }
+        else
+        {
+            factor = signum(std::cos(dpar));
+        }
     }
 
     if(pp_label == "YY")
     {
-        if(fPolProductSet.size() > 1){factor = std::cos(dpar); }
-        else{factor =  signum( std::cos(dpar) ); }
+        if(fPolProductSet.size() > 1)
+        {
+            factor = std::cos(dpar);
+        }
+        else
+        {
+            factor = signum(std::cos(dpar));
+        }
     }
 
     if(pp_label == "YX")
     {
-        if(fPolProductSet.size() > 1){factor = std::sin(dpar); }
-        else{factor =  signum( std::sin(dpar) ); }
+        if(fPolProductSet.size() > 1)
+        {
+            factor = std::sin(dpar);
+        }
+        else
+        {
+            factor = signum(std::sin(dpar));
+        }
     }
 
     if(pp_label == "XY")
     {
-        if(fPolProductSet.size() > 1){factor = std::sin(-1.*dpar); }
-        else{factor =  signum( std::sin(-1.*dpar) ); }
+        if(fPolProductSet.size() > 1)
+        {
+            factor = std::sin(-1. * dpar);
+        }
+        else
+        {
+            factor = signum(std::sin(-1. * dpar));
+        }
     }
 
     //this needs to compute the pol-product dependent scaling/rotation factor
@@ -142,19 +161,31 @@ MHO_PolProductSummation::GetPrefactor(std::string pp_label)
     //depending on the telescope mount type, this may have varied dependance
     //on (delta) parallactic angle
 
-    TODO_FIXME_MSG("FIXME TODO -- implement prefactor calculations for both mixed linear and circular pol-products (XX, RX, RR, etc).")
-    if(pp_label == "RR"){factor = 1.0;}
-    if(pp_label == "LL"){factor = 1.0;}
-    if(pp_label == "RL"){factor = 1.0;}
-    if(pp_label == "LR"){factor = 1.0;}
+    TODO_FIXME_MSG(
+        "FIXME TODO -- implement prefactor calculations for both mixed linear and circular pol-products (XX, RX, RR, etc).")
+    if(pp_label == "RR")
+    {
+        factor = 1.0;
+    }
+    if(pp_label == "LL")
+    {
+        factor = 1.0;
+    }
+    if(pp_label == "RL")
+    {
+        factor = 1.0;
+    }
+    if(pp_label == "LR")
+    {
+        factor = 1.0;
+    }
 
     return factor;
 }
 
-void
-MHO_PolProductSummation::FixLabels(visibility_type* in)
+void MHO_PolProductSummation::FixLabels(visibility_type* in)
 {
-    ( &(std::get<POLPROD_AXIS>(*in)) )->at(0) = fSummedPolProdLabel;
+    (&(std::get< POLPROD_AXIS >(*in)))->at(0) = fSummedPolProdLabel;
 }
 
-}//end of namespace
+} // namespace hops

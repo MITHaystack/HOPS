@@ -1,14 +1,13 @@
 #include <iostream>
 
-#include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
+#include <pybind11/pybind11.h>
 namespace py = pybind11;
 
 #include "MHO_Message.hh"
 #include "MHO_PyConfigurePath.hh"
 
 using namespace hops;
-
 
 int main()
 {
@@ -26,9 +25,6 @@ int main()
     auto test = mho_test2.attr("TestOperator")();
     test.attr("Initialize")();
     test.attr("Execute")();
-
-
-
 
     return 0;
 }

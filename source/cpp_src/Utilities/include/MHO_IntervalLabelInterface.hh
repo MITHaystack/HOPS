@@ -1,20 +1,18 @@
 #ifndef MHO_IntervalLabelInterface_HH__
 #define MHO_IntervalLabelInterface_HH__
 
-
 #include "MHO_JSONHeaderWrapper.hh"
 
 namespace hops
 {
 
 /*!
-*@file MHO_IntervalLabelInterface.hh
-*@class MHO_IntervalLabelInterface
-*@date Sun Feb 4 17:21:38 2024 -0500
-*@brief
-*@author J. Barrett - barrettj@mit.edu
-*/
-
+ *@file MHO_IntervalLabelInterface.hh
+ *@class MHO_IntervalLabelInterface
+ *@date Sun Feb 4 17:21:38 2024 -0500
+ *@brief
+ *@author J. Barrett - barrettj@mit.edu
+ */
 
 //constructor is protected
 //this class is only intended to provide an interface that derived classes may inherit
@@ -23,8 +21,7 @@ namespace hops
 class MHO_IntervalLabelInterface
 {
     protected:
-
-        MHO_IntervalLabelInterface():fIntervalLabelObjectPtr(nullptr)
+        MHO_IntervalLabelInterface(): fIntervalLabelObjectPtr(nullptr)
         {
             // fTokenizer.SetDelimiter(",");
             fDummy["lower_index"] = -1; //dummy object for invalid returns, always has an invalid index
@@ -39,19 +36,16 @@ class MHO_IntervalLabelInterface
             fIntervalLabelObjectPtr = copy.fIntervalLabelObjectPtr;
         };
 
-        void SetIntervalLabelObject(mho_json* obj){fIntervalLabelObjectPtr = obj;}
+        void SetIntervalLabelObject(mho_json* obj) { fIntervalLabelObjectPtr = obj; }
 
     public:
-
         virtual ~MHO_IntervalLabelInterface(){};
 
-        void ClearIntervalLabels()
-        {
-            *fIntervalLabelObjectPtr = mho_json();
-        }
+        void ClearIntervalLabels() { *fIntervalLabelObjectPtr = mho_json(); }
 
         template< typename XValueType >
-        void InsertIntervalLabelKeyValue(std::size_t lower_index, std::size_t upper_index, const std::string& key, const XValueType& value)
+        void InsertIntervalLabelKeyValue(std::size_t lower_index, std::size_t upper_index, const std::string& key,
+                                         const XValueType& value)
         {
             std::string ikey = ConstructKey(lower_index, upper_index);
             (*fIntervalLabelObjectPtr)[ikey][key] = value;
@@ -60,20 +54,21 @@ class MHO_IntervalLabelInterface
         }
 
         template< typename XValueType >
-        bool RetrieveIntervalLabelKeyValue(std::size_t lower_index, std::size_t upper_index, const std::string& key, const XValueType& value) const
+        bool RetrieveIntervalLabelKeyValue(std::size_t lower_index, std::size_t upper_index, const std::string& key,
+                                           const XValueType& value) const
         {
             std::string ikey = ConstructKey(lower_index, upper_index);
-            if(fIntervalLabelObjectPtr->contains(ikey) )
+            if(fIntervalLabelObjectPtr->contains(ikey))
             {
-                if( (*fIntervalLabelObjectPtr)[ikey].contains(key) )
+                if((*fIntervalLabelObjectPtr)[ikey].contains(key))
                 {
-                    value =  (*fIntervalLabelObjectPtr)[ikey][key].get<XValueType>();
+                    value = (*fIntervalLabelObjectPtr)[ikey][key].get< XValueType >();
                     return true;
                 }
             }
             else
             {
-                msg_warn("containers", "cannot retrieve a key value pair for interval: "<<ikey<<"."<< eom);
+                msg_warn("containers", "cannot retrieve a key value pair for interval: " << ikey << "." << eom);
             }
             return false;
         }
@@ -82,13 +77,13 @@ class MHO_IntervalLabelInterface
         mho_json& GetIntervalLabelObject(std::size_t lower_index, std::size_t upper_index)
         {
             std::string ikey = ConstructKey(lower_index, upper_index);
-            if(fIntervalLabelObjectPtr->contains(ikey) )
+            if(fIntervalLabelObjectPtr->contains(ikey))
             {
                 return (*fIntervalLabelObjectPtr)[ikey];
             }
             else
             {
-                msg_warn("containers", "cannot retrieve interval data for: "<<ikey<<"."<< eom);
+                msg_warn("containers", "cannot retrieve interval data for: " << ikey << "." << eom);
                 return fDummy;
             }
         }
@@ -102,16 +97,15 @@ class MHO_IntervalLabelInterface
             // (*fIntervalLabelObjectPtr).emplace(ikey,obj);
         }
 
-
         //get a vector of interval labels which contain a key with the same name
         std::vector< mho_json > GetMatchingIntervalLabels(std::string key) const
         {
-            std::vector<mho_json> objects;
-            for(auto it: fIntervalLabelObjectPtr->items() )
+            std::vector< mho_json > objects;
+            for(auto it : fIntervalLabelObjectPtr->items())
             {
-                if( it.value().contains(key) )
+                if(it.value().contains(key))
                 {
-                    objects.push_back( it.value() );
+                    objects.push_back(it.value());
                 }
             }
             return objects;
@@ -121,9 +115,9 @@ class MHO_IntervalLabelInterface
         mho_json GetFirstIntervalWithKeyValue(std::string key, const XLabelValueType& value) const
         {
             mho_json obj;
-            for(auto it: fIntervalLabelObjectPtr->items() )
+            for(auto it : fIntervalLabelObjectPtr->items())
             {
-                if( it.value().contains(key) )
+                if(it.value().contains(key))
                 {
                     XLabelValueType v;
                     v = it.value()[key];
@@ -154,7 +148,10 @@ class MHO_IntervalLabelInterface
         {
             lower_index = 0;
             upper_index = 0;
-            if(key.find(',') == std::string::npos){return false;}
+            if(key.find(',') == std::string::npos)
+            {
+                return false;
+            }
             auto idx_pair = ExtractIndexesFromKey(key);
             lower_index = idx_pair.first;
             upper_index = idx_pair.second;
@@ -166,12 +163,15 @@ class MHO_IntervalLabelInterface
             return true;
         }
 
-        static std::pair< std::size_t, std::size_t> ExtractIndexesFromKey(const std::string& key)
+        static std::pair< std::size_t, std::size_t > ExtractIndexesFromKey(const std::string& key)
         {
             std::size_t lower_index = 0;
             std::size_t upper_index = 0;
             size_t pos = key.find(',');
-            if(pos == std::string::npos){return std::make_pair(lower_index,upper_index);}
+            if(pos == std::string::npos)
+            {
+                return std::make_pair(lower_index, upper_index);
+            }
             std::string first = key.substr(0, pos);
             std::string second = key.substr(pos + 1);
             lower_index = std::stoul(first);
@@ -185,13 +185,10 @@ class MHO_IntervalLabelInterface
         }
 
     private:
-
         mho_json* fIntervalLabelObjectPtr; //array of mho_json objects holding key:value pairs
         mho_json fDummy;
 };
 
-
-} //end namespace
-
+} // namespace hops
 
 #endif /*! end of include guard: MHO_IntervalLabelInterface_HH__ */

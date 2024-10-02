@@ -27,18 +27,16 @@ MHO_StationModel::MHO_StationModel()
 
 MHO_StationModel::~MHO_StationModel(){};
 
-
-void
-MHO_StationModel::ComputeModel()
+void MHO_StationModel::ComputeModel()
 {
-    if(fData !=nullptr)
+    if(fData != nullptr)
     {
         //get the station code
-        std::string code = RetrieveTag<std::string>(fData, "station_code");
-        msg_debug("calibration", "station code: " << code << eom );
+        std::string code = RetrieveTag< std::string >(fData, "station_code");
+        msg_debug("calibration", "station code: " << code << eom);
 
         //get the ref/rem station delay model start times
-        std::string model_start = RetrieveTag<std::string>(fData, "model_start");
+        std::string model_start = RetrieveTag< std::string >(fData, "model_start");
         //convert string to time point
         auto start = hops_clock::from_vex_format(model_start);
 
@@ -51,23 +49,23 @@ MHO_StationModel::ComputeModel()
             eval_time = hops_clock::from_vex_format(fEvalTimeString);
         }
 
-        msg_debug("calibration", "evaluation time is: "<< hops_clock::to_iso8601_format(eval_time)<< eom);
-        msg_debug("calibration", "model start time is: "<<hops_clock::to_iso8601_format(start)<< eom);
+        msg_debug("calibration", "evaluation time is: " << hops_clock::to_iso8601_format(eval_time) << eom);
+        msg_debug("calibration", "model start time is: " << hops_clock::to_iso8601_format(start) << eom);
 
         //calculate time differences
         auto tdiff_duration = eval_time - start;
         //convert durations to double (seconds)
-        double tdiff = std::chrono::duration<double>(tdiff_duration).count();
+        double tdiff = std::chrono::duration< double >(tdiff_duration).count();
 
         //figure out which spline interval overlaps with the fourfit reference time
-        double model_interval = RetrieveTag<double>(fData, "model_interval");
-        int int_no = std::floor(tdiff/model_interval);
+        double model_interval = RetrieveTag< double >(fData, "model_interval");
+        int int_no = std::floor(tdiff / model_interval);
         CheckSplineInterval(fData->GetDimension(INTERVAL_AXIS), tdiff, int_no, code);
 
         //calculate seconds into target interval
         double dt = tdiff - (int_no * model_interval);
 
-        msg_debug("calibration", "model interval: "<< int_no <<" and time offset: "<< dt << eom);
+        msg_debug("calibration", "model interval: " << int_no << " and time offset: " << dt << eom);
 
         //evaluate the station model: delay, azimuth, elevation, par_angle, u, v, w
         auto dcoeff = fData->SubView(DELAY_INDEX, int_no); //extract spline coeffs
@@ -94,43 +92,36 @@ MHO_StationModel::ComputeModel()
         EvaluateSpline(wcoeff, dt, fW);
 
         msg_debug("calibration", "station coord model: (delay, azimuth, elevation, par_angle, u, v, w) = " << eol);
-        msg_debug("calibration", "(" <<
-            fDelay <<", "<<
-            fAzimuth <<", "<<
-            fElevation <<", "<<
-            fParAngle <<", "<<
-            fU <<", "<<
-            fV <<", "<<
-            fW <<")."<< eom);
-
+        msg_debug("calibration", "(" << fDelay << ", " << fAzimuth << ", " << fElevation << ", " << fParAngle << ", " << fU
+                                     << ", " << fV << ", " << fW << ")." << eom);
     }
     else
     {
-        msg_fatal("calibration", "cannot compute station coordinate model, missing station data. " << eom );
+        msg_fatal("calibration", "cannot compute station coordinate model, missing station data. " << eom);
         std::exit(1);
     }
 }
 
-void
-MHO_StationModel::CheckSplineInterval(int n_intervals, double tdiff, int& int_no, std::string station_id)
+void MHO_StationModel::CheckSplineInterval(int n_intervals, double tdiff, int& int_no, std::string station_id)
 {
     if(n_intervals == 0)
     {
-        msg_fatal("calibration", "number of spline intervals is 0, missing or malformed data?" << eom );
+        msg_fatal("calibration", "number of spline intervals is 0, missing or malformed data?" << eom);
         std::exit(1);
     }
 
     if(tdiff < 0.0)
     {
-        msg_warn("calibration", "evaluation time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
+        msg_warn("calibration",
+                 "evaluation time is outside of station: " << station_id << " spline range - must extrapolate!" << eom);
         int_no = 0;
     }
-    if(int_no >= n_intervals )
+    if(int_no >= n_intervals)
     {
-        msg_warn("calibration", "evaluation time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
-        int_no = n_intervals-1;
+        msg_warn("calibration",
+                 "evaluation time is outside of station: " << station_id << " spline range - must extrapolate!" << eom);
+        int_no = n_intervals - 1;
     }
 }
 
-
-}//end namespace
+} // namespace hops

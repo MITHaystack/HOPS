@@ -1,9 +1,9 @@
-#include <iostream>
 #include <fstream>
-#include <string>
-#include <vector>
-#include <utility>
 #include <getopt.h>
+#include <iostream>
+#include <string>
+#include <utility>
+#include <vector>
 
 //option parsing and help text library
 #include "CLI11.hpp"
@@ -22,14 +22,14 @@
 
 //pybind11 stuff to interface with python
 #ifdef USE_PYBIND11
-    #include <pybind11/pybind11.h>
-    #include <pybind11/embed.h>
     #include "pybind11_json/pybind11_json.hpp"
-    namespace py = pybind11;
-    namespace nl = nlohmann;
-    using namespace pybind11::literals;
-    #include "MHO_PythonOperatorBuilder.hh"
+    #include <pybind11/embed.h>
+    #include <pybind11/pybind11.h>
+namespace py = pybind11;
+namespace nl = nlohmann;
+using namespace pybind11::literals;
     #include "MHO_PyConfigurePath.hh"
+    #include "MHO_PythonOperatorBuilder.hh"
 #endif
 
 //needed to export to mark4 fringe files
@@ -40,15 +40,13 @@
 
 //set build timestamp, for fourfit plots (legacy behavior)
 #ifdef HOPS_BUILD_TIME
-#define HOPS_BUILD_TIMESTAMP STRING(HOPS_BUILD_TIME)
-#else 
-//no build time defined...default
-#define HOPS_BUILD_TIMESTAMP "2000-01-01T00:00:00.0Z"
+    #define HOPS_BUILD_TIMESTAMP STRING(HOPS_BUILD_TIME)
+#else
+    //no build time defined...default
+    #define HOPS_BUILD_TIMESTAMP "2000-01-01T00:00:00.0Z"
 #endif
 
-
 using namespace hops;
-
 
 int main(int argc, char** argv)
 {
@@ -56,27 +54,31 @@ int main(int argc, char** argv)
     int local_id = 0;
     int n_processes = 1;
 
-    #ifdef HOPS_USE_MPI
+#ifdef HOPS_USE_MPI
     MHO_MPIInterface::GetInstance()->Initialize(&argc, &argv, true); //true -> run with no local even/odd split
     process_id = MHO_MPIInterface::GetInstance()->GetGlobalProcessID();
     local_id = MHO_MPIInterface::GetInstance()->GetLocalProcessID();
     n_processes = MHO_MPIInterface::GetInstance()->GetNProcesses();
-    #endif
+#endif
 
-    #ifdef USE_PYBIND11
+#ifdef USE_PYBIND11
     //start the interpreter and keep it alive, need this or we segfault
     //each process has its own interpreter
     py::scoped_interpreter guard{};
     configure_pypath();
-    #endif
+#endif
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Snapshot::GetInstance().AcceptAllKeys();
     MHO_Snapshot::GetInstance().SetExecutableName(std::string("fourfit"));
 
     MHO_ParameterStore cmdline_params;
-    int parse_status = MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(argc, argv, &cmdline_params );
-    if(parse_status != 0){msg_fatal("main", "could not parse command line options." << eom); std::exit(1);}
+    int parse_status = MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(argc, argv, &cmdline_params);
+    if(parse_status != 0)
+    {
+        msg_fatal("main", "could not parse command line options." << eom);
+        std::exit(1);
+    }
 
     //flattened pass-info parameters (these are flattened into a single string primarily for MPI)
     std::string concat_delim = ",";
@@ -89,23 +91,26 @@ int main(int argc, char** argv)
         msg_debug("main", "done determining the data passes" << eom);
     }
 
-    //use MPI bcast to send all of the pass information to the worker processes
-    #ifdef HOPS_USE_MPI
-        MHO_MPIInterface::GetInstance()->BroadcastString(cscans);
-        MHO_MPIInterface::GetInstance()->BroadcastString(croots);
-        MHO_MPIInterface::GetInstance()->BroadcastString(cbaselines);
-        MHO_MPIInterface::GetInstance()->BroadcastString(cfgroups);
-        MHO_MPIInterface::GetInstance()->BroadcastString(cpolprods);
-    #endif
+//use MPI bcast to send all of the pass information to the worker processes
+#ifdef HOPS_USE_MPI
+    MHO_MPIInterface::GetInstance()->BroadcastString(cscans);
+    MHO_MPIInterface::GetInstance()->BroadcastString(croots);
+    MHO_MPIInterface::GetInstance()->BroadcastString(cbaselines);
+    MHO_MPIInterface::GetInstance()->BroadcastString(cfgroups);
+    MHO_MPIInterface::GetInstance()->BroadcastString(cpolprods);
+#endif
 
     std::vector< mho_json > pass_vector;
     MHO_BasicFringeDataConfiguration::split_passes(pass_vector, cscans, croots, cbaselines, cfgroups, cpolprods);
 
     std::size_t n_pass = pass_vector.size();
-    MPI_SINGLE_PROCESS{ msg_info("main", "fourfit will fringe "<<n_pass<<" passes of data" << eom); }
+    MPI_SINGLE_PROCESS
+    {
+        msg_info("main", "fourfit will fringe " << n_pass << " passes of data" << eom);
+    }
 
     //this loop could be trivially parallelized (with the exception of plotting)
-    for(std::size_t pass_index=0; pass_index < n_pass; pass_index++)
+    for(std::size_t pass_index = 0; pass_index < n_pass; pass_index++)
     {
         if(pass_index % n_processes == process_id)
         {
@@ -121,11 +126,14 @@ int main(int argc, char** argv)
             fringeData.GetParameterStore()->Set("/pass", pass);
 
             //initializes the scan data store, reads the ovex file and sets the value of '/pass/source'
-            bool scan_dir_ok = MHO_BasicFringeDataConfiguration::initialize_scan_data(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
-            MHO_BasicFringeDataConfiguration::populate_initial_parameters(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
+            bool scan_dir_ok = MHO_BasicFringeDataConfiguration::initialize_scan_data(fringeData.GetParameterStore(),
+                                                                                      fringeData.GetScanDataStore());
+            MHO_BasicFringeDataConfiguration::populate_initial_parameters(fringeData.GetParameterStore(),
+                                                                          fringeData.GetScanDataStore());
 
             //parse the control file and form the control statements
-            MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(), fringeData.GetControlFormat(), fringeData.GetControlStatements() );
+            MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(), fringeData.GetControlFormat(),
+                                                                  fringeData.GetControlStatements());
 
             bool do_ion = false;
             fringeData.GetParameterStore()->Get("/config/do_ion", do_ion);
@@ -134,23 +142,31 @@ int main(int argc, char** argv)
             //TODO FIXME...replace this logic with a factory method based on the
             //contents of the control and parameter store
             //but for the time being we only have two choices
-            if(do_ion){ ffit = new MHO_IonosphericFringeFitter(&fringeData);}
-            else{ ffit = new MHO_BasicFringeFitter(&fringeData);}
+            if(do_ion)
+            {
+                ffit = new MHO_IonosphericFringeFitter(&fringeData);
+            }
+            else
+            {
+                ffit = new MHO_BasicFringeFitter(&fringeData);
+            }
             ffit->Configure();
 
-            ////////////////////////////////////////////////////////////////////////////
-            //POST-CONFIGURE FOR COMPILE-TIME EXTENSIONS -- this should be reorganized with visitor pattern
-            ////////////////////////////////////////////////////////////////////////////
-            #ifdef USE_PYBIND11
-            TODO_FIXME_MSG("TODO FIXME -- formalize the means by which plugin dependent operator builders are added to the configuration")
-            ffit->GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_labeling", "python_labeling");
-            ffit->GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_flagging", "python_flagging");
-            ffit->GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_calibration", "python_calibration");
-            #endif
+////////////////////////////////////////////////////////////////////////////
+//POST-CONFIGURE FOR COMPILE-TIME EXTENSIONS -- this should be reorganized with visitor pattern
+////////////////////////////////////////////////////////////////////////////
+#ifdef USE_PYBIND11
+            TODO_FIXME_MSG(
+                "TODO FIXME -- formalize the means by which plugin dependent operator builders are added to the configuration")
+            ffit->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_labeling", "python_labeling");
+            ffit->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_flagging", "python_flagging");
+            ffit->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_calibration",
+                                                                                         "python_calibration");
+#endif
 
             //initialize and perform run loop
             ffit->Initialize();
-            while( !ffit->IsFinished() )
+            while(!ffit->IsFinished())
             {
                 ffit->PreRun();
                 ffit->Run();
@@ -158,14 +174,14 @@ int main(int argc, char** argv)
             }
             ffit->Finalize();
 
-            //determine if this pass was skipped 
-            bool is_skipped = fringeData.GetParameterStore()->GetAs<bool>("/status/skipped");
+            //determine if this pass was skipped
+            bool is_skipped = fringeData.GetParameterStore()->GetAs< bool >("/status/skipped");
 
             ////////////////////////////////////////////////////////////////////////////
             //OUTPUT/PLOTTING -- this should be reorganized with visitor pattern
             ////////////////////////////////////////////////////////////////////////////
-            bool test_mode = fringeData.GetParameterStore()->GetAs<bool>("/cmdline/test_mode");
-            bool show_plot = fringeData.GetParameterStore()->GetAs<bool>("/cmdline/show_plot");
+            bool test_mode = fringeData.GetParameterStore()->GetAs< bool >("/cmdline/test_mode");
+            bool show_plot = fringeData.GetParameterStore()->GetAs< bool >("/cmdline/show_plot");
             mho_json plot_data = fringeData.GetPlotData();
 
             profiler_stop();
@@ -195,10 +211,10 @@ int main(int argc, char** argv)
                 }
             }
 
-            #ifdef USE_PYBIND11
+#ifdef USE_PYBIND11
             if(show_plot && !is_skipped)
             {
-                msg_debug("main", "python plot generation enabled." << eom );
+                msg_debug("main", "python plot generation enabled." << eom);
                 py::dict plot_obj = plot_data;
 
                 // //QUICK HACK FOR PCPHASES UNTIL WE GET est_pc_maual working/////////////
@@ -222,24 +238,24 @@ int main(int argc, char** argv)
                 //TODO, pass filename to save plot if needed
                 plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
             }
-            #else //USE_PYBIND11
+#else //USE_PYBIND11
             if(show_plot && !is_skipped)
             {
-                msg_warn("main", "plot output requested, but not enabled since HOPS was built without pybind11 support, ignoring." << eom);
+                msg_warn("main",
+                         "plot output requested, but not enabled since HOPS was built without pybind11 support, ignoring."
+                             << eom);
             }
-            #endif
+#endif
 
             //clean up
             delete ffit;
-
         }
     } //end of pass loop
 
-
-    #ifdef HOPS_USE_MPI
-        MHO_MPIInterface::GetInstance()->GlobalBarrier();
-        MHO_MPIInterface::GetInstance()->Finalize();
-    #endif
+#ifdef HOPS_USE_MPI
+    MHO_MPIInterface::GetInstance()->GlobalBarrier();
+    MHO_MPIInterface::GetInstance()->Finalize();
+#endif
 
     return 0;
 }

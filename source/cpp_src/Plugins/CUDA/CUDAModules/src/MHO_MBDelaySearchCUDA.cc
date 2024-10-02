@@ -40,16 +40,14 @@ MHO_MBDelaySearchCUDA::~MHO_MBDelaySearchCUDA()
     cudaFree(fDeviceBuffer);
 };
 
-
-bool
-MHO_MBDelaySearchCUDA::InitializeImpl(const XArgType* in)
+bool MHO_MBDelaySearchCUDA::InitializeImpl(const XArgType* in)
 {
     fInitialized = false;
     if(in != nullptr)
     {
         //calculate the frequency grid for MBD search
         MHO_UniformGridPointsCalculator fGridCalc;
-        fGridCalc.SetPoints( std::get<CHANNEL_AXIS>(*in).GetData(), std::get<CHANNEL_AXIS>(*in).GetSize() );
+        fGridCalc.SetPoints(std::get< CHANNEL_AXIS >(*in).GetData(), std::get< CHANNEL_AXIS >(*in).GetSize());
         fGridCalc.Calculate();
 
         fGridStart = fGridCalc.GetGridStart();
@@ -61,14 +59,20 @@ MHO_MBDelaySearchCUDA::InitializeImpl(const XArgType* in)
         fNDR = in->GetDimension(TIME_AXIS);
         fNDRSP = fDelayRateCalc.CalculateSearchSpaceSize(fNDR);
 
-        if(fSBDStart == -1){fSBDStart = 0;}
-        if(fSBDStop == -1){fSBDStop = fNSBD;}
+        if(fSBDStart == -1)
+        {
+            fSBDStart = 0;
+        }
+        if(fSBDStop == -1)
+        {
+            fSBDStop = fNSBD;
+        }
 
-        msg_debug("fringe", "MBD search, N grid points = " << fNGridPoints <<", N delay-rate points = "<< fNDR << eom);
+        msg_debug("fringe", "MBD search, N grid points = " << fNGridPoints << ", N delay-rate points = " << fNDR << eom);
 
         //resize workspaces (TODO...make conditional on current size -- if already configured)
-        fMBDWorkspace.Resize(fNGridPoints);//, fNDR);
-        fMBDAmpWorkspace.Resize(fNGridPoints);//, fNDR);
+        fMBDWorkspace.Resize(fNGridPoints);    //, fNDR);
+        fMBDAmpWorkspace.Resize(fNGridPoints); //, fNDR);
 
         //copy the tags/axes for the SBD DR workspace
         //copy this slice into local workspace table container
@@ -77,18 +81,18 @@ MHO_MBDelaySearchCUDA::InitializeImpl(const XArgType* in)
         sbd_dims[FREQ_AXIS] = 1;
         //auto sbd_dr_dim = fSBDDrWorkspace.GetDimensionArray();
 
-        fSBDDrWorkspace.Resize( &(sbd_dims[0]) );
+        fSBDDrWorkspace.Resize(&(sbd_dims[0]));
         fSBDDrWorkspace.ZeroArray();
         fSBDDrWorkspace.CopyTags(*in);
 
-        std::get<CHANNEL_AXIS>(fSBDDrWorkspace) = std::get<CHANNEL_AXIS>(*in);
-        std::get<TIME_AXIS>(fSBDDrWorkspace) = std::get<TIME_AXIS>(*in);
-        std::get<FREQ_AXIS>(fSBDDrWorkspace)(0) = 0.0;
+        std::get< CHANNEL_AXIS >(fSBDDrWorkspace) = std::get< CHANNEL_AXIS >(*in);
+        std::get< TIME_AXIS >(fSBDDrWorkspace) = std::get< TIME_AXIS >(*in);
+        std::get< FREQ_AXIS >(fSBDDrWorkspace)(0) = 0.0;
 
         fDelayRateCalc.SetReferenceFrequency(fRefFreq);
         fDelayRateCalc.SetArgs(&fSBDDrWorkspace, fWeights, &sbd_dr_data);
         bool ok = fDelayRateCalc.Initialize();
-        check_step_fatal(ok, "fringe", "Delay rate search fft engine initialization failed." << eom );
+        check_step_fatal(ok, "fringe", "Delay rate search fft engine initialization failed." << eom);
 
         //set up FFT and rotator engines
         fFFTEngine.SetArgs(&fMBDWorkspace);
@@ -96,24 +100,24 @@ MHO_MBDelaySearchCUDA::InitializeImpl(const XArgType* in)
         fFFTEngine.SelectAxis(0);
         fFFTEngine.SetForward();
         ok = fFFTEngine.Initialize();
-        check_step_fatal(ok, "fringe", "MBD search fft engine initialization failed." << eom );
+        check_step_fatal(ok, "fringe", "MBD search fft engine initialization failed." << eom);
 
-        fCyclicRotator.SetOffset(0, fNGridPoints/2);
+        fCyclicRotator.SetOffset(0, fNGridPoints / 2);
         fCyclicRotator.SetArgs(&fMBDWorkspace);
         ok = fCyclicRotator.Initialize();
-        check_step_fatal(ok, "fringe", "MBD search cyclic rotation initialization failed." << eom );
+        check_step_fatal(ok, "fringe", "MBD search cyclic rotation initialization failed." << eom);
 
-        //initialize CUDA elements 
-        std::size_t nch = std::get<CHANNEL_AXIS>(*in).GetSize();
+        //initialize CUDA elements
+        std::size_t nch = std::get< CHANNEL_AXIS >(*in).GetSize();
         fHostBuffer.Resize(fNDRSP, fNGridPoints);
         fHostBuffer.ZeroArray(); //TODO MOVE ME
-        
+
         // Create a cuFFT fCUFFTPlan
-        msg_debug("cuda", "creating cuda FFT plan of size: (" << fNGridPoints <<", "<<fNDRSP<<")"<<eom);
-        cufftPlan1d(&fCUFFTPlan, fNGridPoints, CUFFT_Z2Z, fNDRSP);  // 1D complex-to-complex FFT along the second dimension
-        
+        msg_debug("cuda", "creating cuda FFT plan of size: (" << fNGridPoints << ", " << fNDRSP << ")" << eom);
+        cufftPlan1d(&fCUFFTPlan, fNGridPoints, CUFFT_Z2Z, fNDRSP); // 1D complex-to-complex FFT along the second dimension
+
         //Allocate device memory for the input data
-        cudaMalloc( (void**)&fDeviceBuffer, sizeof(cufftDoubleComplex) * fHostBuffer.GetSize());
+        cudaMalloc((void**)&fDeviceBuffer, sizeof(cufftDoubleComplex) * fHostBuffer.GetSize());
 
         fInitialized = true;
     }
@@ -121,22 +125,20 @@ MHO_MBDelaySearchCUDA::InitializeImpl(const XArgType* in)
     return fInitialized;
 }
 
-
-bool
-MHO_MBDelaySearchCUDA::ExecuteImpl(const XArgType* in)
+bool MHO_MBDelaySearchCUDA::ExecuteImpl(const XArgType* in)
 {
     bool ok;
 
     if(fInitialized && fNSBD > 1)
     {
-        fSBDAxis = std::get<FREQ_AXIS>(*in);
+        fSBDAxis = std::get< FREQ_AXIS >(*in);
         fSBDBinSep = fSBDAxis.at(1) - fSBDAxis.at(0);
         //loop over the single-band delay 'lags', computing the MBD/DR function
         //find the max for each SBD, and globally
         fMax = -0.0;
         fNPointsSearched = 0;
         bool first = true;
-        for(std::size_t sbd_idx=0; sbd_idx<fNSBD; sbd_idx++)
+        for(std::size_t sbd_idx = 0; sbd_idx < fNSBD; sbd_idx++)
         {
             double sbd = (fSBDAxis.at(sbd_idx));
             bool do_sbd_search = (fSBDWin[0] <= sbd) && (sbd <= fSBDWin[1]);
@@ -147,11 +149,11 @@ MHO_MBDelaySearchCUDA::ExecuteImpl(const XArgType* in)
                 auto sbd_dims = fSBDDrWorkspace.GetDimensionArray();
                 std::size_t a = sbd_dims[CHANNEL_AXIS];
                 std::size_t b = sbd_dims[TIME_AXIS];
-                for(std::size_t i=0;i<a;i++)
+                for(std::size_t i = 0; i < a; i++)
                 {
-                    for(std::size_t j=0;j<b;j++)
+                    for(std::size_t j = 0; j < b; j++)
                     {
-                        fSBDDrWorkspace(0,i,j,0) = (*in)(0,i,j,sbd_idx);
+                        fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, sbd_idx);
                     }
                 }
 
@@ -161,11 +163,11 @@ MHO_MBDelaySearchCUDA::ExecuteImpl(const XArgType* in)
                 //copy and cache the delay-rate axis just once
                 if(first)
                 {
-                    fDRAxis = std::get<TIME_AXIS>(sbd_dr_data); //upon retrieval this here is fringe-rate
-                    fDRAxis *= 1.0/fRefFreq; //now convert to delay rate by dividing by reference frequency
+                    fDRAxis = std::get< TIME_AXIS >(sbd_dr_data); //upon retrieval this here is fringe-rate
+                    fDRAxis *= 1.0 / fRefFreq;                    //now convert to delay rate by dividing by reference frequency
                     fDRBinSep = fDRAxis.at(1) - fDRAxis.at(0);
                 }
-                
+
                 //zero out MBD workspace
                 fMBDWorkspace.ZeroArray();
 
@@ -175,10 +177,10 @@ MHO_MBDelaySearchCUDA::ExecuteImpl(const XArgType* in)
                     //only need to do this once, in order to
                     //set up the mbd delay axis (in frequency space)
                     fFFTEngine.EnableAxisLabelTransformation();
-                    auto mbd_ax = &(std::get<0>(fMBDWorkspace) );
-                    for(std::size_t i=0; i<fNGridPoints;i++)
+                    auto mbd_ax = &(std::get< 0 >(fMBDWorkspace));
+                    for(std::size_t i = 0; i < fNGridPoints; i++)
                     {
-                        mbd_ax->at(i) = fGridStart + i*fGridSpace;
+                        mbd_ax->at(i) = fGridStart + i * fGridSpace;
                     }
                 }
 
@@ -188,20 +190,20 @@ MHO_MBDelaySearchCUDA::ExecuteImpl(const XArgType* in)
                 if(first)
                 {
                     //now grab the transformed (to delay space) mbd axis
-                    fMBDAxis = std::get<0>(fMBDWorkspace);
+                    fMBDAxis = std::get< 0 >(fMBDWorkspace);
                     //turn off for all other iterations
                     fFFTEngine.DisableAxisLabelTransformation();
                     first = false;
                     fMBDBinSep = fMBDAxis.at(1) - fMBDAxis.at(0);
                 }
-                
-                std::size_t nch = std::get<CHANNEL_AXIS>(*in).GetSize();
+
+                std::size_t nch = std::get< CHANNEL_AXIS >(*in).GetSize();
                 fHostBuffer.ZeroArray();
 
                 //fill the 2d workspace
-                for(std::size_t dr_idx=0; dr_idx < fNDRSP; dr_idx++)
+                for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)
                 {
-                    for(std::size_t ch=0; ch<nch; ch++)
+                    for(std::size_t ch = 0; ch < nch; ch++)
                     {
                         std::size_t mbd_bin = fMBDBinMap[ch];
                         fHostBuffer(dr_idx, mbd_bin) = sbd_dr_data(0, ch, dr_idx, 0);
@@ -209,22 +211,24 @@ MHO_MBDelaySearchCUDA::ExecuteImpl(const XArgType* in)
                 }
 
                 //copy to device
-                cudaMemcpy(fDeviceBuffer, fHostBuffer.GetData(), sizeof(visibility_element_type) * fHostBuffer.GetSize(), cudaMemcpyHostToDevice);
-                
+                cudaMemcpy(fDeviceBuffer, fHostBuffer.GetData(), sizeof(visibility_element_type) * fHostBuffer.GetSize(),
+                           cudaMemcpyHostToDevice);
+
                 //now run a batched FFT along the MBD axis
                 cufftExecZ2Z(fCUFFTPlan, fDeviceBuffer, fDeviceBuffer, CUFFT_FORWARD);
 
                 // Copy the result back to host
-                cudaMemcpy(fHostBuffer.GetData(), fDeviceBuffer, sizeof(visibility_element_type) * fHostBuffer.GetSize(), cudaMemcpyDeviceToHost);
+                cudaMemcpy(fHostBuffer.GetData(), fDeviceBuffer, sizeof(visibility_element_type) * fHostBuffer.GetSize(),
+                           cudaMemcpyDeviceToHost);
 
                 //search for the maximum TODO FIXME
-                for(std::size_t dr_idx=0; dr_idx < fNDRSP; dr_idx++)
+                for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)
                 {
                     double dr = fDRAxis.at(dr_idx);
                     bool do_dr_search = (fDRWin[0] <= dr) && (dr <= fDRWin[1]);
                     if(!fDRWinSet || do_dr_search)
                     {
-                        for(std::size_t mbd_idx=0; mbd_idx<fNGridPoints; mbd_idx++)
+                        for(std::size_t mbd_idx = 0; mbd_idx < fNGridPoints; mbd_idx++)
                         {
                             double mbd = (fMBDAxis.at(mbd_idx));
                             bool do_mbd_search = (fMBDWin[0] <= mbd) && (mbd <= fMBDWin[1]);
@@ -237,7 +241,7 @@ MHO_MBDelaySearchCUDA::ExecuteImpl(const XArgType* in)
                                 {
                                     fMax = tmp_max;
                                     //index shift here is because we haven't applied the cyclic rotator to the mbd axis
-                                    fMBDMaxBin = (mbd_idx + fNGridPoints/2) % fNGridPoints;
+                                    fMBDMaxBin = (mbd_idx + fNGridPoints / 2) % fNGridPoints;
                                     fSBDMaxBin = sbd_idx;
                                     fDRMaxBin = dr_idx;
                                 }
@@ -251,8 +255,8 @@ MHO_MBDelaySearchCUDA::ExecuteImpl(const XArgType* in)
 
         //only need to do this once after the last iter (to properly set-up the MBD axis)
         ok = fCyclicRotator.Execute();
-        check_step_fatal(ok, "fringe", "MBD search cyclic rotation execution." << eom );
-        fMBDAxis = std::get<0>(fMBDWorkspace);
+        check_step_fatal(ok, "fringe", "MBD search cyclic rotation execution." << eom);
+        fMBDAxis = std::get< 0 >(fMBDWorkspace);
 
         fCoarseMBD = fMBDAxis(fMBDMaxBin);
         fCoarseSBD = fSBDAxis(fSBDMaxBin);
@@ -269,51 +273,69 @@ MHO_MBDelaySearchCUDA::ExecuteImpl(const XArgType* in)
     return false;
 };
 
-
-double
-MHO_MBDelaySearchCUDA::GetNPointsSearched() const
+double MHO_MBDelaySearchCUDA::GetNPointsSearched() const
 {
     //factor of 4 is due to the fact that the SBD search space
     //has been zero-padded for interpolation (e.g. all points visited are not independent)
-    return fNPointsSearched/4;
+    return fNPointsSearched / 4;
 }
 
 //configure the search windows (using floating point limits)
 //default is the full range
-void
-MHO_MBDelaySearchCUDA::SetSBDWindow(double low, double high)
+void MHO_MBDelaySearchCUDA::SetSBDWindow(double low, double high)
 {
     fSBDWinSet = true;
-    if(low <= high){fSBDWin[0] = low; fSBDWin[1] = high;}
-    else{fSBDWin[1] = low; fSBDWin[0] = high;}
+    if(low <= high)
+    {
+        fSBDWin[0] = low;
+        fSBDWin[1] = high;
+    }
+    else
+    {
+        fSBDWin[1] = low;
+        fSBDWin[0] = high;
+    }
 }
 
-void
-MHO_MBDelaySearchCUDA::SetMBDWindow(double low, double high)
+void MHO_MBDelaySearchCUDA::SetMBDWindow(double low, double high)
 {
     fMBDWinSet = true;
-    if(low <= high){fMBDWin[0] = low; fMBDWin[1] = high;}
-    else{fMBDWin[1] = low; fMBDWin[0] = high;}
+    if(low <= high)
+    {
+        fMBDWin[0] = low;
+        fMBDWin[1] = high;
+    }
+    else
+    {
+        fMBDWin[1] = low;
+        fMBDWin[0] = high;
+    }
 }
 
-void
-MHO_MBDelaySearchCUDA::SetDRWindow(double low, double high)
+void MHO_MBDelaySearchCUDA::SetDRWindow(double low, double high)
 {
     fDRWinSet = true;
-    if(low <= high){fDRWin[0] = low; fDRWin[1] = high;}
-    else{fDRWin[1] = low; fDRWin[0] = high;}
+    if(low <= high)
+    {
+        fDRWin[0] = low;
+        fDRWin[1] = high;
+    }
+    else
+    {
+        fDRWin[1] = low;
+        fDRWin[0] = high;
+    }
 }
 
 //retrieve the window limits
-void
-MHO_MBDelaySearchCUDA::GetSBDWindow(double& low, double& high) const
+void MHO_MBDelaySearchCUDA::GetSBDWindow(double& low, double& high) const
 {
     low = 0.0;
     high = 0.0;
     if(fSBDAxis.GetSize() >= 2)
     {
         low = fSBDAxis.at(0);
-        high = fSBDAxis.at(fSBDAxis.GetSize()-1) + fSBDBinSep;
+        high = fSBDAxis.at(fSBDAxis.GetSize() - 1) + fSBDBinSep;
     }
 
     if(fSBDWinSet)
@@ -323,39 +345,36 @@ MHO_MBDelaySearchCUDA::GetSBDWindow(double& low, double& high) const
     }
 }
 
-void
-MHO_MBDelaySearchCUDA::GetMBDWindow(double& low, double& high) const
+void MHO_MBDelaySearchCUDA::GetMBDWindow(double& low, double& high) const
 {
     low = 0.0;
     high = 0.0;
     if(fMBDAxis.GetSize() >= 2)
     {
         low = fMBDAxis.at(0);
-        high = fMBDAxis.at(fMBDAxis.GetSize()-1) + fMBDBinSep;
+        high = fMBDAxis.at(fMBDAxis.GetSize() - 1) + fMBDBinSep;
     }
     if(fMBDWinSet)
     {
-        low = std::max( fMBDWin[0], low);
+        low = std::max(fMBDWin[0], low);
         high = std::min(fMBDWin[1], high);
     }
 }
 
-void
-MHO_MBDelaySearchCUDA::GetDRWindow(double& low, double& high) const
+void MHO_MBDelaySearchCUDA::GetDRWindow(double& low, double& high) const
 {
     low = 0.0;
     high = 0.0;
     if(fDRAxis.GetSize() >= 2)
     {
         low = fDRAxis.at(0);
-        high = fDRAxis.at(fDRAxis.GetSize()-1) + fDRBinSep;
+        high = fDRAxis.at(fDRAxis.GetSize() - 1) + fDRBinSep;
     }
     if(fDRWinSet)
     {
-        low = std::max( fDRWin[0], low);
+        low = std::max(fDRWin[0], low);
         high = std::min(fDRWin[1], high);
     }
 }
 
-
-}
+} // namespace hops

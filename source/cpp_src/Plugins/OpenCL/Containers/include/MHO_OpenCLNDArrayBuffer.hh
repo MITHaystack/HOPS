@@ -1,36 +1,29 @@
 #ifndef MHO_OpenCLNDArrayBuffer_HH__
 #define MHO_OpenCLNDArrayBuffer_HH__
 
-
-#include "MHO_OpenCLInterface.hh"
 #include "MHO_ExtensibleElement.hh"
+#include "MHO_OpenCLInterface.hh"
 
 namespace hops
 {
 
-
 /*!
-*@file MHO_OpenCLNDArrayBuffer.hh
-*@class MHO_OpenCLNDArrayBuffer
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief
-*/
+ *@file MHO_OpenCLNDArrayBuffer.hh
+ *@class MHO_OpenCLNDArrayBuffer
+ *@author J. Barrett - barrettj@mit.edu
+ *@date
+ *@brief
+ */
 
-template< typename XArrayType >
-class MHO_OpenCLNDArrayBuffer
+template< typename XArrayType > class MHO_OpenCLNDArrayBuffer
 {
     public:
-
-        MHO_OpenCLNDArrayBuffer(MHO_ExtensibleElement* element):
-            fElement(element),
-            fDimensionBufferCL(nullptr),
-            fDataBufferCL(nullptr)
+        MHO_OpenCLNDArrayBuffer(MHO_ExtensibleElement* element)
+            : fElement(element), fDimensionBufferCL(nullptr), fDataBufferCL(nullptr)
         {
             fRank = XArrayType::rank::value;
             fNDArray = dynamic_cast< XArrayType* >(element);
         };
-
 
         virtual ~MHO_OpenCLNDArrayBuffer()
         {
@@ -41,57 +34,59 @@ class MHO_OpenCLNDArrayBuffer
         void ConstructDimensionBuffer()
         {
             //buffer for the dimensions of the array
-            unsigned int n_bytes = (fRank)*sizeof(unsigned int);
+            unsigned int n_bytes = (fRank) * sizeof(unsigned int);
             CL_ERROR_TRY
-            fDimensionBufferCL =
-            new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(), CL_MEM_READ_ONLY, n_bytes);
+            fDimensionBufferCL = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(), CL_MEM_READ_ONLY, n_bytes);
             CL_ERROR_CATCH
         }
 
         void ConstructDataBuffer()
         {
             //buffer for the data
-            unsigned int n_bytes = (static_cast< unsigned int >( fNDArray->GetSize() ) )*sizeof( typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type );
+            unsigned int n_bytes = (static_cast< unsigned int >(fNDArray->GetSize())) *
+                                   sizeof(typename MHO_OpenCLTypeMap< typename XArrayType::value_type >::mapped_type);
             CL_ERROR_TRY
-            fDataBufferCL =
-            new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(), CL_MEM_READ_WRITE, n_bytes);
+            fDataBufferCL = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(), CL_MEM_READ_WRITE, n_bytes);
             CL_ERROR_CATCH
         }
 
-        cl::Buffer* GetDimensionBuffer(){return fDimensionBufferCL;};
-        cl::Buffer* GetDataBuffer(){return fDataBufferCL;}
+        cl::Buffer* GetDimensionBuffer() { return fDimensionBufferCL; };
+
+        cl::Buffer* GetDataBuffer() { return fDataBufferCL; }
 
         void WriteDimensionBuffer()
         {
             //writes the dimensions of the array from the host to the device
             cl::CommandQueue& Q = MHO_OpenCLInterface::GetInstance()->GetQueue();
-            unsigned int n_bytes = fRank*sizeof(unsigned int);
-            for(unsigned int i=0; i<fRank; i++)
+            unsigned int n_bytes = fRank * sizeof(unsigned int);
+            for(unsigned int i = 0; i < fRank; i++)
             {
-                fDimensions[i] = static_cast< unsigned int >( fNDArray->GetDimension(i) );
+                fDimensions[i] = static_cast< unsigned int >(fNDArray->GetDimension(i));
             }
             //we enqueue write the needed constants for this dimension
             CL_ERROR_TRY
-            Q.enqueueWriteBuffer(*fDimensionBufferCL, CL_TRUE, 0, n_bytes, &(fDimensions[0]) );
+            Q.enqueueWriteBuffer(*fDimensionBufferCL, CL_TRUE, 0, n_bytes, &(fDimensions[0]));
             CL_ERROR_CATCH
-            #ifdef ENFORCE_CL_FINISH
+#ifdef ENFORCE_CL_FINISH
             Q.finish();
-            #endif
+#endif
         }
 
         void WriteDataBuffer()
         {
             //Writes data from the host to device
             cl::CommandQueue& Q = MHO_OpenCLInterface::GetInstance()->GetQueue();
-            unsigned int n_bytes = (static_cast< unsigned int >( fNDArray->GetSize() ) )*sizeof( typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type );
-            typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type* ptr;
-            ptr = reinterpret_cast< typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type* >(fNDArray->GetData() );
+            unsigned int n_bytes = (static_cast< unsigned int >(fNDArray->GetSize())) *
+                                   sizeof(typename MHO_OpenCLTypeMap< typename XArrayType::value_type >::mapped_type);
+            typename MHO_OpenCLTypeMap< typename XArrayType::value_type >::mapped_type* ptr;
+            ptr = reinterpret_cast< typename MHO_OpenCLTypeMap< typename XArrayType::value_type >::mapped_type* >(
+                fNDArray->GetData());
             CL_ERROR_TRY
-            Q.enqueueWriteBuffer(*fDataBufferCL, CL_TRUE, 0, n_bytes, ptr );
+            Q.enqueueWriteBuffer(*fDataBufferCL, CL_TRUE, 0, n_bytes, ptr);
             CL_ERROR_CATCH
-            #ifdef ENFORCE_CL_FINISH
+#ifdef ENFORCE_CL_FINISH
             Q.finish();
-            #endif
+#endif
         }
 
         void ReadDataBuffer()
@@ -99,19 +94,20 @@ class MHO_OpenCLNDArrayBuffer
             //TODO FIXME -- need to make sure  typename XArrayType::value_type   is the same size as equivalent OpenCL type we are mapping to
             //read out data from the GPU to the host memory
             cl::CommandQueue& Q = MHO_OpenCLInterface::GetInstance()->GetQueue();
-            unsigned int n_bytes = (static_cast< unsigned int >( fNDArray->GetSize() ) )*sizeof( typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type );
-            typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type* ptr;
-            ptr = reinterpret_cast< typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type* >(fNDArray->GetData() );
+            unsigned int n_bytes = (static_cast< unsigned int >(fNDArray->GetSize())) *
+                                   sizeof(typename MHO_OpenCLTypeMap< typename XArrayType::value_type >::mapped_type);
+            typename MHO_OpenCLTypeMap< typename XArrayType::value_type >::mapped_type* ptr;
+            ptr = reinterpret_cast< typename MHO_OpenCLTypeMap< typename XArrayType::value_type >::mapped_type* >(
+                fNDArray->GetData());
             CL_ERROR_TRY
             Q.enqueueReadBuffer(*fDataBufferCL, CL_TRUE, 0, n_bytes, ptr);
             CL_ERROR_CATCH
-            #ifdef ENFORCE_CL_FINISH
+#ifdef ENFORCE_CL_FINISH
             Q.finish();
-            #endif
+#endif
         }
 
     protected:
-
         MHO_ExtensibleElement* fElement;
         XArrayType* fNDArray;
         unsigned int fRank;
@@ -131,7 +127,6 @@ class MHO_OpenCLNDArrayBuffer
         cl::Buffer* fDataBufferCL;
 };
 
-
-}//end of hops namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_OpenCLNDArrayBuffer */

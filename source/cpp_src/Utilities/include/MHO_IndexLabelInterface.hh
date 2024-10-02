@@ -1,20 +1,18 @@
 #ifndef MHO_IndexLabelInterface_HH__
 #define MHO_IndexLabelInterface_HH__
 
-
-
 #include "MHO_JSONHeaderWrapper.hh"
 
 namespace hops
 {
 
 /*!
-*@file MHO_IndexLabelInterface.hh
-*@class MHO_IndexLabelInterface
-*@date Sun Feb 4 17:21:38 2024 -0500
-*@brief
-*@author J. Barrett - barrettj@mit.edu
-*/
+ *@file MHO_IndexLabelInterface.hh
+ *@class MHO_IndexLabelInterface
+ *@date Sun Feb 4 17:21:38 2024 -0500
+ *@brief
+ *@author J. Barrett - barrettj@mit.edu
+ */
 
 //constructor is protected
 //this class is only intended to provide an interface that derived classes may inherit
@@ -24,24 +22,19 @@ class MHO_IndexLabelInterface
 {
 
     protected:
-
-        MHO_IndexLabelInterface():fIndexLabelObjectPtr(nullptr)
+        MHO_IndexLabelInterface(): fIndexLabelObjectPtr(nullptr)
         {
             fDummy["index"] = -1; //dummy object for invalid returns, always has an invalid index
         };
 
-        MHO_IndexLabelInterface(const MHO_IndexLabelInterface& copy)
-        {
-            fIndexLabelObjectPtr = copy.fIndexLabelObjectPtr;
-        };
+        MHO_IndexLabelInterface(const MHO_IndexLabelInterface& copy) { fIndexLabelObjectPtr = copy.fIndexLabelObjectPtr; };
 
-        void SetIndexLabelObject(mho_json* obj){fIndexLabelObjectPtr = obj;}
+        void SetIndexLabelObject(mho_json* obj) { fIndexLabelObjectPtr = obj; }
 
     public:
-
         virtual ~MHO_IndexLabelInterface(){};
 
-        std::size_t GetIndexLabelSize() const {return fIndexLabelObjectPtr->size();}
+        std::size_t GetIndexLabelSize() const { return fIndexLabelObjectPtr->size(); }
 
         void ClearIndexLabels()
         {
@@ -55,11 +48,11 @@ class MHO_IndexLabelInterface
             if(fIndexLabelObjectPtr != nullptr)
             {
                 std::string ikey = index2key(index);
-                if( !(fIndexLabelObjectPtr->contains(ikey) ) )
+                if(!(fIndexLabelObjectPtr->contains(ikey)))
                 {
                     //no such object, so insert one, make sure it gets an 'index' value
                     (*fIndexLabelObjectPtr).emplace(ikey, fDummy);
-                    (*fIndexLabelObjectPtr)[ ikey ]["index"] = index;
+                    (*fIndexLabelObjectPtr)[ikey]["index"] = index;
                 }
                 //now update
                 mho_json obj;
@@ -78,9 +71,9 @@ class MHO_IndexLabelInterface
             if(fIndexLabelObjectPtr != nullptr)
             {
                 std::string ikey = index2key(index);
-                if( (*fIndexLabelObjectPtr)[ikey].contains(key) )
+                if((*fIndexLabelObjectPtr)[ikey].contains(key))
                 {
-                    value = (*fIndexLabelObjectPtr)[ikey][key].get<XValueType>();
+                    value = (*fIndexLabelObjectPtr)[ikey][key].get< XValueType >();
                     return true;
                 }
             }
@@ -96,15 +89,21 @@ class MHO_IndexLabelInterface
         {
             if(fIndexLabelObjectPtr != nullptr)
             {
-                if(obj.is_null()){return;}
-                if( !(fIndexLabelObjectPtr->is_object() ) ){ (*fIndexLabelObjectPtr) = mho_json(); } //something blew away our object, reset
+                if(obj.is_null())
+                {
+                    return;
+                }
+                if(!(fIndexLabelObjectPtr->is_object()))
+                {
+                    (*fIndexLabelObjectPtr) = mho_json();
+                } //something blew away our object, reset
                 std::string ikey = index2key(index);
-                if( !(fIndexLabelObjectPtr->contains(ikey) ) )
+                if(!(fIndexLabelObjectPtr->contains(ikey)))
                 {
                     //no such object, so insert one, make sure it gets an 'index' value
                     // (*fIndexLabelObjectPtr).emplace(ikey, fDummy);
                     (*fIndexLabelObjectPtr)[ikey] = fDummy;
-                    (*fIndexLabelObjectPtr)[ ikey ]["index"] = index;
+                    (*fIndexLabelObjectPtr)[ikey]["index"] = index;
                 }
 
                 //make sure the object also contains the index value:
@@ -146,19 +145,18 @@ class MHO_IndexLabelInterface
             }
         }
 
-
         //get a vector of indexes which contain a key with the same name
         std::vector< std::size_t > GetMatchingIndexes(std::string& key) const
         {
-            std::vector<std::size_t> idx;
+            std::vector< std::size_t > idx;
             if(fIndexLabelObjectPtr != nullptr)
             {
-                for(std::size_t i=0; i<fIndexLabelObjectPtr->size(); i++)
+                for(std::size_t i = 0; i < fIndexLabelObjectPtr->size(); i++)
                 {
                     std::string ikey = index2key(i);
-                    if( (*fIndexLabelObjectPtr)[ikey].contains(key) )
+                    if((*fIndexLabelObjectPtr)[ikey].contains(key))
                     {
-                        idx.push_back( i );
+                        idx.push_back(i);
                     }
                 }
             }
@@ -173,15 +171,15 @@ class MHO_IndexLabelInterface
         template< typename XValueType >
         std::vector< std::size_t > GetMatchingIndexes(std::string& key, const XValueType& value) const
         {
-            std::vector<std::size_t> idx;
+            std::vector< std::size_t > idx;
             if(fIndexLabelObjectPtr != nullptr)
             {
-                for(std::size_t i=0; i<fIndexLabelObjectPtr->size(); i++)
+                for(std::size_t i = 0; i < fIndexLabelObjectPtr->size(); i++)
                 {
                     std::string ikey = index2key(i);
-                    if( (*fIndexLabelObjectPtr)[ikey].contains(key) )
+                    if((*fIndexLabelObjectPtr)[ikey].contains(key))
                     {
-                        XValueType v = (*fIndexLabelObjectPtr)[ikey][key].get<XValueType>();
+                        XValueType v = (*fIndexLabelObjectPtr)[ikey][key].get< XValueType >();
                         if(v == value)
                         {
                             idx.push_back(i);
@@ -196,17 +194,13 @@ class MHO_IndexLabelInterface
             return idx;
         }
 
-
     private:
-
-        static std::string index2key(const std::size_t& idx) {return std::to_string(idx);}
+        static std::string index2key(const std::size_t& idx) { return std::to_string(idx); }
 
         mho_json* fIndexLabelObjectPtr; //array of mho_json objects holding key:value pairs
         mho_json fDummy;
 };
 
-
-} //end namespace
-
+} // namespace hops
 
 #endif /*! end of include guard: MHO_IndexLabelInterface_HH__ */

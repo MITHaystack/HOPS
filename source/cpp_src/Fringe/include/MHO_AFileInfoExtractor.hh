@@ -1,30 +1,29 @@
 #ifndef MHO_AFileInfoExtractor_HH__
 #define MHO_AFileInfoExtractor_HH__
 
-
-#include <string>
 #include <cmath>
 #include <complex>
-#include <sstream>
 #include <iomanip>
+#include <sstream>
+#include <string>
 
-#include "MHO_Message.hh"
 #include "MHO_Clock.hh"
+#include "MHO_Message.hh"
 
-#include "MHO_ParameterStore.hh"
 #include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_ParameterStore.hh"
 
 namespace hops
 {
 
 /*!
-*@file MHO_AFileInfoExtractor.hh
-*@class MHO_AFileInfoExtractor
-*@author
-*Email:
-*@date Wed Sep 20 16:12:23 2023 -0400
-*@brief extract useful inpformation from .cor, .frng. and root files for afile generation
-*/
+ *@file MHO_AFileInfoExtractor.hh
+ *@class MHO_AFileInfoExtractor
+ *@author
+ *Email:
+ *@date Wed Sep 20 16:12:23 2023 -0400
+ *@brief extract useful inpformation from .cor, .frng. and root files for afile generation
+ */
 
 enum par_type
 {
@@ -36,7 +35,6 @@ enum par_type
     unknown_type
 };
 
-
 class MHO_AFileInfoExtractor
 {
 
@@ -45,7 +43,6 @@ class MHO_AFileInfoExtractor
         virtual ~MHO_AFileInfoExtractor(){};
 
     public:
-
         // static mho_json summarize_root_file(std::string filename);
         // static mho_json summarize_corel_file(std::string filename);
         // static mho_json summarize_station_file(std::string filename);
@@ -57,18 +54,18 @@ class MHO_AFileInfoExtractor
         std::string GetAlistHeader(int version, int type, char comment_char);
 
     protected:
-
         //retrieve from the parameter store
-        void RetrieveParameter(mho_json& obj, const std::string& name, const MHO_ParameterStore& paramStore, const std::string& path, const std::string& type);
+        void RetrieveParameter(mho_json& obj, const std::string& name, const MHO_ParameterStore& paramStore,
+                               const std::string& path, const std::string& type);
 
         //retrieve from a json object, convert to string
-        std::string RetrieveParameterAsString(const mho_json& obj, const std::string& name, const std::string& type, const std::string& pformat);
+        std::string RetrieveParameterAsString(const mho_json& obj, const std::string& name, const std::string& type,
+                                              const std::string& pformat);
 
         par_type DetermineParameterType(std::string etype);
 
         //convert a type to a string using the specified pformat
-        template< typename XValueType >
-        std::string ConvertToString(XValueType value, const std::string& pformat)
+        template< typename XValueType > std::string ConvertToString(XValueType value, const std::string& pformat)
         {
             std::string output;
             std::stringstream ss;
@@ -89,6 +86,6 @@ class MHO_AFileInfoExtractor
         }
 };
 
-}//end namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_AFileInfoExtractor_HH__ */

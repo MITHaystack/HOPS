@@ -1,48 +1,49 @@
-#include <iostream>
-#include <vector>
-#include <memory>
+#include <cmath>
 #include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <memory>
+#include <random>
 #include <sstream>
 #include <thread>
 #include <unistd.h>
-#include <iomanip>
-#include <random>
-#include <cmath>
+#include <vector>
 
 // CUDA includes
 #include <cuComplex.h>
+#include <cuda.h>
+#include <cuda_runtime_api.h>
 #include <cufft.h>
 #include <stdint.h>
-#include <cuda_runtime_api.h>
-#include <cuda.h>
 
-#include <iostream>
-#include <cufft.h>
 #include <complex>
+#include <cufft.h>
+#include <iostream>
 
-int main() {
+int main()
+{
 
     // Define the size of the array
-    const int N = 1024;  // Number of rows
-    const int M = 512;   // Number of columns
+    const int N = 1024; // Number of rows
+    const int M = 512;  // Number of columns
 
     // Create a 2D array of complex numbers
-    std::complex<double>* hostData = new std::complex<double>[N * M];
+    std::complex< double >* hostData = new std::complex< double >[N * M];
 
     // Allocate device memory for the input data
     cufftDoubleComplex* deviceData;
     cudaMalloc((void**)&deviceData, sizeof(cufftDoubleComplex) * N * M);
-    cudaMemcpy(deviceData, hostData, sizeof(std::complex<double>) * N * M, cudaMemcpyHostToDevice);
+    cudaMemcpy(deviceData, hostData, sizeof(std::complex< double >) * N * M, cudaMemcpyHostToDevice);
 
     // Create a cuFFT plan
     cufftHandle plan;
-    cufftPlan1d(&plan, M, CUFFT_Z2Z, N);  // 1D complex-to-complex FFT along the second dimension
+    cufftPlan1d(&plan, M, CUFFT_Z2Z, N); // 1D complex-to-complex FFT along the second dimension
 
     // Execute FFT
     cufftExecZ2Z(plan, deviceData, deviceData, CUFFT_FORWARD);
 
     // Copy the result back to host
-    cudaMemcpy(hostData, deviceData, sizeof(std::complex<double>) * N * M, cudaMemcpyDeviceToHost);
+    cudaMemcpy(hostData, deviceData, sizeof(std::complex< double >) * N * M, cudaMemcpyDeviceToHost);
 
     // Clean up
     cufftDestroy(plan);
@@ -51,8 +52,6 @@ int main() {
 
     return 0;
 }
-
-
 
 // int main() {
 //     // Define the dimensions of the 4D array

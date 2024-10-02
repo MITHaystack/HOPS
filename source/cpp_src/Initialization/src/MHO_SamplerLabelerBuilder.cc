@@ -1,41 +1,39 @@
 #include "MHO_SamplerLabelerBuilder.hh"
-#include "MHO_SamplerLabeler.hh"
 #include "MHO_ContainerDefinitions.hh"
+#include "MHO_SamplerLabeler.hh"
 
 #include "MHO_Meta.hh"
 #include "MHO_Tokenizer.hh"
 
-#include <vector>
-#include <map>
 #include <cstdlib>
+#include <map>
+#include <vector>
 
 namespace hops
 {
 
-
-bool
-MHO_SamplerLabelerBuilder::Build()
+bool MHO_SamplerLabelerBuilder::Build()
 {
-    if( IsConfigurationOk() )
+    if(IsConfigurationOk())
     {
-        msg_debug("initialization", "building sampler labeling operator."<< eom);
+        msg_debug("initialization", "building sampler labeling operator." << eom);
 
-        std::string op_name = fAttributes["name"].get<std::string>();
+        std::string op_name = fAttributes["name"].get< std::string >();
         std::string op_category = "labeling";
-        double priority = fFormat["priority"].get<double>();
+        double priority = fFormat["priority"].get< double >();
 
         //retrieve the arguments to operate on from the container store
-        visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
+        visibility_type* vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
 
-        if( vis_data == nullptr)
+        if(vis_data == nullptr)
         {
             msg_error("initialization", "cannot construct MHO_SamplerLabeler without visibility or weight data." << eom);
             return false;
         }
 
         //get the reference and remote station mk4ids
-        std::string ref_id = this->fParameterStore->GetAs<std::string>("/ref_station/mk4id");
-        std::string rem_id = this->fParameterStore->GetAs<std::string>("/rem_station/mk4id");
+        std::string ref_id = this->fParameterStore->GetAs< std::string >("/ref_station/mk4id");
+        std::string rem_id = this->fParameterStore->GetAs< std::string >("/rem_station/mk4id");
 
         //now determine the path to the channel->sampler info, if it exists at all
         std::string generic_path = "/control/station/samplers";
@@ -61,7 +59,8 @@ MHO_SamplerLabelerBuilder::Build()
         //bail out if no info available
         if(ref_path == "" && rem_path == "")
         {
-            msg_debug("initialization", "will not build MHO_SamplerLabeler operator, as there is no sampler-info present." << eom);
+            msg_debug("initialization",
+                      "will not build MHO_SamplerLabeler operator, as there is no sampler-info present." << eom);
             return false;
         }
 
@@ -80,9 +79,15 @@ MHO_SamplerLabelerBuilder::Build()
             this->fParameterStore->Get(rem_path, rem_sampler_info);
         }
 
-        MHO_SamplerLabeler<visibility_type>* op = new MHO_SamplerLabeler<visibility_type>();
-        if(ref_sampler_info.size() != 0 ){op->SetReferenceStationSamplerChannelSets(ref_sampler_info);}
-        if(rem_sampler_info.size() != 0 ){op->SetRemoteStationSamplerChannelSets(rem_sampler_info);}
+        MHO_SamplerLabeler< visibility_type >* op = new MHO_SamplerLabeler< visibility_type >();
+        if(ref_sampler_info.size() != 0)
+        {
+            op->SetReferenceStationSamplerChannelSets(ref_sampler_info);
+        }
+        if(rem_sampler_info.size() != 0)
+        {
+            op->SetRemoteStationSamplerChannelSets(rem_sampler_info);
+        }
         op->SetArgs(vis_data);
         op->SetName(op_name);
         op->SetPriority(priority);
@@ -93,5 +98,4 @@ MHO_SamplerLabelerBuilder::Build()
     return false;
 }
 
-
-}//end namespace
+} // namespace hops

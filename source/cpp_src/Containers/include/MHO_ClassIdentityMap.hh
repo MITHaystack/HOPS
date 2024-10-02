@@ -1,35 +1,31 @@
 #ifndef MHO_ClassIdentityMap_HH__
 #define MHO_ClassIdentityMap_HH__
 
-
-#include "MHO_ClassIdentity.hh"
-#include "MHO_MD5HashGenerator.hh"
-#include "MHO_UUID.hh"
 #include "MHO_BinaryFileInterface.hh"
-#include "MHO_SerializableObjectFactory.hh"
+#include "MHO_ClassIdentity.hh"
 #include "MHO_ContainerJSONConverter.hh"
+#include "MHO_MD5HashGenerator.hh"
+#include "MHO_SerializableObjectFactory.hh"
+#include "MHO_UUID.hh"
 
+#include <iostream>
 #include <map>
 #include <string>
-#include <iostream>
 
 namespace hops
 {
 
 /*!
-*@file MHO_ClassIdentityMap.hh
-*@class MHO_ClassIdentityMap
-*@author J. Barrett - barrettj@mit.edu
-*@date Thu Apr 29 12:30:28 2021 -0400
-*@brief
-*/
-
-
+ *@file MHO_ClassIdentityMap.hh
+ *@class MHO_ClassIdentityMap
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Thu Apr 29 12:30:28 2021 -0400
+ *@brief
+ */
 
 class MHO_ClassIdentityMap
 {
     public:
-
         MHO_ClassIdentityMap(){};
 
         virtual ~MHO_ClassIdentityMap()
@@ -45,31 +41,29 @@ class MHO_ClassIdentityMap
             }
         };
 
-        template<typename XClassType>
-        void AddClassType()
+        template< typename XClassType > void AddClassType()
         {
             fMD5Generator.Initialize();
-            std::string name = MHO_ClassIdentity::ClassName<XClassType>();
+            std::string name = MHO_ClassIdentity::ClassName< XClassType >();
             fMD5Generator << name;
             fMD5Generator.Finalize();
             MHO_UUID type_uuid = fMD5Generator.GetDigestAsUUID();
             AddToMap(type_uuid, name);
             //add a factory for these types of objects
             auto it = fFactoryMap.find(type_uuid);
-            if( it == fFactoryMap.end())
+            if(it == fFactoryMap.end())
             {
-                fFactoryMap.emplace(type_uuid, new MHO_SerializableObjectFactorySpecific<XClassType>() );
+                fFactoryMap.emplace(type_uuid, new MHO_SerializableObjectFactorySpecific< XClassType >());
             }
 
             auto it2 = fJSONConverterMap.find(type_uuid);
-            if( it2 == fJSONConverterMap.end())
+            if(it2 == fJSONConverterMap.end())
             {
-                fJSONConverterMap.emplace(type_uuid, new MHO_ContainerJSONConverter<XClassType>() );
+                fJSONConverterMap.emplace(type_uuid, new MHO_ContainerJSONConverter< XClassType >());
             }
         };
 
-        template<typename XClassType>
-        void AddClassType(const XClassType& obj)
+        template< typename XClassType > void AddClassType(const XClassType& obj)
         {
             fMD5Generator.Initialize();
             std::string name = MHO_ClassIdentity::ClassName(obj);
@@ -79,21 +73,19 @@ class MHO_ClassIdentityMap
             AddToMap(type_uuid, name);
             //add a factory for these types of objects
             auto it = fFactoryMap.find(type_uuid);
-            if( it == fFactoryMap.end())
+            if(it == fFactoryMap.end())
             {
-                fFactoryMap.emplace(type_uuid, new MHO_SerializableObjectFactorySpecific<XClassType>() );
+                fFactoryMap.emplace(type_uuid, new MHO_SerializableObjectFactorySpecific< XClassType >());
             }
 
             auto it2 = fJSONConverterMap.find(type_uuid);
-            if( it2 == fJSONConverterMap.end())
+            if(it2 == fJSONConverterMap.end())
             {
-                fJSONConverterMap.emplace(type_uuid, new MHO_ContainerJSONConverter<XClassType>() );
+                fJSONConverterMap.emplace(type_uuid, new MHO_ContainerJSONConverter< XClassType >());
             }
         };
 
-
-        template<typename XClassType>
-        std::string GetClassNameFromObject(const XClassType& obj)
+        template< typename XClassType > std::string GetClassNameFromObject(const XClassType& obj)
         {
             std::string name = MHO_ClassIdentity::ClassName(obj);
             return name;
@@ -102,7 +94,7 @@ class MHO_ClassIdentityMap
         std::string GetClassNameFromUUID(const MHO_UUID& uuid) const
         {
             std::map< MHO_UUID, std::string >::const_iterator it = fUUID2ClassName.find(uuid);
-            if( it != fUUID2ClassName.end() )
+            if(it != fUUID2ClassName.end())
             {
                 return std::string(it->second);
             }
@@ -116,24 +108,26 @@ class MHO_ClassIdentityMap
         {
             MHO_UUID tmp;
             const auto it = fClassName2UUID.find(name);
-            if( it != fClassName2UUID.end() )
+            if(it != fClassName2UUID.end())
             {
                 tmp = it->second;
             }
             return tmp;
         };
 
-        template<typename XClassType>
-        MHO_UUID GetUUIDFor() const
+        template< typename XClassType > MHO_UUID GetUUIDFor() const
         {
-            std::string name = MHO_ClassIdentity::ClassName<XClassType>();
+            std::string name = MHO_ClassIdentity::ClassName< XClassType >();
             return GetUUIDFromClassName(name);
         }
 
         bool IsTypePresent(const MHO_UUID& uuid) const
         {
             auto it = fUUID2ClassName.find(uuid);
-            if(it != fUUID2ClassName.end()){return true;}
+            if(it != fUUID2ClassName.end())
+            {
+                return true;
+            }
             return false;
         }
 
@@ -144,16 +138,17 @@ class MHO_ClassIdentityMap
         MHO_Serializable* GenerateContainerFromUUID(const MHO_UUID& uuid)
         {
             auto it = fFactoryMap.find(uuid);
-            if( it != fFactoryMap.end() )
+            if(it != fFactoryMap.end())
             {
                 return fFactoryMap[uuid]->Build();
             }
-            else{return nullptr;}
+            else
+            {
+                return nullptr;
+            }
         }
 
-
     protected:
-
         void AddToMap(const MHO_UUID& type_uuid, const std::string& name)
         {
             fUUID2ClassName[type_uuid] = name;
@@ -165,9 +160,8 @@ class MHO_ClassIdentityMap
         std::map< std::string, MHO_UUID > fClassName2UUID;
         std::map< MHO_UUID, MHO_SerializableObjectFactory* > fFactoryMap;
         std::map< MHO_UUID, MHO_JSONConverter* > fJSONConverterMap;
-
 };
 
-}
+} // namespace hops
 
 #endif /*! end of include guard: MHO_ClassIdentityMap */

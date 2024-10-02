@@ -1,24 +1,23 @@
-#include <iostream>
-#include <iomanip>
 #include <cstring>
+#include <iomanip>
+#include <iostream>
 
-#include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
+#include <pybind11/pybind11.h>
 namespace py = pybind11;
 
-#include "MHO_Message.hh"
 #include "MHO_FileKey.hh"
+#include "MHO_Message.hh"
 
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_ContainerStore.hh"
 #include "MHO_PyContainerStoreInterface.hh"
 
 #include "MHO_ParameterStore.hh"
-#include "MHO_PyParameterStoreInterface.hh"
 #include "MHO_PyConfigurePath.hh"
+#include "MHO_PyParameterStoreInterface.hh"
 
 using namespace hops;
-
 
 int main()
 {
@@ -28,7 +27,7 @@ int main()
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive
     configure_pypath();
 
-    std::cout<<"the python path directories: "<<std::endl;
+    std::cout << "the python path directories: " << std::endl;
 
     py::exec(R"(
         import sys
@@ -41,9 +40,9 @@ int main()
 
     visibility_type* obj = new visibility_type();
     weight_type* wobj = new weight_type();
-    obj->Resize(1,1,2,2);
+    obj->Resize(1, 1, 2, 2);
     obj->ZeroArray();
-    wobj->Resize(1,1,2,2);
+    wobj->Resize(1, 1, 2, 2);
     wobj->ZeroArray();
 
     MHO_FileKey key;
@@ -56,11 +55,11 @@ int main()
 
     //stuff something in the container store
     store.AddObject(obj);
-    std::string shortname = std::string(key.fName, MHO_FileKeyNameLength ).c_str();
+    std::string shortname = std::string(key.fName, MHO_FileKeyNameLength).c_str();
     store.SetShortName(obj->GetObjectUUID(), shortname);
 
     store.AddObject(wobj);
-    std::string wshortname = std::string(wkey.fName, MHO_FileKeyNameLength ).c_str();
+    std::string wshortname = std::string(wkey.fName, MHO_FileKeyNameLength).c_str();
     store.SetShortName(wobj->GetObjectUUID(), wshortname);
 
     //now put the object uuid in the parameter store so we can look it up on the python side
@@ -79,15 +78,15 @@ int main()
     mho_constore_test.attr("test_inter")(conInter, parmInter);
 
     //dump out the visibility array
-    for(std::size_t i=0; i<obj->GetSize(); i++)
+    for(std::size_t i = 0; i < obj->GetSize(); i++)
     {
-        std::cout<<"vis value @ "<<i<<" = "<<(*obj)[i]<<std::endl;
+        std::cout << "vis value @ " << i << " = " << (*obj)[i] << std::endl;
     }
 
     //dump out the weight array
-    for(std::size_t i=0; i<obj->GetSize(); i++)
+    for(std::size_t i = 0; i < obj->GetSize(); i++)
     {
-        std::cout<<"weight value @ "<<i<<" = "<<(*wobj)[i]<<std::endl;
+        std::cout << "weight value @ " << i << " = " << (*wobj)[i] << std::endl;
     }
 
     return 0;

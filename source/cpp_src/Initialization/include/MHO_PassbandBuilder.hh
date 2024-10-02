@@ -1,40 +1,33 @@
 #ifndef MHO_PassbandBuilderBuilder_HH__
 #define MHO_PassbandBuilderBuilder_HH__
 
-
 #include "MHO_OperatorBuilder.hh"
 
 namespace hops
 {
 
 /*!
-*@file MHO_PassbandBuilder.hh
-*@class MHO_PassbandBuilder
-*@author J. Barrett - barrettj@mit.edu
-*@date Tue Jun 20 12:35:56 2023 -0400
-*@brief
-*/
+ *@file MHO_PassbandBuilder.hh
+ *@class MHO_PassbandBuilder
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Tue Jun 20 12:35:56 2023 -0400
+ *@brief
+ */
 
-class MHO_PassbandBuilder:
-    public MHO_OperatorBuilder
+class MHO_PassbandBuilder: public MHO_OperatorBuilder
 {
     public:
-
-        MHO_PassbandBuilder(MHO_OperatorToolbox* toolbox,
-                            MHO_ContainerStore* cstore = nullptr,
-                            MHO_ParameterStore* pstore = nullptr):
-            MHO_OperatorBuilder(toolbox, cstore, pstore)
-        {};
+        MHO_PassbandBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
+                            MHO_ParameterStore* pstore = nullptr)
+            : MHO_OperatorBuilder(toolbox, cstore, pstore){};
 
         virtual ~MHO_PassbandBuilder(){};
 
         virtual bool Build() override;
 
     private:
-
 };
 
-}//end namespace
-
+} // namespace hops
 
 #endif /*! end of include guard: MHO_PassbandBuilderBuilder_HH__ */

@@ -1,9 +1,8 @@
 #include <iostream>
 
 #include "MHO_FileKey.hh"
-#include "MHO_UUIDGenerator.hh"
 #include "MHO_MD5HashGenerator.hh"
-
+#include "MHO_UUIDGenerator.hh"
 
 using namespace hops;
 
@@ -11,15 +10,15 @@ int main(int /*argc*/, char** /*argv*/)
 {
     MHO_UUIDGenerator* gen = new MHO_UUIDGenerator();
 
-    std::cout<<"1 uuid = "<< gen->GenerateUUIDAsString()<<std::endl;
-    std::cout<<"2 uuid = "<< gen->GenerateUUIDAsString()<<std::endl;
-    std::cout<<"3 uuid = "<< gen->GenerateUUIDAsString()<<std::endl;
-    std::cout<<"4 uuid = "<< gen->GenerateUUIDAsString()<<std::endl;
-    std::cout<<"5 uuid = "<< gen->GenerateUUIDAsString()<<std::endl;
-    std::cout<<"6 uuid = "<< gen->GenerateUUIDAsString()<<std::endl;
-    std::cout<<"7 uuid = "<< gen->GenerateUUIDAsString()<<std::endl;
-    std::cout<<"8 uuid = "<< gen->GenerateUUIDAsString()<<std::endl;
-    std::cout<<"9 uuid = "<< gen->GenerateUUIDAsString()<<std::endl;
+    std::cout << "1 uuid = " << gen->GenerateUUIDAsString() << std::endl;
+    std::cout << "2 uuid = " << gen->GenerateUUIDAsString() << std::endl;
+    std::cout << "3 uuid = " << gen->GenerateUUIDAsString() << std::endl;
+    std::cout << "4 uuid = " << gen->GenerateUUIDAsString() << std::endl;
+    std::cout << "5 uuid = " << gen->GenerateUUIDAsString() << std::endl;
+    std::cout << "6 uuid = " << gen->GenerateUUIDAsString() << std::endl;
+    std::cout << "7 uuid = " << gen->GenerateUUIDAsString() << std::endl;
+    std::cout << "8 uuid = " << gen->GenerateUUIDAsString() << std::endl;
+    std::cout << "9 uuid = " << gen->GenerateUUIDAsString() << std::endl;
     //
     // MHO_FileKey aKey;
 
@@ -29,7 +28,6 @@ int main(int /*argc*/, char** /*argv*/)
     // aKey.fSize = 1;
     //std::cout << "file obj key "<< std::endl;
     //std::cout << aKey <<std::endl;
-
 
     MHO_MD5HashGenerator* md5gen = new MHO_MD5HashGenerator();
     md5gen->Initialize();
@@ -46,7 +44,7 @@ int main(int /*argc*/, char** /*argv*/)
     *md5gen << tmp;
     md5gen->Finalize();
 
-    std::cout<< std::hex << md5gen->GetDigest() << std::endl;
+    std::cout << std::hex << md5gen->GetDigest() << std::endl;
 
     delete gen;
     delete md5gen;

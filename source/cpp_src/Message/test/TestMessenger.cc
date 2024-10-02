@@ -1,8 +1,6 @@
 #include "MHO_Message.hh"
 
-
 using namespace hops;
-
 
 int main(int /*argc*/, char** /*argv*/)
 {
@@ -18,11 +16,12 @@ int main(int /*argc*/, char** /*argv*/)
     double pi_value = 3.14159265;
     int a = 2;
     int n = 5;
-    msg_info("math", "I have a message for you: pi = " << pi_value << eom );
+    msg_info("math", "I have a message for you: pi = " << pi_value << eom);
     msg_status("core", "I have message for you: n = " << n << eom);
 
     //dummy is not in the set of keys, so this shouldn't make it to the terminal
-    msg_status("dummy", "I have message for you: " << "you better not see this!" << eom);
+    msg_status("dummy", "I have message for you: "
+                            << "you better not see this!" << eom);
 
     //pass an error message
     msg_error("math", "I have found: " << a << " + " << a << " = " << n << eom);
@@ -37,18 +36,19 @@ int main(int /*argc*/, char** /*argv*/)
     //now set things up so any message with any key can be passed
     //(even if it is not is the list of acceptable keys)
     MHO_Message::GetInstance().AcceptAllKeys();
-    msg_status("dummy", "I have message for you: " << "its OK if you see this!" << eom);
+    msg_status("dummy", "I have message for you: "
+                            << "its OK if you see this!" << eom);
 
     //try to pass a debug message
     msg_debug("core", "If you have enabled the option ENABLE_DEBUG_MSG you will see me." << eom);
 
-    #ifndef HOPS_ENABLE_DEBUG_MSG
+#ifndef HOPS_ENABLE_DEBUG_MSG
     msg_info("core", "ENABLE_DEBUG_MSG is disabled, debug messages will be hidden." << eom);
-    #endif
+#endif
 
-    msg_warn("dummy", "This is a warning." << eom );
+    msg_warn("dummy", "This is a warning." << eom);
 
-    msg_fatal("dummy", "This is a fatal error." << eom );
+    msg_fatal("dummy", "This is a fatal error." << eom);
 
     return 0;
 }

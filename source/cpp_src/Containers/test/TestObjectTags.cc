@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 
-#include "MHO_ObjectTags.hh"
 #include "MHO_BinaryFileInterface.hh"
+#include "MHO_ObjectTags.hh"
 
 using namespace hops;
 
@@ -20,7 +20,7 @@ int main(int /*argc*/, char** /*argv*/)
     test.AddObjectUUID(a_test_uuid);
     test.AddObjectUUID(a_test_uuid2);
 
-    test.SetTagValue("tag1", std::string("val1") );
+    test.SetTagValue("tag1", std::string("val1"));
     test.SetTagValue("tag2", 1);
     test.SetTagValue("tag3", 3.14);
     test.SetTagValue("tag4", 'U');
@@ -29,7 +29,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::string filename = "./test-tags.bin";
 
-    std::cout<<" number of bytes of this object: "<< test.GetSerializedSize()<<std::endl;
+    std::cout << " number of bytes of this object: " << test.GetSerializedSize() << std::endl;
 
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(filename);
@@ -42,12 +42,12 @@ int main(int /*argc*/, char** /*argv*/)
     }
     else
     {
-        std::cout<<"error opening file"<<std::endl;
+        std::cout << "error opening file" << std::endl;
     }
 
     inter.Close();
 
-    std::cout<<"-------- Now testing read back of object --------- "<<std::endl;
+    std::cout << "-------- Now testing read back of object --------- " << std::endl;
 
     MHO_ObjectTags test2;
     status = inter.OpenToRead(filename);
@@ -60,15 +60,17 @@ int main(int /*argc*/, char** /*argv*/)
         test2.DumpTags(keys);
         for(auto it = keys.begin(); it != keys.end(); it++)
         {
-            std::cout<<"key = "<<*it<<std::endl;
+            std::cout << "key = " << *it << std::endl;
             // std::cout<<"key value type = "<< test2.GetTagValueType(*it) << std::endl;
-            std::cout<<"key value = "<<test2.GetTagValueAsString(*it) <<std::endl;
+            std::cout << "key value = " << test2.GetTagValueAsString(*it) << std::endl;
         }
     }
-    else{std::cout<<" error opening file to read"<<std::endl; }
+    else
+    {
+        std::cout << " error opening file to read" << std::endl;
+    }
 
     inter.Close();
-
 
     return 0;
 }

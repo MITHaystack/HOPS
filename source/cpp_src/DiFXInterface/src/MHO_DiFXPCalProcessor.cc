@@ -1,16 +1,15 @@
 #include "MHO_DiFXPCalProcessor.hh"
 #include "MHO_DirectoryInterface.hh"
 
+#include <cmath>
+#include <cstdlib>
 #include <fstream>
 #include <sstream>
-#include <cstdlib>
-#include <cmath>
 
 //#include <iostream>
 
 namespace hops
 {
-
 
 MHO_DiFXPCalProcessor::MHO_DiFXPCalProcessor()
 {
@@ -21,12 +20,10 @@ MHO_DiFXPCalProcessor::MHO_DiFXPCalProcessor()
     fValid = false;
 }
 
+MHO_DiFXPCalProcessor::~MHO_DiFXPCalProcessor()
+{}
 
-MHO_DiFXPCalProcessor::~MHO_DiFXPCalProcessor(){}
-
-
-void
-MHO_DiFXPCalProcessor::SetFilename(std::string filename)
+void MHO_DiFXPCalProcessor::SetFilename(std::string filename)
 {
     fValid = false;
     //tokenize the file name, and verify it is a 'PCAL' file
@@ -50,15 +47,14 @@ MHO_DiFXPCalProcessor::SetFilename(std::string filename)
     }
     else
     {
-        msg_error("difx_interface", "filename pattern does not match PCAL type for file: "<< filename << eom);
+        msg_error("difx_interface", "filename pattern does not match PCAL type for file: " << filename << eom);
     }
 
     //reset the tokenizer delim back to the default
     fTokenizer.SetDelimiter(" ");
 }
 
-void
-MHO_DiFXPCalProcessor::ReadPCalFile()
+void MHO_DiFXPCalProcessor::ReadPCalFile()
 {
     if(fValid)
     {
@@ -73,7 +69,7 @@ MHO_DiFXPCalProcessor::ReadPCalFile()
             if(file.is_open())
             {
                 //read lines until end
-                while( getline(file,fLine) )
+                while(getline(file, fLine))
                 {
                     if(fLine.size() != 0)
                     {
@@ -95,29 +91,27 @@ MHO_DiFXPCalProcessor::ReadPCalFile()
     }
 }
 
-
-bool
-MHO_DiFXPCalProcessor::IsComment()
+bool MHO_DiFXPCalProcessor::IsComment()
 {
     //we are working under the assumption that the header lines have '#' first char
     if(fLine.size() >= 1)
     {
-        if(fLine[0] == '#'){return true;}
+        if(fLine[0] == '#')
+        {
+            return true;
+        }
     }
     return false;
 }
 
-
-void
-MHO_DiFXPCalProcessor::TokenizeLine()
+void MHO_DiFXPCalProcessor::TokenizeLine()
 {
     fTokens.clear();
     fTokenizer.SetString(&fLine);
     fTokenizer.GetTokens(&fTokens);
 }
 
-void
-MHO_DiFXPCalProcessor::ProcessTokens()
+void MHO_DiFXPCalProcessor::ProcessTokens()
 {
     if(fTokens.size() >= 6)
     {
@@ -136,7 +130,7 @@ MHO_DiFXPCalProcessor::ProcessTokens()
 
         //now loop through the rest of the p-cal phasor data (4 tokens at a time)
         int itone = 0;
-        while(n < fTokens.size() )
+        while(n < fTokens.size())
         {
             itone = std::atoi(fTokens[n].c_str());
             pcal_phasor ph;
@@ -144,7 +138,7 @@ MHO_DiFXPCalProcessor::ProcessTokens()
             std::string pol = fTokens[n++];
             double real = std::atof(fTokens[n++].c_str());
             double imag = std::atof(fTokens[n++].c_str());
-            ph.phasor = pcal_phasor_type(real,imag);
+            ph.phasor = pcal_phasor_type(real, imag);
             if(itone > 0 && pol != "0")
             {
                 fPolSet.insert(pol);
@@ -153,12 +147,9 @@ MHO_DiFXPCalProcessor::ProcessTokens()
         }
         fPCalData.push_back(pp);
     }
-
 }
 
-
-void
-MHO_DiFXPCalProcessor::Organize()
+void MHO_DiFXPCalProcessor::Organize()
 {
     if(fValid)
     {
@@ -169,7 +160,7 @@ MHO_DiFXPCalProcessor::Organize()
             ss << *ppit << " ";
         }
 
-        msg_debug("difx_interface", "pcal for station: "<< fStationCode << ss.str() << eom);
+        msg_debug("difx_interface", "pcal for station: " << fStationCode << ss.str() << eom);
 
         fSortedPCalData.clear();
         //we need to run through all of the p-cal data and merge tone/phasor data
@@ -181,38 +172,46 @@ MHO_DiFXPCalProcessor::Organize()
         for(auto it = fPCalData.begin(); it != fPCalData.end(); ++it)
         {
             double ap_time = it->mjd;
-            if(ap_time < first_ap){first_ap = ap_time;}
+            if(ap_time < first_ap)
+            {
+                first_ap = ap_time;
+            }
         }
 
         //then figure out the AP associated with each pcal accumulation
         //note: we are assuming here that the AP length does not change during
         //a scan
-        std::set<int> ap_set;
+        std::set< int > ap_set;
         for(auto it = fPCalData.begin(); it != fPCalData.end(); ++it)
         {
             //check to make sure each pcal AP is the same as the correlation specified AP
-            double current_ap_length_sec = fSecondsPerDay*(it->mjd_period);
-            if(std::fabs(fAPLength - current_ap_length_sec)/fAPLength > fTolerance )
+            double current_ap_length_sec = fSecondsPerDay * (it->mjd_period);
+            if(std::fabs(fAPLength - current_ap_length_sec) / fAPLength > fTolerance)
             {
-                msg_warn("difx_interface", "pcal accumulation period ("<<fAPLength<<") does not appear to match correlation accumulation period ("<<current_ap_length_sec<<")." << eom );
+                msg_warn("difx_interface", "pcal accumulation period ("
+                                               << fAPLength << ") does not appear to match correlation accumulation period ("
+                                               << current_ap_length_sec << ")." << eom);
             }
 
             double ap_time = it->mjd;
             double delta = ap_time - first_ap;
-            int ap = std::round(delta/(it->mjd_period));
+            int ap = std::round(delta / (it->mjd_period));
             it->ap = ap;
             ap_set.insert(ap);
         }
 
         //now we need to merge pcal records that share the same AP
         //brute force search
-        std::map< int, std::vector<std::size_t> > aps_to_merge;
+        std::map< int, std::vector< std::size_t > > aps_to_merge;
         for(auto ap_it = ap_set.begin(); ap_it != ap_set.end(); ++ap_it)
         {
             int ap = *ap_it;
             for(std::size_t idx = 0; idx < fPCalData.size(); ++idx)
             {
-                if(fPCalData[idx].ap == ap){ aps_to_merge[ap].push_back(idx);}
+                if(fPCalData[idx].ap == ap)
+                {
+                    aps_to_merge[ap].push_back(idx);
+                }
             }
         }
 
@@ -220,13 +219,13 @@ MHO_DiFXPCalProcessor::Organize()
         for(auto elem = aps_to_merge.begin(); elem != aps_to_merge.end(); elem++)
         {
             int ap = elem->first;
-            std::vector<std::size_t> idx_set = elem->second;
+            std::vector< std::size_t > idx_set = elem->second;
 
             pcal_period pp;
             std::vector< pcal_phasor > ap_pcal;
-            for(std::size_t i=0; i<idx_set.size(); i++)
+            for(std::size_t i = 0; i < idx_set.size(); i++)
             {
-                if(i==0)
+                if(i == 0)
                 {
                     pp.station = fPCalData[idx_set[i]].station;
                     pp.mjd = fPCalData[idx_set[i]].mjd;
@@ -238,16 +237,15 @@ MHO_DiFXPCalProcessor::Organize()
                 for(auto ppit = fPolSet.begin(); ppit != fPolSet.end(); ppit++)
                 {
                     std::string pol = *ppit;
-                    pp.pc_phasors[pol].insert( pp.pc_phasors[pol].end(),
-                                                           fPCalData[idx_set[i]].pc_phasors[pol].begin(),
-                                                           fPCalData[idx_set[i]].pc_phasors[pol].end() );
+                    pp.pc_phasors[pol].insert(pp.pc_phasors[pol].end(), fPCalData[idx_set[i]].pc_phasors[pol].begin(),
+                                              fPCalData[idx_set[i]].pc_phasors[pol].end());
                 }
             }
 
             for(auto ppit = fPolSet.begin(); ppit != fPolSet.end(); ppit++)
             {
                 std::string pol = *ppit;
-                std::sort( pp.pc_phasors[pol].begin(), pp.pc_phasors[pol].end(), fPhasorToneComp);
+                std::sort(pp.pc_phasors[pol].begin(), pp.pc_phasors[pol].end(), fPhasorToneComp);
             }
 
             fSortedPCalData.push_back(pp);
@@ -277,13 +275,16 @@ MHO_DiFXPCalProcessor::Organize()
         std::size_t naps = fSortedPCalData.size();
         //find the max number of tones
         std::size_t max_ntones = 0;
-        std::set<std::size_t> ntone_set;
+        std::set< std::size_t > ntone_set;
         for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
         {
             for(auto ppit = it->pc_phasors.begin(); ppit != it->pc_phasors.end(); ppit++)
             {
                 std::size_t current_ntones = ppit->second.size();
-                if(current_ntones > max_ntones){max_ntones = current_ntones;}
+                if(current_ntones > max_ntones)
+                {
+                    max_ntones = current_ntones;
+                }
                 ntone_set.insert(current_ntones);
             }
         }
@@ -291,8 +292,13 @@ MHO_DiFXPCalProcessor::Organize()
         if(ntone_set.size() != 1)
         {
             std::stringstream sset;
-            for(auto it = ntone_set.begin(); it != ntone_set.end(); it++){ sset << *it << ", "; }
-            msg_warn("difx_interface", "set of total number of p-cal tones {"<<sset.str()<<"} is inconsistent over polarizations/APs. Incomplete APs will be zero." << eom);
+            for(auto it = ntone_set.begin(); it != ntone_set.end(); it++)
+            {
+                sset << *it << ", ";
+            }
+            msg_warn("difx_interface", "set of total number of p-cal tones {"
+                                           << sset.str()
+                                           << "} is inconsistent over polarizations/APs. Incomplete APs will be zero." << eom);
             //TODO figure out how to handle this possible case
         }
 
@@ -305,7 +311,7 @@ MHO_DiFXPCalProcessor::Organize()
         for(auto pol_iter = fPolSet.begin(); pol_iter != fPolSet.end(); pol_iter++)
         {
             std::string pol = *pol_iter;
-            std::get<MTPCAL_POL_AXIS>(fPCal).at(pol_idx) = pol;
+            std::get< MTPCAL_POL_AXIS >(fPCal).at(pol_idx) = pol;
             pol_idx++;
         }
 
@@ -313,7 +319,7 @@ MHO_DiFXPCalProcessor::Organize()
         for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
         {
             int ap = it->ap;
-            std::get<MTPCAL_TIME_AXIS>(fPCal).at(time_idx) = ap*fAPLength;
+            std::get< MTPCAL_TIME_AXIS >(fPCal).at(time_idx) = ap * fAPLength;
             time_idx++;
         }
 
@@ -322,16 +328,16 @@ MHO_DiFXPCalProcessor::Organize()
         auto eit = fSortedPCalData[0].pc_phasors[*(fPolSet.begin())].end();
         for(auto it = bit; it != eit; it++)
         {
-            std::get<MTPCAL_FREQ_AXIS>(fPCal).at(tone_idx) = it->tone_freq;
+            std::get< MTPCAL_FREQ_AXIS >(fPCal).at(tone_idx) = it->tone_freq;
             tone_idx++;
         }
 
-        for(pol_idx = 0; pol_idx<npol; pol_idx++)
+        for(pol_idx = 0; pol_idx < npol; pol_idx++)
         {
-            std::string pol = std::get<MTPCAL_POL_AXIS>(fPCal).at(pol_idx);
-            for(time_idx = 0; time_idx<naps; time_idx++)
+            std::string pol = std::get< MTPCAL_POL_AXIS >(fPCal).at(pol_idx);
+            for(time_idx = 0; time_idx < naps; time_idx++)
             {
-                auto phasor_vec = &( fSortedPCalData[time_idx].pc_phasors[pol] );
+                auto phasor_vec = &(fSortedPCalData[time_idx].pc_phasors[pol]);
 
                 //We need to check that the phasor vector has the same maximal size,
                 //if it is not, we cannot guarantee we have the same set of tones
@@ -342,7 +348,7 @@ MHO_DiFXPCalProcessor::Organize()
                 //partial data is a pretty non-standard situation (or upstream bug), discarding it seems sane.
                 if(phasor_vec->size() == max_ntones)
                 {
-                    for(tone_idx=0; tone_idx < max_ntones; tone_idx++)
+                    for(tone_idx = 0; tone_idx < max_ntones; tone_idx++)
                     {
                         fPCal(pol_idx, time_idx, tone_idx) = phasor_vec->at(tone_idx).phasor;
                     }
@@ -353,13 +359,11 @@ MHO_DiFXPCalProcessor::Organize()
         //add some helpful tags to the fPCal data;
         fPCal.Insert("station_code", fStationCode);
         fPCal.Insert("start_time_mjd", first_ap);
-
     }
     else
     {
         msg_warn("difx_interface", "cannot organize pcal data while in invalid state." << eom);
     }
-
 }
 
-}//end of namespace
+} // namespace hops
