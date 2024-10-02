@@ -46,33 +46,7 @@ bool MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
 
         //set the channel frequency points...we will use the channel center frequencies
         std::vector< double > freq_pts;
-        auto chan_ax = &(std::get< CHANNEL_AXIS >(*in));
-        for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
-        {
-            double sky_freq = (*chan_ax)(ch);
-            std::string net_sideband;
-            double bandwidth;
-            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
-            if(!key_present)
-            {
-                msg_error("calibration", "mbd search missing net_sideband label for channel " << ch << eom);
-            }
-            key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bandwidth);
-            if(!key_present)
-            {
-                msg_error("calibration", "mbd search missing bandwidth label for channel " << ch << eom);
-            }
-            double center_freq = sky_freq;
-            if(net_sideband == "L")
-            {
-                center_freq -= bandwidth / 2.0;
-            }
-            if(net_sideband == "U")
-            {
-                center_freq += bandwidth / 2.0;
-            }
-            freq_pts.push_back(center_freq);
-        }
+        freq_pts = DetermineFrequencyPoints(in);
         fGridCalc.SetPoints(freq_pts);
 
         //fGridCalc.SetPoints( std::get<CHANNEL_AXIS>(*in).GetData(), std::get<CHANNEL_AXIS>(*in).GetSize() );
@@ -388,5 +362,42 @@ void MHO_MBDelaySearch::GetDRWindow(double& low, double& high) const
         high = std::min(fDRWin[1], high);
     }
 }
+
+
+std::vector<double> 
+MHO_MBDelaySearch::DetermineFrequencyPoints(const XArgType* in)
+{
+    //use the mid-points of each channel (unique freqs for each channel, even if mixed LSB/USB )
+    std::vector<double> freq_pts;
+    auto chan_ax = &(std::get< CHANNEL_AXIS >(*in));
+    for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
+    {
+        double sky_freq = (*chan_ax)(ch);
+        std::string net_sideband;
+        double bandwidth;
+        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+        if(!key_present)
+        {
+            msg_error("calibration", "mbd search missing net_sideband label for channel " << ch << eom);
+        }
+        key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bandwidth);
+        if(!key_present)
+        {
+            msg_error("calibration", "mbd search missing bandwidth label for channel " << ch << eom);
+        }
+        double center_freq = sky_freq;
+        if(net_sideband == "L")
+        {
+            center_freq -= bandwidth / 2.0;
+        }
+        if(net_sideband == "U")
+        {
+            center_freq += bandwidth / 2.0;
+        }
+        freq_pts.push_back(center_freq);
+    }
+    return freq_pts;
+}
+
 
 } // namespace hops
