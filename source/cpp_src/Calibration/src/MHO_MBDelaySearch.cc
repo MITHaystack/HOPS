@@ -247,13 +247,18 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         check_step_fatal(ok, "fringe", "MBD search cyclic rotation execution." << eom );
         fMBDAxis = std::get<0>(fMBDWorkspace);
 
-
-        fCoarseMBD = fMBDAxis(fMBDMaxBin);
-        fCoarseSBD = fSBDAxis(fSBDMaxBin);
-        fCoarseDR = fDRAxis(fDRMaxBin);
-
-        fMax = std::sqrt(fMax);
-        return true;
+        if(fCoarseMBD > 0 && fCoarseSBD > 0 && fCoarseDR > 0)
+        {
+            fCoarseMBD = fMBDAxis(fMBDMaxBin);
+            fCoarseSBD = fSBDAxis(fSBDMaxBin);
+            fCoarseDR = fDRAxis(fDRMaxBin);
+            fMax = std::sqrt(fMax);
+            return true;
+        }
+        else 
+        {
+            msg_error("calibration", "MHO_MBDelaySearch failed to find fringe peak, max = "<<fMax<< eom);
+        }
     }
     else
     {

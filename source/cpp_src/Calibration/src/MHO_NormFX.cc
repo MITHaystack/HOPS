@@ -53,8 +53,7 @@ MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
         {
             //tell the user we can't handle double-sideband channels
             msg_error("calibration", "MHO_NormFX discovered: "<< n_dsb_chan <<
-            " double-sideband channels, this data type is not yet supported" <<eom );
-            return false;
+            " double-sideband channels, this data type is not yet supported, treating as mixed LSB/USB data" <<eom );
         }
 
         in->GetDimensions(fInDims);
@@ -107,8 +106,8 @@ MHO_NormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* out)
         std::vector< mho_json > dsb_labels = std::get<CHANNEL_AXIS>( *(in) ).GetMatchingIntervalLabels("double_sideband");
         std::size_t n_dsb_chan = dsb_labels.size();
 
-        if(n_dsb_chan == 0){FillSBDTableNoDSB(in,out); }//fill the table as normal, no dsb channels
-        else{FillSBDTableWithDSB(in, out);} //deal with the complication caused by dsb channels
+        FillSBDTableNoDSB(in,out); //fill the table as normal, ignore dsb channels
+        // else{FillSBDTableWithDSB(in, out);} //deal with the complication caused by dsb channels
 
         //filter out any NaNs
         status = fNaNBroadcaster.Execute();

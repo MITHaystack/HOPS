@@ -36,11 +36,10 @@ class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >
 
         MHO_ChannelLabeler()
         {
-            TODO_FIXME_MSG("TODO FIXME: re-think mult-char labeling scheme, what is most user friendly?")
             //we inherited the set of 64 characters from fourfit
             //consider how we may want to change this in the future:
             fDefaultChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$%";
-            //this character set is used for >64 channels when constructing multi-character labels
+            //this character set is used for >64 channels when constructing multi-character labels (don't use numbers + $%)
             fExtendedChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
             fIndexToChannelLabel.clear();
             fEps = 1e-4; //tolerance when mapping freq to indices
@@ -120,7 +119,8 @@ class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >
                                 bool has_dsb_partner = chan_axis_ptr->RetrieveIndexLabelKeyValue(i, "dsb_partner", partner_idx);
                                 if(has_dsb_partner)
                                 {
-                                    chan_axis_ptr->InsertIndexLabelKeyValue(partner_idx, fChannelLabelKey, ch_label);
+                                    chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, ch_label + "-");
+                                    chan_axis_ptr->InsertIndexLabelKeyValue(partner_idx, fChannelLabelKey, ch_label + "+");
                                 }
                             }
                             label_count++;
@@ -155,7 +155,8 @@ class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >
                                     bool has_dsb_partner = chan_axis_ptr->RetrieveIndexLabelKeyValue(i, "dsb_partner", partner_idx);
                                     if(has_dsb_partner)
                                     {
-                                        chan_axis_ptr->InsertIndexLabelKeyValue(partner_idx, fChannelLabelKey, ch_label);
+                                        chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, ch_label + "-");
+                                        chan_axis_ptr->InsertIndexLabelKeyValue(partner_idx, fChannelLabelKey, ch_label + "+");
                                     }
                                 }
                                 break;
