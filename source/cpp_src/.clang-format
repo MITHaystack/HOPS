@@ -3,7 +3,7 @@ Language:        Cpp
 # BasedOnStyle:  LLVM
 AccessModifierOffset: 0
 IndentAccessModifiers: true
-AlignAfterOpenBracket: DontAlign
+AlignAfterOpenBracket: Align
 AlignArrayOfStructures: None
 AlignConsecutiveMacros: None
 AlignConsecutiveAssignments: None
@@ -102,7 +102,7 @@ IncludeIsMainSourceRegex: ''
 IndentCaseLabels: true
 IndentCaseBlocks: true
 IndentGotoLabels: true
-IndentPPDirectives: None
+IndentPPDirectives: BeforeHash
 IndentExternBlock: AfterExternBlock
 IndentRequires:  false
 IndentWidth: 4      # Use 4 spaces for indentation.
