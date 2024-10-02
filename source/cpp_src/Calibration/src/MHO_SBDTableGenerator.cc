@@ -66,7 +66,7 @@ MHO_SBDTableGenerator::ConditionallyResizeOutput(const XArgType1* in, XArgType2*
     //no need to resize sbd array, all set
     if(!need_to_resize){return;} 
 
-    msg_debug("calibration", "resizing single-band-delay table container frequency axis"); 
+    msg_debug("calibration", "resizing single-band-delay table container frequency axis" << eom); 
 
     //allocate the SBD space (expand the freq axis by the padding factor)
     in->GetDimensions(sbd_dim); //get input dimensions
