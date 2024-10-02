@@ -142,9 +142,20 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 std::size_t b = sbd_dims[TIME_AXIS];
                 for(std::size_t i = 0; i < a; i++)
                 {
+                    std::string net_sideband;
+                    bool key_present = std::get< CHANNEL_AXIS >(*in).RetrieveIndexLabelKeyValue(a, "net_sideband", net_sideband);
+                    std::size_t remapped_sbd_idx = fNSBD - 1 - sbd_idx;
+
                     for(std::size_t j = 0; j < b; j++)
                     {
-                        fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, sbd_idx);
+                        if(net_sideband == "L")  
+                        {
+                            fSBDDrWorkspace(0, i, j, 0) = std::conj( (*in)(0, i, j, sbd_idx) ); 
+                        }
+                        else 
+                        {
+                            fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, sbd_idx);
+                        }
                     }
                 }
 
@@ -173,8 +184,15 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                         std::size_t nch = std::get< CHANNEL_AXIS >(*in).GetSize();
                         for(std::size_t ch = 0; ch < nch; ch++)
                         {
-                            std::size_t mbd_bin = fMBDBinMap[ch];
-                            fMBDWorkspace(mbd_bin) = sbd_dr_data(0, ch, dr_idx, 0);
+                            std::size_t mbd_bin = fMBDBinMap[ fChannelIndexToFreqPointIndex[ch] ];
+                            std::string net_sideband;
+                            bool key_present = std::get< CHANNEL_AXIS >(*in).RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+                            auto val = sbd_dr_data(0, ch, dr_idx, 0);
+                            // if(net_sideband == "L")
+                            // {
+                            //     val = std::conj( fNSBD);
+                            // }
+                            fMBDWorkspace(mbd_bin) += val;
                         }
 
                         if(first)
@@ -367,11 +385,57 @@ void MHO_MBDelaySearch::GetDRWindow(double& low, double& high) const
 std::vector<double> 
 MHO_MBDelaySearch::DetermineFrequencyPoints(const XArgType* in)
 {
-    //use the mid-points of each channel (unique freqs for each channel, even if mixed LSB/USB )
+    double freq_eps = 1e-4;
     std::vector<double> freq_pts;
     auto chan_ax = &(std::get< CHANNEL_AXIS >(*in));
+
+    //if we have double-sideband channels we want to merge
+    std::vector< mho_json > dsb_labels = chan_ax->GetMatchingIntervalLabels("double_sideband");
+    std::size_t n_dsb_chan_pair = dsb_labels.size();
+    if(n_dsb_chan_pair != 0)
+    {
+        std::vector<double> tmp;
+        for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
+        {
+            tmp.push_back(chan_ax->at(ch));
+        }
+
+        //dsb channel pairs share a sky_freq so we need combine them in the same location
+        fChannelIndexToFreqPointIndex.clear();
+        std::size_t freq_point_index = 0;
+        freq_pts.push_back(tmp[0]);
+        fChannelIndexToFreqPointIndex[0] = freq_point_index;
+        for(std::size_t ch = 1; ch < tmp.size(); ch++)
+        {
+            //check if adjacent channels share a frequency within epsilon
+            if(std::fabs( tmp[ch] - tmp[ch-1]) > freq_eps )
+            {
+                freq_pts.push_back(tmp[ch]);
+                freq_point_index++;
+
+            }
+            fChannelIndexToFreqPointIndex[ch] = freq_point_index;
+        }
+
+        //check that the number of frequency points is as expected 
+        std::size_t npts = freq_pts.size();
+        if(npts == (chan_ax->GetSize() - n_dsb_chan_pair) )
+        {
+            return freq_pts;
+        }
+        else 
+        {
+            //fall through to the mixed LSB/USB case, since the number of channels isn't as expected
+            msg_error("calibration", "frequency configuration for double-sideband data is not as expected, assuming mixed LSB/USB" << eom);
+        }
+    }
+
+    //default behavior is to use the use the mid-points of each channel 
+    //(so we have unique freqs for each channel, mainly needed for mixed LSB/USB )
+    fChannelIndexToFreqPointIndex.clear();
     for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
     {
+        fChannelIndexToFreqPointIndex[ch] = ch;
         double sky_freq = (*chan_ax)(ch);
         std::string net_sideband;
         double bandwidth;
@@ -396,7 +460,9 @@ MHO_MBDelaySearch::DetermineFrequencyPoints(const XArgType* in)
         }
         freq_pts.push_back(center_freq);
     }
+
     return freq_pts;
+
 }
 
 
