@@ -24,7 +24,7 @@ MHO_SBDTableGenerator::InitializeImpl(const XArgType1* in, XArgType2* out)
     fInitialized = false;
     if(in != nullptr && out != nullptr)
     {
-        //no resize the SBD table container  if needed
+        //resize the SBD table container if needed
         ConditionallyResizeOutput(in,out);
         fInitialized = true;
     }
