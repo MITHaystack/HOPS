@@ -54,11 +54,9 @@ bool MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
         if(n_dsb_chan != 0)
         {
             //tell the user we can't handle double-sideband channels
-            msg_error("calibration",
-                      "discovered: "
-                          << n_dsb_chan
-                          << " double-sideband channels, support for this data type is experimental"
-                          << eom);
+            msg_error("calibration", "discovered: " << n_dsb_chan
+                                                    << " double-sideband channels, support for this data type is experimental"
+                                                    << eom);
         }
 
         in->GetDimensions(fInDims);
@@ -70,7 +68,7 @@ bool MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
         fZeroPadder.SetArgs(in, out);
         fZeroPadder.DeselectAllAxes();
         //fZeroPadder.EnableNormFXMode(); //doesnt seem to make any difference
-        fZeroPadder.SelectAxis(FREQ_AXIS); //only pad on the frequency (to lag) axis
+        fZeroPadder.SelectAxis(FREQ_AXIS);            //only pad on the frequency (to lag) axis
         fZeroPadder.SetPaddingFactor(PADDING_FACTOR); //original padding factor was 8, but then data was subsampled by 2
         fZeroPadder.SetEndPadded();
         status = fZeroPadder.Initialize();
