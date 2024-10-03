@@ -133,8 +133,6 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
             bool do_sbd_search = (fSBDWin[0] <= sbd) && (sbd <= fSBDWin[1]);
             if(!fSBDWinSet || do_sbd_search)
             {
-                //msg_debug("calibration", "performing mbdsearch on sbd index: "<<sbd_idx<<eom);
-
                 //first select the slice of visibilities which correspond to this SBD
                 //and copy this slice into local workspace table container
                 auto sbd_dims = fSBDDrWorkspace.GetDimensionArray();
@@ -152,9 +150,7 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                     {
                         if(net_sideband == "L" && dsb_key_present)
                         {
-                            //fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, sbd_idx);
                             fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, remapped_sbd_idx);
-                            //(*in)(0, i, j, remapped_sbd_idx)  ;//(*in)(0, i, j, sbd_idx);//std::conj( ( (*in)(0, i, j, remapped_sbd_idx) ) ); 
                         }
                         else 
                         {
@@ -192,10 +188,6 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                             std::string net_sideband;
                             bool key_present = std::get< CHANNEL_AXIS >(*in).RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
                             auto val = sbd_dr_data(0, ch, dr_idx, 0);
-                            // if(net_sideband == "L")
-                            // {
-                            //     val = std::conj(val);
-                            // }
                             fMBDWorkspace(mbd_bin) += val;
                         }
 
