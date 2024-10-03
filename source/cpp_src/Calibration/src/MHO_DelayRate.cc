@@ -1,6 +1,8 @@
 #include "MHO_DelayRate.hh"
 #include "MHO_BitReversalPermutation.hh"
 
+#include <iomanip>
+
 #include <math.h>
 
 namespace hops
@@ -79,12 +81,6 @@ bool MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArg
 
     if(fInitialized)
     {
-        //apply the data weights
-        std::size_t pprod = in1->GetDimension(POLPROD_AXIS);
-        std::size_t nch = in1->GetDimension(CHANNEL_AXIS);
-        std::size_t nap = in1->GetDimension(TIME_AXIS);
-        double time_delta = std::get< TIME_AXIS >(*in1)(1) - std::get< TIME_AXIS >(*in1)(0);
-
         out->ZeroArray();
         bool ok;
 
@@ -107,49 +103,8 @@ bool MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArg
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "fringe", "cyclic rotation execution." << eom);
 
-        // //linear interpolation, and conversion from fringe rate to delay rate step
-        // int sz = 4 * fDRSPSize;
-        // std::size_t nsbd = out->GetDimension(FREQ_AXIS);
-        // 
-        // std::vector< sbd_type::value_type > workspace;
-        // workspace.resize(fDRSPSize);
-        // for(std::size_t pp = 0; pp < pprod; pp++)
-        // {
-        //     for(std::size_t ch = 0; ch < nch; ch++)
-        //     {
-        //         double chan_freq = (std::get< CHANNEL_AXIS >(*in1))(ch);
-        //         double b = ((chan_freq / fRefFreq) * sz) / fDRSPSize;
-        // 
-        //         for(std::size_t sbd = 0; sbd < nsbd; sbd++)
-        //         {
-        //             for(std::size_t dr = 0; dr < fDRSPSize; dr++)
-        //             {
-        //                 double num = ((double)dr - (double)(fDRSPSize / 2)) * b + ((double)sz * 1.5);
-        //                 double l_fp = fmod(num, (double)sz);
-        //                 int l_int = (int)l_fp;
-        //                 if(l_int < 0)
-        //                 {
-        //                     l_int = 0;
-        //                 }
-        //                 int l_int2 = l_int + 1;
-        //                 if(l_int2 > (sz - 1))
-        //                 {
-        //                     l_int2 = sz - 1;
-        //                 }
-        //                 //evaluate and copy to temporary vector (TODO determine if this is strictly needed)
-        //                 sbd_type::value_type interp_val =
-        //                     (*out)(pp, ch, l_int, sbd) * (1.0 - l_fp + l_int) + (*out)(pp, ch, l_int2, sbd) * (l_fp - l_int);
-        //                 workspace[dr] = interp_val;
-        //                 std::get< TIME_AXIS > (*out)(dr) =
-        //                     ((double)dr - (double)(fDRSPSize / 2)) * (1.0 / (time_delta * (double)fDRSPSize));
-        //             }
-        //             for(std::size_t dr = 0; dr < fDRSPSize; dr++)
-        //             {
-        //                 (*out)(pp, ch, dr, sbd) = workspace[dr];
-        //             }
-        //         }
-        //     }
-        // }
+        //apply the legacy linear interpolation step -- TODO determine if this is strictly needed
+        ApplyInterpolation(in1, out);
 
         return true;
     }
@@ -169,10 +124,6 @@ void MHO_DelayRate::ApplyDataWeights(const XArgType2* in2, XArgType3* out)
     std::size_t wnch = in2->GetDimension(CHANNEL_AXIS);
     std::size_t wnap = in2->GetDimension(TIME_AXIS);
 
-    // if(pprod != wpprod){std::cout<<pprod<<" != "<<wpprod<<std::endl; std::exit(1);}
-    // if(nch != wnch){std::cout<<nch<<" != "<<wnch<<std::endl;std::exit(1);}
-    // if(nap != wnap){std::cout<<nap<<" != "<<wnap<<std::endl;std::exit(1);}
-
     //make sure we don't over run the weight array bounds (since out array has been padded)
     std::size_t nap_range = std::min(nap, wnap);
 
@@ -183,12 +134,7 @@ void MHO_DelayRate::ApplyDataWeights(const XArgType2* in2, XArgType3* out)
             for(std::size_t ap = 0; ap < nap_range; ap++)
             {
                 auto val = (*in2)(pp, ch, ap, 0);
-
-                for(std::size_t sbd = 0; sbd < nsbd; sbd++)
-                {
-                    (*out)(pp, ch, ap, sbd) *= val;
-                }
-                //out->SliceView(pp, ch, ap, ":") *= (*in2)(pp, ch, ap, 0); //apply the data weights
+                out->SubView(pp, ch, ap) *= val; //apply the data weights
             }
         }
     }
@@ -236,6 +182,59 @@ unsigned int MHO_DelayRate::CalculateSearchSpaceSize(unsigned int input_size)
     // };
     // return drsp_size;
 
+}
+
+void MHO_DelayRate::ApplyInterpolation(const XArgType1* in1, XArgType3* out)
+{
+    std::size_t pprod = in1->GetDimension(POLPROD_AXIS);
+    std::size_t nch = in1->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = in1->GetDimension(TIME_AXIS);
+    double time_delta = std::get< TIME_AXIS >(*in1)(1) - std::get< TIME_AXIS >(*in1)(0);
+
+    //linear interpolation and modifcation of delay rate axis (see delay_rate.c line 81)
+    int sz = 4 * fDRSPSize;
+    std::size_t nsbd = out->GetDimension(FREQ_AXIS);
+
+    std::vector< sbd_type::value_type > workspace;
+    workspace.resize(fDRSPSize);
+    for(std::size_t pp = 0; pp < pprod; pp++)
+    {
+        for(std::size_t ch = 0; ch < nch; ch++)
+        {
+            double chan_freq = (std::get< CHANNEL_AXIS >(*in1))(ch);
+            double b = ((chan_freq / fRefFreq) * sz) / fDRSPSize;
+
+            for(std::size_t sbd = 0; sbd < nsbd; sbd++)
+            {
+                for(std::size_t dr = 0; dr < fDRSPSize; dr++)
+                {
+                    double num = ((double)dr - (double)(fDRSPSize / 2)) * b + ((double)sz * 1.5);
+                    double l_fp = fmod(num, (double)sz);
+                    int l_int = (int)l_fp;
+                    if(l_int < 0)
+                    {
+                        l_int = 0;
+                    }
+                    int l_int2 = l_int + 1;
+                    if(l_int2 > (sz - 1))
+                    {
+                        l_int2 = sz - 1;
+                    }
+                    sbd_type::value_type interp_val =
+                        (*out)(pp, ch, l_int, sbd) * (1.0 - l_fp + l_int) + (*out)(pp, ch, l_int2, sbd) * (l_fp - l_int);
+                    workspace[dr] = interp_val;
+
+                    double ax_val = ((double)dr - (double)(fDRSPSize / 2)) * (1.0 / (time_delta * (double)fDRSPSize));
+                    std::get< TIME_AXIS > (*out)(dr) = ax_val;
+
+                }
+                for(std::size_t dr = 0; dr < fDRSPSize; dr++)
+                {
+                    (*out)(pp, ch, dr, sbd) = workspace[dr];
+                }
+            }
+        }
+    }
 }
 
 } // namespace hops
