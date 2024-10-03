@@ -107,49 +107,49 @@ bool MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArg
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "fringe", "cyclic rotation execution." << eom);
 
-        //linear interpolation, and conversion from fringe rate to delay rate step
-        int sz = 4 * fDRSPSize;
-        std::size_t nsbd = out->GetDimension(FREQ_AXIS);
-
-        std::vector< sbd_type::value_type > workspace;
-        workspace.resize(fDRSPSize);
-        for(std::size_t pp = 0; pp < pprod; pp++)
-        {
-            for(std::size_t ch = 0; ch < nch; ch++)
-            {
-                double chan_freq = (std::get< CHANNEL_AXIS >(*in1))(ch);
-                double b = ((chan_freq / fRefFreq) * sz) / fDRSPSize;
-
-                for(std::size_t sbd = 0; sbd < nsbd; sbd++)
-                {
-                    for(std::size_t dr = 0; dr < fDRSPSize; dr++)
-                    {
-                        double num = ((double)dr - (double)(fDRSPSize / 2)) * b + ((double)sz * 1.5);
-                        double l_fp = fmod(num, (double)sz);
-                        int l_int = (int)l_fp;
-                        if(l_int < 0)
-                        {
-                            l_int = 0;
-                        }
-                        int l_int2 = l_int + 1;
-                        if(l_int2 > (sz - 1))
-                        {
-                            l_int2 = sz - 1;
-                        }
-                        //evaluate and copy to temporary vector (TODO determine if this is strictly needed)
-                        sbd_type::value_type interp_val =
-                            (*out)(pp, ch, l_int, sbd) * (1.0 - l_fp + l_int) + (*out)(pp, ch, l_int2, sbd) * (l_fp - l_int);
-                        workspace[dr] = interp_val;
-                        std::get< TIME_AXIS > (*out)(dr) =
-                            ((double)dr - (double)(fDRSPSize / 2)) * (1.0 / (time_delta * (double)fDRSPSize));
-                    }
-                    for(std::size_t dr = 0; dr < fDRSPSize; dr++)
-                    {
-                        (*out)(pp, ch, dr, sbd) = workspace[dr];
-                    }
-                }
-            }
-        }
+        // //linear interpolation, and conversion from fringe rate to delay rate step
+        // int sz = 4 * fDRSPSize;
+        // std::size_t nsbd = out->GetDimension(FREQ_AXIS);
+        // 
+        // std::vector< sbd_type::value_type > workspace;
+        // workspace.resize(fDRSPSize);
+        // for(std::size_t pp = 0; pp < pprod; pp++)
+        // {
+        //     for(std::size_t ch = 0; ch < nch; ch++)
+        //     {
+        //         double chan_freq = (std::get< CHANNEL_AXIS >(*in1))(ch);
+        //         double b = ((chan_freq / fRefFreq) * sz) / fDRSPSize;
+        // 
+        //         for(std::size_t sbd = 0; sbd < nsbd; sbd++)
+        //         {
+        //             for(std::size_t dr = 0; dr < fDRSPSize; dr++)
+        //             {
+        //                 double num = ((double)dr - (double)(fDRSPSize / 2)) * b + ((double)sz * 1.5);
+        //                 double l_fp = fmod(num, (double)sz);
+        //                 int l_int = (int)l_fp;
+        //                 if(l_int < 0)
+        //                 {
+        //                     l_int = 0;
+        //                 }
+        //                 int l_int2 = l_int + 1;
+        //                 if(l_int2 > (sz - 1))
+        //                 {
+        //                     l_int2 = sz - 1;
+        //                 }
+        //                 //evaluate and copy to temporary vector (TODO determine if this is strictly needed)
+        //                 sbd_type::value_type interp_val =
+        //                     (*out)(pp, ch, l_int, sbd) * (1.0 - l_fp + l_int) + (*out)(pp, ch, l_int2, sbd) * (l_fp - l_int);
+        //                 workspace[dr] = interp_val;
+        //                 std::get< TIME_AXIS > (*out)(dr) =
+        //                     ((double)dr - (double)(fDRSPSize / 2)) * (1.0 / (time_delta * (double)fDRSPSize));
+        //             }
+        //             for(std::size_t dr = 0; dr < fDRSPSize; dr++)
+        //             {
+        //                 (*out)(pp, ch, dr, sbd) = workspace[dr];
+        //             }
+        //         }
+        //     }
+        // }
 
         return true;
     }
