@@ -71,8 +71,7 @@ bool MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
         fZeroPadder.DeselectAllAxes();
         //fZeroPadder.EnableNormFXMode(); //doesnt seem to make any difference
         fZeroPadder.SelectAxis(FREQ_AXIS); //only pad on the frequency (to lag) axis
-        fZeroPadder.SetPaddingFactor(
-            PADDING_FACTOR); //original padding factor was 8...but then data was subsampled by factor of 2
+        fZeroPadder.SetPaddingFactor(PADDING_FACTOR); //original padding factor was 8, but then data was subsampled by 2
         fZeroPadder.SetEndPadded();
         status = fZeroPadder.Initialize();
         if(!status)

@@ -143,12 +143,14 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 for(std::size_t i = 0; i < a; i++)
                 {
                     std::string net_sideband;
+                    int dsb_partner;
                     bool key_present = std::get< CHANNEL_AXIS >(*in).RetrieveIndexLabelKeyValue(a, "net_sideband", net_sideband);
+                    bool dsb_key_present = std::get< CHANNEL_AXIS >(*in).RetrieveIndexLabelKeyValue(a, "dsb_partner", dsb_partner);
                     std::size_t remapped_sbd_idx = fNSBD - 1 - sbd_idx;
 
                     for(std::size_t j = 0; j < b; j++)
                     {
-                        if(net_sideband == "L")  
+                        if(net_sideband == "L" && dsb_key_present)
                         {
                             //fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, sbd_idx);
                             fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, remapped_sbd_idx);
@@ -423,7 +425,6 @@ MHO_MBDelaySearch::DetermineFrequencyPoints(const XArgType* in)
         std::size_t npts = freq_pts.size();
         if(npts == (chan_ax->GetSize() - n_dsb_chan_pair) )
         {
-            for(std::size_t p=0;p<freq_pts.size();p++){std::cout<<"dsb freq @ "<<p<<" = "<< freq_pts[p]<<std::endl;}
             return freq_pts;
         }
         else 
@@ -462,11 +463,9 @@ MHO_MBDelaySearch::DetermineFrequencyPoints(const XArgType* in)
         {
             center_freq += bandwidth / 2.0;
         }
-        std::cout<<"sideband is: "<<net_sideband<<" cfreq ="<<center_freq<<std::endl;
         freq_pts.push_back(center_freq);
     }
 
-    for(std::size_t p=0;p<freq_pts.size();p++){std::cout<<"mixed freq @ "<<p<<" = "<< freq_pts[p]<<std::endl;}
     return freq_pts;
 
 }
