@@ -55,9 +55,9 @@ bool MHO_NormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
         {
             //tell the user we can't handle double-sideband channels
             msg_error("calibration",
-                      "MHO_NormFX discovered: "
+                      "discovered: "
                           << n_dsb_chan
-                          << " double-sideband channels, this data type is not yet supported, treating as mixed LSB/USB data"
+                          << " double-sideband channels, support for this data type is experimental"
                           << eom);
         }
 
