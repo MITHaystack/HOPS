@@ -55,6 +55,8 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
         void ApplyDataWeights(const XArgType2* in2, XArgType3* out);
         void ConditionallyResizeOutput(const std::size_t* dims, std::size_t size, XArgType3* out);
 
+        void ApplyInterpolation(const XArgType1* in1, XArgType3* out);
+
 #ifdef HOPS_USE_FFTW3
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< visibility_type >;
 #else
