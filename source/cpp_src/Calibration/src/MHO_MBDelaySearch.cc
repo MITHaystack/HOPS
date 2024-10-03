@@ -150,7 +150,9 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                     {
                         if(net_sideband == "L")  
                         {
-                            fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, sbd_idx);//std::conj( ( (*in)(0, i, j, remapped_sbd_idx) ) ); 
+                            //fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, sbd_idx);
+                            fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, remapped_sbd_idx);
+                            //(*in)(0, i, j, remapped_sbd_idx)  ;//(*in)(0, i, j, sbd_idx);//std::conj( ( (*in)(0, i, j, remapped_sbd_idx) ) ); 
                         }
                         else 
                         {
@@ -190,7 +192,7 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                             auto val = sbd_dr_data(0, ch, dr_idx, 0);
                             // if(net_sideband == "L")
                             // {
-                            //     val *= std::conj(val);
+                            //     val = std::conj(val);
                             // }
                             fMBDWorkspace(mbd_bin) += val;
                         }
@@ -421,6 +423,7 @@ MHO_MBDelaySearch::DetermineFrequencyPoints(const XArgType* in)
         std::size_t npts = freq_pts.size();
         if(npts == (chan_ax->GetSize() - n_dsb_chan_pair) )
         {
+            for(std::size_t p=0;p<freq_pts.size();p++){std::cout<<"dsb freq @ "<<p<<" = "<< freq_pts[p]<<std::endl;}
             return freq_pts;
         }
         else 
@@ -432,6 +435,7 @@ MHO_MBDelaySearch::DetermineFrequencyPoints(const XArgType* in)
 
     //default behavior is to use the use the mid-points of each channel 
     //(so we have unique freqs for each channel, mainly needed for mixed LSB/USB )
+    freq_pts.clear();
     fChannelIndexToFreqPointIndex.clear();
     for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
     {
@@ -458,9 +462,11 @@ MHO_MBDelaySearch::DetermineFrequencyPoints(const XArgType* in)
         {
             center_freq += bandwidth / 2.0;
         }
+        std::cout<<"sideband is: "<<net_sideband<<" cfreq ="<<center_freq<<std::endl;
         freq_pts.push_back(center_freq);
     }
 
+    for(std::size_t p=0;p<freq_pts.size();p++){std::cout<<"mixed freq @ "<<p<<" = "<< freq_pts[p]<<std::endl;}
     return freq_pts;
 
 }
