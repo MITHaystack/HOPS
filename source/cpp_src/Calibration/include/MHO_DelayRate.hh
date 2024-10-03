@@ -38,7 +38,7 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
 
         int GetDelayRateSearchSpaceSize() const { return fDRSPSize; }
 
-        int CalculateSearchSpaceSize(int input_size);
+        unsigned int CalculateSearchSpaceSize(unsigned int input_size);
 
     protected:
         using XArgType1 = visibility_type;

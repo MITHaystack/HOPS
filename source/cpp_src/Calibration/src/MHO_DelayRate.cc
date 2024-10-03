@@ -1,4 +1,5 @@
 #include "MHO_DelayRate.hh"
+#include "MHO_BitReversalPermutation.hh"
 
 #include <math.h>
 
@@ -222,16 +223,19 @@ void MHO_DelayRate::ConditionallyResizeOutput(const std::size_t* dims, std::size
     }
 }
 
-int MHO_DelayRate::CalculateSearchSpaceSize(int input_size)
+unsigned int MHO_DelayRate::CalculateSearchSpaceSize(unsigned int input_size)
 {
-    //borrow this stupid routine from search_windows.c /////////////////////
-    TODO_FIXME_MSG("Fix the DRSP size calculation to remove upper limit of 8192.")
-    int drsp_size = 8192;
-    while((drsp_size / 4) > input_size)
-    {
-        drsp_size /= 2;
-    };
-    return drsp_size;
+    //just make it as big as needed
+    return 2*MHO_BitReversalPermutation::NextLowestPowerOfTwo(input_size);
+
+    //the legacy size calculation (see search_windows.c) is as follows:
+    // unsigned int drsp_size = 8192;
+    // while( input_size < (drsp_size / 4) )
+    // {
+    //     drsp_size /= 2;
+    // };
+    // return drsp_size;
+
 }
 
 } // namespace hops
