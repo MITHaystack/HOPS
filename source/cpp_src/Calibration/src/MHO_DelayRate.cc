@@ -172,7 +172,7 @@ void MHO_DelayRate::ConditionallyResizeOutput(const std::size_t* dims, std::size
 unsigned int MHO_DelayRate::CalculateSearchSpaceSize(unsigned int input_size)
 {
     //just make it as big as needed
-    return 2*MHO_BitReversalPermutation::NextLowestPowerOfTwo(input_size);
+    return 2 * MHO_BitReversalPermutation::NextLowestPowerOfTwo(input_size);
 
     //the legacy size calculation (see search_windows.c) is as follows:
     // unsigned int drsp_size = 8192;
@@ -181,7 +181,6 @@ unsigned int MHO_DelayRate::CalculateSearchSpaceSize(unsigned int input_size)
     //     drsp_size /= 2;
     // };
     // return drsp_size;
-
 }
 
 void MHO_DelayRate::ApplyInterpolation(const XArgType1* in1, XArgType3* out)
@@ -226,7 +225,6 @@ void MHO_DelayRate::ApplyInterpolation(const XArgType1* in1, XArgType3* out)
 
                     double ax_val = ((double)dr - (double)(fDRSPSize / 2)) * (1.0 / (time_delta * (double)fDRSPSize));
                     std::get< TIME_AXIS > (*out)(dr) = ax_val;
-
                 }
                 for(std::size_t dr = 0; dr < fDRSPSize; dr++)
                 {
