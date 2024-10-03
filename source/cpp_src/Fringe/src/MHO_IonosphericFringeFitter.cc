@@ -28,12 +28,15 @@
 #define N_FINE_PTS 12
 #define N_MED_PTS 12         // number of points in medium search
 #define N_FINE_PTS_SMOOTH 24 // # of fine points with new smoothing algorithm
-#define MAX_ION_PTS 100
+#define MAX_ION_PTS 100 //legacy max number of ion function points
 
 namespace hops
 {
 
-MHO_IonosphericFringeFitter::MHO_IonosphericFringeFitter(MHO_FringeData* data): MHO_BasicFringeFitter(data){};
+MHO_IonosphericFringeFitter::MHO_IonosphericFringeFitter(MHO_FringeData* data): MHO_BasicFringeFitter(data)
+{
+    ion_npts = MAX_ION_PTS;
+};
 
 MHO_IonosphericFringeFitter::~MHO_IonosphericFringeFitter(){};
 
@@ -145,9 +148,10 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     double coarse_spacing, medium_spacing, fine_spacing, step, bottom, center, valmax, y[3], q[3], xmax, ampmax, xlo;
 
     //from param
-    double values[MAX_ION_PTS];
+    // double values[MAX_ION_PTS];
+    std::vector<double> values;
     double win_ion[2];
-    int ion_npts;
+    // int ion_npts;
     double ion_diff;
     double last_ion_diff = 0.0;
     double win_dr[2];
@@ -168,8 +172,7 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
 
     bool first_pass = true;
 
-    //from status
-    double dtec[MAX_ION_PTS][2];
+
     int loopion;
     int nion;
 
@@ -223,11 +226,21 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     // prepare for ionospheric search
     center = (win_ion[0] + win_ion[1]) / 2.0;
     // condition total # of points
-    if(ion_npts > MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1)
-    {
-        ion_npts = MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1;
-        //msg ("limited ion search to %d points", 2, ion_npts);
-    }
+    // if(ion_npts > MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1)
+    // {
+    //     ion_npts = MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1;
+    //     //msg ("limited ion search to %d points", 2, ion_npts);
+    // }
+
+    values.resize(ion_npts + N_FINE_PTS_SMOOTH + 1, 0.0);
+
+    //from status
+    // double dtec[MAX_ION_PTS][2];
+    std::vector< std::vector< double > > dtec;
+    dtec.resize(ion_npts + N_FINE_PTS_SMOOTH + 1);
+    for(std::size_t ip=0; ip<dtec.size(); ip++){dtec[ip].resize(2, 0.0);}
+
+
     coarse_spacing = win_ion[1] - win_ion[0];
     if(ion_npts > 1)
     {
@@ -465,7 +478,8 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
 };
 
 // sort tec array
-void MHO_IonosphericFringeFitter::sort_tecs(int nion, double dtec[][2])
+// void MHO_IonosphericFringeFitter::sort_tecs(int nion, double dtec[][2])
+void MHO_IonosphericFringeFitter::sort_tecs(int nion, std::vector< std::vector<double> >& dtec)
 {
     //std::cout<<"calling sort tecs"<<std::endl;
     int i, n, changed = 1;
@@ -523,7 +537,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     //from param
     //double values[MAX_ION_PTS];
     double win_ion[2];
-    int ion_npts;
+    // int ion_npts;
     double ion_diff;
     double last_ion_diff = 0.0;
     double win_dr[2];
@@ -545,7 +559,8 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     bool first_pass = true;
 
     //from status
-    double dtec[MAX_ION_PTS][2];
+    // double dtec[MAX_ION_PTS][2];
+
     int loopion;
     int nion;
 
@@ -596,17 +611,28 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     //put the ion_win info into the 'fringe' section of the parameters
     fParameterStore->Set("/fringe/ion_win", win_ion);
 
-    double values[MAX_ION_PTS];
-    double smoothed_values[4 * MAX_ION_PTS];
+    // double values[MAX_ION_PTS];
+    // double smoothed_values[4 * MAX_ION_PTS];
+
+    std::vector<double> values; 
+    values.resize(ion_npts + N_FINE_PTS_SMOOTH + 1, 0.0);
+    std::vector<double> smoothed_values;
+    smoothed_values.resize(4*ion_npts, 0.0);
+
+    std::vector< std::vector< double > > dtec;
+    dtec.resize(ion_npts + N_FINE_PTS_SMOOTH + 1);
+    for(std::size_t ip=0; ip<dtec.size(); ip++){dtec[ip].resize(2, 0.0);}
 
     // prepare for ionospheric search
     center = (win_ion[0] + win_ion[1]) / 2.0;
     // condition total # of points
-    if(ion_npts > MAX_ION_PTS - N_FINE_PTS_SMOOTH - 1)
-    {
-        ion_npts = MAX_ION_PTS - N_FINE_PTS_SMOOTH - 1;
-        //msg ("limited ion search to %d points", 2, ion_npts);
-    }
+    // if(ion_npts > MAX_ION_PTS - N_FINE_PTS_SMOOTH - 1)
+    // {
+    //     ion_npts = MAX_ION_PTS - N_FINE_PTS_SMOOTH - 1;
+    //     //msg ("limited ion search to %d points", 2, ion_npts);
+    // }
+
+
     coarse_spacing = win_ion[1] - win_ion[0];
     if(ion_npts > 1)
     {
@@ -638,7 +664,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
                     //msg("smoother input %d %f", -2, k, values[k]);
                 }
                 // then smooth and interpolate coarse points
-                smoother(values, smoothed_values, &step, &ilmax);
+                smoother( &(values[0]), &(smoothed_values[0]), &step, &ilmax);
                 // for (k=0; k<ilmax; k++)
                 //     {
                 //     //msg("smoother output %d %f", -2, k, smoothed_values[k]);
@@ -826,7 +852,14 @@ void MHO_IonosphericFringeFitter::smoother(double* f,        // input data array
         ng, // # of output pts
         ns; // # of smoothing curve pts
 
-    double gwork[4 * MAX_ION_PTS], shape[4 * MAX_ION_PTS], ssum;
+    // double gwork[4 * MAX_ION_PTS], shape[4 * MAX_ION_PTS], ssum;
+
+    std::vector< double > gwork;
+    gwork.resize(4*ion_npts, 0.0);
+    std::vector< double > shape;
+    shape.resize(4*ion_npts, 0.0);
+    double ssum;
+
 
     // generate a smoothing curve. The shape of the idealized
     // curve for correlation as a function of TEC is dependent
@@ -836,8 +869,12 @@ void MHO_IonosphericFringeFitter::smoother(double* f,        // input data array
     // having approximately that half power width.
     ns = 36 / *tec_step;
     ns |= 1; // make it odd, and ensure it isn't too large
-    if(ns >= 4 * MAX_ION_PTS)
-        ns = 4 * MAX_ION_PTS - 1;
+
+    // if(ns >= 4 * MAX_ION_PTS)
+    //     ns = 4 * MAX_ION_PTS - 1;
+
+    if(ns >= 4 * ion_npts)
+        ns = 4 * ion_npts - 1;
     for(n = 0; n < ns; n++)
     {
         shape[n] = cos(M_PI * (n - ns / 2) / ns);

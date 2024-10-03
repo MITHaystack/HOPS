@@ -27,11 +27,14 @@ class MHO_IonosphericFringeFitter: public MHO_BasicFringeFitter
 
     protected:
         int rjc_ion_search();
-        void sort_tecs(int nion, double dtec[][2]);
+        // void sort_tecs(int nion, double dtec[][2]);
+        void sort_tecs(int nion, std::vector< std::vector<double> >& dtec);
         int ion_search_smooth();
         void smoother(double* f, double* g, double* tec_step, int* npts);
 
         double fInitialSBWin[2]; //save the initial SBD window
+
+        int ion_npts;
 };
 
 } // namespace hops
