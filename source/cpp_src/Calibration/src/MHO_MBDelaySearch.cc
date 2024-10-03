@@ -121,6 +121,7 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
     if(fInitialized && fNSBD > 1)
     {
         fSBDAxis = std::get< FREQ_AXIS >(*in);
+        auto chan_ax = std::get< CHANNEL_AXIS >(*in);
         fSBDBinSep = fSBDAxis(1) - fSBDAxis(0);
         //loop over the single-band delay 'lags', computing the MBD/DR function
         //find the max for each SBD, and globally
@@ -142,15 +143,14 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 {
                     std::string net_sideband;
                     int dsb_partner;
-                    bool key_present = std::get< CHANNEL_AXIS >(*in).RetrieveIndexLabelKeyValue(a, "net_sideband", net_sideband);
-                    bool dsb_key_present = std::get< CHANNEL_AXIS >(*in).RetrieveIndexLabelKeyValue(a, "dsb_partner", dsb_partner);
-                    std::size_t remapped_sbd_idx = fNSBD - 1 - sbd_idx;
-
+                    bool key_present = chan_ax.RetrieveIndexLabelKeyValue(a, "net_sideband", net_sideband);
+                    bool dsb_key_present = chan_ax.RetrieveIndexLabelKeyValue(a, "dsb_partner", dsb_partner);
                     for(std::size_t j = 0; j < b; j++)
                     {
                         if(net_sideband == "L" && dsb_key_present)
                         {
-                            fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, remapped_sbd_idx);
+                            //flip the axis index for LSB channel of double-sideband pair
+                            fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, fNSBD - 1 - sbd_idx);
                         }
                         else 
                         {
@@ -187,8 +187,7 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                             std::size_t mbd_bin = fMBDBinMap[ fChannelIndexToFreqPointIndex[ch] ];
                             std::string net_sideband;
                             bool key_present = std::get< CHANNEL_AXIS >(*in).RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
-                            auto val = sbd_dr_data(0, ch, dr_idx, 0);
-                            fMBDWorkspace(mbd_bin) += val;
+                            fMBDWorkspace(mbd_bin) += sbd_dr_data(0, ch, dr_idx, 0);
                         }
 
                         if(first)
