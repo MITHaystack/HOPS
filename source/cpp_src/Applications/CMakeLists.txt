@@ -24,6 +24,7 @@ set(SOURCE_BASENAMES
     ComparePcal
     fplot4
     alist4
+    fourfit4
 )
 
 set(TEST_BASENAMES
@@ -48,10 +49,11 @@ endforeach( BASENAME )
 
 hops_install_executables( ${SOURCE_BASENAMES})
 
-#do fourfit4 separately since it needs a build time stamp
-add_executable(fourfit4 fourfit4.cc )
-target_compile_options(fourfit4 PRIVATE -DHOPS_BUILD_TIME=${BUILD_TIME})
-target_link_libraries(fourfit4 ${HOPS_APP_LIBS})
+# #do fourfit4 separately since it needs a build time stamp
+# add_executable(fourfit4 fourfit4.cc )
+# target_compile_options(fourfit4 PRIVATE -DHOPS_BUILD_TIME=${BUILD_TIME})
+# target_link_libraries(fourfit4 ${HOPS_APP_LIBS})
+# hops_install_test_executables( fourfit4 )
 
 foreach( BASENAME ${TEST_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
