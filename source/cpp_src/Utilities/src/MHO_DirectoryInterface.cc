@@ -1,5 +1,6 @@
 #include "MHO_DirectoryInterface.hh"
 #include "MHO_Message.hh"
+#include "MHO_TimeStampConverter.hh"
 
 //needed for listing/navigating files/directories on *nix
 #include <dirent.h>
@@ -101,6 +102,27 @@ bool MHO_DirectoryInterface::IsFile(const std::string& name)
     }
     return false;
 }
+
+std::string 
+MHO_DirectoryInterface::GetFileModifcationTime(const std::string& name)
+{
+    uint64_t epoch_sec = 0;
+    struct stat st;
+    // Get file information
+    if (stat(name.c_str(), &st) == 0) 
+    {
+        epoch_sec = st.st_mtime;
+    }
+    else 
+    {
+        msg_error("utility", "could not stat file: " << name << eom);
+    }
+    std::string time_stamp;
+    double frac;
+    MHO_TimeStampConverter::ConvertEpochSecondToTimeStamp(epoch_sec, frac, time_stamp);
+    return time_stamp;
+}
+
 
 bool MHO_DirectoryInterface::CreateDirectory(const std::string& dirname) const
 {

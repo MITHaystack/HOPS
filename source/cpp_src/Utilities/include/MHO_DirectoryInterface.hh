@@ -29,7 +29,8 @@ class MHO_DirectoryInterface
 
         static bool IsDirectory(const std::string& name);
         static bool IsFile(const std::string& name);
-
+        static std::string GetFileModifcationTime(const std::string& name);
+    
         bool CreateDirectory(const std::string& dirname) const;
 
         void SetCurrentDirectory(const std::string& dirname);
