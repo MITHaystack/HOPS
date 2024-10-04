@@ -173,14 +173,12 @@ unsigned int MHO_DelayRate::CalculateSearchSpaceSize(unsigned int input_size)
 {
     //just make it as big as needed
     int drsp_size = 2 * MHO_BitReversalPermutation::NextLowestPowerOfTwo(input_size);
-
     //the legacy size calculation (see search_windows.c) is as follows:
     // unsigned int drsp_size = 8192;
     // while( input_size < (drsp_size / 4) )
     // {
     //     drsp_size /= 2;
     // };
-
     return drsp_size;
 }
 
