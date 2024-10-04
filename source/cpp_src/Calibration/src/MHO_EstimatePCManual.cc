@@ -281,11 +281,11 @@ void MHO_EstimatePCManual::est_phases(int is_ref, int keep)
 
     if(is_ref)
     {
-        msg_debug("calibration", "*est: phases on ref station" << eom);
+        msg_info("calibration", "*est: phases on ref station" << eom);
     }
     else
     {
-        msg_debug("calibration", "*est: phases on rem station" << eom);
+        msg_info("calibration", "*est: phases on rem station" << eom);
     }
 
     /* support for bias operation */
@@ -294,12 +294,12 @@ void MHO_EstimatePCManual::est_phases(int is_ref, int keep)
     if(keep)
     {
         phase_bias = (epb) ? atof(epb) : 0.0;
-        msg_debug("calibration", "*est: phase bias " << phase_bias << eom);
+        msg_info("calibration", "*est: phase bias " << phase_bias << eom);
     }
 
     if(epb || epd)
     {
-        msg_debug("calibration", "*est: HOPS_EST_PC_BIAS " << epb << " ..._DLYM " << epd << eom);
+        msg_info("calibration", "*est: HOPS_EST_PC_BIAS " << epb << " ..._DLYM " << epd << eom);
     }
 
     double ref_freq = fParameterStore->GetAs< double >(std::string("/control/config/ref_freq"));
@@ -490,7 +490,7 @@ void MHO_EstimatePCManual::est_phases(int is_ref, int keep)
     msg_info("calibration", "*est: control file info: " << eol);
     msg_info("calibration", "\n" << cf_line << " " << concat_ch << "\n" << output_string << eom);
 
-    msg_debug("calibration", "*est: phases converged (" << nd << ")" << eom);
+    msg_info("calibration", "*est: phases converged (" << nd << ")" << eom);
 }
 
 /*
@@ -530,14 +530,14 @@ void MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, 
         qsort(cpy + first, final, sizeof(double), &sbd_cmp);
         med = (first + final) / 2;
         medly = cpy[med];
-        msg_debug("calibration", "*est: median,average,total delays are: " << medly << ", " << ave << ", " << tot << eom);
+        msg_info("calibration", "*est: median,average,total delays are: " << medly << ", " << ave << ", " << tot << eom);
     }
 
     /* heuristic is to replace outliers with the median delay */
     if(how & 0x20)
     {
         tol = fabs(cpy[med] - tot);
-        msg_debug("calibration", "*est: tolerance " << tol << ", retaining " << medly << "+/-" << 3 * tol << eom);
+        msg_info("calibration", "*est: tolerance " << tol << ", retaining " << medly << "+/-" << 3 * tol << eom);
 
         for(ch = first; tol > 0 && ch < final; ch++)
         {
@@ -552,12 +552,12 @@ void MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, 
             ave += sbd[ch];
         }
         ave /= (final - first + 1);
-        msg_debug("calibration", "*est: revised average delay is " << ave << eom);
+        msg_info("calibration", "*est: revised average delay is " << ave << eom);
     }
 
     if(how & 0x02)
     { /* use the median value */
-        msg_debug("calibration", "*est: using median delay (mode " << std::hex << how << std::dec << ")" << eom);
+        msg_info("calibration", "*est: using median delay (mode " << std::hex << how << std::dec << ")" << eom);
         for(ch = first; ch < final; ch++)
         {
             esd[ch] = medly - delta_delay;
@@ -565,7 +565,7 @@ void MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, 
     }
     else if(how & 0x04)
     { /* compute and use average */
-        msg_debug("calibration", "*est: using ave delay (mode " << std::hex << how << std::dec << ")" << eom);
+        msg_info("calibration", "*est: using ave delay (mode " << std::hex << how << std::dec << ")" << eom);
         for(ch = first; ch < final; ch++)
         {
             esd[ch] = ave - delta_delay;
@@ -573,7 +573,7 @@ void MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, 
     }
     else if(how & 0x08)
     { /* use total SBD value */
-        msg_debug("calibration", "*est: using total SBD delay (mode " << std::hex << how << std::dec << ")" << eom);
+        msg_info("calibration", "*est: using total SBD delay (mode " << std::hex << how << std::dec << ")" << eom);
         for(ch = first; ch < final; ch++)
         {
             esd[ch] = tot - delta_delay;
@@ -581,7 +581,7 @@ void MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, 
     }
     else if(how & 0x10)
     { /* use the measured values */
-        msg_debug("calibration", "*est: using measured SBD delay (mode " << std::hex << how << std::dec << ")" << eom);
+        msg_info("calibration", "*est: using measured SBD delay (mode " << std::hex << how << std::dec << ")" << eom);
         for(ch = first; ch < final; ch++)
         {
             esd[ch] = sbd[ch] - delta_delay;
@@ -635,22 +635,22 @@ void MHO_EstimatePCManual::est_delays(int is_ref, int how)
 
     if(is_ref)
     {
-        msg_debug("calibration", "*est: phases on ref station" << eom);
+        msg_info("calibration", "*est: phases on ref station" << eom);
     }
     else
     {
-        msg_debug("calibration", "*est: phases on rem station" << eom);
+        msg_info("calibration", "*est: phases on rem station" << eom);
     }
 
     if(epd)
     {
-        msg_debug("calibration", "*est: HOPS_EST_PC_MDLY " << epd << eom);
+        msg_info("calibration", "*est: HOPS_EST_PC_MDLY " << epd << eom);
     }
 
     /* restrict operation to only one delay calculation */
     if((((how & 0x02) >> 1) + ((how & 0x04) >> 2) + ((how & 0x08) >> 3) + ((how & 0x10) >> 4)) > 1)
     {
-        msg_debug("calibration", "*est: too many delay modes selected: " << std::hex << how << std::dec << eom);
+        msg_error("calibration", "*est: too many delay modes selected: " << std::hex << how << std::dec << eom);
         return;
     }
 
@@ -668,7 +668,7 @@ void MHO_EstimatePCManual::est_delays(int is_ref, int how)
             delta_delay = resid_mbd - resid_sbd;
         }
         delta_delay *= ((epd) ? atof(epd) : 1.0) * 1000.0;
-        msg_debug("calibration", "*est: post-MDLY sbd adjustment " << delta_delay << " ns" << eom);
+        msg_info("calibration", "*est: post-MDLY sbd adjustment " << delta_delay << " ns" << eom);
     }
 
     //info needed to construct the control file line prefix
@@ -739,7 +739,7 @@ void MHO_EstimatePCManual::est_delays(int is_ref, int how)
             output_string += "\n";
         }
     }
-    msg_debug("calibration", "*est: delays converged (" << nd << ")" << eom);
+    msg_info("calibration", "*est: delays converged (" << nd << ")" << eom);
     msg_info("calibration", "*est: control file info: " << eol);
     msg_info("calibration", "\n" << cf_line << " " << concat_ch << "\n" << output_string << eom);
 }
