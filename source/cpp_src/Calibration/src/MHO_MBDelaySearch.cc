@@ -185,9 +185,6 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                         for(std::size_t ch = 0; ch < nch; ch++)
                         {
                             std::size_t mbd_bin = fMBDBinMap[fChannelIndexToFreqPointIndex[ch]];
-                            std::string net_sideband;
-                            bool key_present =
-                                std::get< CHANNEL_AXIS >(*in).RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
                             fMBDWorkspace(mbd_bin) += sbd_dr_data(0, ch, dr_idx, 0);
                         }
 
