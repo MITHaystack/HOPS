@@ -141,24 +141,11 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 std::size_t b = sbd_dims[TIME_AXIS];
                 for(std::size_t i = 0; i < a; i++)
                 {
-                    std::string net_sideband;
-                    int dsb_partner;
-                    bool key_present = chan_ax.RetrieveIndexLabelKeyValue(a, "net_sideband", net_sideband);
-                    bool dsb_key_present = chan_ax.RetrieveIndexLabelKeyValue(a, "dsb_partner", dsb_partner);
                     for(std::size_t j = 0; j < b; j++)
                     {
-                        if(net_sideband == "L" && dsb_key_present)
-                        {
-                            //flip the axis index for LSB channel of double-sideband pair
-                            fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, fNSBD - 1 - sbd_idx);
-                        }
-                        else
-                        {
-                            fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, sbd_idx);
-                        }
+                        fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, sbd_idx);
                     }
                 }
-
                 //run the transformation to delay rate space (this also involves a zero padded FFT)
                 ok = fDelayRateCalc.Execute();
 

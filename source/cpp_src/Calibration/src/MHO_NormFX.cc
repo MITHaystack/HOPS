@@ -147,17 +147,20 @@ bool MHO_NormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* out)
             return false;
         }
 
-        //for lower sideband we complex conjugate the data after the FFT
+        //for lower sideband channels (that are not members of a dsb pair)
+        //we complex conjugate the data after the FFT
         auto chan_ax = &(std::get< CHANNEL_AXIS >(*out));
         for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
         {
             std::string net_sideband;
+            int dsb_partner;
             bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+            bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
             if(!key_present)
             {
                 msg_error("calibration", "norm_fx missing net_sideband label for channel " << ch << eom);
             }
-            if(net_sideband == "L")
+            if(!dsb_key_present && net_sideband == "L")
             {
                 //just the slice that matches this channel
                 auto slice = out->SliceView(":", ch, ":", ":");
@@ -207,6 +210,34 @@ bool MHO_NormFX::FillSBDTable(const XArgType* in, XArgType* out)
         msg_error("calibration", "could not execute zero padder in MHO_NormFX" << eom);
         return false;
     }
+
+    //for lower sideband we complex conjugate and reverse the data if it is a member of a double sideband pair
+    auto pp_ax = &(std::get< POLPROD_AXIS >(*out));
+    auto time_ax = &(std::get< TIME_AXIS >(*out));
+    auto chan_ax = &(std::get< CHANNEL_AXIS >(*out));
+    for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
+    {
+        std::string net_sideband;
+        int dsb_partner;
+        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+        bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+        if(dsb_key_present && net_sideband == "L")
+        {
+            for(std::size_t pp = 0; pp < pp_ax->GetSize(); pp++)
+            {
+                for(std::size_t ap=0; ap < time_ax->GetSize(); ap++)
+                {
+                    auto slice = out->SubView(pp, ch, ap);
+                    std::reverse(slice.begin(), slice.end());
+                    for(auto it = slice.begin(); it != slice.end(); it++)
+                    {
+                        *it = std::conj(*it);
+                    }
+                }
+            }
+        }
+    }
+
     return status;
 }
 
