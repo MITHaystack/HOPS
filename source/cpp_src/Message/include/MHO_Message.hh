@@ -2,6 +2,7 @@
 #define MHO_Message_HH__
 
 #include <cstdlib>
+#include <cstdint>
 #include <iostream>
 #include <mutex>
 #include <ostream>

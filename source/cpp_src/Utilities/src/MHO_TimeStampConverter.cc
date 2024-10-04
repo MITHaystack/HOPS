@@ -8,7 +8,7 @@ namespace hops
 {
 
 bool MHO_TimeStampConverter::ConvertEpochSecondToTimeStamp(const uint64_t& epoch_sec, const double& fractional_part,
-                                                           std::string& date)
+                                                           std::string& date_string)
 {
     if(fractional_part < 0 || fractional_part >= 1.0)
     {
@@ -43,40 +43,40 @@ bool MHO_TimeStampConverter::ConvertEpochSecondToTimeStamp(const uint64_t& epoch
 
     if(snano_sec.size() != 0)
     {
-        date = std::string(buff) + std::string(".") + snano_sec + std::string("Z");
+        date_string = std::string(buff) + std::string(".") + snano_sec + std::string("Z");
     }
     else
     {
-        date = std::string(buff) + std::string("Z");
+        date_string = std::string(buff) + std::string("Z");
     }
 
     return true;
 }
 
-bool MHO_TimeStampConverter::ConvertTimeStampToEpochSecond(const std::string& date, uint64_t& epoch_sec,
+bool MHO_TimeStampConverter::ConvertTimeStampToEpochSecond(const std::string& date_string, uint64_t& epoch_sec,
                                                            double& fractional_part)
 {
     //number of digits in the fractional part (F) may vary
-    if(date.back() != 'Z' || date.size() < 20 || date[10] != 'T')
+    if(date_string.back() != 'Z' || date_string.size() < 20 || date_string[10] != 'T')
     {
         //only support UTC/Zulu time zone, if something else snuck in, fail
         return false;
     }
     else
     {
-        std::string syear = date.substr(0, 4);
-        std::string smonth = date.substr(5, 2);
-        std::string sday = date.substr(8, 2);
-        std::string shour = date.substr(11, 2);
-        std::string smin = date.substr(14, 2);
-        std::string ssec = date.substr(17, 2);
+        std::string syear = date_string.substr(0, 4);
+        std::string smonth = date_string.substr(5, 2);
+        std::string sday = date_string.substr(8, 2);
+        std::string shour = date_string.substr(11, 2);
+        std::string smin = date_string.substr(14, 2);
+        std::string ssec = date_string.substr(17, 2);
 
         //look for delimiter to fractional second
-        size_t dec_pos = date.find('.');
+        size_t dec_pos = date_string.find('.');
         std::string sfrac = "0.0";
-        if(dec_pos != std::string::npos && (date.size() - dec_pos) >= 1)
+        if(dec_pos != std::string::npos && (date_string.size() - dec_pos) >= 1)
         {
-            sfrac = date.substr(dec_pos, (date.size() - dec_pos) - 1);
+            sfrac = date_string.substr(dec_pos, (date_string.size() - dec_pos) - 1);
         }
 
         int year = 0;
