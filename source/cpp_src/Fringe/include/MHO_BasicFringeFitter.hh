@@ -5,6 +5,7 @@
 #include "MHO_FringeFitter.hh"
 
 #include "MHO_SingleSidebandNormFX.hh"
+#include "MHO_MixedSidebandNormFX.hh"
 #include "MHO_NormFX.hh"
 
 #include "MHO_InterpolateFringePeak.hh"
@@ -61,9 +62,10 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
 
         bool ContainsMixedSideband(visibility_type* vis);
 
-        //operator to transform from frequency to single-band delay space
+        //operator to transform from frequency to single-band delay space (we switch depending on the type of freq setup)
         MHO_UnaryOperator<visibility_type>* fNormFXOp;
-        MHO_NormFX fMSBNormFXOp; //used when there is mixed LSB or USB or double-sideband data
+        //MHO_NormFX fMSBNormFXOp; 
+        MHO_MixedSidebandNormFX fMSBNormFXOp; //used when there is mixed LSB or USB or double-sideband data
         MHO_SingleSidebandNormFX fSSBNormFXOp; //used when there is only LSB or USB data
 
 

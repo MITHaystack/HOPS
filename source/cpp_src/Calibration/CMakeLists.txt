@@ -20,6 +20,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DCBlock.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MinWeight.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SingleSidebandNormFX.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MixedSidebandNormFX.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NormFX.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SBDTableGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayRate.hh
@@ -48,6 +49,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DCBlock.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MinWeight.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SingleSidebandNormFX.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MixedSidebandNormFX.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NormFX.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SBDTableGenerator.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayRate.cc
