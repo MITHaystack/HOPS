@@ -319,7 +319,7 @@ MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_typ
             if(other != ch)
             {
                 double f1, f2;
-                bool tmp1 = chan_ax->RetrieveIndexLabelKeyValue(other, "sky_freq", f1);
+                bool tmp1 = chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", f1);
                 bool tmp2 = chan_ax->RetrieveIndexLabelKeyValue(other, "sky_freq", f2);
                 if(std::fabs(f2-f1) > eps){other = ch;} //partner is not correct, treat as stand alone channel
             }
