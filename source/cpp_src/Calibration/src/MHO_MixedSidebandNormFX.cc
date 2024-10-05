@@ -202,26 +202,26 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
             return false;
         }
 
-        //for lower sideband we complex conjugate the data
-        auto chan_ax = &(std::get< CHANNEL_AXIS >(*out));
-        for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
-        {
-            std::string net_sideband;
-            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
-            if(!key_present)
-            {
-                msg_error("calibration", "norm_fx missing net_sideband label for channel " << ch << eom);
-            }
-            if(net_sideband == "L")
-            {
-                //just the slice that matches this channel
-                auto slice = out->SliceView(":", ch, ":", ":");
-                for(auto it = slice.begin(); it != slice.end(); it++)
-                {
-                    *it = std::conj(*it);
-                }
-            }
-        }
+        // //for lower sideband we complex conjugate the data
+        // auto chan_ax = &(std::get< CHANNEL_AXIS >(*out));
+        // for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
+        // {
+        //     std::string net_sideband;
+        //     bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+        //     if(!key_present)
+        //     {
+        //         msg_error("calibration", "norm_fx missing net_sideband label for channel " << ch << eom);
+        //     }
+        //     if(net_sideband == "L")
+        //     {
+        //         //just the slice that matches this channel
+        //         auto slice = out->SliceView(":", ch, ":", ":");
+        //         for(auto it = slice.begin(); it != slice.end(); it++)
+        //         {
+        //             *it = std::conj(*it);
+        //         }
+        //     }
+        // }
 
         //normalize the array (due to FFT)
         double norm = 1.0 / (double)fInDims[FREQ_AXIS];
@@ -260,7 +260,49 @@ MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_typ
     {
         msg_error("calibration", "Could not execute zero padder in MHO_MixedSidebandNormFX." << eom);
     }
+    workspace->ZeroArray();
 
+    //ok...now the real copy 
+    auto pp_ax = &(std::get<POLPROD_AXIS>(*in));
+    auto chan_ax = &(std::get<CHANNEL_AXIS>(*in));
+    auto ap_ax = &(std::get<TIME_AXIS>(*in));
+    auto freq_ax = &(std::get<FREQ_AXIS>(*in));
+    auto out_freq_ax = &(std::get<FREQ_AXIS>(*workspace));
+
+    std::size_t lsb_shift = out_freq_ax->GetSize()/2;
+    for(std::size_t pp =0; pp<pp_ax->GetSize(); pp++)
+    {
+        for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
+        {
+            bool ok;
+            std::string net_sideband;
+            ok = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+            int dsb_partner;
+            ok = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+
+            for(std::size_t ap =0; ap<ap_ax->GetSize(); ap++)
+            {
+                for(std::size_t fr=0; fr<freq_ax->GetSize(); fr++)
+                {
+                    if(net_sideband == "L")
+                    {
+                        // if(fr == 0)
+                        // {
+                        //     workspace->at(pp,ch,ap, lsb_shift/2) = std::conj(in->at(pp,ch,ap,fr) );
+                        // }
+                        // else
+                        {
+                            workspace->at(pp,ch,ap, lsb_shift - fr) = std::conj(in->at(pp,ch,ap,fr) );
+                        }
+                    }
+                    if(net_sideband == "U")
+                    {
+                        workspace->at(pp,ch,ap,fr) = in->at(pp,ch,ap,fr);
+                    }
+                }
+            }
+        }
+    }
 }
 
 
