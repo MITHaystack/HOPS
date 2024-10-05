@@ -81,9 +81,9 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
                                 bool value = true;
                                 chan_ax->InsertIntervalLabelKeyValue(ch, next_ch, "double_sideband", value);
 
-                                //make sure each channel has a reference to index of the other
-                                chan_ax->InsertIndexLabelKeyValue(ch, "dsb_partner", next_ch);
-                                chan_ax->InsertIndexLabelKeyValue(next_ch, "dsb_partner", ch);
+                                //make sure each channel has a RELATIVE reference to index of the other
+                                chan_ax->InsertIndexLabelKeyValue(ch, "dsb_partner", 1);
+                                chan_ax->InsertIndexLabelKeyValue(next_ch, "dsb_partner", -1);
                             }
                         }
                     }

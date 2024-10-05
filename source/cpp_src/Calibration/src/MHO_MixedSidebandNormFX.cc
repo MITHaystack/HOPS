@@ -46,7 +46,7 @@ bool MHO_MixedSidebandNormFX::InitializeOutOfPlace(const XArgType* in, XArgType*
             msg_error("calibration", "MHO_MixedSidebandNormFX discovered: "
                                          << n_dsb_chan << " double-sideband channels, this data type is not yet supported"
                                          << eom);
-            return false;
+            // return false;
         }
 
         //allocate the SBD space
@@ -202,27 +202,6 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
             return false;
         }
 
-        // //for lower sideband we complex conjugate the data
-        // auto chan_ax = &(std::get< CHANNEL_AXIS >(*out));
-        // for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
-        // {
-        //     std::string net_sideband;
-        //     bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
-        //     if(!key_present)
-        //     {
-        //         msg_error("calibration", "norm_fx missing net_sideband label for channel " << ch << eom);
-        //     }
-        //     if(net_sideband == "L")
-        //     {
-        //         //just the slice that matches this channel
-        //         auto slice = out->SliceView(":", ch, ":", ":");
-        //         for(auto it = slice.begin(); it != slice.end(); it++)
-        //         {
-        //             *it = std::conj(*it);
-        //         }
-        //     }
-        // }
-
         //normalize the array (due to FFT)
         double norm = 1.0 / (double)fInDims[FREQ_AXIS];
         *(out) *= norm;
@@ -251,6 +230,51 @@ bool MHO_MixedSidebandNormFX::ExecuteInPlace(XArgType* in)
     return status;
 }
 
+// void 
+// MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_type* workspace)
+// {
+//     bool status = fZeroPadder.Execute();
+//     if(!status)
+//     {
+//         msg_error("calibration", "Could not execute zero padder in MHO_MixedSidebandNormFX." << eom);
+//     }
+//     workspace->ZeroArray();
+// 
+//     //ok...now the real copy 
+//     auto pp_ax = &(std::get<POLPROD_AXIS>(*in));
+//     auto chan_ax = &(std::get<CHANNEL_AXIS>(*in));
+//     auto ap_ax = &(std::get<TIME_AXIS>(*in));
+//     auto freq_ax = &(std::get<FREQ_AXIS>(*in));
+// 
+//     auto in_freq_ax = &(std::get<FREQ_AXIS>(*in));
+//     auto out_freq_ax = &(std::get<FREQ_AXIS>(*workspace));
+//     std::size_t lsb_shift = out_freq_ax->GetSize()/2;
+//     double eps = 1e-4;
+// 
+//     for(std::size_t pp =0; pp<pp_ax->GetSize(); pp++)
+//     {
+//         for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
+//         {
+//             std::string net_sideband;
+//             bool net_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+//             for(std::size_t ap =0; ap<ap_ax->GetSize(); ap++)
+//             {
+//                 for(std::size_t fr=0; fr<freq_ax->GetSize(); fr++)
+//                 {
+//                     if(net_sideband == "L")
+//                     {
+//                         workspace->at(pp,ch,ap, lsb_shift - fr) +=  std::conj(in->at(pp,ch,ap,fr) );
+//                     }
+//                     if(net_sideband == "U")
+//                     {
+//                         workspace->at(pp,ch,ap,fr) += in->at(pp,ch,ap,fr);
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
 
 void 
 MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_type* workspace)
@@ -267,18 +291,38 @@ MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_typ
     auto chan_ax = &(std::get<CHANNEL_AXIS>(*in));
     auto ap_ax = &(std::get<TIME_AXIS>(*in));
     auto freq_ax = &(std::get<FREQ_AXIS>(*in));
-    auto out_freq_ax = &(std::get<FREQ_AXIS>(*workspace));
 
+    auto in_freq_ax = &(std::get<FREQ_AXIS>(*in));
+    auto out_freq_ax = &(std::get<FREQ_AXIS>(*workspace));
     std::size_t lsb_shift = out_freq_ax->GetSize()/2;
+    double eps = 1e-4;
+
     for(std::size_t pp =0; pp<pp_ax->GetSize(); pp++)
     {
         for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
         {
-            bool ok;
             std::string net_sideband;
-            ok = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
-            int dsb_partner;
-            ok = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+            bool net_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+
+            int dsb_partner = 0;
+            bool dsb_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+            if(!dsb_present){dsb_present = 0;}
+            else if(net_sideband == "L"){dsb_partner = 1;}
+            else if(net_sideband == "U"){dsb_partner = -1;}
+            int other = ch + dsb_partner;
+
+            //check if the partner is out of bounds
+            if(other < 0){other = ch;}
+            if(other >= chan_ax->GetSize() - 1 ){other = ch;}
+
+            //check that the sky freqs are the same (just to sure the partner wasn't cut)
+            if(other != ch)
+            {
+                double f1, f2;
+                bool tmp1 = chan_ax->RetrieveIndexLabelKeyValue(other, "sky_freq", f1);
+                bool tmp2 = chan_ax->RetrieveIndexLabelKeyValue(other, "sky_freq", f2);
+                if(std::fabs(f2-f1) > eps){other = ch;} //partner is not correct, treat as stand alone channel
+            }
 
             for(std::size_t ap =0; ap<ap_ax->GetSize(); ap++)
             {
@@ -286,18 +330,23 @@ MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_typ
                 {
                     if(net_sideband == "L")
                     {
-                        // if(fr == 0)
-                        // {
-                        //     workspace->at(pp,ch,ap, lsb_shift/2) = std::conj(in->at(pp,ch,ap,fr) );
-                        // }
-                        // else
+                        auto val = std::conj(in->at(pp,ch,ap,fr) );
+                        if(ch != other)
                         {
-                            workspace->at(pp,ch,ap, lsb_shift - fr) = std::conj(in->at(pp,ch,ap,fr) );
+                            val *= 0.5;
+                            workspace->at(pp,ch,ap,fr) += 0.5*( in->at(pp, other, ap, fr) );
                         }
+                        workspace->at(pp,ch,ap, lsb_shift - fr) += val;
                     }
                     if(net_sideband == "U")
                     {
-                        workspace->at(pp,ch,ap,fr) = in->at(pp,ch,ap,fr);
+                        auto val = in->at(pp,ch,ap,fr);
+                        if(ch != other)
+                        {
+                            val *= 0.5;
+                            workspace->at(pp,ch,ap, lsb_shift - fr) += 0.5*( std::conj(in->at(pp,other,ap,fr) ) );
+                        }
+                        workspace->at(pp,ch,ap,fr) += val;
                     }
                 }
             }
