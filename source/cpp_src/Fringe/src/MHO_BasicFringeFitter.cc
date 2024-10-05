@@ -34,6 +34,7 @@ MHO_BasicFringeFitter::MHO_BasicFringeFitter(MHO_FringeData* data): MHO_FringeFi
     vis_data = nullptr;
     wt_data = nullptr;
     sbd_data = nullptr;
+    fNormFXOp = nullptr;
 };
 
 MHO_BasicFringeFitter::~MHO_BasicFringeFitter(){};
@@ -196,9 +197,19 @@ void MHO_BasicFringeFitter::Initialize()
                 fContainerStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
             }
 
+            //determine the type of NormFX operator we need (either mixed sideband or single-sideband)
+            if( ContainsMixedSideband(vis_data) )
+            {
+                fNormFXOp = &fMSBNormFXOp;
+            }
+            else 
+            {
+                fNormFXOp = &fSSBNormFXOp;
+            }
+
             //initialize norm-fx (x-form to SBD space)
-            fNormFXOp.SetArgs(vis_data, sbd_data);
-            bool ok = fNormFXOp.Initialize(); //initialize takes care of properly re-sizing SBD data
+            fNormFXOp->SetArgs(vis_data, sbd_data);
+            bool ok = fNormFXOp->Initialize(); //initialize takes care of properly re-sizing SBD data
             check_step_fatal(ok, "fringe", "normfx initialization." << eom);
 
             //configure the coarse SBD/DR/MBD search
@@ -344,7 +355,7 @@ void MHO_BasicFringeFitter::coarse_fringe_search(bool set_windows)
     sbd_data->ZeroArray();
 
     //run norm_fx (takes visibilities to (single band) delay space)
-    bool ok = fNormFXOp.Execute();
+    bool ok = fNormFXOp->Execute();
     check_step_fatal(ok, "fringe", "normfx execution." << eom);
 
     //take snapshot of sbd data after normfx
@@ -465,5 +476,50 @@ void MHO_BasicFringeFitter::interpolate_peak()
 
     profiler_stop();
 }
+
+bool 
+MHO_BasicFringeFitter::ContainsMixedSideband(visibility_type* vis)
+{
+    //figure out if we have USB or LSB data, or a mixture, or double-sideband data
+    auto channel_axis = &(std::get< CHANNEL_AXIS >(*(vis)));
+
+    //first check for double-sideband channels
+    std::vector< mho_json > dsb_labels = channel_axis->GetMatchingIntervalLabels("double_sideband");
+    std::size_t n_dsb_chan = dsb_labels.size();
+    if(n_dsb_chan != 0)
+    {
+        return true;
+    }
+
+    //now check for the number of other sidebands
+    std::string sb_key = "net_sideband";
+    std::string usb_flag = "U";
+    std::string lsb_flag = "L";
+    auto usb_chan = channel_axis->GetMatchingIndexes(sb_key, usb_flag);
+    auto lsb_chan = channel_axis->GetMatchingIndexes(sb_key, lsb_flag);
+    std::size_t n_usb_chan = usb_chan.size();
+    std::size_t n_lsb_chan = lsb_chan.size();
+
+    //mixed sideband data should be ok, but warn user since it is not well tested
+    if(n_usb_chan != 0 && n_lsb_chan != 0)
+    {
+        return true; //mixed set of channels with USB or LSB
+    }
+
+    if(n_lsb_chan != 0 && n_usb_chan == 0)
+    {
+        return false; //single sideband (LSB)
+    }
+
+    if(n_usb_chan != 0 && n_lsb_chan == 0)
+    {
+        return false; //single side band (USB)
+    }
+
+    msg_warn("fringe", "could not determine type of sidebands present in visibility data" << eom );
+    return false;
+}
+
+
 
 } // namespace hops
