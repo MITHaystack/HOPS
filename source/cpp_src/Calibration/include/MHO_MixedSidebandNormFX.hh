@@ -7,7 +7,7 @@
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_TableContainer.hh"
 
-#include "MHO_BinaryOperator.hh"
+#include "MHO_UnaryOperator.hh"
 #include "MHO_ComplexConjugator.hh"
 #include "MHO_CyclicRotator.hh"
 #include "MHO_EndZeroPadder.hh"
@@ -15,6 +15,7 @@
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 #include "MHO_NaNMasker.hh"
 #include "MHO_SubSample.hh"
+#include "MHO_NormFX.hh"
 
 #ifdef HOPS_USE_FFTW3
     #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
@@ -35,7 +36,7 @@ namespace hops
  *this extra computation appears to be lost.
  */
 
-class MHO_MixedSidebandNormFX: public MHO_UnaryOperator< visibility_type >
+class MHO_MixedSidebandNormFX: public MHO_NormFX //public MHO_UnaryOperator< visibility_type >
 {
     public:
         MHO_MixedSidebandNormFX();

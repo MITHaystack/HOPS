@@ -6,19 +6,8 @@
 
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_TableContainer.hh"
+#include "MHO_UnaryOperator.hh"
 
-#include "MHO_BinaryOperator.hh"
-#include "MHO_ComplexConjugator.hh"
-#include "MHO_CyclicRotator.hh"
-#include "MHO_EndZeroPadder.hh"
-#include "MHO_FunctorBroadcaster.hh"
-#include "MHO_MultidimensionalFastFourierTransform.hh"
-#include "MHO_NaNMasker.hh"
-#include "MHO_SubSample.hh"
-
-#ifdef HOPS_USE_FFTW3
-    #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
-#endif
 
 namespace hops
 {
@@ -28,54 +17,28 @@ namespace hops
  *@class MHO_NormFX
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Jul 9 11:47:00 2021 -0400
- *@brief implements a subset of the functionality found in norm_fx.c,
- *mainly the transform from frequency to delay space -- this implementation is
- *closer to the original since it preserves the extra padding factor (8x), which
- *is later followed by a factor of 2 sub-sampling. The original motivation for
- *this extra computation appears to be lost.
+ *@brief interface for various types of norm_fx operators (unary op on visibilities that accepts weights)
  */
 
 class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
 {
     public:
-        MHO_NormFX();
-        virtual ~MHO_NormFX();
+        MHO_NormFX():fWeights(nullptr){};
+        virtual ~MHO_NormFX(){};
+
+        void SetWeights(weight_type* w){fWeights = w;}
 
     protected:
         using XArgType = visibility_type;
 
-        virtual bool InitializeInPlace(XArgType* in) override;
-        virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) override;
+        virtual bool InitializeInPlace(XArgType* in) = 0;
+        virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) = 0;
 
-        virtual bool ExecuteInPlace(XArgType* in) override;
-        virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override;
+        virtual bool ExecuteInPlace(XArgType* in)  = 0;
+        virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) = 0;
 
-        // virtual bool InitializeInPlace(const XArgType* in, XArgType* out) override;
-        // virtual bool Execute(const XArgType* in, XArgType* out) override;
+        weight_type* fWeights;
 
-    private:
-        std::size_t fInDims[VIS_NDIM];
-        std::size_t fWorkDims[VIS_NDIM];
-        std::size_t fOutDims[VIS_NDIM];
-
-        typedef MHO_NaNMasker< visibility_type > nanMaskerType;
-        typedef MHO_ComplexConjugator< visibility_type > conjType;
-
-        MHO_FunctorBroadcaster< visibility_type, nanMaskerType > fNaNBroadcaster;
-
-#ifdef HOPS_USE_FFTW3
-        using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< visibility_type >;
-#else
-        using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< visibility_type >;
-#endif
-
-        FFT_ENGINE_TYPE fFFTEngine;
-        MHO_EndZeroPadder< visibility_type > fZeroPadder;
-        MHO_SubSample< visibility_type > fSubSampler;
-        MHO_CyclicRotator< visibility_type > fCyclicRotator;
-
-        visibility_type fWorkspace;
-        bool fInitialized;
 };
 
 } // namespace hops
