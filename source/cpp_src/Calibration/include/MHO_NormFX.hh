@@ -14,7 +14,7 @@
 #include "MHO_FunctorBroadcaster.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 #include "MHO_NaNMasker.hh"
-#include "MHO_SBDTableGenerator.hh"
+#include "MHO_SubSample.hh"
 
 #ifdef HOPS_USE_FFTW3
     #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
@@ -29,8 +29,10 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Jul 9 11:47:00 2021 -0400
  *@brief implements a subset of the functionality found in norm_fx.c,
- *mainly the transform from frequency to delay space with a reduced
- *zero padding factor (2x smaller than original implementation)
+ *mainly the transform from frequency to delay space -- this implementation is
+ *closer to the original since it preserves the extra padding factor (8x), which
+ *is later followed by a factor of 2 sub-sampling. The original motivation for
+ *this extra computation appears to be lost.
  */
 
 class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
@@ -48,8 +50,12 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteInPlace(XArgType* in) override;
         virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override;
 
+        // virtual bool InitializeInPlace(const XArgType* in, XArgType* out) override;
+        // virtual bool Execute(const XArgType* in, XArgType* out) override;
+
     private:
         std::size_t fInDims[VIS_NDIM];
+        std::size_t fWorkDims[VIS_NDIM];
         std::size_t fOutDims[VIS_NDIM];
 
         typedef MHO_NaNMasker< visibility_type > nanMaskerType;
@@ -65,12 +71,11 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
 
         FFT_ENGINE_TYPE fFFTEngine;
         MHO_EndZeroPadder< visibility_type > fZeroPadder;
+        MHO_SubSample< visibility_type > fSubSampler;
         MHO_CyclicRotator< visibility_type > fCyclicRotator;
-        MHO_SBDTableGenerator fSBDGen;
-        bool fInitialized;
 
-        //fills the SBD array
-        bool FillSBDTable(const XArgType* in, XArgType* out);
+        visibility_type fWorkspace;
+        bool fInitialized;
 };
 
 } // namespace hops

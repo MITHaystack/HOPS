@@ -1,13 +1,13 @@
-#include "MHO_NormFXExtraPadding.hh"
+#include "MHO_MixedSidebandNormFX.hh"
 
 namespace hops
 {
 
-MHO_NormFXExtraPadding::MHO_NormFXExtraPadding(): fInitialized(false){};
+MHO_MixedSidebandNormFX::MHO_MixedSidebandNormFX(): fInitialized(false){};
 
-MHO_NormFXExtraPadding::~MHO_NormFXExtraPadding(){};
+MHO_MixedSidebandNormFX::~MHO_MixedSidebandNormFX(){};
 
-bool MHO_NormFXExtraPadding::InitializeOutOfPlace(const XArgType* in, XArgType* out)
+bool MHO_MixedSidebandNormFX::InitializeOutOfPlace(const XArgType* in, XArgType* out)
 {
     fInitialized = false;
     if(in != nullptr && out != nullptr)
@@ -26,11 +26,11 @@ bool MHO_NormFXExtraPadding::InitializeOutOfPlace(const XArgType* in, XArgType* 
         std::size_t n_lsb_chan = lsb_chan.size();
         if(n_lsb_chan != 0)
         {
-            msg_debug("calibration", "MHO_NormFXExtraPadding operating on LSB data, N LSB channels: " << n_lsb_chan << eom);
+            msg_debug("calibration", "MHO_MixedSidebandNormFX operating on LSB data, N LSB channels: " << n_lsb_chan << eom);
         }
         if(n_usb_chan != 0)
         {
-            msg_debug("calibration", "MHO_NormFXExtraPadding operating on USB data, N USB channels: " << n_usb_chan << eom);
+            msg_debug("calibration", "MHO_MixedSidebandNormFX operating on USB data, N USB channels: " << n_usb_chan << eom);
         }
 
         //mixed sideband data should be ok, but warn user since it is not well tested
@@ -43,7 +43,7 @@ bool MHO_NormFXExtraPadding::InitializeOutOfPlace(const XArgType* in, XArgType* 
         std::size_t n_dsb_chan = dsb_labels.size();
         if(n_dsb_chan != 0)
         {
-            msg_error("calibration", "MHO_NormFXExtraPadding discovered: "
+            msg_error("calibration", "MHO_MixedSidebandNormFX discovered: "
                                          << n_dsb_chan << " double-sideband channels, this data type is not yet supported"
                                          << eom);
             return false;
@@ -83,7 +83,7 @@ bool MHO_NormFXExtraPadding::InitializeOutOfPlace(const XArgType* in, XArgType* 
         }
         if(!status)
         {
-            msg_error("calibration", "Could not initialize MHO_NormFXExtraPadding, in/out dimension mis-match." << eom);
+            msg_error("calibration", "Could not initialize MHO_MixedSidebandNormFX, in/out dimension mis-match." << eom);
             return false;
         }
 
@@ -95,21 +95,19 @@ bool MHO_NormFXExtraPadding::InitializeOutOfPlace(const XArgType* in, XArgType* 
         fWorkspace.Resize(fWorkDims);
         fWorkspace.SetArray(std::complex< double >(0.0, 0.0));
 
-        TODO_FIXME_MSG("TODO FIXME, the following line casts away const-ness:")
-        fNaNBroadcaster.SetArgs(const_cast< XArgType* >(in));
-        status = fNaNBroadcaster.Initialize();
-        if(!status)
-        {
-            msg_error("calibration", "Could not initialize NaN mask broadcast in MHO_NormFXExtraPadding." << eom);
-            return false;
-        }
-
         fZeroPadder.SetArgs(in, &fWorkspace);
         fZeroPadder.DeselectAllAxes();
-        //fZeroPadder.EnableNormFXMode(); //doesnt seem to make any difference
         fZeroPadder.SelectAxis(FREQ_AXIS); //only pad on the frequency (to lag) axis
         fZeroPadder.SetPaddingFactor(8);
         fZeroPadder.SetEndPadded(); //for both LSB and USB (what about DSB?)
+
+        fNaNBroadcaster.SetArgs(&fWorkspace);
+        status = fNaNBroadcaster.Initialize();
+        if(!status)
+        {
+            msg_error("calibration", "Could not initialize NaN mask broadcast in MHO_MixedSidebandNormFX." << eom);
+            return false;
+        }
 
         fFFTEngine.SetArgs(&fWorkspace);
         fFFTEngine.DeselectAllAxes();
@@ -119,14 +117,14 @@ bool MHO_NormFXExtraPadding::InitializeOutOfPlace(const XArgType* in, XArgType* 
         status = fZeroPadder.Initialize();
         if(!status)
         {
-            msg_error("calibration", "Could not initialize zero padder in MHO_NormFXExtraPadding." << eom);
+            msg_error("calibration", "Could not initialize zero padder in MHO_MixedSidebandNormFX." << eom);
             return false;
         }
 
         status = fFFTEngine.Initialize();
         if(!status)
         {
-            msg_error("calibration", "Could not initialize FFT in MHO_NormFXExtraPadding." << eom);
+            msg_error("calibration", "Could not initialize FFT in MHO_MixedSidebandNormFX." << eom);
             return false;
         }
 
@@ -135,7 +133,7 @@ bool MHO_NormFXExtraPadding::InitializeOutOfPlace(const XArgType* in, XArgType* 
         status = fSubSampler.Initialize();
         if(!status)
         {
-            msg_error("calibration", "Could not initialize sub-sampler in MHO_NormFXExtraPadding." << eom);
+            msg_error("calibration", "Could not initialize sub-sampler in MHO_MixedSidebandNormFX." << eom);
             return false;
         }
 
@@ -144,7 +142,7 @@ bool MHO_NormFXExtraPadding::InitializeOutOfPlace(const XArgType* in, XArgType* 
         status = fCyclicRotator.Initialize();
         if(!status)
         {
-            msg_error("calibration", "Could not initialize cyclic rotation in MHO_NormFXExtraPadding." << eom);
+            msg_error("calibration", "Could not initialize cyclic rotation in MHO_MixedSidebandNormFX." << eom);
             return false;
         }
 
@@ -157,47 +155,50 @@ bool MHO_NormFXExtraPadding::InitializeOutOfPlace(const XArgType* in, XArgType* 
     return fInitialized;
 }
 
-bool MHO_NormFXExtraPadding::ExecuteOutOfPlace(const XArgType* in, XArgType* out)
+bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* out)
 {
 
     if(fInitialized)
     {
         bool status;
 
+        // status = fZeroPadder.Execute();
+        // if(!status)
+        // {
+        //     msg_error("calibration", "Could not execute zero padder in MHO_MixedSidebandNormFX." << eom);
+        //     return false;
+        // }
+
+        FillWorkspace(in, &fWorkspace);
+
         //first thing we do is filter out any NaNs
         //(ADHOC flagging would likely also be implemented in a similar fashion)
         status = fNaNBroadcaster.Execute();
         if(!status)
         {
-            msg_error("calibration", "Could not execute NaN masker MHO_NormFXExtraPadding." << eom);
+            msg_error("calibration", "Could not execute NaN masker MHO_MixedSidebandNormFX." << eom);
             return false;
         }
 
-        status = fZeroPadder.Execute();
-        if(!status)
-        {
-            msg_error("calibration", "Could not execute zero padder in MHO_NormFXExtraPadding." << eom);
-            return false;
-        }
 
         status = fFFTEngine.Execute();
         if(!status)
         {
-            msg_error("calibration", "Could not execute FFT in MHO_NormFXExtraPadding." << eom);
+            msg_error("calibration", "Could not execute FFT in MHO_MixedSidebandNormFX." << eom);
             return false;
         }
 
         status = fSubSampler.Execute();
         if(!status)
         {
-            msg_error("calibration", "Could not execute sub-sampler in MHO_NormFXExtraPadding." << eom);
+            msg_error("calibration", "Could not execute sub-sampler in MHO_MixedSidebandNormFX." << eom);
             return false;
         }
 
         status = fCyclicRotator.Execute();
         if(!status)
         {
-            msg_error("calibration", "Could not execute cyclic-rotation MHO_NormFXExtraPadding." << eom);
+            msg_error("calibration", "Could not execute cyclic-rotation MHO_MixedSidebandNormFX." << eom);
             return false;
         }
 
@@ -232,7 +233,7 @@ bool MHO_NormFXExtraPadding::ExecuteOutOfPlace(const XArgType* in, XArgType* out
     return false;
 };
 
-bool MHO_NormFXExtraPadding::InitializeInPlace(XArgType* in)
+bool MHO_MixedSidebandNormFX::InitializeInPlace(XArgType* in)
 {
     XArgType* tmp = new XArgType();
     bool status = InitializeOutOfPlace(in, tmp);
@@ -241,7 +242,7 @@ bool MHO_NormFXExtraPadding::InitializeInPlace(XArgType* in)
     return status;
 }
 
-bool MHO_NormFXExtraPadding::ExecuteInPlace(XArgType* in)
+bool MHO_MixedSidebandNormFX::ExecuteInPlace(XArgType* in)
 {
     XArgType* tmp = new XArgType();
     bool status = ExecuteOutOfPlace(in, tmp);
@@ -249,5 +250,18 @@ bool MHO_NormFXExtraPadding::ExecuteInPlace(XArgType* in)
     delete tmp;
     return status;
 }
+
+
+void 
+MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_type* workspace)
+{
+    bool status = fZeroPadder.Execute();
+    if(!status)
+    {
+        msg_error("calibration", "Could not execute zero padder in MHO_MixedSidebandNormFX." << eom);
+    }
+
+}
+
 
 } // namespace hops

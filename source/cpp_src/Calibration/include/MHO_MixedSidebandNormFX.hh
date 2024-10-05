@@ -1,5 +1,5 @@
-#ifndef MHO_NormFXExtraPadding_HH__
-#define MHO_NormFXExtraPadding_HH__
+#ifndef MHO_MixedSidebandNormFX_HH__
+#define MHO_MixedSidebandNormFX_HH__
 
 #include <cmath>
 #include <complex>
@@ -24,8 +24,8 @@ namespace hops
 {
 
 /*!
- *@file MHO_NormFXExtraPadding.hh
- *@class MHO_NormFXExtraPadding
+ *@file MHO_MixedSidebandNormFX.hh
+ *@class MHO_MixedSidebandNormFX
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Jul 9 11:47:00 2021 -0400
  *@brief implements a subset of the functionality found in norm_fx.c,
@@ -35,11 +35,11 @@ namespace hops
  *this extra computation appears to be lost.
  */
 
-class MHO_NormFXExtraPadding: public MHO_UnaryOperator< visibility_type >
+class MHO_MixedSidebandNormFX: public MHO_UnaryOperator< visibility_type >
 {
     public:
-        MHO_NormFXExtraPadding();
-        virtual ~MHO_NormFXExtraPadding();
+        MHO_MixedSidebandNormFX();
+        virtual ~MHO_MixedSidebandNormFX();
 
     protected:
         using XArgType = visibility_type;
@@ -76,8 +76,10 @@ class MHO_NormFXExtraPadding: public MHO_UnaryOperator< visibility_type >
 
         visibility_type fWorkspace;
         bool fInitialized;
+
+        void FillWorkspace(const visibility_type* in, visibility_type* workspace);
 };
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_NormFXExtraPadding */
+#endif /*! end of include guard: MHO_MixedSidebandNormFX */
