@@ -91,7 +91,7 @@ bool MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArg
             return false;
         }
 
-        ApplyDataWeights(in2, out);
+        //ApplyDataWeights(in2, out);
 
         ok = fFFTEngine.Execute();
         if(!ok)

@@ -99,6 +99,21 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
             return false;
         }
 
+        //apply the data weights if set
+        if(this->fWeights != nullptr)
+        {
+            status = ApplyWeights(out, this->fWeights);
+            if(!status)
+            {
+                msg_error("calibration", "could not apply weights in MHO_SingleSidebandNormFX" << eom);
+                return false;
+            }
+        }
+        else 
+        {
+            msg_warn("calibration", "no visibility data weights available for MHO_SingleSidebandNormFX" << eom);
+        }
+
         status = fFFTEngine.Execute();
         if(!status)
         {
@@ -140,6 +155,45 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
     return false;
 };
 
+
+bool MHO_SingleSidebandNormFX::ApplyWeights(visibility_type* out, weight_type* w)
+{
+    std::size_t vis_dim[ visibility_type::rank::value];
+    std::size_t wt_dim[ visibility_type::rank::value];
+
+    out->GetDimensions(vis_dim);
+    w->GetDimensions(wt_dim);
+
+    //make sure the first 3 dimensions (polprod, channels, time) are the same!
+    bool same_size = true;
+    for(std::size_t i=0; i<3; i++)
+    {
+        if(vis_dim[i] != wt_dim[i]){same_size = false;}
+    }
+    
+    if(!same_size)
+    {
+        msg_error("calibration", "could not apply weights in MHO_SingleSidebandNormFX, dimension mismatch " << eom );
+        return false;
+    }
+
+    for(std::size_t pp = 0; pp < vis_dim[POLPROD_AXIS]; pp++)
+    {
+        for(std::size_t ch = 0; ch < vis_dim[CHANNEL_AXIS]; ch++)
+        {
+            for(std::size_t ap = 0; ap < vis_dim[TIME_AXIS]; ap++)
+            {
+                out->SubView(pp, ch, ap) *= (*w)(pp,ch,ap,0); //apply the data weights
+            }
+        }
+    }
+
+    return true;
+}
+
+
+
+
 //not used
 bool MHO_SingleSidebandNormFX::InitializeInPlace(XArgType* in)
 {
@@ -150,6 +204,7 @@ bool MHO_SingleSidebandNormFX::InitializeInPlace(XArgType* in)
     return status;
 }
 
+//not used
 bool MHO_SingleSidebandNormFX::ExecuteInPlace(XArgType* in)
 {
     XArgType* tmp = new XArgType();
@@ -158,5 +213,8 @@ bool MHO_SingleSidebandNormFX::ExecuteInPlace(XArgType* in)
     delete tmp;
     return status;
 }
+
+
+
 
 } // namespace hops
