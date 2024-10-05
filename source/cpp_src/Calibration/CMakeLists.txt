@@ -50,7 +50,6 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MinWeight.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SingleSidebandNormFX.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MixedSidebandNormFX.cc
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NormFX.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SBDTableGenerator.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayRate.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MBDelaySearch.cc
