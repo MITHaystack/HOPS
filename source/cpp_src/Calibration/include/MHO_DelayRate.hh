@@ -52,7 +52,7 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
         std::size_t fInDims[VIS_NDIM];
         std::size_t fOutDims[VIS_NDIM];
 
-        //void ApplyDataWeights(const XArgType2* in2, XArgType3* out);
+        void ApplyDataWeights(const XArgType2* in2, XArgType3* out);
         void ConditionallyResizeOutput(const std::size_t* dims, std::size_t size, XArgType3* out);
 
         void ApplyInterpolation(const XArgType1* in1, XArgType3* out);

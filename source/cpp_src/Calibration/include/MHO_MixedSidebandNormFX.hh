@@ -79,6 +79,8 @@ class MHO_MixedSidebandNormFX: public MHO_NormFX //public MHO_UnaryOperator< vis
         bool fInitialized;
 
         void FillWorkspace(const visibility_type* in, visibility_type* workspace);
+
+        //bool ApplyWeights(visibility_type* out, weight_type* w, bool invert);
 };
 
 } // namespace hops

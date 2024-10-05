@@ -99,20 +99,20 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
             return false;
         }
 
-        //apply the data weights if set
-        if(this->fWeights != nullptr)
-        {
-            status = ApplyWeights(out, this->fWeights);
-            if(!status)
-            {
-                msg_error("calibration", "could not apply weights in MHO_SingleSidebandNormFX" << eom);
-                return false;
-            }
-        }
-        else 
-        {
-            msg_warn("calibration", "no visibility data weights available for MHO_SingleSidebandNormFX" << eom);
-        }
+        // //apply the data weights if set
+        // if(this->fWeights != nullptr)
+        // {
+        //     status = ApplyWeights(out, this->fWeights, false);
+        //     if(!status)
+        //     {
+        //         msg_error("calibration", "could not apply weights in MHO_SingleSidebandNormFX" << eom);
+        //         return false;
+        //     }
+        // }
+        // else 
+        // {
+        //     msg_warn("calibration", "no visibility data weights available for MHO_SingleSidebandNormFX" << eom);
+        // }
 
         status = fFFTEngine.Execute();
         if(!status)
@@ -128,6 +128,23 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
             return false;
         }
         
+        // //invert the application of data weights....for single sideband data this just cancels out the first 
+        // //application above...we really should just eliminate this entirely for SSB data
+        // if(this->fWeights != nullptr)
+        // {
+        //     status = ApplyWeights(out, this->fWeights, true);
+        //     if(!status)
+        //     {
+        //         msg_error("calibration", "could not apply weights in MHO_SingleSidebandNormFX" << eom);
+        //         return false;
+        //     }
+        // }
+        // else 
+        // {
+        //     msg_warn("calibration", "no visibility data weights available for MHO_SingleSidebandNormFX" << eom);
+        // }
+
+
         //for lower sideband channels we complex conjugate the data after the FFT
         auto chan_ax = &(std::get< CHANNEL_AXIS >(*out));
         for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
@@ -146,7 +163,9 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
         }
 
         //normalize the array (due to FFT)
-        double norm = 1.0 / (double)fInDims[FREQ_AXIS];
+        //TODO...legacy implementation has length -> length -1 when dc_block is turned on
+        double length = (double)fInDims[FREQ_AXIS];
+        double norm = 1.0 / length;
         *(out) *= norm;
 
         return true;
@@ -156,7 +175,7 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
 };
 
 
-bool MHO_SingleSidebandNormFX::ApplyWeights(visibility_type* out, weight_type* w)
+bool MHO_SingleSidebandNormFX::ApplyWeights(visibility_type* out, weight_type* w, bool invert)
 {
     std::size_t vis_dim[ visibility_type::rank::value];
     std::size_t wt_dim[ visibility_type::rank::value];
@@ -183,7 +202,13 @@ bool MHO_SingleSidebandNormFX::ApplyWeights(visibility_type* out, weight_type* w
         {
             for(std::size_t ap = 0; ap < vis_dim[TIME_AXIS]; ap++)
             {
-                out->SubView(pp, ch, ap) *= (*w)(pp,ch,ap,0); //apply the data weights
+                double factor = (*w)(pp,ch,ap,0); //apply the data weights
+                if(invert)
+                {
+                    if(factor > 0.0){factor = 1.0/factor;}
+                    else{factor = 0.0;}
+                }
+                out->SubView(pp, ch, ap) *= factor;
             }
         }
     }

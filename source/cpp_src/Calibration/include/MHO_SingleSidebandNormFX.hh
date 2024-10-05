@@ -71,7 +71,7 @@ class MHO_SingleSidebandNormFX: public MHO_NormFX //MHO_UnaryOperator< visibilit
         MHO_SBDTableGenerator fSBDGen;
         bool fInitialized;
 
-        bool ApplyWeights(visibility_type* out, weight_type* w);
+        bool ApplyWeights(visibility_type* out, weight_type* w, bool invert);
 };
 
 } // namespace hops
