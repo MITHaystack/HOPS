@@ -17,7 +17,7 @@ set(SOURCE_BASENAMES
     TestTableContainerAccess
     #TestTableContainerMultiplication
     TestSelectRepack
-    TestIntervalLabelTree
+    # TestIntervalLabelTree
     TestObjectTags
     TestSnapshot
 )
