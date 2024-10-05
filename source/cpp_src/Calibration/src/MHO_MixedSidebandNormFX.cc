@@ -188,6 +188,22 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
             return false;
         }
 
+        // 
+        // //invert the application of data weights
+        // if(this->fWeights != nullptr)
+        // {
+        //     status = ApplyWeights(&fWorkspace, this->fWeights, true);
+        //     if(!status)
+        //     {
+        //         msg_error("calibration", "could not apply weights in MHO_MixedSidebandNormFX" << eom);
+        //         return false;
+        //     }
+        // }
+        // else 
+        // {
+        //     msg_warn("calibration", "no visibility data weights available for MHO_MixedSidebandNormFX" << eom);
+        // }
+
         status = fSubSampler.Execute();
         if(!status)
         {
@@ -326,6 +342,15 @@ MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_typ
 
             for(std::size_t ap =0; ap<ap_ax->GetSize(); ap++)
             {
+                double w = 1.0;
+                if(this->fWeights != nullptr)
+                {   
+                    double w1 = this->fWeights->at(pp, ch, ap, 0);
+                    double w2 = this->fWeights->at(pp, other, ap, 0);
+                    if(ch != other){w = w1/(w1+w2);}
+                    else{w1 = 1.0;}
+                } //TODO check dimensions match
+
                 for(std::size_t fr=0; fr<freq_ax->GetSize(); fr++)
                 {
                     if(net_sideband == "L")
@@ -333,26 +358,75 @@ MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_typ
                         auto val = std::conj(in->at(pp,ch,ap,fr) );
                         if(ch != other)
                         {
-                            val *= 0.5;
-                            workspace->at(pp,ch,ap,fr) += 0.5*( in->at(pp, other, ap, fr) );
+                            //double sideband channel...split this point across both channels (they'll be summed together later)
+                            workspace->at(pp,ch,ap, lsb_shift - fr) += w*val;
+                            workspace->at(pp,ch,ap,fr) += w*( in->at(pp, other, ap, fr) );
                         }
-                        workspace->at(pp,ch,ap, lsb_shift - fr) += val;
+                        else 
+                        {
+                            workspace->at(pp,ch,ap, lsb_shift - fr) += w*val; //stand alone channel
+                        }
                     }
                     if(net_sideband == "U")
                     {
                         auto val = in->at(pp,ch,ap,fr);
                         if(ch != other)
                         {
-                            val *= 0.5;
-                            workspace->at(pp,ch,ap, lsb_shift - fr) += 0.5*( std::conj(in->at(pp,other,ap,fr) ) );
+                            //double sideband channel...split this point across both channels (they'll be summed together later)
+                            workspace->at(pp,ch,ap,fr) += w*val;
+                            workspace->at(pp,ch,ap, lsb_shift - fr) += w*( std::conj(in->at(pp,other,ap,fr) ) );
                         }
-                        workspace->at(pp,ch,ap,fr) += val;
+                        else
+                        {
+                            workspace->at(pp,ch,ap,fr) += w*val; //stand alone channel
+                        }
                     }
                 }
             }
         }
     }
 }
+
+// bool MHO_MixedSidebandNormFX::ApplyWeights(visibility_type* out, weight_type* w, bool invert)
+// {
+//     std::size_t vis_dim[ visibility_type::rank::value];
+//     std::size_t wt_dim[ visibility_type::rank::value];
+// 
+//     out->GetDimensions(vis_dim);
+//     w->GetDimensions(wt_dim);
+// 
+//     //make sure the first 3 dimensions (polprod, channels, time) are the same!
+//     bool same_size = true;
+//     for(std::size_t i=0; i<3; i++)
+//     {
+//         if(vis_dim[i] != wt_dim[i]){same_size = false;}
+//     }
+// 
+//     if(!same_size)
+//     {
+//         msg_error("calibration", "could not apply weights in MHO_MixedSidebandNormFX, dimension mismatch " << eom );
+//         return false;
+//     }
+// 
+//     for(std::size_t pp = 0; pp < vis_dim[POLPROD_AXIS]; pp++)
+//     {
+//         for(std::size_t ch = 0; ch < vis_dim[CHANNEL_AXIS]; ch++)
+//         {
+//             for(std::size_t ap = 0; ap < vis_dim[TIME_AXIS]; ap++)
+//             {
+//                 double factor = (*w)(pp,ch,ap,0); //apply the data weights
+//                 if(invert)
+//                 {
+//                     if(factor > 0.0){factor = 1.0/factor;}
+//                     else{factor = 0.0;}
+//                 }
+//                 out->SubView(pp, ch, ap) *= factor;
+//             }
+//         }
+//     }
+// 
+//     return true;
+// }
 
 
 } // namespace hops
