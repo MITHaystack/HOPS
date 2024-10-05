@@ -112,33 +112,33 @@ bool MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArg
     return false;
 };
 
-void MHO_DelayRate::ApplyDataWeights(const XArgType2* in2, XArgType3* out)
-{
-    //apply the data weights to the data
-    std::size_t pprod = out->GetDimension(POLPROD_AXIS);
-    std::size_t nch = out->GetDimension(CHANNEL_AXIS);
-    std::size_t nap = out->GetDimension(TIME_AXIS);
-    std::size_t nsbd = out->GetDimension(FREQ_AXIS);
-
-    std::size_t wpprod = in2->GetDimension(POLPROD_AXIS);
-    std::size_t wnch = in2->GetDimension(CHANNEL_AXIS);
-    std::size_t wnap = in2->GetDimension(TIME_AXIS);
-
-    //make sure we don't over run the weight array bounds (since out array has been padded)
-    std::size_t nap_range = std::min(nap, wnap);
-
-    for(std::size_t pp = 0; pp < pprod; pp++)
-    {
-        for(std::size_t ch = 0; ch < nch; ch++)
-        {
-            for(std::size_t ap = 0; ap < nap_range; ap++)
-            {
-                auto val = (*in2)(pp, ch, ap, 0);
-                out->SubView(pp, ch, ap) *= val; //apply the data weights
-            }
-        }
-    }
-}
+// void MHO_DelayRate::ApplyDataWeights(const XArgType2* in2, XArgType3* out)
+// {
+//     //apply the data weights to the data
+//     std::size_t pprod = out->GetDimension(POLPROD_AXIS);
+//     std::size_t nch = out->GetDimension(CHANNEL_AXIS);
+//     std::size_t nap = out->GetDimension(TIME_AXIS);
+//     std::size_t nsbd = out->GetDimension(FREQ_AXIS);
+// 
+//     std::size_t wpprod = in2->GetDimension(POLPROD_AXIS);
+//     std::size_t wnch = in2->GetDimension(CHANNEL_AXIS);
+//     std::size_t wnap = in2->GetDimension(TIME_AXIS);
+// 
+//     //make sure we don't over run the weight array bounds (since out array has been padded)
+//     std::size_t nap_range = std::min(nap, wnap);
+// 
+//     for(std::size_t pp = 0; pp < pprod; pp++)
+//     {
+//         for(std::size_t ch = 0; ch < nch; ch++)
+//         {
+//             for(std::size_t ap = 0; ap < nap_range; ap++)
+//             {
+//                 auto val = (*in2)(pp, ch, ap, 0);
+//                 out->SubView(pp, ch, ap) *= val; //apply the data weights
+//             }
+//         }
+//     }
+// }
 
 void MHO_DelayRate::ConditionallyResizeOutput(const std::size_t* dims, std::size_t size, XArgType3* out)
 {
