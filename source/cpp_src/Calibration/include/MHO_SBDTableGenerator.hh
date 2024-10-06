@@ -6,21 +6,8 @@
 
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_TableContainer.hh"
-
 #include "MHO_TransformingOperator.hh"
 
-#include "MHO_ComplexConjugator.hh"
-#include "MHO_FunctorBroadcaster.hh"
-#include "MHO_NaNMasker.hh"
-
-// #include "MHO_CyclicRotator.hh"
-// #include "MHO_SubSample.hh"
-// #include "MHO_EndZeroPadder.hh"
-// #include "MHO_MultidimensionalFastFourierTransform.hh"
-
-// #ifdef HOPS_USE_FFTW3
-// #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
-// #endif
 
 namespace hops
 {
@@ -31,12 +18,8 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Jul 9 11:47:00 2021 -0400
  *@brief implements the conversion of the input visibility array into something
- * which can be transformed into singleband delay space. This is because of the
- * way in which the fourfit algorithm zero-pads the data, but also because if we
- * have double-sidband channels they need to be merged into the same array
- * at this point. Note that 'visibility_type' and 'sbd_type' are actually the
- * same underlying type of table container, but this semantics is useful for
- * keeping track of what is going on.
+ * which can be transformed into singleband delay space, all it does is construct 
+ * the sbd data container and size it appropriately
  *
  */
 
@@ -65,9 +48,6 @@ class MHO_SBDTableGenerator: public MHO_TransformingOperator< visibility_type, s
 
         //function to resize the sbd array if needed -- no double-sideband data
         void ConditionallyResizeOutput(const XArgType1* in, XArgType2* out);
-
-        // //function to resize the sbd array if needed with double-sideband data
-        // void ConditionallyResizeOutputDSB(const XArgType1* in, XArgType2* out);
 
         bool fInitialized;
 };
