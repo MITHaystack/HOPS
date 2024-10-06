@@ -204,8 +204,8 @@ void MHO_BasicFringeFitter::Initialize()
             }
             else 
             {
-                fNormFXOp = &fSSBNormFXOp;
-                //fNormFXOp = &fMSBNormFXOp;
+                //fNormFXOp = &fSSBNormFXOp;
+                fNormFXOp = &fMSBNormFXOp;
             }
 
             //initialize norm-fx (x-form to SBD space)
