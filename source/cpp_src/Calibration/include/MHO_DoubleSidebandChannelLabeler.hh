@@ -52,6 +52,7 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
                 auto chan_ax = &(std::get< CHANNEL_AXIS >(*in));
                 std::size_t nchans = chan_ax->GetSize();
 
+                int double_sideband_pair_counter = 0; //count unique double-sideband pairs
                 for(std::size_t ch = 0; ch < nchans - 1; ch++)
                 {
                     std::size_t next_ch = ch + 1;
@@ -74,6 +75,7 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
 
                         if(nsb1_present && nsb2_present)
                         {
+
                             //1st channel is LSB, 2nd channel is USB --> we have a 'double-sideband' channel
                             //note: we ignore the oddball case where U and L are inverted
                             if(nsb1 == "L" && nsb2 == "U")
@@ -82,9 +84,12 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
                                 chan_ax->InsertIntervalLabelKeyValue(ch, next_ch, "double_sideband", value);
 
                                 //make sure each channel has a reference to index of the other
-                                chan_ax->InsertIndexLabelKeyValue(ch, "dsb_partner", next_ch);
-                                chan_ax->InsertIndexLabelKeyValue(next_ch, "dsb_partner", ch);
+                                chan_ax->InsertIndexLabelKeyValue(ch, "dsb_partner", 1);
+                                chan_ax->InsertIndexLabelKeyValue(next_ch, "dsb_partner", -1);
                             }
+
+                            double_sideband_pair_counter++;
+
                         }
                     }
                 }
