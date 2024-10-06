@@ -41,11 +41,6 @@ class MHO_SBDTableGenerator: public MHO_TransformingOperator< visibility_type, s
         std::size_t fWorkDims[VIS_NDIM];
         std::size_t fOutDims[VIS_NDIM];
 
-        typedef MHO_NaNMasker< visibility_type > nanMaskerType;
-        typedef MHO_ComplexConjugator< visibility_type > conjType;
-
-        MHO_FunctorBroadcaster< visibility_type, nanMaskerType > fNaNBroadcaster;
-
         //function to resize the sbd array if needed -- no double-sideband data
         void ConditionallyResizeOutput(const XArgType1* in, XArgType2* out);
 
