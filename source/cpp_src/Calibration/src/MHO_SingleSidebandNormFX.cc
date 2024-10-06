@@ -146,6 +146,7 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
 
 
         //for lower sideband channels we complex conjugate the data after the FFT
+        //this is equivalent to a frequency axis flip and conjugate before the FFT
         auto chan_ax = &(std::get< CHANNEL_AXIS >(*out));
         for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
         {
