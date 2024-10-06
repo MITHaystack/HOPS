@@ -162,18 +162,10 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
     {
         bool status;
 
-        // status = fZeroPadder.Execute();
-        // if(!status)
-        // {
-        //     msg_error("calibration", "Could not execute zero padder in MHO_MixedSidebandNormFX." << eom);
-        //     return false;
-        // }
-
         FillWorkspace(in, &fWorkspace);
         TreatDoubleSidebandChannels(in, &fWorkspace);
 
         //first thing we do is filter out any NaNs
-        //(ADHOC flagging would likely also be implemented in a similar fashion)
         status = fNaNBroadcaster.Execute();
         if(!status)
         {
@@ -181,29 +173,12 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
             return false;
         }
 
-
         status = fFFTEngine.Execute();
         if(!status)
         {
             msg_error("calibration", "Could not execute FFT in MHO_MixedSidebandNormFX." << eom);
             return false;
         }
-
-        // 
-        // //invert the application of data weights
-        // if(this->fWeights != nullptr)
-        // {
-        //     status = ApplyWeights(&fWorkspace, this->fWeights, true);
-        //     if(!status)
-        //     {
-        //         msg_error("calibration", "could not apply weights in MHO_MixedSidebandNormFX" << eom);
-        //         return false;
-        //     }
-        // }
-        // else 
-        // {
-        //     msg_warn("calibration", "no visibility data weights available for MHO_MixedSidebandNormFX" << eom);
-        // }
 
         status = fSubSampler.Execute();
         if(!status)
