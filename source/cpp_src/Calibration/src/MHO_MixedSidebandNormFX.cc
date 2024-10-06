@@ -247,52 +247,6 @@ bool MHO_MixedSidebandNormFX::ExecuteInPlace(XArgType* in)
     return status;
 }
 
-// void 
-// MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_type* workspace)
-// {
-//     bool status = fZeroPadder.Execute();
-//     if(!status)
-//     {
-//         msg_error("calibration", "Could not execute zero padder in MHO_MixedSidebandNormFX." << eom);
-//     }
-//     workspace->ZeroArray();
-// 
-//     //ok...now the real copy 
-//     auto pp_ax = &(std::get<POLPROD_AXIS>(*in));
-//     auto chan_ax = &(std::get<CHANNEL_AXIS>(*in));
-//     auto ap_ax = &(std::get<TIME_AXIS>(*in));
-//     auto freq_ax = &(std::get<FREQ_AXIS>(*in));
-// 
-//     auto in_freq_ax = &(std::get<FREQ_AXIS>(*in));
-//     auto out_freq_ax = &(std::get<FREQ_AXIS>(*workspace));
-//     std::size_t lsb_shift = out_freq_ax->GetSize()/2;
-//     double eps = 1e-4;
-// 
-//     for(std::size_t pp =0; pp<pp_ax->GetSize(); pp++)
-//     {
-//         for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
-//         {
-//             std::string net_sideband;
-//             bool net_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
-//             for(std::size_t ap =0; ap<ap_ax->GetSize(); ap++)
-//             {
-//                 for(std::size_t fr=0; fr<freq_ax->GetSize(); fr++)
-//                 {
-//                     if(net_sideband == "L")
-//                     {
-//                         workspace->at(pp,ch,ap, lsb_shift - fr) +=  std::conj(in->at(pp,ch,ap,fr) );
-//                     }
-//                     if(net_sideband == "U")
-//                     {
-//                         workspace->at(pp,ch,ap,fr) += in->at(pp,ch,ap,fr);
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
-
-
 void 
 MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_type* workspace)
 {
@@ -383,8 +337,6 @@ MHO_MixedSidebandNormFX::TreatDoubleSidebandChannels(const visibility_type* in, 
             bool tmp2 = chan_ax->RetrieveIndexLabelKeyValue(other, "sky_freq", f2);
             if(std::fabs(f2-f1) > eps){continue;} //partner is not correct, treat as stand alone channel
 
-            std::cout<<"operating on : "<<ch<<", "<<other<<std::endl;
-
             for(std::size_t ap =0; ap<ap_ax->GetSize(); ap++)
             {
                 double lsb_w = 1.0;
@@ -411,49 +363,6 @@ MHO_MixedSidebandNormFX::TreatDoubleSidebandChannels(const visibility_type* in, 
         }
     }
 }
-
-
-
-// bool MHO_MixedSidebandNormFX::ApplyWeights(visibility_type* out, weight_type* w, bool invert)
-// {
-//     std::size_t vis_dim[ visibility_type::rank::value];
-//     std::size_t wt_dim[ visibility_type::rank::value];
-// 
-//     out->GetDimensions(vis_dim);
-//     w->GetDimensions(wt_dim);
-// 
-//     //make sure the first 3 dimensions (polprod, channels, time) are the same!
-//     bool same_size = true;
-//     for(std::size_t i=0; i<3; i++)
-//     {
-//         if(vis_dim[i] != wt_dim[i]){same_size = false;}
-//     }
-// 
-//     if(!same_size)
-//     {
-//         msg_error("calibration", "could not apply weights in MHO_MixedSidebandNormFX, dimension mismatch " << eom );
-//         return false;
-//     }
-// 
-//     for(std::size_t pp = 0; pp < vis_dim[POLPROD_AXIS]; pp++)
-//     {
-//         for(std::size_t ch = 0; ch < vis_dim[CHANNEL_AXIS]; ch++)
-//         {
-//             for(std::size_t ap = 0; ap < vis_dim[TIME_AXIS]; ap++)
-//             {
-//                 double factor = (*w)(pp,ch,ap,0); //apply the data weights
-//                 if(invert)
-//                 {
-//                     if(factor > 0.0){factor = 1.0/factor;}
-//                     else{factor = 0.0;}
-//                 }
-//                 out->SubView(pp, ch, ap) *= factor;
-//             }
-//         }
-//     }
-// 
-//     return true;
-// }
 
 
 } // namespace hops
