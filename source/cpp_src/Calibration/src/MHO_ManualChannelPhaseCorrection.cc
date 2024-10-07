@@ -120,7 +120,7 @@ bool MHO_ManualChannelPhaseCorrection::IsApplicable(std::size_t st_idx, const vi
     if(fStationIdentity.size() > 2)
     {
         msg_error("calibration",
-                  "station identiy: " << fStationIdentity << " is not a recognizable Mk4 of 2-character code" << eom);
+                  "station identiy: " << fStationIdentity << " is not a recognizable mark4 or 2-character code" << eom);
     }
 
     if(fStationIdentity.size() == 1) //selection by mk4 id
