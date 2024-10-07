@@ -185,11 +185,8 @@ std::complex< double > MHO_CircularFieldRotationCorrection::GetPrefactor(std::st
     //fill in station coords
     par_angle[0] = fRefParAngle * MHO_Constants::deg_to_rad;
     par_angle[1] = fRemParAngle * MHO_Constants::deg_to_rad;
-    ;
     elevation[0] = fRefElevation * MHO_Constants::deg_to_rad;
-    ;
     elevation[1] = fRemElevation * MHO_Constants::deg_to_rad;
-    ;
 
     mount_type[0] = DetermineMountCode(fRefMountType);
     mount_type[1] = DetermineMountCode(fRemMountType);
