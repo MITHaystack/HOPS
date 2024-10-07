@@ -1,6 +1,5 @@
 #include "MHO_MK4FringeInterface.hh"
 
-#include "MHO_MultiTypeMap.hh"
 #include <array>
 #include <cstdlib>
 #include <exception>
@@ -54,8 +53,6 @@ void MHO_MK4FringeInterface::ExportFringeFilesToStructs()
     {
         //want to dump the information in the type_200 through type_230 objects
         //for now just do the POD data types
-
-        MHO_MultiTypeMap< std::string, int, short, float, double, std::array< double, 4 >, std::string > _m;
     }
     //replace with the various MHO_MK4Type2XXXConverter from VP
     //convert each type_2xx to json, and insert into a single root json object

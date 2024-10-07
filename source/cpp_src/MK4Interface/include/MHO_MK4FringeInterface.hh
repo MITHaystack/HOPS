@@ -27,8 +27,6 @@ extern "C"
 }
 #endif
 
-#include "MHO_MultiTypeMap.hh"
-
 namespace hops
 {
 
