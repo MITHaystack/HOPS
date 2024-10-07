@@ -4,6 +4,7 @@
 #include "MHO_EndZeroPadder.hh"
 #include "MHO_SelectRepack.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
+#include "MHO_BitReversalPermutation.hh"
 
 #include "MHO_Constants.hh"
 
@@ -476,18 +477,7 @@ xpower_amp_type MHO_ComputePlotData::calc_dr()
     std::size_t POLPROD = 0;
     std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
-
-    std::size_t drsp_size = 2 * MHO_BitReversalPermutation::NextLowestPowerOfTwo(nap);
-    //TODO_FIXME_MSG("Fix the DRSP size calculation to remove upper limit of 8192.")
-    //std::size_t drsp_size = 8192;
-    // while((drsp_size / 4) > nap)
-    // {
-    //     drsp_size /= 2;
-    // };
-    // if(drsp_size < 256)
-    // {
-    //     drsp_size = 256;
-    // }
+    std::size_t drsp_size = 2 * MHO_BitReversalPermutation::NextLowestPowerOfTwo(nap); //see MHO_DelayRate.cc
 
     ////////////////////////////////////////////////////////////////////////
 

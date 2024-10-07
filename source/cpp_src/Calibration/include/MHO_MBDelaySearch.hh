@@ -95,7 +95,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         virtual bool InitializeImpl(const XArgType* in) override;
         virtual bool ExecuteImpl(const XArgType* in) override;
 
-        std::vector< double > DetermineFrequencyPoints(const XArgType* in);
+        // std::vector< double > DetermineFrequencyPoints(const XArgType* in);
 
     private:
 
@@ -127,6 +127,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         int fSBDStart;
         int fSBDStop;
 
+        //the bin width in each dimension
         double fSBDBinSep;
         double fDRBinSep;
         double fMBDBinSep;
@@ -162,7 +163,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         MHO_DelayRate fDelayRateCalc; //delay rate calculator
 
         //associated info for channel index re-mapping (needed for combining double sideband channel pairs)
-        std::map< int, int > fChannelIndexToFreqPointIndex;
+        std::map< std::size_t, std::size_t > fChannelIndexToFreqPointIndex;
 
 #ifdef HOPS_USE_FFTW3
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< mbd_type >;

@@ -29,6 +29,13 @@ class MHO_UniformGridPointsCalculator
 
         void SetDefaultGridPoints(std::size_t n) { fDefaultGridPoints = n; };
 
+
+        //pre-processing step -- makes sure the points are unique given some epsilon
+        //and if not, then provides a std::map<int, int> to map the input vector indices to the output vector
+        void GetUniquePoints(const std::vector<double>& in_pts, double eps, 
+                        std::vector<double>& out_pts, 
+                        std::map< std::size_t, std::size_t >& index_map) const;
+
         //expects points to be given in increasing order
         void SetPoints(const std::vector< double >& pts);
         void SetPoints(const double* pts, std::size_t npts);
