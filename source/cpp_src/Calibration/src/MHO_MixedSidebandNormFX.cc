@@ -43,10 +43,9 @@ bool MHO_MixedSidebandNormFX::InitializeOutOfPlace(const XArgType* in, XArgType*
         std::size_t n_dsb_chan = dsb_labels.size();
         if(n_dsb_chan != 0)
         {
-            msg_error("calibration", "MHO_MixedSidebandNormFX discovered: "
-                                         << n_dsb_chan << " double-sideband channels, this data type is not yet supported"
+            msg_warn("calibration", "MHO_MixedSidebandNormFX discovered: "
+                                         << n_dsb_chan << " double-sideband channels, support for this type is experimental"
                                          << eom);
-            // return false;
         }
 
         //allocate the SBD space
