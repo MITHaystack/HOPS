@@ -131,7 +131,7 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     double coarse_spacing, medium_spacing, fine_spacing, step, bottom, center, valmax, y[3], q[3], xmax, ampmax, xlo;
 
     //from param
-    std::vector<double> values;
+    std::vector< double > values;
     double win_ion[2];
     double ion_diff;
     double last_ion_diff = 0.0;
@@ -152,7 +152,6 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     iono.Initialize();
 
     bool first_pass = true;
-
 
     int loopion;
     int nion;
@@ -213,7 +212,10 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     //from status
     std::vector< std::vector< double > > dtec;
     dtec.resize(ion_npts + N_FINE_PTS_SMOOTH + 1);
-    for(std::size_t ip=0; ip<dtec.size(); ip++){dtec[ip].resize(2, 0.0);}
+    for(std::size_t ip = 0; ip < dtec.size(); ip++)
+    {
+        dtec[ip].resize(2, 0.0);
+    }
 
     coarse_spacing = win_ion[1] - win_ion[0];
     if(ion_npts > 1)
@@ -341,7 +343,7 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
 
                 if(rc == 1)
                 {
-                    msg_error("calibration", "TEC fine interpolation error; peak out of search range" << eom );
+                    msg_error("calibration", "TEC fine interpolation error; peak out of search range" << eom);
                 }
                 else if(rc == 2)
                 {
@@ -387,7 +389,6 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 first_pass = false;
             }
 
-
             // restore original window values for interpolation
             for(i = 0; i < 2; i++)
             {
@@ -428,7 +429,7 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
 };
 
 // sort tec array
-void MHO_IonosphericFringeFitter::sort_tecs(int nion, std::vector< std::vector<double> >& dtec)
+void MHO_IonosphericFringeFitter::sort_tecs(int nion, std::vector< std::vector< double > >& dtec)
 {
     int i, n, changed = 1;
     double temp[2];
@@ -551,14 +552,17 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     fParameterStore->Set("/fringe/ion_win", win_ion);
 
     //pad the values and dtec arrays in case of smoothing
-    std::vector<double> values; 
+    std::vector< double > values;
     values.resize(ion_npts + N_FINE_PTS_SMOOTH + 1, 0.0);
-    std::vector<double> smoothed_values;
-    smoothed_values.resize(4*ion_npts, 0.0);
+    std::vector< double > smoothed_values;
+    smoothed_values.resize(4 * ion_npts, 0.0);
 
     std::vector< std::vector< double > > dtec;
     dtec.resize(ion_npts + N_FINE_PTS_SMOOTH + 1);
-    for(std::size_t ip=0; ip<dtec.size(); ip++){dtec[ip].resize(2, 0.0);}
+    for(std::size_t ip = 0; ip < dtec.size(); ip++)
+    {
+        dtec[ip].resize(2, 0.0);
+    }
 
     // prepare for ionospheric search
     center = (win_ion[0] + win_ion[1]) / 2.0;
@@ -592,7 +596,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
                     dtec[nip++][1] = values[k];
                 }
                 // then smooth and interpolate coarse points
-                smoother( &(values[0]), &(smoothed_values[0]), &step, &ilmax);
+                smoother(&(values[0]), &(smoothed_values[0]), &step, &ilmax);
                 // find maximum from smoothed coarse search
                 valmax = -1.0;
                 for(k = 0; k < ilmax; k++)
@@ -724,7 +728,6 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
                 max_so_far = delres_max;
                 fParameterStore->Set("/fringe/ion_diff", ion_diff);
             }
-
         }
     }
     // save the final ion. point, if there is one
@@ -760,9 +763,9 @@ void MHO_IonosphericFringeFitter::smoother(double* f,        // input data array
         ns; // # of smoothing curve pts
 
     std::vector< double > gwork;
-    gwork.resize(4*ion_npts, 0.0);
+    gwork.resize(4 * ion_npts, 0.0);
     std::vector< double > shape;
-    shape.resize(4*ion_npts, 0.0);
+    shape.resize(4 * ion_npts, 0.0);
     double ssum;
 
     // generate a smoothing curve. The shape of the idealized

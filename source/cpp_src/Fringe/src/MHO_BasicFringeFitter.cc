@@ -198,11 +198,11 @@ void MHO_BasicFringeFitter::Initialize()
             }
 
             //determine the type of NormFX operator we need (either mixed sideband or single-sideband)
-            if( ContainsMixedSideband(vis_data) )
+            if(ContainsMixedSideband(vis_data))
             {
                 fNormFXOp = &fMSBNormFXOp;
             }
-            else 
+            else
             {
                 //fNormFXOp = &fSSBNormFXOp;
                 fNormFXOp = &fMSBNormFXOp;
@@ -479,8 +479,7 @@ void MHO_BasicFringeFitter::interpolate_peak()
     profiler_stop();
 }
 
-bool 
-MHO_BasicFringeFitter::ContainsMixedSideband(visibility_type* vis)
+bool MHO_BasicFringeFitter::ContainsMixedSideband(visibility_type* vis)
 {
     //figure out if we have USB or LSB data, or a mixture, or double-sideband data
     auto channel_axis = &(std::get< CHANNEL_AXIS >(*(vis)));
@@ -518,10 +517,8 @@ MHO_BasicFringeFitter::ContainsMixedSideband(visibility_type* vis)
         return false; //single side band (USB)
     }
 
-    msg_warn("fringe", "could not determine type of sidebands present in visibility data" << eom );
+    msg_warn("fringe", "could not determine type of sidebands present in visibility data" << eom);
     return false;
 }
-
-
 
 } // namespace hops
