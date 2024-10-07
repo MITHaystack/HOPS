@@ -94,8 +94,6 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType< uch_visibility_store_type >();
     AddClassType< uch_weight_store_type >();
 
-    TODO_FIXME_MSG("Building extra data containers types.")
-
     //add all of the types we define
     AddClassType< MHO_ScalarBool >();
     AddClassType< MHO_ScalarChar >();
