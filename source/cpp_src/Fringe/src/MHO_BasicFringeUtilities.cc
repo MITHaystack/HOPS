@@ -339,7 +339,7 @@ double MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* co
             msg_error("fringe", "missing net_sideband label for channel " << ch << "." << eom);
         }
 
-        frot.SetSideband(0); //DSB
+        frot.SetSideband(0); //default
         if(net_sideband == "U")
         {
             frot.SetSideband(1);
@@ -349,6 +349,11 @@ double MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* co
         {
             frot.SetSideband(-1);
         }
+
+        //DSB channel
+        int dsb_partner = 0;
+        bool dsb_key_present = chan_ax.RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+        if(dsb_key_present){frot.SetSideband(0);}
 
         for(std::size_t ap = 0; ap < nap; ap++)
         {
@@ -533,6 +538,11 @@ void MHO_BasicFringeUtilities::calculate_ion_covariance(MHO_ContainerStore* conS
         {
             frot.SetSideband(-1);
         }
+
+        //DSB channel
+        int dsb_partner = 0;
+        bool dsb_key_present = chan_ax.RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+        if(dsb_key_present){frot.SetSideband(0);}
 
         std::complex< double > ch_sum = 0.0;
         double sumwt = 0.0;
