@@ -84,7 +84,7 @@ void MHO_PolProductSummation::PreMultiply(visibility_type* in)
         prefac_sum += std::abs(prefac[i]);
     }
 
-    //specific to pseudo-Stokes-I (IXY) mode, (4 involved pol-products) explictly set to 2
+    //specific to pseudo-Stokes-I (IXY) mode, (4 involved pol-products) explictly set to 2 (for 2 polarizations)
     if(fSummedPolProdLabel == "I")
     {
         prefac_sum = 2.0;
@@ -156,13 +156,11 @@ std::complex< double > MHO_PolProductSummation::GetPrefactor(std::string pp_labe
         }
     }
 
-    //this needs to compute the pol-product dependent scaling/rotation factor
-    //for the given pol products
-    //depending on the telescope mount type, this may have varied dependance
-    //on (delta) parallactic angle
+    //pol-product dependent scaling/rotation factor for the given pol products
+    //depends on the telescope mount type and may have varied dependance
+    //on (delta) parallactic angle...this is handled separately in MHO_CircularFieldRotationCorrection 
+    //for circular-circular pol-products, so we just set the factor to 1 here.
 
-    TODO_FIXME_MSG(
-        "FIXME TODO -- implement prefactor calculations for both mixed linear and circular pol-products (XX, RX, RR, etc).")
     if(pp_label == "RR")
     {
         factor = 1.0;
@@ -179,6 +177,10 @@ std::complex< double > MHO_PolProductSummation::GetPrefactor(std::string pp_labe
     {
         factor = 1.0;
     }
+
+    //what about mixed linear-circular pol-products?
+    TODO_FIXME_MSG(
+        "FIXME TODO -- implement prefactor calculations for both mixed linear and circular pol-products (XX, RX, RR, etc).")
 
     return factor;
 }
