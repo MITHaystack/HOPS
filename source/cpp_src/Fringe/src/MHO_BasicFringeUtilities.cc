@@ -593,6 +593,7 @@ MHO_BasicFringeUtilities::calculate_sbavg(MHO_ContainerStore* conStore, MHO_Para
         auto chan_ax = &(std::get< CHANNEL_AXIS >(*vis_data));
         std::size_t nchan = chan_ax->GetSize();
         //should we also loop over weights/APs to per-channel catch edits (?)
+        //see fill_208.c line 129-133
         for(std::size_t ch = 0; ch < nchan; ch++)
         {
             std::string net_sideband;
