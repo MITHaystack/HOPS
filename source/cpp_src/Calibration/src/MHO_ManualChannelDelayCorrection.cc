@@ -108,7 +108,7 @@ bool MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
 
                                     // std::string net_sideband = "?";
                                     // bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
-                                    // //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                                    // //conjugate phases for LSB data, but not for USB
                                     // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
                                     // if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
 
@@ -165,7 +165,7 @@ bool MHO_ManualChannelDelayCorrection::IsApplicable(std::size_t st_idx, const vi
     if(fStationIdentity.size() > 2)
     {
         msg_error("calibration",
-                  "station identiy: " << fStationIdentity << " is not a recognizable Mk4 of 2-character code" << eom);
+                  "station identiy: " << fStationIdentity << " is not a recognizable mark4 or 2-character code" << eom);
     }
 
     if(fStationIdentity.size() == 1) //selection by mk4 id
