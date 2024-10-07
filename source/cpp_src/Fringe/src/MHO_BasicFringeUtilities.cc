@@ -584,8 +584,28 @@ void MHO_BasicFringeUtilities::calculate_ion_covariance(MHO_ContainerStore* conS
 double 
 MHO_BasicFringeUtilities::calculate_sbavg(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
-    TODO_FIXME_MSG("TODO FIXME, calculate SBAVG properly")
-    return 1.0;
+    //grab visibilities and loop over channel axis
+    double sbavg = 1.0;
+    visibility_type* vis_data = conStore->GetObject< visibility_type >(std::string("vis"));
+    if(vis_data != nullptr)
+    {
+        sbavg = 0.0;
+        auto chan_ax = &(std::get< CHANNEL_AXIS >(*vis_data));
+        std::size_t nchan = chan_ax->GetSize();
+        //should we also loop over weights/APs to per-channel catch edits (?)
+        for(std::size_t ch = 0; ch < nchan; ch++)
+        {
+            std::string net_sideband;
+            bool net_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+            if(net_present)
+            {
+                if(net_sideband == "U"){sbavg += 1.0;}
+                if(net_sideband == "L"){sbavg += -1.0;}
+            }
+        }
+        sbavg /= (double)nchan;
+    }
+    return sbavg;
 }
 
 } // namespace hops
