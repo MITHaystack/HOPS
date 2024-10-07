@@ -36,6 +36,7 @@ class MHO_BasicFringeUtilities
 
     public:
         //helper functions
+        static double calculate_sbavg(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);        
         static double calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
         static void calculate_fringe_solution_info(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore,
                                                    const mho_json& vexInfo);
