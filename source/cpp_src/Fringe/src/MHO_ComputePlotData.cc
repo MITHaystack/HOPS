@@ -146,6 +146,11 @@ xpower_amp_type MHO_ComputePlotData::calc_mbd()
             fRot.SetSideband(-1);
         }
 
+        //DSB channel
+        int dsb_partner = 0;
+        bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+        if(dsb_key_present){fRot.SetSideband(0);}
+
         sum = 0;
         for(std::size_t ap = 0; ap < nap; ap++)
         {
@@ -233,6 +238,11 @@ xpower_amp_type MHO_ComputePlotData::calc_sbd()
                 fRot.SetSideband(-1);
             }
 
+            //DSB channel
+            int dsb_partner = 0;
+            bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+            if(dsb_key_present){fRot.SetSideband(0);}
+
             sum = 0;
             for(std::size_t ap = 0; ap < nap; ap++)
             {
@@ -316,6 +326,11 @@ phasor_type MHO_ComputePlotData::calc_segs()
             {
                 fRot.SetSideband(-1);
             }
+
+            //DSB channel
+            int dsb_partner = 0;
+            bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+            if(dsb_key_present){fRot.SetSideband(0);}
 
             //make sure this plot gets the channel label:
             (&std::get< 0 >(phasor_segs))->InsertIndexLabelKeyValue(ch, chan_label_key, channel_labels[ch]);
@@ -405,6 +420,15 @@ void MHO_ComputePlotData::correct_vis()
                 sb_sign = -1.0;
             }
 
+            //DSB channel
+            int dsb_partner = 0;
+            bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+            if(dsb_key_present)
+            {
+                fRot.SetSideband(0);
+                sb_sign = 0;
+            }
+
             std::complex< double > imag_unit(0, 1);
             //calculate the per-channel phase rotation due to MBD and delay_rate
             std::complex< double > vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
@@ -452,18 +476,18 @@ xpower_amp_type MHO_ComputePlotData::calc_dr()
     std::size_t POLPROD = 0;
     std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
-    //borrow this stupid routine from search_windows.c /////////////////////
 
-    TODO_FIXME_MSG("Fix the DRSP size calculation to remove upper limit of 8192.")
-    std::size_t drsp_size = 8192;
-    while((drsp_size / 4) > nap)
-    {
-        drsp_size /= 2;
-    };
-    if(drsp_size < 256)
-    {
-        drsp_size = 256;
-    }
+    std::size_t drsp_size = 2 * MHO_BitReversalPermutation::NextLowestPowerOfTwo(nap);
+    //TODO_FIXME_MSG("Fix the DRSP size calculation to remove upper limit of 8192.")
+    //std::size_t drsp_size = 8192;
+    // while((drsp_size / 4) > nap)
+    // {
+    //     drsp_size /= 2;
+    // };
+    // if(drsp_size < 256)
+    // {
+    //     drsp_size = 256;
+    // }
 
     ////////////////////////////////////////////////////////////////////////
 
@@ -523,6 +547,11 @@ xpower_amp_type MHO_ComputePlotData::calc_dr()
         {
             fRot.SetSideband(-1);
         }
+
+        //DSB channel
+        int dsb_partner = 0;
+        bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+        if(dsb_key_present){fRot.SetSideband(0);}
 
         for(std::size_t ap = 0; ap < nap; ap++)
         {
@@ -605,6 +634,11 @@ double MHO_ComputePlotData::calc_phase()
         {
             fRot.SetSideband(-1);
         }
+
+        //DSB channel
+        int dsb_partner = 0;
+        bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+        if(dsb_key_present){fRot.SetSideband(0);}
 
         std::complex< double > fringe_phasor = 0.0;
         double sumwt = 0.0;
@@ -734,6 +768,11 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
                 fRot.SetSideband(-1);
                 nlsb_ap[ch] = nap;
             }
+
+            //DSB channel
+            int dsb_partner = 0;
+            bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+            if(dsb_key_present){fRot.SetSideband(0);}
 
             sum = 0.0;
             for(int ap = 0; ap < nap; ap++)
