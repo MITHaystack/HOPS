@@ -14,6 +14,8 @@ void MHO_InitialFringeInfo::calculate_freq_space(MHO_ContainerStore* conStore, M
 {
     visibility_type* vis_data = conStore->GetObject< visibility_type >(std::string("vis"));
 
+    TODO_FIXME_MSG("FIX THE GRID POINTS CALC HERE TO HANDLE DSB DATA")
+
     //calculate the frequency grid for MBD search
     MHO_UniformGridPointsCalculator fGridCalc;
     fGridCalc.SetPoints(std::get< CHANNEL_AXIS >(*vis_data).GetData(), std::get< CHANNEL_AXIS >(*vis_data).GetSize());
