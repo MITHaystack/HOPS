@@ -7,7 +7,6 @@
 
 #include "MHO_Axis.hh"
 #include "MHO_AxisPack.hh"
-// #include "MHO_IntervalLabel.hh"
 #include "MHO_ObjectTags.hh"
 #include "MHO_ScalarContainer.hh"
 #include "MHO_TableContainer.hh"
@@ -49,65 +48,6 @@ using hops::eJSONBasic;
 using hops::eJSONTags;
 using hops::eJSONWithAxes;
 using hops::eJSONWithLabels;
-// 
-// //helper function to pull all pair:values from a MHO_CommonLabelMap
-// //inline to make linker happy about ODR
-// inline void FillJSONFromCommonMap(const MHO_CommonLabelMap* map, mho_json& obj_tags)
-// {
-//     bool ok;
-//     std::vector< std::string > keys;
-//     //only do the types in the "MHO_CommonLabelMap"
-//     keys = map->DumpKeys< char >();
-//     for(auto k = keys.begin(); k != keys.end(); k++)
-//     {
-//         char c;
-//         ok = map->Retrieve(*k, c);
-//         if(ok)
-//         {
-//             obj_tags[*k] = std::string(&c, 1);
-//         }
-//     }
-//     keys = map->DumpKeys< bool >();
-//     for(auto k = keys.begin(); k != keys.end(); k++)
-//     {
-//         bool b;
-//         ok = map->Retrieve(*k, b);
-//         if(ok)
-//         {
-//             obj_tags[*k] = b;
-//         }
-//     }
-//     keys = map->DumpKeys< int >();
-//     for(auto k = keys.begin(); k != keys.end(); k++)
-//     {
-//         int i;
-//         ok = map->Retrieve(*k, i);
-//         if(ok)
-//         {
-//             obj_tags[*k] = i;
-//         }
-//     }
-//     keys = map->DumpKeys< double >();
-//     for(auto k = keys.begin(); k != keys.end(); k++)
-//     {
-//         double d;
-//         ok = map->Retrieve(*k, d);
-//         if(ok)
-//         {
-//             obj_tags[*k] = d;
-//         }
-//     }
-//     keys = map->DumpKeys< std::string >();
-//     for(auto k = keys.begin(); k != keys.end(); k++)
-//     {
-//         std::string s;
-//         ok = map->Retrieve(*k, s);
-//         if(ok)
-//         {
-//             obj_tags[*k] = s;
-//         }
-//     }
-// }
 
 inline void FillJSONFromTaggable(const MHO_Taggable* map, mho_json& obj_tags)
 {
