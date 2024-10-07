@@ -109,7 +109,7 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
         //         return false;
         //     }
         // }
-        // else 
+        // else
         // {
         //     msg_warn("calibration", "no visibility data weights available for MHO_SingleSidebandNormFX" << eom);
         // }
@@ -127,8 +127,8 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
             msg_error("calibration", "could not execute cyclic-rotation in MHO_SingleSidebandNormFX" << eom);
             return false;
         }
-        
-        // //invert the application of data weights....for single sideband data this just cancels out the first 
+
+        // //invert the application of data weights....for single sideband data this just cancels out the first
         // //application above...we really should just eliminate this entirely for SSB data
         // if(this->fWeights != nullptr)
         // {
@@ -139,11 +139,10 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
         //         return false;
         //     }
         // }
-        // else 
+        // else
         // {
         //     msg_warn("calibration", "no visibility data weights available for MHO_SingleSidebandNormFX" << eom);
         // }
-
 
         //for lower sideband channels we complex conjugate the data after the FFT
         //this is equivalent to a frequency axis flip and conjugate before the FFT
@@ -175,25 +174,27 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
     return false;
 };
 
-
 bool MHO_SingleSidebandNormFX::ApplyWeights(visibility_type* out, weight_type* w, bool invert)
 {
-    std::size_t vis_dim[ visibility_type::rank::value];
-    std::size_t wt_dim[ visibility_type::rank::value];
+    std::size_t vis_dim[visibility_type::rank::value];
+    std::size_t wt_dim[visibility_type::rank::value];
 
     out->GetDimensions(vis_dim);
     w->GetDimensions(wt_dim);
 
     //make sure the first 3 dimensions (polprod, channels, time) are the same!
     bool same_size = true;
-    for(std::size_t i=0; i<3; i++)
+    for(std::size_t i = 0; i < 3; i++)
     {
-        if(vis_dim[i] != wt_dim[i]){same_size = false;}
+        if(vis_dim[i] != wt_dim[i])
+        {
+            same_size = false;
+        }
     }
-    
+
     if(!same_size)
     {
-        msg_error("calibration", "could not apply weights in MHO_SingleSidebandNormFX, dimension mismatch " << eom );
+        msg_error("calibration", "could not apply weights in MHO_SingleSidebandNormFX, dimension mismatch " << eom);
         return false;
     }
 
@@ -203,11 +204,17 @@ bool MHO_SingleSidebandNormFX::ApplyWeights(visibility_type* out, weight_type* w
         {
             for(std::size_t ap = 0; ap < vis_dim[TIME_AXIS]; ap++)
             {
-                double factor = (*w)(pp,ch,ap,0); //apply the data weights
+                double factor = (*w)(pp, ch, ap, 0); //apply the data weights
                 if(invert)
                 {
-                    if(factor > 0.0){factor = 1.0/factor;}
-                    else{factor = 0.0;}
+                    if(factor > 0.0)
+                    {
+                        factor = 1.0 / factor;
+                    }
+                    else
+                    {
+                        factor = 0.0;
+                    }
                 }
                 out->SubView(pp, ch, ap) *= factor;
             }
@@ -216,9 +223,6 @@ bool MHO_SingleSidebandNormFX::ApplyWeights(visibility_type* out, weight_type* w
 
     return true;
 }
-
-
-
 
 //not used
 bool MHO_SingleSidebandNormFX::InitializeInPlace(XArgType* in)
@@ -239,8 +243,5 @@ bool MHO_SingleSidebandNormFX::ExecuteInPlace(XArgType* in)
     delete tmp;
     return status;
 }
-
-
-
 
 } // namespace hops

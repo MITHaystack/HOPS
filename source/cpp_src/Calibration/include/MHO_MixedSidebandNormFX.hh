@@ -7,15 +7,15 @@
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_TableContainer.hh"
 
-#include "MHO_UnaryOperator.hh"
 #include "MHO_ComplexConjugator.hh"
 #include "MHO_CyclicRotator.hh"
 #include "MHO_EndZeroPadder.hh"
 #include "MHO_FunctorBroadcaster.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 #include "MHO_NaNMasker.hh"
-#include "MHO_SubSample.hh"
 #include "MHO_NormFX.hh"
+#include "MHO_SubSample.hh"
+#include "MHO_UnaryOperator.hh"
 
 #ifdef HOPS_USE_FFTW3
     #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
