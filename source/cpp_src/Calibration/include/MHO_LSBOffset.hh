@@ -37,7 +37,7 @@ class MHO_LSBOffset: public MHO_UnaryOperator< visibility_type >
         void SetStationIdentifier(std::string station_id) { fStationIdentity = station_id; }
 
         //set lsb (phase) offset for double-sideband channels
-        void SetLSBOffset(const double& lsb_offset) { fLSBPhaseOffset = lsb_offset; }
+        void SetLSBPhaseOffset(const double& lsb_offset) { fLSBPhaseOffset = lsb_offset; }
 
     protected:
         virtual bool InitializeInPlace(visibility_type* in) override;
