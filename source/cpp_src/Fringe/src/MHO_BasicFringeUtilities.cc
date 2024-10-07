@@ -225,6 +225,7 @@ void MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore
     {
         int n_ion_pts = 0;
         paramStore->Get("/control/fit/ion_npts", n_ion_pts);
+        paramStore->Set("/fringe/dtec_error", 0.0); //init to zero
         if(n_ion_pts > 1) //only apply ion covariance when n_pts > 1
         {
             calculate_ion_covariance(conStore, paramStore);
@@ -235,13 +236,9 @@ void MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore
             //set the dtec error
             paramStore->Set("/fringe/dtec_error", ion_sigmas[2]);
         }
-        //set the dtec error
-        paramStore->Set("/fringe/dtec_error", 0.0);
     }
 
-    TODO_FIXME_MSG("TODO FIXME, calculate SBAVG properly")
-    double sbavg = 1.0;
-
+    double sbavg = calculate_sbavg(conStore, paramStore);
     double sbd_error = MHO_BasicFringeInfo::calculate_sbd_error(sbd_sep, snr, sbavg);
 
     int total_naps = paramStore->GetAs< int >("/config/total_naps");
@@ -582,6 +579,13 @@ void MHO_BasicFringeUtilities::calculate_ion_covariance(MHO_ContainerStore* conS
     ion_sigmas[0] *= 1e3;
     ion_sigmas[1] *= 360.0;
     paramStore->Set("/fringe/scaled_ion_sigmas", ion_sigmas);
+}
+
+double 
+MHO_BasicFringeUtilities::calculate_sbavg(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
+{
+    TODO_FIXME_MSG("TODO FIXME, calculate SBAVG properly")
+    return 1.0;
 }
 
 } // namespace hops
