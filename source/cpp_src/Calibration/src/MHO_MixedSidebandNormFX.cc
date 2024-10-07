@@ -44,8 +44,8 @@ bool MHO_MixedSidebandNormFX::InitializeOutOfPlace(const XArgType* in, XArgType*
         if(n_dsb_chan != 0)
         {
             msg_warn("calibration", "MHO_MixedSidebandNormFX discovered: "
-                                         << n_dsb_chan << " double-sideband channels, support for this type is experimental"
-                                         << eom);
+                                        << n_dsb_chan << " double-sideband channels, support for this type is experimental"
+                                        << eom);
         }
 
         //allocate the SBD space
@@ -221,10 +221,9 @@ bool MHO_MixedSidebandNormFX::ExecuteInPlace(XArgType* in)
     return status;
 }
 
-void 
-MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_type* workspace)
+void MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_type* workspace)
 {
-    //this function just fills the SBD array without regard to double-sideband channels 
+    //this function just fills the SBD array without regard to double-sideband channels
     //if double-sideband data is present then we'll take care of it in a follow up functioni
     bool status = fZeroPadder.Execute();
     if(!status)
@@ -233,34 +232,34 @@ MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_typ
     }
     workspace->ZeroArray();
 
-    //ok...now the real copy 
-    auto pp_ax = &(std::get<POLPROD_AXIS>(*in));
-    auto chan_ax = &(std::get<CHANNEL_AXIS>(*in));
-    auto ap_ax = &(std::get<TIME_AXIS>(*in));
-    auto in_freq_ax = &(std::get<FREQ_AXIS>(*in));
+    //ok...now the real copy
+    auto pp_ax = &(std::get< POLPROD_AXIS >(*in));
+    auto chan_ax = &(std::get< CHANNEL_AXIS >(*in));
+    auto ap_ax = &(std::get< TIME_AXIS >(*in));
+    auto in_freq_ax = &(std::get< FREQ_AXIS >(*in));
 
-    auto out_freq_ax = &(std::get<FREQ_AXIS>(*workspace));
-    std::size_t lsb_shift = out_freq_ax->GetSize()/2;
+    auto out_freq_ax = &(std::get< FREQ_AXIS >(*workspace));
+    std::size_t lsb_shift = out_freq_ax->GetSize() / 2;
 
-    for(std::size_t pp =0; pp<pp_ax->GetSize(); pp++)
+    for(std::size_t pp = 0; pp < pp_ax->GetSize(); pp++)
     {
-        for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
+        for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
         {
             std::string net_sideband;
             bool net_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
-            for(std::size_t ap =0; ap<ap_ax->GetSize(); ap++)
+            for(std::size_t ap = 0; ap < ap_ax->GetSize(); ap++)
             {
-                for(std::size_t fr=0; fr<in_freq_ax->GetSize(); fr++)
+                for(std::size_t fr = 0; fr < in_freq_ax->GetSize(); fr++)
                 {
                     if(net_sideband == "L")
                     {
                         //conjugate, place with offset in reverse
-                        workspace->at(pp,ch,ap, lsb_shift - fr) += std::conj(in->at(pp,ch,ap,fr) );
+                        workspace->at(pp, ch, ap, lsb_shift - fr) += std::conj(in->at(pp, ch, ap, fr));
                     }
 
                     if(net_sideband == "U")
                     {
-                        workspace->at(pp,ch,ap,fr) += in->at(pp,ch,ap,fr);
+                        workspace->at(pp, ch, ap, fr) += in->at(pp, ch, ap, fr);
                     }
                 }
             }
@@ -268,75 +267,92 @@ MHO_MixedSidebandNormFX::FillWorkspace(const visibility_type* in, visibility_typ
     }
 }
 
-
-void 
-MHO_MixedSidebandNormFX::TreatDoubleSidebandChannels(const visibility_type* in, visibility_type* workspace)
+void MHO_MixedSidebandNormFX::TreatDoubleSidebandChannels(const visibility_type* in, visibility_type* workspace)
 {
-    auto pp_ax = &(std::get<POLPROD_AXIS>(*in));
-    auto chan_ax = &(std::get<CHANNEL_AXIS>(*in));
-    auto ap_ax = &(std::get<TIME_AXIS>(*in));
-    auto in_freq_ax = &(std::get<FREQ_AXIS>(*in));
-    auto out_freq_ax = &(std::get<FREQ_AXIS>(*workspace));
+    auto pp_ax = &(std::get< POLPROD_AXIS >(*in));
+    auto chan_ax = &(std::get< CHANNEL_AXIS >(*in));
+    auto ap_ax = &(std::get< TIME_AXIS >(*in));
+    auto in_freq_ax = &(std::get< FREQ_AXIS >(*in));
+    auto out_freq_ax = &(std::get< FREQ_AXIS >(*workspace));
     double eps = 1e-4;
 
     //first check for double-sideband channels
     std::vector< mho_json > dsb_labels = chan_ax->GetMatchingIntervalLabels("double_sideband");
     std::size_t n_dsb_chan = dsb_labels.size();
     //no DSB pairs, so nothing to do
-    if(n_dsb_chan == 0){return;}
+    if(n_dsb_chan == 0)
+    {
+        return;
+    }
 
     //otherwise we have some DSB channels, so we need to find them and merge them (with weights)
-    for(std::size_t pp =0; pp<pp_ax->GetSize(); pp++)
+    for(std::size_t pp = 0; pp < pp_ax->GetSize(); pp++)
     {
-        for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
+        for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
         {
             int dsb_partner = 0;
             bool dsb_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
 
             //not a double-sideband channel, skip
-            if(!dsb_present){continue;}
+            if(!dsb_present)
+            {
+                continue;
+            }
             //only need to merge the channels once (use the LSB partner to trigger a merge, not USB)
-            if(dsb_partner == -1){continue;}
+            if(dsb_partner == -1)
+            {
+                continue;
+            }
             //check if the partner is out of bounds (which could happen due to data cuts)
             int other = ch + dsb_partner;
-            if( !( (0 <= other) && (other < chan_ax->GetSize() ) ) ){continue;}
+            if(!((0 <= other) && (other < chan_ax->GetSize())))
+            {
+                continue;
+            }
 
             std::string net_sideband;
             bool net_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
-            if(net_sideband != "L"){continue;} //only do this operation if we encounter the LSB member
+            if(net_sideband != "L")
+            {
+                continue;
+            } //only do this operation if we encounter the LSB member
 
             //finally, check that the sky freqs are the same (just to be safe)
             double f1, f2;
             bool tmp1 = chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", f1);
             bool tmp2 = chan_ax->RetrieveIndexLabelKeyValue(other, "sky_freq", f2);
-            if(std::fabs(f2-f1) > eps){continue;} //partner is not correct, treat as stand alone channel
+            if(std::fabs(f2 - f1) > eps)
+            {
+                continue;
+            } //partner is not correct, treat as stand alone channel
 
-            for(std::size_t ap =0; ap<ap_ax->GetSize(); ap++)
+            for(std::size_t ap = 0; ap < ap_ax->GetSize(); ap++)
             {
                 double lsb_w = 1.0;
                 double usb_w = 1.0;
                 if(this->fWeights != nullptr)
-                {   
-                    lsb_w = this->fWeights->at(pp, ch, ap, 0); //this channel is always the LSB channel
+                {
+                    lsb_w = this->fWeights->at(pp, ch, ap, 0);    //this channel is always the LSB channel
                     usb_w = this->fWeights->at(pp, other, ap, 0); //other is alway USB channel
                 }
                 double sum_w = lsb_w + usb_w;
-                if(sum_w <= 0.0){sum_w = 1.0;} //avoid divide by zero
-    
-                for(std::size_t fr=0; fr<in_freq_ax->GetSize(); fr++)
+                if(sum_w <= 0.0)
                 {
-                    auto lsb_value = workspace->at(pp,ch,ap,fr);
-                    auto usb_value = workspace->at(pp,other,ap,fr);
-                    auto weighted_sum = (1.0/sum_w)*(lsb_w*lsb_value + usb_w*usb_value);
+                    sum_w = 1.0;
+                } //avoid divide by zero
 
-                    workspace->at(pp,ch,ap,fr) = weighted_sum;
-                    workspace->at(pp,other,ap,fr) = weighted_sum;
+                for(std::size_t fr = 0; fr < in_freq_ax->GetSize(); fr++)
+                {
+                    auto lsb_value = workspace->at(pp, ch, ap, fr);
+                    auto usb_value = workspace->at(pp, other, ap, fr);
+                    auto weighted_sum = (1.0 / sum_w) * (lsb_w * lsb_value + usb_w * usb_value);
+
+                    workspace->at(pp, ch, ap, fr) = weighted_sum;
+                    workspace->at(pp, other, ap, fr) = weighted_sum;
                 }
             }
-
         }
     }
 }
-
 
 } // namespace hops

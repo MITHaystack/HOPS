@@ -377,7 +377,7 @@ std::vector< double > MHO_MBDelaySearch::DetermineFrequencyPoints(const XArgType
         {
             tmp.push_back(chan_ax->at(ch));
         }
-    
+
         //dsb channel pairs share a sky_freq so we need combine them in the same location
         fChannelIndexToFreqPointIndex.clear();
         std::size_t freq_point_index = 0;
@@ -393,7 +393,7 @@ std::vector< double > MHO_MBDelaySearch::DetermineFrequencyPoints(const XArgType
             }
             fChannelIndexToFreqPointIndex[ch] = freq_point_index;
         }
-    
+
         //check that the number of frequency points is as expected
         std::size_t npts = freq_pts.size();
         if(npts == (chan_ax->GetSize() - n_dsb_chan_pair))

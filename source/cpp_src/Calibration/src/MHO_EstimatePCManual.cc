@@ -21,7 +21,6 @@
 
 #include "MHO_Constants.hh"
 
-
 /* a comparison routine for use by qsort() */
 static int sbd_cmp(const void* a, const void* b)
 {
@@ -504,8 +503,8 @@ void MHO_EstimatePCManual::est_phases(int is_ref, int keep)
 void MHO_EstimatePCManual::adj_delays(double sbd_max, double* sbd, double* esd, double delta_delay, int first, int final,
                                       int is_ref, int how)
 {
-    std::vector<double> cpy_vec;
-    cpy_vec.resize( std::max( std::abs(final - first), 1 ) );
+    std::vector< double > cpy_vec;
+    cpy_vec.resize(std::max(std::abs(final - first), 1));
     double* cpy = &(cpy_vec[0]);
 
     double tol, medly, ave;

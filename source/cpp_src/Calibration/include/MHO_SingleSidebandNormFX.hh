@@ -7,15 +7,15 @@
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_TableContainer.hh"
 
-#include "MHO_UnaryOperator.hh"
 #include "MHO_ComplexConjugator.hh"
 #include "MHO_CyclicRotator.hh"
 #include "MHO_EndZeroPadder.hh"
 #include "MHO_FunctorBroadcaster.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 #include "MHO_NaNMasker.hh"
-#include "MHO_SBDTableGenerator.hh"
 #include "MHO_NormFX.hh"
+#include "MHO_SBDTableGenerator.hh"
+#include "MHO_UnaryOperator.hh"
 
 #ifdef HOPS_USE_FFTW3
     #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
@@ -31,7 +31,7 @@ namespace hops
  *@date Fri Jul 9 11:47:00 2021 -0400
  *@brief implements a subset of the functionality found in norm_fx.c,
  *mainly the transform from frequency to delay space with a reduced
- *zero padding factor (2x smaller than original implementation) 
+ *zero padding factor (2x smaller than original implementation)
  since we only have a single sideband to worry about
  */
 

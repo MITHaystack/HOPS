@@ -8,7 +8,6 @@
 #include "MHO_TableContainer.hh"
 #include "MHO_UnaryOperator.hh"
 
-
 namespace hops
 {
 
@@ -23,10 +22,10 @@ namespace hops
 class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
 {
     public:
-        MHO_NormFX():fWeights(nullptr){};
+        MHO_NormFX(): fWeights(nullptr){};
         virtual ~MHO_NormFX(){};
 
-        void SetWeights(weight_type* w){fWeights = w;}
+        void SetWeights(weight_type* w) { fWeights = w; }
 
     protected:
         using XArgType = visibility_type;
@@ -34,11 +33,10 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
         virtual bool InitializeInPlace(XArgType* in) = 0;
         virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) = 0;
 
-        virtual bool ExecuteInPlace(XArgType* in)  = 0;
+        virtual bool ExecuteInPlace(XArgType* in) = 0;
         virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) = 0;
 
         weight_type* fWeights;
-
 };
 
 } // namespace hops

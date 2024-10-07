@@ -8,7 +8,6 @@
 #include "MHO_TableContainer.hh"
 #include "MHO_TransformingOperator.hh"
 
-
 namespace hops
 {
 
@@ -18,7 +17,7 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Jul 9 11:47:00 2021 -0400
  *@brief implements the conversion of the input visibility array into something
- * which can be transformed into singleband delay space, all it does is construct 
+ * which can be transformed into singleband delay space, all it does is construct
  * the sbd data container and size it appropriately
  *
  */
