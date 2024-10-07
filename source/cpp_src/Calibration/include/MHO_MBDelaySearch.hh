@@ -98,6 +98,10 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         std::vector< double > DetermineFrequencyPoints(const XArgType* in);
 
     private:
+
+        void SetWindow(double* win, double low, double high);
+        void GetWindow(const MHO_Axis<double>& axis, bool win_set, const double* win, double bin_width, double& low, double& high) const;
+
         //workspace
         bool fInitialized;
         std::vector< double > fChannelFreqs;

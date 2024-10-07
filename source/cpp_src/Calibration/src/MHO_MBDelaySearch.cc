@@ -261,105 +261,77 @@ double MHO_MBDelaySearch::GetNPointsSearched() const
     return fNPointsSearched / 4;
 }
 
+void MHO_MBDelaySearch::SetWindow(double* win, double low, double high)
+{
+    if(low <= high)
+    {
+        win[0] = low;
+        win[1] = high;
+    }
+    else
+    {
+        win[1] = low;
+        win[0] = high;
+    }
+}
+
+void 
+MHO_MBDelaySearch::GetWindow(const MHO_Axis<double>& axis, bool win_set, const double* win, double bin_width, double& low, double& high) const
+{
+    low = 0.0;
+    high = 0.0;
+    if(axis.GetSize() >= 2) //get the axis limits first
+    {
+        low = axis.at(0);
+        high = axis.at(axis.GetSize() - 1) + bin_width;
+    }
+    if(win_set) //if the window was set, clamp the domain to smallest region
+    {
+        low = std::max(win[0], low);
+        high = std::min(win[1], high);
+    }
+}
+
 //configure the search windows (using floating point limits)
 //default is the full range
 void MHO_MBDelaySearch::SetSBDWindow(double low, double high)
 {
     msg_debug("calibration", "mbd search SBD window set to (" << low << ", " << high << ")" << eom);
     fSBDWinSet = true;
-    if(low <= high)
-    {
-        fSBDWin[0] = low;
-        fSBDWin[1] = high;
-    }
-    else
-    {
-        fSBDWin[1] = low;
-        fSBDWin[0] = high;
-    }
+    SetWindow(fSBDWin, low, high);
 }
 
 void MHO_MBDelaySearch::SetMBDWindow(double low, double high)
 {
     msg_debug("calibration", "mbd search MBD window set to (" << low << ", " << high << ")" << eom);
     fMBDWinSet = true;
-    if(low <= high)
-    {
-        fMBDWin[0] = low;
-        fMBDWin[1] = high;
-    }
-    else
-    {
-        fMBDWin[1] = low;
-        fMBDWin[0] = high;
-    }
+    SetWindow(fMBDWin, low, high);
 }
 
 void MHO_MBDelaySearch::SetDRWindow(double low, double high)
 {
     msg_debug("calibration", "mbd search DR window set to (" << low << ", " << high << ")" << eom);
     fDRWinSet = true;
-    if(low <= high)
-    {
-        fDRWin[0] = low;
-        fDRWin[1] = high;
-    }
-    else
-    {
-        fDRWin[1] = low;
-        fDRWin[0] = high;
-    }
+    SetWindow(fDRWin, low, high);
 }
 
 //retrieve the window limits
 void MHO_MBDelaySearch::GetSBDWindow(double& low, double& high) const
 {
-    low = 0.0;
-    high = 0.0;
-    if(fSBDAxis.GetSize() >= 2)
-    {
-        low = fSBDAxis.at(0);
-        high = fSBDAxis.at(fSBDAxis.GetSize() - 1) + fSBDBinSep;
-    }
-
-    if(fSBDWinSet)
-    {
-        low = std::max(fSBDWin[0], low);
-        high = std::min(fSBDWin[1], high);
-    }
+    GetWindow(fSBDAxis, fSBDWinSet, fSBDWin, fSBDBinSep, low, high);
 }
 
 void MHO_MBDelaySearch::GetMBDWindow(double& low, double& high) const
 {
-    low = 0.0;
-    high = 0.0;
-    if(fMBDAxis.GetSize() >= 2)
-    {
-        low = fMBDAxis.at(0);
-        high = fMBDAxis.at(fMBDAxis.GetSize() - 1) + fMBDBinSep;
-    }
-    if(fMBDWinSet)
-    {
-        low = std::max(fMBDWin[0], low);
-        high = std::min(fMBDWin[1], high);
-    }
+    GetWindow(fMBDAxis, fMBDWinSet, fMBDWin, fMBDBinSep, low, high);
 }
 
 void MHO_MBDelaySearch::GetDRWindow(double& low, double& high) const
 {
-    low = 0.0;
-    high = 0.0;
-    if(fDRAxis.GetSize() >= 2)
-    {
-        low = fDRAxis.at(0);
-        high = fDRAxis.at(fDRAxis.GetSize() - 1) + fDRBinSep;
-    }
-    if(fDRWinSet)
-    {
-        low = std::max(fDRWin[0], low);
-        high = std::min(fDRWin[1], high);
-    }
+    GetWindow(fDRAxis, fDRWinSet, fDRWin, fDRBinSep, low, high);
 }
+
+
 
 std::vector< double > MHO_MBDelaySearch::DetermineFrequencyPoints(const XArgType* in)
 {
