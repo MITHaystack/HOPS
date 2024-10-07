@@ -4,9 +4,9 @@
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_FringeFitter.hh"
 
+#include "MHO_MixedSidebandNormFX.hh"
 #include "MHO_NormFX.hh"
 #include "MHO_SingleSidebandNormFX.hh"
-#include "MHO_MixedSidebandNormFX.hh"
 
 #include "MHO_InterpolateFringePeak.hh"
 #include "MHO_MBDelaySearch.hh"
@@ -26,9 +26,6 @@ namespace hops
 // #else
 // using normfx_type = MHO_NormFX; //this is the default
 // #endif
-
-
-
 
 /*!
  *@file MHO_BasicFringeFitter.hh
@@ -55,19 +52,18 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         virtual bool IsFinished() override;
 
     protected:
-
         //main work functions, operators and works space for basic fringe search function
         void coarse_fringe_search(bool set_windows = true);
         void interpolate_peak();
 
         bool ContainsMixedSideband(visibility_type* vis);
 
-        //ptr to the operator to transform vis from frequency to single-band delay space 
+        //ptr to the operator to transform vis from frequency to single-band delay space
         //(we switch depending on the type of freq setup)
         MHO_NormFX* fNormFXOp;
 
         //actually working operators
-        MHO_MixedSidebandNormFX fMSBNormFXOp; //used when there is mixed LSB or USB or double-sideband data
+        MHO_MixedSidebandNormFX fMSBNormFXOp;  //used when there is mixed LSB or USB or double-sideband data
         MHO_SingleSidebandNormFX fSSBNormFXOp; //used when there is only LSB or USB data
 
         MBD_SEARCH_TYPE fMBDSearch;
