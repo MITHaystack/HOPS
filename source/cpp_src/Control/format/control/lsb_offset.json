@@ -1,5 +1,7 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
-    "type": "unknown"
+    "name": "lsb_offset",
+    "statement_type": "operator",
+    "operator_category" : "calibration",
+    "type" : "real",
+    "priority": 3.4
 }
