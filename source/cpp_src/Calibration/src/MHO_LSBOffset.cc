@@ -27,7 +27,7 @@ bool MHO_LSBOffset::ExecuteInPlace(visibility_type* in)
     {
         //loop over reference (0) and remote (1) stations
         visibility_element_type lsb_phasor = std::exp(fImagUnit * fLSBPhaseOffset * fDegToRad);
-        if(st_idx == 0){lsb_phasor = std::conj(lsb_phasor);} //conjugate for reference station
+        if(st_idx == 1){lsb_phasor = std::conj(lsb_phasor);} //legacy behavior is to conjugate for remote station
 
         if(IsApplicable(st_idx, in))
         {
