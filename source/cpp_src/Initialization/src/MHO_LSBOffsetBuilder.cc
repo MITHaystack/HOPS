@@ -11,12 +11,12 @@ bool MHO_LSBOffsetBuilder::Build()
 {
     if(IsConfigurationOk())
     {
-        msg_debug("initialization", "building a manual per-pol phase correction operator." << eom);
+        msg_debug("initialization", "building lsb_offset phase correction operator." << eom);
         //assume attributes are ok for now - TODO add checks!
 
         std::string op_name = fAttributes["name"].get< std::string >();
         std::string op_category = "calibration";
-        double pc_phase_offset = fAttributes["value"].get< double >();
+        double lsb_phase_offset = fAttributes["value"].get< double >();
         double priority = fFormat["priority"].get< double >();
 
         std::string station_id = ExtractStationIdentifier();
@@ -33,13 +33,13 @@ bool MHO_LSBOffsetBuilder::Build()
 
         //set the arguments
         op->SetArgs(vis_data);
-        op->SetLSBPhaseOffset(pc_phase_offset);
+        op->SetLSBPhaseOffset(lsb_phase_offset);
         op->SetStationIdentifier(station_id);
         op->SetName(op_name);
         op->SetPriority(priority);
 
         msg_debug("initialization",
-                  "creating operator: " << op_name << " for station: " << station_id << " pol: " << pol << "." << eom);
+                  "creating operator: " << op_name << " for station: " << station_id << eom);
 
         bool replace_duplicates = false;
         this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
@@ -58,6 +58,7 @@ std::string MHO_LSBOffsetBuilder::ExtractStationIdentifier()
         //grab the first station ID in the 'if' statement
         //this is ok 99% of the time, but what about if there is statement like: 'if station X or station X'?
         //would then need to check that this station is a member of this pass too, and if not use the next
+        std::cout<<"lsb_offset, token: "<<*it<<std::endl;
         if(*it == "station")
         {
             it++;
