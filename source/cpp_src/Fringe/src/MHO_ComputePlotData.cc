@@ -1,3 +1,6 @@
+#include <vector>
+#include <map>
+
 #include "MHO_ComputePlotData.hh"
 #include "MHO_BasicFringeInfo.hh"
 #include "MHO_CyclicRotator.hh"
@@ -68,10 +71,24 @@ void MHO_ComputePlotData::Initialize()
 xpower_amp_type MHO_ComputePlotData::calc_mbd()
 {
 
-    //calculate the frequency grid for the channel -> MBD FFT
+    // //calculate the frequency grid for the channel -> MBD FFT
+    // MHO_UniformGridPointsCalculator fGridCalc;
+    // fGridCalc.SetDefaultGridPoints(8192);
+    // fGridCalc.SetPoints(std::get< CHANNEL_AXIS >(*fSBDArray).GetData(), std::get< CHANNEL_AXIS >(*fSBDArray).GetSize());
+    // fGridCalc.Calculate();
+
+
+    //calculate the frequency grid for MBD search
     MHO_UniformGridPointsCalculator fGridCalc;
-    fGridCalc.SetDefaultGridPoints(8192);
-    fGridCalc.SetPoints(std::get< CHANNEL_AXIS >(*fSBDArray).GetData(), std::get< CHANNEL_AXIS >(*fSBDArray).GetSize());
+    std::vector< double> in_freq_pts(std::get<CHANNEL_AXIS>(*fSBDArray).GetData(), 
+                                     std::get<CHANNEL_AXIS>(*fSBDArray).GetData() + std::get<CHANNEL_AXIS>(*fSBDArray).GetSize() );
+    std::vector< double > freq_pts;
+    std::map< std::size_t, std::size_t > chan_index_map;
+    double freq_eps = 1e-4; //tolerance of 0.1kHz
+    //dsb channel pairs share a sky_freq so we need combine them at the same location
+    //this eliminates non-unique (within the tolerance) adjacent frequencies
+    fGridCalc.GetUniquePoints(in_freq_pts, freq_eps, freq_pts, chan_index_map);
+    fGridCalc.SetPoints(freq_pts);
     fGridCalc.Calculate();
 
     std::size_t fGridStart = fGridCalc.GetGridStart();
@@ -164,8 +181,8 @@ xpower_amp_type MHO_ComputePlotData::calc_mbd()
             sum += w * z;
         }
         //slot the summed data in at the appropriate location in the new grid
-        std::size_t mbd_bin = fMBDBinMap[ch];
-        fMBDWorkspace(mbd_bin) = sum;
+        std::size_t mbd_bin = fMBDBinMap[ chan_index_map[ch] ];
+        fMBDWorkspace(mbd_bin) += sum;
     }
 
     //now run an FFT along the MBD axis and cyclic rotate
