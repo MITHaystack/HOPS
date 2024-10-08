@@ -70,14 +70,6 @@ void MHO_ComputePlotData::Initialize()
 
 xpower_amp_type MHO_ComputePlotData::calc_mbd()
 {
-
-    // //calculate the frequency grid for the channel -> MBD FFT
-    // MHO_UniformGridPointsCalculator fGridCalc;
-    // fGridCalc.SetDefaultGridPoints(8192);
-    // fGridCalc.SetPoints(std::get< CHANNEL_AXIS >(*fSBDArray).GetData(), std::get< CHANNEL_AXIS >(*fSBDArray).GetSize());
-    // fGridCalc.Calculate();
-
-
     //calculate the frequency grid for MBD search
     MHO_UniformGridPointsCalculator fGridCalc;
     std::vector< double> in_freq_pts(std::get<CHANNEL_AXIS>(*fSBDArray).GetData(), 
@@ -98,7 +90,7 @@ xpower_amp_type MHO_ComputePlotData::calc_mbd()
     std::size_t fNSBD = fSBDArray->GetDimension(FREQ_AXIS);
     std::size_t fNDR = fSBDArray->GetDimension(TIME_AXIS);
 
-    //resize workspaces (TODO...make conditional on current size -- if already configured)
+    //resize workspaces
     fMBDWorkspace.Resize(fNGridPoints);
     fMBDWorkspace.ZeroArray();
     fMBDAmpWorkspace.Resize(fNGridPoints);
@@ -182,7 +174,7 @@ xpower_amp_type MHO_ComputePlotData::calc_mbd()
         }
         //slot the summed data in at the appropriate location in the new grid
         std::size_t mbd_bin = fMBDBinMap[ chan_index_map[ch] ];
-        fMBDWorkspace(mbd_bin) += sum;
+        fMBDWorkspace(mbd_bin) += sum; // += when adding to bin (to capture contribution from both halves of DSB channels)
     }
 
     //now run an FFT along the MBD axis and cyclic rotate
