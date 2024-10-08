@@ -22,15 +22,6 @@ int main(int argc, char **argv) {
   std::string fringeFile = argv[1];
   std::string JSONfile = argv[2];
 
-  // Do error checking on the provided fringe file path.
-  std::string statFringeF = "stat "+fringeFile;
-  const char* statFringeFile = statFringeF.c_str();
-  if (system(statFringeFile) == 2) {
-    //std::cout << "Error: Fringe file not found." << std::endl;
-    std::cerr << "Error: Fringe file not found '" << fringeFile << "'" << std::endl;
-    std::exit(1);
-  }
-
   // Read the fringe file.
   std::cout << "Converting supplied fringe file to a struct..." << std::endl;
   mk4FringeInterface.ReadFringeFile(fringeFile);
@@ -40,30 +31,7 @@ int main(int argc, char **argv) {
   std::cout << "Converting struct to JSON..." << std::endl;
   mk4FringeInterface.ExportFringeFiles(JSONfile);
 
-  std::cout << "Validating JSON..." << std::endl;
-  std::string statComm = "stat "+JSONfile;
-  const char* statCommand = statComm.c_str();
-
-  // Check if JSON file exists.
-  if (system(statCommand) == 2) {
-    std::cout << "Error: type-200s-dump.json not found." << std::endl;
-    exit(1);
-  }
-
-  // Check if JSON file was encoded correctly.
-  std::string commandString = "jsonlint -q "+JSONfile+" 2> error.txt";
-  const char* command = commandString.c_str();
-  if (system(command) == 0){
-    std::cout << "Test passed!" << std::endl;
-  }
-  else if (system(command) == 1) {
-    std::cout << "Error: JSON error in type-200s-dump.json. See error.txt." << std::endl;
-  }
-  else {
-    std::cout << "OS Error: Check that you have jsonlint installed via npm." << std::endl;
-  }
-
-
+  std::cout << "Don't forget to validate the JSON with jsonlint or another such similar package. i.e.: " << "jsonlint -q " << JSONfile << std::endl;
 
   return 0;
 }
