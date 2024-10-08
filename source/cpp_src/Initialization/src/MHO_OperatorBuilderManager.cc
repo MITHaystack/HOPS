@@ -16,6 +16,7 @@
 #include "MHO_PassbandBuilder.hh"
 #include "MHO_PolProductSummationBuilder.hh"
 #include "MHO_SamplerLabelerBuilder.hh"
+#include "MHO_LSBOffsetBuilder.hh"
 
 namespace hops
 {
@@ -50,6 +51,9 @@ void MHO_OperatorBuilderManager::CreateDefaultBuilders()
     AddBuilderType< MHO_ManualPolDelayCorrectionBuilder >("pc_delay_y", "pc_delay_y");
     AddBuilderType< MHO_ManualPolDelayCorrectionBuilder >("pc_delay_r", "pc_delay_r");
     AddBuilderType< MHO_ManualPolDelayCorrectionBuilder >("pc_delay_l", "pc_delay_l");
+
+    //double-sideband specific operators 
+    AddBuilderType< MHO_LSBOffsetBuilder >("lsb_offset", "lsb_offset");
 
     //flagging operators
     AddBuilderType< MHO_PassbandBuilder >("passband", "passband");
