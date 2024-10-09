@@ -8,6 +8,7 @@
 
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_Tokenizer.hh"
+#include "MHO_DiFXTimeUtilities.hh"
 
 namespace hops
 {

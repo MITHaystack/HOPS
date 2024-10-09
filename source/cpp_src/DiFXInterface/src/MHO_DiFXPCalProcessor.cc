@@ -182,15 +182,22 @@ void MHO_DiFXPCalProcessor::Organize()
         //note: we are assuming here that the AP length does not change during
         //a scan
         std::set< int > ap_set;
+        double current_ap_length_sec = fAPLength;
         for(auto it = fPCalData.begin(); it != fPCalData.end(); ++it)
         {
             //check to make sure each pcal AP is the same as the correlation specified AP
-            double current_ap_length_sec = fSecondsPerDay * (it->mjd_period);
+            current_ap_length_sec = fSecondsPerDay * (it->mjd_period);
             if(std::fabs(fAPLength - current_ap_length_sec) / fAPLength > fTolerance)
             {
+                //use what we calculate, but warn the user
                 msg_warn("difx_interface", "pcal accumulation period ("
                                                << fAPLength << ") does not appear to match correlation accumulation period ("
                                                << current_ap_length_sec << ")." << eom);
+            }
+            else 
+            {
+                //they agree within tolerance so use the correlation specified AP
+                current_ap_length_sec = fAPLength;
             }
 
             double ap_time = it->mjd;
@@ -360,6 +367,12 @@ void MHO_DiFXPCalProcessor::Organize()
         fPCal.Insert("station_code", fStationCode);
         fPCal.Insert("start_time_mjd", first_ap);
 
+        //convert the mjd time to a sane format
+        std::string pcal_start = get_vexdate_from_mjd_sec(first_ap, 0);
+        fPCal.Insert("start_time", pcal_start);
+
+        //insert the pcal accumulation period (it ought to be the same as the correlation AP)
+        fPCal.Insert("pcal_accumulation_period", current_ap_length_sec);
     }
     else
     {
