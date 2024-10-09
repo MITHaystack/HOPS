@@ -57,9 +57,9 @@ bool MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                         chan_label = pcal_it->first;
                         double pc_val = pcal_it->second;
                         auto idx_list = chan_ax->GetMatchingIndexes(fChannelLabelKey, chan_label);
-                        if(idx_list.size() == 1)
+                        for(std::size_t ch_idx = 0; ch_idx < idx_list.size(); ch_idx++)
                         {
-                            std::size_t ch = idx_list[0];
+                            std::size_t ch = idx_list[ch_idx];
                             std::string net_sideband = "?";
                             bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
                             visibility_element_type pc_phasor = std::exp(fImagUnit * pc_val * fDegToRad);
