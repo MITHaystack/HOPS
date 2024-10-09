@@ -119,10 +119,10 @@ template< typename XArrayType > class MHO_ChannelLabeler: public MHO_UnaryOperat
                                 int partner_idx = i + partner_offset;
                                 if(has_dsb_partner && (0 <= partner_offset) && (partner_offset < nchans))
                                 {
-                                    chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, ch_label);
-                                    chan_axis_ptr->InsertIndexLabelKeyValue(partner_idx, fChannelLabelKey, ch_label);
-                                    // chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, ch_label + "-");
-                                    // chan_axis_ptr->InsertIndexLabelKeyValue(partner_idx, fChannelLabelKey, ch_label + "+");
+                                    // chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, ch_label);
+                                    // chan_axis_ptr->InsertIndexLabelKeyValue(partner_idx, fChannelLabelKey, ch_label);
+                                    chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, ch_label + "-");
+                                    chan_axis_ptr->InsertIndexLabelKeyValue(partner_idx, fChannelLabelKey, ch_label + "+");
                                 }
                             }
                             label_count++;
@@ -159,10 +159,10 @@ template< typename XArrayType > class MHO_ChannelLabeler: public MHO_UnaryOperat
                                     int partner_idx = i + partner_offset;
                                     if(has_dsb_partner)
                                     {
-                                        chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, ch_label);
-                                        chan_axis_ptr->InsertIndexLabelKeyValue(partner_idx, fChannelLabelKey, ch_label);
-                                        // chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, ch_label + "-");
-                                        // chan_axis_ptr->InsertIndexLabelKeyValue(partner_idx, fChannelLabelKey, ch_label + "+");
+                                        // chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, ch_label);
+                                        // chan_axis_ptr->InsertIndexLabelKeyValue(partner_idx, fChannelLabelKey, ch_label);
+                                        chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, ch_label + "-");
+                                        chan_axis_ptr->InsertIndexLabelKeyValue(partner_idx, fChannelLabelKey, ch_label + "+");
                                     }
                                 }
                                 break;
