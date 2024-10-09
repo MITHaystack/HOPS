@@ -55,6 +55,8 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
     private:
         bool IsApplicable(std::size_t st_idx, const visibility_type* in);
         bool PolMatch(std::size_t station_idx, std::string& polprod);
+        bool LabelMatch(std::string expected_chan_label, std::string given_chan_label);
+
 
         //constants
         std::complex< double > fImagUnit;
