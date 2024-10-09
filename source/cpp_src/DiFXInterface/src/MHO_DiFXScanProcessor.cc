@@ -711,23 +711,23 @@ std::string MHO_DiFXScanProcessor::get_fourfit_reftime_for_scan(mho_json scan_ob
     return frt;
 }
 
-std::string MHO_DiFXScanProcessor::get_vexdate_from_mjd_sec(double mjd, double sec)
-{
-    double total_mjd = (double)mjd + (double)sec / 86400.0;
-    auto difx_mjd_epoch = hops_clock::from_iso8601_format(DIFX_J2000_MJD_EPOCH_UTC_ISO8601);
-    //figure out the approximate time of this mjd (ignoring leap seconds)
-    auto approx_tp = hops_clock::from_mjd(difx_mjd_epoch, DIFX_J2000_MJD_EPOCH_OFFSET, total_mjd);
-    //calculate the number of leap seconds
-    auto n_leaps = hops_clock::get_leap_seconds_between(difx_mjd_epoch, approx_tp);
-    //now correct the nominal difx start epoch to deal with the number of leap seconds
-    auto actual_epoch_start = difx_mjd_epoch + n_leaps;
-    msg_debug("difx_interface", "the leap-second corrected difx mjd epoch start is: "
-                                    << hops_clock::to_iso8601_format(actual_epoch_start) << eom);
-    auto mjd_tp = hops_clock::from_mjd(actual_epoch_start, DIFX_J2000_MJD_EPOCH_OFFSET, total_mjd);
-    msg_debug("difx_interface",
-              "the MJD value: " << total_mjd << " as a vex timestamp is: " << hops_clock::to_vex_format(mjd_tp) << eom);
-    return hops_clock::to_vex_format(mjd_tp);
-}
+// std::string MHO_DiFXScanProcessor::get_vexdate_from_mjd_sec(double mjd, double sec)
+// {
+//     double total_mjd = (double)mjd + (double)sec / 86400.0;
+//     auto difx_mjd_epoch = hops_clock::from_iso8601_format(DIFX_J2000_MJD_EPOCH_UTC_ISO8601);
+//     //figure out the approximate time of this mjd (ignoring leap seconds)
+//     auto approx_tp = hops_clock::from_mjd(difx_mjd_epoch, DIFX_J2000_MJD_EPOCH_OFFSET, total_mjd);
+//     //calculate the number of leap seconds
+//     auto n_leaps = hops_clock::get_leap_seconds_between(difx_mjd_epoch, approx_tp);
+//     //now correct the nominal difx start epoch to deal with the number of leap seconds
+//     auto actual_epoch_start = difx_mjd_epoch + n_leaps;
+//     msg_debug("difx_interface", "the leap-second corrected difx mjd epoch start is: "
+//                                     << hops_clock::to_iso8601_format(actual_epoch_start) << eom);
+//     auto mjd_tp = hops_clock::from_mjd(actual_epoch_start, DIFX_J2000_MJD_EPOCH_OFFSET, total_mjd);
+//     msg_debug("difx_interface",
+//               "the MJD value: " << total_mjd << " as a vex timestamp is: " << hops_clock::to_vex_format(mjd_tp) << eom);
+//     return hops_clock::to_vex_format(mjd_tp);
+// }
 
 void MHO_DiFXScanProcessor::apply_delay_model_clock_correction(const mho_json& ant, const mho_json& ant_poly,
                                                                station_coord_type* st_coord)

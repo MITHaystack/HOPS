@@ -25,6 +25,8 @@
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_StationCodeMap.hh"
 
+#include "MHO_DiFXTimeUtilities.hh"
+
 namespace hops
 {
 
@@ -78,8 +80,8 @@ class MHO_DiFXScanProcessor
         //use json representation of vex-scan information to return epoch string of frt
         std::string get_fourfit_reftime_for_scan(mho_json scan_obj);
 
-        //given a mjd date and number of seconds, compute the vex string representation
-        static std::string get_vexdate_from_mjd_sec(double mjd, double sec);
+        // //given a mjd date and number of seconds, compute the vex string representation
+        // static std::string get_vexdate_from_mjd_sec(double mjd, double sec);
 
         std::string get_correlation_vexdate() const { return fCorrDate; };
 
