@@ -54,81 +54,207 @@ bool MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                         chan_label = pcal_it->first;
                         double delay = pcal_it->second;
 
-                        auto idx_list = chan_ax->GetMatchingIndexes(fChannelLabelKey, chan_label);
-                        if(idx_list.size() == 1)
+                        //dumb O(N^2) brute force search
+                        for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++) //loop over all channels matching this label
                         {
-                            std::size_t ch = idx_list[0];
-                            double bandwidth = 0;
-                            bool bw_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, bwkey, bandwidth);
-
-                            std::string delay_offset_key;
-                            std::string pol_code =
-                                std::string(1, pp_label[st_idx]); //get the polarization for the appropriate station (ref/rem)
-                            if(st_idx == 0)
+                            std::string current_chan_label;
+                            bool has_label = chan_ax->RetrieveIndexLabelKeyValue(ch, fChannelLabelKey, current_chan_label);
+                            if(has_label && LabelMatch(chan_label, current_chan_label) )
                             {
-                                delay_offset_key = "ref_delayoff_";
-                            }
-                            if(st_idx == 1)
-                            {
-                                delay_offset_key = "rem_delayoff_";
-                            }
-                            delay_offset_key += pol_code;
+                                double bandwidth = 0;
+                                bool bw_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, bwkey, bandwidth);
 
-                            //now attach the manual delay offset value to this pol/station
-                            //it may be better to stash this information in a new data type
-                            //rather than attaching it as meta data here...
-                            //also, if multiple delay offsets are applied, this will only capture the last one
-                            chan_ax->InsertIndexLabelKeyValue(ch, delay_offset_key, delay); //store as ns
-
-                            if(bw_key_present)
-                            {
-                                //get the channels bandwidth to determine effective sampling period
-                                bool ok = false;
-                                //calculate effective sampling period for channel assuming Nyquist rate
-                                bandwidth *= fMHzToHz;
-                                double eff_sample_period = 1.0 / (2.0 * bandwidth);
-
-                                //loop over spectral points calculating the phase correction from this delay at each point
-                                std::size_t nsp = freq_ax->GetSize();
-                                for(std::size_t sp = 0; sp < nsp; sp++)
+                                std::string delay_offset_key;
+                                std::string pol_code =
+                                    std::string(1, pp_label[st_idx]); //get the polarization for the appropriate station (ref/rem)
+                                if(st_idx == 0)
                                 {
-                                    double deltaf =
-                                        freq_ax->at(sp) * fMHzToHz; //-2e-3 * i / (2e6 * param->samp_period * nlags);
-                                    double theta = -2.0 * fPi * deltaf * delay * fNanoSecToSecond;
-
-                                    TODO_FIXME_MSG("TODO FIXME -- geodetic phase shift treatment needs implementation (see "
-                                                   "normfx. line 398)")
-                                    double phase_shift = -2.0 * fPi * (1.0 / 4.0) * delay * fNanoSecToSecond /
-                                                         eff_sample_period; //where does factor of 1/4 come from (see normfx)
-                                    phase_shift *= -((double)(2 * nsp) - 2.0) /
-                                                   (double)(2 * nsp); //factor of 2 is from the way normfx zero-pads the data
-                                    theta += phase_shift;
-
-                                    visibility_element_type pc_phasor = std::exp(fImagUnit * theta);
-
-                                    // std::string net_sideband = "?";
-                                    // bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
-                                    // //conjugate phases for LSB data, but not for USB
-                                    // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
-                                    // if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
-
-                                    //first impl behavior...working for EHT test case, but not checked everywhere
-                                    if(st_idx == 1)
-                                    {
-                                        pc_phasor = std::conj(pc_phasor);
-                                    } //conjugate for remote but not reference station
-
-                                    //retrieve and multiply the appropriate sub view of the visibility array
-                                    auto chunk = in->SliceView(
-                                        pp, ch, ":", sp); //select this spectral point (for this pol/channel) across all APs
-                                    chunk *= pc_phasor;
+                                    delay_offset_key = "ref_delayoff_";
                                 }
-                            }
-                            else
-                            {
-                                msg_error("calibration", "channel: " << chan_label << " is missing bandwidth tag." << eom);
+                                if(st_idx == 1)
+                                {
+                                    delay_offset_key = "rem_delayoff_";
+                                }
+                                delay_offset_key += pol_code;
+
+                                //now attach the manual delay offset value to this pol/station
+                                //it may be better to stash this information in a new data type
+                                //rather than attaching it as meta data here...
+                                //also, if multiple delay offsets are applied, this will only capture the last one
+                                chan_ax->InsertIndexLabelKeyValue(ch, delay_offset_key, delay); //store as ns
+
+                                if(bw_key_present)
+                                {
+                                    //get the channels bandwidth to determine effective sampling period
+                                    bool ok = false;
+                                    //calculate effective sampling period for channel assuming Nyquist rate
+                                    bandwidth *= fMHzToHz;
+                                    double eff_sample_period = 1.0 / (2.0 * bandwidth);
+
+                                    //loop over spectral points calculating the phase correction from this delay at each point
+                                    std::size_t nsp = freq_ax->GetSize();
+                                    for(std::size_t sp = 0; sp < nsp; sp++)
+                                    {
+                                        //original normfx: -2e-3 * i / (2e6 * param->samp_period * nlags);
+                                        double deltaf = freq_ax->at(sp) * fMHzToHz; 
+                                        double theta = -2.0 * fPi * deltaf * delay * fNanoSecToSecond;
+
+                                        TODO_FIXME_MSG("TODO FIXME -- geodetic phase shift treatment needs implementation (see "
+                                                       "normfx. line 398)")
+                                        //where does factor of 1/4 come from (see normfx)
+                                        double phase_shift = -2.0 * fPi * (1.0 / 4.0) * delay * fNanoSecToSecond /
+                                                             eff_sample_period; 
+
+                                        //factor of 2 is from the way normfx zero-pads the data
+                                        phase_shift *= -((double)(2 * nsp) - 2.0) / (double)(2 * nsp); 
+                                        theta += phase_shift;
+
+                                        visibility_element_type pc_phasor = std::exp(fImagUnit * theta);
+
+                                        // std::string net_sideband = "?";
+                                        // bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+                                        // //conjugate phases for LSB data, but not for USB
+                                        // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
+                                        // if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
+
+                                        //first impl behavior...working for EHT test case, but not checked everywhere
+                                        if(st_idx == 1)
+                                        {
+                                            pc_phasor = std::conj(pc_phasor);
+                                        } //conjugate for remote but not reference station
+
+                                        //retrieve and multiply the appropriate sub view of the visibility array
+                                        auto chunk = in->SliceView(pp, ch, ":", sp); //select this spectral point, for all APs
+                                        chunk *= pc_phasor;
+                                    }
+                                }
+                                else
+                                {
+                                    msg_error("calibration", "channel: " << chan_label << " is missing bandwidth tag." << eom);
+                                }
+
+
+
+
+
+
+
+
+
+
+                                // //pc phase matches this channel, so apply it
+                                // std::string net_sideband = "?";
+                                // bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+                                // visibility_element_type pc_phasor = std::exp(fImagUnit * pc_val * fDegToRad);
+                                // 
+                                // //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                                // TODO_FIXME_MSG("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
+                                // TODO_FIXME_MSG("TODO FIXME X2 - make sure we are not confusing ref/rem with USB/LSB signs.")
+                                // if(net_sideband == fLowerSideband)
+                                // {
+                                //     pc_phasor = std::conj(pc_phasor);
+                                // }
+                                // if(st_idx == 0)
+                                // {
+                                //     pc_phasor = std::conj(pc_phasor);
+                                // }
+                                // 
+                                // //retrieve and multiply the appropriate sub view of the visibility array
+                                // auto chunk = in->SubView(pp, ch);
+                                // chunk *= pc_phasor;
+                                // 
+                                // //now attach the manual pcal value to this channel/pol/station
+                                // //it might be better to stash this information in
+                                // //a new data type rather than attaching it as meta data here
+                                // chan_ax->InsertIndexLabelKeyValue(ch, pc_phase_key, pc_val * fDegToRad);
                             }
                         }
+
+
+
+
+
+
+
+
+
+
+
+                        // auto idx_list = chan_ax->GetMatchingIndexes(fChannelLabelKey, chan_label);
+                        // if(idx_list.size() == 1)
+                        // {
+                            // std::size_t ch = idx_list[0];
+                            // double bandwidth = 0;
+                            // bool bw_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, bwkey, bandwidth);
+                            // 
+                            // std::string delay_offset_key;
+                            // std::string pol_code =
+                            //     std::string(1, pp_label[st_idx]); //get the polarization for the appropriate station (ref/rem)
+                            // if(st_idx == 0)
+                            // {
+                            //     delay_offset_key = "ref_delayoff_";
+                            // }
+                            // if(st_idx == 1)
+                            // {
+                            //     delay_offset_key = "rem_delayoff_";
+                            // }
+                            // delay_offset_key += pol_code;
+                            // 
+                            // //now attach the manual delay offset value to this pol/station
+                            // //it may be better to stash this information in a new data type
+                            // //rather than attaching it as meta data here...
+                            // //also, if multiple delay offsets are applied, this will only capture the last one
+                            // chan_ax->InsertIndexLabelKeyValue(ch, delay_offset_key, delay); //store as ns
+                            // 
+                            // if(bw_key_present)
+                            // {
+                            //     //get the channels bandwidth to determine effective sampling period
+                            //     bool ok = false;
+                            //     //calculate effective sampling period for channel assuming Nyquist rate
+                            //     bandwidth *= fMHzToHz;
+                            //     double eff_sample_period = 1.0 / (2.0 * bandwidth);
+                            // 
+                            //     //loop over spectral points calculating the phase correction from this delay at each point
+                            //     std::size_t nsp = freq_ax->GetSize();
+                            //     for(std::size_t sp = 0; sp < nsp; sp++)
+                            //     {
+                            //         double deltaf =
+                            //             freq_ax->at(sp) * fMHzToHz; //-2e-3 * i / (2e6 * param->samp_period * nlags);
+                            //         double theta = -2.0 * fPi * deltaf * delay * fNanoSecToSecond;
+                            // 
+                            //         TODO_FIXME_MSG("TODO FIXME -- geodetic phase shift treatment needs implementation (see "
+                            //                        "normfx. line 398)")
+                            //         double phase_shift = -2.0 * fPi * (1.0 / 4.0) * delay * fNanoSecToSecond /
+                            //                              eff_sample_period; //where does factor of 1/4 come from (see normfx)
+                            //         phase_shift *= -((double)(2 * nsp) - 2.0) /
+                            //                        (double)(2 * nsp); //factor of 2 is from the way normfx zero-pads the data
+                            //         theta += phase_shift;
+                            // 
+                            //         visibility_element_type pc_phasor = std::exp(fImagUnit * theta);
+                            // 
+                            //         // std::string net_sideband = "?";
+                            //         // bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+                            //         // //conjugate phases for LSB data, but not for USB
+                            //         // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
+                            //         // if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
+                            // 
+                            //         //first impl behavior...working for EHT test case, but not checked everywhere
+                            //         if(st_idx == 1)
+                            //         {
+                            //             pc_phasor = std::conj(pc_phasor);
+                            //         } //conjugate for remote but not reference station
+                            // 
+                            //         //retrieve and multiply the appropriate sub view of the visibility array
+                            //         auto chunk = in->SliceView(
+                            //             pp, ch, ":", sp); //select this spectral point (for this pol/channel) across all APs
+                            //         chunk *= pc_phasor;
+                            //     }
+                            // }
+                            // else
+                            // {
+                            //     msg_error("calibration", "channel: " << chan_label << " is missing bandwidth tag." << eom);
+                            // }
+                        // }
                     }
                 }
             }
@@ -198,6 +324,42 @@ bool MHO_ManualChannelDelayCorrection::PolMatch(std::size_t station_idx, std::st
     make_upper(polprod);
     return (fPol[0] == polprod[station_idx]);
 }
+
+bool MHO_ManualChannelDelayCorrection::LabelMatch(std::string expected_chan_label, std::string given_chan_label)
+{
+    //we need this function, because channels which are members of double side-band pairs 
+    //have a + or - attached to their name denoting if they are the LSB or USB half
+    //if this special character is not part of the expected channel label, then the correction 
+    //is expected to be applied to both halves, so if '+' or '-' don't appear we want to strip them 
+    //from the given channel label to see it if matches
+
+    if(expected_chan_label.find("+") == std::string::npos && expected_chan_label.find("-") == std::string::npos) //no +/- here
+    {
+        if(given_chan_label.find("+") != std::string::npos || given_chan_label.find("-") != std::string::npos)// but +/- present
+        {
+            std::string given_stripped;
+            for(std::size_t i=0; i<given_chan_label.size(); i++)
+            {
+                if(given_chan_label[i] != '+' && given_chan_label[i] != '-' ) //make sure +/- are not in the label string
+                {
+                    given_stripped += given_chan_label[i];
+                }
+            }
+            return (expected_chan_label == given_stripped );
+        }
+        else 
+        {
+            //no need to strip +/-
+            return (expected_chan_label == given_chan_label);
+        }
+    }
+    else 
+    {
+        //label was fully specified (including + or -), so do the matching exactly 
+        return (expected_chan_label == given_chan_label);
+    }
+}
+
 
 bool MHO_ManualChannelDelayCorrection::InitializeInPlace(visibility_type* /*in*/)
 {
