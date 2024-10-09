@@ -487,6 +487,7 @@ xpower_amp_type MHO_ComputePlotData::calc_dr()
     std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
     std::size_t drsp_size = 2 * MHO_BitReversalPermutation::NextLowestPowerOfTwo(nap); //see MHO_DelayRate.cc
+    if(drsp_size < 256){drsp_size = 256;} //Empirically determined from FRNGE plots (see line 72 of make_plotdata.c)
 
     ////////////////////////////////////////////////////////////////////////
 
@@ -737,8 +738,13 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
     std::string sidebandlabelkey = "net_sideband";
     std::string bandwidthlabelkey = "bandwidth";
 
+    double total_usb_frac = 0;
+    double total_lsb_frac = 0;
+
     for(int lag = 0; lag < 2 * nl; lag++)
     {
+        total_usb_frac = 0;
+        total_lsb_frac = 0;
         for(int ch = 0; ch < nchan; ch++)
         {
             double freq = (*chan_ax)(ch); //sky freq of this channel
@@ -782,6 +788,11 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
                 std::complex< double > Z = vis * vr;
                 //apply weight and sum
                 double w = (*fWeights)(POLPROD, ch, ap, 0);
+
+                if(net_sideband == "U"){total_usb_frac += w;}
+                if(net_sideband == "L"){total_lsb_frac += w;}
+
+                //if(dsb_key_present){ w /= 2.0;} //use average usb/lsb weight for both DSB halves
                 sum += w * Z;
             }
             sbxsp[ch].at(lag) = sum;
@@ -808,7 +819,7 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
     }
 
     //set up FFT and run
-    fFFTEngine.SetArgs(&Y, &Y);
+    fFFTEngine.SetArgs(&Y);// &Y);
     fFFTEngine.DeselectAllAxes();
     fFFTEngine.SelectAxis(0);
     fFFTEngine.SetForward();
@@ -825,16 +836,16 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
         double sbfactor = 0.0;
         if(j <= 0)
         {
-            if(net_sideband == "U")
+            if(total_usb_frac > 0)
             {
-                sbfactor = sqrt(0.5) / (M_PI * total_summed_weights);
+                sbfactor = sqrt(0.5) / (M_PI * total_usb_frac);
             }
         }
         else
         {
-            if(net_sideband == "L")
+            if(total_lsb_frac > 0)
             {
-                sbfactor = sqrt(0.5) / (M_PI * total_summed_weights);
+                sbfactor = sqrt(0.5) / (M_PI * total_lsb_frac);
             }
         }
         if(j < 0)
@@ -842,9 +853,9 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
             j += 4 * nl;
         }
 
-        cp_spectrum[i] = Y[j];
+        cp_spectrum[i] = Y[j] * sbfactor;
         Z = std::exp(-1.0 * cmplx_unit_I * (fSBDelay * (i - nl) * M_PI / (sbd_delta * 2.0 * nl)));
-        cp_spectrum[i] = Z * sbfactor * cp_spectrum[i];
+        cp_spectrum[i] = Z  * cp_spectrum[i];
     }
 
     //now have to tweak the section exported to the plot data
