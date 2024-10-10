@@ -45,6 +45,7 @@ class MHO_PhaseCalibrationTrim: public MHO_UnaryOperator< multitone_pcal_type >
     private:
 
         const visibility_type* fVis;
+        double fEps;
 
 };
 

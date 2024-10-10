@@ -369,7 +369,7 @@ void MHO_DiFXPCalProcessor::Organize()
 
         //convert the mjd time to a sane format
         std::string pcal_start = get_vexdate_from_mjd_sec(first_ap, 0);
-        fPCal.Insert("start_time", pcal_start);
+        fPCal.Insert("start", pcal_start);
 
         //insert the pcal accumulation period (it ought to be the same as the correlation AP)
         fPCal.Insert("pcal_accumulation_period", current_ap_length_sec);
