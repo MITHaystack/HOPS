@@ -20,11 +20,14 @@ bool MHO_PhaseCalibrationTrim::ExecuteInPlace(multitone_pcal_type* in)
         //get the start times tags of the vis and pcal data 
         std::string vis_start;
         std::string pcal_start;
+        std::string station_code;
 
         bool vis_start_ok = fVis->Retrieve("start", vis_start);
         bool pcal_start_ok = in->Retrieve("start", pcal_start);
 
-        msg_debug("calibration", "pcal start time is: "<< pcal_start << eom);
+        bool station_code_ok = in->Retrieve("station_code", station_code);
+
+        msg_debug("calibration", "pcal start time is: "<< pcal_start << "for station: "<<station_code<< eom);
         msg_debug("calibration", "visibility start time is: "<< vis_start << eom);
 
         if(!vis_start_ok)
@@ -127,7 +130,8 @@ bool MHO_PhaseCalibrationTrim::ExecuteInPlace(multitone_pcal_type* in)
         std::string new_pcal_start = hops_clock::to_vex_format(pcal_start_tp);
         //in->Insert("start", new_pcal_start);
     
-        msg_debug("calibration", "trimmed pcal, original start: " << pcal_start <<", new start: "<< new_pcal_start << eom );
+        msg_debug("calibration", "trimmed pcal, original start: " << pcal_start <<", new start: "
+            << new_pcal_start <<" for station: "<< station_code << eom );
         msg_debug("calibration", "trimmed pcal, original number of APs: "<<pcal_ntime<<", new number of APs: "<< in->GetDimension(MTPCAL_TIME_AXIS) << eom);
 
         delete spack;
