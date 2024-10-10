@@ -312,8 +312,10 @@ def make_pcal_plots(fig, plot_dict):
                     rem_pcal_phases = np.zeros(n_seg)
                     rem_n_seg = n_seg
 
-        if ref_n_seg == rem_n_seg:
-            n_seg = ref_n_seg
+        #trim the pcal to the overlap
+        n_seg = np.min([ref_n_seg, rem_n_seg])
+        ref_pcal_phases = ref_pcal_phases[:n_seg]
+        rem_pcal_phases = rem_pcal_phases[:n_seg]
 
         if n_seg_plots == 2:
             n_seg_plots = 1 #do not need 'all' plot if only one channel
@@ -321,8 +323,12 @@ def make_pcal_plots(fig, plot_dict):
         #ax8 = plt.subplot2grid((255,colw*n_seg_plots),(160,colw*ch),rowspan=16,colspan=colw)
         ax8 = fig.add_subplot(gs[160:176, colw*ch:colw*(ch+1)])
 
-        ax8.plot(range(ref_n_seg), ref_pcal_phases, 'co',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
-        ax8.plot(range(rem_n_seg), rem_pcal_phases, 'co',markersize=2, markerfacecolor='m', linewidth=0.5, markeredgewidth=0.0)
+        # print("range of ref pcal:", range(ref_n_seg))
+        # print("range of rem pcal:", range(rem_n_seg))
+        # print("n_seg = ", n_seg)
+
+        ax8.plot(range(len(ref_pcal_phases)), ref_pcal_phases, 'co',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
+        ax8.plot(range(len(rem_pcal_phases)), rem_pcal_phases, 'co',markersize=2, markerfacecolor='m', linewidth=0.5, markeredgewidth=0.0)
         ax8.set_xlim(0,n_seg)
         ax8.set_ylim(-180,180)
         ax8.xaxis.set_major_locator(plt.LinearLocator(numticks=3))
