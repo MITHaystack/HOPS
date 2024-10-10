@@ -1,78 +1,126 @@
 #include "MHO_PhaseCalibrationTrim.hh"
 #include "MHO_SelectRepack.hh"
+#include "MHO_Clock.hh"
 
 namespace hops
 {
 
 MHO_PhaseCalibrationTrim::MHO_PhaseCalibrationTrim()
 {
-
+    fEps = 1e-2; //time tolerance of 0.01 sec
 };
 
 MHO_PhaseCalibrationTrim::~MHO_PhaseCalibrationTrim(){};
 
 bool MHO_PhaseCalibrationTrim::ExecuteInPlace(multitone_pcal_type* in)
 {
-    if(fVisibilities != nullptr && in != nullptr)
+    if(fVis != nullptr && in != nullptr)
     {
-        std::size_t vis_ntime = fVisibilities->GetDimension(TIME_AXIS);
-        std::size_t pcal_ntime = in->GetDimension(MTPCAL_TIME_AXIS);
-        //same number of time points, so no need to trim
-        if(vis_ntime == pcal_ntime){return true;}
-        else if(vis_ntime < pcal_ntime)
+        //get the start times tags of the vis and pcal data 
+        std::string vis_start;
+        std::string pcal_start;
+
+        bool vis_start_ok = fVis->Retrieve("start", vis_start);
+        bool pcal_start_ok = in->Retrieve("start", pcal_start);
+
+        if(!vis_start_ok)
         {
-            auto spack = new MHO_SelectRepack< multitone_pcal_type >();
-        
-            std::vector< std::size_t > selected_aps;
-            auto vis_time_ax = &(std::get< TIME_AXIS >(*fVis));
-    
-            double first_t = vis_time_ax->at(0);
-            double last_t = vis_time_ax->at(naps - 1);
-            //TODO...convert first/last time into absolute times (w.r.t to the start time)
-    
+            msg_error("calibration", "no start time specified for visbility data, cannot trim pcal data" << eom);
+            return false;
+        }
 
-            auto pcal_time_ax = &(std::get< TIME_AXIS >(*in));
-            std::size_t pcal_naps = vis_time_ax->GetSize();
+        if(!pcal_start_ok)
+        {
+            msg_warn("calibration", "no start time specified for pcal data, assuming it is the same as the visibilities" << eom);
+            pcal_start = vis_start;
+        }
 
-    
-            //Note: The stop/start parameters are passed as integers (n seconds), 
-            //which works fine for 1 sec APs, but
-            //for smaller APs maybe we should pass them as floats?
-            for(std::size_t i = 0; i < pcal_naps; i++)
-            {
-                double pcal_t = (*pcal_time_ax)(i);
-                //TODO convert pcal_t to absolute time
-            
+        auto vis_time_ax = &(std::get< TIME_AXIS >(*fVis));
+        auto pcal_time_ax = &(std::get<MTPCAL_TIME_AXIS>(*in));
+        std::size_t vis_ntime =  vis_time_ax->GetSize();
+        std::size_t pcal_ntime = pcal_time_ax->GetSize();
 
+        if(vis_ntime < 2 || pcal_ntime < 2)
+        {
+            msg_error("calibration", "too few points on time axis of visibility or pcal data" << eom );
+            return false;
+        }
 
+        //figure out the size of the steps on the time axis 
+        double vis_tdelta = vis_time_ax->at(1) - vis_time_ax->at(0);
+        double pcal_tdelta = pcal_time_ax->at(1) - pcal_time_ax->at(0);
+        double ap_delta = std::fabs( vis_tdelta - pcal_tdelta);
+        if( ap_delta > fEps )
+        {
+            msg_error("calibration", "pcal accumulation period and visibility accumulation period are different by: "<< ap_delta << eom );
+            return false;
+        }
 
-                //std::cout<<" t, stop, start, begin, end = "<< t <<", "<< (last_t + stop)<<", "<< (first_t - start)<<", " << first_t<<", "<<last_t<< std::endl;
-                if(t <= (last_t + (double)stop) && t >= (first_t - (double)start))
-                {
-                    selected_aps.push_back(i);
-                }
-            }
-            
-            msg_debug("calibration", "pcal data selection, selecting " << selected_aps.size() << " APs." << eom);
-            
-            if(selected_aps.size() == 0)
-            {
-                msg_warn("calibration", "AP selection eliminated all pcal data." << eom);
-            }
-            
-            spack->SelectAxisItems(TIME_AXIS, selected_aps);
+        //now figure out the start time delta, and the number of points on time axis
+        auto vis_start_tp = hops_clock::from_vex_format(vis_start);
+        auto pcal_start_tp = hops_clock::from_vex_format(pcal_start);
 
-            //not apply/execute spack
+        //calculate time differences
+        auto start_tdiff_duration = pcal_start_tp - vis_start_tp;
+        //convert difference to double (seconds)
+        double start_tdiff = std::chrono::duration< double >(start_tdiff_duration).count();
 
-            delete spack;
-
+        if( start_tdiff < fEps && vis_ntime == pcal_ntime )
+        {
+            msg_debug("calibration", "pcal accumulation period and start time coincide, no need to trim pcal data" << eom);
             return true;
         }
+        else 
+        {
+            msg_debug("calibration", "need to trim pcal data to match visibilities, start time delta is: "<< start_tdiff << 
+                ", num pcal points: "<<pcal_ntime<<", num vis points: "<< vis_ntime << eom );
+        }
+
+        //evidently the start time's are different enough, or the number of points are different, so we need to trim down 
+        //the pcal data so that it matches the same time period as the visibility data
+        //we use select-repack to do this, and select the ap indices we want to keep
+
+        auto spack = new MHO_SelectRepack< multitone_pcal_type >();
+        std::vector< std::size_t > selected_aps;
+        double vis_first_t = vis_time_ax->at(0);
+        double vis_last_t = vis_time_ax->at(vis_ntime - 1) + vis_tdelta;
+        for(std::size_t i = 0; i < pcal_ntime; i++)
+        {
+            double pcal_t = pcal_time_ax->at(i);
+            pcal_t + start_tdiff;
+            if(pcal_t <= vis_last_t && pcal_t >= vis_first_t)
+            {
+                selected_aps.push_back(i);
+            }
+        }
+        
+        msg_debug("calibration", "pcal data selection, selecting " << selected_aps.size() << " APs" << eom);
+        if(selected_aps.size() == 0)
+        {
+            msg_warn("calibration", "AP selection eliminated all pcal data." << eom);
+        }
+
+        //now apply/execute spack
+        spack->SetArgs(in);
+        spack->SelectAxisItems(MTPCAL_TIME_AXIS, selected_aps);
+        bool ok = spack->Execute();
+
+        //make sure we modifiy the pcal start time, so it is corrected (if we trimmed the front)
+        //std::chrono::duration< double > shift(start_tdiff);
+        //auto shift = std::chrono::seconds(start_tdiff);
+        int64_t shift_ns = 1e9*start_tdiff;
+        pcal_start_tp += hops_clock::duration(shift_ns);
+        std::string new_pcal_start = hops_clock::to_vex_format(pcal_start_tp);
+        in->Insert("start", new_pcal_start);
+    
+        msg_debug("calibration", "trimmed pcal, original start: " << pcal_start <<", new start: "<< new_pcal_start << eom );
+        msg_debug("calibration", "trimmed pcal, original number of APs: "<<pcal_ntime<<", new number of APs: "<< in->GetDimension(MTPCAL_TIME_AXIS) << eom);
+
+        delete spack;
+
+        return ok;
     }
-    else 
-    {
-        return false;
-    }
+    return false;
 }
 
 bool MHO_PhaseCalibrationTrim::ExecuteOutOfPlace(const multitone_pcal_type* in, multitone_pcal_type* out)

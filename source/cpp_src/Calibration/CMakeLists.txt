@@ -29,6 +29,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayModel.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationModel.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LSBOffset.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PhaseCalibrationTrim.hh
 )
 
 #list source files #############################################################
@@ -58,6 +59,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayModel.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationModel.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LSBOffset.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PhaseCalibrationTrim.cc
 )
 
 #declare header paths ##########################################################

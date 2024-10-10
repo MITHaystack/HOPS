@@ -20,6 +20,8 @@
     #include "MHO_MultidimensionalFastFourierTransform.hh"
 #endif
 
+#include "MHO_PhaseCalibrationTrim.hh"
+
 namespace hops
 {
 
@@ -123,6 +125,9 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         bool fHavePCToneMask;
         std::string fPCToneMaskChannels;
         std::vector< int > fPCToneMaskBitmasks;
+
+        //needed if there have been time cuts to the visibilities, to trim to the appropriate range
+        MHO_PhaseCalibrationTrim fPCalTrimmer;
 
         //controls if pc delays are applied (no -- if there are no sampler delays)
         bool fApplyPCDelay;
