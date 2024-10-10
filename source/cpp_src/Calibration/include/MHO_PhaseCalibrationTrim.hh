@@ -22,25 +22,27 @@ namespace hops
  *@class MHO_PhaseCalibrationTrim
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Jan 27 10:36:00 2022 -0500
- *@brief
+ *@brief Trims the time range of the pcal data to match that of the visibilities
  */
 
-class MHO_PhaseCalibrationTrim: public MHO_UnaryOperator< visibility_type >
+class MHO_PhaseCalibrationTrim: public MHO_UnaryOperator< multitone_pcal_type >
 {
     public:
         MHO_PhaseCalibrationTrim();
         virtual ~MHO_PhaseCalibrationTrim();
 
-        
+        void SetVisibilities(const visibility_type* vis){fVisibilities = vis;}
 
     protected:
-        virtual bool InitializeInPlace(visibility_type* in) override;
-        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
+        virtual bool InitializeInPlace(multitone_pcal_type* in) override;
+        virtual bool InitializeOutOfPlace(const multitone_pcal_type* in, multitone_pcal_type* out) override;
 
-        virtual bool ExecuteInPlace(visibility_type* in) override;
-        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
+        virtual bool ExecuteInPlace(multitone_pcal_type* in) override;
+        virtual bool ExecuteOutOfPlace(const multitone_pcal_type* in, multitone_pcal_type* out) override;
 
     private:
+
+        const visibility_type* fVisibilities;
 
 };
 
