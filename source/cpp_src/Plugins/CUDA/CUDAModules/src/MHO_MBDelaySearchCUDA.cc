@@ -3,36 +3,7 @@
 namespace hops
 {
 
-MHO_MBDelaySearchCUDA::MHO_MBDelaySearchCUDA()
-{
-    fInitialized = false;
-    fMBDMaxBin = -1;
-    fSBDMaxBin = -1;
-    fDRMaxBin = -1;
-    fSBDStart = -1;
-    fSBDStop = -1;
-    fMBDBinMap.clear();
-
-    //the window limits
-    fSBDWinSet = false;
-    fMBDWinSet = false;
-    fDRWinSet = false;
-    fSBDWin[0] = 1e30;
-    fSBDWin[1] = -1e30;
-    fMBDWin[0] = 1e30;
-    fMBDWin[1] = -1e30;
-    fDRWin[0] = 1e30;
-    fDRWin[1] = -1e30;
-
-    fCoarseSBD = 0;
-    fCoarseMBD = 0;
-    fCoarseDR = 0;
-    fSBDBinSep = 0;
-    fDRBinSep = 0;
-    fMBDBinSep = 0;
-
-    fNPointsSearched = 0;
-}
+MHO_MBDelaySearchCUDA::MHO_MBDelaySearchCUDA(): MHO_MBDelaySearch(){}
 
 MHO_MBDelaySearchCUDA::~MHO_MBDelaySearchCUDA()
 {
@@ -47,7 +18,14 @@ bool MHO_MBDelaySearchCUDA::InitializeImpl(const XArgType* in)
     {
         //calculate the frequency grid for MBD search
         MHO_UniformGridPointsCalculator fGridCalc;
-        fGridCalc.SetPoints(std::get< CHANNEL_AXIS >(*in).GetData(), std::get< CHANNEL_AXIS >(*in).GetSize());
+        std::vector< double> in_freq_pts(std::get<CHANNEL_AXIS>(*in).GetData(), 
+                                         std::get<CHANNEL_AXIS>(*in).GetData() + std::get<CHANNEL_AXIS>(*in).GetSize() );
+        std::vector< double > freq_pts;
+        double freq_eps = 1e-4; //tolerance of 0.1kHz
+        //dsb channel pairs share a sky_freq so we need combine them at the same location
+        //this eliminates non-unique (within the tolerance) adjacent frequencies
+        fGridCalc.GetUniquePoints(in_freq_pts, freq_eps, freq_pts, fChannelIndexToFreqPointIndex);
+        fGridCalc.SetPoints(freq_pts);
         fGridCalc.Calculate();
 
         fGridStart = fGridCalc.GetGridStart();
@@ -205,7 +183,8 @@ bool MHO_MBDelaySearchCUDA::ExecuteImpl(const XArgType* in)
                 {
                     for(std::size_t ch = 0; ch < nch; ch++)
                     {
-                        std::size_t mbd_bin = fMBDBinMap[ch];
+                        //std::size_t mbd_bin = fMBDBinMap[ch];
+                        std::size_t mbd_bin = fMBDBinMap[fChannelIndexToFreqPointIndex[ch]];
                         fHostBuffer(dr_idx, mbd_bin) = sbd_dr_data(0, ch, dr_idx, 0);
                     }
                 }
@@ -272,109 +251,5 @@ bool MHO_MBDelaySearchCUDA::ExecuteImpl(const XArgType* in)
 
     return false;
 };
-
-double MHO_MBDelaySearchCUDA::GetNPointsSearched() const
-{
-    //factor of 4 is due to the fact that the SBD search space
-    //has been zero-padded for interpolation (e.g. all points visited are not independent)
-    return fNPointsSearched / 4;
-}
-
-//configure the search windows (using floating point limits)
-//default is the full range
-void MHO_MBDelaySearchCUDA::SetSBDWindow(double low, double high)
-{
-    fSBDWinSet = true;
-    if(low <= high)
-    {
-        fSBDWin[0] = low;
-        fSBDWin[1] = high;
-    }
-    else
-    {
-        fSBDWin[1] = low;
-        fSBDWin[0] = high;
-    }
-}
-
-void MHO_MBDelaySearchCUDA::SetMBDWindow(double low, double high)
-{
-    fMBDWinSet = true;
-    if(low <= high)
-    {
-        fMBDWin[0] = low;
-        fMBDWin[1] = high;
-    }
-    else
-    {
-        fMBDWin[1] = low;
-        fMBDWin[0] = high;
-    }
-}
-
-void MHO_MBDelaySearchCUDA::SetDRWindow(double low, double high)
-{
-    fDRWinSet = true;
-    if(low <= high)
-    {
-        fDRWin[0] = low;
-        fDRWin[1] = high;
-    }
-    else
-    {
-        fDRWin[1] = low;
-        fDRWin[0] = high;
-    }
-}
-
-//retrieve the window limits
-void MHO_MBDelaySearchCUDA::GetSBDWindow(double& low, double& high) const
-{
-    low = 0.0;
-    high = 0.0;
-    if(fSBDAxis.GetSize() >= 2)
-    {
-        low = fSBDAxis.at(0);
-        high = fSBDAxis.at(fSBDAxis.GetSize() - 1) + fSBDBinSep;
-    }
-
-    if(fSBDWinSet)
-    {
-        low = std::max(fSBDWin[0], low);
-        high = std::min(fSBDWin[1], high);
-    }
-}
-
-void MHO_MBDelaySearchCUDA::GetMBDWindow(double& low, double& high) const
-{
-    low = 0.0;
-    high = 0.0;
-    if(fMBDAxis.GetSize() >= 2)
-    {
-        low = fMBDAxis.at(0);
-        high = fMBDAxis.at(fMBDAxis.GetSize() - 1) + fMBDBinSep;
-    }
-    if(fMBDWinSet)
-    {
-        low = std::max(fMBDWin[0], low);
-        high = std::min(fMBDWin[1], high);
-    }
-}
-
-void MHO_MBDelaySearchCUDA::GetDRWindow(double& low, double& high) const
-{
-    low = 0.0;
-    high = 0.0;
-    if(fDRAxis.GetSize() >= 2)
-    {
-        low = fDRAxis.at(0);
-        high = fDRAxis.at(fDRAxis.GetSize() - 1) + fDRBinSep;
-    }
-    if(fDRWinSet)
-    {
-        low = std::max(fDRWin[0], low);
-        high = std::min(fDRWin[1], high);
-    }
-}
 
 } // namespace hops

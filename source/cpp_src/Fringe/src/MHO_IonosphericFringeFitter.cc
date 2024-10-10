@@ -94,17 +94,17 @@ void MHO_IonosphericFringeFitter::Finalize()
         double low, high;
         std::vector< double > win;
         win.resize(2);
-        // fMBDSearch.GetSBDWindow(low,high);
+        // fMBDSearch->GetSBDWindow(low,high);
         win[0] = fInitialSBWin[0];
         win[1] = fInitialSBWin[1];
         fParameterStore->Set("/fringe/sb_win", win);
 
-        fMBDSearch.GetDRWindow(low, high);
+        fMBDSearch->GetDRWindow(low, high);
         win[0] = low;
         win[1] = high;
         fParameterStore->Set("/fringe/dr_win", win);
 
-        fMBDSearch.GetMBDWindow(low, high);
+        fMBDSearch->GetMBDWindow(low, high);
         win[0] = low;
         win[1] = high;
         fParameterStore->Set("/fringe/mb_win", win);
@@ -379,13 +379,13 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             if(first_pass)
             {
                 //cache the full SBD search window for later
-                fMBDSearch.GetSBDWindow(fInitialSBWin[0], fInitialSBWin[1]);
+                fMBDSearch->GetSBDWindow(fInitialSBWin[0], fInitialSBWin[1]);
                 //then just limit the SBD window to bin where the max was located
                 double sbdelay = fParameterStore->GetAs< double >("/fringe/sbdelay");
-                double sbdsep = fMBDSearch.GetSBDBinSeparation();
+                double sbdsep = fMBDSearch->GetSBDBinSeparation();
                 msg_debug("fringe",
                           "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
-                fMBDSearch.SetSBDWindow(sbdelay - sbdsep, sbdelay + sbdsep);
+                fMBDSearch->SetSBDWindow(sbdelay - sbdsep, sbdelay + sbdsep);
                 first_pass = false;
             }
 
@@ -688,24 +688,24 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
             // if(first_pass)
             // {
             //     //cache the full SBD search window for later
-            //     fMBDSearch.GetSBDWindow(fInitialSBWin[0], fInitialSBWin[1]);
+            //     fMBDSearch->GetSBDWindow(fInitialSBWin[0], fInitialSBWin[1]);
             //     //then just limit the SBD window to bin where the max was located
             //     double sbdelay = fParameterStore->GetAs<double>("/fringe/sbdelay");
             //     msg_debug("fringe", "ionospheric fringe search cached SBD window to: ("<<sbdelay<<", "<<sbdelay<< ")"<<eom);
-            //     fMBDSearch.SetSBDWindow(sbdelay, sbdelay);
+            //     fMBDSearch->SetSBDWindow(sbdelay, sbdelay);
             //     first_pass = false;
             // }
 
             if(first_pass)
             {
                 //cache the full SBD search window for later
-                fMBDSearch.GetSBDWindow(fInitialSBWin[0], fInitialSBWin[1]);
+                fMBDSearch->GetSBDWindow(fInitialSBWin[0], fInitialSBWin[1]);
                 //then just limit the SBD window to bin where the max was located
                 double sbdelay = fParameterStore->GetAs< double >("/fringe/sbdelay");
-                double sbdsep = fMBDSearch.GetSBDBinSeparation();
+                double sbdsep = fMBDSearch->GetSBDBinSeparation();
                 msg_debug("fringe",
                           "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
-                fMBDSearch.SetSBDWindow(sbdelay - sbdsep, sbdelay + sbdsep);
+                fMBDSearch->SetSBDWindow(sbdelay - sbdsep, sbdelay + sbdsep);
                 first_pass = false;
             }
 
