@@ -131,6 +131,8 @@ class MHO_DiFXBaselineProcessor
         std::size_t fNChannels;
         std::size_t fNAPs;
         std::size_t fNSpectralPoints;
+        double fStartMJD; //scan start time in MJD
+        std::string fStartTime;
         bool fCanChannelize;
         bool fHaveBaselineData;
 

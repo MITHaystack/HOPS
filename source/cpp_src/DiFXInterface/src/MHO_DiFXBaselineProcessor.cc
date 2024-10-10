@@ -3,6 +3,7 @@
 
 #include "MHO_DoubleSidebandChannelLabeler.hh"
 #include "MHO_ElementTypeCaster.hh"
+#include "MHO_DiFXTimeUtilities.hh"
 
 #include <cctype>
 #include <cmath>
@@ -149,6 +150,10 @@ void MHO_DiFXBaselineProcessor::Organize()
         fHaveBaselineData = false;
         return;
     }
+
+    //grab the scan start time (in MJD)
+    fStartMJD = (*fInput)["scan"][0]["mjdStart"].get<double>();
+    fStartTime = get_vexdate_from_mjd_sec(fStartMJD, 0.0); //zero implies no second-offset
 
     //first figure out the baseline name (CHECK THIS)
     /* The baseline number (256*A1 + A2, 1 indexed) */
@@ -376,6 +381,7 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fV->Insert(std::string("correlation_date"), fCorrDate);
         fV->Insert(std::string("root_code"), fRootCode);
         fV->Insert(std::string("origin"), "difx");
+        fV->Insert(std::string("start"), fStartTime);
 
         //tags for the weights
         fW->Resize(
@@ -395,6 +401,7 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fW->Insert(std::string("correlation_date"), fCorrDate);
         fW->Insert(std::string("root_code"), fRootCode);
         fW->Insert(std::string("origin"), "difx");
+        fW->Insert(std::string("start"), fStartTime);
 
         //polarization product axis
         auto* polprod_axis = &(std::get< POLPROD_AXIS >(*fV));
