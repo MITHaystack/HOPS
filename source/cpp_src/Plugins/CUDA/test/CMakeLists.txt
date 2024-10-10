@@ -4,7 +4,6 @@ set(SOURCE_BASENAMES
     TestCUDA_vector_sum
     TestCUDA_vector_sbp_reduce
     TestCUDA_vector_mbp_reduce
-    TestCUDA_noise_stat
     TestCUFFT
     TestCUFFTBatch1D
 )
@@ -16,6 +15,7 @@ list(APPEND HOPS_TEST_LIBS MHO_CUDAModules ${CUDA_LIBRARIES} ${CUDA_CUFFT_LIBRAR
 foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS})
+    add_test(NAME ${BASENAME}_test COMMAND ${BASENAME})
 endforeach( BASENAME )
 
 hops_install_test_executables( ${SOURCE_BASENAMES} )

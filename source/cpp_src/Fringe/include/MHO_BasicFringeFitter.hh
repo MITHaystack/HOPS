@@ -14,19 +14,6 @@
 namespace hops
 {
 
-#ifdef HOPS_USE_CUDA
-    #include "MHO_MBDelaySearchCUDA.hh"
-    #define MBD_SEARCH_TYPE MHO_MBDelaySearchCUDA
-#else
-    #define MBD_SEARCH_TYPE MHO_MBDelaySearch
-#endif
-
-// #ifdef NORMFX_USE_EXTRA_PADDING
-// using normfx_type = MHO_NormFXExtraPadding; //8x padding like legacy implementation
-// #else
-// using normfx_type = MHO_NormFX; //this is the default
-// #endif
-
 /*!
  *@file MHO_BasicFringeFitter.hh
  *@class MHO_BasicFringeFitter
@@ -66,7 +53,7 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         MHO_MixedSidebandNormFX fMSBNormFXOp;  //used when there is mixed LSB or USB or double-sideband data
         MHO_SingleSidebandNormFX fSSBNormFXOp; //used when there is only LSB or USB data
 
-        MBD_SEARCH_TYPE fMBDSearch;
+        MHO_MBDelaySearch* fMBDSearch;
         MHO_InterpolateFringePeak fPeakInterpolator;
         visibility_type* vis_data;
         weight_type* wt_data;

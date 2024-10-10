@@ -24,6 +24,15 @@
 //TODO FIXME -- remove this
 #include "MHO_EstimatePCManual.hh"
 
+
+#ifdef HOPS_USE_CUDA
+    #include "MHO_MBDelaySearchCUDA.hh"
+    #define MBD_SEARCH_TYPE MHO_MBDelaySearchCUDA
+#else
+    #define MBD_SEARCH_TYPE MHO_MBDelaySearch
+#endif
+
+
 //#define DUMP_PARAMS_ON_ERROR
 
 namespace hops
@@ -35,9 +44,14 @@ MHO_BasicFringeFitter::MHO_BasicFringeFitter(MHO_FringeData* data): MHO_FringeFi
     wt_data = nullptr;
     sbd_data = nullptr;
     fNormFXOp = nullptr;
+    fMBDSearch = new MBD_SEARCH_TYPE();
 };
 
-MHO_BasicFringeFitter::~MHO_BasicFringeFitter(){};
+MHO_BasicFringeFitter::~MHO_BasicFringeFitter()
+{
+    delete fNormFXOp;
+    delete fMBDSearch;
+};
 
 void MHO_BasicFringeFitter::Configure()
 {
@@ -216,10 +230,10 @@ void MHO_BasicFringeFitter::Initialize()
 
             //configure the coarse SBD/DR/MBD search
             double ref_freq = fParameterStore->GetAs< double >("/control/config/ref_freq");
-            fMBDSearch.SetWeights(wt_data);
-            fMBDSearch.SetReferenceFrequency(ref_freq);
-            fMBDSearch.SetArgs(sbd_data);
-            ok = fMBDSearch.Initialize();
+            fMBDSearch->SetWeights(wt_data);
+            fMBDSearch->SetReferenceFrequency(ref_freq);
+            fMBDSearch->SetArgs(sbd_data);
+            ok = fMBDSearch->Initialize();
             check_step_fatal(ok, "fringe", "mbd initialization." << eom);
 
             //configure the fringe-peak interpolator
@@ -312,17 +326,17 @@ void MHO_BasicFringeFitter::Finalize()
         double low, high;
         std::vector< double > win;
         win.resize(2);
-        fMBDSearch.GetSBDWindow(low, high);
+        fMBDSearch->GetSBDWindow(low, high);
         win[0] = low;
         win[1] = high;
         fParameterStore->Set("/fringe/sb_win", win);
 
-        fMBDSearch.GetDRWindow(low, high);
+        fMBDSearch->GetDRWindow(low, high);
         win[0] = low;
         win[1] = high;
         fParameterStore->Set("/fringe/dr_win", win);
 
-        fMBDSearch.GetMBDWindow(low, high);
+        fMBDSearch->GetMBDWindow(low, high);
         win[0] = low;
         win[1] = high;
         fParameterStore->Set("/fringe/mb_win", win);
@@ -367,30 +381,30 @@ void MHO_BasicFringeFitter::coarse_fringe_search(bool set_windows)
     if(fParameterStore->IsPresent("/control/fit/sb_win") && set_windows)
     {
         std::vector< double > sbwin = fParameterStore->GetAs< std::vector< double > >("/control/fit/sb_win");
-        fMBDSearch.SetSBDWindow(sbwin[0], sbwin[1]); //units are microsec
+        fMBDSearch->SetSBDWindow(sbwin[0], sbwin[1]); //units are microsec
     }
 
     if(fParameterStore->IsPresent("/control/fit/mb_win") && set_windows)
     {
         std::vector< double > mbwin = fParameterStore->GetAs< std::vector< double > >("/control/fit/mb_win");
-        fMBDSearch.SetMBDWindow(mbwin[0], mbwin[1]); //units are microsec
+        fMBDSearch->SetMBDWindow(mbwin[0], mbwin[1]); //units are microsec
     }
 
     if(fParameterStore->IsPresent("/control/fit/dr_win") && set_windows)
     {
         std::vector< double > drwin = fParameterStore->GetAs< std::vector< double > >("/control/fit/dr_win");
-        fMBDSearch.SetDRWindow(drwin[0], drwin[1]);
+        fMBDSearch->SetDRWindow(drwin[0], drwin[1]);
     }
 
-    ok = fMBDSearch.Execute();
+    ok = fMBDSearch->Execute();
 
     check_step_fatal(ok, "fringe", "mbd execution." << eom);
 
-    int n_mbd_pts = fMBDSearch.GetNMBDBins();
-    int n_dr_pts = fMBDSearch.GetNDRBins();
-    int n_sbd_pts = fMBDSearch.GetNSBDBins();
-    int n_drsp_pts = fMBDSearch.GetNDRSPBins();
-    double n_pts_searched = fMBDSearch.GetNPointsSearched();
+    int n_mbd_pts = fMBDSearch->GetNMBDBins();
+    int n_dr_pts = fMBDSearch->GetNDRBins();
+    int n_sbd_pts = fMBDSearch->GetNSBDBins();
+    int n_drsp_pts = fMBDSearch->GetNDRSPBins();
+    double n_pts_searched = fMBDSearch->GetNPointsSearched();
 
     fParameterStore->Set("/fringe/n_mbd_points", n_mbd_pts);
     fParameterStore->Set("/fringe/n_sbd_points", n_sbd_pts);
@@ -398,11 +412,11 @@ void MHO_BasicFringeFitter::coarse_fringe_search(bool set_windows)
     fParameterStore->Set("/fringe/n_drsp_points", n_drsp_pts);
     fParameterStore->Set("/fringe/n_pts_searched", n_pts_searched);
 
-    int c_mbdmax = fMBDSearch.GetMBDMaxBin();
-    int c_sbdmax = fMBDSearch.GetSBDMaxBin();
-    int c_drmax = fMBDSearch.GetDRMaxBin();
-    double freq_spacing = fMBDSearch.GetFrequencySpacing();
-    double ave_freq = fMBDSearch.GetAverageFrequency();
+    int c_mbdmax = fMBDSearch->GetMBDMaxBin();
+    int c_sbdmax = fMBDSearch->GetSBDMaxBin();
+    int c_drmax = fMBDSearch->GetDRMaxBin();
+    double freq_spacing = fMBDSearch->GetFrequencySpacing();
+    double ave_freq = fMBDSearch->GetAverageFrequency();
 
     if(c_mbdmax < 0 || c_sbdmax < 0 || c_drmax < 0)
     {
@@ -420,7 +434,7 @@ void MHO_BasicFringeFitter::coarse_fringe_search(bool set_windows)
     else
     {
         //get the coarse maximum and re-scale by the total weights
-        double search_max_amp = fMBDSearch.GetSearchMaximumAmplitude();
+        double search_max_amp = fMBDSearch->GetSearchMaximumAmplitude();
         double total_summed_weights = fParameterStore->GetAs< double >("/fringe/total_summed_weights");
 
         fParameterStore->Set("/fringe/coarse_search_max_amp", search_max_amp / total_summed_weights);
@@ -428,7 +442,7 @@ void MHO_BasicFringeFitter::coarse_fringe_search(bool set_windows)
         fParameterStore->Set("/fringe/max_sbd_bin", c_sbdmax);
         fParameterStore->Set("/fringe/max_dr_bin", c_drmax);
 
-        double coarse_sbdelay = fMBDSearch.GetCoarseSBD();
+        double coarse_sbdelay = fMBDSearch->GetCoarseSBD();
         fParameterStore->Set("/fringe/sbdelay", coarse_sbdelay);
     }
 
@@ -446,8 +460,8 @@ void MHO_BasicFringeFitter::interpolate_peak()
     int c_drmax = fParameterStore->GetAs< int >("/fringe/max_dr_bin");
 
     fPeakInterpolator.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
-    fPeakInterpolator.SetMBDAxis(fMBDSearch.GetMBDAxis());
-    fPeakInterpolator.SetDRAxis(fMBDSearch.GetDRAxis());
+    fPeakInterpolator.SetMBDAxis(fMBDSearch->GetMBDAxis());
+    fPeakInterpolator.SetDRAxis(fMBDSearch->GetDRAxis());
 
     fPeakInterpolator.Initialize();
     fPeakInterpolator.Execute();
