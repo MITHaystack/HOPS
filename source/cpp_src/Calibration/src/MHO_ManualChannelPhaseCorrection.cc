@@ -68,9 +68,6 @@ bool MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                                 bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
                                 visibility_element_type pc_phasor = std::exp(fImagUnit * pc_val * fDegToRad);
 
-                                //conjugate phases for LSB data, but not for USB - TODO what about DSB?
-                                TODO_FIXME_MSG("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
-                                TODO_FIXME_MSG("TODO FIXME X2 - make sure we are not confusing ref/rem with USB/LSB signs.")
                                 if(net_sideband == fLowerSideband)
                                 {
                                     pc_phasor = std::conj(pc_phasor);
