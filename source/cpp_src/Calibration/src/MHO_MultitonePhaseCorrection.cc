@@ -65,7 +65,13 @@ bool MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
         //determine if the p-cal corrections should be applied to this station (ref or rem)
         if(IsApplicable(in))
         {
-            // RepairMK4PCData(in); //need to rebuild tone frequencies if imported from type_309s
+            //trim the pcal data to the proper time range if needed 
+            fPCalTrimmer.SetVisibilities(in);
+            fPCalTrimmer.SetArgs(fPCData);
+            fPCalTrimmer.Initialize();
+            bool ok0 = fPCalTrimmer.Execute();
+            if(!ok0){msg_warn("calibration", "could not determine if pcal data time range needs adjustment" << eom );}
+
 
             //grab the pc_tonemask data (if present)
             bool ok1 = fPCData->Retrieve(fPCToneMaskChannelsKey, fPCToneMaskChannels);
@@ -671,8 +677,8 @@ void MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_cen
     // find bounds of allowable resolved delay
     double lo = station_delay + sampler_delay - pc_amb / 2.0;
     double hi = station_delay + sampler_delay + pc_amb / 2.0;
-    msg_debug("calibration",
-              "resolving sampler delays within bounds: (" << lo << ", " << hi << ") for ambiguity of " << pc_amb << eom);
+    // msg_debug("calibration",
+    //           "resolving sampler delays within bounds: (" << lo << ", " << hi << ") for ambiguity of " << pc_amb << eom);
 
     while(hi < delay) // shift delay left if necessary
         delay -= pc_amb;
