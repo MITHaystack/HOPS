@@ -268,9 +268,8 @@ bool MHO_DataSelectionBuilder::Build()
         std::string op_name = "coarse_selection";
         std::string op_category = "selection";
         bool replace_duplicates = true;
-        TODO_FIXME_MSG("TODO - figure out proper naming/retrieval scheme for operators")
 
-        TODO_FIXME_MSG("TODO - coarse selection must also be applied to pcal data (particularly AP select) if available!!")
+        //coarse time selection must also be applied to pcal data...this is done in MHO_PhaseCalibrationTrim
 
         double priority = fFormat["priority"].get< double >();
         spack->SetName(op_name + ":vis");
