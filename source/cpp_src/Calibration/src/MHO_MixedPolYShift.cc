@@ -68,8 +68,6 @@ bool MHO_MixedPolYShift::ExecuteOutOfPlace(const visibility_type* in, visibility
 
 bool MHO_MixedPolYShift::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
-    bool apply_correction = false;
-
     //from the c-code (precorrect.c)
     // if(param.mixed_mode_rot) //is mixed-mode extra 90 deg rotation turned on?
     // {
@@ -87,65 +85,22 @@ bool MHO_MixedPolYShift::IsApplicable(std::size_t st_idx, const visibility_type*
     // }
 
     //first determine if the visibilities contain a mixed linear/circular polarization product
-    pp_ax = &(std::get<POLPROD_AXIS>(*in));
+    auto pp_ax = &(std::get<POLPROD_AXIS>(*in));
     for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
     {
         std::string polprod = pp_ax->at(pp);
-        if( IsMixedLinCirc(polprod) )
+        if(polprod.size() == 2 && IsMixedLinCirc(polprod) )
         {
             //ok, we have a mixed-linear/circular pol-product
             //now we have to check if one of the station pols is 'Y'
-            
-
+            std::string ref_pol = std::string(polprod[0],1);
+            std::string rem_pol = std::string(polprod[1],1);
+            if( ref_pol == "Y" ){return true;}
+            if( rem_pol == "Y" ){return true;}
         }
     }
 
-
-
-
-
-
-
-    // std::string val;
-    // std::string mk4id_key;
-    // std::string station_code_key;
-    // 
-    // if(st_idx == 0)
-    // {
-    //     mk4id_key = fRefStationMk4IDKey;
-    //     station_code_key = fRefStationKey;
-    // }
-    // else
-    // {
-    //     mk4id_key = fRemStationMk4IDKey;
-    //     station_code_key = fRemStationKey;
-    // }
-    // 
-    // if(fStationIdentity.size() > 2)
-    // {
-    //     msg_error("calibration",
-    //               "station identiy: " << fStationIdentity << " is not a recognizable mark4 or 2-character code" << eom);
-    // }
-    // 
-    // if(fStationIdentity.size() == 1) //selection by mk4 id
-    // {
-    //     in->Retrieve(mk4id_key, val);
-    //     if(fStationIdentity == val || fStationIdentity == "?")
-    //     {
-    //         apply_correction = true;
-    //     }
-    // }
-    // 
-    // if(fStationIdentity.size() == 2) //selection by 2-char station code
-    // {
-    //     in->Retrieve(station_code_key, val);
-    //     if(fStationIdentity == val || fStationIdentity == "??")
-    //     {
-    //         apply_correction = true;
-    //     }
-    // }
-
-    return apply_correction;
+    return false;
 }
 
 bool MHO_MixedPolYShift::InitializeInPlace(visibility_type* /*in*/)

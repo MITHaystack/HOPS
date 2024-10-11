@@ -31,7 +31,8 @@ class MHO_MixedPolYShift: public MHO_UnaryOperator< visibility_type >
         MHO_MixedPolYShift();
         virtual ~MHO_MixedPolYShift();
 
-        //not called by the builder (yet)...this control file feature always uses 90 degrees
+        //not called by the builder (yet)...
+        //this particular feature always uses 90 degrees (but perhaps we could change that)
         void SetPhaseOffset(const double& offset) { fYPolPhaseOffset= offset; }
 
     protected:
