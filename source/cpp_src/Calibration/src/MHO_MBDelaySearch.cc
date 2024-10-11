@@ -44,8 +44,8 @@ bool MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
         //calculate the frequency grid for MBD search
         MHO_UniformGridPointsCalculator fGridCalc;
 
-        std::vector< double> in_freq_pts(std::get<CHANNEL_AXIS>(*in).GetData(), 
-                                         std::get<CHANNEL_AXIS>(*in).GetData() + std::get<CHANNEL_AXIS>(*in).GetSize() );
+        std::vector< double > in_freq_pts(std::get< CHANNEL_AXIS >(*in).GetData(),
+                                          std::get< CHANNEL_AXIS >(*in).GetData() + std::get< CHANNEL_AXIS >(*in).GetSize());
         std::vector< double > freq_pts;
         double freq_eps = 1e-4; //tolerance of 0.1kHz
         //dsb channel pairs share a sky_freq so we need combine them at the same location
@@ -277,8 +277,8 @@ void MHO_MBDelaySearch::SetWindow(double* win, double low, double high)
     }
 }
 
-void 
-MHO_MBDelaySearch::GetWindow(const MHO_Axis<double>& axis, bool win_set, const double* win, double bin_width, double& low, double& high) const
+void MHO_MBDelaySearch::GetWindow(const MHO_Axis< double >& axis, bool win_set, const double* win, double bin_width,
+                                  double& low, double& high) const
 {
     low = 0.0;
     high = 0.0;

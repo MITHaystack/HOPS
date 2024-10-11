@@ -158,7 +158,7 @@ std::complex< double > MHO_PolProductSummation::GetPrefactor(std::string pp_labe
 
     //pol-product dependent scaling/rotation factor for the given pol products
     //depends on the telescope mount type and may have varied dependance
-    //on (delta) parallactic angle...this is handled separately in MHO_CircularFieldRotationCorrection 
+    //on (delta) parallactic angle...this is handled separately in MHO_CircularFieldRotationCorrection
     //for circular-circular pol-products, so we just set the factor to 1 here.
 
     if(pp_label == "RR")

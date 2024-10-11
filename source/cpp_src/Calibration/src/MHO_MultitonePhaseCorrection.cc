@@ -65,13 +65,15 @@ bool MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
         //determine if the p-cal corrections should be applied to this station (ref or rem)
         if(IsApplicable(in))
         {
-            //trim the pcal data to the proper time range if needed 
+            //trim the pcal data to the proper time range if needed
             fPCalTrimmer.SetVisibilities(in);
             fPCalTrimmer.SetArgs(fPCData);
             fPCalTrimmer.Initialize();
             bool ok0 = fPCalTrimmer.Execute();
-            if(!ok0){msg_warn("calibration", "could not determine if pcal data time range needs adjustment" << eom );}
-
+            if(!ok0)
+            {
+                msg_warn("calibration", "could not determine if pcal data time range needs adjustment" << eom);
+            }
 
             //grab the pc_tonemask data (if present)
             bool ok1 = fPCData->Retrieve(fPCToneMaskChannelsKey, fPCToneMaskChannels);
@@ -305,11 +307,11 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                             fPCWorkspace(i) /= navg;
                         }
 
-                        if(!dsb_key_present)//plain old normal LSB or USB channel
+                        if(!dsb_key_present) //plain old normal LSB or USB channel
                         {
                             FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model, net_sideband);
                         }
-                        else 
+                        else
                         {
                             //both halves of DSB channel are treated as if they are USB for the purpose of pcal-fitting.
                             FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model, "U");
@@ -540,7 +542,7 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                         //double phase_shift = -1.0 * pcdelay / (4.0*speriod);
                         //so we just zero it out here, but leave this comment so we can know it has been dealt with
                         double phase_shift = 0.0;
-                        double deltaf = ((*vis_freq_ax)(sp) - bandwidth / 2.0) * 1e6; //Hz
+                        double deltaf = ((*vis_freq_ax)(sp)-bandwidth / 2.0) * 1e6; //Hz
                         std::complex< double > pc_delay_phasor =
                             std::exp(-2.0 * sb_sign * M_PI * fImagUnit * (pcdelay * deltaf + phase_shift));
                         //conjugate pc phasor when applied to reference station

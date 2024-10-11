@@ -59,14 +59,14 @@ bool MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                         {
                             std::string current_chan_label;
                             bool has_label = chan_ax->RetrieveIndexLabelKeyValue(ch, fChannelLabelKey, current_chan_label);
-                            if(has_label && LabelMatch(chan_label, current_chan_label) )
+                            if(has_label && LabelMatch(chan_label, current_chan_label))
                             {
                                 double bandwidth = 0;
                                 bool bw_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, bwkey, bandwidth);
 
                                 std::string delay_offset_key;
-                                std::string pol_code =
-                                    std::string(1, pp_label[st_idx]); //get the polarization for the appropriate station (ref/rem)
+                                std::string pol_code = std::string(
+                                    1, pp_label[st_idx]); //get the polarization for the appropriate station (ref/rem)
                                 if(st_idx == 0)
                                 {
                                     delay_offset_key = "ref_delayoff_";
@@ -96,17 +96,17 @@ bool MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                                     for(std::size_t sp = 0; sp < nsp; sp++)
                                     {
                                         //original normfx: -2e-3 * i / (2e6 * param->samp_period * nlags);
-                                        double deltaf = freq_ax->at(sp) * fMHzToHz; 
+                                        double deltaf = freq_ax->at(sp) * fMHzToHz;
                                         double theta = -2.0 * fPi * deltaf * delay * fNanoSecToSecond;
 
                                         TODO_FIXME_MSG("TODO FIXME -- geodetic phase shift treatment needs implementation (see "
                                                        "normfx. line 398)")
                                         //where does factor of 1/4 come from (see normfx)
-                                        double phase_shift = -2.0 * fPi * (1.0 / 4.0) * delay * fNanoSecToSecond /
-                                                             eff_sample_period; 
+                                        double phase_shift =
+                                            -2.0 * fPi * (1.0 / 4.0) * delay * fNanoSecToSecond / eff_sample_period;
 
                                         //factor of 2 is from the way normfx zero-pads the data
-                                        phase_shift *= -((double)(2 * nsp) - 2.0) / (double)(2 * nsp); 
+                                        phase_shift *= -((double)(2 * nsp) - 2.0) / (double)(2 * nsp);
                                         theta += phase_shift;
 
                                         visibility_element_type pc_phasor = std::exp(fImagUnit * theta);
@@ -132,7 +132,6 @@ bool MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                                 {
                                     msg_error("calibration", "channel: " << chan_label << " is missing bandwidth tag." << eom);
                                 }
-
                             }
                         }
                     }
@@ -207,39 +206,39 @@ bool MHO_ManualChannelDelayCorrection::PolMatch(std::size_t station_idx, std::st
 
 bool MHO_ManualChannelDelayCorrection::LabelMatch(std::string expected_chan_label, std::string given_chan_label)
 {
-    //we need this function, because channels which are members of double side-band pairs 
+    //we need this function, because channels which are members of double side-band pairs
     //have a + or - attached to their name denoting if they are the LSB or USB half
-    //if this special character is not part of the expected channel label, then the correction 
-    //is expected to be applied to both halves, so if '+' or '-' don't appear we want to strip them 
+    //if this special character is not part of the expected channel label, then the correction
+    //is expected to be applied to both halves, so if '+' or '-' don't appear we want to strip them
     //from the given channel label to see it if matches
 
     if(expected_chan_label.find("+") == std::string::npos && expected_chan_label.find("-") == std::string::npos) //no +/- here
     {
-        if(given_chan_label.find("+") != std::string::npos || given_chan_label.find("-") != std::string::npos)// but +/- present
+        if(given_chan_label.find("+") != std::string::npos ||
+           given_chan_label.find("-") != std::string::npos) // but +/- present
         {
             std::string given_stripped;
-            for(std::size_t i=0; i<given_chan_label.size(); i++)
+            for(std::size_t i = 0; i < given_chan_label.size(); i++)
             {
-                if(given_chan_label[i] != '+' && given_chan_label[i] != '-' ) //make sure +/- are not in the label string
+                if(given_chan_label[i] != '+' && given_chan_label[i] != '-') //make sure +/- are not in the label string
                 {
                     given_stripped += given_chan_label[i];
                 }
             }
-            return (expected_chan_label == given_stripped );
+            return (expected_chan_label == given_stripped);
         }
-        else 
+        else
         {
             //no need to strip +/-
             return (expected_chan_label == given_chan_label);
         }
     }
-    else 
+    else
     {
-        //label was fully specified (including + or -), so do the matching exactly 
+        //label was fully specified (including + or -), so do the matching exactly
         return (expected_chan_label == given_chan_label);
     }
 }
-
 
 bool MHO_ManualChannelDelayCorrection::InitializeInPlace(visibility_type* /*in*/)
 {
