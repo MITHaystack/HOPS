@@ -47,7 +47,6 @@ class MHO_MBDelaySearchCUDA: public MHO_MBDelaySearch //public MHO_InspectingOpe
         virtual bool ExecuteImpl(const XArgType* in) override;
 
     private:
-        
         //Host data buffer
         mbd_dr_type fHostBuffer;
         //Device memory buffer
