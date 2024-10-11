@@ -43,13 +43,12 @@ MHO_BasicFringeFitter::MHO_BasicFringeFitter(MHO_FringeData* data): MHO_FringeFi
     vis_data = nullptr;
     wt_data = nullptr;
     sbd_data = nullptr;
-    fNormFXOp = nullptr;
+    fNormFXOp = nullptr; //does not need to be deleted
     fMBDSearch = new MBD_SEARCH_TYPE();
 };
 
 MHO_BasicFringeFitter::~MHO_BasicFringeFitter()
 {
-    delete fNormFXOp;
     delete fMBDSearch;
 };
 
