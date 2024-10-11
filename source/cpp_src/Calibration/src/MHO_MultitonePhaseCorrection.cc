@@ -164,6 +164,10 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                       "missing bandwidth label for channel " << ch_label << ", with sky_freq: " << sky_freq << eom);
         }
 
+        //determine if this channel is a member of a DSB pair
+        int dsb_partner;
+        bool dsb_key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+
         //figure out the upper/lower frequency limits for this channel
         double lower_freq, upper_freq;
         std::size_t start_idx, ntones;
@@ -303,7 +307,15 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                         {
                             fPCWorkspace(i) /= navg;
                         }
-                        FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model, net_sideband);
+                        if(!dsb_key_present)
+                        {
+                            FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model, net_sideband);
+                        }
+                        else 
+                        {
+                            //both halves of DSB channel are treated as USB for the purpose of pcal-fitting.
+                            FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model, "U");
+                        }
                     }
                     seg_start_aps.push_back(seg_start_ap);
                     seg_end_aps.push_back(seg_end_ap);
@@ -444,6 +456,9 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
         {
             msg_error("calibration", "missing bandwidth label for channel " << ch << "." << eom);
         }
+        // 
+        // int dsb_partner;
+        // bool dsb_key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
 
         std::vector< int > seg_start_aps;
         std::vector< int > seg_end_aps;
@@ -497,14 +512,8 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                 pcdelay = pc_delay_segs[seg];
             }
 
-            TODO_FIXME_MSG("TODO FIXME -- 'phase-shift' needs testing for both USB/LSB data as applied in norm_fx.c, line 396")
-            double speriod = 1.0 / (2.0 * bandwidth * 1e6);
-            double phase_shift = 0.0; //-1.0 * pcdelay / (4.0*speriod);
-            //if(net_sideband == "U"){phase_shift *= -1.0;}
-
-            TODO_FIXME_MSG("TODO FIXME -- make sure proper treatment of LSB/USB sidebands is done here.")
+            TODO_FIXME_MSG("TODO FIXME -- test to make sure proper treatment of LSB/USB sidebands and DSB is done here.")
             std::complex< double > pc_phasor = std::exp(-1.0 * fImagUnit * (pcphase));
-
             //conjugate pc phasor when applied to reference station
             if(fStationIndex == 0)
             {
@@ -514,13 +523,15 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
             {
                 pc_phasor = std::conj(pc_phasor);
             }
+            // if(net_sideband == "L" && dsb_key_present)
+            // {
+            //     pc_phasor = -1.0*pc_phasor;
+            // }
 
             for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
             {
                 //apply phase offset correction
                 in->SubView(vis_pp, ch, dap) *= pc_phasor;
-
-                //std::cout<<"pol, ch, ap, phase/delay = "<<vis_pp<<", "<<ch<<", "<<dap<<", "<<pcphase<<", "<<1e9*pcdelay<<std::endl;
 
                 //apply delay correction (but only if sampler delays are defined...fourfit3 will not apply pc delay if no sampler delays available)
                 if(fApplyPCDelay)
@@ -532,7 +543,14 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                     }
                     for(std::size_t sp = 0; sp < vis_freq_ax->GetSize(); sp++)
                     {
-                        double deltaf = ((*vis_freq_ax)(sp)-bandwidth / 2.0) * 1e6; //Hz
+                        //adjusting deltaf by taking difference w.r.t to the (channel mid-point - e.g.  bandwidth/2)
+                        //accounts for the phase shift (which was originally calculated in a highly convoluted way
+                        //in norm_fx.c as follows:
+                        //double speriod = 1.0 / (2.0 * bandwidth * 1e6);
+                        //double phase_shift = -1.0 * pcdelay / (4.0*speriod);
+                        //so we just zero it out here, but leave this comment so we can know it has been dealt with
+                        double phase_shift = 0.0;
+                        double deltaf = ((*vis_freq_ax)(sp) - bandwidth / 2.0) * 1e6; //Hz
                         std::complex< double > pc_delay_phasor =
                             std::exp(-2.0 * sb_sign * M_PI * fImagUnit * (pcdelay * deltaf + phase_shift));
                         //conjugate pc phasor when applied to reference station
@@ -681,9 +699,14 @@ void MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_cen
     //           "resolving sampler delays within bounds: (" << lo << ", " << hi << ") for ambiguity of " << pc_amb << eom);
 
     while(hi < delay) // shift delay left if necessary
+    {
         delay -= pc_amb;
+    };
+
     while(lo > delay) // shift delay right if necessary
+    {
         delay += pc_amb;
+    };
 
     //std::cout<<"chan center freq = "<<chan_center_freq<<std::endl;
     //rotate each tone phasor by the delay (zero rot at center freq)
