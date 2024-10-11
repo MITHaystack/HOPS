@@ -22,7 +22,7 @@ namespace hops
  *@class MHO_PhaseCalibrationTrim
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Jan 27 10:36:00 2022 -0500
- *@brief Trims the time range of the pcal data to match that of the visibilities, very minimal implementation. 
+ *@brief Trims the time range of the pcal data to match that of the visibilities, very minimal implementation.
  *Assumes that the p-cal and visibility data have the same accumulation period (this is true of most sane data)
  *If they did not, then we would need to interpolate between p-cal points to match the visbility gridding (this is not done here)
  */
@@ -33,7 +33,7 @@ class MHO_PhaseCalibrationTrim: public MHO_UnaryOperator< multitone_pcal_type >
         MHO_PhaseCalibrationTrim();
         virtual ~MHO_PhaseCalibrationTrim();
 
-        void SetVisibilities(const visibility_type* vis){fVis = vis;}
+        void SetVisibilities(const visibility_type* vis) { fVis = vis; }
 
     protected:
         virtual bool InitializeInPlace(multitone_pcal_type* in) override;
@@ -43,11 +43,9 @@ class MHO_PhaseCalibrationTrim: public MHO_UnaryOperator< multitone_pcal_type >
         virtual bool ExecuteOutOfPlace(const multitone_pcal_type* in, multitone_pcal_type* out) override;
 
     private:
-
         const visibility_type* fVis;
         double fAPEps;
         double fStartEps;
-
 };
 
 } // namespace hops

@@ -61,7 +61,7 @@ bool MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                         {
                             std::string current_chan_label;
                             bool has_label = chan_ax->RetrieveIndexLabelKeyValue(ch, fChannelLabelKey, current_chan_label);
-                            if(has_label && LabelMatch(chan_label, current_chan_label) )
+                            if(has_label && LabelMatch(chan_label, current_chan_label))
                             {
                                 //pc phase matches this channel, so apply it
                                 std::string net_sideband = "?";
@@ -158,39 +158,39 @@ bool MHO_ManualChannelPhaseCorrection::PolMatch(std::size_t station_idx, std::st
 
 bool MHO_ManualChannelPhaseCorrection::LabelMatch(std::string expected_chan_label, std::string given_chan_label)
 {
-    //we need this function, because channels which are members of double side-band pairs 
+    //we need this function, because channels which are members of double side-band pairs
     //have a + or - attached to their name denoting if they are the LSB or USB half
-    //if this special character is not part of the expected channel label, then the correction 
-    //is expected to be applied to both halves, so if '+' or '-' don't appear we want to strip them 
+    //if this special character is not part of the expected channel label, then the correction
+    //is expected to be applied to both halves, so if '+' or '-' don't appear we want to strip them
     //from the given channel label to see it if matches
 
     if(expected_chan_label.find("+") == std::string::npos && expected_chan_label.find("-") == std::string::npos) //no +/- here
     {
-        if(given_chan_label.find("+") != std::string::npos || given_chan_label.find("-") != std::string::npos)// but +/- present
+        if(given_chan_label.find("+") != std::string::npos ||
+           given_chan_label.find("-") != std::string::npos) // but +/- present
         {
             std::string given_stripped;
-            for(std::size_t i=0; i<given_chan_label.size(); i++)
+            for(std::size_t i = 0; i < given_chan_label.size(); i++)
             {
-                if(given_chan_label[i] != '+' && given_chan_label[i] != '-' ) //make sure +/- are not in the label string
+                if(given_chan_label[i] != '+' && given_chan_label[i] != '-') //make sure +/- are not in the label string
                 {
                     given_stripped += given_chan_label[i];
                 }
             }
-            return (expected_chan_label == given_stripped );
+            return (expected_chan_label == given_stripped);
         }
-        else 
+        else
         {
             //no need to strip +/-
             return (expected_chan_label == given_chan_label);
         }
     }
-    else 
+    else
     {
-        //label was fully specified (including + or -), so do the matching exactly 
+        //label was fully specified (including + or -), so do the matching exactly
         return (expected_chan_label == given_chan_label);
     }
 }
-
 
 bool MHO_ManualChannelPhaseCorrection::InitializeInPlace(visibility_type* /*in*/)
 {

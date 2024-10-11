@@ -131,7 +131,7 @@ template< typename XArrayType > class MHO_ChannelLabeler: public MHO_UnaryOperat
                 }
                 else
                 {
-                    if(fChannelLabelToFrequency.size() < nchans - dsb_labels.size() )
+                    if(fChannelLabelToFrequency.size() < nchans - dsb_labels.size())
                     {
                         msg_error("calibration", "not all channels given a user specified label, "
                                                      << "some channels will remain un-labelled." << eom);
