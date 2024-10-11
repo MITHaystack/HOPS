@@ -58,7 +58,7 @@ std::string MHO_LSBOffsetBuilder::ExtractStationIdentifier()
         //grab the first station ID in the 'if' statement
         //this is ok 99% of the time, but what about if there is statement like: 'if station X or station X'?
         //would then need to check that this station is a member of this pass too, and if not use the next
-        std::cout<<"lsb_offset, token: "<<*it<<std::endl;
+        //std::cout<<"lsb_offset, token: "<<*it<<std::endl;
         if(*it == "station")
         {
             it++;

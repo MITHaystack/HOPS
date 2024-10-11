@@ -23,6 +23,7 @@ set (INITIALIZATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DCBlockBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MinWeightBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LSBOffsetBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MixedPolYShiftBuilder.hh
     #manager
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_OperatorBuilderManager.hh
 )
@@ -52,6 +53,7 @@ set( INITIALIZATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DCBlockBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MinWeightBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LSBOffsetBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MixedPolYShiftBuilder.cc
     #manager
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_OperatorBuilderManager.cc
 )
