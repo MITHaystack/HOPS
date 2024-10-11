@@ -275,9 +275,6 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                 }
 
                 //sum the tone phasors
-                TODO_FIXME_MSG("TODO FIXME -- fix the phase cal phasor weights and implement pc_tonemask.")
-                //TODO FIXME -- NOTE!! This implementation assumes all tones are sequential and there are no missing tones!
-                //true for now...but may not be once we add pc_tonemask support
                 double wght;
                 std::bitset< 32 > mask = bit_mask;
                 for(std::size_t i = 0; i < ntones; i++)
@@ -307,13 +304,14 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                         {
                             fPCWorkspace(i) /= navg;
                         }
-                        if(!dsb_key_present)
+
+                        if(!dsb_key_present)//plain old normal LSB or USB channel
                         {
                             FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model, net_sideband);
                         }
                         else 
                         {
-                            //both halves of DSB channel are treated as USB for the purpose of pcal-fitting.
+                            //both halves of DSB channel are treated as if they are USB for the purpose of pcal-fitting.
                             FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model, "U");
                         }
                     }
@@ -394,7 +392,6 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                 }
                 for(std::size_t s = 0; s < nsegs; s++)
                 {
-                    //std::cout<<"ch pc_delay seg = "<<ch<<", "<<s<<", "<<1e9*pc_delay_segs[s]<<std::endl;
                     mean_pc_delay[s] += pc_delay_segs[s];
                 }
                 n_avg += 1.0;
@@ -456,9 +453,6 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
         {
             msg_error("calibration", "missing bandwidth label for channel " << ch << "." << eom);
         }
-        // 
-        // int dsb_partner;
-        // bool dsb_key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
 
         std::vector< int > seg_start_aps;
         std::vector< int > seg_end_aps;
@@ -512,21 +506,17 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                 pcdelay = pc_delay_segs[seg];
             }
 
-            TODO_FIXME_MSG("TODO FIXME -- test to make sure proper treatment of LSB/USB sidebands and DSB is done here.")
             std::complex< double > pc_phasor = std::exp(-1.0 * fImagUnit * (pcphase));
             //conjugate pc phasor when applied to reference station
             if(fStationIndex == 0)
             {
                 pc_phasor = std::conj(pc_phasor);
             }
+            //conjugate if a USB channel
             if(net_sideband == "U")
             {
                 pc_phasor = std::conj(pc_phasor);
             }
-            // if(net_sideband == "L" && dsb_key_present)
-            // {
-            //     pc_phasor = -1.0*pc_phasor;
-            // }
 
             for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
             {
@@ -716,17 +706,12 @@ void MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_cen
         std::complex< double > phasor = pc_data_copy(i);
         double tone_freq = (*tone_freq_ax)(i);
         double deltaf = (chan_center_freq - tone_freq) * 1e6; //Hz
-        // std::cout<<"deltaf = "<<deltaf<<std::endl;
         double theta = sb_sign * 2.0 * M_PI * delay * deltaf;
-        // std::cout<<"theta = "<<theta*(180.0/M_PI)<<std::endl;
         phasor *= std::exp(fImagUnit * theta);
         mean_phasor += phasor;
     }
 
-    TODO_FIXME_MSG("TODO FIXME -- verify all sign/conjugation operations work properly for USB/LSB data.")
-
     mean_phasor = std::conj(sb_sign * mean_phasor);
-
     pcal_model[0] = std::abs(mean_phasor); //magnitude
     pcal_model[1] = std::arg(mean_phasor); //phase
     pcal_model[2] = delay;                 //delay
