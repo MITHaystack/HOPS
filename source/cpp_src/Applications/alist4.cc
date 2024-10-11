@@ -39,7 +39,6 @@ int main(int argc, char** argv)
     //some other arguments we want to consider implmenting:
     //(1) '-s' for sort (sort the files by time/baseline)
     //(2) '--only-<something>' to process only cor or fringe or station files, etc (moot, since we only process fringe files )
-    //(3) '-j' export data as a json file
 
     CLI::App app{"alist"};
     app.add_option("-o,--output-file", output_file, "name of the output file (default: alist.out)");
