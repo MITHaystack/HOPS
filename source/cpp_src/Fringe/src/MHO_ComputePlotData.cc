@@ -81,6 +81,7 @@ xpower_amp_type MHO_ComputePlotData::calc_mbd()
     //this eliminates non-unique (within the tolerance) adjacent frequencies
     fGridCalc.GetUniquePoints(in_freq_pts, freq_eps, freq_pts, chan_index_map);
     fGridCalc.SetPoints(freq_pts);
+    fGridCalc.SetDefaultGridPoints(256);
     fGridCalc.Calculate();
 
     std::size_t fGridStart = fGridCalc.GetGridStart();
