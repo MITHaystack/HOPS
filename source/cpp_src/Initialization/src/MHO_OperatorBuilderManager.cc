@@ -17,6 +17,7 @@
 #include "MHO_PolProductSummationBuilder.hh"
 #include "MHO_SamplerLabelerBuilder.hh"
 #include "MHO_LSBOffsetBuilder.hh"
+#include "MHO_MixedPolYShiftBuilder.hh"
 
 namespace hops
 {
@@ -54,6 +55,9 @@ void MHO_OperatorBuilderManager::CreateDefaultBuilders()
 
     //double-sideband specific operators 
     AddBuilderType< MHO_LSBOffsetBuilder >("lsb_offset", "lsb_offset");
+    
+    //special mixed-linear/circular pol operator 
+    AddBuilderType< MHO_MixedPolYShiftBuilder >("mixed_pol_yshift90", "mixed_pol_yshift90");
 
     //flagging operators
     AddBuilderType< MHO_PassbandBuilder >("passband", "passband");
