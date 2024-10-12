@@ -42,6 +42,7 @@ bool MHO_MixedPolYShift::ExecuteInPlace(visibility_type* in)
             {
                 //see c-code precorrect.c file for original implementation
                 visibility_element_type shift_phasor = std::exp(fImagUnit * fYPolPhaseOffset * fDegToRad);
+
                 if(st_idx == 1)
                 {
                     shift_phasor = std::conj(shift_phasor);
