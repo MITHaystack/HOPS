@@ -101,7 +101,7 @@ void MHO_PolProductSummation::PreMultiply(visibility_type* in)
 
 std::complex< double > MHO_PolProductSummation::GetPrefactor(std::string pp_label)
 {
-    std::complex< double > factor = 0;
+    std::complex< double > factor = 1.0;
     //if we cannot find this label in the set, return zero
     if(std::find(fPolProductSet.begin(), fPolProductSet.end(), pp_label) == fPolProductSet.end())
     {
