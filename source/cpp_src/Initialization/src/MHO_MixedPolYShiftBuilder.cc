@@ -16,7 +16,6 @@ bool MHO_MixedPolYShiftBuilder::Build()
 
         std::string op_name = fAttributes["name"].get< std::string >();
         std::string op_category = "calibration";
-        double lsb_phase_offset = fAttributes["value"].get< double >();
         double priority = fFormat["priority"].get< double >();
 
         //retrieve the arguments to operate on from the container store
