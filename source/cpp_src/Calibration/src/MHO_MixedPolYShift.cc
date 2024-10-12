@@ -49,7 +49,7 @@ bool MHO_MixedPolYShift::ExecuteInPlace(visibility_type* in)
 
                 msg_debug("calibration", "adding 90 deg static pc_offset for RY/YR data of station: "<< station << eom );
 
-                //TODO...could attach info about this operator being applied to the pol-product axis
+                //TODO...we could attach info about this operator being applied to this entry on the pol-product axis
 
                 //loop over the channels and apply the phase offset
                 //we need to do this on a per-channel basis in case we have mixed USB/LSB data (there is a sign flip between the two)
@@ -88,8 +88,8 @@ bool MHO_MixedPolYShift::IsApplicable(std::size_t st_idx, std::string polprod)
     {
         //ok, we have a mixed-linear/circular pol-product
         //now we have to check if one of the station pols is 'Y'
-        std::string ref_pol = std::string(polprod[0],1);
-        std::string rem_pol = std::string(polprod[1],1);
+        std::string ref_pol = std::string(1,polprod[0]);
+        std::string rem_pol = std::string(1,polprod[1]);
         if( ref_pol == "Y" && st_idx == 0 ){return true;} //apply to reference station
         if( rem_pol == "Y" && st_idx == 1 ){return true;} //apply to remote station
     }
