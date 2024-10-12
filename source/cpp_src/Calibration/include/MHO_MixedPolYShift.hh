@@ -32,7 +32,8 @@ class MHO_MixedPolYShift: public MHO_UnaryOperator< visibility_type >
         virtual ~MHO_MixedPolYShift();
 
         //not called by the builder (yet)...
-        //this particular feature always uses 90 degrees (but perhaps we could change that)
+        //this particular operator feature always uses 90 degrees 
+        //but perhaps we could allow that to change via this setter
         void SetPhaseOffset(const double& offset) { fYPolPhaseOffset= offset; }
 
     protected:
@@ -43,7 +44,7 @@ class MHO_MixedPolYShift: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
-        bool IsApplicable(std::size_t st_idx, const visibility_type* in);
+        bool IsApplicable(std::size_t st_idx, std::string polprod);
         bool PolMatch(std::size_t station_idx, std::string& polprod);
 
         //constants
