@@ -45,8 +45,8 @@ bool MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
                 if(PolMatch(st_idx, pp_label))
                 {
                     std::string delay_offset_key;
-                    std::string pol_code =
-                        std::string(1, pp_label[st_idx]); //get the polarization for the appropriate station (ref/rem)
+                    //get the polarization for the appropriate station (ref/rem)
+                    std::string pol_code = std::string(1, pp_label[st_idx]); 
                     if(st_idx == 0)
                     {
                         delay_offset_key = "ref_delayoff_";
@@ -66,10 +66,32 @@ bool MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
                     for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
                     {
                         double chan_freq = chan_ax->at(ch);
-                        double deltaf =
-                            fMHzToHz *
-                            (chan_freq - fRefFreq); //is this strictly correct?...this ignores slope across channel width
+                        //is this strictly correct?...this ignores slope across channel width
+                        double deltaf = fMHzToHz * (chan_freq - fRefFreq); 
                         double theta = 2.0 * fPi * deltaf * delay;
+
+                        //consider this alternative...where the channel mid-point (not edge) is the reference point
+                        // double bw = 0;
+                        // bool has_bandwidth = chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bw);
+                        // std::string net_sideband;
+                        // bool has_sideband = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+                        // double sb_sign = 1.0;
+                        // if(net_sideband == "L"){sb_sign = -1.0;}
+                        // 
+                        // 
+                        // double chan_freq = chan_ax->at(ch);
+                        // //is this strictly correct?...this ignores slope across channel width
+                        // double deltaf = fMHzToHz * ( (chan_freq + sb_sign*bw/2.0) - fRefFreq); 
+                        // double theta = 2.0 * fPi * deltaf * delay;
+                        // 
+
+                        //TODO FIXME!!!
+                        //the is a problem with the sign applied with Y pol for mixed-mode data 
+                        //it is opposite of what it should be...need to reconcile this with EHT data example
+
+                        
+
+
 
                         visibility_element_type pc_phasor = std::exp(fImagUnit * theta);
 
