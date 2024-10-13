@@ -1,21 +1,19 @@
-#include <iostream>
-#include <vector>
-#include <memory>
 #include <fstream>
+#include <iostream>
+#include <memory>
 #include <sstream>
 #include <thread>
 #include <unistd.h>
-
+#include <vector>
 
 // CUDA includes
 #include <cuComplex.h>
+#include <cuda.h>
+#include <cuda_runtime_api.h>
 #include <cufft.h>
 #include <stdint.h>
-#include <cuda_runtime_api.h>
-#include <cuda.h>
 
 #include "vector_sbp_reduce.h"
-
 
 int main(int /*argc*/, char** /*argv*/)
 {
@@ -32,14 +30,14 @@ int main(int /*argc*/, char** /*argv*/)
 
     int i;
     // Initialize vectors on host
-    for( i = 0; i < n; i++ )
+    for(i = 0; i < n; i++)
     {
         h_a[i] = 1.1;
     }
 
     vector_sbp_reduce(h_a, h_c, n);
 
-    std::cout<< "final result: " << h_c[0] <<std::endl;
+    std::cout << "final result: " << h_c[0] << std::endl;
 
     delete[] h_a;
     delete[] h_c;

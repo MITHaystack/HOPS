@@ -1,29 +1,27 @@
 #include "MHO_MK4CorelInterface.hh"
 #include "MHO_LegacyDateConverter.hh"
 
-#include <vector>
+#include <algorithm>
+#include <complex>
 #include <cstdlib>
 #include <cstring>
-#include <complex>
 #include <set>
-#include <algorithm>
+#include <vector>
 
 //mk4 IO library
 #ifndef HOPS3_USE_CXX
 extern "C"
 {
 #endif
-    #include "mk4_records.h"
-    #include "mk4_data.h"
-    #include "mk4_dfio.h"
+#include "mk4_data.h"
+#include "mk4_dfio.h"
+#include "mk4_records.h"
 #ifndef HOPS3_USE_CXX
 }
 #endif
 
-
 namespace hops
 {
-
 
 //the ordering operator for channel labels to sort by frequency;
 class chan_label_freq_predicate
@@ -32,25 +30,43 @@ class chan_label_freq_predicate
         chan_label_freq_predicate(){};
         virtual ~chan_label_freq_predicate(){};
 
-    virtual bool operator()(const mho_json* a, const mho_json* b)
-    {
-        double a_frq, b_frq;
-        a_frq = (*a)["sky_freq"];
-        b_frq = (*b)["sky_freq"];
-        return a_frq < b_frq;
-    }
+        virtual bool operator()(const mho_json* a, const mho_json* b)
+        {
+            double a_freq = (*a)["sky_freq"];
+            double b_freq = (*b)["sky_freq"];
+            double a_bw = (*a)["bandwidth"];
+            double b_bw = (*b)["bandwidth"];
+            std::string a_sb = (*a)["net_sideband"];
+            std::string b_sb = (*a)["net_sideband"];
+            double a_sign = 0;
+            double b_sign = 0;
+            if(a_sb == "U")
+            {
+                a_sign = 1.0;
+            }
+            if(a_sb == "L")
+            {
+                a_sign = -1.0;
+            }
+            if(b_sb == "U")
+            {
+                b_sign = 1.0;
+            }
+            if(b_sb == "L")
+            {
+                b_sign = -1.0;
+            }
+            //figure out the channel center frequencies and compare using that
+            double a_center = a_freq + a_sign * (a_bw / 2.0);
+            double b_center = b_freq + b_sign * (b_bw / 2.0);
+            return a_center < b_center;
+        }
 };
 
-
-
-MHO_MK4CorelInterface::MHO_MK4CorelInterface():
-    fHaveCorel(false),
-    fHaveVex(false),
-    fCorel(nullptr),
-    fExtractedVisibilities(nullptr),
-    fExtractedWeights(nullptr)
+MHO_MK4CorelInterface::MHO_MK4CorelInterface()
+    : fHaveCorel(false), fHaveVex(false), fCorel(nullptr), fExtractedVisibilities(nullptr), fExtractedWeights(nullptr)
 {
-    fCorel = (struct mk4_corel *) calloc ( 1, sizeof(struct mk4_corel) );
+    fCorel = (struct mk4_corel*)calloc(1, sizeof(struct mk4_corel));
     fNPPs = 0;
     fNAPs = 0;
     fNSpectral = 0;
@@ -60,8 +76,8 @@ MHO_MK4CorelInterface::MHO_MK4CorelInterface():
     fAllChannelMap.clear();
     fPPSortedChannelInfo.clear();
     fBaselineName = "";
-    fBaselineShortName= "";
-    fRefStation= "";
+    fBaselineShortName = "";
+    fRefStation = "";
     fRemStation = "";
     fRefStationMk4Id = "";
     fRemStationMk4Id = "";
@@ -72,17 +88,16 @@ MHO_MK4CorelInterface::~MHO_MK4CorelInterface()
 {
     clear_mk4corel(fCorel);
     free(fCorel);
-    // 
+    //
     // if(fExtractedVisibilities){delete fExtractedVisibilities;};
     // if(fExtractedWeights){delete fExtractedWeights;}
 }
 
-void
-MHO_MK4CorelInterface::ReadCorelFile()
+void MHO_MK4CorelInterface::ReadCorelFile()
 {
     if(fHaveCorel)
     {
-        msg_debug("mk4interface", "clearing a previously exisiting corel struct."<< eom);
+        msg_debug("mk4interface", "clearing a previously exisiting corel struct." << eom);
         clear_mk4corel(fCorel);
         fCorel = nullptr;
         fHaveCorel = false;
@@ -90,21 +105,21 @@ MHO_MK4CorelInterface::ReadCorelFile()
 
     //have to copy fCorelFile for const_cast, as mk4 lib doesn't respect const
     std::string fname = fCorelFile;
-    int retval = read_mk4corel( const_cast<char*>(fname.c_str()), fCorel );
+    int retval = read_mk4corel(const_cast< char* >(fname.c_str()), fCorel);
     if(retval != 0)
     {
         fHaveCorel = false;
-        msg_debug("mk4interface", "failed to read corel file: "<< fCorelFile << ", error value: "<< retval << eom);
+        msg_debug("mk4interface", "failed to read corel file: " << fCorelFile << ", error value: " << retval << eom);
     }
     else
     {
         fHaveCorel = true;
-        msg_debug("mk4interface", "successfully read corel file."<< fCorelFile << eom);
+        msg_debug("mk4interface", "successfully read corel file." << fCorelFile << eom);
     }
 
     fBaselineName = "";
-    fBaselineShortName= "";
-    fRefStation= "";
+    fBaselineShortName = "";
+    fRefStation = "";
     fRemStation = "";
     fRefStationMk4Id = "";
     fRemStationMk4Id = "";
@@ -116,32 +131,30 @@ MHO_MK4CorelInterface::ReadCorelFile()
     {
         fRootCode = fCorelFile.substr(last_dot + 1);
         //trim to 6 chars if too long (this shouldn't happen)
-        if(fRootCode.size() > 6){fRootCode.resize(6);}
+        if(fRootCode.size() > 6)
+        {
+            fRootCode.resize(6);
+        }
     }
-
 }
 
-
-void
-MHO_MK4CorelInterface::ReadVexFile()
+void MHO_MK4CorelInterface::ReadVexFile()
 {
     fHaveVex = false;
     MHO_MK4VexInterface vinter;
     vinter.OpenVexFile(fVexFile);
     fVex = vinter.GetVex();
-    if( fVex.contains("$OVEX_REV") ){fHaveVex = true;}
+    if(fVex.contains("$OVEX_REV"))
+    {
+        fHaveVex = true;
+    }
     else
     {
         msg_debug("mk4interface", "Failed to read root (ovex) file: " << fVexFile << eom);
     }
 }
 
-
-
-
-
-void
-MHO_MK4CorelInterface::DetermineDataDimensions()
+void MHO_MK4CorelInterface::DetermineDataDimensions()
 {
     //We need to determine 4 things:
     //(1) number of pol-products (npp)
@@ -167,10 +180,10 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
 
     // struct mk4_corel::index_tag* idx;
     struct index_tag* idx;
-    for(int i=0; i<fCorel->index_space; i++)
+    for(int i = 0; i < fCorel->index_space; i++)
     {
         idx = fCorel->index + i;
-        for(int ap=0; ap<idx->ap_space; ap++)
+        for(int ap = 0; ap < idx->ap_space; ap++)
         {
             struct type_120* t120 = idx->t120[ap];
             if(t120 != nullptr)
@@ -181,8 +194,17 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
                     std::size_t nlags = t120->nlags;
                     //this implicitly assumes all channels have the same number
                     //of spectral points
-                    if(fNSpectral < nlags){fNSpectral = nlags;}
-                    if(ap > 0){ if( fNAPs < (std::size_t)ap ){fNAPs = (std::size_t)ap; }; };
+                    if(fNSpectral < nlags)
+                    {
+                        fNSpectral = nlags;
+                    }
+                    if(ap > 0)
+                    {
+                        if(fNAPs < (std::size_t)ap)
+                        {
+                            fNAPs = (std::size_t)ap;
+                        };
+                    };
                 }
                 else
                 {
@@ -193,10 +215,10 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         }
 
         struct type_101* t101;
-        if( (t101 = idx->t101) != NULL)
+        if((t101 = idx->t101) != NULL)
         {
-            std::string ref_chan_id = getstr(t101->ref_chan_id,8);
-            std::string rem_chan_id = getstr(t101->rem_chan_id,8);
+            std::string ref_chan_id = getstr(t101->ref_chan_id, 8);
+            std::string rem_chan_id = getstr(t101->rem_chan_id, 8);
             mho_json tmp_label;
             tmp_label["ref_chan_id"] = ref_chan_id;
             tmp_label["rem_chan_id"] = rem_chan_id;
@@ -208,29 +230,25 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     fNAPs += 1;
     //fNAPs = valid_aps.size();
 
-
-
-
-    #ifdef  HOPS_ENABLE_DEBUG_MSG
-    msg_debug("mk4interface", "Total number of channel pairs = "<< fNChannels << eom );
+#ifdef HOPS_ENABLE_DEBUG_MSG
+    msg_debug("mk4interface", "Total number of channel pairs = " << fNChannels << eom);
     for(auto it = fAllChannelMap.begin(); it != fAllChannelMap.end(); it++)
     {
-        msg_debug("mk4interface", " channel pair = "<<it->first<< eom);
+        msg_debug("mk4interface", " channel pair = " << it->first << eom);
     }
-    #endif
-
+#endif
 
     //assume we now have all ovex/vex in the fVex object, and that we only have a single scan
     //should only have a single 'scan' element under the schedule section, so find it
     auto sched = fVex["$SCHED"];
     if(sched.size() != 1)
     {
-        msg_error("mk4interface", "OVEX file schedule section contains more than one scan."<<eom);
+        msg_error("mk4interface", "OVEX file schedule section contains more than one scan." << eom);
     }
     auto scan = sched.begin().value();
 
     //TODO FIXME --for complicated schedules, different stations may have different modes
-    std::string mode_key = scan["mode"].get<std::string>();
+    std::string mode_key = scan["mode"].get< std::string >();
 
     int nst = scan["station"].size(); // number of stations;
 
@@ -241,25 +259,27 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
 
     auto mode = fVex["$MODE"][mode_key];
     //TODO FIXME -- this is incorrect if there are multple BBC/IFs defined
-    std::string bbc_name = fVex["$MODE"][mode_key]["$BBC"][0]["keyword"].get<std::string>(); //TODO FIXME if stations have different bbcs
-    std::string if_name = fVex["$MODE"][mode_key]["$IF"][0]["keyword"].get<std::string>(); //TODO FIXME if stations have different ifs
+    std::string bbc_name =
+        fVex["$MODE"][mode_key]["$BBC"][0]["keyword"].get< std::string >(); //TODO FIXME if stations have different bbcs
+    std::string if_name =
+        fVex["$MODE"][mode_key]["$IF"][0]["keyword"].get< std::string >(); //TODO FIXME if stations have different ifs
 
-    for(int ist = 0; ist<nst; ist++)
+    for(int ist = 0; ist < nst; ist++)
     {
         //find the frequency table for this station
         //first locate the mode info
         std::string freq_key;
         for(auto it = mode["$FREQ"].begin(); it != mode["$FREQ"].end(); ++it)
         {
-            std::string keyword = (*it)["keyword"].get<std::string>();
+            std::string keyword = (*it)["keyword"].get< std::string >();
             std::size_t n_qual = (*it)["qualifiers"].size();
-            for(std::size_t q=0; q<n_qual; q++)
+            for(std::size_t q = 0; q < n_qual; q++)
             {
-                std::string station_code = (*it)["qualifiers"][q].get<std::string>();
+                std::string station_code = (*it)["qualifiers"][q].get< std::string >();
                 // stationCodeToFreqTableName[station_code] = keyword;
                 //std::string site_key =
-                std::string site_key = fVex["$STATION"][station_code]["$SITE"][0]["keyword"].get<std::string>();
-                std::string mk4_id = fVex["$SITE"][site_key]["mk4_site_ID"].get<std::string>();
+                std::string site_key = fVex["$STATION"][station_code]["$SITE"][0]["keyword"].get< std::string >();
+                std::string mk4_id = fVex["$SITE"][site_key]["mk4_site_ID"].get< std::string >();
                 mk4IDToFreqTableName[mk4_id] = keyword;
                 mk4IDToStationCode[mk4_id] = station_code;
             }
@@ -271,8 +291,8 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     //the ovex data retrieval (just to get the channel polariztaion!!!) is rather convoluted
     // we may want to add a feature to resolve vex link-words to json objects or json paths
     //which would simplfy this mess
-    std::string ref_st = std::string(&(baseline[0]),1);
-    std::string rem_st = std::string(&(baseline[1]),1);
+    std::string ref_st = std::string(&(baseline[0]), 1);
+    std::string rem_st = std::string(&(baseline[1]), 1);
     fRefStationMk4Id = ref_st;
     fRemStationMk4Id = rem_st;
     fRefStation = mk4IDToStationCode[ref_st];
@@ -299,26 +319,26 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         //Note: we could probably just parse the polarization information from the mk4 channel IDs
         //instead of walking the insanely convoluted vex-tree
 
-        for(std::size_t nch=0; nch < fVex["$FREQ"][ref_freq_table]["chan_def"].size(); nch++)
+        for(std::size_t nch = 0; nch < fVex["$FREQ"][ref_freq_table]["chan_def"].size(); nch++)
         {
-            std::string chan_name = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["channel_name"].get<std::string>();
+            std::string chan_name = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["channel_name"].get< std::string >();
             if(chan_name == ref_chan_id)
             {
-                ref_sky_freq = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["sky_frequency"]["value"].get<double>();
-                ref_bw = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["bandwidth"]["value"].get<double>();
-                ref_net_sb = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["net_sideband"].get<std::string>();
-                std::string bbc_id = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["bbc_id"].get<std::string>();
-                for(std::size_t nbbc=0; nbbc< fVex["$BBC"][bbc_name]["BBC_assign"].size(); nbbc++)
+                ref_sky_freq = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["sky_frequency"]["value"].get< double >();
+                ref_bw = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["bandwidth"]["value"].get< double >();
+                ref_net_sb = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["net_sideband"].get< std::string >();
+                std::string bbc_id = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["bbc_id"].get< std::string >();
+                for(std::size_t nbbc = 0; nbbc < fVex["$BBC"][bbc_name]["BBC_assign"].size(); nbbc++)
                 {
-                    if( fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_bbc_id"].get<std::string>() == bbc_id )
+                    if(fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_bbc_id"].get< std::string >() == bbc_id)
                     {
-                        std::string if_id = fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_if"].get<std::string>();
+                        std::string if_id = fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_if"].get< std::string >();
                         //finally retrieve the polarization
                         for(std::size_t nif = 0; nif < fVex["$IF"][if_name]["if_def"].size(); nif++)
                         {
-                            if(fVex["$IF"][if_name]["if_def"][nif]["if_id"].get<std::string>() == if_id)
+                            if(fVex["$IF"][if_name]["if_def"][nif]["if_id"].get< std::string >() == if_id)
                             {
-                                ref_pol = fVex["$IF"][if_name]["if_def"][nif]["polarization"].get<std::string>();
+                                ref_pol = fVex["$IF"][if_name]["if_def"][nif]["polarization"].get< std::string >();
                                 break;
                             }
                         }
@@ -330,29 +350,28 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
             }
         }
 
-
-        for(std::size_t nch=0; nch < fVex["$FREQ"][rem_freq_table]["chan_def"].size(); nch++)
+        for(std::size_t nch = 0; nch < fVex["$FREQ"][rem_freq_table]["chan_def"].size(); nch++)
         {
-            std::string chan_name = fVex["$FREQ"][rem_freq_table]["chan_def"][nch]["channel_name"].get<std::string>();
+            std::string chan_name = fVex["$FREQ"][rem_freq_table]["chan_def"][nch]["channel_name"].get< std::string >();
             if(chan_name == rem_chan_id)
             {
-                rem_sky_freq = fVex["$FREQ"][rem_freq_table]["chan_def"][nch]["sky_frequency"]["value"].get<double>();
-                rem_bw = fVex["$FREQ"][rem_freq_table]["chan_def"][nch]["bandwidth"]["value"].get<double>();
-                rem_net_sb = fVex["$FREQ"][rem_freq_table]["chan_def"][nch]["net_sideband"].get<std::string>();
+                rem_sky_freq = fVex["$FREQ"][rem_freq_table]["chan_def"][nch]["sky_frequency"]["value"].get< double >();
+                rem_bw = fVex["$FREQ"][rem_freq_table]["chan_def"][nch]["bandwidth"]["value"].get< double >();
+                rem_net_sb = fVex["$FREQ"][rem_freq_table]["chan_def"][nch]["net_sideband"].get< std::string >();
 
-                std::string bbc_id = fVex["$FREQ"][rem_freq_table]["chan_def"][nch]["bbc_id"].get<std::string>();
+                std::string bbc_id = fVex["$FREQ"][rem_freq_table]["chan_def"][nch]["bbc_id"].get< std::string >();
 
-                for(std::size_t nbbc=0; nbbc< fVex["$BBC"][bbc_name]["BBC_assign"].size(); nbbc++)
+                for(std::size_t nbbc = 0; nbbc < fVex["$BBC"][bbc_name]["BBC_assign"].size(); nbbc++)
                 {
-                    if( fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_bbc_id"].get<std::string>() == bbc_id )
+                    if(fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_bbc_id"].get< std::string >() == bbc_id)
                     {
-                        std::string if_id = fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_if"].get<std::string>();
+                        std::string if_id = fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_if"].get< std::string >();
                         //finally retrieve the polarization
                         for(std::size_t nif = 0; nif < fVex["$IF"][if_name]["if_def"].size(); nif++)
                         {
-                            if(fVex["$IF"][if_name]["if_def"][nif]["if_id"].get<std::string>() == if_id)
+                            if(fVex["$IF"][if_name]["if_def"][nif]["if_id"].get< std::string >() == if_id)
                             {
-                                rem_pol = fVex["$IF"][if_name]["if_def"][nif]["polarization"].get<std::string>();
+                                rem_pol = fVex["$IF"][if_name]["if_def"][nif]["polarization"].get< std::string >();
                                 break;
                             }
                         }
@@ -363,8 +382,6 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
                 break;
             }
         }
-
-
 
         if(found_ref && found_rem)
         {
@@ -380,11 +397,11 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
             ch->second["rem_sky_freq"] = rem_sky_freq;
             ch->second["rem_bandwidth"] = rem_bw;
             ch->second["rem_net_sideband"] = rem_net_sb;
-            ch->second["rem_polarization"] =  rem_pol;
+            ch->second["rem_polarization"] = rem_pol;
             ch->second["pol_product"] = pp;
 
             //also attach some 'common across all pol-products' labels
-            if(channel_info_match(ref_sky_freq, rem_sky_freq, ref_bw, rem_bw, ref_net_sb, rem_net_sb) )
+            if(channel_info_match(ref_sky_freq, rem_sky_freq, ref_bw, rem_bw, ref_net_sb, rem_net_sb))
             {
                 ch->second["sky_freq"] = ref_sky_freq;
                 ch->second["bandwidth"] = ref_bw;
@@ -418,7 +435,7 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     //initialize with empty set/vectors for each pol-product
     for(auto it = fPolProducts.begin(); it != fPolProducts.end(); it++)
     {
-        pp_chan_set_map[*it] = std::set<mho_json*>();
+        pp_chan_set_map[*it] = std::set< mho_json* >();
         fPPSortedChannelInfo[*it] = std::vector< mho_json* >();
     }
 
@@ -432,10 +449,10 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         ppkey.append(pol1);
         ppkey.append(pol2);
 
-        auto indicator = pp_chan_set_map[ppkey].insert( &(it->second) );
+        auto indicator = pp_chan_set_map[ppkey].insert(&(it->second));
         if(indicator.second)
         {
-            fPPSortedChannelInfo[ppkey].push_back( &(it->second) );
+            fPPSortedChannelInfo[ppkey].push_back(&(it->second));
         }
     }
 
@@ -443,38 +460,38 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     fNChannelsPerPP = 0;
     for(auto it = pp_chan_set_map.begin(); it != pp_chan_set_map.end(); it++)
     {
-        if(fNChannelsPerPP == 0){fNChannelsPerPP = it->second.size();}
+        if(fNChannelsPerPP == 0)
+        {
+            fNChannelsPerPP = it->second.size();
+        }
         else
         {
-            if(fNChannelsPerPP != it->second.size() )
+            if(fNChannelsPerPP != it->second.size())
             {
-                msg_error("mk4interface",
-                    "Not all pol-products have the same number of channels! " <<
-                    fNChannelsPerPP << " !=" << it->second.size() << eom );
+                msg_error("mk4interface", "Not all pol-products have the same number of channels! "
+                                              << fNChannelsPerPP << " !=" << it->second.size() << eom);
             }
         }
     }
 
-    msg_debug("mk4interface", "Number of channels per pol product: "<< fNChannelsPerPP << eom);
+    msg_debug("mk4interface", "Number of channels per pol product: " << fNChannelsPerPP << eom);
 
     //now sort the channels by sky frequency
     chan_label_freq_predicate sort_pred;
     for(auto it = fPolProducts.begin(); it != fPolProducts.end(); it++)
     {
-        std::sort( fPPSortedChannelInfo[*it].begin(), fPPSortedChannelInfo[*it].end(), sort_pred);
+        std::sort(fPPSortedChannelInfo[*it].begin(), fPPSortedChannelInfo[*it].end(), sort_pred);
     }
-
 }
 
-void
-MHO_MK4CorelInterface::ExtractCorelFile()
+void MHO_MK4CorelInterface::ExtractCorelFile()
 {
     ReadCorelFile();
     ReadVexFile();
 
     uch_visibility_store_type* bl_data = nullptr;
     uch_weight_store_type* bl_wdata = nullptr;
-    
+
     if(fHaveCorel && fHaveVex)
     {
 
@@ -483,40 +500,40 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         double ap_time_length = 1.0; //defaults to 1 sec
         if(fVex.contains("$EVEX") && fVex["$EVEX"].size() == 1)
         {
-            ap_time_length = (fVex["$EVEX"].begin().value())["AP_length"]["value"].get<double>();
+            ap_time_length = (fVex["$EVEX"].begin().value())["AP_length"]["value"].get< double >();
         }
         else
         {
-            msg_warn("mk4interface", "warning, could not find AP_length information root (ovex) file."<<eom);
+            msg_warn("mk4interface", "warning, could not find AP_length information root (ovex) file." << eom);
         }
 
         //now we can go ahead an create containers for all the visibilities and data-weights
         //the data weights container has the same layout as the visibilities (so axis + label data is stored twice)
-        msg_debug("mk4interface", "Number of pol-products = " << fNPPs << eom );
-        msg_debug("mk4interface", "Number of APs = " << fNAPs << eom );
+        msg_debug("mk4interface", "Number of pol-products = " << fNPPs << eom);
+        msg_debug("mk4interface", "Number of APs = " << fNAPs << eom);
         msg_debug("mk4interface", "Number of channels per pol-product = " << fNChannelsPerPP << eom);
         msg_debug("mk4interface", "Number of spectral points = " << fNSpectral << eom);
 
-        std::size_t bl_dim[VIS_NDIM] = {fNPPs, fNAPs, (fNChannelsPerPP*fNSpectral)};
+        std::size_t bl_dim[VIS_NDIM] = {fNPPs, fNAPs, (fNChannelsPerPP * fNSpectral)};
         bl_data = new uch_visibility_store_type(bl_dim);
         bl_wdata = new uch_weight_store_type(bl_dim);
 
         //first label the pol-product axis
         std::size_t pp_count = 0;
-        std::map<std::string, std::size_t> pp_index_lookup;
+        std::map< std::string, std::size_t > pp_index_lookup;
         for(auto it = fPolProducts.begin(); it != fPolProducts.end(); it++)
         {
             pp_index_lookup[*it] = pp_count;
-            std::get<UCH_POLPROD_AXIS>(*bl_data)[pp_count] = *it;
-            std::get<UCH_POLPROD_AXIS>(*bl_wdata)[pp_count] = *it;
+            std::get< UCH_POLPROD_AXIS >(*bl_data)[pp_count] = *it;
+            std::get< UCH_POLPROD_AXIS >(*bl_wdata)[pp_count] = *it;
             pp_count++;
         }
 
         //now assign values to the time (0-th dim) axis
-        for(size_t ap=0; ap<fNAPs; ap++)
+        for(size_t ap = 0; ap < fNAPs; ap++)
         {
-            std::get<UCH_TIME_AXIS>(*bl_data)[ap] = ap_time_length*ap;
-            std::get<UCH_TIME_AXIS>(*bl_wdata)[ap] = ap_time_length*ap;
+            std::get< UCH_TIME_AXIS >(*bl_data)[ap] = ap_time_length * ap;
+            std::get< UCH_TIME_AXIS >(*bl_wdata)[ap] = ap_time_length * ap;
         }
 
         //finally we need to label the frequency axis
@@ -524,22 +541,20 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         //for the time being we assume the all pol-products have the same freq-axis
         //so if true, the outer loop is actually unecessary
         std::set< int > inserted_channel_labels;
-        for(auto ppit = fPolProducts.begin(); ppit != fPolProducts.end(); ppit++ )
+        for(auto ppit = fPolProducts.begin(); ppit != fPolProducts.end(); ppit++)
         {
             std::size_t freq_count = 0;
             int ch_count = 0;
             double sky_freq, bw;
             std::string net_sb;
             std::string mk4_channel_id;
-            for(auto it = fPPSortedChannelInfo[*ppit].begin();
-                it != fPPSortedChannelInfo[*ppit].end();
-                it++)
+            for(auto it = fPPSortedChannelInfo[*ppit].begin(); it != fPPSortedChannelInfo[*ppit].end(); it++)
             {
-                sky_freq = (*(*it))["sky_freq"].get<double>();
-                bw = (*(*it))["bandwidth"].get<double>();
-                mk4_channel_id =  (*(*it))["mk4_channel_id"].get<std::string>();
+                sky_freq = (*(*it))["sky_freq"].get< double >();
+                bw = (*(*it))["bandwidth"].get< double >();
+                mk4_channel_id = (*(*it))["mk4_channel_id"].get< std::string >();
                 //net_sb = (*(*it))["net_sideband"];
-                net_sb = (*(*it))["net_sideband"].get<std::string>();
+                net_sb = (*(*it))["net_sideband"].get< std::string >();
                 //add the freq-axis bounds info for this channel
                 (*(*it))["lower_index"] = freq_count;
                 (*(*it))["upper_index"] = freq_count + fNSpectral;
@@ -570,64 +585,70 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                     ch_label["frequency_band"] = fband;
 
                     //ch_label.SetBounds(freq_count, freq_count + fNSpectral);
-                    std::get<UCH_FREQ_AXIS>(*bl_data).SetIntervalLabelObject(ch_label, freq_count, freq_count+fNSpectral);
-                    std::get<UCH_FREQ_AXIS>(*bl_wdata).SetIntervalLabelObject(ch_label, freq_count, freq_count+fNSpectral);
+                    std::get< UCH_FREQ_AXIS >(*bl_data).SetIntervalLabelObject(ch_label, freq_count, freq_count + fNSpectral);
+                    std::get< UCH_FREQ_AXIS >(*bl_wdata).SetIntervalLabelObject(ch_label, freq_count, freq_count + fNSpectral);
                 }
 
                 //set up this portion of the frequency axis
-                for(std::size_t sp=0; sp<fNSpectral; sp++)
+                for(std::size_t sp = 0; sp < fNSpectral; sp++)
                 {
                     int findex = 0;
-                    if(net_sb == "U"){findex = sp;};
-                    if(net_sb == "L"){findex = fNSpectral-sp-1;}
+                    if(net_sb == "U")
+                    {
+                        findex = sp;
+                    };
+                    if(net_sb == "L")
+                    {
+                        findex = fNSpectral - sp - 1;
+                    }
                     double freq = calc_freq_bin(sky_freq, bw, net_sb, fNSpectral, findex);
-                    std::get<UCH_FREQ_AXIS>(*bl_data).at(freq_count) = freq;
-                    std::get<UCH_FREQ_AXIS>(*bl_wdata).at(freq_count) = freq;
+                    std::get< UCH_FREQ_AXIS >(*bl_data).at(freq_count) = freq;
+                    std::get< UCH_FREQ_AXIS >(*bl_wdata).at(freq_count) = freq;
                     freq_count++;
                 }
                 ch_count++;
             }
         }
 
-        #ifdef HOPS_ENABLE_DEBUG_MSG
+#ifdef HOPS_ENABLE_DEBUG_MSG
         //lets print out the pol, time and freq axes now:
-        for(std::size_t i=0; i< std::get<UCH_POLPROD_AXIS>(*bl_data).GetSize(); i++)
+        for(std::size_t i = 0; i < std::get< UCH_POLPROD_AXIS >(*bl_data).GetSize(); i++)
         {
-            msg_debug("mk4interface", "pol_axis: "<<i<<" = "<<std::get<UCH_POLPROD_AXIS>(*bl_data).at(i)<< eom);
+            msg_debug("mk4interface", "pol_axis: " << i << " = " << std::get< UCH_POLPROD_AXIS >(*bl_data).at(i) << eom);
         }
 
-        for(std::size_t i=0; i< std::get<UCH_TIME_AXIS>(*bl_data).GetSize(); i++)
+        for(std::size_t i = 0; i < std::get< UCH_TIME_AXIS >(*bl_data).GetSize(); i++)
         {
-            msg_debug("mk4interface", "time_axis: "<<i<<" = "<<std::get<UCH_TIME_AXIS>(*bl_data).at(i)<<eom);
+            msg_debug("mk4interface", "time_axis: " << i << " = " << std::get< UCH_TIME_AXIS >(*bl_data).at(i) << eom);
         }
 
-        // for(std::size_t i=0; i< std::get<UCH_FREQ_AXIS>(*bl_data).GetSize(); i++)
-        // {
-        //     msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<UCH_FREQ_AXIS>(*bl_data).at(i)<<eom);
-        // }
-        #endif
+// for(std::size_t i=0; i< std::get<UCH_FREQ_AXIS>(*bl_data).GetSize(); i++)
+// {
+//     msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<UCH_FREQ_AXIS>(*bl_data).at(i)<<eom);
+// }
+#endif
 
         //now fill in the actual visibility data
         struct type_101* t101 = nullptr;
         //struct mk4_corel::index_tag* idx = nullptr;
         struct index_tag* idx = nullptr;
-        for(int i=0; i<fCorel->index_space; i++)
+        for(int i = 0; i < fCorel->index_space; i++)
         {
             idx = fCorel->index + i;
-            if( (t101 = idx->t101) != nullptr)
+            if((t101 = idx->t101) != nullptr)
             {
                 //extract all of the type101 index records
-                std::string ref_chan_id = getstr(t101->ref_chan_id,8);
-                std::string rem_chan_id = getstr(t101->rem_chan_id,8);
+                std::string ref_chan_id = getstr(t101->ref_chan_id, 8);
+                std::string rem_chan_id = getstr(t101->rem_chan_id, 8);
                 std::string key = ref_chan_id + ":" + rem_chan_id;
                 std::string net_sb;
                 auto ch = fAllChannelMap.find(key);
-                if( ch != fAllChannelMap.end() )
+                if(ch != fAllChannelMap.end())
                 {
                     auto ch_label = ch->second;
-                    net_sb = ch_label["net_sideband"].get<std::string>();
+                    net_sb = ch_label["net_sideband"].get< std::string >();
                     //now we want to extract the data in the type_120's
-                    for(int ap=0; ap<idx->ap_space; ap++)
+                    for(int ap = 0; ap < idx->ap_space; ap++)
                     {
                         struct type_120* t120 = idx->t120[ap];
                         if(t120 != nullptr)
@@ -642,13 +663,12 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                                 //           "Adding freq data for ap: "<<ap
                                 //           <<" channel: "<< key << eom);
 
-
-                                for(int j=0; j<nlags; j++)
+                                for(int j = 0; j < nlags; j++)
                                 {
                                     int findex = 0;
-                                    int low = ch_label["lower_index"].get<int>();
-                                    int up = ch_label["upper_index"].get<int>();
-                                    findex = low+j;
+                                    int low = ch_label["lower_index"].get< int >();
+                                    int up = ch_label["upper_index"].get< int >();
+                                    findex = low + j;
                                     //TODO FIXME!!
                                     //Do we need reverse the order of the freq axis for lower-sideband data??!
                                     //If so do we need to conjugate the data as well?
@@ -657,7 +677,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                                     VFP_TYPE re = t120->ld.spec[j].re;
                                     VFP_TYPE im = t120->ld.spec[j].im;
                                     WFP_TYPE w = t120->fw.weight;
-                                    std::complex<double> val(re,im);
+                                    std::complex< double > val(re, im);
                                     bl_data->at(pol_index, ap, findex) = val;
 
                                     //the last dimension for the weights isn't particulary necessary
@@ -669,13 +689,12 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                     }
                 }
             }
-        }//end of index loop
+        } //end of index loop
     }
     else
     {
         msg_error("mk4interface", "Failed to read both corel and vex file." << eom);
     }
-
 
     //grab the meta data from the type_100 and tag this data with it
     type_100* t100 = fCorel->t100;
@@ -701,14 +720,14 @@ MHO_MK4CorelInterface::ExtractCorelFile()
 
     //get the creation/correlation time
     type_000* t000 = fCorel->id;
-    std::string cdate = std::string( &(t000->date[0]), 16 ); //yyyyddd-hhmmss
+    std::string cdate = std::string(&(t000->date[0]), 16); //yyyyddd-hhmmss
     if(cdate.size() >= 14)
     {
-        ldate.year = std::atoi( cdate.substr(0,4).c_str() );
-        ldate.day = std::atoi( cdate.substr(4,3).c_str() );
-        ldate.hour = std::atoi( cdate.substr(8,2).c_str() );
-        ldate.minute = std::atoi( cdate.substr(10,2).c_str() );
-        ldate.second = std::atoi( cdate.substr(12,2).c_str() );
+        ldate.year = std::atoi(cdate.substr(0, 4).c_str());
+        ldate.day = std::atoi(cdate.substr(4, 3).c_str());
+        ldate.hour = std::atoi(cdate.substr(8, 2).c_str());
+        ldate.minute = std::atoi(cdate.substr(10, 2).c_str());
+        ldate.second = std::atoi(cdate.substr(12, 2).c_str());
     }
     std::string corrdate_string = MHO_LegacyDateConverter::ConvertToVexFormat(ldate);
 
@@ -743,37 +762,43 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     fExtractedWeights = bl_wdata;
 }
 
-
-
-
-std::string
-MHO_MK4CorelInterface::getstr(const char* char_array, std::size_t max_size)
+std::string MHO_MK4CorelInterface::getstr(const char* char_array, std::size_t max_size)
 {
-    return std::string( char_array, std::min( strlen(char_array), max_size) );
+    return std::string(char_array, std::min(strlen(char_array), max_size));
 }
 
-
-bool
-MHO_MK4CorelInterface::channel_info_match(double ref_sky_freq, double rem_sky_freq,
-                        double ref_bw, double rem_bw,
-                        std::string ref_net_sb, std::string rem_net_sb)
+bool MHO_MK4CorelInterface::channel_info_match(double ref_sky_freq, double rem_sky_freq, double ref_bw, double rem_bw,
+                                               std::string ref_net_sb, std::string rem_net_sb)
 {
     //perhaps we ought to consider some floating point tolerance?
-    if(ref_sky_freq != rem_sky_freq){return false;}
-    if(ref_bw != rem_bw){return false;}
-    if(ref_net_sb != rem_net_sb){return false;}
+    if(ref_sky_freq != rem_sky_freq)
+    {
+        return false;
+    }
+    if(ref_bw != rem_bw)
+    {
+        return false;
+    }
+    if(ref_net_sb != rem_net_sb)
+    {
+        return false;
+    }
     return true;
 }
 
-
-double
-MHO_MK4CorelInterface::calc_freq_bin(double sky_freq, double bw, std::string net_sb, int nlags, int bin_index)
+double MHO_MK4CorelInterface::calc_freq_bin(double sky_freq, double bw, std::string net_sb, int nlags, int bin_index)
 {
     double step_sign = 1.0;
-    if(net_sb == "U"){step_sign = 1.0;}
-    if(net_sb == "L"){step_sign = -1.0;}
-    double freq = sky_freq + bin_index*step_sign*(bw/nlags);
+    if(net_sb == "U")
+    {
+        step_sign = 1.0;
+    }
+    if(net_sb == "L")
+    {
+        step_sign = -1.0;
+    }
+    double freq = sky_freq + bin_index * step_sign * (bw / nlags);
     return freq;
 }
 
-}//end of namespace
+} // namespace hops

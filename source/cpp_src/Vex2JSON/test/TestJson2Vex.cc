@@ -1,11 +1,10 @@
-#include <string>
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <string>
 
-#include "MHO_Message.hh"
 #include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_Message.hh"
 #include "MHO_VexGenerator.hh"
-
 
 using namespace hops;
 
@@ -17,7 +16,7 @@ int main(int argc, char** argv)
     std::string jsonfile(argv[1]);
 
     std::ifstream ifs;
-    ifs.open( jsonfile.c_str(), std::ifstream::in );
+    ifs.open(jsonfile.c_str(), std::ifstream::in);
 
     mho_json root;
     if(ifs.is_open())
@@ -31,7 +30,6 @@ int main(int argc, char** argv)
     gen.SetFilename(output_file);
 
     gen.GenerateVex(root);
-
 
     return 0;
 }

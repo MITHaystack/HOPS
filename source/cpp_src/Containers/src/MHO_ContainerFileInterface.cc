@@ -3,29 +3,27 @@
 namespace hops
 {
 
-MHO_ContainerFileInterface::MHO_ContainerFileInterface():
-    fFilename(""),
-    fIndexFilename("")
+MHO_ContainerFileInterface::MHO_ContainerFileInterface(): fFilename(""), fIndexFilename("")
 {}
 
 MHO_ContainerFileInterface::~MHO_ContainerFileInterface(){};
 
-void
-MHO_ContainerFileInterface::SetFilename(std::string filename)
+void MHO_ContainerFileInterface::SetFilename(std::string filename)
 {
     fFilename = filename;
 }
 
-void
-MHO_ContainerFileInterface::SetIndexFileName(std::string index_filename)
+void MHO_ContainerFileInterface::SetIndexFileName(std::string index_filename)
 {
     fIndexFilename = index_filename;
 }
 
-void
-MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store, bool do_clear_store)
+void MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store, bool do_clear_store)
 {
-    if(do_clear_store){store.Clear();}
+    if(do_clear_store)
+    {
+        store.Clear();
+    }
     bool ok = false;
 
     //pull the file object keys for inspection
@@ -33,22 +31,30 @@ MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store, boo
     MHO_FileKey object_key;
 
     //extract object keys
-    if(fIndexFilename != "" )
+    if(fIndexFilename != "")
     {
         ok = fFileInterface.ExtractIndexFileObjectKeys(fIndexFilename, ikeys);
-        if(!ok){msg_error("containers", "could not extract index-file object keys" << eom); return;}
+        if(!ok)
+        {
+            msg_error("containers", "could not extract index-file object keys" << eom);
+            return;
+        }
     }
     else
     {
         ok = fFileInterface.ExtractFileObjectKeys(fFilename, ikeys);
-        if(!ok){msg_error("containers", "could not extract file object keys" << eom); return;}
+        if(!ok)
+        {
+            msg_error("containers", "could not extract file object keys" << eom);
+            return;
+        }
     }
 
     //open file and read each object, and stuff it in the store
     ok = fFileInterface.OpenToRead(fFilename);
     if(!ok)
     {
-        msg_error("containers", "failed to open file interface to read: "<<fFilename<<eom);
+        msg_error("containers", "failed to open file interface to read: " << fFilename << eom);
         fFileInterface.Close();
         return;
     }
@@ -64,37 +70,45 @@ MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store, boo
             if(obj != nullptr)
             {
                 store.AddObject(obj);
-                std::string shortname = std::string(key.fName, MHO_FileKeyNameLength ).c_str();
+                std::string shortname = std::string(key.fName, MHO_FileKeyNameLength).c_str();
                 store.SetShortName(obj->GetObjectUUID(), shortname);
             }
             else
             {
-                msg_warn("containers", "factory failed to build object from file with type: "<< fUUID2ClassName[type_id] << eom );
+                msg_warn("containers",
+                         "factory failed to build object from file with type: " << fUUID2ClassName[type_id] << eom);
             }
         }
         else
         {
-            msg_warn("containers", "unrecognized object in file with type uuid: " << type_id.as_string() << eom );
+            msg_warn("containers", "unrecognized object in file with type uuid: " << type_id.as_string() << eom);
         }
     }
 
     fFileInterface.Close();
 };
 
-void
-MHO_ContainerFileInterface::WriteStoreToFile(MHO_ContainerStore& store)
+void MHO_ContainerFileInterface::WriteStoreToFile(MHO_ContainerStore& store)
 {
     bool ok = false;
     //open up the file we want to write to
-    if(fIndexFilename != "" )
+    if(fIndexFilename != "")
     {
-        ok = fFileInterface.OpenToWrite(fFilename,fIndexFilename);
-        if(!ok){msg_error("containers", "could not open file: " <<fFilename << " to write." << eom); return;}
+        ok = fFileInterface.OpenToWrite(fFilename, fIndexFilename);
+        if(!ok)
+        {
+            msg_error("containers", "could not open file: " << fFilename << " to write." << eom);
+            return;
+        }
     }
     else
     {
         ok = fFileInterface.OpenToWrite(fFilename);
-        if(!ok){msg_error("containers", "could not open file: " <<fFilename << " to write." << eom); return;}
+        if(!ok)
+        {
+            msg_error("containers", "could not open file: " << fFilename << " to write." << eom);
+            return;
+        }
     }
 
     std::vector< MHO_UUID > type_ids;
@@ -115,7 +129,7 @@ MHO_ContainerFileInterface::WriteStoreToFile(MHO_ContainerStore& store)
                 bool ok = factory->second->WriteToFileInterface(fFileInterface, obj, shortname);
                 if(!ok)
                 {
-                    msg_warn("containers", "factory failed to write object to file with type: "<< fUUID2ClassName[*it] << eom );
+                    msg_warn("containers", "factory failed to write object to file with type: " << fUUID2ClassName[*it] << eom);
                 }
             }
         }
@@ -124,9 +138,7 @@ MHO_ContainerFileInterface::WriteStoreToFile(MHO_ContainerStore& store)
     fFileInterface.Close();
 }
 
-
-void
-MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, mho_json& json_obj, int level_of_detail)
+void MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, mho_json& json_obj, int level_of_detail)
 {
     std::vector< MHO_UUID > type_ids;
     store.GetAllTypeUUIDs(type_ids);
@@ -155,12 +167,8 @@ MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, mho_js
     }
 };
 
-
-void
-MHO_ContainerFileInterface::ConvertObjectInStoreToJSON(MHO_ContainerStore& store,
-                                                       const MHO_UUID& obj_uuid,
-                                                       mho_json& json_obj,
-                                                       int level_of_detail)
+void MHO_ContainerFileInterface::ConvertObjectInStoreToJSON(MHO_ContainerStore& store, const MHO_UUID& obj_uuid,
+                                                            mho_json& json_obj, int level_of_detail)
 {
     std::vector< MHO_UUID > type_ids;
     store.GetAllTypeUUIDs(type_ids);
@@ -191,6 +199,4 @@ MHO_ContainerFileInterface::ConvertObjectInStoreToJSON(MHO_ContainerStore& store
     }
 }
 
-
-
-}//end namespace
+} // namespace hops

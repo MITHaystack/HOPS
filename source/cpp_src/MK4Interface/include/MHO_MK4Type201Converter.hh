@@ -9,8 +9,8 @@ extern "C"
 {
 #endif
 
-    #include "mk4_data.h"
-    #include "mk4_dfio.h"
+#include "mk4_data.h"
+#include "mk4_dfio.h"
 
 #ifndef HOPS3_USE_CXX
 }
@@ -19,7 +19,6 @@ extern "C"
 //include the json library stuff through the header wrapper
 //that lives inc the utilities library
 #include "MHO_JSONHeaderWrapper.hh"
-
 
 namespace hops
 {
@@ -32,6 +31,6 @@ namespace hops
 
 mho_json convertToJSON(const type_201& t);
 
-}
+} // namespace hops
 
 #endif /*! end of include guard: MHO_MKType200Converter */

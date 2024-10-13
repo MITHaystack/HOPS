@@ -13,12 +13,11 @@ class MHO_OpenCLKernelBuilder
         MHO_OpenCLKernelBuilder(){};
         virtual ~MHO_OpenCLKernelBuilder(){};
 
-        cl::Kernel* BuildKernel(std::string SourceFileName, std::string KernelName, std::string BuildFlags=std::string("") );
+        cl::Kernel* BuildKernel(std::string SourceFileName, std::string KernelName, std::string BuildFlags = std::string(""));
 
     protected:
-
 };
 
-}
+} // namespace hops
 
 #endif /*! MHO_OpenCLKernelBuilder_H__ */

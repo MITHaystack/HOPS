@@ -1,24 +1,21 @@
 #ifndef MHO_MathUtilities_HH__
 #define MHO_MathUtilities_HH__
 
-
-
-#include <complex>
 #include <cmath>
+#include <complex>
+#include <string>
 #include <vector>
-
 
 namespace hops
 {
 
 /*!
-*@file MHO_MathUtilities.hh
-*@class MHO_MathUtilities
-*@author J. Barrett - barrettj@mit.edu
-*@date Tue Dec 5 17:01:15 2023 -0500
-*@brief implements a variety of simple math functions copied from original c code with minimal changes
-*/
-
+ *@file MHO_MathUtilities.hh
+ *@class MHO_MathUtilities
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Tue Dec 5 17:01:15 2023 -0500
+ *@brief implements a variety of simple math functions copied from original c code with minimal changes
+ */
 
 class MHO_MathUtilities
 {
@@ -28,14 +25,34 @@ class MHO_MathUtilities
 
         //ported from hops3 c libraries
         static double dwin(double value, double lower, double upper);
-        static int parabola (double y[3], double lower, double upper, double* x_max, double* amp_max, double q[3]);
-        static int minvert3( double a[3][3], double ainv[3][3]);
+        static int parabola(double y[3], double lower, double upper, double* x_max, double* amp_max, double q[3]);
+        static int minvert3(double a[3][3], double ainv[3][3]);
 
         //returns the average of the values in a vector
-        static double average(std::vector<double>& vec);
+        static double average(std::vector< double >& vec);
 
         //returns the average of the values in a vector assuming they are angles (radians)
-        static double angular_average(std::vector<double>& vec);
+        static double angular_average(std::vector< double >& vec);
+
+        static void DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband,
+                                                    double& lower_freq, double& upper_freq)
+        {
+            if(net_sideband == "U")
+            {
+                lower_freq = sky_freq;
+                upper_freq = sky_freq + bandwidth;
+                return;
+            }
+            if(net_sideband == "L")
+            {
+                upper_freq = sky_freq;
+                lower_freq = sky_freq - bandwidth;
+                return;
+            }
+            //not upper or lower sideband...assume double sideband (sky_freq is center)
+            upper_freq = sky_freq + bandwidth;
+            lower_freq = sky_freq - bandwidth;
+        }
 
         template< typename XValueType >
         static int FindIntersection(XValueType a, XValueType b, XValueType c, XValueType d, XValueType result[2])
@@ -57,23 +74,28 @@ class MHO_MathUtilities
             arr[3] = d;
             index[3] = 1;
 
-            if (arr[1] > arr[3]) {
+            if(arr[1] > arr[3])
+            {
                 std::swap(arr[1], arr[3]);
                 std::swap(index[1], index[3]);
             };
-            if (arr[0] > arr[2]) {
+            if(arr[0] > arr[2])
+            {
                 std::swap(arr[0], arr[2]);
                 std::swap(index[0], index[2]);
             };
-            if (arr[0] > arr[1]) {
+            if(arr[0] > arr[1])
+            {
                 std::swap(arr[0], arr[1]);
                 std::swap(index[0], index[1]);
             };
-            if (arr[2] > arr[3]) {
+            if(arr[2] > arr[3])
+            {
                 std::swap(arr[2], arr[3]);
                 std::swap(index[2], index[3]);
             };
-            if (arr[1] > arr[2]) {
+            if(arr[1] > arr[2])
+            {
                 std::swap(arr[1], arr[2]);
                 std::swap(index[1], index[2]);
             };
@@ -92,11 +114,11 @@ class MHO_MathUtilities
             int sum;
             sum = index[0] + index[1];
 
-            if( (sum == 0) || (sum == 2) )
+            if((sum == 0) || (sum == 2))
             {
                 //there is no overlap, but we need to see if the end-points of the
                 //two intervals are the same number
-                if( arr[2] == arr[1] )
+                if(arr[2] == arr[1])
                 {
                     //endpoints are the same value
                     //call this an intersection of 1 point
@@ -112,7 +134,7 @@ class MHO_MathUtilities
             else
             {
                 //there is overlap, but check how big the overlap interval is
-                if( arr[2] == arr[1] )
+                if(arr[2] == arr[1])
                 {
                     //the two overlapping points are the same value
                     //call this an intersection of 1 point
@@ -126,13 +148,10 @@ class MHO_MathUtilities
                     result[1] = arr[2];
                     return 2;
                 }
-
             }
         }
-
-
 };
 
-}
+} // namespace hops
 
 #endif /*! end of include guard: MHO_MathUtilities_HH__ */

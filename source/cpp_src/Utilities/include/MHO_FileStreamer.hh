@@ -1,8 +1,6 @@
 #ifndef MHO_FileStreamer_HH__
 #define MHO_FileStreamer_HH__
 
-
-
 #include "MHO_Message.hh"
 #include <fstream>
 #include <string>
@@ -11,30 +9,26 @@ namespace hops
 {
 
 /*!
-*@file MHO_FileStreamer.hh
-*@class MHO_FileStreamer
-*@author J. Barrett - barrettj@mit.edu
-*@date Wed Apr 21 13:40:18 2021 -0400
-*@brief
-*/
+ *@file MHO_FileStreamer.hh
+ *@class MHO_FileStreamer
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Wed Apr 21 13:40:18 2021 -0400
+ *@brief
+ */
 
 class MHO_FileStreamer
 {
     public:
-
         MHO_FileStreamer()
         {
             fFileState = FileState::undefined;
             fObjectState = ObjectState::unset;
             //fBufferSize = 64*1024; ///64KB chunk
-            fBufferSize = 2*1024*1024; ///2MB chunk
+            fBufferSize = 2 * 1024 * 1024; ///2MB chunk
             fBuffer = new char[fBufferSize];
         };
 
-        virtual ~MHO_FileStreamer()
-        {
-            delete[] fBuffer;
-        };
+        virtual ~MHO_FileStreamer() { delete[] fBuffer; };
 
         void SetFilename(const std::string filename)
         {
@@ -42,7 +36,7 @@ class MHO_FileStreamer
             fFileState = FileState::undefined;
         }
 
-        std::string GetFilename(){return fFilename;};
+        std::string GetFilename() { return fFilename; };
 
         //let derived class specify the exact handling of file
         virtual void OpenToRead() = 0;
@@ -52,31 +46,42 @@ class MHO_FileStreamer
 
         virtual bool IsOpenForWrite()
         {
-            if(fFileState == FileState::writeable){return true;}
+            if(fFileState == FileState::writeable)
+            {
+                return true;
+            }
             return false;
         }
 
         virtual bool IsOpenForRead()
         {
-            if(fFileState == FileState::readable){return true;}
+            if(fFileState == FileState::readable)
+            {
+                return true;
+            }
             return false;
         }
 
         virtual bool IsClosed()
         {
-            if(fFileState == FileState::closed){return true;}
+            if(fFileState == FileState::closed)
+            {
+                return true;
+            }
             return false;
         }
 
         //if an unrecognized object is encountered in streaming, flag this object
         //by changing the 'object' state
-        virtual void SetObjectUnknown(){fObjectState = ObjectState::unknown;}
-        virtual void ResetObjectState(){fObjectState = ObjectState::unset;};
-        virtual bool IsObjectUnknown(){ return (fObjectState == ObjectState::unknown);};
+        virtual void SetObjectUnknown() { fObjectState = ObjectState::unknown; }
+
+        virtual void ResetObjectState() { fObjectState = ObjectState::unset; };
+
+        virtual bool IsObjectUnknown() { return (fObjectState == ObjectState::unknown); };
 
         virtual void SkipAhead(size_t n_bytes)
         {
-            msg_debug("file", "Seeking ahead by " << n_bytes << " bytes." <<eom);
+            msg_debug("file", "Seeking ahead by " << n_bytes << " bytes." << eom);
             if(fFileState == FileState::readable)
             {
                 //fFile.ignore(n_bytes);
@@ -85,11 +90,11 @@ class MHO_FileStreamer
             }
         }
 
-        virtual std::fstream& GetStream() { return fFile;}
-        virtual const std::fstream& GetStream() const {return fFile;}
+        virtual std::fstream& GetStream() { return fFile; }
+
+        virtual const std::fstream& GetStream() const { return fFile; }
 
     protected:
-
         enum FileState
         {
             writeable,
@@ -111,35 +116,28 @@ class MHO_FileStreamer
 
         std::streamsize fBufferSize;
         char* fBuffer;
-
 };
 
-
-
-template< typename XStreamType >
-struct MHO_ObjectStreamState
+template< typename XStreamType > struct MHO_ObjectStreamState
 {
-    //default behavior on an unknown XStreamType is to doing nothing
-    static void SetUnknown( XStreamType& /*!s*/){};
-    static void Reset( XStreamType& /*!s*/){};
+        //default behavior on an unknown XStreamType is to doing nothing
+        static void SetUnknown(XStreamType& /*!s*/){};
+        static void Reset(XStreamType& /*!s*/){};
 };
 
 //NOTE: the use of the keyword 'inline' is necessary for the template specializations
 //to satsify the C++ ODR, otherwise you will get a multiple-def error on linking
 
-template<> inline void
-MHO_ObjectStreamState<MHO_FileStreamer>::SetUnknown(MHO_FileStreamer& s)
+template<> inline void MHO_ObjectStreamState< MHO_FileStreamer >::SetUnknown(MHO_FileStreamer& s)
 {
     s.SetObjectUnknown();
 }
 
-template<> inline void
-MHO_ObjectStreamState<MHO_FileStreamer>::Reset(MHO_FileStreamer& s)
+template<> inline void MHO_ObjectStreamState< MHO_FileStreamer >::Reset(MHO_FileStreamer& s)
 {
     s.ResetObjectState();
 }
 
-
-}//end of hops namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_FileStreamer */

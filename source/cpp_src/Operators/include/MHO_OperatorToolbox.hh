@@ -1,37 +1,36 @@
 #ifndef MHO_OperatorToolbox_HH__
 #define MHO_OperatorToolbox_HH__
 
-#include <string>
-#include <map>
-#include <vector>
 #include <algorithm>
+#include <map>
+#include <string>
+#include <vector>
 
 #include "MHO_Operator.hh"
-
-
 
 namespace hops
 {
 
 /*!
-*@file MHO_OperatorToolbox.hh
-*@class MHO_OperatorToolbox
-*@author J. Barrett - barrettj@mit.edu
-*@date Sun Jun 4 17:43:54 2023 -0400
-*@brief
-*/
+ *@file MHO_OperatorToolbox.hh
+ *@class MHO_OperatorToolbox
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Sun Jun 4 17:43:54 2023 -0400
+ *@brief
+ */
 
 class MHO_OperatorToolbox
 {
     public:
+        MHO_OperatorToolbox() {}
 
-        MHO_OperatorToolbox(){}
-        virtual ~MHO_OperatorToolbox(){Clear();}
+        virtual ~MHO_OperatorToolbox() { Clear(); }
 
         //insertion
-        void AddOperator(MHO_Operator* op, const std::string& name, const std::string& category, bool replace_duplicate=true)
+        void AddOperator(MHO_Operator* op, const std::string& name, const std::string& category, bool replace_duplicate = true)
         {
-            msg_debug("operators", "adding an operator to the toolbox with name: "<< name <<" in category: "<< category << eom);
+            msg_debug("operators",
+                      "adding an operator to the toolbox with name: " << name << " in category: " << category << eom);
             auto it = fNameToOperatorMap.find(name);
             if(it != fNameToOperatorMap.end() && replace_duplicate)
             {
@@ -39,7 +38,7 @@ class MHO_OperatorToolbox
             }
 
             fNameToOperatorMap[name] = op;
-            fCategoryToOperatorMap.emplace(category,op);
+            fCategoryToOperatorMap.emplace(category, op);
             fOperators.insert(op);
         }
 
@@ -48,7 +47,10 @@ class MHO_OperatorToolbox
         {
             MHO_Operator* ptr = nullptr;
             auto it = fNameToOperatorMap.find(name);
-            if(it != fNameToOperatorMap.end()){ptr = it->second;}
+            if(it != fNameToOperatorMap.end())
+            {
+                ptr = it->second;
+            }
             return ptr;
         }
 
@@ -59,19 +61,18 @@ class MHO_OperatorToolbox
         }
 
         //retrieval by name, with cast to specific type, if missing returns nullptr
-        template < typename XOperatorType >
-        XOperatorType* GetOperatorAs(const std::string& name)
+        template< typename XOperatorType > XOperatorType* GetOperatorAs(const std::string& name)
         {
             XOperatorType* ptr = nullptr;
             MHO_Operator* gptr = GetOperator(name);
             if(gptr != nullptr)
             {
-                ptr = dynamic_cast<XOperatorType*>(gptr);
+                ptr = dynamic_cast< XOperatorType* >(gptr);
             }
             return ptr;
         }
 
-        std::size_t GetNOperators(){return fOperators.size();}
+        std::size_t GetNOperators() { return fOperators.size(); }
 
         //get all operators in the toolbox
         std::vector< MHO_Operator* > GetAllOperators()
@@ -79,7 +80,7 @@ class MHO_OperatorToolbox
             std::vector< MHO_Operator* > ops;
             for(auto it = fOperators.begin(); it != fOperators.end(); it++)
             {
-                ops.push_back( *it);
+                ops.push_back(*it);
             }
 
             operator_predicate op_pred;
@@ -94,9 +95,9 @@ class MHO_OperatorToolbox
             for(auto it = fOperators.begin(); it != fOperators.end(); it++)
             {
                 double priority = (*it)->Priority();
-                if(priority < upper_limit && lower_limit <= priority )
+                if(priority < upper_limit && lower_limit <= priority)
                 {
-                    ops.push_back( *it );
+                    ops.push_back(*it);
                 }
             }
             //sort in order of priority
@@ -111,9 +112,9 @@ class MHO_OperatorToolbox
             std::vector< MHO_Operator* > ops;
             auto it1 = fCategoryToOperatorMap.lower_bound(category);
             auto it2 = fCategoryToOperatorMap.upper_bound(category);
-            if(it1 != fCategoryToOperatorMap.end() )
+            if(it1 != fCategoryToOperatorMap.end())
             {
-                while (it1 != it2)
+                while(it1 != it2)
                 {
                     ops.push_back(it1->second);
                     it1++;
@@ -125,9 +126,7 @@ class MHO_OperatorToolbox
             return ops;
         }
 
-
     private:
-
         void RemoveOperator(const std::string& name)
         {
             auto it = fNameToOperatorMap.find(name);
@@ -136,12 +135,19 @@ class MHO_OperatorToolbox
                 auto op_ptr = it->second;
                 //remove from the operator set
                 auto op_iter = fOperators.find(op_ptr);
-                if(op_iter != fOperators.end()){fOperators.erase(op_iter);}
+                if(op_iter != fOperators.end())
+                {
+                    fOperators.erase(op_iter);
+                }
 
                 //remove from the category map
                 for(auto cat_iter = fCategoryToOperatorMap.begin(); cat_iter != fCategoryToOperatorMap.end(); cat_iter++)
                 {
-                    if(cat_iter->second == op_ptr){fCategoryToOperatorMap.erase(cat_iter); break;}
+                    if(cat_iter->second == op_ptr)
+                    {
+                        fCategoryToOperatorMap.erase(cat_iter);
+                        break;
+                    }
                 }
 
                 //remove from the named operator map
@@ -180,17 +186,10 @@ class MHO_OperatorToolbox
                 operator_predicate(){};
                 virtual ~operator_predicate(){};
 
-            virtual bool operator()(const MHO_Operator* a, const MHO_Operator* b)
-            {
-                return a->Priority() < b->Priority();
-            }
+                virtual bool operator()(const MHO_Operator* a, const MHO_Operator* b) { return a->Priority() < b->Priority(); }
         };
-
-
-
 };
 
-
-}//end of namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_OperatorToolbox */

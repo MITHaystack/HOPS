@@ -59,9 +59,7 @@ mho_json floatToJSON(const float t[REFANDREMSIZE]) {
 mho_json convertToJSON(const type_207 &t) {
   return {{"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
-          {"unused1", std::string(t.unused1, 2).c_str()},
           {"pcal_mode", t.pcal_mode},
-          {"unused2", t.unused2},
           {"ref_pcamp", sidebandsArrayToJSON(t.ref_pcamp)},
           {"rem_pcamp", sidebandsArrayToJSON(t.rem_pcamp)},
           {"ref_pcphase", sidebandsArrayToJSON(t.ref_pcphase)},

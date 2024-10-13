@@ -1,8 +1,7 @@
-#include <string>
-#include <iostream>
 #include <fstream>
-#include <string>
 #include <getopt.h>
+#include <iostream>
+#include <string>
 
 #include "MHO_Message.hh"
 #include "MHO_VexParser.hh"
@@ -19,31 +18,32 @@ int main(int argc, char** argv)
     std::string input_file;
     std::string output_file;
 
-    static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
-                                          {"input_file", required_argument, 0, 'i'},
-                                          {"output_file", required_argument, 0, 'o'},
-                                          {"message_level", required_argument, 0, 'm'},
-                                      };
+    static struct option longOptions[] = {
+        {"help",          no_argument,       0, 'h'},
+        {"input_file",    required_argument, 0, 'i'},
+        {"output_file",   required_argument, 0, 'o'},
+        {"message_level", required_argument, 0, 'm'},
+    };
 
     static const char* optString = "hi:o:m:";
 
     while(true)
     {
         char optId = getopt_long(argc, argv, optString, longOptions, NULL);
-        if (optId == -1)
+        if(optId == -1)
             break;
         switch(optId)
         {
-            case ('h'):  // help
+            case('h'): // help
                 std::cout << usage << std::endl;
                 return 0;
-            case ('i'):
+            case('i'):
                 input_file = std::string(optarg);
                 break;
-            case ('o'):
+            case('o'):
                 output_file = std::string(optarg);
                 break;
-            case ('m'):
+            case('m'):
                 message_level = std::atoi(optarg);
                 break;
             default:
@@ -51,10 +51,16 @@ int main(int argc, char** argv)
                 return 1;
         }
     }
-    
+
     //clamp message level
-    if(message_level > 5){message_level = 5;}
-    if(message_level < -2){message_level = -2;}
+    if(message_level > 5)
+    {
+        message_level = 5;
+    }
+    if(message_level < -2)
+    {
+        message_level = -2;
+    }
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 

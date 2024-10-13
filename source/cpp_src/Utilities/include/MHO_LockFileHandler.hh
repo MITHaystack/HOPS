@@ -1,13 +1,12 @@
 #ifndef MHO_LockFileHandler_HH__
 #define MHO_LockFileHandler_HH__
 
-
-#include <cstdlib>
 #include <csignal>
+#include <cstdlib>
 #include <unistd.h>
 
-#include "MHO_Tokenizer.hh"
 #include "MHO_DirectoryInterface.hh"
+#include "MHO_Tokenizer.hh"
 
 //return error codes
 #define LOCK_FILESET_FAIL -6
@@ -26,28 +25,25 @@ namespace hops
 {
 
 /*!
-*@file MHO_LockFileHandler.hh
-*@class MHO_LockFileHandler
-*@author J. Barrett - barrettj@mit.edu
-*@date Tue Jan 30 23:48:59 2024 -0500
-*@brief ported version of fourfit write lock mechanism
-*/
-
+ *@file MHO_LockFileHandler.hh
+ *@class MHO_LockFileHandler
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Tue Jan 30 23:48:59 2024 -0500
+ *@brief ported version of fourfit write lock mechanism
+ */
 
 //struct for holding data about the lock file's creation
 struct lockfile_data
 {
-    int validity;
-    unsigned int seq_number;
-    unsigned int pid;
-    unsigned long int time_sec;
-    unsigned long int time_usec;
-    char hostname[256];
-    char active_directory[MAX_LOCKNAME_LEN];
-    char lockfile_name[MAX_LOCKNAME_LEN];
+        int validity;
+        unsigned int seq_number;
+        unsigned int pid;
+        unsigned long int time_sec;
+        unsigned long int time_usec;
+        char hostname[256];
+        char active_directory[MAX_LOCKNAME_LEN];
+        char lockfile_name[MAX_LOCKNAME_LEN];
 };
-
-
 
 //uses the singleton pattern
 class MHO_LockFileHandler
@@ -62,15 +58,19 @@ class MHO_LockFileHandler
         //provide public access to the only static instance
         static MHO_LockFileHandler& GetInstance()
         {
-            if(fInstance == nullptr){fInstance = new MHO_LockFileHandler();}
+            if(fInstance == nullptr)
+            {
+                fInstance = new MHO_LockFileHandler();
+            }
             return *fInstance;
         }
 
         //configure the lock handler to write legacy type_2xx files (e.g. GE.X.1.ABCDEF)
         //or to use the new file naming convention (.frng extension)
         //legacy mode is enabled by default
-        void EnableLegacyMode(){fEnableLegacyMode = true;};
-        void DisableLegacyMode(){fEnableLegacyMode = false;};
+        void EnableLegacyMode() { fEnableLegacyMode = true; };
+
+        void DisableLegacyMode() { fEnableLegacyMode = false; };
 
         //the only three functions user needs to call via the instance:
         //(1) enable/disable legacy mode
@@ -81,7 +81,6 @@ class MHO_LockFileHandler
         void RemoveWriteLock();
 
     private:
-
         static void HandleSignal(int signal_value);
 
         static void init_lockfile_data(lockfile_data* data);
@@ -113,6 +112,7 @@ class MHO_LockFileHandler
             fTokenizer.SetIncludeEmptyTokensFalse();
             init_lockfile_data(&fProcessLockFileData);
         };
+
         virtual ~MHO_LockFileHandler(){};
 
         //static global class instance
@@ -125,10 +125,8 @@ class MHO_LockFileHandler
         MHO_Tokenizer fTokenizer;
 
         bool fEnableLegacyMode;
-
 };
 
-
-}//end of namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_LockFileHandler */

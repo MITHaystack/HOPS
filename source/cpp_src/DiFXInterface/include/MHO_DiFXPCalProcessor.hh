@@ -1,25 +1,25 @@
 #ifndef MHO_DiFXPCalProcessor_HH__
 #define MHO_DiFXPCalProcessor_HH__
 
-
-#include <string>
-#include <vector>
 #include <complex>
+#include <string>
 #include <utility>
+#include <vector>
 
-#include "MHO_Tokenizer.hh"
 #include "MHO_ContainerDefinitions.hh"
+#include "MHO_Tokenizer.hh"
+#include "MHO_DiFXTimeUtilities.hh"
 
 namespace hops
 {
 
 /*!
-*@file  MHO_DiFXPCalProcessor.hh
-*@class  MHO_DiFXPCalProcessor
-*@author  J. Barrett - barrettj@mit.edu
-*@date Mon Mar 7 12:21:49 2022 -0500
-*@brief
-*/
+ *@file  MHO_DiFXPCalProcessor.hh
+ *@class  MHO_DiFXPCalProcessor
+ *@author  J. Barrett - barrettj@mit.edu
+ *@date Mon Mar 7 12:21:49 2022 -0500
+ *@brief
+ */
 
 class MHO_DiFXPCalProcessor
 {
@@ -28,15 +28,17 @@ class MHO_DiFXPCalProcessor
         virtual ~MHO_DiFXPCalProcessor();
 
         void SetFilename(std::string filename);
-        void SetAccumulationPeriod(double ap_sec){fAPLength = ap_sec;}
-        std::string GetStationCode() const {return fStationCode;}
+
+        void SetAccumulationPeriod(double ap_sec) { fAPLength = ap_sec; }
+
+        std::string GetStationCode() const { return fStationCode; }
 
         void ReadPCalFile();
         void Organize();
-        multitone_pcal_type* GetPCalData(){return &fPCal;}
+
+        multitone_pcal_type* GetPCalData() { return &fPCal; }
 
     private:
-
         bool IsComment();
         void TokenizeLine();
         void ProcessTokens();
@@ -61,25 +63,24 @@ class MHO_DiFXPCalProcessor
         //single pcal tone
         struct pcal_phasor
         {
-            double tone_freq;
-            pcal_phasor_type phasor;
+                double tone_freq;
+                pcal_phasor_type phasor;
         };
 
         //container for pcal data from a single AP
         struct pcal_period
         {
-            std::string station;
-            double mjd;
-            double mjd_period;
-            int ap;
-            std::map< std::string, std::vector< pcal_phasor > > pc_phasors;
+                std::string station;
+                double mjd;
+                double mjd_period;
+                int ap;
+                std::map< std::string, std::vector< pcal_phasor > > pc_phasors;
         };
-
 
         //pcal data in various forms on the way to getting it organized
         std::vector< pcal_period > fPCalData;
         std::vector< pcal_period > fSortedPCalData;
-        std::set< std::string> fPolSet;
+        std::set< std::string > fPolSet;
 
         //fully organized pcal data
         multitone_pcal_type fPCal;
@@ -87,27 +88,20 @@ class MHO_DiFXPCalProcessor
         //for sorting phasors by tone frequency
         struct ToneFreqLess
         {
-            bool operator()(const pcal_phasor& a, const pcal_phasor& b) const
-            {
-                return (a.tone_freq < b.tone_freq);
-            }
+                bool operator()(const pcal_phasor& a, const pcal_phasor& b) const { return (a.tone_freq < b.tone_freq); }
         };
+
         ToneFreqLess fPhasorToneComp;
 
         //for sorting APs by time
         struct APIndexLess
         {
-            bool operator()(const pcal_period& a, const pcal_period& b) const
-            {
-                return (a.ap < b.ap);
-            }
+                bool operator()(const pcal_period& a, const pcal_period& b) const { return (a.ap < b.ap); }
         };
+
         APIndexLess fAPIndexComp;
-
-
-
 };
 
-}//end namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_DiFXPCalProcessor */

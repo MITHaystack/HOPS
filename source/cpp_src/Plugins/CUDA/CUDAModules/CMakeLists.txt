@@ -6,7 +6,6 @@ set(CUDAModules_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/vector_sum.h
     ${CMAKE_CURRENT_SOURCE_DIR}/include/vector_sbp_reduce.h
     ${CMAKE_CURRENT_SOURCE_DIR}/include/vector_mbp_reduce.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/noise_statistics_mbp_reduce.h
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MBDelaySearchCUDA.hh
 )
 
@@ -14,7 +13,6 @@ set(CUDAModules_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/vector_sum.cu
     ${CMAKE_CURRENT_SOURCE_DIR}/src/vector_sbp_reduce.cu
     ${CMAKE_CURRENT_SOURCE_DIR}/src/vector_mbp_reduce.cu
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/noise_statistics_mbp_reduce.cu
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MBDelaySearchCUDA.cc
 )
 # 

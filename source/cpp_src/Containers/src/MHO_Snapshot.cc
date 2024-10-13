@@ -6,20 +6,17 @@ namespace hops
 //initialization to nullptr
 MHO_Snapshot* MHO_Snapshot::fInstance = nullptr;
 
-void
-MHO_Snapshot::AddKey(const std::string& key)
+void MHO_Snapshot::AddKey(const std::string& key)
 {
     fKeys.insert(key);
 }
 
-void
-MHO_Snapshot::AddKey(const char* key)
+void MHO_Snapshot::AddKey(const char* key)
 {
     fKeys.insert(std::string(key));
 }
 
-void
-MHO_Snapshot::RemoveKey(const std::string& key)
+void MHO_Snapshot::RemoveKey(const std::string& key)
 {
     auto iter = fKeys.find(key);
     if(iter != fKeys.end())
@@ -28,9 +25,7 @@ MHO_Snapshot::RemoveKey(const std::string& key)
     }
 }
 
-
-void
-MHO_Snapshot::RemoveKey(const char* key)
+void MHO_Snapshot::RemoveKey(const char* key)
 {
     std::string tmp_key(key);
     auto iter = fKeys.find(tmp_key);
@@ -40,14 +35,12 @@ MHO_Snapshot::RemoveKey(const char* key)
     }
 }
 
-void
-MHO_Snapshot::RemoveAllKeys()
+void MHO_Snapshot::RemoveAllKeys()
 {
     fKeys.clear();
 }
 
-bool
-MHO_Snapshot::PassSnapshot(std::string key)
+bool MHO_Snapshot::PassSnapshot(std::string key)
 {
     if(fAcceptAllKeys)
     {
@@ -58,12 +51,12 @@ MHO_Snapshot::PassSnapshot(std::string key)
         fCurrentKeyIsAllowed = false;
         std::string tmp_key(key);
         auto iter = fKeys.find(tmp_key);
-        if(iter != fKeys.end()){fCurrentKeyIsAllowed = true;}
+        if(iter != fKeys.end())
+        {
+            fCurrentKeyIsAllowed = true;
+        }
         return fCurrentKeyIsAllowed;
     }
 }
 
-
-
-
-} //end of namespace
+} // namespace hops

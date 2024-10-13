@@ -1,42 +1,39 @@
 #ifndef MHO_LinearDParCorrection_HH__
 #define MHO_LinearDParCorrection_HH__
 
+#include <cctype>
 #include <cmath>
 #include <complex>
-#include <vector>
 #include <map>
-#include <cctype>
+#include <vector>
 
-#include "MHO_Message.hh"
 #include "MHO_Constants.hh"
+#include "MHO_Message.hh"
 
-#include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
+#include "MHO_TableContainer.hh"
 #include "MHO_UnaryOperator.hh"
 
 #include "MHO_Reducer.hh"
-
 
 namespace hops
 {
 
 /*!
-*@file MHO_LinearDParCorrection.hh
-*@class MHO_LinearDParCorrection
-*@author J. Barrett - barrettj@mit.edu
-*@date Wed Feb 7 23:58:10 2024 -0500
-*@brief
-*/
-
+ *@file MHO_LinearDParCorrection.hh
+ *@class MHO_LinearDParCorrection
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Wed Feb 7 23:58:10 2024 -0500
+ *@brief
+ */
 
 class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
 {
     public:
-
         MHO_LinearDParCorrection();
         virtual ~MHO_LinearDParCorrection();
 
-        void SetPolProductSet(std::vector< std::string >& pp_vec){ fPolProductSet = pp_vec;};
+        void SetPolProductSet(std::vector< std::string >& pp_vec) { fPolProductSet = pp_vec; };
 
         // //these data objects are not used yet, but could be needed if we want to apply
         // //time-dependence to the pol-product pre-factors
@@ -44,15 +41,15 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
         // void SetRemoteStationCoordinateData(station_coord_type* rem_data){fRemData = rem_data;};
 
         //parallactic angle values for each station (expects degrees)
-        void SetReferenceParallacticAngle(double p){fRefParAngle = p;}
-        void SetRemoteParallacticAngle(double p){fRemParAngle = p;}
+        void SetReferenceParallacticAngle(double p) { fRefParAngle = p; }
+
+        void SetRemoteParallacticAngle(double p) { fRemParAngle = p; }
 
         // //not currently used (but needed for circ-circ pol sum)
         // void SetReferenceMountType(std::string mt){fRefMountType = mt;}
         // void SetRemoteMountType(std::string mt){fRemMountType = mt;}
 
     protected:
-
         virtual bool InitializeInPlace(visibility_type* in) override;
         virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
@@ -60,12 +57,10 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
-
-
         //multiplies each pol product by the appropriate pre-factor
         void PreMultiply(visibility_type* in);
 
-        std::complex<double> GetPrefactor(std::string pp_label);
+        std::complex< double > GetPrefactor(std::string pp_label);
 
         std::vector< std::string > fPolProductSet;
 
@@ -73,11 +68,8 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
         double fRemParAngle;
         std::string fRefMountType;
         std::string fRemMountType;
-
 };
 
-
-}
-
+} // namespace hops
 
 #endif /*! end of include guard: MHO_LinearDParCorrection */

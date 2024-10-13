@@ -1,41 +1,36 @@
 #ifndef MHO_SamplerLabeler_HH__
 #define MHO_SamplerLabeler_HH__
 
-
-
-
-#include <string>
 #include <map>
 #include <stack>
+#include <string>
 
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
 
-#include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
+#include "MHO_TableContainer.hh"
 #include "MHO_UnaryOperator.hh"
 
 namespace hops
 {
 
 /*!
-*@file MHO_SamplerLabeler.hh
-*@class MHO_SamplerLabeler
-*@author J. Barrett - barrettj@mit.edu
-*@date Wed Dec 13 16:55:25 2023 -0500
-*@brief When the 'samplers' keyword is encountered, this operator loops
-* over all channels and inserts a label for each channel which contains the sampler index
-* associated with that channel. This can later be used to look up the station sampler delay (ambiguities)
-* for this channel by the pcal operators
-* e.g.:
-* samplers 4 abcdefgh ijklmnop qrstuvwx yzABCDEF
-*/
+ *@file MHO_SamplerLabeler.hh
+ *@class MHO_SamplerLabeler
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Wed Dec 13 16:55:25 2023 -0500
+ *@brief When the 'samplers' keyword is encountered, this operator loops
+ * over all channels and inserts a label for each channel which contains the sampler index
+ * associated with that channel. This can later be used to look up the station sampler delay (ambiguities)
+ * for this channel by the pcal operators
+ * e.g.:
+ * samplers 4 abcdefgh ijklmnop qrstuvwx yzABCDEF
+ */
 
-template< typename XArrayType >
-class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
+template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
 {
     public:
-
         MHO_SamplerLabeler()
         {
             fComma = ",";
@@ -46,13 +41,20 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
 
         virtual ~MHO_SamplerLabeler(){};
 
-        void SetReferenceStationSamplerChannelSets(const std::vector< std::string >& channel_sets){fRefSamplerChanSets = channel_sets;}
-        void SetRemoteStationSamplerChannelSets(const std::vector< std::string >& channel_sets){fRemSamplerChanSets = channel_sets;}
+        void SetReferenceStationSamplerChannelSets(const std::vector< std::string >& channel_sets)
+        {
+            fRefSamplerChanSets = channel_sets;
+        }
+
+        void SetRemoteStationSamplerChannelSets(const std::vector< std::string >& channel_sets)
+        {
+            fRemSamplerChanSets = channel_sets;
+        }
 
     protected:
+        virtual bool InitializeInPlace(XArrayType* in) override { return true; }
 
-        virtual bool InitializeInPlace(XArrayType* in) override {return true;}
-        virtual bool InitializeOutOfPlace(const XArrayType* /*!in*/, XArrayType* /*!out*/) override {return true;}
+        virtual bool InitializeOutOfPlace(const XArrayType* /*!in*/, XArrayType* /*!out*/) override { return true; }
 
         virtual bool ExecuteInPlace(XArrayType* in) override
         {
@@ -64,10 +66,10 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
             {
                 //need to retrieve the labels of each channel, then look up the
                 //sampler delay index using the map, and then insert that key:value pair
-                auto chan_axis_ptr = &( std::get<CHANNEL_AXIS>(*in) );
+                auto chan_axis_ptr = &(std::get< CHANNEL_AXIS >(*in));
                 std::size_t nchans = chan_axis_ptr->GetSize();
 
-                for(std::size_t ch=0; ch<nchans; ch++)
+                for(std::size_t ch = 0; ch < nchans; ch++)
                 {
                     std::string chan_label = "";
                     chan_axis_ptr->RetrieveIndexLabelKeyValue(ch, fChannelLabelKey, chan_label);
@@ -95,7 +97,6 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
         }
 
     private:
-
         //data maps channels to sampler
         std::vector< std::string > fRefSamplerChanSets;
         std::vector< std::string > fRemSamplerChanSets;
@@ -117,7 +118,7 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
                 std::vector< std::string > split_chans = SplitChannelLabels(chans);
                 for(auto it = split_chans.begin(); it != split_chans.end(); it++)
                 {
-                    chan2id[ *it ] = (int)sampler_id;
+                    chan2id[*it] = (int)sampler_id;
                 }
             }
         }
@@ -128,7 +129,7 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
             //we have two possibilities, either channels are delimited by ',' or
             //they are all single-char labels that are smashed together into a single string
 
-            if( (channels.find(',') != std::string::npos) )
+            if((channels.find(',') != std::string::npos))
             {
                 //found a comma, need to use the tokenizer
                 fTokenizer.SetDelimiter(fComma);
@@ -141,18 +142,15 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
             else
             {
                 //just split up the channels into individual characters
-                for(std::size_t i=0; i< channels.size(); i++)
+                for(std::size_t i = 0; i < channels.size(); i++)
                 {
-                    split_chans.push_back( std::string(1, channels[i]) );
+                    split_chans.push_back(std::string(1, channels[i]));
                 }
             }
             return split_chans;
         }
-
-
 };
 
-
-} //end of namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_SamplerLabeler_HH__ */

@@ -1,16 +1,15 @@
 #include "MHO_Message.hh"
 
-#include "MHO_JSONHeaderWrapper.hh"
-#include "MHO_FileKey.hh"
 #include "MHO_BinaryFileInterface.hh"
-#include "MHO_ContainerDictionary.hh"
 #include "MHO_ContainerDefinitions.hh"
+#include "MHO_ContainerDictionary.hh"
+#include "MHO_FileKey.hh"
+#include "MHO_JSONHeaderWrapper.hh"
 
 using namespace hops;
 
 //option parsing and help text library
 #include "CLI11.hpp"
-
 
 mho_json ConvertKey(const MHO_FileKey& key, const MHO_ContainerDictionary& cdict)
 {
@@ -37,21 +36,32 @@ int main(int argc, char** argv)
     CLI::App app{"hops2keys"};
 
     app.add_option("input,-i,--input-file", input_file, "name of the input (hops) file to be inspected")->required();
-    app.add_option("output,-o,--output-file", output_file, "optional name of the output file (default format: json), if not given, no output file will be created");
+    app.add_option("output,-o,--output-file", output_file,
+                   "optional name of the output file (default format: json), if not given, no output file will be created");
     app.add_flag("-d,--disable-dump", disable_dump, "do not dump the keys to stdout as semi-formatted ascii");
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
-    app.add_option("-p,--pretty-print", nspaces, "generates the json with indentations (soft tabs) consisting of the number of spaces specified, default (disabled)");
+    app.add_option(
+        "-p,--pretty-print", nspaces,
+        "generates the json with indentations (soft tabs) consisting of the number of spaces specified, default (disabled)");
 
     CLI11_PARSE(app, argc, argv);
 
     //clamp message level
-    if(message_level > 5){message_level = 5;}
-    if(message_level < -2){message_level = -2;}
+    if(message_level > 5)
+    {
+        message_level = 5;
+    }
+    if(message_level < -2)
+    {
+        message_level = -2;
+    }
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 
-
-    if(input_file == ""){msg_fatal("main", "input_file not set" << eom);}
+    if(input_file == "")
+    {
+        msg_fatal("main", "input_file not set" << eom);
+    }
 
     //the container dictionay lets us look the names of (known) file objects
     MHO_ContainerDictionary cdict;
@@ -62,14 +72,17 @@ int main(int argc, char** argv)
     bool result = false;
     bool is_index_file = false;
     std::string index_ext = ".index";
-    if(input_file.size() > 6 )
+    if(input_file.size() > 6)
     {
-        auto pos = input_file.find_last_of(index_ext) - (index_ext.size()-1);
+        auto pos = input_file.find_last_of(index_ext) - (index_ext.size() - 1);
         std::string tail = input_file.substr(pos);
-        if(tail == index_ext){is_index_file = true;}
+        if(tail == index_ext)
+        {
+            is_index_file = true;
+        }
     }
 
-    if(is_index_file )
+    if(is_index_file)
     {
         //key extraction from an index file is different b/c there are no objects to skip over
         result = inter.ExtractIndexFileObjectKeys(input_file, ikeys);
@@ -97,8 +110,14 @@ int main(int argc, char** argv)
 
         if(outFile.is_open())
         {
-            if(nspaces == 0){outFile << root;}
-            else{ outFile << root.dump(nspaces); }
+            if(nspaces == 0)
+            {
+                outFile << root;
+            }
+            else
+            {
+                outFile << root.dump(nspaces);
+            }
         }
         else
         {
@@ -112,20 +131,20 @@ int main(int argc, char** argv)
     {
         if(!disable_dump)
         {
-            std::cout<<"key:"<<std::endl;
+            std::cout << "key:" << std::endl;
             std::stringstream ss1;
             ss1 << std::hex << it->fSync;
-            std::cout<<"    sync: "<<ss1.str()<<std::endl;
+            std::cout << "    sync: " << ss1.str() << std::endl;
             std::stringstream ss2;
             ss2 << std::hex << it->fLabel;
-            std::cout<<"    label: "<<ss2.str()<<std::endl;
-            std::cout<<"    object uuid: "<<it->fObjectId.as_string()<<std::endl;
-            std::cout<<"    type uuid: "<<it->fTypeId.as_string()<<std::endl;
+            std::cout << "    label: " << ss2.str() << std::endl;
+            std::cout << "    object uuid: " << it->fObjectId.as_string() << std::endl;
+            std::cout << "    type uuid: " << it->fTypeId.as_string() << std::endl;
             std::string class_name = cdict.GetClassNameFromUUID(it->fTypeId);
-            std::cout<<"    class name: "<<class_name<<std::endl;
-            std::cout<<"    object name: "<<it->fName<<std::endl;
-            std::cout<<"    size (bytes): "<<it->fSize<<std::endl;
-            std::cout<<std::endl;
+            std::cout << "    class name: " << class_name << std::endl;
+            std::cout << "    object name: " << it->fName << std::endl;
+            std::cout << "    size (bytes): " << it->fSize << std::endl;
+            std::cout << std::endl;
         }
     }
 

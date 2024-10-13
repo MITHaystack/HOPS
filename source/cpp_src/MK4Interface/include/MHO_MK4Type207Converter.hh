@@ -9,8 +9,8 @@ extern "C"
 {
 #endif
 
-    #include "mk4_data.h"
-    #include "mk4_dfio.h"
+#include "mk4_data.h"
+#include "mk4_dfio.h"
 
 #ifndef HOPS3_USE_CXX
 }
@@ -19,7 +19,6 @@ extern "C"
 //include the mho_json library stuff through the header wrapper
 //that lives inc the utilities library
 #include "MHO_JSONHeaderWrapper.hh"
-
 
 namespace hops
 {
@@ -31,12 +30,12 @@ namespace hops
 **/
 
 /*! convert struct to JSON string
-* @param t pointer
-* @return JSON string
-*/
+ * @param t pointer
+ * @return JSON string
+ */
 
 mho_json convertToJSON(const type_207& t);
 
-}
+} // namespace hops
 
 #endif /*! end of include guard: MHO_MKType207Converter */

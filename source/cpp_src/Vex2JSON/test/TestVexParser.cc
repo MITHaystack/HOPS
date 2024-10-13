@@ -1,10 +1,9 @@
-#include <string>
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <string>
 
 #include "MHO_Message.hh"
 #include "MHO_VexParser.hh"
-
 
 using namespace hops;
 

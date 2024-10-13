@@ -1,12 +1,10 @@
 #ifndef JSON_WRAPPER_HH__
 #define JSON_WRAPPER_HH__
 
-
-
 #include "nlohmann/json.hpp"
 using mho_json = nlohmann::json;
 using mho_ordered_json = nlohmann::ordered_json;
-namespace nl=nlohmann;
+namespace nl = nlohmann;
 
 #include <sstream>
 #include <string>
@@ -14,44 +12,41 @@ namespace nl=nlohmann;
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
 
-
 namespace hops
 {
 
 /*!
-*@file MHO_JSONHeaderWrapper.hh
-*@class MHO_JSONHeaderWrapper
-*@date Thu May 27 13:13:02 2021 -0400
-*@brief
-*@author J. Barrett - barrettj@mit.edu
-*/
+ *@file MHO_JSONHeaderWrapper.hh
+ *@class MHO_JSONHeaderWrapper
+ *@date Thu May 27 13:13:02 2021 -0400
+ *@brief
+ *@author J. Barrett - barrettj@mit.edu
+ */
 
 //constructor is protected
 //this class is only intended to provide an interface that derived classes may inherit
 class MHO_JSONWrapper
 {
     protected:
-
         MHO_JSONWrapper(){};
-        MHO_JSONWrapper(const MHO_JSONWrapper& copy)
-        {
-            fObject = copy.fObject;
-        };
 
-        void SetObject(mho_json obj){fObject = obj;}
+        MHO_JSONWrapper(const MHO_JSONWrapper& copy) { fObject = copy.fObject; };
+
+        void SetObject(mho_json obj) { fObject = obj; }
 
     protected:
-
         mho_json fObject;
 
     public:
-
         virtual ~MHO_JSONWrapper(){};
 
         bool HasKey(const std::string& key) const
         {
             auto it = fObject.find(key);
-            if(it != fObject.end()){return true;}
+            if(it != fObject.end())
+            {
+                return true;
+            }
             return false;
         }
 
@@ -63,32 +58,33 @@ class MHO_JSONWrapper
 
         MHO_JSONWrapper& operator=(const MHO_JSONWrapper& rhs)
         {
-            if(this != &rhs){fObject = rhs.fObject;}
+            if(this != &rhs)
+            {
+                fObject = rhs.fObject;
+            }
             return *this;
         }
 
-        void Clear()
-        {
-            fObject.clear();
-        }
+        void Clear() { fObject.clear(); }
 
-        template< typename XValueType>
-        void Insert(const std::string& key, const XValueType& value)
+        template< typename XValueType > void Insert(const std::string& key, const XValueType& value)
         {
             //allow replacement of values
             fObject[key] = value;
         }
 
-        template< typename XValueType>
-        bool Retrieve(const std::string& key, XValueType& value) const
+        template< typename XValueType > bool Retrieve(const std::string& key, XValueType& value) const
         {
             auto iter = fObject.find(key);
-            if(iter == fObject.end()){return false;}
+            if(iter == fObject.end())
+            {
+                return false;
+            }
             mho_json test;
             test["test"] = value;
-            if( iter.value().type() ==  test.begin().value().type() )
+            if(iter.value().type() == test.begin().value().type())
             {
-                value = iter.value().get<XValueType>();
+                value = iter.value().get< XValueType >();
                 return true;
             }
             else
@@ -97,8 +93,7 @@ class MHO_JSONWrapper
             }
         }
 
-
-        std::vector<std::string> DumpKeys() const
+        std::vector< std::string > DumpKeys() const
         {
             std::vector< std::string > keys;
             for(auto iter = fObject.begin(); iter != fObject.end(); iter++)
@@ -113,30 +108,36 @@ class MHO_JSONWrapper
         {
             for(auto iter = fObject.begin(); iter != fObject.end(); iter++)
             {
-                std::cout<<iter.key()<<" : "<<iter.value()<<std::endl;
+                std::cout << iter.key() << " : " << iter.value() << std::endl;
             }
         }
 
         bool ContainsKey(const std::string& key) const
         {
             auto iter = fObject.find(key);
-            if(iter == fObject.end()){return false;}
-            else{return true;}
+            if(iter == fObject.end())
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 };
 
-
-
 //specialize for mho_json
-template<>
-inline bool MHO_JSONWrapper::Retrieve(const std::string& key, mho_json& value) const
+template<> inline bool MHO_JSONWrapper::Retrieve(const std::string& key, mho_json& value) const
 {
     auto iter = fObject.find(key);
-    if(iter == fObject.end()){return false;}
+    if(iter == fObject.end())
+    {
+        return false;
+    }
     value = fObject[key];
     return true;
 }
 
-}//end namespace
+} // namespace hops
 
 #endif /*! end of include guard: JSON_WRAPPER */

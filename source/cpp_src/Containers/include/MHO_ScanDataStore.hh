@@ -1,7 +1,6 @@
 #ifndef MHO_ScanDataStore_HH__
 #define MHO_ScanDataStore_HH__
 
-
 //global messaging util
 #include "MHO_Message.hh"
 
@@ -10,10 +9,9 @@
 
 //needed to read hops files and extract objects
 #include "MHO_ContainerDefinitions.hh"
-#include "MHO_ContainerStore.hh"
 #include "MHO_ContainerDictionary.hh"
 #include "MHO_ContainerFileInterface.hh"
-
+#include "MHO_ContainerStore.hh"
 
 namespace hops
 {
@@ -33,24 +31,30 @@ class MHO_ScanDataStore
         MHO_ScanDataStore();
         virtual ~MHO_ScanDataStore();
 
-        void SetDirectory(std::string dir){fDirectory = dir;};
-        bool Initialize(); //load the directory
-        bool IsValid(); //scan dir contains root file, and data
-        bool IsBaselinePresent(std::string bl) const; //check if a particular baseline is present in this scan
-        bool IsStationPresent(std::string st) const; //check if a particular station is present
-        bool IsFringePresent(std::string basename) const;//check if a fringe file is present
+        void SetDirectory(std::string dir) { fDirectory = dir; };
 
-        std::size_t GetNBaselines(){return fBaselineCodes.size();};
-        std::size_t GetNStations(){return fStationCodes.size();};
-        std::size_t GetNFringes(){return fFringeCodes.size();};
+        bool Initialize();                                //load the directory
+        bool IsValid();                                   //scan dir contains root file, and data
+        bool IsBaselinePresent(std::string bl) const;     //check if a particular baseline is present in this scan
+        bool IsStationPresent(std::string st) const;      //check if a particular station is present
+        bool IsFringePresent(std::string basename) const; //check if a fringe file is present
 
-        std::vector< std::string > GetBaselinesPresent() const {return fBaselineCodes;}
-        std::vector< std::string > GetStationsPresent() const { return fStationCodes;}
-        std::vector< std::string > GetFringesPresent() const {return fFringeCodes;}
+        std::size_t GetNBaselines() { return fBaselineCodes.size(); };
+
+        std::size_t GetNStations() { return fStationCodes.size(); };
+
+        std::size_t GetNFringes() { return fFringeCodes.size(); };
+
+        std::vector< std::string > GetBaselinesPresent() const { return fBaselineCodes; }
+
+        std::vector< std::string > GetStationsPresent() const { return fStationCodes; }
+
+        std::vector< std::string > GetFringesPresent() const { return fFringeCodes; }
 
         //retieve file data (root, baseline, station)
         mho_json GetRootFileData() const;
-        std::string GetRootFileBasename(){return fDirInterface.GetBasename(fRootFileName);}
+
+        std::string GetRootFileBasename() { return fDirInterface.GetBasename(fRootFileName); }
 
         //true if loaded, false if unsuccessful
         bool LoadBaseline(std::string baseline, MHO_ContainerStore* store);
@@ -68,7 +72,6 @@ class MHO_ScanDataStore
         void Clear();
 
     private:
-
         void DetermineRootFile();
         void MapBaselines();
         void MapStations();
@@ -103,8 +106,6 @@ class MHO_ScanDataStore
         std::map< std::string, MHO_ContainerStore* > fActiveFringeContainers;
 };
 
-
-}//end namespace
-
+} // namespace hops
 
 #endif /*! end of include guard: MHO_ScanDataStore_HH__ */

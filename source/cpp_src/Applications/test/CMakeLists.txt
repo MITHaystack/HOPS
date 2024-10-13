@@ -15,7 +15,15 @@ if(BASH_PROGRAM)
     if(PY_EXE)
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/compjson.py" "${CMAKE_CURRENT_BINARY_DIR}/compjson.py" @ONLY)
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/hopsobjdata.py" "${CMAKE_CURRENT_BINARY_DIR}/hopsobjdata.py" @ONLY)
-        list(APPEND TEST_SCRIPT_BASENAMES chk_convertvex2json chk_converthops2json chk_simplefringesearch3 chk_simplefringesearch4 chk_passband)
+        list(APPEND TEST_SCRIPT_BASENAMES 
+            chk_convertvex2json 
+            chk_converthops2json 
+            chk_simplefringesearch3 
+            chk_simplefringesearch4 
+            chk_passband 
+            chk_dsb1
+            chk_geomixedmode
+        )
     endif(PY_EXE)
 
     foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )

@@ -45,14 +45,12 @@ mho_json convertToJSON(const type_205 &t) {
   // so the following had to be done
   for (ffitChannel = 0; ffitChannel < NUMBEROFFFITCHAN; ffitChannel++) {
     JSONFfitChannels[ffitChannel] = {
-        {"unused", std::string(&(t.ffit_chan[ffitChannel].unused), 1).c_str()},
         {"ffit_chan_id",
          std::string(&(t.ffit_chan[ffitChannel].ffit_chan_id), 1).c_str()},
         {"channels", t.ffit_chan[ffitChannel].channels}};
   }
   return {{"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
-          {"unused1", std::string(t.unused1, 2).c_str()},
           {"utc_central", convertDateToJSON(t.utc_central)},
           {"offset", t.offset},
           {"ffmode", std::string(t.ffmode, 8).c_str()},
