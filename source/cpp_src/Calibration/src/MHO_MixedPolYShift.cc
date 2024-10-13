@@ -16,10 +16,13 @@ MHO_MixedPolYShift::~MHO_MixedPolYShift(){};
 
 bool MHO_MixedPolYShift::ExecuteInPlace(visibility_type* in)
 {
-    if(in == nullptr){return false;}
+    if(in == nullptr)
+    {
+        return false;
+    }
 
-    auto pp_ax = &(std::get<POLPROD_AXIS>(*in));
-    auto chan_ax = &(std::get<CHANNEL_AXIS>(*in));
+    auto pp_ax = &(std::get< POLPROD_AXIS >(*in));
+    auto chan_ax = &(std::get< CHANNEL_AXIS >(*in));
 
     //loop over reference (0) and remote (1) stations
     for(std::size_t st_idx = 0; st_idx < 2; st_idx++)
@@ -29,16 +32,16 @@ bool MHO_MixedPolYShift::ExecuteInPlace(visibility_type* in)
         {
             in->Retrieve(fRefStationKey, station);
         }
-        else 
+        else
         {
             in->Retrieve(fRemStationKey, station);
         }
 
         //loop over available pol products
-        for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
+        for(std::size_t pp = 0; pp < pp_ax->GetSize(); pp++)
         {
             std::string polprod = pp_ax->at(pp);
-            if( IsApplicable(st_idx, polprod) ) //iff we have mixed pol, and this station is the linear pol station
+            if(IsApplicable(st_idx, polprod)) //iff we have mixed pol, and this station is the linear pol station
             {
                 //see c-code precorrect.c file for original implementation
                 visibility_element_type shift_phasor = std::exp(fImagUnit * fYPolPhaseOffset * fDegToRad);
@@ -48,7 +51,7 @@ bool MHO_MixedPolYShift::ExecuteInPlace(visibility_type* in)
                     shift_phasor = std::conj(shift_phasor);
                 } //conjugate for refrence station
 
-                msg_debug("calibration", "adding -90 deg static pc_offset for RY/YR data of station: "<< station << eom );
+                msg_debug("calibration", "adding -90 deg static pc_offset for RY/YR data of station: " << station << eom);
 
                 //TODO...we could attach info about this operator being applied to this entry on the pol-product axis
 
@@ -85,14 +88,20 @@ bool MHO_MixedPolYShift::ExecuteOutOfPlace(const visibility_type* in, visibility
 bool MHO_MixedPolYShift::IsApplicable(std::size_t st_idx, std::string polprod)
 {
     //determine if this pol-product is a mixed linear/circular polarization product
-    if(polprod.size() == 2 && IsMixedLinCirc(polprod) )
+    if(polprod.size() == 2 && IsMixedLinCirc(polprod))
     {
         //ok, we have a mixed-linear/circular pol-product
         //now we have to check if one of the station pols is 'Y'
-        std::string ref_pol = std::string(1,polprod[0]);
-        std::string rem_pol = std::string(1,polprod[1]);
-        if( ref_pol == "Y" && st_idx == 0 ){return true;} //apply to reference station
-        if( rem_pol == "Y" && st_idx == 1 ){return true;} //apply to remote station
+        std::string ref_pol = std::string(1, polprod[0]);
+        std::string rem_pol = std::string(1, polprod[1]);
+        if(ref_pol == "Y" && st_idx == 0)
+        {
+            return true;
+        } //apply to reference station
+        if(rem_pol == "Y" && st_idx == 1)
+        {
+            return true;
+        } //apply to remote station
     }
     return false;
 }
@@ -112,15 +121,25 @@ bool MHO_MixedPolYShift::IsMixedLinCirc(std::string polprod) const
     bool has_circ = false;
     bool has_lin = false;
     //look for circular pol labels
-    if(polprod.find("R") != std::string::npos){has_circ = true;}
-    if(polprod.find("L") != std::string::npos){has_circ = true;} //LCP has never been tested!
+    if(polprod.find("R") != std::string::npos)
+    {
+        has_circ = true;
+    }
+    if(polprod.find("L") != std::string::npos)
+    {
+        has_circ = true;
+    } //LCP has never been tested!
     //look for linear pol labels...Y/X (H/V have never been tested/used)
-    if(polprod.find("Y") != std::string::npos){has_lin = true;}
-    if(polprod.find("X") != std::string::npos){has_lin = true;}
+    if(polprod.find("Y") != std::string::npos)
+    {
+        has_lin = true;
+    }
+    if(polprod.find("X") != std::string::npos)
+    {
+        has_lin = true;
+    }
     //if both are true, we have a mixed linear/circular pol-product
     return (has_circ && has_lin);
 }
-
-
 
 } // namespace hops

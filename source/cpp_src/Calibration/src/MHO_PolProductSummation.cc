@@ -27,7 +27,7 @@ bool MHO_PolProductSummation::ExecuteInPlace(visibility_type* in)
     // (*fWeights) *= 1.0/n_polprod;
     fWeights->Insert("n_summed_polprod", n_polprod);
 
-    msg_debug("calibration", "executed pol-product summation on: "<<n_polprod<< " pol-products" << eom);
+    msg_debug("calibration", "executed pol-product summation on: " << n_polprod << " pol-products" << eom);
 
     return ok && wok;
 }
@@ -190,7 +190,7 @@ std::complex< double > MHO_PolProductSummation::GetPrefactor(std::string pp_labe
 
 void MHO_PolProductSummation::FixLabels(visibility_type* in)
 {
-    msg_debug("calibration", "pol-product summation produced the combination: "<< fSummedPolProdLabel << eom);
+    msg_debug("calibration", "pol-product summation produced the combination: " << fSummedPolProdLabel << eom);
     (&(std::get< POLPROD_AXIS >(*in)))->at(0) = fSummedPolProdLabel;
 }
 

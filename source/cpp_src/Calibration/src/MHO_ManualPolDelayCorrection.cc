@@ -46,7 +46,7 @@ bool MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
                 {
                     std::string delay_offset_key;
                     //get the polarization for the appropriate station (ref/rem)
-                    std::string pol_code = std::string(1, pp_label[st_idx]); 
+                    std::string pol_code = std::string(1, pp_label[st_idx]);
                     if(st_idx == 0)
                     {
                         delay_offset_key = "ref_delayoff_";
@@ -72,17 +72,23 @@ bool MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
 
                         double chan_freq = chan_ax->at(ch);
                         //is this strictly correct?...this ignores slope across channel width
-                        double deltaf = fMHzToHz * (chan_freq - fRefFreq); 
+                        double deltaf = fMHzToHz * (chan_freq - fRefFreq);
                         //consider this alternative...where the channel mid-point (not edge) is the reference point
                         // double sb_sign = 1.0;
                         // if(net_sideband == "L"){sb_sign = -1.0;}
-                        // double deltaf = fMHzToHz * ( (chan_freq + sb_sign*bw/2.0) - fRefFreq); 
+                        // double deltaf = fMHzToHz * ( (chan_freq + sb_sign*bw/2.0) - fRefFreq);
                         double theta = 2.0 * fPi * deltaf * delay;
                         visibility_element_type pc_phasor = std::exp(fImagUnit * theta);
 
                         //conjugate phases for LSB data, but not for USB
-                        if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
-                        if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
+                        if(net_sideband == fLowerSideband)
+                        {
+                            pc_phasor = std::conj(pc_phasor);
+                        } //conjugate phase for LSB data
+                        if(st_idx == 0)
+                        {
+                            pc_phasor = std::conj(pc_phasor);
+                        } //conjugate phase for reference station offset
 
                         //retrieve and multiply the appropriate sub view of the visibility array
                         auto chunk = in->SubView(pp, ch);
