@@ -1,4 +1,5 @@
 #include "MHO_StationDelayCorrection.hh"
+#include <math.h>
 
 namespace hops
 {
@@ -56,8 +57,7 @@ bool MHO_StationDelayCorrection::ExecuteInPlace(visibility_type* in)
                     // if(net_sideband == "L"){sb_sign = -1.0;}
                     // double deltaf = fMHzToHz * ( (chan_freq + sb_sign*bw/2.0) - fRefFreq); 
                     double theta = 2.0 * fPi * deltaf * delay;
-                    visibility_element_type pc_phasor = std::exp(fImagUnit * theta);
-
+                    std::complex<double> pc_phasor = std::exp(fImagUnit * theta);
                     //conjugate phases for LSB data, but not for USB
                     if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
                     if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
@@ -108,6 +108,7 @@ bool MHO_StationDelayCorrection::IsApplicable(std::size_t st_idx, const visibili
         in->Retrieve(mk4id_key, val);
         if(fStationIdentity == val || fStationIdentity == "?")
         {
+            msg_debug("calibration", "applying a station delay correction to station: "<< val << eom );
             apply_correction = true;
         }
     }
@@ -117,6 +118,7 @@ bool MHO_StationDelayCorrection::IsApplicable(std::size_t st_idx, const visibili
         in->Retrieve(station_code_key, val);
         if(fStationIdentity == val || fStationIdentity == "??")
         {
+            msg_debug("calibration", "applying a station delay correction to station: "<< val << eom );
             apply_correction = true;
         }
     }
