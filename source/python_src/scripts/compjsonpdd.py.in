@@ -40,7 +40,7 @@ def main():
         'SNR': 'float',
         'IntgTime':'float',
         'Amp':'float',
-        'ResPhase':'float',
+        'ResPhase':'phase_float',
         #'PFD':'float',
         'ResidSbd(us)':'float',
         'ResidMbd(us)':'float',
@@ -61,7 +61,7 @@ def main():
         'SbandDelay(usec)':'float',
         #'DelayRate(ps/s)':'float', -- something is wrong with this one in pdd file, should be total delay rate, but it is residual delay rate
         'PhaseDelay(usec)':'float',
-        'TotalPhase(deg)':'float',
+        'TotalPhase(deg)':'phase_float',
         'AprioriClock(usec)':'float',
         'AprioriClockrate(us/s)':'float',
         'AprioriDelay(usec)':'float',
@@ -71,12 +71,12 @@ def main():
         'ResidSbdelay(usec)':'float',
         'ResidPhdelay(usec)':'float',
         'ResidRate(us/s)':'float',
-        'ResidPhase(deg)':'float',
+        'ResidPhase(deg)':'phase_float',
         'ResidMbdelayError(usec)':'float',
         'ResidSbdelayError(usec)':'float',
         'ResidPhdelayError(usec)':'float',
         'ResidRateError(us/s)':'float',
-        'ResidPhaseError(deg)':'float'
+        'ResidPhaseError(deg)':'phase_float'
     }
 
     #the name of the total group delay parameter changes depending on whether or not 'mbd_anchor sbd'
@@ -128,6 +128,23 @@ def main():
                 bad_count += 1
                 bad_keys.append(k)
 
+        if t == 'phase_float':
+            if(k in j1 and k in j2):
+                val1 = float(j1[k])
+                val2 = float(j2[k])
+                delta = val1 - val2
+                print(k, t, " : percent difference: ", (delta/360.0)*100 )
+                if math.fabs(delta/360.0)*100 > rel_percent_error:
+                    print(k, ": ", val1, " not close enough to: ", val2)
+                    bad_count += 1
+                    bad_keys.append(k)
+            else:
+                if( not k in j1):
+                    print("missing ", k, " in ", f1_name)
+                if(not k in j2):
+                    print("missing ", k , " in ", f2_name)
+                bad_count += 1
+                bad_keys.append(k)
 
     for k,t in optional_key_type_dict.items():
         if t == 'string':
