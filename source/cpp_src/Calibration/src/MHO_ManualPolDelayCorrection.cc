@@ -73,8 +73,8 @@ bool MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
                         //consider this alternative...where the channel mid-point (not edge) is the reference point
                         // double bw = 0;
                         // bool has_bandwidth = chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bw);
-                        // std::string net_sideband;
-                        // bool has_sideband = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+                        std::string net_sideband;
+                        bool has_sideband = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
                         // double sb_sign = 1.0;
                         // if(net_sideband == "L"){sb_sign = -1.0;}
                         // 
@@ -97,15 +97,15 @@ bool MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
 
                         // std::string net_sideband = "?";
                         // bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
-                        // //conjugate phases for LSB data, but not for USB
-                        // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
-                        // if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
+                        //conjugate phases for LSB data, but not for USB
+                        if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
+                        if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
 
-                        //first impl behavior...working for EHT test case, but not checked everywhere
-                        if(st_idx == 1)
-                        {
-                            pc_phasor = std::conj(pc_phasor);
-                        } //conjugate for remote but not reference station
+                        // //first impl behavior...working for EHT test case, but not checked everywhere
+                        // if(st_idx == 1)
+                        // {
+                        //     pc_phasor = std::conj(pc_phasor);
+                        // } //conjugate for remote but not reference station
 
                         //retrieve and multiply the appropriate sub view of the visibility array
                         auto chunk = in->SubView(pp, ch);
