@@ -18,6 +18,7 @@
 #include "MHO_SamplerLabelerBuilder.hh"
 #include "MHO_LSBOffsetBuilder.hh"
 #include "MHO_MixedPolYShiftBuilder.hh"
+#include "MHO_StationDelayCorrectionBuilder.hh"
 
 namespace hops
 {
@@ -52,6 +53,9 @@ void MHO_OperatorBuilderManager::CreateDefaultBuilders()
     AddBuilderType< MHO_ManualPolDelayCorrectionBuilder >("pc_delay_y", "pc_delay_y");
     AddBuilderType< MHO_ManualPolDelayCorrectionBuilder >("pc_delay_r", "pc_delay_r");
     AddBuilderType< MHO_ManualPolDelayCorrectionBuilder >("pc_delay_l", "pc_delay_l");
+    
+    //station delay correction 
+    AddBuilderType< MHO_StationDelayCorrectionBuilder >("station_delay", "station_delay");
 
     //double-sideband specific operators 
     AddBuilderType< MHO_LSBOffsetBuilder >("lsb_offset", "lsb_offset");
