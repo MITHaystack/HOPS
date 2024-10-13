@@ -238,7 +238,7 @@ bool MHO_DataSelectionBuilder::Build()
             std::size_t naps = ap_ax_ptr->GetSize();
             double first_t = ap_ax_ptr->at(0);
             double last_t = ap_ax_ptr->at(naps - 1);
-            //Note: The stop/start parameters are passed as integers (n seconds), 
+            //Note: The stop/start parameters are passed as integers (n seconds),
             //which works fine for 1 sec APs, but
             //for smaller APs maybe we should pass them as floats?
             for(std::size_t i = 0; i < naps; i++)

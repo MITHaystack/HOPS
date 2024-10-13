@@ -18,7 +18,7 @@ class MHO_StationDelayCorrectionBuilder: public MHO_OperatorBuilder
 {
     public:
         MHO_StationDelayCorrectionBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
-                                            MHO_ParameterStore* pstore = nullptr)
+                                          MHO_ParameterStore* pstore = nullptr)
             : MHO_OperatorBuilder(toolbox, cstore, pstore){};
 
         virtual ~MHO_StationDelayCorrectionBuilder(){};

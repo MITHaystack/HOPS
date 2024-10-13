@@ -5,19 +5,19 @@
 #include "MHO_CircularFieldRotationBuilder.hh"
 #include "MHO_DCBlockBuilder.hh"
 #include "MHO_DataSelectionBuilder.hh"
+#include "MHO_LSBOffsetBuilder.hh"
 #include "MHO_LinearDParCorrectionBuilder.hh"
 #include "MHO_ManualChannelDelayCorrectionBuilder.hh"
 #include "MHO_ManualChannelPhaseCorrectionBuilder.hh"
 #include "MHO_ManualPolDelayCorrectionBuilder.hh"
 #include "MHO_ManualPolPhaseCorrectionBuilder.hh"
 #include "MHO_MinWeightBuilder.hh"
+#include "MHO_MixedPolYShiftBuilder.hh"
 #include "MHO_MultitonePhaseCorrectionBuilder.hh"
 #include "MHO_NotchesBuilder.hh"
 #include "MHO_PassbandBuilder.hh"
 #include "MHO_PolProductSummationBuilder.hh"
 #include "MHO_SamplerLabelerBuilder.hh"
-#include "MHO_LSBOffsetBuilder.hh"
-#include "MHO_MixedPolYShiftBuilder.hh"
 #include "MHO_StationDelayCorrectionBuilder.hh"
 
 namespace hops
@@ -53,14 +53,14 @@ void MHO_OperatorBuilderManager::CreateDefaultBuilders()
     AddBuilderType< MHO_ManualPolDelayCorrectionBuilder >("pc_delay_y", "pc_delay_y");
     AddBuilderType< MHO_ManualPolDelayCorrectionBuilder >("pc_delay_r", "pc_delay_r");
     AddBuilderType< MHO_ManualPolDelayCorrectionBuilder >("pc_delay_l", "pc_delay_l");
-    
-    //station delay correction 
+
+    //station delay correction
     AddBuilderType< MHO_StationDelayCorrectionBuilder >("station_delay", "station_delay");
 
-    //double-sideband specific operators 
+    //double-sideband specific operators
     AddBuilderType< MHO_LSBOffsetBuilder >("lsb_offset", "lsb_offset");
-    
-    //special mixed-linear/circular pol operator 
+
+    //special mixed-linear/circular pol operator
     AddBuilderType< MHO_MixedPolYShiftBuilder >("mixed_pol_yshift90", "mixed_pol_yshift90");
 
     //flagging operators

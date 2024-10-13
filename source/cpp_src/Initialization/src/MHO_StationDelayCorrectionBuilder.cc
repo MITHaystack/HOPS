@@ -42,8 +42,7 @@ bool MHO_StationDelayCorrectionBuilder::Build()
         op->SetName(op_name);
         op->SetPriority(priority);
 
-        msg_debug("initialization",
-                  "creating operator: " << op_name << " for station: " << station_id << eom);
+        msg_debug("initialization", "creating operator: " << op_name << " for station: " << station_id << eom);
 
         bool replace_duplicates = false;
         this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
