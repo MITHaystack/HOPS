@@ -32,8 +32,8 @@ echo "output file: $output_file"
 hops2json ${output_file}
 
 #use jq (json query) to extract the plot_data element and pipe to file
-echo "jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" | tee ./fdump.json"
-jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" | tee ./fdump.json
+echo "jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > tee ./fdump.json"
+jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > ./fdump.json
 
 
 echo "Running: fourfit3 -m 4 -c ./test0.cf -b AS -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk3 "

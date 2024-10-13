@@ -2,13 +2,10 @@
 #include <string>
 
 #include "MHO_Axis.hh"
-#include "MHO_BinaryFileStreamer.hh"
 #include "MHO_BinaryFileInterface.hh"
-
+#include "MHO_BinaryFileStreamer.hh"
 
 using namespace hops;
-
-
 
 int main(int /*argc*/, char** /*argv*/)
 {
@@ -17,19 +14,19 @@ int main(int /*argc*/, char** /*argv*/)
 
     size_t dim = 100;
 
-    MHO_Axis<double>* test = new MHO_Axis<double>(dim);
+    MHO_Axis< double >* test = new MHO_Axis< double >(dim);
 
-    std::cout<<"dimension @ 0 ="<<test->GetDimension(0)<<std::endl;
-    std::cout<<"total array size = "<<test->GetSize()<<std::endl;
+    std::cout << "dimension @ 0 =" << test->GetDimension(0) << std::endl;
+    std::cout << "total array size = " << test->GetSize() << std::endl;
 
     double* data = test->GetData();
 
-    for(unsigned int i=0; i<dim; i++)
+    for(unsigned int i = 0; i < dim; i++)
     {
-        data[i] = (double)i  + 0.1;
+        data[i] = (double)i + 0.1;
     }
 
-    std::cout<<"data @ 3 = "<<(*test)(3)<<std::endl;
+    std::cout << "data @ 3 = " << (*test)(3) << std::endl;
 
     // MHO_IntervalLabel label1(0,4);
     // MHO_IntervalLabel label2(4,6);
@@ -58,12 +55,12 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::string filename = "./test-axis.bin";
 
-    std::cout<<" class name: "<< MHO_ClassIdentity::ClassName(*test) <<std::endl;
+    std::cout << " class name: " << MHO_ClassIdentity::ClassName(*test) << std::endl;
 
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(filename);
 
-    std::cout<<"size in bytes of the object: "<<test->GetSerializedSize()<<std::endl;
+    std::cout << "size in bytes of the object: " << test->GetSerializedSize() << std::endl;
 
     if(status)
     {
@@ -72,16 +69,16 @@ int main(int /*argc*/, char** /*argv*/)
     }
     else
     {
-        std::cout<<"error opening file"<<std::endl;
+        std::cout << "error opening file" << std::endl;
     }
 
     inter.Close();
 
     delete test;
 
-    MHO_Axis<double>* test2 = new MHO_Axis<double>();
+    MHO_Axis< double >* test2 = new MHO_Axis< double >();
 
-    std::cout<<"-------- Now testing read back of object --------- "<<std::endl;
+    std::cout << "-------- Now testing read back of object --------- " << std::endl;
 
     status = inter.OpenToRead(filename);
     if(status)
@@ -89,7 +86,7 @@ int main(int /*argc*/, char** /*argv*/)
         MHO_FileKey key;
         inter.Read(*test2, key);
         //std::cout<<"object label = "<<blabel<<std::endl;
-        std::cout<<"data @ 3 = "<<(*test2)(3)<<std::endl;
+        std::cout << "data @ 3 = " << (*test2)(3) << std::endl;
 
         // auto label_vec1 = test2->GetIntervalsWhichIntersect(5);
         // for(auto iter = label_vec1.begin(); iter != label_vec1.end(); iter++)
@@ -99,11 +96,10 @@ int main(int /*argc*/, char** /*argv*/)
         //     iter->DumpMap<std::string>();
         //     iter->DumpMap<int>();
         // }
-
     }
     else
     {
-        std::cout<<" error opening file to read"<<std::endl;
+        std::cout << " error opening file to read" << std::endl;
     }
 
     inter.Close();

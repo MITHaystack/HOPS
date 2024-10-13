@@ -1,25 +1,24 @@
 #ifndef MHO_BitReversalPermutation_HH__
 #define MHO_BitReversalPermutation_HH__
 
-
 #include <cstddef>
 
 #define USE_STDALGO_SWAP
 
 #ifdef USE_STDALGO_SWAP
-#include <algorithm>
+    #include <algorithm>
 #endif
 
 namespace hops
 {
 
 /*!
-*@file MHO_BitReversalPermutation.hh
-*@class MHO_BitReversalPermutation
-*@date Fri Oct 23 12:02:01 2020 -0400
-*@brief bit reversal permutation function for power-of-two FFTs
-*@author J. Barrett - barrettj@mit.edu
-*/
+ *@file MHO_BitReversalPermutation.hh
+ *@class MHO_BitReversalPermutation
+ *@date Fri Oct 23 12:02:01 2020 -0400
+ *@brief bit reversal permutation function for power-of-two FFTs
+ *@author J. Barrett - barrettj@mit.edu
+ */
 
 class MHO_BitReversalPermutation
 {
@@ -41,64 +40,62 @@ class MHO_BitReversalPermutation
         static void ComputeBitReversedIndicesBaseTwo(unsigned int N, unsigned int* index_arr);
 
         //non-strided data access pattern
-        template<typename DataType >
+        template< typename DataType >
         static void PermuteArray(unsigned int N, const unsigned int* permutation_index_arr, DataType* arr)
         {
             //expects an array of size N
             DataType val;
-            for(unsigned int i=0; i<N; i++)
+            for(unsigned int i = 0; i < N; i++)
             {
                 unsigned int perm = permutation_index_arr[i];
-                if(i < perm )
+                if(i < perm)
                 {
-                    //swap values
-                    #ifdef USE_STDALGO_SWAP
+//swap values
+#ifdef USE_STDALGO_SWAP
                     std::swap(arr[i], arr[perm]);
-                    #else
+#else
                     val = arr[i];
-                    arr[i] = arr[ perm];
+                    arr[i] = arr[perm];
                     arr[perm] = val;
-                    #endif
+#endif
                 }
             }
         }
 
         //strided data access version
-        template<typename DataType >
+        template< typename DataType >
         static void PermuteArray(unsigned int N, const unsigned int* permutation_index_arr, DataType* arr, unsigned int stride)
         {
             //expects an array of size N
             DataType val;
-            for(unsigned int i=0; i<N; i++)
+            for(unsigned int i = 0; i < N; i++)
             {
                 unsigned int perm = permutation_index_arr[i];
-                if(i < perm )
+                if(i < perm)
                 {
-                    //swap values
-                    #ifdef USE_STDALGO_SWAP
-                    std::swap(arr[i*stride], arr[perm*stride]);
-                    #else
-                    val = arr[i*stride];
-                    arr[i*stride] = arr[ perm*stride ];
-                    arr[perm*stride] = val;
-                    #endif
+//swap values
+#ifdef USE_STDALGO_SWAP
+                    std::swap(arr[i * stride], arr[perm * stride]);
+#else
+                    val = arr[i * stride];
+                    arr[i * stride] = arr[perm * stride];
+                    arr[perm * stride] = val;
+#endif
                 }
             }
         }
 
-
-
         //non-strided data access pattern
         //branch free (this is actually slower on CPU, but we preserve it here for comparison as this method is used on GPU)
-        template<typename DataType >
+        template< typename DataType >
         static void PermuteArrayBranchFree(unsigned int N, const unsigned int* permutation_index_arr, DataType* arr)
         {
-            DataType a,b;
+            DataType a, b;
             //expects an array of size N
             unsigned int perm;
             typename DataType::value_type do_swap;
             typename DataType::value_type sgn;
-            for(unsigned int i=0; i<N; i++)
+            for(unsigned int i = 0; i < N; i++)
             {
                 perm = permutation_index_arr[i];
                 do_swap = (i < perm);
@@ -106,9 +103,9 @@ class MHO_BitReversalPermutation
                 a = arr[i];
                 b = arr[perm];
 
-                a = a + do_swap*b;
-                b = do_swap*a - sgn*b;
-                a = a - do_swap*b;
+                a = a + do_swap * b;
+                b = do_swap * a - sgn * b;
+                a = a - do_swap * b;
 
                 arr[i] = a;
                 arr[perm] = b;
@@ -117,36 +114,36 @@ class MHO_BitReversalPermutation
 
         //strided data access version
         //branch free (this is actually slower on CPU, but we preserve it here for comparison as this method is used on GPU)
-        template<typename DataType >
-        static void PermuteArrayBranchFree(unsigned int N, const unsigned int* permutation_index_arr, DataType* arr, unsigned int stride)
+        template< typename DataType >
+        static void PermuteArrayBranchFree(unsigned int N, const unsigned int* permutation_index_arr, DataType* arr,
+                                           unsigned int stride)
         {
-            DataType a,b;
+            DataType a, b;
             //expects an array of size N
             unsigned int perm;
             typename DataType::value_type do_swap;
             typename DataType::value_type sgn;
-            for(unsigned int i=0; i<N; i++)
+            for(unsigned int i = 0; i < N; i++)
             {
 
                 perm = permutation_index_arr[i];
                 do_swap = (i < perm);
                 sgn = (i < perm) - (i >= perm);
-                a = arr[i*stride];
-                b = arr[perm*stride];
+                a = arr[i * stride];
+                b = arr[perm * stride];
 
-                a = a + do_swap*b;
-                b = do_swap*a - sgn*b;
-                a = a - do_swap*b;
+                a = a + do_swap * b;
+                b = do_swap * a - sgn * b;
+                a = a - do_swap * b;
 
-                arr[i*stride] = a;
-                arr[perm*stride] = b;
+                arr[i * stride] = a;
+                arr[perm * stride] = b;
             }
         }
 
     private:
 };
 
-}
-
+} // namespace hops
 
 #endif /*! MHO_BitReversalPermutation_H__ */

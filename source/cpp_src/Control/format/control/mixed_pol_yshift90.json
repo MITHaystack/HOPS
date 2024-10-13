@@ -1,5 +1,7 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
-    "type": "unknown"
+    "name": "mixed_pol_yshift90",
+    "statement_type": "operator",
+    "operator_category" : "calibration",
+    "type": "bool",
+    "priority": 3.5
 }

@@ -1,5 +1,5 @@
-#include "MHO_Message.hh"
 #include "MHO_FastFourierTransform.hh"
+#include "MHO_Message.hh"
 #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
 
 #include <cmath>
@@ -9,9 +9,8 @@
 using namespace hops;
 
 typedef double FPTYPE;
-#define ARRAY_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 2 >
-#define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<ARRAY_TYPE>
-
+#define ARRAY_TYPE MHO_NDArrayWrapper< std::complex< FPTYPE >, 2 >
+#define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW< ARRAY_TYPE >
 
 #define PRINT_DETAIL
 
@@ -22,22 +21,22 @@ int main(int /*argc*/, char** /*argv*/)
 
     ARRAY_TYPE input(dim_size);
 
-    input(0,0) = std::complex<double>(1.0, 0.);
-    input(1,0) = std::complex<double>(1.0, 0.);
-    input(2,0) = std::complex<double>(1.0, 0.);
-    input(3,0) = std::complex<double>(1.0, 0.);
+    input(0, 0) = std::complex< double >(1.0, 0.);
+    input(1, 0) = std::complex< double >(1.0, 0.);
+    input(2, 0) = std::complex< double >(1.0, 0.);
+    input(3, 0) = std::complex< double >(1.0, 0.);
 
     //fill up the array with a signal
     int count = 0;
 
-    #ifdef PRINT_DETAIL
+#ifdef PRINT_DETAIL
     std::cout << "original data = " << std::endl;
-    #endif
-    for (size_t i = 0; i < dim_size[0]; i++)
+#endif
+    for(size_t i = 0; i < dim_size[0]; i++)
     {
-        for (size_t j = 0; j < dim_size[1]; j++)
+        for(size_t j = 0; j < dim_size[1]; j++)
         {
-                std::cout << input(i,j) << ", ";
+            std::cout << input(i, j) << ", ";
         }
         std::cout << std::endl;
     }
@@ -52,37 +51,40 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->Initialize();
     fft_engine->Execute();
 
-    #ifdef PRINT_DETAIL
+#ifdef PRINT_DETAIL
     std::cout << "DFT of data = " << std::endl;
-    for (size_t i = 0; i < dim_size[0]; i++)
+    for(size_t i = 0; i < dim_size[0]; i++)
     {
-        for (size_t j = 0; j < dim_size[1]; j++)
+        for(size_t j = 0; j < dim_size[1]; j++)
         {
-                std::cout << input(i,j) << ", ";
+            std::cout << input(i, j) << ", ";
         }
         std::cout << std::endl;
     }
-    #endif
+#endif
 
     std::cout << "--------------------------------------------------------------" << std::endl;
     double delta = 0.0;
-    std::complex<double> expected;
+    std::complex< double > expected;
 
-    for (size_t i = 0; i < dim_size[0]; i++)
+    for(size_t i = 0; i < dim_size[0]; i++)
     {
-        expected = std::complex<double>(0.0, 0.0);
-        if(i == 0){expected = std::complex<double>(4.0, 0.0);}
-        for (size_t j = 0; j < dim_size[1]; j++)
+        expected = std::complex< double >(0.0, 0.0);
+        if(i == 0)
         {
-            std::complex<double> val = input(i,j);
+            expected = std::complex< double >(4.0, 0.0);
+        }
+        for(size_t j = 0; j < dim_size[1]; j++)
+        {
+            std::complex< double > val = input(i, j);
             delta += std::abs(val - expected);
         }
     }
 
-    std::cout<<"delta = "<<delta<<std::endl;
+    std::cout << "delta = " << delta << std::endl;
 
     double tol = 1e-15;
-    HOPS_ASSERT_FLOAT_LESS_THAN(delta,tol);
+    HOPS_ASSERT_FLOAT_LESS_THAN(delta, tol);
 
     delete fft_engine;
 

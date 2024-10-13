@@ -10,10 +10,9 @@ namespace hops
 {
 
 //write data objects to output file...perhaps we may want to move this elsewhere?
-int
-MHO_FringeData::WriteOutput()
+int MHO_FringeData::WriteOutput()
 {
-    std::string directory = fParameterStore.GetAs<std::string>("/files/directory");
+    std::string directory = fParameterStore.GetAs< std::string >("/files/directory");
     directory = MHO_DirectoryInterface::GetDirectoryFullPath(directory);
 
     MHO_UUIDGenerator gen;
@@ -34,12 +33,30 @@ MHO_FringeData::WriteOutput()
     bool ok5 = fParameterStore.Get("/config/reference_station", ref_code);
     bool ok6 = fParameterStore.Get("/config/remote_station", rem_code);
 
-    if(!ok1){baseline = "??";}
-    if(!ok2){root_code = "XXXXXX";}
-    if(!ok3){frequency_group = "X";}
-    if(!ok4){polprod = "?";}
-    if(!ok5){ref_code = "??";}
-    if(!ok6){rem_code = "??";}
+    if(!ok1)
+    {
+        baseline = "??";
+    }
+    if(!ok2)
+    {
+        root_code = "XXXXXX";
+    }
+    if(!ok3)
+    {
+        frequency_group = "X";
+    }
+    if(!ok4)
+    {
+        polprod = "?";
+    }
+    if(!ok5)
+    {
+        ref_code = "??";
+    }
+    if(!ok6)
+    {
+        rem_code = "??";
+    }
 
     //write out the data to disk (don't bother waiting for a directory write lock)
     //because we are going to write it to a unique temporary name
@@ -48,7 +65,8 @@ MHO_FringeData::WriteOutput()
     //ideally this should reduce the amount of time each independent process waits to access the directory
     //since they can write in parallel and only need to queue up to rename their files
 
-    std::string temp_name = ConstructTempFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, temp_id);
+    std::string temp_name =
+        ConstructTempFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, temp_id);
     int write_ok = WriteDataObjects(temp_name);
 
     // for locking
@@ -61,7 +79,8 @@ MHO_FringeData::WriteOutput()
 
     if(lock_retval == LOCK_STATUS_OK && the_seq_no > 0)
     {
-        std::string output_file = ConstructFrngFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, the_seq_no);
+        std::string output_file =
+            ConstructFrngFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, the_seq_no);
 
         //rename the temp file to the proper output name
         if(write_ok == 0)
@@ -73,14 +92,16 @@ MHO_FringeData::WriteOutput()
             //e.g. chops/source/python_src/hopstest_module/hopstestb/hopstestb.py
             //around line 74 in the FourFitThread class.
             auto msglev = MHO_Message::GetInstance().GetMessageLevel();
-            if(msglev == eSpecial){fprintf(stderr,"fourfit: %s \n",output_file.c_str());}
+            if(msglev == eSpecial)
+            {
+                fprintf(stderr, "fourfit: %s \n", output_file.c_str());
+            }
         }
     }
     MHO_LockFileHandler::GetInstance().RemoveWriteLock();
 
     return write_ok;
 }
-
 
 int MHO_FringeData::WriteDataObjects(std::string filename)
 {
@@ -95,22 +116,22 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
 
     //only enable this type of output iff the -X option has been passed
     bool xpower_output = false;
-    xpower_output = fParameterStore.GetAs<bool>("/cmdline/xpower_output");
+    xpower_output = fParameterStore.GetAs< bool >("/cmdline/xpower_output");
 
     visibility_type* vis_data = nullptr;
     weight_type* wt_data = nullptr;
 
     if(xpower_output)
     {
-        vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
-        if( vis_data == nullptr)
+        vis_data = fContainerStore.GetObject< visibility_type >(std::string("vis"));
+        if(vis_data == nullptr)
         {
             msg_fatal("fringe", "could not find visibility object to write output." << eom);
             std::exit(1);
         }
 
-        wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
-        if( wt_data == nullptr)
+        wt_data = fContainerStore.GetObject< weight_type >(std::string("weight"));
+        if(wt_data == nullptr)
         {
             msg_fatal("fringe", "could not find weights object to write output." << eom);
             std::exit(1);
@@ -118,8 +139,8 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
     }
 
     //Add the time/frequency averaged visibilities with the fringe solution applied (e.g. AP x CH) (e.g. type212 equivalent)
-    phasor_type* phasor_data = fContainerStore.GetObject<phasor_type>(std::string("phasors"));
-    if( phasor_data == nullptr)
+    phasor_type* phasor_data = fContainerStore.GetObject< phasor_type >(std::string("phasors"));
+    if(phasor_data == nullptr)
     {
         msg_fatal("fringe", "could not find time/frequency averaged phasor object to write output." << eom);
         std::exit(1);
@@ -146,12 +167,24 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
     bool status = inter.OpenToWrite(filename);
     if(status)
     {
-        if(vis_data != nullptr){ tags.AddObjectUUID(vis_data->GetObjectUUID()); }
-        if(wt_data != nullptr){ tags.AddObjectUUID(wt_data->GetObjectUUID()); }
+        if(vis_data != nullptr)
+        {
+            tags.AddObjectUUID(vis_data->GetObjectUUID());
+        }
+        if(wt_data != nullptr)
+        {
+            tags.AddObjectUUID(wt_data->GetObjectUUID());
+        }
         tags.AddObjectUUID(phasor_data->GetObjectUUID());
         inter.Write(tags, "tags");
-        if(vis_data != nullptr){ inter.Write(*vis_data, "vis"); }
-        if(wt_data != nullptr){ inter.Write(*wt_data, "weight"); }
+        if(vis_data != nullptr)
+        {
+            inter.Write(*vis_data, "vis");
+        }
+        if(wt_data != nullptr)
+        {
+            inter.Write(*wt_data, "weight");
+        }
         inter.Write(*phasor_data, "phasors");
         inter.Close();
     }
@@ -165,16 +198,10 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
     return 0;
 }
 
-
-std::string
-MHO_FringeData::ConstructFrngFileName(const std::string directory,
-                                      const std::string& baseline,
-                                      const std::string& ref_station,
-                                      const std::string& rem_station,
-                                      const std::string& frequency_group,
-                                      const std::string& polprod,
-                                      const std::string& root_code,
-                                      int seq_no)
+std::string MHO_FringeData::ConstructFrngFileName(const std::string directory, const std::string& baseline,
+                                                  const std::string& ref_station, const std::string& rem_station,
+                                                  const std::string& frequency_group, const std::string& polprod,
+                                                  const std::string& root_code, int seq_no)
 {
     std::stringstream ss;
     ss << directory << "/" << baseline << ".";
@@ -184,17 +211,10 @@ MHO_FringeData::ConstructFrngFileName(const std::string directory,
     return ss.str();
 }
 
-
-
-std::string
-MHO_FringeData::ConstructTempFileName(const std::string directory,
-                                  const std::string& baseline,
-                                  const std::string& ref_station,
-                                  const std::string& rem_station,
-                                  const std::string& frequency_group,
-                                  const std::string& polprod,
-                                  const std::string& root_code,
-                                  const std::string& temp_id)
+std::string MHO_FringeData::ConstructTempFileName(const std::string directory, const std::string& baseline,
+                                                  const std::string& ref_station, const std::string& rem_station,
+                                                  const std::string& frequency_group, const std::string& polprod,
+                                                  const std::string& root_code, const std::string& temp_id)
 {
     std::stringstream ss;
     ss << directory << "/" << baseline << ".";
@@ -204,4 +224,4 @@ MHO_FringeData::ConstructTempFileName(const std::string directory,
     return ss.str();
 }
 
-}//end namespace
+} // namespace hops

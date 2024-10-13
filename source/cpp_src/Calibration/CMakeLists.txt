@@ -4,6 +4,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SamplerLabeler.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityChannelizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_WeightChannelizer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DoubleSidebandChannelLabeler.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelDelayCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualPolPhaseCorrection.hh
@@ -18,12 +19,19 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Notches.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DCBlock.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MinWeight.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SingleSidebandNormFX.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MixedSidebandNormFX.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NormFX.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SBDTableGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayRate.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MBDelaySearch.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InterpolateFringePeak.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayModel.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationModel.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LSBOffset.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PhaseCalibrationTrim.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MixedPolYShift.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationDelayCorrection.hh
 )
 
 #list source files #############################################################
@@ -44,12 +52,18 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Notches.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DCBlock.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MinWeight.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NormFX.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SingleSidebandNormFX.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MixedSidebandNormFX.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SBDTableGenerator.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayRate.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MBDelaySearch.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InterpolateFringePeak.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayModel.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationModel.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LSBOffset.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PhaseCalibrationTrim.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MixedPolYShift.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationDelayCorrection.cc
 )
 
 #declare header paths ##########################################################

@@ -1,9 +1,9 @@
-#include <string>
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <string>
 
-#include "MHO_Message.hh"
 #include "MHO_ControlFileParser.hh"
+#include "MHO_Message.hh"
 
 #include "MHO_ControlConditionEvaluator.hh"
 
@@ -14,7 +14,11 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
-    if(argc < 2){std::cout<<"must pass file name of control file"<<std::endl; return 1;}
+    if(argc < 2)
+    {
+        std::cout << "must pass file name of control file" << std::endl;
+        return 1;
+    }
 
     std::string controlfile(argv[1]);
 
@@ -25,7 +29,7 @@ int main(int argc, char** argv)
     //    std::cout << control_statements.dump(2) << std::endl;
 
     MHO_ControlConditionEvaluator eval;
-    eval.SetPassInformation( std::string("GE"), std::string("?"), std::string("X"), std::string("288-210210"));
+    eval.SetPassInformation(std::string("GE"), std::string("?"), std::string("X"), std::string("288-210210"));
     mho_json selected_ctrl_statements = eval.GetApplicableStatements(control_statements);
 
     //open and dump to file

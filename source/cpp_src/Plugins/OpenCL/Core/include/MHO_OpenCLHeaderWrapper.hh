@@ -2,10 +2,10 @@
 #define MHO_OPENCLHEADERWRAPPER_DEF
 
 #ifdef __clang__
-#pragma clang system_header
+    #pragma clang system_header
 #endif
 #ifdef __GNUG__
-#pragma GCC system_header
+    #pragma GCC system_header
 #endif
 
 #if defined __APPLE__

@@ -1,5 +1,5 @@
-#include <iostream>
 #include <chrono>
+#include <iostream>
 #include <istream>
 #include <unistd.h>
 
@@ -17,22 +17,21 @@ int main(int /*argc*/, char** /*argv*/)
     sleep(1);
 
     current_time = timer.GetTimeSinceStart();
-    std::cout<<"current time = "<<current_time<<std::endl;
+    std::cout << "current time = " << current_time << std::endl;
 
     sleep(2);
 
     current_time = timer.GetTimeSinceStart();
-    std::cout<<"current time = "<<current_time<<std::endl;
+    std::cout << "current time = " << current_time << std::endl;
 
     sleep(1);
 
     timer.Stop();
 
     current_time = timer.GetTimeSinceStart();
-    std::cout<<"current time = "<<current_time<<std::endl;
+    std::cout << "current time = " << current_time << std::endl;
 
-    std::cout<<"duration = "<<timer.GetDurationAsDouble()<<std::endl;
-
+    std::cout << "duration = " << timer.GetDurationAsDouble() << std::endl;
 
     return 0;
 }

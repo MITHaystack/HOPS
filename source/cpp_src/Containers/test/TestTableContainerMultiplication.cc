@@ -1,10 +1,10 @@
-#include <iostream>
-#include <string>
 #include <cmath>
+#include <iostream>
 #include <sstream>
+#include <string>
 
-#include "MHO_Timer.hh"
 #include "MHO_TableContainer.hh"
+#include "MHO_Timer.hh"
 
 #include "MHO_ContainerDefinitions.hh"
 
@@ -30,26 +30,27 @@ int main(int argc, char** argv)
     pcal.Resize(pc_dim);
     uint64_t pc_total_size = pcal.GetSize();
 
-    std::complex<double> unit(1.0, 0.0);
-    std::complex<double> i_unit(0.0, 2.0);
+    std::complex< double > unit(1.0, 0.0);
+    std::complex< double > i_unit(0.0, 2.0);
 
     vis.SetArray(unit);
     pcal.SetArray(i_unit);
 
-    for(std::size_t i=0; i<pc_dim[1]; i++)
+    for(std::size_t i = 0; i < pc_dim[1]; i++)
     {
         auto vis_slice = vis.SliceView(0, i, ":", ":");
-        vis_slice *= pcal(0, i);;
+        vis_slice *= pcal(0, i);
+        ;
     }
 
-
-    for(std::size_t i=0; i<pc_dim[1]; i++)
+    for(std::size_t i = 0; i < pc_dim[1]; i++)
     {
         auto vis_slice = vis.SliceView(2, i, ":", ":");
-        vis_slice *= pcal(0, i);;
+        vis_slice *= pcal(0, i);
+        ;
     }
 
-    std::cout<< vis << std::endl;
+    std::cout << vis << std::endl;
 
     return 0;
 }

@@ -11,6 +11,7 @@ set (DIFXINTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXBaselineProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXPCalProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXChannelNameConstructor.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXTimeUtilities.hh
 )
 
 #list source files #############################################################

@@ -1,11 +1,10 @@
 #ifndef MHO_MK4CorelInterface_HH__
 #define MHO_MK4CorelInterface_HH__
 
-
-#include <vector>
 #include <cstdlib>
 #include <cstring>
 #include <string>
+#include <vector>
 
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_MK4VexInterface.hh"
@@ -21,7 +20,7 @@ extern "C"
 {
 #endif
 
-struct mk4_corel;
+    struct mk4_corel;
 
 #ifndef HOPS3_USE_CXX
 }
@@ -31,29 +30,28 @@ namespace hops
 {
 
 /*!
-*@file MHO_MK4CorelInterface.hh
-*@class MHO_MK4CorelInterface
-*@author J. Barrett - barrettj@mit.edu
-*@date Thu May 28 19:47:51 2020 -0400
-*@brief This class implicitly assumes that the frequency/channel configuration
-* is shared among all polarization products (i.e. nlags), we may want to loosen this restriction
-* in the future
-*/
-
+ *@file MHO_MK4CorelInterface.hh
+ *@class MHO_MK4CorelInterface
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Thu May 28 19:47:51 2020 -0400
+ *@brief This class implicitly assumes that the frequency/channel configuration
+ * is shared among all polarization products (i.e. nlags), we may want to loosen this restriction
+ * in the future
+ */
 
 class MHO_MK4CorelInterface
 {
     public:
-
         MHO_MK4CorelInterface();
         virtual ~MHO_MK4CorelInterface();
 
         //need both the vex (root) file and corel file to extract the data
-        void SetVexFile(const std::string& vex){fVexFile = vex;}
-        void SetCorelFile(const std::string& corel){fCorelFile = corel;}
+        void SetVexFile(const std::string& vex) { fVexFile = vex; }
+
+        void SetCorelFile(const std::string& corel) { fCorelFile = corel; }
 
         //get raw mk4 corel data
-        struct mk4_corel* GetCorelData(){ return fCorel;};
+        struct mk4_corel* GetCorelData() { return fCorel; };
 
         //read the vex and corel files and dump into new format
         void ExtractCorelFile();
@@ -65,11 +63,11 @@ class MHO_MK4CorelInterface
         //For now we assume the caller will handle clean-up/deletion, so we do
         //not attempt to delete fExtractedVisibilities/fExtractedWeights in the
         //destructor of this interface class.
-        uch_visibility_store_type* GetExtractedVisibilities(){return fExtractedVisibilities;};
-        uch_weight_store_type* GetExtractedWeights(){return fExtractedWeights;};
+        uch_visibility_store_type* GetExtractedVisibilities() { return fExtractedVisibilities; };
+
+        uch_weight_store_type* GetExtractedWeights() { return fExtractedWeights; };
 
     private:
-
         //corel and vex file members
         void ReadCorelFile();
         void ReadVexFile();
@@ -91,12 +89,12 @@ class MHO_MK4CorelInterface
         std::set< std::string > fPolProducts;
 
         //meta-data information
-        std::string fBaselineName; //e.g. Gs:Wf
+        std::string fBaselineName;      //e.g. Gs:Wf
         std::string fBaselineShortName; //e.g GE
-        std::string fRefStation; //e.g. Gs
-        std::string fRemStation; //e.g. Wf
-        std::string fRefStationMk4Id; //e.g G
-        std::string fRemStationMk4Id; //e.g.E
+        std::string fRefStation;        //e.g. Gs
+        std::string fRemStation;        //e.g. Wf
+        std::string fRefStationMk4Id;   //e.g G
+        std::string fRemStationMk4Id;   //e.g.E
 
         //store all channel related data in interval labels for convenience
         std::map< std::string, mho_json > fAllChannelMap;
@@ -108,16 +106,14 @@ class MHO_MK4CorelInterface
 
         //helper function to convert raw char arrays to strings
         std::string getstr(const char* char_array, size_t max_size);
-        bool channel_info_match(double ref_sky_freq, double rem_sky_freq,
-                                double ref_bw, double rem_bw,
-                                std::string ref_net_sb, std::string rem_net_sb);
+        bool channel_info_match(double ref_sky_freq, double rem_sky_freq, double ref_bw, double rem_bw, std::string ref_net_sb,
+                                std::string rem_net_sb);
         double calc_freq_bin(double sky_freq, double bw, std::string net_sb, int nlags, int bin_index);
 
         uch_visibility_store_type* fExtractedVisibilities;
         uch_weight_store_type* fExtractedWeights;
-
 };
 
-}//end of hops namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_MK4CorelInterface */

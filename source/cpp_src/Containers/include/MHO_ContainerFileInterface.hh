@@ -1,31 +1,27 @@
 #ifndef MHO_ContainerFileInterface_HH__
 #define MHO_ContainerFileInterface_HH__
 
-
-
-#include "MHO_Message.hh"
-#include "MHO_ContainerDictionary.hh"
 #include "MHO_BinaryFileInterface.hh"
+#include "MHO_ContainerDictionary.hh"
+#include "MHO_Message.hh"
 
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_ContainerStore.hh"
-
 
 namespace hops
 {
 
 /*!
-*@file  MHO_ContainerFileInterface.hh
-*@class  MHO_ContainerFileInterface
-*@author  J. Barrett - barrettj@mit.edu
-*@date Sun Feb 13 15:48:42 2022 -0500
-*@brief
-*/
+ *@file  MHO_ContainerFileInterface.hh
+ *@class  MHO_ContainerFileInterface
+ *@author  J. Barrett - barrettj@mit.edu
+ *@date Sun Feb 13 15:48:42 2022 -0500
+ *@brief
+ */
 
 class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 {
     public:
-
         MHO_ContainerFileInterface();
         virtual ~MHO_ContainerFileInterface();
 
@@ -39,22 +35,21 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
         //currently this function reads the file keys and then the all the file objects
         //we may want to split this functionality so we can inspect the file first
         //and then only read the objects of interest
-        void PopulateStoreFromFile(MHO_ContainerStore& store, bool do_clear_store=false);
+        void PopulateStoreFromFile(MHO_ContainerStore& store, bool do_clear_store = false);
 
         void WriteStoreToFile(MHO_ContainerStore& store);
 
-        void ConvertStoreToJSON(MHO_ContainerStore& store, mho_json& json_obj, int level_of_detail=eJSONBasic);
+        void ConvertStoreToJSON(MHO_ContainerStore& store, mho_json& json_obj, int level_of_detail = eJSONBasic);
 
-        void ConvertObjectInStoreToJSON(MHO_ContainerStore& store,  const MHO_UUID& obj_uuid, mho_json& json_obj, int level_of_detail=eJSONBasic);
+        void ConvertObjectInStoreToJSON(MHO_ContainerStore& store, const MHO_UUID& obj_uuid, mho_json& json_obj,
+                                        int level_of_detail = eJSONBasic);
 
     private:
-
         std::string fFilename;
         std::string fIndexFilename;
         MHO_BinaryFileInterface fFileInterface;
-
 };
 
-} //end namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_ContainerFileInterface */

@@ -42,7 +42,7 @@ def parse_PDD(filename):
 
             line_split = lines[ii].split(None)
 
-            print(line_split)
+            #print(line_split)
             # if the line is empty, skip it
             if len(line_split)<2:
                 ii+=1
@@ -62,7 +62,7 @@ def parse_PDD(filename):
                 #grab the next line as a header
                 ii+=1
                 line_split = lines[ii].split(None)
-                print(line_split)
+                #print(line_split)
                 hdr_line = line_split
                 pdd_dict['PLOT_INFO'] = {}
                 pdd_dict['PLOT_INFO']['header'] = hdr_line
@@ -72,7 +72,7 @@ def parse_PDD(filename):
                 #grab the next several lines as special info about each channel
                 for n in range(0,nchan):
                     line_split = lines[ii].split(None)
-                    print(line_split)
+                    #print(line_split)
                     ch_info_line = line_split
                     for info_idx in range(0,len(ch_info_line)):
                         pdd_dict['PLOT_INFO'][hdr_line[info_idx]].append( ch_info_line[info_idx] )

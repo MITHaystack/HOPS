@@ -7,22 +7,21 @@
 namespace hops
 {
 
-bool
-MHO_DCBlockBuilder::Build()
+bool MHO_DCBlockBuilder::Build()
 {
-    if( IsConfigurationOk() )
+    if(IsConfigurationOk())
     {
-        msg_debug("initialization", "building a dc_block operator."<< eom);
+        msg_debug("initialization", "building a dc_block operator." << eom);
         //assume attributes are ok for now - TODO add checks!
-        
-        std::string op_name = fAttributes["name"].get<std::string>();
+
+        std::string op_name = fAttributes["name"].get< std::string >();
         std::string op_category = "flagging";
         bool value = fAttributes["value"].get< bool >();
-        double priority = fFormat["priority"].get<double>();
-        
+        double priority = fFormat["priority"].get< double >();
+
         //retrieve the arguments to operate on from the container store
-        visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
-        if( vis_data == nullptr )
+        visibility_type* vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
+        if(vis_data == nullptr)
         {
             msg_error("initialization", "cannot construct MHO_DCBlock without visibility data." << eom);
             return false;
@@ -37,17 +36,12 @@ MHO_DCBlockBuilder::Build()
             op->SetPriority(priority);
 
             bool replace_duplicates = false;
-            this->fOperatorToolbox->AddOperator(op,op->GetName(),op_category,replace_duplicates);
+            this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
         }
-           
-        return true;
 
+        return true;
     }
     return false;
 }
 
-
-
-
-
-}//end namespace
+} // namespace hops

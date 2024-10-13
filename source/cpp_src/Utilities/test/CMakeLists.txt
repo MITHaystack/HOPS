@@ -6,8 +6,7 @@ include_directories(${EXTERN_HLIBS}/date/include)
 set (HOPS_TEST_LIBS MHO_Message MHO_Utilities date-tz)
 
 set(SOURCE_BASENAMES
-    TestMultiTypeMap
-    #TestTimeStampConverter
+    TestTimeStampConverter
     TestUUIDGenerator
     TestDirectoryInterface
     TestLegacyRootCodeGenerator

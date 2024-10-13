@@ -18,16 +18,14 @@
 //shut up the annoying unused variable warnings in cl.hpp for clang/gcc
 //by using a system-header wrapper for the opencl headers
 #include "MHO_OpenCLHeaderWrapper.hh"
-#include <vector>
 #include <complex>
-#include <string>
 #include <map>
+#include <string>
+#include <vector>
 
-
-template< typename XValueType >
-struct MHO_OpenCLTypeMap
+template< typename XValueType > struct MHO_OpenCLTypeMap
 {
-    using mapped_type = XValueType;
+        using mapped_type = XValueType;
 };
 
 #ifdef HOPS_USE_DOUBLE_PRECISION
@@ -38,32 +36,38 @@ struct MHO_OpenCLTypeMap
     #define CL_TYPE8 cl_double8
     #define CL_TYPE16 cl_double16
 
-    //we map doubles to CL_TYPE and complex doubles on to cl_double2
-    template<>
-    struct MHO_OpenCLTypeMap< double >{using mapped_type = CL_TYPE;};
+//we map doubles to CL_TYPE and complex doubles on to cl_double2
+template<> struct MHO_OpenCLTypeMap< double >
+{
+        using mapped_type = CL_TYPE;
+};
 
-    template<>
-    struct MHO_OpenCLTypeMap< std::complex< double >  >{using mapped_type = CL_TYPE2;};
+template<> struct MHO_OpenCLTypeMap< std::complex< double > >
+{
+        using mapped_type = CL_TYPE2;
+};
 
 #else
 
-    TODO_FIXME_MSG ("Warning : MHO_OpenCLPlugin is being built with float precision!")
+TODO_FIXME_MSG("Warning : MHO_OpenCLPlugin is being built with float precision!")
     #define CL_TYPE cl_float
     #define CL_TYPE2 cl_float2
     #define CL_TYPE4 cl_float4
     #define CL_TYPE8 cl_float8
     #define CL_TYPE16 cl_float16
 
-    //we map floats to CL_TYPE and complex floats on to cl_float2
-    template<>
-    struct MHO_OpenCLTypeMap< float >{using mapped_type = CL_TYPE;};
+//we map floats to CL_TYPE and complex floats on to cl_float2
+template<> struct MHO_OpenCLTypeMap< float >
+{
+        using mapped_type = CL_TYPE;
+};
 
-    template<>
-    struct MHO_OpenCLTypeMap< std::complex< float >  >{using mapped_type = CL_TYPE2;};
+template<> struct MHO_OpenCLTypeMap< std::complex< float > >
+{
+        using mapped_type = CL_TYPE2;
+};
 
 #endif
-
-
 
 //this is necessary on some intel devices
 #define ENFORCE_CL_FINISH
@@ -77,76 +81,80 @@ struct MHO_OpenCLTypeMap
 #define USE_CL_ERROR_TRY_CATCH
 
 #ifdef USE_CL_ERROR_TRY_CATCH
-#include <iostream>
-#define CL_ERROR_TRY try {
+    #include <iostream>
+    #define CL_ERROR_TRY                                                                                                       \
+        try                                                                                                                    \
+        {
 #else
-#define CL_ERROR_TRY
+    #define CL_ERROR_TRY
 #endif
 
 #ifdef USE_CL_ERROR_TRY_CATCH
-#define CL_ERROR_CATCH  } catch (cl::Error error) \
-                        { \
-                            std::cout<<"OpenCL Exception caught: "<<std::endl;\
-                            std::cout<<__FILE__<<":"<<__LINE__<<std::endl; \
-                            std::cout<<error.what()<<"("<<error.err()<<") = "<<  MHO_OpenCLInterface::GetInstance()->GetErrorMessage(error.err() )  << std::endl; \
-                            std::exit(1); \
-                        }
+    #define CL_ERROR_CATCH                                                                                                     \
+        }                                                                                                                      \
+        catch(cl::Error error)                                                                                                 \
+        {                                                                                                                      \
+            std::cout << "OpenCL Exception caught: " << std::endl;                                                             \
+            std::cout << __FILE__ << ":" << __LINE__ << std::endl;                                                             \
+            std::cout << error.what() << "(" << error.err()                                                                    \
+                      << ") = " << MHO_OpenCLInterface::GetInstance()->GetErrorMessage(error.err()) << std::endl;              \
+            std::exit(1);                                                                                                      \
+        }
 #else
-#define CL_ERROR_CATCH
+    #define CL_ERROR_CATCH
 #endif
-
-
 
 namespace hops
 {
 
-    class MHO_OpenCLInterface
-    {
-        public:
+class MHO_OpenCLInterface
+{
+    public:
+        static MHO_OpenCLInterface* GetInstance();
 
-            static MHO_OpenCLInterface* GetInstance();
+        cl::Context GetContext() const { return *fContext; }
 
-            cl::Context GetContext() const { return *fContext; }
-            CL_VECTOR_TYPE<cl::Device> GetDevices() const { return fDevices; }
-            cl::Device GetDevice()  const { return fDevices[fCLDeviceID]; }
-            cl::CommandQueue& GetQueue(int i=-1) const;
+        CL_VECTOR_TYPE< cl::Device > GetDevices() const { return fDevices; }
 
-            unsigned int GetNumberOfDevices() const
-            {
-                CL_VECTOR_TYPE<cl::Device> availableDevices = fContext->getInfo<CL_CONTEXT_DEVICES>();
-                return availableDevices.size();
-            };
+        cl::Device GetDevice() const { return fDevices[fCLDeviceID]; }
 
-            void SetGPU(unsigned int i);
+        cl::CommandQueue& GetQueue(int i = -1) const;
 
-            void SetKernelPath(std::string s) { fKernelPath = s; }
-            std::string GetKernelPath() const { return fKernelPath; }
+        unsigned int GetNumberOfDevices() const
+        {
+            CL_VECTOR_TYPE< cl::Device > availableDevices = fContext->getInfo< CL_CONTEXT_DEVICES >();
+            return availableDevices.size();
+        };
 
-            std::string GetErrorMessage(int code){return fOpenCLCode2ErrorMap[code];}
+        void SetGPU(unsigned int i);
 
-        protected:
+        void SetKernelPath(std::string s) { fKernelPath = s; }
 
-            MHO_OpenCLInterface();
-            virtual ~MHO_OpenCLInterface();
+        std::string GetKernelPath() const { return fKernelPath; }
 
-            void InitializeOpenCL();
-            void FillErrorCodeMaps();
+        std::string GetErrorMessage(int code) { return fOpenCLCode2ErrorMap[code]; }
 
-            static MHO_OpenCLInterface* fOpenCLInterface;
+    protected:
+        MHO_OpenCLInterface();
+        virtual ~MHO_OpenCLInterface();
 
-            std::string fKernelPath;
+        void InitializeOpenCL();
+        void FillErrorCodeMaps();
 
-            CL_VECTOR_TYPE<cl::Platform> fPlatforms;
-            CL_VECTOR_TYPE<cl::Device> fDevices;
-            unsigned int fCLDeviceID;
-            cl::Context* fContext;
-            mutable std::vector<cl::CommandQueue*>  fQueues;
+        static MHO_OpenCLInterface* fOpenCLInterface;
 
-            std::map<std::string, int> fOpenCLError2CodeMap;
-            std::map<int, std::string> fOpenCLCode2ErrorMap;
+        std::string fKernelPath;
 
-    };
+        CL_VECTOR_TYPE< cl::Platform > fPlatforms;
+        CL_VECTOR_TYPE< cl::Device > fDevices;
+        unsigned int fCLDeviceID;
+        cl::Context* fContext;
+        mutable std::vector< cl::CommandQueue* > fQueues;
 
-}
+        std::map< std::string, int > fOpenCLError2CodeMap;
+        std::map< int, std::string > fOpenCLCode2ErrorMap;
+};
+
+} // namespace hops
 
 #endif /*! HOPS_OPENCLINTERFACE_DEF */

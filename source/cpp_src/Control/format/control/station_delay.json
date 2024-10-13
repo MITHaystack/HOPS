@@ -1,6 +1,7 @@
 {
     "name": "station_delay",
-    "statement_type": "parameter",
-    "parameter_type": "station",
-    "type": "real"
+    "statement_type": "operator",
+    "operator_category" : "calibration",
+    "type" : "real",
+    "priority": 3.5
 }

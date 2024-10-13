@@ -1,44 +1,37 @@
 #ifndef MHO_OperatorBuilderManager_HH__
 #define MHO_OperatorBuilderManager_HH__
 
-
+#include "MHO_ContainerStore.hh"
+#include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
 #include "MHO_OperatorBuilder.hh"
 #include "MHO_OperatorToolbox.hh"
-#include "MHO_ContainerStore.hh"
 #include "MHO_ParameterStore.hh"
-#include "MHO_JSONHeaderWrapper.hh"
 
 namespace hops
 {
 
 /*!
-*@file MHO_OperatorBuilderManager.hh
-*@class MHO_OperatorBuilderManager
-*@date Thu Jun 8 17:05:29 2023 -0400
-*@brief
-*@author J. Barrett - barrettj@mit.edu
-*/
+ *@file MHO_OperatorBuilderManager.hh
+ *@class MHO_OperatorBuilderManager
+ *@date Thu Jun 8 17:05:29 2023 -0400
+ *@brief
+ *@author J. Barrett - barrettj@mit.edu
+ */
 
 class MHO_OperatorBuilderManager
 {
     public:
-
-        MHO_OperatorBuilderManager(MHO_OperatorToolbox* toolbox,
-                                   MHO_ContainerStore* cstore,
-                                   MHO_ParameterStore* pstore,
-                                   mho_json control_format
-                                  ):
-            fOperatorToolbox(toolbox),
-            fContainerStore(cstore),
-            fParameterStore(pstore)
+        MHO_OperatorBuilderManager(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore, MHO_ParameterStore* pstore,
+                                   mho_json control_format)
+            : fOperatorToolbox(toolbox), fContainerStore(cstore), fParameterStore(pstore)
         {
             fFormat = control_format;
         };
 
         virtual ~MHO_OperatorBuilderManager()
         {
-            for(std::size_t i = 0; i<fAllBuilders.size(); i++)
+            for(std::size_t i = 0; i < fAllBuilders.size(); i++)
             {
                 delete fAllBuilders[i];
             }
@@ -48,22 +41,26 @@ class MHO_OperatorBuilderManager
         }
 
         //pass in parsed control file elements
-        void SetControlStatements(mho_json* statements){fControl = statements;};
+        void SetControlStatements(mho_json* statements) { fControl = statements; };
 
         void CreateDefaultBuilders();
 
-        void BuildOperatorCategory(const char* cat){std::string scat(cat); BuildOperatorCategory(scat);};
+        void BuildOperatorCategory(const char* cat)
+        {
+            std::string scat(cat);
+            BuildOperatorCategory(scat);
+        };
+
         void BuildOperatorCategory(const std::string& cat);
 
         //void AddBuilderType(const std::string& builder_name, const mho_json& format)
-        template<typename XBuilderType>
-        void AddBuilderType(const std::string& builder_name, const std::string& format_key)
+        template< typename XBuilderType > void AddBuilderType(const std::string& builder_name, const std::string& format_key)
         {
             auto format_it = fFormat.find(format_key);
-            if(format_it != fFormat.end() )
+            if(format_it != fFormat.end())
             {
                 auto it = fNameToBuilderMap.find(builder_name);
-                if(it == fNameToBuilderMap.end() ) //not found, so make one
+                if(it == fNameToBuilderMap.end()) //not found, so make one
                 {
                     auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
                     builder->SetFormat(fFormat[format_key]);
@@ -72,7 +69,7 @@ class MHO_OperatorBuilderManager
                     std::string category = "unknown"; //default's to unknown
                     if(format_it->contains("operator_category"))
                     {
-                        category = (*format_it)["operator_category"].get<std::string>();
+                        category = (*format_it)["operator_category"].get< std::string >();
                     }
                     fAllBuilders.push_back(builder);
                     fNameToBuilderMap.emplace(builder_name, builder);
@@ -81,20 +78,17 @@ class MHO_OperatorBuilderManager
             }
             else
             {
-                msg_error("initialization", "cannot add builder for operator with format key: " << format_key << eom );
+                msg_error("initialization", "cannot add builder for operator with format key: " << format_key << eom);
             }
         };
 
-
     private:
-
         void CreateNullFormatBuilders();
 
-        template<typename XBuilderType>
-        void AddBuilderTypeWithFormat(const std::string& builder_name, const mho_json& format)
+        template< typename XBuilderType > void AddBuilderTypeWithFormat(const std::string& builder_name, const mho_json& format)
         {
             auto it = fNameToBuilderMap.find(builder_name);
-            if(it == fNameToBuilderMap.end() ) //not found, so make one
+            if(it == fNameToBuilderMap.end()) //not found, so make one
             {
                 auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
                 builder->SetFormat(format);
@@ -103,7 +97,7 @@ class MHO_OperatorBuilderManager
                 std::string category = "unknown"; //default's to unknown
                 if(format.contains("operator_category"))
                 {
-                    category = format["operator_category"].get<std::string>();
+                    category = format["operator_category"].get< std::string >();
                 }
                 fAllBuilders.push_back(builder);
                 fNameToBuilderMap.emplace(builder_name, builder);
@@ -111,11 +105,8 @@ class MHO_OperatorBuilderManager
             }
         };
 
-
-
-
         //internal data
-        mho_json fFormat; //control file statement formats
+        mho_json fFormat;   //control file statement formats
         mho_json* fControl; //control file statements
 
         //constructed operators all get stashed here
@@ -133,10 +124,8 @@ class MHO_OperatorBuilderManager
 
         //operator category -> builder multimap for lookup by category
         std::multimap< std::string, MHO_OperatorBuilder* > fCategoryToBuilderMap;
-
 };
 
-}
-
+} // namespace hops
 
 #endif /*! end of include guard: MHO_OperatorBuilderManager_HH__ */

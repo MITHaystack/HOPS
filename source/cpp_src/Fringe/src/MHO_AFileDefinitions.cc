@@ -1,15 +1,12 @@
 #include "MHO_AFileDefinitions.hh"
 
-#include <iostream>
 #include <fstream>
-
+#include <iostream>
 
 namespace hops
 {
 
-
-std::string
-MHO_AFileDefinitions::GetFormatDirectory(const std::string& file_type)
+std::string MHO_AFileDefinitions::GetFormatDirectory(const std::string& file_type)
 {
     //allowed file types are: root, frng, and cor
     std::string format_dir = HOPS_AFILE_FORMAT_DIR;
@@ -17,8 +14,7 @@ MHO_AFileDefinitions::GetFormatDirectory(const std::string& file_type)
     return format_dir;
 }
 
-std::vector< std::string >
-MHO_AFileDefinitions::GetKeywordNames(const std::string& file_type)
+std::vector< std::string > MHO_AFileDefinitions::GetKeywordNames(const std::string& file_type)
 {
 
     std::vector< std::string > keywords;
@@ -29,18 +25,16 @@ MHO_AFileDefinitions::GetKeywordNames(const std::string& file_type)
     dirInterface.ReadCurrentDirectory();
     dirInterface.GetFilesMatchingExtention(keywords, "json");
 
-    for(std::size_t i=0; i<keywords.size(); i++)
+    for(std::size_t i = 0; i < keywords.size(); i++)
     {
-        std::string tmp = MHO_DirectoryInterface::GetBasename( keywords[i] );
+        std::string tmp = MHO_DirectoryInterface::GetBasename(keywords[i]);
         keywords[i] = MHO_DirectoryInterface::StripExtensionFromBasename(tmp);
     }
 
     return keywords;
 }
 
-
-mho_json
-MHO_AFileDefinitions::GetAFileFormat(const std::string& file_type)
+mho_json MHO_AFileDefinitions::GetAFileFormat(const std::string& file_type)
 {
     //load all of the .json format files here so they are in memory
     //TODO -- we may also want to combine all the format files into a single file
@@ -49,7 +43,7 @@ MHO_AFileDefinitions::GetAFileFormat(const std::string& file_type)
     std::vector< std::string > keywords = GetKeywordNames(file_type);
     mho_json format_obj;
 
-    for(auto keyIt = keywords.begin(); keyIt != keywords.end(); keyIt++ )
+    for(auto keyIt = keywords.begin(); keyIt != keywords.end(); keyIt++)
     {
         std::string key = *keyIt;
         std::string element_format_file = key + ".json";
@@ -57,7 +51,7 @@ MHO_AFileDefinitions::GetAFileFormat(const std::string& file_type)
 
         //TODO should check that the file exists
         std::ifstream bf_ifs;
-        bf_ifs.open( format_file.c_str(), std::ifstream::in );
+        bf_ifs.open(format_file.c_str(), std::ifstream::in);
 
         mho_json bformat;
         if(bf_ifs.is_open())
@@ -73,5 +67,4 @@ MHO_AFileDefinitions::GetAFileFormat(const std::string& file_type)
     return format_obj;
 }
 
-
-}//end namespace
+} // namespace hops

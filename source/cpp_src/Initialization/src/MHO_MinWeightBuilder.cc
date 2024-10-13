@@ -7,22 +7,21 @@
 namespace hops
 {
 
-bool
-MHO_MinWeightBuilder::Build()
+bool MHO_MinWeightBuilder::Build()
 {
-    if( IsConfigurationOk() )
+    if(IsConfigurationOk())
     {
-        msg_debug("initialization", "building a min_weight operator."<< eom);
+        msg_debug("initialization", "building a min_weight operator." << eom);
         //assume attributes are ok for now - TODO add checks!
-        
-        std::string op_name = fAttributes["name"].get<std::string>();
+
+        std::string op_name = fAttributes["name"].get< std::string >();
         std::string op_category = "selection";
         double value = fAttributes["value"].get< double >();
-        double priority = fFormat["priority"].get<double>();
+        double priority = fFormat["priority"].get< double >();
 
         //retrieve the arguments to operate on from the container store
-        weight_type* wt_data = fContainerStore->GetObject<weight_type>(std::string("weight"));
-        if( wt_data == nullptr )
+        weight_type* wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
+        if(wt_data == nullptr)
         {
             msg_error("initialization", "cannot construct MHO_MinWeight without visibility data." << eom);
             return false;
@@ -38,17 +37,12 @@ MHO_MinWeightBuilder::Build()
             op->SetPriority(priority);
 
             bool replace_duplicates = false;
-            this->fOperatorToolbox->AddOperator(op,op->GetName(),op_category,replace_duplicates);
+            this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
         }
-           
-        return true;
 
+        return true;
     }
     return false;
 }
 
-
-
-
-
-}//end namespace
+} // namespace hops

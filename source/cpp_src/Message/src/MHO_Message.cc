@@ -9,30 +9,26 @@ namespace hops
 //static initialization to nullptr
 MHO_Message* MHO_Message::fInstance = nullptr;
 
-std::string MHO_Message::fRed = "\33[31;1m"; //fatal
-std::string MHO_Message::fYellow = "\33[93;1m"; //error
-std::string MHO_Message::fOrange = "\33[33;1m"; //warning
-std::string MHO_Message::fBlue = "\33[34;1m"; //status
-std::string MHO_Message::fGreen = "\33[32;1m"; //info
-std::string MHO_Message::fCyan = "\33[36;1m"; //debug
-std::string MHO_Message::fWhite = "\33[37;1m"; //default
+std::string MHO_Message::fRed = "\33[31;1m";      //fatal
+std::string MHO_Message::fYellow = "\33[93;1m";   //error
+std::string MHO_Message::fOrange = "\33[33;1m";   //warning
+std::string MHO_Message::fBlue = "\33[34;1m";     //status
+std::string MHO_Message::fGreen = "\33[32;1m";    //info
+std::string MHO_Message::fCyan = "\33[36;1m";     //debug
+std::string MHO_Message::fWhite = "\33[37;1m";    //default
 std::string MHO_Message::fColorSuffix = "\33[0m"; //color close
 
-
-void
-MHO_Message::AddKey(const std::string& key)
+void MHO_Message::AddKey(const std::string& key)
 {
     fKeys.insert(key);
 }
 
-void
-MHO_Message::AddKey(const char* key)
+void MHO_Message::AddKey(const char* key)
 {
     fKeys.insert(std::string(key));
 }
 
-void
-MHO_Message::RemoveKey(const std::string& key)
+void MHO_Message::RemoveKey(const std::string& key)
 {
     auto iter = fKeys.find(key);
     if(iter != fKeys.end())
@@ -41,9 +37,7 @@ MHO_Message::RemoveKey(const std::string& key)
     }
 }
 
-
-void
-MHO_Message::RemoveKey(const char* key)
+void MHO_Message::RemoveKey(const char* key)
 {
     std::string tmp_key(key);
     auto iter = fKeys.find(tmp_key);
@@ -53,17 +47,15 @@ MHO_Message::RemoveKey(const char* key)
     }
 }
 
-void
-MHO_Message::RemoveAllKeys()
+void MHO_Message::RemoveAllKeys()
 {
     fKeys.clear();
 }
 
-void
-MHO_Message::Flush()
+void MHO_Message::Flush()
 {
     fWasLastLineNewLine = false;
-    if( PassMessage() )
+    if(PassMessage())
     {
         *fTerminalStream << fMessageStream.str();
     }
@@ -71,32 +63,36 @@ MHO_Message::Flush()
     fMessageStream.str(std::string());
 }
 
-MHO_Message&
-MHO_Message::SendMessage(const MHO_MessageLevel& level, const std::string& key)
+MHO_Message& MHO_Message::SendMessage(const MHO_MessageLevel& level, const std::string& key)
 {
     fCurrentLevel = level;
     fCurrentKeyIsAllowed = false;
     auto iter = fKeys.find(key);
-    if(iter != fKeys.end()){fCurrentKeyIsAllowed = true;}
-
-    if( PassMessage() )
+    if(iter != fKeys.end())
     {
-        fMessageStream << GetCurrentPrefix(level,key);
+        fCurrentKeyIsAllowed = true;
+    }
+
+    if(PassMessage())
+    {
+        fMessageStream << GetCurrentPrefix(level, key);
     }
 
     return *fInstance;
 }
 
-MHO_Message&
-MHO_Message::SendMessage(const MHO_MessageLevel& level, const char* key)
+MHO_Message& MHO_Message::SendMessage(const MHO_MessageLevel& level, const char* key)
 {
     fCurrentLevel = level;
     fCurrentKeyIsAllowed = false;
     std::string tmp_key(key);
     auto iter = fKeys.find(tmp_key);
-    if(iter != fKeys.end()){fCurrentKeyIsAllowed = true;}
+    if(iter != fKeys.end())
+    {
+        fCurrentKeyIsAllowed = true;
+    }
 
-    if( PassMessage() )
+    if(PassMessage())
     {
         fMessageStream << GetCurrentPrefix(level, tmp_key);
     }
@@ -104,36 +100,31 @@ MHO_Message::SendMessage(const MHO_MessageLevel& level, const char* key)
     return *fInstance;
 }
 
-MHO_Message&
-MHO_Message::operator<<(const MHO_MessageNewline&)
+MHO_Message& MHO_Message::operator<<(const MHO_MessageNewline&)
 {
     fMessageStream << '\n';
     fWasLastLineNewLine = true;
     return *fInstance;
 }
 
-MHO_Message&
-MHO_Message::operator<<(const MHO_MessageEndline&)
+MHO_Message& MHO_Message::operator<<(const MHO_MessageEndline&)
 {
-    #ifdef HOPS_COLOR_MSG
+#ifdef HOPS_COLOR_MSG
     fMessageStream << fColorSuffix << std::endl;
-    #else
+#else
     fMessageStream << std::endl;
-    #endif
+#endif
     fWasLastLineNewLine = false;
     Flush();
     return *fInstance;
 }
 
-
-bool
-MHO_Message::PassMessage()
+bool MHO_Message::PassMessage()
 {
-    return ( (fCurrentLevel <= fAllowedLevel && ( fCurrentKeyIsAllowed || fAcceptAllKeys ) ) );
+    return ((fCurrentLevel <= fAllowedLevel && (fCurrentKeyIsAllowed || fAcceptAllKeys)));
 }
 
-std::string
-MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& key)
+std::string MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& key)
 {
     std::size_t color_size;
     std::stringstream ss;
@@ -146,9 +137,9 @@ MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& 
         return ss.str();
     }
 
-    #ifdef HOPS_COLOR_MSG
+#ifdef HOPS_COLOR_MSG
 
-    switch (level)
+    switch(level)
     {
         case eFatal:
             color_size = fRed.size();
@@ -160,7 +151,7 @@ MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& 
             break;
         case eWarning:
             color_size = fOrange.size();
-            ss << fOrange << "WARNING["  << key << "] ";
+            ss << fOrange << "WARNING[" << key << "] ";
             break;
         case eStatus:
             color_size = fBlue.size();
@@ -176,9 +167,9 @@ MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& 
             break;
     }
 
-    #else // HOPS_COLOR_MSG is disabled
+#else  // HOPS_COLOR_MSG is disabled
 
-    switch (level)
+    switch(level)
     {
         case eFatal:
             ss << "FATAL[" << key << "] ";
@@ -187,7 +178,7 @@ MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& 
             ss << "ERROR[" << key << "] ";
             break;
         case eWarning:
-            ss << "WARNING["  << key << "] ";
+            ss << "WARNING[" << key << "] ";
             break;
         case eStatus:
             ss << "STATUS[" << key << "] ";
@@ -199,67 +190,63 @@ MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& 
             ss << "DEBUG[" << key << "] ";
             break;
     }
-    #endif //end of HOPS_COLOR_MSG
+#endif //end of HOPS_COLOR_MSG
 
     //pad out for alignment
     std::string msg_label = ss.str();
     std::size_t s = msg_label.size() - color_size;
     if(s < MSG_ALIGN_PAD)
     {
-        msg_label.insert(msg_label.end(), MSG_ALIGN_PAD-s, ' ');
+        msg_label.insert(msg_label.end(), MSG_ALIGN_PAD - s, ' ');
     }
 
     return msg_label;
 }
 
-
-
-
-void
-MHO_Message::SetLegacyMessageLevel(int legacy_message_level)
+void MHO_Message::SetLegacyMessageLevel(int legacy_message_level)
 {
     //set the message level according to the fourfit (legacy) style
     //where 3 is least verbose, and '-1' is most verbose
-    switch (legacy_message_level)
+    switch(legacy_message_level)
     {
         case -2:
-            //NOTE: debug messages must be compiled-in
-            #ifndef HOPS_ENABLE_DEBUG_MSG
+//NOTE: debug messages must be compiled-in
+#ifndef HOPS_ENABLE_DEBUG_MSG
             SetMessageLevel(eInfo);
-            msg_warn("fringe", "debug messages are toggled via compiler flag, re-compile with ENABLE_DEBUG_MSG=ON to enable." << eom);
-            #else
+            msg_warn("fringe",
+                     "debug messages are toggled via compiler flag, re-compile with ENABLE_DEBUG_MSG=ON to enable." << eom);
+#else
             SetMessageLevel(eDebug);
-            #endif
-        break;
+#endif
+            break;
         case -1:
             SetMessageLevel(eInfo);
-        break;
+            break;
         case 0:
             SetMessageLevel(eStatus);
-        break;
+            break;
         case 1:
             SetMessageLevel(eWarning);
-        break;
+            break;
         case 2:
             SetMessageLevel(eError);
-        break;
+            break;
         case 3:
             SetMessageLevel(eFatal);
-        break;
+            break;
         case 4:
             //silent, but prints out the mk4 fringe file name to stderr if it is created
             //this is for backwards compatiblity with VGOS post-processing scripts
             SetMessageLevel(eSpecial);
-        break;
+            break;
         case 5:
             //completely silent
             SetMessageLevel(eSilent);
-        break;
+            break;
         default:
             //for now default is most verbose, eventually will change this to silent
             SetMessageLevel(eDebug);
     }
 }
 
-
-}//end namespace
+} // namespace hops

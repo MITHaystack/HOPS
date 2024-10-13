@@ -3,22 +3,19 @@
 
 //this include file should not be used directly
 #ifndef MHO_ContainerDefinitions_HH__
-#error "Do not include MHO_BaselineContainers.hh directly; use MHO_ContainerDefinitions.hh instead."
+    #error "Do not include MHO_BaselineContainers.hh directly; use MHO_ContainerDefinitions.hh instead."
 #endif
-
-
-
 
 namespace hops
 {
 
 /*!
-*@file MHO_BaselineContainers.hh
-*@author J. Barrett - barrettj@mit.edu
-*@date Tue Apr 12 16:15:02 2022 -0400 Wed 21 Oct 2020 08:32:43 PM UTC
-*@brief Definitions for single-baseline visibility data and related quantities.
-* This will likely be re-worked as things progress.
-*/
+ *@file MHO_BaselineContainers.hh
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Tue Apr 12 16:15:02 2022 -0400 Wed 21 Oct 2020 08:32:43 PM UTC
+ *@brief Definitions for single-baseline visibility data and related quantities.
+ * This will likely be re-worked as things progress.
+ */
 
 ////////////////////////////////////////////////////////////////////////////
 //the following definitions are for 'un-channelized data'
@@ -61,7 +58,7 @@ using mbd_dr_type = MHO_TableContainer< visibility_element_type, mbd_dr_axis_pac
 using mbd_dr_amp_type = MHO_TableContainer< weight_element_type, mbd_dr_axis_pack >;
 
 //(here we are storing manual pcal as a rotation in 'degrees', should/could we use phasor instead?)
-using pcal_axis_pack = MHO_AxisPack< pol_axis_type, channel_axis_type>;
+using pcal_axis_pack = MHO_AxisPack< pol_axis_type, channel_axis_type >;
 using pcal_phase_type = MHO_TableContainer< double, pcal_axis_pack >;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -72,22 +69,6 @@ using weight_store_type = MHO_TableContainer< weight_element_store_type, baselin
 using uch_visibility_store_type = MHO_TableContainer< visibility_element_store_type, uch_baseline_axis_pack >;
 using uch_weight_store_type = MHO_TableContainer< weight_element_store_type, uch_baseline_axis_pack >;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}//end of hops namespaces
+} // namespace hops
 
 #endif /*! end of include guard: MHO_BaselineContainers */

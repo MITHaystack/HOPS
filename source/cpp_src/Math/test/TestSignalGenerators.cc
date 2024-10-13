@@ -1,11 +1,11 @@
-#include <vector>
-#include <string>
+#include <getopt.h>
 #include <iostream>
 #include <stdint.h>
-#include <getopt.h>
+#include <string>
+#include <vector>
 
-#include "MHO_SingleToneSignal.hh"
 #include "MHO_GaussianWhiteNoiseSignal.hh"
+#include "MHO_SingleToneSignal.hh"
 
 using namespace hops;
 
@@ -29,16 +29,18 @@ int main(int argc, char** argv)
     aToneSignal.SetToneFrequency(tone_freq);
     aToneSignal.SetPhaseOffset(phase_offset);
 
-    std::vector<double> noise_samples; noise_samples.resize(n_samples);
-    std::vector<double> tone_samples; tone_samples.resize(n_samples);
+    std::vector< double > noise_samples;
+    noise_samples.resize(n_samples);
+    std::vector< double > tone_samples;
+    tone_samples.resize(n_samples);
 
-    double sample_period = 1.0/sample_freq;
+    double sample_period = 1.0 / sample_freq;
     double time;
     double value;
 
-    for(std::size_t i=0; i<n_samples; i++)
+    for(std::size_t i = 0; i < n_samples; i++)
     {
-        time = i*sample_period;
+        time = i * sample_period;
         aNoiseSignal.GetSample(time, value);
         noise_samples[i] = value;
         aToneSignal.GetSample(time, value);
@@ -58,5 +60,4 @@ int main(int argc, char** argv)
     // }
 
     return 0;
-
 }

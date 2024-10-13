@@ -1,68 +1,68 @@
 #include "MHO_DirectoryInterface.hh"
 #include "MHO_Message.hh"
+#include "MHO_TimeStampConverter.hh"
 
 //needed for listing/navigating files/directories on *nix
 #include <dirent.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
 #include <errno.h>
 #include <fstream>
+#include <limits.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 namespace hops
 {
 
-
-MHO_DirectoryInterface::MHO_DirectoryInterface():
-    fDirectoryIsSet(false),
-    fHaveReadDirectory(false)
+MHO_DirectoryInterface::MHO_DirectoryInterface(): fDirectoryIsSet(false), fHaveReadDirectory(false)
 {
     fCurrentDirectoryFullPath = "";
 };
 
 MHO_DirectoryInterface::~MHO_DirectoryInterface(){};
 
-std::string
-MHO_DirectoryInterface::GetDirectoryFullPath(const std::string& dirname)
+std::string MHO_DirectoryInterface::GetDirectoryFullPath(const std::string& dirname)
 {
     //get the full path to a directory (in case it is relative)
     std::string tmp_path = dirname;
     char buffer[PATH_MAX];
-    for(std::size_t i=0; i<PATH_MAX; i++){buffer[i] = '\0';}
-    char* tmp = realpath( tmp_path.c_str(), buffer);
-    (void) tmp; //shut up the compiler about unused variable...we don't need it, result is stored in buffer
+    for(std::size_t i = 0; i < PATH_MAX; i++)
+    {
+        buffer[i] = '\0';
+    }
+    char* tmp = realpath(tmp_path.c_str(), buffer);
+    (void)tmp; //shut up the compiler about unused variable...we don't need it, result is stored in buffer
 
-    buffer[PATH_MAX-1] = '\0'; //always null terminate
+    buffer[PATH_MAX - 1] = '\0'; //always null terminate
     std::string fullpath(buffer);
     return fullpath;
 }
 
-std::string
-MHO_DirectoryInterface::GetDirectoryFullPathPreserveSymlinks(const std::string& dirname)
+std::string MHO_DirectoryInterface::GetDirectoryFullPathPreserveSymlinks(const std::string& dirname)
 {
     //get the full path to a directory (in case it is relative), but preserve the names of symlinks!
     std::string tmp_path = dirname;
     char buffer[PATH_MAX];
-    for(std::size_t i=0; i<PATH_MAX; i++){buffer[i] = '\0';}
+    for(std::size_t i = 0; i < PATH_MAX; i++)
+    {
+        buffer[i] = '\0';
+    }
     ssize_t s = readlink(dirname.c_str(), buffer, PATH_MAX);
 
-    if(s < 0 || s >= PATH_MAX-1)
+    if(s < 0 || s >= PATH_MAX - 1)
     {
-        msg_error("utilities", "error on readlink of path: "<< dirname << " with errno " << errno << eom);
+        msg_error("utilities", "error on readlink of path: " << dirname << " with errno " << errno << eom);
         return dirname; //return unmodified path
     }
     //always null terminate here, if the path over-ran PATH_MAX,
     //we will have the error above, but just in case
-    buffer[PATH_MAX-1] = '\0';
+    buffer[PATH_MAX - 1] = '\0';
     std::string fullpath(buffer);
     return fullpath;
 }
 
-
-bool
-MHO_DirectoryInterface::DoesDirectoryExist(const std::string& dirname)
+bool MHO_DirectoryInterface::DoesDirectoryExist(const std::string& dirname)
 {
     std::string fullpath = GetDirectoryFullPath(dirname);
     //check for directory existence by trying to open it, this is not fool-proof
@@ -77,41 +77,67 @@ MHO_DirectoryInterface::DoesDirectoryExist(const std::string& dirname)
     return exists;
 }
 
-bool
-MHO_DirectoryInterface::IsDirectory(const std::string& name)
+bool MHO_DirectoryInterface::IsDirectory(const std::string& name)
 {
     struct stat st;
-    if(stat( name.c_str(), &st) == 0 )
+    if(stat(name.c_str(), &st) == 0)
     {
-        if( S_ISDIR(st.st_mode) ){return true;}
+        if(S_ISDIR(st.st_mode))
+        {
+            return true;
+        }
     }
     return false;
 }
 
-bool
-MHO_DirectoryInterface::IsFile(const std::string& name)
+bool MHO_DirectoryInterface::IsFile(const std::string& name)
 {
     struct stat st;
-    if(stat( name.c_str(), &st) == 0 )
+    if(stat(name.c_str(), &st) == 0)
     {
-        if( S_ISREG(st.st_mode) ){return true;}
+        if(S_ISREG(st.st_mode))
+        {
+            return true;
+        }
     }
     return false;
 }
 
-bool
-MHO_DirectoryInterface::CreateDirectory(const std::string& dirname) const
+std::string 
+MHO_DirectoryInterface::GetFileModifcationTime(const std::string& name)
+{
+    uint64_t epoch_sec = 0;
+    struct stat st;
+    // Get file information
+    if (stat(name.c_str(), &st) == 0) 
+    {
+        epoch_sec = st.st_mtime;
+    }
+    else 
+    {
+        msg_error("utility", "could not stat file: " << name << eom);
+    }
+    std::string time_stamp;
+    double frac;
+    MHO_TimeStampConverter::ConvertEpochSecondToTimeStamp(epoch_sec, frac, time_stamp);
+    return time_stamp;
+}
+
+
+bool MHO_DirectoryInterface::CreateDirectory(const std::string& dirname) const
 {
     std::string fullpath = GetDirectoryFullPath(dirname);
     //use mkdir to create the directory with owner permissions
     int retval = mkdir(fullpath.c_str(), S_IRWXU);
     //if -1, failed to create dir -- TBD, do we want to use errno to get more error specifics?
-    if(retval == -1){ return false; }
+    if(retval == -1)
+    {
+        return false;
+    }
     return true;
 }
 
-void
-MHO_DirectoryInterface::SetCurrentDirectory(const std::string& dirname)
+void MHO_DirectoryInterface::SetCurrentDirectory(const std::string& dirname)
 {
     //set the directory we want to explore
     fCurrentDirectoryFullPath = GetDirectoryFullPath(dirname);
@@ -120,8 +146,7 @@ MHO_DirectoryInterface::SetCurrentDirectory(const std::string& dirname)
     fDirectoryIsSet = true;
 }
 
-void
-MHO_DirectoryInterface::GetFileList(std::vector< std::string >& aFileList) const
+void MHO_DirectoryInterface::GetFileList(std::vector< std::string >& aFileList) const
 {
     aFileList.clear();
     if(fHaveReadDirectory)
@@ -130,8 +155,7 @@ MHO_DirectoryInterface::GetFileList(std::vector< std::string >& aFileList) const
     }
 }
 
-void
-MHO_DirectoryInterface::GetSubDirectoryList(std::vector< std::string >& aSubDirList) const
+void MHO_DirectoryInterface::GetSubDirectoryList(std::vector< std::string >& aSubDirList) const
 {
     aSubDirList.clear();
     if(fHaveReadDirectory)
@@ -140,21 +164,18 @@ MHO_DirectoryInterface::GetSubDirectoryList(std::vector< std::string >& aSubDirL
     }
 }
 
-
-
-bool
-MHO_DirectoryInterface::ReadCurrentDirectory()
+bool MHO_DirectoryInterface::ReadCurrentDirectory()
 {
-    bool dir_exists =  DoesDirectoryExist(fCurrentDirectoryFullPath);
+    bool dir_exists = DoesDirectoryExist(fCurrentDirectoryFullPath);
     if(fDirectoryIsSet && dir_exists && !fHaveReadDirectory)
     {
         //get list of all the files (and directories) in the directory
         std::vector< std::string > allFiles;
         std::vector< std::string > allDirs;
-        DIR *dpdf;
+        DIR* dpdf;
         struct dirent* epdf = NULL;
         dpdf = opendir(fCurrentDirectoryFullPath.c_str());
-        if (dpdf != NULL)
+        if(dpdf != NULL)
         {
             do
             {
@@ -163,20 +184,26 @@ MHO_DirectoryInterface::ReadCurrentDirectory()
                 {
                     std::string tmp_path = fCurrentDirectoryFullPath + "/" + std::string(epdf->d_name);
                     char buffer[PATH_MAX];
-                    for(std::size_t i=0; i<PATH_MAX; i++){buffer[i] = '\0';}
-                    char* tmp = realpath( tmp_path.c_str(), buffer);
-                    (void) tmp; //shut up the compiler about unused variable...we don't need it
+                    for(std::size_t i = 0; i < PATH_MAX; i++)
+                    {
+                        buffer[i] = '\0';
+                    }
+                    char* tmp = realpath(tmp_path.c_str(), buffer);
+                    (void)tmp; //shut up the compiler about unused variable...we don't need it
                     std::string fullpath(buffer);
                     if(fullpath.size() != 0)
                     {
                         struct stat st;
-                        if(stat( fullpath.c_str(), &st) == 0 )
+                        if(stat(fullpath.c_str(), &st) == 0)
                         {
-                            if( S_ISREG(st.st_mode) ){allFiles.push_back(fullpath);}
-                            //we don't want to collect the current/parent directory, only sub-directories
-                            if( fullpath != fCurrentDirectoryFullPath && fullpath != fCurrentParentFullPath)
+                            if(S_ISREG(st.st_mode))
                             {
-                                if( S_ISDIR(st.st_mode) )
+                                allFiles.push_back(fullpath);
+                            }
+                            //we don't want to collect the current/parent directory, only sub-directories
+                            if(fullpath != fCurrentDirectoryFullPath && fullpath != fCurrentParentFullPath)
+                            {
+                                if(S_ISDIR(st.st_mode))
                                 {
                                     allDirs.push_back(fullpath);
                                 }
@@ -198,7 +225,7 @@ MHO_DirectoryInterface::ReadCurrentDirectory()
 
         if(!dir_exists)
         {
-            msg_error("utility", "attempted to read directory "<< fCurrentDirectoryFullPath <<" which does not exist" << eom);
+            msg_error("utility", "attempted to read directory " << fCurrentDirectoryFullPath << " which does not exist" << eom);
         }
 
         if(fHaveReadDirectory)
@@ -215,8 +242,7 @@ MHO_DirectoryInterface::ReadCurrentDirectory()
     }
 }
 
-std::string
-MHO_DirectoryInterface::GetBasename(const std::string& filename)
+std::string MHO_DirectoryInterface::GetBasename(const std::string& filename)
 {
     std::string base_filename = "";
     std::size_t index = filename.find_last_of("/\\");
@@ -231,14 +257,13 @@ MHO_DirectoryInterface::GetBasename(const std::string& filename)
     return base_filename;
 }
 
-std::string
-MHO_DirectoryInterface::GetPrefix(const std::string& filename)
+std::string MHO_DirectoryInterface::GetPrefix(const std::string& filename)
 {
     std::string prefix = "";
     std::size_t index = filename.find_last_of("/\\");
     if(index != std::string::npos)
     {
-        prefix = filename.substr(0,index);
+        prefix = filename.substr(0, index);
     }
     else
     {
@@ -247,16 +272,14 @@ MHO_DirectoryInterface::GetPrefix(const std::string& filename)
     return prefix;
 }
 
-
-std::string
-MHO_DirectoryInterface::StripExtensionFromBasename(const std::string& file_basename)
+std::string MHO_DirectoryInterface::StripExtensionFromBasename(const std::string& file_basename)
 {
     //assume we have just the basename (not directory prefix)
     std::string prefix = "";
     std::size_t index = file_basename.find_last_of(".");
     if(index != std::string::npos)
     {
-        prefix = file_basename.substr(0,index);
+        prefix = file_basename.substr(0, index);
     }
     else
     {
@@ -265,8 +288,7 @@ MHO_DirectoryInterface::StripExtensionFromBasename(const std::string& file_basen
     return prefix;
 }
 
-void
-MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aFileList, const std::string& anExt) const
+void MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aFileList, const std::string& anExt) const
 {
     //from the current list of files, locate the ones which match the given extension
     aFileList.clear();
@@ -286,16 +308,13 @@ MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aF
     }
 }
 
-
-void
-MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aFileList, const char* anExt) const
+void MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aFileList, const char* anExt) const
 {
     std::string ext(anExt);
     return GetFilesMatchingExtention(aFileList, ext);
 }
 
-void
-MHO_DirectoryInterface::GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const std::string& aPrefix) const
+void MHO_DirectoryInterface::GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const std::string& aPrefix) const
 {
     //from the current list of files, locate the ones which match the given extension
     aFileList.clear();
@@ -310,15 +329,14 @@ MHO_DirectoryInterface::GetFilesMatchingPrefix(std::vector< std::string >& aFile
     }
 }
 
-void
-MHO_DirectoryInterface::GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const char* aPrefix) const
+void MHO_DirectoryInterface::GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const char* aPrefix) const
 {
     std::string prefix(aPrefix);
     GetFilesMatchingPrefix(aFileList, prefix);
 }
 
-void
-MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const std::string& anExt) const
+void MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList,
+                                                                const std::string& anExt) const
 {
     //from the current list of files, locate the ones which match the given extension (e.g ./h_1000.difx)
     aDirList.clear();
@@ -338,30 +356,23 @@ MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std::str
     }
 }
 
-
-void
-MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const char* anExt) const
+void MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const char* anExt) const
 {
     std::string ext(anExt);
     return GetSubDirectoriesMatchingExtention(aDirList, ext);
 }
 
-
-
-std::string
-MHO_DirectoryInterface::GetCurrentDirectory() const
+std::string MHO_DirectoryInterface::GetCurrentDirectory() const
 {
     return fCurrentDirectoryFullPath;
 }
 
-std::string
-MHO_DirectoryInterface::GetCurrentParentDirectory() const
+std::string MHO_DirectoryInterface::GetCurrentParentDirectory() const
 {
     return fCurrentParentFullPath;
 }
 
-void
-MHO_DirectoryInterface::GetRootFile(const std::vector<std::string>& files, std::string& root_file) const
+void MHO_DirectoryInterface::GetRootFile(const std::vector< std::string >& files, std::string& root_file) const
 {
     //sift through the list of files to find the one which matches the
     //root (ovex) file characteristics (this is relatively primative)
@@ -376,22 +387,22 @@ MHO_DirectoryInterface::GetRootFile(const std::vector<std::string>& files, std::
             std::size_t dotpos = base_filename.find(dot);
             if(dotpos != std::string::npos)
             {
-                std::string root_code = base_filename.substr(dotpos+1);
-                if( root_code.size() == 6 )
+                std::string root_code = base_filename.substr(dotpos + 1);
+                if(root_code.size() == 6)
                 {
                     //open file and check that "VEX" is present in the first few bytes of the file
                     std::fstream test_file(it->c_str(), std::ios::in | std::ios::binary);
                     std::size_t num_bytes = 16;
                     char data[16];
-                    for(std::size_t i=0; i<num_bytes; i++)
+                    for(std::size_t i = 0; i < num_bytes; i++)
                     {
-                        test_file.read(&(data[i]),1);
+                        test_file.read(&(data[i]), 1);
                     }
                     data[15] = '\0';
                     std::string test(data);
                     std::string vex("VEX");
                     std::size_t index = test.find(vex);
-                    if( index != std::string::npos)
+                    if(index != std::string::npos)
                     {
                         //found an ovex file
                         //TODO FIXME....what happens if there is more then one ovex file?!
@@ -401,21 +412,19 @@ MHO_DirectoryInterface::GetRootFile(const std::vector<std::string>& files, std::
                     }
                 }
             }
-
         }
     }
 }
 
-
-void
-MHO_DirectoryInterface::GetCorelFiles(const std::vector<std::string>& files, std::vector<std::string>& corel_files) const
+void MHO_DirectoryInterface::GetCorelFiles(const std::vector< std::string >& files,
+                                           std::vector< std::string >& corel_files) const
 {
     corel_files.clear();
     //sift through the list of files to find which ones match the
     //corel file characteristics and put them in the corel_files list
     for(auto it = files.begin(); it != files.end(); it++)
     {
-        std::string base_filename = GetBasename(*it); // it->substr(it->find_last_of("/\\") + 1);
+        std::string base_filename = GetBasename(*it);        // it->substr(it->find_last_of("/\\") + 1);
         if(count_number_of_matches(base_filename, '.') == 2) //check that there is two dots in the filename base
         {
             std::string st_pair, root_code;
@@ -432,9 +441,8 @@ MHO_DirectoryInterface::GetCorelFiles(const std::vector<std::string>& files, std
     }
 }
 
-
-void
-MHO_DirectoryInterface::GetStationFiles(const std::vector<std::string>& files, std::vector<std::string>& station_files) const
+void MHO_DirectoryInterface::GetStationFiles(const std::vector< std::string >& files,
+                                             std::vector< std::string >& station_files) const
 {
     //sift through the list of files to find the ones which match the
     //station file characteristics
@@ -447,11 +455,11 @@ MHO_DirectoryInterface::GetStationFiles(const std::vector<std::string>& files, s
             //check that the two dots are 'concurrent'
             std::string dots("..");
             std::size_t index = base_filename.find(dots);
-            if( index != std::string::npos)
+            if(index != std::string::npos)
             {
                 //split the string at the dots into 'station' and 'root code'
-                std::string st = base_filename.substr(0,index);
-                std::string root_code = base_filename.substr(index+dots.size());
+                std::string st = base_filename.substr(0, index);
+                std::string root_code = base_filename.substr(index + dots.size());
                 if(st.size() == 1 && root_code.size() == 6)
                 {
                     station_files.push_back(*it);
@@ -461,8 +469,8 @@ MHO_DirectoryInterface::GetStationFiles(const std::vector<std::string>& files, s
     }
 }
 
-void
-MHO_DirectoryInterface::GetFringeFiles(const std::vector<std::string>& files, std::vector<std::string>& fringe_files, int& max_sequence_num) const
+void MHO_DirectoryInterface::GetFringeFiles(const std::vector< std::string >& files, std::vector< std::string >& fringe_files,
+                                            int& max_sequence_num) const
 {
     //sift through the list of files to find the ones which match the
     //fringe file characteristics
@@ -494,7 +502,10 @@ MHO_DirectoryInterface::GetFringeFiles(const std::vector<std::string>& files, st
                 if(tokens[0].size() == 2 && tokens[1].size() == 1 && tokens[3].size() == 6)
                 {
                     int seq_no = std::atoi(tokens[2].c_str());
-                    if(seq_no > max_sequence_num){max_sequence_num = seq_no;}
+                    if(seq_no > max_sequence_num)
+                    {
+                        max_sequence_num = seq_no;
+                    }
                     fringe_files.push_back(*it);
                 }
             }
@@ -502,8 +513,8 @@ MHO_DirectoryInterface::GetFringeFiles(const std::vector<std::string>& files, st
     }
 }
 
-void
-MHO_DirectoryInterface::SplitCorelFileBasename(const std::string& corel_basename, std::string& st_pair, std::string& root_code) const
+void MHO_DirectoryInterface::SplitCorelFileBasename(const std::string& corel_basename, std::string& st_pair,
+                                                    std::string& root_code) const
 {
     st_pair = "";
     root_code = "";
@@ -513,13 +524,13 @@ MHO_DirectoryInterface::SplitCorelFileBasename(const std::string& corel_basename
     if(index != std::string::npos)
     {
         //split the string at the dots into 'station pair' and 'root code'
-        st_pair = corel_basename.substr(0,index);
-        root_code = corel_basename.substr(index+dots.size());
+        st_pair = corel_basename.substr(0, index);
+        root_code = corel_basename.substr(index + dots.size());
     }
 }
 
-void
-MHO_DirectoryInterface::SplitStationFileBasename(const std::string& station_basename, std::string& st, std::string& root_code) const
+void MHO_DirectoryInterface::SplitStationFileBasename(const std::string& station_basename, std::string& st,
+                                                      std::string& root_code) const
 {
     st = "";
     root_code = "";
@@ -528,25 +539,22 @@ MHO_DirectoryInterface::SplitStationFileBasename(const std::string& station_base
     if(index != std::string::npos)
     {
         //split the string at the dots into 'station pair' and 'root code'
-        st = station_basename.substr(0,index);
-        root_code = station_basename.substr(index+dots.size());
+        st = station_basename.substr(0, index);
+        root_code = station_basename.substr(index + dots.size());
     }
 }
 
-
-
-
-std::size_t
-MHO_DirectoryInterface::count_number_of_matches(const std::string& aString, char elem) const
+std::size_t MHO_DirectoryInterface::count_number_of_matches(const std::string& aString, char elem) const
 {
     std::size_t n_elem = 0;
-    for(std::size_t i=0; i<aString.size(); i++)
+    for(std::size_t i = 0; i < aString.size(); i++)
     {
-        if(aString[i] == elem){n_elem++;}
+        if(aString[i] == elem)
+        {
+            n_elem++;
+        }
     }
     return n_elem;
 }
 
-
-
-}
+} // namespace hops

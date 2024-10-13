@@ -1,27 +1,25 @@
 #ifndef MHO_ControlTokenProcessor_HH__
 #define MHO_ControlTokenProcessor_HH__
 
-
-#include "MHO_Message.hh"
-#include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_ControlDefinitions.hh"
+#include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_Message.hh"
 
-#include <cstdlib>
-#include <vector>
-#include <string>
 #include <cstdlib>
 #include <limits>
+#include <string>
+#include <vector>
 
 namespace hops
 {
 
 /*!
-*@file  MHO_ControlTokenProcessor.hh
-*@class  MHO_ControlTokenProcessor
-*@author  J. Barrett - barrettj@mit.edu
-*@date Mon Jun 13 22:27:21 2022 -0400
-*@brief
-*/
+ *@file  MHO_ControlTokenProcessor.hh
+ *@class  MHO_ControlTokenProcessor
+ *@author  J. Barrett - barrettj@mit.edu
+ *@date Mon Jun 13 22:27:21 2022 -0400
+ *@brief
+ */
 
 class MHO_ControlTokenProcessor
 {
@@ -39,14 +37,11 @@ class MHO_ControlTokenProcessor
         mho_json ProcessBool(const MHO_Token& token);
 
     private:
-
         bool ConvertFloat(const MHO_Token& token, double& val);
         bool ConvertInteger(const MHO_Token& token, int& val);
         bool ConvertBool(const MHO_Token& token, bool& val);
-
-
 };
 
-}
+} // namespace hops
 
 #endif /*! end of include guard: MHO_ControlTokenProcessor */

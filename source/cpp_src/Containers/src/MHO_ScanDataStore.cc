@@ -10,8 +10,7 @@ MHO_ScanDataStore::~MHO_ScanDataStore()
     Clear();
 };
 
-bool
-MHO_ScanDataStore::Initialize()
+bool MHO_ScanDataStore::Initialize()
 {
     Clear();
     //read the directory file list
@@ -41,48 +40,63 @@ MHO_ScanDataStore::Initialize()
     return false;
 }
 
-bool
-MHO_ScanDataStore::IsValid()
+bool MHO_ScanDataStore::IsValid()
 {
-    if(fRootFileName == ""){msg_warn("containers", "no root file found." << eom); return false;}
-    if(fBaselineCodes.size() == 0){msg_warn("containers", "no baseline files found." << eom);return false;}
-    if(fStationCodes.size() == 0){msg_warn("containers", "no station files found." << eom);return false;}
+    if(fRootFileName == "")
+    {
+        msg_warn("containers", "no root file found." << eom);
+        return false;
+    }
+    if(fBaselineCodes.size() == 0)
+    {
+        msg_warn("containers", "no baseline files found." << eom);
+        return false;
+    }
+    if(fStationCodes.size() == 0)
+    {
+        msg_warn("containers", "no station files found." << eom);
+        return false;
+    }
     return true;
 }
 
-bool
-MHO_ScanDataStore::IsFringePresent(std::string basename) const
+bool MHO_ScanDataStore::IsFringePresent(std::string basename) const
 {
     for(auto it = fFringeCodes.begin(); it != fFringeCodes.end(); it++)
     {
-        if(basename == *it){return true;}
+        if(basename == *it)
+        {
+            return true;
+        }
     }
     return false;
 }
 
-
-bool
-MHO_ScanDataStore::IsBaselinePresent(std::string bl) const
+bool MHO_ScanDataStore::IsBaselinePresent(std::string bl) const
 {
     for(auto it = fBaselineCodes.begin(); it != fBaselineCodes.end(); it++)
     {
-        if( bl == *it){return true;}
+        if(bl == *it)
+        {
+            return true;
+        }
     }
     return false;
 }
 
-bool
-MHO_ScanDataStore::IsStationPresent(std::string st) const
+bool MHO_ScanDataStore::IsStationPresent(std::string st) const
 {
     for(auto it = fStationCodes.begin(); it != fStationCodes.end(); it++)
     {
-        if( st == *it){return true;}
+        if(st == *it)
+        {
+            return true;
+        }
     }
     return false;
 }
 
-void
-MHO_ScanDataStore::DetermineRootFile()
+void MHO_ScanDataStore::DetermineRootFile()
 {
     //the root file ought to have the extension ".root.json"
     //there should only be one per scan directory
@@ -108,13 +122,11 @@ MHO_ScanDataStore::DetermineRootFile()
     if(n_candidate_files > 1)
     {
         fRootFileName = fJSONFiles[0];
-        msg_error("containers", "duplicate root files found in directory, using last one found: "<< fRootFileName << eom );
+        msg_error("containers", "duplicate root files found in directory, using last one found: " << fRootFileName << eom);
     }
-
 }
 
-void
-MHO_ScanDataStore::MapBaselines()
+void MHO_ScanDataStore::MapBaselines()
 {
     //map all baseline files to 2-char codes
     std::string basename, bl_code;
@@ -124,7 +136,7 @@ MHO_ScanDataStore::MapBaselines()
         std::size_t index = basename.find_first_of(".");
         if(index != std::string::npos)
         {
-            bl_code = basename.substr(0,index);
+            bl_code = basename.substr(0, index);
             if(bl_code.size() == 2)
             {
                 fBaselineFileMap[bl_code] = *it;
@@ -134,8 +146,7 @@ MHO_ScanDataStore::MapBaselines()
     }
 }
 
-void
-MHO_ScanDataStore::MapStations()
+void MHO_ScanDataStore::MapStations()
 {
     //map all station files to 1-char codes
     std::string basename, sta_code;
@@ -145,7 +156,7 @@ MHO_ScanDataStore::MapStations()
         std::size_t index = basename.find_first_of(".");
         if(index != std::string::npos)
         {
-            sta_code = basename.substr(0,index);
+            sta_code = basename.substr(0, index);
             if(sta_code.size() == 1)
             {
                 fStationFileMap[sta_code] = *it;
@@ -155,9 +166,7 @@ MHO_ScanDataStore::MapStations()
     }
 }
 
-
-void
-MHO_ScanDataStore::MapFringes()
+void MHO_ScanDataStore::MapFringes()
 {
     //map all fringes to filename basename
     std::string basename, bl_code;
@@ -169,12 +178,10 @@ MHO_ScanDataStore::MapFringes()
     }
 }
 
-
-mho_json
-MHO_ScanDataStore::GetRootFileData() const
+mho_json MHO_ScanDataStore::GetRootFileData() const
 {
     mho_json vex_info;
-    if(fRootFileName != "" )
+    if(fRootFileName != "")
     {
         std::ifstream ifs(fRootFileName);
         vex_info = mho_json::parse(ifs);
@@ -186,96 +193,104 @@ MHO_ScanDataStore::GetRootFileData() const
     return vex_info;
 }
 
-bool
-MHO_ScanDataStore::LoadBaseline(std::string baseline, MHO_ContainerStore* store)
+bool MHO_ScanDataStore::LoadBaseline(std::string baseline, MHO_ContainerStore* store)
 {
     auto it = fBaselineFileMap.find(baseline);
-    if(it != fBaselineFileMap.end() )
+    if(it != fBaselineFileMap.end())
     {
         //read the entire file into memory (obviously we will want to optimize this in the future)
         MHO_ContainerFileInterface conInter;
         conInter.SetFilename(it->second);
-        msg_debug("containers", "loading baseline data from: "<< it->second << eom );
+        msg_debug("containers", "loading baseline data from: " << it->second << eom);
         conInter.PopulateStoreFromFile(*store); //reads in ALL the objects in the file
         return true;
     }
     else
     {
         return false;
-        msg_warn("containers", "could not find data for baseline: "<< baseline <<"." << eom);
+        msg_warn("containers", "could not find data for baseline: " << baseline << "." << eom);
     }
 }
 
-std::string
-MHO_ScanDataStore::GetBaselineFilename(std::string baseline) const
+std::string MHO_ScanDataStore::GetBaselineFilename(std::string baseline) const
 {
     auto it = fBaselineFileMap.find(baseline);
-    if(it != fBaselineFileMap.end() ){return it->second;}
-    else{return std::string("");}
+    if(it != fBaselineFileMap.end())
+    {
+        return it->second;
+    }
+    else
+    {
+        return std::string("");
+    }
 }
 
-bool
-MHO_ScanDataStore::LoadStation(std::string station, MHO_ContainerStore* store)
+bool MHO_ScanDataStore::LoadStation(std::string station, MHO_ContainerStore* store)
 {
     auto it = fStationFileMap.find(station);
-    if(it != fStationFileMap.end() )
+    if(it != fStationFileMap.end())
     {
         //read the entire file into memory (obviously we will want to optimize this in the future)
         MHO_ContainerFileInterface conInter;
         conInter.SetFilename(it->second);
-        msg_debug("containers", "loading station data from: "<< it->second << eom );
+        msg_debug("containers", "loading station data from: " << it->second << eom);
         conInter.PopulateStoreFromFile(*store); //reads in ALL the objects in the file
         return true;
     }
     else
     {
-        msg_warn("containers", "could not find data for station: "<< station <<"." << eom);
+        msg_warn("containers", "could not find data for station: " << station << "." << eom);
         return false;
     }
 }
 
-std::string
-MHO_ScanDataStore::GetStationFilename(std::string station) const
+std::string MHO_ScanDataStore::GetStationFilename(std::string station) const
 {
     auto it = fStationFileMap.find(station);
-    if(it != fStationFileMap.end() ){return it->second;}
-    else{return std::string("");}
+    if(it != fStationFileMap.end())
+    {
+        return it->second;
+    }
+    else
+    {
+        return std::string("");
+    }
 }
-
 
 //true if loaded, false if unsuccessful
-bool
-MHO_ScanDataStore::LoadFringe(std::string fringe_basename, MHO_ContainerStore* store)
+bool MHO_ScanDataStore::LoadFringe(std::string fringe_basename, MHO_ContainerStore* store)
 {
     auto it = fFringeFileMap.find(fringe_basename);
-    if(it != fFringeFileMap.end() )
+    if(it != fFringeFileMap.end())
     {
         //read the entire file into memory (obviously we will want to optimize this in the future)
         MHO_ContainerFileInterface conInter;
         conInter.SetFilename(it->second);
-        msg_debug("containers", "loading fringe data from: "<< it->second << eom );
+        msg_debug("containers", "loading fringe data from: " << it->second << eom);
         conInter.PopulateStoreFromFile(*store); //reads in ALL the objects in the file
         return true;
     }
     else
     {
-        msg_warn("containers", "could not find data for fringe: "<< fringe_basename <<"." << eom);
+        msg_warn("containers", "could not find data for fringe: " << fringe_basename << "." << eom);
         return false;
     }
 }
 
-std::string
-MHO_ScanDataStore::GetFringeFilename(std::string fringe_basename) const
+std::string MHO_ScanDataStore::GetFringeFilename(std::string fringe_basename) const
 {
     auto it = fFringeFileMap.find(fringe_basename);
-    if(it != fFringeFileMap.end() ){return it->second;}
-    else{return std::string("");}
+    if(it != fFringeFileMap.end())
+    {
+        return it->second;
+    }
+    else
+    {
+        return std::string("");
+    }
 }
 
-
-
-void
-MHO_ScanDataStore::Clear()
+void MHO_ScanDataStore::Clear()
 {
     fStationCodes.clear();
     fStationFileMap.clear();
@@ -292,7 +307,4 @@ MHO_ScanDataStore::Clear()
     fRootFileName = "";
 }
 
-
-
-
-}
+} // namespace hops

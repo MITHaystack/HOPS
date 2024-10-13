@@ -1,24 +1,22 @@
 #ifndef MHO_ElementTypes_H__
 #define MHO_ElementTypes_H__
 
-
 #include <complex>
 
 //this include file should not be used directly
 #ifndef MHO_ContainerDefinitions_HH__
-#error "Do not include MHO_ElementTypes.hh directly; use MHO_ContainerDefinitions.hh instead."
+    #error "Do not include MHO_ElementTypes.hh directly; use MHO_ContainerDefinitions.hh instead."
 #endif
 
 namespace hops
 {
 
 /*!
-*@file MHO_ElementTypes.hh
-*@date Tue Apr 12 16:15:02 2022 -0400
-*@brief typedefs and using statements for table container data element types
-*@author J. Barrett - barrettj@mit.edu
-*/
-
+ *@file MHO_ElementTypes.hh
+ *@date Tue Apr 12 16:15:02 2022 -0400
+ *@brief typedefs and using statements for table container data element types
+ *@author J. Barrett - barrettj@mit.edu
+ */
 
 //global definition of floating point types for use in data containers. ////////
 //for in-memory use we use double precision
@@ -30,9 +28,9 @@ typedef double PCFP_TYPE;
 typedef double SPLINE_TYPE;
 typedef char FLAG_TYPE;
 
-using visibility_element_type = std::complex<VFP_TYPE>;
+using visibility_element_type = std::complex< VFP_TYPE >;
 using weight_element_type = WFP_TYPE;
-using pcal_phasor_type = std::complex<PCFP_TYPE>;
+using pcal_phasor_type = std::complex< PCFP_TYPE >;
 using manual_pcal_element_type = PCFP_TYPE;
 using spline_coeff_type = SPLINE_TYPE;
 
@@ -44,11 +42,9 @@ using flag_element_type = FLAG_TYPE;
 //since the double based-types take up twice as much space
 typedef float VFP_STORE_TYPE;
 typedef float WFP_STORE_TYPE;
-using visibility_element_store_type = std::complex<VFP_STORE_TYPE>;
+using visibility_element_store_type = std::complex< VFP_STORE_TYPE >;
 using weight_element_store_type = WFP_STORE_TYPE;
 
-
-
-}//end namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_ElementTypes_H__ */

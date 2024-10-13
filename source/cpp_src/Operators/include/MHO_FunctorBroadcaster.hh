@@ -1,8 +1,6 @@
 #ifndef MHO_FunctorBroadcaster_HH__
 #define MHO_FunctorBroadcaster_HH__
 
-
-
 #include <algorithm>
 
 #include "MHO_Message.hh"
@@ -13,30 +11,30 @@ namespace hops
 {
 
 /*!
-*@file MHO_FunctorBroadcaster.hh
-*@class MHO_FunctorBroadcaster
-*@author J. Barrett - barrettj@mit.edu
-*@date Fri Nov 20 17:44:28 2020 -0500
-*@brief
-*/
+ *@file MHO_FunctorBroadcaster.hh
+ *@class MHO_FunctorBroadcaster
+ *@author J. Barrett - barrettj@mit.edu
+ *@date Fri Nov 20 17:44:28 2020 -0500
+ *@brief
+ */
 
-
-template< class XArrayType, class XFunctorType >
-class MHO_FunctorBroadcaster: public MHO_UnaryOperator<XArrayType>
+template< class XArrayType, class XFunctorType > class MHO_FunctorBroadcaster: public MHO_UnaryOperator< XArrayType >
 {
     public:
+        MHO_FunctorBroadcaster() { fInitialized = false; }
 
-        MHO_FunctorBroadcaster(){fInitialized = false;}
         virtual ~MHO_FunctorBroadcaster(){};
 
         //access for configuration
-        XFunctorType* GetFunctor(){return &fFunctor;};
+        XFunctorType* GetFunctor() { return &fFunctor; };
 
     protected:
-
         virtual bool InitializeInPlace(XArrayType* in) override
         {
-            if(in != nullptr){fInitialized = true;}
+            if(in != nullptr)
+            {
+                fInitialized = true;
+            }
             return fInitialized;
         }
 
@@ -45,9 +43,9 @@ class MHO_FunctorBroadcaster: public MHO_UnaryOperator<XArrayType>
             if(fInitialized)
             {
                 //same array so only increment a single iter
-                auto in_iter =  in->begin();
+                auto in_iter = in->begin();
                 auto in_iter_end = in->end();
-                while( in_iter != in_iter_end)
+                while(in_iter != in_iter_end)
                 {
                     fFunctor(in_iter);
                     ++in_iter;
@@ -70,12 +68,19 @@ class MHO_FunctorBroadcaster: public MHO_UnaryOperator<XArrayType>
                     out->GetDimensions(out_dim);
 
                     bool have_to_resize = false;
-                    for(std::size_t i=0; i<XArrayType::rank::value; i++)
+                    for(std::size_t i = 0; i < XArrayType::rank::value; i++)
                     {
-                        if(out_dim[i] != in_dim[i]){have_to_resize = true; break;}
+                        if(out_dim[i] != in_dim[i])
+                        {
+                            have_to_resize = true;
+                            break;
+                        }
                     }
 
-                    if(have_to_resize){out->Resize(in_dim);}
+                    if(have_to_resize)
+                    {
+                        out->Resize(in_dim);
+                    }
                 }
                 fInitialized = true;
             }
@@ -87,11 +92,11 @@ class MHO_FunctorBroadcaster: public MHO_UnaryOperator<XArrayType>
             //note: this implicitly assumes both intput/output are the same total size
             if(fInitialized)
             {
-                auto in_iter =  in->cbegin();
+                auto in_iter = in->cbegin();
                 auto in_iter_end = in->cend();
                 auto out_iter = out->begin();
                 auto out_iter_end = out->end();
-                while( in_iter != in_iter_end && out_iter != out_iter_end)
+                while(in_iter != in_iter_end && out_iter != out_iter_end)
                 {
                     fFunctor(in_iter, out_iter);
                     ++out_iter;
@@ -103,13 +108,10 @@ class MHO_FunctorBroadcaster: public MHO_UnaryOperator<XArrayType>
         }
 
     private:
-
         bool fInitialized;
         XFunctorType fFunctor; //expected to inherit from MHO_UnaryFunctor<XArrayType>
-
 };
 
-}
-
+} // namespace hops
 
 #endif /*! MHO_FunctorBroadcaster_H__ */

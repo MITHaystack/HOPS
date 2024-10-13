@@ -20,15 +20,15 @@ if (PY_EXE)
             channel_amplitude
             channel_pcal_amp
             channel_phase_resid
-            # compare_control_files
-            # compare_pcc_delay
+            compare_control_files
+            compare_pcc_delay
             compare_pol_hands
-            # compare_session
+            compare_session
             ffres2pcp_mixedmode
             ffres2pcp
             fourphase_mixedmode
             fourphase
-            # generate_session_summary
+            generate_session_summary
             get_ionex_dtec_bounds
             parallactic_plots
             pcc_generate
@@ -40,6 +40,7 @@ if (PY_EXE)
             select_bandpols
             summarize_report
             vgoscf_generate
+            vex2xml
         )
 
     endif(HOPS3_PYTHON_EXTRAS)

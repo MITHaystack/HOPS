@@ -1,32 +1,30 @@
 #ifndef MHO_VexParser_HH__
 #define MHO_VexParser_HH__
 
-
-
-#include <vector>
 #include <list>
-#include <string>
-#include <sstream>
 #include <set>
+#include <sstream>
+#include <string>
+#include <vector>
 
+#include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
-#include "MHO_JSONHeaderWrapper.hh"
 
-#include "MHO_VexLine.hh"
 #include "MHO_VexBlockParser.hh"
 #include "MHO_VexDefinitions.hh"
+#include "MHO_VexLine.hh"
 
 namespace hops
 {
 
 /*!
-*@file  MHO_VexParser.hh
-*@class  MHO_VexParser
-*@author  J. Barrett - barrettj@mit.edu
-*@date Wed May 25 17:04:24 2022 -0400
-*@brief
-*/
+ *@file  MHO_VexParser.hh
+ *@class  MHO_VexParser
+ *@author  J. Barrett - barrettj@mit.edu
+ *@date Wed May 25 17:04:24 2022 -0400
+ *@brief
+ */
 
 class MHO_VexParser
 {
@@ -36,12 +34,12 @@ class MHO_VexParser
 
         void SetVexFile(std::string filename);
         void SetVexVersion(std::string version);
-        void SetVexVersion(const char* version){ SetVexVersion( std::string(version) );};
+
+        void SetVexVersion(const char* version) { SetVexVersion(std::string(version)); };
 
         mho_json ParseVex();
 
     private:
-
         void DetermineFileVersion();
         void ReadFile();
         void RemoveComments();
@@ -52,7 +50,6 @@ class MHO_VexParser
         void MarkBlocks();
         std::vector< MHO_VexLine > CollectBlockLines(std::string block_name);
         void ProcessBlocks(mho_json& root);
-
 
         bool IsPotentialBlockStart(std::string line);
         bool IsBlockStart(std::string line, std::string blk_name);
@@ -87,9 +84,8 @@ class MHO_VexParser
 
         //block parser
         MHO_VexBlockParser fBlockParser;
-
 };
 
-}//end namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_VexParser */
