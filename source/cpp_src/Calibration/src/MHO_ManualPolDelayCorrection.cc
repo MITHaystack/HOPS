@@ -65,47 +65,24 @@ bool MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
 
                     for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
                     {
-                        double chan_freq = chan_ax->at(ch);
-                        //is this strictly correct?...this ignores slope across channel width
-                        double deltaf = fMHzToHz * (chan_freq - fRefFreq); 
-                        double theta = 2.0 * fPi * deltaf * delay;
-
-                        //consider this alternative...where the channel mid-point (not edge) is the reference point
                         // double bw = 0;
                         // bool has_bandwidth = chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bw);
                         std::string net_sideband;
                         bool has_sideband = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+
+                        double chan_freq = chan_ax->at(ch);
+                        //is this strictly correct?...this ignores slope across channel width
+                        double deltaf = fMHzToHz * (chan_freq - fRefFreq); 
+                        //consider this alternative...where the channel mid-point (not edge) is the reference point
                         // double sb_sign = 1.0;
                         // if(net_sideband == "L"){sb_sign = -1.0;}
-                        // 
-                        // 
-                        // double chan_freq = chan_ax->at(ch);
-                        // //is this strictly correct?...this ignores slope across channel width
                         // double deltaf = fMHzToHz * ( (chan_freq + sb_sign*bw/2.0) - fRefFreq); 
-                        // double theta = 2.0 * fPi * deltaf * delay;
-                        // 
-
-                        //TODO FIXME!!!
-                        //the is a problem with the sign applied with Y pol for mixed-mode data 
-                        //it is opposite of what it should be...need to reconcile this with EHT data example
-
-                        
-
-
-
+                        double theta = 2.0 * fPi * deltaf * delay;
                         visibility_element_type pc_phasor = std::exp(fImagUnit * theta);
 
-                        // std::string net_sideband = "?";
-                        // bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
                         //conjugate phases for LSB data, but not for USB
                         if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);} //conjugate phase for LSB data
                         if(st_idx == 0){pc_phasor = std::conj(pc_phasor);} //conjugate phase for reference station offset
-
-                        // //first impl behavior...working for EHT test case, but not checked everywhere
-                        // if(st_idx == 1)
-                        // {
-                        //     pc_phasor = std::conj(pc_phasor);
-                        // } //conjugate for remote but not reference station
 
                         //retrieve and multiply the appropriate sub view of the visibility array
                         auto chunk = in->SubView(pp, ch);
