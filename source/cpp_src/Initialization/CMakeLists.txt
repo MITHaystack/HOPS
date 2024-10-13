@@ -24,6 +24,7 @@ set (INITIALIZATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MinWeightBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LSBOffsetBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MixedPolYShiftBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationDelayCorrectionBuilder.hh
     #manager
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_OperatorBuilderManager.hh
 )
@@ -54,6 +55,7 @@ set( INITIALIZATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MinWeightBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LSBOffsetBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MixedPolYShiftBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationDelayCorrectionBuilder.cc
     #manager
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_OperatorBuilderManager.cc
 )
