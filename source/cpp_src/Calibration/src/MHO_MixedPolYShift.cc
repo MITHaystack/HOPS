@@ -9,7 +9,7 @@ MHO_MixedPolYShift::MHO_MixedPolYShift()
     fRefStationKey = "reference_station";
     fImagUnit = MHO_Constants::imag_unit;
     fDegToRad = MHO_Constants::deg_to_rad;
-    fYPolPhaseOffset = 90.0;
+    fYPolPhaseOffset = -90.0;
 };
 
 MHO_MixedPolYShift::~MHO_MixedPolYShift(){};
@@ -43,12 +43,12 @@ bool MHO_MixedPolYShift::ExecuteInPlace(visibility_type* in)
                 //see c-code precorrect.c file for original implementation
                 visibility_element_type shift_phasor = std::exp(fImagUnit * fYPolPhaseOffset * fDegToRad);
 
-                if(st_idx == 1)
+                if(st_idx == 0)
                 {
                     shift_phasor = std::conj(shift_phasor);
-                } //legacy behavior is to conjugate for remote station ??!
+                } //conjugate for refrence station
 
-                msg_debug("calibration", "adding 90 deg static pc_offset for RY/YR data of station: "<< station << eom );
+                msg_debug("calibration", "adding -90 deg static pc_offset for RY/YR data of station: "<< station << eom );
 
                 //TODO...we could attach info about this operator being applied to this entry on the pol-product axis
 
@@ -113,7 +113,7 @@ bool MHO_MixedPolYShift::IsMixedLinCirc(std::string polprod) const
     bool has_lin = false;
     //look for circular pol labels
     if(polprod.find("R") != std::string::npos){has_circ = true;}
-    if(polprod.find("L") != std::string::npos){has_circ = true;}
+    if(polprod.find("L") != std::string::npos){has_circ = true;} //LCP has never been tested!
     //look for linear pol labels...Y/X (H/V have never been tested/used)
     if(polprod.find("Y") != std::string::npos){has_lin = true;}
     if(polprod.find("X") != std::string::npos){has_lin = true;}
