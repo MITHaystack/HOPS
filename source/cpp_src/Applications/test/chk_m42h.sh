@@ -27,7 +27,7 @@ mark42hops -i ./1234/${SCAN_DIR} -o ./1111/${CM42H_DIR}
 
 EXP_DIR=$DATADIR3
 SCAN_DIR=190-1800a
-CM42H_DIR=190-1800b
+CM42H_DIR=190-1800a
 cd $EXP_DIR
 echo "Running: mark42hops -i ./${SCAN_DIR} -o ./${CM42H_DIR}"
 mark42hops -i ./${SCAN_DIR} -o ./${CM42H_DIR}

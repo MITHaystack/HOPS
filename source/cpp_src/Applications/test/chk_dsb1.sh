@@ -17,8 +17,11 @@ cd $EXP_DIR
 
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
-echo "Running: fourfit4 -m 4 -c ./${CONTROL_FILE} -b KN:X -P RR ./${SCAN_DIR}/"
-outfile=$(time fourfit4 -m 4 -c ./${CONTROL_FILE} -b KN:X -P RR ./${SCAN_DIR}/  2>&1)
+# echo "Running mark42hops -i ${MK4_SCAN_DIR}"
+# mark42hops -i ${MK4_SCAN_DIR}
+
+echo "Running: fourfit4 -m 4 -c ./${CONTROL_FILE} -b KN:X -P RR ./${MK4_SCAN_DIR}/"
+outfile=$(time fourfit4 -m 4 -c ./${CONTROL_FILE} -b KN:X -P RR ./${MK4_SCAN_DIR}/  2>&1)
 
 #parse the print out (fourfit4: <fringe_filename>) into just the fringe_filename
 echo "$outfile"
