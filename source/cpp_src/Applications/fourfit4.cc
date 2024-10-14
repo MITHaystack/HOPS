@@ -12,9 +12,9 @@
 #include "MHO_Snapshot.hh"
 #include "MHO_Timer.hh"
 
-//fringe finding library helper functions
-#include "MHO_BasicFringeFitter.hh"
-#include "MHO_IonosphericFringeFitter.hh"
+//fringe finding
+#include "MHO_FringeFitter.hh"
+#include "MHO_FringeFitterFactory.hh"
 
 //for control intialization
 #include "MHO_BasicFringeDataConfiguration.hh"
@@ -135,22 +135,9 @@ int main(int argc, char** argv)
             MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(), fringeData.GetControlFormat(),
                                                                   fringeData.GetControlStatements());
 
-            bool do_ion = false;
-            fringeData.GetParameterStore()->Get("/config/do_ion", do_ion);
-
-            MHO_FringeFitter* ffit;
-            //TODO FIXME...replace this logic with a factory method based on the
-            //contents of the control and parameter store
-            //but for the time being we only have two choices
-            if(do_ion)
-            {
-                ffit = new MHO_IonosphericFringeFitter(&fringeData);
-            }
-            else
-            {
-                ffit = new MHO_BasicFringeFitter(&fringeData);
-            }
-            ffit->Configure();
+            //build the fringe fitter
+            MHO_FringeFitterFactory ff_factory(&fringeData);
+            MHO_FringeFitter* ffit = ff_factory.ConstructFringeFitter();
 
 ////////////////////////////////////////////////////////////////////////////
 //POST-CONFIGURE FOR COMPILE-TIME EXTENSIONS -- this should be reorganized with visitor pattern
