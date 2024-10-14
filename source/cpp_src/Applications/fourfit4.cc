@@ -135,7 +135,7 @@ int main(int argc, char** argv)
             MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(), fringeData.GetControlFormat(),
                                                                   fringeData.GetControlStatements());
 
-            //build the fringe fitter
+            //build the fringe fitter based on the input (only 2 choices currently -- basic and ionospheric)
             MHO_FringeFitterFactory ff_factory(&fringeData);
             MHO_FringeFitter* ffit = ff_factory.ConstructFringeFitter();
 
