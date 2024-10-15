@@ -1,0 +1,17 @@
+{
+    "name": "python_postfit",
+    "statement_type": "operator",
+    "operator_category" : "postfit",
+    "type": "compound",
+    "priority": 8.9,
+    "parameters":
+    {
+        "module_name": {"type": "string"},
+        "function_name": {"type": "string"}
+    },
+    "fields":
+    [
+        "module_name",
+        "function_name"
+    ]
+}

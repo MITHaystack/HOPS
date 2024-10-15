@@ -33,8 +33,9 @@ class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
                 MHO_PyGenericOperator* op = new MHO_PyGenericOperator();
 
                 //pass the data container and parameter stores to the python operator
-                op->SetParameterStore(this->fParameterStore);
-                op->SetContainerStore(this->fContainerStore);
+                // op->SetParameterStore(this->fParameterStore);
+                // op->SetContainerStore(this->fContainerStore);
+                op->SetFringeData(this->fFringeData);
 
                 //retrieve pass the module/function name info from the control file
                 std::string op_name = this->fFormat["name"].get< std::string >();
