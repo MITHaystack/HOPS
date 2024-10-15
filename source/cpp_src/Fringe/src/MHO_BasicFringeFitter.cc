@@ -264,6 +264,7 @@ void MHO_BasicFringeFitter::PreRun()
     if(!skipped) //execute if we are not finished and are not skipping
     {
         //TODO FILL ME IN -- need to call specified user-scripts here
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "python_prefit");
     }
 }
 
@@ -300,6 +301,7 @@ void MHO_BasicFringeFitter::PostRun()
     if(!skipped) //execute if we are not finished and are not skipping
     {
         //TODO FILL ME IN -- need to call specified user-scripts here
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "python_postfit");
     }
 }
 
@@ -356,6 +358,9 @@ void MHO_BasicFringeFitter::Finalize()
         est_pc_man.SetPhasors(phasor_data);
         est_pc_man.Initialize();
         est_pc_man.Execute();
+
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "python_finalize");
+
     }
 
     profiler_stop();
