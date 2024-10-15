@@ -189,50 +189,9 @@ int main(int argc, char** argv)
             }
 
             #ifdef USE_PYBIND11
-
             MHO_DefaultPythonPlotVisitor plotter;
             ffit->Accept(&plotter);
-
             #endif
-
-// 
-// #ifdef USE_PYBIND11
-//             if(show_plot && !is_skipped)
-//             {
-//                 msg_debug("main", "python plot generation enabled." << eom);
-//                 py::dict plot_obj = plot_data;
-// 
-//                 MHO_PyFringeDataInterface pyDataInterface(&fringeData);
-// 
-//                 //QUICK HACK FOR PCPHASES UNTIL WE GET est_pc_maual working/////////////
-//                 try
-//                 {
-//                     auto mod = py::module::import("mho_test3");
-//                     mod.attr("generate_pcphases_wrapper")(pyDataInterface);
-//                 }
-//                 catch(py::error_already_set &excep)
-//                 {
-//                     msg_error("python_bindings", "python exception when calling subroutine (" << "mho_test3"<< "," << "generate_pcphases" << ")" << eom );
-//                     msg_error("python_bindings", "python error message: "<< excep.what() << eom);
-//                     PyErr_Clear(); //clear the error and attempt to continue
-//                 }
-// 
-//                 ////////////////////////////////////////////////////////////////////////
-//                 //load our interface module -- this is extremely slow!
-//                 auto vis_module = py::module::import("hops_visualization");
-//                 auto plot_lib = vis_module.attr("fourfit_plot");
-//                 //call a python function on the interface class instance
-//                 //TODO, pass filename to save plot if needed
-//                 plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
-//             }
-// #else //USE_PYBIND11
-//             if(show_plot && !is_skipped)
-//             {
-//                 msg_warn("main",
-//                          "plot output requested, but not enabled since HOPS was built without pybind11 support, ignoring."
-//                              << eom);
-//             }
-// #endif
 
         }
     } //end of pass loop
