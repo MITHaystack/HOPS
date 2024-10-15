@@ -139,18 +139,6 @@ int main(int argc, char** argv)
             MHO_FringeFitterFactory ff_factory(&fringeData);
             MHO_FringeFitter* ffit = ff_factory.ConstructFringeFitter();
 
-////////////////////////////////////////////////////////////////////////////
-//POST-CONFIGURE FOR COMPILE-TIME EXTENSIONS -- this should be reorganized with visitor pattern
-////////////////////////////////////////////////////////////////////////////
-#ifdef USE_PYBIND11
-            TODO_FIXME_MSG(
-                "TODO FIXME -- formalize the means by which plugin dependent operator builders are added to the configuration")
-            ffit->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_labeling", "python_labeling");
-            ffit->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_flagging", "python_flagging");
-            ffit->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_calibration",
-                                                                                         "python_calibration");
-#endif
-
             //initialize and perform run loop
             ffit->Initialize();
             while(!ffit->IsFinished())
@@ -234,8 +222,6 @@ int main(int argc, char** argv)
             }
 #endif
 
-            //clean up
-            delete ffit;
         }
     } //end of pass loop
 

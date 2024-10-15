@@ -43,11 +43,20 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 #list of c++ libraries
 set(FRINGE_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Containers MHO_Calibration MHO_Control MHO_Initialization)
 
+#add pybind11 deps if available
+if(HOPS_USE_PYBIND11)
+    hops_internal_include_directories(../Plugins/PythonBindings/Containers/include)
+    hops_internal_include_directories(../Plugins/PythonBindings/Operators/include)
+    list(APPEND PYBIND_APP_LIBS pyMHO_Containers pyMHO_Operators pybind11::embed)
+    add_cflag(USE_PYBIND11)
+    list(APPEND FRINGE_LIBS ${PYBIND_APP_LIBS})
+endif(HOPS_USE_PYBIND11)
+
+#add cuda deps if available
 if(HOPS_USE_CUDA)
     hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Plugins/CUDA/CUDAModules/include)
     list(APPEND FRINGE_LIBS MHO_CUDAModules ${CUDA_LIBRARIES} ${CUDA_CUFFT_LIBRARIES} )
 endif(HOPS_USE_CUDA)
-
 
 set_property( SOURCE ${FRINGE_SOURCEFILES}
     APPEND PROPERTY COMPILE_DEFINITIONS HOPS_AFILE_FORMAT_DIR="${DATA_INSTALL_DIR}"
