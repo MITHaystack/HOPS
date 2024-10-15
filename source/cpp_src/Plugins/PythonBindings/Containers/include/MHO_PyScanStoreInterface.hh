@@ -321,7 +321,7 @@ class MHO_PyScanStoreInterface
         std::map< std::string, std::pair< MHO_ContainerStore*, MHO_PyContainerStoreInterface* > > fFringeContainers;
 };
 
-void DeclarePyScanStoreInterface(py::module& m, std::string pyclass_name)
+inline void DeclarePyScanStoreInterface(py::module& m, std::string pyclass_name)
 {
     py::class_< MHO_PyScanStoreInterface >(m, pyclass_name.c_str())
         .def(py::init<>()) //can build this class from python

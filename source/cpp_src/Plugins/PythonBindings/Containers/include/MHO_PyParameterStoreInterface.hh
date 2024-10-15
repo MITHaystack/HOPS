@@ -69,7 +69,7 @@ class MHO_PyParameterStoreInterface
         MHO_ParameterStore* fParameterStore;
 };
 
-void DeclarePyParameterStoreInterface(py::module& m, std::string pyclass_name)
+inline void DeclarePyParameterStoreInterface(py::module& m, std::string pyclass_name)
 {
     py::class_< MHO_PyParameterStoreInterface >(m, pyclass_name.c_str())
         //no __init__ def here, as this class is not meant to be constructable on the python side
