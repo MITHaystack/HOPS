@@ -10,6 +10,7 @@
 #include "MHO_Operator.hh"
 #include "MHO_OperatorToolbox.hh"
 #include "MHO_ParameterStore.hh"
+#include "MHO_FringeData.hh"
 
 namespace hops
 {
@@ -26,13 +27,27 @@ class MHO_OperatorBuilder
 {
 
     public:
-        MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
+
+        MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
+            : fOperatorToolbox(toolbox), 
+              fFringeData(fdata),
+              fContainerStore(fdata->GetContainerStore()), 
+              fParameterStore(fdata->GetParameterStore()){};
+
+
+        MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox, 
+                            MHO_ContainerStore* cstore = nullptr,
                             MHO_ParameterStore* pstore = nullptr)
-            : fOperatorToolbox(toolbox), fContainerStore(cstore), fParameterStore(pstore){};
+            : fOperatorToolbox(toolbox), 
+              fFringeData(nullptr), //ptr to fringe data object not provided
+              fContainerStore(cstore),
+              fParameterStore(pstore){};
 
         virtual ~MHO_OperatorBuilder(){}; //delegate memory management to toolbox
 
         virtual void SetToolbox(MHO_OperatorToolbox* toolbox) { fOperatorToolbox = toolbox; }
+
+        virtual void SetFringeData(MHO_FringeData* fdata) { fFringeData = fdata; }
 
         virtual void SetParameterStore(MHO_ParameterStore* pstore) { fParameterStore = pstore; }
 
@@ -80,6 +95,9 @@ class MHO_OperatorBuilder
 
         //constructed operator gets stashed here
         MHO_OperatorToolbox* fOperatorToolbox;
+
+        //fringe data object (holds both container/parameter store, along with plot data)
+        MHO_FringeData* fFringeData;
 
         //data container and parameters stores
         MHO_ContainerStore* fContainerStore;

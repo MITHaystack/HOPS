@@ -6,6 +6,9 @@
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_PyContainerStoreInterface.hh"
 #include "MHO_PyParameterStoreInterface.hh"
+#include "MHO_PyFringeDataInterface.hh"
+#include "MHO_FringeData.hh"
+
 #include "MHO_PyTableContainer.hh"
 
 #include <pybind11/numpy.h> //this is important to have for std::complex<T> support!
@@ -21,18 +24,19 @@ namespace hops
  *@author  J. Barrett - barrettj@mit.edu
  *@date Mon Sep 18 13:51:51 2023 -0400
  *@brief  this class allows a user to inject a python function of the form:
- * func(container_interface, parameter_interface)
+ * func(fringe_data_interface)
  * into the control flow of the fringe fitter. It is basically allowed full access to
- * any data or parameters in the container or parameter store. The only exception is
- * that re-sizing of arrays is not allowed.
+ * any data or parameters encompassed by the fringe_data object (container store, parameter store, plot data).
+ * The only exception is that re-sizing of arrays is not allowed.
  */
 
 class MHO_PyGenericOperator: public MHO_Operator
 {
     public:
         MHO_PyGenericOperator()
-            : fInitialized(false), fParameterStore(nullptr), fContainerStore(nullptr), fParameterInterface(nullptr),
-              fContainerInterface(nullptr)
+            : fInitialized(false), 
+              fFringeData(nullptr),
+              fFringeDataInterface(nullptr)
         {
             fModuleName = "";
             fFunctionName = "";
@@ -40,13 +44,14 @@ class MHO_PyGenericOperator: public MHO_Operator
 
         virtual ~MHO_PyGenericOperator()
         {
-            delete fContainerInterface;
-            delete fParameterInterface;
+            delete fFringeDataInterface;
         };
 
-        void SetParameterStore(MHO_ParameterStore* pstore) { fParameterStore = pstore; };
+        void SetFringeData(MHO_FringeData* fdata){fFringeData = fdata;}
 
-        void SetContainerStore(MHO_ContainerStore* cstore) { fContainerStore = cstore; };
+        // void SetParameterStore(MHO_ParameterStore* pstore) { fParameterStore = pstore; };
+        // 
+        // void SetContainerStore(MHO_ContainerStore* cstore) { fContainerStore = cstore; };
 
         void SetModuleName(std::string module_name) { fModuleName = module_name; }
 
@@ -63,13 +68,21 @@ class MHO_PyGenericOperator: public MHO_Operator
             {
                 return false;
             }
+
             //construct the python interface exposing the parameter and container store
-            if(fContainerStore != nullptr && fParameterStore != nullptr)
+            if(fFringeData != nullptr)
             {
-                if(fContainerInterface == nullptr){fContainerInterface = new MHO_PyContainerStoreInterface(fContainerStore); }
-                if(fParameterInterface == nullptr){fParameterInterface = new MHO_PyParameterStoreInterface(fParameterStore); }
+                if(fFringeDataInterface == nullptr){fFringeDataInterface = new MHO_PyFringeDataInterface(fFringeData); }
                 fInitialized = true;
             }
+
+            // //construct the python interface exposing the parameter and container store
+            // if(fContainerStore != nullptr && fParameterStore != nullptr)
+            // {
+            //     if(fContainerInterface == nullptr){fContainerInterface = new MHO_PyContainerStoreInterface(fContainerStore); }
+            //     if(fParameterInterface == nullptr){fParameterInterface = new MHO_PyParameterStoreInterface(fParameterStore); }
+            //     fInitialized = true;
+            // }
             return fInitialized;
         };
 
@@ -91,7 +104,8 @@ class MHO_PyGenericOperator: public MHO_Operator
                 try
                 {
                     auto mod = py::module::import(fModuleName.c_str());
-                    mod.attr(fFunctionName.c_str())(*fContainerInterface, *fParameterInterface);
+                    // mod.attr(fFunctionName.c_str())(*fContainerInterface, *fParameterInterface);
+                    mod.attr(fFunctionName.c_str())(*fFringeDataInterface);
                     success = true;
                 }
                 catch(py::error_already_set& excep)
@@ -114,11 +128,13 @@ class MHO_PyGenericOperator: public MHO_Operator
         std::string fModuleName;
         std::string fFunctionName;
 
-        MHO_ContainerStore* fContainerStore;
-        MHO_ParameterStore* fParameterStore;
+        MHO_FringeData* fFringeData;
+        MHO_PyFringeDataInterface* fFringeDataInterface;
 
-        MHO_PyParameterStoreInterface* fParameterInterface;
-        MHO_PyContainerStoreInterface* fContainerInterface;
+        // MHO_ContainerStore* fContainerStore;
+        // MHO_ParameterStore* fParameterStore;
+        // MHO_PyParameterStoreInterface* fParameterInterface;
+        // MHO_PyContainerStoreInterface* fContainerInterface;
 };
 
 } // namespace hops

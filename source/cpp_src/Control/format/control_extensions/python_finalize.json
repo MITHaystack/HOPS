@@ -1,0 +1,17 @@
+{
+    "name": "python_finalize",
+    "statement_type": "operator",
+    "operator_category" : "finalize",
+    "type": "compound",
+    "priority": 9.9,
+    "parameters":
+    {
+        "module_name": {"type": "string"},
+        "function_name": {"type": "string"}
+    },
+    "fields":
+    [
+        "module_name",
+        "function_name"
+    ]
+}
