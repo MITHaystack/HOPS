@@ -38,7 +38,7 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         virtual void Finalize() override;
         virtual bool IsFinished() override;
 
-        //accept a visitor.
+        //accept a visitor
         virtual void Accept(MHO_FringeFitterVisitor* visitor) override 
         {
             visitor->Visit(this);

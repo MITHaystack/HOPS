@@ -933,3 +933,8 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
 
     plt.close('all')
     fig.canvas.flush_events()
+
+
+def make_fourfit_plot_wrapper(fringe_data_object):
+    plot_data = fringe_data_object.get_plot_data()
+    make_fourfit_plot(plot_data, True, "")
