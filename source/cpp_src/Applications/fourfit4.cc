@@ -151,23 +151,20 @@ int main(int argc, char** argv)
             }
             ffit->Finalize();
 
-            //determine if this pass was skipped
-            bool is_skipped = fringeData.GetParameterStore()->GetAs< bool >("/status/skipped");
-
-            ////////////////////////////////////////////////////////////////////////////
-            //OUTPUT/PLOTTING -- this should be reorganized with visitor pattern
-            ////////////////////////////////////////////////////////////////////////////
-            bool test_mode = fringeData.GetParameterStore()->GetAs< bool >("/cmdline/test_mode");
-            bool show_plot = fringeData.GetParameterStore()->GetAs< bool >("/cmdline/show_plot");
-            mho_json plot_data = fringeData.GetPlotData();
-
+            //flush profile events
             profiler_stop();
             std::vector< MHO_ProfileEvent > events;
             MHO_Profiler::GetInstance().GetEvents(events);
+
             //convert and dump the events into the parameter store for now (will be empty unless enabled)
             mho_json event_list = MHO_BasicFringeDataConfiguration::ConvertProfileEvents(events);
             fringeData.GetParameterStore()->Set("/profile/events", event_list);
 
+            //determine if this pass was skipped or is in test-mode
+            bool is_skipped = fringeData.GetParameterStore()->GetAs< bool >("/status/skipped");
+            bool test_mode = fringeData.GetParameterStore()->GetAs< bool >("/cmdline/test_mode");
+
+            //OUTPUT
             //open and dump to file -- should we profile this as well?
             if(!test_mode && !is_skipped)
             {
@@ -182,12 +179,13 @@ int main(int argc, char** argv)
                 {
                     MHO_MK4FringeExport fexporter;
                     fexporter.SetParameterStore(fringeData.GetParameterStore());
-                    fexporter.SetPlotData(plot_data);
+                    fexporter.SetPlotData(fringeData.GetPlotData());
                     fexporter.SetContainerStore(fringeData.GetContainerStore());
                     fexporter.ExportFringeFile();
                 }
             }
 
+            //PLOTTING
             #ifdef USE_PYBIND11
             MHO_DefaultPythonPlotVisitor plotter;
             ffit->Accept(&plotter);
