@@ -17,7 +17,7 @@ class MHO_DefaultPythonPlotVisitor: public MHO_FringePlotVisitor
 
     protected:
 
-        virtual void Plot(MHO_FringeData* data) = 0;
+        virtual void Plot(MHO_FringeData* data) override;
 };
 
 }//end of namespace
