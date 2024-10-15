@@ -30,6 +30,7 @@ namespace nl = nlohmann;
 using namespace pybind11::literals;
     #include "MHO_PyConfigurePath.hh"
     #include "MHO_PythonOperatorBuilder.hh"
+    #include "MHO_PyFringeDataInterface.hh"
 #endif
 
 //needed to export to mark4 fringe files
@@ -192,18 +193,20 @@ int main(int argc, char** argv)
                 msg_debug("main", "python plot generation enabled." << eom);
                 py::dict plot_obj = plot_data;
 
-                // //QUICK HACK FOR PCPHASES UNTIL WE GET est_pc_maual working/////////////
-                // try
-                // {
-                //     auto mod = py::module::import("mho_test3");
-                //     mod.attr("generate_pcphases")(plot_obj);
-                // }
-                // catch(py::error_already_set &excep)
-                // {
-                //     msg_error("python_bindings", "python exception when calling subroutine (" << "mho_test3"<< "," << "generate_pcphases" << ")" << eom );
-                //     msg_error("python_bindings", "python error message: "<< excep.what() << eom);
-                //     PyErr_Clear(); //clear the error and attempt to continue
-                // }
+                MHO_PyFringeDataInterface pyDataInterface(&fringeData);
+
+                //QUICK HACK FOR PCPHASES UNTIL WE GET est_pc_maual working/////////////
+                try
+                {
+                    auto mod = py::module::import("mho_test3");
+                    mod.attr("generate_pcphases_wrapper")(pyDataInterface);
+                }
+                catch(py::error_already_set &excep)
+                {
+                    msg_error("python_bindings", "python exception when calling subroutine (" << "mho_test3"<< "," << "generate_pcphases" << ")" << eom );
+                    msg_error("python_bindings", "python error message: "<< excep.what() << eom);
+                    PyErr_Clear(); //clear the error and attempt to continue
+                }
 
                 ////////////////////////////////////////////////////////////////////////
                 //load our interface module -- this is extremely slow!

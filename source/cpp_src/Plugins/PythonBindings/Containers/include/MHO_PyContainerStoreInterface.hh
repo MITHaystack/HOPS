@@ -29,6 +29,7 @@ namespace hops
 class MHO_PyContainerStoreInterface
 {
     public:
+        MHO_PyContainerStoreInterface(): fContainerStore(nullptr){}; //dummy constructor
         MHO_PyContainerStoreInterface(MHO_ContainerStore* conStore): fContainerStore(conStore){};
         virtual ~MHO_PyContainerStoreInterface(){};
 

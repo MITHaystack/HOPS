@@ -35,7 +35,6 @@ class MHO_PyScanStoreInterface
         {
             fIsOwned = false;
             fInitialized = false;
-            fEmptyContainer = new MHO_PyContainerStoreInterface(nullptr);
         };
 
         //this constructor to be called from python side to create a stand-alone object
@@ -44,7 +43,6 @@ class MHO_PyScanStoreInterface
             fScanStore = new MHO_ScanDataStore();
             fIsOwned = true;
             fInitialized = false;
-            fEmptyContainer = new MHO_PyContainerStoreInterface(nullptr);
         };
 
         virtual ~MHO_PyScanStoreInterface()
@@ -54,7 +52,6 @@ class MHO_PyScanStoreInterface
                 Clear();
                 delete fScanStore;
             }
-            delete fEmptyContainer;
         };
 
         void SetDirectory(std::string dir)
@@ -257,7 +254,7 @@ class MHO_PyScanStoreInterface
             //should not be able to reach here from python interface (via lambda)
             //but since we must have a return value, return an empty container
             py::print("could not find baseline: ", baseline, ", returning empty container ");
-            return *fEmptyContainer;
+            return fEmptyContainer;
         }
 
         MHO_PyContainerStoreInterface& GetStationData(std::string station)
@@ -270,7 +267,7 @@ class MHO_PyScanStoreInterface
             //should not be able to reach here from python interface (via lambda)
             //but since we must have a return value, return an empty container
             py::print("could not find station: ", station, ", returning empty container ");
-            return *fEmptyContainer;
+            return fEmptyContainer;
         }
 
         MHO_PyContainerStoreInterface& GetFringeData(std::string fringe)
@@ -283,7 +280,7 @@ class MHO_PyScanStoreInterface
             //should not be able to reach here from python interface (via lambda)
             //but since we must have a return value, return an empty container
             py::print("could not find fringe: ", fringe, ", returning empty container ");
-            return *fEmptyContainer;
+            return fEmptyContainer;
         }
 
         //deletes all loaded containers and resets the state for another scan.
@@ -317,7 +314,7 @@ class MHO_PyScanStoreInterface
         bool fInitialized;
 
         //an empty container so we can a reference under certain error conditions
-        MHO_PyContainerStoreInterface* fEmptyContainer;
+        MHO_PyContainerStoreInterface fEmptyContainer;
 
         std::map< std::string, std::pair< MHO_ContainerStore*, MHO_PyContainerStoreInterface* > > fBaselineContainers;
         std::map< std::string, std::pair< MHO_ContainerStore*, MHO_PyContainerStoreInterface* > > fStationContainers;
