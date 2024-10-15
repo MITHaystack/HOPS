@@ -1,4 +1,3 @@
-
 import time
 import os, sys
 import numpy as np
@@ -935,6 +934,6 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     fig.canvas.flush_events()
 
 
-def make_fourfit_plot_wrapper(fringe_data_object):
-    plot_data = fringe_data_object.get_plot_data()
-    make_fourfit_plot(plot_data, True, "")
+def make_fourfit_plot_wrapper(fringe_data_interface):
+    make_fourfit_plot(fringe_data_interface.get_plot_data(), True, "")
+

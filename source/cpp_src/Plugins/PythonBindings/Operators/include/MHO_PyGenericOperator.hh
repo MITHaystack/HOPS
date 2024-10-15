@@ -66,8 +66,8 @@ class MHO_PyGenericOperator: public MHO_Operator
             //construct the python interface exposing the parameter and container store
             if(fContainerStore != nullptr && fParameterStore != nullptr)
             {
-                fContainerInterface = new MHO_PyContainerStoreInterface(fContainerStore);
-                fParameterInterface = new MHO_PyParameterStoreInterface(fParameterStore);
+                if(fContainerInterface == nullptr){fContainerInterface = new MHO_PyContainerStoreInterface(fContainerStore); }
+                if(fParameterInterface == nullptr){fParameterInterface = new MHO_PyParameterStoreInterface(fParameterStore); }
                 fInitialized = true;
             }
             return fInitialized;
