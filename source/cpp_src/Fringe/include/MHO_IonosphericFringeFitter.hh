@@ -25,6 +25,8 @@ class MHO_IonosphericFringeFitter: public MHO_BasicFringeFitter
         virtual void Run() override;
         void Finalize() override;
 
+        virtual void Accept(MHO_FringeFitterVisitor* visitor) override {};
+
     protected:
         int rjc_ion_search();
         void sort_tecs(int nion, std::vector< std::vector< double > >& dtec);
