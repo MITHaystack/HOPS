@@ -4,6 +4,9 @@ import numpy as np
 import scipy.stats
 from vpal import utility
 
+def generate_pcphases_wrapper(fringe_data_interface):
+    generate_pcphases( fringe_data_interface.get_plot_data() )
+
 def generate_pcphases(plot_data):
 
     #get channel label and phase
