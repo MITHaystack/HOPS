@@ -39,7 +39,10 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         virtual bool IsFinished() override;
 
         //accept a visitor.
-        virtual void Accept(MHO_FringeFitterVisitor* visitor) override {};
+        virtual void Accept(MHO_FringeFitterVisitor* visitor) override 
+        {
+            visitor->Visit(this);
+        };
 
     protected:
         //main work functions, operators and works space for basic fringe search function
