@@ -197,6 +197,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     std::string baseline = "??";                   // the baseline
     std::string freqgrp = "?";                     // the frequency group
     std::string control_file = "";                 //'-c' specifies the control file
+    std::string disk_file = "";                    //'-d' specifies the name of the plot file
     bool exclude_autos = false;                    //'-e' estimate run time
     int first_plot_chan = 0;                       //'-n' specifies the first channel displayed in the fringe plot
     int message_level = -1;                        //'-m' specifies the message verbosity level
@@ -236,6 +237,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     app.add_flag("-a,--accounting", accounting, "perform run-time accounting/profiling");
     app.add_option("-b,--baseline", baseline_opt, "baseline or baseline:frequency_group selection (e.g GE or GE:X)");
     app.add_option("-c,--control-file", control_file, "specify the control file");
+    app.add_option("-d,--disk-file", disk_file, "specify the file name where the plot will be saved");
     app.add_flag("-e,--exclude-autocorrs", exclude_autos, "exclude auto-correlations from fringe-fitting");
     app.add_option("-f,--first-plot-channel", first_plot_chan,
                    "specifies the first channel displayed in the fringe plot (ignored, not yet implemented)");
@@ -341,8 +343,9 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     paramStore->Set("/cmdline/accounting", accounting);
     paramStore->Set("/cmdline/baseline", baseline);
     paramStore->Set("/cmdline/frequency_group", freqgrp);
-
+    
     paramStore->Set("/cmdline/control_file", control_file);
+    paramStore->Set("/cmdline/disk_file", disk_file); //default is empty string -> no plot file
     paramStore->Set("/cmdline/directory", directory); //sanitized directory path
     paramStore->Set("/cmdline/root_file", root_file); //fully resolved (symlink free path to the root file)...or empty
 
