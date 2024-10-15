@@ -2,6 +2,19 @@
 #include "MHO_BasicFringeFitter.hh"
 #include "MHO_IonosphericFringeFitter.hh"
 
+//pybind11 stuff to interface with python
+#ifdef USE_PYBIND11
+    #include "pybind11_json/pybind11_json.hpp"
+    #include <pybind11/embed.h>
+    #include <pybind11/pybind11.h>
+    namespace py = pybind11;
+    namespace nl = nlohmann;
+    using namespace pybind11::literals;
+    #include "MHO_PyConfigurePath.hh"
+    #include "MHO_PythonOperatorBuilder.hh"
+#endif
+
+
 
 namespace hops 
 {
@@ -39,6 +52,17 @@ MHO_FringeFitterFactory::ConstructFringeFitter()
         fFringeFitter = new MHO_BasicFringeFitter(fFringeData);
     }
     fFringeFitter->Configure();
+
+////////////////////////////////////////////////////////////////////////////
+//POST-CONFIGURE FOR COMPILE-TIME EXTENSIONS
+////////////////////////////////////////////////////////////////////////////
+
+#ifdef USE_PYBIND11
+    fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_labeling", "python_labeling");
+    fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_flagging", "python_flagging");
+    fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_calibration", "python_calibration");
+#endif
+
     return fFringeFitter;
 }
 
