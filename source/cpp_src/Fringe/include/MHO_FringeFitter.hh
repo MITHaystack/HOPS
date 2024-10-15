@@ -30,6 +30,9 @@ namespace hops
  *@brief Abstract base class for a basic fringe fitter
  */
 
+//forward declare visitor
+class MHO_FringeFitterVisitor;
+
 class MHO_FringeFitter
 {
     public:
@@ -42,6 +45,8 @@ class MHO_FringeFitter
         };
 
         virtual ~MHO_FringeFitter() { delete fOperatorBuildManager; };
+
+        MHO_FringeData* GetFringeData() { return fFringeData; }
 
         MHO_ParameterStore* GetParameterStore() { return fParameterStore; }
 
@@ -67,6 +72,9 @@ class MHO_FringeFitter
         virtual bool IsFinished() = 0;
         virtual void Finalize() = 0;
 
+        //accept a visitor...pure virtual, must implement
+        virtual void Accept(MHO_FringeFitterVisitor* visitor) = 0;
+
     protected:
         //data objects
         MHO_FringeData* fFringeData;
@@ -80,6 +88,19 @@ class MHO_FringeFitter
         //configuration/initialization managers
         MHO_OperatorBuilderManager* fOperatorBuildManager;
 };
+
+
+class MHO_FringeFitterVisitor
+{
+    public:
+        MHO_FringeFitterVisitor(){}
+        virtual ~MHO_FringeFitterVisitor(){};
+
+        //pure virtual
+        virtual void Visit(MHO_FringeFitter* fitter) = 0;
+};
+
+
 
 } // namespace hops
 
