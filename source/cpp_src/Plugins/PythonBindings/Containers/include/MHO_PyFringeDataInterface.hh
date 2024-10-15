@@ -66,7 +66,7 @@ class MHO_PyFringeDataInterface
         MHO_PyParameterStoreInterface fParameterInterface;
 };
 
-void DeclarePyFringeDataInterface(py::module& m, std::string pyclass_name)
+inline void DeclarePyFringeDataInterface(py::module& m, std::string pyclass_name)
 {
     py::class_< MHO_PyFringeDataInterface >(m, pyclass_name.c_str())
         //no __init__ def here, as this class is not meant to be constructable on the python side

@@ -144,7 +144,7 @@ class MHO_PyContainerStoreInterface
         MHO_ContainerStore* fContainerStore;
 };
 
-void DeclarePyContainerStoreInterface(py::module& m, std::string pyclass_name)
+inline void DeclarePyContainerStoreInterface(py::module& m, std::string pyclass_name)
 {
     py::class_< MHO_PyContainerStoreInterface >(m, pyclass_name.c_str())
         //no __init__ def here, as this class is not meant to be constructable on the python side

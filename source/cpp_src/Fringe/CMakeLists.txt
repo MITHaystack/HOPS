@@ -18,6 +18,7 @@ set (FRINGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AFileInfoExtractor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AFileDefinitions.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeFitterFactory.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringePlotVisitor.hh
 )
 
 #list source files #############################################################
@@ -50,6 +51,13 @@ if(HOPS_USE_PYBIND11)
     list(APPEND PYBIND_APP_LIBS pyMHO_Containers pyMHO_Operators pybind11::embed)
     add_cflag(USE_PYBIND11)
     list(APPEND FRINGE_LIBS ${PYBIND_APP_LIBS})
+    #add the python plotting visitor
+    list(APPEND FRINGE_HEADERFILES
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DefaultPythonPlotVisitor.hh
+    )
+    list(APPEND FRINGE_SOURCEFILES
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DefaultPythonPlotVisitor.cc
+    )
 endif(HOPS_USE_PYBIND11)
 
 #add cuda deps if available
