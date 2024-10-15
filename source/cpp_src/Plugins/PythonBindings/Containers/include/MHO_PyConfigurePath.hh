@@ -54,6 +54,20 @@ static void configure_pypath()
             msg_info("main", "adding HOPS_USER_PLUGINS_DIR to search path: " << user_specified_path << eom);
             pyss << "sys.path.append(\"" << user_specified_path << "\") \n";
         }
+
+        //now lets make sure pyMHO_Containers and pyMHO_Operators are always present 
+        pyss << "import pyMHO_Containers\n";
+        pyss << "import pyMHO_Operators\n"; 
+
+        //IMPORTANT...if we create additional bindings libraries, we should import them here,
+        //otherwise if a use tries to write a plugin but fails to import what they need, they 
+        //will encounter a cryptic error of the form: 
+        //terminate called after throwing an instance of 'pybind11::cast_error'
+        //  what():  Unable to convert call argument '0' of type '<...something...>' to Python object
+        //Aborted (core dumped)
+
+
+
         py::exec(pyss.str().c_str());
     }
 }

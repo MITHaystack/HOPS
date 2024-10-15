@@ -2,6 +2,8 @@
 
 using namespace hops;
 
+#define PYBIND11_DETAILED_ERROR_MESSAGES
+
 PYBIND11_MODULE(pyMHO_Operators, m)
 {
     m.doc() = "module to provide interface to extend MHO_Operators with python classes"; // optional module docstring

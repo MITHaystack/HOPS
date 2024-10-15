@@ -48,3 +48,7 @@ def generate_pcphases(plot_data):
             phase_list_str += str(round(phase_corrections[elem],2) ) + " "
 
     print("pc_phases ", chan_names, phase_list_str)
+
+
+def dummy_wrapper(fringe_data_interface):
+    pass
