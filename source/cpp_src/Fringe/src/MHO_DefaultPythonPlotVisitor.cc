@@ -63,15 +63,9 @@ MHO_DefaultPythonPlotVisitor::Plot(MHO_FringeData* data)
         //load our interface module -- this is extremely slow!
         try 
         {
-
-            // auto con_module = py::module::import("pyMHO_Containers");
-            // auto op_module = py::module::import("pyMHO_Operators");
-
+            //required modules pyMHO_Containers and pyMHO_Operators are imported by configure_pypath()
             auto vis_module = py::module::import("hops_visualization");
             auto plot_lib = vis_module.attr("fourfit_plot");
-            // auto vis_module = py::module::import("hops_visualization.fourfit_plot");
-            // auto plot_lib = vis_module.attr();
-            //plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
             plot_lib.attr("make_fourfit_plot_wrapper")(data_wrapper);
         }
         catch(py::error_already_set &excep)
@@ -80,10 +74,6 @@ MHO_DefaultPythonPlotVisitor::Plot(MHO_FringeData* data)
             msg_error("python_bindings", "python error message: "<< excep.what() << eom);
             PyErr_Clear(); //clear the error and attempt to continue
         }
-        //call a python function on the interface class instance
-        //TODO, pass filename to save plot if needed
-        // plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
-
 
     }
 #else //USE_PYBIND11
