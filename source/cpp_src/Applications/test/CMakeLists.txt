@@ -23,6 +23,7 @@ if(BASH_PROGRAM)
             chk_passband 
             chk_dsb1
             chk_geomixedmode
+            chk_phs_jump
         )
     endif(PY_EXE)
 
