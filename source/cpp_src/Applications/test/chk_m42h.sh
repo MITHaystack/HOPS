@@ -15,6 +15,8 @@ CM42H_DIR=104-1228a
 
 cd $EXP_DIR
 echo "Running: mark42hops -i ./${SCAN_DIR} -o ./${CM42H_DIR}"
+rm -r ./${CM42H_DIR}
+mkdir -p ./${CM42H_DIR}
 mark42hops -i ./${SCAN_DIR} -o ./${CM42H_DIR}
 
 EXP_DIR=$DATADIR2
@@ -23,6 +25,8 @@ CM42H_DIR=105-1800b
 cd $EXP_DIR
 mkdir -p ./1111
 echo "Running: mark42hops -i ./${SCAN_DIR} -o ./${CM42H_DIR}"
+rm -r ./1111/${CM42H_DIR}
+mkdir -p ./1111/${CM42H_DIR}
 mark42hops -i ./1234/${SCAN_DIR} -o ./1111/${CM42H_DIR}
 
 EXP_DIR=$DATADIR3
@@ -30,6 +34,10 @@ SCAN_DIR=190-1800a
 CM42H_DIR=190-1800a
 cd $EXP_DIR
 echo "Running: mark42hops -i ./${SCAN_DIR} -o ./${CM42H_DIR}"
+rm ./${CM42H_DIR}/*.cor
+rm ./${CM42H_DIR}/*.sta
+rm ./${CM42H_DIR}/*.frng
+rm ./${CM42H_DIR}/*.json
 mark42hops -i ./${SCAN_DIR} -o ./${CM42H_DIR}
 
 RET_VAL=$?
