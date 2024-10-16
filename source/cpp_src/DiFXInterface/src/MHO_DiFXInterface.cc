@@ -62,11 +62,11 @@ void MHO_DiFXInterface::Initialize()
     // }
 
     //find the (master) .vex file (should be unique)
+    fVexFile = "";
     std::vector< std::string > tmpFiles;
     fDirInterface.GetFilesMatchingExtention(tmpFiles, "vex");
     if(tmpFiles.size() != 1)
     {
-        msg_error("difx_interface", tmpFiles.size() << " .vex files found in " << fInputDirectory << eom);
         fVexFile = ""; //no vex file (or non-unique vex file)
     }
     else
@@ -74,6 +74,27 @@ void MHO_DiFXInterface::Initialize()
         fVexFile = tmpFiles[0];
     }
     tmpFiles.clear();
+    
+    //if we didn't find a 'vex' file, look for 'vex.obs', since this convention is sometimes used 
+    //by the correlator
+    if(fVexFile == "")
+    {
+        fDirInterface.GetFilesMatchingExtention(tmpFiles, "vex.obs");
+        if(tmpFiles.size() != 1)
+        {
+            fVexFile = ""; //no vex file (or non-unique vex file)
+        }
+        else
+        {
+            fVexFile = tmpFiles[0];
+        }
+        tmpFiles.clear();
+    }
+    
+    if(fVexFile == "")
+    {
+        msg_error("difx_interface", "unable to detemine/locate the .vex or .vex.obs file in " << fInputDirectory << eom);
+    }
 
     //find the .v2d file (should be unique)
     fDirInterface.GetFilesMatchingExtention(tmpFiles, "v2d");
