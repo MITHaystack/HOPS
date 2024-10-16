@@ -17,6 +17,10 @@ namespace hops
 class MHO_MixedPolYShiftBuilder: public MHO_OperatorBuilder
 {
     public:
+
+        MHO_MixedPolYShiftBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
+            : MHO_OperatorBuilder(toolbox, fdata){};
+
         MHO_MixedPolYShiftBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                                   MHO_ParameterStore* pstore = nullptr)
             : MHO_OperatorBuilder(toolbox, cstore, pstore){};

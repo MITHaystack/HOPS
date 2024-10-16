@@ -18,6 +18,9 @@ namespace hops
 class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
 {
     public:
+        MHO_PythonOperatorBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
+            : MHO_OperatorBuilder(toolbox, fdata){};
+
         MHO_PythonOperatorBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                                   MHO_ParameterStore* pstore = nullptr)
             : MHO_OperatorBuilder(toolbox, cstore, pstore){};

@@ -6,6 +6,7 @@
 #include "MHO_Message.hh"
 #include "MHO_OperatorBuilder.hh"
 #include "MHO_OperatorToolbox.hh"
+#include "MHO_FringeData.hh"
 #include "MHO_ParameterStore.hh"
 
 namespace hops
@@ -22,9 +23,13 @@ namespace hops
 class MHO_OperatorBuilderManager
 {
     public:
-        MHO_OperatorBuilderManager(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore, MHO_ParameterStore* pstore,
-                                   mho_json control_format)
-            : fOperatorToolbox(toolbox), fContainerStore(cstore), fParameterStore(pstore)
+        MHO_OperatorBuilderManager(MHO_OperatorToolbox* toolbox, 
+                                   MHO_FringeData* fdata, 
+                                   mho_json control_format):
+            fOperatorToolbox(toolbox),
+            fFringeData(fdata),
+            fContainerStore(fdata->GetContainerStore() ),
+            fParameterStore(fdata->GetParameterStore() )
         {
             fFormat = control_format;
         };
@@ -62,7 +67,8 @@ class MHO_OperatorBuilderManager
                 auto it = fNameToBuilderMap.find(builder_name);
                 if(it == fNameToBuilderMap.end()) //not found, so make one
                 {
-                    auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
+                    // auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
+                    auto builder = new XBuilderType(fOperatorToolbox, fFringeData);
                     builder->SetFormat(fFormat[format_key]);
 
                     //the builder's operator category comes from the format specification
@@ -90,7 +96,8 @@ class MHO_OperatorBuilderManager
             auto it = fNameToBuilderMap.find(builder_name);
             if(it == fNameToBuilderMap.end()) //not found, so make one
             {
-                auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
+                // auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
+                auto builder = new XBuilderType(fOperatorToolbox, fFringeData);
                 builder->SetFormat(format);
 
                 //the builder's operator category comes from the format specification
@@ -113,6 +120,7 @@ class MHO_OperatorBuilderManager
         MHO_OperatorToolbox* fOperatorToolbox;
 
         //data container and parameter stores
+        MHO_FringeData* fFringeData;
         MHO_ContainerStore* fContainerStore;
         MHO_ParameterStore* fParameterStore;
 

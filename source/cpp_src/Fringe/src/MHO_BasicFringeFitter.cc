@@ -61,7 +61,7 @@ void MHO_BasicFringeFitter::Configure()
 
     //now build the operator build manager
     fOperatorBuildManager =
-        new MHO_OperatorBuilderManager(&fOperatorToolbox, fContainerStore, fParameterStore, fFringeData->GetControlFormat());
+        new MHO_OperatorBuilderManager(&fOperatorToolbox, fFringeData, fFringeData->GetControlFormat());
 
     profiler_stop();
 }

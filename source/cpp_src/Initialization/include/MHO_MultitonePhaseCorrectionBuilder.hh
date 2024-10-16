@@ -18,6 +18,14 @@ namespace hops
 class MHO_MultitonePhaseCorrectionBuilder: public MHO_OperatorBuilder
 {
     public:
+
+        MHO_MultitonePhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
+            : MHO_OperatorBuilder(toolbox, fdata)
+        {
+            fRefOpName = "ref_multitone_pcal";
+            fRemOpName = "rem_multitone_pcal";
+        };
+
         MHO_MultitonePhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                                             MHO_ParameterStore* pstore = nullptr)
             : MHO_OperatorBuilder(toolbox, cstore, pstore)
