@@ -51,7 +51,7 @@ void MHO_StationCodeMap::ProcessLine()
         fTokens.clear();
         fTokenizer.SetString(&fLine);
         fTokenizer.GetTokens(&fTokens);
-        //if the number of tokens is 2, insert into the map
+        //if the number of tokens is >2, insert the first two into the map
         if(TokensAreValid())
         {
             std::string mk4id = fTokens[0];
@@ -96,7 +96,7 @@ void MHO_StationCodeMap::InsertPair(std::string station_code, std::string mk4id)
 
 bool MHO_StationCodeMap::TokensAreValid()
 {
-    if(fTokens.size() != 2)
+    if(fTokens.size() < 2)
     {
         return false;
     }
