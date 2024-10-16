@@ -18,6 +18,10 @@ namespace hops
 class MHO_ManualChannelDelayCorrectionBuilder: public MHO_OperatorBuilder, public MHO_ChannelQuantity
 {
     public:
+
+        MHO_ManualChannelDelayCorrectionBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
+            : MHO_OperatorBuilder(toolbox, fdata){};
+
         MHO_ManualChannelDelayCorrectionBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                                                 MHO_ParameterStore* pstore = nullptr)
             : MHO_OperatorBuilder(toolbox, cstore, pstore), MHO_ChannelQuantity(){};

@@ -17,6 +17,9 @@ namespace hops
 class MHO_CircularFieldRotationBuilder: public MHO_OperatorBuilder
 {
     public:
+        MHO_CircularFieldRotationBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
+            : MHO_OperatorBuilder(toolbox, fdata){};
+
         MHO_CircularFieldRotationBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                                          MHO_ParameterStore* pstore = nullptr)
             : MHO_OperatorBuilder(toolbox, cstore, pstore){};
