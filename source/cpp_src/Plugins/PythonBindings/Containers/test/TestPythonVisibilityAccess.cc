@@ -97,6 +97,9 @@ void configure_data_library(MHO_ContainerStore* store)
 
 int main(int argc, char** argv)
 {
+    py::scoped_interpreter guard{}; // start the interpreter and keep it alive
+    configure_pypath();
+
     std::string usage = "TestPythonVisibilityAccess -d <directory> -b <baseline>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
@@ -215,9 +218,6 @@ int main(int argc, char** argv)
 
     //now we are going to pass the visibility data to python, and plot
     //the amp/phase of the visibilities for a particular channel
-
-    py::scoped_interpreter guard{}; // start the interpreter and keep it alive
-    configure_pypath();
 
     std::cout << "*************** passing visibilities to python **************" << std::endl;
 
