@@ -138,12 +138,16 @@ void MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
                         if(build_op)
                         {
                             auto builder_it = fNameToBuilderMap.find(name);
+                            
                             if(builder_it != fNameToBuilderMap.end())
                             {
                                 msg_debug("initialization",
                                           "building operator with name: " << name << " in category: " << cat << "." << eom);
                                 builder_it->second->SetConditions(*ctrl_iter);
                                 builder_it->second->SetAttributes(*stmt_iter);
+                                // std::cout<<"name = "<<name<<std::endl;
+                                // std::cout<<"control condition: "<< *ctrl_iter << std::endl;
+                                // std::cout<<"statment attributes = "<< *stmt_iter <<std::endl;
                                 bool build_status_ok = builder_it->second->Build();
                                 if(!build_status_ok)
                                 {

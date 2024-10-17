@@ -1,5 +1,6 @@
 #include "MHO_ControlElementParser.hh"
 
+
 namespace hops
 {
 
@@ -36,6 +37,7 @@ mho_json MHO_ControlElementParser::ParseControlStatement(const MHO_ControlStatem
         }
         else if(statement_type.size() != 0 && statement_type != "unknown")
         {
+
             elem["statement_type"] = statement_type;
             elem["value"] = ParseTokens(element_name, fElementFormats[element_name],
                                         control_statement.fTokens); //otherwise parse any of the other supported elements
