@@ -64,7 +64,7 @@ def test_inter(cstore_interface_obj, param_interface_obj):
 
 
 
-def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
+def test_plot_visibilities(cstore_interface_obj, param_interface_obj, show_plot = False):
 
     n_obj =  cstore_interface_obj.get_nobjects();
     print("n objects present = ", n_obj)
@@ -120,26 +120,27 @@ def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
     pp = 0;
     ch = 0;
 
-    print("plotting the visibilities of: pp = ", axis0[pp], " chan = ", axis1[ch]);
-    fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
-    
-    timer = fig.canvas.new_timer(interval = 500) #time of 300ms
-    timer.add_callback(close_event)
+    if show_plot:
+        print("plotting the visibilities of: pp = ", axis0[pp], " chan = ", axis1[ch]);
+        fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+        
+        timer = fig.canvas.new_timer(interval = 500) #time of 500ms
+        timer.add_callback(close_event)
 
-    time, freq = np.meshgrid(axis3, axis2)
-    vis = np.array(vis_arr[pp,ch,:,:])
-    print("time shape = ", time.shape)
-    print("freq shape = ", freq.shape)
-    print("vis_00 shape = ", vis.shape)
-    vis_mag = np.abs(vis)
+        time, freq = np.meshgrid(axis3, axis2)
+        vis = np.array(vis_arr[pp,ch,:,:])
+        print("time shape = ", time.shape)
+        print("freq shape = ", freq.shape)
+        print("vis_00 shape = ", vis.shape)
+        vis_mag = np.abs(vis)
 
-    # Plot the surface.
-    surf = ax.plot_surface(time, freq, vis_mag, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+        # Plot the surface.
+        surf = ax.plot_surface(time, freq, vis_mag, cmap=cm.coolwarm, linewidth=0, antialiased=False)
 
-    # Add a color bar which maps values to colors.
-    fig.colorbar(surf, shrink=0.5, aspect=5)
-    timer.start()
-    plt.show()
+        # Add a color bar which maps values to colors.
+        fig.colorbar(surf, shrink=0.5, aspect=5)
+        timer.start()
+        plt.show()
 
 
 
