@@ -2,10 +2,6 @@ import pyMHO_Containers
 
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib import cm
-from matplotlib.ticker import LinearLocator
-from mpl_toolkits.mplot3d import Axes3D
-
 
 def print_mx(mx_obj):
     arr = np.array(mx_obj,copy=False)
