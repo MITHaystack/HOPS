@@ -1,11 +1,10 @@
 import pyMHO_Containers
 import numpy as np
 
-def fix_noema_jumps_wrapper(fringe_data_interface):
-    fix_noema_jumps( fringe_data_interface.get_container_store(), fringe_data_interface.get_parameter_store() )
-
-
-def fix_noema_jumps(cstore_interface_obj, param_interface_obj):
+def fix_noema_jumps(fringe_data_interface):
+    
+    cstore_interface_obj = fringe_data_interface.get_container_store()
+    param_interface_obj = fringe_data_interface.get_parameter_store()
 
     # print("RUNNING NOEMA PHASE JUMP CORRECTION")
 

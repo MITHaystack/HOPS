@@ -17,9 +17,9 @@ def test_standalone_file_interface(dirname, baseline):
                     n_obj = bl_data.get_nobjects()
                     obj_info = bl_data.get_object_id_list()
                     uuid = ""
-                    for oid in obj_info:
-                        if oid["shortname"] == "vis":
-                            uuid = oid["object_uuid"]
+                    for obj_id in obj_info:
+                        if obj_id["shortname"] == "vis":
+                            uuid = obj_id["object_uuid"]
                     if uuid != "":
                         vis = bl_data.get_object(uuid)
                         if vis != None:
