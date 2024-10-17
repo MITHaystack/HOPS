@@ -10,11 +10,11 @@ verb=false
 ${HOPS_SETUP-'false'} || . $srcdir/chk_env.sh
 export DATADIR=`cd $srcdir/testdata; pwd`
 
-[ -n "$PS2PDF" ] || { echo ps2pdf not defined; exit 99; }
-[ "$PS2PDF" = '/bin/false' ] && { echo ps2pdf not available--punt; exit 77; }
-[ -x "$PS2PDF" ] || { echo bogus PS2PDF $PS2PDF; exit 2; }
+[ -n "$PS2PDF" ] || { echo ps2pdf not defined; exit 127; }
+[ "$PS2PDF" = '/bin/false' ] && { echo ps2pdf not available--punt; exit 127; }
+[ -x "$PS2PDF" ] || { echo bogus PS2PDF $PS2PDF; exit 127; }
 
-[ -d 2843 ] || { echo chk_ff_2843.sh has not been run--punt; exit 77; }
+[ -d 2843 ] || { echo chk_ff_2843.sh has not been run--punt; exit 127; }
 
 $verb && echo \
 fplot -p fplot-2843-%02d.ps 2843/321-1701_0552+398/*X*
