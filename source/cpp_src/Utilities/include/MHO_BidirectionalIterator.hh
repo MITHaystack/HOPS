@@ -2,6 +2,7 @@
 #define MHO_BidirectionalIterator_HH__
 
 #include <iterator>
+#include <stddef.h>
 
 namespace hops
 {
