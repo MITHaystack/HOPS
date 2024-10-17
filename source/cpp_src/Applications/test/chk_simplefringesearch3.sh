@@ -4,8 +4,14 @@ verb=false
 
 [ -d "$srcdir" ] || { echo srcdir not set; exit 1; }
 ${HOPS_SETUP-'false'} || . $srcdir/chk_env.sh
-export DATADIR=`cd $srcdir/3764; pwd`
 
+
+if [ ! -d "$srcdir/3764" ]; then
+  echo "Directory $srcdir/3764 does not exist, will not apply this test"
+  exit 127
+fi
+
+export DATADIR=`cd $srcdir/3764; pwd`
 RET_VAL=0
 EXP_DIR=$DATADIR
 D2M4_EXP_NUM=.
