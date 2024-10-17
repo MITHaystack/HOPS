@@ -77,7 +77,7 @@ An example of the ccmake option table (with defaults) is shown below:
 The absolute minimum dependencies are:
 
 1. cmake, cmake-curses-gui, GNU make, and bash
-2. A c++ compiler which supports the C++11 standard (gcc > 4.9, or clang > 3.6)
+2. A c++ compiler which supports the C++11 standard (gcc >= 5.0, or clang >= 3.6)
 3. python3 and pip (if you want to make use of python extensions)
 4. For post-installation testing (e.g. make test) the utilities wget and jq are needed, but are not required for installation.
 
