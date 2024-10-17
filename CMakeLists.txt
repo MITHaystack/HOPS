@@ -60,6 +60,9 @@ endif()
 #define and create install directories #########################################
 set(INCLUDE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/include")
 set(LIB_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
+#on some systems the tzdate library gets put here (lib64)
+#so make sure it exists and is added to the library path
+set(LIB64_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib64") 
 set(BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin")
 set(TEST_BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin/test")
 set(CONFIG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/config")
@@ -75,6 +78,7 @@ set(SHARE_VHELP_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/vhelp")
 
 file(MAKE_DIRECTORY ${INCLUDE_INSTALL_DIR})
 file(MAKE_DIRECTORY ${LIB_INSTALL_DIR})
+file(MAKE_DIRECTORY ${LIB64_INSTALL_DIR})
 file(MAKE_DIRECTORY ${BIN_INSTALL_DIR})
 file(MAKE_DIRECTORY ${TEST_BIN_INSTALL_DIR})
 file(MAKE_DIRECTORY ${CONFIG_INSTALL_DIR})
@@ -183,7 +187,7 @@ endif(HOPS_IS_HOPS4)
 #stuff for controlling testing/test-data location
 set(TEST_DATA_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
 #location where test data should be dowloaded to (if the user runs testdata_download_all.sh)
-set(HOPS_CACHED_TEST_DATADIR "${DATA_INSTALL_DIR}/test_data" CACHE PATH "Location used to downlaod/cache HOPS test data.")
+set(HOPS_CACHED_TEST_DATADIR "${DATA_INSTALL_DIR}/test_data" CACHE PATH "Location used to download/cache HOPS test data.")
 #actual location to unpack the test data and do the tests
 set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data)
 
