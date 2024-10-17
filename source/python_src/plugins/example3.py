@@ -6,6 +6,8 @@ from vpal import utility
 
 def generate_pcphases(fringe_data_interface):
 
+    #keep in mind that 'plot_data' is only available in the 'finalize' step 
+    #so this function must be called as a 'python_finalize' operator
     plot_data = fringe_data_interface.get_plot_data()
     param_interface_obj = fringe_data_interface.get_parameter_store()
     
