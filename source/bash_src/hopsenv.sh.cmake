@@ -8,6 +8,11 @@ OLD_CMAKE_PREF="NULL"
 OLD_LD_LIBPATH="NULL"
 OLD_PATH="NULL"
 
+if [ -n "$HOPS_SYS_PY" ]
+    then
+        export OLD_HOPS_SYS_PY="$HOPS_SYS_PY"
+fi
+
 #look for any old copies of these variables and cache them
 if [ -n "$HOPS_SYS" ]
     then
@@ -15,11 +20,6 @@ if [ -n "$HOPS_SYS" ]
         OLD_PATH=$OLD_HOPS_SYS/bin:$OLD_HOPS_SYS/bin/test:
         OLD_LD_LIBPATH=$OLD_HOPS_SYS/lib:
         OLD_CMAKE_PREF=$OLD_HOPS_SYS:
-fi
-
-if [ -n "$HOPS_SYS_PY" ]
-    then
-        export OLD_HOPS_SYS_PY="$HOPS_SYS_PY"
 fi
 
 if [ -n "$HOPS_INSTALL" ]
@@ -55,8 +55,8 @@ NEW_PATH=$(printf '%s\n' "$PATH" | sed "s|$OLD_PATH||g")
 NEW_PATH="$HOPS_INSTALL/bin:$HOPS_INSTALL/bin/test:$NEW_PATH"
 export PATH="$NEW_PATH"
 
-NEW_LD_LIBRARY_PATH=$(printf '%s\n' "$LD_LIBRARY_PATH" | sed "s|$OLD_LD_LIBPATH||g")
-NEW_LD_LIBRARY_PATH="$HOPS_INSTALL/lib:$NEW_LD_LIBRARY_PATH"
+NEW_LD_LIBRARY_PATH=$(printf '%s\n' "$LD_LIBRARY_PATH" | sed "s|$OLD_LD_LIBPATH||g" | sed "s|$OLD_HOPS_SYS_PY||g" )
+NEW_LD_LIBRARY_PATH="$HOPS_INSTALL/lib:$HOPS_SYS_PY:$NEW_LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH="$NEW_LD_LIBRARY_PATH"
 
 NEW_CMAKE_PREFIX_PATH=$(printf '%s\n' "$CMAKE_PREFIX_PATH" | sed "s|$OLD_CMAKE_PREF||g")
