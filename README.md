@@ -125,6 +125,9 @@ testdata_download_all.sh
 make test
 ```
 
+Do not worry about messages concerning an undefined 'CI/CD key', this is for downloading secured test data, tests related to that data will be skipped.
+You will need a terminal at least 95 characters wide to avoid line wraps from the `make test` suite output. 
+
 ### Building the documentation
 HOPS supports the ability to automatically build documentation using the doxygen too. To do this, ensure that doxygen is installed, and that the
 cmake option `BUILD_DOXYGEN_REF` is set to `ON`. To build and install the auto-generated documentation run the command `make reference` from the build directory.
