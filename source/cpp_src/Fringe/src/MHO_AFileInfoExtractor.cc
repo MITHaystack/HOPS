@@ -656,7 +656,7 @@ std::string MHO_AFileInfoExtractor::RetrieveParameterAsString(const mho_json& ob
                 {
                     value = obj[name].get< std::string >();
                 }
-                return ConvertToString(value, pformat);
+                return ConvertToString(value.c_str(), pformat);
             }
             break;
         case bool_type:
