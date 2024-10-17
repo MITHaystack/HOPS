@@ -112,6 +112,8 @@ void MHO_IonosphericFringeFitter::Finalize()
         mho_json& plot_data = fFringeData->GetPlotData();
         plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, &fOperatorToolbox, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
+        
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
     }
     profiler_stop();
 }

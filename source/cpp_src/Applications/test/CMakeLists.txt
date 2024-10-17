@@ -24,6 +24,7 @@ if(BASH_PROGRAM)
             chk_dsb1
             chk_geomixedmode
             chk_phs_jump
+            chk_pythonpcphases
         )
     endif(PY_EXE)
 
