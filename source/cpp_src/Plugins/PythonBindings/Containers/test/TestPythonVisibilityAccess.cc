@@ -224,7 +224,7 @@ int main(int argc, char** argv)
     //load our interface module
     auto mho_test = py::module::import("mho_test");
     //call a python functioin on the interface class instance
-    mho_test.attr("test_plot_visibilities")(conInter, parmInter, true);
+    mho_test.attr("test_plot_visibilities")(conInter, parmInter);
 
     return 0;
 }
