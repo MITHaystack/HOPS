@@ -16,13 +16,19 @@ After the build is complete, you will need to put the hops binary installation l
 
 `source <hops-install>/bin/hops.bash`
 
-where `<hops-install>` is the HOPS4 installation directory. On the x86 architecture, the installation directory name defaults to: `<hops-source>/x86_64-4.00`, but can be changed at configuration time.
+where `<hops-install>` is the HOPS4 installation directory. On the x86 architecture, the default installation directory name 
+will be one level up from the build directory in: `<build-dir>/../x86_64-4.00`, but can be changed at configuration time. To set the install 
+prefix to a custom path on the command line using `cmake`, you can pass the `-DCMAKE_INSTALL_PREFIX` flag as in the following example:
 
-To change the default options or if a needed library is not automatically detected you
+`HOPS4_INSTALL_DIR="~/hops-install"` \
+`cmake -DCMAKE_INSTALL_PREFIX=${HOPS4_INSTALL_DIR}`
+
+
+To change the default options or if a needed library is not automatically detected you can
 use the command line interface `ccmake` (cmake-curses-gui) in place of `cmake` to edit options. This command will open a CLI
 GUI where you may change various parameters. On the first run of this command you will need to presented with an "empty cache", so press 'c'
 to configure, and then 'e' exit and edit the options. Once you are satisfied with your option selection, press 'c' to configure again. If no errors
-are detected you can then generate the build system and exit to the command line by pressing 'g'. Once the build system has been generated, then run `make && make install` to compile and install.
+are detected, you can then generate the build system and exit to the command line by pressing 'g'. Once the build system has been generated, then run `make && make install` to compile and install.
 
 An example of the ccmake option table (with defaults) is shown below:
 ```
@@ -71,7 +77,7 @@ An example of the ccmake option table (with defaults) is shown below:
 The absolute minimum dependencies are:
 
 1. cmake, cmake-curses-gui, GNU make, and bash
-2. A c++ compiler which supports the C++11 standard (gcc > 4.8, or clang > 3.3)
+2. A c++ compiler which supports the C++11 standard (gcc > 4.9, or clang > 3.6)
 3. python3 and pip (if you want to make use of python extensions)
 4. For post-installation testing (e.g. make test) the utilities wget and jq are needed, but are not required for installation.
 
