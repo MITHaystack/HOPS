@@ -217,8 +217,8 @@ void MHO_BasicFringeFitter::Initialize()
             }
             else
             {
-                //fNormFXOp = &fSSBNormFXOp;
-                fNormFXOp = &fMSBNormFXOp;
+                fNormFXOp = &fSSBNormFXOp;
+                //fNormFXOp = &fMSBNormFXOp;
             }
 
             //initialize norm-fx (x-form to SBD space)
@@ -264,7 +264,7 @@ void MHO_BasicFringeFitter::PreRun()
     if(!skipped) //execute if we are not finished and are not skipping
     {
         //TODO FILL ME IN -- need to call specified user-scripts here
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "python_prefit");
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "prefit");
     }
 }
 
@@ -301,7 +301,7 @@ void MHO_BasicFringeFitter::PostRun()
     if(!skipped) //execute if we are not finished and are not skipping
     {
         //TODO FILL ME IN -- need to call specified user-scripts here
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "python_postfit");
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "postfit");
     }
 }
 
@@ -346,7 +346,7 @@ void MHO_BasicFringeFitter::Finalize()
         plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, &fOperatorToolbox, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
 
-        //TODO FIXME...remove this, just for testing
+        //TODO FIXME...remove this (we should build this as and operator in the 'finalize category'), just for testing
         MHO_EstimatePCManual est_pc_man;
         auto vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
         auto wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
@@ -359,7 +359,7 @@ void MHO_BasicFringeFitter::Finalize()
         est_pc_man.Initialize();
         est_pc_man.Execute();
 
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "python_finalize");
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
 
     }
 
