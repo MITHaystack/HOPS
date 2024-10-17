@@ -4,7 +4,7 @@ DATA_DIR=@HOPS_CACHED_TEST_DATADIR@
 current_dir=$(pwd)
 
 if [ -d "$DATA_DIR" ]; then
-    echo "$DATA_TARBALL exists."
+    echo "$DATA_DIR exists."
 else 
     echo "Creating directory: ${DATA_DIR}"
     mkdir -p "$DATA_DIR"
@@ -17,7 +17,7 @@ DATA_TARBALL=hops4_testdata.tar.gz
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
 else
-    echo "retrieving ${DATA_TARBALL}"
+    echo "Dowloading ${DATA_TARBALL} (65MB) to ${DATA_DIR}"
     wget -q http://www.mit.edu/~barrettj/hops/hops4_testdata.tar.gz -O $DATA_TARBALL
 fi
 
@@ -25,7 +25,7 @@ DATA_TARBALL=vt9105.tar.gz
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
 else
-    echo "retrieving ${DATA_TARBALL}"
+    echo "Downloading ${DATA_TARBALL} (134MB) to ${DATA_DIR}"
     wget -q http://www.mit.edu/~barrettj/hops/vt9105.tar.gz -O $DATA_TARBALL
 fi
 
@@ -33,7 +33,7 @@ DATA_TARBALL=3593.tar.gz
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
 else 
-    echo "retrieving ${DATA_TARBALL}"
+    echo "Downloading ${DATA_TARBALL} (43MB) to ${DATA_DIR}"
     wget -q http://www.mit.edu/~barrettj/hops/3593.tar.gz -O $DATA_TARBALL
 fi
 
@@ -41,30 +41,28 @@ DATA_TARBALL=3741.tar.gz
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
 else 
-    echo "retrieving ${DATA_TARBALL}"
+    echo "Downloading ${DATA_TARBALL} (58MB) to ${DATA_DIR}"
     wget -q http://www.mit.edu/~barrettj/hops/3741.tar.gz -O $DATA_TARBALL
 fi
 
 if [[ -z "${HOPS_CICD_KEY}" ]]; then
-    echo "CICD key is not defined, will not retrieve 3764.tar.gz"
-else
+    echo "CI/CD key is not defined (not an error), will not retrieve 3768.tar.gz or 3764.tar.gz"
+    echo "Related tests will be skipped."
+else 
+
     DATA_TARBALL=3764.tar.gz
     if [ -f "$DATA_TARBALL" ]; then
         echo "$DATA_TARBALL exists."
     else
-        echo "retrieving ${DATA_TARBALL}"
+        echo "Downloading ${DATA_TARBALL} (155MB) to ${DATA_DIR}"
         scp -i ${HOPS_CICD_KEY} 192.52.61.185:/mnt/data2/eht/tarballs/3764.tar.gz ./${DATA_TARBALL}
     fi
-fi
-
-if [[ -z "${HOPS_CICD_KEY}" ]]; then
-    echo "CICD key is not defined, will not retrieve 3768.tar.gz"
-else
+    
     DATA_TARBALL=3768.tar.gz
     if [ -f "$DATA_TARBALL" ]; then
         echo "$DATA_TARBALL exists."
     else
-        echo "retrieving ${DATA_TARBALL}"
+        echo "Downloading ${DATA_TARBALL} (127MB) to ${DATA_DIR}"
         scp -i ${HOPS_CICD_KEY} 192.52.61.185:/mnt/data2/eht/tarballs/3768.tar.gz ./${DATA_TARBALL}
     fi
 fi
