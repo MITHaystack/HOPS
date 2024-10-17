@@ -37,7 +37,7 @@ An example of the ccmake option table (with defaults) is shown below:
  BUILD_DOXYGEN_REF               *OFF
  BUILD_LATEX_DOCS                *OFF
  CMAKE_BUILD_TYPE                *Release
- CMAKE_INSTALL_PREFIX            */home/barrettj/work/projects/alt/hops-git/x86_64-4.0.0
+ CMAKE_INSTALL_PREFIX            */home/oper/HOPS/x86_64-4.0.0
  CPGPLOT_LIBRARY                 */usr/lib/libcpgplot.so
  ENABLE_COLOR_MSG                *ON
  ENABLE_DEBUG_MSG                *ON
@@ -51,7 +51,7 @@ An example of the ccmake option table (with defaults) is shown below:
  HOPS3_PYTHON_EXTRAS             *ON
  HOPS3_USE_ADHOC_FLAGGING        *ON
  HOPS_BUILD_EXTRA_CONTAINERS     *OFF
- HOPS_CACHED_TEST_DATADIR        */home/barrettj/work/projects/alt/hops-git/x86_64-4.0.0/data/test_data
+ HOPS_CACHED_TEST_DATADIR        */home/oper/HOPS/x86_64-4.0.0/data/test_data
  HOPS_ENABLE_DEV_TODO            *OFF
  HOPS_ENABLE_TEST                *ON
  HOPS_IS_HOPS4                   *OFF
@@ -110,7 +110,7 @@ sudo apt-get install python3-dev python3-pip pgplot5 libgfortran5 libfftw3-dev l
 ```
 
 ## Testing
-If you wish to check the correctness of the installation, you can run `make test` from the build directory after successfully building the software.
+If you wish to check the functionality of the installation, you can run `make test` from the build directory after successfully building the software.
 However you will first need to download the relevant set of test data. If you do not have a cached copy of the test data, you
 can retrieve it by running the script `testdata_download_all.sh` as detailed below. This will download the necessary tarballs and place them in the HOPS test data directory under `<hops-install>/data/test_data`. The overall process is:
 
@@ -125,7 +125,15 @@ testdata_download_all.sh
 make test
 ```
 
-Do not worry about messages concerning an undefined 'CI/CD key', this is for downloading secured test data, tests related to that data will be skipped.
+If you have have chosen the default install directory then sourcing `hops.bash` (from the build directory):
+
+`source ../x86_64-4.0.0/bin/hops.bash`
+
+should print out the full path to the install directory:
+
+`HOPS install directory set to /home/oper/HOPS/x86_64-4.0.0`
+
+Do not worry about messages concerning an undefined 'CI/CD key', this is for downloading secured test data, tests that are related to that data will be skipped.
 You will need a terminal at least 95 characters wide to avoid line wraps from the `make test` suite output. 
 
 ### Building the documentation
