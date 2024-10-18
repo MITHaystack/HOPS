@@ -8,6 +8,7 @@ set(SOURCE_BASENAMES
     TestFastFourierTransform
     TestSignalGenerators
     TestUniformGridCalculator
+    TestUniformGridCalculator2
     TestFastFourierTransform2
     TestTwiddleFactors
 )
