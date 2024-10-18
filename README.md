@@ -86,9 +86,17 @@ On Ubuntu 22.04 or Debian based systems these can be installed with:
 ```
 sudo apt-get install build-essential cmake cmake-curses-gui python3-dev python3-pip wget jq
 ```
+On RHEL/Fedora based distributions, these dependencies can be installed with:
+```
+sudo dnf install @development-tools gcc-c++ cmake cmake-gui python3-devel python3-pip wget jq
+```
 While not strictly required by HOPS4, the Fast Fourier Transform library fftw is highly recommended and can be installed with:
 ```
 sudo apt-get install libfftw3-dev
+```
+or 
+```
+sudo dnf install fftw-devel
 ```
 
 Python package installation is handled by pip, but it will not pull in any python dependencies (numpy, matplotlib, scipy, future) unless the user explicitly enables the cmake flag `HOPS_PYPI_MANAGE_DEPS`, if this option is set to 'ON' then pip with attempt to download and *locally* install the necessary python packages in the HOPS install directory. If you prefer to manage you own python dependencies, then leave this option set to 'OFF', in this case the HOPS python tools will still be installed, but only be capable of running if the necessary dependencies are found in the users python environment.
@@ -108,6 +116,27 @@ On Ubuntu 22.04 or Debian based systems these can be installed with:
 ```
 sudo apt-get install python3-dev python3-pip pgplot5 libgfortran5 libfftw3-dev libx11-dev gnuplot binutils libx11-dev libxpm-dev ghostscript ghostscript-x
 ```
+while on RHEL/Fedora based system these can be installed using:
+```
+sudo dnf install python3-devel python3-pip gcc-gfortran fftw-devel libX11-devel gnuplot binutils libXpm-devel ghostscript
+```
+However, RHEL/Fedora disributions lack a package for the PGPLOT library needed by HOPS3, so this will have to be installed manually 
+from source on these distributions. The PGPLOT source can be retrieved with:
+```
+curl -O ftp://ftp.astro.caltech.edu/pub/pgplot/pgplot5.2.tar.gz 
+```
+and built by following the instructions here: https://guaix.fis.ucm.es/~ncl/howto/howto-pgplot
+
+However, be aware that modern compilers tend to be good deal pickier about implicit function declarations, 
+and (at least on Fedora40) you may need to modify the PGPLOT source to get it to compile. This requires ensuring the proper 
+include declarations are present in a couple files where compilations fails. The prime culprits being these missing includes: 
+```
+#include <string.h> // for strncpy()
+#include <fcntl.h>  // for open() 
+#include <unistd.h> // for close()
+```
+If you are not comfortable modifying the PGPLOT source, please use a Debian/Ubuntu based distribution with a pgplot5 package 
+or forgo HOPS3 plotting functionality.
 
 ## Testing
 If you wish to check the functionality of the installation, you can run `make test` from the build directory after successfully building the software.
