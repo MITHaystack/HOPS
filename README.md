@@ -116,7 +116,7 @@ On Ubuntu 22.04 or Debian based systems these can be installed with:
 ```
 sudo apt-get install python3-dev python3-pip pgplot5 libgfortran5 libfftw3-dev libx11-dev gnuplot binutils libx11-dev libxpm-dev ghostscript ghostscript-x
 ```
-while on RHEL/Fedora based system these can be installed using:
+while on RHEL/Fedora based systems these can be installed using:
 ```
 sudo dnf install python3-devel python3-pip gcc-gfortran fftw-devel libX11-devel gnuplot binutils libXpm-devel ghostscript
 ```
