@@ -1,7 +1,8 @@
-# HOPS-4.0
+[![test-ubuntu](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu.yml/badge.svg)](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu.yml)
+# HOPS 4.0
 
 Authors: John Barrett, Geoff Crew, Dan Hoak, Violet Pfeiffer  
-Legacy Authors (HOPS3): Roger Cappallo, Colin Lonsdale, Cris Niell, and others  
+Legacy Authors (HOPS3): Roger Cappallo, Colin Lonsdale, Cris Niell, with numerous contributions from others  
 
 To configure with defaults and compile the code with cmake, run the following:  
 
@@ -22,7 +23,6 @@ prefix to a custom path on the command line using `cmake`, you can pass the `-DC
 
 `HOPS4_INSTALL_DIR="~/hops-install"` \
 `cmake -DCMAKE_INSTALL_PREFIX=${HOPS4_INSTALL_DIR}`
-
 
 To change the default options or if a needed library is not automatically detected you can
 use the command line interface `ccmake` (cmake-curses-gui) in place of `cmake` to edit options. This command will open a CLI
