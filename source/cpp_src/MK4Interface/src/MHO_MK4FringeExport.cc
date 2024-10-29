@@ -223,7 +223,6 @@ int MHO_MK4FringeExport::fill_202(struct type_202* t202)
 int MHO_MK4FringeExport::fill_203(struct type_203* t203)
 {
     clear_203(t203);
-    std::size_t nchannels = MAX_CHAN;
     FillChannels(&(t203->channels[0]));
     return 0;
 }
@@ -332,6 +331,43 @@ int MHO_MK4FringeExport::fill_205(struct type_203* t203, struct type_205* t205)
             t205->ffit_chan[i].channels[0] = (short)i;
         }
     }
+    
+    // nfreqs = 0;
+    // for (ch=0; ch<MAXFREQ; ch++)
+    //     {
+    //     fc = pass->pass_data + ch;
+    //     if (fc->frequency == 0.0 || nfreqs >= pass->nfreq) 
+    //         continue;
+    //     nfreqs++;
+    //     t205->ffit_chan[ch].ffit_chan_id = fc->freq_code;
+    //     nch = 0;
+    //     for (sb=0; sb<2; sb++)
+    //         {
+    //         ind = sb + 2 * pass->pol;
+    //         if (fc->index[ind] <= 0) 
+    //             continue;
+    //         for (j=0; j<nchan; j++)
+    //             if (fc->index[ind] == t203->channels[j].index) 
+    //                 break;
+    //         if (j == nchan)
+    //             {
+    //             msg ("Could not find index number %d in type 203 record", 
+    //                                             2, fc->index[ind]);
+    //             return (-1);
+    //             }
+    //         if (nch >= 4)
+    //             {
+    //             msg ("Error - more than 4 correlator indices in ffit chan '%c'", 
+    //                                             2, fc->freq_code);
+    //             return (-1);
+    //             }
+    //         t205->ffit_chan[ch].channels[nch] = j;
+    //         nch++;
+    //         }
+    //     }
+    // 
+    
+    
 
     return 0;
 }
