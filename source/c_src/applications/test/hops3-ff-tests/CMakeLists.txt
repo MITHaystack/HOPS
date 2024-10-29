@@ -23,7 +23,6 @@ if(BASH_PROGRAM)
             chk_fringex
             chk_average
             chk_avefix
-            chk_cofit
             chk_search
             chk_fourmer
             chk_frmrsrch
