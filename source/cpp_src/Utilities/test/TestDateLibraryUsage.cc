@@ -157,5 +157,17 @@ int main(int /*argc*/, char** /*argv*/)
     std::string vdif_date = hops_clock::to_iso8601_format(hops_tp7);
     std::cout << "vdif: " << vdif_epoch << "@" << vdif_secs << " = " << vdif_date << std::endl;
 
+    //test adhoc timestamp
+    int iyear = 2024; 
+    double frac_day = 192.74849537037037037037;
+    auto hops_tp8 = hops_clock::from_year_fpday(iyear, frac_day);
+    std::cout<<"year, fp_day: "<<iyear<<", "<<frac_day<< " = "<< hops_clock::to_iso8601_format(hops_tp8)<<std::endl;
+
+    //test adhoc timestamp
+    hops_clock::to_year_fpday(hops_tp8, iyear, frac_day);
+    std::cout<<"year, fp_day: "<<iyear<<", "<<frac_day<<std::endl;
+
+
+
     return 0;
 }

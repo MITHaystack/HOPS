@@ -89,28 +89,26 @@ class hops_clock
         from_local(const std::chrono::time_point< date::local_t, Duration >&) NOEXCEPT;
 
         static time_point from_iso8601_format(const std::string& timestamp);
-
         static std::string to_iso8601_format(const time_point& tp);
 
         static time_point from_hops_format(const std::string& timestamp);
-
         static std::string to_hops_format(const time_point& tp);
 
         static time_point from_legacy_hops_date(legacy_hops_date& ldate);
-
         static legacy_hops_date to_legacy_hops_date(const time_point& tp);
 
-        static time_point from_vex_format(const std::string& timestamp);
-
         static time_point from_vdif_format(int& vdif_epoch, int& vdif_seconds);
-
         static void to_vdif_format(const time_point& tp, int& vdif_epoch, int& vdif_second);
 
         static time_point from_mjd(const time_point& mjd_epoch, const double& epoch_offset, const double& mjd);
-
         static double to_mjd(const time_point& mjd_epoch, const double& epoch_offset, const time_point& tp);
 
+        static time_point from_vex_format(const std::string& timestamp);
         static std::string to_vex_format(const time_point& tp, bool truncate_to_nearest_second = false);
+
+        //needed for ad_hoc flag files (time-stamps are given in floating-point days)
+        static time_point from_year_fpday(int year, double floating_point_days);
+        static void to_year_fpday(const time_point& tp, int& year, double& floating_point_days);
 
         static date::utc_time< std::chrono::nanoseconds > get_hops_epoch_utc()
         {
@@ -404,6 +402,60 @@ inline legacy_hops_date hops_clock::to_legacy_hops_date(const time_point& tp)
 
     return ldate;
 }
+
+
+//needed for ad_hoc flag files (time-stamps are given in floating-point days)
+inline hops_clock::time_point hops_clock::from_year_fpday(int year, double floating_point_days)
+{
+    int integer_days = (int) floating_point_days;
+    double fractional_day = floating_point_days - integer_days;
+    int integer_hours = (int) 24*fractional_day;
+    double fractional_hour = 24*fractional_day - integer_hours;
+    int integer_minutes = (int) 60*fractional_hour;
+    double fractional_seconds = (60*fractional_hour - integer_minutes)*60;
+
+    //we co-opt the legacy date format to handle this format
+    legacy_hops_date ldate;
+    ldate.year = (short) year;
+    ldate.day = (short) integer_days + 1;
+    ldate.hour = (short) integer_hours;
+    ldate.minute = (short) integer_minutes;
+    ldate.second = fractional_seconds;
+
+    return from_legacy_hops_date(ldate);
+}
+
+inline void hops_clock::to_year_fpday(const hops_clock::time_point& tp, int& year, double& floating_point_days)
+{
+    using namespace date;
+    using namespace std::chrono;
+
+    //convert the time point to sys time, and extract the date
+    auto sys_tp = hops_clock::to_sys(tp);
+    auto dp = sys_days(floor< date::days >(sys_tp));
+
+    //get all of the date information
+    year_month_day ymd{dp};
+    auto year_value = ymd.year();
+    //get the ordinal day of the year
+    auto ordinal_day = day_of_year(dp);
+    int integer_days = ordinal_day.count();
+
+    // // hh_mm_ss< std::chrono::nanoseconds > day_time{floor< std::chrono::nanoseconds >(sys_tp - dp)};
+    // auto day_time = std::chrono::duration< std::chrono::nanoseconds >(sys_tp - dp)};
+    // double frac_day = (day_time.count()*1e-9)/86400.0;
+
+    //get the time and convert to fractional day
+    hh_mm_ss< std::chrono::nanoseconds > time{floor< std::chrono::nanoseconds >(sys_tp - dp)};
+    int ihours = time.hours().count();
+    int imins = time.minutes().count();
+    int isecs = time.seconds().count();
+    int inanos = time.subseconds().count();
+    
+    double frac_day = (inanos*1e-9 + isecs + 60.*imins + 3600.*ihours)/(86400.0);
+    floating_point_days = integer_days +  frac_day;
+}
+
 
 inline hops_clock::time_point hops_clock::from_mjd(const time_point& mjd_epoch, const double& epoch_offset, const double& mjd)
 {
