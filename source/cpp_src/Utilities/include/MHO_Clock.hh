@@ -417,7 +417,7 @@ inline hops_clock::time_point hops_clock::from_year_fpday(int year, double float
     //we co-opt the legacy date format to handle this format
     legacy_hops_date ldate;
     ldate.year = (short) year;
-    ldate.day = (short) integer_days + 1;
+    ldate.day = (short) integer_days + 1; //note: ordinal day count starts at 1
     ldate.hour = (short) integer_hours;
     ldate.minute = (short) integer_minutes;
     ldate.second = fractional_seconds;
@@ -438,8 +438,8 @@ inline void hops_clock::to_year_fpday(const hops_clock::time_point& tp, int& yea
     year_month_day ymd{dp};
     auto year_value = ymd.year();
     //get the ordinal day of the year
-    auto ordinal_day = day_of_year(dp);
-    int integer_days = ordinal_day.count();
+    auto ordinal_day = day_of_year(dp); //note: count starts at 1
+    int integer_days = ordinal_day.count() - 1;
 
     // // hh_mm_ss< std::chrono::nanoseconds > day_time{floor< std::chrono::nanoseconds >(sys_tp - dp)};
     // auto day_time = std::chrono::duration< std::chrono::nanoseconds >(sys_tp - dp)};
