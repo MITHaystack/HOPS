@@ -1,6 +1,7 @@
 #include <chrono>
 #include <iostream>
 #include <istream>
+#include <iomanip>
 
 #include "date/date.h"
 #include "date/tz.h"
@@ -33,6 +34,8 @@ int main(int /*argc*/, char** /*argv*/)
     auto tai_now = hops_clock::to_tai(hops_now);
     auto utc_now = hops_clock::to_utc(hops_now);
     auto gps_now = hops_clock::to_gps(hops_now);
+    
+
 
     std::cout << "hops now = " << hops_now << std::endl;
     std::cout << "utc now = " << utc_now << std::endl;
@@ -158,6 +161,7 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout << "vdif: " << vdif_epoch << "@" << vdif_secs << " = " << vdif_date << std::endl;
 
     //test adhoc timestamp
+    std::cout<< std::setprecision(15);
     int iyear = 2024; 
     double frac_day = 192.74849537037037037037;
     auto hops_tp8 = hops_clock::from_year_fpday(iyear, frac_day);

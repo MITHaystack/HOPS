@@ -19,7 +19,8 @@ struct legacy_hops_date
         short day;
         short hour;
         short minute;
-        float second;
+        // float second;
+        double second;
 };
 
 } // namespace hops
