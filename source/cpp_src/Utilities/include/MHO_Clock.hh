@@ -23,6 +23,8 @@
 #define NANOSEC_TO_SEC 1e-9
 #define SEC_TO_NANOSEC 1000000000
 #define JD_TO_SEC 86400.0
+#define MINUTE_TO_SEC 60.0
+#define HOUR_TO_SEC 3600.0
 
 namespace hops
 {
@@ -398,7 +400,8 @@ inline legacy_hops_date hops_clock::to_legacy_hops_date(const time_point& tp)
     ldate.hour = hours.count();
     ldate.minute = mins.count();
     //note there may be loss of precision when converting from seconds/nanoseconds to legacy float
-    ldate.second = (float)secs.count() + ((float)(nanos.count())) * NANOSEC_TO_SEC;
+    // ldate.second = (float)secs.count() + ((float)(nanos.count())) * NANOSEC_TO_SEC;
+    ldate.second = (double)secs.count() + ((double)(nanos.count())) * NANOSEC_TO_SEC;
 
     return ldate;
 }
@@ -440,11 +443,6 @@ inline void hops_clock::to_year_fpday(const hops_clock::time_point& tp, int& yea
     //get the ordinal day of the year
     auto ordinal_day = day_of_year(dp); //note: count starts at 1
     int integer_days = ordinal_day.count() - 1;
-
-    // // hh_mm_ss< std::chrono::nanoseconds > day_time{floor< std::chrono::nanoseconds >(sys_tp - dp)};
-    // auto day_time = std::chrono::duration< std::chrono::nanoseconds >(sys_tp - dp)};
-    // double frac_day = (day_time.count()*1e-9)/86400.0;
-
     //get the time and convert to fractional day
     hh_mm_ss< std::chrono::nanoseconds > time{floor< std::chrono::nanoseconds >(sys_tp - dp)};
     int ihours = time.hours().count();
@@ -452,7 +450,7 @@ inline void hops_clock::to_year_fpday(const hops_clock::time_point& tp, int& yea
     int isecs = time.seconds().count();
     int inanos = time.subseconds().count();
     
-    double frac_day = (inanos*1e-9 + isecs + 60.*imins + 3600.*ihours)/(86400.0);
+    double frac_day = (inanos*NANOSEC_TO_SEC + isecs + MINUTE_TO_SEC*imins + HOUR_TO_SEC*ihours)/(JD_TO_SEC);
     floating_point_days = integer_days +  frac_day;
 }
 
