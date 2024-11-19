@@ -381,8 +381,6 @@ inline legacy_hops_date hops_clock::to_legacy_hops_date(const time_point& tp)
     //get all of the date information
     date::year_month_day ymd{dp};
     auto year = ymd.year();
-    // auto month = ymd.month();
-    // auto day = ymd.day();
 
     //get the ordinal day of the year
     auto ordinal_day = day_of_year(dp);
@@ -399,8 +397,7 @@ inline legacy_hops_date hops_clock::to_legacy_hops_date(const time_point& tp)
     ldate.day = ordinal_day.count();
     ldate.hour = hours.count();
     ldate.minute = mins.count();
-    //note there may be loss of precision when converting from seconds/nanoseconds to legacy float
-    // ldate.second = (float)secs.count() + ((float)(nanos.count())) * NANOSEC_TO_SEC;
+    //note there may be loss of precision when converting to/from the actual legacy struct (single precision)
     ldate.second = (double)secs.count() + ((double)(nanos.count())) * NANOSEC_TO_SEC;
 
     return ldate;
