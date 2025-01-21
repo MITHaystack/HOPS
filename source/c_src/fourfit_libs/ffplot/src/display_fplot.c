@@ -37,7 +37,7 @@ extern char display_221 (struct type_221 *, int);
 static char *gen_psname(char *dn, int ofs, struct mk4_fringe *fringe, int fn)
 {
     int mm = strlen(dn)+20;
-    char *nn = (char*) calloc(mm-1, 1), *pp;
+    char *nn = (char*) calloc(mm, 1), *pp;
     msg("Incoming filename is %s", 1, dn + ofs);
     pp = strstr(dn, "%P");
     if (pp) {
