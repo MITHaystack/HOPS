@@ -2,8 +2,6 @@
 
 #core imports
 from __future__ import absolute_import
-#from future import standard_library
-#standard_library.install_aliases()
 from builtins import filter
 from builtins import next
 from builtins import str
