@@ -12,6 +12,8 @@
 //parse_command_line
 #include "MHO_Tokenizer.hh"
 
+#include "MHO_Message.hh"
+
 //option parsing and help text library
 #include "CLI11.hpp"
 
@@ -376,13 +378,13 @@ void MHO_BasicFringeDataConfiguration::determine_scans(const std::string& initia
     roots.clear();
     //if we are only doing a single directory we will have a root file right away
     std::string root = find_associated_root_file(initial_dir);
+    MHO_DirectoryInterface dirInterface;
+    dirInterface.SetCurrentDirectory(initial_dir);
+    dirInterface.ReadCurrentDirectory();
     if(root == "")
     {
         //no root file was located, so we might be running over a whole experiment directory
         //we need to loop over all the sub-dirs and determine if they are scans directories
-        MHO_DirectoryInterface dirInterface;
-        dirInterface.SetCurrentDirectory(initial_dir);
-        dirInterface.ReadCurrentDirectory();
         std::vector< std::string > subdirs;
         dirInterface.GetSubDirectoryList(subdirs);
 
@@ -409,6 +411,22 @@ void MHO_BasicFringeDataConfiguration::determine_scans(const std::string& initia
         scans.push_back(initial_dir);
         roots.push_back(root);
     }
+
+    if(roots.size() == 0)
+    {
+        //no root files detected, check for the possibility that the user erroneously pointed us to a mark4 scan directory.
+        std::vector< std::string > all_files;
+        std::string legacy_root_file = "";
+        dirInterface.GetFileList(all_files);
+        dirInterface.GetRootFile(all_files, legacy_root_file);
+        if(legacy_root_file != "")
+        {
+            
+            msg_warn("fringe", "no hops4 data (.cor) files found, but legacy mark4 root file detected: "<< 
+                dirInterface.GetBasename(legacy_root_file) << ", you first need to run mark42hops or difx2hops" << eom);
+        }
+    }
+
 }
 
 void MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& dir, const std::string& baseline,
