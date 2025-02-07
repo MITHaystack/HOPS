@@ -422,8 +422,9 @@ void MHO_BasicFringeDataConfiguration::determine_scans(const std::string& initia
         if(legacy_root_file != "")
         {
             
-            msg_warn("fringe", "no hops4 data (.cor) files found, but legacy mark4 root file detected: "<< 
-                dirInterface.GetBasename(legacy_root_file) << ", you first need to run mark42hops or difx2hops" << eom);
+            msg_warn("fringe", "no hops4 data (.cor) files found, but legacy mark4 root file ("<< 
+                dirInterface.GetBasename(legacy_root_file) << 
+                ") detected, you first need to run mark42hops or difx2hops" << eom);
         }
     }
 
