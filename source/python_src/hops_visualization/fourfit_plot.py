@@ -867,6 +867,8 @@ def press_event_handler(event):
         plt.close('all')
     if event.key == "escape": #exit on escape
         plt.close('all')
+    if event.key == "q": #exit on 'q' button
+        plt.close('all')
     if event.key == " ": #exit on space bar
         plt.close('all')
 
