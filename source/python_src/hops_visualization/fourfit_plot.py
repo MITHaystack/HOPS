@@ -863,14 +863,15 @@ def make_data_stats_text(plot_dict):
 
 
 def press_event_handler(event):
-    if event.key == 'enter': #exit on enter
+    if event.key == 'enter': #exit plot on enter
         plt.close('all')
-    if event.key == "escape": #exit on escape
+    if event.key == "escape": #exit plot on escape
         plt.close('all')
-    if event.key == "q": #exit on 'q' button
+    if event.key == " ": #exit plot on space bar
         plt.close('all')
-    if event.key == " ": #exit on space bar
+    if event.key == "q": #exit plot on 'q' button, and kill the program
         plt.close('all')
+        sys.exit()
 
 
 def make_fourfit_plot(plot_dict, show_on_screen, filename):
