@@ -272,7 +272,7 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
 
     if(fScanFileSetList.size() == 0)
     {
-        msg_fatal("difx_interface", "No complete scan input found under: " << input_dir << eom);
+        msg_fatal("difx_interface", "no complete scan input found under: " << input_dir << eom);
         std::exit(1);
     }
 }
@@ -306,10 +306,12 @@ void MHO_DiFXInterface::Initialize()
     //we are converting a single scan
     if( IsSingleScan(fInputDirectory) )
     {
+        msg_info("difx_interface", "processing the single scan found in: "<< fInputDirectory << eom);
         InitializeFromScanDir(fInputDirectory);
     }
     else 
     {
+        msg_info("difx_interface", "processing the whole experiment found in: "<< fInputDirectory << eom);
         InitializeFromExperimentDir(fInputDirectory);
     }
 }
