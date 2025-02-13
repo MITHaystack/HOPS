@@ -30,21 +30,21 @@ void MHO_DiFXInterface::SetStationCodes(MHO_StationCodeMap* code_map)
     fScanProcessor.SetStationCodes(code_map);
 };
 
-void MHO_DiFXInterface::Initialize()
+void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir)
 {
     //directory interface
     MHO_DirectoryInterface fDirInterface;
-    bool in_ok = fDirInterface.DoesDirectoryExist(fInputDirectory);
+    bool in_ok = fDirInterface.DoesDirectoryExist(input_dir);
     bool out_ok = fDirInterface.DoesDirectoryExist(fOutputDirectory);
 
-    msg_info("difx_interface", "input directory: " << fInputDirectory << eom);
+    msg_info("difx_interface", "input directory: " << input_dir << eom);
     msg_info("difx_interface", "output directory: " << fOutputDirectory << eom);
 
     //get list of all the files (and directories) in directory
     std::vector< std::string > allFiles;
     std::vector< std::string > allSubDirs;
 
-    fDirInterface.SetCurrentDirectory(fInputDirectory);
+    fDirInterface.SetCurrentDirectory(input_dir);
     fDirInterface.ReadCurrentDirectory();
     fDirInterface.GetFileList(allFiles);
     fDirInterface.GetSubDirectoryList(allSubDirs);
@@ -93,14 +93,14 @@ void MHO_DiFXInterface::Initialize()
     
     if(fVexFile == "")
     {
-        msg_error("difx_interface", "unable to detemine/locate the .vex or .vex.obs file in " << fInputDirectory << eom);
+        msg_error("difx_interface", "unable to determine/locate the .vex or .vex.obs file in " << input_dir << eom);
     }
 
     //find the .v2d file (should be unique)
     fDirInterface.GetFilesMatchingExtention(tmpFiles, "v2d");
     if(tmpFiles.size() != 1)
     {
-        msg_info("difx_interface", tmpFiles.size() << " .v2d files found in " << fInputDirectory << eom);
+        msg_info("difx_interface", tmpFiles.size() << " .v2d files found in " << input_dir << eom);
         fV2DFile = ""; //no v2d file
     }
     else
@@ -130,7 +130,7 @@ void MHO_DiFXInterface::Initialize()
 
     if(scanNames.size() == 0)
     {
-        msg_fatal("difx_interface", "No scan input found under: " << fInputDirectory << eom);
+        msg_fatal("difx_interface", "No scan input found under: " << input_dir << eom);
         std::exit(1);
     }
 
@@ -178,11 +178,11 @@ void MHO_DiFXInterface::Initialize()
         //debug
         msg_debug("difx_interface", "constructing file-set for scan: " << *it << eom);
 
-        std::string input_file = fInputDirectory + "/" + *it + ".input";
-        std::string im_file = fInputDirectory + "/" + *it + ".im";
-        std::string calc_file = fInputDirectory + "/" + *it + ".calc";
-        std::string flag_file = fInputDirectory + "/" + *it + ".flag";
-        std::string difx_dir = fInputDirectory + "/" + *it + ".difx";
+        std::string input_file = input_dir + "/" + *it + ".input";
+        std::string im_file = input_dir + "/" + *it + ".im";
+        std::string calc_file = input_dir + "/" + *it + ".calc";
+        std::string flag_file = input_dir + "/" + *it + ".flag";
+        std::string difx_dir = input_dir + "/" + *it + ".difx";
 
         // std::cout<<"input = "<<input_file<<std::endl;
         // std::cout<<"im = "<<im_file<<std::endl;
@@ -219,7 +219,7 @@ void MHO_DiFXInterface::Initialize()
 
             fileSet.fIndex = scan_count;
             fileSet.fScanName = *it;
-            fileSet.fInputBaseDirectory = fInputDirectory;
+            fileSet.fInputBaseDirectory = input_dir;
             fileSet.fOutputBaseDirectory = fOutputDirectory;
             fileSet.fScanDirectory = difx_dir;
             fileSet.fInputFile = input_file;
@@ -272,8 +272,45 @@ void MHO_DiFXInterface::Initialize()
 
     if(fScanFileSetList.size() == 0)
     {
-        msg_fatal("difx_interface", "No complete scan input found under: " << fInputDirectory << eom);
+        msg_fatal("difx_interface", "No complete scan input found under: " << input_dir << eom);
         std::exit(1);
+    }
+}
+
+void MHO_DiFXInterface::InitializeFromScanDir(const std::string& input_dir)
+{
+    //directory interface
+    MHO_DirectoryInterface dirInterface;
+    dirInterface.SetCurrentDirectory(input_dir);
+    std::string parent_directory = dirInterface.GetCurrentParentDirectory();
+    
+    //initialize from the parent directory
+    InitializeFromExperimentDir(parent_directory);
+    std::vector< MHO_DiFXScanFileSet > tmpScanList;
+    //now strip out all scans but the one matching the original input directory
+    for(auto it = fScanFileSetList.begin(); it != fScanFileSetList.end(); it++)
+    {
+        if(it->fScanDirectory == input_dir)
+        {
+            tmpScanList.push_back(*it);
+        }
+    }
+    fScanFileSetList.clear();
+    fScanFileSetList = tmpScanList;
+}
+
+
+void MHO_DiFXInterface::Initialize()
+{
+    //check if the input directory ends with ".difx", if that is the case, assume 
+    //we are converting a single scan
+    if( IsSingleScan(fInputDirectory) )
+    {
+        InitializeFromScanDir(fInputDirectory);
+    }
+    else 
+    {
+        InitializeFromExperimentDir(fInputDirectory);
     }
 }
 
@@ -320,5 +357,24 @@ void MHO_DiFXInterface::ProcessScans()
         fScanProcessor.ProcessScan(fScanFileSetList[i]);
     }
 }
+
+
+bool 
+MHO_DiFXInterface::IsSingleScan(const std::string& input_dir) const
+{
+    std::string scanExt = ".difx";
+    std::size_t index = input_dir.find(scanExt);
+    if(index != std::string::npos)
+    {
+        //make sure the extension is the very end of the string
+        std::string sub = input_dir.substr(index);
+        if(sub == scanExt || sub == scanExt + "/" )
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 
 } // namespace hops

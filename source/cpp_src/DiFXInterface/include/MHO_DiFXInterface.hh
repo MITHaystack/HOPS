@@ -62,6 +62,12 @@ class MHO_DiFXInterface
         void ProcessScans(); //convert the scans
 
     private:
+
+        void InitializeFromExperimentDir(const std::string& input_dir); //for when we are processing a whole experiment in batch mode
+        void InitializeFromScanDir(const std::string& input_dir); //for when we are processing a single scan
+
+        bool IsSingleScan(const std::string& input_dir) const;
+
         std::string fInputDirectory;
         std::string fOutputDirectory;
         MHO_DirectoryInterface fDirInterface;
