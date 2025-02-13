@@ -70,11 +70,18 @@ MHO_DefaultPythonPlotVisitor::Plot(MHO_FringeData* data)
         }
         catch(py::error_already_set &excep)
         {
-            msg_error("python_bindings", "python exception when calling subroutine (" << "fourfit_plot"<< "," << "make_fourfit_plot_wrapper" << ")" << eom );
-            msg_error("python_bindings", "python error message: "<< excep.what() << eom);
-            PyErr_Clear(); //clear the error and attempt to continue
+            if( std::string(excep.what()).find("SystemExit") != std::string::npos) 
+            {
+                msg_debug("python_bindings", "sys.exit() called from within python, exiting" << eom);
+                std::exit(0);//exit
+            }
+            else 
+            {
+                msg_error("python_bindings", "python exception when calling subroutine (" << "fourfit_plot"<< "," << "make_fourfit_plot_wrapper" << ")" << eom );
+                msg_error("python_bindings", "python error message: "<< excep.what() << eom);
+                PyErr_Clear(); //clear the error and attempt to continue
+            }
         }
-
     }
 #else //USE_PYBIND11
     if(show_plot && !is_skipped)
