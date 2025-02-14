@@ -292,6 +292,7 @@ void MHO_DiFXInterface::InitializeFromScanDir(const std::string& input_dir)
     {
         if(it->fScanDirectory == input_dir)
         {
+            it->fIndex = 0;
             tmpScanList.push_back(*it);
         }
     }
