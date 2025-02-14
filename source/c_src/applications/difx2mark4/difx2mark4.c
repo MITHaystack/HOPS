@@ -254,7 +254,7 @@ int convertMark4 (struct CommandLineOptions *opts, int *nScan, int *nScanTot)
     if(opts->verbose > 2)
         printDifxInput(D);
 
-    D = updateDifxInput(D, 0, 0);
+    D = updateDifxInput(D, 0);
 
     if(!D)
         {
