@@ -79,6 +79,7 @@ bool MHO_DiFXScanProcessor::CreateScanOutputDirectory()
     }
     else
     {
+        std::cout<<fInput.dump(2)<<std::endl;
         std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
         output_dir += scan_id;
     }
