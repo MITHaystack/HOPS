@@ -16,6 +16,11 @@ MHO_DiFXInputProcessor::~MHO_DiFXInputProcessor()
 
 void MHO_DiFXInputProcessor::LoadDiFXInputFile(std::string filename)
 {
+    if(fD)
+    {
+        deleteDifxInput(fD);
+    }
+        
     msg_debug("difx_interface", "loading difx input file: " << filename << eom);
     fD = loadDifxInput(filename.c_str());
     if(fD == nullptr)
