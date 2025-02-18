@@ -28,6 +28,7 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor(): fInput(nullptr), fV(null
     fScaleFactor = 1.0;
     fBaselineDelim = "-";
     fIndex = 0;
+    fAttachDiFXInput = false;
 
     /* The following coefficients are taken directly from difx2mark4 new_type1.c */
 
@@ -152,21 +153,20 @@ void MHO_DiFXBaselineProcessor::Organize()
         return;
     }
 
-    //grab the scan start time (in MJD)
-    int count = 0;
-    for(auto it = (*fInput)["scan"].begin(); it != (*fInput)["scan"].end(); it++)
-    {
-        std::cout<<"count = "<<count<<std::endl;
-        std::cout<<"scan id = "<<(*it)["identifier"].get<std::string>()<<std::endl;
-        std::cout<<"MJD = "<<(*it)["mjdStart"].get<double>()<<std::endl;
-        count++;
-    }
-    
+    // //grab the scan start time (in MJD)
+    // int count = 0;
+    // for(auto it = (*fInput)["scan"].begin(); it != (*fInput)["scan"].end(); it++)
+    // {
+    //     std::cout<<"count = "<<count<<std::endl;
+    //     std::cout<<"scan id = "<<(*it)["identifier"].get<std::string>()<<std::endl;
+    //     std::cout<<"MJD = "<<(*it)["mjdStart"].get<double>()<<std::endl;
+    //     count++;
+    // }
     
     fStartMJD = (*fInput)["scan"][fIndex]["mjdStart"].get<double>();
     fStartTime = get_vexdate_from_mjd_sec(fStartMJD, 0.0); //zero implies no second-offset
     
-    msg_debug("difx_interface", "scan start time is: " << fStartTime << eom);
+    msg_debug("difx_interface", "scan with index: "<< fIndex<< ", start time is: " << fStartTime << eom);
 
     //first figure out the baseline name (CHECK THIS)
     /* The baseline number (256*A1 + A2, 1 indexed) */
@@ -358,8 +358,12 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 
     if(fHaveBaselineData && fCanChannelize && fInput != nullptr)
     {
-        //insert the difx input data as a json object
-        fTags.SetTagValue("difx_input_json", *fInput);
+        if(fAttachDiFXInput)
+        {
+            //insert the difx input data as a json object attached to the tags object
+            fTags.SetTagValue("difx_input_json", *fInput);
+        }
+        
         fTags.SetTagValue("root_code", fRootCode);
         //add a bug of tags from the visib/weight objects for ease of retrieval
         fTags.SetTagValue("difx_baseline_index", fBaselineID);

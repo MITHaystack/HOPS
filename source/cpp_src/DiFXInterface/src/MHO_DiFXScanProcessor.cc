@@ -31,6 +31,7 @@ MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
     fRootCode = "unknown";
     fStationCodeMap = nullptr;
     fPreserveDiFXScanNames = false;
+    fAttachDiFXInput = false;
     fNormalize = false;
     MICROSEC_TO_SEC = 1e-6; //needed to match difx2mark4 convention
     fFreqBands.clear();
@@ -205,6 +206,10 @@ void MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
         //it->second is a MHO_DiFXBaselineProcessor
         it->second.SetScanIndex(fFileSet->fIndex);
         it->second.SetRescaleTrue(); //default is to always apply VanVleck and x10000 scaling
+        
+        if(fAttachDiFXInput){it->second.SetAttachDiFXInputTrue();}
+        else{it->second.SetAttachDiFXInputFalse();}
+        
         it->second.SetRootCode(fRootCode);
         it->second.SetCorrelationDate(fCorrDate);
         it->second.SetStationCodes(fStationCodeMap);

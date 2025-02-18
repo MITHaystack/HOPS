@@ -38,6 +38,7 @@ int main(int argc, char** argv)
     std::vector< std::string > freq_groups;
     bool use_legacy_bands = false;
     bool use_legacy_stcodes = false;
+    bool attach_difx_input = false;
     double bandwidth = 0;
 
     //legacy frequency band set-up
@@ -86,6 +87,7 @@ int main(int argc, char** argv)
                  "use the legacy station code map with assigning mk4 station IDs.");
     app.add_option("-g,--freq-groups", freq_groups, "include data only from the specified frequency groups")->delimiter(',');
     app.add_option("-w,--bandwidth", bandwidth, "include data only channels matching this bandwidth (in MHz)");
+    app.add_flag("-a,--attach-difx-input", attach_difx_input, "attach the DiFX .input file data to the visibility file object tags");
 
     CLI11_PARSE(app, argc, argv);
 
