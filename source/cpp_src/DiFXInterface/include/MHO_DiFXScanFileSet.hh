@@ -41,23 +41,24 @@ class MHO_DiFXScanFileSet
         
         void PrintSummary()
         {
-            msg_debug("difx_interface", "scan summary: "<< eom);
-            msg_debug("difx_interface", "index: "<< fIndex << eom);
-            msg_debug("difx_interface", "name: "<< fScanName << eom);
-            msg_debug("difx_interface", ".input file: "<< fInputFile << eom);
-            msg_debug("difx_interface", ".im file: "<< fIMFile << eom);
-            msg_debug("difx_interface", ".calc file: "<< fCalcFile << eom);
-            msg_debug("difx_interface", ".flag file: "<< fFlagFile << eom);
-            msg_debug("difx_interface", ".v2d file: "<< fV2DFile << eom);
-            msg_debug("difx_interface", ".vex file: "<< fVexFile << eom);
+            msg_debug("difx_interface", "start scan summary: "<< eol);
+            msg_debug("difx_interface", "index: "<< fIndex << eol);
+            msg_debug("difx_interface", "name: "<< fScanName << eol);
+            msg_debug("difx_interface", ".input file: "<< fInputFile << eol);
+            msg_debug("difx_interface", ".im file: "<< fIMFile << eol);
+            msg_debug("difx_interface", ".calc file: "<< fCalcFile << eol);
+            msg_debug("difx_interface", ".flag file: "<< fFlagFile << eol);
+            msg_debug("difx_interface", ".v2d file: "<< fV2DFile << eol);
+            msg_debug("difx_interface", ".vex file: "<< fVexFile << eol);
             for(std::size_t i=0 ;i<fVisibilityFileList.size(); i++)
             {
-                msg_debug("difx_interface", "visibility file @ "<<i<<" : "<< fVisibilityFileList[i] << eom);
+                msg_debug("difx_interface", "visibility file @ "<<i<<" : "<< fVisibilityFileList[i] << eol);
             }
-            for(std::size_t i=0 ;i<fVisibilityFileList.size(); i++)
+            for(std::size_t i=0 ;i<fPCALFileList.size(); i++)
             {
-                msg_debug("difx_interface", "pcal file @ "<<i<<" : "<< fPCALFileList[i] << eom);
+                msg_debug("difx_interface", "pcal file @ "<<i<<" : "<< fPCALFileList[i] << eol);
             }
+            msg_debug("difx_interface", "end scan summary" << eom);
         }
 };
 
