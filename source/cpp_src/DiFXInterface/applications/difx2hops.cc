@@ -204,6 +204,15 @@ int main(int argc, char** argv)
         difxInterface.SetPreserveDiFXScanNamesTrue();
     }
 
+    if(attach_difx_input)
+    {
+        difxInterface.SetAttachDiFXInputTrue();
+    }
+    else 
+    {
+        difxInterface.SetAttachDiFXInputFalse();
+    }
+
     if(bandwidth != 0)
     {
         difxInterface.SetOnlyBandwidth(bandwidth);
