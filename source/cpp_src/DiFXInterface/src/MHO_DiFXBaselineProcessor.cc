@@ -152,8 +152,17 @@ void MHO_DiFXBaselineProcessor::Organize()
     }
 
     //grab the scan start time (in MJD)
+    for(auto it = (*fInput)["scan"].begin(); it != (*fInput)["scan"].end(); it++)
+    {
+        std::cout<<"scan id = "<<(*it)["identifier"].get<std::string>()<<std::endl;
+        std::cout<<"MJD = "<<(*it)["mjdStart"].get<double>()<<std::endl;
+    }
+    
+    
     fStartMJD = (*fInput)["scan"][0]["mjdStart"].get<double>();
     fStartTime = get_vexdate_from_mjd_sec(fStartMJD, 0.0); //zero implies no second-offset
+    
+    msg_debug("difx_interface", "scan start time is: " << fStartTime << eom);
 
     //first figure out the baseline name (CHECK THIS)
     /* The baseline number (256*A1 + A2, 1 indexed) */
