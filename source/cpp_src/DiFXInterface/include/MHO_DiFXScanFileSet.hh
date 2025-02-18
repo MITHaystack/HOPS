@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "MHO_Message.hh"
 
 namespace hops
 {
@@ -36,6 +37,28 @@ class MHO_DiFXScanFileSet
         std::string fVexFile;                           //.vex file for this experiment
         std::vector< std::string > fVisibilityFileList; //list of all DIFX_ files under the .difx directory
         std::vector< std::string > fPCALFileList;       //list of all PCAL_ files under the .difx directory
+        
+        
+        void PrintSummary()
+        {
+            msg_debug("difx_interface", "scan summary: "<< eom);
+            msg_debug("difx_interface", "index: "<< fIndex << eom);
+            msg_debug("difx_interface", "name: "<< fScanName << eom);
+            msg_debug("difx_interface", ".input file: "<< fInputFile << eom);
+            msg_debug("difx_interface", ".im file: "<< fIMFile << eom);
+            msg_debug("difx_interface", ".calc file: "<< fCalcFile << eom);
+            msg_debug("difx_interface", ".flag file: "<< fFlagFile << eom);
+            msg_debug("difx_interface", ".v2d file: "<< fV2DFile << eom);
+            msg_debug("difx_interface", ".vex file: "<< fVexFile << eom);
+            for(std::size_t i=0 ;i<fVisibilityFileList.size(); i++)
+            {
+                msg_debug("difx_interface", "visibility file @ "<<i<<" : "<< fVisibilityFileList[i] << eom);
+            }
+            for(std::size_t i=0 ;i<fVisibilityFileList.size(); i++)
+            {
+                msg_debug("difx_interface", "pcal file @ "<<i<<" : "<< fPCALFileList[i] << eom);
+            }
+        }
 };
 
 } // namespace hops
