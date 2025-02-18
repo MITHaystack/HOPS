@@ -85,8 +85,7 @@ bool MHO_DiFXScanProcessor::CreateScanOutputDirectory()
     }
     else
     {
-        // std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
-        std::string scan_id = fInput["scan"][0]["identifier"];
+        std::string scan_id = fInput["scan"][fFileSet->fLocalIndex]["identifier"];
         output_dir += scan_id;
     }
     fOutputDirectory = dirInterface.GetDirectoryFullPath(output_dir);
@@ -110,8 +109,7 @@ void MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
         //now convert the 'vex' to 'ovex' (using only subset of information)
         vex_root[MHO_VexDefinitions::VexRevisionFlag()] = "ovex";
 
-        // std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
-        std::string scan_id = fInput["scan"][0]["identifier"];
+        std::string scan_id = fInput["scan"][fFileSet->fLocalIndex]["identifier"];
         std::vector< std::string > source_ids;
 
         //rip out all scans but the one we are processing
@@ -211,7 +209,7 @@ void MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
     {
         //it->second is a MHO_DiFXBaselineProcessor
-        it->second.SetScanIndex(0);//fFileSet->fIndex);
+        it->second.SetScanIndex(fFileSet->fLocalIndex);
         it->second.SetRescaleTrue(); //default is to always apply VanVleck and x10000 scaling
         
         if(fAttachDiFXInput){it->second.SetAttachDiFXInputTrue();}
@@ -507,7 +505,7 @@ void MHO_DiFXScanProcessor::LoadInputFile()
     //convert the input to json
     MHO_DiFXInputProcessor input_proc;
     input_proc.LoadDiFXInputFile(fFileSet->fInputFile);
-    fInput.clear(); //clear all input file data
+    fInput.clear(); //clear all pre-existing input file data in this json object
     input_proc.ConvertToJSON(fInput);
     // input_proc.FillFrequencyTable();
 
@@ -568,7 +566,7 @@ void MHO_DiFXScanProcessor::ExtractStationCoords()
     //Note: with the exception of the phase-spline polynomial (type_302), all of these other quantities
     //do not depend on the channel/frequency.
 
-    std::size_t scan_index = 0; //fFileSet->fIndex;
+    std::size_t scan_index = fFileSet->fLocalIndex;
     std::size_t nAntenna = fInput["scan"][scan_index]["nAntenna"];
 
     std::size_t nPhaseCenters = fInput["scan"][scan_index]["nPhaseCentres"];
