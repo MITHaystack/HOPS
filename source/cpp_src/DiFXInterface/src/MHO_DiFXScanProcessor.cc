@@ -505,6 +505,7 @@ void MHO_DiFXScanProcessor::LoadInputFile()
     //convert the input to json
     MHO_DiFXInputProcessor input_proc;
     input_proc.LoadDiFXInputFile(fFileSet->fInputFile);
+    fInput.clear(); //clear all input file data
     input_proc.ConvertToJSON(fInput);
     // input_proc.FillFrequencyTable();
 
