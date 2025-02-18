@@ -41,7 +41,7 @@ class MHO_DiFXScanFileSet
         
         void PrintSummary()
         {
-            msg_debug("difx_interface", "start scan summary: "<< eol);
+            msg_debug("difx_interface", "scan summary: "<< eol);
             msg_debug("difx_interface", "index: "<< fIndex << eol);
             msg_debug("difx_interface", "name: "<< fScanName << eol);
             msg_debug("difx_interface", ".input file: "<< fInputFile << eol);
@@ -52,13 +52,13 @@ class MHO_DiFXScanFileSet
             msg_debug("difx_interface", ".vex file: "<< fVexFile << eol);
             for(std::size_t i=0 ;i<fVisibilityFileList.size(); i++)
             {
-                msg_debug("difx_interface", "visibility file @ "<<i<<" : "<< fVisibilityFileList[i] << eol);
+                msg_debug("difx_interface", "visibility file # "<<i<<" : "<< fVisibilityFileList[i] << eol);
             }
             for(std::size_t i=0 ;i<fPCALFileList.size(); i++)
             {
-                msg_debug("difx_interface", "pcal file @ "<<i<<" : "<< fPCALFileList[i] << eol);
+                msg_debug("difx_interface", "pcal file # "<<i<<" : "<< fPCALFileList[i] << eol);
             }
-            msg_debug("difx_interface", "end scan summary" << eom);
+            msg_debug("difx_interface", eom);
         }
 };
 

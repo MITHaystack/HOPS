@@ -51,6 +51,11 @@ void MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 {
     fFileSet = &fileSet;
     LoadInputFile(); //read .input file
+    if(MHO_Message::GetInstance().GetMessageLevel() == eDebugLevel)
+    {
+        fileSet.PrintSummary();
+    }
+    
     bool ok = CreateScanOutputDirectory();
     if(ok)
     {
