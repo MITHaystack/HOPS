@@ -20,11 +20,30 @@ namespace hops
 class MHO_DiFXScanFileSet
 {
     public:
-        MHO_DiFXScanFileSet(){};
+        MHO_DiFXScanFileSet()
+        {
+            //direct public access since all we are doing is get/set anyways
+            fIndex = 0;
+            fLocalIndex = 0;
+            fScanName = "";
+            fInputBaseDirectory = "";
+            fOutputBaseDirectory = "";
+            fScanDirectory = "";
+            fInputFile = "";
+            fIMFile = "";
+            fCalcFile = "";
+            fFlagFile = "";
+            fV2DFile = "";
+            fVexFile = "";
+            fVisibilityFileList.clear();
+            fPCALFileList.clear();
+        };
+        
         virtual ~MHO_DiFXScanFileSet(){};
 
         //direct public access since all we are doing is get/set anyways
         std::size_t fIndex;                             //numerical index
+        std::size_t fLocalIndex;
         std::string fScanName;                          //difx scan name
         std::string fInputBaseDirectory;                //root input directory for this experiment
         std::string fOutputBaseDirectory;               //root output directory for this experiment
@@ -37,7 +56,6 @@ class MHO_DiFXScanFileSet
         std::string fVexFile;                           //.vex file for this experiment
         std::vector< std::string > fVisibilityFileList; //list of all DIFX_ files under the .difx directory
         std::vector< std::string > fPCALFileList;       //list of all PCAL_ files under the .difx directory
-        
         
         void PrintSummary()
         {
