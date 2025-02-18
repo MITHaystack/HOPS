@@ -262,6 +262,9 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
                 msg_warn("difx_interface",
                          "No visibility files found associated with scan: " << *it << " will not process." << eom);
             }
+            
+            fileSet.PrintSummary();
+            
         }
         else
         {
