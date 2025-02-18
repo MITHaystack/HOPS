@@ -27,6 +27,7 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor(): fInput(nullptr), fV(null
     fRescale = true;
     fScaleFactor = 1.0;
     fBaselineDelim = "-";
+    fIndex = 0;
 
     /* The following coefficients are taken directly from difx2mark4 new_type1.c */
 
@@ -152,14 +153,17 @@ void MHO_DiFXBaselineProcessor::Organize()
     }
 
     //grab the scan start time (in MJD)
+    int count = 0;
     for(auto it = (*fInput)["scan"].begin(); it != (*fInput)["scan"].end(); it++)
     {
+        std::cout<<"count = "<<count<<std::endl;
         std::cout<<"scan id = "<<(*it)["identifier"].get<std::string>()<<std::endl;
         std::cout<<"MJD = "<<(*it)["mjdStart"].get<double>()<<std::endl;
+        count++;
     }
     
     
-    fStartMJD = (*fInput)["scan"][0]["mjdStart"].get<double>();
+    fStartMJD = (*fInput)["scan"][fIndex]["mjdStart"].get<double>();
     fStartTime = get_vexdate_from_mjd_sec(fStartMJD, 0.0); //zero implies no second-offset
     
     msg_debug("difx_interface", "scan start time is: " << fStartTime << eom);

@@ -203,6 +203,7 @@ void MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
     {
         //it->second is a MHO_DiFXBaselineProcessor
+        it->second.SetScanIndex(fFileSet->fIndex);
         it->second.SetRescaleTrue(); //default is to always apply VanVleck and x10000 scaling
         it->second.SetRootCode(fRootCode);
         it->second.SetCorrelationDate(fCorrDate);

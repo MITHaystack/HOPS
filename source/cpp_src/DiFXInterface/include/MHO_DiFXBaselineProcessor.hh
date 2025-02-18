@@ -31,6 +31,8 @@ class MHO_DiFXBaselineProcessor
 
         //needed for processing!
         void SetDiFXInputData(const mho_json* input) { fInput = input; }
+        
+        void SetScanIndex(std::size_t idx){fIndex = idx;}
 
         int GetBaselineID() const { return fBaselineID; };
 
@@ -95,6 +97,7 @@ class MHO_DiFXBaselineProcessor
         std::string fRootCode;
         std::string fCorrDate;
         int fBaselineID;
+        std::size_t fIndex;
         std::string fRefStation;
         std::string fRemStation;
         std::string fRefStationName;
