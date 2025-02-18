@@ -43,6 +43,10 @@ class MHO_DiFXInterface
         void SetNormalizeFalse() { fNormalize = false; }
 
         void SetNormalizeTrue() { fNormalize = true; }
+        
+        void SetAttachDiFXInputTrue() {fAttachDiFXInput = true; }
+        
+        void SetAttachDiFXInputFalse() {fAttachDiFXInput = false; }
 
         void SetPreserveDiFXScanNamesTrue() { fPreserveDiFXScanNames = true; }
 
@@ -76,6 +80,7 @@ class MHO_DiFXInterface
         std::vector< MHO_DiFXScanFileSet > fScanFileSetList;
         bool fNormalize;
         bool fPreserveDiFXScanNames;
+        bool fAttachDiFXInput;
 
         std::vector< std::tuple< std::string, double, double > > fFreqBands; //frequency band/group labels and ranges
         std::vector< std::string > fFreqGroups;                              //limit output to matching frequency groups

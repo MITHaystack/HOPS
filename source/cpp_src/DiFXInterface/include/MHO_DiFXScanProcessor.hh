@@ -58,6 +58,10 @@ class MHO_DiFXScanProcessor
         void SetPreserveDiFXScanNamesTrue() { fPreserveDiFXScanNames = true; }
 
         void SetPreserveDiFXScanNamesFalse() { fPreserveDiFXScanNames = false; };
+        
+        void SetAttachDiFXInputTrue() {fAttachDiFXInput = true; }
+        
+        void SetAttachDiFXInputFalse() {fAttachDiFXInput = false; }
 
         void SetFrequencyBands(std::vector< std::tuple< std::string, double, double > > fbands)
         {
@@ -148,6 +152,7 @@ class MHO_DiFXScanProcessor
         MHO_DiFXChannelNameConstructor fChanNameConstructor;
 
         bool fPreserveDiFXScanNames;
+        bool fAttachDiFXInput;
 
         double MICROSEC_TO_SEC; //needed to match difx2mark4 convention
 

@@ -44,6 +44,10 @@ class MHO_DiFXBaselineProcessor
         void SetRescaleFalse() { fRescale = false; }
 
         void SetRescaleTrue() { fRescale = true; }
+        
+        void SetAttachDiFXInputTrue() {fAttachDiFXInput = true; }
+        
+        void SetAttachDiFXInputFalse() {fAttachDiFXInput = false; }
 
         void AddRecord(MHO_DiFXVisibilityRecord* record);
 
@@ -142,6 +146,8 @@ class MHO_DiFXBaselineProcessor
         bool fRescale;
         std::map< int, double > fNBitsToFactor;
         double fScaleFactor;
+    
+        bool fAttachDiFXInput;
 
         //list of channel frequencies for this baseline, sorted in ascending order (freq)
         std::vector< std::pair< int, mho_json > > fBaselineFreqs;

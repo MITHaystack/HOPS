@@ -11,6 +11,7 @@ MHO_DiFXInterface::MHO_DiFXInterface(): fInputDirectory(""), fOutputDirectory(""
     fFreqGroups.clear();
     fOnlyBandwidth = 0;
     fSelectByBandwidth = false;
+    fAttachDiFXInput = false;
 };
 
 MHO_DiFXInterface::~MHO_DiFXInterface(){};
@@ -344,6 +345,16 @@ void MHO_DiFXInterface::ProcessScans()
         {
             fScanProcessor.SetPreserveDiFXScanNamesFalse();
         }
+        
+        if(fAttachDiFXInput)
+        {
+            fScanProcessor.SetAttachDiFXInputTrue();
+        }
+        else
+        {
+            fScanProcessor.SetAttachDiFXInputFalse();
+        }
+        
 
         if(fFreqBands.size() != 0)
         {
