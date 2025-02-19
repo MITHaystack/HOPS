@@ -169,40 +169,33 @@ inline void DeclarePyContainerStoreInterface(py::module& m, std::string pyclass_
 
                     if(type_id == cStore->GetTypeUUID< visibility_type >())
                     {
-                        //handle visibility data (acess via string key)
                         return py::cast(m.GetObject< visibility_type >(object_uuid));
                     }
                     if(type_id == cStore->GetTypeUUID< weight_type >())
                     {
-                        //handle weight_type data
                         return py::cast(m.GetObject< weight_type >(object_uuid));
                     }
                     if(type_id == cStore->GetTypeUUID< station_coord_type >())
                     {
-                        //handle station data
                         return py::cast(m.GetObject< station_coord_type >(object_uuid));
                     }
                     if(type_id == cStore->GetTypeUUID< visibility_store_type >())
                     {
-                        //handle visibility storage data (single float)
                         return py::cast(m.GetObject< visibility_store_type >(object_uuid));
                     }
 
                     if(type_id == cStore->GetTypeUUID< weight_store_type >())
                     {
-                        //handle weight storage data (single float)
                         return py::cast(m.GetObject< weight_store_type >(object_uuid));
                     }
                     
                     if(type_id == cStore->GetTypeUUID< phasor_type >())
                     {
-                        //handle weight storage data (single float)
                         return py::cast(m.GetObject< phasor_type >(object_uuid));
                     }
                     
                     if(type_id == cStore->GetTypeUUID< multitone_pcal_type >())
                     {
-                        //handle weight storage data (single float)
                         return py::cast(m.GetObject< multitone_pcal_type >(object_uuid));
                     }
 
