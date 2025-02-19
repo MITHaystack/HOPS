@@ -259,8 +259,8 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
             }
             else
             {
-                msg_warn("difx_interface",
-                         "No visibility files found associated with scan: " << *it << " will not process." << eom);
+                msg_debug("difx_interface",
+                         "no visibility files found associated with scan: " << *it << ", will not process." << eom);
             }
             
             //debug
@@ -269,15 +269,15 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
         }
         else
         {
-            msg_warn("difx_interface",
-                     "Could not find all difx files associated with scan: " << *it << " will not process." << eom);
+            msg_debug("difx_interface",
+                     "nould not find all difx files associated with scan: " << *it << " will not process." << eom);
         }
         scan_count++;
     }
 
     if(fScanFileSetList.size() == 0)
     {
-        msg_fatal("difx_interface", "no complete scan input found under: " << input_dir << eom);
+        msg_fatal("difx_interface", "no complete file set for scan input found under: " << input_dir << eom);
         std::exit(1);
     }
 }
