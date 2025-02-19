@@ -27,7 +27,7 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-    std::string input_dir = "";
+    std::vector< std::string > input_dirs;
     std::string output_dir = "";
     int message_level = 0;
     std::string station_codes_file = "";
@@ -67,11 +67,11 @@ int main(int argc, char** argv)
 
     CLI::App app{"difx2hops"};
 
-    app.add_option("input_dir,-i,--input-dir", input_dir, "name of the input directory (difx) file to be converted")
+    app.add_option("input_dirs,-i,--input-dirs", input_dirs, "name of the input directory or directories to be coverted")
         ->required();
     app.add_option("output_dir,-o,--output-dir", output_dir,
                    "name of the output directory where results (hops) will be written (if unspecified defaults to "
-                   "<input_dir>/<experiment>)");
+                   "<cwd>/<exp-num>)");
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
     app.add_option("-s,--scode", station_codes_file,
                    "name of the file containing the 2-char station codes to 1-char mk4 station IDs in form: X Xx");
@@ -87,7 +87,7 @@ int main(int argc, char** argv)
                  "use the legacy station code map with assigning mk4 station IDs.");
     app.add_option("-g,--freq-groups", freq_groups, "include data only from the specified frequency groups")->delimiter(',');
     app.add_option("-w,--bandwidth", bandwidth, "include data only channels matching this bandwidth (in MHz)");
-    app.add_flag("-a,--attach-difx-input", attach_difx_input, "attach the DiFX .input file data to the visibility file object tags");
+    app.add_flag("-a,--attach-difx-input", attach_difx_input, "attach the DiFX .input data to the visibility object tags");
 
     CLI11_PARSE(app, argc, argv);
 
@@ -160,12 +160,12 @@ int main(int argc, char** argv)
     }
 
     //if no output directory was specified assume we are going to dump the
-    //converted data into <input_directory>/<exper_num>
+    //converted data into <cwd>/<exper_num>
     if(output_dir == "")
     {
         std::stringstream ss;
         ss << exper_num;
-        output_dir = input_dir + "/" + ss.str();
+        output_dir = "./" + ss.str();
     }
 
     //if the output directory doesn't exist, then create it
@@ -189,45 +189,59 @@ int main(int argc, char** argv)
     }                                                      //use legacy d2m4 station code map
     stcode_map.InitializeStationCodes(station_codes_file); //if no file passed, auto assignement will take place
 
-    MHO_DiFXInterface difxInterface;
-    difxInterface.SetInputDirectory(input_dir);
-    difxInterface.SetOutputDirectory(output_directory);
-    difxInterface.SetStationCodes(&stcode_map);
-    difxInterface.SetExperimentNumber(exper_num);
-    difxInterface.SetNormalizeFalse();
-    if(!raw_mode)
-    {
-        difxInterface.SetNormalizeTrue();
-    }
-    if(preserve)
-    {
-        difxInterface.SetPreserveDiFXScanNamesTrue();
-    }
 
-    if(attach_difx_input)
-    {
-        difxInterface.SetAttachDiFXInputTrue();
-    }
-    else 
-    {
-        difxInterface.SetAttachDiFXInputFalse();
-    }
 
-    if(bandwidth != 0)
+    for(std::size_t n=0; n<input_dirs.size(); n++)
     {
-        difxInterface.SetOnlyBandwidth(bandwidth);
-    }
-    if(freq_bands.size() != 0)
-    {
-        difxInterface.SetFrequencyBands(freq_bands);
-    }
-    if(freq_groups.size() != 0)
-    {
-        difxInterface.SetFreqGroups(freq_groups);
-    }
+        std::string input_dir = input_dirs[n];
+        
+        if( MHO_DirectoryInterface::IsDirectory(input_dir) )
+        {
+            MHO_DiFXInterface difxInterface;
+            difxInterface.SetInputDirectory(input_dir);
+            difxInterface.SetOutputDirectory(output_directory);
+            difxInterface.SetStationCodes(&stcode_map);
+            difxInterface.SetExperimentNumber(exper_num);
+            difxInterface.SetNormalizeFalse();
+            
+            if(!raw_mode)
+            {
+                difxInterface.SetNormalizeTrue();
+            }
+            
+            if(preserve)
+            {
+                difxInterface.SetPreserveDiFXScanNamesTrue();
+            }
 
-    difxInterface.Initialize();
-    difxInterface.ProcessScans();
+            if(attach_difx_input)
+            {
+                difxInterface.SetAttachDiFXInputTrue();
+            }
+            else 
+            {
+                difxInterface.SetAttachDiFXInputFalse();
+            }
+
+            if(bandwidth != 0)
+            {
+                difxInterface.SetOnlyBandwidth(bandwidth);
+            }
+            
+            if(freq_bands.size() != 0)
+            {
+                difxInterface.SetFrequencyBands(freq_bands);
+            }
+            
+            if(freq_groups.size() != 0)
+            {
+                difxInterface.SetFreqGroups(freq_groups);
+            }
+
+            difxInterface.Initialize();
+            difxInterface.ProcessScans();
+        }
+    }
 
     return 0;
 }
