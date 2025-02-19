@@ -193,6 +193,18 @@ inline void DeclarePyContainerStoreInterface(py::module& m, std::string pyclass_
                         //handle weight storage data (single float)
                         return py::cast(m.GetObject< weight_store_type >(object_uuid));
                     }
+                    
+                    if(type_id == cStore->GetTypeUUID< phasor_type >())
+                    {
+                        //handle weight storage data (single float)
+                        return py::cast(m.GetObject< phasor_type >(object_uuid));
+                    }
+                    
+                    if(type_id == cStore->GetTypeUUID< multitone_pcal_type >())
+                    {
+                        //handle weight storage data (single float)
+                        return py::cast(m.GetObject< multitone_pcal_type >(object_uuid));
+                    }
 
                     if(type_id == cStore->GetTypeUUID< MHO_ObjectTags >())
                     {

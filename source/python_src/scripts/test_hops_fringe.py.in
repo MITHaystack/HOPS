@@ -118,7 +118,7 @@ def main():
         description='''test utility to read a hops4 fringe file''' \
         )
 
-    parser.add_argument('-f', '--fringe-file', dest='file', help='the file file read')
+    parser.add_argument('-f', '--fringe-file', dest='file', help='the fringe file')
     args = parser.parse_args()
     ffile = os.path.abspath(args.file)
 
@@ -144,8 +144,9 @@ def main():
     #loop over fringe data here
     fr_data = dict()
     for fr in fringes:
+        print(fr)
         if fr == basename:
-            print(fr)
+            print("match found", fr)
             scan_store.load_fringe(fr)
             frd = scan_store.get_fringe_data(fr)
             fr_data[fr] = frd
@@ -155,6 +156,27 @@ def main():
                 print(obj_info)
                 uuid = ""
                 for oid in obj_info:
+                    if oid["shortname"] == "phasors":
+                        uuid = oid["object_uuid"]
+                        if uuid != "":
+                            phasors = frd.get_object(oid["object_uuid"] )
+                            if phasors != None:
+                                print("retrieved object: ", uuid, " as phasors")
+                                class_name = phasors.get_classname()
+                                rank = phasors.get_rank()
+                                print("phasors object has rank: ", rank, " and is a ", class_name)
+                                table_meta = phasors.get_metadata()
+                                print("meta data is: ", table_meta)
+                                phasors_arr = phasors.get_numpy_array()
+                                print("phasors array shape = ", phasors_arr.shape)
+                                print("phasors array strides = ", phasors_arr.strides)
+                                for i in range(0,rank):
+                                    dim = phasors.get_dimension(i)
+                                    print("dimension: ", i, " has size: ", dim)
+                                    axis = phasors.get_axis(i)
+                                    print("axis: ", i, " = ", axis)
+                                    axis_meta = phasors.get_axis_metadata(i)
+                                    print("axis meta data = ", axis_meta)
                     if oid["shortname"] == "cvis":
                         uuid = oid["object_uuid"]
                         if uuid != "":
