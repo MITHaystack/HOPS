@@ -57,7 +57,25 @@ class MHO_DiFXScanFileSet
         std::vector< std::string > fVisibilityFileList; //list of all DIFX_ files under the .difx directory
         std::vector< std::string > fPCALFileList;       //list of all PCAL_ files under the .difx directory
         
-        void PrintSummary()
+        
+        //flag which indicates if this file set has all the necessary bits to be converted
+        bool IsComplete() const
+        {
+            //fFlagFile and fV2DFile are optional
+            if(fScanName == ""){return false;}
+            if(fInputBaseDirectory == ""){return false;}
+            if(fOutputBaseDirectory == ""){return false;}
+            if(fScanDirectory == ""){return false;}
+            if(fInputFile == ""){return false;}
+            if(fIMFile == ""){return false;}
+            if(fCalcFile == ""){return false;}
+            if(fVexFile == ""){return false;}
+            if(fVisibilityFileList.size() == 0){return false;}
+            if(fPCALFileList.size() == 0){return false;}
+            return true;
+        }
+        
+        void PrintSummary() const
         {
             msg_debug("difx_interface", "scan summary: "<< eol);
             msg_debug("difx_interface", "index: "<< fIndex << eol);
