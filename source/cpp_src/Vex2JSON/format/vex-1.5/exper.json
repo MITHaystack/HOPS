@@ -7,7 +7,6 @@
     "block_type": "primitive",
     "parameters" :
     {
-        "exper_num": {"type": "int"},
         "exper_name": {"type": "string"},
         "exper_description": {"type": "string"},
         "exper_nominal_start":{"type": "epoch"},
@@ -22,7 +21,6 @@
     },
     "fields":
     [
-        "!exper_num",
         "exper_name",
         "exper_description",
         "exper_nominal_start",
