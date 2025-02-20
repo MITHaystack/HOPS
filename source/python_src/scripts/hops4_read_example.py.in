@@ -74,7 +74,7 @@ def main():
         description='''Example utility demo on how to read a hops4 file (file must be part of a scan)''' \
         )
 
-    parser.add_argument("filename", type=str, default="", help='the file to be opened')
+    parser.add_argument("filename", type=str, default="", help='the station, baseline, or fringe file to be opened')
     args = parser.parse_args()
 
     ffile = os.path.abspath(args.filename)
