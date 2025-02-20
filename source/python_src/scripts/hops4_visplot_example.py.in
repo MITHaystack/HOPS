@@ -1,7 +1,9 @@
 #!@PY_EXE@
 #
 # demo for HOPS4 fringe data retrieval using python interface
-# which shows how to access the fringe plot data and pass it to the plot func
+# which shows how to access the corrected visibility data 
+# in a fringe file (summed along the time axis), and plot the amp/phase
+# on a per-channel basis
 #
 import pyMHO_Containers
 

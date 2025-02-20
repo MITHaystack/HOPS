@@ -46,7 +46,7 @@ def get_fringe_file_info(scan_store, name):
 def main():
     parser = argparse.ArgumentParser(
         prog='hops4_fparam_example.py', \
-        description='''Example utility demo on how to extract fringe parameters from a list of files and construct a table''' \
+        description='''Example utility demo on how to extract fringe parameters from a list of fringe files and construct a table''' \
         )
 
     parser.add_argument("filenames", nargs="+", default="", help='the list of fringe files to be processed')
