@@ -213,7 +213,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     std::string polprod = "??";                    //'-P' polarization product argument (e.g XX or I or RR+LL)
     std::string reftime = "";                      //'-T' specify the fourfit reference time - not yet enabled
     //bool xwindows; //'-x' same as option '-p' we no long use pgplot/xwindows
-    bool xpower_output = false; //-X export xpower spectrum
+    int xpower_output = -1; //export xpower spectrum (default '-1' is to not export this)
     bool use_mk4_output = false;
     std::string input;
 
@@ -255,8 +255,8 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     app.add_option("-P,--polprod", polprod, "polarization product argument (e.g XX or I or RR+LL, etc.)");
     app.add_option("-T,--reftime", reftime, "specify the fourfit reference time (ignored, not yet implemented)");
     //app.add_flag("-x,--xwindows", xwindows, "display plot using xwindows (ignored, deprecated)");
-    app.add_flag("-X,--xpower-output", xpower_output,
-                 "output spectral cross power data (visibilities with corrections/residual fringe solution applied)");
+    app.add_option("-X,--xpower-output", xpower_output,
+                 "append cross power data with fringe solution applied, specifying the axis along which data should be summed (-1=no-export, 0=none, 1=channel, 2=time/AP, 3=sub-channel), default: -1");
     app.add_option("input,-i,--input", input, "name of the input directory (scan) or root file")->required();
     app.add_flag("-k,--mark4-output", use_mk4_output, "write output files in mark4 type_2xx format");
 

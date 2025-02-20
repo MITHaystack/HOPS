@@ -6,6 +6,7 @@
 #include "MHO_CyclicRotator.hh"
 #include "MHO_EndZeroPadder.hh"
 #include "MHO_SelectRepack.hh"
+#include "MHO_Reducer.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_BitReversalPermutation.hh"
 
@@ -476,6 +477,28 @@ void MHO_ComputePlotData::correct_vis()
             }
         }
     }
+    
+    //Finally, we need to determine if the user asked to have the visibilities summed/reduced along 
+    //a particular axis (to condense the output), typical use case is either none, or along the time-axis 
+    int xpower_output = fParamStore->GetAs< int >("/cmdline/xpower_output");
+    //do nothing, either we were not asked to attach this data to the output 
+    //or it does not need to be reduced in any way
+    if(xpower_output == -1 || xpower_output == 0){return;} 
+    if(0 < xpower_output && xpower_output <= 3)
+    {
+        MHO_Reducer< visibility_type, MHO_CompoundSum > vis_reducer;
+        vis_reducer.SetArgs(fVisibilities);
+        vis_reducer.ReduceAxis(xpower_output);
+        bool init = vis_reducer.Initialize();
+        bool exe = vis_reducer.Execute();
+        
+        MHO_Reducer< weight_type, MHO_CompoundSum > wt_reducer;
+        wt_reducer.SetArgs(fWeights);
+        wt_reducer.ReduceAxis(xpower_output);
+        init = wt_reducer.Initialize();
+        exe = wt_reducer.Execute();
+    }
+
 }
 
 xpower_amp_type MHO_ComputePlotData::calc_dr()
@@ -1215,6 +1238,7 @@ void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     fParamStore->Set("/fringe/error_code", errcode);
 
     //last thing is apply residual delay/delay rate correction to visibilities
+    //in case we export them to the fringe file (-X option)
     correct_vis();
 }
 

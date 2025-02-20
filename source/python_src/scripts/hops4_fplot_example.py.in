@@ -40,8 +40,8 @@ def plot_fringe_file(scan_store, name):
 def main():
 
     parser = argparse.ArgumentParser(
-        prog='fplot_hops4_example.py', \
-        description='''example utility demo on how to extract plot info from a hops4 fringe file and display it''' \
+        prog='hops4_fplot_example.py', \
+        description='''Example utility demo on how to extract plot info from a hops4 fringe file and display it''' \
         )
 
     parser.add_argument("filename", type=str, default="", help='the fringe file to be opened')
