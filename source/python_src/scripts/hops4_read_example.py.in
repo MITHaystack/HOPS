@@ -1,6 +1,8 @@
 #!@PY_EXE@
 #
-# demo for HOPS4 object retrieval using python interface
+# demo for HOPS4 object retrieval using the python -> C++ interface library
+# table container data is accessed as a combination of meta data (python dict)
+# and numpy arrays, tag data is accessed as python dict
 #
 import pyMHO_Containers
 import os
