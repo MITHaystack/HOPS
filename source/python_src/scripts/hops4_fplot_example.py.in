@@ -1,6 +1,7 @@
 #!@PY_EXE@
 #
-# demo for HOPS4 object retrieval using python interface
+# demo for HOPS4 fringe data retrieval using python interface
+# which shows how to access the fringe plot data and pass it to the plot func
 #
 import pyMHO_Containers
 
@@ -63,16 +64,13 @@ def main():
         print("The number of station files = ", len(stations))
         print("The number of baseline files = ", len(baselines))
         print("The number of fringe files = ", len(fringes))
+        for fr in fringes:
+            if fr == basename:
+                plot_fringe_file(scan_store, basename)
+                return 0
     else:
         print("The directory", scan_dir, "does not appear to be a valid HOPS4 scan directory")
         return 1
-    
-    #figure out if we are pointed at a station, baseline (corel), or fringe file
-    #loop over fringe data here
-    for fr in fringes:
-        if fr == basename:
-            plot_fringe_file(scan_store, basename)
-            return 0
 
 
 if __name__ == '__main__':

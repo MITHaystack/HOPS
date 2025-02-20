@@ -41,8 +41,9 @@ if (PY_EXE)
             summarize_report
             vgoscf_generate
             vex2xml
-            read_hops4_example
-            fplot_hops4_example
+            hops4_read_example
+            hops4_fplot_example
+            hops4_fparam_example
         )
 
     endif(HOPS3_PYTHON_EXTRAS)

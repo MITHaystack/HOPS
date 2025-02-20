@@ -1,0 +1,86 @@
+#!@PY_EXE@
+#
+# demo for HOPS4 fringe data retrieval using python interface
+# which shows how to access each of the fringe files in a directory, pull out the 
+# fringe result data and format the results as a table with pandas
+#
+
+import pyMHO_Containers
+import pandas as pd
+
+import os
+import sys
+import argparse
+
+def extract_data(file_data):
+    trimmed_fparam = dict() 
+    if file_data != None:
+        n_obj = file_data.get_nobjects()
+        obj_info = file_data.get_object_id_list()
+        uuid = ""
+        for object_record in obj_info:
+            if "shortname" in object_record:
+                sname = object_record["shortname"]
+                #plot data is stored in 'tags' object
+                if sname == "tags":
+                    uuid = object_record["object_uuid"]
+                    if uuid != "":
+                        tags_data = file_data.get_object(object_record["object_uuid"] )
+                        if "parameters" in tags_data:
+                            param = tags_data["parameters"]
+                            fparam = param["fringe"]
+                            for k,v in fparam.items():
+                                #we only want to extract scalar values
+                                #for our table, so exclude lists
+                                if not isinstance(v, list):
+                                    trimmed_fparam[k] = v
+    return trimmed_fparam
+
+
+def get_fringe_file_info(scan_store, name):
+    scan_store.load_fringe(name)
+    file_data = scan_store.get_fringe_data(name)
+    return extract_data(file_data)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        prog='hops4_fparam_example.py', \
+        description='''example utility demo on how to extract fringe parameters from a list of files and construct a table''' \
+        )
+
+    parser.add_argument("filenames", nargs="+", default="", help='the list of fringe files to be processed')
+    parser.add_argument('-o', '--output-filename', dest='output_filename', help='specify the table output filename', default='./out.csv')
+    args = parser.parse_args()
+
+    ffiles = args.filenames
+    output = args.output_filename
+
+    fparams = list()
+    for ffile in ffiles:
+        #figure out the corresponding scan directory 
+        scan_dir, basename = os.path.split( os.path.abspath(ffile) );
+        scan_store = pyMHO_Containers.MHO_PyScanStoreInterface()
+        scan_store.set_directory(scan_dir)
+        scan_store.initialize()
+        if scan_store.is_valid():
+            fringes = scan_store.get_fringe_list()
+            for fr in fringes:
+                if fr == basename:
+                    ex_params = get_fringe_file_info(scan_store, basename)
+                    ex_params["file"] = basename
+                    fparams.append(ex_params)
+
+    df = pd.DataFrame(fparams)
+
+    print(df)
+    #save output file as csv
+    df.to_csv(output, index=False)
+
+if __name__ == '__main__':
+    main()
+    sys.exit(0)
+
+#
+# eof
+#
