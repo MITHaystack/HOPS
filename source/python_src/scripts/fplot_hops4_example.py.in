@@ -1,0 +1,84 @@
+#!@PY_EXE@
+#
+# demo for HOPS4 object retrieval using python interface
+#
+import pyMHO_Containers
+
+from hops_visualization import fourfit_plot
+
+import os
+import sys
+import argparse
+
+def plot_data(file_data):
+    if file_data != None:
+        n_obj = file_data.get_nobjects()
+        obj_info = file_data.get_object_id_list()
+        print("object info is:", obj_info)
+        uuid = ""
+        for object_record in obj_info:
+            if "shortname" in object_record:
+                sname = object_record["shortname"]
+                #plot data is stored in 'tags' object
+                if sname == "tags":
+                    print("located a tags object")
+                    uuid = object_record["object_uuid"]
+                    if uuid != "":
+                        tags_data = file_data.get_object(object_record["object_uuid"] )
+                        if "plot_data" in tags_data:
+                            plot_data = tags_data["plot_data"]
+                            fourfit_plot.make_fourfit_plot(plot_data, True, "") #display on screen
+
+
+def plot_fringe_file(scan_store, name):
+    scan_store.load_fringe(name)
+    file_data = scan_store.get_fringe_data(name)
+    plot_data(file_data)
+
+
+def main():
+
+    parser = argparse.ArgumentParser(
+        prog='fplot_hops4_example.py', \
+        description='''example utility demo on how to extract plot info from a hops4 fringe file and display it''' \
+        )
+
+    parser.add_argument("filename", type=str, default="", help='the fringe file to be opened')
+    args = parser.parse_args()
+
+    ffile = os.path.abspath(args.filename)
+
+    #figure out the corresponding scan directory 
+    scan_dir, basename = os.path.split(ffile);
+    print("Exploring the directory: ", scan_dir)
+
+    scan_store = pyMHO_Containers.MHO_PyScanStoreInterface()
+    scan_store.set_directory(scan_dir)
+    scan_store.initialize()
+
+    if scan_store.is_valid():
+        stations = scan_store.get_station_list()
+        baselines = scan_store.get_baseline_list()
+        fringes = scan_store.get_fringe_list()
+        print("The number of station files = ", len(stations))
+        print("The number of baseline files = ", len(baselines))
+        print("The number of fringe files = ", len(fringes))
+    else:
+        print("The directory", scan_dir, "does not appear to be a valid HOPS4 scan directory")
+        return 1
+    
+    #figure out if we are pointed at a station, baseline (corel), or fringe file
+    #loop over fringe data here
+    for fr in fringes:
+        if fr == basename:
+            plot_fringe_file(scan_store, basename)
+            return 0
+
+
+if __name__ == '__main__':
+    main()
+    sys.exit(0)
+
+#
+# eof
+#
