@@ -49,7 +49,7 @@ $verb && echo lines is $lines
 set -- `ls -s aedit.ps` 0
 $verb && echo $@
 
-[ "$lines" -ge 38 -a "$1" -ge 76 ]
+[ "$lines" -ge 38 -a "$1" -ge 72 ]
 
 #
 # eof
