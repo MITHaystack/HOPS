@@ -42,6 +42,7 @@ if (PY_EXE)
             vgoscf_generate
             vex2xml
             read_hops4_example
+            fplot_hops4_example
         )
 
     endif(HOPS3_PYTHON_EXTRAS)
