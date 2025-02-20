@@ -115,13 +115,14 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
     //TODO what other information should be tagged/included?
 
     //only enable this type of output iff the -X option has been passed
-    bool xpower_output = false;
-    xpower_output = fParameterStore.GetAs< bool >("/cmdline/xpower_output");
+    //and it has a value of 0 or greater
+    int xpower_output = -1;
+    xpower_output = fParameterStore.GetAs< int >("/cmdline/xpower_output");
 
     visibility_type* vis_data = nullptr;
     weight_type* wt_data = nullptr;
 
-    if(xpower_output)
+    if(0 <= xpower_output)
     {
         vis_data = fContainerStore.GetObject< visibility_type >(std::string("vis"));
         if(vis_data == nullptr)
