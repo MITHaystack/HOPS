@@ -15,6 +15,8 @@
 #include <unistd.h>
 #include "msg.h"
 #include "mk4_data.h"
+#include "hops_config.h"
+#include "pass_struct.h"
 
 /* linked from sub/dfio/display_221 */
 extern char display_221 (struct type_221 *, int);
@@ -33,31 +35,41 @@ extern char display_221 (struct type_221 *, int);
 // FIXME: move to sub/dfio/gen_psname.c (later)
 /* this is a verbatim copy from fplot/fplot.c */
 
-// 9 extra digits should suffice for an integer fn
+// ofs: takes us past diskfile: (9) or ps2pdf: (7)
+// note that the caller must free the returned value
 static char *gen_psname(char *dn, int ofs, struct mk4_fringe *fringe, int fn)
 {
-    int mm = strlen(dn)+20;
-    char *nn = (char*) calloc(mm, 1), *pp;
+    int mm = strlen(dn)+20, pi;
+    char *nn = (char*) calloc(mm, 1), *pp, *svP, *svB, *svF;
     msg("Incoming filename is %s", 1, dn + ofs);
-    pp = strstr(dn, "%P");
+    svP = pp = strstr(dn, "%P");
     if (pp) {
-        pp[0] = fringe->t203->channels[0].refpol;   /* Ref ant pol. (R/L) */
-        pp[1] = fringe->t203->channels[0].rempol;   /* Rem ant pol. (R/L) */
+        // total polarization kludge -- see fill_208.c
+        switch(pi = fringe->t208->unused1[0]) {
+        case POL_LL: pp[0] = 'L'; pp[1] = 'L'; break;
+        case POL_RR: pp[0] = 'R'; pp[1] = 'R'; break;
+        case POL_LR: pp[0] = 'L'; pp[1] = 'R'; break;
+        case POL_RL: pp[0] = 'R'; pp[1] = 'R'; break;
+        default:     pp[0] = pi;  pp[1] = pi;  break;
+        }
     }
-    pp = strstr(dn, "%B");
+    svB = pp = strstr(dn, "%B");
     if (pp) {
         pp[0] = fringe->t202->baseline[0];
         pp[1] = fringe->t202->baseline[1];
     }
-    pp = strstr(dn, "%F");
+    svF = pp = strstr(dn, "%F");
     if (pp) {
-        // one could insist that both are the same and arrange for only one
-        // character to be output, but that is more work than we want here.
+        // NB: both must be the same group, but reducing 
+        // to on character is more work than we want here.
         pp[0] = fringe->t203->channels[0].ref_chan_id[0];
         pp[1] = fringe->t203->channels[0].rem_chan_id[0];
     }
     snprintf(nn, mm, dn + ofs, (fn & 0xFFFFFFFF));
-    msg("Generated Filename is %s", 1, nn);
+    if (svP) { svP[0] = '%'; svP[1] = 'P'; }
+    if (svB) { svB[0] = '%'; svB[1] = 'B'; }
+    if (svF) { svF[0] = '%'; svF[1] = 'F'; }
+    msg("Generated Filename is %s (dn is %s)", 1, nn, dn);
     return(nn);
 }
 
@@ -100,7 +112,7 @@ display_fplot (struct mk4_fringe *fringe)
             msg ("Illegal diskfile request %s", 2, display_name);
             return(0);
             }
-            // generate the output filename
+            // generate the output filename, see gen_psname() above
             psname = gen_psname(display_name,
                 (DISKFILE == opt) ? 9 : 7, fringe, pn++);
             memcpy(ps_file, psname, strlen(psname)+1);
