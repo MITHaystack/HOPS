@@ -437,7 +437,7 @@ mho_json MHO_DiFXInputProcessor::ExtractBaselineQuantities(int n)
         base["nFreq"] = b->nFreq;
         for(int i = 0; i < b->nFreq; i++)
         {
-            base["nPolProd"].push_back(b->nPolProd[n]);
+            base["nPolProd"].push_back(b->nPolProd[i]);
         }
 
         std::vector< std::vector< int > > banda;
