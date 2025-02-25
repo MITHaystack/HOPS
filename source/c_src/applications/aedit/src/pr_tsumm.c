@@ -65,10 +65,10 @@ int pr_tsumm(void)
         for(i=0; i<150; i++){buf[i] = '\0'; buf2[i] = '\0';}
         for(i=0;i<19;i++) {
             sprintf(buf,"%s%c ", buf2, qclist[i]);
-            if(fsumm.qcodes[i] >= 10000) sprintf(buf2,"%s    ",buf);
-            else if(fsumm.qcodes[i] >= 1000) sprintf(buf2,"%s   ",buf);
-            else if(fsumm.qcodes[i] >= 100) sprintf(buf2,"%s  ",buf);
-            else if(fsumm.qcodes[i] >= 10) sprintf(buf2,"%s ",buf);
+            if(tsumm.qcodes[i] >= 10000) sprintf(buf2,"%s    ",buf);
+            else if(tsumm.qcodes[i] >= 1000) sprintf(buf2,"%s   ",buf);
+            else if(tsumm.qcodes[i] >= 100) sprintf(buf2,"%s  ",buf);
+            else if(tsumm.qcodes[i] >= 10) sprintf(buf2,"%s ",buf);
             else sprintf(buf2,"%s",buf);
         }
         printf("\t%s\n",buf2);
