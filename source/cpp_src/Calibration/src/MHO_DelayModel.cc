@@ -68,6 +68,12 @@ void MHO_DelayModel::ComputeModel()
 
         CheckSplineInterval(fRefData->GetDimension(INTERVAL_AXIS), ref_tdiff, ref_int_no, ref_code);
         CheckSplineInterval(fRemData->GetDimension(INTERVAL_AXIS), rem_tdiff, rem_int_no, rem_code);
+        
+        if(ref_int_no < 0 || rem_int_no < 0)
+        {
+            msg_error("calibration", "could not determine delay spline interval" << eom);
+            return;
+        }
 
         //calculate seconds into target interval
         double ref_t = ref_tdiff - (ref_int_no * ref_model_interval);
@@ -160,7 +166,6 @@ void MHO_DelayModel::ComputeModel()
     else
     {
         msg_fatal("calibration", "cannot compute delay model, missing station data. " << eom);
-        std::exit(1);
     }
 }
 
@@ -169,7 +174,7 @@ void MHO_DelayModel::CheckSplineInterval(int n_intervals, double tdiff, int& int
     if(n_intervals == 0)
     {
         msg_fatal("calibration", "number of spline intervals is 0, missing or malformed data?" << eom);
-        std::exit(1);
+        int_no = -1;
     }
 
     if(tdiff < 0.0 || int_no < 0)
