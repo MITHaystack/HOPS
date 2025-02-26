@@ -127,15 +127,13 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
         vis_data = fContainerStore.GetObject< visibility_type >(std::string("vis"));
         if(vis_data == nullptr)
         {
-            msg_fatal("fringe", "could not find visibility object to write output." << eom);
-            std::exit(1);
+            msg_error("fringe", "could not find visibility object to write output." << eom);
         }
 
         wt_data = fContainerStore.GetObject< weight_type >(std::string("weight"));
         if(wt_data == nullptr)
         {
-            msg_fatal("fringe", "could not find weights object to write output." << eom);
-            std::exit(1);
+            msg_error("fringe", "could not find weights object to write output." << eom);
         }
     }
 
@@ -143,8 +141,7 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
     phasor_type* phasor_data = fContainerStore.GetObject< phasor_type >(std::string("phasors"));
     if(phasor_data == nullptr)
     {
-        msg_fatal("fringe", "could not find time/frequency averaged phasor object to write output." << eom);
-        std::exit(1);
+        msg_error("fringe", "could not find time/frequency averaged phasor object to write output." << eom);
     }
 
     // visibility_store_type* vis_store_data = new visibility_store_type();
@@ -176,7 +173,11 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
         {
             tags.AddObjectUUID(wt_data->GetObjectUUID());
         }
-        tags.AddObjectUUID(phasor_data->GetObjectUUID());
+        if(phasor_data != nullptr)
+        {
+            tags.AddObjectUUID(phasor_data->GetObjectUUID());
+        }
+        
         inter.Write(tags, "tags");
         if(vis_data != nullptr)
         {
@@ -186,7 +187,10 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
         {
             inter.Write(*wt_data, "weight");
         }
-        inter.Write(*phasor_data, "phasors");
+        if(phasor_data != nullptr)
+        {
+            inter.Write(*phasor_data, "phasors");
+        }
         inter.Close();
     }
     else
