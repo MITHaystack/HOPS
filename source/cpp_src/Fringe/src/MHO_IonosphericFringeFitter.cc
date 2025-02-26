@@ -60,13 +60,16 @@ void MHO_IonosphericFringeFitter::Run()
         //do bare bones first-pass (no iono) to set the sbd
         coarse_fringe_search();
 
+        int ret_val = 0
         if(do_smoothing)
         {
-            ion_search_smooth();
+            ret_val = ion_search_smooth();
+            if(ret_val !=0 ){msg_error("fringe", "could not execute smoothed ion search" << eom);}
         }
         else
         {
-            rjc_ion_search();
+            ret_val = rjc_ion_search();
+            if(ret_val !=0 ){msg_error("fringe", "could not execute standard ion search" << eom);}
         }
 
         fParameterStore->Set("/status/is_finished", true);
@@ -145,7 +148,7 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     if(vis_data == nullptr)
     {
         msg_fatal("fringe", "could not find visibility object with names (vis)." << eom);
-        std::exit(1);
+        return 1;
     }
 
     //iono phase op
@@ -427,7 +430,7 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
         nion = 0;
     }
 
-    return (0);
+    return 0;
 };
 
 // sort tec array
@@ -494,7 +497,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     if(vis_data == nullptr)
     {
         msg_fatal("fringe", "could not find visibility object with names (vis)." << eom);
-        std::exit(1);
+        return 1;
     }
 
     //iono phase op
@@ -745,7 +748,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
 
     profiler_stop();
 
-    return (0);
+    return 0;
 }
 
 // smooth an array of numbers and interpolate fourfold
