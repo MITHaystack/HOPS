@@ -66,14 +66,14 @@ void MHO_VexInfoExtractor::extract_clock_model(const mho_json& vexInfo, MHO_Para
     if(!ref_clock.contains("clock_early"))
     {
         msg_error("fringe", "root file missing $CLOCK information for reference station." << eom);
-        std::exit(1);
+        return;
     }
 
     TODO_FIXME_MSG("TODO FIXME - select the approprate clock interval closest to the FRT.")
     //std::string frt_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
 
     n_clocks = ref_clock["clock_early"].size();
-    if(n_clocks == 1)
+    if(n_clocks >= 1)
     {
         auto clk = ref_clock["clock_early"][0];
         extract_clock_early(clk, clock_early_offset, offset_units, clock_rate, rate_units, origin_epoch, start_validity_epoch);
@@ -103,11 +103,11 @@ void MHO_VexInfoExtractor::extract_clock_model(const mho_json& vexInfo, MHO_Para
     if(!rem_clock.contains("clock_early"))
     {
         msg_error("fringe", "root file missing $CLOCK information for remote station." << eom);
-        std::exit(1);
+        return;
     }
 
     n_clocks = rem_clock["clock_early"].size();
-    if(n_clocks == 1)
+    if(n_clocks >= 1)
     {
         auto clk = rem_clock["clock_early"][0];
         extract_clock_early(clk, clock_early_offset, offset_units, clock_rate, rate_units, origin_epoch, start_validity_epoch);
@@ -269,8 +269,8 @@ void MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_Paramet
     auto sites = vexInfo.at(site_pointer);
     if(sites.size() < 1)
     {
-        msg_error("fringe", "root file contains missing or ambiguous $SITE information." << eom);
-        std::exit(1);
+        msg_error("fringe", "root file missing $SITE information." << eom);
+        return;
     }
 
     //loop looking for sites which match the mk4 site ids
@@ -331,8 +331,8 @@ void MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_Paramet
     auto stations = vexInfo.at(station_pointer);
     if(stations.size() < 2)
     {
-        msg_error("fringe", "root file contains missing or $STATION information." << eom);
-        std::exit(1);
+        msg_error("fringe", "root file contains missing $STATION information." << eom);
+        return;
     }
 
     //loop over stations, their identifier needs to match the 2-char code
@@ -387,7 +387,7 @@ void MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_Paramet
     if(sched.size() != 1)
     {
         msg_error("fringe", "root file contains missing or ambiguous $SCHED information." << eom);
-        std::exit(1);
+        return;
     }
 
     //get the scan name (should only be 1)
