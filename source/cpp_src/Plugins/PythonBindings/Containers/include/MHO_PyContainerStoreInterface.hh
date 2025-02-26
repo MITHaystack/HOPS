@@ -78,7 +78,7 @@ class MHO_PyContainerStoreInterface
             return type_uuid.as_string(); //empyt if uuid was invalid
         }
 
-        template< typename XClassType > MHO_PyTableContainer< XClassType >& GetObject(const std::string& uuid_string)
+        template< typename XClassType > MHO_PyTableContainer< XClassType >* GetObject(const std::string& uuid_string)
         {
             MHO_UUID uuid;
             bool ok = uuid.from_string(uuid_string);
@@ -90,14 +90,12 @@ class MHO_PyContainerStoreInterface
             auto ext_ptr = GetExtension(obj);
             if(ext_ptr != nullptr)
             {
-                return *ext_ptr;
+                return ext_ptr;
             }
             else
             {
-                msg_fatal("python_bindings", "fatal error, object with uuid: " << uuid_string << " is not present." << eom);
-                //instead of failing in this case (object is missing), alternatively we could return a dummy object?
-                //however, maybe an obvious failure is good in this case?
-                std::exit(1);
+                msg_error("python_bindings", "object with uuid: " << uuid_string << " is either not present, or is not a: "<< MHO_ClassIdentity::ClassName<XClassType>() << eom);
+                return nullptr;
             }
         }
 
@@ -169,34 +167,34 @@ inline void DeclarePyContainerStoreInterface(py::module& m, std::string pyclass_
 
                     if(type_id == cStore->GetTypeUUID< visibility_type >())
                     {
-                        return py::cast(m.GetObject< visibility_type >(object_uuid));
+                        return py::cast( *(m.GetObject< visibility_type >(object_uuid) ) );
                     }
                     if(type_id == cStore->GetTypeUUID< weight_type >())
                     {
-                        return py::cast(m.GetObject< weight_type >(object_uuid));
+                        return py::cast( *(m.GetObject< weight_type >(object_uuid) ) );
                     }
                     if(type_id == cStore->GetTypeUUID< station_coord_type >())
                     {
-                        return py::cast(m.GetObject< station_coord_type >(object_uuid));
+                        return py::cast( *(m.GetObject< station_coord_type >(object_uuid) ) );
                     }
                     if(type_id == cStore->GetTypeUUID< visibility_store_type >())
                     {
-                        return py::cast(m.GetObject< visibility_store_type >(object_uuid));
+                        return py::cast( *(m.GetObject< visibility_store_type >(object_uuid) ) );
                     }
 
                     if(type_id == cStore->GetTypeUUID< weight_store_type >())
                     {
-                        return py::cast(m.GetObject< weight_store_type >(object_uuid));
+                        return py::cast( *(m.GetObject< weight_store_type >(object_uuid) ) );
                     }
                     
                     if(type_id == cStore->GetTypeUUID< phasor_type >())
                     {
-                        return py::cast(m.GetObject< phasor_type >(object_uuid));
+                        return py::cast( *(m.GetObject< phasor_type >(object_uuid) ) );
                     }
                     
                     if(type_id == cStore->GetTypeUUID< multitone_pcal_type >())
                     {
-                        return py::cast(m.GetObject< multitone_pcal_type >(object_uuid));
+                        return py::cast( *(m.GetObject< multitone_pcal_type >(object_uuid) ) );
                     }
 
                     if(type_id == cStore->GetTypeUUID< MHO_ObjectTags >())
