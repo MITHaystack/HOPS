@@ -122,7 +122,7 @@ void MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore
     if(wt_data == nullptr)
     {
         msg_fatal("fringe", "could not find visibility or weight objects with names (weight)." << eom);
-        std::exit(1);
+        return; //bail out to caller
     }
     bool ok2 = wt_data->Retrieve("n_summed_polprod", n_polprod);
     if(!ok2)
@@ -422,7 +422,7 @@ double MHO_BasicFringeUtilities::calculate_snr_correction_factor(MHO_ContainerSt
     if(vis_data == nullptr || wt_data == nullptr)
     {
         msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
-        std::exit(1);
+        return 0.0; //bail out to caller, return 0.0 
     }
 
     //grab the channel axes
