@@ -403,8 +403,8 @@ int MHO_MK4FringeExport::fill_206(struct type_206* t206)
     visibility_type* vis_data = fCStore->GetObject< visibility_type >(std::string("vis"));
     if(vis_data == nullptr)
     {
-        msg_fatal("fringe", "could not find visibility object with name: vis." << eom);
-        std::exit(1);
+        msg_error("fringe", "could not find visibility object with name: vis." << eom);
+        return 1;
     }
 
     auto chan_ax = &(std::get< CHANNEL_AXIS >(*vis_data));
@@ -878,8 +878,7 @@ int MHO_MK4FringeExport::output()
 
         if(filename.size() > 256)
         {
-            msg_fatal("mk4interface", "filename exceeds max length of 256." << eom);
-            std::exit(1);
+            msg_error("mk4interface", "filename exceeds max length of 256, fringe_name will be truncated" << eom);
         }
         strncpy(fringe_name, filename.c_str(), std::min(255, (int)filename.size()));
 
@@ -892,7 +891,7 @@ int MHO_MK4FringeExport::output()
         fringe.nalloc = 0;
         clear_mk4fringe(&fringe);
 
-        strcpy(buf, filename.c_str());
+        strncpy(buf, filename.c_str(), std::min(255, (int)filename.size()));
         int val = init_000(&t2_id, fringe_name);
         if(val != 0)
         {
@@ -1205,8 +1204,8 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array)
     visibility_type* vis_data = fCStore->GetObject< visibility_type >(std::string("vis"));
     if(vis_data == nullptr)
     {
-        msg_fatal("fringe", "could not find visibility object with name: vis." << eom);
-        std::exit(1);
+        msg_fatal("fringe", "could not find visibility object with name: vis, will not fill channel info" << eom);
+        return; //bail out
     }
 
     auto chan_ax = &(std::get< CHANNEL_AXIS >(*vis_data));
@@ -1301,7 +1300,7 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array)
 
             if(counter >= max_chan_records)
             {
-                msg_warn("mk4interface", "too many channel records, (" << counter << "), to export to type_203" << eom);
+                msg_warn("mk4interface", "too many channel records, (" << counter << "), to export to type_203, truncating to " << max_chan_records << eom);
                 break;
             }
         }

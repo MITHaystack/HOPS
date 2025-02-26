@@ -62,6 +62,12 @@ void MHO_StationModel::ComputeModel()
         int int_no = std::floor(tdiff / model_interval);
         CheckSplineInterval(fData->GetDimension(INTERVAL_AXIS), tdiff, int_no, code);
 
+        if(int_no < 0)
+        {
+            msg_error("calibration", "could not determine delay spline interval" << eom);
+            return;
+        }
+
         //calculate seconds into target interval
         double dt = tdiff - (int_no * model_interval);
 
@@ -97,8 +103,7 @@ void MHO_StationModel::ComputeModel()
     }
     else
     {
-        msg_fatal("calibration", "cannot compute station coordinate model, missing station data. " << eom);
-        std::exit(1);
+        msg_error("calibration", "cannot compute station coordinate model, missing station data. " << eom);
     }
 }
 
@@ -106,8 +111,8 @@ void MHO_StationModel::CheckSplineInterval(int n_intervals, double tdiff, int& i
 {
     if(n_intervals == 0)
     {
-        msg_fatal("calibration", "number of spline intervals is 0, missing or malformed data?" << eom);
-        std::exit(1);
+        msg_error("calibration", "number of spline intervals is 0, missing or malformed data?" << eom);
+        int_no = -1;
     }
 
     if(tdiff < 0.0)

@@ -34,10 +34,12 @@ MHO_ComputePlotData::MHO_ComputePlotData()
     fWeights = nullptr;
     fSBDArray = nullptr;
     fImagUnit = MHO_Constants::imag_unit;
+    fValid = false;
 };
 
 void MHO_ComputePlotData::Initialize()
 {
+
     fTotalSummedWeights = fParamStore->GetAs< double >("/fringe/total_summed_weights");
     fRefFreq = fParamStore->GetAs< double >("/control/config/ref_freq");
     fMBDelay = fParamStore->GetAs< double >("/fringe/mbdelay");
@@ -50,22 +52,24 @@ void MHO_ComputePlotData::Initialize()
     fVisibilities = fContainerStore->GetObject< visibility_type >(std::string("vis"));
     fWeights = fContainerStore->GetObject< weight_type >(std::string("weight"));
     fSBDArray = fContainerStore->GetObject< visibility_type >(std::string("sbd"));
+    fValid = true;
+    
     if(fVisibilities == nullptr)
     {
-        msg_fatal("fringe", "could not find visibility, object with name 'vis'." << eom);
-        std::exit(1);
+        msg_error("fringe", "could not find visibility, object with name 'vis'." << eom);
+
     }
 
     if(fWeights == nullptr)
     {
-        msg_fatal("fringe", "could not find visibility, object with name 'weight'." << eom);
-        std::exit(1);
+        msg_error("fringe", "could not find visibility, object with name 'weight'." << eom);
+        fValid = false;
     }
 
     if(fSBDArray == nullptr)
     {
-        msg_fatal("fringe", "could not find visibility, object with name 'sbd'." << eom);
-        std::exit(1);
+        msg_error("fringe", "could not find visibility, object with name 'sbd'." << eom);
+        fValid = false;
     }
 }
 
@@ -946,6 +950,12 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
 
 void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 {
+    if(!fValid)
+    {
+        msg_error("fringe", "cannot calculate plot data, data invalid" << eom);
+        return;
+    }
+    
     auto sbd_amp = calc_sbd();
     auto mbd_amp = calc_mbd();
     auto dr_amp = calc_dr();
