@@ -121,7 +121,7 @@ void MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore
     weight_type* wt_data = conStore->GetObject< weight_type >(std::string("weight"));
     if(wt_data == nullptr)
     {
-        msg_fatal("fringe", "could not find visibility or weight objects with names (weight)." << eom);
+        msg_error("fringe", "could not find visibility or weight objects with names (weight)." << eom);
         return; //bail out to caller
     }
     bool ok2 = wt_data->Retrieve("n_summed_polprod", n_polprod);
@@ -421,7 +421,7 @@ double MHO_BasicFringeUtilities::calculate_snr_correction_factor(MHO_ContainerSt
     weight_type* wt_data = conStore->GetObject< weight_type >(std::string("weight"));
     if(vis_data == nullptr || wt_data == nullptr)
     {
-        msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
+        msg_error("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
         return 0.0; //bail out to caller, return 0.0 
     }
 
