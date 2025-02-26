@@ -243,8 +243,8 @@ int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_n
     int ret_val = gethostname(host_name, 256);
     if(ret_val != 0)
     {
-        msg_fatal("utilities", "error retrieving host name in create_lockfile." << eom);
-        std::exit(1);
+        msg_error("utilities", "error retrieving host name in create_lockfile, using 'localhost' as substitute" << eom);
+        snprintf(host_name, 10, "localhost");
     };
 
     //get the process id,
