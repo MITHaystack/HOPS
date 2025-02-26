@@ -90,8 +90,9 @@ void MHO_BasicFringeFitter::Initialize()
         wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
         if(vis_data == nullptr || wt_data == nullptr)
         {
-            msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
-            std::exit(1);
+            msg_error("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
+            fParameterStore->Set("/status/skipped", true); //skipped
+            return;
         }
 
         //safety check
@@ -127,8 +128,9 @@ void MHO_BasicFringeFitter::Initialize()
         station_coord_type* rem_data = fContainerStore->GetObject< station_coord_type >(std::string("rem_sta"));
         if(ref_data == nullptr || rem_data == nullptr)
         {
-            msg_fatal("fringe", "could not find station coordinate data with names (ref_sta, rem_sta)." << eom);
-            std::exit(1);
+            msg_error("fringe", "could not find station coordinate data with names (ref_sta, rem_sta)." << eom);
+            fParameterStore->Set("/status/skipped", true); //skipped
+            return;
         }
         std::string ref_uuid = ref_data->GetObjectUUID().as_string();
         std::string rem_uuid = rem_data->GetObjectUUID().as_string();
