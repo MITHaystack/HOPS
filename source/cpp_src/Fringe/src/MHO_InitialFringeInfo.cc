@@ -115,53 +115,57 @@ void MHO_InitialFringeInfo::calculate_clock_model(MHO_ParameterStore* paramStore
 
 void MHO_InitialFringeInfo::compute_total_summed_weights(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
+    double total_ap_frac = 0.0;
     weight_type* wt_data = conStore->GetObject< weight_type >(std::string("weight"));
     if(wt_data == nullptr)
     {
-        msg_fatal("main", "could not find weight object with name: weight." << eom);
-        std::exit(1);
+        msg_error("fringe", "could not find weight object with name: weight." << eom);
     }
-
-    //compute the sum of the data weights
-    weight_type temp_weights;
-    temp_weights.Copy(*wt_data);
-    MHO_Reducer< weight_type, MHO_CompoundSum > wt_reducer;
-    wt_reducer.SetArgs(&temp_weights);
-    for(std::size_t i = 0; i < weight_type::rank::value; i++)
+    else 
     {
-        wt_reducer.ReduceAxis(i);
+        //compute the sum of the data weights
+        weight_type temp_weights;
+        temp_weights.Copy(*wt_data);
+        MHO_Reducer< weight_type, MHO_CompoundSum > wt_reducer;
+        wt_reducer.SetArgs(&temp_weights);
+        for(std::size_t i = 0; i < weight_type::rank::value; i++)
+        {
+            wt_reducer.ReduceAxis(i);
+        }
+        wt_reducer.Initialize();
+        wt_reducer.Execute();
+        total_ap_frac = temp_weights[0];
+        wt_data->Insert("total_summed_weights", total_ap_frac);
     }
-    wt_reducer.Initialize();
-    wt_reducer.Execute();
-    double total_ap_frac = temp_weights[0];
 
     paramStore->Set("/fringe/total_summed_weights", total_ap_frac);
-    wt_data->Insert("total_summed_weights", total_ap_frac);
+
 }
 
 void MHO_InitialFringeInfo::determine_n_active_channels(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     //just loop over the weights and count the number of channels which contain an AP with weight > 0
+    std::size_t n_active_channels = 0;
     weight_type* wt_data = conStore->GetObject< weight_type >(std::string("weight"));
     if(wt_data == nullptr)
     {
-        msg_fatal("main", "could not find weight object with name: weight." << eom);
-        std::exit(1);
+        msg_error("fringe", "could not find weight object with name: weight." << eom);
     }
-
-    std::size_t n_active_channels = 0;
-    auto chan_ax = &(std::get< CHANNEL_AXIS >(*wt_data));
-    for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
+    else 
     {
-        auto slice = wt_data->SliceView(":", ch, ":", ":");
-        double sum = 0.0;
-        for(auto it = slice.begin(); it != slice.end(); it++)
+        auto chan_ax = &(std::get< CHANNEL_AXIS >(*wt_data));
+        for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
         {
-            sum += *it;
-        }
-        if(sum > 0.0)
-        {
-            n_active_channels++;
+            auto slice = wt_data->SliceView(":", ch, ":", ":");
+            double sum = 0.0;
+            for(auto it = slice.begin(); it != slice.end(); it++)
+            {
+                sum += *it;
+            }
+            if(sum > 0.0)
+            {
+                n_active_channels++;
+            }
         }
     }
 
@@ -173,15 +177,15 @@ void MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore
     visibility_type* vis_data = conStore->GetObject< visibility_type >(std::string("vis"));
     if(vis_data == nullptr)
     {
-        msg_fatal("main", "could not find visibility object with name: vis." << eom);
-        std::exit(1);
+        msg_error("fringe", "could not find visibility object with name: vis." << eom);
+        return;
     }
 
     auto ap_ax = &(std::get< TIME_AXIS >(*vis_data));
     if(ap_ax->GetSize() <= 1)
     {
-        msg_fatal("main", "could not determine AP period for data since AP axis is of size: " << ap_ax->GetSize() << eom);
-        std::exit(1);
+        msg_error("fringe", "could not determine AP period for data since AP axis is of size: " << ap_ax->GetSize() << eom);
+        return;
     }
 
     bool ok = false;
