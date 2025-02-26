@@ -35,7 +35,7 @@ bool MHO_ScanDataStore::Initialize()
         //map fringes to basename strings (could have many more than one fringe per-baseline)
         MapFringes();
 
-        return true;
+        return IsValid();
     }
     return false;
 }
@@ -115,8 +115,8 @@ void MHO_ScanDataStore::DetermineRootFile()
 
     if(n_candidate_files == 0 || fRootFileName == "")
     {
-        msg_fatal("containers", "no root file found in directory: " << fDirectory << eom);
-        std::exit(1);
+        msg_error("containers", "no root file found in directory: " << fDirectory << eom);
+        fRootFileName = "";
     }
 
     if(n_candidate_files > 1)
