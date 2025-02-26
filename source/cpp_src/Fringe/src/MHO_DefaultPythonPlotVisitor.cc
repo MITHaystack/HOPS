@@ -73,7 +73,7 @@ MHO_DefaultPythonPlotVisitor::Plot(MHO_FringeData* data)
             if( std::string(excep.what()).find("SystemExit") != std::string::npos) 
             {
                 msg_debug("python_bindings", "sys.exit() called from within python, exiting" << eom);
-                std::exit(0);//exit
+                std::exit(0); //ok to exit program entirely
             }
             else 
             {
