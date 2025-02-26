@@ -147,7 +147,7 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     visibility_type* vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
     if(vis_data == nullptr)
     {
-        msg_fatal("fringe", "could not find visibility object with names (vis)." << eom);
+        msg_error("fringe", "could not find visibility object with names (vis)." << eom);
         return 1;
     }
 
@@ -496,7 +496,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     visibility_type* vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
     if(vis_data == nullptr)
     {
-        msg_fatal("fringe", "could not find visibility object with names (vis)." << eom);
+        msg_error("fringe", "could not find visibility object with names (vis)." << eom);
         return 1;
     }
 
