@@ -818,13 +818,13 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     if(!scanStore->IsValid())
     {
         msg_fatal("fringe", "cannot initialize a valid scan store from this directory: " << directory << eom);
-        std::exit(1);
+        paramStore->Set("/status/skipped", true);
     }
 
     if(!scanStore->IsBaselinePresent(baseline))
     {
         msg_fatal("fringe", "cannot find the specified baseline: " << baseline << " in " << directory << eom);
-        std::exit(1);
+        paramStore->Set("/status/skipped", true);
     }
 
     //set the root file name
@@ -867,20 +867,20 @@ void MHO_BasicFringeDataConfiguration::configure_visibility_data(MHO_ContainerSt
 
     if(vis_store_data == nullptr)
     {
-        msg_fatal("initialization", "failed to read visibility data from the .cor file." << eom);
-        std::exit(1);
+        msg_error("initialization", "failed to read visibility data from the .cor file." << eom);
+        return;
     }
 
     if(wt_store_data == nullptr)
     {
-        msg_fatal("initialization", "failed to read weight data from the .cor file." << eom);
-        std::exit(1);
+        msg_error("initialization", "failed to read weight data from the .cor file." << eom);
+        return;
     }
 
     if(n_vis != 1 || n_wt != 1)
     {
         msg_warn("initialization",
-                 "multiple visibility and/or weight types per-baseline not yet supported, will use first located." << eom);
+                 "multiple visibility and/or weight types per-baseline not yet supported, will use first one located." << eom);
     }
 
     auto vis_store_uuid = vis_store_data->GetObjectUUID();
