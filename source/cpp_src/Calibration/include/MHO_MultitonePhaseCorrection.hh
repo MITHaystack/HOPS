@@ -69,6 +69,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< pcal_type >;
 #endif
 
+        void InitializeFFTEngine();
         FFT_ENGINE_TYPE fFFTEngine;
 
         bool IsApplicable(const visibility_type* in);

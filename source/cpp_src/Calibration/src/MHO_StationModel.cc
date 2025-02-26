@@ -64,7 +64,7 @@ void MHO_StationModel::ComputeModel()
 
         if(int_no < 0)
         {
-            msg_error("calibration", "could not determine delay spline interval" << eom);
+            msg_error("calibration", "could not determine model spline interval" << eom);
             return;
         }
 

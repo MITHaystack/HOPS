@@ -1,7 +1,10 @@
 #include "MHO_MultitonePhaseCorrection.hh"
 #include "MHO_MathUtilities.hh"
+#include "MHO_BitReversalPermutation.hh"
 
 #include <bitset>
+
+#define N_MASK_BITS 32
 
 template< std::size_t N > void reverse_bits(std::bitset< N >& b)
 {
@@ -43,16 +46,11 @@ MHO_MultitonePhaseCorrection::MHO_MultitonePhaseCorrection()
     fPCPeriod = 1;
 
     //initialize the FFT engine
-    fWorkspaceSize = 256;
-    fPCWorkspace.Resize(fWorkspaceSize); //default size is 256
-    fFFTEngine.SetArgs(&fPCWorkspace);
-    fFFTEngine.SelectAllAxes();
-    fFFTEngine.SetForward(); //forward DFT
+    fWorkspaceSize = 256; //default size
+    InitializeFFTEngine();
 
     fWeights = nullptr;
 
-    bool ok;
-    ok = fFFTEngine.Initialize(); // TODO FIXME...only need to initialize once!
 };
 
 MHO_MultitonePhaseCorrection::~MHO_MultitonePhaseCorrection(){};
@@ -123,7 +121,6 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
 
     //workspace to store averaged phasors and corresponding tone freqs
     fPCWorkspace.ZeroArray();
-    auto workspace_freq_ax = &(std::get< 0 >(fPCWorkspace));
 
     //grab the sampler delay vector
     std::vector< double > sampler_delays;
@@ -177,13 +174,21 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
         double chan_center_freq = 0.5 * (lower_freq + upper_freq);
         //determine the pcal tones indices associated with this channel
         DetermineChannelToneIndexes(lower_freq, upper_freq, start_idx, ntones);
-
-        //probably should bump up workspace if needed, but for now just bail out
-        if(fWorkspaceSize < ntones)
+        
+        //the tone mask is a 32 bit integer, if we have more tones than this
+        //then the extra tones will be ignored
+        if(ntones > N_MASK_BITS)
         {
-            msg_fatal("calibration",
-                      "number of pcal tones: " << ntones << " exceeds workspace size of: " << fWorkspaceSize << eom);
-            std::exit(1);
+            msg_warn("calibration", "the number of pcal tones ("<<ntones<<") for channel "<< ch_label<<", exceeds the number allowed by the tone mask (32) " << eom);
+        }
+
+        //bump up the workspace size to the next lowest power of two
+        if(fWorkspaceSize <= ntones)
+        {
+            fWorkspaceSize = MHO_BitReversalPermutation::NextLowestPowerOfTwo(ntones);
+            msg_warn("calibration",
+                      "number of pcal tones: " << ntones << " exceeds workspace size, resizing to " << fWorkspaceSize << eom);
+            InitializeFFTEngine();
         }
 
         if(ntones == 0)
@@ -223,8 +228,8 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
             }
 
             //figure out tone masks for this channel (if present)
-            std::bitset< 32 > bit_mask;
-            std::bitset< 32 > bit_one = 1;
+            std::bitset< N_MASK_BITS > bit_mask;
+            std::bitset< N_MASK_BITS > bit_one = 1;
             int tone_mask = 0;
             if(fHavePCToneMask)
             {
@@ -240,7 +245,7 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                 //std::cout<<"channel: "<<ch_label<<" initial bitmask = "<<bit_mask<<std::endl;
                 if(net_sideband == "L")
                 {
-                    bit_mask <<= (32 - ntones);
+                    bit_mask <<= (N_MASK_BITS - ntones);
                     //std::cout<<"shifted bitmask = "<<bit_mask<<std::endl;
                     reverse_bits(bit_mask);
                     //std::cout<<"reverse_bits = "<<bit_mask<<std::endl;
@@ -261,6 +266,7 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
 
             std::size_t ap_start = 0;
             std::size_t ap_stop = std::min(vis_ap_ax->GetSize(), fPCData->GetDimension(1));
+            auto workspace_freq_ax = &(std::get< 0 >(fPCWorkspace));
             for(std::size_t ap = 0; ap < ap_stop; ap++)
             {
                 if(ap % fPCPeriod == 0)
@@ -276,9 +282,10 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                     seg_end_ap = ap;
                 }
 
-                //sum the tone phasors
+                //sum the tone phasors, taking into account tone mask 
+                //(only up to 32 tones allowed)
                 double wght;
-                std::bitset< 32 > mask = bit_mask;
+                std::bitset< N_MASK_BITS > mask = bit_mask;
                 for(std::size_t i = 0; i < ntones; i++)
                 {
                     wght = 1.0; //pc weights default to 1
@@ -717,6 +724,16 @@ void MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_cen
     pcal_model[0] = std::abs(mean_phasor); //magnitude
     pcal_model[1] = std::arg(mean_phasor); //phase
     pcal_model[2] = delay;                 //delay
+}
+
+void MHO_MultitonePhaseCorrection::InitializeFFTEngine()
+{
+    fPCWorkspace.Resize(&fWorkspaceSize); //default size is 256, but can be expanded
+    fFFTEngine.SetArgs(&fPCWorkspace);
+    fFFTEngine.SelectAllAxes();
+    fFFTEngine.SetForward(); //forward DFT
+    bool ok;
+    ok = fFFTEngine.Initialize();
 }
 
 } // namespace hops
