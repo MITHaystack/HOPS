@@ -21,18 +21,19 @@ std::map< std::string, double > MHO_ChannelQuantity::MapChannelQuantities(std::s
         chan_names = SplitString(channel_name_str);
     } //split every char
 
-    if(values.size() == chan_names.size())
+    if(values.size() != chan_names.size())
     {
-        //create the map, channel name -> freq
-        chan_quantity_map = zip_into_map(chan_names, values);
-    }
-    else
-    {
-        msg_fatal("initialization", "bad control statement data, the number of channels specified ("
+        msg_error("initialization", "bad control statement data, the number of channels specified ("
                                         << chan_names.size() << ") did not match the number of quantities passed ("
                                         << values.size() << ")" << eom);
-        std::exit(1);
+        //in this case, the resulting map will be truncated to 
+        //the shortest of either chan_names or values, but mis-matched items 
+        //cannot be fixed
     }
+    
+    //create the map, channel name -> freq, 
+    chan_quantity_map = zip_into_map(chan_names, values);
+
 
     return chan_quantity_map;
 }
