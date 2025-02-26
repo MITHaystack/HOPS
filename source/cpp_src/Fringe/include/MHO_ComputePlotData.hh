@@ -120,6 +120,7 @@ class MHO_ComputePlotData
 
         std::size_t fSBDMaxBin;
 
+        bool fValid;
         visibility_type* fVisibilities;
         visibility_type* fSBDArray;
         weight_type* fWeights;
