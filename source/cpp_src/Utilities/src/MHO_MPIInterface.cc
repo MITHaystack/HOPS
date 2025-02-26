@@ -259,7 +259,7 @@ void MHO_MPIInterface::DetermineLocalRank()
     int ret_val = gethostname(host_name, 256);
     if(ret_val != 0)
     {
-        msg_fatal("mpi_interface", "host name retrieval error!" << eom);
+        msg_fatal("mpi_interface", "host name retrieval error, MPI cannot be used" << eom);
         MHO_MPIInterface::GetInstance()->Finalize();
         std::exit(1);
     };
