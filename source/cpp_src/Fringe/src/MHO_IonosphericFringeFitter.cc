@@ -60,7 +60,7 @@ void MHO_IonosphericFringeFitter::Run()
         //do bare bones first-pass (no iono) to set the sbd
         coarse_fringe_search();
 
-        int ret_val = 0
+        int ret_val = 0;
         if(do_smoothing)
         {
             ret_val = ion_search_smooth();
