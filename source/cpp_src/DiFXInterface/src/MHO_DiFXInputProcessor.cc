@@ -23,6 +23,7 @@ void MHO_DiFXInputProcessor::LoadDiFXInputFile(std::string filename)
         
     msg_debug("difx_interface", "loading difx input file: " << filename << eom);
     fD = loadDifxInput(filename.c_str());
+    fFilename = filename;
     if(fD == nullptr)
     {
         msg_fatal("difx_interface", "failed to load difx input file" << eom);
@@ -89,6 +90,9 @@ void MHO_DiFXInputProcessor::ConvertToJSON(mho_json& input)
     {
         input["baseline"].push_back(ExtractBaselineQuantities(i));
     }
+    
+    //add the input file name
+    input["difx_input_filename"] = fFilename;
 
     /****** SKIP THESE OPTIONAL TABLES FOR NOW ********************************/
     // DifxSpacecraft	*spacecraft;	/* optional table */

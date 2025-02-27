@@ -154,15 +154,25 @@ void MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
 
         //patch up the vex info to make it conform to the HOPS3 ovex parser
         PatchOvexStructures(vex_root, mode_name);
+        
+        //grab the difx input file name
+        std::string difx_input_filename = fInput["difx_input_filename"].get<std::string>();
 
         //generate a traditional 'ovex' file too...for backwards compatibility
         MHO_VexGenerator gen;
         std::string ovex_output_file = fOutputDirectory + "/" + src_name + "." + fRootCode;
         gen.SetFilename(ovex_output_file);
         gen.GenerateVex(vex_root);
+        
+        std::ofstream ovex_out(ovex_output_file, std::ios::app);
+        if(ovex_out.is_open())
+        {
+            ovex_out << "*difx_input_filename:" << difx_input_filename << "\n";
+        }
+        ovex_out.close();
 
         //write out the 'ovex'/'vex' json object as a json file
-
+        vex_root["difx_input_filename"] = difx_input_filename;
         std::string output_file = ConstructRootFileName(fOutputDirectory, fRootCode, src_name);
         //open and dump to file
         std::ofstream outFile(output_file.c_str(), std::ofstream::out);
