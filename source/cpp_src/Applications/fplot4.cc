@@ -99,7 +99,7 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     std::string freqgrp = "?";                     // the frequency group
     int message_level = -1;                        //'-m' specifies the message verbosity level
     std::vector< std::string > message_categories; // -'M' limits the allowed message categories to those the user specifies
-    bool show_plot = false;                        //'-p' generates and shows fringe plot
+    bool no_plot = false;                        //'-n' disable display of fringe plot (default is to show it)
     std::string polprod = "??";                    //'-P' polarization product argument (e.g XX or I or RR+LL)
     std::vector< std::string > input;              //either directory, individual file, or list of files
     std::vector< std::string > fringe_file_list;
@@ -127,7 +127,7 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     app.add_option("-b,--baseline", baseline_opt, "baseline or baseline:frequency_group selection (e.g GE or GE:X)");
     app.add_option("-M,--message-categories", message_categories, msg_cat_help.c_str())->delimiter(',');
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
-    app.add_flag("-p,--plot", show_plot, "display each fringe plot");
+    app.add_flag("-n,--no-plot", no_plot, "do not display the fringe plot");
     app.add_option("-P,--polprod", polprod, "plot only files matching this polarization product (e.g XX or I or RR+LL)");
     app.add_option("input,-i,--input", input, "name of the input directory, fringe file, or list of fringe files")->required();
 
@@ -227,6 +227,7 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(baseline_opt, baseline, freqgrp);
 
     //pass the extracted command line info back in the parameter store
+    bool show_plot = !no_plot;
     paramStore->Set("/cmdline/baseline", baseline);
     paramStore->Set("/cmdline/frequency_group", freqgrp);
     paramStore->Set("/cmdline/polprod", polprod);
@@ -364,11 +365,33 @@ int main(int argc, char** argv)
                match_polprod(polprod, obj_polprod))
             {
                 //load our interface module -- this is extremely slow!
-                //TODO..allow for custom plot method to be called
                 auto vis_module = py::module::import("hops_visualization");
                 auto plot_lib = vis_module.attr("fourfit_plot");
-                //call a python function on the interface class instance
-                plot_lib.attr("make_fourfit_plot")(plot_obj, show_plot, diskfile);
+                ////////////////////////////////////////////////////////////////////////
+                //load our interface module -- this is extremely slow!
+                //TODO..allow for custom plot method to be called
+                try 
+                {
+                    //required modules pyMHO_Containers and pyMHO_Operators are imported by configure_pypath()
+                    auto vis_module = py::module::import("hops_visualization");
+                    auto plot_lib = vis_module.attr("fourfit_plot");
+                    //call a python function on the interface class instance
+                    plot_lib.attr("make_fourfit_plot")(plot_obj, show_plot, diskfile);
+                }
+                catch(py::error_already_set &excep)
+                {
+                    if( std::string(excep.what()).find("SystemExit") != std::string::npos) 
+                    {
+                        msg_debug("python_bindings", "sys.exit() called from within python, exiting" << eom);
+                        std::exit(0); //ok to exit program entirely
+                    }
+                    else 
+                    {
+                        msg_error("python_bindings", "python exception when calling subroutine (" << "fourfit_plot"<< "," << "make_fourfit_plot" << ")" << eom );
+                        msg_error("python_bindings", "python error message: "<< excep.what() << eom);
+                        PyErr_Clear(); //clear the error and attempt to continue
+                    }
+                }
             }
         }
     }
