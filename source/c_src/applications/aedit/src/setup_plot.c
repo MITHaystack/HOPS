@@ -140,6 +140,7 @@ int setup_plot (struct plot_info *pd, int nplot, struct frqexp fqex)
 	sprintf (buf, "Quad %s at %c-band", pd->ampcl, pd->frq);
     else sprintf (buf, "%c-band", pd->frq);
     if(strlen (pd->source) > 0) sprintf (buf,"%s   Source: %s", buf, pd->source);
+    printf("plot header = %s\n", buf);
     cpgmtxt ("T", 0.3, 0.0, 0.0, buf);
 					/* Label axes, special if time */
     if (pd->xaind == AX_TIMETAG)
