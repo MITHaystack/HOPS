@@ -42,6 +42,7 @@ class MHO_DiFXInputProcessor
         std::string GetAntennaSiteTypeString(AntennaSiteType type);
 
         DifxInput* fD;
+        std::string fFilename;
 };
 
 } // namespace hops
