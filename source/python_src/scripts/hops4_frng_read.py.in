@@ -28,14 +28,8 @@ def extract_data(file_data):
                         tags_data = file_data.get_object(object_record["object_uuid"] )
                         if "parameters" in tags_data:
                             param = tags_data["parameters"]
-                            summary = get_summary(param)
-                            print(summary)
-                            fparam = param["fringe"]
-                            for k,v in fparam.items():
-                                #we only want to extract scalar values
-                                #for our table, so exclude lists
-                                if not isinstance(v, list):
-                                    trimmed_fparam[k] = v
+                            fparam = get_summary(param)
+                            trimmed_fparam = fparam
     return trimmed_fparam
 
 
@@ -44,7 +38,7 @@ def get_fringe_file_info(scan_store, name):
     file_data = scan_store.get_fringe_data(name)
     return extract_data(file_data)
 
-#fringe summary
+#fringe summary (modeled on mark4)
 def get_summary(param_obj):
 
     #construct a dict to store the summary of the scan (scalar values)
