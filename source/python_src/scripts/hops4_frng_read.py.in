@@ -66,7 +66,7 @@ def get_summary(param_obj):
     td["fname"] = "fring file" #param_obj["fringe"]["fname"]
     td["expt_no"] = param_obj["vex"]["experiment_number"]
     td["extent_no"] = 0 # param_obj["fringe"]["extent_no"]
-    td["length"] = param_obj["fringe"]["integration_tim"]
+    td["length"] = param_obj["fringe"]["integration_time"]
     td["corel_vers"] = "difx" # param_obj["fringe"]["corel_vers"]
     td["procdate"] = param_obj["config"]["correlation_date"]
     td["time_tag"] = param_obj["vex"]["scan"]["fourfit_reftime"]
@@ -82,7 +82,7 @@ def get_summary(param_obj):
     td["remtape"] = "dummy" #param_obj["fringe"]["remtape"]
     td["amp"] = param_obj["fringe"]["famp"]
     td["snr"] = param_obj["fringe"]["snr"]
-    td["resid_phas"] = param_obj["fringe"]["resid_phas"]
+    td["resid_phas"] = param_obj["fringe"]["resid_phase"]
     td["sbdelay"] = param_obj["fringe"]["sbdelay"]
     td["mbdelay"] = param_obj["fringe"]["mbdelay"]
     td["mbd_error"] = param_obj["fringe"]["mbd_error"]
@@ -110,7 +110,7 @@ def get_summary(param_obj):
     td["parents"] = "dummy" #param_obj["fringe"]["parents"]
     td["duration"] = param_obj["fringe"]["scan_duration"]
 
-    td["scan_offset"] = 0 param_obj["fringe"]["scan_offset"]
+    td["scan_offset"] = 0 # param_obj["fringe"]["scan_offset"]
     td["lags"] = param_obj["config"]["nlags"]
     td["phase_snr"] = 0 #param_obj["fringe"]["phase_snr"]
     td["srch_cotime"] =  0 #param_obj["fringe"]["srch_cotime"]
@@ -128,7 +128,7 @@ def get_summary(param_obj):
     td["phase"] = param_obj["fringe"]["resid_phase"]
     td["sbdelay"] = param_obj["fringe"]["sbdelay"]
     td["mbdelay"] = param_obj["fringe"]["mbdelay"]
-    td["delay_rate"] = param_obj["fringe"]["delay_rate"]
+    td["delay_rate"] = param_obj["fringe"]["drate"]
 
     return td
 
