@@ -53,7 +53,7 @@ class FringeFileHandle(object):
         self.length =  0
         self.corel_vers = ""
         self.procdate =  0
-        self.time_tag =  0
+        self.time_tag =  "2000y001d00h00m00s"
         self.ssec =  0
         self.source =  ""
         self.baseline =  ""
@@ -172,12 +172,20 @@ class FringeFileHandle(object):
         self.version = 0
         self.expt_no = self.fringe_data.t200.contents.expt_no
         isec = self.fringe_data.t200.contents.scantime.second + 0.5
-        self.time_tag = utility.time_to_int( \
-            self.fringe_data.t200.contents.scantime.year, \
-            self.fringe_data.t200.contents.scantime.day, \
-            self.fringe_data.t200.contents.scantime.hour, \
-            self.fringe_data.t200.contents.scantime.minute, isec \
-        )
+        self.time_tag = str(self.fringe_data.t200.contents.scantime.year) + "y" \
+            + str(self.fringe_data.t200.contents.scantime.day).zfill(3) + "d" \
+            + str(self.fringe_data.t200.contents.scantime.hour).zfill(2) + "h" \
+            + str(self.fringe_data.t200.contents.scantime.minute).zfill(2) + "m" \
+            + str(self.fringe_data.t200.contents.scantime.second).zfill(2) + "s" \
+        
+        # "2000y001d00h00m00s"
+        
+        # self.time_tag = utility.time_to_int( \
+        #     self.fringe_data.t200.contents.scantime.year, \
+        #     self.fringe_data.t200.contents.scantime.day, \
+        #     self.fringe_data.t200.contents.scantime.hour, \
+        #     self.fringe_data.t200.contents.scantime.minute, isec \
+        # )
 
         self.scan_offset = 0
         self.scan_id = str( self.fringe_data.t200.contents.scan_name.decode() )

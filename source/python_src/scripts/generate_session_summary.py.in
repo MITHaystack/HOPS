@@ -30,6 +30,8 @@ import vpal.processing
 import vpal.utility
 import vpal.fringe_file_manipulation
 
+import hops_test as ht
+
 
 ################################################################################
 
@@ -50,6 +52,8 @@ def main():
     parser.add_argument('-b', '--begin-scan', dest='begin_scan_limit', help='limit the earliest scan to be used e.g 244-1719', default="000-0000")
     parser.add_argument('-e', '--end-scan', dest='end_scan_limit', help='limit the latest scan to be used, e.g. 244-2345', default="999-9999")
     parser.add_argument('-o', '--output-filename', dest='output_filename', help='name of output csv file', default="session_summary.csv")
+    
+    parser.add_argument('-q', '--quick', action='store_true', dest='quick', help='do not run fourfit or check control file hash, just load all fringe files', default=False)
 
     args = parser.parse_args()
     control_file = args.control_file
@@ -61,51 +65,57 @@ def main():
     abs_exp_dir = os.path.abspath(exp_dir)
     exp_name = os.path.split(os.path.abspath(exp_dir))[1]
 
+    quick_mode = args.quick 
+
     #determine all possible baselines
     baseline_list = vpal.processing.construct_valid_baseline_list(abs_exp_dir, stations[0], stations[1:], network_reference_baselines_only=False)
-
     print("all possible baselines: ", baseline_list)
-
+    
     #needed for plot-naming
     control_file_stripped = re.sub('[/\.]', '', control_file)
+    
+    #pol product:
+    if polprod not in ['XX', 'YY', 'XY', 'YX', 'I']:
+        print("polarization product must be one of: XX, YY, XY, YX, or I")
+        sys.exit(1)
+    
     #loop over fringe files and generate summary dataframes
     summary_dataframe_list = list()
+    
+    if quick_mode:
+        print("quick mode enabled: ignoring control file matching, will not run fourfit, looking for pre-existing fringe files.")
 
     for bline in baseline_list:
-        #default output filename
-        if not os.path.isfile(os.path.abspath(control_file)):
-            print("could not find control file: ", control_file)
-            sys.exit(1)
+        ff_list = []
 
-        #pol product:
-        if polprod not in ['XX', 'YY', 'XY', 'YX', 'I']:
-            print("polarization product must be one of: XX, YY, XY, YX, or I")
-            sys.exit(1)
+        if quick_mode:
+            #just search for fringe files associated with this baseline
+            flist = ht.recursive_find_fringe_files(os.path.abspath(exp_dir) )
+            for ff in flist:
+                if bline in ff:
+                    fhandle = vpal.fringe_file_manipulation.FringeFileHandle()
+                    fhandle.load(ff)
+                    ff_list.append(fhandle)
 
-        #need to:
-        #(1) collect all of the type_210 phase residuals,
-        #(2) apply the snr, and quality code cuts
-        #(3) for each channel, insert phase residual values and time stamps into array
-        #(4) compute mean phase residual for each channel and remove it
-        #(5) create plot for each channel, stamp it with the mean phase, and (possibly color it with a scalar paramter: e.g. amp, dtec, etc)
+        #not in quick mode, may need to run fourfit
+        else: 
+            #default output filename
+            if not os.path.isfile(os.path.abspath(control_file)):
+                print("could not find control file: ", control_file)
+                sys.exit(1)
+            #collect/compute fringe files, and apply cuts
+            print("processing baseline: ", bline)
+            set_commands = "set gen_cf_record true"
+            ff_list = vpal.processing.load_and_batch_fourfit( \
+                os.path.abspath(exp_dir), bline[0], bline[1], os.path.abspath(control_file), set_commands, \
+                num_processes=args.num_proc, start_scan_limit=args.begin_scan_limit, \
+                stop_scan_limit=args.end_scan_limit, pol_products=[polprod], use_progress_ticker=args.use_progress_ticker \
+            )
+            print("n fringe files  =", str(len(ff_list)))
 
-        ################################################################################
-        #collect/compute fringe files, and apply cuts
-        print("processing baseline: ", bline)
-        set_commands = "set gen_cf_record true"
-        ff_list = vpal.processing.load_and_batch_fourfit( \
-            os.path.abspath(exp_dir), bline[0], bline[1], os.path.abspath(control_file), set_commands, \
-            num_processes=args.num_proc, start_scan_limit=args.begin_scan_limit, \
-            stop_scan_limit=args.end_scan_limit, pol_products=[polprod], use_progress_ticker=args.use_progress_ticker \
-        )
-
-        print("n fringe files  =", str(len(ff_list)))
-
-        #no cuts applied
-        filter_list = ff_list
-
+        #load what fringe files we have into the summary list/dataframe
         if len(ff_list) == 0:
-            print("Error: no fringe files available after cuts, skipping baseline: ", bline)
+            print("Error: no fringe files available, skipping baseline: ", bline)
         else:
             for ff in ff_list:
                 ff_sum = ff.get_summary()
@@ -117,7 +127,7 @@ def main():
     all_scan_df = pd.concat(summary_dataframe_list)
 
     #sort by time_tag
-    all_scan_df.sort_values(by=['time_tag', 'baseline'],inplace=True)
+    all_scan_df.sort_values(by=['time_tag', 'baseline'], inplace=True)
 
     print(all_scan_df)
 
