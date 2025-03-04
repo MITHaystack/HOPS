@@ -1,0 +1,176 @@
+#!@PY_EXE@
+#
+# demo for HOPS4 fringe data retrieval using python interface
+# which shows how to access each of the fringe files in a directory, pull out the 
+# fringe result data and format the results as a table with pandas
+#
+
+import pyMHO_Containers
+import pandas as pd
+
+import os
+import sys
+import argparse
+
+def extract_data(file_data):
+    trimmed_fparam = dict() 
+    if file_data != None:
+        n_obj = file_data.get_nobjects()
+        obj_info = file_data.get_object_id_list()
+        uuid = ""
+        for object_record in obj_info:
+            if "shortname" in object_record:
+                sname = object_record["shortname"]
+                #plot data is stored in 'tags' object
+                if sname == "tags":
+                    uuid = object_record["object_uuid"]
+                    if uuid != "":
+                        tags_data = file_data.get_object(object_record["object_uuid"] )
+                        if "parameters" in tags_data:
+                            param = tags_data["parameters"]
+                            summary = get_summary(param)
+                            print(summary)
+                            fparam = param["fringe"]
+                            for k,v in fparam.items():
+                                #we only want to extract scalar values
+                                #for our table, so exclude lists
+                                if not isinstance(v, list):
+                                    trimmed_fparam[k] = v
+    return trimmed_fparam
+
+
+def get_fringe_file_info(scan_store, name):
+    scan_store.load_fringe(name)
+    file_data = scan_store.get_fringe_data(name)
+    return extract_data(file_data)
+
+#fringe summary
+def get_summary(param_obj):
+
+    #construct a dict to store the summary of the scan (scalar values)
+    td = dict()
+    td["unique_key"] =  param_obj["config"]["baseline"] + "-" + param_obj["vex"]["scan"]["source"]["name"] + "-" + str(param_obj["vex"]["scan"]["fourfit_reftime"]) #TODO add pol_product
+    td["filename"] = param_obj["files"]["baseline_input_file"]
+    td["root_id"] = param_obj["config"]["root_code"]
+    td["scan_name"] = param_obj["vex"]["scan"]["name"]
+    td["exp_name"] = param_obj["vex"]["experiment_name"]
+    td["pol_product"] = param_obj["config"]["polprod"]
+    td["dtec"] = param_obj["fringe"]["ion_diff"]
+    td["nchans"] = param_obj["config"]["nchannels"]
+    td["associated_root_file"] = param_obj["files"]["root_file"]
+    td["control_filename"] = param_obj["files"]["control_file"]
+
+    #these quantities mostly mirror the alist fringe sum
+    #TODO: MAKE SURE THESE ALL WORK
+    td["version"] = param_obj["config"]["software_version"]
+    td["fname"] = "fring file" #param_obj["fringe"]["fname"]
+    td["expt_no"] = param_obj["vex"]["experiment_number"]
+    td["extent_no"] = 0 # param_obj["fringe"]["extent_no"]
+    td["length"] = param_obj["fringe"]["integration_tim"]
+    td["corel_vers"] = "difx" # param_obj["fringe"]["corel_vers"]
+    td["procdate"] = param_obj["config"]["correlation_date"]
+    td["time_tag"] = param_obj["vex"]["scan"]["fourfit_reftime"]
+    td["ssec"] = 0 #param_obj["fringe"]["ssec"]
+    td["source"] = param_obj["vex"]["scan"]["source"]["name"]
+    td["baseline"] = param_obj["config"]["baseline"]
+    td["quality"] = param_obj["fringe"]["quality_code"]
+
+    td["mode"] = "simul" # param_obj["fringe"]["mode"]
+    td["no_freq"] = param_obj["config"]["nchannels"]
+    td["archiv"] = "dummy" # param_obj["fringe"]["archiv"]
+    td["reftape"] = "dummy" # param_obj["fringe"]["reftape"]
+    td["remtape"] = "dummy" #param_obj["fringe"]["remtape"]
+    td["amp"] = param_obj["fringe"]["famp"]
+    td["snr"] = param_obj["fringe"]["snr"]
+    td["resid_phas"] = param_obj["fringe"]["resid_phas"]
+    td["sbdelay"] = param_obj["fringe"]["sbdelay"]
+    td["mbdelay"] = param_obj["fringe"]["mbdelay"]
+    td["mbd_error"] = param_obj["fringe"]["mbd_error"]
+    td["delay_rate"] = param_obj["fringe"]["drate"]
+
+    td["total_phas"] = param_obj["fringe"]["tot_phase"]
+    td["total_rate"] = param_obj["fringe"]["total_drate"]
+    td["total_mbdelay"] = param_obj["fringe"]["total_mbdelay"]
+    td["total_sbresid"] = param_obj["fringe"]["total_sbdelay"]
+    td["ambiguity"] = param_obj["fringe"]["ambiguity"]
+    td["pcals"] = "dummy" #param_obj["fringe"]["pcals"]
+    #td["root_id"] = param_obj["fringe"]["root_id"]
+    td["ref_freq"] = param_obj["control"]["config"]["ref_freq"]
+
+    td["adelay"] = param_obj["model"]["adelay"]
+    td["arate"] = param_obj["model"]["arate"]
+    td["aaccel"] = param_obj["model"]["aaccel"]
+
+    td["ref_elev"] = param_obj["ref_station"]["elevation"]
+    td["rem_elev"] = param_obj["rem_station"]["elevation"]
+    td["ref_az"] = param_obj["ref_station"]["azimuth"]
+    td["rem_az"] = param_obj["rem_station"]["azimuth"]
+    td["u"] = 0 #param_obj[""]["u"]
+    td["v"] = 0 #param_obj["fringe"]["v"]
+    td["parents"] = "dummy" #param_obj["fringe"]["parents"]
+    td["duration"] = param_obj["fringe"]["scan_duration"]
+
+    td["scan_offset"] = 0 param_obj["fringe"]["scan_offset"]
+    td["lags"] = param_obj["config"]["nlags"]
+    td["phase_snr"] = 0 #param_obj["fringe"]["phase_snr"]
+    td["srch_cotime"] =  0 #param_obj["fringe"]["srch_cotime"]
+    td["noloss_cotime"] = 0 #param_obj["fringe"]["noloss_cotime"]
+    td["scan_id"] = param_obj["vex"]["scan"]["name"]
+    td["polarization"] = param_obj["config"]["polprod"]
+    td["errcode"] = param_obj["fringe"]["error_code"]
+
+    td["resid_delay"] = param_obj["fringe"]["resid_delay"]
+
+    td["control_file_hash"] = 0 #param_obj["fringe"]["control_file_hash"]
+    td["set_string_hash"] = 0 #param_obj["fringe"]["set_string_hash"]
+
+    #these are residual quantities
+    td["phase"] = param_obj["fringe"]["resid_phase"]
+    td["sbdelay"] = param_obj["fringe"]["sbdelay"]
+    td["mbdelay"] = param_obj["fringe"]["mbdelay"]
+    td["delay_rate"] = param_obj["fringe"]["delay_rate"]
+
+    return td
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        prog='hops4_fparam_example.py', \
+        description='''Example utility demo on how to extract fringe parameters from a list of fringe files and construct a table''' \
+        )
+
+    parser.add_argument("filenames", nargs="+", default="", help='the list of fringe files to be processed')
+    parser.add_argument('-o', '--output-filename', dest='output_filename', help='specify the table output filename', default='./out.csv')
+    args = parser.parse_args()
+
+    ffiles = args.filenames
+    output = args.output_filename
+
+    fparams = list()
+    for ffile in ffiles:
+        #figure out the corresponding scan directory 
+        scan_dir, basename = os.path.split( os.path.abspath(ffile) );
+        scan_store = pyMHO_Containers.MHO_PyScanStoreInterface()
+        scan_store.set_directory(scan_dir)
+        scan_store.initialize()
+        if scan_store.is_valid():
+            fringes = scan_store.get_fringe_list()
+            for fr in fringes:
+                if fr == basename:
+                    ex_params = get_fringe_file_info(scan_store, basename)
+                    ex_params["file"] = basename
+                    fparams.append(ex_params)
+
+    df = pd.DataFrame(fparams)
+
+    print(df)
+    #save output file as csv
+    df.to_csv(output, index=False)
+
+if __name__ == '__main__':
+    main()
+    sys.exit(0)
+
+#
+# eof
+#
