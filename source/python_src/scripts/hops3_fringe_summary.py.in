@@ -42,8 +42,8 @@ def main():
         description='''utility to extract data from fringe files and construct a .csv summary file (like an alist file)''' \
         )
 
-    parser.add_argument('directory', help='relative path to directory containing experiment data')
-    parser.add_argument('-o', '--output-filename', dest='output_filename', help='name of output csv file', default="session_summary.csv")
+    parser.add_argument('directory',help='relative path to directory containing experiment data')
+    parser.add_argument('-o', '--output-filename', dest='output_filename', help='specify the table output filename', default='./out.csv')
     parser.add_argument('-i', '--include-autocorrs', action='store_true', dest='include', help='include auto-corr fringes', default=False)
 
     args = parser.parse_args()
