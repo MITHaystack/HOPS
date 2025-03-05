@@ -171,12 +171,12 @@ class FringeFileHandle(object):
         #most of the a-list fringe sum data
         self.version = 0
         self.expt_no = self.fringe_data.t200.contents.expt_no
-        isec = self.fringe_data.t200.contents.scantime.second + 0.5
-        self.time_tag = str(self.fringe_data.t200.contents.scantime.year) + "y" \
-            + str(self.fringe_data.t200.contents.scantime.day).zfill(3) + "d" \
-            + str(self.fringe_data.t200.contents.scantime.hour).zfill(2) + "h" \
-            + str(self.fringe_data.t200.contents.scantime.minute).zfill(2) + "m" \
-            + str(self.fringe_data.t200.contents.scantime.second).zfill(2) + "s" \
+        isec = int( self.fringe_data.t200.contents.frt.second + 0.5 )
+        self.time_tag = str(self.fringe_data.t200.contents.frt.year) + "y" \
+            + str(self.fringe_data.t200.contents.frt.day).zfill(3) + "d" \
+            + str(self.fringe_data.t200.contents.frt.hour).zfill(2) + "h" \
+            + str(self.fringe_data.t200.contents.frt.minute).zfill(2) + "m" \
+            + str(isec).zfill(2) + "s" \
         
         # "2000y001d00h00m00s"
         
