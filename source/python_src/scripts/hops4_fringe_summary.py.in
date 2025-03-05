@@ -180,6 +180,10 @@ def main():
                     ex_params = get_fringe_file_info(scan_store, basename)
                     fparams.append(ex_params)
 
+    if len(fparams) == 0:
+        print("no data found")
+        return
+
     df = pd.DataFrame(fparams)
     
     #sort by time_tag

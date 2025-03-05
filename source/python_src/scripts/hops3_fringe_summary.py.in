@@ -56,7 +56,7 @@ def main():
 
 
     #just search for fringe files
-    flist = ht.recursive_find_fringe_files(os.path.abspath(exp_dir), include_autos=inc_auto)
+    flist = ht.recursive_find_fringe_files(os.path.abspath(dirname), include_autos=inc_auto)
     for ff in flist:
         fhandle = vpal.fringe_file_manipulation.FringeFileHandle()
         fhandle.load(ff)
@@ -65,6 +65,10 @@ def main():
         ff_df = pd.DataFrame(ff_sum, index=[0])
         summary_dataframe_list.append(ff_df)
 
+    if len(summary_dataframe_list) == 0:
+        print("no data found")
+        return
+        
     #merge the dataframes of each scan
     all_scan_df = pd.concat(summary_dataframe_list)
 
