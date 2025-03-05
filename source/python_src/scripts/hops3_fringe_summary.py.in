@@ -1,0 +1,82 @@
+#!@PY_EXE@
+
+#core imports
+from __future__ import print_function
+from __future__ import division
+from builtins import str
+from builtins import range
+from past.utils import old_div
+import argparse
+import sys
+import os
+import math
+import re
+
+#non-core imports
+#set the plotting back-end to 'agg' to avoid display
+import matplotlib as mpl
+mpl.use('Agg')
+import numpy as np
+import scipy.stats
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+import matplotlib.colorbar as mcbar
+import matplotlib.cm as cmx
+from matplotlib.ticker import MultipleLocator, FormatStrFormatter
+
+#HOPS module imports
+import vpal.processing
+import vpal.utility
+import vpal.fringe_file_manipulation
+
+import hops_test as ht
+
+
+################################################################################
+
+def main():
+
+    parser = argparse.ArgumentParser(
+        prog='generate_session_summary.py', \
+        description='''utility to extract data from fringe files and construct a .csv summary file (like an alist file)''' \
+        )
+
+    parser.add_argument('directory', help='relative path to directory containing experiment data')
+    parser.add_argument('-o', '--output-filename', dest='output_filename', help='name of output csv file', default="session_summary.csv")
+    parser.add_argument('-i', '--include-autocorrs', action='store_true', dest='include', help='include auto-corr fringes', default=False)
+
+    args = parser.parse_args()
+    dirname = args.directory
+    output = args.output_filename
+    inc_auto = args.include
+
+    #loop over fringe files and generate summary dataframes
+    summary_dataframe_list = list()
+
+    if quick_mode:
+        #just search for fringe files associated with this baseline
+        flist = ht.recursive_find_fringe_files(os.path.abspath(exp_dir), include_autos=inc_auto)
+        for ff in flist:
+            fhandle = vpal.fringe_file_manipulation.FringeFileHandle()
+            fhandle.load(ff)
+            ff_sum = fhandle.get_summary()
+            #convert to dataframe
+            ff_df = pd.DataFrame(ff_sum, index=[0])
+            summary_dataframe_list.append(ff_df)
+
+    #merge the dataframes of each scan
+    all_scan_df = pd.concat(summary_dataframe_list)
+
+    #sort by time_tag
+    all_scan_df.sort_values(by=['time_tag', 'baseline'], inplace=True)
+
+    print(all_scan_df)
+
+    #dump to file
+    all_scan_df.to_csv(outfile, sep=',', index=False, encoding='utf-8')
+
+
+if __name__ == '__main__':          # official entry point
+    main()
+    sys.exit(0)
