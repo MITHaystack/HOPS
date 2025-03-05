@@ -235,7 +235,7 @@ us_to_ps = 1e6
 def main():
 
     parser = argparse.ArgumentParser(
-        prog='compare_session_processing.py', \
+        prog='compare_session.py', \
         description='''compare differences between the processing of the same session in two different ways''' \
         )
     parser._action_groups.pop()
@@ -278,15 +278,20 @@ def main():
     all_df = dict()
 
     #read in the reference file and sort by unique_key
-    ref_df = pd.read_csv(all_files[reference_key], sep='\t')
+    ref_df = pd.read_csv(all_files[reference_key], sep=',')
     ref_df.sort_values(by=['unique_key'])
     all_df[reference_key] = ref_df
+
+    print(ref_df)
+    print(ref_df.columns)
 
     #load other file info, these should all be dataframe compatible csv files
     #then sort by unique_key
     other_df = dict()
     for file_key in other_keys:
-        other_df[file_key] = pd.read_csv(all_files[file_key], sep='\t')
+        other_df[file_key] = pd.read_csv(all_files[file_key], sep=',')
+        print(other_df[file_key].columns)
+        print(other_df[file_key])
         other_df[file_key].sort_values(by=['unique_key'])
         all_df[file_key] = other_df[file_key]
 

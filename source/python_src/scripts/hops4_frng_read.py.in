@@ -159,7 +159,7 @@ def main():
 
     print(df)
     #save output file as csv
-    df.to_csv(output, index=False)
+    df.to_csv(output, index=False, sep='\t',  encoding='utf-8')
 
 if __name__ == '__main__':
     main()
