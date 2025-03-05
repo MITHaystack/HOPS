@@ -45,7 +45,8 @@ if (PY_EXE)
             hops4_fplot_example
             hops4_fparam_example
             hops4_visplot_example
-            hops4_frng_read
+            hops4_fringe_summary
+            hops3_fringe_summary
         )
 
     endif(HOPS3_PYTHON_EXTRAS)

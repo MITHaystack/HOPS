@@ -12,6 +12,29 @@ import os
 import sys
 import argparse
 
+def recursive_find_fringe_files(base_directory, include_autos=False, exclude_list=None):
+    """returns a list of all the fringe (type-2) files found in any directory under the base_directory """
+    if exclude_list == None:
+        exclude_list=['prepass', 'scratch', 'pre_production']
+    fringe_file_list = []
+    #exlude and root files that might exist under a directory with the word 'prepass',etc in it
+    exclude = set(exclude_list)
+    assert os.path.isdir(base_directory)
+    for current_root, subdirectories, files in os.walk(base_directory):
+        subdirectories[:] = [d for d in subdirectories if not any(e in d for e in exclude) ]
+        for filename in files:
+            abs_filename = os.path.abspath(filename)
+            filename_base = os.path.split(abs_filename)[1]
+            ext = filename_base.split('.')[-1]
+            if ext == "frng": #check for frng extension
+                bline = filename_base.split('.')[0]
+                if len(bline)==2: #make sure leading section of file name is 2-char baseline
+                    full_name = os.path.join(current_root, filename)
+                    if (include_autos is True) or (bline[0] != bline[1]): #check that this is a cross correlation if autos excluded
+                        fringe_file_list.append(  os.path.abspath(full_name) )
+    return fringe_file_list
+
+
 def extract_data(file_data):
     trimmed_fparam = dict() 
     if file_data != None:
@@ -129,16 +152,19 @@ def get_summary(param_obj):
 
 def main():
     parser = argparse.ArgumentParser(
-        prog='hops4_fparam_example.py', \
-        description='''Example utility demo on how to extract fringe parameters from a list of fringe files and construct a table''' \
+        prog='hops4_frng_summary.py', \
+        description='''Example utility demo on how to extract fringe parameters from a directory containing fringe (frng) files and construct a table''' \
         )
 
-    parser.add_argument("filenames", nargs="+", default="", help='the list of fringe files to be processed')
+    parser.add_argument('directory',help='relative path to directory containing experiment data')
     parser.add_argument('-o', '--output-filename', dest='output_filename', help='specify the table output filename', default='./out.csv')
+    parser.add_argument('-i', '--include-autocorrs', action='store_true', dest='include', help='include auto-corr fringes', default=False)
     args = parser.parse_args()
-
-    ffiles = args.filenames
+    dirname = args.directory
     output = args.output_filename
+    inc_auto = args.include
+    
+    ffiles = recursive_find_fringe_files(dirname, include_autos=inc_auto) #by default excludes autocorrs
 
     fparams = list()
     for ffile in ffiles:
@@ -152,14 +178,16 @@ def main():
             for fr in fringes:
                 if fr == basename:
                     ex_params = get_fringe_file_info(scan_store, basename)
-                    ex_params["file"] = basename
                     fparams.append(ex_params)
 
     df = pd.DataFrame(fparams)
+    
+    #sort by time_tag
+    all_scan_df.sort_values(by=['time_tag', 'baseline'], inplace=True)
 
     print(df)
     #save output file as csv
-    df.to_csv(output, index=False, sep='\t',  encoding='utf-8')
+    df.to_csv(output, index=False, sep=',',  encoding='utf-8')
 
 if __name__ == '__main__':
     main()
