@@ -132,7 +132,7 @@ def main():
     print(all_scan_df)
 
     #dump to file
-    all_scan_df.to_csv(outfile, sep='\t', encoding='utf-8')
+    all_scan_df.to_csv(outfile, sep=',', index=False, encoding='utf-8')
 
 
 if __name__ == '__main__':          # official entry point
