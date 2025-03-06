@@ -15,7 +15,7 @@ import argparse
 def recursive_find_fringe_files(base_directory, include_autos=False, exclude_list=None):
     """returns a list of all the fringe (type-2) files found in any directory under the base_directory """
     if exclude_list == None:
-        exclude_list=['prepass', 'scratch', 'pre_production']
+        exclude_list=['prepass', 'scratch', 'pre_production', 'make_links']
     fringe_file_list = []
     #exlude and root files that might exist under a directory with the word 'prepass',etc in it
     exclude = set(exclude_list)

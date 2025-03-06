@@ -56,7 +56,8 @@ def main():
 
 
     #just search for fringe files
-    flist = ht.recursive_find_fringe_files(os.path.abspath(dirname), include_autos=inc_auto)
+    exclude_dir=['prepass', 'scratch', 'pre_production', 'make_links']
+    flist = ht.recursive_find_fringe_files(os.path.abspath(dirname), include_autos=inc_auto, exclude_list=exclude_dir)
     for ff in flist:
         fhandle = vpal.fringe_file_manipulation.FringeFileHandle()
         fhandle.load(ff)
