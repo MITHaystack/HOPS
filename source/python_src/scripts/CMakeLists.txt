@@ -28,7 +28,7 @@ if (PY_EXE)
             ffres2pcp
             fourphase_mixedmode
             fourphase
-            generate_session_summary
+            # generate_session_summary
             get_ionex_dtec_bounds
             parallactic_plots
             pcc_generate
