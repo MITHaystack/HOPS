@@ -187,7 +187,7 @@ def main():
     df = pd.DataFrame(fparams)
     
     #sort by time_tag
-    all_scan_df.sort_values(by=['time_tag', 'baseline'], inplace=True)
+    df.sort_values(by=['time_tag', 'baseline'], inplace=True)
 
     print(df)
     #save output file as csv
