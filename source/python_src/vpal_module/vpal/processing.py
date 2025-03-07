@@ -678,6 +678,7 @@ def load_and_batch_fourfit(exp_directory, network_reference_station, remote_stat
         for base in baseline_list:
             for pp in pol_products:
                 if (base,pp) not in root_file_bl_pp_dict[root]:
+                    set_cmd = set_commands
                     pol_opt = " -P " + pp + " "
                     base_arg = base
                     if frequency_group != None:
@@ -703,8 +704,6 @@ def load_and_batch_fourfit(exp_directory, network_reference_station, remote_stat
                         else:
                             print('IONEX file does not exist')
                             sys.exit(1)
-                    else:
-                        set_cmd = set_commands
 
                     if force_run is True:
                         #print(root, pol_opt, base)
