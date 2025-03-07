@@ -1107,6 +1107,27 @@ def recursive_find_corel_files(base_directory, include_autos=False, exclude_list
                             corel_file_list.append(  os.path.abspath(full_name) ) #probably a corel file
     return corel_file_list
 
+def recursive_find_cor_files(base_directory, include_autos=False, exclude_list=None):
+    """returns a list of all the corel (type-1) files found in any directory under the current one """
+    if exclude_list == None:
+        exclude_list=['prepass', 'scratch', 'pre_production']
+    corel_file_list = []
+    #exlude and root files that might exist under a directory with the word 'prepass', etc in it
+    exclude = set(exclude_list)
+    assert os.path.isdir(base_directory)
+    for current_root, subdirectories, files in os.walk(base_directory):
+        subdirectories[:] = [d for d in subdirectories if not any(e in d for e in exclude) ]
+        for filename in files:
+            abs_filename = os.path.abspath(filename)
+            filename_base = os.path.split(abs_filename)[1]
+            ext = filename_base.split('.')[-1]
+            if ext == "cor": #check for cor extension
+                bline = filename_base.split('.')[0]
+                if len(bline)==2: #make sure leading section of file name is 2-char baseline
+                    full_name = os.path.join(current_root, filename)
+                    if (include_autos is True) or (bline[0] != bline[1]): #check that this is a cross correlation if autos excluded
+                        corel_file_list.append(  os.path.abspath(full_name) )
+    return corel_file_list
 
 ################################################################################
 
