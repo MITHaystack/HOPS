@@ -692,13 +692,14 @@ def load_and_batch_fourfit(exp_directory, network_reference_station, remote_stat
                                 tec_dict = json.load(handle)
                                 rf_scan_name = os.path.abspath(root).split('/')[-2]
                                 #print(rf_scan_name, tec_dict[rf_scan_name], base[0], base[1])
-                                dtec = tec_dict[rf_scan_name][base[0]] - tec_dict[rf_scan_name][base[1]]
-                                #print(rf_scan_name, tec_dict[rf_scan_name][base[0]], tec_dict[rf_scan_name][base[1]], dtec)
-                                # set dTEC search range: +/-50 TECU around the ionex prediction, or 30% of the (absolute) dTEC value, whichever is larger
-                                #dtec_window = max(50,0.3*abs(dtec))
-                                dtec_window = max(100,0.5*abs(dtec))
-                                set_cmd = set_commands + ' ion_win '+str(dtec-dtec_window)+' '+str(dtec+dtec_window)
-                                #print(set_cmd)
+                                if base[0] in tec_dict[rf_scan_name] and base[1] in tec_dict[rf_scan_name]:
+                                    dtec = tec_dict[rf_scan_name][base[0]] - tec_dict[rf_scan_name][base[1]]
+                                    #print(rf_scan_name, tec_dict[rf_scan_name][base[0]], tec_dict[rf_scan_name][base[1]], dtec)
+                                    # set dTEC search range: +/-50 TECU around the ionex prediction, or 30% of the (absolute) dTEC value, whichever is larger
+                                    #dtec_window = max(50,0.3*abs(dtec))
+                                    dtec_window = max(100,0.5*abs(dtec))
+                                    set_cmd = set_commands + ' ion_win '+str(dtec-dtec_window)+' '+str(dtec+dtec_window)
+                                    #print(set_cmd)
                         else:
                             print('IONEX file does not exist')
                             sys.exit(1)
