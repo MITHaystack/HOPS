@@ -47,7 +47,7 @@ class Configuration(report_lib.JsonSerializableObject ):
         self.mode = 'VGOS'
         self.num_proc = 1 #number of processes to run in parallel
         self.verbosity = 0 #verbosity level
-        self.min_snr = 30 #min SNR allowed
+        self.min_snr = 8 #min SNR allowed, but is this ever used?
         self.max_snr = 1e5 #max SNR allowed
         self.min_qcode = 3 #minimum quality code required
         self.dtec_tolerance = 1.0
@@ -71,7 +71,8 @@ class VGOSFourphaseSingleScanProcessor(object):
     """ simplified fourphase processor, single baseline values (no least-squares fitting involved)
     we just average the results of this processor over multiple scans to obtain results for each station"""
 
-    def __init__(self, root_file, control_file):
+    def __init__(self, config_obj, root_file, control_file):
+        self.config_obj = config_obj
         self.root_file_path = os.path.abspath(root_file)
         self.scan_dir = os.path.dirname(self.root_file_path)
         self.exp_dir = os.path.dirname(self.scan_dir)
@@ -98,9 +99,9 @@ class VGOSFourphaseSingleScanProcessor(object):
         #make sure that the control enforces a exhaustive search for the dTEC for each baseline
         cf_ion_name = os.path.basename(self.control_file_path) + "-" + self.scan_name + "-ion-search"
         self.ion_search_control_file_path = os.path.join(self.scan_dir, cf_ion_name)
-        cf_lines = 'ion_npts 45\n'
+        cf_lines = 'ion_npts 75\n'
         cf_lines += 'ion_smooth true\n'
-        cf_lines += 'ion_win -88.0 88.0\n'
+        cf_lines += 'ion_win -100.0 100.0\n'
         cf_lines += 'pc_delay_x 0.0' + ' \n'
         cf_lines += 'pc_delay_y 0.0' + ' \n'
 
@@ -120,11 +121,14 @@ class VGOSFourphaseSingleScanProcessor(object):
         """determine the dTEC for each baseline"""
         self.construct_ionosphere_search_control_file()
 
+        #print('Determine ionosphere')
+        
         #fourfit all pol-products on each baseline to compute the SNR-weighted dTEC
         set_commands = "set gen_cf_record true"
         blpp_collections = processing.load_batch_cut_and_sort( \
             self.exp_dir, self.stations[0], self.stations[1:], self.ion_search_control_file_path, \
-            set_commands, network_reference_baselines_only=False, num_processes=self.num_proc, \
+            set_commands, min_snr=self.config_obj.min_snr, max_snr=self.config_obj.max_snr, \
+            network_reference_baselines_only=False, num_processes=self.num_proc, \
             start_scan_limit=self.scan_name, stop_scan_limit=self.scan_name, \
             only_complete=True, pol_products=self.pol_products, use_progress_ticker=self.use_progress_ticker \
         )
@@ -177,13 +181,16 @@ class VGOSFourphaseSingleScanProcessor(object):
 
         bl_sorted = sorted( set( list(self.baseline_dtec.keys()) ) )
 
+        #print('Fixed ionosphere')
+        
         #run fourfit again with the fixed ionosphere solutions
         set_commands = "set gen_cf_record true"
         blpp_collections = []
         for bl in bl_sorted:
             temp_blpp_collections = processing.load_batch_cut_and_sort( \
                 self.exp_dir, bl[0], bl[1], self.ion_fix_control_file_path[bl], \
-                set_commands, network_reference_baselines_only=False, num_processes=self.num_proc, \
+                set_commands, min_snr=self.config_obj.min_snr, max_snr=self.config_obj.max_snr, \
+                network_reference_baselines_only=False, num_processes=self.num_proc, \
                 start_scan_limit=self.scan_name, stop_scan_limit=self.scan_name, \
                 only_complete=True, pol_products=self.pol_products, use_progress_ticker=self.use_progress_ticker \
             )
@@ -195,7 +202,10 @@ class VGOSFourphaseSingleScanProcessor(object):
         valid_baselines = set()
         for blc in blpp_collections:
             bl = blc.baseline
-            if blc.get_min_snr() > 15.0 and blc.get_mean_snr() > 25.0:
+            #if blc.get_min_snr() > 15.0 and blc.get_mean_snr() > 25.0:
+            snr_cut1 = min(10.0, self.config_obj.min_snr)
+            snr_cut2 = min(15.0, self.config_obj.min_snr)
+            if blc.get_min_snr() > snr_cut1 and blc.get_mean_snr() > snr_cut2:
                 #SNR ok, include this baseline
                 valid_baselines.add(bl)
                 valid_stations.add(bl[0])
@@ -273,7 +283,8 @@ class MixedModeFourphaseSingleScanProcessor(object):
     """ simplified fourphase processor, single baseline values (no least-squares fitting involved)
     we just average the results of this processor over multiple scans to obtain results for each station"""
 
-    def __init__(self, root_file, control_file, frequency_group='X'):
+    def __init__(self, config_obj, root_file, control_file, frequency_group='X'):
+        self.config_obj = config_obj
         self.root_file_path = os.path.abspath(root_file)
         self.scan_dir = os.path.dirname(self.root_file_path)
         self.exp_dir = os.path.dirname(self.scan_dir)
@@ -285,7 +296,7 @@ class MixedModeFourphaseSingleScanProcessor(object):
         self.target_stations = ''
         self.error_condition = 0
         self.num_proc = 1
-        self.min_snr = 20
+        self.min_snr = config_obj.min_snr
         self.station_y_minus_x_delays = dict()
         self.station_y_minus_x_phases = dict()
         self.bl_pol_products = dict()
@@ -651,7 +662,7 @@ class ExperimentReportData( report_lib.JsonSerializableObject ):
 ################################################################################
 ################################################################################
 
-def select_fourphase_scans_by_baseline(SingleScanBaselineCollection_list, exp_directory, stations, dtec_tolerance=1.0, min_snr=30, dtec_nom=0.1, max_number_to_select=0):
+def select_fourphase_scans_by_baseline(SingleScanBaselineCollection_list, exp_directory, stations, dtec_tolerance=1.0, min_snr=10, dtec_nom=0.1, max_number_to_select=0):
     """ given a list of SingleScanBaselineCollection's, try to select a list of scans which will provide good fourphase output stations on each baseline
         returns a dictionary (indexed by baseline) of scans collections to be processed"""
 
@@ -793,7 +804,7 @@ def generate_station_phase_delay_corrections(config_obj, report_data_obj=None):
         pbar = Bar('Processing: ', max=len(root_file_set))
     for root in root_file_set:
         if config_obj.mode == 'VGOS':
-            scan_processor = VGOSFourphaseSingleScanProcessor( os.path.abspath(root), control_file_path)
+            scan_processor = VGOSFourphaseSingleScanProcessor(config_obj, os.path.abspath(root), control_file_path)
             scan_processor.use_progress_ticker = False
             scan_processor.num_proc = num_proc
             scan_processor.set_stations(all_stations)
@@ -806,7 +817,7 @@ def generate_station_phase_delay_corrections(config_obj, report_data_obj=None):
                     if st in station_delays and st in station_phases:
                         station_delay_phase_results[st].add_phase_delay_offsets(scan_processor.scan_name, station_delays[st], station_phases[st])
         elif config_obj.mode == 'MIXED_MODE':
-            scan_processor = MixedModeFourphaseSingleScanProcessor( os.path.abspath(root), control_file_path, frequency_group=config_obj.frequency_group)
+            scan_processor = MixedModeFourphaseSingleScanProcessor( config_obj, os.path.abspath(root), control_file_path, frequency_group=config_obj.frequency_group)
             scan_processor.use_progress_ticker = False
             scan_processor.num_proc = num_proc
             scan_processor.min_snr = min_snr

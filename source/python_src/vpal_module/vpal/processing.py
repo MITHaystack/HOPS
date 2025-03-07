@@ -307,7 +307,12 @@ def construct_valid_baseline_list(directory, network_reference_station, remote_s
         ref_blist.append(network_reference_station+network_reference_station)
 
     #now locate all of the corel/type-1 files, so we can determine which baselines are valid
-    type1_file_list = ht.recursive_find_corel_files(os.path.abspath(directory), include_autos=include_autos)
+    ffitter = ht.get_fourfit_cmd()
+    type1_file_list = list()
+    if ffitter == "fourfit4":
+        type1_file_list = ht.recursive_find_cor_files(os.path.abspath(directory), include_autos=include_autos)
+    else:
+        type1_file_list = ht.recursive_find_corel_files(os.path.abspath(directory), include_autos=include_autos)
     unique_blines = set()
     for f in type1_file_list:
         filename_base = os.path.basename(f)
@@ -580,7 +585,7 @@ def load_and_batch_fourfit(exp_directory, network_reference_station, remote_stat
                            network_reference_baselines_only=True, num_processes=1, \
                            start_scan_limit=None, stop_scan_limit=None, pol_products=None, \
                            frequency_group=None, use_progress_ticker=True, \
-                           log_fourfit_processes=False, use_ionex_file=None):
+                           log_fourfit_processes=False, use_ionex_file=None, force_run=False):
 
     """loads any pre-existing fringe files which match the criteria and batch fourfits
     any missing items, then returns a list of the fringe-files"""
@@ -623,6 +628,8 @@ def load_and_batch_fourfit(exp_directory, network_reference_station, remote_stat
                 tmp_root_file_list.append(rf)
     else:
         tmp_root_file_list = root_file_list
+    print('Have '+str(len(root_file_list))+' root files left after time cuts.')
+
 
     processing_logger.info("load_and_batch_fourfit: attempting to load cached fringe files from: " + work_dir)
 
@@ -656,7 +663,6 @@ def load_and_batch_fourfit(exp_directory, network_reference_station, remote_stat
         ff_pp_list = ht.get_file_polarization_product_provisional(ff.filename)
         ff_bl = ff.baseline
         for pp in ff_pp_list:
-
             # hack to fix issue in fringe files or something when ffm reads fringe files that replaces underscore with .
             if '4C39.25' in ff.associated_root_file:
                 ff.associated_root_file = ff.associated_root_file.replace('4C39.25', '4C39_25')
@@ -672,43 +678,48 @@ def load_and_batch_fourfit(exp_directory, network_reference_station, remote_stat
         for base in baseline_list:
             for pp in pol_products:
                 if (base,pp) not in root_file_bl_pp_dict[root]:
-                    #construct the expected corel file and check if it is present
-                    root_code = ( os.path.basename(root).split('.') )[1]
-                    needed_corel_file = os.path.join( os.path.dirname( os.path.abspath(root) ), base + ".." + root_code )
-                    if os.path.isfile(needed_corel_file):
-                        #now we check to make sure this type of pol-product is actually available in the corel file
-                        #this is to avoid problems with mixed-mode
-                        pp_present_list = ht.get_polarization_products_present(needed_corel_file)
-                        required_pp = ht.get_required_pol_products(pp)
-                        base_arg = base
-                        if frequency_group != None:
-                            if len(frequency_group) == 1: #single char only
-                                base_arg = base_arg + ':' + frequency_group
-                        if set(required_pp).issubset( set(pp_present_list) ):
-                            pol_opt = " -P " + pp + " "
-                            if use_ionex_file is not None:
-                                # if we want to use the ionex dtec estimates, load the ionex dict
-                                # and build a dict matching them
-                                if os.path.exists(use_ionex_file):
-                                    #load the ionex dict
-                                    with open(use_ionex_file) as handle:
-                                        tec_dict = json.load(handle)
-                                        rf_scan_name = os.path.abspath(root).split('/')[-2]
-                                        #print(rf_scan_name, tec_dict[rf_scan_name], base[0], base[1])
-                                        dtec = tec_dict[rf_scan_name][base[0]] - tec_dict[rf_scan_name][base[1]]
-                                        #print(rf_scan_name, tec_dict[rf_scan_name][base[0]], tec_dict[rf_scan_name][base[1]], dtec)
-                                        # set dTEC search range: +/-50 TECU around the ionex prediction, or 30% of the (absolute) dTEC value, whichever is larger
-                                        dtec_window = max(50,0.3*abs(dtec))
-                                        set_cmd = set_commands + ' ion_win '+str(dtec-dtec_window)+' '+str(dtec+dtec_window)
-                                        #print(set_cmd)
-                                else:
-                                    print('IONEX file does not exist')
-                                    sys.exit(1)
-                            else:
-                                set_cmd = set_commands
+                    pol_opt = " -P " + pp + " "
+                    base_arg = base
+                    if frequency_group != None:
+                        if len(frequency_group) == 1: #single char only
+                            base_arg = base_arg + ':' + frequency_group
+                    if use_ionex_file is not None:
+                        # if we want to use the ionex dtec estimates, load the ionex dict
+                        # and build a dict matching them
+                        if os.path.exists(use_ionex_file):
+                            #load the ionex dict
+                            with open(use_ionex_file) as handle:
+                                tec_dict = json.load(handle)
+                                rf_scan_name = os.path.abspath(root).split('/')[-2]
+                                #print(rf_scan_name, tec_dict[rf_scan_name], base[0], base[1])
+                                dtec = tec_dict[rf_scan_name][base[0]] - tec_dict[rf_scan_name][base[1]]
+                                #print(rf_scan_name, tec_dict[rf_scan_name][base[0]], tec_dict[rf_scan_name][base[1]], dtec)
+                                # set dTEC search range: +/-50 TECU around the ionex prediction, or 30% of the (absolute) dTEC value, whichever is larger
+                                #dtec_window = max(50,0.3*abs(dtec))
+                                dtec_window = max(100,0.5*abs(dtec))
+                                set_cmd = set_commands + ' ion_win '+str(dtec-dtec_window)+' '+str(dtec+dtec_window)
+                                #print(set_cmd)
+                        else:
+                            print('IONEX file does not exist')
+                            sys.exit(1)
+                    else:
+                        set_cmd = set_commands
 
-                            #print(root, pol_opt, base)
-                            arg_list.append( [ pol_opt, base, control_file_path, root, False, set_cmd, False ] )
+                    if force_run is True:
+                        #print(root, pol_opt, base)
+                        arg_list.append( [ pol_opt, base_arg, control_file_path, root, False, set_cmd, False ] )
+                    else:
+                        #construct the expected corel file and check if it is present, only run if it is
+                        root_code = ( os.path.basename(root).split('.') )[1]
+                        needed_corel_file = os.path.join( os.path.dirname( os.path.abspath(root) ), base + ".." + root_code )
+                        if os.path.isfile(needed_corel_file):
+                            #now we check to make sure this type of pol-product is actually available in the corel file
+                            #this is to avoid problems with mixed-mode
+                            pp_present_list = ht.get_polarization_products_present(needed_corel_file)
+                            required_pp = ht.get_required_pol_products(pp)
+                            if set(required_pp).issubset( set(pp_present_list) ):
+                                pol_opt = " -P " + pp + " "
+                                arg_list.append( [ pol_opt, base_arg, control_file_path, root, False, set_cmd, False ] )
 
     if len(arg_list) != 0:
         processing_logger.info("load_and_batch_fourfit: will run a total of " + str(len(arg_list)) + " fourfit processes, with up to: " + str(num_processes) + " running simultaneously" )
@@ -754,7 +765,7 @@ def load_and_batch_fourfit(exp_directory, network_reference_station, remote_stat
 ################################################################################
 
 def load_batch_cut_and_sort(exp_directory, network_reference_station, remote_stations, \
-                            control_file_path, set_commands, min_snr=30, max_snr=1e5, \
+                            control_file_path, set_commands, min_snr=0, max_snr=1e5, \
                             valid_quality_code_list=None, \
                             network_reference_baselines_only=True, num_processes=1, \
                             start_scan_limit=None, stop_scan_limit=None, only_complete=True, \

@@ -26,6 +26,7 @@ from .hops_test import recursive_find_root_files_matching_source
 from .hops_test import recursive_find_station_files
 from .hops_test import recursive_find_fringe_files
 from .hops_test import recursive_find_corel_files
+from .hops_test import recursive_find_cor_files
 from .hops_test import batch_fourfit_generate_fringe
 from .hops_test import batch_fourfit_generate_fringe_parallel
 from .hops_test import get_file_fringelines
