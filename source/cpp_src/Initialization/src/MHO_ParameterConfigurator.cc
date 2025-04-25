@@ -134,8 +134,6 @@ bool MHO_ParameterConfigurator::Configure()
             case ParamValueType::logical_intersection_list_string_type:
                 {
                     std::vector< std::string > default_values;
-                    std::cout<<" attr = "<< fAttributes.dump(2) << std::endl;
-
                     std::vector< std::string > values = fAttributes["value"].get< std::vector< std::string > >();
                     for(std::size_t nst = 0; nst < explicit_paths.size(); nst++)
                     {
@@ -257,7 +255,7 @@ MHO_ParameterConfigurator::LogicalIntersection(std::vector< std::string >& value
     for(std::size_t i=0; i<values1.size(); i++)
     {
         uint64_t code = labeler.DecodeLabelToValue(values1[i]);
-        std::cout<<values1[i]<<", "<<code<<std::endl;
+        //std::cout<<values1[i]<<", "<<code<<std::endl;
         vec1.push_back( code );
     }
 
@@ -265,7 +263,7 @@ MHO_ParameterConfigurator::LogicalIntersection(std::vector< std::string >& value
     for(std::size_t i=0; i<values2.size(); i++)
     {
         uint64_t code = labeler.DecodeLabelToValue(values2[i]);
-        std::cout<<values2[i]<<", "<<code<<std::endl;
+        //std::cout<<values2[i]<<", "<<code<<std::endl;
         vec2.push_back( code );
     }
 
@@ -285,7 +283,7 @@ MHO_ParameterConfigurator::LogicalIntersection(std::vector< std::string >& value
     for(std::size_t i=0; i<intermediate_result.size(); i++)
     {
         std::string label = labeler.EncodeValueToLabel(intermediate_result[i]);
-        std::cout<<"result: "<<label<<", "<<intermediate_result[i]<<std::endl;
+        //std::cout<<"result: "<<label<<", "<<intermediate_result[i]<<std::endl;
         result.push_back( label );
     }
     
