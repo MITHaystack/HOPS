@@ -63,6 +63,10 @@ control_element_type MHO_ControlDefinitions::DetermineControlType(std::string et
     {
         return control_fixed_length_list_string_type;
     }
+    if(etype == "logical_intersection_list_string")
+    {
+        return control_list_string_type;
+    }
     if(etype == "conditional")
     {
         return control_conditional_type;

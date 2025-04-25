@@ -26,16 +26,13 @@ namespace hops
  * of frequency low -> high, starting with 'a'
  */
 
-template< typename XArrayType > class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >
+template< typename XArrayType > class MHO_ChannelLabeler:
+    public MHO_UnaryOperator< XArrayType >,
+    public MHO_ChannelIndexLabeler
 {
     public:
         MHO_ChannelLabeler()
         {
-            //we inherited the set of 64 characters from fourfit
-            //consider how we may want to change this in the future:
-            fDefaultChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$%";
-            //this character set is used for >64 channels when constructing multi-character labels (don't use numbers + $%)
-            fExtendedChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
             fIndexToChannelLabel.clear();
             fEps = 1e-4; //tolerance when mapping freq to indices
             fChannelLabelKey = "channel_label";
@@ -46,38 +43,8 @@ template< typename XArrayType > class MHO_ChannelLabeler: public MHO_UnaryOperat
         //allow channel freq association to use a difference tolerance
         void SetTolerance(double tol) { fEps = tol; }
 
-        //provide the option to use different character sets
-        void SetDefaultChannelChars(const std::string& ch_set) { fDefaultChannelChars = ch_set; }
-
-        void SetExtendedChannelChars(const std::string& ex_set) { fExtendedChannelChars = ex_set; }
-
         //if there is a user provided labeling scheme, use that (i.e. chan_ids)
         void SetChannelLabelToFrequencyMap(const std::map< std::string, double >& map) { fChannelLabelToFrequency = map; }
-
-        //default encoding/decoding scheme
-        std::string EncodeValueToLabel(const uint64_t& value) const
-        {
-            if(value < fDefaultChannelChars.size())
-            {
-                return encode_value(value, fDefaultChannelChars);
-            }
-            //else multi-char code
-            uint64_t j = value - fDefaultChannelChars.size() + fExtendedChannelChars.size();
-            return encode_value(j, fExtendedChannelChars);
-        }
-
-        uint64_t DecodeLabelToValue(const std::string& label) const
-        {
-            if(label.size() == 1)
-            {
-                return decode_value(label, fDefaultChannelChars);
-            }
-            //else multi-char code
-            uint64_t extended_value = decode_value(label, fExtendedChannelChars);
-            extended_value -= fExtendedChannelChars.size();
-            extended_value += fDefaultChannelChars.size();
-            return extended_value;
-        }
 
     protected:
         virtual bool InitializeInPlace(XArrayType* in) override { return true; }
@@ -198,10 +165,6 @@ template< typename XArrayType > class MHO_ChannelLabeler: public MHO_UnaryOperat
         std::map< std::string, double > fChannelLabelToFrequency;
         double fEps;
 
-        //legal characters in channel labels
-        std::string fDefaultChannelChars;
-        std::string fExtendedChannelChars;
-        //channel index to channel name map
         std::map< std::size_t, std::string > fIndexToChannelLabel;
 };
 
