@@ -82,7 +82,7 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     cparser.SetControlFile(control_file);
     auto control_contents = cparser.ParseControl();
 
-    std::cout<<"dumping parsed control contents: "<<control_contents.dump(2)<<std::endl;
+    //std::cout<<"dumping parsed control contents: "<<control_contents.dump(2)<<std::endl;
 
     //stash the processed text in the parameter store
     //TODO FIXME -- we may want to move this elsewhere
