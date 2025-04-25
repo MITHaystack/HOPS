@@ -1,4 +1,7 @@
 #include "MHO_ParameterConfigurator.hh"
+#include "MHO_EncodeDecodeValue.hh"
+
+#include <algorithm>
 
 namespace hops
 {
@@ -128,6 +131,24 @@ bool MHO_ParameterConfigurator::Configure()
                     }
                 }
                 break;
+            case ParamValueType::logical_intersection_list_string_type:
+                {
+                    std::vector< std::string > default_values;
+                    std::cout<<" attr = "<< fAttributes.dump(2) << std::endl;
+
+                    std::vector< std::string > values = fAttributes["value"].get< std::vector< std::string > >();
+                    for(std::size_t nst = 0; nst < explicit_paths.size(); nst++)
+                    {
+                        GetVectorParameter(explicit_paths[nst], default_values);
+                        if(default_values.size() != 0) //ignore empty/initial case
+                        {
+                            //form the logical intersection between the pre-existing list and the new info
+                            values = LogicalIntersection(default_values, values);
+                        }
+                        SetVectorParameter(explicit_paths[nst], values);
+                    }
+                }
+                break;
             case ParamValueType::compound_type:
                 {
                     auto values = fAttributes["value"];
@@ -177,6 +198,10 @@ MHO_ParameterConfigurator::DetermineParamValueType(const std::string& par_value_
     {
         return ParamValueType::list_string_type;
     }
+    if(par_value_type == "logical_intersection_list_string")
+    {
+        return ParamValueType::logical_intersection_list_string_type;
+    }
     if(par_value_type == "compound")
     {
         return ParamValueType::compound_type;
@@ -220,6 +245,51 @@ void MHO_ParameterConfigurator::SetCompoundParameter(std::string path, const mho
     {
         msg_warn("initialization", "could not set compound parameter: " << path << eom);
     }
+}
+
+std::vector< std::string > 
+MHO_ParameterConfigurator::LogicalIntersection(std::vector< std::string >& values1, std::vector< std::string>& values2) const
+{
+    MHO_ChannelIndexLabeler labeler;
+
+    //use integer vectors as channel label proxies, since they are more well behaved than strings
+    std::vector<uint64_t> vec1;
+    for(std::size_t i=0; i<values1.size(); i++)
+    {
+        uint64_t code = labeler.DecodeLabelToValue(values1[i]);
+        std::cout<<values1[i]<<", "<<code<<std::endl;
+        vec1.push_back( code );
+    }
+
+    std::vector<uint64_t> vec2;
+    for(std::size_t i=0; i<values2.size(); i++)
+    {
+        uint64_t code = labeler.DecodeLabelToValue(values2[i]);
+        std::cout<<values2[i]<<", "<<code<<std::endl;
+        vec2.push_back( code );
+    }
+
+    std::vector< uint64_t > intermediate_result;
+    //sort the new info first to make this a tad more efficient (values1 should already be sorted)
+    std::sort(vec1.begin(), vec1.end());
+    std::sort(vec2.begin(), vec2.end());
+    // Compute the intersection
+    std::set_intersection(
+        vec1.begin(), vec1.end(),
+        vec2.begin(), vec2.end(),
+        std::back_inserter(intermediate_result)
+    );
+    std::sort(intermediate_result.begin(), intermediate_result.end());
+
+    std::vector< std::string > result;
+    for(std::size_t i=0; i<intermediate_result.size(); i++)
+    {
+        std::string label = labeler.EncodeValueToLabel(intermediate_result[i]);
+        std::cout<<"result: "<<label<<", "<<intermediate_result[i]<<std::endl;
+        result.push_back( label );
+    }
+    
+    return result;
 }
 
 } // namespace hops

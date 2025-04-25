@@ -26,7 +26,7 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  */
 
-std::string encode_value(const uint64_t& value, const std::string& character_set)
+inline std::string encode_value(const uint64_t& value, const std::string& character_set)
 {
     std::string encoded_value = "";
     std::stack< char > cstack;
@@ -52,7 +52,7 @@ std::string encode_value(const uint64_t& value, const std::string& character_set
     return encoded_value;
 }
 
-uint64_t decode_value(const std::string& code, const std::string& character_set)
+inline uint64_t decode_value(const std::string& code, const std::string& character_set)
 {
     uint64_t decoded_value = 0;
     std::stack< char > cstack;
@@ -74,6 +74,59 @@ uint64_t decode_value(const std::string& code, const std::string& character_set)
     }
     return decoded_value;
 }
+
+class MHO_ChannelIndexLabeler
+{
+    public:
+        MHO_ChannelIndexLabeler()
+        {
+            //we inherited the set of 64 characters from fourfit
+            //consider how we may want to change this in the future:
+            fDefaultChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$%";
+            //this character set is used for >64 channels when constructing multi-character labels (don't use numbers + $%)
+            fExtendedChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        };
+
+        virtual ~MHO_ChannelIndexLabeler(){};
+
+        //provide the option to use different character sets
+        void SetDefaultChannelChars(const std::string& ch_set) { fDefaultChannelChars = ch_set; }
+        void SetExtendedChannelChars(const std::string& ex_set) { fExtendedChannelChars = ex_set; }
+
+        //default encoding/decoding scheme
+        std::string EncodeValueToLabel(const uint64_t& value) const
+        {
+            if(value < fDefaultChannelChars.size())
+            {
+                return encode_value(value, fDefaultChannelChars);
+            }
+            //else multi-char code
+            uint64_t j = value - fDefaultChannelChars.size() + fExtendedChannelChars.size();
+            return encode_value(j, fExtendedChannelChars);
+        }
+
+        uint64_t DecodeLabelToValue(const std::string& label) const
+        {
+            if(label.size() == 1)
+            {
+                return decode_value(label, fDefaultChannelChars);
+            }
+            //else multi-char code
+            uint64_t extended_value = decode_value(label, fExtendedChannelChars);
+            extended_value -= fExtendedChannelChars.size();
+            extended_value += fDefaultChannelChars.size();
+            return extended_value;
+        }
+
+    protected:
+
+        //legal characters in channel labels
+        std::string fDefaultChannelChars;
+        std::string fExtendedChannelChars;
+};
+
+
+
 
 } // namespace hops
 

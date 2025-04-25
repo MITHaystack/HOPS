@@ -61,6 +61,7 @@ class MHO_ParameterConfigurator
             list_real_type,   //list of floats with arbitrary length
             list_string_type, //list of strings with arbitrary length
             compound_type,    //multiple elements of different types
+            logical_intersection_list_string_type, //list of strings, if multiple lists are encountered take the logical intersection (e.g. freqs)
             unknown
         };
 
@@ -71,15 +72,19 @@ class MHO_ParameterConfigurator
         ParamValueType DetermineParamValueType(const std::string& par_value_type) const;
 
         template< typename XValueType > void SetScalarParameter(std::string path, const XValueType& value);
+        template< typename XValueType > void GetScalarParameter(std::string path, XValueType& value);
 
         template< typename XValueType > void SetVectorParameter(std::string path, const std::vector< XValueType >& values);
+        template< typename XValueType > void GetVectorParameter(std::string path, std::vector< XValueType >& values);
 
         void SetCompoundParameter(std::string path, const mho_json& values);
+
+        std::vector< std::string > LogicalIntersection(std::vector< std::string >& values1, std::vector< std::string>& values2) const;
 
         MHO_ParameterStore* fParameterStore;
         mho_json fFormat; //format description for each parameter
 
-        //provided for the configuration of the parameter that is to be setting
+        //provided for the configuration of the parameter that is to be set
         mho_json fConditions;
         mho_json fAttributes;
 };
@@ -93,6 +98,15 @@ template< typename XValueType > void MHO_ParameterConfigurator::SetScalarParamet
     }
 }
 
+template< typename XValueType > void MHO_ParameterConfigurator::GetScalarParameter(std::string path, XValueType& value)
+{
+    bool ok = fParameterStore->Get(path, value);
+    if(!ok)
+    {
+        msg_info("initialization", "could not get parameter, using default value for: " << path << eom);
+    }
+}
+
 template< typename XValueType >
 void MHO_ParameterConfigurator::SetVectorParameter(std::string path, const std::vector< XValueType >& values)
 {
@@ -100,6 +114,16 @@ void MHO_ParameterConfigurator::SetVectorParameter(std::string path, const std::
     if(!ok)
     {
         msg_warn("initialization", "could not set parameter vector: " << path << eom);
+    }
+}
+
+template< typename XValueType >
+void MHO_ParameterConfigurator::GetVectorParameter(std::string path, std::vector< XValueType >& values)
+{
+    bool ok = fParameterStore->Get(path, values);
+    if(!ok)
+    {
+        msg_info("initialization", "could not get parameter vector, using default value for: " << path << eom);
     }
 }
 
