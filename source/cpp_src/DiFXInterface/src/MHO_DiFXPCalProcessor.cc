@@ -71,6 +71,7 @@ void MHO_DiFXPCalProcessor::ReadPCalFile()
                 //read lines until end
                 while(getline(file, fLine))
                 {
+                    std::cout<<"fLine = "<<fLine<<std::endl;
                     if(fLine.size() != 0)
                     {
                         //parse line and covert tokens into data points
@@ -145,6 +146,8 @@ void MHO_DiFXPCalProcessor::ProcessTokens()
                 pp.pc_phasors[pol].push_back(ph);
             }
         }
+
+        std::cout<<"adding pp mjd = "<<pp.mjd<<std::endl;
         fPCalData.push_back(pp);
     }
 }
@@ -261,11 +264,11 @@ void MHO_DiFXPCalProcessor::Organize()
         //finally sort all by AP
         std::sort(fSortedPCalData.begin(), fSortedPCalData.end(), fAPIndexComp);
 
-        /* debug print out
+        // debug print out
         std::cout<<std::setprecision(14)<<std::endl;
         for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
         {
-            std::cout<<"ap, mjd = "<<it->ap<<", "<<it->mjd<<std::endl;
+            std::cout<<"station, ap, mjd = "<<it->station<<", "<<it->ap<<", "<<it->mjd<<std::endl;
             for(auto ppit = it->pc_phasors.begin(); ppit != it->pc_phasors.end(); ppit++)
             {
                 std::cout<<"pol["<<ppit->first<<"], n-tones = "<<ppit->second.size()<<std::endl;
@@ -275,7 +278,7 @@ void MHO_DiFXPCalProcessor::Organize()
                 }
             }
         }
-        */
+
 
         //determine the data dimensions
         std::size_t npol = fPolSet.size();
