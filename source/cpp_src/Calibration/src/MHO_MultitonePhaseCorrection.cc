@@ -254,7 +254,7 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
 
             //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
             //TODO FIXME -- make sure the stop/start parameters are accounted for
-            //this should be fine, provided if we trim the pcal data appropriately ahead use here
+            //this should be fine, provided if we trim the pcal data appropriately ahead of use here
 
             double navg = 0;
             std::size_t seg_start_ap, seg_end_ap;
@@ -341,7 +341,7 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                 st_prefix = "rem";
             }
             std::string pc_seg_start_key = st_prefix + "_mtpc_seg_start_" + pc_pol_code;
-            std::string pc_seg_end_key = st_prefix + "_mtpc_apseg_end_" + pc_pol_code;
+            std::string pc_seg_end_key = st_prefix + "_mtpc_seg_end_" + pc_pol_code;
             std::string pc_mag_key = st_prefix + "_mtpc_mag_" + pc_pol_code;
             std::string pc_phase_key = st_prefix + "_mtpc_phase_" + pc_pol_code;
             std::string pc_delay_key = st_prefix + "_mtpc_delays_" + pc_pol_code;
@@ -355,8 +355,8 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
 
     //here follows the 'sampler_delay.c' code which averages the pcal delays over all
     //channels and AP's which belong to the same sampler. We should investigate if
-    //this is really needed, or if it improves the post-fit residuals. It doesn't
-    //seem to be necessary and overcomplicates the code.
+    //this is really needed, or if it improves the post-fit residuals. It certainly 
+    //overcomplicates the code.
 
     //loop over sampler delays and average
     for(std::size_t sd = 0; sd < sampler_delays.size(); sd++)
@@ -475,10 +475,11 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
             st_prefix = "rem";
         }
         std::string pc_seg_start_key = st_prefix + "_mtpc_seg_start_" + pc_pol_code;
-        std::string pc_seg_end_key = st_prefix + "_mtpc_apseg_end_" + pc_pol_code;
+        std::string pc_seg_end_key = st_prefix + "_mtpc_seg_end_" + pc_pol_code;
         // std::string pc_mag_key = st_prefix + "_mtpc_mag_" + pc_pol_code;
-        std::string pc_phase_key = st_prefix + "_mtpc_phase_" + pc_pol_code;
-        std::string pc_delay_key = st_prefix + "_mtpc_delays_applied_" + pc_pol_code;
+        std::string pc_delay_key = st_prefix + "_mtpc_delays_" + pc_pol_code;
+        std::string pc_phase_key = st_prefix + "_mtpc_phase_" + pc_pol_code; //raw delay fit
+        std::string pc_delay_applied_key = st_prefix + "_mtpc_delays_applied_" + pc_pol_code; //treated by samplier delays
 
         //using the pc_delay_key commented below retrieves the raw pc_delays (without sampler-delay averaging)
         //std::string pc_delay_key = st_prefix + "_mtpc_delays_" + pc_pol_code;
@@ -487,15 +488,15 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
         vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_seg_end_key, seg_end_aps);
         // vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
         vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_phase_key, pc_phase_segs);
-        vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
+        vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_applied_key, pc_delay_segs);
 
         //if now sampler delays were assigned in the control file,
         //the average pc_delays will be empty, in that case we'll
         //just used the raw pc_delays of each channel
         if(pc_delay_segs.size() == 0)
         {
-            pc_delay_key = st_prefix + "_mtpc_delays_" + pc_pol_code;
-            vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
+            pc_delay_applied_key = st_prefix + "_mtpc_delays_" + pc_pol_code;
+            vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_applied_key, pc_delay_segs);
         }
 
         for(std::size_t seg = 0; seg < seg_start_aps.size(); seg++)
