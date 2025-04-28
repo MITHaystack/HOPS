@@ -318,6 +318,12 @@ int pcal_interp (struct mk4_sdata *sd1,
                                         /* Hopefully robust interpolation */
                     ret = ap_mean (start, stop, time, pc_real, pc_imag, npts, 
                                   &nstart, &realval, &imagval);
+    
+                    //UNDO THE Interpo 
+                    realval = pc_real[ap];
+                    imagval = pc_imag[ap];
+
+
                     if (ret > 0) 
                         continue;
                     else if (ret < 0)
