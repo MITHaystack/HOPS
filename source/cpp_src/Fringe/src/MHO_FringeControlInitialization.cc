@@ -85,7 +85,8 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     //std::cout<<"dumping parsed control contents: "<<control_contents.dump(2)<<std::endl;
 
     //stash the processed text in the parameter store
-    //TODO FIXME -- we may want to move this elsewhere
+    //TODO FIXME -- we may want to make this optional (control file parameter - gen_cf_record)
+    //TODO FIXME -- also, we should probably compute the hash/checksum of this string and insert it for tracking
     std::string parsed_control = cparser.GetLegacyProcessedControlFileText();
     paramStore->Set("/control/control_file_contents", parsed_control);
 
