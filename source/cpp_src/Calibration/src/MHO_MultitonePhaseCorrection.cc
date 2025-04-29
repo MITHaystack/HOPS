@@ -51,9 +51,89 @@ MHO_MultitonePhaseCorrection::MHO_MultitonePhaseCorrection()
 
     fWeights = nullptr;
 
+    fPCData = nullptr;
+
 };
 
 MHO_MultitonePhaseCorrection::~MHO_MultitonePhaseCorrection(){};
+
+
+void 
+MHO_MultitonePhaseCorrection::SetMultitonePCData(multitone_pcal_type* pcal)
+{
+    if(pcal != nullptr)
+    {
+        fPCData = pcal; 
+        InterpolatePCData();
+    }
+};
+
+void MHO_MultitonePhaseCorrection::InterpolatePCData()
+{
+    //This function is implemented to mimic the time-interpolation of pcal tones 
+    //as done in pcal_inter.c by the ap_mean function 
+    //This interpolation is mainly needed when a station has really unstable p-cal 
+    
+    //There are some slight differences between this implementation and the original 
+    //which leads to slightly different behavior. 
+    //TODO FIXME...determine the exact differences between the original impl. and this code and 
+    //get the output to be as similar as possible, also understand the ap_period offset
+
+    //get axis info
+    auto pcal_pol_ax = &(std::get< MTPCAL_POL_AXIS >(*fPCData));
+    auto pcal_tone_ax = &(std::get< MTPCAL_FREQ_AXIS >(*fPCData));
+    auto pcal_time_ax = &(std::get< MTPCAL_TIME_AXIS >(*fPCData));
+    std::size_t npol = pcal_pol_ax->GetSize();
+    std::size_t ntones = pcal_tone_ax->GetSize();
+    std::size_t naps = pcal_time_ax->GetSize();
+
+    if(naps <= 1)
+    {
+        msg_warn("calibration", "pcal data will not be interpolated, not enough APs "<< eom);
+        return;
+    }
+
+    double ap_length = pcal_time_ax->at(1) - pcal_time_ax->at(0);
+    std::vector< double > pc_real; pc_real.resize(naps);
+    std::vector< double > pc_imag; pc_imag.resize(naps);
+    std::vector< double > time_arr; time_arr.resize(naps);
+
+    for(std::size_t i=0; i<naps; i++)
+    {
+        time_arr[i] = pcal_time_ax->at(i);
+    }
+
+    //loop over pols and tones
+    for(std::size_t pc_pol = 0; pc_pol < npol; pc_pol++)
+    {
+        for(std::size_t pc_tone = 0; pc_tone < ntones; pc_tone++)
+        {
+            //interpolate over the time axis for this tone...to do this we
+            //modify the pc data using interpolation as done in pcal_interp.c using the function ap_mean.c
+            for(std::size_t ap=0; ap<naps; ap++)
+            {
+                std::complex<double> val = fPCData->at(pc_pol, ap, pc_tone);
+                pc_real[ap] = std::real(val);
+                pc_imag[ap] = std::imag(val);
+            }
+    
+            int nstart = 0;
+            for(std::size_t ap = 0; ap < naps; ap++)
+            {
+                double start = pcal_time_ax->at(ap) + 0.5*ap_length; //the AP period appears to be offset by about 1/2 an AP (from original implementation, why?)
+                double stop = start + ap_length;
+                double realval = 0;
+                double imagval = 0;
+                int ret = MHO_MathUtilities::ap_mean(start, stop, &(time_arr[0]), &(pc_real[0]), &(pc_imag[0]), naps, &nstart, &realval, &imagval);
+                if(ret == 0) //interpolation ok, so modify the pc data
+                {
+                    fPCData->at(pc_pol, ap , pc_tone) = std::complex<double>(realval, imagval);
+                }
+            }
+        }
+    }
+}
+
 
 bool MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
@@ -186,7 +266,7 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
         if(fWorkspaceSize <= ntones)
         {
             fWorkspaceSize = MHO_BitReversalPermutation::NextLowestPowerOfTwo(ntones);
-            msg_warn("calibration",
+            msg_info("calibration",
                       "number of pcal tones: " << ntones << " exceeds workspace size, resizing to " << fWorkspaceSize << eom);
             InitializeFFTEngine();
         }
@@ -223,7 +303,7 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                 if(sampler_delays.size() != 0)
                 {
                     msg_warn("calibration",
-                             "failed to retrieve sampler delay for station: " << fMk4ID << " channel: " << ch << "." << eom);
+                             "failed to retrieve sampler delay for station: " << fMk4ID << " channel: " << ch << ", using zero." << eom);
                 }
             }
 
@@ -242,13 +322,13 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
             bit_mask = tone_mask;
             if(tone_mask != 0)
             {
-                //std::cout<<"channel: "<<ch_label<<" initial bitmask = "<<bit_mask<<std::endl;
+                ////std::cout<<"channel: "<<ch_label<<" initial bitmask = "<<bit_mask<<std::endl;
                 if(net_sideband == "L")
                 {
                     bit_mask <<= (N_MASK_BITS - ntones);
-                    //std::cout<<"shifted bitmask = "<<bit_mask<<std::endl;
+                    ////std::cout<<"shifted bitmask = "<<bit_mask<<std::endl;
                     reverse_bits(bit_mask);
-                    //std::cout<<"reverse_bits = "<<bit_mask<<std::endl;
+                    ////std::cout<<"reverse_bits = "<<bit_mask<<std::endl;
                 }
             }
 
@@ -299,6 +379,7 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                     }
                     mask >>= 1; //shift to next bit
                     fPCWorkspace(i) += wght * (fPCData->at(pc_pol, ap, start_idx + i));
+                    //std::cout<<"pc workspace @"<<i<<" = "<<fPCWorkspace(i)<<std::endl;
                     navg += wght;
                 }
 
@@ -708,7 +789,7 @@ void MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_cen
         delay += pc_amb;
     };
 
-    //std::cout<<"chan center freq = "<<chan_center_freq<<std::endl;
+    ////std::cout<<"chan center freq = "<<chan_center_freq<<std::endl;
     //rotate each tone phasor by the delay (zero rot at center freq)
     std::complex< double > mean_phasor = 0.0;
     for(std::size_t i = 0; i < ntones; i++)
