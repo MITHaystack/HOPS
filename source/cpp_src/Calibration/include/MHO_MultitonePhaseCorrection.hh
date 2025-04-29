@@ -45,21 +45,33 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
 
         void SetPCPeriod(std::size_t pc_period) { fPCPeriod = pc_period; }
 
-        //channel label -> pc_phases
-        void SetMultitonePCData(multitone_pcal_type* pcal) { fPCData = pcal; };
+        void SetMultitonePCData(multitone_pcal_type* pcal);
 
         //pass in the data weights (to be applied to the pcal phasors as well?)
         void SetWeights(weight_type* w) { fWeights = w; }
 
     protected:
-        virtual bool InitializeInPlace(visibility_type* /*!in*/) override { return true; };
 
-        virtual bool InitializeOutOfPlace(const visibility_type* /*!in*/, visibility_type* /*!out*/) override { return true; };
+        virtual bool InitializeInPlace(visibility_type* /*!in*/) override 
+        {
+            if(fPCData != nullptr){return true;}
+            return false;
+        };
+
+        virtual bool InitializeOutOfPlace(const visibility_type* /*!in*/, visibility_type* /*!out*/) override 
+        {
+            if(fPCData != nullptr){return true;}
+            return false;
+        };
 
         virtual bool ExecuteInPlace(visibility_type* in) override;
         virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
+        //temporal interpolation of tone phasors
+        void InterpolatePCData();
+
     private:
+
         using pcal_axis_pack = MHO_AxisPack< frequency_axis_type >;
         using pcal_type = MHO_TableContainer< std::complex< double >, pcal_axis_pack >;
 
