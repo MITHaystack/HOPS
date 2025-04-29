@@ -15,6 +15,7 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Dec 5 17:01:15 2023 -0500
  *@brief implements a variety of simple math functions copied from original c code with minimal changes
+ * along with some other simple helper functions
  */
 
 class MHO_MathUtilities
@@ -27,6 +28,8 @@ class MHO_MathUtilities
         static double dwin(double value, double lower, double upper);
         static int parabola(double y[3], double lower, double upper, double* x_max, double* amp_max, double q[3]);
         static int minvert3(double a[3][3], double ainv[3][3]);
+        static int linterp (double coord1, double value1, double coord2, double value2, double coord, double *value);
+        static int ap_mean(double start, double stop, double *coords, double *val1, double *val2, int n, int *nstart, double *result1, double *result2);
 
         //returns the average of the values in a vector
         static double average(std::vector< double >& vec);

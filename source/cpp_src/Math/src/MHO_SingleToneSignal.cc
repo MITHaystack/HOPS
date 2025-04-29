@@ -12,7 +12,7 @@ MHO_SingleToneSignal::~MHO_SingleToneSignal(){};
 bool MHO_SingleToneSignal::GenerateSample(const double& sample_time, double& sample) const
 {
     sample = std::sin(fPhaseOffset + 2.0 * M_PI * fToneFrequency * sample_time);
-    std::cout << sample << std::endl;
+    //std::cout << sample << std::endl;
     return true;
 }
 
