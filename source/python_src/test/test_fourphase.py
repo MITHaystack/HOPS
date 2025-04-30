@@ -75,15 +75,6 @@ def main():
     cached_delay_values['G'] = [1.675, 0.0011] #Y-off, error
     cached_delay_values['V'] = [0.054, 0.0014] #Y-off, error
 
-    ff_cmd = ht.get_fourfit_cmd()
-    if ff_cmd == "fourfit4":
-        cached_phase_offset_values['E'] = [115.731201, 3.535592] #Y-off, error
-        cached_phase_offset_values['G'] = [38.748256,  2.309152] #Y-off, error
-        cached_phase_offset_values['V'] = [109.259034, 4.659807] #Y-off, error
-        cached_delay_values['E'] = [0.720882, 0.0011026] #Y-off, error
-        cached_delay_values['G'] = [1.675227, 0.0011346] #Y-off, error
-        cached_delay_values['V'] = [0.054111, 0.0013732] #Y-off, error
-
     #test return value
     ret_status = 0
 
