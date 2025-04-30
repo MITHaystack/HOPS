@@ -2,6 +2,8 @@
 #include "MHO_MathUtilities.hh"
 #include "MHO_BitReversalPermutation.hh"
 
+#include "MHO_Clock.hh"
+
 #include <bitset>
 
 #define N_MASK_BITS 32
@@ -69,7 +71,7 @@ MHO_MultitonePhaseCorrection::SetMultitonePCData(multitone_pcal_type* pcal)
     }
 };
 
-void MHO_MultitonePhaseCorrection::InterpolatePCData()
+void MHO_MultitonePhaseCorrection::InterpolatePCData(double pcal_minus_visib_toffset)
 {
     //This function is implemented to mimic the time-interpolation of pcal tones 
     //as done in pcal_inter.c by the ap_mean function 
@@ -101,7 +103,7 @@ void MHO_MultitonePhaseCorrection::InterpolatePCData()
 
     for(std::size_t i=0; i<naps; i++)
     {
-        time_arr[i] = pcal_time_ax->at(i);
+        time_arr[i] = pcal_time_ax->at(i) + pcal_minus_visib_toffset;
     }
 
     //loop over pols and tones
@@ -121,7 +123,7 @@ void MHO_MultitonePhaseCorrection::InterpolatePCData()
             int nstart = 0;
             for(std::size_t ap = 0; ap < naps; ap++)
             {
-                double start = pcal_time_ax->at(ap) + 0.5*ap_length; //the AP period appears to be offset by about 1/2 an AP (from original implementation, why?)
+                double start = pcal_time_ax->at(ap);
                 double stop = start + ap_length;
                 double realval = 0;
                 double imagval = 0;
@@ -144,6 +146,31 @@ bool MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
         //determine if the p-cal corrections should be applied to this station (ref or rem)
         if(IsApplicable(in))
         {
+            std::string pcal_start_timestamp;
+            bool okA = fPCData->Retrieve("start", pcal_start_timestamp);
+            std::string visib_start_timestamp;
+            bool okB = in->Retrieve("start", visib_start_timestamp);
+
+            if(okA && okB)
+            {
+                //get the start time of the pcal and visibility data
+                auto pcal_start_tp = hops_clock::from_vex_format(pcal_start_timestamp);
+                auto vis_start_tp = hops_clock::from_vex_format(visib_start_timestamp);
+                // std::cout<<"pcal start time = "<<pcal_start_timestamp<<std::endl;
+                // std::cout<<"visib_start_time = "<< visib_start_timestamp<<std::endl;
+                // 
+                //calculate time difference between the pcal start and visibility start
+                auto tdiff_duration =  pcal_start_tp - vis_start_tp;
+                //convert duration to double (seconds)
+                double tdiff = std::chrono::duration< double >(tdiff_duration).count();
+                //interpolate the pcal data to the visibility APs
+                InterpolatePCData(tdiff);
+            }
+            else 
+            {
+                msg_warn("calibration", "could not determine time difference between pcal and visibility start times, will not interpolate pcal." << eom);
+            }
+            
             //trim the pcal data to the proper time range if needed
             fPCalTrimmer.SetVisibilities(in);
             fPCalTrimmer.SetArgs(fPCData);

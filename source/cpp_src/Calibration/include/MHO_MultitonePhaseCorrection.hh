@@ -68,7 +68,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         //temporal interpolation of tone phasors
-        void InterpolatePCData();
+        void InterpolatePCData(double pcal_minus_visib_toffset);
 
     private:
 
