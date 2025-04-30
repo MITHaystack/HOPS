@@ -64,7 +64,8 @@ MHO_MultitonePhaseCorrection::SetMultitonePCData(multitone_pcal_type* pcal)
     if(pcal != nullptr)
     {
         fPCData = pcal; 
-        InterpolatePCData();
+        //TODO FIXME --- we need to interpolate the pcal data in the same way as pcal_inter.c
+        //InterpolatePCData();
     }
 };
 
