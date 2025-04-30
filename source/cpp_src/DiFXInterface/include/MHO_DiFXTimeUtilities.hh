@@ -7,7 +7,7 @@
 //this is the nominal DiFX MJD epoch start...however, it will be off by however
 //many leap seconds have been inserted between this time and the time point of
 //interest...so when UTC times are calculated from DiFX MJD values, this epoch
-//start must be corrected by the number of leap seconds inserted (total of 5 as of 2023)
+//start must be corrected by the number of leap seconds inserted (total of 5 as of 2025)
 #define DIFX_J2000_MJD_EPOCH_UTC_ISO8601 "2000-01-01T12:00:00.000000000Z"
 #define DIFX_J2000_MJD_EPOCH_OFFSET 51544.50000
 
