@@ -1,4 +1,4 @@
-Copyright (c) 1992-2024 by Haystack Observatory,
+Copyright (c) 1992-2025 by Haystack Observatory,
 Massachusetts Institute of Technology.
 
 Permission is hereby granted, free of charge, to any person obtaining a
