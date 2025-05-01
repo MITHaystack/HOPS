@@ -1,7 +1,7 @@
 [![test-ubuntu](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu.yml/badge.svg)](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu.yml)
 # HOPS 4 - Haystack Observatory Post-processing System
 
-HOPS (Haystack Observatory Post-processing System) is a software package for fringe-fitting, calibration and other post-correlation tasks required to process VLBI (Very Long Baseline Interferometry) data. HOPS4 is a ground-up re-write done in C/C++ and python that is intended to create a more modular framework capable of easier future extension and modification. This repository also contains the original HOPS(3) software which can installed alongside HOPS4. For further information see the release notes under <hops-source>/doc/notes/release.txt.
+HOPS (Haystack Observatory Post-processing System) is a software package for fringe-fitting, calibration and other post-correlation tasks required to process VLBI (Very Long Baseline Interferometry) data. HOPS4 is a ground-up re-write done in C/C++ and python that is intended to create a more modular framework capable of easier future extension and modification. This repository also contains the original HOPS(3) software which can installed alongside HOPS4. For further information see the release notes under `<hops-source>/doc/notes/release.txt`.
 
 To configure the build system with the default options and compile the code using cmake, run the following:  
 
@@ -158,3 +158,6 @@ be opened with any browser.
 ### Getting help
 
 For questions/comments on this software please direct emails to the developer mailing list: hops-dev@mit.edu
+
+### License and Authorship 
+For license and authorship information see LICENSE.md and AUTHORS.md respectively.
