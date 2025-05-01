@@ -160,4 +160,4 @@ be opened with any browser.
 For questions/comments on this software please direct emails to the developer mailing list: hops-dev@mit.edu
 
 ### License and Authorship 
-For license and authorship information see LICENSE.md and AUTHORS.md respectively.
+For license and authorship information see the LICENSE.md and AUTHORS.md files respectively.
