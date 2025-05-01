@@ -1,10 +1,9 @@
 [![test-ubuntu](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu.yml/badge.svg)](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu.yml)
-# HOPS 4.0
+# HOPS 4 - Haystack Observatory Post-processing System
 
-Authors: John Barrett, Geoff Crew, Dan Hoak, Violet Pfeiffer  
-Legacy Authors (HOPS3): Roger Cappallo, Colin Lonsdale, Cris Niell, with numerous contributions from others  
+HOPS (Haystack Observatory Post-processing System) is a software package for fringe-fitting, calibration and other post-correlation tasks required to process VLBI (Very Long Baseline Interferometry) data. HOPS4 is a ground-up re-write done in C/C++ and python that is intended to create a more modular framework capable of easier future extension and modification. This repository also contains the original HOPS(3) software which can installed alongside HOPS4. For further information see the release notes under <hops-source>/doc/notes/release.txt.
 
-To configure with defaults and compile the code with cmake, run the following:  
+To configure the build system with the default options and compile the code using cmake, run the following:  
 
 `$ cd <hops-source>` \
 `$ mkdir build` \
@@ -121,22 +120,7 @@ while on RHEL/Fedora based systems these can be installed using:
 sudo dnf install python3-devel python3-pip gcc-gfortran fftw-devel libX11-devel gnuplot binutils libXpm-devel ghostscript
 ```
 However, RHEL/Fedora disributions lack a package for the PGPLOT library needed by HOPS3, so this will have to be installed manually 
-from source on these distributions. The PGPLOT source can be retrieved with:
-```
-curl -O ftp://ftp.astro.caltech.edu/pub/pgplot/pgplot5.2.tar.gz 
-```
-and built by following the instructions here: https://guaix.fis.ucm.es/~ncl/howto/howto-pgplot
-
-However, be aware that modern compilers tend to be good deal pickier about implicit function declarations, 
-and (at least on Fedora40) you may need to modify the PGPLOT source to get it to compile. This requires ensuring the proper 
-include declarations are present in a couple files where compilations fails. The prime culprits being these missing includes: 
-```
-#include <string.h> // for strncpy()
-#include <fcntl.h>  // for open() 
-#include <unistd.h> // for close()
-```
-If you are not comfortable modifying the PGPLOT source, please use a Debian/Ubuntu based distribution with a pgplot5 package 
-or forgo HOPS3 plotting functionality.
+from source on these distributions, see the note in `<hops-source>/doc/notes/pgplot.txt` for more information regarding PGPLOT.
 
 ## Testing
 If you wish to check the functionality of the installation, you can run `make test` from the build directory after successfully building the software.
