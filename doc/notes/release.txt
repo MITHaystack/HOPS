@@ -34,9 +34,9 @@ Legacy (HOPS3) required dependencies -- these are optional if you do not need th
 
 Additional optional (and experimental) dependencies (HOP4):
 
-    (C.1) DiFX -- the difxio library (if you wish to build the conversion utilities difx2hops and difx2mark4)
+    (C.1) DiFX -- the difxio library (if you wish to build the conversion utility difx2hops)
     (C.2) MPI -- if you wish to paralellize fourfit4 with MPI
-    (C.3) CUDA -- *experimental*, enables a small portion of the fringe-fitting algorithm to be run on the GPU
+    (C.3) CUDA -- *experimental*, enables a small portion of the fringe-fitting algorithm to be run on an NVIDIA GPU
     (C.4) OpenCL -- experimental
 
 

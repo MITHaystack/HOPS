@@ -1,0 +1,24 @@
+PGPLOT is not a requirement of HOPS4, but is still needed in order to compile most HOPS3 applications (e.g. fourfit3)
+
+For Debian/Ubuntu based operating systems pgplot can be installed via the package manager with:
+
+```
+sudo apt-get install pgplot5 libgfortran5
+```
+
+For RHEL/Fedora based distributions PGPLOT will need to be installed from source. The PGPLOT source can be retrieved with:
+```
+curl -O ftp://ftp.astro.caltech.edu/pub/pgplot/pgplot5.2.tar.gz 
+```
+and built by following the instructions here: https://guaix.fis.ucm.es/~ncl/howto/howto-pgplot
+
+However, be aware that modern compilers tend to be good deal pickier about implicit function declarations, 
+and (at least on Fedora40) you may need to modify the PGPLOT source to get it to compile. This requires ensuring the proper 
+include declarations are present in a couple files where compilations fails. The prime culprits being these missing includes: 
+```
+#include <string.h> // for strncpy()
+#include <fcntl.h>  // for open() 
+#include <unistd.h> // for close()
+```
+If you are not comfortable modifying the PGPLOT source, please use a Debian/Ubuntu based distribution with a pgplot5 package 
+or forgo HOPS3 plotting functionality.
