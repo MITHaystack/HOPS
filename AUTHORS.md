@@ -15,10 +15,10 @@ structures resulting in the framework of the HOPS (<=3) system.
 This was followed by a substantial effort in the early-mid
 2000's to develop tools for optimizing SNR and to derive correction factors
 for data with imperfect coherence. While there is no definitive, published, 
-HOPS reference in the literature, the Mark 4 Correlator paper (\cite{whitney2004mark})
+HOPS reference in the literature, the Mark 4 Correlator paper ([Whitney](https://doi.org/10.1029/2002RS002820))
 touches upon the basic implementation available at that time period.
 Further evolution in the late 2000's was provoked by the emergence of software correlation
-(DiFX, \cite{deller2007difx}, \cite{deller2011difx}),and in the 2010's by the
+(DiFX [Deller](https://doi.org/10.1086/513572)),and in the 2010's by the
 needs of EHT-scale mm-VLBI. HOPS4 is a continuation/offshoot of the HOPS3 software and 
 is a result of a re-architecture/redesign effort undertaken to make the software
 more modular and extensible in the face of ever increasing VLBI bandwidths and calibration complexity
