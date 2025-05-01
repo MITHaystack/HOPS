@@ -28,6 +28,16 @@ import vpal.processing
 import vpal.utility
 import vpal.fringe_file_manipulation
 
+
+################################################################################
+#constants/globals
+us_to_ps = 1e6
+x_coord = list()
+y_coord = list()
+unique_key_list = list()
+################################################################################
+
+
 def col_nan_scatter(x,y, **kwargs):
     df = pd.DataFrame({'x':x[:],'y':y[:]})
     df = df.dropna()
@@ -226,13 +236,30 @@ def perform_least_squares_fit(x,y,yerr,names,mode=0):
     return (x0, np.array(x_trimmed), np.array(y_trimmed), np.array(yerr_trimmed), np.array(y_err),  np.array(y_fit), np.array(y_res), np.array(x_outlier), np.array(y_outlier), name_outlier, np.array(params), np.array(perr), rmse, wrms, wmean )
 
 
-################################################################################
-#constants
-us_to_ps = 1e6
+
+def display_point_info(event):
+    global x_coord
+    global y_coord
+    global unique_key_list
+    
+    if event.inaxes:
+        x_click, y_click = event.xdata, event.ydata
+        print(f"Clicked at coordinates: x={x_click:.6f}, y={y_click:.6f}")
+
+        # Find the nearest data point
+        distances = ((x_coord - x_click)**2 + (y_coord - y_click)**2)**0.5
+        nearest_index = distances.argmin()
+
+        print(f"Nearest data point: x={x_coord[nearest_index]:.6f}, y={y_coord[nearest_index]:.6f}")
+        print(f"Unique key of nearest data point = ", unique_key_list[nearest_index])
 
 
 ################################################################################
 def main():
+    
+    global x_coord
+    global y_coord
+    global unique_key_list
 
     parser = argparse.ArgumentParser(
         prog='compare_fringe_summary.py', \
@@ -266,9 +293,10 @@ def main():
 
     #specify the manner in which we should plot the data
     required.add_argument("-m", "--mode", dest='mode', type=int, help= \
-        '0: plot histogram of the difference \n' + \
+        '0: plot histogram of the difference (limit outliers) \n' + \
         '1: plot reference value vs. other \n'+ \
-        '2: plot difference vs time \n', \
+        '2: plot difference vs time \n' + \
+        '3: plot raw histogram of the difference', \
     required=True)
 
     parser.add_argument('-s', '--snr-min', type=float, dest='snr_min', help='set minimum allowed snr threshold, default=10.', default=10.0)
@@ -459,21 +487,46 @@ def main():
             if file_key != reference_key:
                 ref_list = list()
                 other_list = list()
+                uk_list = list()
                 for uk in unique_keys:
                     ref_value = reduced_data[uk][reference_key][element_name]
                     other_value = reduced_data[uk][file_key][element_name]
                     ref_list.append(ref_value)
                     other_list.append(other_value)
+                    uk_list.append(uk)
+                x_coord = ref_list 
+                y_coord = other_list
+                unique_key_list = uk_list
                 fig = plt.figure(figsize=(8, 6))
                 ax1 = fig.add_subplot(111)
                 ax1.scatter(ref_list, other_list, s=5, c=marker_color[ marker_style_index[file_key] ], marker=marker_style[ marker_style_index[file_key] ], label=file_key)
                 ax1.set_title(element_name + ' for: (' + file_key + ' vs. ' + reference_key +')', fontsize=20)
                 ax1.set_xlabel('reference value: ' + element_name)
                 ax1.set_ylabel(file_key + " value: " + element_name)
+                
+                #connect the click event to the function
+                fig.canvas.mpl_connect('button_press_event', display_point_info)
+
                 plt.show()
 
     if mode == 2:
         print("not implemented")
+
+
+    if mode == 3: #make a plain histogram
+        for file_key in all_keys:
+            if file_key != reference_key:
+                delta_list = list()
+                for uk in unique_keys:
+                    delta = reduced_data[uk][file_key]['delta']
+                    delta_list.append(delta)
+                fig = plt.figure(figsize=(8, 6))
+                ax= fig.add_subplot(111)
+                outlier_aware_hist( np.array(delta_list), None, None, nbins=1000 )
+                ax.set_title('$\Delta$ ' + element_name + ' for: (' + file_key + ' - ' + reference_key +')', fontsize=20)
+                ax.set_ylabel('Number')
+                ax.set_xlabel('$\Delta$ ' + element_name)
+                plt.show()
 
     # 
     # for bd in bad_scan_list:
