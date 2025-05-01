@@ -18,7 +18,7 @@ for data with imperfect coherence. While there is no definitive, published,
 HOPS reference in the literature, the Mark 4 Correlator paper ([Whitney](https://doi.org/10.1029/2002RS002820))
 touches upon the basic implementation available at that time period.
 Further evolution in the late 2000's was provoked by the emergence of software correlation
-(DiFX [Deller](https://doi.org/10.1086/513572)),and in the 2010's by the
+(DiFX [Deller](https://doi.org/10.1086/513572)), and in the 2010's by the
 needs of EHT-scale mm-VLBI. HOPS4 is a continuation/offshoot of the HOPS3 software and 
 is a result of a re-architecture/redesign effort undertaken to make the software
 more modular and extensible in the face of ever increasing VLBI bandwidths and calibration complexity
@@ -40,7 +40,7 @@ and is a work in progress.
 - Kevin Dudevoir (kad) - supported the software late 2000s to 2015
 - Violet Pfeiffer - supported HOPS4 type_2xx to json conversion utilities 
 
-## Contributors
+## Other Contributors
 
 - Alan Whitney
 - Arthur Niell (aen)
@@ -52,6 +52,7 @@ and is a work in progress.
 - Vincent Fish
 - Lynn Matthews
 - Pedro Elosegui
+- Lindy Blackburn
 
 
 > This list is non-exhaustive and reflects major contributions. 
