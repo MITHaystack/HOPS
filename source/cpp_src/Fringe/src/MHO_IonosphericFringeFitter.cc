@@ -58,7 +58,7 @@ void MHO_IonosphericFringeFitter::Run()
         }
 
         //do bare bones first-pass (no iono) to set the sbd
-        coarse_fringe_search();
+        //coarse_fringe_search();
 
         int ret_val = 0;
         if(do_smoothing)
@@ -170,13 +170,15 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     ok = fParameterStore->Get("/control/fit/ion_win", iwin);
     if(ok)
     {
-        win_ion[0] = iwin[0];
-        win_ion[1] = iwin[1];
+        win_ion[0] = std::min(iwin[0], iwin[1]);
+        win_ion[1] = std::max(iwin[0], iwin[1]);
+        msg_debug("fringe", "using an ion window of: ("<< win_ion[0]<<", "<< win_ion[1] << ")" << eom );
     }
     else
     {
         win_ion[0] = 0.0;
         win_ion[1] = 0.0;
+        msg_debug("fringe", "no ion window set, defaulting to ion window of: ("<< win_ion[0]<<", "<< win_ion[1] << ")" << eom );
     }
 
     //fixed ion fit...so we need to check if each station has an assigned a priori ion value
@@ -385,15 +387,8 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             {
                 //cache the full SBD search window for later
                 fMBDSearch->GetSBDWindow(fInitialSBWin[0], fInitialSBWin[1]);
-                //then just limit the SBD window to bin where the max was located
-                double sbdelay = fParameterStore->GetAs< double >("/fringe/sbdelay");
-                double sbdsep = fMBDSearch->GetSBDBinSeparation();
-                msg_debug("fringe",
-                          "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
-                fMBDSearch->SetSBDWindow(sbdelay - sbdsep, sbdelay + sbdsep);
-                first_pass = false;
             }
-
+            
             // restore original window values for interpolation
             for(i = 0; i < 2; i++)
             {
@@ -404,6 +399,21 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             // // interpolate via direct counter-rotation for
             // // more precise results
             interpolate_peak();
+
+            if(first_pass)
+            {
+                //limit the SBD window to bin where the max was located
+                double sbdelay = fParameterStore->GetAs< double >("/fringe/sbdelay");
+                double sbdsep = fMBDSearch->GetSBDBinSeparation();
+                double approx_snr = calculate_approx_snr();
+                if(approx_snr > 15.0) //but only if the SNR was high enough
+                {
+                    msg_debug("fringe",
+                              "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
+                    fMBDSearch->SetSBDWindow(sbdelay - sbdsep, sbdelay + sbdsep);
+                    first_pass = false;
+                }
+            }
 
             // save values for iterative search
             double delres_max = fParameterStore->GetAs< double >("/fringe/famp");
@@ -518,13 +528,15 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     ok = fParameterStore->Get("/control/fit/ion_win", iwin);
     if(ok)
     {
-        win_ion[0] = iwin[0];
-        win_ion[1] = iwin[1];
+        win_ion[0] = std::min(iwin[0], iwin[1]);
+        win_ion[1] = std::max(iwin[0], iwin[1]);
+        msg_debug("fringe", "using an ion window of: ("<< win_ion[0]<<", "<< win_ion[1] << ")" << eom );
     }
     else
     {
         win_ion[0] = 0.0;
         win_ion[1] = 0.0;
+        msg_debug("fringe", "no ion window set, defaulting to ion window of: ("<< win_ion[0]<<", "<< win_ion[1] << ")" << eom );
     }
 
     //fixed ion fit...so we need to check if each station has an assigned a priori ion value
@@ -705,13 +717,22 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
             {
                 //cache the full SBD search window for later
                 fMBDSearch->GetSBDWindow(fInitialSBWin[0], fInitialSBWin[1]);
-                //then just limit the SBD window to bin where the max was located
-                double sbdelay = fParameterStore->GetAs< double >("/fringe/sbdelay");
-                double sbdsep = fMBDSearch->GetSBDBinSeparation();
-                msg_debug("fringe",
-                          "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
-                fMBDSearch->SetSBDWindow(sbdelay - sbdsep, sbdelay + sbdsep);
-                first_pass = false;
+                // //then just limit the SBD window to bin where the max was located
+                // double sbdelay = fParameterStore->GetAs< double >("/fringe/sbdelay");
+                // double sbdsep = fMBDSearch->GetSBDBinSeparation();
+                // double approx_snr = calculate_approx_snr();
+                // if(approx_snr > 15.0)
+                // {
+                //     msg_debug("fringe",
+                //               "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
+                //     fMBDSearch->SetSBDWindow(sbdelay - sbdsep, sbdelay + sbdsep);
+                //     first_pass = false;
+                // }
+                
+                // msg_debug("fringe",
+                //           "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
+                // fMBDSearch->SetSBDWindow(sbdelay - sbdsep, sbdelay + sbdsep);
+                // first_pass = false;
             }
 
             // restore original window values for interpolation
@@ -723,6 +744,21 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
             // interpolate via direct counter-rotation for
             // more precise results
             interpolate_peak();
+            
+            if(first_pass)
+            {
+                //limit the SBD window to bin where the max was located
+                double sbdelay = fParameterStore->GetAs< double >("/fringe/sbdelay");
+                double sbdsep = fMBDSearch->GetSBDBinSeparation();
+                double approx_snr = calculate_approx_snr();
+                if(approx_snr > 15.0) //but only if the SNR was high enough
+                {
+                    msg_debug("fringe",
+                              "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
+                    fMBDSearch->SetSBDWindow(sbdelay - sbdsep, sbdelay + sbdsep);
+                    first_pass = false;
+                }
+            }
 
             // save values for iterative search
             double delres_max = fParameterStore->GetAs< double >("/fringe/famp");
@@ -824,6 +860,28 @@ void MHO_IonosphericFringeFitter::smoother(double* f,        // input data array
         if(ssum != 0)
             g[j] /= ssum;
     }
+}
+
+double 
+MHO_IonosphericFringeFitter::calculate_approx_snr()
+{
+    //snr_approx = 1e-4 * status.delres_max * param.inv_sigma * sqrt((double)status.total_ap_frac * 2.0);
+    double eff_npols = 1.0;
+    std::vector< std::string > pp_vec = fParameterStore->GetAs< std::vector< std::string > >("/config/polprod_set");
+    if(pp_vec.size() >= 2)
+    {
+        eff_npols = 2.0;
+    }
+    
+    double bw_corr_factor = 1.0;
+    double ap_delta = fParameterStore->GetAs< double >("/config/ap_period");
+    double samp_period = fParameterStore->GetAs< double >("/vex/scan/sample_period/value");
+    double total_summed_weights = fParameterStore->GetAs< double >("/fringe/total_summed_weights");
+    double famp = fParameterStore->GetAs< double >("/fringe/famp");
+    double snr =
+        MHO_BasicFringeInfo::calculate_snr(eff_npols, ap_delta, samp_period, total_summed_weights, famp, bw_corr_factor);
+    return snr;
+
 }
 
 } // namespace hops
