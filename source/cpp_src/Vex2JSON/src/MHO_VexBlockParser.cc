@@ -127,7 +127,7 @@ mho_json MHO_VexBlockParser::ParseBlock()
                 }
                 if(!success)
                 {
-                    msg_info("vex", "failed to process line: " << it->fLineNumber << eom);
+                    msg_debug("vex", "failed to process line: " << it->fLineNumber << eom);
                 }
             }
         }
@@ -306,8 +306,11 @@ bool MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line, std::stack< std::s
         //verify that the element name is present in the current format node
         if(!(format.contains(element_name)))
         {
-            msg_info("vex", "could not locate element with name: " << element_name << " under " << fBlockName
-                                                                   << " block format." << eom);
+            if(element_name != "exper_num")
+            {
+                msg_info("vex", "could not locate element with name: " << element_name << " under " << fBlockName
+                    << " block format." << eom);
+            }
             return false;
         }
         vex_element_type etype = MHO_VexDefinitions::DetermineType(format[element_name]["type"].get< std::string >());
