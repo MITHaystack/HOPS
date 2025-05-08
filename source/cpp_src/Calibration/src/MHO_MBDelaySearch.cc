@@ -119,7 +119,7 @@ bool MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
 bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 {
     bool ok;
-
+    fMax = -0.0;
     if(fInitialized && fNSBD > 1)
     {
         fSBDAxis = std::get< FREQ_AXIS >(*in);
@@ -127,7 +127,6 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         fSBDBinSep = fSBDAxis(1) - fSBDAxis(0);
         //loop over the single-band delay 'lags', computing the MBD/DR function
         //find the max for each SBD, and globally
-        fMax = -0.0;
         fNPointsSearched = 0;
         bool first = true;
         for(std::size_t sbd_idx = 0; sbd_idx < fNSBD; sbd_idx++)
@@ -235,12 +234,12 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         check_step_fatal(ok, "fringe", "MBD search cyclic rotation execution." << eom);
         fMBDAxis = std::get< 0 >(fMBDWorkspace);
 
+        fMax = std::sqrt(fMax); //always calculate max that we've seen
         if(fCoarseMBD >= 0 && fCoarseSBD >= 0 && fCoarseDR >= 0)
         {
             fCoarseMBD = fMBDAxis(fMBDMaxBin);
             fCoarseSBD = fSBDAxis(fSBDMaxBin);
             fCoarseDR = fDRAxis(fDRMaxBin);
-            fMax = std::sqrt(fMax);
             return true;
         }
         else
