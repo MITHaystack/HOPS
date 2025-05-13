@@ -5,7 +5,6 @@ from __future__ import print_function
 from __future__ import division
 from builtins import str
 from builtins import range
-from past.utils import old_div
 import argparse
 import sys
 import os
@@ -183,9 +182,9 @@ def main():
                     for ch,ph in list(phresid.phase_residuals.items()):
                         phase_index.append(ch)
                         phase_list_proxy.append(station_sign * ph)
-                    phase_list_proxy = [-1.0*(old_div(math.pi,180.0))*x for x in phase_list_proxy] #negate and convert to radians
+                    phase_list_proxy = [-1.0*((math.pi/180.0))*x for x in phase_list_proxy] #negate and convert to radians
                     phase_list_proxy = np.unwrap(phase_list_proxy) #arguments must be in radians
-                    phase_list_proxy = [(old_div(180.0,math.pi))*x for x in phase_list_proxy] #convert back to degrees
+                    phase_list_proxy = [((180.0/math.pi))*x for x in phase_list_proxy] #convert back to degrees
                     mean_phase = scipy.stats.circmean( np.asarray(phase_list_proxy), high=180.0, low=-180.0) #compute circular mean phase
                     phase_list_proxy = [ (x - mean_phase) for x in phase_list_proxy] #subtract off the mean
                     for i in list(range(0,len(phase_index))):

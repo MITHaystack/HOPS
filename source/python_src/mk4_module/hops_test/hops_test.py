@@ -4,7 +4,6 @@
 from __future__ import print_function
 from __future__ import division
 from builtins import str
-from past.utils import old_div
 from builtins import range
 from io import open
 import os
@@ -988,7 +987,7 @@ def recursive_find_root_files(base_directory, sort_list=True, exclude_list=None,
                     extension = os.path.splitext(filename)[1][1:].strip() #get the file extension
                     if len(extension) == 6:     #check that the extension has a length of 6 chars
                         full_name = os.path.join(current_root, filename) # create full path
-                        filesize_kb = old_div(( os.path.getsize(full_name) ),1024.0)
+                        filesize_kb = ( os.path.getsize(full_name) ) // 1024.0
                         if filesize_kb < 500: #more than 500kb is not likely to be a root file
                             #finally we check that the characters "VEX" are present in the first line of the file
                             tmp_file = open(full_name, 'r')
@@ -1023,7 +1022,7 @@ def recursive_find_root_files_matching_source(base_directory, source_name, sort_
                 extension = os.path.splitext(filename)[1][1:].strip() #get the file extension
                 if len(extension) == 6:     #check that the extension has a length of 6 chars
                     full_name = os.path.join(current_root, filename) # create full path
-                    filesize_kb = old_div(( os.path.getsize(full_name) ),1024.0)
+                    filesize_kb = ( os.path.getsize(full_name) ) // 1024.0 
                     if filesize_kb < 500: #more than 500kb is not likely to be a root file
                         #finally we check that the characters "VEX" are present in the first line of the file
                         tmp_file = open(full_name, 'r')

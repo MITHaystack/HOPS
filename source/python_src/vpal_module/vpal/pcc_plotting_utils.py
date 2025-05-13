@@ -2,10 +2,8 @@
 
 #core imports
 from __future__ import absolute_import
-from __future__ import division
 from builtins import next
 from builtins import str
-from past.utils import old_div
 from builtins import object
 from builtins import range
 import datetime
@@ -29,6 +27,7 @@ from mpl_toolkits.mplot3d import Axes3D
 #hops package python libs
 from . import proxy_cable_cal
 from . import pcc_delay_fitting
+from .utility import old_div
 
 
 class ProxyCableDelayFitPlotter(object):
