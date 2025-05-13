@@ -17,9 +17,15 @@ FIND_PATH(PGPLOT_INCLUDE_DIR
     HINTS /usr/local/pgplot /usr/local /usr/local/include
     DOC "PGPLOT include directory.")
 
-#set the useful vars
 set(PGPLOT_LIBRARIES ${PGPLOT_LIBRARY} ${CPGPLOT_LIBRARY})
 set(PGPLOT_INCLUDE_DIRS ${PGPLOT_INCLUDE_DIR})
+
+#try to find the PNG library (this library may be used if png driver was built for PGPLOT)
+#this really depends on the the details of how PGPLOT was built, of which we are not privy
+find_package(PNG)
+if(PNG_FOUND)
+LIST(APPEND PGPLOT_LIBRARIES ${PNG_LIBRARIES})
+endif(PNG_FOUND)
 
 include(FindPackageHandleStandardArgs)
 
