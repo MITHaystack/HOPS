@@ -6,7 +6,6 @@ from __future__ import division
 from __future__ import absolute_import
 from builtins import str
 from builtins import range
-from past.utils import old_div
 from builtins import object
 import json
 import os
@@ -304,7 +303,7 @@ def compute_vgos_network_reference_station_pc_phases(single_baseline_pp_collecti
                 res1 = pc_xx[ch] - pc_yx[ch]
                 res2 = pc_xy[ch] - pc_yy[ch]
                 if abs(res2 - res1) <= discard_tolerance:
-                    ref_pc_phase_y[ch] = old_div((res1 + res2),2.0)
+                    ref_pc_phase_y[ch] = ((res1 + res2)/2.0)
                 else:
                     discard_count +=1
             elif ch in pc_xx and ch in pc_yx:
@@ -443,7 +442,7 @@ def select_collection_subset(SingleBaselinePolarizationProductCollection_list, t
         best_scan = None
         best_score = 0
         for scan in ffres2pcp_pareto:
-            score = abs( old_div(scan.min_snr,(scan.dtec_mdev + dtec_nom)) )
+            score = abs( (scan.min_snr/(scan.dtec_mdev + dtec_nom)) )
             if score > best_score:
                 best_score = score
                 best_scan = scan

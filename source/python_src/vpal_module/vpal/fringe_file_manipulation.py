@@ -6,7 +6,6 @@ from __future__ import absolute_import
 from __future__ import division
 from builtins import str
 from builtins import object
-from past.utils import old_div
 from builtins import range
 import os
 import sys
@@ -239,7 +238,7 @@ class FringeFileHandle(object):
         self.rem_az = self.fringe_data.t202.contents.rem_az
         self.u = self.fringe_data.t202.contents.u * 0.2062648
         self.v = self.fringe_data.t202.contents.v * 0.2062648
-        self.resid_delay = self.mbdelay + self.ambiguity * math.floor(old_div((self.sbdelay - self.mbdelay), self.ambiguity) + 0.5)
+        self.resid_delay = self.mbdelay + self.ambiguity * math.floor( ((self.sbdelay - self.mbdelay)/self.ambiguity) + 0.5)
 
         if self.fringe_data.t222:
             self.control_file_hash = self.fringe_data.t222.contents.control_hash
@@ -425,9 +424,9 @@ class PhaseResidualData(object):
 
             #invert, unwrap and remove mean phase
             #TODO FIXME -- the next 3 lines effectively do nothing, we have no need to unwrap
-            phase_list_proxy = [(-1.0*(old_div(math.pi,180.0)))*x for x in phase_list_proxy] #negate and convert to radians
+            phase_list_proxy = [(-1.0*((math.pi/180.0)))*x for x in phase_list_proxy] #negate and convert to radians
             phase_list_proxy = np.unwrap(phase_list_proxy) #arguments must be in radians
-            phase_list_proxy = [(old_div(180.0,math.pi))*x for x in phase_list_proxy] #convert back to degrees
+            phase_list_proxy = [((180.0/math.pi))*x for x in phase_list_proxy] #convert back to degrees
             mean_phase = scipy.stats.circmean( np.asarray(phase_list_proxy), high=180.0, low=-180.0) #compute circular mean phase
             phase_list_proxy = [ utility.limit_periodic_quantity_to_range( (x - mean_phase), -180.0, 180.0 ) for x in phase_list_proxy] #subtract off the mean and limit to [-180,180)
 

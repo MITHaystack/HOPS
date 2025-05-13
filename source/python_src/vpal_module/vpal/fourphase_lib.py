@@ -6,7 +6,6 @@ from __future__ import print_function
 from __future__ import absolute_import
 from __future__ import division
 from builtins import str
-from past.utils import old_div
 from builtins import object
 from builtins import range
 import datetime
@@ -700,7 +699,7 @@ def select_fourphase_scans_by_baseline(SingleScanBaselineCollection_list, exp_di
                 fourphase_scan = None
                 best_score = 0
                 for blc in fourphase_pareto:
-                    score = abs( old_div(blc.get_min_snr(),(blc.get_dtec_max_deviation() + dtec_nom)) )
+                    score = abs( (blc.get_min_snr()/(blc.get_dtec_max_deviation() + dtec_nom)) )
                     if score > best_score:
                         best_score = score
                         fourphase_scan = blc_to_scan_dict[blc]

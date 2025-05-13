@@ -8,7 +8,7 @@ from __future__ import print_function
 from __future__ import division
 from builtins import str
 from builtins import zip
-from past.utils import old_div
+
 import datetime
 import argparse
 import re
@@ -30,6 +30,7 @@ import matplotlib.ticker as ticker
 
 #HOPS module imports
 import vpal
+
 
 def plot_station_delay_data(station, station_band_data_objects, sigma_factor=0.0, use_median=False, cut_threshold=0.0, uniform=False, outfile_name="./delay_trend.png"):
 
@@ -208,7 +209,7 @@ def plot_station_ave_delay_data(station, bands, pols, station_ave_calc, sigma_fa
             day=int(scan_data['day']), hour=int(scan_data['hour']), minute=int(scan_data['minute']), second=int(scan_data['second']) )
         scn_reltime = (scan_time - exp_start_time).total_seconds()
         scn_reltime /= 3600 #convert to hours
-        delay_ps = old_div(float( scan_data['mean_delay'] ),1e-12) #conver to ps
+        delay_ps = float( scan_data['mean_delay'] ) / 1e-12 #conver to ps
         td = (scn_reltime, delay_ps)
         data.append(td)
 

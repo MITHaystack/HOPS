@@ -6,7 +6,6 @@ from __future__ import absolute_import
 from __future__ import division
 from builtins import next
 from builtins import str
-from past.utils import old_div
 from builtins import object
 from builtins import range
 import datetime
@@ -30,6 +29,7 @@ except:
 
 from .utility import limit_periodic_quantity_to_range
 from .utility import minimum_angular_difference
+from .utility import old_div
 
 #hops package python libs
 import mk4io
