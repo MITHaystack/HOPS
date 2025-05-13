@@ -3,7 +3,7 @@ find_package (X11)
 find_package (GFORTRAN)
 
 if( PGPLOT_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
-
+    
 #declare exe name ############################################################
 set(EXENAME "search")
 set(EXENAME2 "soirch")
@@ -70,11 +70,20 @@ set(INTERNAL_LIBLIST
 include_directories(${PGPLOT_INCLUDE_DIR})
 include_directories(${FFTW_INCLUDE_DIR})
 
-
 #TODO...determine why CPGPLOT and PGPLOT must be given in opposite order from fourfit?
+
 set(EXTERNAL_LIBLIST
     ${CPGPLOT_LIBRARY}
     ${PGPLOT_LIBRARY}
+)
+
+#in case the user has compiled PGPLOT against libPNG, we link against it here
+find_package(PNG)
+if(PNG_FOUND)
+list(APPEND EXTERNAL_LIBLIST ${PNG_LIBRARIES})
+endif(PNG_FOUND)
+
+list(APPEND EXTERNAL_LIBLIST
     ${GFORTRAN_LIBRARIES}
     ${X11_LIBRARIES}
     "m"
