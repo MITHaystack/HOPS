@@ -87,7 +87,7 @@ sudo apt-get install build-essential cmake cmake-curses-gui python3-dev python3-
 ```
 On RHEL/Fedora based distributions, these dependencies can be installed with:
 ```
-sudo dnf install @development-tools gcc-c++ cmake cmake-gui python3-devel python3-pip wget jq
+sudo dnf install gcc-c++ cmake cmake-gui python3-devel python3-pip wget jq
 ```
 While not strictly required by HOPS4, the Fast Fourier Transform library fftw is highly recommended and can be installed with:
 ```
