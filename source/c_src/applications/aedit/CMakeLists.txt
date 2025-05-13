@@ -6,6 +6,12 @@ find_package (GFORTRAN)
 
 if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
 
+    #in case the user has compiled PGPLOT against libPNG
+    find_package(PNG)
+    if(PNG_FOUND)
+    list(APPEND PGPLOT_LIBRARIES ${PNG_LIBRARIES})
+    endif(PNG_FOUND)
+
     #declare exe name ############################################################
     set(EXENAME "aedit")
 
