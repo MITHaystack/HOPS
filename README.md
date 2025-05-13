@@ -89,6 +89,12 @@ On RHEL/Fedora based distributions, these dependencies can be installed with:
 ```
 sudo dnf install gcc-c++ cmake cmake-gui python3-devel python3-pip wget jq
 ```
+Note that depending on your exact flavor of RHEL/Fedora you may need to first enable the following:
+```
+sudo dnf config-manager --set-enabled crb
+dnf install epel-release
+```
+So that you can locate some of these packages.
 While not strictly required by HOPS4, the Fast Fourier Transform library fftw is highly recommended and can be installed with:
 ```
 sudo apt-get install libfftw3-dev

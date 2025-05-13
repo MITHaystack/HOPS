@@ -5,7 +5,6 @@ from __future__ import print_function
 from __future__ import division
 from builtins import zip
 from builtins import range
-from past.utils import old_div
 import argparse
 import sys
 import os
@@ -112,7 +111,7 @@ def process_fourphase_plot(exp_report):
 
             #plot a guassian about the central estimator
             dval = np.linspace(dlowlim, duplim,100)
-            dx = old_div((duplim - dlowlim),float(ndbins))
+            dx = ((duplim - dlowlim)/float(ndbins))
             scale = len(delays)*dx
             plt.plot(dval, scale*scipy.stats.norm.pdf(dval, val.get_delay_offset_mean()*micro_to_nano, val.get_delay_offset_error()*micro_to_nano))
 
@@ -131,7 +130,7 @@ def process_fourphase_plot(exp_report):
 
             #plot a gaussian about the central estimator
             phval = np.linspace(phlowlim, phuplim,100)
-            dph = old_div((phuplim - phlowlim),float(nphbins))
+            dph = ((phuplim - phlowlim)/float(nphbins))
             scale = len(phases)*dph
             plt.plot(phval, scale*scipy.stats.norm.pdf(phval, val.get_phase_offset_mean(), val.get_phase_offset_error()))
 
@@ -281,15 +280,15 @@ def process_ffres2pcp_plot(report_data, result_table):
                 max_pc = max(limits_pc)
 
                 #round max/min to nearest 10, in direction away from zero
-                min_pc = min_pc + (old_div(min_pc,abs(min_pc))) * ( (-1*abs(min_pc))%10 )
-                max_pc = max_pc + (old_div(max_pc,abs(max_pc))) * ( (-1*abs(max_pc))%10 )
+                min_pc = min_pc + ((min_pc/abs(min_pc))) * ( (-1*abs(min_pc))%10 )
+                max_pc = max_pc + ((max_pc/abs(max_pc))) * ( (-1*abs(max_pc))%10 )
 
                 deg_step = 5.0
                 if( abs(max_pc - min_pc) >= 100 ):
                     deg_step = 10.0
                 if( abs(max_pc - min_pc) >= 200 ):
                     deg_step = 30.0
-                n_div = int( math.floor( old_div(abs(max_pc - min_pc), deg_step)) )
+                n_div = int( math.floor( (abs(max_pc - min_pc)/ deg_step)) )
 
                 deg_ticks = []
                 for i in list(range(0,n_div)):

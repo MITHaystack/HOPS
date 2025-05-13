@@ -5,13 +5,22 @@ from __future__ import division
 from builtins import zip
 from builtins import str
 from builtins import object
-from past.utils import old_div
 from builtins import range
 import sys
 
 #non-core imports
 import numpy
 
+#a replacement for old_div() in past.utils
+def old_div(a, b):
+    """
+    Equivalent to ``a / b`` on Python 2 without ``from __future__ import
+    division``.
+    """
+    if isinstance(a, int) and isinstance(b, int):
+        return a // b
+    else:
+        return a / b
 
 def limit_periodic_quantity_to_range(value_to_limit, low_value=-180.0, high_value=180.0):
     """clamp periodic variable to range [low_value,high_value)"""
