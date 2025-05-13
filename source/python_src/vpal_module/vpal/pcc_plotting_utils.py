@@ -27,8 +27,6 @@ from mpl_toolkits.mplot3d import Axes3D
 #hops package python libs
 from . import proxy_cable_cal
 from . import pcc_delay_fitting
-from .utility import old_div
-
 
 class ProxyCableDelayFitPlotter(object):
 
@@ -383,7 +381,7 @@ class ProxyCableDelayFitPlotter(object):
                 plt.grid(True)
                 plt.ylabel("Phase (deg)")
                 ax = plt.gca()
-                ticks_x = ticker.FuncFormatter(lambda a, pos: '{0:g}'.format(old_div(a,scale_freq)))
+                ticks_x = ticker.FuncFormatter(lambda a, pos: '{0:g}'.format((a/scale_freq)))
                 ax.xaxis.set_major_formatter(ticks_x)
                 plt.xlabel("Frequency (GHz)")
 
@@ -393,7 +391,7 @@ class ProxyCableDelayFitPlotter(object):
                 plt.grid(True)
                 plt.ylabel("Phase residuals (deg)")
                 ax2 = plt.gca()
-                ticks_x2 = ticker.FuncFormatter(lambda a, pos: '{0:g}'.format(old_div(a,scale_freq)))
+                ticks_x2 = ticker.FuncFormatter(lambda a, pos: '{0:g}'.format((a/scale_freq)))
                 ax2.xaxis.set_major_formatter(ticks_x2)
                 plt.xlabel("Frequency (GHz)")
                 plt.grid(True)
@@ -411,8 +409,8 @@ class ProxyCableDelayFitPlotter(object):
                 for i in list(range(0,n_points_de)):
                     for j in list(range(0,n_points_ph)):
                         x[i][j] = (delay - delay_window) + i*(2.0*delay_window)/n_points_de
-                        y[i][j] = (-math.pi + j*2.0*math.pi/n_points_ph )*(old_div(180.0,math.pi))
-                        param = [ x[i][j], y[i][j]*(old_div(math.pi,180.0)) ]
+                        y[i][j] = (-math.pi + j*2.0*math.pi/n_points_ph )*((180.0/math.pi))
+                        param = [ x[i][j], y[i][j]*((math.pi/180.0)) ]
                         z[i][j] = bd_fitter.fit_function1(param,  scan.fit_results[bp].fit_data)
 
                 plt.subplot(313)
@@ -423,10 +421,10 @@ class ProxyCableDelayFitPlotter(object):
                 plt.ylabel("Phase offset at \n reference frequency (deg)")
                 cbar = plt.colorbar(pad=0.2, orientation='horizontal')
                 cbar.set_label('Minimization function')
-                plt.plot(delay, phase_offset*(old_div(180.0,math.pi)), 'r+', markersize=7)
-                ax3.annotate('   ($t$, $\phi$) = (' + str(round(old_div(delay,pcc_delay_fitting.PICOSECOND),2) ) + ' ps, ' + str(round(phase_offset*(old_div(180.0,math.pi)),0)) + '$^\circ$)', xy=(delay, phase_offset*(old_div(180.0,math.pi))), color='red')
+                plt.plot(delay, phase_offset*((180.0/math.pi)), 'r+', markersize=7)
+                ax3.annotate('   ($t$, $\phi$) = (' + str(round( (delay/pcc_delay_fitting.PICOSECOND),2) ) + ' ps, ' + str(round(phase_offset*((180.0/math.pi)),0)) + '$^\circ$)', xy=(delay, phase_offset*((180.0/math.pi))), color='red')
                 scale_delay = 1e-9
-                ticks_x3 = ticker.FuncFormatter(lambda a, pos: '{0:g}'.format(old_div(a,scale_delay)))
+                ticks_x3 = ticker.FuncFormatter(lambda a, pos: '{0:g}'.format((a/scale_delay)))
                 ax3.xaxis.set_major_formatter(ticks_x3)
                 plt.xlabel("Delay (ns)")
 

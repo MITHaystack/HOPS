@@ -29,7 +29,6 @@ except:
 
 from .utility import limit_periodic_quantity_to_range
 from .utility import minimum_angular_difference
-from .utility import old_div
 
 #hops package python libs
 import mk4io
@@ -146,10 +145,10 @@ class NumericalInterval(object):
         return self.width
 
     def get_lower_limit(self):
-        return self.center - old_div(self.width,2.0)
+        return self.center - self.width/2.0
 
     def get_upper_limit(self):
-        return self.center + old_div(self.width,2.0)
+        return self.center + self.width/2.0
 
     def __str__(self):
         return "(" + str(self.get_lower_limit() ) + ", " + str(self.get_upper_limit() ) + ")"
@@ -416,17 +415,17 @@ class SingleChannelPhasorCollection(object):
         """construct the expected number of physical tones and their locations"""
         if self.net_sideband == "U":
             self.sideband_sign = 1.0
-            self.tone_low = self.pcal_spacing*math.ceil( old_div( self.sky_frequency, self.pcal_spacing) )
-            self.tone_high =  self.pcal_spacing*math.floor( old_div( (self.sky_frequency + self.sideband_sign*self.bandwidth), self.pcal_spacing) )
+            self.tone_low = self.pcal_spacing*math.ceil( ( self.sky_frequency / self.pcal_spacing) )
+            self.tone_high =  self.pcal_spacing*math.floor( ( (self.sky_frequency + self.sideband_sign*self.bandwidth) / self.pcal_spacing) )
         elif self.net_sideband == "L":
             self.sideband_sign = -1.0
-            self.tone_high = self.pcal_spacing*math.floor( old_div( self.sky_frequency, self.pcal_spacing) )
-            self.tone_low =  self.pcal_spacing*math.ceil( old_div( (self.sky_frequency + self.sideband_sign*self.bandwidth), self.pcal_spacing) )
+            self.tone_high = self.pcal_spacing*math.floor( ( self.sky_frequency / self.pcal_spacing) )
+            self.tone_low =  self.pcal_spacing*math.ceil( ( (self.sky_frequency + self.sideband_sign*self.bandwidth) / self.pcal_spacing) )
         else:
             pcc_logger.error("Error, channel with net-sideband not L or U present.")
             sys.exit('Error, channel with net-sideband not L or U present.')
 
-        self.ntones = int( 1 + old_div( abs(self.tone_high - self.tone_low), self.pcal_spacing) )
+        self.ntones = int( 1 + ( abs(self.tone_high - self.tone_low) / self.pcal_spacing) )
         self.tone_physical_freq_array = []
         self.tone_offset_freq_array = []
         for n in list(range(0, self.ntones)):
@@ -612,7 +611,7 @@ class StationScanPhaseCalibrationData(object):
                             scpc.time_interval = [None]*num_ap
                             for ap in list(range(0,num_ap)):
                                 #assume DIFX correlator (which gives centroid of time interval)
-                                pc_time = old_div(station_data.t309[ap].contents.rot, scpc.bandwidth)
+                                pc_time = (station_data.t309[ap].contents.rot / scpc.bandwidth)
                                 scpc.time_interval[ap] = NumericalInterval(pc_time, station_data.t309[ap].contents.acc_period)
                                 u = station_data.t309[ap].contents.chan[ch].acc[tone_phasor_index][0]
                                 v = station_data.t309[ap].contents.chan[ch].acc[tone_phasor_index][1]
