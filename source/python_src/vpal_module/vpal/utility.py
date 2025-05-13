@@ -11,17 +11,6 @@ import sys
 #non-core imports
 import numpy
 
-#a replacement for old_div() in past.utils
-def old_div(a, b):
-    """
-    Equivalent to ``a / b`` on Python 2 without ``from __future__ import
-    division``.
-    """
-    if isinstance(a, int) and isinstance(b, int):
-        return a // b
-    else:
-        return a / b
-
 def limit_periodic_quantity_to_range(value_to_limit, low_value=-180.0, high_value=180.0):
     """clamp periodic variable to range [low_value,high_value)"""
     high = high_value
@@ -46,7 +35,7 @@ def minimum_angular_difference(angle1, angle2, low_value=-180.0, high_value=180.
     bprime = limit_periodic_quantity_to_range(angle2, low, high)
 
     ret_val = aprime - bprime
-    if ret_val > old_div(abs(high - low),2.0):
+    if ret_val > (abs(high - low)/2.0):
         ret_val = abs(high - low) - ret_val
 
     return ret_val
@@ -61,7 +50,7 @@ def time_to_int(year, day, hour, minute, sec):
     if year80 < 0:
         year80 += 100
 
-    nleaps = old_div((year80 + 3),4)
+    nleaps = ((year80 + 3)//4)
     secs_since_80 = year80*31536000 + (day+nleaps-1)*86400 + hour*3600 + minute*60 + sec
     return secs_since_80
 
@@ -199,7 +188,7 @@ def compute_weighted_mean(value_list, weight_list):
         w = weight_list[n]
         numer += x*w
         denom += abs(w) #weights had better be positive
-    return old_div(numer,denom)
+    return (numer/denom)
 
 def mad(value_list):
     """computes the median absolute deviation of a list of numbers
