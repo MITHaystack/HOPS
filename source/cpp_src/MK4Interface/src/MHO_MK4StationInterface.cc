@@ -344,7 +344,7 @@ void MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
     std::get< MTPCAL_TIME_AXIS >(fAllPCalData).Insert(std::string("name"), std::string("time"));
     std::get< MTPCAL_TIME_AXIS >(fAllPCalData).Insert(std::string("units"), std::string("s"));
     std::get< MTPCAL_FREQ_AXIS >(fAllPCalData).Insert(std::string("name"), std::string("frequency"));
-    std::get< MTPCAL_TIME_AXIS >(fAllPCalData).Insert(std::string("units"), std::string("MHz"));
+    std::get< MTPCAL_FREQ_AXIS >(fAllPCalData).Insert(std::string("units"), std::string("MHz"));
 
     //tag this pcal data
     fAllPCalData.Insert(std::string("name"), std::string("pcal"));

@@ -35,6 +35,10 @@ int main(int argc, char** argv)
                    "name of the output (json) file, if not given the result will be stored in <input-file>.json");
 
     CLI11_PARSE(app, argc, argv);
+    
+    //clamp detail level
+    if(detail > eJSONAll){detail = eJSONAll;}
+    if(detail < eJSONBasicLevel){detail = eJSONBasicLevel;}
 
     //clamp message level
     if(message_level > 5)

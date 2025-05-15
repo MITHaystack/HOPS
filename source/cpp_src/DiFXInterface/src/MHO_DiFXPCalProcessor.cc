@@ -363,6 +363,13 @@ void MHO_DiFXPCalProcessor::Organize()
                 }
             }
         }
+        
+        //add axis labels and units
+        std::get< MTPCAL_POL_AXIS >(fPCal).Insert(std::string("name"), std::string("polarization"));
+        std::get< MTPCAL_TIME_AXIS >(fPCal).Insert(std::string("name"), std::string("time"));
+        std::get< MTPCAL_TIME_AXIS >(fPCal).Insert(std::string("units"), std::string("s"));
+        std::get< MTPCAL_FREQ_AXIS >(fPCal).Insert(std::string("name"), std::string("frequency"));
+        std::get< MTPCAL_FREQ_AXIS >(fPCal).Insert(std::string("units"), std::string("MHz"));
 
         //add some helpful tags to the fPCal data;
         fPCal.Insert("station_code", fStationCode);
