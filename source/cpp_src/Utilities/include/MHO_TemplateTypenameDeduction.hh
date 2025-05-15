@@ -4,7 +4,7 @@
 #include <tuple>
 
 #ifndef MHO_TemplateTypenameDeduction_HH__
-    #define MHO_TemplateTypenameDeduction_HH__
+#define MHO_TemplateTypenameDeduction_HH__
 
 /*!
 *@file MHO_TemplateTypenameDeduction.hh

@@ -43,6 +43,16 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 
         void ConvertObjectInStoreToJSON(MHO_ContainerStore& store, const MHO_UUID& obj_uuid, mho_json& json_obj,
                                         int level_of_detail = eJSONBasic);
+                                        
+        //also provides access to the raw bytes of table container data (for hops2flat)
+        void ConvertObjectInStoreToJSONAndRaw(MHO_ContainerStore& store, 
+                                        const MHO_UUID& obj_uuid,
+                                        mho_json& json_obj,
+                                        const char*& raw_data,
+                                        std::size_t& raw_data_byte_size,
+                                        std::string& raw_data_descriptor,
+                                        int level_of_detail = eJSONBasic);
+                                        
 
     private:
         std::string fFilename;
