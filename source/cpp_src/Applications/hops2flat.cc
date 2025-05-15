@@ -6,38 +6,63 @@
 #include "MHO_DirectoryInterface.hh"
 
 #include <utility>
+#include <fstream>
 
 using namespace hops;
 
 //option parsing and help text library
 #include "CLI11.hpp"
 
-//unspecialized template doesn't do much
-template< typename XCheckType >
-void
-ExtractData(const MHO_Serializable* obj, std::pair< void*, std::size_t>& ptr_bsize )
+void write_to_binfile(const char* data, std::size_t size, const std::string& filename) 
 {
-    ptr_bsize.first = nullptr;
-    ptr_bsize.second = 0;
-};
+    std::ofstream outFile(filename, std::ios::binary);
+    if(!outFile) 
+    {
+        msg_error("main", "could not open file: " + filename << eom);
+    }
+    outFile.write(data, size);
+    outFile.close();
+}
 
-
-
-//specialization for tables...TODO do we need specialization for vector/scalar containers?
-template< typename XCheckType = XContainerType >
-typename std::enable_if< std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
-ExtractData(const MHO_Serializable* obj, std::pair< void*, std::size_t>& ptr_bsize )
+void write_to_jsonfile(mho_json& obj, const std::string& meta_file, int nspaces) 
 {
-    ptr_bsize.first = nullptr;
-    ptr_bsize.second = 0;
-    XContainerType* ptr = std::dynamic_cast< XContainerType* >(obj);
-    if(obj == nullptr){return;}
-    ptr_bsize.first = std::reinterpret_cast< void* >( ptr->GetData() );
-    if(ptr_bsize.first == nullptr ){return;}
-    std::size_t element_bsize = sizeof(XContainerType::value_type);
-    std::size_t nelem = ptr->GetSize();
-    ptr_bsize.second = nelem*element_bsize;
-};
+    //open and dump the meta data to file
+    std::ofstream outFile(meta_file.c_str(), std::ofstream::out);
+    if(outFile.is_open())
+    {
+        if(nspaces == 0)
+        {
+            outFile << obj;
+        }
+        else
+        {
+            outFile << obj.dump(nspaces);
+        }
+    }
+    else
+    {
+        msg_error("main", "could not open file: " << meta_file << eom);
+    }
+    outFile.close();
+}
+
+
+void write_to_cborfile(mho_json& obj, const std::string& meta_file) 
+{
+    //open and dump the meta data to file
+    std::ofstream outFile(meta_file.c_str(), std::ofstream::out);
+    if(outFile.is_open())
+    {
+        //serialize to CBOR and write
+        std::vector<std::uint8_t> cbor_data = mho_json::to_cbor(obj);
+        outFile.write(reinterpret_cast<const char*>(cbor_data.data()), cbor_data.size());
+    }
+    else
+    {
+        msg_error("main", "could not open file: " << meta_file << eom);
+    }
+    outFile.close();
+}
 
 
 int main(int argc, char** argv)
@@ -46,21 +71,31 @@ int main(int argc, char** argv)
     std::string output_dir = "";
     //meta data detail level
     int detail = eJSONAxesWithLabelsLevel;
+    std::string uuid_string = "";
+    std::string shortname = "";
     unsigned int nspaces = 0;
     int message_level = 0;
+    int trim_nchars = 0;
+    bool cbor_output = false;
 
     CLI::App app{"hops2flat"};
 
-    // app.add_option("-d,--detail", detail,
-    //                "level of detail to be used when generating the output, range: 0 (low) to 4 (high), default (4)");
+    app.add_option("-d,--detail", detail,
+                    "level of detail to be used when generating the output, range: 0 (low) to 3 (high), default (3)");
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
     app.add_option("-p,--pretty-print", nspaces,
                    "generates the json meta-data ouput with indentations (soft tabs) consisting of the number of spaces specified, "
                    "default (disabled)");
-    // app.add_option("-u,--uuid", uuid_string, "specify and extract a single object by UUID");
-    // app.add_option("-s,--shortname", shortname,
-    //                "specify and extract a single object by shortname (returns first matching object) ")
-    //     ->excludes("--uuid");
+    app.add_option("-u,--uuid", uuid_string, "specify and extract a single object by UUID");
+    app.add_option("-s,--shortname", shortname,
+                   "specify and extract a single object by shortname (returns first matching object) ")
+        ->excludes("--uuid");
+    app.add_option("-t,--trim-uuid", trim_nchars,
+                    "specify the number of characters of the object UUID to keep in the file name");
+    app.add_flag("-c,--cbor", cbor_output, 
+                   "export the json meta data in CBOR binary representation")
+        ->excludes("--pretty-print");
+    
     app.add_option("input,-i,--input-file", input_file, "name of the input (hops) file to be converted")->required();
     app.add_option("output,-o,--output-dir", output_dir,
                    "name of the output directory, if not given the result will be stored in <input-file>.flat");
@@ -113,9 +148,32 @@ int main(int argc, char** argv)
     conInter.SetFilename(input_file);
     conInter.PopulateStoreFromFile(conStore);
     
+    //if a specific object was requested -- convert given uuid string to MHO_UUID object
+    bool single_object = false;
+    MHO_UUID single_obj_uuid;
+    if(shortname != "")
+    {
+        single_obj_uuid = conStore.GetObjectUUID(shortname);
+        if(single_obj_uuid.is_empty())
+        {
+            msg_fatal("main", "object uuid for: "<< shortname << ", could not be determined" << eom);
+            return 1;
+        }
+        single_object = true;
+    }
+    else if(uuid_string != "")
+    {
+        bool ok = single_obj_uuid.from_string(uuid_string);
+        if(!ok)
+        {
+            msg_fatal("main", "could not convert given string into UUID key: " << uuid_string << eom);
+            return 1;
+        }
+        single_object = true;
+    }
+
     //loop over all the objects in the container, and convert them 
     //into a meta-data .json file, and a flat binary file for the data table
-    
     //get all the types in the container
     std::vector< MHO_UUID > type_ids;
     conStore.GetAllTypeUUIDs(type_ids);
@@ -127,58 +185,48 @@ int main(int argc, char** argv)
         for(std::size_t oid=0; oid<obj_ids.size(); oid++)
         {
             MHO_UUID obj_uuid = obj_ids[oid];
-            //convert the selected object to json at the current detail level
-            mho_json obj_json;
-            conInter.ConvertObjectInStoreToJSON(conStore, obj_uuid, obj_json, detail);
-            
-            //construct the file name for this object 
-            std::string meta_file = output_dir + "/" + obj_uuid.as_string() + ".meta.json";
+            //bail out on this one if only a single object requested, and this is not a match
+            if(single_object && obj_uuid != single_obj_uuid){continue;}
 
-            //open and dump the meta data to file
-            std::ofstream outFile(meta_file.c_str(), std::ofstream::out);
-            if(outFile.is_open())
+            std::string shortname = conStore.GetShortName(obj_uuid);
+            std::string obj_ident = obj_uuid.as_string();
+            //trim the object ident as needed
+            if(trim_nchars != 0)
             {
-                if(nspaces == 0)
-                {
-                    outFile << obj_json;
-                }
-                else
-                {
-                    outFile << obj_json.dump(nspaces);
-                }
+                if(obj_ident.size() > trim_nchars){obj_ident.resize(trim_nchars);}
+            }
+            
+            //convert the selected object to json
+            mho_json obj_json;
+            
+            //needed to extract raw table data (if we can)
+            const char* raw_data;
+            std::size_t raw_data_byte_size;
+            std::string raw_data_descriptor;
+            
+            conInter.ConvertObjectInStoreToJSONAndRaw(conStore, obj_uuid, obj_json, raw_data, raw_data_byte_size, raw_data_descriptor, detail);
+
+            if(!cbor_output)
+            {
+                //construct the file name for the meta data of this object 
+                std::string meta_file = output_dir + "/" + shortname + "." + obj_ident + ".meta.json";
+                write_to_jsonfile(obj_json, meta_file, nspaces);
             }
             else
             {
-                msg_error("main", "could not open file: " << meta_file << eom);
-            }
-            outFile.close();
-            
-            //now we want to extract the table data and write it out as a flat binary file 
-            MHO_Serializable* obj_ptr = conStore.GetObject(obj_uuid);
-            
-            //TODO -- we want to write the numpy dtype code into the name
-            std::string bin_file = output_dir + "/" + obj_uuid.as_string() + ".bin";
-            std::pair< void*, std::size_t> ptr_bsize;
-            ExtractData(obj_ptr, ptr_bsize );
-            
-            if(ptr_bsize.first != nullptr && ptr_bsize.second != 0)
-            {
-            
-                if(ptr_bsize.first != nullptr)
-                {
-                    std::cout<<"data ptr = "<<ptr_bsize.first<<std::endl;
-                }
-                if(ptr_bsize.second != 0)
-                {
-                    std::cout<<"data size (bytes) = "<<ptr_bsize.second<<std::endl;
-                }
-            
-            }
+                //construct the file name for the meta data of this object 
+                std::string meta_file = output_dir + "/" + shortname + "." + obj_ident + ".meta.cbor";
+                write_to_cborfile(obj_json, meta_file);
+            } 
 
+            //now we can write out the raw table data (if it exists) in one big chunk
+            if(raw_data != nullptr && raw_data_byte_size != 0 && raw_data_descriptor != "")
+            {
+                std::string bin_file = output_dir + "/" + shortname + "." + obj_ident +"." + raw_data_descriptor + ".bin";
+                write_to_binfile(raw_data, raw_data_byte_size, bin_file);
+            }
         }
     }
-
-
 
     msg_info("main", "done" << eom);
 
