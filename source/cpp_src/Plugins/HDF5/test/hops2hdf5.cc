@@ -18,6 +18,10 @@ using namespace hops;
 //option parsing and help text library
 #include "CLI11.hpp"
 
+
+
+
+
 herr_t 
 attach_metadata(hid_t object_id, const std::string& attr_name, const std::string& metadata) 
 {
@@ -60,8 +64,6 @@ attach_metadata(hid_t object_id, const std::string& attr_name, const std::string
 
     return status;
 }
-
-
 
 
 template< typename XDataType >
@@ -199,11 +201,13 @@ herr_t write_to_hdf5file(hid_t file_id,
         }
         if(rdd == "c8")
         {
-            //not supported yet
+            const std::complex<float>* ptr = reinterpret_cast< const std::complex<float>* >(raw_data);
+            if(ptr != nullptr){status = make_dataset< std::complex<float> >(file_id, dataset_name, rank, dims, ptr, meta_data); }
         }
         if(rdd == "c16")
         {
-            //not supported yet
+            const std::complex<double>* ptr = reinterpret_cast< const std::complex<double>* >(raw_data);
+            if(ptr != nullptr){status = make_dataset< std::complex<double> >(file_id, dataset_name, rank, dims, ptr, meta_data); }
         }
         //delete the dims object
         delete[] dims;
@@ -355,10 +359,12 @@ int main(int argc, char** argv)
             std::string dataset_name = obj_ident; //shortname + "." + obj_ident;
             conInter.ConvertObjectInStoreToJSONAndRaw(conStore, obj_uuid, obj_json, rank, raw_data, raw_data_byte_size, raw_data_descriptor, detail);
 
+
+
             if(raw_data != nullptr && raw_data_byte_size != 0 && raw_data_descriptor != "")
             {
                 herr_t status = write_to_hdf5file(file_id, rank, raw_data, raw_data_byte_size, dataset_name, raw_data_descriptor, obj_json);
-                std::cout<<"object: "<<obj_ident<<" status = "<<status<<std::endl;
+                std::cout<<"object: "<<obj_ident<<" status = "<<status<<" encoding: "<<raw_data_descriptor<<std::endl;
             }
             
             if(raw_data_descriptor == "tags")
