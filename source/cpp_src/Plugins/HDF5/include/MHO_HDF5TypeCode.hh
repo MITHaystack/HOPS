@@ -31,23 +31,46 @@
 // H5T_NATIVE_FLOAT16 	C-style _Float16 (May be H5I_INVALID_HID if platform doesn't support _Float16 type) 
 // H5T_NATIVE_FLOAT 	C-style float 
 // H5T_NATIVE_DOUBLE 	C-style double 
-// H5T_NATIVE_LDOUBLE 	C-style long double 
-// H5T_NATIVE_FLOAT_COMPLEX 	C-style float _Complex (MSVC _Fcomplex) (May be H5I_INVALID_HID if platform doesn't support float _Complex / _Fcomplex type) 
-// H5T_NATIVE_DOUBLE_COMPLEX 	C-style double _Complex (MSVC _Dcomplex) (May be H5I_INVALID_HID if platform doesn't support double _Complex / _Dcomplex type) 
-// H5T_NATIVE_LDOUBLE_COMPLEX 	C-style long double _Complex (MSVC _Lcomplex) (May be H5I_INVALID_HID if platform doesn't support long double _Complex / _Lcomplex type) 
-// H5T_NATIVE_B8 	8-bit bitfield based on native types 
-// H5T_NATIVE_B16 	16-bit bitfield based on native types 
-// H5T_NATIVE_B32 	32-bit bitfield based on native types 
-// H5T_NATIVE_B64 	64-bit bitfield based on native types 
-// H5T_NATIVE_OPAQUE 	opaque unit based on native types 
-// H5T_NATIVE_HADDR 	address type based on native types 
-// H5T_NATIVE_HSIZE 	size type based on native types 
-// H5T_NATIVE_HSSIZE 	signed size type based on native types 
-// H5T_NATIVE_HERR 	error code type based on native types 
-// H5T_NATIVE_HBOOL 	Boolean type based on native types 
+
 
 namespace hops 
 {
+
+//helper structs and functions needed for complex numbers
+
+typedef struct h5helper_complex_float 
+{
+    double real;
+    double imag;
+}
+h5helper_complex_float;
+
+
+typedef struct h5helper_complex_double 
+{
+    double real;
+    double imag;
+}
+h5helper_complex_double; 
+
+hid_t 
+create_complex_dtype_float() 
+{
+    hid_t complex_dtype = H5Tcreate(H5T_COMPOUND, sizeof(h5helper_complex_float));
+    H5Tinsert(complex_dtype, "r", HOFFSET(h5helper_complex_float, real), H5T_NATIVE_FLOAT);
+    H5Tinsert(complex_dtype, "i", HOFFSET(h5helper_complex_float, imag), H5T_NATIVE_FLOAT);
+    return complex_dtype;
+}
+
+//needed for std::complex<double>
+hid_t 
+create_complex_dtype_double() 
+{
+    hid_t complex_dtype = H5Tcreate(H5T_COMPOUND, sizeof(h5helper_complex_double));
+    H5Tinsert(complex_dtype, "r", HOFFSET(h5helper_complex_double, real), H5T_NATIVE_DOUBLE);
+    H5Tinsert(complex_dtype, "i", HOFFSET(h5helper_complex_double, imag), H5T_NATIVE_DOUBLE);
+    return complex_dtype;
+}
 
 //generic returns invalid
 template< typename XType > hid_t MHO_HDF5TypeCode()
@@ -68,8 +91,15 @@ template<> inline hid_t MHO_HDF5TypeCode< uint64_t >(){  return H5T_NATIVE_ULLON
 template<> inline hid_t MHO_HDF5TypeCode< float >(){  return H5T_NATIVE_FLOAT; }
 template<> inline hid_t MHO_HDF5TypeCode< double >(){  return H5T_NATIVE_DOUBLE; }
 
-// template<> inline hid_t MHO_HDF5TypeCode< std::complex<float> >(){  return H5T_NATIVE_FLOAT_COMPLEX; }
-// template<> inline hid_t MHO_HDF5TypeCode< std::complex<double> >(){  return H5T_NATIVE_DOUBLE_COMPLEX; }
+template<> inline hid_t MHO_HDF5TypeCode< std::complex<float> >()
+{
+    return create_complex_dtype_float();
+}
+
+template<> inline hid_t MHO_HDF5TypeCode< std::complex<double> >()
+{
+    return create_complex_dtype_double();
+}
 
 }//end namespace
 
