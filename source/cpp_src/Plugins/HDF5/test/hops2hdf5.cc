@@ -115,19 +115,154 @@ make_dataset(hid_t file_id, const std::string& name,
 }
 
 
+
+//specialization for std::complex<float>
+template< >
+herr_t 
+make_dataset< std::complex<float> >(hid_t file_id, const std::string& name, 
+             hsize_t rank, hsize_t* dims,
+             const std::complex<float>* data, const std::string& metadata) 
+{
+    herr_t status;
+    hid_t dataspace_id = -1;
+    hid_t dataset_id = -1;
+    
+    //create dataspace
+    dataspace_id = H5Screate_simple(rank, dims, NULL);
+    if (dataspace_id < 0)
+    {
+        msg_error("main", "could not create dataspace" << eom);
+        return -1;
+    }
+    
+    //get the type code
+    hid_t TYPE_CODE = MHO_HDF5TypeCode< std::complex<float> >();
+
+    //create dataset
+    dataset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, 
+                           dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+    if (dataset_id < 0) 
+    {
+        msg_error("main", "could not create data set" << eom);
+        H5Sclose(dataspace_id);
+        return -1;
+    }
+
+    //compute total size of the array;
+    std::size_t total_size = 1;
+    for(std::size_t j=0; j<rank; j++){total_size *= dims[j];}
+    
+    //copy the data into a temporary vector of our helper type 
+    std::vector< h5helper_complex_float > helper_data;
+    helper_data.resize(total_size);
+    for(std::size_t i=0; i<total_size; i++)
+    {
+        helper_data[i].real = std::real(data[i]);
+        helper_data[i].imag = std::imag(data[i]);
+    }
+
+    //write data
+    status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, helper_data.data());
+
+    //attach the metadata if it isn't empty 
+    if(metadata != "")
+    {
+        std::string attr_mname = "metadata";
+        attach_metadata(dataset_id, attr_mname, metadata);
+    }
+
+    //clean up
+    H5Dclose(dataset_id);
+    H5Sclose(dataspace_id);
+
+    return status;
+}
+
+
+//specialization for std::complex<double>
+template< >
+herr_t 
+make_dataset< std::complex<double> >(hid_t file_id, const std::string& name, 
+             hsize_t rank, hsize_t* dims,
+             const std::complex<double>* data, const std::string& metadata) 
+{
+    herr_t status;
+    hid_t dataspace_id = -1;
+    hid_t dataset_id = -1;
+    
+    //create dataspace
+    dataspace_id = H5Screate_simple(rank, dims, NULL);
+    if (dataspace_id < 0)
+    {
+        msg_error("main", "could not create dataspace" << eom);
+        return -1;
+    }
+    
+    //get the type code
+    hid_t TYPE_CODE = MHO_HDF5TypeCode< std::complex<double> >();
+
+    //create dataset
+    dataset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, 
+                           dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+    if (dataset_id < 0) 
+    {
+        msg_error("main", "could not create data set" << eom);
+        H5Sclose(dataspace_id);
+        return -1;
+    }
+
+    //compute total size of the array;
+    std::size_t total_size = 1;
+    for(std::size_t j=0; j<rank; j++){total_size *= dims[j];}
+    
+    //copy the data into a temporary vector of our helper type 
+    std::vector< h5helper_complex_double > helper_data;
+    helper_data.resize(total_size);
+    for(std::size_t i=0; i<total_size; i++)
+    {
+        helper_data[i].real = std::real(data[i]);
+        helper_data[i].imag = std::imag(data[i]);
+    }
+
+    //write data
+    status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, helper_data.data());
+
+    //attach the metadata if it isn't empty 
+    if(metadata != "")
+    {
+        std::string attr_mname = "metadata";
+        attach_metadata(dataset_id, attr_mname, metadata);
+    }
+
+    //clean up
+    H5Dclose(dataset_id);
+    H5Sclose(dataspace_id);
+
+    return status;
+}
+
+
+
+
+
+
+
 herr_t write_to_hdf5file(hid_t file_id, 
                        std::size_t rank,
                        const char* raw_data, 
                        std::size_t raw_data_byte_size,
-                       const std::string& dataset_name,
+                       const std::string& shortname,
+                       const std::string& obj_ident,
                        const std::string& rdd, 
                        const mho_json& meta_obj)
 {
     herr_t status = -1;
     herr_t mstatus = -1;
-    if( !meta_obj[dataset_name].contains("dimensions"))
+    
+    std::string dataset_name = shortname + "." + obj_ident;
+    if( !meta_obj[obj_ident].contains("dimensions"))
     {
-        std::cout<< meta_obj[dataset_name]["dimensions"].dump(2) << std::endl;
+        std::cout<< meta_obj[obj_ident]["dimensions"].dump(2) << std::endl;
         msg_warn("main", "meta data object does not contain a 'dimensions' item" << eom);
         return status;
     }
@@ -138,7 +273,7 @@ herr_t write_to_hdf5file(hid_t file_id,
         //grab the dimensions
         hsize_t* dims = nullptr;
         dims = new hsize_t[rank];
-        std::vector< std::size_t > dimensions = meta_obj[dataset_name]["dimensions"].get< std::vector<std::size_t> >();
+        std::vector< std::size_t > dimensions = meta_obj[obj_ident]["dimensions"].get< std::vector<std::size_t> >();
         for(std::size_t i=0; i<rank; i++){dims[i] = dimensions[i];}
 
         //convert metadata to a string
@@ -356,14 +491,11 @@ int main(int argc, char** argv)
             const char* raw_data;
             std::size_t raw_data_byte_size;
             std::string raw_data_descriptor;
-            std::string dataset_name = obj_ident; //shortname + "." + obj_ident;
             conInter.ConvertObjectInStoreToJSONAndRaw(conStore, obj_uuid, obj_json, rank, raw_data, raw_data_byte_size, raw_data_descriptor, detail);
-
-
 
             if(raw_data != nullptr && raw_data_byte_size != 0 && raw_data_descriptor != "")
             {
-                herr_t status = write_to_hdf5file(file_id, rank, raw_data, raw_data_byte_size, dataset_name, raw_data_descriptor, obj_json);
+                herr_t status = write_to_hdf5file(file_id, rank, raw_data, raw_data_byte_size, shortname, obj_ident, raw_data_descriptor, obj_json);
                 std::cout<<"object: "<<obj_ident<<" status = "<<status<<" encoding: "<<raw_data_descriptor<<std::endl;
             }
             
@@ -379,7 +511,6 @@ int main(int argc, char** argv)
     H5Fclose(file_id);
     std::cout<< "HDF5 file created successfully with dataset and metadata."<< std::endl;
     return 0;
-
 
     msg_info("main", "done" << eom);
 

@@ -57,8 +57,8 @@ hid_t
 create_complex_dtype_float() 
 {
     hid_t complex_dtype = H5Tcreate(H5T_COMPOUND, sizeof(h5helper_complex_float));
-    H5Tinsert(complex_dtype, "r", HOFFSET(h5helper_complex_float, real), H5T_NATIVE_FLOAT);
-    H5Tinsert(complex_dtype, "i", HOFFSET(h5helper_complex_float, imag), H5T_NATIVE_FLOAT);
+    H5Tinsert(complex_dtype, "real", HOFFSET(h5helper_complex_float, real), H5T_NATIVE_FLOAT);
+    H5Tinsert(complex_dtype, "imag", HOFFSET(h5helper_complex_float, imag), H5T_NATIVE_FLOAT);
     return complex_dtype;
 }
 
@@ -67,8 +67,8 @@ hid_t
 create_complex_dtype_double() 
 {
     hid_t complex_dtype = H5Tcreate(H5T_COMPOUND, sizeof(h5helper_complex_double));
-    H5Tinsert(complex_dtype, "r", HOFFSET(h5helper_complex_double, real), H5T_NATIVE_DOUBLE);
-    H5Tinsert(complex_dtype, "i", HOFFSET(h5helper_complex_double, imag), H5T_NATIVE_DOUBLE);
+    H5Tinsert(complex_dtype, "real", HOFFSET(h5helper_complex_double, real), H5T_NATIVE_DOUBLE);
+    H5Tinsert(complex_dtype, "imag", HOFFSET(h5helper_complex_double, imag), H5T_NATIVE_DOUBLE);
     return complex_dtype;
 }
 
