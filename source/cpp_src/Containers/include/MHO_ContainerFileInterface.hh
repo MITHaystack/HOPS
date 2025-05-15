@@ -48,6 +48,7 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
         void ConvertObjectInStoreToJSONAndRaw(MHO_ContainerStore& store, 
                                         const MHO_UUID& obj_uuid,
                                         mho_json& json_obj,
+                                        std::size_t& rank,
                                         const char*& raw_data,
                                         std::size_t& raw_data_byte_size,
                                         std::string& raw_data_descriptor,
