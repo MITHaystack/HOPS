@@ -13,6 +13,8 @@
 #include "MHO_Taggable.hh"
 #include "MHO_VectorContainer.hh"
 
+#include "MHO_NumpyTypeCode.hh"
+
 namespace hops
 {
 
@@ -58,7 +60,7 @@ inline void FillJSONFromTaggable(const MHO_Taggable* map, mho_json& obj_tags)
 class MHO_JSONConverter
 {
     public:
-        MHO_JSONConverter(): fLOD(eJSONBasic){};
+        MHO_JSONConverter(): fLOD(eJSONBasic), fRawByteSize(0), fRawData(nullptr), fRawDataDescriptor(""){};
         virtual ~MHO_JSONConverter(){};
 
         void SetLevelOfDetail(int level) { fLOD = level; };
@@ -67,6 +69,12 @@ class MHO_JSONConverter
 
         virtual void SetObjectToConvert(MHO_Serializable* /*!obj*/) = 0;
         virtual void ConstructJSONRepresentation() = 0;
+
+        //for access to raw data in table containers
+        //this is a bit of a hack for 'hops2flat'
+        std::size_t GetRawByteSize() const {return fRawByteSize;};
+        const char* GetRawData() const {return fRawData;};
+        std::string GetRawDataDescriptor() const {return fRawDataDescriptor;}
 
     protected:
         //helper functions for generic data insertion for elements of a list
@@ -88,6 +96,11 @@ class MHO_JSONConverter
         //data
         int fLOD;
         mho_json fJSON;
+        
+        //for extracting container raw data (with no meta data structures)
+        std::size_t fRawByteSize;
+        const char* fRawData;
+        std::string fRawDataDescriptor;
 };
 
 template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO_JSONConverter
@@ -124,6 +137,11 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
             std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< XCheckType >().as_string();
             fJSON["class_name"] = class_name;
             fJSON["class_uuid"] = class_uuid;
+            
+            //for raw data extraction (not possible)
+            fRawByteSize = 0;
+            fRawData = nullptr;
+            fRawDataDescriptor = "";
         };
 
         //use SFINAE to generate specialization for the rest of the container types
@@ -160,6 +178,11 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
                 InsertElement(fContainer->GetData(), data);
                 fJSON["data"] = data;
             }
+            
+            //for raw data extraction (not possible)
+            fRawByteSize = 0;
+            fRawData = nullptr;
+            fRawDataDescriptor = "";
         };
 
         //vector specialization (but not an axis!)
@@ -199,6 +222,13 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
                 }
                 fJSON["data"] = data;
             }
+            
+            //for raw data extraction 
+            std::size_t elem_size = sizeof( typename XContainerType::value_type);
+            std::size_t n_elem = fContainer->GetSize();
+            fRawByteSize = elem_size*n_elem;
+            fRawData = reinterpret_cast<const char*>( fContainer->GetData() );
+            fRawDataDescriptor = MHO_NumpyTypeCode< typename XContainerType::value_type >();
         };
 
         //axis specialization
@@ -236,6 +266,13 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
                 }
                 fJSON["data"] = data;
             }
+            
+            //for raw data extraction 
+            std::size_t elem_size = sizeof( typename XContainerType::value_type);
+            std::size_t n_elem = fContainer->GetSize();
+            fRawByteSize = elem_size*n_elem;
+            fRawData = reinterpret_cast<const char*>( fContainer->GetData() );
+            fRawDataDescriptor = MHO_NumpyTypeCode< typename XContainerType::value_type >();
         };
 
         //table specialization
@@ -284,6 +321,13 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
                     apply_at< typename XContainerType::axis_pack_tuple_type, AxisDumper >(*obj, idx, axis_dumper);
                 }
             }
+            
+            //for raw data extraction 
+            std::size_t elem_size = sizeof( typename XContainerType::value_type );
+            std::size_t n_elem = fContainer->GetSize();
+            fRawByteSize = elem_size*n_elem;
+            fRawData = reinterpret_cast<const char*>( fContainer->GetData() );
+            fRawDataDescriptor = MHO_NumpyTypeCode< typename XContainerType::value_type >();
         };
 
         class AxisDumper
@@ -394,6 +438,11 @@ template<> class MHO_ContainerJSONConverter< MHO_ObjectTags >: public MHO_JSONCo
             // FillJSONFromCommonMap(obj, jtags);
             FillJSONFromTaggable(obj, jtags);
             fJSON["tags"] = jtags;
+            
+            //for raw data extraction (not possible)
+            fRawByteSize = 0;
+            fRawData = nullptr;
+            fRawDataDescriptor = "";
         };
 
         MHO_ObjectTags* fContainer;

@@ -199,4 +199,48 @@ void MHO_ContainerFileInterface::ConvertObjectInStoreToJSON(MHO_ContainerStore& 
     }
 }
 
+//also provides access to the raw bytes of table container data (for hops2flat)
+void MHO_ContainerFileInterface::ConvertObjectInStoreToJSONAndRaw(MHO_ContainerStore& store, 
+                                 const MHO_UUID& obj_uuid,
+                                 mho_json& json_obj,
+                                const char*& raw_data,
+                                std::size_t& raw_data_byte_size,
+                                std::string& raw_data_descriptor,
+                                int level_of_detail)
+{
+    std::vector< MHO_UUID > type_ids;
+    store.GetAllTypeUUIDs(type_ids);
+    for(auto it = type_ids.begin(); it != type_ids.end(); it++)
+    {
+        auto converter = fJSONConverterMap.find(*it);
+        if(converter != fJSONConverterMap.end())
+        {
+            std::vector< MHO_UUID > obj_ids;
+            store.GetAllObjectUUIDsOfType(*it, obj_ids);
+            for(auto it2 = obj_ids.begin(); it2 != obj_ids.end(); it2++)
+            {
+                if(obj_uuid == *it2)
+                {
+                    MHO_Serializable* obj = store.GetObject(*it2);
+                    if(obj != nullptr)
+                    {
+                        converter->second->SetObjectToConvert(obj);
+                        converter->second->SetLevelOfDetail(level_of_detail);
+                        converter->second->ConstructJSONRepresentation();
+                        mho_json j = *(converter->second->GetJSON());
+                        std::string object_uuid = it2->as_string();
+                        json_obj[object_uuid] = j;
+                        
+                        //raw data access (if not availble ptr will be null)
+                        raw_data = converter->second->GetRawData();
+                        raw_data_byte_size = converter->second->GetRawByteSize();
+                        raw_data_descriptor = converter->second->GetRawDataDescriptor();
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 } // namespace hops
