@@ -31,6 +31,9 @@
 // unicode_         U    Unicode type with fixed length where the number of bytes is platform-specific; uses the same specification semantics as string_, e.g. U7
 // float16          f2   Standard floating point with half precision
 
+namespace hops 
+{
+
 //generic returns empty string
 template< typename XType > std::string MHO_NumpyTypeCode()
 {
@@ -53,5 +56,7 @@ template<> inline std::string MHO_NumpyTypeCode< double >(){  return "f8"; }
 
 template<> inline std::string MHO_NumpyTypeCode< std::complex<float> >(){  return "c8"; }
 template<> inline std::string MHO_NumpyTypeCode< std::complex<double> >(){  return "c16"; }
+
+}// end namespace
 
 #endif /*! end of include guard:  */

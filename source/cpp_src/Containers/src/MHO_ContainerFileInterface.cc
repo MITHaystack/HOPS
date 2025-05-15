@@ -203,10 +203,11 @@ void MHO_ContainerFileInterface::ConvertObjectInStoreToJSON(MHO_ContainerStore& 
 void MHO_ContainerFileInterface::ConvertObjectInStoreToJSONAndRaw(MHO_ContainerStore& store, 
                                  const MHO_UUID& obj_uuid,
                                  mho_json& json_obj,
-                                const char*& raw_data,
-                                std::size_t& raw_data_byte_size,
-                                std::string& raw_data_descriptor,
-                                int level_of_detail)
+                                 std::size_t& rank,
+                                 const char*& raw_data,
+                                 std::size_t& raw_data_byte_size,
+                                 std::string& raw_data_descriptor,
+                                 int level_of_detail)
 {
     std::vector< MHO_UUID > type_ids;
     store.GetAllTypeUUIDs(type_ids);
@@ -232,6 +233,7 @@ void MHO_ContainerFileInterface::ConvertObjectInStoreToJSONAndRaw(MHO_ContainerS
                         json_obj[object_uuid] = j;
                         
                         //raw data access (if not availble ptr will be null)
+                        rank = converter->second->GetRank();
                         raw_data = converter->second->GetRawData();
                         raw_data_byte_size = converter->second->GetRawByteSize();
                         raw_data_descriptor = converter->second->GetRawDataDescriptor();
