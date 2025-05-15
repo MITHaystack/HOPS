@@ -101,6 +101,10 @@ int main(int argc, char** argv)
                    "name of the output directory, if not given the result will be stored in <input-file>.flat");
 
     CLI11_PARSE(app, argc, argv);
+    
+    //clamp detail level
+    if(detail > eJSONAxesWithLabelsLevel){detail = eJSONAxesWithLabelsLevel;}
+    if(detail < eJSONBasicLevel){detail = eJSONBasicLevel;}
 
     //clamp message level
     if(message_level > 5)
