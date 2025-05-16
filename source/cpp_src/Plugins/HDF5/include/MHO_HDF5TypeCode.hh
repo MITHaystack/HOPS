@@ -54,7 +54,7 @@ typedef struct h5helper_complex_double
 h5helper_complex_double; 
 
 hid_t 
-create_complex_dtype_float() 
+inline create_complex_dtype_float() 
 {
     hid_t complex_dtype = H5Tcreate(H5T_COMPOUND, sizeof(h5helper_complex_float));
     H5Tinsert(complex_dtype, "r", HOFFSET(h5helper_complex_float, real), H5T_NATIVE_FLOAT);
@@ -64,7 +64,7 @@ create_complex_dtype_float()
 
 //needed for std::complex<double>
 hid_t 
-create_complex_dtype_double() 
+inline create_complex_dtype_double() 
 {
     hid_t complex_dtype = H5Tcreate(H5T_COMPOUND, sizeof(h5helper_complex_double));
     H5Tinsert(complex_dtype, "r", HOFFSET(h5helper_complex_double, real), H5T_NATIVE_DOUBLE);
