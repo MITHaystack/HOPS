@@ -85,12 +85,6 @@ inline make_scale(hid_t file_id, hid_t dataset_id, std::size_t axis_idx,
 
     std::cout<<"type code = "<<TYPE_CODE<<std::endl;
 
-    // if (H5Lexists(file_id, name.c_str(), H5P_DEFAULT) > 0) 
-    // {
-    //     std::cout<<"WHATTT?"<<std::endl;
-    //     H5Ldelete(file_id, name.c_str(), H5P_DEFAULT);
-    // }
-
     //create axis dataset
     hid_t axis_dset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
 
@@ -137,9 +131,15 @@ inline make_dataset(hid_t file_id, hid_t& dataset_id,
     herr_t status;
     hid_t dataspace_id = -1;
 
+    std::cout<<"file id = "<<file_id<<std::endl;
+
     //return the dataset_id in reference so we can attach attributes later
     dataset_id = -1;
     
+    std::cout<<"rank = "<<rank<<std::endl;
+    std::cout<<"dims[0] = "<<dims[0]<<std::endl;
+    std::cout<<"double type code = "<<H5T_NATIVE_DOUBLE<<std::endl;
+
     //create dataspace
     dataspace_id = H5Screate_simple(rank, dims, NULL);
     if (dataspace_id < 0)
@@ -152,6 +152,10 @@ inline make_dataset(hid_t file_id, hid_t& dataset_id,
     hid_t TYPE_CODE = MHO_HDF5TypeCode<XDataType>();
 
     //create dataset
+    std::cout<<"name = "<<name<<std::endl;
+    std::cout<<"type code = "<<TYPE_CODE<<std::endl;
+    std::cout<<"dspace = "<<dataspace_id<<std::endl;
+
     dataset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     if (dataset_id < 0) 
     {
@@ -462,16 +466,18 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
             for(std::size_t i=0; i<rank; i++){dims[i] = dim_array[i];}
             std::string mdata = "";
 
+            std::string name = object_uuid;
+
             //write the table data
             hid_t dataset_id = -1;
             herr_t status = 
-            make_dataset< typename XContainerType::value_type >(file_id, dataset_id, object_uuid, rank, dims, fContainer->GetData(), mdata); 
+            make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), mdata); 
 
             //dete
             delete[] dims;
 
             //now attach the table axes
-            AxisDumper axis_dumper(file_id, dataset_id, object_uuid);
+            AxisDumper axis_dumper(file_id, dataset_id, name);
             for(std::size_t idx = 0; idx < obj->GetRank(); idx++)
             {
                 axis_dumper.SetIndex(idx);
@@ -541,7 +547,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                     std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< XAxisType >().as_string();
 
                     std::stringstream ss;
-                    ss << fParentName << "/axis_";
+                    ss << fParentName << "-axis_";
                     ss << fIndex;
                     std::string name = ss.str();
                     std::string mdata = "";
@@ -552,9 +558,22 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                     std::size_t n = axis.GetSize();
                     std::vector< typename XAxisType::value_type > axis_data;
                     for(std::size_t i=0; i<n; i++){axis_data.push_back( axis.at(i) ); }
+        
+                    hsize_t dims[1];
+                    dims[0] = n;
 
-                    make_scale< typename XAxisType::value_type >(fFileID, fDataSetID, fIndex, name, &axis_data, mdata);
+                    std::cout<<"vtype = "<<MHO_ClassIdentity::ClassName< typename XAxisType::value_type >()<<std::endl;
 
+                    if( MHO_ClassIdentity::ClassName< typename XAxisType::value_type >() != "std::string" )
+                    {
+                        hid_t dataset_id = -1;
+                        herr_t status = 
+                        make_scale< typename XAxisType::value_type >(fFileID, fDataSetID, fIndex, name, &axis_data, mdata);
+
+                        //make_dataset< typename XAxisType::value_type >(fFileID, dataset_id, name, 1, dims, axis.GetData(), mdata); 
+                    }
+
+                    
                     // if(fLOD >= eHDF5Basic)
                     // {
                     //     j["class_name"] = class_name;
