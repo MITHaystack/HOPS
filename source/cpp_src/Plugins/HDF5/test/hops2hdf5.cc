@@ -215,25 +215,6 @@ herr_t write_to_hdf5file(hid_t file_id,
     }
 
     return status;
-
-    // // Create a 1D dataset of doubles
-    // if(H5LTmake_dataset_double(file_id, dataset_name.c_str(), 1, dims, data) < 0) 
-    // {
-    //     std::cout<<"failed to create dataset "<< std::endl;
-    //     H5Fclose(file_id);
-    //     return 1;
-    // }
-    // 
-    // // Attach JSON metadata as an attribute
-    // if (H5LTset_attribute_string(file_id, dataset_name.c_str(), attribute_name.c_str(), json_metadata.c_str()) < 0) 
-    // {
-    //     std::cout<<"failed to write attribute"<< std::endl;
-    //     H5Fclose(file_id);
-    //     return 1;
-    // }
-
-
-
 }
 
 
