@@ -27,8 +27,13 @@ class MHO_HDF5ContainerFileInterface:
     public MHO_HDF5ConverterDictionary
 {
     public:
-        MHO_HDF5ContainerFileInterface();
-        virtual ~MHO_HDF5ContainerFileInterface();
+
+        MHO_HDF5ContainerFileInterface():
+            MHO_ContainerFileInterface(),
+            MHO_HDF5ConverterDictionary()
+        {};
+
+        virtual ~MHO_HDF5ContainerFileInterface(){};
 
         //HDF5 file conversion interface
         int ConvertStoreToHDF5(MHO_ContainerStore& store, std::string hdf5_filename);

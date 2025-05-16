@@ -11,7 +11,7 @@ if(HDF5_FOUND)
 
     hops_external_include_directories(${HDF5_INCLUDE_DIRS})
     hops_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
-    list(APPEND HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
+    list(APPEND HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_HDF5Interface ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
 
     foreach( BASENAME ${SOURCE_BASENAMES} )
         add_executable( ${BASENAME} ${BASENAME}.cc )
