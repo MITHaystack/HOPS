@@ -12,6 +12,7 @@
 #include <vector>
 
 #include "hdf5.h"
+#include "MHO_HDF5ContainerFileInterface.hh"
 
 using namespace hops;
 
@@ -274,89 +275,11 @@ int main(int argc, char** argv)
 
     //read in all the objects in a file
     MHO_ContainerStore conStore;
-    MHO_ContainerFileInterface conInter;
+    MHO_HDF5ContainerFileInterface conInter;
     conInter.SetFilename(input_file);
     conInter.PopulateStoreFromFile(conStore);
     
-    //if a specific object was requested -- convert given uuid string to MHO_UUID object
-    bool single_object = false;
-    MHO_UUID single_obj_uuid;
-    if(shortname != "")
-    {
-        single_obj_uuid = conStore.GetObjectUUID(shortname);
-        if(single_obj_uuid.is_empty())
-        {
-            msg_fatal("main", "object uuid for: "<< shortname << ", could not be determined" << eom);
-            return 1;
-        }
-        single_object = true;
-    }
-    else if(uuid_string != "")
-    {
-        bool ok = single_obj_uuid.from_string(uuid_string);
-        if(!ok)
-        {
-            msg_fatal("main", "could not convert given string into UUID key: " << uuid_string << eom);
-            return 1;
-        }
-        single_object = true;
-    }
-
-    //open the file
-    hid_t file_id = H5Fcreate(output_file.c_str(), H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
-    if (file_id < 0) 
-    {
-        std::cout<<"failed to create HDF5 file"<<std::endl;
-        return 1;
-    }
-
-    //loop over all the objects in the container, and convert them 
-    //into a meta-data .json file, and a flat binary file for the data table
-    //get all the types in the container
-    std::vector< MHO_UUID > type_ids;
-    conStore.GetAllTypeUUIDs(type_ids);
-    for(std::size_t tid=0; tid<type_ids.size(); tid++)
-    {
-        //get all the object uuids of this type
-        std::vector< MHO_UUID > obj_ids;
-        conStore.GetAllObjectUUIDsOfType(type_ids[tid], obj_ids);
-        for(std::size_t oid=0; oid<obj_ids.size(); oid++)
-        {
-            MHO_UUID obj_uuid = obj_ids[oid];
-            //bail out on this one if only a single object requested, and this is not a match
-            if(single_object && obj_uuid != single_obj_uuid){continue;}
-
-            std::string shortname = conStore.GetShortName(obj_uuid);
-            std::string obj_ident = obj_uuid.as_string();
-            
-            //convert the selected object to json
-            mho_json obj_json;
-            
-            //needed to extract raw table data (if we can)
-            std::size_t rank;
-            const char* raw_data;
-            std::size_t raw_data_byte_size;
-            std::string raw_data_descriptor;
-            conInter.ConvertObjectInStoreToJSONAndRaw(conStore, obj_uuid, obj_json, rank, raw_data, raw_data_byte_size, raw_data_descriptor, detail);
-
-            if(raw_data != nullptr && raw_data_byte_size != 0 && raw_data_descriptor != "")
-            {
-                herr_t status = write_to_hdf5file(file_id, rank, raw_data, raw_data_byte_size, shortname, obj_ident, raw_data_descriptor, obj_json);
-                std::cout<<"object: "<<obj_ident<<" status = "<<status<<" encoding: "<<raw_data_descriptor<<std::endl;
-            }
-            
-            if(raw_data_descriptor == "tags")
-            {
-                std::cout<< "tags object not yet supported" << std::endl;
-            }
-        }
-    }
-
-
-    // Close file
-    H5Fclose(file_id);
-    std::cout<< "HDF5 file created successfully with dataset and metadata."<< std::endl;
-    return 0;
+    int status = conInter.ConvertStoreToHDF5(conStore, output_file);
 
     msg_info("main", "done" << eom);
 
