@@ -114,106 +114,106 @@ make_dataset(hid_t file_id, const std::string& name,
     return status;
 }
 
-
-
-//specialization for std::complex<float>
-template< >
-herr_t 
-make_dataset< std::complex<float> >(hid_t file_id, const std::string& name, 
-             hsize_t rank, hsize_t* dims,
-             const std::complex<float>* data, const std::string& metadata) 
-{
-    herr_t status;
-    hid_t dataspace_id = -1;
-    hid_t dataset_id = -1;
-    
-    //create dataspace
-    dataspace_id = H5Screate_simple(rank, dims, NULL);
-    if (dataspace_id < 0)
-    {
-        msg_error("main", "could not create dataspace" << eom);
-        return -1;
-    }
-    
-    //get the type code
-    hid_t TYPE_CODE = MHO_HDF5TypeCode< std::complex<float> >();
-
-    //create dataset
-    dataset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, 
-                           dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-    if (dataset_id < 0) 
-    {
-        msg_error("main", "could not create data set" << eom);
-        H5Sclose(dataspace_id);
-        return -1;
-    }
-
-    //write data
-    status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
-
-    //attach the metadata if it isn't empty 
-    if(metadata != "")
-    {
-        std::string attr_mname = "metadata";
-        attach_metadata(dataset_id, attr_mname, metadata);
-    }
-
-    //clean up
-    H5Dclose(dataset_id);
-    H5Sclose(dataspace_id);
-
-    return status;
-}
-
-
-//specialization for std::complex<double>
-template< >
-herr_t 
-make_dataset< std::complex<double> >(hid_t file_id, const std::string& name, 
-             hsize_t rank, hsize_t* dims,
-             const std::complex<double>* data, const std::string& metadata) 
-{
-    herr_t status;
-    hid_t dataspace_id = -1;
-    hid_t dataset_id = -1;
-    
-    //create dataspace
-    dataspace_id = H5Screate_simple(rank, dims, NULL);
-    if (dataspace_id < 0)
-    {
-        msg_error("main", "could not create dataspace" << eom);
-        return -1;
-    }
-    
-    //get the type code
-    hid_t TYPE_CODE = MHO_HDF5TypeCode< std::complex<double> >();
-
-    //create dataset
-    dataset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, 
-                           dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-    if (dataset_id < 0) 
-    {
-        msg_error("main", "could not create data set" << eom);
-        H5Sclose(dataspace_id);
-        return -1;
-    }
-
-    //write data
-    status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
-
-    //attach the metadata if it isn't empty 
-    if(metadata != "")
-    {
-        std::string attr_mname = "metadata";
-        attach_metadata(dataset_id, attr_mname, metadata);
-    }
-
-    //clean up
-    H5Dclose(dataset_id);
-    H5Sclose(dataspace_id);
-
-    return status;
-}
+// 
+// 
+// //specialization for std::complex<float>
+// template< >
+// herr_t 
+// make_dataset< std::complex<float> >(hid_t file_id, const std::string& name, 
+//              hsize_t rank, hsize_t* dims,
+//              const std::complex<float>* data, const std::string& metadata) 
+// {
+//     herr_t status;
+//     hid_t dataspace_id = -1;
+//     hid_t dataset_id = -1;
+// 
+//     //create dataspace
+//     dataspace_id = H5Screate_simple(rank, dims, NULL);
+//     if (dataspace_id < 0)
+//     {
+//         msg_error("main", "could not create dataspace" << eom);
+//         return -1;
+//     }
+// 
+//     //get the type code
+//     hid_t TYPE_CODE = MHO_HDF5TypeCode< std::complex<float> >();
+// 
+//     //create dataset
+//     dataset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, 
+//                            dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+//     if (dataset_id < 0) 
+//     {
+//         msg_error("main", "could not create data set" << eom);
+//         H5Sclose(dataspace_id);
+//         return -1;
+//     }
+// 
+//     //write data
+//     status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
+// 
+//     //attach the metadata if it isn't empty 
+//     if(metadata != "")
+//     {
+//         std::string attr_mname = "metadata";
+//         attach_metadata(dataset_id, attr_mname, metadata);
+//     }
+// 
+//     //clean up
+//     H5Dclose(dataset_id);
+//     H5Sclose(dataspace_id);
+// 
+//     return status;
+// }
+// 
+// 
+// //specialization for std::complex<double>
+// template< >
+// herr_t 
+// make_dataset< std::complex<double> >(hid_t file_id, const std::string& name, 
+//              hsize_t rank, hsize_t* dims,
+//              const std::complex<double>* data, const std::string& metadata) 
+// {
+//     herr_t status;
+//     hid_t dataspace_id = -1;
+//     hid_t dataset_id = -1;
+// 
+//     //create dataspace
+//     dataspace_id = H5Screate_simple(rank, dims, NULL);
+//     if (dataspace_id < 0)
+//     {
+//         msg_error("main", "could not create dataspace" << eom);
+//         return -1;
+//     }
+// 
+//     //get the type code
+//     hid_t TYPE_CODE = MHO_HDF5TypeCode< std::complex<double> >();
+// 
+//     //create dataset
+//     dataset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, 
+//                            dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+//     if (dataset_id < 0) 
+//     {
+//         msg_error("main", "could not create data set" << eom);
+//         H5Sclose(dataspace_id);
+//         return -1;
+//     }
+// 
+//     //write data
+//     status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
+// 
+//     //attach the metadata if it isn't empty 
+//     if(metadata != "")
+//     {
+//         std::string attr_mname = "metadata";
+//         attach_metadata(dataset_id, attr_mname, metadata);
+//     }
+// 
+//     //clean up
+//     H5Dclose(dataset_id);
+//     H5Sclose(dataspace_id);
+// 
+//     return status;
+// }
 
 
 
