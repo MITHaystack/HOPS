@@ -148,21 +148,22 @@ make_dataset< std::complex<float> >(hid_t file_id, const std::string& name,
         return -1;
     }
 
-    //compute total size of the array;
-    std::size_t total_size = 1;
-    for(std::size_t j=0; j<rank; j++){total_size *= dims[j];}
-    
-    //copy the data into a temporary vector of our helper type 
-    std::vector< h5helper_complex_float > helper_data;
-    helper_data.resize(total_size);
-    for(std::size_t i=0; i<total_size; i++)
-    {
-        helper_data[i].real = std::real(data[i]);
-        helper_data[i].imag = std::imag(data[i]);
-    }
+    // //compute total size of the array;
+    // std::size_t total_size = 1;
+    // for(std::size_t j=0; j<rank; j++){total_size *= dims[j];}
+    // 
+    // //copy the data into a temporary vector of our helper type 
+    // std::vector< h5helper_complex_float > helper_data;
+    // helper_data.resize(total_size);
+    // for(std::size_t i=0; i<total_size; i++)
+    // {
+    //     helper_data[i].real = std::real(data[i]);
+    //     helper_data[i].imag = std::imag(data[i]);
+    // }
 
     //write data
-    status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, helper_data.data());
+    // status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, helper_data.data());
+    status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
 
     //attach the metadata if it isn't empty 
     if(metadata != "")
@@ -211,21 +212,22 @@ make_dataset< std::complex<double> >(hid_t file_id, const std::string& name,
         return -1;
     }
 
-    //compute total size of the array;
-    std::size_t total_size = 1;
-    for(std::size_t j=0; j<rank; j++){total_size *= dims[j];}
-    
-    //copy the data into a temporary vector of our helper type 
-    std::vector< h5helper_complex_double > helper_data;
-    helper_data.resize(total_size);
-    for(std::size_t i=0; i<total_size; i++)
-    {
-        helper_data[i].real = std::real(data[i]);
-        helper_data[i].imag = std::imag(data[i]);
-    }
+    // //compute total size of the array;
+    // std::size_t total_size = 1;
+    // for(std::size_t j=0; j<rank; j++){total_size *= dims[j];}
+    // 
+    // //copy the data into a temporary vector of our helper type 
+    // std::vector< h5helper_complex_double > helper_data;
+    // helper_data.resize(total_size);
+    // for(std::size_t i=0; i<total_size; i++)
+    // {
+    //     helper_data[i].real = std::real(data[i]);
+    //     helper_data[i].imag = std::imag(data[i]);
+    // }
 
     //write data
-    status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, helper_data.data());
+    // status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, helper_data.data());
+    status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
 
     //attach the metadata if it isn't empty 
     if(metadata != "")
