@@ -4,10 +4,6 @@
 namespace hops
 {
 
-MHO_HDF5ContainerFileInterface::MHO_HDF5ContainerFileInterface():MHO_ContainerFileInterface(){};
-MHO_HDF5ContainerFileInterface::~MHO_HDF5ContainerFileInterface(){};
-
-
 int MHO_HDF5ContainerFileInterface::ConvertStoreToHDF5(MHO_ContainerStore& store, std::string hdf5_filename)
 {
     //open the file
