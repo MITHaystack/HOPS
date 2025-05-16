@@ -6,6 +6,7 @@ if(HDF5_FOUND)
     set(SOURCE_BASENAMES
         TestHDF5Interface
         hops2hdf5
+        test_hops2hdf5
     )
 
     hops_external_include_directories(${HDF5_INCLUDE_DIRS})
