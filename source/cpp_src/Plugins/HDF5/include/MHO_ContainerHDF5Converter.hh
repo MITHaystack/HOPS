@@ -37,7 +37,7 @@ herr_t
 inline make_scale(hid_t file_id, hid_t dataset_id, std::size_t axis_idx,
                   const std::string& name,
                   const std::vector< XDataType >* data, 
-                  const std::string& metadata)
+                  const mho_json& metadata)
 {
     herr_t status;
     hsize_t dims[1];
@@ -63,7 +63,7 @@ herr_t
 inline make_scale< std::string>(hid_t file_id, hid_t dataset_id, std::size_t axis_idx,
                          const std::string& name,
                          const std::vector< std::string >* data, 
-                         const std::string& metadata) 
+                         const mho_json& metadata) 
 {
     std::cout<<"string axis"<<std::endl;
     herr_t status;
@@ -114,7 +114,7 @@ template< typename XDataType >
 herr_t 
 inline make_dataset(hid_t file_id, hid_t& dataset_id, 
              const std::string& name, hsize_t rank, hsize_t* dims,
-             const XDataType* data, const std::string& metadata) 
+             const XDataType* data, const mho_json& metadata) 
 {
     herr_t status;
     hid_t dataspace_id = -1;
@@ -155,9 +155,12 @@ class MHO_HDF5Converter
         virtual ~MHO_HDF5Converter(){};
 
         virtual void SetObjectToConvert(MHO_Serializable* /*!obj*/) = 0;
+        virtual void SetObjectMetaData(const mho_json& mdata){fMetaData = mdata;}
         virtual void WriteToHDF5File(hid_t /*file_id*/, std::string /*group_prefix*/) = 0;
 
     protected:
+
+        mho_json fMetaData;
 
 };
 
@@ -223,7 +226,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
             hsize_t dims[1];
             auto dim_array = fContainer->GetDimensionArray();
             for(std::size_t i=0; i<rank; i++){dims[i] = dim_array[i];}
-            std::string mdata = "";
+            mho_json mdata;
             std::string item_group = group_prefix + "/" + object_uuid;
 
             if (H5Lexists(file_id, item_group.c_str(), H5P_DEFAULT) == 0) 
@@ -259,7 +262,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
             hsize_t dims[1];
             auto dim_array = fContainer->GetDimensionArray();
             for(std::size_t i=0; i<rank; i++){dims[i] = dim_array[i];}
-            std::string mdata = "";
+            mho_json mdata;
             std::string item_group = group_prefix + "/" + object_uuid;
 
             if (H5Lexists(file_id, item_group.c_str(), H5P_DEFAULT) == 0) 
@@ -303,7 +306,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
             hsize_t dims[XContainerType::rank::value];
             auto dim_array = obj->GetDimensionArray();
             for(std::size_t i=0; i<rank; i++){dims[i] = dim_array[i];}
-            std::string mdata = "";
+            mho_json mdata;
             // std::string name = group_prefix + "/" + object_uuid + "/data";
             // 
             // //write the table data
@@ -366,7 +369,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                     ss << fParentName << "/axis_";
                     ss << fIndex;
                     std::string name = ss.str();
-                    std::string mdata = "";
+                    mho_json mdata;
 
                     std::cout<<"ax name = "<<name<<std::endl;
 
