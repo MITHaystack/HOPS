@@ -52,9 +52,10 @@ int MHO_HDF5ContainerFileInterface::ConvertStoreToHDF5(MHO_ContainerStore& store
                         //grab the meta-data labels, etc.
                         mho_json obj_mdata;
                         ConvertObjectInStoreToJSON(store, *it2, obj_mdata, eJSONWithLabels);
+                        std::string obj_uuid = it2->as_string();
 
                         converter->second->SetObjectToConvert(obj);
-                        converter->second->SetObjectMetaData(obj_mdata);
+                        converter->second->SetObjectMetaData(obj_mdata[obj_uuid]);
                         // converter->second->WriteToHDF5File(file_id, fGroupPrefix);
                         converter->second->WriteToHDF5File(file_id, category_prefix);
 
