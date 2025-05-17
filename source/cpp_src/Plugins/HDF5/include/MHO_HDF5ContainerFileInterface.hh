@@ -31,12 +31,21 @@ class MHO_HDF5ContainerFileInterface:
         MHO_HDF5ContainerFileInterface():
             MHO_ContainerFileInterface(),
             MHO_HDF5ConverterDictionary()
-        {};
+        {
+            fGroupPrefix = "/";
+        };
 
         virtual ~MHO_HDF5ContainerFileInterface(){};
 
+        void SetGroupPrefix(std::string gp){fGroupPrefix = gp;}
+
         //HDF5 file conversion interface
         int ConvertStoreToHDF5(MHO_ContainerStore& store, std::string hdf5_filename);
+
+    protected:
+
+        std::string fGroupPrefix;
+
 };
 
 } // namespace hops

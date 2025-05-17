@@ -2,7 +2,7 @@
 #include "MHO_ContainerFileInterface.hh"
 #include "MHO_ContainerStore.hh"
 #include "MHO_Message.hh"
-#include "MHO_HDF5TypeCode.hh"
+#include "MHO_DirectoryInterface.hh"
 
 #include <stdio.h>
 #include <utility>
@@ -12,6 +12,7 @@
 #include <vector>
 
 #include "hdf5.h"
+#include "MHO_HDF5TypeCode.hh"
 #include "MHO_HDF5ContainerFileInterface.hh"
 
 using namespace hops;
@@ -79,6 +80,9 @@ int main(int argc, char** argv)
     conInter.SetFilename(input_file);
     conInter.PopulateStoreFromFile(conStore);
     
+    std::string gprefix = "/";
+    gprefix += MHO_DirectoryInterface::GetBasename(input_file);
+    conInter.SetGroupPrefix(gprefix);
     int status = conInter.ConvertStoreToHDF5(conStore, output_file);
 
     msg_info("main", "done" << eom);
