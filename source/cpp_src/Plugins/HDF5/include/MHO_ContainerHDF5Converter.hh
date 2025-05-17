@@ -226,7 +226,6 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
             hsize_t dims[1];
             auto dim_array = fContainer->GetDimensionArray();
             for(std::size_t i=0; i<rank; i++){dims[i] = dim_array[i];}
-            mho_json mdata;
             std::string item_group = group_prefix + "/" + object_uuid;
 
             if (H5Lexists(file_id, item_group.c_str(), H5P_DEFAULT) == 0) 
@@ -241,7 +240,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                 //write the data
                 hid_t dataset_id = -1;
                 herr_t status = 
-                make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), mdata); 
+                make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData); 
 
                 H5Gclose(group_id);
             }
@@ -262,7 +261,6 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
             hsize_t dims[1];
             auto dim_array = fContainer->GetDimensionArray();
             for(std::size_t i=0; i<rank; i++){dims[i] = dim_array[i];}
-            mho_json mdata;
             std::string item_group = group_prefix + "/" + object_uuid;
 
             if (H5Lexists(file_id, item_group.c_str(), H5P_DEFAULT) == 0) 
@@ -277,18 +275,10 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                 //write the data
                 hid_t dataset_id = -1;
                 herr_t status = 
-                make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), mdata); 
+                make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData); 
 
                 H5Gclose(group_id);
             }
-
-
-            // std::string name = group_prefix + "/" + object_uuid + "/data";
-            // 
-            // //write the data
-            // hid_t dataset_id = -1;
-            // herr_t status = 
-            // make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), mdata); 
         };
 
         //table specialization
@@ -306,13 +296,6 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
             hsize_t dims[XContainerType::rank::value];
             auto dim_array = obj->GetDimensionArray();
             for(std::size_t i=0; i<rank; i++){dims[i] = dim_array[i];}
-            mho_json mdata;
-            // std::string name = group_prefix + "/" + object_uuid + "/data";
-            // 
-            // //write the table data
-            // hid_t dataset_id = -1;
-            // herr_t status = 
-            // make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), mdata); 
 
             std::string item_group = group_prefix + "/" + object_uuid;
 
@@ -328,7 +311,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                 //write the data
                 hid_t dataset_id = -1;
                 herr_t status = 
-                make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), mdata); 
+                make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData); 
 
                 //now attach the table axes
                 name = item_group;
@@ -370,7 +353,6 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                     ss << fIndex;
                     std::string name = ss.str();
                     mho_json mdata;
-
                     std::cout<<"ax name = "<<name<<std::endl;
 
                     //copy the data into a temporary vector

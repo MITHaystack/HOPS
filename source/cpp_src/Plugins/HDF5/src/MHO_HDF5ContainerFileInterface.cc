@@ -49,6 +49,7 @@ int MHO_HDF5ContainerFileInterface::ConvertStoreToHDF5(MHO_ContainerStore& store
                             return 1;
                         }
 
+                        //grab the meta-data labels, etc.
                         mho_json obj_mdata;
                         ConvertObjectInStoreToJSON(store, *it2, obj_mdata, eJSONWithLabels);
 
