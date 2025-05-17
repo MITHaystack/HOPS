@@ -38,10 +38,27 @@ int MHO_HDF5ContainerFileInterface::ConvertStoreToHDF5(MHO_ContainerStore& store
             for(auto it2 = obj_ids.begin(); it2 != obj_ids.end(); it2++)
             {
                 MHO_Serializable* obj = store.GetObject(*it2);
+                std::string shortname = store.GetShortName(*it2);
                 if(obj != nullptr)
                 {
-                    converter->second->SetObjectToConvert(obj);
-                    converter->second->WriteToHDF5File(file_id, fGroupPrefix);
+                    std::cout<<"shortname = "<<shortname<<std::endl;
+                    std::string category_prefix = fGroupPrefix + "/" + shortname;
+
+                    if( H5Lexists(file_id, category_prefix.c_str(), H5P_DEFAULT) == 0) 
+                    {
+                        hid_t cat_id = H5Gcreate(file_id, category_prefix.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+                        if(group_id < 0) 
+                        {
+                            std::cout<<"failed to create HDF5 group"<<std::endl;
+                            return 1;
+                        }
+
+                        converter->second->SetObjectToConvert(obj);
+                        // converter->second->WriteToHDF5File(file_id, fGroupPrefix);
+                        converter->second->WriteToHDF5File(file_id, category_prefix);
+
+                        H5Gclose(cat_id);
+                    }
                 }
             }
         }
