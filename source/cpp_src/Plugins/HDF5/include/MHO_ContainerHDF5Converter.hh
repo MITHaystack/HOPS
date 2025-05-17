@@ -31,35 +31,6 @@ namespace hops
  * 
  */
 
-//verbosity controlling enum
-enum MHO_HDF5VerbosityLevel : int
-{
-    eHDF5BasicLevel = 0,      //basic quantities (rank, dimensions, etc.)
-    eHDF5TagsLevel,           //basic quantities plus tags
-    eHDF5AxesLevel,           //basic quantities plus the axes (if the object is a table)
-    eHDF5AxesWithLabelsLevel, //basic quantities plus axes with interval labels
-    eHDF5AllLevel             //everything including the main data array
-};
-
-//short hand aliases
-static const MHO_HDF5VerbosityLevel eHDF5Basic = MHO_HDF5VerbosityLevel::eHDF5BasicLevel;
-static const MHO_HDF5VerbosityLevel eHDF5Tags = MHO_HDF5VerbosityLevel::eHDF5TagsLevel;
-static const MHO_HDF5VerbosityLevel eHDF5WithAxes = MHO_HDF5VerbosityLevel::eHDF5AxesLevel;
-static const MHO_HDF5VerbosityLevel eHDF5WithLabels = MHO_HDF5VerbosityLevel::eHDF5AxesWithLabelsLevel;
-static const MHO_HDF5VerbosityLevel eHDF5All = MHO_HDF5VerbosityLevel::eHDF5AllLevel;
-
-using hops::eHDF5All;
-using hops::eHDF5Basic;
-using hops::eHDF5Tags;
-using hops::eHDF5WithAxes;
-using hops::eHDF5WithLabels;
-
-// inline void FillHDF5FromTaggable(const MHO_Taggable* map, mho_json& obj_tags)
-// {
-//     bool ok;
-//     obj_tags = map->GetMetaDataAsHDF5();
-// }
-
 
 template< typename XDataType >
 herr_t 
@@ -95,7 +66,38 @@ inline make_scale< std::string>(hid_t file_id, hid_t dataset_id, std::size_t axi
                          const std::string& metadata) 
 {
     std::cout<<"string axis"<<std::endl;
-    return -1;
+    herr_t status;
+    hsize_t dims[1];
+    dims[0] = data->size();
+    hid_t TYPE_CODE = H5Tcopy(H5T_C_S1);
+    H5Tset_size(TYPE_CODE, H5T_VARIABLE);
+
+    //convert to const chars
+    std::vector<const char*> cstrs;
+    for(const auto& s : *data) 
+    {
+        cstrs.push_back(s.c_str());
+    }
+
+    // hid_t axis0_dset = H5Dcreate(file, "/axis_0_labels", str_type, axis0_space,
+    //                              H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+
+    hid_t dataspace_id = H5Screate_simple(1, dims, NULL);
+
+    //create axis dataset
+    hid_t axis_dset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+    //write the data
+    //status = H5Dwrite(axis_dset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data->data() );
+
+    // Write and mark as scale
+    status = H5Dwrite(axis_dset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, cstrs.data() );
+    // H5DSset_scale(axis0_dset, "axis_0");
+
+    H5DSset_scale(axis_dset_id, name.c_str());
+    H5DSattach_scale(dataset_id, axis_dset_id, axis_idx);  // attach to appropriate index
+
+    return status;
+
     // hsize_t dims[1] = {length};
     // hid_t dataspace_id = H5Screate_simple(1, dims, nullptr);
     // //get the type code
@@ -378,16 +380,11 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
 
                     std::cout<<"vtype = "<<MHO_ClassIdentity::ClassName< typename XAxisType::value_type >()<<std::endl;
 
-                    if( MHO_ClassIdentity::ClassName< typename XAxisType::value_type >() != "std::string" )
-                    {
-                        hid_t dataset_id = -1;
-                        herr_t status = 
-                        make_scale< typename XAxisType::value_type >(fFileID, fDataSetID, fIndex, name, &axis_data, mdata);
-
-                        //make_dataset< typename XAxisType::value_type >(fFileID, dataset_id, name, 1, dims, axis.GetData(), mdata); 
-                    }
-
+                    hid_t dataset_id = -1;
+                    herr_t status = 
+                    make_scale< typename XAxisType::value_type >(fFileID, fDataSetID, fIndex, name, &axis_data, mdata);
                 };
+
             private:
 
                 hid_t fFileID;
