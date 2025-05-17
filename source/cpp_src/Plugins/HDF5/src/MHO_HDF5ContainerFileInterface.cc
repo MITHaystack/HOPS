@@ -14,16 +14,12 @@ int MHO_HDF5ContainerFileInterface::ConvertStoreToHDF5(MHO_ContainerStore& store
         return 1;
     }
 
-    // if (H5Lexists(file_id, fGroupPrefix.c_str(), H5P_DEFAULT) == 0) 
-    // {
     hid_t group_id = H5Gcreate(file_id, fGroupPrefix.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     if(group_id < 0) 
     {
         std::cout<<"failed to create HDF5 group"<<std::endl;
         return 1;
     }
-    // 
-    // }
 
     std::vector< MHO_UUID > type_ids;
     store.GetAllTypeUUIDs(type_ids);
@@ -53,7 +49,11 @@ int MHO_HDF5ContainerFileInterface::ConvertStoreToHDF5(MHO_ContainerStore& store
                             return 1;
                         }
 
+                        mho_json obj_mdata;
+                        ConvertObjectInStoreToJSON(store, *it2, obj_mdata, eJSONWithLabels);
+
                         converter->second->SetObjectToConvert(obj);
+                        converter->second->SetObjectMetaData(obj_mdata);
                         // converter->second->WriteToHDF5File(file_id, fGroupPrefix);
                         converter->second->WriteToHDF5File(file_id, category_prefix);
 
