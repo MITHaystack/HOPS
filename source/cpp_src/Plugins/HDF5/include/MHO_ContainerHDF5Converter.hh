@@ -32,6 +32,67 @@ namespace hops
  */
 
 
+inline void make_attribute(const std::string& key, const mho_json& value, hid_t dataset_id)
+{
+    std::cout<<"key = "<<key<<std::endl;
+    //for now we can only handle scalar types
+    hid_t attr_space = H5Screate(H5S_SCALAR);
+    hid_t TYPE_CODE;
+    void* attr_data;
+
+    if (value.is_string()) 
+    {
+        std::string str = value.get<std::string>();
+        TYPE_CODE = H5Tcopy(H5T_C_S1);
+        H5Tset_size(TYPE_CODE, str.size());
+        H5Tset_strpad(TYPE_CODE, H5T_STR_NULLTERM);
+        attr_data = (void*)str.c_str();
+
+    } 
+    else if (value.is_number_integer()) 
+    {
+        int v = value.get<int>();
+        TYPE_CODE = MHO_HDF5TypeCode<int>();
+        attr_data = &v;
+
+    } 
+    else if (value.is_number_unsigned()) 
+    {
+        unsigned int v = value.get<unsigned int>();
+        TYPE_CODE = MHO_HDF5TypeCode<unsigned int>();
+        attr_data = &v;
+
+    } 
+    else if (value.is_number_float()) 
+    {
+        double v = value.get<double>();
+        TYPE_CODE = MHO_HDF5TypeCode<double>();
+        attr_data = &v;
+
+    }
+    else if (value.is_boolean()) 
+    {
+        uint8_t v = value.get<bool>() ? 1 : 0;
+        TYPE_CODE = MHO_HDF5TypeCode<uint8_t>();
+        attr_data = &v;
+    } 
+    else 
+    {
+        //for now we are skipping objects/arrays TODO FIXME
+        return;
+    }
+
+    //create and write the attribute
+    hid_t attr_id = H5Acreate(dataset_id, key.c_str(), TYPE_CODE, attr_space, H5P_DEFAULT, H5P_DEFAULT);
+    H5Awrite(attr_id, TYPE_CODE, attr_data);
+
+    //clean up
+    H5Aclose(attr_id);
+    H5Sclose(attr_space);
+    if (value.is_string()) H5Tclose(TYPE_CODE);
+}
+
+
 template< typename XDataType >
 herr_t 
 inline make_scale(hid_t file_id, hid_t dataset_id, std::size_t axis_idx,
@@ -140,6 +201,22 @@ inline make_dataset(hid_t file_id, hid_t& dataset_id,
 
     //write data
     status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
+
+    //if the meta data contains 'tags' then we need to add them as attributes 
+    // if( metadata.contains("tags") )
+    // {
+        for(auto it = metadata.begin(); it != metadata.end(); ++it) 
+        {
+            const std::string& key = it.key();
+            const mho_json& value = it.value();
+            make_attribute(key, value, dataset_id);
+
+        }
+    //}
+
+
+
+
     //clean up
     H5Dclose(dataset_id);
     H5Sclose(dataspace_id);
@@ -311,7 +388,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                 //write the data
                 hid_t dataset_id = -1;
                 herr_t status = 
-                make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData); 
+                make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData["tags"]); 
 
                 //now attach the table axes
                 name = item_group;
