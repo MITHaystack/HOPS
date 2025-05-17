@@ -68,34 +68,20 @@ inline make_scale(hid_t file_id, hid_t dataset_id, std::size_t axis_idx,
                   const std::vector< XDataType >* data, 
                   const std::string& metadata)
 {
-    std::cout<<"file ="<<file_id<<std::endl;
-    std::cout<<"dataset id = "<<dataset_id<<std::endl;
-    std::cout<<"axis id ="<<axis_idx<<std::endl;
-    std::cout<<"name = "<<name<<std::endl;
-
-
     herr_t status;
     hsize_t dims[1];
     dims[0] = data->size();
     hid_t dataspace_id = H5Screate_simple(1, dims, NULL);
 
-    std::cout<<"new dataspace id = "<< dataspace_id<<std::endl;
     //get the type code
     hid_t TYPE_CODE = MHO_HDF5TypeCode<XDataType>();
-
-    std::cout<<"type code = "<<TYPE_CODE<<std::endl;
-
     //create axis dataset
     hid_t axis_dset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-
-    std::cout<<"axis dset id ="<<axis_dset_id<<std::endl;
-
     //write the data
     status = H5Dwrite(axis_dset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data->data() );
 
     H5DSset_scale(axis_dset_id, name.c_str());
-
-    H5DSattach_scale(dataset_id, axis_dset_id, axis_idx);  // attach to appropriate dim
+    H5DSattach_scale(dataset_id, axis_dset_id, axis_idx);  // attach to appropriate index
 
     return status;
 }
@@ -130,16 +116,8 @@ inline make_dataset(hid_t file_id, hid_t& dataset_id,
 {
     herr_t status;
     hid_t dataspace_id = -1;
-
-    std::cout<<"file id = "<<file_id<<std::endl;
-
     //return the dataset_id in reference so we can attach attributes later
     dataset_id = -1;
-    
-    std::cout<<"rank = "<<rank<<std::endl;
-    std::cout<<"dims[0] = "<<dims[0]<<std::endl;
-    std::cout<<"double type code = "<<H5T_NATIVE_DOUBLE<<std::endl;
-
     //create dataspace
     dataspace_id = H5Screate_simple(rank, dims, NULL);
     if (dataspace_id < 0)
@@ -147,15 +125,9 @@ inline make_dataset(hid_t file_id, hid_t& dataset_id,
         msg_error("main", "could not create dataspace" << eom);
         return -1;
     }
-    
     //get the type code
     hid_t TYPE_CODE = MHO_HDF5TypeCode<XDataType>();
-
     //create dataset
-    std::cout<<"name = "<<name<<std::endl;
-    std::cout<<"type code = "<<TYPE_CODE<<std::endl;
-    std::cout<<"dspace = "<<dataspace_id<<std::endl;
-
     dataset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     if (dataset_id < 0) 
     {
@@ -166,38 +138,12 @@ inline make_dataset(hid_t file_id, hid_t& dataset_id,
 
     //write data
     status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
-
-    // //attach the metadata if it isn't empty 
-    // if(metadata != "")
-    // {
-    //     std::string attr_mname = "metadata";
-    //     attach_metadata(dataset_id, attr_mname, metadata);
-    // }
-
     //clean up
     H5Dclose(dataset_id);
     H5Sclose(dataspace_id);
 
     return status;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 class MHO_HDF5Converter
@@ -207,36 +153,10 @@ class MHO_HDF5Converter
         virtual ~MHO_HDF5Converter(){};
 
         virtual void SetObjectToConvert(MHO_Serializable* /*!obj*/) = 0;
-        virtual void WriteToHDF5File(hid_t /*file_id*/) = 0;
-        //virtual void ConstructHDF5Representation() = 0;
+        virtual void WriteToHDF5File(hid_t /*file_id*/, std::string /*group_prefix*/) = 0;
 
     protected:
-        // 
-        // //helper functions for generic data insertion for elements of a list
-        // template< typename XValueType > void InsertElement(const XValueType& value, mho_json& data) { data.push_back(value); }
-        // 
-        // //specializations for complex<> element data insertion, needed b/c mho_json doesn't have a first-class complex type
-        // void InsertElement(const std::complex< long double >& value, mho_json& data)
-        // {
-        //     data.push_back({value.real(), value.imag()});
-        // }
-        // 
-        // void InsertElement(const std::complex< double >& value, mho_json& data)
-        // {
-        //     data.push_back({value.real(), value.imag()});
-        // }
-        // 
-        // void InsertElement(const std::complex< float >& value, mho_json& data) { data.push_back({value.real(), value.imag()}); }
 
-        // //data
-        // int fLOD;
-        // mho_json fHDF5;
-        // 
-        // //for extracting container raw data (with no meta data structures)
-        // std::size_t fRank;
-        // std::size_t fRawByteSize;
-        // const char* fRawData;
-        // std::string fRawDataDescriptor;
 };
 
 template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO_HDF5Converter
@@ -253,12 +173,11 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
 
         virtual void SetObjectToConvert(MHO_Serializable* obj) { fContainer = dynamic_cast< XContainerType* >(obj); };
 
-
-        virtual void WriteToHDF5File(hid_t file_id)
+        virtual void WriteToHDF5File(hid_t file_id, std::string group_prefix)
         {
             if(fContainer != nullptr)
             {
-                ConstructHDF5(file_id, fContainer);
+                ConstructHDF5(file_id, group_prefix, fContainer);
             }
         }
 
@@ -268,7 +187,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
     protected:
 
         //unspecialized template doesn't do much
-        template< typename XCheckType > void ConstructHDF5(hid_t /*file_id*/, const XCheckType* obj)
+        template< typename XCheckType > void ConstructHDF5(hid_t /*file_id*/, std::string /*group_prefix*/, const XCheckType* obj)
         {
             std::string class_name = MHO_ClassIdentity::ClassName< XCheckType >();
             std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< XCheckType >().as_string();
@@ -280,41 +199,9 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
         //scalar specialization
         template< typename XCheckType = XContainerType >
         typename std::enable_if< std::is_base_of< MHO_ScalarContainerBase, XCheckType >::value, void >::type
-        ConstructHDF5(hid_t file_id, const XContainerType* obj)
+        ConstructHDF5(hid_t file_id, std::string group_prefix, const XContainerType* obj)
         {
             std::cout<<"scalar type"<<std::endl;
-            // fHDF5.clear();
-            // std::string class_name = MHO_ClassIdentity::ClassName< XContainerType >();
-            // std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< XContainerType >().as_string();
-            // if(fLOD >= eHDF5Basic)
-            // {
-            //     fHDF5["class_name"] = class_name;
-            //     fHDF5["class_uuid"] = class_uuid;
-            //     fHDF5["rank"] = fContainer->GetRank();
-            //     fHDF5["total_size"] = fContainer->GetSize();
-            // }
-            // 
-            // if(fLOD >= eHDF5Tags)
-            // {
-            //     mho_json jtags;
-            //     // FillHDF5FromCommonMap(fContainer, jtags);
-            //     FillHDF5FromTaggable(fContainer, jtags);
-            //     fHDF5["tags"] = jtags;
-            // }
-            // 
-            // //just one element
-            // if(fLOD >= eHDF5All)
-            // {
-            //     mho_json data;
-            //     InsertElement(fContainer->GetData(), data);
-            //     fHDF5["data"] = data;
-            // }
-            
-            // //for raw data extraction (not possible)
-            // fRank = 0;
-            // fRawByteSize = 0;
-            // fRawData = nullptr;
-            // fRawDataDescriptor = "";
         };
 
         //vector specialization (but not an axis!)
@@ -322,136 +209,87 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
         typename std::enable_if< (std::is_base_of< MHO_VectorContainerBase, XCheckType >::value &&
                                   !std::is_base_of< MHO_AxisBase, XCheckType >::value),
                                  void >::type
-        ConstructHDF5(hid_t file_id, const XContainerType* obj)
+        ConstructHDF5(hid_t file_id, std::string group_prefix, const XContainerType* obj)
         {
             std::cout<<"vector type"<<std::endl;
             std::string class_name = MHO_ClassIdentity::ClassName< XContainerType >();
             std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< XContainerType >().as_string();
+            std::string object_uuid = obj->GetObjectUUID().as_string();
 
             //grab the rank and dimensions
-            hsize_t rank = XContainerType::rank::value;
-            hsize_t* dims = nullptr;
-            dims = new hsize_t[rank];
+            hsize_t rank = 1;
+            hsize_t dims[1];
             auto dim_array = fContainer->GetDimensionArray();
             for(std::size_t i=0; i<rank; i++){dims[i] = dim_array[i];}
             std::string mdata = "";
+            std::string item_group = group_prefix + "/" + object_uuid;
 
-            //write the data
-            hid_t dataset_id = -1;
-            herr_t status = 
-            make_dataset< typename XContainerType::value_type >(file_id, dataset_id, class_name, rank, dims, fContainer->GetData(), mdata); 
+            if (H5Lexists(file_id, item_group.c_str(), H5P_DEFAULT) == 0) 
+            {
+                hid_t group_id = H5Gcreate(file_id, item_group.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+                if(group_id < 0) 
+                {
+                    std::cout<<"failed to create HDF5 group"<<std::endl;
+                }
 
-            //dete
-            delete[] dims;
-            // fHDF5.clear();
-            // std::string class_name = MHO_ClassIdentity::ClassName< XContainerType >();
-            // std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< XContainerType >().as_string();
-            // if(fLOD >= eHDF5Basic)
-            // {
-            //     fHDF5["class_name"] = class_name;
-            //     fHDF5["class_uuid"] = class_uuid;
-            //     fHDF5["rank"] = fContainer->GetRank();
-            //     fHDF5["total_size"] = fContainer->GetSize();
-            //     fHDF5["dimensions"] = fContainer->GetDimensionArray();
-            // }
-            // 
-            // if(fLOD >= eHDF5Tags)
-            // {
-            //     mho_json jtags;
-            //     FillHDF5FromTaggable(fContainer, jtags);
-            //     //FillHDF5FromCommonMap(fContainer ,jtags);
-            //     fHDF5["tags"] = jtags;
-            // }
-            // 
-            // //data goes out flat-packed into 1-d array
-            // if(fLOD >= eHDF5All)
-            // {
-            //     mho_json data;
-            //     for(auto it = fContainer->cbegin(); it != fContainer->cend(); it++)
-            //     {
-            //         InsertElement(*it, data);
-            //     }
-            //     fHDF5["data"] = data;
-            // }
-            
-            // //for raw data extraction 
-            // std::size_t elem_size = sizeof( typename XContainerType::value_type);
-            // std::size_t n_elem = fContainer->GetSize();
-            // fRank = XContainerType::rank::value;
-            // fRawByteSize = elem_size*n_elem;
-            // fRawData = reinterpret_cast<const char*>( fContainer->GetData() );
-            // fRawDataDescriptor = MHO_NumpyTypeCode< typename XContainerType::value_type >();
+                std::string name = item_group + "/data";
+                //write the data
+                hid_t dataset_id = -1;
+                herr_t status = 
+                make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), mdata); 
+
+                H5Gclose(group_id);
+            }
         };
 
         //axis specialization
         template< typename XCheckType = XContainerType >
         typename std::enable_if< std::is_base_of< MHO_AxisBase, XCheckType >::value, void >::type
-        ConstructHDF5(hid_t file_id, const XContainerType* obj)
+        ConstructHDF5(hid_t file_id, std::string group_prefix, const XContainerType* obj)
         {
             std::cout<<"axis type"<<std::endl;
             std::string class_name = MHO_ClassIdentity::ClassName< XContainerType >();
             std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< XContainerType >().as_string();
+            std::string object_uuid = obj->GetObjectUUID().as_string();
 
             //grab the rank and dimensions
-            hsize_t rank = XContainerType::rank::value;
-            hsize_t* dims = nullptr;
-            dims = new hsize_t[rank];
+            hsize_t rank = 1;
+            hsize_t dims[1];
             auto dim_array = fContainer->GetDimensionArray();
             for(std::size_t i=0; i<rank; i++){dims[i] = dim_array[i];}
             std::string mdata = "";
+            std::string item_group = group_prefix + "/" + object_uuid;
 
-            //write the data
-            hid_t dataset_id = -1;
-            herr_t status = 
-            make_dataset< typename XContainerType::value_type >(file_id, dataset_id, class_name, rank, dims, fContainer->GetData(), mdata); 
+            if (H5Lexists(file_id, item_group.c_str(), H5P_DEFAULT) == 0) 
+            {
+                hid_t group_id = H5Gcreate(file_id, item_group.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+                if(group_id < 0) 
+                {
+                    std::cout<<"failed to create HDF5 group"<<std::endl;
+                }
 
-            //dete
-            delete[] dims;
+                std::string name = item_group + "/data";
+                //write the data
+                hid_t dataset_id = -1;
+                herr_t status = 
+                make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), mdata); 
 
-            // fHDF5.clear();
-            // std::string class_name = MHO_ClassIdentity::ClassName< XContainerType >();
-            // std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< XContainerType >().as_string();
-            // if(fLOD >= eHDF5Basic)
-            // {
-            //     fHDF5["class_name"] = class_name;
-            //     fHDF5["class_uuid"] = class_uuid;
-            //     fHDF5["rank"] = fContainer->GetRank();
-            //     fHDF5["total_size"] = fContainer->GetSize();
-            //     fHDF5["dimensions"] = fContainer->GetDimensionArray();
-            // }
+                H5Gclose(group_id);
+            }
+
+
+            // std::string name = group_prefix + "/" + object_uuid + "/data";
             // 
-            // if(fLOD >= eHDF5Tags)
-            // {
-            //     mho_json jtags;
-            //     FillHDF5FromTaggable(fContainer, jtags);
-            //     //FillHDF5FromCommonMap(fContainer ,jtags);
-            //     fHDF5["tags"] = jtags;
-            // }
-            // 
-            // //data goes out flat-packed into 1-d array
-            // if(fLOD >= eHDF5All)
-            // {
-            //     mho_json data;
-            //     for(auto it = fContainer->cbegin(); it != fContainer->cend(); it++)
-            //     {
-            //         InsertElement(*it, data);
-            //     }
-            //     fHDF5["data"] = data;
-            // }
-            
-            // //for raw data extraction 
-            // std::size_t elem_size = sizeof( typename XContainerType::value_type);
-            // std::size_t n_elem = fContainer->GetSize();
-            // fRank = XContainerType::rank::value;
-            // fRawByteSize = elem_size*n_elem;
-            // fRawData = reinterpret_cast<const char*>( fContainer->GetData() );
-            // fRawDataDescriptor = MHO_NumpyTypeCode< typename XContainerType::value_type >();
+            // //write the data
+            // hid_t dataset_id = -1;
+            // herr_t status = 
+            // make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), mdata); 
         };
 
         //table specialization
         template< typename XCheckType = XContainerType >
         typename std::enable_if< std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
-        ConstructHDF5(hid_t file_id, const XContainerType* obj)
+        ConstructHDF5(hid_t file_id, std::string group_prefix, const XContainerType* obj)
         {
             std::cout<<"table type"<<std::endl;
             std::string class_name = MHO_ClassIdentity::ClassName< XContainerType >();
@@ -460,68 +298,44 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
 
             //grab the rank and dimensions
             hsize_t rank = XContainerType::rank::value;
-            hsize_t* dims = nullptr;
-            dims = new hsize_t[rank];
+            hsize_t dims[XContainerType::rank::value];
             auto dim_array = obj->GetDimensionArray();
             for(std::size_t i=0; i<rank; i++){dims[i] = dim_array[i];}
             std::string mdata = "";
+            // std::string name = group_prefix + "/" + object_uuid + "/data";
+            // 
+            // //write the table data
+            // hid_t dataset_id = -1;
+            // herr_t status = 
+            // make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), mdata); 
 
-            std::string name = object_uuid;
+            std::string item_group = group_prefix + "/" + object_uuid;
 
-            //write the table data
-            hid_t dataset_id = -1;
-            herr_t status = 
-            make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), mdata); 
-
-            //dete
-            delete[] dims;
-
-            //now attach the table axes
-            AxisDumper axis_dumper(file_id, dataset_id, name);
-            for(std::size_t idx = 0; idx < obj->GetRank(); idx++)
+            if (H5Lexists(file_id, item_group.c_str(), H5P_DEFAULT) == 0) 
             {
-                axis_dumper.SetIndex(idx);
-                apply_at< typename XContainerType::axis_pack_tuple_type, AxisDumper >(*obj, idx, axis_dumper);
+                hid_t group_id = H5Gcreate(file_id, item_group.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+                if(group_id < 0) 
+                {
+                    std::cout<<"failed to create HDF5 group"<<std::endl;
+                }
+
+                std::string name = item_group + "/data";
+                //write the data
+                hid_t dataset_id = -1;
+                herr_t status = 
+                make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), mdata); 
+
+                //now attach the table axes
+                name = item_group;
+                AxisDumper axis_dumper(file_id, dataset_id, name);
+                for(std::size_t idx = 0; idx < obj->GetRank(); idx++)
+                {
+                    axis_dumper.SetIndex(idx);
+                    apply_at< typename XContainerType::axis_pack_tuple_type, AxisDumper >(*obj, idx, axis_dumper);
+                }
+
+                H5Gclose(group_id);
             }
-
-            //now attach all of the tag meta data attributes 
-
-
-
-            // if(fLOD >= eHDF5Basic)
-            // {
-            //     fHDF5["class_name"] = class_name;
-            //     fHDF5["class_uuid"] = class_uuid;
-            //     fHDF5["rank"] = fContainer->GetRank();
-            //     fHDF5["total_size"] = fContainer->GetSize();
-            //     fHDF5["dimensions"] = fContainer->GetDimensionArray();
-            //     fHDF5["strides"] = fContainer->GetStrideArray();
-            // }
-            // 
-            // if(fLOD >= eHDF5Tags)
-            // {
-            //     mho_json jtags;
-            //     FillHDF5FromTaggable(fContainer, jtags);
-            //     //FillHDF5FromCommonMap(fContainer, jtags);
-            //     fHDF5["tags"] = jtags;
-            // }
-            // 
-            // //data goes out flat-packed into 1-d array
-            // if(fLOD >= eHDF5All)
-            // {
-            //     mho_json data;
-            //     for(auto it = fContainer->cbegin(); it != fContainer->cend(); it++)
-            //     {
-            //         InsertElement(*it, data);
-            //     }
-            //     fHDF5["data"] = data;
-            // }
-            // 
-            // if(fLOD >= eHDF5WithAxes)
-            // {
-
-            // }
-
 
         };
 
@@ -547,7 +361,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                     std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< XAxisType >().as_string();
 
                     std::stringstream ss;
-                    ss << fParentName << "-axis_";
+                    ss << fParentName << "/axis_";
                     ss << fIndex;
                     std::string name = ss.str();
                     std::string mdata = "";
@@ -573,37 +387,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                         //make_dataset< typename XAxisType::value_type >(fFileID, dataset_id, name, 1, dims, axis.GetData(), mdata); 
                     }
 
-                    
-                    // if(fLOD >= eHDF5Basic)
-                    // {
-                    //     j["class_name"] = class_name;
-                    //     j["class_uuid"] = class_uuid;
-                    //     j["rank"] = axis.GetRank();
-                    //     j["total_size"] = axis.GetSize();
-                    //     j["dimensions"] = axis.GetDimensionArray();
-                    // }
-                    // 
-                    // if(fLOD >= eHDF5Tags)
-                    // {
-                    //     mho_json jtags;
-                    //     FillHDF5FromTaggable(&axis, jtags);
-                    //     //FillHDF5FromCommonMap(&axis, jtags);
-                    //     j["tags"] = jtags;
-                    // }
-                    // 
-                    // //data goes out flat-packed into 1-d array
-                    // mho_json data;
-                    // for(auto it = axis.cbegin(); it != axis.cend(); it++)
-                    // {
-                    //     data.push_back(*it);
-                    // }
-                    // j["data"] = data;
-                    // 
-                    // std::stringstream ss;
-                    // ss << "axis_" << fIndex;
-                    // (*fAxisHDF5)[ss.str().c_str()] = j;
                 };
-        
             private:
 
                 hid_t fFileID;
@@ -635,41 +419,19 @@ template<> class MHO_ContainerHDF5Converter< MHO_ObjectTags >: public MHO_HDF5Co
 
         virtual void SetObjectToConvert(MHO_Serializable* obj) { fContainer = dynamic_cast< MHO_ObjectTags* >(obj); };
 
-        virtual void WriteToHDF5File(hid_t file_id)
+        virtual void WriteToHDF5File(hid_t file_id, std::string group_prefix)
         {
             if(fContainer != nullptr)
             {
-                ConstructHDF5(file_id, fContainer);
+                ConstructHDF5(file_id, group_prefix, fContainer);
             }
         }
 
     private:
 
-        void ConstructHDF5(hid_t file_id, const MHO_ObjectTags* obj)
+        void ConstructHDF5(hid_t file_id, std::string group_prefix, const MHO_ObjectTags* obj)
         {
             std::cout<<"tag type" << std::endl;
-            // fHDF5.clear();
-            // std::string class_name = MHO_ClassIdentity::ClassName< MHO_ObjectTags >();
-            // std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< MHO_ObjectTags >().as_string();
-            // fHDF5["class_name"] = class_name;
-            // fHDF5["class_uuid"] = class_uuid;
-            // 
-            // std::vector< MHO_UUID > obj_uuids = obj->GetAllObjectUUIDs();
-            // for(std::size_t i = 0; i < obj_uuids.size(); i++)
-            // {
-            //     fHDF5["object_uuids"].push_back(obj_uuids[i].as_string());
-            // }
-            // 
-            // mho_json jtags;
-            // // FillHDF5FromCommonMap(obj, jtags);
-            // FillHDF5FromTaggable(obj, jtags);
-            // fHDF5["tags"] = jtags;
-            // 
-            // //for raw data extraction (not possible)
-            // fRank = 0;
-            // fRawByteSize = 0;
-            // fRawData = nullptr;
-            // fRawDataDescriptor = "tags";
         };
 
         MHO_ObjectTags* fContainer;
