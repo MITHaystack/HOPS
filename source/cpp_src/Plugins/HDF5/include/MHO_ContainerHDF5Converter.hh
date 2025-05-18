@@ -13,6 +13,8 @@
 #include "MHO_Taggable.hh"
 #include "MHO_VectorContainer.hh"
 
+#include <sstream>
+
 #include "hdf5.h"
 #include "hdf5_hl.h" 
 
@@ -65,6 +67,28 @@ inline void write_attribute< std::string >(const std::string& key, std::string v
     return;
 }
 
+template< typename XDataType >
+herr_t 
+inline make_vector_attribute(const std::string& key,
+                             const std::vector< XDataType >* data, 
+                             hid_t dataset_id)
+{
+    herr_t status;
+    hsize_t dims[1];
+    dims[0] = data->size();
+    hid_t attr_space = H5Screate_simple(1, dims, NULL);
+    //get the type code
+    hid_t TYPE_CODE = MHO_HDF5TypeCode<XDataType>();
+    //create axis dataset
+    // hid_t attr_id = H5Dcreate(dataset_id, key.c_str(), TYPE_CODE, attr_space, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+    hid_t attr_id = H5Acreate(dataset_id, key.c_str(), TYPE_CODE, attr_space, H5P_DEFAULT, H5P_DEFAULT);
+    //write the data
+    status = H5Awrite(attr_id, TYPE_CODE, data->data() );
+    //clean up
+    H5Aclose(attr_id);
+    H5Sclose(attr_space);
+    return status;
+}
 
 
 inline void make_attribute(const std::string& key, const mho_json& value, hid_t dataset_id)
@@ -100,9 +124,32 @@ inline void make_attribute(const std::string& key, const mho_json& value, hid_t 
         uint8_t v = value.get<bool>() ? 1 : 0;
         write_attribute(key,v,dataset_id);
     } 
+    else if ( value.is_array() && value.size() != 0) 
+    {
+        if(value.begin()->is_number_integer())
+        {
+            std::vector<int> data = value.get< std::vector<int> >();
+            make_vector_attribute(key, &data, dataset_id);
+        }
+        if(value.begin()->is_number_unsigned())
+        {
+            std::vector<unsigned int> data = value.get< std::vector<unsigned int> >();
+            make_vector_attribute(key, &data, dataset_id);
+        }
+        if(value.begin()->is_number_float())
+        {
+            std::vector<double> data = value.get< std::vector<double> >();
+            make_vector_attribute(key, &data, dataset_id);
+        }
+        //TODO specialization for vectors of strings
+    } 
     else 
     {
-        //for now we are skipping objects/arrays TODO FIXME
+        //for composite objects, we dump them into a string 
+        std::stringstream ss;
+        ss << value.dump();
+        std::string sval = ss.str();
+        write_attribute(key,sval,dataset_id);
         return;
     }
 }
@@ -129,6 +176,28 @@ inline make_scale(hid_t file_id, hid_t dataset_id, std::size_t axis_idx,
 
     H5DSset_scale(axis_dset_id, name.c_str());
     H5DSattach_scale(dataset_id, axis_dset_id, axis_idx);  // attach to appropriate index
+
+    //attach meta data in 'tags'
+    if( metadata.contains("tags"))
+    {
+        for(auto it = metadata["tags"].begin(); it != metadata["tags"].end(); ++it) 
+        {
+            const std::string& key = it.key();
+            //std::string key = name + "/" + it.key();
+            const mho_json& value = it.value();
+            make_attribute(key, value, axis_dset_id);
+        }
+    }
+    // //no do everything but 'tags'
+    // for(auto it = metadata.begin(); it != metadata.end(); ++it) 
+    // {
+    //     const std::string& key = it.key();
+    //     if(key != "tags")
+    //     {
+    //         const mho_json& value = it.value();
+    //         make_attribute(key, value, axis_dset_id);
+    //     }
+    // }
 
     return status;
 }
@@ -171,6 +240,18 @@ inline make_scale< std::string>(hid_t file_id, hid_t dataset_id, std::size_t axi
 
     H5DSset_scale(axis_dset_id, name.c_str());
     H5DSattach_scale(dataset_id, axis_dset_id, axis_idx);  // attach to appropriate index
+
+    //attach meta data
+    if( metadata.contains("tags"))
+    {
+        for(auto it = metadata["tags"].begin(); it != metadata["tags"].end(); ++it) 
+        {
+            const std::string& key = it.key();
+            //std::string key = name + "/" + it.key();
+            const mho_json& value = it.value();
+            make_attribute(key, value, axis_dset_id);
+        }
+    }
 
     return status;
 
@@ -217,20 +298,13 @@ inline make_dataset(hid_t file_id, hid_t& dataset_id,
     //write data
     status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
 
-    //if the meta data contains 'tags' then we need to add them as attributes 
-    // if( metadata.contains("tags") )
-    // {
-        for(auto it = metadata.begin(); it != metadata.end(); ++it) 
-        {
-            const std::string& key = it.key();
-            const mho_json& value = it.value();
-            make_attribute(key, value, dataset_id);
+    for(auto it = metadata.begin(); it != metadata.end(); ++it) 
+    {
+        const std::string& key = it.key();
+        const mho_json& value = it.value();
+        make_attribute(key, value, dataset_id);
 
-        }
-    //}
-
-
-
+    }
 
     //clean up
     H5Dclose(dataset_id);
@@ -407,7 +481,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
 
                 //now attach the table axes
                 name = item_group;
-                AxisDumper axis_dumper(file_id, dataset_id, name);
+                AxisDumper axis_dumper(file_id, dataset_id, name, fMetaData);
                 for(std::size_t idx = 0; idx < obj->GetRank(); idx++)
                 {
                     axis_dumper.SetIndex(idx);
@@ -422,10 +496,12 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
         class AxisDumper
         {
             public:
-                AxisDumper(hid_t file_id, hid_t ds_id, const std::string& parent): 
+                AxisDumper(hid_t file_id, hid_t ds_id, const std::string& parent, const mho_json& pmetadata):
                     fFileID(file_id), 
                     fDataSetID(ds_id), 
-                    fParentName(parent){};
+                    fParentName(parent),
+                    fParentMetadata(pmetadata)
+                {};
 
                 AxisDumper(): fFileID(-1), fDataSetID(-1), fParentName(""){};
                 ~AxisDumper(){};
@@ -440,11 +516,21 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                     std::string class_name = MHO_ClassIdentity::ClassName< XAxisType >();
                     std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< XAxisType >().as_string();
 
+                    std::stringstream ssn;
+                    ssn << "axis_" << fIndex;
+                    std::string ax_name = ssn.str();
+
                     std::stringstream ss;
                     ss << fParentName << "/axis_";
                     ss << fIndex;
                     std::string name = ss.str();
+
                     mho_json mdata;
+                    if(fParentMetadata.contains(ax_name))
+                    {
+                        std::cout<<"found metadata for: "<<ax_name<<std::endl;
+                        mdata = fParentMetadata[ax_name];
+                    }
                     std::cout<<"ax name = "<<name<<std::endl;
 
                     //copy the data into a temporary vector
@@ -468,6 +554,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                 hid_t fDataSetID;
                 std::string fParentName;
                 std::size_t fIndex;
+                const mho_json& fParentMetadata;
 
         };
 };
