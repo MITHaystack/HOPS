@@ -311,17 +311,61 @@ inline make_dataset(hid_t file_id, hid_t& dataset_id,
     //write data
     status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
 
+    //attache the metadata
     for(auto it = metadata.begin(); it != metadata.end(); ++it) 
     {
         const std::string& key = it.key();
         const mho_json& value = it.value();
         make_attribute(key, value, dataset_id);
-
     }
 
     //clean up
     H5Dclose(dataset_id);
     H5Sclose(dataspace_id);
+
+    return status;
+}
+
+
+//1-D string dataset 
+herr_t 
+inline make_string_vector_dataset(hid_t file_id, hid_t dataset_id,
+                                  const std::string& name,
+                                  const std::vector< std::string >* data, 
+                                  const mho_json& metadata) 
+{
+    std::cout<<"string dataset "<<std::endl;
+    herr_t status;
+    hsize_t dims[1];
+    dims[0] = data->size();
+    hid_t TYPE_CODE = H5Tcopy(H5T_C_S1);
+    H5Tset_size(TYPE_CODE, H5T_VARIABLE);
+
+    //convert to const chars
+    std::vector<const char*> cstrs;
+    for(const auto& s : *data) 
+    {
+        cstrs.push_back(s.c_str());
+    }
+
+    hid_t dataspace_id = H5Screate_simple(1, dims, NULL);
+
+    //create axis dataset
+    dataset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+    status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, cstrs.data() );
+
+    //attache the metadata
+    for(auto it = metadata.begin(); it != metadata.end(); ++it) 
+    {
+        const std::string& key = it.key();
+        const mho_json& value = it.value();
+        make_attribute(key, value, dataset_id);
+    }
+
+    //clean up
+    H5Dclose(dataset_id);
+    H5Sclose(dataspace_id);
+
 
     return status;
 }

@@ -313,6 +313,38 @@ template<> class MHO_ContainerHDF5Converter< MHO_ObjectTags >: public MHO_HDF5Co
         void ConstructHDF5(hid_t file_id, std::string group_prefix, const MHO_ObjectTags* obj)
         {
             std::cout<<"tag type" << std::endl;
+
+            std::string class_name = MHO_ClassIdentity::ClassName< MHO_ObjectTags >();
+            std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< MHO_ObjectTags >().as_string();
+            std::string object_uuid = obj->GetObjectUUID().as_string();
+
+            std::string item_group = group_prefix + "/" + object_uuid;
+
+            if (H5Lexists(file_id, item_group.c_str(), H5P_DEFAULT) == 0) 
+            {
+                hid_t group_id = H5Gcreate(file_id, item_group.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+                if(group_id < 0) 
+                {
+                    std::cout<<"failed to create HDF5 group"<<std::endl;
+                }
+
+                std::string name = item_group + "/uuid_set";
+                //the data we want to store is a vector of the object UUIDs that we are tagging 
+                std::vector< MHO_UUID > uvec = obj->GetAllObjectUUIDs();
+                //now convert these to a vector of strings
+                std::vector< std::string > uuid_vec;
+                for(std::size_t i=0; i<uvec.size(); i++){uuid_vec.push_back( uvec[i].as_string() );}
+
+                mho_json mdata = obj->GetMetaDataAsJSON();
+
+                std::cout<<"mdata looks like: "<<mdata.dump(2)<<std::endl;
+
+                hid_t dataset_id = -1;
+                herr_t status =
+                make_string_vector_dataset(file_id, dataset_id, name, &uuid_vec, mdata);
+
+                H5Gclose(group_id);
+            }
         };
 
         MHO_ObjectTags* fContainer;
