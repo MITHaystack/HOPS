@@ -10,14 +10,14 @@ int MHO_HDF5ContainerFileInterface::ConvertStoreToHDF5(MHO_ContainerStore& store
     hid_t file_id = H5Fcreate(hdf5_filename.c_str(), H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
     if(file_id < 0) 
     {
-        std::cout<<"failed to create HDF5 file"<<std::endl;
+        msg_error("hdf5interface", "failed to create HDF5 file: "<< hdf5_filename << eom);
         return 1;
     }
 
     hid_t group_id = H5Gcreate(file_id, fGroupPrefix.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     if(group_id < 0) 
     {
-        std::cout<<"failed to create HDF5 group"<<std::endl;
+        msg_error("hdf5interface", "failed to create HDF5 group: "<<fGroupPrefix<<eom);
         return 1;
     }
 
@@ -37,15 +37,15 @@ int MHO_HDF5ContainerFileInterface::ConvertStoreToHDF5(MHO_ContainerStore& store
                 std::string shortname = store.GetShortName(*it2);
                 if(obj != nullptr)
                 {
-                    std::cout<<"shortname = "<<shortname<<std::endl;
                     std::string category_prefix = fGroupPrefix + "/" + shortname;
+                    msg_debug("hdf5interface", "creating HDF5 group/category: "<< category_prefix << eom);
 
                     if( H5Lexists(file_id, category_prefix.c_str(), H5P_DEFAULT) == 0) 
                     {
                         hid_t cat_id = H5Gcreate(file_id, category_prefix.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
                         if(group_id < 0) 
                         {
-                            std::cout<<"failed to create HDF5 group"<<std::endl;
+                            msg_error("hdf5interface", "failed to create HDF5 group: "<<category_prefix<<eom);
                             return 1;
                         }
 
@@ -66,12 +66,11 @@ int MHO_HDF5ContainerFileInterface::ConvertStoreToHDF5(MHO_ContainerStore& store
         }
     }
 
-    //close group 
+    //close group and file 
     H5Gclose(group_id);
-
-    //close file
     H5Fclose(file_id);
-    std::cout<< "HDF5 file created successfully with dataset and metadata."<< std::endl;
+    msg_debug("hdf5interface","HDF5 file: " << hdf5_filename<< " created successfully" << eom);
+
     return 0;
 };
 
