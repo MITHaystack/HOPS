@@ -114,7 +114,7 @@ inline make_vector_attribute(const std::string& key,
 //wrapper function to write attributes in a json object
 inline void make_attribute(const std::string& key, const mho_json& value, hid_t dataset_id)
 {
-    std::cout<<"key = "<<key<<std::endl;
+    msg_debug("hdf5interface", "creating attribute with key: "<< key << eom);
     //for now we can only handle scalar types
     hid_t attr_space = H5Screate(H5S_SCALAR);
     hid_t TYPE_CODE;
@@ -241,7 +241,6 @@ inline make_scale< std::string>(hid_t file_id, hid_t dataset_id, std::size_t axi
                          const std::vector< std::string >* data, 
                          const mho_json& metadata) 
 {
-    std::cout<<"string axis"<<std::endl;
     herr_t status;
     hsize_t dims[1];
     dims[0] = data->size();
@@ -334,7 +333,6 @@ inline make_string_vector_dataset(hid_t file_id, hid_t dataset_id,
                                   const std::vector< std::string >* data, 
                                   const mho_json& metadata) 
 {
-    std::cout<<"string dataset "<<std::endl;
     herr_t status;
     hsize_t dims[1];
     dims[0] = data->size();
