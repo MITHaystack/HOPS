@@ -37,7 +37,7 @@ namespace hops
 
 
 template < typename XValueType >
-inline void make_scalar_dataset(hid_t file_id, hid_t dataset_id, const std::string& name, XValueType value) 
+inline void make_scalar_dataset(hid_t file_id, hid_t& dataset_id, const std::string& name, const XValueType& value) 
 {
     hid_t TYPE_CODE = MHO_HDF5TypeCode<XValueType>();
     hid_t space_id = H5Screate(H5S_SCALAR);
@@ -49,7 +49,7 @@ inline void make_scalar_dataset(hid_t file_id, hid_t dataset_id, const std::stri
 
 
 template<>
-inline void make_scalar_dataset< std::string >(hid_t file_id, hid_t dataset_id, const std::string& name, std::string value) 
+inline void make_scalar_dataset< std::string >(hid_t file_id, hid_t& dataset_id, const std::string& name, const std::string& value) 
 {
     hid_t TYPE_CODE = H5Tcopy(H5T_C_S1);
     H5Tset_size(TYPE_CODE, value.size());
@@ -81,7 +81,7 @@ inline void write_attribute< std::string >(const std::string& key, std::string v
 {
     hid_t attr_space = H5Screate(H5S_SCALAR);
     hid_t TYPE_CODE = H5Tcopy(H5T_C_S1);
-    H5Tset_size(TYPE_CODE, strlen(value.c_str() ));
+    H5Tset_size(TYPE_CODE, value.size());
     H5Tset_strpad(TYPE_CODE, H5T_STR_NULLTERM);
     hid_t attr_id = H5Acreate(dataset_id, key.c_str(), TYPE_CODE, attr_space, H5P_DEFAULT, H5P_DEFAULT);
     H5Awrite(attr_id, TYPE_CODE, value.c_str());
@@ -218,6 +218,7 @@ inline void make_attribute(const std::string& key, const mho_json& value, hid_t 
 template< typename XDataType >
 herr_t 
 inline make_scale(hid_t file_id, hid_t dataset_id, std::size_t axis_idx,
+                  const std::string& parent_name,
                   const std::string& name,
                   const std::vector< XDataType >* data, 
                   const mho_json& metadata)
@@ -244,7 +245,24 @@ inline make_scale(hid_t file_id, hid_t dataset_id, std::size_t axis_idx,
         {
             const std::string& key = it.key();
             const mho_json& value = it.value();
-            make_attribute(key, value, axis_dset_id);
+            if(key == "index_labels")
+            {
+                hid_t tmp_dset_id = -1;
+                std::string tmp_key = parent_name + "/" + key;
+                std::string sval = value.dump();
+                make_scalar_dataset(file_id, tmp_dset_id, tmp_key, sval); 
+            }
+            else if( key == "interval_labels") 
+            {
+                hid_t tmp_dset_id;
+                std::string tmp_key = parent_name + "/" + key;
+                std::string sval = value.dump();
+                make_scalar_dataset(file_id, tmp_dset_id, tmp_key, sval); 
+            }
+            else 
+            {
+                make_attribute(key, value, axis_dset_id);
+            }
         }
     }
     //attach class name and uuid if they exist
@@ -268,6 +286,7 @@ inline make_scale(hid_t file_id, hid_t dataset_id, std::size_t axis_idx,
 template<>
 herr_t 
 inline make_scale< std::string>(hid_t file_id, hid_t dataset_id, std::size_t axis_idx,
+                         const std::string& parent_name,
                          const std::string& name,
                          const std::vector< std::string >* data, 
                          const mho_json& metadata) 
@@ -300,9 +319,25 @@ inline make_scale< std::string>(hid_t file_id, hid_t dataset_id, std::size_t axi
         for(auto it = metadata["tags"].begin(); it != metadata["tags"].end(); ++it) 
         {
             const std::string& key = it.key();
-            //std::string key = name + "/" + it.key();
             const mho_json& value = it.value();
-            make_attribute(key, value, axis_dset_id);
+            if(key == "index_labels")
+            {
+                hid_t tmp_dset_id = -1;
+                std::string tmp_key = parent_name + "/" + key;
+                std::string sval = value.dump();
+                make_scalar_dataset(file_id, tmp_dset_id, tmp_key, sval); 
+            }
+            else if( key == "interval_labels") 
+            {
+                hid_t tmp_dset_id = -1;
+                std::string tmp_key = parent_name + "/" + key;
+                std::string sval = value.dump();
+                make_scalar_dataset(file_id, tmp_dset_id, tmp_key, sval); 
+            }
+            else 
+            {
+                make_attribute(key, value, axis_dset_id);
+            }
         }
     }
     //attach class name and uuid if they exist
@@ -408,7 +443,6 @@ inline make_string_vector_dataset(hid_t file_id, hid_t dataset_id,
     }
 
     hid_t dataspace_id = H5Screate_simple(1, dims, NULL);
-
     //create axis dataset
     dataset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, cstrs.data() );
@@ -417,14 +451,17 @@ inline make_string_vector_dataset(hid_t file_id, hid_t dataset_id,
     for(auto it = metadata.begin(); it != metadata.end(); ++it) 
     {
         const std::string& key = it.key();
-        const mho_json& value = it.value();
-        make_attribute(key, value, dataset_id);
+        //exclude plot_data and parameters from attributes -- these are large objects
+        if(key != "plot_data" && key != "parameters")
+        {
+            const mho_json& value = it.value();
+            make_attribute(key, value, dataset_id);
+        }
     }
 
     //clean up
     H5Dclose(dataset_id);
     H5Sclose(dataspace_id);
-
 
     return status;
 }
