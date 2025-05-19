@@ -10,6 +10,7 @@ if(HDF5_FOUND)
     #list header files #############################################################
     set (HDF5INTERFACE_HEADERFILES
         ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_HDF5TypeCode.hh
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_HDF5ConversionHelpers.hh
         ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerHDF5Converter.hh
         ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_HDF5ConverterDictionary.hh
         ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_HDF5ContainerFileInterface.hh
