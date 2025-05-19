@@ -111,7 +111,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                     //write the data
                     hid_t dataset_id = -1;
                     herr_t status = 
-                    make_scalar_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, fContainer->GetValue(), fMetaData); 
+                    make_scalar_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, fContainer->GetValue() );//fMetaData); 
                     H5Gclose(group_id);
                 }
             }
@@ -272,25 +272,40 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                     std::stringstream ss;
                     ss << fParentName << "/axis_";
                     ss << fIndex;
-                    std::string name = ss.str();
+                    std::string item_group = ss.str();
 
-                    mho_json mdata;
-                    if(fParentMetadata.contains(ax_name))
+                    if (H5Lexists(fFileID, item_group.c_str(), H5P_DEFAULT) == 0) 
                     {
-                        mdata = fParentMetadata[ax_name];
-                    }
-                    msg_debug("hdf5interface", "creating an axis object with name: " << name<< eom);
+                        hid_t group_id = H5Gcreate(fFileID, item_group.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+                        if(group_id < 0) 
+                        {
+                            msg_error("hdf5interface", "failed to create HDF5 group: "<< item_group << eom);
+                        }
+                        else 
+                        {
+                            std::string name = item_group + "/data";
 
-                    //copy the data into a temporary vector
-                    std::size_t n = axis.GetSize();
-                    std::vector< typename XAxisType::value_type > axis_data;
-                    for(std::size_t i=0; i<n; i++){axis_data.push_back( axis.at(i) ); }
-        
-                    hsize_t dims[1];
-                    dims[0] = n;
-                    hid_t dataset_id = -1;
-                    herr_t status = 
-                    make_scale< typename XAxisType::value_type >(fFileID, fDataSetID, fIndex, name, &axis_data, mdata);
+                            mho_json mdata;
+                            if(fParentMetadata.contains(ax_name))
+                            {
+                                mdata = fParentMetadata[ax_name];
+                            }
+                            msg_debug("hdf5interface", "creating an axis object with name: " << name<< eom);
+
+                            //copy the data into a temporary vector (needed to deal with string axes)
+                            std::size_t n = axis.GetSize();
+                            std::vector< typename XAxisType::value_type > axis_data;
+                            for(std::size_t i=0; i<n; i++){axis_data.push_back( axis.at(i) ); }
+                
+                            hsize_t dims[1];
+                            dims[0] = n;
+                            hid_t dataset_id = -1;
+                            herr_t status = 
+                            make_scale< typename XAxisType::value_type >(fFileID, fDataSetID, fIndex, item_group, name, &axis_data, mdata);
+
+                            H5Gclose(group_id);
+                        }
+                    }
                 };
 
             private:
@@ -359,13 +374,31 @@ template<> class MHO_ContainerHDF5Converter< MHO_ObjectTags >: public MHO_HDF5Co
                     //now convert these to a vector of strings
                     std::vector< std::string > uuid_vec;
                     for(std::size_t i=0; i<uvec.size(); i++){uuid_vec.push_back( uvec[i].as_string() );}
-
                     mho_json mdata = obj->GetMetaDataAsJSON();
+
                     mdata["class_name"] = class_name;
                     mdata["class_uuid"] = class_uuid;
                     hid_t dataset_id = -1;
                     herr_t status =
                     make_string_vector_dataset(file_id, dataset_id, name, &uuid_vec, mdata);
+
+                    //store plot data as a separate object
+                    if(mdata.contains("plot_data"))
+                    {
+                        hid_t pd_dset_id = -1;
+                        std::string plot_data_name = item_group + "/plot_data";
+                        std::string plot_data = mdata["plot_data"].dump();
+                        make_scalar_dataset(file_id, pd_dset_id, plot_data_name, plot_data);
+                    }
+
+                    //store paramters as a separate object
+                    if(mdata.contains("parameters"))
+                    {
+                        hid_t pm_dset_id = -1;
+                        std::string param_data_name = item_group + "/parameters";
+                        std::string param_data = mdata["parameters"].dump();
+                        make_scalar_dataset(file_id, pm_dset_id, param_data_name, param_data);
+                    }
 
                     H5Gclose(group_id);
                 }
