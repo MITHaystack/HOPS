@@ -34,6 +34,35 @@ namespace hops
  */
 
 
+
+
+template < typename XValueType >
+inline void make_scalar_dataset(hid_t file_id, hid_t dataset_id, const std::string& name, XValueType value) 
+{
+    hid_t TYPE_CODE = MHO_HDF5TypeCode<XValueType>();
+    hid_t space_id = H5Screate(H5S_SCALAR);
+    dataset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, space_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+    H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, &value);
+    H5Dclose(dataset_id);
+    H5Sclose(space_id);
+}
+
+
+template<>
+inline void make_scalar_dataset< std::string >(hid_t file_id, hid_t dataset_id, const std::string& name, std::string value) 
+{
+    hid_t TYPE_CODE = H5Tcopy(H5T_C_S1);
+    H5Tset_size(TYPE_CODE, value.size());
+    H5Tset_strpad(TYPE_CODE, H5T_STR_NULLTERM);
+    hid_t space_id = H5Screate(H5S_SCALAR);
+    dataset_id = H5Dcreate(file_id, name.c_str(), TYPE_CODE, space_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+    H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, value.c_str());
+    H5Dclose(dataset_id);
+    H5Sclose(space_id);
+    H5Tclose(TYPE_CODE);
+}
+
+
 //generic  - write a scalar attribute
 template < typename XValueType >
 inline void write_attribute(const std::string& key, XValueType value, hid_t dataset_id)
