@@ -92,7 +92,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
         typename std::enable_if< std::is_base_of< MHO_ScalarContainerBase, XCheckType >::value, void >::type
         ConstructHDF5(hid_t file_id, std::string group_prefix, const XContainerType* obj)
         {
-            std::cout<<"scalar type"<<std::endl;
+            std::cout<<"scalar type not implemented"<<std::endl;
         };
 
         //vector specialization (but not an axis!)
@@ -102,10 +102,10 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                                  void >::type
         ConstructHDF5(hid_t file_id, std::string group_prefix, const XContainerType* obj)
         {
-            std::cout<<"vector type"<<std::endl;
             std::string class_name = MHO_ClassIdentity::ClassName< XContainerType >();
             std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< XContainerType >().as_string();
             std::string object_uuid = obj->GetObjectUUID().as_string();
+            msg_debug("hdf5interface", "creating vector type for object with uuid: "<< object_uuid << eom);
 
             //grab the rank and dimensions
             hsize_t rank = 1;
@@ -119,9 +119,10 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                 hid_t group_id = H5Gcreate(file_id, item_group.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
                 if(group_id < 0) 
                 {
-                    std::cout<<"failed to create HDF5 group"<<std::endl;
+                    msg_error("hdf5interface", "failed to create HDF5 group: "<< item_group << eom);
                 }
-
+                else
+                {
                 std::string name = item_group + "/data";
                 //write the data
                 hid_t dataset_id = -1;
@@ -129,6 +130,7 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                 make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData); 
 
                 H5Gclose(group_id);
+                }
             }
         };
 
@@ -137,10 +139,10 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
         typename std::enable_if< std::is_base_of< MHO_AxisBase, XCheckType >::value, void >::type
         ConstructHDF5(hid_t file_id, std::string group_prefix, const XContainerType* obj)
         {
-            std::cout<<"axis type"<<std::endl;
             std::string class_name = MHO_ClassIdentity::ClassName< XContainerType >();
             std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< XContainerType >().as_string();
             std::string object_uuid = obj->GetObjectUUID().as_string();
+            msg_debug("hdf5interface", "creating axis type for object with uuid: "<< object_uuid << eom);
 
             //grab the rank and dimensions
             hsize_t rank = 1;
@@ -154,16 +156,18 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                 hid_t group_id = H5Gcreate(file_id, item_group.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
                 if(group_id < 0) 
                 {
-                    std::cout<<"failed to create HDF5 group"<<std::endl;
+                    msg_error("hdf5interface", "failed to create HDF5 group: "<< item_group << eom);
                 }
+                else 
+                {
+                    std::string name = item_group + "/data";
+                    //write the data
+                    hid_t dataset_id = -1;
+                    herr_t status = 
+                    make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData); 
 
-                std::string name = item_group + "/data";
-                //write the data
-                hid_t dataset_id = -1;
-                herr_t status = 
-                make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData); 
-
-                H5Gclose(group_id);
+                    H5Gclose(group_id);
+                }
             }
         };
 
@@ -172,10 +176,10 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
         typename std::enable_if< std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         ConstructHDF5(hid_t file_id, std::string group_prefix, const XContainerType* obj)
         {
-            std::cout<<"table type"<<std::endl;
             std::string class_name = MHO_ClassIdentity::ClassName< XContainerType >();
             std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< XContainerType >().as_string();
             std::string object_uuid = obj->GetObjectUUID().as_string();
+            msg_debug("hdf5interface", "creating table type for object with uuid: "<< object_uuid << eom);
 
             //grab the rank and dimensions
             hsize_t rank = XContainerType::rank::value;
@@ -190,25 +194,27 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                 hid_t group_id = H5Gcreate(file_id, item_group.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
                 if(group_id < 0) 
                 {
-                    std::cout<<"failed to create HDF5 group"<<std::endl;
+                    msg_error("hdf5interface", "failed to create HDF5 group: "<< item_group << eom);
                 }
-
-                std::string name = item_group + "/data";
-                //write the data
-                hid_t dataset_id = -1;
-                herr_t status = 
-                make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData["tags"]); 
-
-                //now attach the table axes
-                name = item_group;
-                AxisDumper axis_dumper(file_id, dataset_id, name, fMetaData);
-                for(std::size_t idx = 0; idx < obj->GetRank(); idx++)
+                else 
                 {
-                    axis_dumper.SetIndex(idx);
-                    apply_at< typename XContainerType::axis_pack_tuple_type, AxisDumper >(*obj, idx, axis_dumper);
-                }
+                    std::string name = item_group + "/data";
+                    //write the data
+                    hid_t dataset_id = -1;
+                    herr_t status = 
+                    make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData["tags"]); 
 
-                H5Gclose(group_id);
+                    //now attach the table axes
+                    name = item_group;
+                    AxisDumper axis_dumper(file_id, dataset_id, name, fMetaData);
+                    for(std::size_t idx = 0; idx < obj->GetRank(); idx++)
+                    {
+                        axis_dumper.SetIndex(idx);
+                        apply_at< typename XContainerType::axis_pack_tuple_type, AxisDumper >(*obj, idx, axis_dumper);
+                    }
+
+                    H5Gclose(group_id);
+                }
             }
 
         };
@@ -248,10 +254,9 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                     mho_json mdata;
                     if(fParentMetadata.contains(ax_name))
                     {
-                        std::cout<<"found metadata for: "<<ax_name<<std::endl;
                         mdata = fParentMetadata[ax_name];
                     }
-                    std::cout<<"ax name = "<<name<<std::endl;
+                    msg_debug("hdf5interface", "creating an axis object with name: " << name<< eom);
 
                     //copy the data into a temporary vector
                     std::size_t n = axis.GetSize();
@@ -260,9 +265,6 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
         
                     hsize_t dims[1];
                     dims[0] = n;
-
-                    std::cout<<"vtype = "<<MHO_ClassIdentity::ClassName< typename XAxisType::value_type >()<<std::endl;
-
                     hid_t dataset_id = -1;
                     herr_t status = 
                     make_scale< typename XAxisType::value_type >(fFileID, fDataSetID, fIndex, name, &axis_data, mdata);
@@ -312,11 +314,10 @@ template<> class MHO_ContainerHDF5Converter< MHO_ObjectTags >: public MHO_HDF5Co
 
         void ConstructHDF5(hid_t file_id, std::string group_prefix, const MHO_ObjectTags* obj)
         {
-            std::cout<<"tag type" << std::endl;
-
             std::string class_name = MHO_ClassIdentity::ClassName< MHO_ObjectTags >();
             std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< MHO_ObjectTags >().as_string();
             std::string object_uuid = obj->GetObjectUUID().as_string();
+            msg_debug("hdf5interface", "creating tag type for object with uuid: "<< object_uuid << eom);
 
             std::string item_group = group_prefix + "/" + object_uuid;
 
@@ -325,25 +326,25 @@ template<> class MHO_ContainerHDF5Converter< MHO_ObjectTags >: public MHO_HDF5Co
                 hid_t group_id = H5Gcreate(file_id, item_group.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
                 if(group_id < 0) 
                 {
-                    std::cout<<"failed to create HDF5 group"<<std::endl;
+                    msg_error("hdf5interface", "failed to create HDF5 group: "<< item_group << eom);
                 }
+                else 
+                {
 
-                std::string name = item_group + "/uuid_set";
-                //the data we want to store is a vector of the object UUIDs that we are tagging 
-                std::vector< MHO_UUID > uvec = obj->GetAllObjectUUIDs();
-                //now convert these to a vector of strings
-                std::vector< std::string > uuid_vec;
-                for(std::size_t i=0; i<uvec.size(); i++){uuid_vec.push_back( uvec[i].as_string() );}
+                    std::string name = item_group + "/uuid_set";
+                    //the data we want to store is a vector of the object UUIDs that we are tagging 
+                    std::vector< MHO_UUID > uvec = obj->GetAllObjectUUIDs();
+                    //now convert these to a vector of strings
+                    std::vector< std::string > uuid_vec;
+                    for(std::size_t i=0; i<uvec.size(); i++){uuid_vec.push_back( uvec[i].as_string() );}
 
-                mho_json mdata = obj->GetMetaDataAsJSON();
+                    mho_json mdata = obj->GetMetaDataAsJSON();
+                    hid_t dataset_id = -1;
+                    herr_t status =
+                    make_string_vector_dataset(file_id, dataset_id, name, &uuid_vec, mdata);
 
-                std::cout<<"mdata looks like: "<<mdata.dump(2)<<std::endl;
-
-                hid_t dataset_id = -1;
-                herr_t status =
-                make_string_vector_dataset(file_id, dataset_id, name, &uuid_vec, mdata);
-
-                H5Gclose(group_id);
+                    H5Gclose(group_id);
+                }
             }
         };
 
