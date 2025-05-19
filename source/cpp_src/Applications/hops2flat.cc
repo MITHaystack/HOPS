@@ -204,11 +204,12 @@ int main(int argc, char** argv)
             mho_json obj_json;
             
             //needed to extract raw table data (if we can)
+            std::size_t rank;
             const char* raw_data;
             std::size_t raw_data_byte_size;
             std::string raw_data_descriptor;
             
-            conInter.ConvertObjectInStoreToJSONAndRaw(conStore, obj_uuid, obj_json, raw_data, raw_data_byte_size, raw_data_descriptor, detail);
+            conInter.ConvertObjectInStoreToJSONAndRaw(conStore, obj_uuid, obj_json, rank, raw_data, raw_data_byte_size, raw_data_descriptor, detail);
 
             if(!cbor_output)
             {

@@ -70,7 +70,10 @@ endif(HOPS_USE_OPENCL)
 if(HOPS_USE_CUDA)
 add_subdirectory(${CPPSOURCE}/Plugins/CUDA) #cuda plugin
 endif(HOPS_USE_CUDA)
-
 add_subdirectory(${CPPSOURCE}/Fringe) #library of fringe-fitting related functionality
 
 add_subdirectory(${CPPSOURCE}/Applications) #applications
+
+if(HOPS_USE_HDF5)
+add_subdirectory(${CPPSOURCE}/Plugins/HDF5) #hdf5 plugin
+endif(HOPS_USE_HDF5)
