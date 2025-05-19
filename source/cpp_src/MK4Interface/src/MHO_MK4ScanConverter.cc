@@ -128,7 +128,8 @@ void MHO_MK4ScanConverter::ConvertCorel(const std::string& root_file, const std:
     //collect the object tags into something sensible
     MHO_ObjectTags tags;
     tags.CopyFrom(*ch_bl_data); //copy the basic tags from the visibilities
-    tags.SetTagValue("origin", "mk4");
+    tags.SetTagValue("origin", "mark4");
+    tags.SetTagValue("name", "object_tags");
     tags.AddObjectUUID(ch_bl_data->GetObjectUUID()); //add the uuids
     tags.AddObjectUUID(ch_bl_wdata->GetObjectUUID());
 
