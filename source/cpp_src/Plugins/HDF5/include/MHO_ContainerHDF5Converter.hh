@@ -91,6 +91,48 @@ inline make_vector_attribute(const std::string& key,
 }
 
 
+//specialization for strings
+template<>
+herr_t 
+inline make_vector_attribute(const std::string& key,
+                             const std::vector< std::string >* data, 
+                             hid_t dataset_id)
+{
+
+    herr_t status;
+    hsize_t dims[1];
+    dims[0] = data->size();
+    hid_t TYPE_CODE = H5Tcopy(H5T_C_S1);
+    H5Tset_size(TYPE_CODE, H5T_VARIABLE);
+
+    //convert to const chars
+    std::vector<const char*> cstrs;
+    for(const auto& s : *data) 
+    {
+        cstrs.push_back(s.c_str());
+    }
+
+    // hid_t axis0_dset = H5Dcreate(file, "/axis_0_labels", str_type, axis0_space,
+    //                              H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+
+    hid_t attr_space = H5Screate_simple(1, dims, NULL);
+
+    //create axis dataset
+    hid_t attr_id = H5Acreate(dataset_id, key.c_str(), TYPE_CODE, attr_space, H5P_DEFAULT, H5P_DEFAULT);
+    //write the data
+    //status = H5Dwrite(attr_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data->data() );
+
+    // Write and mark as scale
+    status = H5Awrite(attr_id, TYPE_CODE, cstrs.data() );
+    // H5DSset_scale(axis0_dset, "axis_0");
+
+    //clean up
+    H5Aclose(attr_id);
+    H5Sclose(attr_space);
+
+    return status;
+}
+
 inline void make_attribute(const std::string& key, const mho_json& value, hid_t dataset_id)
 {
     std::cout<<"key = "<<key<<std::endl;
@@ -126,6 +168,8 @@ inline void make_attribute(const std::string& key, const mho_json& value, hid_t 
     } 
     else if ( value.is_array() && value.size() != 0) 
     {
+        //all of these assume we are not mixing types in the array
+        //this is a safe assumption for HOPS4 data containers 
         if(value.begin()->is_number_integer())
         {
             std::vector<int> data = value.get< std::vector<int> >();
@@ -141,7 +185,11 @@ inline void make_attribute(const std::string& key, const mho_json& value, hid_t 
             std::vector<double> data = value.get< std::vector<double> >();
             make_vector_attribute(key, &data, dataset_id);
         }
-        //TODO specialization for vectors of strings
+        if(value.begin()->is_string())
+        {
+            std::vector<std::string> data = value.get< std::vector< std::string > >();
+            make_vector_attribute(key, &data, dataset_id);
+        }
     } 
     else 
     {
