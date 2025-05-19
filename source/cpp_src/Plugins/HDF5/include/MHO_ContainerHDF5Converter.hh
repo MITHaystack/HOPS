@@ -92,7 +92,29 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
         typename std::enable_if< std::is_base_of< MHO_ScalarContainerBase, XCheckType >::value, void >::type
         ConstructHDF5(hid_t file_id, std::string group_prefix, const XContainerType* obj)
         {
-            std::cout<<"scalar type not implemented"<<std::endl;
+            std::string class_name = MHO_ClassIdentity::ClassName< XContainerType >();
+            std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass< XContainerType >().as_string();
+            std::string object_uuid = obj->GetObjectUUID().as_string();
+            msg_debug("hdf5interface", "creating scalar type for object with uuid: "<< object_uuid << eom);
+            std::string item_group = group_prefix + "/" + object_uuid;
+
+            if (H5Lexists(file_id, item_group.c_str(), H5P_DEFAULT) == 0) 
+            {
+                hid_t group_id = H5Gcreate(file_id, item_group.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+                if(group_id < 0) 
+                {
+                    msg_error("hdf5interface", "failed to create HDF5 group: "<< item_group << eom);
+                }
+                else
+                {
+                    std::string name = item_group + "/data";
+                    //write the data
+                    hid_t dataset_id = -1;
+                    herr_t status = 
+                    make_scalar_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, fContainer->GetValue(), fMetaData); 
+                    H5Gclose(group_id);
+                }
+            }
         };
 
         //vector specialization (but not an axis!)
@@ -123,13 +145,13 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                 }
                 else
                 {
-                std::string name = item_group + "/data";
-                //write the data
-                hid_t dataset_id = -1;
-                herr_t status = 
-                make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData); 
+                    std::string name = item_group + "/data";
+                    //write the data
+                    hid_t dataset_id = -1;
+                    herr_t status = 
+                    make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData); 
 
-                H5Gclose(group_id);
+                    H5Gclose(group_id);
                 }
             }
         };
