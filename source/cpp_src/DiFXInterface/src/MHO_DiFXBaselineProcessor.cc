@@ -354,7 +354,7 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         }
         
         fTags.SetTagValue("root_code", fRootCode);
-        //add a bug of tags from the visib/weight objects for ease of retrieval
+        //add a bunch of tags from the visib/weight objects for ease of retrieval
         fTags.SetTagValue("difx_baseline_index", fBaselineID);
         fTags.SetTagValue("baseline", fBaselineName);
         fTags.SetTagValue("baseline_shortname", fBaselineShortName);
@@ -367,6 +367,7 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fTags.SetTagValue("correlation_date", fCorrDate);
         fTags.SetTagValue("root_code", fRootCode);
         fTags.SetTagValue("origin", "difx");
+        fTags.SetTagValue("name", "object_tags");
 
         fV = new visibility_store_type();
         fW = new weight_store_type();
@@ -390,9 +391,8 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fV->Insert(std::string("start"), fStartTime);
 
         //tags for the weights
-        fW->Resize(
-            fNPolPairs, fNChannels, fNAPs,
-            1); //fNSpectralPoints -- we only have 1 weight value for each AP, so set dimension along the spectral point axis to 1
+        //fNSpectralPoints -- we only have 1 weight value for each AP, so set dimension along the spectral point axis to 1
+        fW->Resize(fNPolPairs, fNChannels, fNAPs,1); 
         fW->ZeroArray();
         fW->Insert(std::string("name"), std::string("weights"));
         fW->Insert(std::string("difx_baseline_index"), fBaselineID);
