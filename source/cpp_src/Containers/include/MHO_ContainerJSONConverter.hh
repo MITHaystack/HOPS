@@ -60,7 +60,7 @@ inline void FillJSONFromTaggable(const MHO_Taggable* map, mho_json& obj_tags)
 class MHO_JSONConverter
 {
     public:
-        MHO_JSONConverter(): fLOD(eJSONBasic), fRawByteSize(0), fRawData(nullptr), fRawDataDescriptor(""){};
+        MHO_JSONConverter(): fLOD(eJSONBasic), fRank(0), fRawByteSize(0), fRawData(nullptr), fRawDataDescriptor(""){};
         virtual ~MHO_JSONConverter(){};
 
         void SetLevelOfDetail(int level) { fLOD = level; };
@@ -72,6 +72,7 @@ class MHO_JSONConverter
 
         //for access to raw data in table containers
         //this is a bit of a hack for 'hops2flat'
+        std::size_t GetRank() const {return fRank;}
         std::size_t GetRawByteSize() const {return fRawByteSize;};
         const char* GetRawData() const {return fRawData;};
         std::string GetRawDataDescriptor() const {return fRawDataDescriptor;}
@@ -98,6 +99,7 @@ class MHO_JSONConverter
         mho_json fJSON;
         
         //for extracting container raw data (with no meta data structures)
+        std::size_t fRank;
         std::size_t fRawByteSize;
         const char* fRawData;
         std::string fRawDataDescriptor;
@@ -139,6 +141,7 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
             fJSON["class_uuid"] = class_uuid;
             
             //for raw data extraction (not possible)
+            fRank = 0;
             fRawByteSize = 0;
             fRawData = nullptr;
             fRawDataDescriptor = "";
@@ -180,6 +183,7 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
             }
             
             //for raw data extraction (not possible)
+            fRank = 0;
             fRawByteSize = 0;
             fRawData = nullptr;
             fRawDataDescriptor = "";
@@ -226,6 +230,7 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
             //for raw data extraction 
             std::size_t elem_size = sizeof( typename XContainerType::value_type);
             std::size_t n_elem = fContainer->GetSize();
+            fRank = XContainerType::rank::value;
             fRawByteSize = elem_size*n_elem;
             fRawData = reinterpret_cast<const char*>( fContainer->GetData() );
             fRawDataDescriptor = MHO_NumpyTypeCode< typename XContainerType::value_type >();
@@ -270,6 +275,7 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
             //for raw data extraction 
             std::size_t elem_size = sizeof( typename XContainerType::value_type);
             std::size_t n_elem = fContainer->GetSize();
+            fRank = XContainerType::rank::value;
             fRawByteSize = elem_size*n_elem;
             fRawData = reinterpret_cast<const char*>( fContainer->GetData() );
             fRawDataDescriptor = MHO_NumpyTypeCode< typename XContainerType::value_type >();
@@ -325,6 +331,7 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
             //for raw data extraction 
             std::size_t elem_size = sizeof( typename XContainerType::value_type );
             std::size_t n_elem = fContainer->GetSize();
+            fRank = XContainerType::rank::value;
             fRawByteSize = elem_size*n_elem;
             fRawData = reinterpret_cast<const char*>( fContainer->GetData() );
             fRawDataDescriptor = MHO_NumpyTypeCode< typename XContainerType::value_type >();
@@ -440,9 +447,10 @@ template<> class MHO_ContainerJSONConverter< MHO_ObjectTags >: public MHO_JSONCo
             fJSON["tags"] = jtags;
             
             //for raw data extraction (not possible)
+            fRank = 0;
             fRawByteSize = 0;
             fRawData = nullptr;
-            fRawDataDescriptor = "";
+            fRawDataDescriptor = "tags";
         };
 
         MHO_ObjectTags* fContainer;
