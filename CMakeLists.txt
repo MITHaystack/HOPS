@@ -139,6 +139,7 @@ option(HOPS3_PYTHON_EXTRAS "Build python (ctypes) interface to hops3 libraries" 
 option(HOPS_IS_HOPS4 "Install the HOPS4 version of relevant executables (symlinked to expected names, e.g. fourfit, fplot)" OFF)
 option(HOPS_USE_OPENCL "Use OpenCL via C++ wrapper API." OFF)
 option(HOPS_USE_CUDA "Build CUDA support." OFF)
+option(HOPS_USE_HDF5 "Build HDF5 export support." OFF)
 
 option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
 mark_as_advanced(HOPS3_USE_CXX)
