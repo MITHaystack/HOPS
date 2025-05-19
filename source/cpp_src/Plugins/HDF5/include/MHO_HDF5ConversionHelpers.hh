@@ -243,21 +243,23 @@ inline make_scale(hid_t file_id, hid_t dataset_id, std::size_t axis_idx,
         for(auto it = metadata["tags"].begin(); it != metadata["tags"].end(); ++it) 
         {
             const std::string& key = it.key();
-            //std::string key = name + "/" + it.key();
             const mho_json& value = it.value();
             make_attribute(key, value, axis_dset_id);
         }
     }
-    // //no do everything but 'tags'
-    // for(auto it = metadata.begin(); it != metadata.end(); ++it) 
-    // {
-    //     const std::string& key = it.key();
-    //     if(key != "tags")
-    //     {
-    //         const mho_json& value = it.value();
-    //         make_attribute(key, value, axis_dset_id);
-    //     }
-    // }
+    //attach class name and uuid if they exist
+    if( metadata.contains("class_uuid"))
+    {
+        std::string key = "class_uuid";
+        mho_json value = metadata[key];
+        make_attribute(key, value, axis_dset_id);
+    }
+    if( metadata.contains("class_name"))
+    {
+        std::string key = "class_name";
+        mho_json value = metadata[key];
+        make_attribute(key, value, axis_dset_id);
+    }
 
     return status;
 }
@@ -303,6 +305,20 @@ inline make_scale< std::string>(hid_t file_id, hid_t dataset_id, std::size_t axi
             make_attribute(key, value, axis_dset_id);
         }
     }
+    //attach class name and uuid if they exist
+    if( metadata.contains("class_uuid"))
+    {
+        std::string key = "class_uuid";
+        mho_json value = metadata[key];
+        make_attribute(key, value, axis_dset_id);
+    }
+    if( metadata.contains("class_name"))
+    {
+        std::string key = "class_name";
+        mho_json value = metadata[key];
+        make_attribute(key, value, axis_dset_id);
+    }
+
     return status;
 }
 
@@ -339,11 +355,27 @@ inline make_dataset(hid_t file_id, hid_t& dataset_id,
     //write data
     status = H5Dwrite(dataset_id, TYPE_CODE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
 
-    //attache the metadata
-    for(auto it = metadata.begin(); it != metadata.end(); ++it) 
+    //attach meta data in 'tags'
+    if( metadata.contains("tags"))
     {
-        const std::string& key = it.key();
-        const mho_json& value = it.value();
+        for(auto it = metadata["tags"].begin(); it != metadata["tags"].end(); ++it) 
+        {
+            const std::string& key = it.key();
+            const mho_json& value = it.value();
+            make_attribute(key, value, dataset_id);
+        }
+    }
+    //attach class name and uuid if they exist
+    if( metadata.contains("class_uuid"))
+    {
+        std::string key = "class_uuid";
+        mho_json value = metadata[key];
+        make_attribute(key, value, dataset_id);
+    }
+    if( metadata.contains("class_name"))
+    {
+        std::string key = "class_name";
+        mho_json value = metadata[key];
         make_attribute(key, value, dataset_id);
     }
 

@@ -224,7 +224,8 @@ template< typename XContainerType > class MHO_ContainerHDF5Converter: public MHO
                     //write the data
                     hid_t dataset_id = -1;
                     herr_t status = 
-                    make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData["tags"]); 
+                    make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData); 
+                    // make_dataset< typename XContainerType::value_type >(file_id, dataset_id, name, rank, dims, fContainer->GetData(), fMetaData["tags"]); 
 
                     //now attach the table axes
                     name = item_group;
@@ -352,7 +353,6 @@ template<> class MHO_ContainerHDF5Converter< MHO_ObjectTags >: public MHO_HDF5Co
                 }
                 else 
                 {
-
                     std::string name = item_group + "/uuid_set";
                     //the data we want to store is a vector of the object UUIDs that we are tagging 
                     std::vector< MHO_UUID > uvec = obj->GetAllObjectUUIDs();
@@ -361,6 +361,8 @@ template<> class MHO_ContainerHDF5Converter< MHO_ObjectTags >: public MHO_HDF5Co
                     for(std::size_t i=0; i<uvec.size(); i++){uuid_vec.push_back( uvec[i].as_string() );}
 
                     mho_json mdata = obj->GetMetaDataAsJSON();
+                    mdata["class_name"] = class_name;
+                    mdata["class_uuid"] = class_uuid;
                     hid_t dataset_id = -1;
                     herr_t status =
                     make_string_vector_dataset(file_id, dataset_id, name, &uuid_vec, mdata);
