@@ -34,6 +34,8 @@ if(HDF5_FOUND)
     hops_install_headers (${HDF5INTERFACE_HEADERFILES})
     hops_install_libraries (MHO_HDF5Interface)
 
+    add_subdirectory(applications)
+
     if (HOPS_ENABLE_TEST)
         add_subdirectory(test)
     endif (HOPS_ENABLE_TEST)
