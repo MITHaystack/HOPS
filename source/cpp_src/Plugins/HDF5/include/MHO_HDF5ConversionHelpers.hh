@@ -468,6 +468,48 @@ inline make_string_vector_dataset(hid_t file_id, hid_t dataset_id,
 
 
 
+inline void json_to_hdf5(const mho_json& j, hid_t parent_group) 
+{
+    for(auto it = j.begin(); it != j.end(); ++it) 
+    {
+        const std::string& key = it.key();
+        const mho_json& value = it.value();
+
+        if( value.is_object() ) 
+        {
+            hid_t subgroup = H5Gcreate(parent_group, key.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+            json_to_hdf5(value, subgroup);
+            H5Gclose(subgroup);
+        } 
+        else if ( value.is_array() && value.size() != 0)  
+        {
+            if( !(value.begin()->is_object()) )
+            {
+                make_attribute(key, value, parent_group);
+            }
+            else 
+            {
+                hid_t array_group = H5Gcreate(parent_group, key.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+                int idx = 0;
+                for (const auto& elem : value) 
+                {
+                    std::string item_name = std::to_string(idx++);
+                    hid_t item_group = H5Gcreate(array_group, item_name.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+                    json_to_hdf5(elem, item_group);
+                    H5Gclose(item_group);
+                }
+                H5Gclose(array_group);
+            }
+        } 
+        else 
+        {
+            make_attribute(key, value, parent_group);
+        }
+    }
+}
+
+
+
 } // namespace hops
 
 #endif
