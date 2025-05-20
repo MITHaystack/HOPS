@@ -65,7 +65,7 @@ inline void make_scalar_dataset< std::string >(hid_t file_id, hid_t& dataset_id,
 
 //generic  - write a scalar attribute
 template < typename XValueType >
-inline void write_attribute(const std::string& key, XValueType value, hid_t dataset_id)
+inline void make_attribute(const std::string& key, XValueType value, hid_t dataset_id)
 {
     hid_t attr_space = H5Screate(H5S_SCALAR);
     hid_t TYPE_CODE = MHO_HDF5TypeCode<XValueType>();
@@ -77,7 +77,7 @@ inline void write_attribute(const std::string& key, XValueType value, hid_t data
 
 //specialization for std::string
 template<>
-inline void write_attribute< std::string >(const std::string& key, std::string value, hid_t dataset_id)
+inline void make_attribute< std::string >(const std::string& key, std::string value, hid_t dataset_id)
 {
     hid_t attr_space = H5Screate(H5S_SCALAR);
     hid_t TYPE_CODE = H5Tcopy(H5T_C_S1);
@@ -152,27 +152,27 @@ inline void make_attribute(const std::string& key, const mho_json& value, hid_t 
     if (value.is_string()) 
     {
         std::string strv = value.get<std::string>();
-        write_attribute(key, strv, dataset_id);
+        make_attribute(key, strv, dataset_id);
     } 
     else if (value.is_number_integer()) 
     {
         int v = value.get<int>();
-        write_attribute(key,v,dataset_id);
+        make_attribute(key,v,dataset_id);
     } 
     else if (value.is_number_unsigned()) 
     {
         unsigned int v = value.get<unsigned int>();
-        write_attribute(key,v,dataset_id);
+        make_attribute(key,v,dataset_id);
     } 
     else if (value.is_number_float()) 
     {
         double v = value.get<double>();
-        write_attribute(key,v,dataset_id);
+        make_attribute(key,v,dataset_id);
     }
     else if (value.is_boolean()) 
     {
         uint8_t v = value.get<bool>() ? 1 : 0;
-        write_attribute(key,v,dataset_id);
+        make_attribute(key,v,dataset_id);
     } 
     else if ( value.is_array() && value.size() != 0) 
     {
@@ -208,7 +208,7 @@ inline void make_attribute(const std::string& key, const mho_json& value, hid_t 
         std::stringstream ss;
         ss << value.dump();
         std::string sval = ss.str();
-        write_attribute(key,sval,dataset_id);
+        make_attribute(key,sval,dataset_id);
         return;
     }
 }
