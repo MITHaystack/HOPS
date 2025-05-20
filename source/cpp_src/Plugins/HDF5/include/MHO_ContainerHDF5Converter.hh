@@ -389,7 +389,7 @@ template<> class MHO_ContainerHDF5Converter< MHO_ObjectTags >: public MHO_HDF5Co
                     {
                         std::string plot_group = item_group + "/" + "plot_data";
                         hid_t plot_group_id = H5Gcreate(file_id, plot_group.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-                        json_to_hdf5(mdata["plot_data"], group_id);
+                        json_to_hdf5_attributes(mdata["plot_data"], plot_group_id);
                         H5Gclose(plot_group_id);
                         // hid_t pd_dset_id = -1;
                         // std::string plot_data_name = item_group + "/plot_data";
@@ -400,10 +400,15 @@ template<> class MHO_ContainerHDF5Converter< MHO_ObjectTags >: public MHO_HDF5Co
                     //store paramters as a separate object
                     if(mdata.contains("parameters"))
                     {
-                        hid_t pm_dset_id = -1;
-                        std::string param_data_name = item_group + "/parameters";
-                        std::string param_data = mdata["parameters"].dump();
-                        make_scalar_dataset(file_id, pm_dset_id, param_data_name, param_data);
+                        std::string param_group = item_group + "/" + "parameters";
+                        hid_t param_group_id = H5Gcreate(file_id, param_group.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+                        json_to_hdf5_attributes(mdata["parameters"], param_group_id);
+                        H5Gclose(param_group_id);
+
+                        // hid_t pm_dset_id = -1;
+                        // std::string param_data_name = item_group + "/parameters";
+                        // std::string param_data = mdata["parameters"].dump();
+                        // make_scalar_dataset(file_id, pm_dset_id, param_data_name, param_data);
                     }
 
                     H5Gclose(group_id);

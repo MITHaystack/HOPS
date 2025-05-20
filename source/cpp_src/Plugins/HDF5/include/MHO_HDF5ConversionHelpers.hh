@@ -36,7 +36,7 @@ namespace hops
  */
 
 
-inline void json_to_hdf5(const mho_json& j, hid_t parent_group) 
+inline void json_to_hdf5_attributes(const mho_json& j, hid_t parent_group) 
 {
     for(auto it = j.begin(); it != j.end(); ++it) 
     {
@@ -46,7 +46,7 @@ inline void json_to_hdf5(const mho_json& j, hid_t parent_group)
         if( value.is_object() ) 
         {
             hid_t subgroup = H5Gcreate(parent_group, key.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-            json_to_hdf5(value, subgroup);
+            json_to_hdf5_attributes(value, subgroup);
             H5Gclose(subgroup);
         } 
         else if ( value.is_array() && value.size() != 0)  
@@ -63,7 +63,7 @@ inline void json_to_hdf5(const mho_json& j, hid_t parent_group)
                 {
                     std::string item_name = std::to_string(idx++);
                     hid_t item_group = H5Gcreate(array_group, item_name.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-                    json_to_hdf5(elem, item_group);
+                    json_to_hdf5_attributes(elem, item_group);
                     H5Gclose(item_group);
                 }
                 H5Gclose(array_group);

@@ -37,9 +37,21 @@ namespace hops
 template < typename XValueType >
 inline void make_attribute(const std::string& key, XValueType value, hid_t parent_dataset_id)
 {
-    hid_t attr_space = H5Screate(H5S_SCALAR);
+    if(H5Aexists(parent_dataset_id, key.c_str()) > 0)
+    {
+        msg_error("hdf5interface", "attribute: "<<key<<" already exists, skipping"<< eom);
+        return;
+    }
+
     hid_t TYPE_CODE = MHO_HDF5TypeCode<XValueType>();
+    hid_t attr_space = H5Screate(H5S_SCALAR);
     hid_t attr_id = H5Acreate(parent_dataset_id, key.c_str(), TYPE_CODE, attr_space, H5P_DEFAULT, H5P_DEFAULT);
+    if(attr_id < 0)
+    {
+        msg_error("hdf5interface", "could not create attribute: "<<key<<", id code is: "<<attr_id<< eom);
+        return;
+    }
+
     H5Awrite(attr_id, TYPE_CODE, &value);
     H5Aclose(attr_id);
     H5Sclose(attr_space);
@@ -49,11 +61,22 @@ inline void make_attribute(const std::string& key, XValueType value, hid_t paren
 template<>
 inline void make_attribute< std::string >(const std::string& key, std::string value, hid_t parent_dataset_id)
 {
+    if(H5Aexists(parent_dataset_id, key.c_str()) > 0)
+    {
+        msg_error("hdf5interface", "attribute: "<<key<<" already exists, skipping"<< eom);
+        return;
+    }
+    
     hid_t attr_space = H5Screate(H5S_SCALAR);
     hid_t TYPE_CODE = H5Tcopy(H5T_C_S1);
     H5Tset_size(TYPE_CODE, value.size());
     H5Tset_strpad(TYPE_CODE, H5T_STR_NULLTERM);
     hid_t attr_id = H5Acreate(parent_dataset_id, key.c_str(), TYPE_CODE, attr_space, H5P_DEFAULT, H5P_DEFAULT);
+    if(attr_id < 0)
+    {
+        msg_error("hdf5interface", "could not create string attribute: "<<key<<", id code is: "<<attr_id<< eom);
+        return;
+    }
     H5Awrite(attr_id, TYPE_CODE, value.c_str());
     H5Aclose(attr_id);
     H5Sclose(attr_space);
@@ -68,13 +91,24 @@ inline make_vector_attribute(const std::string& key,
                              const std::vector< XDataType >* data, 
                              hid_t parent_dataset_id)
 {
-    herr_t status;
+    herr_t status = -1;
+    if(H5Aexists(parent_dataset_id, key.c_str()) > 0)
+    {
+        msg_error("hdf5interface", "attribute: "<<key<<" already exists, skipping"<< eom);
+        return status;
+    }
+
     hsize_t dims[1];
     dims[0] = data->size();
     hid_t attr_space = H5Screate_simple(1, dims, NULL);
     //get the type code
     hid_t TYPE_CODE = MHO_HDF5TypeCode<XDataType>();
     hid_t attr_id = H5Acreate(parent_dataset_id, key.c_str(), TYPE_CODE, attr_space, H5P_DEFAULT, H5P_DEFAULT);
+    if(attr_id < 0)
+    {
+        msg_error("hdf5interface", "could not create vector attribute: "<<key<<", id code is: "<<attr_id<< eom);
+        return status;
+    }
     status = H5Awrite(attr_id, TYPE_CODE, data->data() );
     H5Aclose(attr_id);
     H5Sclose(attr_space);
@@ -89,7 +123,13 @@ inline make_vector_attribute(const std::string& key,
                              const std::vector< std::string >* data, 
                              hid_t parent_dataset_id)
 {
-    herr_t status;
+    herr_t status = -1;
+    if(H5Aexists(parent_dataset_id, key.c_str()) > 0)
+    {
+        msg_error("hdf5interface", "attribute: "<<key<<" already exists, skipping"<< eom);
+        return status;
+    }
+
     hsize_t dims[1];
     dims[0] = data->size();
     hid_t TYPE_CODE = H5Tcopy(H5T_C_S1);
@@ -103,6 +143,11 @@ inline make_vector_attribute(const std::string& key,
     }
     hid_t attr_space = H5Screate_simple(1, dims, NULL);
     hid_t attr_id = H5Acreate(parent_dataset_id, key.c_str(), TYPE_CODE, attr_space, H5P_DEFAULT, H5P_DEFAULT);
+    if(attr_id < 0)
+    {
+        msg_error("hdf5interface", "could not create string vector attribute: "<<key<<", id code is: "<<attr_id<< eom);
+        return status;
+    }
     status = H5Awrite(attr_id, TYPE_CODE, cstrs.data() );
     H5Aclose(attr_id);
     H5Sclose(attr_space);
@@ -176,6 +221,7 @@ inline void make_attribute(const std::string& key, const mho_json& value, hid_t 
     {
         //for composite objects, we have to dump them into a string
         //HDF5 doesn't support nesting of attributes 
+        msg_debug("hdf5interface", "componsite object attribute: "<<key<<", will stored as string" << eom);
         std::stringstream ss;
         ss << value.dump();
         std::string sval = ss.str();
