@@ -20,6 +20,8 @@
 
 #include "MHO_NumpyTypeCode.hh"
 #include "MHO_HDF5TypeCode.hh"
+// #include "MHO_HDF5Attributes.hh"
+// #include "MHO_HDF5Datasets.hh"
 #include "MHO_HDF5ConversionHelpers.hh"
 
 namespace hops
@@ -385,14 +387,14 @@ template<> class MHO_ContainerHDF5Converter< MHO_ObjectTags >: public MHO_HDF5Co
                     //store plot data as a separate object
                     if(mdata.contains("plot_data"))
                     {
-                        std::string plot_group = item_group + "/" + "plot_data";
-                        hid_t plot_group_id = H5Gcreate(file_id, plot_group.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-                        json_to_hdf5(mdata["plot_data"], group_id);
-                        H5Gclose(plot_group_id);
-                        //hid_t pd_dset_id = -1;
-                        //std::string plot_data_name = item_group + "/plot_data";
-                        // std::string plot_data = mdata["plot_data"].dump();
-                        // make_scalar_dataset(file_id, pd_dset_id, plot_data_name, plot_data);
+                        // std::string plot_group = item_group + "/" + "plot_data";
+                        // hid_t plot_group_id = H5Gcreate(file_id, plot_group.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+                        // json_to_hdf5(mdata["plot_data"], group_id);
+                        // H5Gclose(plot_group_id);
+                        hid_t pd_dset_id = -1;
+                        std::string plot_data_name = item_group + "/plot_data";
+                        std::string plot_data = mdata["plot_data"].dump();
+                        make_scalar_dataset(file_id, pd_dset_id, plot_data_name, plot_data);
                     }
 
                     //store paramters as a separate object
