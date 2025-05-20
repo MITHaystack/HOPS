@@ -63,7 +63,13 @@ inline void make_attribute< std::string >(const std::string& key, std::string va
 {
     if(H5Aexists(parent_dataset_id, key.c_str()) > 0)
     {
-        msg_error("hdf5interface", "attribute: "<<key<<" already exists, skipping"<< eom);
+        msg_error("hdf5interface", "string attribute: "<<key<<" already exists, skipping"<< eom);
+        return;
+    }
+    
+    if(value.size() < 1)
+    {
+        msg_error("hdf5interface", "string attribute: "<<key<<" has size: "<<value.size()<<", skipping"<< eom);
         return;
     }
     
