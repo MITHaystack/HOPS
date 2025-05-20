@@ -227,7 +227,7 @@ inline void make_attribute(const std::string& key, const mho_json& value, hid_t 
     {
         //for composite objects, we have to dump them into a string
         //HDF5 doesn't support nesting of attributes 
-        msg_debug("hdf5interface", "componsite object attribute: "<<key<<", will stored as string" << eom);
+        msg_debug("hdf5interface", "composite object attribute: "<<key<<", will stored as string" << eom);
         std::stringstream ss;
         ss << value.dump();
         std::string sval = ss.str();
