@@ -1,7 +1,27 @@
 #include "MHO_ControlFileParser.hh"
 
 #include <fstream>
-#include <regex>
+// #include <regex>
+
+inline std::string string_pattern_replace(const std::string& value, const std::string& pattern, const std::string& replacement)
+{
+    //original implementation is via std::regex, however, std::regex is not implemented for <GCC 4.9
+    //return std::regex_replace(value, std::regex(pattern), replacement);
+    if(pattern == replacement){return value;}
+    std::string tmp = value;
+    std::size_t loc = std::string::npos;
+    do
+    {
+        loc = tmp.find(pattern);
+        if(loc != std::string::npos)
+        {
+            tmp.replace(loc, pattern.length(), replacement);
+        }
+    }
+    while(loc != std::string::npos);
+    return tmp;
+}
+
 
 namespace hops
 {
@@ -333,7 +353,8 @@ void MHO_ControlFileParser::FindAndReplace(const std::string& find_str, const st
 {
     if(text.find(find_str) != std::string::npos)
     {
-        std::string fixed_line = std::regex_replace(text, std::regex(regex_str), replace_str);
+        //std::string fixed_line = std::regex_replace(text, std::regex(regex_str), replace_str);
+        std::string fixed_line = string_pattern_replace(text, regex_str, replace_str);
         text = fixed_line;
     }
 }
