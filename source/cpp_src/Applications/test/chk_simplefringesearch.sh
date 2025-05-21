@@ -38,7 +38,7 @@ echo "output file: $output_file"
 hops2json ${output_file}
 
 #use jq (json query) to extract the plot_data element and pipe to file
-echo "jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > tee ./fdump.json"
+echo "jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > ./fdump.json"
 jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > ./fdump.json
 
 #run fourfit and dump its data to a 'plot_data_dir' file

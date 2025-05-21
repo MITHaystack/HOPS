@@ -25,18 +25,24 @@ set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ElementTypeCaster.hh
 )
 
-if(HOPS_USE_FFTW3)
-    list(APPEND OPERATOR_HEADERFILES
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FFTWTypes.hh
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalFastFourierTransformFFTW.hh
-    )
-endif(HOPS_USE_FFTW3)
-
 #list source files #############################################################
 
 set( OPERATOR_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Operator.cc
 )
+
+
+if(HOPS_USE_FFTW3)
+    list(APPEND OPERATOR_HEADERFILES
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FFTWTypes.hh
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalFastFourierTransformFFTW.hh
+    )
+    
+    list(APPEND OPERATOR_SOURCEFILES
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FFTWTypes.cc
+    )
+endif(HOPS_USE_FFTW3)
+
 
 #compile and install library ###################################################
 set(OPERATOR_LIBS MHO_Message MHO_Math MHO_Containers)

@@ -2,6 +2,7 @@
 #include "MHO_Message.hh"
 #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
 
+
 #include <cmath>
 #include <iomanip>
 #include <iostream>
@@ -16,6 +17,12 @@ typedef double FPTYPE;
 
 int main(int /*argc*/, char** /*argv*/)
 {
+    printf("FFTW version string: %s\n", fftw_version);
+    
+    std::cout<<"FFTW version major = "<<MHO_FFTWTypeInfo::get_fftw_version_major()<<std::endl;
+    std::cout<<"FFTW version major = "<<MHO_FFTWTypeInfo::get_fftw_version_minor()<<std::endl;
+    std::cout<<"FFTW version major = "<<MHO_FFTWTypeInfo::get_fftw_version_patch()<<std::endl;
+
     const size_t ndim = 3;
     const size_t dval = 4;
     const size_t dim_size[ndim] = {dval, dval, dval};

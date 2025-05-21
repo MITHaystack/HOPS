@@ -1,6 +1,5 @@
 #include "MHO_VexGenerator.hh"
 #include <fstream>
-#include <regex>
 
 namespace hops
 {
@@ -142,7 +141,8 @@ void MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std
         std::string field_name = raw_field_name;
         if(raw_field_name[0] == bang[0])
         {
-            field_name = std::regex_replace(raw_field_name, std::regex(bang), nothing);
+            field_name =  string_pattern_replace(raw_field_name, bang, nothing);
+            //std::regex_replace(raw_field_name, std::regex(bang), nothing);
         }
 
         if(element.contains(field_name))

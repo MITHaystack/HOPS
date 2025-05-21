@@ -4,17 +4,17 @@
 
 FIND_LIBRARY(PGPLOT_LIBRARY
     NAMES pgplot
-    HINTS /usr/lib/lib64 /usr/local /usr/local/lib /usr/local/pgplot
+    HINTS /usr/lib/lib64 /usr/local /usr/local/lib /usr/local/pgplot /cluster/pgplot
     DOC "PGPLOT library.")
 
 FIND_LIBRARY(CPGPLOT_LIBRARY
     NAMES cpgplot
-    HINTS /usr/lib/lib64 /usr/local /usr/local/include /usr/local/pgplot
+    HINTS /usr/lib/lib64 /usr/local /usr/local/lib /usr/local/pgplot /cluster/pgplot
     DOC "CPGPLOT library.")
 
 FIND_PATH(PGPLOT_INCLUDE_DIR 
     NAMES cpgplot.h
-    HINTS /usr/local/pgplot /usr/local /usr/local/include
+    HINTS /usr/local/pgplot /usr/local /usr/local/include /cluster/pgplot
     DOC "PGPLOT include directory.")
 
 set(PGPLOT_LIBRARIES ${PGPLOT_LIBRARY} ${CPGPLOT_LIBRARY})
