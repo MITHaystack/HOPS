@@ -51,6 +51,24 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
             fPlanForwardInPlace = NULL;
             fPlanBackwardInPlace = NULL;
             AllocateWorkspace(16); //pre-allocate a bit of space, so we can test for memory alignment
+            fHaveAlignmentFuncs = false;
+            
+            //determine what version of FFTW3 we have 
+            //(fftw versions < 3.3.4 do not have functions to determine memory alignment)
+            int fftw3_major = MHO_FFTWTypeInfo::get_fftw_version_major();
+            int fftw3_minor = MHO_FFTWTypeInfo::get_fftw_version_minor();
+            int fftw3_patch = MHO_FFTWTypeInfo::get_fftw_version_patch();
+            if(fftw3_minor > 3)
+            {
+                fHaveAlignmentFuncs = true;
+            }
+            else if(fftw3_minor == 3)
+            {
+                if(fftw3_patch >= 4)
+                {
+                    fHaveAlignmentFuncs = true;
+                }
+            }
         };
 
         virtual ~MHO_MultidimensionalFastFourierTransformFFTW()
@@ -351,6 +369,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
 
         template< typename XPtrType1, typename XPtrType2 > bool HaveSameAlignment(XPtrType1 ptr1, XPtrType2 ptr2)
         {
+            if(!fHaveAlignmentFuncs){return false;}
             return (MHO_FFTWTypes< floating_point_value_type >::alignment_of_func(
                         reinterpret_cast< floating_point_value_type* >(ptr1)) ==
                     MHO_FFTWTypes< floating_point_value_type >::alignment_of_func(
@@ -369,6 +388,9 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
         typename MHO_FFTWTypes< floating_point_value_type >::fftw_complex_type_ptr fInPtr;
         typename MHO_FFTWTypes< floating_point_value_type >::fftw_complex_type_ptr fOutPtr;
         typename MHO_FFTWTypes< floating_point_value_type >::fftw_complex_type_ptr fInPlacePtr;
+        
+        //detect if we have mem alignment functions
+        bool fHaveAlignmentFuncs;
 };
 
 } // namespace hops

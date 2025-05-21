@@ -1,5 +1,4 @@
 #include "MHO_VexElementLineGenerator.hh"
-#include <regex>
 
 namespace hops
 {
@@ -204,7 +203,8 @@ std::string MHO_VexElementLineGenerator::GenerateCompound(std::string element_na
     for(std::size_t i = 0; i < format["fields"].size(); i++)
     {
         std::string raw_field_name = format["fields"][i].get< std::string >();
-        std::string field_name = std::regex_replace(raw_field_name, std::regex(bang), nothing);
+        std::string field_name = string_pattern_replace(raw_field_name, bang, nothing);
+        //std::regex_replace(raw_field_name, std::regex(bang), nothing);
 
         if(element.contains(field_name))
         {

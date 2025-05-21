@@ -1,7 +1,8 @@
 #include <iostream>
-#include <regex>
 #include <string>
 #include <tuple>
+#include <algorithm>
+
 
 #ifndef MHO_TemplateTypenameDeduction_HH__
 #define MHO_TemplateTypenameDeduction_HH__
@@ -96,11 +97,9 @@ template< typename XClassType > std::string MHO_RawCompilerNameWithoutSpaces()
     std::size_t start = function.find(prefix) + prefix.size();
     std::size_t end = function.rfind(suffix);
     std::string class_name = function.substr(start, (end - start));
-    std::string space = " ";
-    std::string nothing = "";
-    //strip out all of the spaces in the class name
-    std::string tmp = std::regex_replace(class_name, std::regex(space), nothing);
-    return tmp;
+    //remove spaces
+    class_name.erase(std::remove(class_name.begin(), class_name.end(), ' '), class_name.end());  
+    return class_name;
 };
 
 //extracts the name of a class when used within a std::tuple<>
@@ -118,10 +117,9 @@ template< typename XClassType > std::string MHO_TupleElementNameWithoutSpaces()
     std::size_t end = function.rfind(suffix);
     std::string tuple_class_name = function.substr(start, (end - start));
 
-    std::string space = " ";
-    std::string nothing = "";
     //strip out all of the spaces in the class name
-    std::string tmp = std::regex_replace(tuple_class_name, std::regex(space), nothing);
+    tuple_class_name.erase(std::remove(tuple_class_name.begin(), tuple_class_name.end(), ' '), tuple_class_name.end());
+    std::string tmp = tuple_class_name;
 
     std::string tuple_prefix = "std::tuple<";
     std::string tuple_suffix = ">";
@@ -170,8 +168,12 @@ template< typename XClassType > std::string MHO_ClassName()
 
     //finally, lets also get rid of the hops:: namespace prefix on all the class names
     std::string hops_nmspc = "hops::";
-    std::string nothing = "";
-    std::string name = std::regex_replace(tmp, std::regex(hops_nmspc), nothing);
+    size_t pos;
+    while ((pos = tmp.find(hops_nmspc)) != std::string::npos) 
+    {
+        tmp.erase(pos, hops_nmspc.length());
+    }
+    std::string name = tmp;
 
     return name;
 };

@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <cctype>
 #include <fstream>
-#include <regex>
 #include <stack>
 
 namespace hops
@@ -507,7 +506,8 @@ mho_json MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mh
             else
             {
                 std::string raw_field_name = it->get< std::string >();
-                std::string field_name = std::regex_replace(raw_field_name, std::regex(bang), nothing);
+                std::string field_name = string_pattern_replace(raw_field_name, bang, nothing);
+                //std::regex_replace(raw_field_name, std::regex(bang), nothing);
                 mho_json next_format = format["parameters"][field_name];
                 std::string type_name = next_format["type"].get< std::string >();
                 std::vector< std::string > tmp_tokens;
