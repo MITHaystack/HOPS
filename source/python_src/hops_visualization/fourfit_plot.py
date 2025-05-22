@@ -623,12 +623,6 @@ def make_model_resid_info_text(plot_dict):
         make_sciformat(float(plot_dict["DelayRate(ps/s)"]), 11, 11, useMinDigits) + '\n' + \
         str( np.round(float(plot_dict["TotalPhase(deg)"]),1) )
 
-    # btmtextstr2 = str(np.format_float_scientific( float(plot_dict[group_delay_key]), precision=11, min_digits=11 ) )  + '\n' + \
-    #     str(np.format_float_scientific(float(plot_dict["SbandDelay(usec)"]), precision=11, min_digits=11) ) + '\n' + \
-    #     str(np.format_float_scientific(float(plot_dict["PhaseDelay(usec)"]), precision=11, min_digits=11) ) + '\n' + \
-    #     str(np.format_float_scientific(float(plot_dict["DelayRate(ps/s)"]), precision=11, min_digits=11) ) + '\n' + \
-    #     str( np.round(float(plot_dict["TotalPhase(deg)"]),1) )
-
     btmtextstr3 = 'Apriori delay (usec) ' + '\n' + \
         'Apriori clock (usec) ' + '\n' + \
         'Apriori clockrate (us/s) ' + '\n' + \
@@ -640,12 +634,6 @@ def make_model_resid_info_text(plot_dict):
         make_sciformat(float(plot_dict["AprioriClockrate(us/s)"]), 7, 7, useMinDigits) + '\n' + \
         make_sciformat(float(plot_dict["AprioriRate(us/s)"]), 11, 11, useMinDigits) + '\n' + \
         make_sciformat(float(plot_dict["AprioriAccel(us/s/s)"]), 11, 11, useMinDigits)
-
-    # btmtextstr4 = str(np.format_float_scientific( float(plot_dict["AprioriDelay(usec)"]), precision=12, min_digits=11 ) )  + '\n' + \
-    #     str(np.format_float_scientific(float(plot_dict["AprioriClock(usec)"]), precision=7, min_digits=7) ) + '\n' + \
-    #     str(np.format_float_scientific(float(plot_dict["AprioriClockrate(us/s)"]), precision=7, min_digits=7) ) + '\n' + \
-    #     str(np.format_float_scientific(float(plot_dict["AprioriRate(us/s)"]), precision=11, min_digits=11) ) + '\n' + \
-    #     str(np.format_float_scientific(float(plot_dict["AprioriAccel(us/s/s)"]), precision=11, min_digits=11) )
 
     btmtextstr5 = 'Resid mbdelay (usec) ' + '\n' + \
         'Resid sbdelay (usec) ' + '\n' + \
@@ -659,12 +647,6 @@ def make_model_resid_info_text(plot_dict):
         make_sciformat(float(plot_dict["ResidRate(us/s)"]), 5, 5, useMinDigits) + '\n' + \
         str( np.round(float(plot_dict["ResidPhase(deg)"]),1) )
 
-    # btmtextstr6 = str(np.format_float_scientific( float(plot_dict['ResidMbd(us)']), precision=5, min_digits=5 ) )  + '\n' + \
-    #     str(np.format_float_scientific(float(plot_dict['ResidSbd(us)']), precision=5, min_digits=5) ) + '\n' + \
-    #     str(np.format_float_scientific(float(plot_dict["ResidPhdelay(usec)"]), precision=5, min_digits=5) ) + '\n' + \
-    #     str(np.format_float_scientific(float(plot_dict["ResidRate(us/s)"]), precision=5, min_digits=5) ) + '\n' + \
-    #     str( np.round(float(plot_dict["ResidPhase(deg)"]),1) )
-
     btmtextstr7 = '+/-' + '\n' + \
         '+/-' + '\n' + \
         '+/-' + '\n' + \
@@ -676,13 +658,6 @@ def make_model_resid_info_text(plot_dict):
         make_sciformat(float(plot_dict["ResidPhdelayError(usec)"]), 1, 1, useMinDigits) + '\n' + \
         make_sciformat(float(plot_dict["ResidRateError(us/s)"]), 1, 1, useMinDigits) + '\n' + \
         str( np.round(float(plot_dict["ResidPhaseError(deg)"]),2) )
-
-
-    # btmtextstr8 = str(np.format_float_scientific( float(plot_dict["ResidMbdelayError(usec)"]), precision=1, min_digits=1 ) )  + '\n' + \
-    #     str(np.format_float_scientific(float(plot_dict["ResidSbdelayError(usec)"]), precision=1, min_digits=1) ) + '\n' + \
-    #     str(np.format_float_scientific(float(plot_dict["ResidPhdelayError(usec)"]), precision=1, min_digits=1) ) + '\n' + \
-    #     str(np.format_float_scientific(float(plot_dict["ResidRateError(us/s)"]), precision=1, min_digits=1) ) + '\n' + \
-    #     str( np.round(float(plot_dict["ResidPhaseError(deg)"]),2) )
 
     bottom_yoffset = 0.16
 
