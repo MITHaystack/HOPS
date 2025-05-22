@@ -205,7 +205,10 @@ void MHO_MK4ScanConverter::ConvertStation(const std::string& root_file, const st
         auto pcal_data = mk4inter.GetPCalObject();
         if(pcal_data != nullptr)
         {
-            inter.Write(*(pcal_data), "pcal");
+            if(pcal_data->GetSize() != 0) //don't write empty pcal data objects
+            {
+                inter.Write(*(pcal_data), "pcal");
+            }
         }
         inter.Close();
     }
