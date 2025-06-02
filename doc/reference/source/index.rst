@@ -22,10 +22,18 @@ Welcome to HOPS's documentation!
     chapter1
 
 
-
 Indices and tables
 ==================
 
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
+.. _doxygen-docs:
+
+Doxygen API Documentation
+=========================
+
+The full C++ API reference is available here:
+`Doxygen Documentation <_static/doxygen/html/index.html>`__
