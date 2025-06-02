@@ -175,13 +175,14 @@ Also, a terminal width of at least 95 characters is needed to avoid line wrap in
 Building the Documentation
 --------------------------
 
-To build reference documentation using Doxygen, set ``BUILD_DOXYGEN_REF=ON`` and run:
+To build the documentation using Doxygen and Sphinx, set ``BUILD_DOCS=ON`` and run:
 
 .. code-block:: bash
 
-   make reference
+   make reference && make install
 
-The output will be placed in: ``<hops-install>/doc/reference``, with the index file at: ``<hops-install>/doc/Hops.html``.
+The output will be placed in: ``<hops-install>/doc/reference``, with the index file at: ``<hops-install>/doc/reference/index.html``.
+You will need doxygen, sphinx, and python packages breathe and myst_parser to build the documentation files.
 
 Getting Help
 ------------
