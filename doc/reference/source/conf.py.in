@@ -31,7 +31,8 @@ release = '4.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-  'breathe'
+  'breathe',
+  'myst_parser'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -67,3 +68,9 @@ breathe_projects = {
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 html_logo = '_static/hops_logo_b_small-scaled.png' 
+
+
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
