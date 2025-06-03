@@ -32,8 +32,9 @@ Indices and tables
 
 .. _doxygen-docs:
 
+
 Doxygen API Documentation
 =========================
 
-The full C++ API reference is available here:
+The full C/C++ API reference is available here:
 `Doxygen Documentation <_static/doxygen/html/index.html>`__
