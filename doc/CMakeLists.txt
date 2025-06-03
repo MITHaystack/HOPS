@@ -4,9 +4,6 @@ hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/fourfit.doc )
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/alist.doc )
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/aedit.doc )
 
-#option(BUILD_DOXYGEN_REF "Build doxygen reference documentation" OFF)
-#option(BUILD_SPHINX_DOCS "Build sphinx generated documentation" OFF)
-
 option(BUILD_LATEX_DOCS "Build latex documentation" OFF)
 option(BUILD_DOCS "Build documentation with doxygen/sphinx" OFF)
 
@@ -20,7 +17,7 @@ find_package(Sphinx REQUIRED)
         set(REF_BUILD_DIR ${DOC_INSTALL_DIR}/reference)
         file(MAKE_DIRECTORY ${REF_BUILD_DIR})
 
-        set(DOXY_REF_BUILD_DIR ${REF_BUILD_DIR}/doxygen)
+        set(DOXY_REF_BUILD_DIR ${CMAKE_CURRENT_BINARY_DIR}/doxygen)
         file(MAKE_DIRECTORY ${DOXY_REF_BUILD_DIR})
 
         #first generate the doxygen C++ API reference
@@ -58,7 +55,6 @@ find_package(Sphinx REQUIRED)
         add_custom_target(copy_doxygen_html
             DEPENDS ${REF_BUILD_DIR}/_static/doxygen/html/index.xml
         )
-
 
         #careful...this file copy directive is only executed once
         #(it does not update if the .rst source files are changed, only if the build directory is removed!)
