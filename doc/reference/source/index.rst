@@ -6,35 +6,31 @@
 Welcome to HOPS's documentation!
 ================================
 
-
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Contents:
 
+    Home <self>
     Introduction <introduction.rst>
     Getting Started <compiling.rst>
-    Examples <examples.rst>
-    
-    Tests <tests.rst>
     License <license.rst>
     Authors <authors.rst>
 
-    chapter1
+    HOPS3 <hops3/index.rst>
+    HOPS4 <hops4/index.rst>
+
+.. _doxygen-docs:
+
+API (Doxygen) Documentation
+---------------------------
+
+The full C/C++ API reference is available here:
+`Doxygen Documentation <_static/doxygen/html/index.html>`__
 
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
-
-.. _doxygen-docs:
-
-
-Doxygen API Documentation
-=========================
-
-The full C/C++ API reference is available here:
-`Doxygen Documentation <_static/doxygen/html/index.html>`__
