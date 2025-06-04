@@ -1,0 +1,4 @@
+/* just make the width bigger - who reads docs on mobile? */
+.wy-nav-content {
+  max-width: 1200px !important;
+}

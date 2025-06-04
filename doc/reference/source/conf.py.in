@@ -55,7 +55,10 @@ exclude_patterns = []
 html_theme = 'sphinx_rtd_theme'
 
 # -- Options for HTML output --------------------------
+#html_theme_options = {'body_max_width': '70%'} 
 
+#needed so we can increase the page width and avoid squishing tables
+html_css_files = ['custom.css']
 
 # Doxylink tag files to pull in doxygen generated API
 # to make this work we need to doxylink 
