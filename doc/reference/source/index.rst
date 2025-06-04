@@ -16,8 +16,8 @@ HOPS - Haystack Observatory Post-processing System
     License <license.rst>
     Authors <authors.rst>
 
-    HOPS3 <hops3/index.rst>
-    HOPS4 <hops4/index.rst>
+    HOPS3 <hops3/hops3.rst>
+    HOPS4 <hops4/hops4.rst>
 
 .. _doxygen-docs:
 
