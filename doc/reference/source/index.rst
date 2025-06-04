@@ -3,8 +3,8 @@
     You can adapt this file completely to your liking, but it should at least
     contain the root `toctree` directive.
 
-Welcome to HOPS's documentation!
-================================
+HOPS - Haystack Observatory Post-processing System
+==================================================
 
 .. toctree::
     :maxdepth: 1
