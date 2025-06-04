@@ -81,7 +81,8 @@ doxylink = {
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 html_logo = '_static/hops_logo_b_small-scaled.png' 
-
+html_use_index = True  # default is True; keep this
+html_use_modindex = True
 
 source_suffix = {
     '.rst': 'restructuredtext',
