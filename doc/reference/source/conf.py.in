@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'HOPS'
-copyright = '2024, MIT Haystack Observatory'
+copyright = '2025, MIT Haystack Observatory'
 author = 'MIT Haystack Observatory'
 
 # The full version, including alpha/beta/rc tags

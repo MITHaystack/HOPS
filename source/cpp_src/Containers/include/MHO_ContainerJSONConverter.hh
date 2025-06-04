@@ -442,7 +442,6 @@ template<> class MHO_ContainerJSONConverter< MHO_ObjectTags >: public MHO_JSONCo
             }
 
             mho_json jtags;
-            // FillJSONFromCommonMap(obj, jtags);
             FillJSONFromTaggable(obj, jtags);
             fJSON["tags"] = jtags;
             
