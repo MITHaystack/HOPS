@@ -67,8 +67,5 @@ These following options can be toggled via ``ccmake`` terminal GUI. If they are 
    * - ``-m`` INT, ``--message-level`` INT
      - Message verbosity level, range: ``-2`` (debug) to ``5`` (silent)
 
-
-.. doxygenclass:: hops::MHO_Message
-    :project: hops
-    :members:
-    :private-members:
+     
+See the implementation details of the class :hops:`hops::MHO_Message` for further information on messaging configuration.
