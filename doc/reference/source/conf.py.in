@@ -67,13 +67,13 @@ breathe_projects = {
   "hops": "@REF_BUILD_DIR@/_static/doxygen/xml"
 }
 
-# # Define where Doxylink can find the tag file for Doxygen docs
-# doxylink = {
-#     'hops': (
-#         'path/to/mylib.tag',  # Can be a local file or URL
-#         'https://mylib.docs.org/doxygen/html/'  # Base URL for the generated Doxygen HTML
-#     )
-# }
+# Define where Doxylink can find the tag file for Doxygen docs
+doxylink = {
+    'hops': (
+        '@REF_BUILD_DIR@/_static/doxygen/common.tag', 
+        '@REF_BUILD_DIR@/_static/doxygen/html'  
+    )
+}
 
 
 # Add any paths that contain custom static files (such as style sheets) here,
