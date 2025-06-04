@@ -7,8 +7,7 @@ Synopsis
 ``alist`` is a utility that summarizes correlator data files into A-format
 files. These files can be used as input to other programs like ``aedit``.
 
-Usage
------
+**Usage**
 
 .. code-block:: bash
 
@@ -17,8 +16,7 @@ Usage
 .. note::
    All option flags must appear *before* the data file list.
 
-Options
--------
+**Options**
 
 - ``-o <outfile>``  
   Specify the output file name.  
@@ -29,11 +27,10 @@ Options
   **Default**: the highest supported version.
 
 - ``-ff``, ``-fr``  
-  Flags exist but are undocumented here—refer to the source code or extended
+  Flags exist but are undocumented here -- refer to the source code or extended
   documentation if needed.
 
-Arguments
----------
+**Arguments**
 
 - **data file list**  
   One or more binary data files to summarize. These can be specified in several formats:
@@ -48,13 +45,7 @@ specifying experiment directories to avoid this issue.
 
 Use coarse filtering through file selection. For advanced filtering, use the ``aedit`` tool instead.
 
-Environment
------------
-
-None.
-
-Description
------------
+**Description**
 
 ``alist`` produces a one-line summary for each binary correlator data file, written in A-format.
 The summary file can be read by ``aedit`` or other tools that understand the format.
