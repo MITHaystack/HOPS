@@ -33,6 +33,7 @@ release = '4.0'
 extensions = [
   'breathe',
   'myst_parser',
+  'sphinxcontrib.doxylink',
   'sphinx.ext.githubpages'
 ]
 
@@ -63,8 +64,17 @@ html_css_files = ['custom.css']
 # Doxylink tag files to pull in doxygen generated API
 # to make this work we need to doxylink 
 breathe_projects = {
-  "hops": "@REF_BUILD_DIR@/_static/xml"
+  "hops": "@REF_BUILD_DIR@/_static/doxygen/xml"
 }
+
+# # Define where Doxylink can find the tag file for Doxygen docs
+# doxylink = {
+#     'hops': (
+#         'path/to/mylib.tag',  # Can be a local file or URL
+#         'https://mylib.docs.org/doxygen/html/'  # Base URL for the generated Doxygen HTML
+#     )
+# }
+
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
