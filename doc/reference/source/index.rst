@@ -21,8 +21,8 @@ Welcome to HOPS's documentation!
 
 .. _doxygen-docs:
 
-API (Doxygen) Documentation
----------------------------
+API Documentation
+-----------------
 
 The full C/C++ API reference is available here:
 `Doxygen Documentation <_static/doxygen/html/index.html>`__

@@ -5,4 +5,5 @@ HOPS4 Applications
    :maxdepth: 1
 
    alist4
+   fourfit4
    chapter1
