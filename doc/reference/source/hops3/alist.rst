@@ -1,5 +1,5 @@
-alist — Create A-format Summary Files for Correlator Data
-==========================================================
+alist
+=====
 
 Synopsis
 --------
