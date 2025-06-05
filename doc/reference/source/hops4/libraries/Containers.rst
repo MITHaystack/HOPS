@@ -8,7 +8,7 @@ Data Object: visibilities
 
 General Metadata
 ----------------
-- **Class**: MHO_TableContainer<std::complex<float>, MHO_AxisPack<>>
+- **Class**: :hops:`hops::MHO_TableContainer<float,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<double>,MHO_Axis<double>>>`
 - **UUID**: a5c26065821b6dc92b06f780f8641d0e
 - **Rank**: 4
 - **Shape**: [4, 32, 30, 128]

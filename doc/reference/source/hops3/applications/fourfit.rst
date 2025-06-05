@@ -2,15 +2,18 @@ fourfit
 =======
 
 Documentation for the program "fourfit"
----------------------------------------
+=======================================
 
 
 SYNOPSIS
 --------
+
 Performs fringe searching for continuum MkIV data
 
 SYNTAX
--------
+------
+
+::
 
   fourfit [-a] [-b BB:F] [-c controlfile] [-d display device] [-e]
             [-f value] [-m value] [-n value] [-p] [-r afile] [-s naps]
@@ -22,16 +25,26 @@ SYNTAX
          come last.  All option flags must appear before the data file
          list.  Option flags can come in any order.
 
+
+EXAMPLES
+--------
+
     Here are examples of command-line invocations of fourfit, with
     an explanation of what they do:
 
-fourfit -pt -c control 101-0620/3C279.051V4B
+::
+
+  fourfit -pt -c control 101-0620/3C279.051V4B
+
         Test mode, steps through all baselines polarizations for
         this scan.  Without the -pt, the fringes would just be
         written in individual files in 101-0620, with one file
         per baseline-pol-frequencygroup type.
 
-fourfit -txas -m 1 -c control 018-234505 set mb_win -0.0034 .004 freqs a b
+::
+
+  fourfit -txas -m 1 -c control 018-234505 set mb_win -0.0034 .004 freqs a b
+
         Test mode, xwindow display, accounting switched on, cross
         power spectrum plot switched on, moderately verbose, use
         control file named "control" in current working directory,
@@ -39,7 +52,10 @@ fourfit -txas -m 1 -c control 018-234505 set mb_win -0.0034 .004 freqs a b
         multiband delay search window and select channels 'a' and
         'b' only.
 
-fourfit -r refr_list -c control -d hardcopy -b AT:S
+::
+
+  fourfit -r refr_list -c control -d hardcopy -b AT:S
+
         Process all data referenced by type 2 lines in the A-file
         named "refr_list", use control file "control", print the
         fringe plot on the default printer, process only baseline
@@ -48,141 +64,141 @@ fourfit -r refr_list -c control -d hardcopy -b AT:S
 OPTION FLAGS
 ------------
 
-        -a
-            If specified, this option switches on accounting
-            of CPU time and wall-clock time used in the various
-            parts of fourfit.  When the program finishes, it
-            produces a summary of these timing statistics.
+``-a``
+    If specified, this option switches on accounting
+    of CPU time and wall-clock time used in the various
+    parts of fourfit.  When the program finishes, it
+    produces a summary of these timing statistics.
 
-        -b BB:F
-            Allows the user to override the control file
-            with a specification of the baseline and/or
-            frequency group to be processed.  The syntax is
-            flexible.  0, 1 or 2 characters before the colon
-            refer to the baseline (one character is interpreted
-            as a station), and 0 or 1 character after the colon
-            is interpreted as the frequency subgroup.  You can
-            use the control file wildcard character '?' in
-            the baseline, but remember to protect it from the
-            C-shell either by escaping it with a backslash '\'
-            or enclosing the entire -b argument in single
-            quotes.  If you wish only to specify the baseline,
-            the colon may be omitted.  An error in the -b
-            flag argument causes the flag to be ignored, and
-            fourfit will continue execution.
+``-b BB:F``
+    Allows the user to override the control file
+    with a specification of the baseline and/or
+    frequency group to be processed.  The syntax is
+    flexible.  0, 1 or 2 characters before the colon
+    refer to the baseline (one character is interpreted
+    as a station), and 0 or 1 character after the colon
+    is interpreted as the frequency subgroup.  You can
+    use the control file wildcard character '?' in
+    the baseline, but remember to protect it from the
+    C-shell either by escaping it with a backslash '\'
+    or enclosing the entire -b argument in single
+    quotes.  If you wish only to specify the baseline,
+    the colon may be omitted.  An error in the -b
+    flag argument causes the flag to be ignored, and
+    fourfit will continue execution.
 
-        -c controlfile
-            Specifies the file which contains parameters
-            to control the operation of the program.  If
-            absent, fourfit will use only the file pointed to
-            by the environment variable DEF_CONTROL, which
-            in turn defaults to $FF/cf_default as defined
-            in the $HOPS/setup.csh file.  Any parameters
-            set in a control file specified with the -c option
-            override the default file values.  A description
-            of the syntax of the control file, with an example,
-            can be found later in this document.
+``-c controlfile``
+    Specifies the file which contains parameters
+    to control the operation of the program.  If
+    absent, fourfit will use only the file pointed to
+    by the environment variable DEF_CONTROL, which
+    in turn defaults to $FF/cf_default as defined
+    in the $HOPS/setup.csh file.  Any parameters
+    set in a control file specified with the -c option
+    override the default file values.  A description
+    of the syntax of the control file, with an example,
+    can be found later in this document.
 
-        -d display_device
-            Upon completion of a fringe fit, fourfit can
-            optionally display the results using postscript.
-            The valid choices for "display_device" are:
-                diskfile:file.ps  save the plot in "file.ps"
-                hardcopy          send the plot directly to lpr
-                pshardcopy        print the plot via pplot_print
-                xwindow           show the plot in an X11 window
-                psscreen          the same, but allow GS_* options
+``-d display_device``
+    Upon completion of a fringe fit, fourfit can
+    optionally display the results using postscript.
+    The valid choices for "display_device" are:
+    ``diskfile:file.ps``  save the plot in "file.ps"
+    ``hardcopy``          send the plot directly to lpr
+    ``pshardcopy``        print the plot via pplot_print
+    ``xwindow``           show the plot in an X11 window
+    ``psscreen``          the same, but allow GS_* options
 
-        -e
-            If specified, this option estimates the time required for
-            processing by fringing the first scan and extrapolating to
-            the remaining scans.  It is equivalent to -a -t with no
-            display device, followed by some estimation.  Only the
-            first data file mentioned will be included in the estimate.
+``-e``
+    If specified, this option estimates the time required for
+    processing by fringing the first scan and extrapolating to
+    the remaining scans.  It is equivalent to -a -t with no
+    display device, followed by some estimation.  Only the
+    first data file mentioned will be included in the estimate.
 
-        -f first channel
-            overrides the default first channel (0) to facilitate
-            plotting when there are more than 16 channels (see -n)
+``-f first channel``
+    overrides the default first channel (0) to facilitate
+    plotting when there are more than 16 channels (see -n)
 
-        -m value
-            This flag controls the verbosity of the program via
-            the integer argument "value", which typically ranges from 3
-            (virtually silent except for major errors) to -3 
-            (incredibly verbose, of use only to the authors of 
-            the program).  The default is 2. An additional mode can
-            be toggled on when m=4. This mode prints nothing except
-            the name of the generated fringe file, which can be useful
-            when calling fourfit from other scripts.
+``-m value``
+    This flag controls the verbosity of the program via
+    the integer argument "value", which typically ranges from 3
+    (virtually silent except for major errors) to -3 
+    (incredibly verbose, of use only to the authors of 
+    the program).  The default is 2. An additional mode can
+    be toggled on when m=4. This mode prints nothing except
+    the name of the generated fringe file, which can be useful
+    when calling fourfit from other scripts.
 
-        -n number of channels
-            When channels are overridden (see also the -f flag)
-            this tells how many channels to put on the plot. Note
-            that neither -f nor -n affect the actual fringe fit,
-            just the plotting thereof.
+``-n number of channels``
+    When channels are overridden (see also the -f flag)
+    this tells how many channels to put on the plot. Note
+    that neither -f nor -n affect the actual fringe fit,
+    just the plotting thereof.
 
-        -p 
-            This is equivalent to "-d psscreen".
+``-p``
+    This is equivalent to "-d psscreen".
 
-        -r afile
-            Puts fourfit into "refringe" mode.  Fourfit refringing
-            is driven by an A-file input, which overrides any 
-            correlator root files directly specified on the command
-            line (i.e. the latter are ignored when the -r flag
-            is specified).  The input A-file, of which there can
-            be only one, may contain root, corel or fringe lines,
-            but only the fringe lines are used to determine which
-            data to process, by baseline and frequency subgroup.
-            Obviously, the -r flag is inconsistent with the -u
-            flag, and specifying both is an error.  Note that for
-            afiles using HP-1000 (version 1) line formats, fourfit
-            has to pre-check the disk for the existence of the 
-            type 2 files.  The data area is controlled by the
-            DATADIR environment variable.  It defaults to the
-            value of $CORDATA.
+``-r afile``
+    Puts fourfit into "refringe" mode.  Fourfit refringing
+    is driven by an A-file input, which overrides any 
+    correlator root files directly specified on the command
+    line (i.e. the latter are ignored when the -r flag
+    is specified).  The input A-file, of which there can
+    be only one, may contain root, corel or fringe lines,
+    but only the fringe lines are used to determine which
+    data to process, by baseline and frequency subgroup.
+    Obviously, the -r flag is inconsistent with the -u
+    flag, and specifying both is an error.  Note that for
+    afiles using HP-1000 (version 1) line formats, fourfit
+    has to pre-check the disk for the existence of the 
+    type 2 files.  The data area is controlled by the
+    DATADIR environment variable.  It defaults to the
+    value of $CORDATA.
 
-        -s naps
-            This parameter controls how many AP's are merged
-            together into each plotting segment. Thus the number
-            of time points shown in the phase, amplitude, and
-            validity plots is so controlled. Additionally, the
-            ph/seg and amp/seg statistics are calculated based
-            upon the stated number of AP's in each segment.
+``-s naps``
+    This parameter controls how many AP's are merged
+    together into each plotting segment. Thus the number
+    of time points shown in the phase, amplitude, and
+    validity plots is so controlled. Additionally, the
+    ph/seg and amp/seg statistics are calculated based
+    upon the stated number of AP's in each segment.
 
-        -t
-            This flag places fourfit in test mode.  Everything
-            works as normal, except that the output file is not
-            written to disk, and the root file is not updated.
-            This is useful when experimenting with different
-            fringe-fitting strategies, in order to avoid cluttering
-            up the disk.
+``-t``
+    This flag places fourfit in test mode.  Everything
+    works as normal, except that the output file is not
+    written to disk, and the root file is not updated.
+    This is useful when experimenting with different
+    fringe-fitting strategies, in order to avoid cluttering
+    up the disk.
 
-        -u
-            Normally, fourfit processes all data consistent with
-            the data file list and the control information.  When
-            this flag is specified, fourfit will also check the
-            information in the type-2100 record of the root to 
-            see if the data have already been processed by fourfit.
-            If so, the data in question are skipped.  The "u"
-            stands for update mode.
+``-u``
+    Normally, fourfit processes all data consistent with
+    the data file list and the control information.  When
+    this flag is specified, fourfit will also check the
+    information in the type-2100 record of the root to 
+    see if the data have already been processed by fourfit.
+    If so, the data in question are skipped.  The "u"
+    stands for update mode.
 
-        -x
-            This is equivalent to "-d xwindow".
+``-x``
+    This is equivalent to "-d xwindow".
 
-        -P pp
-            Controls polarization processing, where the 2 character
-            string pp is one of four cross-polarization 
-            states: LL, RR, LR, or RL.
+``-P pp``
+    Controls polarization processing, where the 2 character
+    string pp is one of four cross-polarization 
+    states: LL, RR, LR, or RL.
 
-        -T trefoffs
-            If this option is invoked, the fourfit reference
-            time will be calculated by taking the nominal scan
-            start time from the ovex file and adding trefoffs
-            (which is an integer # of seconds) to it.
+``-T trefoffs``
+    If this option is invoked, the fourfit reference
+    time will be calculated by taking the nominal scan
+    start time from the ovex file and adding trefoffs
+    (which is an integer # of seconds) to it.
 
-        -X
-            Forces fourfit to write cross-power spectra into
-            type 230 records. This option is typically used for
-            import into AIPS.
+``-X``
+    Forces fourfit to write cross-power spectra into
+    type 230 records. This option is typically used for
+    import into AIPS.
 
 ARGUMENTS
 ---------
@@ -235,6 +251,7 @@ ARGUMENTS
             on the command line applies to all data to be
             processed, and overrides whatever the control file
             itself specified for the parameters in question.
+
 
 ENVIRONMENT
 -----------
@@ -306,119 +323,281 @@ syntax of the control file:
 
     * End of sample control file
 
+SELECTOR KEYWORDS
+-----------------
 
-
-SELECTOR KEYWORDS       VALUES
-   station            1 character
-   baseline           2 characters
-   source             string of 1-8 chars
-   f_group            1 character
-   scan               UT-epoch (special format), or:
-              < UT-epoch
-              > UT-epoch
-              UT-epoch1 to UT-epoch2  (inclusive time range)
-
-
++-------------------+---------------------------------------------------------------+
+| KEYWORD           | VALUES                                                        |
++===================+===============================================================+
+| station           | 1 character                                                   |
++-------------------+---------------------------------------------------------------+
+| baseline          | 2 characters                                                  |
++-------------------+---------------------------------------------------------------+
+| source            | string of 1–8 chars                                           |
++-------------------+---------------------------------------------------------------+
+| f_group           | 1 character                                                   |
++-------------------+---------------------------------------------------------------+
+| scan              | UT-epoch (special format), or:                                |
+|                   |                                                               |
+|                   | - < UT-epoch                                                  |
+|                   | - > UT-epoch                                                  |
+|                   | - UT-epoch1 to UT-epoch2 (inclusive time range)               |
++-------------------+---------------------------------------------------------------+
 
 SYNTACTIC KEYWORDS
 ------------------
 
-   if
-   else   (NYI)
-   and
-   or
-   not
-   ()     (NYI)
-   <>
-   to
-   ?
++----------------------+
+|       KEYWORDS       |
++======================+
+| if                   |
++----------------------+
+| else (NYI)           |
++----------------------+
+| and                  |
++----------------------+
+| or                   |
++----------------------+
+| not                  |
++----------------------+
+| () (NYI)             |
++----------------------+
+| <>                   |
++----------------------+
+| to                   |
++----------------------+
+| ?                    |
++----------------------+
 
-ACTION KEYWORDS         VALUES
 
-   adhoc_amp          float
-   adhoc_file         string
-   adhoc_file_chans   string
-   adhoc_flag_file    string
-   adhoc_period       float
-   adhoc_phase        'sinewave', 'polynomial', or 'file'
-   adhoc_poly         <7 floats/integers (mixture OK)
-   adhoc_tref         float
-   chan_ids           n char string, followed by n floats
-   dc_block           `true' or `false' (default: false)
-   dec_offset         float
-   delay_offs         n char string, followed by n floats
-   delay_offs_l       n char string, followed by n floats
-   delay_offs_r       n char string, followed by n floats
-   delay_offs_x       n char string, followed by n floats
-   delay_offs_y       n char string, followed by n floats
-   dr_win             2 floats
-   est_pc_manual      int
-   fmatch_bw_pct      float
-   freqs              n chars
-   gates              n char string, followed by 2n floats
-   gen_cf_record      'true' or 'false' (default: false)
-   index              n ints
-   interpolator       'iterate' or 'simul' (default: iterate)
-   ionosphere         float
-   ion_npts           int
-   ion_smooth         'true' or 'false' (default: false)
-   ion_win            2 floats
-   lsb_offset         float
-   mb_win             2 floats
-   mbd_anchor         'sbd' or 'model' (default: model)
-   min_weight         float
-   notches            2n floats
-   optimize_closure   'true' or 'false' (default: false)
-   passband           2 floats
-   pc_amp_hcode       float
-   pc_delay_l         float
-   pc_delay_r         float
-   pc_delay_x         float
-   pc_delay_y         float
-   pc_phase_offset_l  float
-   pc_phase_offset_r  float
-   pc_phase_offset_x  float
-   pc_phase_offset_y  float
-   pc_phases          n char string, followed by n floats
-   pc_phases_l        n char string, followed by n floats
-   pc_phases_r        n char string, followed by n floats
-   pc_phases_x        n char string, followed by n floats
-   pc_phases_y        n char string, followed by n floats
-   pc_freqs           n char string, followed by n floats
-   pc_mode            `normal', `ap_by_ap', `manual', or 'multitone'
-   pc_period          int
-   pc_tonemask        n char string, followed by n floats
-   period             int
-   plot_data_dir      string
-   ra_offset          float
-   ref_freq           float
-   samplers           int, followed by up to 8 strings
-   sampler_delay_l    up to 8 floats
-   sampler_delay_r    up to 8 floats
-   sampler_delay_x    up to 8 floats
-   sampler_delay_y    up to 8 floats
-   sb_win             2 floats
-   skip               `true' or `false'
-   start              integer
-   station_delay      float
-   stop               integer  
-   switched           `scan_start' or `each_minute'
-   t_cohere           float
-   use_samples        `true' or `false'
-   weak_channel       float
+CONTROL ACTION KEYWORDS
+-----------------------
 
-*** deprecated -- for backward mk4 compatibility only ***
-   index         alternate method used to select data channels, based on the
-                 original corel index number. Not as well supported as freqs,
-                 and is current being phased out.
-   max_parity         float
-   x_crc              `keep' or `discard'
-   x_slip_sync        `keep', `discard', or an integer
-   y_crc              `keep' or `discard'
-   y_slip_sync        `keep', `discard', or an integer
++------------------------+--------------------------------------------------------------+
+| ACTION KEYWORDS        | VALUES                                                       |
++========================+==============================================================+
+| adhoc_amp              | float                                                        |
++------------------------+--------------------------------------------------------------+
+| adhoc_file             | string                                                       |
++------------------------+--------------------------------------------------------------+
+| adhoc_file_chans       | string                                                       |
++------------------------+--------------------------------------------------------------+
+| adhoc_flag_file        | string                                                       |
++------------------------+--------------------------------------------------------------+
+| adhoc_period           | float                                                        |
++------------------------+--------------------------------------------------------------+
+| adhoc_phase            | 'sinewave', 'polynomial', or 'file'                          |
++------------------------+--------------------------------------------------------------+
+| adhoc_poly             | <7 floats/integers (mixture OK)                              |
++------------------------+--------------------------------------------------------------+
+| adhoc_tref             | float                                                        |
++------------------------+--------------------------------------------------------------+
+| chan_ids               | n char string, followed by n floats                          |
++------------------------+--------------------------------------------------------------+
+| dc_block               | 'true' or 'false' (default: false)                           |
++------------------------+--------------------------------------------------------------+
+| dec_offset             | float                                                        |
++------------------------+--------------------------------------------------------------+
+| delay_offs             | n char string, followed by n floats                          |
++------------------------+--------------------------------------------------------------+
+| delay_offs_l           | n char string, followed by n floats                          |
++------------------------+--------------------------------------------------------------+
+| delay_offs_r           | n char string, followed by n floats                          |
++------------------------+--------------------------------------------------------------+
+| delay_offs_x           | n char string, followed by n floats                          |
++------------------------+--------------------------------------------------------------+
+| delay_offs_y           | n char string, followed by n floats                          |
++------------------------+--------------------------------------------------------------+
+| dr_win                 | 2 floats                                                     |
++------------------------+--------------------------------------------------------------+
+| est_pc_manual          | int                                                          |
++------------------------+--------------------------------------------------------------+
+| fmatch_bw_pct          | float                                                        |
++------------------------+--------------------------------------------------------------+
+| freqs                  | n chars                                                      |
++------------------------+--------------------------------------------------------------+
+| gates                  | n char string, followed by 2n floats                         |
++------------------------+--------------------------------------------------------------+
+| gen_cf_record          | 'true' or 'false' (default: false)                           |
++------------------------+--------------------------------------------------------------+
+| index                  | n ints                                                       |
++------------------------+--------------------------------------------------------------+
+| interpolator           | 'iterate' or 'simul' (default: iterate)                      |
++------------------------+--------------------------------------------------------------+
+| ionosphere             | float                                                        |
++------------------------+--------------------------------------------------------------+
+| ion_npts               | int                                                          |
++------------------------+--------------------------------------------------------------+
+| ion_smooth             | 'true' or 'false' (default: false)                           |
++------------------------+--------------------------------------------------------------+
+| ion_win                | 2 floats                                                     |
++------------------------+--------------------------------------------------------------+
+| lsb_offset             | float                                                        |
++------------------------+--------------------------------------------------------------+
+| mb_win                 | 2 floats                                                     |
++------------------------+--------------------------------------------------------------+
+| mbd_anchor             | 'sbd' or 'model' (default: model)                            |
++------------------------+--------------------------------------------------------------+
+| min_weight             | float                                                        |
++------------------------+--------------------------------------------------------------+
+| notches                | 2n floats                                                    |
++------------------------+--------------------------------------------------------------+
+| optimize_closure       | 'true' or 'false' (default: false)                           |
++------------------------+--------------------------------------------------------------+
+| passband               | 2 floats                                                     |
++------------------------+--------------------------------------------------------------+
+| pc_amp_hcode           | float                                                        |
++------------------------+--------------------------------------------------------------+
+| pc_delay_l             | float                                                        |
++------------------------+--------------------------------------------------------------+
+| pc_delay_r             | float                                                        |
++------------------------+--------------------------------------------------------------+
+| pc_delay_x             | float                                                        |
++------------------------+--------------------------------------------------------------+
+| pc_delay_y             | float                                                        |
++------------------------+--------------------------------------------------------------+
+| pc_phase_offset_l      | float                                                        |
++------------------------+--------------------------------------------------------------+
+| pc_phase_offset_r      | float                                                        |
++------------------------+--------------------------------------------------------------+
+| pc_phase_offset_x      | float                                                        |
++------------------------+--------------------------------------------------------------+
+| pc_phase_offset_y      | float                                                        |
++------------------------+--------------------------------------------------------------+
+| pc_phases              | n char string, followed by n floats                          |
++------------------------+--------------------------------------------------------------+
+| pc_phases_l            | n char string, followed by n floats                          |
++------------------------+--------------------------------------------------------------+
+| pc_phases_r            | n char string, followed by n floats                          |
++------------------------+--------------------------------------------------------------+
+| pc_phases_x            | n char string, followed by n floats                          |
++------------------------+--------------------------------------------------------------+
+| pc_phases_y            | n char string, followed by n floats                          |
++------------------------+--------------------------------------------------------------+
+| pc_freqs               | n char string, followed by n floats                          |
++------------------------+--------------------------------------------------------------+
+| pc_mode                | 'normal', 'ap_by_ap', 'manual', or 'multitone'               |
++------------------------+--------------------------------------------------------------+
+| pc_period              | int                                                          |
++------------------------+--------------------------------------------------------------+
+| pc_tonemask            | n char string, followed by n floats                          |
++------------------------+--------------------------------------------------------------+
+| period                 | int                                                          |
++------------------------+--------------------------------------------------------------+
+| plot_data_dir          | string                                                       |
++------------------------+--------------------------------------------------------------+
+| ra_offset              | float                                                        |
++------------------------+--------------------------------------------------------------+
+| ref_freq               | float                                                        |
++------------------------+--------------------------------------------------------------+
+| samplers               | int, followed by up to 8 strings                             |
++------------------------+--------------------------------------------------------------+
+| sampler_delay_l        | up to 8 floats                                               |
++------------------------+--------------------------------------------------------------+
+| sampler_delay_r        | up to 8 floats                                               |
++------------------------+--------------------------------------------------------------+
+| sampler_delay_x        | up to 8 floats                                               |
++------------------------+--------------------------------------------------------------+
+| sampler_delay_y        | up to 8 floats                                               |
++------------------------+--------------------------------------------------------------+
+| sb_win                 | 2 floats                                                     |
++------------------------+--------------------------------------------------------------+
+| skip                   | 'true' or 'false'                                            |
++------------------------+--------------------------------------------------------------+
+| start                  | integer                                                      |
++------------------------+--------------------------------------------------------------+
+| station_delay          | float                                                        |
++------------------------+--------------------------------------------------------------+
+| stop                   | integer                                                      |
++------------------------+--------------------------------------------------------------+
+| switched               | 'scan_start' or 'each_minute'                                |
++------------------------+--------------------------------------------------------------+
+| t_cohere               | float                                                        |
++------------------------+--------------------------------------------------------------+
+| use_samples            | 'true' or 'false'                                            |
++------------------------+--------------------------------------------------------------+
+| weak_channel           | float                                                        |
++------------------------+--------------------------------------------------------------+
+
+
+DEPRECATED
+----------
+
+The following keywords are for backward mk4 compatibility only. 
+
++------------------+-------------------------------------------+
+| KEYWORD          | VALUES                                    |
++==================+===========================================+
+| max_parity       | float                                     |
++------------------+-------------------------------------------+
+| x_crc            | `keep' or `discard'                       |
++------------------+-------------------------------------------+
+| x_slip_sync      | `keep', `discard', or an integer          |
++------------------+-------------------------------------------+
+| y_crc            | `keep' or `discard'                       |
++------------------+-------------------------------------------+
+| y_slip_sync      | `keep', `discard', or an integer          |
++------------------+-------------------------------------------+
+
 
 KEYWORD SEMANTICS
 -----------------
+
+.. list-table:: KEYWORD SEMANTICS
+   :widths: 15 85
+   :header-rows: 1
+
+   * - KEYWORD
+     - VALUES
+   * - **scan selection**
+     - determines if a particular scan/baseline is processed
+   * - skip
+     - if this is set to true in the body of an if_block, then any scans matching the if conditions will be skipped.  
+       Note: as of 99.2.19 fourfit will not properly skip data if f_group is specified.
+   * - **filtering**
+     - determines whether or not each AP is accepted
+   * - freqs
+     - controls which frequency channels get included in the fit.  
+       The letters a–p correspond to the order that the frequencies appear in the root file (assuming 16 channels).  
+       With no suffix, DSB is implied, if both sidebands are present.  
+       A plus suffix denotes USB, a minus is used for LSB.  
+       After 26 channels, the uppercase alphabet is used, then 10 digits, finally '$' and '%' (i.e., 64 channels).
+   * - start
+     - start time for data to be included.
+   * - stop
+     - stop time for data to be included.  
+       Arguments of start and stop are integers with an optional minus sign.  
+       A positive integer is interpreted as an absolute time in seconds past the hour (of the scan start time).  
+       When a minus sign precedes the start time it is considered to be a time relative to, and later than, the scheduled scan start.  
+       Similarly, a negative stop time precedes the scheduled scan stop time, by the indicated number of seconds.
+   * - switched
+     - turns on (frequency) switched mode, which discards some APs and keeps others, depending on a gating waveform
+   * - period
+     - period in seconds of the gating waveform
+   * - gates
+     - for each frequency channel, the starting delay and duration, in seconds, of the gating waveform
+   * - passband
+     - lower and upper bounds (in MHz) of the spectral passband of data to be accepted, specified as RF frequencies.  
+       If the lower bound is greater than the upper bound, the range wraps around—allowing a band in the middle to be excluded.  
+       The data is rescaled to preserve the amplitude observable (as if the excluded data were perfectly valid);  
+       this means that the area under the cross-power spectral plot amplitude curve is approximately conserved.
+   * - notches
+     - a list of non-overlapping lower/upper bound pairs (in MHz) to exclude from the spectral passband.  
+       (Passband may be applied prior to removal of these notches.)  
+       Note that the amplitude modification calculus isn’t sophisticated enough to detect overlaps between passband and notches,  
+       so be sure to keep them disjoint. A large number is supported; you'll get a complaint if you exceed it.  
+       As with passband, spectral data is rescaled to preserve amplitude observables.
+   * - dc_block
+     - if set to true, zero out lowest cross-power spectral channel; useful for suppressing DC bias
+   * - min_weight
+     - fraction of data which must be present for inclusion.  
+       Normally, a weight between 0.0 and 1.0 is provided by the correlator to represent the fraction of data actually  
+       supporting the correlation value. If you specify a minimum weight, any AP not meeting this threshold will be discarded.
+
+
+
+
+
 
 **scan selection**
 
