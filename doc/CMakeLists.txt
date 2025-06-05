@@ -14,6 +14,10 @@ find_package(Sphinx REQUIRED)
 
     if(DOXYGEN_FOUND AND SPHINX_FOUND)
 
+        #set the URL base manually until we can find a work around for this sphinx/github pages quirk
+        set(MIT_BASE_URL "https://github.mit.edu/pages/barrettj/hops-git" CACHE STRING "Set the base url for github.mit.edu" FORCE)
+        set(GITHUB_BASE_URL "https://github.com/pages/MITHaystack/HOPS" CACHE STRING "Set the base url for github.com" FORCE)
+
         set(REF_BUILD_DIR ${DOC_INSTALL_DIR}/reference)
         file(MAKE_DIRECTORY ${REF_BUILD_DIR})
 
