@@ -71,7 +71,7 @@ breathe_projects = {
 doxylink = {
     'hops': (
         '@REF_BUILD_DIR@/_static/doxygen/common.tag', 
-        '@REF_BUILD_DIR@/_static/doxygen/html'  
+        '@MIT_BASE_URL@/_static/doxygen/html'  
     )
 }
 
