@@ -24,9 +24,7 @@ HOPS - Haystack Observatory Post-processing System
 API Documentation
 -----------------
 
-The full C/C++ API reference is available here:
-`Doxygen Documentation <_static/doxygen/html/index.html>`__
-
+The full C/C++ API reference is available here: :hops:`index`
 
 Indices and tables
 ------------------
