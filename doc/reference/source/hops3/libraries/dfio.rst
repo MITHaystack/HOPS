@@ -931,18 +931,29 @@ in the Mk3 type-4500 record.
 
 Type 211 (data slices) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       211
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Rate spectrum   r*4 x r         4r      Rate spectrum at peak
-MBD function    r*4 x m         4m      MBD resolution function at peak
-SBD function    r*4 x s         4s      SBD function at peak
-Xpower total    r*4 x s         4s      Crosspower spectrum avg'd across chans
-Xpower chans    r*4 x s x c     4sc     Xpower spectra for each freq channel
-MBD solutions   r*4 x s         4s      Best MBD values for each SBD chan.
-Rate spectrum   r*4 x r x s     4sr     Rate spectra at best MBD for each SBD chan.
++---------------+-------------+-------+---------------------------------------------+
+| Field         | type        | bytes | Description                                 |
++===============+=============+=======+=============================================+
+| Type          | ascii       | 3     | 211                                         |
++---------------+-------------+-------+---------------------------------------------+
+| Version       | ascii       | 2     | 0-99                                        |
++---------------+-------------+-------+---------------------------------------------+
+| Unused        | ascii       | 3     | Spaces                                      |
++---------------+-------------+-------+---------------------------------------------+
+| Rate spectrum | r*4 x r     | 4r    | Rate spectrum at peak                       |
++---------------+-------------+-------+---------------------------------------------+
+| MBD function  | r*4 x m     | 4m    | MBD resolution function at peak             |
++---------------+-------------+-------+---------------------------------------------+
+| SBD function  | r*4 x s     | 4s    | SBD function at peak                        |
++---------------+-------------+-------+---------------------------------------------+
+| Xpower total  | r*4 x s     | 4s    | Crosspower spectrum avg'd across chans      |
++---------------+-------------+-------+---------------------------------------------+
+| Xpower chans  | r*4 x s x c | 4sc   | Xpower spectra for each freq channel        |
++---------------+-------------+-------+---------------------------------------------+
+| MBD solutions | r*4 x s     | 4s    | Best MBD values for each SBD chan.          |
++---------------+-------------+-------+---------------------------------------------+
+| Rate spectrum | r*4 x r x s | 4sr   | Rate spectra at best MBD for each SBD chan. |
++---------------+-------------+-------+---------------------------------------------+
 
 The numbers r, m, s and c are the sizes of the rate spectrum, multiband delay
 function, singleband delay function, and channel array, respectively.  The numbers
@@ -955,14 +966,21 @@ high-resolution graphics by a suitable program.
 
 Type 212 (AP data) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       212
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-channel         i*2             2       Channel number for this record
-SBD chan        i*2             2       SBD chan. no. for this record
-data            r*4 x 3 x a     12a     Amp, phase, pcal phase by a.p.
++----------+-------------+-------+--------------------------------+
+| Field    | type        | bytes | Description                    |
++==========+=============+=======+================================+
+| Type     | ascii       | 3     | 212                            |
++----------+-------------+-------+--------------------------------+
+| Version  | ascii       | 2     | 0-99                           |
++----------+-------------+-------+--------------------------------+
+| Unused   | ascii       | 3     | Spaces                         |
++----------+-------------+-------+--------------------------------+
+| channel  | i*2         | 2     | Channel number for this record |
++----------+-------------+-------+--------------------------------+
+| SBD chan | i*2         | 2     | SBD chan. no. for this record  |
++----------+-------------+-------+--------------------------------+
+| data     | r*4 x 3 x a | 12a   | Amp, phase, pcal phase by a.p. |
++----------+-------------+-------+--------------------------------+
 
 The number a is the number of APs in the processed data span.  Record length 
 is variable, given by 10 + 12*a.  There are multiple type-212 records.  
@@ -972,24 +990,34 @@ channel in question.
 
 Type 220 (fringe plot) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       220
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Fringe plot     ascii           15360   Standard fringe plot image
++-------------+-------+-------+----------------------------+
+| Field       | type  | bytes | Description                |
++=============+=======+=======+============================+
+| Type        | ascii | 3     | 220                        |
++-------------+-------+-------+----------------------------+
+| Version     | ascii | 2     | 0-99                       |
++-------------+-------+-------+----------------------------+
+| Unused      | ascii | 3     | Spaces                     |
++-------------+-------+-------+----------------------------+
+| Fringe plot | ascii | 15360 | Standard fringe plot image |
++-------------+-------+-------+----------------------------+
 
 Record length is fixed at 15366 bytes.  This is simply a record-typed version
 of the Mk3 fringe plot image.
 
 Type 221 (postscript plot) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       221
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Post. plot      ascii           ??      High-res postscript graphics of fringe
++------------+-------+-------+----------------------------------------+
+| Field      | type  | bytes | Description                            |
++============+=======+=======+========================================+
+| Type       | ascii | 3     | 221                                    |
++------------+-------+-------+----------------------------------------+
+| Version    | ascii | 2     | 0-99                                   |
++------------+-------+-------+----------------------------------------+
+| Unused     | ascii | 3     | Spaces                                 |
++------------+-------+-------+----------------------------------------+
+| Post. plot | ascii | ??    | High-res postscript graphics of fringe |
++------------+-------+-------+----------------------------------------+
 
 
 Type 3 (Station unit data) file record formats
@@ -1102,20 +1130,33 @@ See :hops:`type_303` for more information.
 
 Type 304 ("cooked" track error statistics) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       304
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Time            date            12      Start time of current error stats
-Duration        r*4             4       Duration of current error stats (sec)
-Statistics x 64
-   Error_rate   r*4             4       Fraction
-   Frames       i*4             4       Count
-   Bad_frames   i*4             4       Count
-   Slip_sync    i*4             4       Count
-   Missing_sync i*4             4       Count
-   CRC_error    i*4             4       Count
++------------------+-------+-------+---------------------------------------+
+| Field            | type  | bytes | Description                           |
++==================+=======+=======+=======================================+
+| Type             | ascii | 3     | 304                                   |
++------------------+-------+-------+---------------------------------------+
+| Version          | ascii | 2     | 0-99                                  |
++------------------+-------+-------+---------------------------------------+
+| Unused           | ascii | 3     | Spaces                                |
++------------------+-------+-------+---------------------------------------+
+| Time             | date  | 12    | Start time of current error stats     |
++------------------+-------+-------+---------------------------------------+
+| Duration         | r*4   | 4     | Duration of current error stats (sec) |
++------------------+-------+-------+---------------------------------------+
+| Statistics x 64  |       |       |                                       |
++------------------+-------+-------+---------------------------------------+
+| Error_rate       | r*4   | 4     | Fraction                              |
++------------------+-------+-------+---------------------------------------+
+| Frames           | i*4   | 4     | Count                                 |
++------------------+-------+-------+---------------------------------------+
+| Bad_frames       | i*4   | 4     | Count                                 |
++------------------+-------+-------+---------------------------------------+
+| Slip_sync        | i*4   | 4     | Count                                 |
++------------------+-------+-------+---------------------------------------+
+| Missing_sync     | i*4   | 4     | Count                                 |
++------------------+-------+-------+---------------------------------------+
+| CRC_error        | i*4   | 4     | Count                                 |
++------------------+-------+-------+---------------------------------------+
 
 Record length is fixed at 1560 bytes. See :hops:`type_304` for more information.
 
@@ -1123,12 +1164,15 @@ Record length is fixed at 1560 bytes. See :hops:`type_304` for more information.
 
 Type 305 ("raw" state count) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       305
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Format TBD (PAH/SRS)
++---------+-------+-------+-------------+
+| Field   | type  | bytes | Description |
++=========+=======+=======+=============+
+| Type    | ascii | 3     | 305         |
++---------+-------+-------+-------------+
+| Version | ascii | 2     | 0-99        |
++---------+-------+-------+-------------+
+| Unused  | ascii | 3     | Spaces      |
++---------+-------+-------+-------------+
 
 See :hops:`type_305` for more information.
 
@@ -1136,19 +1180,31 @@ See :hops:`type_305` for more information.
 
 Type 306 ("cooked" state count) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       306
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Time            date            12      Start time of current counts
-Duration        r*4             4       Duration of current counts (sec)
-Stcount x 16
-    Chan_id     ascii           32      Frequency channel identifier
-    Bigpos      i*4             4       Count of big positive voltage samples
-    Pos         i*4             4       Count of small positive voltage samples
-    Neg         i*4             4       Count of small negative voltage samples
-    Bigneg      i*4             4       Count of big negative voltage samples
++--------------+-------+-------+-----------------------------------------+
+| Field        | type  | bytes | Description                             |
++==============+=======+=======+=========================================+
+| Type         | ascii | 3     | 306                                     |
++--------------+-------+-------+-----------------------------------------+
+| Version      | ascii | 2     | 0-99                                    |
++--------------+-------+-------+-----------------------------------------+
+| Unused       | ascii | 3     | Spaces                                  |
++--------------+-------+-------+-----------------------------------------+
+| Time         | date  | 12    | Start time of current counts            |
++--------------+-------+-------+-----------------------------------------+
+| Duration     | r*4   | 4     | Duration of current counts (sec)        |
++--------------+-------+-------+-----------------------------------------+
+| Stcount x 16 |       |       |                                         |
++--------------+-------+-------+-----------------------------------------+
+| Chan_id      | ascii | 32    | Frequency channel identifier            |
++--------------+-------+-------+-----------------------------------------+
+| Bigpos       | i*4   | 4     | Count of big positive voltage samples   |
++--------------+-------+-------+-----------------------------------------+
+| Pos          | i*4   | 4     | Count of small positive voltage samples |
++--------------+-------+-------+-----------------------------------------+
+| Neg          | i*4   | 4     | Count of small negative voltage samples |
++--------------+-------+-------+-----------------------------------------+
+| Bigneg       | i*4   | 4     | Count of big negative voltage samples   |
++--------------+-------+-------+-----------------------------------------+
 
 Record length is fixed at 792 bytes. See :hops:`type_306` for more information.
 
@@ -1156,11 +1212,15 @@ Record length is fixed at 792 bytes. See :hops:`type_306` for more information.
 
 Type 307 ("raw" phase cal value) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       307
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
++---------+-------+-------+-------------+
+| Field   | type  | bytes | Description |
++=========+=======+=======+=============+
+| Type    | ascii | 3     | 307         |
++---------+-------+-------+-------------+
+| Version | ascii | 2     | 0-99        |
++---------+-------+-------+-------------+
+| Unused  | ascii | 3     | Spaces      |
++---------+-------+-------+-------------+
 Format TBD (ARW).
 
 See :hops:`type_307` for more information.
@@ -1169,18 +1229,29 @@ See :hops:`type_307` for more information.
 
 Type 308 ("cooked" phase cal value) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       308
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Time            date            12      Start time of pcal average
-Duration        r*4             4       Duration of pcal average (sec)
-Pcal x 16
-    Chan_id     ascii           32      Frequency channel identifier
-    Freq        r*4             4       frequency (Hz rel. to chan freq)
-    Real        r*4             4       Phasecal vector
-    Imaginary   r*4             4       Phasecal vector
++-----------+-------+-------+----------------------------------+
+| Field     | type  | bytes | Description                      |
++===========+=======+=======+==================================+
+| Type      | ascii | 3     | 308                              |
++-----------+-------+-------+----------------------------------+
+| Version   | ascii | 2     | 0-99                             |
++-----------+-------+-------+----------------------------------+
+| Unused    | ascii | 3     | Spaces                           |
++-----------+-------+-------+----------------------------------+
+| Time      | date  | 12    | Start time of pcal average       |
++-----------+-------+-------+----------------------------------+
+| Duration  | r*4   | 4     | Duration of pcal average (sec)   |
++-----------+-------+-------+----------------------------------+
+| Pcal x 16 |       |       |                                  |
++-----------+-------+-------+----------------------------------+
+| Chan_id   | ascii | 32    | Frequency channel identifier     |
++-----------+-------+-------+----------------------------------+
+| Freq      | r*4   | 4     | frequency (Hz rel. to chan freq) |
++-----------+-------+-------+----------------------------------+
+| Real      | r*4   | 4     | Phasecal vector                  |
++-----------+-------+-------+----------------------------------+
+| Imaginary | r*4   | 4     | Phasecal vector                  |
++-----------+-------+-------+----------------------------------+
 
 Record length is fixed at 728 bytes. See :hops:`type_308` for more information.
 
