@@ -273,7 +273,7 @@ format of the type 000 record is as follows.  All fields are ascii.
 | Unused   | 8      | NULLs.                                                                  |
 +----------+--------+-------------------------------------------------------------------------+
 
-
+See :hops:`type_000` for more information.
 
 4. Data alignment
 -----------------
@@ -325,7 +325,7 @@ correlator blocks) must be constant in any given type-1 file.  There is one type
 101 record.  Some of the information in the type 100 record may not be available
 until the rest of the file is written, necessitating re-writing of that record.
 
-Type 100 (general data description) record format:
+Type 100 (general data description) record format. See :hops:`type_100` for more information.
 
 +----------------+--------+-------+----------------------------------------------------+
 | Field          | Type   | Bytes | Description                                        |
@@ -368,7 +368,7 @@ most of this checking, and raise the alarm to the application programmer
 when discrepancies are found.  Global hardware configuration information
 is also stored here.
 
-Type 101 (index number parameter) record format:
+Type 101 (index number parameter) record format. See :hops:`type_101` for more information.
 
 +-------------+-------+-----------+-------------------------------+
 | Field       | type  | bytes     | Description                   |
@@ -417,7 +417,7 @@ baseline-dependent information in the baseline-dependent type-1 files.
 Type-1 files are not intended to be made standalone by this change.
 
 
-Type 120 (sorted lag data) record format:
+Type 120 (sorted lag data) record format. See :hops:`type_120` for more information.
 
 +------------+-------+----------+----------------------------------------+
 | Field      | type  | bytes    | Description                            |
@@ -449,39 +449,19 @@ Type 120 (sorted lag data) record format:
 | lagdata    | array | variable | Correlation counts                     |
 +------------+-------+----------+----------------------------------------+
 
+where lagdata can have any one of five possible structures (COUNTS_PER_LAG, COUNTS_GLOBAL, AUTO_PER_LAG, AUTO_GLOBAL, or SPECTRAL). 
+The first four of which are **deprecated** and the only form which is used currently (when importing from DiFX) is of the 'SPECTRAL' type, 
+which has the form:
 
-where lagdata can have any one of four structures:
-1. COUNTS_PER_LAG format, lagdata is an array of size nlags, each element
-having the structure below.
+.. code-block:: cpp 
 
-+---------+-----+---+--------------------------+
-| coscor  | i*4 | 4 | Cosine correlation count |
-+=========+=====+===+==========================+
-| cosbits | i*4 | 4 | Cosine total bit count   |
-+---------+-----+---+--------------------------+
-| sincor  | i*4 | 4 | Sine correlation count   |
-+---------+-----+---+--------------------------+
-| sinbits | i*4 | 4 | Sine total bit count     |
-+---------+-----+---+--------------------------+
+    struct spectral
+    {
+        float re;
+        float im;
+    };
 
-2. COUNTS_GLOBAL format, lagdata is a structure containing an array as shown
-below.
-cosbits         i*4             4       Cosine total bit count
-sinbits         i*4             4       Sine total bit count
-array[nlags], each element is:
-        coscor  i*4             4       Cosine correlation count
-        sincor  i*4             4       Sine correlation count
-
-3. AUTO_PER_LAG format, lagdata is an array of size nlags. each element
-having the structure below.
-coscor          i*4             4       Cosine correlation count
-cosbits         i*4             4       Cosine total bit count
-
-4. AUTO_GLOBAL format,lagdata is a structure containing an array as shown 
-below.
-cosbits         i*4             4       Cosine total bit count
-Unused          ascii           4       Padding for alignment
-coscor[nlags]   i*4         nlags*4     Array of correlation counts    
+for each element.
 
 Record length is variable, depending on the number of lags and the mode.
 Only one mode, and therefore one lagdata format, is present in any given file.
@@ -922,59 +902,101 @@ appended to by the station unit manager software during or after the
 correlation, with information on track error rates, state counts, and extracted
 phasecal values in type 304, 306 and 308 records respectively.
 
+**type_300**  
+
 Type 300 (station ID and model parameter) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       300
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Id              ascii           1       1-char vex letter code
-Intl_id         ascii           2       2-char international station code
-Name            ascii           32      Full station name
-Unused          ascii           1       Padding for alignment
-Model_date      date            12      Start time for 1st spline
-Model interval  r*4             4       Spline interval in seconds
-Nsplines        i*2             2       Number of splines in scan
++----------------+-------+-------+-----------------------------------+
+| Field          | type  | bytes | Description                       |
++================+=======+=======+===================================+
+| Type           | ascii | 3     | 300                               |
++----------------+-------+-------+-----------------------------------+
+| Version        | ascii | 2     | 0-99                              |
++----------------+-------+-------+-----------------------------------+
+| Unused         | ascii | 3     | Spaces                            |
++----------------+-------+-------+-----------------------------------+
+| Id             | ascii | 1     | 1-char vex letter code            |
++----------------+-------+-------+-----------------------------------+
+| Intl_id        | ascii | 2     | 2-char international station code |
++----------------+-------+-------+-----------------------------------+
+| Name           | ascii | 32    | Full station name                 |
++----------------+-------+-------+-----------------------------------+
+| Unused         | ascii | 1     | Padding for alignment             |
++----------------+-------+-------+-----------------------------------+
+| Model_date     | date  | 12    | Start time for 1st spline         |
++----------------+-------+-------+-----------------------------------+
+| Model interval | r*4   | 4     | Spline interval in seconds        |
++----------------+-------+-------+-----------------------------------+
+| Nsplines       | i*2   | 2     | Number of splines in scan         |
++----------------+-------+-------+-----------------------------------+
 
-Record length is fixed at 64 bytes.
+Record length is fixed at 64 bytes. See :hops:`type_300` for more information.
+
+**type_301**  
 
 Type 301 (delay polynomial coefficient) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       301
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Interval        i*2             2       Sequential model interval number
-Chan_id         ascii           32      Frequency channel identifier
-Unused          ascii           6       Padding for alignment
-Delay_spline    r*8 x 6         48      Delay spline coefficients
++--------------+---------+-------+----------------------------------+
+| Field        | type    | bytes | Description                      |
++==============+=========+=======+==================================+
+| Type         | ascii   | 3     | 301                              |
++--------------+---------+-------+----------------------------------+
+| Version      | ascii   | 2     | 0-99                             |
++--------------+---------+-------+----------------------------------+
+| Unused       | ascii   | 3     | Spaces                           |
++--------------+---------+-------+----------------------------------+
+| Interval     | i*2     | 2     | Sequential model interval number |
++--------------+---------+-------+----------------------------------+
+| Chan_id      | ascii   | 32    | Frequency channel identifier     |
++--------------+---------+-------+----------------------------------+
+| Unused       | ascii   | 6     | Padding for alignment            |
++--------------+---------+-------+----------------------------------+
+| Delay_spline | r*8 x 6 | 48    | Delay spline coefficients        |
++--------------+---------+-------+----------------------------------+
 
-Record length is fixed at 58 bytes.
+Record length is fixed at 58 bytes. See :hops:`type_301` for more information.
+
+**type_302**  
 
 Type 302 (phase polynomial coefficient) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       302
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Interval        i*2             2       Sequential model interval number
-Chan_id         ascii           32      Frequency channel identifier
-Unused          ascii           6       Padding for alignment
-Phase_spline    r*8 x 6         48      Phase spline coefficients
++--------------+---------+-------+----------------------------------+
+| Field        | type    | bytes | Description                      |
++==============+=========+=======+==================================+
+| Type         | ascii   | 3     | 302                              |
++--------------+---------+-------+----------------------------------+
+| Version      | ascii   | 2     | 0-99                             |
++--------------+---------+-------+----------------------------------+
+| Unused       | ascii   | 3     | Spaces                           |
++--------------+---------+-------+----------------------------------+
+| Interval     | i*2     | 2     | Sequential model interval number |
++--------------+---------+-------+----------------------------------+
+| Chan_id      | ascii   | 32    | Frequency channel identifier     |
++--------------+---------+-------+----------------------------------+
+| Unused       | ascii   | 6     | Padding for alignment            |
++--------------+---------+-------+----------------------------------+
+| Phase_spline | r*8 x 6 | 48    | Phase spline coefficients        |
++--------------+---------+-------+----------------------------------+
 
-Record length is fixed at 96 bytes.
+Record length is fixed at 96 bytes. See :hops:`type_302` for more information.
+
+**type_303**  
 
 Type 303 ("raw" track error statistics) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       303
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Format TBD (PAH/SRS)
++---------+-------+-------+-------------+
+| Field   | type  | bytes | Description |
++=========+=======+=======+=============+
+| Type    | ascii | 3     | 303         |
++---------+-------+-------+-------------+
+| Version | ascii | 2     | 0-99        |
++---------+-------+-------+-------------+
+| Unused  | ascii | 3     | Spaces      |
++---------+-------+-------+-------------+
+
+See :hops:`type_303` for more information.
+
+**type_304**  
 
 Type 304 ("cooked" track error statistics) record format:
 
@@ -993,7 +1015,9 @@ Statistics x 64
    Missing_sync i*4             4       Count
    CRC_error    i*4             4       Count
 
-Record length is fixed at 1560 bytes.
+Record length is fixed at 1560 bytes. See :hops:`type_304` for more information.
+
+**type_305**  
 
 Type 305 ("raw" state count) record format:
 
@@ -1003,6 +1027,10 @@ Type            ascii           3       305
 Version         ascii           2       0-99 
 Unused          ascii           3       Spaces
 Format TBD (PAH/SRS)
+
+See :hops:`type_305` for more information.
+
+**type_306**  
 
 Type 306 ("cooked" state count) record format:
 
@@ -1020,7 +1048,9 @@ Stcount x 16
     Neg         i*4             4       Count of small negative voltage samples
     Bigneg      i*4             4       Count of big negative voltage samples
 
-Record length is fixed at 792 bytes.
+Record length is fixed at 792 bytes. See :hops:`type_306` for more information.
+
+**type_307** 
 
 Type 307 ("raw" phase cal value) record format:
 
@@ -1031,6 +1061,9 @@ Version         ascii           2       0-99
 Unused          ascii           3       Spaces
 Format TBD (ARW).
 
+See :hops:`type_307` for more information.
+
+**type_308**  
 
 Type 308 ("cooked" phase cal value) record format:
 
@@ -1047,7 +1080,26 @@ Pcal x 16
     Real        r*4             4       Phasecal vector
     Imaginary   r*4             4       Phasecal vector
 
-Record length is fixed at 728 bytes.
+Record length is fixed at 728 bytes. See :hops:`type_308` for more information.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1110,15 +1162,18 @@ For example if there 30 1-second APs, and 32 channels for two polarization (X an
 Each record contains a meta-data header about the baseline, AP, data weight, and visibility data type, along with an array of the complex visibilities. 
 The raw complex visibility data imported from DiFX is stored as a pair of floats in the union element ``lag_data`` and takes the form of:
 
-.. code-block:: cpp 
 
-    struct spectral
-    {
-        float re;
-        float im;
-    };
 
-See :hops:`type_120` for more information.
+
+
+
+
+
+
+
+
+
+
 
 Station data types
 ------------------
@@ -1127,7 +1182,7 @@ Station data types
 
 The ``type_300`` struct contains meta-data pertaining to the station spline models used for the a priori delay and other station coordinates.
 
-See :hops:`type_300` for more information.
+
 
 
 **type_301**  
