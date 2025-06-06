@@ -361,25 +361,6 @@ Type 100 (general data description) record format:
 | nblocks        | i*2    | 2     | Number of blocks per index number                  |
 +----------------+--------+-------+----------------------------------------------------+
 
-
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       100
-Version         ascii           2       0-99
-Unused          ascii           3       Spaces
-procdate        date            12      Time of correlation
-Baseline        ascii           2       Standard baseline id
-rootname        ascii           34      Name of root, from exp. dir
-Qcode           ascii           2       Correlation "quality", criteria TBD
-Unused2         ascii           6       spaces for padding
-Percent done    r*4             4       0-100% of scheduled data processed
-start           date            12      Time of 1st AP
-stop            date            12      Time of last AP
-ndrec           i*4             4       Total no of data records in file
-nindex          i*4             4       Number if index numbers present
-nlags           i*2             2       Number of lags/type-120 record
-nblocks         i*2             2       Number of blocks per index number
-
 Record length is fixed at 104 bytes.  This record can be thought of as a
 "consistency control" record, which should be examined to make sure that
 the data are what you think they should be.  The IO library should do
@@ -389,22 +370,37 @@ is also stored here.
 
 Type 101 (index number parameter) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       101
-Version         ascii           2       0-99 
-Status          ascii           1       Currently unused, set to null
-nblocks         i*2             2       Number of block table entries
-Index           i*2             2       Index number
-Primary         i*2             2       Index number of primary 101
-Ref_chan_id     ascii           8       from vex, e.g. X1R
-Rem_chan_id     ascii           8       from vex, e.g. X1L
-Corr. board     i*2             2       Correlator board serial #
-Corr. slot      i*2             2       Correlator board slot
-Ref channel     i*2             2       SU output channel numbers
-Rem channel     i*2             2       
-Post mortem     i*4             4       Up to 32 1-bit flags
-Block table     i*4         4*nblocks   One entry per block in snake
++-------------+-------+-----------+-------------------------------+
+| Field       | type  | bytes     | Description                   |
++=============+=======+===========+===============================+
+| Type        | ascii | 3         | 101                           |
++-------------+-------+-----------+-------------------------------+
+| Version     | ascii | 2         | 0-99                          |
++-------------+-------+-----------+-------------------------------+
+| Status      | ascii | 1         | Currently unused, set to null |
++-------------+-------+-----------+-------------------------------+
+| nblocks     | i*2   | 2         | Number of block table entries |
++-------------+-------+-----------+-------------------------------+
+| Index       | i*2   | 2         | Index number                  |
++-------------+-------+-----------+-------------------------------+
+| Primary     | i*2   | 2         | Index number of primary 101   |
++-------------+-------+-----------+-------------------------------+
+| Ref_chan_id | ascii | 8         | from vex, e.g. X1R            |
++-------------+-------+-----------+-------------------------------+
+| Rem_chan_id | ascii | 8         | from vex, e.g. X1L            |
++-------------+-------+-----------+-------------------------------+
+| Corr. board | i*2   | 2         | Correlator board serial #     |
++-------------+-------+-----------+-------------------------------+
+| Corr. slot  | i*2   | 2         | Correlator board slot         |
++-------------+-------+-----------+-------------------------------+
+| Ref channel | i*2   | 2         | SU output channel numbers     |
++-------------+-------+-----------+-------------------------------+
+| Rem channel | i*2   | 2         |                               |
++-------------+-------+-----------+-------------------------------+
+| Post mortem | i*4   | 4         | Up to 32 1-bit flags          |
++-------------+-------+-----------+-------------------------------+
+| Block table | i*4   | 4*nblocks | One entry per block in snake  |
++-------------+-------+-----------+-------------------------------+
 
 Record length is variable at 40+(4*nblocks), but with a wrinkle.  In order to
 maintain the record length as a multiple of 8 bytes, if nblocks is an odd
@@ -423,29 +419,50 @@ Type-1 files are not intended to be made standalone by this change.
 
 Type 120 (sorted lag data) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       120
-Version         ascii           2       0-99 
-corrtype        ascii           1       Binary 1-4, lagdata struct type
-nlags           i*2             2       Number of lags present
-Baseline        ascii           2       Standard baseline id
-rootcode        ascii           6       Standard root suffix
-Index           i*4             4       Index into type 101 record
-AP              i*4             4       Accumulation period number
-Flag            i*4             4       Up to 32 correlation flags
-Status          i*4             4       Up to 32 status bits
-fr_delay        i*4             4       Mid-AP fractional delay (bits * 2^32)
-delay_rate      i*4             4       Mid-AP delay rate (bits/sysclk * 2^32)
-lagdata         array        variable   Correlation counts
++------------+-------+----------+----------------------------------------+
+| Field      | type  | bytes    | Description                            |
++============+=======+==========+========================================+
+| Type       | ascii | 3        | 120                                    |
++------------+-------+----------+----------------------------------------+
+| Version    | ascii | 2        | 0-99                                   |
++------------+-------+----------+----------------------------------------+
+| corrtype   | ascii | 1        | Binary 1-4, lagdata struct type        |
++------------+-------+----------+----------------------------------------+
+| nlags      | i*2   | 2        | Number of lags present                 |
++------------+-------+----------+----------------------------------------+
+| Baseline   | ascii | 2        | Standard baseline id                   |
++------------+-------+----------+----------------------------------------+
+| rootcode   | ascii | 6        | Standard root suffix                   |
++------------+-------+----------+----------------------------------------+
+| Index      | i*4   | 4        | Index into type 101 record             |
++------------+-------+----------+----------------------------------------+
+| AP         | i*4   | 4        | Accumulation period number             |
++------------+-------+----------+----------------------------------------+
+| Flag       | i*4   | 4        | Up to 32 correlation flags             |
++------------+-------+----------+----------------------------------------+
+| Status     | i*4   | 4        | Up to 32 status bits                   |
++------------+-------+----------+----------------------------------------+
+| fr_delay   | i*4   | 4        | Mid-AP fractional delay (bits * 2^32)  |
++------------+-------+----------+----------------------------------------+
+| delay_rate | i*4   | 4        | Mid-AP delay rate (bits/sysclk * 2^32) |
++------------+-------+----------+----------------------------------------+
+| lagdata    | array | variable | Correlation counts                     |
++------------+-------+----------+----------------------------------------+
+
 
 where lagdata can have any one of four structures:
 1. COUNTS_PER_LAG format, lagdata is an array of size nlags, each element
 having the structure below.
-coscor          i*4             4       Cosine correlation count
-cosbits         i*4             4       Cosine total bit count
-sincor          i*4             4       Sine correlation count
-sinbits         i*4             4       Sine total bit count
+
++---------+-----+---+--------------------------+
+| coscor  | i*4 | 4 | Cosine correlation count |
++=========+=====+===+==========================+
+| cosbits | i*4 | 4 | Cosine total bit count   |
++---------+-----+---+--------------------------+
+| sincor  | i*4 | 4 | Sine correlation count   |
++---------+-----+---+--------------------------+
+| sinbits | i*4 | 4 | Sine total bit count     |
++---------+-----+---+--------------------------+
 
 2. COUNTS_GLOBAL format, lagdata is a structure containing an array as shown
 below.
@@ -491,104 +508,184 @@ higher.
 
 Type 200 (general information) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       200
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Revision        i*2 x 10        20      Revision levels for many progs
-Experiment      i*4             4       Experiment number
-Program         ascii           32      Observing program name
-Scan name       ascii           32      Name of scan
-Scantime        date            12      Scan time to 1 second
-Start offset    i*4             4       Baseline start (sec) rel. to scan
-Stop offset     i*4             4       Baseline stop (sec) rel. to scan
-Corr_date       date            12      Date of correlation
-FPT             date            12      Fourfit processing date
-FRT             date            12      Fourfit reference time
++--------------+----------+-------+-----------------------------------+
+| Field        | type     | bytes | Description                       |
++==============+==========+=======+===================================+
+| Type         | ascii    | 3     | 200                               |
++--------------+----------+-------+-----------------------------------+
+| Version      | ascii    | 2     | 0-99                              |
++--------------+----------+-------+-----------------------------------+
+| Unused       | ascii    | 3     | Spaces                            |
++--------------+----------+-------+-----------------------------------+
+| Revision     | i*2 x 10 | 20    | Revision levels for many progs    |
++--------------+----------+-------+-----------------------------------+
+| Experiment   | i*4      | 4     | Experiment number                 |
++--------------+----------+-------+-----------------------------------+
+| Program      | ascii    | 32    | Observing program name            |
++--------------+----------+-------+-----------------------------------+
+| Scan name    | ascii    | 32    | Name of scan                      |
++--------------+----------+-------+-----------------------------------+
+| Scantime     | date     | 12    | Scan time to 1 second             |
++--------------+----------+-------+-----------------------------------+
+| Start offset | i*4      | 4     | Baseline start (sec) rel. to scan |
++--------------+----------+-------+-----------------------------------+
+| Stop offset  | i*4      | 4     | Baseline stop (sec) rel. to scan  |
++--------------+----------+-------+-----------------------------------+
+| Corr_date    | date     | 12    | Date of correlation               |
++--------------+----------+-------+-----------------------------------+
+| FPT          | date     | 12    | Fourfit processing date           |
++--------------+----------+-------+-----------------------------------+
+| FRT          | date     | 12    | Fourfit reference time            |
++--------------+----------+-------+-----------------------------------+
+
 
 Record length is fixed at 152 bytes.
 
 Type 201 (source information) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       201
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Source          ascii           32      Source name
-Coord           sky_coord       16      Source coordinates of epoch
-Epoch of ra/dec i*2             2       1950 or 2000
-Unused2         ascii           2       Padding
-Coord_date      date            12      Ref date for proper motion
-R.A. rate       r*8             8       Proper motion (rad/sec)
-Dec. rate       r*8             8       Proper motion (rad/sec)
-Pulsar phase    r*8 x 4         32      Polynomial of pulse timing
-Pulsar epoch    r*8             8       reference time for polynomial
-Dispersion      r*8             8       Pulsar dispersion measure
++---------------------+-----------+--------------+-------------------------------+
+| Field               | type      | bytes        | Description                   |
++=====================+===========+==============+===============================+
+| Type                | ascii     | 3            | 201                           |
++---------------------+-----------+--------------+-------------------------------+
+| Version             | ascii     | 2            | 0-99                          |
++---------------------+-----------+--------------+-------------------------------+
+| Unused              | ascii     | 3            | Spaces                        |
++---------------------+-----------+--------------+-------------------------------+
+| Source              | ascii     | 32           | Source name                   |
++---------------------+-----------+--------------+-------------------------------+
+| Coord               | sky_coord | 16           | Source coordinates of epoch   |
++---------------------+-----------+--------------+-------------------------------+
+| Epoch of ra/dec i*2 | 2         | 1950 or 2000 |                               |
++---------------------+-----------+--------------+-------------------------------+
+| Unused2             | ascii     | 2            | Padding                       |
++---------------------+-----------+--------------+-------------------------------+
+| Coord_date          | date      | 12           | Ref date for proper motion    |
++---------------------+-----------+--------------+-------------------------------+
+| R.A. rate           | r*8       | 8            | Proper motion (rad/sec)       |
++---------------------+-----------+--------------+-------------------------------+
+| Dec. rate           | r*8       | 8            | Proper motion (rad/sec)       |
++---------------------+-----------+--------------+-------------------------------+
+| Pulsar phase        | r*8 x 4   | 32           | Polynomial of pulse timing    |
++---------------------+-----------+--------------+-------------------------------+
+| Pulsar epoch        | r*8       | 8            | reference time for polynomial |
++---------------------+-----------+--------------+-------------------------------+
+| Dispersion          | r*8       | 8            | Pulsar dispersion measure     |
++---------------------+-----------+--------------+-------------------------------+
+|                     |           |              |                               |
++---------------------+-----------+--------------+-------------------------------+
 
 Record length is fixed at 128 bytes.  This record contains source-specific
 information.
 
 Type 202 (baseline information) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       202
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Baseline        ascii           2       Standard baseline ID
-Ref intl_id     ascii           2       International 2-char ID
-Rem intl_id     ascii           2       International 2-char ID
-Ref name        ascii           8       Station names
-Rem name        ascii           8       
-Ref tape        ascii           8       Tape VSNs
-Rem tape        ascii           8       
-Nlags           i*2             2       Number of correlated lags
-Ref xpos        r*8             8       Station X coords (meters)
-Rem xpos        r*8             8       
-Ref ypos        r*8             8       Station Y coords (meters)
-Rem ypos        r*8             8       
-Ref zpos        r*8             8       Station Z coords (meters)
-Rem zpos        r*8             8       
-U               r*8             8       fringes/arcsec E-W at 1GHz at FRT
-V               r*8             8       fringes/arcsec N-S at 1GHz at FRT
-UF              r*8             8       mHz/arcsec/GHz in R.A. at FRT
-VF              r*8             8       mHz/arcsec/GHz in dec. at FRT
-Ref clock       r*4             4       Clock offsets (usec) at FRT
-Rem clock       r*4             4       
-Ref clockrate   r*4             4       Clock rates (sec/sec)
-Rem clockrate   r*4             4       
-Ref idelay      r*4             4       Instrumental delays (usec)
-Rem idelay      r*4             4       
-Ref zatm del.   r*4             4       Zenith atmospheric delay (nsec)
-Rem zatm del.   r*4             4       
-Ref elev        r*4             4       Elevation of source at FRT (deg)
-Rem elev        r*4             4
-Ref az          r*4             4       Azimuth of source at FRT (deg)
-Rem az          r*4             4       
++---------------+-------+-------+-----------------------------------+
+| Field         | type  | bytes | Description                       |
++===============+=======+=======+===================================+
+| Type          | ascii | 3     | 202                               |
++---------------+-------+-------+-----------------------------------+
+| Version       | ascii | 2     | 0-99                              |
++---------------+-------+-------+-----------------------------------+
+| Unused        | ascii | 3     | Spaces                            |
++---------------+-------+-------+-----------------------------------+
+| Baseline      | ascii | 2     | Standard baseline ID              |
++---------------+-------+-------+-----------------------------------+
+| Ref intl_id   | ascii | 2     | International 2-char ID           |
++---------------+-------+-------+-----------------------------------+
+| Rem intl_id   | ascii | 2     | International 2-char ID           |
++---------------+-------+-------+-----------------------------------+
+| Ref name      | ascii | 8     | Station names                     |
++---------------+-------+-------+-----------------------------------+
+| Rem name      | ascii | 8     |                                   |
++---------------+-------+-------+-----------------------------------+
+| Ref tape      | ascii | 8     | Tape VSNs                         |
++---------------+-------+-------+-----------------------------------+
+| Rem tape      | ascii | 8     |                                   |
++---------------+-------+-------+-----------------------------------+
+| Nlags         | i*2   | 2     | Number of correlated lags         |
++---------------+-------+-------+-----------------------------------+
+| Ref xpos      | r*8   | 8     | Station X coords (meters)         |
++---------------+-------+-------+-----------------------------------+
+| Rem xpos      | r*8   | 8     |                                   |
++---------------+-------+-------+-----------------------------------+
+| Ref ypos      | r*8   | 8     | Station Y coords (meters)         |
++---------------+-------+-------+-----------------------------------+
+| Rem ypos      | r*8   | 8     |                                   |
++---------------+-------+-------+-----------------------------------+
+| Ref zpos      | r*8   | 8     | Station Z coords (meters)         |
++---------------+-------+-------+-----------------------------------+
+| Rem zpos      | r*8   | 8     |                                   |
++---------------+-------+-------+-----------------------------------+
+| U             | r*8   | 8     | fringes/arcsec E-W at 1GHz at FRT |
++---------------+-------+-------+-----------------------------------+
+| V             | r*8   | 8     | fringes/arcsec N-S at 1GHz at FRT |
++---------------+-------+-------+-----------------------------------+
+| UF            | r*8   | 8     | mHz/arcsec/GHz in R.A. at FRT     |
++---------------+-------+-------+-----------------------------------+
+| VF            | r*8   | 8     | mHz/arcsec/GHz in dec. at FRT     |
++---------------+-------+-------+-----------------------------------+
+| Ref clock     | r*4   | 4     | Clock offsets (usec) at FRT       |
++---------------+-------+-------+-----------------------------------+
+| Rem clock     | r*4   | 4     |                                   |
++---------------+-------+-------+-----------------------------------+
+| Ref clockrate | r*4   | 4     | Clock rates (sec/sec)             |
++---------------+-------+-------+-----------------------------------+
+| Rem clockrate | r*4   | 4     |                                   |
++---------------+-------+-------+-----------------------------------+
+| Ref idelay    | r*4   | 4     | Instrumental delays (usec)        |
++---------------+-------+-------+-----------------------------------+
+| Rem idelay    | r*4   | 4     |                                   |
++---------------+-------+-------+-----------------------------------+
+| Ref zatm del. | r*4   | 4     | Zenith atmospheric delay (nsec)   |
++---------------+-------+-------+-----------------------------------+
+| Rem zatm del. | r*4   | 4     |                                   |
++---------------+-------+-------+-----------------------------------+
+| Ref elev      | r*4   | 4     | Elevation of source at FRT (deg)  |
++---------------+-------+-------+-----------------------------------+
+| Rem elev      | r*4   | 4     |                                   |
++---------------+-------+-------+-----------------------------------+
+| Ref az        | r*4   | 4     | Azimuth of source at FRT (deg)    |
++---------------+-------+-------+-----------------------------------+
+| Rem az        | r*4   | 4     |                                   |
++---------------+-------+-------+-----------------------------------+
 
 Record length is fixed at 176 bytes.  This record contains baseline
 specific information, independent of fourfit parameters except FRT.
 
 Type 203 (channel information) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       203
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Channels x 32
-    index       i*2             2       Index number in type-1 file (0=empty)
-    Sample rate i*2             2       ksamp/sec
-    refsb       ascii           1       Ref station sideband (U/L)
-    remsb       ascii           1       Rem station sideband (U/L)
-    refpol      ascii           1       Ref station polarization (R/L)
-    rempol      ascii           1       Rem station polarization
-    ref_freq    r*8             8       Ref station LO freq (Hz)
-    rem_freq    r*8             8       Rem station LO freq (Hz)
-    ref_chan_id ascii           8       Ref station channel id
-    rem_chan_id ascii           8       Rem station channel id
++----------------+--------+--------+-----------------------------------------+
+| Field          | Type   | Bytes  | Description                             |
++================+========+========+=========================================+
+| Type           | ascii  | 3      | 203                                     |
++----------------+--------+--------+-----------------------------------------+
+| Version        | ascii  | 2      | 0-99                                    |
++----------------+--------+--------+-----------------------------------------+
+| Unused         | ascii  | 3      | Spaces                                  |
++----------------+--------+--------+-----------------------------------------+
+| Channels x 32  |        |        |                                         |
++----------------+--------+--------+-----------------------------------------+
+|  index         | i*2    | 2      | Index number in type-1 file (0=empty)   |
++----------------+--------+--------+-----------------------------------------+
+|  Sample rate   | i*2    | 2      | ksamp/sec                               |
++----------------+--------+--------+-----------------------------------------+
+|  refsb         | ascii  | 1      | Ref station sideband (U/L)              |
++----------------+--------+--------+-----------------------------------------+
+|  remsb         | ascii  | 1      | Rem station sideband (U/L)              |
++----------------+--------+--------+-----------------------------------------+
+|  refpol        | ascii  | 1      | Ref station polarization (R/L)          |
++----------------+--------+--------+-----------------------------------------+
+|  rempol        | ascii  | 1      | Rem station polarization                |
++----------------+--------+--------+-----------------------------------------+
+|  ref_freq      | r*8    | 8      | Ref station LO freq (Hz)                |
++----------------+--------+--------+-----------------------------------------+
+|  rem_freq      | r*8    | 8      | Rem station LO freq (Hz)                |
++----------------+--------+--------+-----------------------------------------+
+|  ref_chan_id   | ascii  | 8      | Ref station channel id                  |
++----------------+--------+--------+-----------------------------------------+
+|  rem_chan_id   | ascii  | 8      | Rem station channel id                  |
++----------------+--------+--------+-----------------------------------------+
 
 Record length is fixed at 1288 bytes.  This is a copy of the information in all
 the (non-mirrored) type 101 records in the type-1 file, regardless of whether
