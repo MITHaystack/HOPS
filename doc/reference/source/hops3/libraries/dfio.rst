@@ -95,25 +95,37 @@ See :hops:`type_303` for more information.
 
 **type_304**
 
+The ``type_304`` struct is for Mark4 correlator CRC error tracking and is **deprecated**.
+
 See :hops:`type_304` for more information.
 
 **type_305**  
+
+The ``type_304`` struct is *unused*.
 
 See :hops:`type_305` for more information.
 
 **type_306**  
 
+The ``type_306`` struct is for Mark4 correlator state count tracking and is **deprecated**.
+
 See :hops:`type_306` for more information.
 
 **type_307**  
+
+The ``type_307`` struct is for Mark4 correlator phase-calibration extraction and is **deprecated**.
 
 See :hops:`type_307` for more information.
 
 **type_308**  
 
+The ``type_308`` struct is for storage of phase calibration data and is **deprecated**.
+
 See :hops:`type_308` for more information.
 
 **type_309**  
+
+The ``type_309`` struct is used for the storage of multi-tone phase calibration data.
 
 See :hops:`type_309` for more information.
 
