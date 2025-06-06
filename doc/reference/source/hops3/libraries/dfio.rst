@@ -679,16 +679,27 @@ the fringe fit.
 
 Type 204 (execution setup) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       204
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-ff_version      i*2 x 2         4       Fourfit revision level
-Platform        ascii           8       hppa, linux, alpha etc. version
-Control file    ascii           96      Control file full pathname
-ffcf_date       date            12      Control file modification date
-Override        ascii           128     Command line override parms
+
+
++--------------+---------+-------+---------------------------------+
+| Field        | type    | bytes | Description                     |
++==============+=========+=======+=================================+
+| Type         | ascii   | 3     | 204                             |
++--------------+---------+-------+---------------------------------+
+| Version      | ascii   | 2     | 0-99                            |
++--------------+---------+-------+---------------------------------+
+| Unused       | ascii   | 3     | Spaces                          |
++--------------+---------+-------+---------------------------------+
+| ff_version   | i*2 x 2 | 4     | Fourfit revision level          |
++--------------+---------+-------+---------------------------------+
+| Platform     | ascii   | 8     | hppa, linux, alpha etc. version |
++--------------+---------+-------+---------------------------------+
+| Control file | ascii   | 96    | Control file full pathname      |
++--------------+---------+-------+---------------------------------+
+| ffcf_date    | date    | 12    | Control file modification date  |
++--------------+---------+-------+---------------------------------+
+| Override     | ascii   | 128   | Command line override parms     |
++--------------+---------+-------+---------------------------------+
 
 Record length is fixed at 256 bytes.  The strings are null-terminated.  If
 they overflow, the strings are set to null.  This record is just a tracer
@@ -696,53 +707,94 @@ of the execution parameters for possible subsequent human intervention.
 
 Type 205 (fourfit setup) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       205
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Utc_central     date            12      Central time of baseline/scan
-Offset          r*4             4       FRT offset from central time (sec)
-ffmode          ascii           8       Fourfit execution modes
-Search parm     r*4 x 6         24      SBD, MBD, Rate windows (usec, usec/sec)
-Filters         r*4 x 8(?)      32      Filter thresholds
-Start           date            12      Start of requested data span
-Stop            date            12      End of requested data span
-Ref freq        r*8             8       Fourfit reference frequency (Hz)
-ffit_chan x 16
-    ffit_chan_id ascii          1       Fourfit channel letter id
-    unused2     ascii           1       Padding
-    channel     i*2 x 4         8       Index into type 203 array, -1=absent
++--------------------+------------+---------------------------+-----------------------------------------+
+| Field              | type       | bytes                     | Description                             |
++====================+============+===========================+=========================================+
+| Type               | ascii      | 3                         | 205                                     |
++--------------------+------------+---------------------------+-----------------------------------------+
+| Version            | ascii      | 2                         | 0-99                                    |
++--------------------+------------+---------------------------+-----------------------------------------+
+| Unused             | ascii      | 3                         | Spaces                                  |
++--------------------+------------+---------------------------+-----------------------------------------+
+| Utc_central        | date       | 12                        | Central time of baseline/scan           |
++--------------------+------------+---------------------------+-----------------------------------------+
+| Offset             | r*4        | 4                         | FRT offset from central time (sec)      |
++--------------------+------------+---------------------------+-----------------------------------------+
+| ffmode             | ascii      | 8                         | Fourfit execution modes                 |
++--------------------+------------+---------------------------+-----------------------------------------+
+| Search parm        | r*4 x 6    | 24                        | SBD, MBD, Rate windows (usec, usec/sec) |
++--------------------+------------+---------------------------+-----------------------------------------+
+| Filters            | r*4 x 8(?) | 32                        | Filter thresholds                       |
++--------------------+------------+---------------------------+-----------------------------------------+
+| Start              | date       | 12                        | Start of requested data span            |
++--------------------+------------+---------------------------+-----------------------------------------+
+| Stop               | date       | 12                        | End of requested data span              |
++--------------------+------------+---------------------------+-----------------------------------------+
+| Ref freq           | r*8        | 8                         | Fourfit reference frequency (Hz)        |
++--------------------+------------+---------------------------+-----------------------------------------+
+| ffit_chan x 16     |            |                           |                                         |
++--------------------+------------+---------------------------+-----------------------------------------+
+| ffit_chan_id ascii | 1          | Fourfit channel letter id |                                         |
++--------------------+------------+---------------------------+-----------------------------------------+
+| unused2            | ascii      | 1                         | Padding                                 |
++--------------------+------------+---------------------------+-----------------------------------------+
+| channel            | i*2 x 4    | 8                         | Index into type 203 array, -1=absent    |
++--------------------+------------+---------------------------+-----------------------------------------+
 
 Record length is fixed at 280 bytes.  This record describes the setup
 of the fourfit execution, independent of the AP data.
 
 Type 206 (data filtering) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       206
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Start           date            12      Time at start of 0th AP
-first_ap        i*2             2       Number of 1st valid AP
-last_ap         i*2             2       Number of last valid AP
-Accepted        i*2 x 2 x 16    64      APs accepted by channel/sband
-Intg time       r*4             4       Effective integration time (secs)
-Accept ratio    r*4             4       % ratio of min/max data accepted
-discard         r*4             4       % of data discarded
-????????        i*2 x 2 x 16    64      Discards due to reason 1 (?)
-????????        i*2 x 2 x 16    64      Discards due to reason 2 (?)
-????????        i*2 x 2 x 16    64      Discards due to reason 3 (?)
-????????        i*2 x 2 x 16    64      Discards due to reason 4 (?)
-????????        i*2 x 2 x 16    64      Discards due to reason 5 (?)
-????????        i*2 x 2 x 16    64      Discards due to reason 6 (?)
-????????        i*2 x 2 x 16    64      Discards due to reason 7 (?)
-????????        i*2 x 2 x 16    64      Discards due to reason 8 (?)
-ratesize        i*2             2       Size of fringe rate transform
-MBD size        i*2             2       Size of MBD transform
-SBD size        i*2             2       Size of SBD transform
-Unused2         ascii           6       Padding
++--------------+--------------+-------+-----------------------------------+
+| Field        | type         | bytes | Description                       |
++==============+==============+=======+===================================+
+| -----        | ----         | ----- | -----------                       |
++--------------+--------------+-------+-----------------------------------+
+| Type         | ascii        | 3     | 206                               |
++--------------+--------------+-------+-----------------------------------+
+| Version      | ascii        | 2     | 0-99                              |
++--------------+--------------+-------+-----------------------------------+
+| Unused       | ascii        | 3     | Spaces                            |
++--------------+--------------+-------+-----------------------------------+
+| Start        | date         | 12    | Time at start of 0th AP           |
++--------------+--------------+-------+-----------------------------------+
+| first_ap     | i*2          | 2     | Number of 1st valid AP            |
++--------------+--------------+-------+-----------------------------------+
+| last_ap      | i*2          | 2     | Number of last valid AP           |
++--------------+--------------+-------+-----------------------------------+
+| Accepted     | i*2 x 2 x 16 | 64    | APs accepted by channel/sband     |
++--------------+--------------+-------+-----------------------------------+
+| Intg time    | r*4          | 4     | Effective integration time (secs) |
++--------------+--------------+-------+-----------------------------------+
+| Accept ratio | r*4          | 4     | % ratio of min/max data accepted  |
++--------------+--------------+-------+-----------------------------------+
+| discard      | r*4          | 4     | % of data discarded               |
++--------------+--------------+-------+-----------------------------------+
+| ????????     | i*2 x 2 x 16 | 64    | Discards due to reason 1 (?)      |
++--------------+--------------+-------+-----------------------------------+
+| ????????     | i*2 x 2 x 16 | 64    | Discards due to reason 2 (?)      |
++--------------+--------------+-------+-----------------------------------+
+| ????????     | i*2 x 2 x 16 | 64    | Discards due to reason 3 (?)      |
++--------------+--------------+-------+-----------------------------------+
+| ????????     | i*2 x 2 x 16 | 64    | Discards due to reason 4 (?)      |
++--------------+--------------+-------+-----------------------------------+
+| ????????     | i*2 x 2 x 16 | 64    | Discards due to reason 5 (?)      |
++--------------+--------------+-------+-----------------------------------+
+| ????????     | i*2 x 2 x 16 | 64    | Discards due to reason 6 (?)      |
++--------------+--------------+-------+-----------------------------------+
+| ????????     | i*2 x 2 x 16 | 64    | Discards due to reason 7 (?)      |
++--------------+--------------+-------+-----------------------------------+
+| ????????     | i*2 x 2 x 16 | 64    | Discards due to reason 8 (?)      |
++--------------+--------------+-------+-----------------------------------+
+| ratesize     | i*2          | 2     | Size of fringe rate transform     |
++--------------+--------------+-------+-----------------------------------+
+| MBD size     | i*2          | 2     | Size of MBD transform             |
++--------------+--------------+-------+-----------------------------------+
+| SBD size     | i*2          | 2     | Size of SBD transform             |
++--------------+--------------+-------+-----------------------------------+
+| Unused2      | ascii        | 6     | Padding                           |
++--------------+--------------+-------+-----------------------------------+
 
 Record length is fixed at 556 bytes.  This record describes the data
 filtering action taken by fourfit in detail.  The AP flagging criteria
@@ -752,19 +804,33 @@ The record also describes the array sizes that fourfit decided to use.
 
 Type 207 (phasecal and error rate) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       207
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Pcal_mode       i*4             4       10 * stn1 + stn2, values 1-3 in control.h
-Pcal ampl.      r*4 x 4 x 16    256     Pcal amp by chan/sband, ref/remote
-Pcal phase      r*4 x 4 x 16    256     Pcal phases
-Pcal offset     r*4 x 4 x 16    256     Pcal offsets (manual pcals)
-Pcal freq       r*4 x 4 x 16    256     Pcal frequencies
-pcalrate ref    r*4             4       Pcal rate reference station
-pcalrate rem    r*4             4       Pcal rate remote station
-errorate        r*4 x 2 x 16    128     Error rates by chan, ref/remote
+
++--------------+--------------+-------+-------------------------------------------+
+| Field        | type         | bytes | Description                               |
++==============+==============+=======+===========================================+
+| Type         | ascii        | 3     | 207                                       |
++--------------+--------------+-------+-------------------------------------------+
+| Version      | ascii        | 2     | 0-99                                      |
++--------------+--------------+-------+-------------------------------------------+
+| Unused       | ascii        | 3     | Spaces                                    |
++--------------+--------------+-------+-------------------------------------------+
+| Pcal_mode    | i*4          | 4     | 10 * stn1 + stn2, values 1-3 in control.h |
++--------------+--------------+-------+-------------------------------------------+
+| Pcal ampl.   | r*4 x 4 x 16 | 256   | Pcal amp by chan/sband, ref/remote        |
++--------------+--------------+-------+-------------------------------------------+
+| Pcal phase   | r*4 x 4 x 16 | 256   | Pcal phases                               |
++--------------+--------------+-------+-------------------------------------------+
+| Pcal offset  | r*4 x 4 x 16 | 256   | Pcal offsets (manual pcals)               |
++--------------+--------------+-------+-------------------------------------------+
+| Pcal freq    | r*4 x 4 x 16 | 256   | Pcal frequencies                          |
++--------------+--------------+-------+-------------------------------------------+
+| pcalrate ref | r*4          | 4     | Pcal rate reference station               |
++--------------+--------------+-------+-------------------------------------------+
+| pcalrate rem | r*4          | 4     | Pcal rate remote station                  |
++--------------+--------------+-------+-------------------------------------------+
+| errorate     | r*4 x 2 x 16 | 128   | Error rates by chan, ref/remote           |
++--------------+--------------+-------+-------------------------------------------+
+
 
 Record length is fixed at 1172 bytes.  The phasecal and errorate
 numbers are as used by fourfit after extraction from the type-3 files,
@@ -774,38 +840,69 @@ of all contributing tracks.
 
 Type 208 (solution parameter)record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       208
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Quality         ascii           1       Fringe quality 0 to 9
-Errorcode       ascii           1       Currently supported B,D,E,G,H
-Tape qcode      ascii           6       Backwards compatibility? NYI
-Adelay          r*8             8       Total apriori delay at FRT (usec)
-Arate           r*8             8       Total apriori rate at FRT (usec/sec)
-Aaccel          r*8             8       Total apriori acceleration (usec/sec/sec)
-Obs. delay      r*8             8       Total e.c. group delay (usec)
-Obs. sbdelay    r*8             8       Total e.c. sband delay (usec)
-Obs. rate       r*8             8       Total e.c. rate (usec/sec)
-Ref. delay      r*8             8       Total mk3-frame group delay (usec)
-Ref. sbdelay    r*8             8       Total mk3-frame sband delay (usec)
-Ref. rate       r*8             8       Total mk3-frame rate (usec/sec)
-Resid. delay    r*4             4       MBD residual to model (usec)
-Resid sbd       r*4             4       SBD residual to model (usec)
-Resid rate      r*4             4       Rate resid to model (usec/sec)
-MBD error       r*4             4       MBD error calc'd from data (usec)
-SBD error       r*4             4       SBD error calc'd from data (usec)
-Rate error      r*4             4       Rate error calc'd from data (usec/sec)
-ambig.          r*4             4       Group delay ambiguity (usec)
-Coh ampl.       r*4             4       Coherent amplitude (corr. coeff.)
-Inc ampl. 1     r*4             4       Amp. from incoherent segment addition
-Inc ampl. 2     r*4             4       Amp. from incoherent channel addition
-SNR             r*4             4       SNR in sigmas
-Prob. false     r*4             4       Probability of false detection
-totphase        r*4             4       Total e.c. fringe phase (deg)
-totphase_ref    r*4             4       Total mk3-frame fringe phase (deg)
-resphase        r*4             4       Residual earth-centered phase (deg)
++--------------+-------+-------+-------------------------------------------+
+| Field        | type  | bytes | Description                               |
++==============+=======+=======+===========================================+
+| Type         | ascii | 3     | 208                                       |
++--------------+-------+-------+-------------------------------------------+
+| Version      | ascii | 2     | 0-99                                      |
++--------------+-------+-------+-------------------------------------------+
+| Unused       | ascii | 3     | Spaces                                    |
++--------------+-------+-------+-------------------------------------------+
+| Quality      | ascii | 1     | Fringe quality 0 to 9                     |
++--------------+-------+-------+-------------------------------------------+
+| Errorcode    | ascii | 1     | Currently supported B,D,E,G,H             |
++--------------+-------+-------+-------------------------------------------+
+| Tape qcode   | ascii | 6     | Backwards compatibility? NYI              |
++--------------+-------+-------+-------------------------------------------+
+| Adelay       | r*8   | 8     | Total apriori delay at FRT (usec)         |
++--------------+-------+-------+-------------------------------------------+
+| Arate        | r*8   | 8     | Total apriori rate at FRT (usec/sec)      |
++--------------+-------+-------+-------------------------------------------+
+| Aaccel       | r*8   | 8     | Total apriori acceleration (usec/sec/sec) |
++--------------+-------+-------+-------------------------------------------+
+| Obs. delay   | r*8   | 8     | Total e.c. group delay (usec)             |
++--------------+-------+-------+-------------------------------------------+
+| Obs. sbdelay | r*8   | 8     | Total e.c. sband delay (usec)             |
++--------------+-------+-------+-------------------------------------------+
+| Obs. rate    | r*8   | 8     | Total e.c. rate (usec/sec)                |
++--------------+-------+-------+-------------------------------------------+
+| Ref. delay   | r*8   | 8     | Total mk3-frame group delay (usec)        |
++--------------+-------+-------+-------------------------------------------+
+| Ref. sbdelay | r*8   | 8     | Total mk3-frame sband delay (usec)        |
++--------------+-------+-------+-------------------------------------------+
+| Ref. rate    | r*8   | 8     | Total mk3-frame rate (usec/sec)           |
++--------------+-------+-------+-------------------------------------------+
+| Resid. delay | r*4   | 4     | MBD residual to model (usec)              |
++--------------+-------+-------+-------------------------------------------+
+| Resid sbd    | r*4   | 4     | SBD residual to model (usec)              |
++--------------+-------+-------+-------------------------------------------+
+| Resid rate   | r*4   | 4     | Rate resid to model (usec/sec)            |
++--------------+-------+-------+-------------------------------------------+
+| MBD error    | r*4   | 4     | MBD error calc'd from data (usec)         |
++--------------+-------+-------+-------------------------------------------+
+| SBD error    | r*4   | 4     | SBD error calc'd from data (usec)         |
++--------------+-------+-------+-------------------------------------------+
+| Rate error   | r*4   | 4     | Rate error calc'd from data (usec/sec)    |
++--------------+-------+-------+-------------------------------------------+
+| ambig.       | r*4   | 4     | Group delay ambiguity (usec)              |
++--------------+-------+-------+-------------------------------------------+
+| Coh ampl.    | r*4   | 4     | Coherent amplitude (corr. coeff.)         |
++--------------+-------+-------+-------------------------------------------+
+| Inc ampl. 1  | r*4   | 4     | Amp. from incoherent segment addition     |
++--------------+-------+-------+-------------------------------------------+
+| Inc ampl. 2  | r*4   | 4     | Amp. from incoherent channel addition     |
++--------------+-------+-------+-------------------------------------------+
+| SNR          | r*4   | 4     | SNR in sigmas                             |
++--------------+-------+-------+-------------------------------------------+
+| Prob. false  | r*4   | 4     | Probability of false detection            |
++--------------+-------+-------+-------------------------------------------+
+| totphase     | r*4   | 4     | Total e.c. fringe phase (deg)             |
++--------------+-------+-------+-------------------------------------------+
+| totphase_ref | r*4   | 4     | Total mk3-frame fringe phase (deg)        |
++--------------+-------+-------+-------------------------------------------+
+| resphase     | r*4   | 4     | Residual earth-centered phase (deg)       |
++--------------+-------+-------+-------------------------------------------+
 
 Record length is fixed at 120 bytes.  This record contains the essentials of
 the fringe fit solution.
@@ -817,12 +914,17 @@ likely to change extensively in response to development of fourfit.
 
 Type 210 (channel data) record format:
 
-Field           type            bytes   Description
------           ----            -----   -----------
-Type            ascii           3       210
-Version         ascii           2       0-99 
-Unused          ascii           3       Spaces
-Amp-phase       r*4 x 2 x 16    128     Amp/phase by channel resid to model
++-----------+--------------+-------+-------------------------------------+
+| Field     | type         | bytes | Description                         |
++===========+==============+=======+=====================================+
+| Type      | ascii        | 3     | 210                                 |
++-----------+--------------+-------+-------------------------------------+
+| Version   | ascii        | 2     | 0-99                                |
++-----------+--------------+-------+-------------------------------------+
+| Unused    | ascii        | 3     | Spaces                              |
++-----------+--------------+-------+-------------------------------------+
+| Amp-phase | r*4 x 2 x 16 | 128   | Amp/phase by channel resid to model |
++-----------+--------------+-------+-------------------------------------+
 
 Record length is fixed at 134 bytes.  The entries are equivalent to the entries
 in the Mk3 type-4500 record.
