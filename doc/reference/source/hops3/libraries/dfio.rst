@@ -244,6 +244,8 @@ is invariant.
 3. File identification
 ----------------------
 
+**type_000**
+
 In order to facilitate consistency checks of data files, and to ease
 programmatic manipulations for filesets, it has been decided to place a special
 file identification record at the beginning of each file.  This record is typed
@@ -325,6 +327,8 @@ correlator blocks) must be constant in any given type-1 file.  There is one type
 101 record.  Some of the information in the type 100 record may not be available
 until the rest of the file is written, necessitating re-writing of that record.
 
+**type_100**  
+
 Type 100 (general data description) record format. See :hops:`type_100` for more information.
 
 +----------------+--------+-------+----------------------------------------------------+
@@ -367,6 +371,8 @@ the data are what you think they should be.  The IO library should do
 most of this checking, and raise the alarm to the application programmer
 when discrepancies are found.  Global hardware configuration information
 is also stored here.
+
+**type_101**  
 
 Type 101 (index number parameter) record format. See :hops:`type_101` for more information.
 
@@ -416,6 +422,7 @@ type-2000 records of the Mk3 system.  The Mk4 scheme helps isolate
 baseline-dependent information in the baseline-dependent type-1 files.
 Type-1 files are not intended to be made standalone by this change.
 
+**type_120**  
 
 Type 120 (sorted lag data) record format. See :hops:`type_120` for more information.
 
@@ -485,8 +492,9 @@ processed versions of the input data records are stored in record types 210 to
 212, and user-oriented graphical output information is stored in records 220 and
 higher.
 
+**type_200**  
 
-Type 200 (general information) record format:
+Type 200 (general information) record format. See :hops:`type_200` for more information.
 
 +--------------+----------+-------+-----------------------------------+
 | Field        | type     | bytes | Description                       |
@@ -521,7 +529,9 @@ Type 200 (general information) record format:
 
 Record length is fixed at 152 bytes.
 
-Type 201 (source information) record format:
+**type_201**
+
+Type 201 (source information) record format. See :hops:`type_201` for more information.
 
 +---------------------+-----------+--------------+-------------------------------+
 | Field               | type      | bytes        | Description                   |
@@ -558,7 +568,9 @@ Type 201 (source information) record format:
 Record length is fixed at 128 bytes.  This record contains source-specific
 information.
 
-Type 202 (baseline information) record format:
+**type_202**
+
+Type 202 (baseline information) record format. See :hops:`type_202` for more information.
 
 +---------------+-------+-------+-----------------------------------+
 | Field         | type  | bytes | Description                       |
@@ -633,7 +645,9 @@ Type 202 (baseline information) record format:
 Record length is fixed at 176 bytes.  This record contains baseline
 specific information, independent of fourfit parameters except FRT.
 
-Type 203 (channel information) record format:
+**type_203**
+
+Type 203 (channel information) record format. See :hops:`type_203` for more information.
 
 +----------------+--------+--------+-----------------------------------------+
 | Field          | Type   | Bytes  | Description                             |
@@ -677,9 +691,10 @@ file.  Note that a fourfit frequency channel may consist of multiple such
 dual polarization data in which RR and LL correlations have been combined before
 the fringe fit.
 
-Type 204 (execution setup) record format:
 
+**type_204**
 
+Type 204 (execution setup) record format. See :hops:`type_204` for more information.
 
 +--------------+---------+-------+---------------------------------+
 | Field        | type    | bytes | Description                     |
@@ -705,7 +720,9 @@ Record length is fixed at 256 bytes.  The strings are null-terminated.  If
 they overflow, the strings are set to null.  This record is just a tracer
 of the execution parameters for possible subsequent human intervention.
 
-Type 205 (fourfit setup) record format:
+**type_205**
+
+Type 205 (fourfit setup) record format. See :hops:`type_205` for more information.
 
 +--------------------+------------+---------------------------+-----------------------------------------+
 | Field              | type       | bytes                     | Description                             |
@@ -744,7 +761,9 @@ Type 205 (fourfit setup) record format:
 Record length is fixed at 280 bytes.  This record describes the setup
 of the fourfit execution, independent of the AP data.
 
-Type 206 (data filtering) record format:
+**type_206**
+
+Type 206 (data filtering) record format. See :hops:`type_206` for more information.
 
 +--------------+--------------+-------+-----------------------------------+
 | Field        | type         | bytes | Description                       |
@@ -802,7 +821,9 @@ for Mk4 will undoubtedly be different, but this is a start.  Info is
 much more detailed than Mk3, since records are kept by channel/sband.
 The record also describes the array sizes that fourfit decided to use.
 
-Type 207 (phasecal and error rate) record format:
+**type_207**
+
+Type 207 (phasecal and error rate) record format. See :hops:`type_207` for more information.
 
 
 +--------------+--------------+-------+-------------------------------------------+
@@ -838,7 +859,9 @@ and interpretation in terms of the fourfit input parameters.  Errorates
 are by channel, translated from track error rates by arithmetic average
 of all contributing tracks.
 
-Type 208 (solution parameter)record format:
+**type_208**
+
+Type 208 (solution parameter)record format. See :hops:`type_208` for more information.
 
 +--------------+-------+-------+-------------------------------------------+
 | Field        | type  | bytes | Description                               |
@@ -907,12 +930,10 @@ Type 208 (solution parameter)record format:
 Record length is fixed at 120 bytes.  This record contains the essentials of
 the fringe fit solution.
 
-WARNING:
---------
-Type 2xx record formats below this point are considerably less stable, and are
-likely to change extensively in response to development of fourfit.
 
-Type 210 (channel data) record format:
+**type_210**
+
+Type 210 (channel data) record format. See :hops:`type_210` for more information.
 
 +-----------+--------------+-------+-------------------------------------+
 | Field     | type         | bytes | Description                         |
@@ -929,42 +950,9 @@ Type 210 (channel data) record format:
 Record length is fixed at 134 bytes.  The entries are equivalent to the entries
 in the Mk3 type-4500 record.
 
-Type 211 (data slices) record format:
+**type_212** 
 
-+---------------+-------------+-------+---------------------------------------------+
-| Field         | type        | bytes | Description                                 |
-+===============+=============+=======+=============================================+
-| Type          | ascii       | 3     | 211                                         |
-+---------------+-------------+-------+---------------------------------------------+
-| Version       | ascii       | 2     | 0-99                                        |
-+---------------+-------------+-------+---------------------------------------------+
-| Unused        | ascii       | 3     | Spaces                                      |
-+---------------+-------------+-------+---------------------------------------------+
-| Rate spectrum | r*4 x r     | 4r    | Rate spectrum at peak                       |
-+---------------+-------------+-------+---------------------------------------------+
-| MBD function  | r*4 x m     | 4m    | MBD resolution function at peak             |
-+---------------+-------------+-------+---------------------------------------------+
-| SBD function  | r*4 x s     | 4s    | SBD function at peak                        |
-+---------------+-------------+-------+---------------------------------------------+
-| Xpower total  | r*4 x s     | 4s    | Crosspower spectrum avg'd across chans      |
-+---------------+-------------+-------+---------------------------------------------+
-| Xpower chans  | r*4 x s x c | 4sc   | Xpower spectra for each freq channel        |
-+---------------+-------------+-------+---------------------------------------------+
-| MBD solutions | r*4 x s     | 4s    | Best MBD values for each SBD chan.          |
-+---------------+-------------+-------+---------------------------------------------+
-| Rate spectrum | r*4 x r x s | 4sr   | Rate spectra at best MBD for each SBD chan. |
-+---------------+-------------+-------+---------------------------------------------+
-
-The numbers r, m, s and c are the sizes of the rate spectrum, multiband delay
-function, singleband delay function, and channel array, respectively.  The numbers
-r, m and s can be found in the type 205 record, and the number c can be found
-in the type 204 record.  Record length is variable, given by 
-4*(r + m + s*(3+c+r)) + 6 bytes.  This record gives the information required to 
-reconstruct everything that appears in the upper graphical portion of the Mk3 
-fringe plot, plus some additional information.  It can be used to generate 
-high-resolution graphics by a suitable program.
-
-Type 212 (AP data) record format:
+Type 212 (AP data) record format. See :hops:`type_212` for more information.
 
 +----------+-------------+-------+--------------------------------+
 | Field    | type        | bytes | Description                    |
@@ -988,7 +976,9 @@ The data are rotated to the fourfit solution, unless additional SBD channels
 are dumped in which case those records are rotated to the center of the SBD 
 channel in question.
 
-Type 220 (fringe plot) record format:
+**type_220**
+
+Type 220 (fringe plot) record format. See :hops:`type_220` for more information.
 
 +-------------+-------+-------+----------------------------+
 | Field       | type  | bytes | Description                |
@@ -1005,7 +995,9 @@ Type 220 (fringe plot) record format:
 Record length is fixed at 15366 bytes.  This is simply a record-typed version
 of the Mk3 fringe plot image.
 
-Type 221 (postscript plot) record format:
+**type_221**
+
+Type 221 (postscript plot) record format. See :hops:`type_221` for more information.
 
 +------------+-------+-------+----------------------------------------+
 | Field      | type  | bytes | Description                            |
@@ -1019,9 +1011,17 @@ Type 221 (postscript plot) record format:
 | Post. plot | ascii | ??    | High-res postscript graphics of fringe |
 +------------+-------+-------+----------------------------------------+
 
+**type_222**  
+
+See :hops:`type_222` for more information.
+
+**type_230**  
+
+See :hops:`type_230` for more information.
+
 
 Type 3 (Station unit data) file record formats
------------------------------------------------------------
+----------------------------------------------
 
 The type 3 files contain station-specific information for each of the
 stations involved in the scan.  They are initially created by genaroot, which
@@ -1034,7 +1034,7 @@ phasecal values in type 304, 306 and 308 records respectively.
 
 **type_300**  
 
-Type 300 (station ID and model parameter) record format:
+Type 300 (station ID and model parameter) record format. See :hops:`type_300` for more information.
 
 +----------------+-------+-------+-----------------------------------+
 | Field          | type  | bytes | Description                       |
@@ -1060,11 +1060,11 @@ Type 300 (station ID and model parameter) record format:
 | Nsplines       | i*2   | 2     | Number of splines in scan         |
 +----------------+-------+-------+-----------------------------------+
 
-Record length is fixed at 64 bytes. See :hops:`type_300` for more information.
+Record length is fixed at 64 bytes.
 
 **type_301**  
 
-Type 301 (delay polynomial coefficient) record format:
+Type 301 (delay polynomial coefficient) record format. See :hops:`type_301` for more information.
 
 +--------------+---------+-------+----------------------------------+
 | Field        | type    | bytes | Description                      |
@@ -1084,11 +1084,11 @@ Type 301 (delay polynomial coefficient) record format:
 | Delay_spline | r*8 x 6 | 48    | Delay spline coefficients        |
 +--------------+---------+-------+----------------------------------+
 
-Record length is fixed at 58 bytes. See :hops:`type_301` for more information.
+Record length is fixed at 58 bytes.
 
 **type_302**  
 
-Type 302 (phase polynomial coefficient) record format:
+Type 302 (phase polynomial coefficient) record format. See :hops:`type_302` for more information.
 
 +--------------+---------+-------+----------------------------------+
 | Field        | type    | bytes | Description                      |
@@ -1108,27 +1108,56 @@ Type 302 (phase polynomial coefficient) record format:
 | Phase_spline | r*8 x 6 | 48    | Phase spline coefficients        |
 +--------------+---------+-------+----------------------------------+
 
-Record length is fixed at 96 bytes. See :hops:`type_302` for more information.
+Record length is fixed at 96 bytes.
 
 **type_303**  
 
-Type 303 ("raw" track error statistics) record format:
+Type 303 ("raw" track error statistics) record format. See :hops:`type_303` for more information.
 
-+---------+-------+-------+-------------+
-| Field   | type  | bytes | Description |
-+=========+=======+=======+=============+
-| Type    | ascii | 3     | 303         |
-+---------+-------+-------+-------------+
-| Version | ascii | 2     | 0-99        |
-+---------+-------+-------+-------------+
-| Unused  | ascii | 3     | Spaces      |
-+---------+-------+-------+-------------+
+The ``type_303`` struct contains the spline coefficients of the a priori model for each channel of the respective station
+for the following coordinate quantities:
 
-See :hops:`type_303` for more information.
+  - azimuth 
+  - elevation 
+  - parallactic_angle
+  - u coordinate 
+  - v coordinate 
+  - w coordinate
+
+A polynomial spline module with up to 6 coefficients is supported.
+
++------------------------+------------+----------------+-------------------------------------------------------------+
+| Field Name             | Data Type  | Size (bytes)   | Description                                                 |
++========================+============+================+=============================================================+
+| record_id              | char[3]    | 3              | Standard 3-digit id                                         |
++------------------------+------------+----------------+-------------------------------------------------------------+
+| version_no             | char[2]    | 2              | Standard 2-digit version #                                  |
++------------------------+------------+----------------+-------------------------------------------------------------+
+| unused1                | char[3]    | 3              | Reserved space                                              |
++------------------------+------------+----------------+-------------------------------------------------------------+
+| interval               | short      | 2              | Sequential model interval number                            |
++------------------------+------------+----------------+-------------------------------------------------------------+
+| chan_id                | char[32]   | 32             | Frequency channel identifier                                |
++------------------------+------------+----------------+-------------------------------------------------------------+
+| unused2                | char[6]    | 6              | Padding                                                     |
++------------------------+------------+----------------+-------------------------------------------------------------+
+| azimuth                | double[6]  | 48             | Azimuth (deg) coefficients                                  |
++------------------------+------------+----------------+-------------------------------------------------------------+
+| elevation              | double[6]  | 48             | Elevation (deg) coefficients                                |
++------------------------+------------+----------------+-------------------------------------------------------------+
+| parallactic_angle      | double[6]  | 48             | Parallactic angle (deg CCW el line from RA line)            |
++------------------------+------------+----------------+-------------------------------------------------------------+
+| u                      | double[6]  | 48             | Baseline projections toward source (m)                      |
++------------------------+------------+----------------+-------------------------------------------------------------+
+| v                      | double[6]  | 48             |                                                             |
++------------------------+------------+----------------+-------------------------------------------------------------+
+| w                      | double[6]  | 48             |                                                             |
++------------------------+------------+----------------+-------------------------------------------------------------+
+
 
 **type_304**  
 
-Type 304 ("cooked" track error statistics) record format:
+Type 304 ("cooked" track error statistics) record format. See :hops:`type_304` for more information.
 
 +------------------+-------+-------+---------------------------------------+
 | Field            | type  | bytes | Description                           |
@@ -1158,11 +1187,11 @@ Type 304 ("cooked" track error statistics) record format:
 | CRC_error        | i*4   | 4     | Count                                 |
 +------------------+-------+-------+---------------------------------------+
 
-Record length is fixed at 1560 bytes. See :hops:`type_304` for more information.
+Record length is fixed at 1560 bytes.
 
 **type_305**  
 
-Type 305 ("raw" state count) record format:
+Type 305 ("raw" state count) record format. See :hops:`type_305` for more information.
 
 +---------+-------+-------+-------------+
 | Field   | type  | bytes | Description |
@@ -1174,11 +1203,9 @@ Type 305 ("raw" state count) record format:
 | Unused  | ascii | 3     | Spaces      |
 +---------+-------+-------+-------------+
 
-See :hops:`type_305` for more information.
-
 **type_306**  
 
-Type 306 ("cooked" state count) record format:
+Type 306 ("cooked" state count) record format. See :hops:`type_306` for more information.
 
 +--------------+-------+-------+-----------------------------------------+
 | Field        | type  | bytes | Description                             |
@@ -1206,11 +1233,11 @@ Type 306 ("cooked" state count) record format:
 | Bigneg       | i*4   | 4     | Count of big negative voltage samples   |
 +--------------+-------+-------+-----------------------------------------+
 
-Record length is fixed at 792 bytes. See :hops:`type_306` for more information.
+Record length is fixed at 792 bytes. 
 
 **type_307** 
 
-Type 307 ("raw" phase cal value) record format:
+Type 307 ("raw" phase cal value) record format. See :hops:`type_307` for more information.
 
 +---------+-------+-------+-------------+
 | Field   | type  | bytes | Description |
@@ -1223,11 +1250,9 @@ Type 307 ("raw" phase cal value) record format:
 +---------+-------+-------+-------------+
 Format TBD (ARW).
 
-See :hops:`type_307` for more information.
-
 **type_308**  
 
-Type 308 ("cooked" phase cal value) record format:
+Type 308 ("cooked" phase cal value) record format. See :hops:`type_308` for more information.
 
 +-----------+-------+-------+----------------------------------+
 | Field     | type  | bytes | Description                      |
@@ -1253,8 +1278,14 @@ Type 308 ("cooked" phase cal value) record format:
 | Imaginary | r*4   | 4     | Phasecal vector                  |
 +-----------+-------+-------+----------------------------------+
 
-Record length is fixed at 728 bytes. See :hops:`type_308` for more information.
+Record length is fixed at 728 bytes.
 
+
+**type_309**  
+
+The ``type_309`` struct is used for the storage of multi-tone phase calibration data.
+
+See :hops:`type_309` for more information.
 
 
 
@@ -1373,15 +1404,7 @@ See :hops:`type_302` for more information.
 
 **type_303**
 
-The ``type_303`` struct contains the spline coefficients of the a priori model for each channel of the respective station
-for the following coordinate quantities:
 
-  - azimuth 
-  - elevation 
-  - parallactic_angle
-  - u coordinate 
-  - v coordinate 
-  - w coordinate
 
 See :hops:`type_303` for more information.
 
@@ -1414,76 +1437,6 @@ See :hops:`type_307` for more information.
 The ``type_308`` struct is for storage of phase calibration data and is **deprecated**.
 
 See :hops:`type_308` for more information.
-
-**type_309**  
-
-The ``type_309`` struct is used for the storage of multi-tone phase calibration data.
-
-See :hops:`type_309` for more information.
-
-Fringe (fourfit) output data types
-----------------------------------
-
-**type_200**  
-
-See :hops:`type_200` for more information.
-
-**type_201**  
-
-See :hops:`type_201` for more information.
-
-**type_202**  
-
-See :hops:`type_202` for more information.
-
-**type_203**  
-
-See :hops:`type_203` for more information.
-
-**type_204**  
-
-See :hops:`type_204` for more information.
-
-**type_205**  
-
-See :hops:`type_205` for more information.
-
-**type_206**  
-
-See :hops:`type_206` for more information.
-
-**type_207**  
-
-See :hops:`type_207` for more information.
-
-**type_208**  
-
-See :hops:`type_208` for more information.
-
-**type_210**  
-
-See :hops:`type_210` for more information.
-
-**type_212**  
-
-See :hops:`type_212` for more information.
-
-**type_220**  
-
-See :hops:`type_220` for more information.
-
-**type_221**  
-
-See :hops:`type_221` for more information.
-
-**type_222**  
-
-See :hops:`type_222` for more information.
-
-**type_230**  
-
-See :hops:`type_230` for more information.
-
 
 
 
