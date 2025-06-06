@@ -1,10 +1,6 @@
 fourfit
 =======
 
-Usage documentation for the program "fourfit"
-=============================================
-
-
 SYNOPSIS
 --------
 
