@@ -1,14 +1,19 @@
 alist4
 ======
 
-**Usage**
+Usage
+-----
+
     ``alist4 [OPTIONS] input_files...``
 
-**Description**
+Description
+-----------
+
     Tool to process a list of HOPS4 fringe (.frng) files and produce a summary file in A-format
     The summary file can be read by ``aedit`` or other tools that understand the format.
 
-**Positional Arguments**
+Positional Arguments
+--------------------
 
 .. list-table::
    :header-rows: 1
@@ -18,7 +23,8 @@ alist4
    * - ``input_files`` (TEXT ..., REQUIRED)
      - List of the .frng files to process
 
-**Options**
+Options
+-------
 
 .. list-table::
    :header-rows: 1
