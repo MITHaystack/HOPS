@@ -3,6 +3,8 @@
 msg
 ===
 
+The msg library controls the command line output of various programs.
+
 .. doxygenfunction:: msg
   :project: hops
 
