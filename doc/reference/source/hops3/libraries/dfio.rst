@@ -5,8 +5,13 @@ dfio - Mark4 Correlator I/O types
 
 
 
-Mk4 File Format Definitions -- CJL May 13 1999
---------------------------------------------------------------
+Mk4 File Format Definitions
+---------------------------
+
+History:
+    | CJL, May 13 1999 - First version
+    | JPB, June 9, 2025 - Updated struct descriptions to match code
+
 
 This document defines the detailed file and record formats to be used for the
 Mk4 correlator system.  It also provides background information on the Mk4 data
@@ -323,7 +328,7 @@ until the rest of the file is written, necessitating re-writing of that record.
 
 **type_100**  
 
-Type 100 (general data description) record format. See :hops:`type_100` for more information.
+The ``type_100`` is a general data description record format. See :hops:`type_100` for more information.
 
 +--------------+----------------+----------------+------------------------------------------------+
 | Field Name   | Data Type      | Size (bytes)   | Description                                    |
@@ -368,7 +373,7 @@ is also stored here.
 
 **type_101**  
 
-Type 101 (index number parameter) record format. See :hops:`type_101` for more information.
+The ``type_101`` is a record format for the index number description. See :hops:`type_101` for more information.
 
 +-------------+-------+-----------+-------------------------------+
 | Field       | type  | bytes     | Description                   |
@@ -418,7 +423,7 @@ Type-1 files are not intended to be made standalone by this change.
 
 **type_120**  
 
-Type 120 (sorted lag data) record format. See :hops:`type_120` for more information.
+The ``type_120`` is the sorted lag data record format. See :hops:`type_120` for more information.
 
 +--------------+-------------------+----------------+------------------------------------------------+
 | Field Name   | Data Type         | Size (bytes)   | Description                                    |
@@ -466,7 +471,7 @@ where lagdata can have any one of five possible structures (COUNTS_PER_LAG, COUN
 | spec[1]  | struct spectral[1]        | 8              | Spectral data (complex number)               |
 +----------+---------------------------+----------------+----------------------------------------------+
 
-However first four types are **DEPRECATED** and the only form which is currently used (when importing from DiFX) is the 'SPECTRAL' type, 
+However first four types are **DEPRECATED**. The only form which is currently in use (when importing from DiFX) is the 'SPECTRAL' type, 
 which has the form:
 
 +----------+--------+----------------+-----------------------------+
@@ -510,7 +515,7 @@ higher.
 
 **type_200**  
 
-Type 200 (general information) record format. See :hops:`type_200` for more information.
+The ``type_200`` is a general information record. See :hops:`type_200` for more information.
 
 +------------------+-------------------+----------------+-------------------------------------------------------------+
 | Field Name       | Type              | Size (bytes)   | Description                                                 |
@@ -548,10 +553,10 @@ Record length is fixed.
 
 **type_201**
 
-Type 201 (source information) record format. See :hops:`type_201` for more information. 
+The ``type_201`` is the source information record. See :hops:`type_201` for more information. 
 
 .. note::
-   The dispersion measure in this structure is used for storing the ionospheric differential TEC for the associated baseline.
+   The dispersion measure in this structure is used for storing the ionospheric differential TEC for the associated baseline for geodetic scans.
 
 +------------------+------------------------+----------------+----------------------------------------------------------+
 | Field Name       | Type                   | Size (bytes)   | Description                                              |
@@ -588,7 +593,7 @@ Record length is fixed.  This record contains source-specific information.
 
 **type_202**
 
-Type 202 (baseline information) record format. See :hops:`type_202` for more information.
+The ``type_202`` is the baseline information record. See :hops:`type_202` for more information.
 
 +-------------------+-------------------+----------------+---------------------------------------------------------+
 | Field Name        | Type              | Size (bytes)   | Description                                             |
@@ -664,7 +669,7 @@ This record contains baseline specific information, independent of fourfit param
 
 **type_203**
 
-Type 203 (channel information) record format. See :hops:`type_203` for more information.
+The ``type_203`` is the channel information record format. See :hops:`type_203` for more information.
 
 .. note::
    The value of MAXFREQ is 64.
@@ -721,7 +726,7 @@ the fringe fit.
 
 **type_204**
 
-Type 204 (execution setup) record format. See :hops:`type_204` for more information.
+The ``type_204`` is the *fourfit* execution record format. See :hops:`type_204` for more information.
 
 +-------------------+--------------------+----------------+----------------------------------------------------+
 | Field Name        | Type               | Size (bytes)   | Description                                        |
@@ -749,7 +754,7 @@ of the execution parameters for possible subsequent human intervention.
 
 **type_205**
 
-Type 205 (fourfit setup) record format. See :hops:`type_205` for more information.
+The ``type_205`` is the fourfit setup record format. See :hops:`type_205` for more information.
 
 +--------------------------+---------------------------+----------------+-------------------------------------------------------------+
 | Field Name               | Type                      | Size (bytes)   | Description                                                 |
@@ -795,7 +800,7 @@ This record describes the setup of the fourfit execution, independent of the AP 
 
 **type_206**
 
-Type 206 (data filtering) record format. See :hops:`type_206` for more information.
+The ``type_206`` is the data filtering record format. See :hops:`type_206` for more information.
 
 +---------------------+-----------------------------+----------------+--------------------------------------------------------------+
 | Field Name          | Type                        | Size (bytes)   | Description                                                  |
@@ -874,7 +879,7 @@ The record also describes the array sizes that fourfit decided to use.
 
 **type_207**
 
-Type 207 (phasecal and error rate) record format. See :hops:`type_207` for more information.
+The ``type_207`` is the phasecal and error rate record format. See :hops:`type_207` for more information.
 
 +-------------------+------------------------+----------------+-------------------------------------------------------------+
 | Field Name        | Type                   | Size (bytes)   | Description                                                 |
@@ -924,14 +929,14 @@ the sbandf structure has the form:
 | usb    | float  | 4              | Value for upper sideband                  |
 +--------+--------+----------------+-------------------------------------------+
 
-The phasecal and errorate numbers are as used by fourfit after extraction from the type-3 files,
+The phasecal and error rate numbers are as used by fourfit after extraction from the type-3 files,
 and interpretation in terms of the fourfit input parameters.  Error rates
 are by channel, translated from track error rates by arithmetic average
 of all contributing tracks.
 
 **type_208**
 
-Type 208 (solution parameter) record format. See :hops:`type_208` for more information.
+The ``type_208`` is the  fringe solution parameter record format. See :hops:`type_208` for more information.
 
 +---------------------+-------------+----------------+--------------------------------------------------------------+
 | Field Name          | Data Type   | Size (bytes)   | Description                                                  |
@@ -1003,7 +1008,7 @@ Record length is fixed. This record contains the essentials of the fringe fit so
 
 **type_210**
 
-Type 210 (channel data) record format. See :hops:`type_210` for more information.
+The ``type_210`` is the channel data record format. See :hops:`type_210` for more information.
 
 +----------------+--------------------+----------------+-------------------------------------------+
 | Field Name     | Data Type          | Size (bytes)   | Description                               |
@@ -1022,7 +1027,7 @@ in the Mk3 type-4500 record.
 
 **type_212** 
 
-Type 212 (AP data) record format. See :hops:`type_212` for more information.
+The ``type_212`` is the AP data record format. See :hops:`type_212` for more information.
 
 +----------------+-------------------+----------------+-------------------------------------------+
 | Field Name     | Data Type         | Size (bytes)   | Description                               |
@@ -1055,7 +1060,7 @@ channel in question.
 
 **type_220**
 
-Type 220 (fringe plot) record format. This type is **DEPRECATED**
+The ``type_220`` is a fringe plot record format. This type is **DEPRECATED**.
 See :hops:`type_220` for more information.
 
 +-------------+-------+-------+----------------------------+
@@ -1072,7 +1077,7 @@ See :hops:`type_220` for more information.
 
 **type_221**
 
-Type 221 (postscript plot) record format. See :hops:`type_221` for more information.
+The ``type_221`` is the postscript plot record format. See :hops:`type_221` for more information.
 
 +-------------+-------------+--------------+-----------------------------------------------+
 | Field       | Type        | Size (bytes) | Description                                   |
@@ -1092,7 +1097,7 @@ Type 221 (postscript plot) record format. See :hops:`type_221` for more informat
 
 **type_222**  
 
-This record stores the parsed control file, for future reference. See :hops:`type_222` for more information.
+The ``type_222`` record stores the parsed control file. See :hops:`type_222` for more information.
 
 +---------------------+--------------+--------------+------------------------------------------------------+
 | Field               | Type         | Size (bytes) | Description                                          |
@@ -1121,7 +1126,7 @@ The set-string and control file hash are computed as a simple Adler-32 checksum 
 
 **type_230**  
 
-The type_230 is useful for the export of the raw fringe fit visibility data to other downstream software. It is 
+The ``type_230`` is useful for the export of the raw fringe fit visibility data to other downstream software. It is 
 an optional record which is only inserted if the ``'-X'`` option is passed to ``fourfit``.
 
 +-------------+------------------+--------------+---------------------------------------------+
@@ -1172,85 +1177,87 @@ phasecal values in type 304, 306 and 308 records respectively.
 
 **type_300**  
 
-Type 300 (station ID and model parameter) record format. See :hops:`type_300` for more information.
+The ``type_300`` is the station ID and model parameter record format. See :hops:`type_300` for more information.
 
-+----------------+-------+-------+-----------------------------------+
-| Field          | type  | bytes | Description                       |
-+================+=======+=======+===================================+
-| Type           | ascii | 3     | 300                               |
-+----------------+-------+-------+-----------------------------------+
-| Version        | ascii | 2     | 0-99                              |
-+----------------+-------+-------+-----------------------------------+
-| Unused         | ascii | 3     | Spaces                            |
-+----------------+-------+-------+-----------------------------------+
-| Id             | ascii | 1     | 1-char vex letter code            |
-+----------------+-------+-------+-----------------------------------+
-| Intl_id        | ascii | 2     | 2-char international station code |
-+----------------+-------+-------+-----------------------------------+
-| Name           | ascii | 32    | Full station name                 |
-+----------------+-------+-------+-----------------------------------+
-| Unused         | ascii | 1     | Padding for alignment             |
-+----------------+-------+-------+-----------------------------------+
-| Model_date     | date  | 12    | Start time for 1st spline         |
-+----------------+-------+-------+-----------------------------------+
-| Model interval | r*4   | 4     | Spline interval in seconds        |
-+----------------+-------+-------+-----------------------------------+
-| Nsplines       | i*2   | 2     | Number of splines in scan         |
-+----------------+-------+-------+-----------------------------------+
++----------------+------------+----------------+----------------------------------------------------------+
+| Field          | Type       | Size (bytes)   | Description                                              |
++================+============+================+==========================================================+
+| record_id      | char[3]    | 3              | Standard 3-digit id                                      |
++----------------+------------+----------------+----------------------------------------------------------+
+| version_no     | char[2]    | 2              | Standard 2-digit version #                               |
++----------------+------------+----------------+----------------------------------------------------------+
+| unused1        | char[2]    | 2              | Reserved space                                           |
++----------------+------------+----------------+----------------------------------------------------------+
+| SU_number      | U8         | 1              | Station unit, filled by suman                            |
++----------------+------------+----------------+----------------------------------------------------------+
+| id             | char       | 1              | 1-char VEX letter code                                   |
++----------------+------------+----------------+----------------------------------------------------------+
+| intl_id        | char[2]    | 2              | 2-char international id code                             |
++----------------+------------+----------------+----------------------------------------------------------+
+| name           | char[32]   | 32             | Full station name, null-terminated                       |
++----------------+------------+----------------+----------------------------------------------------------+
+| unused2        | char       | 1              | Padding                                                  |
++----------------+------------+----------------+----------------------------------------------------------+
+| model_start    | struct date| 12             | Start time for 1st spline                                |
++----------------+------------+----------------+----------------------------------------------------------+
+| model_interval | float      | 4              | Spline interval in seconds (record time)                 |
++----------------+------------+----------------+----------------------------------------------------------+
+| nsplines       | short      | 2              | Number of splines in scan                                |
++----------------+------------+----------------+----------------------------------------------------------+
+
 
 Record length is fixed.
 
 **type_301**  
 
-Type 301 (delay polynomial coefficient) record format. See :hops:`type_301` for more information.
+The ``type_301`` is the delay polynomial coefficient record format. See :hops:`type_301` for more information.
 
-+--------------+---------+-------+----------------------------------+
-| Field        | type    | bytes | Description                      |
-+==============+=========+=======+==================================+
-| Type         | ascii   | 3     | 301                              |
-+--------------+---------+-------+----------------------------------+
-| Version      | ascii   | 2     | 0-99                             |
-+--------------+---------+-------+----------------------------------+
-| Unused       | ascii   | 3     | Spaces                           |
-+--------------+---------+-------+----------------------------------+
-| Interval     | i*2     | 2     | Sequential model interval number |
-+--------------+---------+-------+----------------------------------+
-| Chan_id      | ascii   | 32    | Frequency channel identifier     |
-+--------------+---------+-------+----------------------------------+
-| Unused       | ascii   | 6     | Padding for alignment            |
-+--------------+---------+-------+----------------------------------+
-| Delay_spline | r*8 x 6 | 48    | Delay spline coefficients        |
-+--------------+---------+-------+----------------------------------+
++----------------+---------------+----------------+------------------------------------------------------+
+| Field          | Type          | Size (bytes)   | Description                                          |
++================+===============+================+======================================================+
+| record_id      | char[3]       | 3              | Standard 3-digit id                                  |
++----------------+---------------+----------------+------------------------------------------------------+
+| version_no     | char[2]       | 2              | Standard 2-digit version #                           |
++----------------+---------------+----------------+------------------------------------------------------+
+| unused1        | char[3]       | 3              | Reserved space                                       |
++----------------+---------------+----------------+------------------------------------------------------+
+| interval       | short         | 2              | Sequential model interval number                     |
++----------------+---------------+----------------+------------------------------------------------------+
+| chan_id        | char[32]      | 32             | Frequency channel identifier                         |
++----------------+---------------+----------------+------------------------------------------------------+
+| unused2        | char[6]       | 6              | Padding                                              |
++----------------+---------------+----------------+------------------------------------------------------+
+| delay_spline   | double[6]     | 48             | Delay spline coefficients                            |
++----------------+---------------+----------------+------------------------------------------------------+
 
 Record length is fixed.
 
 **type_302**  
 
-Type 302 (phase polynomial coefficient) record format. See :hops:`type_302` for more information.
+The ``type_302`` is the phase polynomial coefficient record format. See :hops:`type_302` for more information.
 
-+--------------+---------+-------+----------------------------------+
-| Field        | type    | bytes | Description                      |
-+==============+=========+=======+==================================+
-| Type         | ascii   | 3     | 302                              |
-+--------------+---------+-------+----------------------------------+
-| Version      | ascii   | 2     | 0-99                             |
-+--------------+---------+-------+----------------------------------+
-| Unused       | ascii   | 3     | Spaces                           |
-+--------------+---------+-------+----------------------------------+
-| Interval     | i*2     | 2     | Sequential model interval number |
-+--------------+---------+-------+----------------------------------+
-| Chan_id      | ascii   | 32    | Frequency channel identifier     |
-+--------------+---------+-------+----------------------------------+
-| Unused       | ascii   | 6     | Padding for alignment            |
-+--------------+---------+-------+----------------------------------+
-| Phase_spline | r*8 x 6 | 48    | Phase spline coefficients        |
-+--------------+---------+-------+----------------------------------+
++----------------+---------------+----------------+------------------------------------------------------+
+| Field          | Type          | Size (bytes)   | Description                                          |
++================+===============+================+======================================================+
+| record_id      | char[3]       | 3              | Standard 3-digit id                                  |
++----------------+---------------+----------------+------------------------------------------------------+
+| version_no     | char[2]       | 2              | Standard 2-digit version #                           |
++----------------+---------------+----------------+------------------------------------------------------+
+| unused1        | char[3]       | 3              | Reserved space                                       |
++----------------+---------------+----------------+------------------------------------------------------+
+| interval       | short         | 2              | Sequential model interval number                     |
++----------------+---------------+----------------+------------------------------------------------------+
+| chan_id        | char[32]      | 32             | Frequency channel identifier                         |
++----------------+---------------+----------------+------------------------------------------------------+
+| unused2        | char[6]       | 6              | Padding                                              |
++----------------+---------------+----------------+------------------------------------------------------+
+| phase_spline   | double[6]     | 48             | Phase spline coefficients                            |
++----------------+---------------+----------------+------------------------------------------------------+
+
 
 Record length is fixed.
 
 **type_303**  
-
-Type 303 ("raw" track error statistics) record format. See :hops:`type_303` for more information.
 
 The ``type_303`` struct contains the spline coefficients of the a priori model for each channel of the respective station
 for the following coordinate quantities:
@@ -1262,7 +1269,7 @@ for the following coordinate quantities:
   - v coordinate 
   - w coordinate
 
-A polynomial spline module with up to 6 coefficients is supported.
+A polynomial spline module with up to 6 coefficients is supported. See :hops:`type_303` for more information.
 
 +------------------------+------------+----------------+-------------------------------------------------------------+
 | Field Name             | Data Type  | Size (bytes)   | Description                                                 |
@@ -1295,129 +1302,162 @@ A polynomial spline module with up to 6 coefficients is supported.
 
 **type_304**  
 
-Type 304 ("cooked" track error statistics) record format. See :hops:`type_304` for more information.
+The ``type_304`` contains "cooked" track error statistics for the Mk4 correlator. See :hops:`type_304` for more information.
 
-+------------------+-------+-------+---------------------------------------+
-| Field            | type  | bytes | Description                           |
-+==================+=======+=======+=======================================+
-| Type             | ascii | 3     | 304                                   |
-+------------------+-------+-------+---------------------------------------+
-| Version          | ascii | 2     | 0-99                                  |
-+------------------+-------+-------+---------------------------------------+
-| Unused           | ascii | 3     | Spaces                                |
-+------------------+-------+-------+---------------------------------------+
-| Time             | date  | 12    | Start time of current error stats     |
-+------------------+-------+-------+---------------------------------------+
-| Duration         | r*4   | 4     | Duration of current error stats (sec) |
-+------------------+-------+-------+---------------------------------------+
-| Statistics x 64  |       |       |                                       |
-+------------------+-------+-------+---------------------------------------+
-| Error_rate       | r*4   | 4     | Fraction                              |
-+------------------+-------+-------+---------------------------------------+
-| Frames           | i*4   | 4     | Count                                 |
-+------------------+-------+-------+---------------------------------------+
-| Bad_frames       | i*4   | 4     | Count                                 |
-+------------------+-------+-------+---------------------------------------+
-| Slip_sync        | i*4   | 4     | Count                                 |
-+------------------+-------+-------+---------------------------------------+
-| Missing_sync     | i*4   | 4     | Count                                 |
-+------------------+-------+-------+---------------------------------------+
-| CRC_error        | i*4   | 4     | Count                                 |
-+------------------+-------+-------+---------------------------------------+
++-------------+------------+---------------+-----------------------------------------------+
+| Field       | Type       | Size (bytes)  | Description                                   |
++=============+============+===============+===============================================+
+| record_id   | char[3]    | 3             | Standard 3-digit id                           |
++-------------+------------+---------------+-----------------------------------------------+
+| version_no  | char[2]    | 2             | Standard 2-digit version #                    |
++-------------+------------+---------------+-----------------------------------------------+
+| unused1     | char[3]    | 3             | Reserved space                                |
++-------------+------------+---------------+-----------------------------------------------+
+| time        | date       | 12            | Start time for this span of data              |
++-------------+------------+---------------+-----------------------------------------------+
+| duration    | float      | 4             | Duration of this data span (sec)              |
++-------------+------------+---------------+-----------------------------------------------+
+| trackstats  | trackstat* |               | Array of track statistics per track           |
++-------------+------------+---------------+-----------------------------------------------+
+
+The trackstat struct is as follows:
+
++----------------+-------+----------------------------+
+| Field          | Type  | Description                |
++================+=======+============================+
+| error_count    | int   | Parity error count         |
++----------------+-------+----------------------------+
+| frames         | int   | Count of frames            |
++----------------+-------+----------------------------+
+| bad_frames     | int   | Count of bad frames        |
++----------------+-------+----------------------------+
+| slip_sync      | int   | Count of slip syncs        |
++----------------+-------+----------------------------+
+| missing_sync   | int   | Count of missing syncs     |
++----------------+-------+----------------------------+
+| crc_error      | int   | Count of CRC errors        |
++----------------+-------+----------------------------+
 
 Record length is fixed.
 
 **type_305**  
 
-Type 305 ("raw" state count) record format. See :hops:`type_305` for more information.
-
-+---------+-------+-------+-------------+
-| Field   | type  | bytes | Description |
-+=========+=======+=======+=============+
-| Type    | ascii | 3     | 305         |
-+---------+-------+-------+-------------+
-| Version | ascii | 2     | 0-99        |
-+---------+-------+-------+-------------+
-| Unused  | ascii | 3     | Spaces      |
-+---------+-------+-------+-------------+
+The type_305 record is unused and **DEPRECATED**. See :hops:`type_305` for more information.
 
 **type_306**  
 
-Type 306 ("cooked" state count) record format. See :hops:`type_306` for more information.
+The ``type_306`` contains "cooked" state count for the Mark4 correlator. See :hops:`type_306` for more information.
 
-+--------------+-------+-------+-----------------------------------------+
-| Field        | type  | bytes | Description                             |
-+==============+=======+=======+=========================================+
-| Type         | ascii | 3     | 306                                     |
-+--------------+-------+-------+-----------------------------------------+
-| Version      | ascii | 2     | 0-99                                    |
-+--------------+-------+-------+-----------------------------------------+
-| Unused       | ascii | 3     | Spaces                                  |
-+--------------+-------+-------+-----------------------------------------+
-| Time         | date  | 12    | Start time of current counts            |
-+--------------+-------+-------+-----------------------------------------+
-| Duration     | r*4   | 4     | Duration of current counts (sec)        |
-+--------------+-------+-------+-----------------------------------------+
-| Stcount x 16 |       |       |                                         |
-+--------------+-------+-------+-----------------------------------------+
-| Chan_id      | ascii | 32    | Frequency channel identifier            |
-+--------------+-------+-------+-----------------------------------------+
-| Bigpos       | i*4   | 4     | Count of big positive voltage samples   |
-+--------------+-------+-------+-----------------------------------------+
-| Pos          | i*4   | 4     | Count of small positive voltage samples |
-+--------------+-------+-------+-----------------------------------------+
-| Neg          | i*4   | 4     | Count of small negative voltage samples |
-+--------------+-------+-------+-----------------------------------------+
-| Bigneg       | i*4   | 4     | Count of big negative voltage samples   |
-+--------------+-------+-------+-----------------------------------------+
++-------------+--------------+---------------+-----------------------------------------------+
+| Field       | Type         | Size (bytes)  | Description                                   |
++=============+==============+===============+===============================================+
+| record_id   | char[3]      | 3             | Standard 3-digit id                           |
++-------------+--------------+---------------+-----------------------------------------------+
+| version_no  | char[2]      | 2             | Standard 2-digit version #                    |
++-------------+--------------+---------------+-----------------------------------------------+
+| unused1     | char[3]      | 3             | Reserved space                                |
++-------------+--------------+---------------+-----------------------------------------------+
+| time        | date         | 12            | Start time for this span of data              |
++-------------+--------------+---------------+-----------------------------------------------+
+| duration    | float        | 4             | Duration of this data span (sec)              |
++-------------+--------------+---------------+-----------------------------------------------+
+| stcount     | stcount[16]  |               | Signal state counts per channel               |
++-------------+--------------+---------------+-----------------------------------------------+
+
+The stcount struct is as follows:
+
++-----------+----------+-------------------------------------+
+| Field     | Type     | Description                         |
++===========+==========+=====================================+
+| chan_id   | char[32] | Channel identifier                  |
++-----------+----------+-------------------------------------+
+| bigpos    | int      | State counts by voltage bin         |
++-----------+----------+-------------------------------------+
+| pos       | int      | Count of positive 1-bit samples     |
++-----------+----------+-------------------------------------+
+| neg       | int      | Count of negative 1-bit samples     |
++-----------+----------+-------------------------------------+
+| bigneg    | int      | High-magnitude negative count       |
++-----------+----------+-------------------------------------+
 
 Record length is fixed. 
 
 **type_307** 
 
-Type 307 ("raw" phase cal value) record format. See :hops:`type_307` for more information.
+The ``type_307`` contians "raw" phase cal values, and is **DEPRECATED**. See :hops:`type_307` for more information.
 
-+---------+-------+-------+-------------+
-| Field   | type  | bytes | Description |
-+=========+=======+=======+=============+
-| Type    | ascii | 3     | 307         |
-+---------+-------+-------+-------------+
-| Version | ascii | 2     | 0-99        |
-+---------+-------+-------+-------------+
-| Unused  | ascii | 3     | Spaces      |
-+---------+-------+-------+-------------+
++----------------+-----------------+----------------+------------------------------------+
+| Field          | Type            | Size (bytes)   | Description                        |
++================+=================+================+====================================+
+| record_id      | char[3]         | 3              | Standard 3-digit id                |
++----------------+-----------------+----------------+------------------------------------+
+| version_no     | char[2]         | 2              | Standard 2-digit version #         |
++----------------+-----------------+----------------+------------------------------------+
+| unused1        | char[3]         | 3              | Reserved space                     |
++----------------+-----------------+----------------+------------------------------------+
+| su             | int             | 4              | Station Unit (SU) identifier       |
++----------------+-----------------+----------------+------------------------------------+
+| unused2        | char[4]         | 4              | Padding                            |
++----------------+-----------------+----------------+------------------------------------+
+| tot            | double          | 8              | Total Observing Time (TOT)         |
++----------------+-----------------+----------------+------------------------------------+
+| rot            | double          | 8              | Reference Observing Time (ROT)     |
++----------------+-----------------+----------------+------------------------------------+
+| accum_period   | double          | 8              | Accumulation period in SYSCLKs     |
++----------------+-----------------+----------------+------------------------------------+
+| frame_count    | U32             | 4              | Number of data frames processed    |
++----------------+-----------------+----------------+------------------------------------+
+| counts         | ChanCounts[16]  |                | Signal strength and count metrics  |
++----------------+-----------------+----------------+------------------------------------+
+| unused3        | char[4]         | 4              | Padding                            |
++----------------+-----------------+----------------+------------------------------------+
+
+The ChanCount struct contains:
+
++-------------+------------+-----------------------------------------+
+| Field       | Type       | Description                             |
++=============+============+=========================================+
+| count       | U32[8]     | LSB-first counts from table RAM         |
++-------------+------------+-----------------------------------------+
+| val_count   | U32        | Number of valid samples                 |
++-------------+------------+-----------------------------------------+
 
 
 **type_308**  
 
-Type 308 ("cooked" phase cal value) record format. See :hops:`type_308` for more information.
+The ``type_308`` contains "cooked" phase cal values and is **DEPRECATED**. See :hops:`type_308` for more information.
 
-+-----------+-------+-------+----------------------------------+
-| Field     | type  | bytes | Description                      |
-+===========+=======+=======+==================================+
-| Type      | ascii | 3     | 308                              |
-+-----------+-------+-------+----------------------------------+
-| Version   | ascii | 2     | 0-99                             |
-+-----------+-------+-------+----------------------------------+
-| Unused    | ascii | 3     | Spaces                           |
-+-----------+-------+-------+----------------------------------+
-| Time      | date  | 12    | Start time of pcal average       |
-+-----------+-------+-------+----------------------------------+
-| Duration  | r*4   | 4     | Duration of pcal average (sec)   |
-+-----------+-------+-------+----------------------------------+
-| Pcal x 16 |       |       |                                  |
-+-----------+-------+-------+----------------------------------+
-| Chan_id   | ascii | 32    | Frequency channel identifier     |
-+-----------+-------+-------+----------------------------------+
-| Freq      | r*4   | 4     | frequency (Hz rel. to chan freq) |
-+-----------+-------+-------+----------------------------------+
-| Real      | r*4   | 4     | Phasecal vector                  |
-+-----------+-------+-------+----------------------------------+
-| Imaginary | r*4   | 4     | Phasecal vector                  |
-+-----------+-------+-------+----------------------------------+
++-------------+----------------+----------------+-------------------------------------------+
+| Field       | Type           | Size (bytes)   | Description                               |
++=============+================+================+===========================================+
+| record_id   | char[3]        | 3              | Standard 3-digit id                       |
++-------------+----------------+----------------+-------------------------------------------+
+| version_no  | char[2]        | 2              | Standard 2-digit version #                |
++-------------+----------------+----------------+-------------------------------------------+
+| unused1     | char[3]        | 3              | Reserved space                            |
++-------------+----------------+----------------+-------------------------------------------+
+| time        | date           | 12             | Start time for this span of data          |
++-------------+----------------+----------------+-------------------------------------------+
+| duration    | float          | 4              | Duration of this data span (sec)          |
++-------------+----------------+----------------+-------------------------------------------+
+| pcal        | pcal[32]       |                | Detected phasecal information per channel |
++-------------+----------------+----------------+-------------------------------------------+
+
+The pcal struct has the following content:
+
++-------------+----------+---------------------------------------------+
+| Field       | Type     | Description                                 |
++=============+==========+=============================================+
+| chan_id     | char[8]  | Channel identifier                          |
++-------------+----------+---------------------------------------------+
+| frequency   | float    | Frequency offset (Hz relative to channel)   |
++-------------+----------+---------------------------------------------+
+| real        | float    | Real component of detected signal           |
++-------------+----------+---------------------------------------------+
+| imaginary   | float    | Imaginary component of detected signal      |
++-------------+----------+---------------------------------------------+
 
 Record length is fixed.
-
 
 **type_309**  
 
@@ -1440,7 +1480,7 @@ The ``type_309`` struct is used for the storage of multi-tone phase calibration 
 +----------------+-----------------------+----------------+-------------------------------------------+
 | acc_period     | double                | 8              | Accumulation period (in seconds)          |
 +----------------+-----------------------+----------------+-------------------------------------------+
-| chan[64]       | struct ch1_tag[64]    | variable       | Array of tone/channel data                |
+| chan[64]       | struct ch1_tag[64]    |                | Array of tone/channel data                |
 +----------------+-----------------------+----------------+-------------------------------------------+
 
 Details of struct `ch1_tag` (used in chan[64]):
@@ -1452,6 +1492,6 @@ Details of struct `ch1_tag` (used in chan[64]):
 +----------------+---------------------+----------------+-------------------------------------------+
 | freq           | double              | 8              | Tone frequency in Hz                      |
 +----------------+---------------------+----------------+-------------------------------------------+
-| acc[64][2]     | U32                 | 512            | Accumulators: 64 freqs × 2 quads (C, S)   |
+| acc[64][2]     | U32                 | 4096           | Accumulators: 64 freqs × 2 quads (C, S)   |
 +----------------+---------------------+----------------+-------------------------------------------+
 
