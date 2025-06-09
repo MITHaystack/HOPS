@@ -1,13 +1,16 @@
 fourfit4
 ========
 
-**Usage**
+Usage
+-----
     ``fourfit4 [OPTIONS] input [SUBCOMMAND]``
 
-**Description**
+Description
+-----------
     Command-line tool for fringe-fitting with various configuration options.
 
-**Positional Arguments**
+Positional Arguments
+--------------------
 
 .. list-table::
    :header-rows: 1
@@ -17,7 +20,8 @@ fourfit4
    * - ``input`` (TEXT, REQUIRED)
      - Name of the input directory (scan) or root file
 
-**Options**
+Options
+-------
 
 .. list-table::
    :header-rows: 1
@@ -85,7 +89,8 @@ fourfit4
    * - ``-k``, ``--mark4-output``
      - Write output files in Mark4 type_2xx format
 
-**Subcommands**
+Subcommands
+-----------
 
 .. list-table::
    :header-rows: 1

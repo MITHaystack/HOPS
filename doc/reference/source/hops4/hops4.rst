@@ -10,6 +10,7 @@ HOPS4 Applications and Libraries
 
     applications/fourfit4
     applications/alist4
+    applications/fplot4
 
 .. toctree::
     :maxdepth: 1
