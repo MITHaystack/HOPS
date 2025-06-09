@@ -28,6 +28,7 @@ HOPS4 Applications and Libraries
     libraries/containers/StationData
     libraries/containers/PcalData
     libraries/containers/VisibilityData
+    libraries/containers/WeightData
     libraries/Operators
     libraries/Calibration
     libraries/Initialization
