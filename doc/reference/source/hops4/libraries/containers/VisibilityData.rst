@@ -1,6 +1,5 @@
-
 Data Object: visibilities
-==========================
+=========================
 
 General Metadata
 ----------------
