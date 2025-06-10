@@ -6,19 +6,6 @@ set (MK4INTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4StationInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4FringeExport.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4ScanConverter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type200Converter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type201Converter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type202Converter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type203Converter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type204Converter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type205Converter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type206Converter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type207Converter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type208Converter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type210Converter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type212Converter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4JSONDateConverter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4FringeInterface.hh
 )
 
 #list source files #############################################################
@@ -29,19 +16,6 @@ set( MK4INTERFACE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4StationInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4FringeExport.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4ScanConverter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type200Converter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type201Converter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type202Converter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type203Converter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type204Converter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type205Converter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type206Converter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type207Converter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type208Converter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type210Converter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type212Converter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4JSONDateConverter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4FringeInterface.cc
 )
 
 #declare header paths ##########################################################
