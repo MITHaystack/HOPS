@@ -8,7 +8,7 @@ are promoted to ``std::complex<double>`` for in-memory processing.
 
 General Information
 -------------------
-- **Class**: :hops:`hops::MHO_TableContainer<std::complex<float>,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<double>,MHO_Axis<double>>>`
+- **Class**: :hops:`hops::MHO_TableContainer<std::complex<float>,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<double>,MHO_Axis<double> > >`
 - **Class UUID**: a5c26065821b6dc92b06f780f8641d0e
 - **Rank**: 4
 - **Shape**: the length of each dimension (e.g. [4, 32, 30, 128] )
@@ -16,7 +16,8 @@ General Information
 - **Total Size**: the total number of data elements in the array (e.g. 491520 )
 - **Element Type**: ``std::complex<float>``
 
-**Tags**
+Tags
+----
 
 The meta-data tags (key:value pairs) that are commonly associated with objects 
 of this type are as follows:

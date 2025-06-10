@@ -11,7 +11,7 @@ promoted to ``double`` for in-memory processing.
 
 General Information
 -------------------
-- **Class**: :hops:`hops::MHO_TableContainer<float,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<double>,MHO_Axis<double>>>`
+- **Class**: :hops:`hops::MHO_TableContainer<float,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<double>,MHO_Axis<double> > >`
 - **Class UUID**: f05838a616aa848562a57d5ace23e8d1
 - **Rank**: 4
 - **Shape**: the length of each dimension (e.g. [4, 32, 30, 1] )
@@ -20,7 +20,8 @@ General Information
 - **Element Type**: ``float``
 
 
-**Tags**
+Tags
+----
 
 The meta-data tags (key:value pairs) that are commonly associated with objects 
 of this type are as follows:
