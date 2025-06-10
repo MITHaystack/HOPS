@@ -1,5 +1,5 @@
-Station Data Table: `station_data`
-==================================
+Data Object: `station_data`
+=========================
 
 A 3D data container representing station model data using the `MHO_TableContainer<double, MHO_AxisPack<...>>` class.
 
@@ -123,4 +123,3 @@ This structure represents a 3-dimensional dataset with labeled axes:
 - **Axis 0** labels the type of station model component.
 - **Axis 1** corresponds to spline intervals (time/model epoch).
 - **Axis 2** indexes individual spline coefficients or time steps.
-
