@@ -18,17 +18,13 @@ HOPS4 Applications and Libraries
     applications/hops2hdf5
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
     :caption: Libraries
 
     libraries/Message
     libraries/Math
     libraries/Utilities
-    libraries/Containers
-    libraries/containers/StationData
-    libraries/containers/PcalData
-    libraries/containers/VisibilityData
-    libraries/containers/WeightData
+    libraries/containers/Containers
     libraries/Operators
     libraries/Calibration
     libraries/Initialization
