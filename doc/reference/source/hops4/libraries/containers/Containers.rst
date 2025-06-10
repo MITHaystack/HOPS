@@ -4,10 +4,10 @@ Containers
 ==========
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
     :caption: Containers
 
-    StationData
-    PcalData
     VisibilityData
     WeightData
+    StationData
+    PcalData
