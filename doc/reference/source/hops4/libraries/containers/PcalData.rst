@@ -1,5 +1,5 @@
-PCAL Table: `pcal`
-==================
+Data Object: `pcal`
+===================
 
 A complex-valued data container representing phase calibration data using the
 ``MHO_TableContainer<std::complex<double>, MHO_AxisPack<...>>`` class.
