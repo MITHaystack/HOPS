@@ -1,125 +1,83 @@
 Data Object: `station_data`
-==========================
+===========================
 
-A 3D data container representing station model data using the `MHO_TableContainer<double, MHO_AxisPack<...>>` class.
+The station_data table container is use to store the information about the a priori station model.
+Mainly this is the delay and coordinate polynomial spline models used for the station during correlation.
+The data stored in the table are the polynomial coefficients for each coordinate, time period, and polynomial power. 
+This structure represents a 3-dimensional dataset with labeled axes:
+- **Axis 0** labels the type of station model component.
+- **Axis 1** corresponds to spline intervals (time/model epoch).
+- **Axis 2** indexes the individual spline coefficients for each power.
 
-Container Summary
------------------
+
+General Information
+-------------------
+- **Class**: :hops:`MHO_TableContainer<double,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<int> > >`
+- **Class UUID**: 769cfb37e4301e9272adcb53f217de1b
+- **Rank**: 3
+- **Shape**: the length of each dimension (e.g. [7, 2, 6] )
+- **Strides**: the stride between data in each dimension (e.g. [12, 6, 1] )
+- **Total Size**: the total number of data elements in the array (e.g. 84 )
+- **Element Type**: ``double``
+
+Tags
+----
+
+The meta-data tags (key:value pairs) that are commonly associated with objects 
+of this type are as follows:
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 70
 
-   * - Attribute
-     - Description
-   * - **Class Name**
-     - ``MHO_TableContainer<double, MHO_AxisPack<MHO_Axis<string>, MHO_Axis<double>, MHO_Axis<int>>>``
-   * - **Class UUID**
-     - ``769cfb37e4301e9272adcb53f217de1b``
-   * - **Rank**
-     - 3
-   * - **Dimensions**
-     - ``[7, 2, 6]`` (axis_0 × axis_1 × axis_2)
-   * - **Strides**
-     - ``[12, 6, 1]``
-   * - **Total Size**
-     - 84
-
-Metadata Tags
--------------
-
-.. list-table::
-   :widths: 25 75
-
-   * - ``X``
+   * - key
+     - description
+     - example value
+   * - name
+     - the container name
+     - station_data
+   * - X
+     - station X coordinate
      - -5543831.705
-   * - ``Y``
+   * - Y
+     - station Y coordinate
      - -2054585.983
-   * - ``Z``
+   * - Z
+     - station Z coordinate
      - 2387828.776
-   * - ``difx_station_code``
-     - ``K2``
-   * - ``model_interval``
-     - 120.0 seconds
-   * - ``model_start``
-     - ``2019y105d18h00m00s``
-   * - ``mount``
-     - ``AZEL``
-   * - ``name``
-     - ``station_data``
-   * - ``nsplines``
+   * - difx_station_code
+     - the DiFX formatted 2-char station code
+     - K2
+   * - model_interval
+     - the time length of each polynomial model period (s)
+     - 120.0
+   * - model_start
+     - the start time of the spline model (vex format)
+     - 2019y105d18h00m00s
+   * - mount
+     - the station mount type
+     - AZEL
+   * - nsplines
+     - the number of spline intervals
      - 2
-   * - ``station_code``
-     - ``K2``
-   * - ``station_mk4id``
-     - ``H``
-   * - ``station_name``
-     - ``KOKEE12M``
+   * - station_code
+     - The cannonical 2-char station code
+     - K2
+   * - station_mk4id
+     - the 1-char mark4 station ID
+     - H
+   * - station_name
+     - the full station name
+     - KOKEE12M
 
 Axes
 ----
 
-**Axis 0** – Coordinate Type
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 25 75
-
-   * - **Class**
-     - ``MHO_Axis<string>``
-   * - **UUID**
-     - ``bbd8bbb8d7fdd9ac34e923c09d3fae74``
-   * - **Rank**
-     - 1
-   * - **Dimensions**
-     - ``[7]``
-   * - **Total Size**
-     - 7
-   * - **Data**
-     - ``["delay", "azimuth", "elevation", "parallactic_angle", "u", "v", "w"]``
-
-**Axis 1** – Time Interval (Seconds)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 25 75
-
-   * - **Class**
-     - ``MHO_Axis<double>``
-   * - **UUID**
-     - ``1169c341834e43322c0edb4948908121``
-   * - **Rank**
-     - 1
-   * - **Dimensions**
-     - ``[2]``
-   * - **Total Size**
-     - 2
-   * - **Data**
-     - ``[0.0, 120.0]``
-
-**Axis 2** – Polynomial Spline Index
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 25 75
-
-   * - **Class**
-     - ``MHO_Axis<int>``
-   * - **UUID**
-     - ``3cf7068251864a751caf66eac1fb3f9a``
-   * - **Rank**
-     - 1
-   * - **Dimensions**
-     - ``[6]``
-   * - **Total Size**
-     - 6
-   * - **Data**
-     - ``[0, 1, 2, 3, 4, 5]``
-
-Notes
------
-
-This structure represents a 3-dimensional dataset with labeled axes:
-- **Axis 0** labels the type of station model component.
-- **Axis 1** corresponds to spline intervals (time/model epoch).
-- **Axis 2** indexes individual spline coefficients or time steps.
++------------+-------------------------+----------------+--------------------------+---------------------------------------------------------------------------+
+| Axis Index | Name                    | Units          | Type                     | Description/Example                                                       |
++============+=========================+================+==========================+===========================================================================+
+| 0          | coordinate              | N/A            | ``MHO_Axis<string>``     |   ["delay", "azimuth", "elevation", "parallactic_angle", "u", "v", "w"]   |
++------------+-------------------------+----------------+--------------------------+---------------------------------------------------------------------------+
+| 1          | time                    | s              | ``MHO_Axis<double>``     | start time offset of each spline period (0, 120.0,...)                    |
++------------+-------------------------+----------------+--------------------------+---------------------------------------------------------------------------+
+| 2          | polynomial_spline_index | N/A            | ``MHO_Axis<int>``        | coefficient power 0, 1, 2,...                                             |
++------------+-------------------------+----------------+--------------------------+---------------------------------------------------------------------------+
