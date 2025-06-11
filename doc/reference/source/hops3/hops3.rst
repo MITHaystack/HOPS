@@ -19,4 +19,3 @@ HOPS3 Applications and Libraries
     libraries/dfio
     libraries/mk4util
     libraries/msg
-    libraries/vex
