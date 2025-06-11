@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'HOPS'
-copyright = '2024, MIT Haystack Observatory'
+copyright = '2025, MIT Haystack Observatory'
 author = 'MIT Haystack Observatory'
 
 # The full version, including alpha/beta/rc tags
@@ -32,7 +32,9 @@ release = '4.0'
 # ones.
 extensions = [
   'breathe',
-  'myst_parser'
+  'myst_parser',
+  'sphinxcontrib.doxylink',
+  'sphinx.ext.githubpages'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -54,20 +56,33 @@ exclude_patterns = []
 html_theme = 'sphinx_rtd_theme'
 
 # -- Options for HTML output --------------------------
+#html_theme_options = {'body_max_width': '70%'} 
 
+#needed so we can increase the page width and avoid squishing tables
+html_css_files = ['custom.css']
 
 # Doxylink tag files to pull in doxygen generated API
 # to make this work we need to doxylink 
 breathe_projects = {
-  "hops": "@REF_BUILD_DIR@/_static/xml"
+  "hops": "@REF_BUILD_DIR@/_static/doxygen/xml"
 }
+
+# Define where Doxylink can find the tag file for Doxygen docs
+doxylink = {
+    'hops': (
+        '@REF_BUILD_DIR@/_static/doxygen/common.tag', 
+        '@MIT_BASE_URL@/_static/doxygen/html'  
+    )
+}
+
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 html_logo = '_static/hops_logo_b_small-scaled.png' 
-
+html_use_index = True  # default is True; keep this
+html_use_modindex = True
 
 source_suffix = {
     '.rst': 'restructuredtext',

@@ -14,6 +14,10 @@ find_package(Sphinx REQUIRED)
 
     if(DOXYGEN_FOUND AND SPHINX_FOUND)
 
+        #set the URL base manually until we can find a work around for this sphinx/github pages quirk
+        set(MIT_BASE_URL "https://github.mit.edu/pages/barrettj/hops-git" CACHE STRING "Set the base url for github.mit.edu" FORCE)
+        set(GITHUB_BASE_URL "https://github.com/pages/MITHaystack/HOPS" CACHE STRING "Set the base url for github.com" FORCE)
+
         set(REF_BUILD_DIR ${DOC_INSTALL_DIR}/reference)
         file(MAKE_DIRECTORY ${REF_BUILD_DIR})
 
@@ -29,18 +33,31 @@ find_package(Sphinx REQUIRED)
             COMMENT "Generating API documentation with Doxygen for hops"
             VERBATIM
         )
+        
+        # Copy Doxygen common.tag into Sphinx _static
+        add_custom_command(
+            OUTPUT ${REF_BUILD_DIR}/_static/doxygen/common.tag
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+                    ${DOXY_REF_BUILD_DIR} ${REF_BUILD_DIR}/_static/doxygen
+            DEPENDS doxygen_reference
+            COMMENT "Copying Doxygen XML to Sphinx _static"
+        )
+        
+        add_custom_target(copy_doxygen_tag
+            DEPENDS ${REF_BUILD_DIR}/_static/doxygen/common.tag
+        )
 
         # Copy Doxygen XML into Sphinx _static
         add_custom_command(
-            OUTPUT ${REF_BUILD_DIR}/_static/xml/index.xml
+            OUTPUT ${REF_BUILD_DIR}/_static/doxygen/xml/index.xml
             COMMAND ${CMAKE_COMMAND} -E copy_directory
-                    ${DOXY_REF_BUILD_DIR}/xml ${REF_BUILD_DIR}/_static/xml
+                    ${DOXY_REF_BUILD_DIR}/xml ${REF_BUILD_DIR}/_static/doxygen/xml
             DEPENDS doxygen_reference
             COMMENT "Copying Doxygen XML to Sphinx _static"
         )
 
         add_custom_target(copy_doxygen_xml
-            DEPENDS ${REF_BUILD_DIR}/_static/xml/index.xml
+            DEPENDS ${REF_BUILD_DIR}/_static/doxygen/xml/index.xml
         )
 
         # Copy Doxygen html into Sphinx _static
@@ -64,7 +81,7 @@ find_package(Sphinx REQUIRED)
         add_custom_target(reference
             ${SPHINX_EXECUTABLE} -b html ${CMAKE_CURRENT_BINARY_DIR}/reference/source ${REF_BUILD_DIR}
             WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/reference/source
-            DEPENDS copy_doxygen_xml copy_doxygen_html
+            DEPENDS copy_doxygen_tag copy_doxygen_xml copy_doxygen_html
             COMMENT "Generating user documentation with Sphinx for hops"
             VERBATIM
         )
