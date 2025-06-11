@@ -3,22 +3,28 @@ Data Object: `station_data`
 
 The station_data table container is use to store the information about the a priori station model.
 Mainly this is the delay and coordinate polynomial spline models used for the station during correlation.
-The data stored in the table are the polynomial coefficients for each coordinate, time period, and polynomial power. 
-This structure represents a 3-dimensional dataset with labeled axes:
-- **Axis 0** labels the type of station model component.
-- **Axis 1** corresponds to spline intervals (time/model epoch).
-- **Axis 2** indexes the individual spline coefficients for each power.
-
+The data stored in the table are the polynomial coefficients for each coordinate, time period, and polynomial power associated with each coefficient.
 
 General Information
 -------------------
-- **Class**: :hops:`MHO_TableContainer<double,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<int> > >`
+- **Class**: :hops:`station_coord_type`
 - **Class UUID**: 769cfb37e4301e9272adcb53f217de1b
 - **Rank**: 3
 - **Shape**: the length of each dimension (e.g. [7, 2, 6] )
 - **Strides**: the stride between data in each dimension (e.g. [12, 6, 1] )
 - **Total Size**: the total number of data elements in the array (e.g. 84 )
 - **Element Type**: ``double``
+
+**Aliases**
+
+.. list-table::
+   :header-rows: 1
+
+   * - alias
+     - full class name
+   * - ``station_coord_type``
+     - ``MHO_TableContainer<double,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<int>>>``
+
 
 Tags
 ----
@@ -71,6 +77,13 @@ of this type are as follows:
 
 Axes
 ----
+
+This structure is a 3-dimensional dataset with labeled axes:
+
+   - **Axis 0** labels the type/name of the station model component.
+   - **Axis 1** corresponds to spline intervals (time/model epoch).
+   - **Axis 2** indexes the individual spline coefficients for each power.
+
 
 +------------+-------------------------+----------------+--------------------------+---------------------------------------------------------------------------+
 | Axis Index | Name                    | Units          | Type                     | Description/Example                                                       |
