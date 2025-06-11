@@ -60,17 +60,17 @@ static const MHO_MessageEndline eom = MHO_MessageEndline();
 
 enum MHO_MessageLevel : int
 {
-    eSpecialLevel = -2,     //special print level
-    eSilentErrorLevel = -1, //mute all messages entirely, including fatal ones
-    eFatalErrorLevel = 0,   //use for fatal errors (program termination imminent)
-    eErrorLevel = 1,        //use for non-fatal errors which may lead to unexpected behavior
-    eWarningLevel = 2,      //use to inform about unexpected state which may lead to errors
-    eStatusLevel = 3,       //information about the current execution status of the program
-    eInfoLevel = 4,         //extra information to inform about configuration/state of program
-    eDebugLevel = 5         //debug information of interest primarily to developer
+    eSpecialLevel = -2,     //!special print level
+    eSilentErrorLevel = -1, //!mute all messages entirely, including fatal ones
+    eFatalErrorLevel = 0,   //!use for fatal errors (program termination imminent)
+    eErrorLevel = 1,        //!use for non-fatal errors which may lead to unexpected behavior
+    eWarningLevel = 2,      //!use to inform about unexpected state which may lead to errors
+    eStatusLevel = 3,       //!information about the current execution status of the program
+    eInfoLevel = 4,         //!extra information to inform about configuration/state of program
+    eDebugLevel = 5         //!debug information of interest primarily to developer
 };
 
-//short hand aliases
+//!short hand aliases
 static const MHO_MessageLevel eSpecial = MHO_MessageLevel::eSpecialLevel;
 static const MHO_MessageLevel eSilent = MHO_MessageLevel::eSilentErrorLevel;
 static const MHO_MessageLevel eFatal = MHO_MessageLevel::eFatalErrorLevel;
@@ -89,18 +89,23 @@ using hops::eSpecial;
 using hops::eStatus;
 using hops::eWarning;
 
-//uses the singleton pattern (as we only have one terminal)
+//!uses the singleton pattern (as we only have one terminal)
 class MHO_Message
 {
 
     public:
-        //since this is a singleton we need to remove ability to copy/move
+        //! \brief Deleted copy constructor (singleton).
         MHO_Message(MHO_Message const&) = delete;
+        //! \brief Deleted move constructor (singleton).
         MHO_Message(MHO_Message&&) = delete;
+        //! \brief Deleted copy assignment operator (singleton).
         MHO_Message& operator=(MHO_Message const&) = delete;
+        //! \brief Deleted move assignment operator (singleton).
         MHO_Message& operator=(MHO_Message&&) = delete;
 
-        //provide public access to the only static instance
+        //! \brief Access the singleton instance of the message handler.
+        //!
+        //! \return Reference to the singleton MHO_Message instance.
         static MHO_Message& GetInstance()
         {
             if(fInstance == nullptr)
@@ -110,31 +115,59 @@ class MHO_Message
             return *fInstance;
         }
 
+        //! \brief Lock the message handler for thread-safe operations.
         void Lock() { fMutex.lock(); };
-
+        
+        //! \brief Unlock the message handler
         void Unlock() { fMutex.unlock(); };
 
+        //! \brief Allow all message keys (no category/library filtering).
         void AcceptAllKeys() { fAcceptAllKeys = true; }
 
+        //! \brief Restrict messages to a defined key set.
         void LimitToKeySet() { fAcceptAllKeys = false; }
 
+        //! \brief Add a message key to the allowed key set.
+        //! \param key The key string to add.
         void AddKey(const std::string& key);
         void AddKey(const char* key);
+
+        //! \brief Remove a message key from the allowed key set.
+        //! \param key The key string to remove.
         void RemoveKey(const std::string& key);
         void RemoveKey(const char* key);
+
+        //! \brief Remove all message keys (disables all filtering).
         void RemoveAllKeys();
 
+        //! \brief Flush the current output stream buffer.
         void Flush();
 
+        //! \brief Set the allowed message level threshold.
+        //! \param level The new minimum message level to accept.
         void SetMessageLevel(MHO_MessageLevel level) { fAllowedLevel = level; }
 
+        //! \brief Set the message level using a legacy integer interface.
+        //! \param legacy_message_level legacy integer representation of message level (lower is more verbose, min: -2, max: 5).
         void SetLegacyMessageLevel(int legacy_message_level);
 
+        //! \brief Get the currently configured message level threshold.
+        //! \return The currently allowed message level.
         MHO_MessageLevel GetMessageLevel() const { return fAllowedLevel; }
 
+        //! \brief Begin a new message with a specific level and key.
+        //!
+        //! \param level The message level.
+        //! \param key The message key to associate with this message.
+        //! \return Reference to the MHO_Message instance for streaming content.
         MHO_Message& SendMessage(const MHO_MessageLevel& level, const std::string& key);
         MHO_Message& SendMessage(const MHO_MessageLevel& level, const char* key);
 
+        //! \brief Stream an item into the current message.
+        //!
+        //! \tparam XStreamableItemType Any type that supports output streaming via `operator<<`.
+        //! \param item The item to insert into the message stream.
+        //! \return Reference to the MHO_Message instance for chaining.
         template< class XStreamableItemType > MHO_Message& operator<<(const XStreamableItemType& item);
 
         MHO_Message& operator<<(const MHO_MessageNewline&);

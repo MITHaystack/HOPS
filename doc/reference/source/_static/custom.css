@@ -1,0 +1,10 @@
+/* just make the width bigger - who reads docs on mobile? */
+.wy-nav-content {
+  max-width: 1200px !important;
+}
+
+/* Force table cells to wrap lines instead of scrolling */
+.wy-table-responsive table td, 
+.wy-table-responsive table th {
+    white-space: normal !important;
+}

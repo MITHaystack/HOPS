@@ -3,38 +3,33 @@
     You can adapt this file completely to your liking, but it should at least
     contain the root `toctree` directive.
 
-Welcome to HOPS's documentation!
-================================
-
+HOPS - Haystack Observatory Post-processing System
+==================================================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Contents:
 
+    Home <self>
     Introduction <introduction.rst>
     Getting Started <compiling.rst>
-    Examples <examples.rst>
-    
-    Tests <tests.rst>
+
+    HOPS3 <hops3/hops3.rst>
+    HOPS4 <hops4/hops4.rst>
+
     License <license.rst>
     Authors <authors.rst>
 
-    chapter1
+.. _doxygen-docs:
 
+API Documentation
+-----------------
+
+The full C/C++ API reference is available here: :hops:`index`
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
-
-.. _doxygen-docs:
-
-
-Doxygen API Documentation
-=========================
-
-The full C/C++ API reference is available here:
-`Doxygen Documentation <_static/doxygen/html/index.html>`__
