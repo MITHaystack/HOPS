@@ -1,20 +1,34 @@
 Data Object: `visibilities`
 ===========================
 
-The visibility table container is use to store the raw correlator visibilities. 
-On disk the data elements of this object are ``std::complex<float>``, but these 
-are promoted to ``std::complex<double>`` for in-memory processing.
-
+The visibility table container is used to store the raw correlator visibilities. 
+On disk the data elements of this object are stored as ``std::complex<float>`` and 
+the underlying container type is: :hops:`visibility_store_type`. However before
+use this object is promoted to a :hops:`visibility_type`, which contains ``std::complex<double>`` 
+elements for in-memory processing.
 
 General Information
 -------------------
-- **Class**: :hops:`hops::MHO_TableContainer<std::complex<float>,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<double>,MHO_Axis<double> > >`
+- **Class**: :hops:`visibility_store_type` or :hops:`visibility_type`
 - **Class UUID**: a5c26065821b6dc92b06f780f8641d0e
 - **Rank**: 4
 - **Shape**: the length of each dimension (e.g. [4, 32, 30, 128] )
 - **Strides**: the stride between data in each dimension (e.g. [122880, 3840, 128, 1] )
 - **Total Size**: the total number of data elements in the array (e.g. 491520 )
-- **Element Type**: ``std::complex<float>``
+- **Element Type**: ``std::complex<float>`` or ``std::complex<double>``
+
+**Aliases**
+
+.. list-table::
+   :header-rows: 1
+
+   * - alias
+     - full class name
+   * - ``visibility_store_type``
+     - ``hops::MHO_TableContainer<std::complex<float>,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<double>,MHO_Axis<double>>>``
+   * - ``visibility_type``
+     - ``hops::MHO_TableContainer<std::complex<double>,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<double>,MHO_Axis<double>>>``
+
 
 Tags
 ----

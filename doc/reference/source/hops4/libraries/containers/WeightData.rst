@@ -4,20 +4,32 @@ Data Object: `weights`
 The weights table container is use to store the correlator weights assigned to 
 the visibility data, corresponding to each polarization-product, channel, and AP.
 If the combined fraction of data that was lost or flagged invalid for a particular 
-channel/AP form either is 'f', then these weight values are (1-f).
-On disk the data elements of this object are ``float``, but these are 
-promoted to ``double`` for in-memory processing.
-
+channel/AP (from either station) is 'f', then the corresponding weight value will be
+(1-f). On disk the data elements of the objects of :hops:`weight_store_type` are 
+of the type ``float``, but this object is promoted to :hops:`weight_type` 
+with ``double`` elements for in-memory processing.
 
 General Information
 -------------------
-- **Class**: :hops:`hops::MHO_TableContainer<float,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<double>,MHO_Axis<double> > >`
+- **Class**: :hops:`weight_store_type` or :hops:`weight_type`
 - **Class UUID**: f05838a616aa848562a57d5ace23e8d1
 - **Rank**: 4
 - **Shape**: the length of each dimension (e.g. [4, 32, 30, 1] )
 - **Strides**: the stride between data in each dimension (e.g. [960, 30, 1, 1])
 - **Total Size**: the total number of data elements in the array (e.g. 3840 )
 - **Element Type**: ``float``
+
+**Aliases**
+
+.. list-table::
+   :header-rows: 1
+
+   * - alias
+     - full class name
+   * - ``weight_store_type``
+     - ``hops::MHO_TableContainer<float,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<double>,MHO_Axis<double>>>``
+   * - ``weight_type``
+     - ``hops::MHO_TableContainer<double,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<double>,MHO_Axis<double>>>``
 
 
 Tags

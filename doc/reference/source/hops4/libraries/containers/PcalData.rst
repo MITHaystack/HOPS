@@ -7,13 +7,24 @@ It is used by the :hops:`hops::MHO_MultitonePhaseCorrection` calibration operato
 
 General Information
 -------------------
-- **Class**: :hops:`hops::MHO_TableContainer<std::complex<double>,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<double> > >`
+- **Class**: :hops:`multitone_pcal_type`
 - **Class UUID**: 61831c0460859e21f30799d59d491fdf
 - **Rank**: 3
 - **Shape**: the length of each dimension (e.g. [2, 30, 204] )
 - **Strides**: the stride between data in each dimension (e.g. [6120, 204, 1] )
 - **Total Size**: the total number of data elements in the array (e.g. 12240 )
 - **Element Type**: ``std::complex<double>``
+
+**Aliases**
+
+.. list-table::
+   :header-rows: 1
+
+   * - alias
+     - full class name
+   * - ``multitone_pcal_type``
+     - ``hops::MHO_TableContainer<std::complex<double>,MHO_AxisPack<MHO_Axis<string>,MHO_Axis<double>,MHO_Axis<double>>>``
+
 
 Tags
 ----
