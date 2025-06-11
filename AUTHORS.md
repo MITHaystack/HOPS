@@ -38,7 +38,6 @@ and is a work in progress.
 - Cris Niell (cmn) - supported rewrite from Fortran to K&R C
 - Alan Rogers (aeer) - started it all with FRNGE in the late 1970's
 - Kevin Dudevoir (kad) - supported the software late 2000s to 2015
-- Violet Pfeiffer - supported HOPS4 type_2xx to json conversion utilities 
 
 ## Other Contributors
 
@@ -53,6 +52,8 @@ and is a work in progress.
 - Lynn Matthews
 - Pedro Elosegui
 - Lindy Blackburn
+- Violet Pfeiffer
+
 
 
 > This list is non-exhaustive and reflects major contributions. 
