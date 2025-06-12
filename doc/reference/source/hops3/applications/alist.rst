@@ -1,7 +1,7 @@
 alist
 =====
 
-Synopsis
+SYNOPSIS
 --------
 
 ``alist`` is a utility that summarizes correlator data files into A-format
@@ -17,7 +17,7 @@ Currently, only **type 2 fourfit fringe files** are supported.
 - Supported output format versions: up to **version 5**
 - A future **version 6** is planned, offering higher precision.
 
-Usage
+SYNTAX
 -----
 
 .. code-block:: bash
@@ -27,7 +27,7 @@ Usage
 .. note::
    All option flags must appear *before* the data file list.
 
-Options
+OPTIONS
 -------
 
 - ``-o <outfile>``  
@@ -42,7 +42,7 @@ Options
   Flags exist but are undocumented here -- refer to the source code or extended
   documentation if needed.
 
-Arguments
+ARGUMENTS
 ---------
 
 - **data file list**  
@@ -57,5 +57,3 @@ input lists; overly long argument lists may overflow the Unix argument buffer. P
 specifying experiment directories to avoid this issue.
 
 Use coarse filtering through file selection. For advanced filtering, use the ``aedit`` tool instead.
-
-
