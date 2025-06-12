@@ -6,9 +6,8 @@ Containers
 .. toctree::
     :maxdepth: 2
     :caption: Containers
-    
-    TableContainers
-    objects
+
+    Objects
     
     VisibilityData
     WeightData
