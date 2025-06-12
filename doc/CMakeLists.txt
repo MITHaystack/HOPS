@@ -6,6 +6,7 @@ hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/aedit.doc )
 
 option(BUILD_LATEX_DOCS "Build latex documentation" OFF)
 option(BUILD_DOCS "Build documentation with doxygen/sphinx" OFF)
+option(DEPLOY_DOCS "Configure documentation to deploy html pages on github" OFF)
 
 if(BUILD_DOCS)
 
@@ -14,15 +15,21 @@ find_package(Sphinx REQUIRED)
 
     if(DOXYGEN_FOUND AND SPHINX_FOUND)
 
-        #set the URL base manually until we can find a work around for this sphinx/github pages quirk
-        set(MIT_BASE_URL "https://github.mit.edu/pages/barrettj/hops-git" CACHE STRING "Set the base url for github.mit.edu" FORCE)
-        set(GITHUB_BASE_URL "https://github.com/pages/MITHaystack/HOPS" CACHE STRING "Set the base url for github.com" FORCE)
-
         set(REF_BUILD_DIR ${DOC_INSTALL_DIR}/reference)
         file(MAKE_DIRECTORY ${REF_BUILD_DIR})
 
         set(DOXY_REF_BUILD_DIR ${CMAKE_CURRENT_BINARY_DIR}/doxygen)
         file(MAKE_DIRECTORY ${DOXY_REF_BUILD_DIR})
+
+        #set the URL base manually until we can find a work around for this sphinx/github pages quirk
+        set(MIT_BASE_URL "https://github.mit.edu/pages/barrettj/hops-git")
+        set(GITHUB_BASE_URL "https://github.com/pages/MITHaystack/HOPS")
+        # we use REF_BUILD_DIR to direct sphinx-doxylink to the local file system, 
+        # MIT_BASE_URL for github.mit.edu and GITHUB_BASE_URL for github.com (deployment)
+        set(DOC_BASE_URL "${REF_BUILD_DIR}") 
+        if(DEPLOY_DOCS)
+            set(DOC_BASE_URL "${MIT_BASE_URL}") 
+        endif(DEPLOY_DOCS)
 
         #first generate the doxygen C++ API reference
         set(DOXYGEN_FILE "hops.doxygen")
