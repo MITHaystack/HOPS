@@ -4,6 +4,13 @@ Operators
 =========
 
 
+#. Data Operators: These evaluate a function or perform some
+   transformation on a given data container. Their operation is
+   configurable via a set of externally defined parameters, while their
+   application to any particular data set can be made conditional by a
+   set of filters.).
+
+
 
 Data operators
 --------------
