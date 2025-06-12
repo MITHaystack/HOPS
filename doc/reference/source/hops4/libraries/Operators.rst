@@ -3,18 +3,6 @@
 Operators
 =========
 
-
-#. Data Operators: These evaluate a function or perform some
-   transformation on a given data container. Their operation is
-   configurable via a set of externally defined parameters, while their
-   application to any particular data set can be made conditional by a
-   set of filters.).
-
-
-
-Data operators
---------------
-
 The data operator classes are meant to organize the mathematic
 manipulations which are to be performed on the data containers. For
 example, many of the operations performed in the existing HOPS3
@@ -22,13 +10,13 @@ code-base (such as the application of a priori phase calibration) are
 relatively trivial linear transformations applied to the visibility
 data. However, they are currently intertwined with a large amount of
 control logic which obscures the basic data pathway (e.g see
-postproc/fourfit/norm_fx.c)
+source/c_src/fourfit_libs/ffsearch/src/norm_fx.c)
 
 Most unary or binary operations that are to applied to visibility or
-other data residing in an ``HO_TableContainers`` such as scaling,
+other data residing in a ``MHO_TableContainers`` object such as scaling,
 multiplication, transposition, summation, Fourier transformation, etc.
-will be made available as individual classes inheriting from the same
-interface. A uniform class interface will allow these data operators to
+have been made available as individual classes inheriting from the same
+interface. A uniform class interface allows these data operators to
 be composed or modified to create more complicated composite operators
 or strung together and called in an ordered fashion in order to
 accomplish data pipelines of arbitrary complexity. An additional
@@ -36,14 +24,45 @@ advantage of encapsulating individual operations is that (coupled with
 the data container extensions) any SIMD parallel-processing extension
 used to accelerate data processing can be made opaque to the user.
 
-Listing `[lst:operators] <#lst:operators>`__ gives a brief sketch of the
-class templates generalizing the data operators. The common inheritance
-from the base class ``MHO_Operator`` allows them all to be stored in an
+The following code gives a brief sketch of the
+class templates generalizing the data operators.
+
+.. code:: cpp
+
+   class MHO_Operator
+   {
+       public:
+           MHO_Operator();
+           virtual ~MHO_Operator();
+           virtual bool Initialize() = 0;
+           virtual bool Execute() = 0;
+   };
+
+   template<class XArgType>
+   class MHO_UnaryOperator: public MHO_Operator
+   {
+       public:
+           MHO_UnaryOperator();
+           virtual ~MHO_UnaryOperator();
+           virtual void SetArgs(XArgType* in); //in-place
+           virtual void SetArgs(const XArgType* in, XArgType* out); //out-of-place
+   };
+
+   template<class XArgType1, class XArgType2 = XArgType1, class XArgType3 = XArgType2>
+   class MHO_BinaryOperator: public MHO_Operator
+   {
+      public:
+          MHO_BinaryOperator();
+          virtual ~MHO_BinaryOperator();
+          virtual void SetArgs(const XArgType1* in1, const XArgType2* in2, XArgType3* out) //out-of-place
+   };
+
+
+The common inheritance from the base class :hops:`hops::MHO_Operator` allows them all to be stored in an
 common container (e.g. ``std::vector<MHO_Operator*>``) so that once they
 are constructed and configured they may be retrieved and
-intialized/executed in the appropriate order. Listing
-`[lst:operator-use] <#lst:operator-use>`__ shows a brief code sketch
-demonstrating how two simple operators would be constructed, assigned
+intialized/executed in the appropriate order. The following code 
+shows a brief code sketch demonstrating how two simple operators would be constructed, assigned
 arguments and then initialized and executed in order.
 
 .. code:: c++
@@ -107,35 +126,6 @@ which it operates. In addition, a mechanism for filtering operations
 established independent of the previous control-block structure of
 HOPS3.
 
-.. code:: c++
-
-   class MHO_Operator
-   {
-       public:
-           MHO_Operator();
-           virtual ~MHO_Operator();
-           virtual bool Initialize() = 0;
-           virtual bool Execute() = 0;
-   };
-
-   template<class XArgType>
-   class MHO_UnaryOperator: public MHO_Operator
-   {
-       public:
-           MHO_UnaryOperator();
-           virtual ~MHO_UnaryOperator();
-           virtual void SetArgs(XArgType* in); //in-place
-           virtual void SetArgs(const XArgType* in, XArgType* out); //out-of-place
-   };
-
-   template<class XArgType1, class XArgType2 = XArgType1, class XArgType3 = XArgType2>
-   class MHO_BinaryOperator: public MHO_Operator
-   {
-      public:
-          MHO_BinaryOperator();
-          virtual ~MHO_BinaryOperator();
-          virtual void SetArgs(const XArgType1* in1, const XArgType2* in2, XArgType3* out) //out-of-place
-   };
 
 Specific data operations
 ~~~~~~~~~~~~~~~~~~~~~~~~
