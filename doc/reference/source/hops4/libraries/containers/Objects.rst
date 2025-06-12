@@ -175,80 +175,187 @@ section of the frequency axis with a particular channel ID (e.g
 supports tagging axis locations with any type that is supported by the 
 underlying json library.
 
-
-One concrete example of an instance of the :hops:`hops::MHO_TableContainer` 
-template class is the channelized visibility type. The details of which 
-can be found under: :doc:`visibilities <VisibilityData>`.
-The full definition of which (with type aliases) looks like:
-
-.. code:: c++
-   using visibility_element_type = std::complex< double >;
-
-   using polprod_axis_type = MHO_Axis< std::string >; //axis for polarization-product labels (XX, YX, XR, RL, RR, etc.)
-   using channel_axis_type = MHO_Axis< double >;      //channels axis is sky_frequency of each channel (MHz)
-   using frequency_axis_type = MHO_Axis< double >;    //frequency axis (MHz)
-   using time_axis_type = MHO_Axis< double >;         //time and/or AP axis
-
-   using baseline_axis_pack = MHO_AxisPack< polprod_axis_type, channel_axis_type, time_axis_type, frequency_axis_type >;
-
-   using visibility_type = MHO_TableContainer< visibility_element_type, baseline_axis_pack >;
-
-In this example the axes of each of the four dimensions are be:
-
-#. Axis 0: Polarization-product axis, labeled by a short string
-   specifying the reference and remote stations’ polarizations for data
-   associated with that column (e.g “XX” or “RR” or “RX”).
-
-#. Axis 1: Channel axis, labeled by a sky frequency (e.g. 3032.0 MHz).
-
-#. Axis 2: Time axis, labeled by the time since start of a scan in
-   seconds.
-
-#. Axis 3: Frequency axis, labeled by the frequency offset from the
-   edge of the channel (MHz).
-
-It should be noted that these coordinate axes are there merely to label
-the data, but are not meant to provide a reverse look-up capability,
-(e.g example inverting the polarization-product code “LL” to infer a
-0-th index location of 0). For efficiency, array access should still be
-done using unsigned integer index values. 
-
 A graphical representation of a :hops:`hops::MHO_TableContainer` object is shown below: 
 
 .. figure:: ../../../_static/data-container-baseline.png
 
-   :alt: A graphical representation of a ``MHO_TableContainer``. This
-   class is composed of an N-dimensional array, coupled with axes to
-   provide coordinate values along each dimension. The axes themselves
-   allow for arbitrary intervals to be labeled by key:value pairs in
-   order to allow for local look-up of meta data. For example, on the
-   the channel axis, the index labels may be channel names, while interval labels
-   maybe or sampler names among other possibilities.
-   :math:`\leftrightarrow` data labels.
-   :name: fig:table-container
-   :width: 75.0%
+The table container class is composed of an N-dimensional array, coupled with axes to
+provide coordinate values along each dimension. The axes themselves also
+allow for arbitrary intervals to be labeled by key:value pairs in
+order to allow for local look-up of meta data. For example, on the
+the channel axis, the index labels may be channel names, while interval labels
+maybe or sampler names among other possibilities.
 
-Specific data types
-~~~~~~~~~~~~~~~~~~~
+It should be noted that the coordinate axes are present merely to label
+the data, but are not meant to provide a reverse look-up capability,
+(e.g example inverting the polarization-product code “LL” to infer a
+0-th index location of 0). For efficiency, array access should still be
+done using unsigned integer index values.
 
-Below is an incomplete table (`[tab:data-types] <#tab:data-types>`__) of
-the various data objects that are constructed from
-``MHO_TableContainer``, along with their data value type and axis names.
-These may be subject to change.
+Container Dictionary and Store
+------------------------------
+
+The data containers in HOPS4 are organized by the dictionary class:
+:hops:`hops::MHO_ContainerDictionary` and the storage class: :hops:`hops::MHO_ContainerStore`. 
+Because the majority of the data containers in HOPS4 are instances of handful of template 
+classes, the dictionary class :hops:`hops::MHO_ContainerDictionary` is responsible 
+for the explicit instantiation (full specialization of all template parameters) 
+of each type in use by HOPS4. It also inherits from :hops:`hops::MHO_ClassIdentityMap` which
+allows for the association of each class type and its 128-bit class UUID. This class UUID is 
+used to identify the object type on disk or in a byte stream, so that it can be cast to 
+the appropriate type after stream. The storage class :hops:`hops::MHO_ContainerStore` is
+used to store all of the in-memory containers. Objects can be retrieved from the store 
+by specifying a the exact object UUID or an associated `shortname` (human readable string).
+Collections of objects can be retrieved from the store by specifying the class UUID. 
+
+For convenience the following series of tables contains the names/aliases, types, and descriptions
+of the data container types which are which are explicitly instantiated by the container dictionary.
+The following table contains alias for the table element types:
+
+.. list-table:: Table Container Element Types
+   :header-rows: 1
+
+   * - name
+     - type
+     - description
+   * - visibility_element_type
+     - ``std::complex< double >``
+     - the (in-memory) visibility table primitive
+   * - weight_element_type
+     - ``double``
+     - the (in-memory) weight table primitive
+   * - pcal_phasor_type
+     - ``std::complex<double>`` 
+     - the multi-tone pcal phasor primitive 
+   * - spline_coeff_type
+     - ``double``
+     - coefficient used for polynomial splines
+   * - flag_element_type 
+     - ``char`` 
+     - flag table primitive
+   * - visibility_element_store_type
+     - ``std::complex< float >``
+     - the (on-disk) visibility table primitive
+   * - weight_element_store_type
+     - ``float``
+     - the (on-disk) weight table primitive
+
+The coordinate axis types are declared as follows:
+
+.. list-table:: Coordinate Axis Types
+   :header-rows: 1
+
+   * - name
+     - type
+     - description
+   * - polprod_axis_type
+     - ``MHO_Axis< std::string >``
+     - axis for polarization-product labels (XX, YX, XR, RL, RR, etc.)
+   * - pol_axis_type
+     - ``MHO_Axis< std::string >``
+     - axis for polarization labels (X, Y, R, L, etc.)
+   * - channel_axis_type
+     - ``MHO_Axis< double >``
+     - channels axis, with sky_frequency of each channel edge (MHz)
+   * - frequency_axis_type
+     - ``MHO_Axis< double >``
+     - frequency axis, typically sub-channel axis (MHz)
+   * - time_axis_type
+     - ``MHO_Axis< double >``
+     - time and/or AP axis
+   * - coord_axis_type
+     - ``MHO_Axis< std::string >`` 
+     - station coordinate name (delay, phase, parallactic_angle, az, el, u, v, w)
+   * - coeff_axis_type
+     - ``MHO_Axis< int >``
+     - spline coefficient index 0,1,2...(typical 6 is max)
+
+The coordinate axis packs (collections of axes applied to each dimention of a table) are declared as follows:
+
+.. list-table:: Axis Pack Types
+   :header-rows: 1
+
+   * - name
+     - type
+     - description
+   * - baseline_axis_pack
+     - ``MHO_AxisPack< polprod_axis_type, channel_axis_type, time_axis_type, frequency_axis_type >``
+     - axis pack used for visibility and weight types
+   * - station_coord_axis_pack
+     - ``MHO_AxisPack< coord_axis_type, time_axis_type, coeff_axis_type >``
+     - axis pack used for the station coordinate spline-model table 
+   * - multitone_pcal_axis_type
+     - ``MHO_AxisPack< pol_axis_type, time_axis_type, frequency_axis_type >``
+     - axis pack used with multi-tone phase-cal table data
+
+Finally, the table container types are declared as follows:
+
+.. list-table:: Table Container Types
+   :header-rows: 1
+
+   * - name
+     - type
+     - description
+   * - visibility_type
+     - ``MHO_TableContainer< visibility_element_type, baseline_axis_pack >``
+     - visibility data table (in-memory)
+   * - visibility_store_type
+     - ``MHO_TableContainer< visibility_element_store_type, baseline_axis_pack >``
+     - visibility data table (on-disk)
+   * - weight_type 
+     - ``MHO_TableContainer< weight_element_type, baseline_axis_pack >``
+     - weight data table (in-memory)
+   * - weight_store_type 
+     - ``MHO_TableContainer< weight_element_store_type, baseline_axis_pack >``
+     - weight data table (on-disk)
+   * - station_coord_type
+     - ``MHO_TableContainer< spline_coeff_type, station_coord_axis_pack >``
+     - station coordinate spline-model table 
+   * - multitone_pcal_type
+     - ``MHO_TableContainer< pcal_phasor_type, multitone_pcal_axis_type >``
+     -  phase-cal table data
+
+For further information on some of these concrete table container types, see the descriptions
+under:
+
+   - :doc:`visibilities <VisibilityData>`
+   - :doc:`weights <WeightData>`
+   - :doc:`pcal <PcalData>`
+   - :doc:`station data <StationData>`
 
 
-Output data objects
--------------------
+Adding Metadata to Table Containers
+-----------------------------------
 
-The output data types of the fringe-fitter need to be able to summarize
-all of the information that is currently present in the ``type_2XX``
-data types, with the option to be extended. The ``type_2XX``\ ’s are
-primarily concerned with storing the fringe solution (delay, delay rate,
-etc.), and a data summary (per-channel phase/amplitudes, data
-selection/flagging, etc.) along with a subset of station meta data. A
-table listing the data items that are present in the ``type_2XX``\ ’s
-which need to be re-mapped onto the new data structure is shown in table
-`[tab:type2xx] <#tab:type2xx>`__.
+Adding metadata to a table container object is quite straight forward. Since all 
+table container types inherit from :hops:`hops::MHO_Taggable` they permit the 
+addition of nearly arbitrary key:value meta data via the json library. It is however, 
+encouraged that this mechanism is primarily used for scalar (i.e. single valued) key:value pairs,
+while more complex nested metadata is specified via the use of :hops:`hops::MHO_ObjectTags`.
+
+
+Adding New Container Types
+--------------------------
+
+It is not expected that the current set of data container types is comprehensive for 
+either current or future data processing. However, adding new data types is relatively simple.
+To declare a new table container type, all that is need is that the table data element 
+and axis pack be specified and added to the container dictionary. As an example, consider 
+a three dimensional table consisting of integers, with three coordinate axis (the first consisting of string labels,
+the second of integer labels, and the last of doubles). This object can be declared as:
+
+.. code-block:: cpp
+
+   using my_new_axis_pack = MHO_AxisPack< MHO_Axis<std::string>, MHO_Axis<int>, MHO_Axis<double> >;
+   using my_new_table_type = MHO_TableContainer< int, my_new_axis_pack >;
+
+Then all that is needed in order to use this new table container type (both for disk-I/O and in the container store)
+is to add its definition to the container dictionary :hops:`hops::MHO_ContainerDictionary` via the ``AddClassType`` function:
+
+.. code-block:: cpp
+
+   //add to the constructor: MHO_ContainerDictionary::MHO_ContainerDictionary()
+   AddClassType< my_new_table_type >();
 
 
 Data Container Extensions
@@ -258,8 +365,8 @@ The primary goal of the containers is to provide a relatively simple and
 efficient representation of commonly used data types that hides the
 details of memory management and array indexing/access from the user.
 They should not be overburdened with too much extraneous functionality
-(beyond simple operator overloads like assignment, scalar multiply, etc.
-) that is specific to a particular operation as this greatly over
+(beyond simple operator overloads like assignment, scalar multiply, etc.)
+that is specific to a particular operation as this greatly over
 complicates these classes and makes them brittle.
 
 However, there are some cases where this sort of decoupling may induce a
@@ -283,11 +390,11 @@ to may be stored in an extension.
 
 In order to provide the ability to append extensions to the data
 containers, they must all inherit from a base class,
-``MHO_ExtensibleElement``, which in turn stores a vector of
+:hops:`hops::MHO_ExtensibleElement`, which in turn stores a vector of
 type-erased [1]_ pointers to the extensions themselves. The extensions
 are templated on the the class providing the additional functionality
-and must all inherit from the base class ``MHO_ExtendedElement`` (so
-they can be stored in the vector owned ``MHO_ExtensibleElement``) A brief
+and must all inherit from the base class :hops:`hops::MHO_ExtendedElement` (so
+they can be stored in the vector) A brief
 sketch of the code that allows for this is shown below.
 One draw back of this method is that requires :math:`N` ``dynamic_cast`` 
 calls any time a particular extension is modified or accessed via the data container.
@@ -295,7 +402,7 @@ This is an acceptable trade off for infrequent access to expensive (to construct
 extensions, but should be used rather sparingly as ``dynamic_cast`` has
 high overhead.
 
-.. code:: c++
+.. code:: cpp
 
    #include <vector>
 
@@ -369,3 +476,7 @@ high overhead.
 
 .. [1]
    https://davekilian.com/cpp-type-erasure.html
+
+This extensible element mechanism is made use of in :hops:`hops::MHO_ContainerJSONConverter` and 
+in :hops:`hops::MHO_ContainerHDF5Converter` for data format conversion, as well as 
+in :hops:`hops::MHO_OpenCLNDArrayBuffer` for OpenCL buffer construction/manipulation.
