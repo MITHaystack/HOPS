@@ -10,6 +10,7 @@ HOPS3 Applications and Libraries
 
     applications/fourfit
     applications/alist
+    applications/aedit
 
 .. toctree::
     :maxdepth: 1
