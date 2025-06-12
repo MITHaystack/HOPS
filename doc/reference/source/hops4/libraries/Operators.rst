@@ -110,22 +110,6 @@ with one or two data containers upon which they operate as inputs.
 However, any number of arguments is possible so long as the underlying
 implementation provides the appropriate overload.
 
-One aspect of the data operators which is not yet detailed here is a
-notion of what pieces of meta-data each operator may need in order to
-complete its function. Some of the more primitive operations (e.g.
-complex conjugation) may not need any meta-data, while certain specific
-calibration routines may need station related meta-data (e.g. channel
-specific phase-cal). While some meta-data items could be exposed
-directly via external setter/getters, a possibly preferable option which
-would preserve encapsulation might be for each operator to define an
-internal schema, listing the keys and type of the parameters it needs to
-retrieve from a single meta-data container (populated from the vex), or
-what sort of labels it expects to be attached to the data containers on
-which it operates. In addition, a mechanism for filtering operations
-(e.g. if station = Xx, then apply this operator) also needs to be
-established independent of the previous control-block structure of
-HOPS3.
-
 
 Specific data operations
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -205,6 +189,9 @@ specification of each operation is detailed in the subsequent pages.
   array size is a power of two, then either a Cooley-Tukey or
   Gentleman-Sande radix-2 algorithm will be applied. For all other
   sizes, the Bluestein/Chirp-Z algorithm is used.
+  
+  
+  
 | **Name:** MHO_FunctorBroadcaster
 | **Type:** Unary, both in-place and out-of-place.
 | **Configuration Parameters:** The unary functor class to be applied to
@@ -216,6 +203,10 @@ specification of each operation is detailed in the subsequent pages.
 | **Description:** For every element in the array the functor operation
   will be applied. In the case of an out-of-place operation a copy will
   take place.
+  
+  
+  
+  
 | **Name:** MHO_MultidimensionalFastFourierTransform
 | **Type:** Unary, both in-place and out-of-place.
 | **Configuration Parameters:** The indices of the dimensions which are
@@ -227,6 +218,9 @@ specification of each operation is detailed in the subsequent pages.
   type
 | **Description:** Executes a Fourier transform on the selected
   dimensions of the array using the native FFT calculator.
+  
+  
+  
 | **Name:** MHO_MultidimensionalFastFourierTransformFFTW
 | **Type:** Unary, both in-place and out-of-place.
 | **Configuration Parameters:** The indices of the dimensions which are
@@ -239,6 +233,10 @@ specification of each operation is detailed in the subsequent pages.
 | **Description:** Executes a Fourier transform on the selected
   dimensions of the array using the FFTW library, the precise algorithm
   selected is determined by FFTW.
+  
+  
+  
+  
 | **Name:** MHO_MultidimensionalPaddedFastFourierTransform
 | **Type:** Unary, both in-place and out-of-place.
 | **Configuration Parameters:** The indices of the dimensions which are
@@ -257,6 +255,10 @@ specification of each operation is detailed in the subsequent pages.
   resulting padded array will then be transformed using the native FFT
   calculator. The primary use case of this padded FFT is for
   interpolation.
+  
+  
+  
+  
 | **Name:** MHO_Reducer
 | **Type:** Unary, both in-place (requires copy and resize) and
   out-of-place.
@@ -269,6 +271,10 @@ specification of each operation is detailed in the subsequent pages.
   axes, and depending on the operation (addition or multiplication), the
   contents will be resized and replaced by the sum or product of the
   elements along that axis.
+  
+  
+  
+  
 | **Name:** MHO_SubSample
 | **Type:** Unary, both in-place and out-of-place.
 | **Configuration Parameters:** The index of the dimension along which
