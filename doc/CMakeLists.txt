@@ -4,7 +4,6 @@ hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/fourfit.doc )
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/alist.doc )
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/aedit.doc )
 
-option(BUILD_LATEX_DOCS "Build latex documentation" OFF)
 option(BUILD_DOCS "Build documentation with doxygen/sphinx" OFF)
 option(DEPLOY_DOCS "Configure documentation to deploy html pages on github" OFF)
 
@@ -96,9 +95,3 @@ find_package(Sphinx REQUIRED)
     endif(DOXYGEN_FOUND AND SPHINX_FOUND)
 
 endif(BUILD_DOCS)
-
-
-if(BUILD_LATEX_DOCS)
-    include(UseLATEX)
-    add_subdirectory(specification)
-endif(BUILD_LATEX_DOCS)
