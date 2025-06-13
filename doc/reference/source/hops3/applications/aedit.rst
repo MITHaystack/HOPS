@@ -31,7 +31,7 @@ OPTION FLAGS:
     program exits immediately.  Aedit can thus be
     very simply used as a filter.  For more complex
     operations in "batch" mode, use runfiles and the
--r option.
+    -r option.
 
 ``-r runfile``
     Aedit supports runfiles (consisting of aedit

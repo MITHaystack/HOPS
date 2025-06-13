@@ -18,7 +18,7 @@ Currently, only **type 2 fourfit fringe files** are supported.
 - A future **version 6** is planned, offering higher precision.
 
 SYNTAX
------
+------
 
 .. code-block:: bash
 
