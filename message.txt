@@ -1,0 +1,80 @@
+INFO: Found 5 header file(s) to process
+INFO: Starting clangd LSP client...
+INFO: Initializing LLM enhancement with endpoint: http://localhost:11434/v1
+INFO: Collecting project context from directory: source/cpp_src/Message
+INFO: Collecting project context from directory: source/cpp_src/Message
+INFO: Found 11 source files to analyze
+INFO: Context collection complete: 161 comments, 116 variables, 0 acronyms
+INFO: Loading extra context from file: acronyms.txt
+INFO: Loading extra context from: acronyms.txt
+INFO: Loaded 100 extra context entries
+INFO: Project context loaded for LLM enhancement
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Message.hh
+WARNING: Reached maximum symbol limit (20), stopping
+INFO: Found 0 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Message.hh
+INFO: Found 0 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Message.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Message.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Message.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh
+WARNING: No hover info for function GetInstance at 66:8
+WARNING: No hover info for function Enable at 75:8
+WARNING: No hover info for function Disable at 77:8
+WARNING: No hover info for function IsEnabled at 79:8
+WARNING: No hover info for function Lock at 86:8
+WARNING: No hover info for function Unlock at 88:8
+WARNING: No hover info for function AddEntry at 90:8
+WARNING: No hover info for function GetEvents at 93:8
+WARNING: No hover info for function DumpEvents at 95:8
+WARNING: Reached maximum symbol limit (20), stopping
+INFO: Found 9 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh
+INFO: Found 9 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for GetInstance using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for Enable using LLM...
+INFO: Enhancing comment for Disable using LLM...
+INFO: Enhancing comment for IsEnabled using LLM...
+INFO: Enhancing comment for Lock using LLM...
+INFO: Enhancing comment for Unlock using LLM...
+INFO: Enhancing comment for AddEntry using LLM...
+INFO: Enhancing comment for GetEvents using LLM...
+INFO: Enhancing comment for DumpEvents using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_SelfName.hh
+WARNING: No hover info for function str_end at 20:0
+WARNING: No hover info for function str_slash at 25:0
+WARNING: No hover info for function r_slash at 30:0
+WARNING: No hover info for function file_basename at 35:0
+INFO: Found 4 functions and 0 classes in /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_SelfName.hh
+INFO: Found 4 functions and 0 classes in /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_SelfName.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for str_slash using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for r_slash using LLM...
+INFO: Enhancing comment for file_basename using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_SelfName.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_SelfName.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_TestAssertions.hh
+WARNING: No symbols found in /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_TestAssertions.hh
+INFO: No functions or classes found in /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_TestAssertions.hh
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Timer.hh
+WARNING: No hover info for function SetName at 30:8
+WARNING: No hover info for function GetName at 36:8
+WARNING: No hover info for function MeasureWallclockTime at 43:8
+WARNING: No hover info for function MeasureProcessTime at 49:8
+WARNING: No hover info for function MeasureThreadTime at 55:8
+WARNING: No hover info for function Start at 61:8
+WARNING: No hover info for function Stop at 67:8
+WARNING: No hover info for function GetDurationAsTimeSpec at 73:8
+WARNING: No hover info for function GetDurationAsDouble at 79:8
+WARNING: No hover info for function GetTimeSinceStart at 82:8
+WARNING: No hover info for function GetTimeDifference at 90:8
+INFO: Found 11 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Timer.hh
+INFO: Found 11 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Timer.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Timer.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Message/include/MHO_Timer.hh.bak
+
+Processed 5/5 header files successfully
