@@ -14,6 +14,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_PassbandBuilder
+ */
 class MHO_PassbandBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -27,6 +30,11 @@ class MHO_PassbandBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_PassbandBuilder(){};
 
+        /**
+         * @brief Constructs and initializes the passband builder object.
+         * 
+         * @return bool indicating success/failure
+         */
         virtual bool Build() override;
 
     private:

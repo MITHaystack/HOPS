@@ -38,6 +38,11 @@
 */
 
 //these constants are needed to locate the class name within a template decl.
+/**
+ * @brief Returns a compiler-specific prefix string for template type T.
+ * 
+ * @return std::string containing compiler-specific prefix for template type T.
+ */
 template< typename T > std::string compiler_func_prefix()
 {
     #if defined(__clang__)
@@ -51,6 +56,11 @@ template< typename T > std::string compiler_func_prefix()
 }
 
 //these constants are needed to locate the end of the class name within a template decl.
+/**
+ * @brief Returns a string suffix for function names based on compiler type.
+ * 
+ * @return std::string containing either "]" (for Clang) or ";" (for GCC).
+ */
 template< typename T > std::string compiler_func_suffix()
 {
     #if defined(__clang__)
@@ -64,6 +74,11 @@ template< typename T > std::string compiler_func_suffix()
 }
 
 //the constants refer to the compiler macros which print out a function's full name
+/**
+ * @brief Returns a string containing the full name of the current function using compiler-specific macros.
+ * 
+ * @return std::string containing the full name of the current function.
+ */
 template< typename T > std::string compiler_func_function()
 {
     #if defined(__clang__)
@@ -77,6 +92,11 @@ template< typename T > std::string compiler_func_function()
 }
 
 //does the bare minimum processing on the compiler macro output to strip out a name for XClassType
+/**
+ * @brief Returns a string representation of the compiler name for given template type XClassType.
+ * 
+ * @return std::string containing the compiler name prefixed by type information
+ */
 template< typename XClassType > std::string MHO_RawCompilerName()
 {
     std::string prefix = compiler_func_prefix< XClassType >();
@@ -89,6 +109,11 @@ template< typename XClassType > std::string MHO_RawCompilerName()
 };
 
 //same as MHO_RawCompilerName, except space characters are stripped out by regex
+/**
+ * @brief Extracts and strips spaces from class name in compiler function for given XClassType.
+ * 
+ * @return String containing class name without spaces
+ */
 template< typename XClassType > std::string MHO_RawCompilerNameWithoutSpaces()
 {
     std::string prefix = compiler_func_prefix< XClassType >();
@@ -103,6 +128,11 @@ template< typename XClassType > std::string MHO_RawCompilerNameWithoutSpaces()
 };
 
 //extracts the name of a class when used within a std::tuple<>
+/**
+ * @brief Extracts and returns the name of a class when used within a std::tuple<.
+ * 
+ * @return std::string containing the class name without spaces
+ */
 template< typename XClassType > std::string MHO_TupleElementNameWithoutSpaces()
 {
     //this is needed because GCC represents a std::string when used within
@@ -134,6 +164,11 @@ template< typename XClassType > std::string MHO_TupleElementNameWithoutSpaces()
 //this template class is what we use to determine the name of class throughout the
 //rest of the code, it does some string processing to make sure std::string
 //comes out with a sensible name whenever it appears
+/**
+ * @brief Determines and returns the name of class XClassType as a string for postprocessing in MHO.
+ * 
+ * @return std::string containing the name of class XClassType
+ */
 template< typename XClassType > std::string MHO_ClassName()
 {
     std::string class_name = MHO_RawCompilerNameWithoutSpaces< XClassType >();
@@ -181,6 +216,11 @@ template< typename XClassType > std::string MHO_ClassName()
 //specialization for std::string to keep things from
 //getting really unwieldly, aka:
 // std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >
+/**
+ * @brief Specialization for std::string to return class name prefix.
+ * 
+ * @return std::string containing compiler-specific prefix for class name.
+ */
 template<> inline std::string MHO_ClassName< std::string >()
 {
     std::string name = "std::string";

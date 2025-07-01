@@ -16,6 +16,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_DataSelectionBuilder
+ */
 class MHO_DataSelectionBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -29,6 +32,11 @@ class MHO_DataSelectionBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_DataSelectionBuilder(){};
 
+        /**
+         * @brief Constructs and initializes the data selection builder using provided toolbox and fringe data.
+         * 
+         * @return Return value (bool)
+         */
         virtual bool Build() override;
 
     private:

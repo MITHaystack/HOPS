@@ -15,6 +15,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_ChannelLabelerBuilder
+ */
 class MHO_ChannelLabelerBuilder: public MHO_OperatorBuilder, public MHO_ChannelQuantity
 {
     public:
@@ -29,6 +32,11 @@ class MHO_ChannelLabelerBuilder: public MHO_OperatorBuilder, public MHO_ChannelQ
 
         virtual ~MHO_ChannelLabelerBuilder(){};
 
+        /**
+         * @brief Initializes and builds the channel labeler builder object.
+         * 
+         * @return bool indicating success of initialization.
+         */
         virtual bool Build() override;
 
     private:

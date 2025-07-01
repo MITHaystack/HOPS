@@ -51,34 +51,97 @@ using hops::eJSONTags;
 using hops::eJSONWithAxes;
 using hops::eJSONWithLabels;
 
+/**
+ * @brief Fills a JSON object with metadata from a Taggable map.
+ * 
+ * @param map Const reference to MHO_Taggable map containing metadata.
+ * @param obj_tags (mho_json&)
+ */
 inline void FillJSONFromTaggable(const MHO_Taggable* map, mho_json& obj_tags)
 {
     bool ok;
     obj_tags = map->GetMetaDataAsJSON();
 }
 
+/**
+ * @brief Class MHO_JSONConverter
+ */
 class MHO_JSONConverter
 {
     public:
         MHO_JSONConverter(): fLOD(eJSONBasic), fRank(0), fRawByteSize(0), fRawData(nullptr), fRawDataDescriptor(""){};
         virtual ~MHO_JSONConverter(){};
 
+        /**
+         * @brief Setter for level of detail
+         * 
+         * @param level New level of detail (eJSONBasicLevel, eJSONTagsLevel, or eJSONAxesLevel)
+         */
         void SetLevelOfDetail(int level) { fLOD = level; };
 
+        /**
+         * @brief Getter for json
+         * 
+         * @return Pointer to mho_json object
+         */
         mho_json* GetJSON() { return &fJSON; }
 
+        /**
+         * @brief Setter for object to convert
+         * 
+         * @param !obj Parameter description
+         * @note This is a virtual function.
+         */
         virtual void SetObjectToConvert(MHO_Serializable* /*!obj*/) = 0;
+        /**
+         * @brief Constructs a JSON representation if fContainer is not nullptr.
+         * @note This is a virtual function.
+         */
         virtual void ConstructJSONRepresentation() = 0;
 
         //for access to raw data in table containers
         //this is a bit of a hack for 'hops2flat'
+        /**
+         * @brief Getter for rank
+         * 
+         * @return Current value of fRank as std::size_t
+         */
         std::size_t GetRank() const {return fRank;}
+        /**
+         * @brief Getter for raw byte size
+         * 
+         * @return std::size_t representing the raw byte size.
+         */
         std::size_t GetRawByteSize() const {return fRawByteSize;};
+        /**
+         * @brief Getter for raw data
+         * 
+         * @return Pointer to char representing the raw data.
+         */
         const char* GetRawData() const {return fRawData;};
+        /**
+         * @brief Getter for raw data descriptor
+         * 
+         * @return Current raw data descriptor as a string.
+         */
         std::string GetRawDataDescriptor() const {return fRawDataDescriptor;}
 
     protected:
         //helper functions for generic data insertion for elements of a list
+        /**
+         * @brief Inserts a complex value into a JSON data array.
+         * 
+         * @tparam XValueType Template parameter XValueType
+         * @param value The complex value to insert.
+         * @param data (mho_json&)
+         */
+        /**
+         * @brief Inserts an element into a JSON data list.
+         * 
+         * @param value The value to insert of type XValueType.
+         * @param data (mho_json&)
+         * @return No return value (void)
+         */
         template< typename XValueType > void InsertElement(const XValueType& value, mho_json& data) { data.push_back(value); }
 
         //specializations for complex<> element data insertion, needed b/c mho_json doesn't have a first-class complex type
@@ -87,11 +150,23 @@ class MHO_JSONConverter
             data.push_back({value.real(), value.imag()});
         }
 
+        /**
+         * @brief Inserts a complex double value into an mho_json data structure.
+         * 
+         * @param value The complex double value to insert.
+         * @param data (mho_json&)
+         */
         void InsertElement(const std::complex< double >& value, mho_json& data)
         {
             data.push_back({value.real(), value.imag()});
         }
 
+        /**
+         * @brief Inserts a complex float value into the given mho_json data structure.
+         * 
+         * @param value The complex float value to insert.
+         * @param data (mho_json&)
+         */
         void InsertElement(const std::complex< float >& value, mho_json& data) { data.push_back({value.real(), value.imag()}); }
 
         //data
@@ -105,6 +180,9 @@ class MHO_JSONConverter
         std::string fRawDataDescriptor;
 };
 
+/**
+ * @brief Class MHO_ContainerJSONConverter
+ */
 template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO_JSONConverter
 {
     public:
@@ -117,8 +195,18 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
 
         virtual ~MHO_ContainerJSONConverter() {}
 
+        /**
+         * @brief Setter for object to convert
+         * 
+         * @param obj Pointer to an MHO_Serializable object to be converted
+         * @note This is a virtual function.
+         */
         virtual void SetObjectToConvert(MHO_Serializable* obj) { fContainer = dynamic_cast< XContainerType* >(obj); };
 
+        /**
+         * @brief Constructs a JSON representation if fContainer is not nullptr.
+         * @note This is a virtual function.
+         */
         virtual void ConstructJSONRepresentation()
         {
             if(fContainer != nullptr)
@@ -132,6 +220,12 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
 
     protected:
         //unspecialized template doesn't do much
+        /**
+         * @brief Constructs a JSON representation for an object of type XCheckType.
+         * 
+         * @param obj Pointer to the object of type XCheckType.
+         * @return No return value (void)
+         */
         template< typename XCheckType > void ConstructJSON(const XCheckType* obj)
         {
             fJSON.clear();
@@ -151,6 +245,12 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
         //that we actually care about
 
         //scalar specialization
+        /**
+         * @brief Constructs a JSON representation for an XContainerType object.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param obj Pointer to const XContainerType object.
+         */
         template< typename XCheckType = XContainerType >
         typename std::enable_if< std::is_base_of< MHO_ScalarContainerBase, XCheckType >::value, void >::type
         ConstructJSON(const XContainerType* obj)
@@ -190,6 +290,12 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
         };
 
         //vector specialization (but not an axis!)
+        /**
+         * @brief Constructs a JSON representation for an XContainerType object.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param obj Pointer to the const XContainerType object to construct JSON from.
+         */
         template< typename XCheckType = XContainerType >
         typename std::enable_if< (std::is_base_of< MHO_VectorContainerBase, XCheckType >::value &&
                                   !std::is_base_of< MHO_AxisBase, XCheckType >::value),
@@ -237,6 +343,12 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
         };
 
         //axis specialization
+        /**
+         * @brief Constructs a JSON representation for an XContainerType object.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param obj Pointer to const XContainerType object.
+         */
         template< typename XCheckType = XContainerType >
         typename std::enable_if< std::is_base_of< MHO_AxisBase, XCheckType >::value, void >::type
         ConstructJSON(const XContainerType* obj)
@@ -282,6 +394,12 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
         };
 
         //table specialization
+        /**
+         * @brief Constructs a JSON representation for the given XContainerType object.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param obj Pointer to the const XContainerType object to construct JSON from.
+         */
         template< typename XCheckType = XContainerType >
         typename std::enable_if< std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         ConstructJSON(const XContainerType* obj)
@@ -337,12 +455,20 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
             fRawDataDescriptor = MHO_NumpyTypeCode< typename XContainerType::value_type >();
         };
 
+        /**
+         * @brief Class AxisDumper
+         */
         class AxisDumper
         {
             public:
                 AxisDumper(mho_json* json_ptr, int level): fAxisJSON(json_ptr), fIndex(0), fLOD(level){};
                 ~AxisDumper(){};
 
+                /**
+                 * @brief Setter for index
+                 * 
+                 * @param idx New value to set for internal index
+                 */
                 void SetIndex(std::size_t idx) { fIndex = idx; }
 
                 template< typename XAxisType > void operator()(const XAxisType& axis)
@@ -404,6 +530,9 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
         };
 };
 
+/**
+ * @brief Class MHO_ContainerJSONConverter<MHO_ObjectTags>
+ */
 template<> class MHO_ContainerJSONConverter< MHO_ObjectTags >: public MHO_JSONConverter
 {
     public:
@@ -416,8 +545,18 @@ template<> class MHO_ContainerJSONConverter< MHO_ObjectTags >: public MHO_JSONCo
 
         virtual ~MHO_ContainerJSONConverter() {}
 
+        /**
+         * @brief Setter for object to convert
+         * 
+         * @param obj Pointer to an MHO_Serializable object to be converted
+         * @note This is a virtual function.
+         */
         virtual void SetObjectToConvert(MHO_Serializable* obj) { fContainer = dynamic_cast< MHO_ObjectTags* >(obj); };
 
+        /**
+         * @brief Constructs a JSON representation if fContainer is not nullptr.
+         * @note This is a virtual function.
+         */
         virtual void ConstructJSONRepresentation()
         {
             if(fContainer != nullptr)
@@ -427,6 +566,11 @@ template<> class MHO_ContainerJSONConverter< MHO_ObjectTags >: public MHO_JSONCo
         }
 
     private:
+        /**
+         * @brief Constructs a JSON representation for an object and its container if it exists.
+         * 
+         * @param obj Pointer to an MHO_ObjectTags object.
+         */
         void ConstructJSON(MHO_ObjectTags* obj)
         {
             fJSON.clear();

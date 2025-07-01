@@ -21,6 +21,9 @@ namespace hops
 
 typedef uint32_t MHO_ClassVersion;
 
+/**
+ * @brief Class MHO_ClassIdentity
+ */
 struct MHO_ClassIdentity
 {
 

@@ -17,6 +17,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_AbsoluteValue
+ */
 template< class XArrayType > class MHO_AbsoluteValue: public MHO_UnaryFunctor< XArrayType >
 {
     public:

@@ -18,6 +18,9 @@ namespace hops
  * (e.g float -> double or double -> etc.)
  */
 
+/**
+ * @brief Class MHO_ElementTypeCaster
+ */
 template< class XArgType1, class XArgType2 > //args implicitly assumed to inherit from MHO_NDArrayWrapper
 class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgType2 >
 {
@@ -26,8 +29,24 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
         virtual ~MHO_ElementTypeCaster(){};
 
     protected:
+        /**
+         * @brief Initializes implementation using input and output arguments.
+         * 
+         * @param !in Pointer to constant input argument of type XArgType1
+         * @param !out Pointer to output argument of type XArgType2
+         * @return Boolean indicating success or failure of initialization
+         * @note This is a virtual function.
+         */
         virtual bool InitializeImpl(const XArgType1* /*!in*/, XArgType2* /*!out*/) override { return true; }; //no op
 
+        /**
+         * @brief Copies input array to output array and resizes it if necessary.
+         * 
+         * @param in Input array to be copied.
+         * @param out (XArgType2*)
+         * @return True if copying was successful, false otherwise.
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteImpl(const XArgType1* in, XArgType2* out) override
         {
             if(in != nullptr && out != nullptr)
@@ -50,6 +69,14 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
 
     private:
         //default...does nothing
+        /**
+         * @brief Copies axes and tags from an input XArrayType1 to an output XArrayType2.
+         * 
+         * @tparam XArrayType1 Template parameter XArrayType1
+         * @tparam XArrayType2 Template parameter XArrayType2
+         * @param !in Parameter description
+         * @param !out Parameter description
+         */
         template< class XArrayType1, class XArrayType2 >
         typename std::enable_if< !(std::is_base_of< MHO_TableContainerBase, XArrayType1 >::value &&
                                    std::is_base_of< MHO_TableContainerBase, XArrayType2 >::value),
@@ -57,6 +84,14 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
         IfTableCopyAxesAndTags(const XArrayType1* /*!in*/, XArrayType2* /*!out*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
+        /**
+         * @brief Copies axes and tags from input XArrayType1 to output XArrayType2 if they inherit from MHO_TableContainer.
+         * 
+         * @tparam XArrayType1 Template parameter XArrayType1
+         * @tparam XArrayType2 Template parameter XArrayType2
+         * @param in Input array of type XArrayType1
+         * @param out Output array of type XArrayType2
+         */
         template< class XArrayType1, class XArrayType2 >
         typename std::enable_if< std::is_base_of< MHO_TableContainerBase, XArrayType1 >::value &&
                                      std::is_base_of< MHO_TableContainerBase, XArrayType2 >::value,

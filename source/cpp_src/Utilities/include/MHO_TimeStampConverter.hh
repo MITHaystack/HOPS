@@ -21,6 +21,9 @@ namespace hops
  * in both directions
  */
 
+/**
+ * @brief Class MHO_TimeStampConverter
+ */
 class MHO_TimeStampConverter
 {
     public:

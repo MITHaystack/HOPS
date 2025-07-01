@@ -26,6 +26,13 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
         virtual ~MHO_FastFourierTransformUtilities(){};
 
         //conjugate an array
+        /**
+         * @brief Conjugates each element in a complex array.
+         * 
+         * @param N Size of the input array
+         * @param array Input/output array of complex numbers
+         * @note This is a static function.
+         */
         static void Conjugate(unsigned int N, std::complex< XFloatType >* array)
         {
             for(unsigned int i = 0; i < N; i++)
@@ -35,6 +42,14 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
         }
 
         //strided, conjugate array
+        /**
+         * @brief Conjugates each element in a complex array.
+         * 
+         * @param N Size of the array
+         * @param array Input/output complex array to conjugate
+         * @param stride (unsigned int)
+         * @note This is a static function.
+         */
         static void Conjugate(unsigned int N, std::complex< XFloatType >* array, unsigned int stride)
         {
             for(unsigned int i = 0; i < N; i++)
@@ -45,8 +60,22 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
 
         ////////////////////////////////////////////////////////////////////////
         //compute all the twiddle factors e^{i*2*pi/N} for 0 to N-1
+        /**
+         * @brief Compute twiddle factors for Fast Fourier Transform.
+         * 
+         * @param N Size of the transform (N).
+         * @param twiddle Output array to store computed twiddle factors.
+         * @note This is a static function.
+         */
         static void ComputeTwiddleFactors(unsigned int N, std::complex< XFloatType >* twiddle);
 
+        /**
+         * @brief Computes conjugate twiddle factors for given size N and stores them in provided array.
+         * 
+         * @param N Size of the transform (N must be a power of 2)
+         * @param conj_twiddle Output array to store the computed conjugate twiddle factors
+         * @note This is a static function.
+         */
         static void ComputeConjugateTwiddleFactors(unsigned int N, std::complex< XFloatType >* conj_twiddle)
         {
             //using std::cos and std::sin is more accurate than the recursive method
@@ -59,8 +88,22 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
         //compute only the twiddle factors we need to compute them on the fly
         //e.g e^{ix}, e^{2ix}, e^{4ix}, e^{8ix}, etc up to e^{Nix} )
         //that way we only need log2N storage
+        /**
+         * @brief Computes twiddle factors for Fast Fourier Transform up to log2N.
+         * 
+         * @param log2N Number of bits in N (N = 2^log2N)
+         * @param twiddle Array to store computed twiddle factors
+         * @note This is a static function.
+         */
         static void ComputeTwiddleFactorBasis(unsigned int log2N, std::complex< XFloatType >* twiddle);
 
+        /**
+         * @brief Computes conjugate twiddle factor basis for given log2N and stores result in conj_twiddle.
+         * 
+         * @param log2N Number of bits to divide N by 2 for twiddle factors
+         * @param conj_twiddle (std::complex< XFloatType )*
+         * @note This is a static function.
+         */
         static void ComputeConjugateTwiddleFactorBasis(unsigned int log2N, std::complex< XFloatType >* conj_twiddle)
         {
             ComputeTwiddleFactors(log2N, conj_twiddle);
@@ -71,6 +114,15 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
 
         ////////////////////////////////////////////////////////////////////////
         //RADIX-2
+        /**
+         * @brief Conjugates a strided array using precomputed twiddle factors for Radix-2 FFT.
+         * 
+         * @param N Size of the data array
+         * @param data Input/output array of complex numbers to conjugate
+         * @param twiddle Array of precomputed twiddle factors
+         * @param stride Stride between elements in the input array
+         * @note This is a static function.
+         */
         static void FFTRadixTwo_DIT(unsigned int N, XFloatType* data, XFloatType* twiddle, unsigned int stride = 1)
         {
             //decimation in time, N is assumed to be a power of 2
@@ -109,6 +161,14 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
             }
         }
 
+        /**
+         * @brief Function ButterflyRadixTwo_CooleyTukey
+         * 
+         * @param H0 (XFloatType*)
+         * @param H1 (XFloatType*)
+         * @param W (XFloatType*)
+         * @note This is a static function.
+         */
         static inline void ButterflyRadixTwo_CooleyTukey(XFloatType* H0, XFloatType* H1, XFloatType* W)
         {
             ////////////////////////////////////////////////////////////////////////
@@ -144,6 +204,15 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
         }
 
         //RADIX-2 DIF
+        /**
+         * @brief Performs Radix-2 Decimation In Frequency (DIF) FFT using conjugate array and twiddle factors.
+         * 
+         * @param N Size of the data array
+         * @param data Input/output complex data array
+         * @param twiddle Twiddle factor array
+         * @param stride Stride for accessing data elements
+         * @note This is a static function.
+         */
         static void FFTRadixTwo_DIF(unsigned int N, XFloatType* data, XFloatType* twiddle, unsigned int stride = 1)
         {
             //decimation in frequency, N is assumed to be a power of 2
@@ -184,6 +253,14 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
             }
         }
 
+        /**
+         * @brief Function ButterflyRadixTwo_GentlemanSande
+         * 
+         * @param H0 (XFloatType*)
+         * @param H1 (XFloatType*)
+         * @param W (XFloatType*)
+         * @note This is a static function.
+         */
         static inline void ButterflyRadixTwo_GentlemanSande(XFloatType* H0, XFloatType* H1, XFloatType* W)
         {
             ////////////////////////////////////////////////////////////////////////
@@ -230,12 +307,30 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
         }
 
         //wrappers for complex array
+        /**
+         * @brief Conjugates a strided array using precomputed twiddle factors for Radix-2 DIT FFT.
+         * 
+         * @param N Size of the data array
+         * @param data Input/output complex data array with given stride
+         * @param twiddle Precomputed twiddle factors array
+         * @param stride Stride for accessing data elements
+         * @note This is a static function.
+         */
         static void FFTRadixTwo_DIT(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle,
                                     unsigned int stride = 1)
         {
             FFTRadixTwo_DIT(N, (XFloatType*)&(data[0]), (XFloatType*)&(twiddle[0]), stride);
         }
 
+        /**
+         * @brief Conjugates a strided array and computes twiddle factors for FFT Radix-2 DIF.
+         * 
+         * @param N Size of the data array
+         * @param data Input/output complex data array
+         * @param twiddle Output twiddle factors array
+         * @param stride Stride for accessing data elements
+         * @note This is a static function.
+         */
         static void FFTRadixTwo_DIF(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle,
                                     unsigned int stride = 1)
         {
@@ -246,6 +341,13 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
         //Bluestein/Chirp-Z Algorithm for arbitrary N
         //"Inside the FFT Black Box", E. Chu and A. George, Ch. 13, CRC Press, 2000
 
+        /**
+         * @brief Function ComputeBluesteinArraySize
+         * 
+         * @param N (unsigned int)
+         * @return Return value (unsigned int)
+         * @note This is a static function.
+         */
         static unsigned int ComputeBluesteinArraySize(unsigned int N) //returns smallest M = 2^p >= (2N - 2);
         {
             unsigned int M = 2 * (N - 1);
@@ -260,9 +362,26 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
         }
 
         //scale factor array must be length N
+        /**
+         * @brief Function ComputeBluesteinScaleFactors
+         * 
+         * @param N (unsigned int)
+         * @param scale (std::complex< XFloatType >*)
+         * @note This is a static function.
+         */
         static void ComputeBluesteinScaleFactors(unsigned int N, std::complex< XFloatType >* scale);
 
         //twiddle and circulant array must be length M = 2^p >= (2N - 2), where N is the data length
+        /**
+         * @brief Function ComputeBluesteinCirculantVector
+         * 
+         * @param N (unsigned int)
+         * @param M (unsigned int)
+         * @param twiddle (std::complex< XFloatType >*)
+         * @param scale (std::complex< XFloatType >*)
+         * @param circulant (std::complex< XFloatType >*)
+         * @note This is a static function.
+         */
         static void ComputeBluesteinCirculantVector(unsigned int N, unsigned int M, std::complex< XFloatType >* twiddle,
                                                     std::complex< XFloatType >* scale, std::complex< XFloatType >* circulant)
         {
@@ -293,6 +412,20 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
         }
 
         //Bluestein algorithm for arbitrary length, N is length of the data, strided data access
+        /**
+         * @brief Function FFTBluestein
+         * 
+         * @param N (unsigned int)
+         * @param M (unsigned int)
+         * @param data (std::complex< XFloatType >*)
+         * @param twiddle (std::complex< XFloatType >*)
+         * @param conj_twiddle (std::complex< XFloatType >*)
+         * @param scale (std::complex< XFloatType >*)
+         * @param circulant (std::complex< XFloatType >*)
+         * @param workspace (std::complex< XFloatType >*)
+         * @param stride (unsigned int)
+         * @note This is a static function.
+         */
         static void FFTBluestein(unsigned int N, unsigned int M, std::complex< XFloatType >* data,
                                  std::complex< XFloatType >* twiddle, std::complex< XFloatType >* conj_twiddle,
                                  std::complex< XFloatType >* scale, std::complex< XFloatType >* circulant,
@@ -343,6 +476,13 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
 ////////////////////////////////////////////////////////////////////////////////
 //template specializations for float, double, and long double
 
+/**
+ * @brief Function MHO_FastFourierTransformUtilities<float>::ComputeTwiddleFactors
+ * 
+ * @param N (unsigned int)
+ * @param twiddle (std::complex< float >*)
+ * @return Return value (void MHO_FastFourierTransformUtilities< float)
+ */
 template<>
 inline void MHO_FastFourierTransformUtilities< float >::ComputeTwiddleFactors(unsigned int N, std::complex< float >* twiddle)
 {
@@ -357,6 +497,13 @@ inline void MHO_FastFourierTransformUtilities< float >::ComputeTwiddleFactors(un
     }
 }
 
+/**
+ * @brief Function MHO_FastFourierTransformUtilities<double>::ComputeTwiddleFactors
+ * 
+ * @param N (unsigned int)
+ * @param twiddle (std::complex< double >*)
+ * @return Return value (void MHO_FastFourierTransformUtilities< double)
+ */
 template<>
 inline void MHO_FastFourierTransformUtilities< double >::ComputeTwiddleFactors(unsigned int N, std::complex< double >* twiddle)
 {
@@ -371,6 +518,13 @@ inline void MHO_FastFourierTransformUtilities< double >::ComputeTwiddleFactors(u
     }
 }
 
+/**
+ * @brief Function MHO_FastFourierTransformUtilities<long double>::ComputeTwiddleFactors
+ * 
+ * @param N (unsigned int)
+ * @param twiddle (std::complex< long double >*)
+ * @return Return value (void MHO_FastFourierTransformUtilities< long double)
+ */
 template<>
 inline void MHO_FastFourierTransformUtilities< long double >::ComputeTwiddleFactors(unsigned int N,
                                                                                     std::complex< long double >* twiddle)
@@ -390,6 +544,13 @@ inline void MHO_FastFourierTransformUtilities< long double >::ComputeTwiddleFact
 
 //template specializations for float, double, and long double
 
+/**
+ * @brief Function MHO_FastFourierTransformUtilities<float>::ComputeTwiddleFactorBasis
+ * 
+ * @param log2N (unsigned int)
+ * @param twiddle (std::complex< float >*)
+ * @return Return value (void MHO_FastFourierTransformUtilities< float)
+ */
 template<>
 inline void MHO_FastFourierTransformUtilities< float >::ComputeTwiddleFactorBasis(unsigned int log2N,
                                                                                   std::complex< float >* twiddle)
@@ -404,6 +565,13 @@ inline void MHO_FastFourierTransformUtilities< float >::ComputeTwiddleFactorBasi
     }
 }
 
+/**
+ * @brief Function MHO_FastFourierTransformUtilities<double>::ComputeTwiddleFactorBasis
+ * 
+ * @param log2N (unsigned int)
+ * @param twiddle (std::complex< double >*)
+ * @return Return value (void MHO_FastFourierTransformUtilities< double)
+ */
 template<>
 inline void MHO_FastFourierTransformUtilities< double >::ComputeTwiddleFactorBasis(unsigned int log2N,
                                                                                    std::complex< double >* twiddle)
@@ -418,6 +586,13 @@ inline void MHO_FastFourierTransformUtilities< double >::ComputeTwiddleFactorBas
     }
 }
 
+/**
+ * @brief Function MHO_FastFourierTransformUtilities<long double>::ComputeTwiddleFactorBasis
+ * 
+ * @param log2N (unsigned int)
+ * @param twiddle (std::complex< long double >*)
+ * @return Return value (void MHO_FastFourierTransformUtilities< long double)
+ */
 template<>
 inline void MHO_FastFourierTransformUtilities< long double >::ComputeTwiddleFactorBasis(unsigned int log2N,
                                                                                         std::complex< long double >* twiddle)
@@ -434,6 +609,13 @@ inline void MHO_FastFourierTransformUtilities< long double >::ComputeTwiddleFact
 
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @brief Function MHO_FastFourierTransformUtilities<float>::ComputeBluesteinScaleFactors
+ * 
+ * @param N (unsigned int)
+ * @param scale (std::complex< float >*)
+ * @return Return value (void MHO_FastFourierTransformUtilities< float)
+ */
 template<>
 inline void MHO_FastFourierTransformUtilities< float >::ComputeBluesteinScaleFactors(unsigned int N,
                                                                                      std::complex< float >* scale)
@@ -458,6 +640,13 @@ inline void MHO_FastFourierTransformUtilities< float >::ComputeBluesteinScaleFac
     //factors when performing the actual FFT
 }
 
+/**
+ * @brief Function MHO_FastFourierTransformUtilities<double>::ComputeBluesteinScaleFactors
+ * 
+ * @param N (unsigned int)
+ * @param scale (std::complex< double >*)
+ * @return Return value (void MHO_FastFourierTransformUtilities< double)
+ */
 template<>
 inline void MHO_FastFourierTransformUtilities< double >::ComputeBluesteinScaleFactors(unsigned int N,
                                                                                       std::complex< double >* scale)
@@ -482,6 +671,13 @@ inline void MHO_FastFourierTransformUtilities< double >::ComputeBluesteinScaleFa
     //factors when performing the actual FFT
 }
 
+/**
+ * @brief Function MHO_FastFourierTransformUtilities<long double>::ComputeBluesteinScaleFactors
+ * 
+ * @param N (unsigned int)
+ * @param scale (std::complex< long double >*)
+ * @return Return value (void MHO_FastFourierTransformUtilities< long double)
+ */
 template<>
 inline void MHO_FastFourierTransformUtilities< long double >::ComputeBluesteinScaleFactors(unsigned int N,
                                                                                            std::complex< long double >* scale)

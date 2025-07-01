@@ -32,6 +32,9 @@ namespace hops
  * Thu 13 Aug 2020 02:53:11 PM EDT
  */
 
+/**
+ * @brief Class MHO_NDArrayWrapper
+ */
 template< typename XValueType, std::size_t RANK >
 class MHO_NDArrayWrapper
     : public MHO_ExtensibleElement //any and all extensions are purely a runtime concept and do NOT get streamed for I/O
@@ -63,11 +66,29 @@ class MHO_NDArrayWrapper
         virtual ~MHO_NDArrayWrapper(){};
 
         //clone functionality
+        /**
+         * @brief Creates a deep copy of this MHO_NDArrayWrapper object.
+         * 
+         * @return A new MHO_NDArrayWrapper instance containing a clone of this object's data.
+         */
         MHO_NDArrayWrapper* Clone() { return new MHO_NDArrayWrapper(*this); }
 
         //resize function -- destroys contents
+        /**
+         * @brief Destroys contents and resizes using externally managed dimensions.
+         * 
+         * @param dim Pointer to external dimension array.
+         * @note This is a virtual function.
+         */
         virtual void Resize(const std::size_t* dim) { Construct(nullptr, dim); }
 
+        /**
+         * @brief Resize function that destroys contents and sets pointer to externally managed array with associated dimensions.
+         * 
+         * @tparam XDimSizeTypeS Template parameter XDimSizeTypeS
+         * @param dim Input dimensions as variadic template XDimSizeTypeS...
+         * @return void
+         */
         template< typename... XDimSizeTypeS >
         typename std::enable_if< (sizeof...(XDimSizeTypeS) == RANK), void >::type Resize(XDimSizeTypeS... dim)
         {
@@ -76,16 +97,42 @@ class MHO_NDArrayWrapper
         }
 
         //set pointer to externally managed array with associated dimensions
+        /**
+         * @brief Setter for external data
+         * 
+         * @param ptr Pointer to externally managed XValueType array
+         * @param dim Array of dimension sizes
+         */
         void SetExternalData(XValueType* ptr, const std::size_t* dim) { Construct(ptr, dim); }
 
         //get the total size of the array
+        /**
+         * @brief Getter for rank
+         * 
+         * @return std::size_t representing the rank of the array
+         */
         std::size_t GetRank() const { return RANK; }
 
+        /**
+         * @brief Getter for size
+         * 
+         * @return The number of elements in the data.
+         */
         std::size_t GetSize() const { return fData.size(); };
 
         //get the dimensions/shape of the array
+        /**
+         * @brief Getter for dimensions
+         * 
+         * @return Pointer to std::size_t array representing dimensions
+         */
         const std::size_t* GetDimensions() const { return &(fDims[0]); }
 
+        /**
+         * @brief Getter for dimensions
+         * 
+         * @return Pointer to std::size_t array
+         */
         void GetDimensions(std::size_t* dim) const
         {
             for(std::size_t i = 0; i < RANK; i++)
@@ -94,8 +141,19 @@ class MHO_NDArrayWrapper
             }
         }
 
+        /**
+         * @brief Getter for dimension array
+         * 
+         * @return index_type&: Reference to the dimension array.
+         */
         index_type GetDimensionArray() const { return fDims; }
 
+        /**
+         * @brief Getter for dimension
+         * 
+         * @param param (std::size_t)
+         * @return Pointer to the first element of the dimension array.
+         */
         std::size_t GetDimension(std::size_t idx) const
         {
             if(idx < RANK)
@@ -109,8 +167,18 @@ class MHO_NDArrayWrapper
         }
 
         //get element strides
+        /**
+         * @brief Getter for strides
+         * 
+         * @return Pointer to the first element of fStrides array
+         */
         const std::size_t* GetStrides() const { return &(fStrides[0]); }
 
+        /**
+         * @brief Getter for strides
+         * 
+         * @return Pointer to std::size_t array
+         */
         void GetStrides(std::size_t* strd) const
         {
             for(std::size_t i = 0; i < RANK; i++)
@@ -571,18 +639,48 @@ namespace hops
 {
 
 //utilities ////////////////////////////////////////////////////////////////////
+/**
+ * @brief Checks if two arrays have the same rank.
+ * 
+ * @tparam XArrayType1 Template parameter XArrayType1
+ * @tparam XArrayType2 Template parameter XArrayType2
+ * @param !arr1 Parameter description
+ * @param !arr2 Parameter description
+ * @return True if both arrays have the same rank, false otherwise.
+ * @note This is a static function.
+ */
 template< class XArrayType1, class XArrayType2 >
 static bool HaveSameRank(const XArrayType1* /*!arr1*/, const XArrayType2* /*!arr2*/)
 {
     return (XArrayType1::rank::value == XArrayType2::rank::value);
 }
 
+/**
+ * @brief Checks if two arrays have the same number of elements.
+ * 
+ * @tparam XArrayType1 Template parameter XArrayType1
+ * @tparam XArrayType2 Template parameter XArrayType2
+ * @param arr1 First array to compare
+ * @param arr2 Second array to compare
+ * @return True if both arrays have the same size, false otherwise.
+ * @note This is a static function.
+ */
 template< class XArrayType1, class XArrayType2 >
 static bool HaveSameNumberOfElements(const XArrayType1* arr1, const XArrayType2* arr2)
 {
     return (arr1->GetSize() == arr2->GetSize());
 }
 
+/**
+ * @brief Function HaveSameDimensions
+ * 
+ * @tparam XArrayType1 Template parameter XArrayType1
+ * @tparam XArrayType2 Template parameter XArrayType2
+ * @param arr1 (const XArrayType1*)
+ * @param arr2 (const XArrayType2*)
+ * @return Return value (bool)
+ * @note This is a static function.
+ */
 template< class XArrayType1, class XArrayType2 >
 static bool HaveSameDimensions(const XArrayType1* arr1, const XArrayType2* arr2)
 {

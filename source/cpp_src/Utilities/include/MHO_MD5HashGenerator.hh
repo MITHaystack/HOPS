@@ -25,9 +25,15 @@ namespace hops
  */
 
 //forward declare our md5 hashing streamer (for plain old data types ((POD))
+/**
+ * @brief Class MHO_MD5HashGenerator
+ */
 class MHO_MD5HashGenerator;
 
 //template class for a single-type streamer, generic for most POD types
+/**
+ * @brief Class MHO_MD5HashGeneratorSingleType
+ */
 template< typename XValueType > class MHO_MD5HashGeneratorSingleType
 {
     public:
@@ -42,11 +48,26 @@ template< typename XValueType > class MHO_MD5HashGeneratorSingleType
         }
 
     protected:
+        /**
+         * @brief Getter for md5ctxptr
+         * 
+         * @return _picohash_md5_ctx_t* Pointer to the MD5 context structure.
+         * @note This is a virtual function.
+         */
         virtual _picohash_md5_ctx_t* GetMD5CTXPtr() = 0;
+        /**
+         * @brief Returns a reference to the current instance of MHO_MD5HashGenerator.
+         * 
+         * @return MHO_MD5HashGenerator&: Reference to the current instance
+         * @note This is a virtual function.
+         */
         virtual MHO_MD5HashGenerator& Self() = 0;
 };
 
 //specialization for string type
+/**
+ * @brief Class MHO_MD5HashGeneratorSingleType<std::string>
+ */
 template<> class MHO_MD5HashGeneratorSingleType< std::string >
 {
     public:
@@ -65,18 +86,41 @@ template<> class MHO_MD5HashGeneratorSingleType< std::string >
         }
 
     protected:
+        /**
+         * @brief Getter for md5ctxptr
+         * 
+         * @return _picohash_md5_ctx_t* Pointer to the MD5 context structure.
+         * @note This is a virtual function.
+         */
         virtual _picohash_md5_ctx_t* GetMD5CTXPtr() = 0;
+        /**
+         * @brief Returns a reference to the current instance of MHO_MD5HashGenerator.
+         * 
+         * @return MHO_MD5HashGenerator&: Reference to the current instance
+         * @note This is a virtual function.
+         */
         virtual MHO_MD5HashGenerator& Self() = 0;
 };
 
 //now declare a multi-type streamer with a variadic template parameter for the types to be streamed
+/**
+ * @brief Class MHO_MD5HashGeneratorMultiType
+ */
 template< typename... XValueTypeS > class MHO_MD5HashGeneratorMultiType;
 
 //declare the specialization for the base case of the recursion (in which the parameter XValueType is just a single type)
+/**
+ * @brief Class MHO_MD5HashGeneratorMultiType<XValueType>
+ * 
+ * @tparam XValueTypeS Template parameter XValueTypeS
+ */
 template< typename XValueType >
 class MHO_MD5HashGeneratorMultiType< XValueType >: public MHO_MD5HashGeneratorSingleType< XValueType >
 {};
 
+/**
+ * @brief Class MHO_MD5HashGeneratorMultiType<XValueType, XValueTypeS...>
+ */
 template< typename XValueType, typename... XValueTypeS >
 class MHO_MD5HashGeneratorMultiType< XValueType, XValueTypeS... >: public MHO_MD5HashGeneratorMultiType< XValueType >,
                                                                    public MHO_MD5HashGeneratorMultiType< XValueTypeS... >
@@ -88,6 +132,9 @@ typedef MHO_MD5HashGeneratorMultiType< bool, char, unsigned char, short, unsigne
     MHO_MD5HashGeneratorBasicTypes;
 
 //now declare the concrete class which does the work for file streams
+/**
+ * @brief Class MHO_MD5HashGenerator
+ */
 class MHO_MD5HashGenerator: public MHO_MD5HashGeneratorBasicTypes
 {
     public:
@@ -95,6 +142,9 @@ class MHO_MD5HashGenerator: public MHO_MD5HashGeneratorBasicTypes
 
         virtual ~MHO_MD5HashGenerator(){};
 
+        /**
+         * @brief Recursive function to initialize a game state.
+         */
         void Initialize()
         {
             _picohash_md5_init(&fHashStruct);
@@ -104,8 +154,16 @@ class MHO_MD5HashGenerator: public MHO_MD5HashGeneratorBasicTypes
             }
         }
 
+        /**
+         * @brief Finalizes the MD5 hash calculation and stores the result in fDigest.
+         */
         void Finalize() { _picohash_md5_final(&fHashStruct, (void*)fDigest); }
 
+        /**
+         * @brief Getter for digest
+         * 
+         * @return MD5 digest as a hexadecimal string
+         */
         std::string GetDigest()
         {
             std::stringstream ss;
@@ -120,6 +178,11 @@ class MHO_MD5HashGenerator: public MHO_MD5HashGeneratorBasicTypes
             return ss.str();
         }
 
+        /**
+         * @brief Getter for digest as uuid
+         * 
+         * @return MHO_UUID representing the MD5 digest
+         */
         MHO_UUID GetDigestAsUUID()
         {
             MHO_UUID uuid;
@@ -131,8 +194,19 @@ class MHO_MD5HashGenerator: public MHO_MD5HashGeneratorBasicTypes
         }
 
     protected:
+        /**
+         * @brief Getter for md5ctxptr
+         * 
+         * @return _picohash_md5_ctx_t* Pointer to the MD5 context structure.
+         * @note This is a virtual function.
+         */
         virtual _picohash_md5_ctx_t* GetMD5CTXPtr() override { return &fHashStruct; }
 
+        /**
+         * @brief Returns a reference to the current instance of MHO_MD5HashGenerator.
+         * 
+         * @return MHO_MD5HashGenerator&: Reference to the current instance
+         */
         MHO_MD5HashGenerator& Self() override { return *this; }
 
         _picohash_md5_ctx_t fHashStruct;

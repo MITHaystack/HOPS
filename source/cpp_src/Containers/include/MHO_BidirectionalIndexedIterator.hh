@@ -19,6 +19,9 @@ namespace hops
  * memory for an array slice, we need to ensure that the proper strided access takes place.
  */
 
+/**
+ * @brief Class MHO_BidirectionalIndexedIterator
+ */
 template< typename XValueType, std::size_t RANK > class MHO_BidirectionalIndexedIterator
 {
     public:

@@ -21,6 +21,9 @@ namespace hops
  *@brief a collection of helper functions to organize fringe fitting
  */
 
+/**
+ * @brief Class MHO_FringePlotInfo
+ */
 class MHO_FringePlotInfo
 {
 
@@ -29,8 +32,25 @@ class MHO_FringePlotInfo
         virtual ~MHO_FringePlotInfo(){};
 
     public:
+        /**
+         * @brief Constructs plot data using provided stores and toolbox, populating vexInfo.
+         * 
+         * @param conStore MHO_ContainerStore pointer for accessing visibility and weight data
+         * @param paramStore MHO_ParameterStore pointer for retrieving configuration parameters
+         * @param toolbox MHO_OperatorToolbox pointer for performing computations
+         * @param vexInfo Reference to mho_json object for storing vex information
+         * @return mho_json containing constructed plot data
+         * @note This is a static function.
+         */
         static mho_json construct_plot_data(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore,
                                             MHO_OperatorToolbox* toolbox, mho_json& vexInfo);
+        /**
+         * @brief Fills a JSON object with plot data retrieved from an MHO_ParameterStore.
+         * 
+         * @param paramStore Pointer to MHO_ParameterStore containing plot data
+         * @param plot_dict Reference to mho_json object that will store the retrieved plot data
+         * @note This is a static function.
+         */
         static void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict);
 };
 

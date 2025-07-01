@@ -18,6 +18,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_MultidimensionalFastFourierTransformInterface
+ */
 template< typename XArgType > class MHO_MultidimensionalFastFourierTransformInterface
 {
     public:
@@ -42,12 +45,24 @@ template< typename XArgType > class MHO_MultidimensionalFastFourierTransformInte
 
         virtual ~MHO_MultidimensionalFastFourierTransformInterface(){};
 
+        /**
+         * @brief Setter for forward
+         * @note This is a virtual function.
+         */
         virtual void SetForward() { fForward = true; }
 
+        /**
+         * @brief Setter for backward
+         * @note This is a virtual function.
+         */
         virtual void SetBackward() { fForward = false; };
 
         //sometimes we may want to select/deselect particular dimensions of the x-form
         //default is to transform along every dimension, but that may not always be needed
+        /**
+         * @brief Selects all axes for transformation.
+         * @note This is a virtual function.
+         */
         virtual void SelectAllAxes()
         {
             for(std::size_t i = 0; i < XArgType::rank::value; i++)
@@ -57,6 +72,10 @@ template< typename XArgType > class MHO_MultidimensionalFastFourierTransformInte
             }
         }
 
+        /**
+         * @brief Deselects all axes by setting fAxesToXForm to false and resetting initialization.
+         * @note This is a virtual function.
+         */
         virtual void DeselectAllAxes()
         {
             for(std::size_t i = 0; i < XArgType::rank::value; i++)
@@ -66,6 +85,12 @@ template< typename XArgType > class MHO_MultidimensionalFastFourierTransformInte
             }
         }
 
+        /**
+         * @brief Selects an axis for transformation if within array rank.
+         * 
+         * @param axis_index Index of the axis to select.
+         * @note This is a virtual function.
+         */
         virtual void SelectAxis(std::size_t axis_index)
         {
             fInitialized = false;
@@ -80,17 +105,37 @@ template< typename XArgType > class MHO_MultidimensionalFastFourierTransformInte
             }
         }
 
+        /**
+         * @brief Enables transformation for axis labels.
+         */
         void EnableAxisLabelTransformation() { fTransformAxisLabels = true; }
 
+        /**
+         * @brief Disables axis label transformation by setting fTransformAxisLabels to false.
+         */
         void DisableAxisLabelTransformation() { fTransformAxisLabels = false; }
 
     protected:
         //default...does nothing
+        /**
+         * @brief Transforms axis of input data if transformation is enabled and axis was transformed.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param !in Parameter description
+         * @param !axis_index Parameter description
+         */
         template< typename XCheckType = XArgType >
         typename std::enable_if< !std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableTransformAxis(XArgType* /*!in*/, std::size_t /*!axis_index*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
+        /**
+         * @brief Transforms axis of input table if specified dimension was transformed.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param in Input table of type XArgType
+         * @param axis_index Index of axis to transform
+         */
         template< typename XCheckType = XArgType >
         typename std::enable_if< std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableTransformAxis(XArgType* in, std::size_t axis_index)
@@ -105,6 +150,9 @@ template< typename XArgType > class MHO_MultidimensionalFastFourierTransformInte
             }
         }
 
+        /**
+         * @brief Class TransformAxis
+         */
         class TransformAxis
         {
             public:

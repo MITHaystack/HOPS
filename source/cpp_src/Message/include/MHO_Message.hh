@@ -48,9 +48,15 @@ namespace hops
 
 namespace sn = selfname;
 
+/**
+ * @brief Class MHO_MessageNewline
+ */
 class MHO_MessageNewline
 {};
 
+/**
+ * @brief Class MHO_MessageEndline
+ */
 class MHO_MessageEndline
 {};
 

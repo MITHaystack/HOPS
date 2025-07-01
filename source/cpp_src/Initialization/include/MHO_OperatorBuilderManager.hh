@@ -46,19 +46,44 @@ class MHO_OperatorBuilderManager
         }
 
         //pass in parsed control file elements
+        /**
+         * @brief Setter for control statements
+         * 
+         * @param statements Input mho_json object containing control file statements
+         */
         void SetControlStatements(mho_json* statements) { fControl = statements; };
 
+        /**
+         * @brief Registers default operator builders for various purposes such as channel labeling, phase and delay corrections, flagging operators, etc.
+         */
         void CreateDefaultBuilders();
 
+        /**
+         * @brief Builds operator category from input string and calls BuildOperatorCategory with it.
+         * 
+         * @param cat Input operator category as a C-style string.
+         */
         void BuildOperatorCategory(const char* cat)
         {
             std::string scat(cat);
             BuildOperatorCategory(scat);
         };
 
+        /**
+         * @brief Builds operator category from input string and calls BuildOperatorCategory with it.
+         * 
+         * @param cat Input operator category as a C-style string.
+         */
         void BuildOperatorCategory(const std::string& cat);
 
         //void AddBuilderType(const std::string& builder_name, const mho_json& format)
+        /**
+         * @brief Adds a new builder type with format to maps and vectors.
+         * 
+         * @param builder_name Name of the builder type as string
+         * @param format_key (const std::string&)
+         * @return void
+         */
         template< typename XBuilderType > void AddBuilderType(const std::string& builder_name, const std::string& format_key)
         {
             auto format_it = fFormat.find(format_key);
@@ -89,8 +114,18 @@ class MHO_OperatorBuilderManager
         };
 
     private:
+        /**
+         * @brief Registers default operator builders for MHO_OperatorBuilderManager.
+         */
         void CreateNullFormatBuilders();
 
+        /**
+         * @brief Adds a new builder type with specified format and maps it by name and category.
+         * 
+         * @param builder_name Name of the builder to be added
+         * @param format Format specification for the builder
+         * @return void
+         */
         template< typename XBuilderType > void AddBuilderTypeWithFormat(const std::string& builder_name, const mho_json& format)
         {
             auto it = fNameToBuilderMap.find(builder_name);

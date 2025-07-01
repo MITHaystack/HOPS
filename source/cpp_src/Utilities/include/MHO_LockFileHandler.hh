@@ -33,6 +33,9 @@ namespace hops
  */
 
 //struct for holding data about the lock file's creation
+/**
+ * @brief Class lockfile_data
+ */
 struct lockfile_data
 {
         int validity;
@@ -46,6 +49,9 @@ struct lockfile_data
 };
 
 //uses the singleton pattern
+/**
+ * @brief Class MHO_LockFileHandler
+ */
 class MHO_LockFileHandler
 {
     public:
@@ -56,6 +62,12 @@ class MHO_LockFileHandler
         MHO_LockFileHandler& operator=(MHO_LockFileHandler&&) = delete;
 
         //provide public access to the only static instance
+        /**
+         * @brief Getter for instance
+         * 
+         * @return Reference to the singleton instance of MHO_LockFileHandler
+         * @note This is a static function.
+         */
         static MHO_LockFileHandler& GetInstance()
         {
             if(fInstance == nullptr)
@@ -68,8 +80,14 @@ class MHO_LockFileHandler
         //configure the lock handler to write legacy type_2xx files (e.g. GE.X.1.ABCDEF)
         //or to use the new file naming convention (.frng extension)
         //legacy mode is enabled by default
+        /**
+         * @brief Enables legacy mode for writing type_2xx files using GE.X.1.ABCDEF naming convention.
+         */
         void EnableLegacyMode() { fEnableLegacyMode = true; };
 
+        /**
+         * @brief Disables legacy mode by setting fEnableLegacyMode to false.
+         */
         void DisableLegacyMode() { fEnableLegacyMode = false; };
 
         //the only three functions user needs to call via the instance:
@@ -77,23 +95,111 @@ class MHO_LockFileHandler
         //(2) wait for lock
         // write out the data file
         //(3) remove lock
+        /**
+         * @brief Waits for and acquires a write lock on the specified directory, setting it as the current directory.
+         * 
+         * @param directory The directory to acquire the write lock on.
+         * @param next_seq_no (int&)
+         * @return An integer representing the result of the operation.
+         */
         int WaitForWriteLock(std::string directory, int& next_seq_no);
+        /**
+         * @brief Removes a write lock from the file.
+         */
         void RemoveWriteLock();
 
     private:
+        /**
+         * @brief Removes write lock and resets signal handler to default before re-sending the signal to the process.
+         * 
+         * @param signal_value Signal value to be handled
+         * @note This is a static function.
+         */
         static void HandleSignal(int signal_value);
 
+        /**
+         * @brief Initializes lockfile_data struct to default values.
+         * 
+         * @param data Pointer to lockfile_data struct to initialize
+         * @note This is a static function.
+         */
         static void init_lockfile_data(lockfile_data* data);
+        /**
+         * @brief Parses a lockfile name into its constituent components and stores them in result.
+         * 
+         * @param lockfile_name_base Input lockfile name to be parsed
+         * @param result (lockfile_data*)
+         * @return 0 on success, LOCK_PARSE_ERROR on failure
+         * @note This is a static function.
+         */
         static int parse_lockfile_name(char* lockfile_name_base, lockfile_data* result);
+        /**
+         * @brief Creates a lockfile in the specified directory with given name and data, using current process ID, hostname, and timestamp.
+         * 
+         * @param directory Input directory path where the lockfile will be created
+         * @param lockfile_name Output buffer for the generated lockfile name
+         * @param lock_data Pointer to store lockfile metadata (validity, seq_number, pid, time_sec)
+         * @param max_seq_no Maximum file extent number seen at time of lock file creation
+         * @return 0 on success, non-zero on failure
+         * @note This is a static function.
+         */
         static int create_lockfile(const char* directory, char* lockfile_name, lockfile_data* lock_data, int max_seq_no);
+        /**
+         * @brief Checks if another lockfile is stale and returns appropriate status.
+         * 
+         * @param other Pointer to another lockfile_data structure.
+         * @return LOCK_STATUS_OK if stale, LOCK_STALE_ERROR otherwise.
+         * @note This is a static function.
+         */
         static int check_stale(lockfile_data* other);
+        /**
+         * @brief Determines priority between two lock processes based on PID and timestamps.
+         * 
+         * @param ours Pointer to our lockfile_data structure
+         * @param other Pointer to another process's lockfile_data structure
+         * @return LOCK_PROCESS_HAS_PRIORITY, LOCK_PROCESS_NO_PRIORITY or LOCK_STALE_ERROR based on comparison results.
+         * @note This is a static function.
+         */
         static int lock_has_priority(lockfile_data* ours, lockfile_data* other);
+        /**
+         * @brief Checks if a process has priority to create a lock file in a given directory.
+         * 
+         * @param directory Input directory path where lock files are stored
+         * @param lockfile_name Output lock file name if created
+         * @param lock_data Output lock file data if created
+         * @param cand_seq_no Candidate sequence number for the new lock file
+         * @return Status code indicating success or error (LOCK_STATUS_OK, LOCK_PARSE_ERROR, LOCK_STALE_ERROR, LOCK_FILE_ERROR)
+         * @note This is a static function.
+         */
         static int at_front(const char* directory, char* lockfile_name, lockfile_data* lock_data, int cand_seq_no);
+        /**
+         * @brief Removes a lockfile if it's valid and outputs debug message.
+         * 
+         * @param other (lockfile_data*)
+         * @note This is a static function.
+         */
         static void remove_lockfile(lockfile_data* other);
 
+        /**
+         * @brief Waits for this process to be at the front of the write queue and returns the next sequence number.
+         * 
+         * @param next_seq_no Output parameter: Next sequence number after acquiring the lock
+         * @return LOCK_STATUS_OK on success, error codes otherwise
+         */
         int wait_for_write_lock(int& next_seq_no);
+        /**
+         * @brief Finds and returns the maximum sequence number among fringe files in the given directory.
+         * 
+         * @param dir Input directory path where fringe files are located
+         * @return Maximum sequence number found among fringe files
+         */
         int get_max_seq_number(std::string dir);
 
+        /**
+         * @brief Setter for directory
+         * 
+         * @param dir The new directory path to set.
+         */
         void SetDirectory(std::string dir);
 
         MHO_LockFileHandler()

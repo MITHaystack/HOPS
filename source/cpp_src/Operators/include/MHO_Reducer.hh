@@ -23,6 +23,9 @@ dimensionality (i.e. XArrayType::rank::value). However, the axes over which redu
 will have a size of 1. The output array will be resized if/as needed.
 */
 
+/**
+ * @brief Class MHO_Reducer
+ */
 template< typename XArrayType, template< typename > class XFunctorType >
 class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
 {
@@ -46,6 +49,11 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
         //last axis only we would call this->ReduceAxis(2), or alternatively if we
         //wanted to reduce along both the first and last axis
         //we would call this->ReduceAxis(0), this->ReduceAxis(2)
+        /**
+         * @brief Sets axis index for reduction operation.
+         * 
+         * @param axis_index Index of the axis to reduce.
+         */
         void ReduceAxis(std::size_t axis_index)
         {
             fInitialized = false;
@@ -61,6 +69,9 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
         }
 
         //de-select all axes
+        /**
+         * @brief De-selects all axes by setting internal flags and arrays to default values.
+         */
         void ClearAxisSelection()
         {
             fInitialized = false;
@@ -71,8 +82,22 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
         }
 
     protected:
+        /**
+         * @brief Initializes XArrayType in-place by calling InitializeOutOfPlace with given workspace.
+         * 
+         * @param in Pointer to XArrayType object for initialization
+         * @return Boolean indicating success of initialization
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(XArrayType* in) override { return InitializeOutOfPlace(in, &fWorkspace); }
 
+        /**
+         * @brief Executes operation in-place by calling ExecuteOutOfPlace and copying result back to input.
+         * 
+         * @param in Input array of type XArrayType*
+         * @return Status of execution as boolean
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(XArrayType* in) override
         {
             bool status = ExecuteOutOfPlace(in, &fWorkspace);
@@ -81,6 +106,14 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
             return status;
         }
 
+        /**
+         * @brief Initializes out-of-place operation using input array and workspace.
+         * 
+         * @param in Input array of type XArrayType
+         * @param out Output array of type XArrayType
+         * @return True if initialization is successful, false otherwise
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             if(in != nullptr && out != nullptr)
@@ -128,6 +161,14 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
             return fInitialized;
         }
 
+        /**
+         * @brief Function ExecuteOutOfPlace
+         * 
+         * @param in (const XArrayType*)
+         * @param out (XArrayType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             if(fInitialized)
@@ -172,6 +213,9 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
         }
 
     private:
+        /**
+         * @brief Class AxisReducer
+         */
         class AxisReducer
         {
             public:
@@ -209,11 +253,27 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
         };
 
         //default...does nothing
+        /**
+         * @brief Reduces a specified axis in an input XArrayType and stores the result in output.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param !in Input XArrayType to reduce
+         * @param !out Output XArrayType after reduction
+         * @param !ax_index Index of the axis to reduce
+         */
         template< typename XCheckType = XArrayType >
         typename std::enable_if< !std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableReduceAxis(const XArrayType* /*!in*/, XArrayType* /*!out*/, std::size_t /*!ax_index)*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
+        /**
+         * @brief Reduces a specified axis in an input XArrayType and stores result in output.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param in Input XArrayType to reduce
+         * @param out Output XArrayType for reduced data
+         * @param ax_index Index of the axis to reduce
+         */
         template< typename XCheckType = XArrayType >
         typename std::enable_if< std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableReduceAxis(const XArrayType* in, XArrayType* out, std::size_t ax_index)
