@@ -34,18 +34,18 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
         MHO_ManualChannelDelayCorrection();
         virtual ~MHO_ManualChannelDelayCorrection();
 
-        //treated as follows:
-        //1-char => mk4 id
-        //2-char => 2char station code
         /**
          * @brief Setter for station identifier
          * 
          * @param station_id mk4 id of type std::string
+         * @details station_id is treated as follows:
+         * 1-char => mk4 id
+         * 2-char => 2char station code
          */
         void SetStationIdentifier(std::string station_id) { fStationIdentity = station_id; }
 
         /**
-         * @brief Setter for polarization
+         * @brief Setter for polarization (associated with these delay corrections)
          * 
          * @param pol Input polarization string
          */
@@ -55,11 +55,11 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
             make_upper(fPol);
         };
 
-        //channel label -> pc_phases
+
         /**
-         * @brief Setter for channel to pcdelay map
+         * @brief Setter for channel to pc_delay map
          * 
-         * @param map Input map of channel labels and corresponding pc_phases delays
+         * @param map Input map of channel labels and corresponding pc_delays
          */
         void SetChannelToPCDelayMap(const std::map< std::string, double >& map) { fPCDelayMap = map; };
 
@@ -83,7 +83,7 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
         virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
-         * @brief Applies manual channel delay corrections in-place for reference and remote stations.
+         * @brief Applies manual channel delay corrections in-place for reference or remote station.
          * 
          * @param in Input visibility data containing channel axes.
          * @return True if successful, false otherwise.
@@ -102,7 +102,7 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
 
     private:
         /**
-         * @brief Checks if correction is applicable based on station identity and input visibility type.
+         * @brief Checks if correction is applicable based on station identity and input visibility.
          * 
          * @param st_idx Index of the station (0 for reference, 1 for remote).
          * @param in Input visibility_type object containing station information.
@@ -110,7 +110,7 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
          */
         bool IsApplicable(std::size_t st_idx, const visibility_type* in);
         /**
-         * @brief Checks if polarization product matches the first character of fPol at given station index.
+         * @brief Checks if the correction polarization matches the polarization product at the given station index [0 = ref, 1 = rem].
          * 
          * @param station_idx Index of the station in polprod string
          * @param polprod Polarization product string

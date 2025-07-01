@@ -34,21 +34,22 @@ class MHO_LSBOffset: public MHO_UnaryOperator< visibility_type >
         MHO_LSBOffset();
         virtual ~MHO_LSBOffset();
 
-        //treated as follows:
-        //1-char => mk4 id
-        //2-char => 2char station code
+
         /**
          * @brief Setter for station identifier
          * 
          * @param station_id mk4 id of type std::string
+         * @details station_id is treated as follows:
+         * 1-char => mk4 id
+         * 2-char => 2char station code
          */
         void SetStationIdentifier(std::string station_id) { fStationIdentity = station_id; }
 
-        //set lsb (phase) offset for double-sideband channels
+
         /**
-         * @brief Setter for lsbphase offset
+         * @brief set lsb (phase) offset for double-sideband channels
          * 
-         * @param lsb_offset LSB phase offset value to set
+         * @param lsb_offset LSB phase offset value
          */
         void SetLSBPhaseOffset(const double& lsb_offset) { fLSBPhaseOffset = lsb_offset; }
 
