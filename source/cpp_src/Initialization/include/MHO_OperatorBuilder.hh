@@ -45,28 +45,82 @@ class MHO_OperatorBuilder
 
         virtual ~MHO_OperatorBuilder(){}; //delegate memory management to toolbox
 
+        /**
+         * @brief Setter for toolbox
+         * 
+         * @param toolbox Pointer to the MHO_OperatorToolbox object to be set.
+         * @note This is a virtual function.
+         */
         virtual void SetToolbox(MHO_OperatorToolbox* toolbox) { fOperatorToolbox = toolbox; }
 
+        /**
+         * @brief Setter for fringe data
+         * 
+         * @param fdata Pointer to MHO_FringeData structure
+         * @note This is a virtual function.
+         */
         virtual void SetFringeData(MHO_FringeData* fdata) { fFringeData = fdata; }
 
+        /**
+         * @brief Setter for parameter store
+         * 
+         * @param pstore Pointer to MHO_ParameterStore object
+         * @note This is a virtual function.
+         */
         virtual void SetParameterStore(MHO_ParameterStore* pstore) { fParameterStore = pstore; }
 
+        /**
+         * @brief Setter for container store
+         * 
+         * @param cstore Pointer to MHO_ContainerStore object
+         * @note This is a virtual function.
+         */
         virtual void SetContainerStore(MHO_ContainerStore* cstore) { fContainerStore = cstore; }
 
         //json config for this operator (parsed from the control file and format directives)
+        /**
+         * @brief Setter for format
+         * 
+         * @param format The new format for the operator.
+         * @note This is a virtual function.
+         */
         virtual void SetFormat(const mho_json& format) { fFormat = format; } //operator format
 
+        /**
+         * @brief Setter for conditions
+         * 
+         * @param cond Input conditions of type const mho_json&
+         * @note This is a virtual function.
+         */
         virtual void SetConditions(const mho_json& cond) { fConditions = cond; } //conditional statements
 
+        /**
+         * @brief Setter for attributes
+         * 
+         * @param attr Input attribute data of type const mho_json&
+         * @note This is a virtual function.
+         */
         virtual void SetAttributes(const mho_json& attr) { fAttributes = attr; } //configuration parameters
 
         //builds the object, if successful passes to toolbox and returns true
         //otherwise returns false and operator is not b
+        /**
+         * @brief Builds the object and passes it to toolbox if successful, otherwise returns false.
+         * 
+         * @return bool indicating success or failure
+         * @note This is a virtual function.
+         */
         virtual bool Build() = 0;
 
     protected:
         //provided for derived class to validate fAttributes against fFormat and/or fConditions
         //but the default tries to check a few things
+        /**
+         * @brief Function IsConfigurationOk
+         * 
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool IsConfigurationOk()
         {
             TODO_FIXME_MSG("TODO FIXME -- improve checks on operator attributes in IsConfigurationOk)")

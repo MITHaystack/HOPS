@@ -31,6 +31,9 @@ static constexpr uint16_t MHO_FileKeySize = MHO_FileKeySize_v0;
 static constexpr uint32_t MHO_FileKeyVersionReserved = 0xFFFFFFFF;
 
 //this union allows us to store the file key version and size info into a 4 byte integer
+/**
+ * @brief Class MHO_FileKeyVersionInfo
+ */
 union MHO_FileKeyVersionInfo
 {
         uint32_t fLabel;
@@ -47,6 +50,9 @@ union MHO_FileKeyVersionInfo
 //so long as N+64 < UINT16_MAX, and the appropriate StreamInData_VX/StreamOutData_VX and ByteSize functions are defined
 
 //total size 512 bits / 64 bytes
+/**
+ * @brief Class MHO_FileKey
+ */
 class MHO_FileKey
 {
     public:
@@ -138,6 +144,12 @@ class MHO_FileKey
         //this is the size of a MHO_FileKey on disk
         //DO NOT USE sizeof(MHO_FileKey), as that is the size of the object in memory
         //which includes compiler dependent padding!!
+        /**
+         * @brief Returns the size of MHO_FileKey in bytes.
+         * 
+         * @return Size of MHO_FileKey as uint64_t.
+         * @note This is a static function.
+         */
         static uint64_t ByteSize() { return MHO_FileKeySize_v0; };
 
         //public access to members:
@@ -228,6 +240,12 @@ class MHO_FileKey
         }
 
     private:
+        /**
+         * @brief Serializes object data into an output stream.
+         * 
+         * @param s Output stream of type XStream&.
+         * @return void
+         */
         template< typename XStream > void StreamOutData_V0(XStream& s) const
         {
             // s << aKey.fSync;
@@ -241,6 +259,12 @@ class MHO_FileKey
             s << this->fSize;
         }
 
+        /**
+         * @brief Reads and assigns object ID, type ID, name, size from input stream.
+         * 
+         * @param s Input stream of type XStream&
+         * @return void
+         */
         template< typename XStream > void StreamInData_V0(XStream& s)
         {
             // s >> aKey.fSync;

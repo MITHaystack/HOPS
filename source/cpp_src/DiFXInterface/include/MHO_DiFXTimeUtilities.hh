@@ -15,6 +15,14 @@ namespace hops
 {
 
 //given a mjd date and number of seconds, compute the vex string representation
+/**
+ * @brief Calculates and returns VEX timestamp for given MJD and seconds.
+ * 
+ * @param mjd Modified Julian Date (MJD) in double precision.
+ * @param sec Seconds to add to MJD in double precision.
+ * @return VEX formatted string representing the calculated timestamp.
+ * @note This is a static function.
+ */
 static std::string get_vexdate_from_mjd_sec(double mjd, double sec)
 {
     double total_mjd = (double)mjd + (double)sec / 86400.0;

@@ -17,6 +17,9 @@ namespace hops
  */
 
 //stores the names of all the assorted files related to a difx scan
+/**
+ * @brief Class MHO_DiFXScanFileSet
+ */
 class MHO_DiFXScanFileSet
 {
     public:
@@ -59,6 +62,11 @@ class MHO_DiFXScanFileSet
         
         
         //flag which indicates if this file set has all the necessary bits to be converted
+        /**
+         * @brief Checks if all necessary files and directories are set for conversion.
+         * 
+         * @return True if complete, false otherwise.
+         */
         bool IsComplete() const
         {
             //fFlagFile and fV2DFile are optional
@@ -75,6 +83,9 @@ class MHO_DiFXScanFileSet
             return true;
         }
         
+        /**
+         * @brief Function PrintSummary
+         */
         void PrintSummary() const
         {
             msg_debug("difx_interface", "scan summary: "<< eol);

@@ -17,6 +17,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_ComplexConjugator
+ */
 template< class XArrayType > class MHO_ComplexConjugator: public MHO_UnaryFunctor< XArrayType >
 {
     public:

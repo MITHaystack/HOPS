@@ -44,6 +44,15 @@ void FFTRadix2(std::complex< XFloatType >* data, MHO_FastFourierTransformWorkspa
 }
 
 //workspace is expected to be initialized before call
+/**
+ * @brief Performs Bluestein's FFT algorithm on complex data using a workspace for arbitrary N.
+ * 
+ * @tparam XFloatType Template parameter XFloatType
+ * @param data Input/output complex data array.
+ * @param work Initialized MHO_FastFourierTransformWorkspace containing necessary buffers and twiddle factors.
+ * @param isForward Boolean flag indicating whether to perform forward or inverse FFT.
+ * @param stride Stride for accessing elements in the data array.
+ */
 template< typename XFloatType >
 void FFTBluestein(std::complex< XFloatType >* data, MHO_FastFourierTransformWorkspace< XFloatType >& work, bool isForward,
                   unsigned int stride = 1)

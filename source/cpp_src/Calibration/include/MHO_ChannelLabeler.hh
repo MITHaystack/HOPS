@@ -26,6 +26,9 @@ namespace hops
  * of frequency low -> high, starting with 'a'
  */
 
+/**
+ * @brief Class MHO_ChannelLabeler
+ */
 template< typename XArrayType > class MHO_ChannelLabeler:
     public MHO_UnaryOperator< XArrayType >,
     public MHO_ChannelIndexLabeler
@@ -41,16 +44,48 @@ template< typename XArrayType > class MHO_ChannelLabeler:
         virtual ~MHO_ChannelLabeler(){};
 
         //allow channel freq association to use a difference tolerance
+        /**
+         * @brief Setter for tolerance
+         * 
+         * @param tol New tolerance value for frequency mapping
+         */
         void SetTolerance(double tol) { fEps = tol; }
 
         //if there is a user provided labeling scheme, use that (i.e. chan_ids)
+        /**
+         * @brief Setter for channel label to frequency map
+         * 
+         * @param map Input map of channel labels to frequencies
+         */
         void SetChannelLabelToFrequencyMap(const std::map< std::string, double >& map) { fChannelLabelToFrequency = map; }
 
     protected:
+        /**
+         * @brief Initializes XArrayType in-place and returns success.
+         * 
+         * @param in Pointer to XArrayType object to initialize.
+         * @return True if initialization was successful, false otherwise.
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(XArrayType* in) override { return true; }
 
+        /**
+         * @brief Initializes output array out-of-place from input array in SWIN format.
+         * 
+         * @param !in Const input XArrayType in SWIN format
+         * @param !out Output XArrayType initialized out-of-place
+         * @return True if initialization was successful, false otherwise
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const XArrayType* /*!in*/, XArrayType* /*!out*/) override { return true; }
 
+        /**
+         * @brief Function ExecuteInPlace
+         * 
+         * @param in (XArrayType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(XArrayType* in) override
         {
             if(in != nullptr)
@@ -142,6 +177,14 @@ template< typename XArrayType > class MHO_ChannelLabeler:
             return false;
         }
 
+        /**
+         * @brief Copies input array to output and executes in-place operation on output.
+         * 
+         * @param in Const reference to input XArrayType
+         * @param out Reference to output XArrayType
+         * @return Result of ExecuteInPlace operation on out
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             out->Copy(*in);
@@ -149,6 +192,11 @@ template< typename XArrayType > class MHO_ChannelLabeler:
         }
 
     private:
+        /**
+         * @brief Clears and populates a map with channel labels encoded from indices up to nchans.
+         * 
+         * @param nchans Number of channels to generate labels for
+         */
         void FillDefaultMap(std::size_t nchans)
         {
             fIndexToChannelLabel.clear();

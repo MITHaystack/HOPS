@@ -17,6 +17,9 @@ namespace hops
  *@brief Abstract base class for a basic fringe fitter
  */
 
+/**
+ * @brief Class MHO_FringeFitterFactory
+ */
 class MHO_FringeFitterFactory
 {
     public:
@@ -24,6 +27,11 @@ class MHO_FringeFitterFactory
 
         virtual ~MHO_FringeFitterFactory();
 
+        /**
+         * @brief Constructs and configures an MHO_FringeFitter instance based on configuration.
+         * 
+         * @return MHO_FringeFitter* - The constructed fringe fitter
+         */
         MHO_FringeFitter* ConstructFringeFitter();
 
     protected:

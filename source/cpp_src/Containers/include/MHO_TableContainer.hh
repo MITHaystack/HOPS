@@ -25,6 +25,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_TableContainer
+ */
 template< typename XValueType, typename XAxisPackType >
 class MHO_TableContainer: public MHO_TableContainerBase,
                           public MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value >,
@@ -42,15 +45,37 @@ class MHO_TableContainer: public MHO_TableContainerBase,
             : MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value >(obj), XAxisPackType(obj), MHO_Taggable(obj){};
 
         //clone entire table, contents, axes and all
+        /**
+         * @brief Clones entire table including contents and axes.
+         * 
+         * @return Pointer to cloned MHO_TableContainer object.
+         */
         MHO_TableContainer* Clone() { return new MHO_TableContainer(*this); }
 
         //clone table shape, but leave contents/axes empty
+        /**
+         * @brief Clones table container shape with empty contents and axes.
+         * 
+         * @return New MHO_TableContainer instance with cloned dimensions.
+         */
         MHO_TableContainer* CloneEmpty() { return new MHO_TableContainer(this->GetDimensions()); }
 
         virtual ~MHO_TableContainer(){};
 
+        /**
+         * @brief Getter for version
+         * 
+         * @return MHO_ClassVersion version number.
+         * @note This is a virtual function.
+         */
         virtual MHO_ClassVersion GetVersion() const override { return 0; };
 
+        /**
+         * @brief Getter for serialized size
+         * 
+         * @return Total serialized size as uint64_t
+         * @note This is a virtual function.
+         */
         virtual uint64_t GetSerializedSize() const override
         {
             uint64_t total_size = 0;
@@ -65,6 +90,12 @@ class MHO_TableContainer: public MHO_TableContainerBase,
         //modify the Resize function to also resize the axes
         using XAxisPackType::resize_axis_pack;
 
+        /**
+         * @brief Resize the multidimensional array and axes according to given dimensions.
+         * 
+         * @param dim Pointer to a size_t array representing new dimensions.
+         * @note This is a virtual function.
+         */
         virtual void Resize(const std::size_t* dim) override
         {
             MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value >::Resize(dim);
@@ -72,8 +103,18 @@ class MHO_TableContainer: public MHO_TableContainerBase,
         }
 
         //access to axis pack type alone
+        /**
+         * @brief Getter for axis pack
+         * 
+         * @return Pointer to XAxisPackType
+         */
         XAxisPackType* GetAxisPack() { return this; }
 
+        /**
+         * @brief Getter for axis pack
+         * 
+         * @return Current instance of XAxisPackType
+         */
         const XAxisPackType* GetAxisPack() const { return this; }
 
         //have to make base class functions visible

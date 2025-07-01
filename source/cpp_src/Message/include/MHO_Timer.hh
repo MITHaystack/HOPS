@@ -17,6 +17,9 @@ namespace hops
  * TODO -- detect if system actually has a realtime clock and disable if not present
  */
 
+/**
+ * @brief Class MHO_Timer
+ */
 class MHO_Timer
 {
     public:

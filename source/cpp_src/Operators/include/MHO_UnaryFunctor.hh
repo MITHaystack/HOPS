@@ -15,6 +15,9 @@ namespace hops
  *@brief abstract baseclass for an functor which takes array iterators
  */
 
+/**
+ * @brief Class MHO_UnaryFunctor
+ */
 template< class XArrayType > class MHO_UnaryFunctor
 {
     public:

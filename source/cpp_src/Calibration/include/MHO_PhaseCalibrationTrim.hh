@@ -27,19 +27,57 @@ namespace hops
  *If they did not, then we would need to interpolate between p-cal points to match the visbility gridding (this is not done here)
  */
 
+/**
+ * @brief Class MHO_PhaseCalibrationTrim
+ */
 class MHO_PhaseCalibrationTrim: public MHO_UnaryOperator< multitone_pcal_type >
 {
     public:
         MHO_PhaseCalibrationTrim();
         virtual ~MHO_PhaseCalibrationTrim();
 
+        /**
+         * @brief Setter for visibilities
+         * 
+         * @param vis Input const visibility_type* array containing visibilities
+         */
         void SetVisibilities(const visibility_type* vis) { fVis = vis; }
 
     protected:
+        /**
+         * @brief Trims down multitone_pcal_type data for phase calibration in-place.
+         * 
+         * @param in Input pointer to multitone_pcal_type data.
+         * @return True if trimming was successful.
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(multitone_pcal_type* in) override;
+        /**
+         * @brief Initializes out-of-place phase calibration trim using input and output multitone_pcal_type.
+         * 
+         * @param in Const reference to input multitone_pcal_type
+         * @param out Reference to output multitone_pcal_type
+         * @return Boolean indicating successful initialization
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const multitone_pcal_type* in, multitone_pcal_type* out) override;
 
+        /**
+         * @brief Trims and aligns multitone phase calibration data in-place based on visibility data.
+         * 
+         * @param in Input multitone_pcal_type* containing phase calibration data to be trimmed
+         * @return bool indicating success or failure of the trimming operation
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(multitone_pcal_type* in) override;
+        /**
+         * @brief Copies input multitone_pcal_type and executes in-place trim.
+         * 
+         * @param in Input multitone_pcal_type data to be copied
+         * @param out (multitone_pcal_type*)
+         * @return Result of ExecuteInPlace operation on copied data
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const multitone_pcal_type* in, multitone_pcal_type* out) override;
 
     private:

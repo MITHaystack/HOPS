@@ -18,12 +18,18 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_Token
+ */
 struct MHO_Token
 {
         std::string fValue;
         std::size_t fLineNumber;
 };
 
+/**
+ * @brief Class MHO_ControlLine
+ */
 struct MHO_ControlLine
 {
         std::size_t fLineNumber;
@@ -31,6 +37,9 @@ struct MHO_ControlLine
         std::vector< MHO_Token > fTokens;
 };
 
+/**
+ * @brief Class MHO_ControlStatement
+ */
 struct MHO_ControlStatement
 {
         std::size_t fStartLineNumber;
@@ -53,21 +62,62 @@ enum control_element_type
     control_unknown_type
 };
 
+/**
+ * @brief Class MHO_ControlDefinitions
+ */
 class MHO_ControlDefinitions
 {
     public:
         MHO_ControlDefinitions(){};
         virtual ~MHO_ControlDefinitions(){};
 
+        /**
+         * @brief Getter for format directory
+         * 
+         * @return std::string representing the format directory.
+         * @note This is a static function.
+         */
         static std::string GetFormatDirectory();
+        /**
+         * @brief Getter for keyword names
+         * 
+         * @return Vector of string keyword names
+         * @note This is a static function.
+         */
         static std::vector< std::string > GetKeywordNames();
 
+        /**
+         * @brief Returns a string containing whitespace characters.
+         * 
+         * @return A std::string containing whitespace characters (' 	
+').
+         * @note This is a static function.
+         */
         static std::string WhitespaceDelim() { return std::string(" \t\r\n"); };
 
+        /**
+         * @brief Returns a string containing an asterisk (*). This is a static function.
+         * 
+         * @return A string containing an asterisk (*)
+         * @note This is a static function.
+         */
         static std::string CommentFlag() { return std::string("*"); };
 
+        /**
+         * @brief Determines control type based on input string type.
+         * 
+         * @param etype Input string representing control element type.
+         * @return control_element_type corresponding to input string.
+         * @note This is a static function.
+         */
         static control_element_type DetermineControlType(std::string etype);
 
+        /**
+         * @brief Getter for control format
+         * 
+         * @return mho_json object containing all element formats keyed by keyword names
+         * @note This is a static function.
+         */
         static mho_json GetControlFormat();
 
     private:

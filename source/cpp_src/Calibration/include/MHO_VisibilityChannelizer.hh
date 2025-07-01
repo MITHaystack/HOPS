@@ -17,6 +17,9 @@ namespace hops
  *@brief  collects unchannelized (3d) visibility data and groups by channel (but all must be of equal size) into 4d object
  */
 
+/**
+ * @brief Class MHO_VisibilityChannelizer
+ */
 class MHO_VisibilityChannelizer: public MHO_TransformingOperator< uch_visibility_store_type, visibility_store_type >
 {
     public:
@@ -24,7 +27,23 @@ class MHO_VisibilityChannelizer: public MHO_TransformingOperator< uch_visibility
         virtual ~MHO_VisibilityChannelizer();
 
     protected:
+        /**
+         * @brief Reorganizes input visibility data into output array by channel and resizes it accordingly.
+         * 
+         * @param in Input visibility store data (rank = 3)
+         * @param out Output visibility store data (rank = 4)
+         * @return True if initialization is successful, false otherwise
+         * @note This is a virtual function.
+         */
         virtual bool InitializeImpl(const uch_visibility_store_type* in, visibility_store_type* out);
+        /**
+         * @brief Reorganizes visibility data into channelized format and updates channel labels.
+         * 
+         * @param in Input visibility store data (rank = 3)
+         * @param out Output channelized visibility store data
+         * @return True if execution is successful, false otherwise
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteImpl(const uch_visibility_store_type* in, visibility_store_type* out);
 
     private:

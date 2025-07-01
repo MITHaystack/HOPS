@@ -15,6 +15,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_BidirectionalIterator
+ */
 template< typename XValueType > class MHO_BidirectionalIterator
 {
     public:
@@ -134,6 +137,9 @@ template< typename XValueType > class MHO_BidirectionalIterator
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @brief Class MHO_BidirectionalConstIterator
+ */
 template< typename XValueType > class MHO_BidirectionalConstIterator
 {
     public:

@@ -26,6 +26,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_MultidimensionalFastFourierTransform
+ */
 template< typename XArgType >
 class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgType >,
                                                 public MHO_MultidimensionalFastFourierTransformInterface< XArgType >
@@ -41,6 +44,13 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
         virtual ~MHO_MultidimensionalFastFourierTransform(){};
 
     protected:
+        /**
+         * @brief Initializes in-place operation and allocates workspace.
+         * 
+         * @param in Input argument of type XArgType*
+         * @return True if initialization is successful, false otherwise.
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(XArgType* in) override
         {
             this->fInitialized = false;
@@ -62,6 +72,14 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
             return true;
         }
 
+        /**
+         * @brief Function InitializeOutOfPlace
+         * 
+         * @param in (const XArgType*)
+         * @param out (XArgType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) override
         {
             this->fInitialized = false;
@@ -87,6 +105,13 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
             return true;
         }
 
+        /**
+         * @brief Function ExecuteInPlace
+         * 
+         * @param in (XArgType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(XArgType* in) override
         {
             if(this->fInitialized)
@@ -170,6 +195,14 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
             }
         }
 
+        /**
+         * @brief Copies input data to output if they're not the same array and executes in-place.
+         * 
+         * @param in Input data of type XArgType
+         * @param out Output data of type XArgType
+         * @return Boolean indicating success of ExecuteInPlace operation.
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override
         {
             //if input and output point to the same array, don't bother copying data over
@@ -181,6 +214,9 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
         }
 
     private:
+        /**
+         * @brief Resizes workspace arrays if their sizes don't match current dimension sizes.
+         */
         void AllocateWorkspace()
         {
             for(size_t i = 0; i < XArgType::rank::value; i++)

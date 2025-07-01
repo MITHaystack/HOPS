@@ -14,6 +14,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_NotchesBuilder
+ */
 class MHO_NotchesBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -27,6 +30,11 @@ class MHO_NotchesBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_NotchesBuilder(){};
 
+        /**
+         * @brief Constructs and adds a new builder to the toolbox's multimap.
+         * 
+         * @return True if successful, false otherwise.
+         */
         virtual bool Build() override;
 
     private:

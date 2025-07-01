@@ -23,6 +23,9 @@ namespace hops
  * Can only be applied to a single-axis at a time.
  */
 
+/**
+ * @brief Class MHO_SubSample
+ */
 template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArrayType >
 {
     public:
@@ -36,6 +39,12 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
         virtual ~MHO_SubSample(){};
 
         //set the axis to sub sample, and the stride at which samples are selected
+        /**
+         * @brief Setter for dimension and stride
+         * 
+         * @param dimension_index Index of the dimension to set (must be less than array rank).
+         * @param stride Stride at which samples are selected along the specified dimension.
+         */
         void SetDimensionAndStride(std::size_t dimension_index, std::size_t stride)
         {
             if(dimension_index < XArrayType::rank::value)
@@ -51,8 +60,22 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
         }
 
     protected:
+        /**
+         * @brief Initializes in-place execution by calling InitializeOutOfPlace with workspace and returning its result.
+         * 
+         * @param in Input array of type XArrayType*
+         * @return Boolean indicating success/failure of initialization
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(XArrayType* in) override { return InitializeOutOfPlace(in, &fWorkspace); }
 
+        /**
+         * @brief Executes operation in-place and updates input array from workspace.
+         * 
+         * @param in Input array to be modified in-place.
+         * @return Status of the execution operation.
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(XArrayType* in) override
         {
             bool status = ExecuteOutOfPlace(in, &fWorkspace);
@@ -66,6 +89,14 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
             return status;
         }
 
+        /**
+         * @brief Initializes output array out-of-place using input array in.
+         * 
+         * @param in Input array of type XArrayType
+         * @param out Output array of type XArrayType
+         * @return True if initialization is successful, false otherwise.
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             if(in != nullptr && out != nullptr)
@@ -83,6 +114,14 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
             return true;
         }
 
+        /**
+         * @brief Function ExecuteOutOfPlace
+         * 
+         * @param in (const XArrayType*)
+         * @param out (XArrayType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             size_t index[XArrayType::rank::value];
@@ -152,6 +191,12 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
         }
 
     private:
+        /**
+         * @brief Calculates output dimensions by dividing the specified dimension index by stride and returning the modified dimension array.
+         * 
+         * @param in Input XArrayType object from which to calculate output dimensions.
+         * @return Modified dimension array with the specified dimension divided by stride.
+         */
         std::array< std::size_t, XArrayType::rank::value > DetermineOutputDimensions(const XArrayType* in)
         {
             auto in_dim = in->GetDimensionArray();
@@ -159,6 +204,12 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
             return in_dim;
         }
 
+        /**
+         * @brief Checks and conditionally resizes output array dimensions if they differ from input.
+         * 
+         * @param dims Input dimension array to compare with current output dimensions.
+         * @param out (XArrayType*)
+         */
         void ConditionallyResizeOutput(const std::array< std::size_t, XArrayType::rank::value >& dims, XArrayType* out)
         {
             auto out_dim = out->GetDimensionArray();
@@ -177,11 +228,25 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
         }
 
         //default...does nothing
+        /**
+         * @brief Sub-samples a specified axis of an input XArrayType and stores the result in output.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param !in Input XArrayType to be sub-sampled
+         * @param !out Output XArrayType after sub-sampling
+         */
         template< typename XCheckType = XArrayType >
         typename std::enable_if< !std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableSubSampleAxis(const XArrayType* /*!in*/, XArrayType* /*!out*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
+        /**
+         * @brief Sub-samples a specified axis of an input XArrayType and stores the result in output.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param in Input XArrayType to be sub-sampled
+         * @param out Output XArrayType where results are stored
+         */
         template< typename XCheckType = XArrayType >
         typename std::enable_if< std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableSubSampleAxis(const XArrayType* in, XArrayType* out)
@@ -199,6 +264,9 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
             out->CopyTags(*in); //make sure the table tags get copied
         }
 
+        /**
+         * @brief Class SubSampleAxis
+         */
         class SubSampleAxis
         {
             public:

@@ -39,47 +39,148 @@ namespace hops
  *@brief class for computing fringe plot information
  */
 
+/**
+ * @brief Class MHO_ComputePlotData
+ */
 class MHO_ComputePlotData
 {
     public:
         MHO_ComputePlotData();
         virtual ~MHO_ComputePlotData(){};
 
+        /**
+         * @brief Sets optimize closure to true using fRot object.
+         */
         void EnableOptimizeClosure() { fRot.SetOptimizeClosureTrue(); }
 
+        /**
+         * @brief Disables optimize closure by setting fRot's optimizeClosure to false.
+         */
         void DisableOptimizeClosure() { fRot.SetOptimizeClosureFalse(); }
 
+        /**
+         * @brief Setter for mbdanchor
+         * 
+         * @param flag Flag indicating station type (0 = reference, 1 = remote)
+         */
         void SetMBDAnchor(std::string flag) { fMBDAnchor = flag; }
 
+        /**
+         * @brief Setter for operator toolbox
+         * 
+         * @param toolbox Pointer to MHO_OperatorToolbox object
+         */
         void SetOperatorToolbox(MHO_OperatorToolbox* toolbox) { fToolbox = toolbox; }
 
+        /**
+         * @brief Setter for container store
+         * 
+         * @param cStore Pointer to MHO_ContainerStore object
+         */
         void SetContainerStore(MHO_ContainerStore* cStore) { fContainerStore = cStore; }
 
+        /**
+         * @brief Setter for parameter store
+         * 
+         * @param pStore Pointer to MHO_ParameterStore object
+         */
         void SetParameterStore(MHO_ParameterStore* pStore) { fParamStore = pStore; }
 
+        /**
+         * @brief Setter for vex info
+         * 
+         * @param vex_info Const reference to mho_json object containing VEX information
+         */
         void SetVexInfo(const mho_json& vex_info) { fVexInfo = vex_info; }
 
+        /**
+         * @brief Initializes member variables by retrieving values from parameter and container stores.
+         */
         void Initialize();
 
+        /**
+         * @brief Dumps fringe plot data into a JSON object for visualization.
+         * 
+         * @param plot_dict JSON object to store fringe plot data.
+         */
         void DumpInfoToJSON(mho_json& plot_dict);
 
         //protected:
 
         TODO_FIXME_MSG("TODO FIXME, temporary kludge to pass sbd amp data for test")
+        /**
+         * @brief Calculates Multi-Band Delay (MBD) for each channel in the given SBD array.
+         * 
+         * @return xpower_amp_type representing the calculated MBD.
+         */
         xpower_amp_type calc_mbd();
+        /**
+         * @brief Calculates Single Band Delay (SBD) power spectrum for fringe tracking.
+         * 
+         * @return xpower_amp_type containing SBD power spectrum
+         */
         xpower_amp_type calc_sbd();
+        /**
+         * @brief Calculates and returns phasor segments for each channel and average point.
+         * 
+         * @return phasor_type containing calculated phasor segments.
+         */
         phasor_type calc_segs();
+        /**
+         * @brief Calculates and returns the cross-power spectrum for a given SBD array.
+         * 
+         * @return xpower_type containing the calculated cross-power spectrum
+         */
         xpower_type calc_xpower_spec();
+        /**
+         * @brief Calculates delay-rate (dr) for MHO_ComputePlotData.
+         * 
+         * @return xpower_amp_type representing calculated delay-rate
+         */
         xpower_amp_type calc_dr();
 
         // visibility_type* calc_corrected_vis();
+        /**
+         * @brief Corrects visibility data by summing over channels and applying frequency rotation.
+         */
         void correct_vis();
 
+        /**
+         * @brief Calculates phase for MHO_ComputePlotData using weighted sum and fitted delay-rate rotation.
+         * 
+         * @return Phase as a double value.
+         */
         double calc_phase();
 
+        /**
+         * @brief Calculates frequency root mean square (phase and amplitude) for given phasors.
+         * 
+         * @param phasors Reference to phasor_type object containing channel data
+         * @param coh_avg_phase Coherent average phase in radians
+         * @param fringe_amp Fringe amplitude
+         * @param total_summed_weights Total summed weights
+         * @param snr Signal-to-noise ratio
+         * @param freqrms_phase Output: Frequency RMS phase
+         * @param freqrms_amp Output: Frequency RMS amplitude
+         * @param inc_avg_amp_freq Output: Incremental average amplitude frequency
+         */
         void calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp, double total_summed_weights,
                           double snr, double& freqrms_phase, double& freqrms_amp, double& inc_avg_amp_freq);
 
+        /**
+         * @brief Calculates time-domain measurements (phase, amplitude, average) from phasors data.
+         * 
+         * @param phasors Input phasor data
+         * @param nseg Number of segments in phasors data
+         * @param apseg Average phase segment size
+         * @param coh_avg_phase Coherent average phase (degrees)
+         * @param fringe_amp Fringe amplitude
+         * @param total_summed_weights Total summed weights
+         * @param snr Signal to Noise Ratio
+         * @param timerms_phase Output: Time-domain measurements phase
+         * @param timerms_amp Output: Time-domain measurements amplitude
+         * @param inc_avg_amp Output: Incremental average amplitude
+         */
         void calc_timerms(phasor_type& phasors, std::size_t nseg, std::size_t apseg, double coh_avg_phase, double fringe_amp,
                           double total_summed_weights, double snr, double& timerms_phase, double& timerms_amp,
                           double& inc_avg_amp);

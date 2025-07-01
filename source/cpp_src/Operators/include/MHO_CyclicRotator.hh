@@ -22,6 +22,9 @@ namespace hops
  * by some specified offset for each dimension.
  */
 
+/**
+ * @brief Class MHO_CyclicRotator
+ */
 template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
 {
     public:
@@ -38,6 +41,12 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
         virtual ~MHO_CyclicRotator(){};
 
         //set the offset for the cyclic rotation in each dimension (default is zero...do nothing)
+        /**
+         * @brief Setter for offset
+         * 
+         * @param dimension_index Index of the dimension to set the offset for
+         * @param offset_value (int64_t)
+         */
         void SetOffset(std::size_t dimension_index, int64_t offset_value)
         {
             //A negative offset_value results in a "right" rotation: rot by  1: [0 1 2 3] -> [3 0 1 2]
@@ -55,6 +64,13 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
         }
 
     protected:
+        /**
+         * @brief Initializes in-place rotation and sets flag if input is not nullptr.
+         * 
+         * @param in Input array for initialization.
+         * @return True if initialized successfully, false otherwise.
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(XArrayType* in) override
         {
             if(in != nullptr)
@@ -65,6 +81,13 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
             return fInitialized;
         }
 
+        /**
+         * @brief Function ExecuteInPlace
+         * 
+         * @param in (XArrayType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(XArrayType* in) override
         {
             if(!fInitialized)
@@ -143,6 +166,14 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
             }
         }
 
+        /**
+         * @brief Function InitializeOutOfPlace
+         * 
+         * @param in (const XArrayType*)
+         * @param out (XArrayType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             if(in != nullptr && out != nullptr)
@@ -177,6 +208,14 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
             return fInitialized;
         }
 
+        /**
+         * @brief Function ExecuteOutOfPlace
+         * 
+         * @param in (const XArrayType*)
+         * @param out (XArrayType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             if(fInitialized)
@@ -214,11 +253,27 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
 
     private:
         //default...does nothing
+        /**
+         * @brief Rotates an input XArrayType along a specified axis and stores the result in output.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param !in Parameter description
+         * @param !out Parameter description
+         * @param !dim Parameter description
+         */
         template< typename XCheckType = XArrayType >
         typename std::enable_if< !std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableRotateAxis(const XArrayType* /*!in*/, XArrayType* /*!out*/, std::size_t /*!dim*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
+        /**
+         * @brief Rotates an input array along a specified axis and dimension using cyclic rotation offsets.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param in Input array to rotate
+         * @param out Output array after rotation
+         * @param dim Dimension along which to rotate
+         */
         template< typename XCheckType = XArrayType >
         typename std::enable_if< std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableRotateAxis(const XArrayType* in, XArrayType* out, std::size_t dim)
@@ -227,6 +282,9 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
             apply_at2< typename XArrayType::axis_pack_tuple_type, RotateAxis >(*in, *out, dim, axis_rot);
         }
 
+        /**
+         * @brief Class RotateAxis
+         */
         class RotateAxis
         {
             public:
@@ -264,6 +322,13 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
 
         //note: using the modulo is a painfully slow to do this
         //TODO FIXME...we ought to check for uint64_t -> int64_t overflows!
+        /**
+         * @brief Calculates positive modulo by adding n and taking modulo again to handle negative results.
+         * 
+         * @param i Input value for modulo operation
+         * @param n Modulus value
+         * @return Result of positive modulo operation as int64_t
+         */
         inline int64_t positive_modulo(int64_t i, int64_t n) { return (i % n + n) % n; }
 
         //offsets to for cyclic rotation

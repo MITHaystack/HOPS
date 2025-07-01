@@ -19,6 +19,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_OperatorToolbox
+ */
 class MHO_OperatorToolbox
 {
     public:
@@ -27,6 +30,14 @@ class MHO_OperatorToolbox
         virtual ~MHO_OperatorToolbox() { Clear(); }
 
         //insertion
+        /**
+         * @brief Adds an operator to the toolbox with optional replacement if duplicate name exists.
+         * 
+         * @param op Pointer to the MHO_Operator to be added
+         * @param name Name of the operator (duplicate names can be replaced)
+         * @param category Category under which the operator will be stored
+         * @param replace_duplicate Flag indicating whether to replace duplicate operators by name
+         */
         void AddOperator(MHO_Operator* op, const std::string& name, const std::string& category, bool replace_duplicate = true)
         {
             msg_debug("operators",
@@ -43,6 +54,12 @@ class MHO_OperatorToolbox
         }
 
         //retrieval by name as generic operator, returns nullptr if missing
+        /**
+         * @brief Getter for operator
+         * 
+         * @param name Operator name to search for in the map
+         * @return Pointer to MHO_Operator or nullptr if not found
+         */
         MHO_Operator* GetOperator(const std::string& name)
         {
             MHO_Operator* ptr = nullptr;
@@ -54,6 +71,12 @@ class MHO_OperatorToolbox
             return ptr;
         }
 
+        /**
+         * @brief Getter for operator
+         * 
+         * @param name Operator name to search for in the map
+         * @return Pointer to MHO_Operator or nullptr if not found
+         */
         MHO_Operator* GetOperator(const char* name)
         {
             std::string sname(name);
@@ -61,6 +84,12 @@ class MHO_OperatorToolbox
         }
 
         //retrieval by name, with cast to specific type, if missing returns nullptr
+        /**
+         * @brief Getter for operator as
+         * 
+         * @param name Operator name to retrieve
+         * @return Pointer to operator cast as XOperatorType or nullptr if not found/cannot be cast
+         */
         template< typename XOperatorType > XOperatorType* GetOperatorAs(const std::string& name)
         {
             XOperatorType* ptr = nullptr;
@@ -72,9 +101,19 @@ class MHO_OperatorToolbox
             return ptr;
         }
 
+        /**
+         * @brief Getter for noperators
+         * 
+         * @return Size of fOperators vector as std::size_t
+         */
         std::size_t GetNOperators() { return fOperators.size(); }
 
         //get all operators in the toolbox
+        /**
+         * @brief Getter for all operators
+         * 
+         * @return std::vector<MHO_Operator* sorted list of operators
+         */
         std::vector< MHO_Operator* > GetAllOperators()
         {
             std::vector< MHO_Operator* > ops;
@@ -89,6 +128,13 @@ class MHO_OperatorToolbox
         }
 
         //get all operators within the priority range [low,high)
+        /**
+         * @brief Getter for operators by priority range
+         * 
+         * @param lower_limit Lower bound of priority range
+         * @param upper_limit Upper bound of priority range
+         * @return Vector of MHO_Operator pointers sorted by priority
+         */
         std::vector< MHO_Operator* > GetOperatorsByPriorityRange(double lower_limit, double upper_limit)
         {
             std::vector< MHO_Operator* > ops;
@@ -107,6 +153,12 @@ class MHO_OperatorToolbox
         }
 
         //get all operators by category
+        /**
+         * @brief Getter for operators by category
+         * 
+         * @param category The category of operators to retrieve.
+         * @return A vector of MHO_Operator pointers sorted by priority.
+         */
         std::vector< MHO_Operator* > GetOperatorsByCategory(const std::string& category)
         {
             std::vector< MHO_Operator* > ops;
@@ -127,6 +179,11 @@ class MHO_OperatorToolbox
         }
 
     private:
+        /**
+         * @brief Function RemoveOperator
+         * 
+         * @param name (const std::string&)
+         */
         void RemoveOperator(const std::string& name)
         {
             auto it = fNameToOperatorMap.find(name);
@@ -158,6 +215,9 @@ class MHO_OperatorToolbox
             }
         }
 
+        /**
+         * @brief Clears the current state or data.
+         */
         void Clear()
         {
             //delete all the operators
@@ -180,6 +240,9 @@ class MHO_OperatorToolbox
         std::multimap< std::string, MHO_Operator* > fCategoryToOperatorMap;
 
         //for sorting operator priorites
+        /**
+         * @brief Class operator_predicate
+         */
         class operator_predicate
         {
             public:

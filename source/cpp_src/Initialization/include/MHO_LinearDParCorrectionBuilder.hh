@@ -14,6 +14,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_LinearDParCorrectionBuilder
+ */
 class MHO_LinearDParCorrectionBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -26,6 +29,11 @@ class MHO_LinearDParCorrectionBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_LinearDParCorrectionBuilder(){};
 
+        /**
+         * @brief Constructs and initializes the linear DPar correction builder.
+         * 
+         * @return True if construction is successful, false otherwise.
+         */
         virtual bool Build() override;
 
     private:

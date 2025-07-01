@@ -9,6 +9,9 @@
 namespace hops
 {
 
+/**
+ * @brief Class MHO_NDArrayWrapper
+ */
 template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: public MHO_ExtensibleElement
 {
     public:
@@ -40,30 +43,89 @@ template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: publi
         virtual ~MHO_NDArrayWrapper(){};
 
         //resize functions
+        /**
+         * @brief Resize an externally managed array using provided dimensions.
+         * 
+         * @param dim Input dimension for resizing the array.
+         * @note This is a virtual function.
+         */
         virtual void Resize(const std::size_t* dim) { Construct(nullptr, dim); }
 
+        /**
+         * @brief Sets dimensions for externally managed array.
+         * 
+         * @param dim Pointer to dimension size_t array
+         * @note This is a virtual function.
+         */
         void Resize(std::size_t dim) { Resize(&dim); }
 
         //set pointer to externally managed array with associated dimension
+        /**
+         * @brief Setter for external data
+         * 
+         * @param ptr Pointer to externally managed XValueType array
+         * @param dim Pointer to size_t array representing dimensions of the external data
+         */
         void SetExternalData(XValueType* ptr, const std::size_t* dim) { Construct(ptr, dim); }
 
+        /**
+         * @brief Setter for external data
+         * 
+         * @param ptr Pointer to externally managed XValueType array
+         * @param dim Pointer to size_t array representing dimensions of the array
+         */
         void SetExternalData(XValueType* ptr, std::size_t dim) { Construct(ptr, &dim); }
 
         //access to underlying raw array pointer
+        /**
+         * @brief Getter for data
+         * 
+         * @return Pointer to XValueType*
+         */
         XValueType* GetData() { return fData.data(); };
 
+        /**
+         * @brief Getter for data
+         * 
+         * @return Pointer to XValueType*
+         */
         const XValueType* GetData() const { return fData.data(); };
 
         //get the total size of the array
+        /**
+         * @brief Getter for rank
+         * 
+         * @return Total size of the array as std::size_t
+         */
         std::size_t GetRank() const { return 1; }
 
+        /**
+         * @brief Getter for size
+         * 
+         * @return Size along the first dimension as std::size_t.
+         */
         std::size_t GetSize() const { return fDims[0]; };
 
         //get the dimensions/shape of the array
+        /**
+         * @brief Getter for dimensions
+         * 
+         * @return Pointer to an array of std::size_t representing the dimensions
+         */
         const std::size_t* GetDimensions() const { return &(fDims[0]); }
 
+        /**
+         * @brief Getter for dimensions
+         * 
+         * @return Pointer to std::size_t array
+         */
         void GetDimensions(std::size_t* dim) const { dim[0] = fDims[0]; }
 
+        /**
+         * @brief Getter for dimension array
+         * 
+         * @return index_type&: Reference to the dimension array
+         */
         index_type GetDimensionArray() const { return fDims; }
 
         std::size_t GetDimension(std::size_t idx) const

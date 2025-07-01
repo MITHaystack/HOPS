@@ -17,6 +17,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_DiFXVisibilityRecord
+ */
 class MHO_DiFXVisibilityRecord
 {
     public:
@@ -48,6 +51,9 @@ class MHO_DiFXVisibilityRecord
 
         virtual ~MHO_DiFXVisibilityRecord(){};
 
+        /**
+         * @brief Resets the state of the object to its initial values.
+         */
         void Reset()
         {
             nchan = 0;
@@ -104,6 +110,9 @@ class MHO_DiFXVisibilityRecord
 
 //helper union used for reading in visibility records
 //to catch over-runs with sync word
+/**
+ * @brief Class (anonymous union)
+ */
 typedef union
 {
         float values[2];

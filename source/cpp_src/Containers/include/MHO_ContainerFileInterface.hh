@@ -19,32 +19,83 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_ContainerFileInterface
+ */
 class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 {
     public:
         MHO_ContainerFileInterface();
         virtual ~MHO_ContainerFileInterface();
 
+        /**
+         * @brief Setter for filename
+         * 
+         * @param filename New filename to set as a std::string
+         */
         void SetFilename(std::string filename);
 
         //index file optional, if we don't have an index file, the regular file will be
         //read in 2-passes, first to extract the keys, then to extract the objects
         //likewise, when writing a store to file, if there is no index file specified, none will be created
+        /**
+         * @brief Setter for index file name
+         * 
+         * @param index_filename The new index file name to set
+         */
         void SetIndexFileName(std::string index_filename);
 
         //currently this function reads the file keys and then the all the file objects
         //we may want to split this functionality so we can inspect the file first
         //and then only read the objects of interest
+        /**
+         * @brief Populates a store from a file, optionally clearing it first.
+         * 
+         * @param store Reference to MHO_ContainerStore object
+         * @param do_clear_store Boolean flag indicating whether to clear the store before populating
+         */
         void PopulateStoreFromFile(MHO_ContainerStore& store, bool do_clear_store = false);
 
+        /**
+         * @brief Writes a ContainerStore to file using FileInterface and factory map.
+         * 
+         * @param store Reference to MHO_ContainerStore containing objects to write.
+         */
         void WriteStoreToFile(MHO_ContainerStore& store);
 
+        /**
+         * @brief Converts a container store to JSON representation with specified detail level.
+         * 
+         * @param store Reference to MHO_ContainerStore object containing data to convert.
+         * @param json_obj Reference to mho_json object that will hold the converted JSON data.
+         * @param level_of_detail Integer specifying the level of detail for the JSON conversion.
+         */
         void ConvertStoreToJSON(MHO_ContainerStore& store, mho_json& json_obj, int level_of_detail = eJSONBasic);
 
+        /**
+         * @brief Converts a specific object in store to JSON representation at given detail level.
+         * 
+         * @param store Reference to MHO_ContainerStore for accessing objects and types.
+         * @param obj_uuid UUID of the object to convert to JSON.
+         * @param json_obj Reference to mho_json where converted object will be stored.
+         * @param level_of_detail Detail level for converting the object.
+         */
         void ConvertObjectInStoreToJSON(MHO_ContainerStore& store, const MHO_UUID& obj_uuid, mho_json& json_obj,
                                         int level_of_detail = eJSONBasic);
                                         
         //also provides access to the raw bytes of table container data (for hops2flat)
+        /**
+         * @brief Converts an object in store to JSON and raw data, providing access to raw bytes for hops2flat.
+         * 
+         * @param store Reference to MHO_ContainerStore for accessing objects
+         * @param obj_uuid UUID of the object to convert
+         * @param json_obj Output mho_json object containing converted JSON representation
+         * @param rank Output rank of the converted object (specialization for RANK-0)
+         * @param raw_data Output pointer to raw data bytes (null if not available)
+         * @param raw_data_byte_size Output size of raw data in bytes
+         * @param raw_data_descriptor Output string describing raw data
+         * @param level_of_detail Input level of detail for conversion
+         */
         void ConvertObjectInStoreToJSONAndRaw(MHO_ContainerStore& store, 
                                         const MHO_UUID& obj_uuid,
                                         mho_json& json_obj,

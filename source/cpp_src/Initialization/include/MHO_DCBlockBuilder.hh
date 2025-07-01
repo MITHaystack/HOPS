@@ -14,6 +14,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_DCBlockBuilder
+ */
 class MHO_DCBlockBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -27,6 +30,11 @@ class MHO_DCBlockBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_DCBlockBuilder(){};
 
+        /**
+         * @brief Constructs and adds an operator builder to the toolbox's multimap.
+         * 
+         * @return No return value.
+         */
         virtual bool Build() override;
 
     private:
