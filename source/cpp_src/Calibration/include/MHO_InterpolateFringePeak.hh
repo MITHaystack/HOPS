@@ -30,12 +30,12 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         virtual ~MHO_InterpolateFringePeak(){};
 
         /**
-         * @brief Sets optimize closure to true using fRot object.
+         * @brief Sets optimize closure to true (not used for 'simul' method).
          */
         void EnableOptimizeClosure() { fRot.SetOptimizeClosureTrue(); }
 
         /**
-         * @brief Disables optimize closure by setting fRot's optimizeClosure to false.
+         * @brief Disables optimize closure
          */
         void DisableOptimizeClosure() { fRot.SetOptimizeClosureFalse(); }
 
@@ -54,16 +54,16 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         void SetReferenceTimeOffset(double frt_offset) { fFRTOffset = frt_offset; }
 
         /**
-         * @brief Setter for max bins
+         * @brief Setter for max bins (location)
          * 
-         * @param sbd_max Maximum number of bins for Single-Band Delay (SBD).
-         * @param mbd_max Maximum number of bins for Multi-Band Delay (MBD).
-         * @param dr_max Maximum number of bins for Doppler Rate (DR).
+         * @param sbd_max Set the bin location for the maximum along the Single-Band Delay (SBD) axis .
+         * @param mbd_max Set the bin location for the maximum along the Multi-Band Delay (MBD) axis.
+         * @param dr_max Set the bin location for the maximum along the Delay Rate (DR) axis.
          */
         void SetMaxBins(int sbd_max, int mbd_max, int dr_max);
 
         /**
-         * @brief Setter for sbdarray
+         * @brief Setter for sbd array
          * 
          * @param sbd_arr Input SBD array of type const visibility_type*
          */
@@ -77,14 +77,14 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         void SetWeights(const weight_type* weights) { fWeights = weights; }
 
         /**
-         * @brief Setter for mbdaxis
+         * @brief Setter for mbd axis
          * 
          * @param mbd_ax Input Multi-Band Delay axis
          */
         void SetMBDAxis(const time_axis_type* mbd_ax) { fMBDAxis.Copy(*mbd_ax); }
 
         /**
-         * @brief Setter for draxis
+         * @brief Setter for dr axis
          * 
          * @param dr_ax Input delay_rate_axis_type data to copy
          */
@@ -115,7 +115,7 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         /**
          * @brief Getter for mbdelay
          * 
-         * @return Current machine breakdown delay as a double.
+         * @return Current multi-band delay as a double.
          */
         double GetMBDelay() const { return fMBDelay; }
 

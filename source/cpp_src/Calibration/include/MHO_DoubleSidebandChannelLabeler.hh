@@ -34,14 +34,14 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
     public:
         MHO_DoubleSidebandChannelLabeler()
         {
-            fEps = 1e-6; //tolerance when check if channels share a sky freq
+            fEps = 1e-6; //tolerance (MHz) when checking if channels share a sky freq
         };
 
         virtual ~MHO_DoubleSidebandChannelLabeler(){};
 
         //allow channel freq association to use a difference tolerance
         /**
-         * @brief Setter for tolerance
+         * @brief Setter for tolerance - in (MHz) when checking if channels share a sky freq
          * 
          * @param tol New tolerance value to use when checking if channels share a sky frequency.
          */
@@ -68,7 +68,7 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
         virtual bool InitializeOutOfPlace(const XArrayType* /*!in*/, XArrayType* /*!out*/) override { return true; }
 
         /**
-         * @brief Function ExecuteInPlace
+         * @brief Function ExecuteInPlace labels LSB/USB channel pairs as "double sideband" channels if they share and edge
          * 
          * @param in (XArrayType*)
          * @return Return value (bool)
