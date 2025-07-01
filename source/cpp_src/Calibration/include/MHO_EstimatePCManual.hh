@@ -43,7 +43,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         void SetWeights(const weight_type* weights) { fWeights = weights; }
 
         /**
-         * @brief Setter for phasors
+         * @brief Setter for visibility channel phasors
          * 
          * @param phasors Input phasors of type phasor_type
          */
@@ -74,7 +74,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         virtual bool InitializeImpl(const visibility_type* in) override { return true; };
 
         /**
-         * @brief Executes manual PC estimation using input visibility data and retrieves mode logic.
+         * @brief Executes manual PC estimation using input visibility data
          * 
          * @param in Input visibility_type pointer containing visibility data.
          * @return Always returns true.
@@ -86,19 +86,19 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         /**
          * @brief Calculates and returns manual phase calibration for a given channel and polarization.
          * 
-         * @param is_remote Flag indicating whether to use remote reference (true) or local reference (false).
+         * @param is_remote Flag indicating whether the current station is the remote station (true) or reference station (false).
          * @param channel_idx Index of the channel for which to calculate the phase calibration.
-         * @param pol Polarization string ('L' or 'R')
+         * @param pol Polarization string ('L' or 'R', 'X' or 'Y')
          * @return Calculated manual phase calibration in degrees.
          */
         double get_manual_phasecal(int is_remote, int channel_idx, std::string pol);
         /**
          * @brief Calculates and returns manual delay offset for a given channel and polarization.
          * 
-         * @param is_remote Flag indicating if the delay is remote (true) or local (false).
-         * @param channel_idx Index of the channel, with 0 being the lowest frequency channel.
-         * @param pol Polarization string ('L' or 'R').
-         * @return Manual delay offset as a double.
+         * @param is_remote Flag indicating whether the current station is the remote station (true) or reference station (false).
+         * @param channel_idx Index of the channel for which to calculate the phase calibration.
+         * @param pol Polarization string ('L' or 'R', 'X' or 'Y')
+         * @return Calculated manual delay offset as a double.
          */
         double get_manual_delayoff(int is_remote, int channel_idx, std::string pol);
 
@@ -109,9 +109,9 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         const visibility_type* fVisibilities;
 
         /**
-         * @brief Manually estimates phase center using given mode and parameters.
+         * @brief executes estimation of manual phase (and/or delay) corrections
          * 
-         * @param mode Mode for estimating phase center.
+         * @param mode Mode dictating estimation method
          */
         void est_pc_manual(int mode);
         /**
@@ -131,8 +131,14 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
          * @param delta_delay Delay adjustment factor
          * @param first Starting index for delay adjustment
          * @param final Ending index for delay adjustment
-         * @param is_ref Reference flag for delay adjustment
-         * @param how Method flags for delay adjustment
+         * @param is_ref (station) reference flag for delay adjustment
+         * @param how Method flag for delay adjustment
+         * @detail This routine adjusts delays according to the method specified in 'how':
+         *    0x02: use median channel SBD
+         *    0x04: average channel SBD
+         *    0x08: use total SBD channel
+         *    0x10: use original SBD values
+         *    0x20: use heuristics to discard outliers
          */
         void adj_delays(double sbd_max, double* sbd, double* esd, double delta_delay, int first, int final, int is_ref,
                         int how);
@@ -140,11 +146,11 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
          * @brief Calculates and adjusts delays for fringe estimation based on reference station and delay modes.
          * 
          * @param is_ref Flag indicating whether to use reference station (true) or remote station (false).
-         * @param how Bitmask specifying delay calculation modes.
+         * @param how Bitmask specifying delay calculation method (see adj_delays() )
          */
         void est_delays(int is_ref, int how);
         /**
-         * @brief Calculates and adjusts phase offset for manual fringe tracking.
+         * @brief Calculates export overall phase offset (pc_phase_offset_?)
          * 
          * @param is_ref Flag indicating whether to use reference or remote station.
          */

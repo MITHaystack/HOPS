@@ -52,7 +52,7 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
         int GetDelayRateSearchSpaceSize() const { return fDRSPSize; }
 
         /**
-         * @brief Calculates the search space size based on input size using bit reversal permutation.
+         * @brief Calculates the search space size based on input size
          * 
          * @param input_size Input size for which to calculate the search space
          * @return Calculated search space size as an unsigned integer
@@ -97,7 +97,7 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
          */
         void ApplyDataWeights(const XArgType2* in2, XArgType3* out);
         /**
-         * @brief Conditionally resizes output array dimensions if they differ from input dimensions.
+         * @brief Conditionally resizes output array dimensions if they differ from required dimensions.
          * 
          * @param dims Input dimension sizes
          * @param size Desired size for time axis

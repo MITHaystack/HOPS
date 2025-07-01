@@ -109,10 +109,10 @@ class MHO_DelayModel
         // double GetRefAcceleration(){return fRefAccel;};
 
     private:
-        //evalute the delay model (delay, rate, accel) from the spline coefficients
+
         //XCoeffVectorType is expected to be an MHO_NDArrayView type
         /**
-         * @brief Evaluates delay spline model using given coefficients and time delta.
+         * @brief Evaluates delay spline model (delay, rate, accel) using given coefficients and time delta.
          * 
          * @tparam XCoeffVectorType Template parameter XCoeffVectorType
          * @param coeff Input coefficient vector of type XCoeffVectorType
@@ -122,13 +122,13 @@ class MHO_DelayModel
         template< typename XCoeffVectorType >
         void EvaluateDelaySpline(const XCoeffVectorType& coeff, double delta_t, double* results);
 
-        //clamp selected interval between [0, n_intervals-1]
+        
         /**
-         * @brief Checks spline interval and adjusts int_no if necessary.
+         * @brief Checks spline interval and adjusts int_no if necessary, clamps selected interval between [0, n_intervals-1]
          * 
          * @param n_intervals Number of intervals in the spline.
          * @param tdiff Time difference for reference time.
-         * @param int_no Reference integer number, adjusted if needed.
+         * @param int_no interval number, adjusted if needed.
          * @param station_id Identifier of the station.
          */
         void CheckSplineInterval(int n_intervals, double tdiff, int& int_no, std::string station_id);
