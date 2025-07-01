@@ -45,7 +45,7 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
         void SetStationIdentifier(std::string station_id) { fStationIdentity = station_id; }
 
         /**
-         * @brief Setter for polarization
+         * @brief Setter for associated polarization
          * 
          * @param pol Input polarization string
          */
@@ -56,9 +56,9 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
         };
 
         /**
-         * @brief Setter for pcphase offset
+         * @brief Setter for pc_phase offset
          * 
-         * @param pc_phase_offset New Phase Calibration phase offset value
+         * @param pc_phase_offset phase offset value applied to this polarization
          */
         void SetPCPhaseOffset(const double& pc_phase_offset) { fPhaseOffset = pc_phase_offset; }
 
@@ -82,9 +82,9 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
-         * @brief Applies manual phase correction offsets to visibility data in-place for reference and remote stations.
+         * @brief Applies manual phase correction offsets to visibility data in-place for reference or remote stations.
          * 
-         * @param in Input visibility_type* containing pol-products and channels.
+         * @param in Input visibility_type* containing pol-products and channel labeled visibilities.
          * @return bool indicating successful execution.
          * @note This is a virtual function.
          */
@@ -101,7 +101,7 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
 
     private:
         /**
-         * @brief Checks if manual polarization phase correction is applicable for a given station index and visibility data.
+         * @brief Checks if manual polarization-specific phase correction is applicable for a given station index and visibility data.
          * 
          * @param st_idx Index of the station (ref/rem).
          * @param in Visibility data to retrieve station information.
@@ -109,11 +109,11 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
          */
         bool IsApplicable(std::size_t st_idx, const visibility_type* in);
         /**
-         * @brief Checks if polarization product at given station index matches first polarization in fPol array.
+         * @brief Checks if the correction polarization matches the polarization product at the given station index [0 = ref, 1 = rem].
          * 
-         * @param station_idx Index of the station to check
+         * @param station_idx Index of the station for which to check the polarization product.
          * @param polprod (std::string&)
-         * @return True if polarization product matches first polarization in fPol, false otherwise
+         * @return True if polarization product matches fPol at given station index, false otherwise.
          */
         bool PolMatch(std::size_t station_idx, std::string& polprod);
 

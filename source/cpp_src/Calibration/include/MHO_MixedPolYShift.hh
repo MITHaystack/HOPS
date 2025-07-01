@@ -38,15 +38,15 @@ class MHO_MixedPolYShift: public MHO_UnaryOperator< visibility_type >
         //this particular operator feature always uses 90 degrees
         //but perhaps we could allow that to change via this setter
         /**
-         * @brief Setter for phase offset
+         * @brief Setter for phase offset applied to Y pol
          * 
-         * @param offset New phase offset value
+         * @param offset the phase offset value
          */
         void SetPhaseOffset(const double& offset) { fYPolPhaseOffset = offset; }
 
     protected:
         /**
-         * @brief Initializes in-place for mixed polarization shift.
+         * @brief Initializes in-place for mixed polarization phase shift.
          * 
          * @param in Input visibility_type pointer.
          * @return True if initialization is successful.
@@ -54,7 +54,7 @@ class MHO_MixedPolYShift: public MHO_UnaryOperator< visibility_type >
          */
         virtual bool InitializeInPlace(visibility_type* in) override;
         /**
-         * @brief Initializes out-of-place operation for mixed polarization data.
+         * @brief Initializes out-of-place operation for mixed polarization phase shift operation.
          * 
          * @param in Input visibility_type data pointer
          * @param out Output visibility_type data pointer
@@ -64,7 +64,7 @@ class MHO_MixedPolYShift: public MHO_UnaryOperator< visibility_type >
         virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
-         * @brief Applies a phase offset for mixed polarization data in-place.
+         * @brief Applies a phase offset for mixed polarization data in-place (to Y-pol).
          * 
          * @param in Input visibility_type object to apply phase offset.
          * @return True if successful, false if input is nullptr.
@@ -83,7 +83,7 @@ class MHO_MixedPolYShift: public MHO_UnaryOperator< visibility_type >
 
     private:
         /**
-         * @brief Checks if a mixed linear/circular polarization product is applicable to a station index.
+         * @brief Checks if a mixed linear/circular polarization product is applicable to this data at this station index.
          * 
          * @param st_idx Index of the station (0 for reference, 1 for remote)
          * @param polprod Polarization product string
@@ -91,11 +91,11 @@ class MHO_MixedPolYShift: public MHO_UnaryOperator< visibility_type >
          */
         bool IsApplicable(std::size_t st_idx, std::string polprod);
         /**
-         * @brief Function PolMatch
+         * @brief Checks if the polarization matches the polarization product at the given station index [0 = ref, 1 = rem].
          * 
-         * @param station_idx (std::size_t)
+         * @param station_idx Index of the station for which to check the polarization product.
          * @param polprod (std::string&)
-         * @return Return value (bool)
+         * @return True if polarization product matches fPol at given station index, false otherwise.
          */
         bool PolMatch(std::size_t station_idx, std::string& polprod);
 
@@ -121,7 +121,13 @@ class MHO_MixedPolYShift: public MHO_UnaryOperator< visibility_type >
         std::string fLowerSideband;
         std::string fUpperSideband;
 
-        //determines if this is a pol-product of the form (YR, XR, XL, YL, LX, etc.)
+
+        /**
+         * @brief determines if this is a (mixed_ pol-product of the form (YR, XR, XL, YL, LX, etc.)
+         * 
+         * @param polprod (std::string&)
+         * @return True if mixed linear-circular polarization product
+         */
         bool IsMixedLinCirc(std::string polprod) const;
 
         //minor helper function to make sure all strings are compared as upper-case only

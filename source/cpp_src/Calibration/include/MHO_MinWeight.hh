@@ -37,7 +37,7 @@ class MHO_MinWeight: public MHO_UnaryOperator< weight_type >
         /**
          * @brief Setter for min weight
          * 
-         * @param min_weight New minimum weight value
+         * @param min_weight the minimum allowed weight value
          */
         void SetMinWeight(double min_weight) { fMinWeight = min_weight; }
 

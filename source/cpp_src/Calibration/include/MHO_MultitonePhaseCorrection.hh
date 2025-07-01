@@ -43,7 +43,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         virtual ~MHO_MultitonePhaseCorrection();
 
         /**
-         * @brief Setter for station
+         * @brief Setter for station code
          * 
          * @param station Two-character station code
          */
@@ -57,9 +57,9 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         void SetStationMk4ID(std::string station_id) { fMk4ID = station_id; } //1-char mk4id
 
         /**
-         * @brief Setter for pcperiod
+         * @brief Setter for phase cal averaging period
          * 
-         * @param pc_period New AP period in milliseconds
+         * @param pc_period the phase cal averaging period in (integer) APs 
          */
         void SetPCPeriod(std::size_t pc_period) { fPCPeriod = pc_period; }
 
@@ -94,7 +94,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         };
 
         /**
-         * @brief Initializes out-of-place visibility data if fPCData is nullptr.
+         * @brief Initializes out-of-place visibility data (only if fPCData != nullptr).
          * 
          * @param !in Input pointer to const visibility_type
          * @param !out Output pointer to visibility_type
@@ -108,7 +108,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         };
 
         /**
-         * @brief Applies phase calibration to visibility data in-place.
+         * @brief Applies multi-tone phase calibration to visibility data in-place.
          * 
          * @param in Input visibility_type pointer for processing.
          * @return True if execution was successful, false otherwise.
@@ -129,7 +129,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         /**
          * @brief Temporally interpolates phase calibration (Pcal) tone phasors.
          * 
-         * @param pcal_minus_visib_toffset Time offset to apply before interpolation
+         * @param pcal_minus_visib_toffset Time offset between the visibility data start and pcal data start
          */
         void InterpolatePCData(double pcal_minus_visib_toffset);
 
@@ -168,10 +168,10 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
          */
         bool PolMatch(std::size_t station_idx, std::string& pc_pol, std::string& polprod);
         /**
-         * @brief Determines start index and number of tones within frequency range.
+         * @brief Determines start index and number of tones within one channel's frequency range.
          * 
-         * @param lower_freq Lower frequency limit in Hz
-         * @param upper_freq Upper frequency limit in Hz
+         * @param lower_freq Lower frequency limit in MHz
+         * @param upper_freq Upper frequency limit in MHz
          * @param lower_idx (std::size_t&)
          * @param upper_idx (std::size_t&)
          */

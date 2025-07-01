@@ -50,16 +50,16 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
 
         //parallactic angle values for each station (expects degrees)
         /**
-         * @brief Setter for reference parallactic angle
+         * @brief Setter for reference station parallactic angle
          * 
-         * @param p New reference parallactic angle value in degrees
+         * @param p reference station parallactic angle value in degrees
          */
         void SetReferenceParallacticAngle(double p) { fRefParAngle = p; }
 
         /**
-         * @brief Setter for remote parallactic angle
+         * @brief Setter for remote station parallactic angle
          * 
-         * @param p New value for remote parallactic angle
+         * @param p value for remote station parallactic angle in degrees
          */
         void SetRemoteParallacticAngle(double p) { fRemParAngle = p; }
 
@@ -87,7 +87,7 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
-         * @brief Applies linear DPar correction to visibility data in-place.
+         * @brief Applies linear delta-parallactic angle correction to visibility data in-place.
          * 
          * @param in Input visibility_type* data to be corrected.
          * @return True indicating successful application of correction.
@@ -95,7 +95,7 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
          */
         virtual bool ExecuteInPlace(visibility_type* in) override;
         /**
-         * @brief Copies input visibility data and applies a pre-multiplication operation.
+         * @brief Copies input visibility data and applies the pre-multiplication operation.
          * 
          * @param in Input visibility_type data to be copied.
          * @param out (visibility_type*)
@@ -105,7 +105,7 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
-        //multiplies each pol product by the appropriate pre-factor
+        //multiplies each pol product by the appropriate scaling pre-factor
         /**
          * @brief Multiplies each pol product in input visibility_type by its appropriate pre-factor.
          * 
@@ -117,7 +117,7 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
          * @brief Getter for prefactor
          * 
          * @param pp_label Input polarization label (XX, YY, XY, or YX)
-         * @return Complex prefactor as std::complex<double
+         * @return prefactor as a std::complex<double>
          */
         std::complex< double > GetPrefactor(std::string pp_label);
 

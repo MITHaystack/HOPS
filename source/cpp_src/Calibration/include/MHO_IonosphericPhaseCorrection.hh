@@ -35,7 +35,7 @@ class MHO_IonosphericPhaseCorrection: public MHO_UnaryOperator< visibility_type 
         virtual ~MHO_IonosphericPhaseCorrection();
 
         /**
-         * @brief Setter for differential tec
+         * @brief Setter for differential TEC (controls phase dispersion)
          * 
          * @param dTEC Input differential TEC value
          */
@@ -94,11 +94,6 @@ class MHO_IonosphericPhaseCorrection: public MHO_UnaryOperator< visibility_type 
         std::string fUpperSideband;
 
         //minor helper function to make sure all strings are compared as upper-case only
-        /**
-         * @brief Converts a string to uppercase in-place.
-         * 
-         * @param s Input string reference
-         */
         void make_upper(std::string& s)
         {
             for(char& c : s)
