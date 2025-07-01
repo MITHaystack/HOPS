@@ -74,11 +74,11 @@ class MHO_BasicFringeInfo
         static double calculate_snr(double effective_npol, double ap_period, double samp_period, double total_ap_frac,
                                     double amp, double bw_corr_factor);
         /**
-         * @brief Calculates Mean Beat Distance noise error due to ionospheric effects.
+         * @brief Calculates Multi-Band Delay error without ionospheric effects.
          * 
          * @param freq_spread Frequency spread in Hz
          * @param snr Signal-to-Noise Ratio (SNR)
-         * @return Mean Beat Distance noise error due to ionospheric effects
+         * @return Multi-Band Delay error without ionospheric effects
          * @note This is a static function.
          */
         static double calculate_mbd_no_ion_error(double freq_spread, double snr);

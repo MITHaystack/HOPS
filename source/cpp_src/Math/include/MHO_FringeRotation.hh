@@ -32,7 +32,7 @@ class MHO_FringeRotation
          * @param freq Frequency of the signal
          * @param ref_freq Reference frequency for comparison
          * @param dr Delay rate, change of delay with time
-         * @param mbd Modulation bandwidth
+         * @param mbd Multi-Band Delay
          * @return Complex value representing fringe rotation
          * @note This is a virtual function.
          */
@@ -66,9 +66,8 @@ class MHO_FringeRotation
          */
         void SetNSBDBins(int n_sbd_bins) { fNSBDBins = n_sbd_bins; }
 
-        //pass the sideband information if optimize_closure of single-sideband correction is needed
         /**
-         * @brief Setter for sideband
+         * @brief Setter for sideband - pass the sideband information if optimize_closure of single-sideband correction is needed
          * 
          * @param sb Sideband type: 1 for USB, 0 for DSB, -1 for LSB
          */
@@ -88,13 +87,13 @@ class MHO_FringeRotation
         static const std::complex< double > fImagUnit;
 
         /**
-         * @brief Calculates and returns a phasor for fringe rotation given time delta, frequencies, delay rate, and modulation bandwidth deviation.
+         * @brief Calculates and returns a phasor for fringe rotation given time delta, frequencies, delay rate, and Multi-Band Delay.
          * 
-         * @param time_delta Time interval between two consecutive samples
-         * @param freq Frequency of the signal
-         * @param ref_freq Reference frequency used in calculations
+         * @param time_delta Time interval between current AP and fourfit reference time
+         * @param freq Frequency
+         * @param ref_freq Fringe reference frequency
          * @param dr Delay rate (fringe parameter concerning change of delay with time)
-         * @param mbd Modulation bandwidth deviation
+         * @param mbd Multi-Band Delay
          * @return Phasor representing fringe rotation as a complex exponential
          */
         std::complex< double > vrot_v1(double time_delta, double freq, double ref_freq, double dr, double mbd) const;
