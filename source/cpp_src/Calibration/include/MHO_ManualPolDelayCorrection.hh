@@ -37,17 +37,17 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         /**
          * @brief Setter for reference frequency
          * 
-         * @param ref_freq New reference frequency value in Hertz
+         * @param ref_freq New reference frequency value in MHz
          */
         void SetReferenceFrequency(double ref_freq) { fRefFreq = ref_freq; }
 
-        //treated as follows:
-        //1-char => mk4 id
-        //2-char => 2char station code
         /**
          * @brief Setter for station identifier
          * 
          * @param station_id mk4 id of type std::string
+         * @details station_id is treated as follows:
+         * 1-char => mk4 id
+         * 2-char => 2char station code
          */
         void SetStationIdentifier(std::string station_id) { fStationIdentity = station_id; }
 
@@ -65,7 +65,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         /**
          * @brief Setter for pcdelay offset
          * 
-         * @param pc_delay_offset Time offset between two correlated signals
+         * @param pc_delay_offset Time offset to be applied to associated polarization
          */
         void SetPCDelayOffset(const double& pc_delay_offset) { fDelayOffset = pc_delay_offset; }
 
@@ -89,7 +89,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
-         * @brief Applies manual delay offset and calculates phase correction factors for each channel frequency.
+         * @brief Applies manual delay offset and calculates phase correction factors for each channel
          * 
          * @param in Input visibility data of type visibility_type.
          * @return True if successful, false otherwise.
@@ -108,7 +108,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
 
     private:
         /**
-         * @brief Checks if manual polarimetric delay correction is applicable for a given station index and visibility type.
+         * @brief Checks if manual polarization-specific delay correction is applicable for a given station index and visibility type.
          * 
          * @param st_idx Station index of type std::size_t
          * @param in Const reference to visibility_type
@@ -116,11 +116,11 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
          */
         bool IsApplicable(std::size_t st_idx, const visibility_type* in);
         /**
-         * @brief Checks if polarization product matches first element in fPol at given station index and converts polprod to uppercase.
+         * @brief Checks if the correction polarization matches the polarization product at the given station index [0 = ref, 1 = rem].
          * 
          * @param station_idx Index of the station for which to check the polarization product.
          * @param polprod (std::string&)
-         * @return True if polarization product matches first element in fPol at given station index, false otherwise.
+         * @return True if polarization product matches fPol at given station index, false otherwise.
          */
         bool PolMatch(std::size_t station_idx, std::string& polprod);
 

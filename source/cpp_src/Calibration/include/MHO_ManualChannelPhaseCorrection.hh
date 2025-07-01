@@ -34,13 +34,13 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
         MHO_ManualChannelPhaseCorrection();
         virtual ~MHO_ManualChannelPhaseCorrection();
 
-        //treated as follows:
-        //1-char => mk4 id
-        //2-char => 2char station code
         /**
          * @brief Setter for station identifier
          * 
          * @param station_id mk4 id of type std::string
+         * @details station_id is treated as follows:
+         * 1-char => mk4 id
+         * 2-char => 2char station code
          */
         void SetStationIdentifier(std::string station_id) { fStationIdentity = station_id; }
 
@@ -57,7 +57,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
 
         //channel label -> pc_phases
         /**
-         * @brief Setter for channel to pcphase map
+         * @brief Setter for channel to pc_phase map
          * 
          * @param map Input map of channel labels to phase values
          */
@@ -83,7 +83,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
         virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
-         * @brief Applies phase correction to visibility data in-place for reference and remote stations.
+         * @brief Applies phase correction to visibility data in-place for reference or remote station.
          * 
          * @param in Input visibility_type* containing pol-products and channels.
          * @return bool indicating successful execution.
@@ -110,7 +110,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
          */
         bool IsApplicable(std::size_t st_idx, const visibility_type* in);
         /**
-         * @brief Checks if polarization product matches the first character of fPol at given station index.
+         * @brief Checks if the correction polarization matches the polarization product at the given station index [0 = ref, 1 = rem].
          * 
          * @param station_idx Index of the station in polprod string
          * @param polprod Polarization product string
@@ -118,7 +118,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
          */
         bool PolMatch(std::size_t station_idx, std::string& polprod);
         /**
-         * @brief Checks if given channel label matches expected label considering +/- for LSB/USB halves.
+         * @brief Checks if given channel label matches expected label (considering +/- for LSB/USB halves).
          * 
          * @param expected_chan_label Expected channel label without +/- for LSB/USB halves
          * @param given_chan_label Given channel label which may contain +/- for LSB/USB halves
