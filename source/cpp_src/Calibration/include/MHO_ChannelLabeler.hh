@@ -43,17 +43,15 @@ template< typename XArrayType > class MHO_ChannelLabeler:
 
         virtual ~MHO_ChannelLabeler(){};
 
-        //allow channel freq association to use a difference tolerance
         /**
-         * @brief Setter for tolerance
+         * @brief Setter for tolerance - allows channel freq association to use a (freq) difference tolerance
          * 
          * @param tol New tolerance value for frequency mapping
          */
         void SetTolerance(double tol) { fEps = tol; }
 
-        //if there is a user provided labeling scheme, use that (i.e. chan_ids)
         /**
-         * @brief Setter for channel label to frequency map
+         * @brief Setter for channel label to frequency map so if there is a user provided labeling scheme, use that (i.e. chan_ids)
          * 
          * @param map Input map of channel labels to frequencies
          */
@@ -70,9 +68,9 @@ template< typename XArrayType > class MHO_ChannelLabeler:
         virtual bool InitializeInPlace(XArrayType* in) override { return true; }
 
         /**
-         * @brief Initializes output array out-of-place from input array in SWIN format.
+         * @brief Initializes output array out-of-place from input array
          * 
-         * @param !in Const input XArrayType in SWIN format
+         * @param !in Const input XArrayType
          * @param !out Output XArrayType initialized out-of-place
          * @return True if initialization was successful, false otherwise
          * @note This is a virtual function.
@@ -80,7 +78,7 @@ template< typename XArrayType > class MHO_ChannelLabeler:
         virtual bool InitializeOutOfPlace(const XArrayType* /*!in*/, XArrayType* /*!out*/) override { return true; }
 
         /**
-         * @brief Function ExecuteInPlace
+         * @brief Function ExecuteInPlace - attaches channel labels based on sky frequency or user specified map
          * 
          * @param in (XArrayType*)
          * @return Return value (bool)

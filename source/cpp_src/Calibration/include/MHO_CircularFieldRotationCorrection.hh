@@ -51,13 +51,15 @@ class MHO_CircularFieldRotationCorrection: public MHO_UnaryOperator< visibility_
          */
         void SetFourfitReferenceTimeVexString(std::string frt_vex_string) { fFourfitRefTimeString = frt_vex_string; };
 
-        //these data objects are not yet used to the fullest extent,
-        //but they could be if we want to apply a time-dependant corrections
-        //to the pol-product pre-factors
+
         /**
          * @brief Setter for reference station coordinate data
          * 
          * @param ref_data Input pointer to station_coord_type structure
+         *  
+         * @details these data objects (station coords) are not yet used to the fullest extent,
+         * but they could be if we want to apply a time-dependant corrections
+         * to the pol-product pre-factors
          */
         void SetReferenceStationCoordinateData(station_coord_type* ref_data) { fRefData = ref_data; };
 
@@ -68,18 +70,17 @@ class MHO_CircularFieldRotationCorrection: public MHO_UnaryOperator< visibility_
          */
         void SetRemoteStationCoordinateData(station_coord_type* rem_data) { fRemData = rem_data; };
 
-        //set the station mount types
         /**
-         * @brief Setter for reference mount type
+         * @brief Setter for reference station mount type {"no_mount", "cassegrain", "nasmythleft", or  "nasmythright"}
          * 
-         * @param mt New reference mount type as string
+         * @param mt reference mount type as string
          */
         void SetReferenceMountType(std::string mt) { fRefMountType = mt; }
 
         /**
-         * @brief Setter for remote mount type
+         * @brief Setter for remote station mount type {"no_mount", "cassegrain", "nasmythleft", or  "nasmythright"}
          * 
-         * @param mt New remote mount type as string
+         * @param mt remote mount type as string
          */
         void SetRemoteMountType(std::string mt) { fRemMountType = mt; }
 
@@ -124,12 +125,11 @@ class MHO_CircularFieldRotationCorrection: public MHO_UnaryOperator< visibility_
         /**
          * @brief Determines mount type from given string and returns corresponding code.
          * 
-         * @param mount Input mount type as a string.
+         * @param mount Input mount type as a string {"no_mount", "cassegrain", "nasmythleft", "nasmythright"}.
          * @return Mount type code (NO_MOUNT_TYPE, CASSEGRAIN, NASMYTHLEFT, NASMYTHRIGHT) or NO_MOUNT_TYPE if unknown.
          */
         int DetermineMountCode(const std::string& mount) const;
 
-        //multiplies each pol product by the appropriate pre-factor
         /**
          * @brief Multiplies each polarization product by an appropriate pre-factor.
          * 
@@ -138,7 +138,7 @@ class MHO_CircularFieldRotationCorrection: public MHO_UnaryOperator< visibility_
         void PreMultiply(visibility_type* in);
 
         /**
-         * @brief Getter for prefactor
+         * @brief Get prefactor based on polarization product
          * 
          * @param pp_label Input polarization product label to retrieve its corresponding prefactor
          * @return Complex prefactor value associated with the input polarization product label
