@@ -14,6 +14,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_VexParameter
+ */
 class MHO_VexParameter
 {
     public:
@@ -25,8 +28,18 @@ class MHO_VexParameter
 
         virtual ~MHO_VexParameter();
 
+        /**
+         * @brief Setter for token string
+         * 
+         * @param token Input token string to set
+         */
         void SetTokenString(std::string token) { fToken = token; }
 
+        /**
+         * @brief Setter for units string
+         * 
+         * @param units New units string to set
+         */
         void SetUnitsString(std::string units) { fUnits = unit; };
 
     private:

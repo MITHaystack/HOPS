@@ -23,6 +23,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_ClassIdentityMap
+ */
 class MHO_ClassIdentityMap
 {
     public:
@@ -41,6 +44,11 @@ class MHO_ClassIdentityMap
             }
         };
 
+        /**
+         * @brief Function AddClassType
+         * 
+         * @return Return value (template< typename XClassType > void)
+         */
         template< typename XClassType > void AddClassType()
         {
             fMD5Generator.Initialize();
@@ -63,6 +71,12 @@ class MHO_ClassIdentityMap
             }
         };
 
+        /**
+         * @brief Function AddClassType
+         * 
+         * @param obj (const XClassType&)
+         * @return Return value (template< typename XClassType > void)
+         */
         template< typename XClassType > void AddClassType(const XClassType& obj)
         {
             fMD5Generator.Initialize();
@@ -85,12 +99,24 @@ class MHO_ClassIdentityMap
             }
         };
 
+        /**
+         * @brief Getter for class name from object
+         * 
+         * @param obj Input object of type XClassType& to retrieve its class name.
+         * @return String representation of the input object's class name.
+         */
         template< typename XClassType > std::string GetClassNameFromObject(const XClassType& obj)
         {
             std::string name = MHO_ClassIdentity::ClassName(obj);
             return name;
         };
 
+        /**
+         * @brief Getter for class name from uuid
+         * 
+         * @param uuid Input UUID to lookup its corresponding class name
+         * @return Class name as string; 'unknown' if not found
+         */
         std::string GetClassNameFromUUID(const MHO_UUID& uuid) const
         {
             std::map< MHO_UUID, std::string >::const_iterator it = fUUID2ClassName.find(uuid);
@@ -104,6 +130,12 @@ class MHO_ClassIdentityMap
             }
         };
 
+        /**
+         * @brief Getter for uuidfrom class name
+         * 
+         * @param name Class name to search for
+         * @return UUID corresponding to the input class name if found
+         */
         MHO_UUID GetUUIDFromClassName(const std::string& name) const
         {
             MHO_UUID tmp;
@@ -115,12 +147,23 @@ class MHO_ClassIdentityMap
             return tmp;
         };
 
+        /**
+         * @brief Getter for uuidfor
+         * 
+         * @return MHO_UUID corresponding to the input class type
+         */
         template< typename XClassType > MHO_UUID GetUUIDFor() const
         {
             std::string name = MHO_ClassIdentity::ClassName< XClassType >();
             return GetUUIDFromClassName(name);
         }
 
+        /**
+         * @brief Checks if a UUID is present in the fUUID2ClassName map.
+         * 
+         * @param uuid The UUID to search for.
+         * @return True if the UUID is found, false otherwise.
+         */
         bool IsTypePresent(const MHO_UUID& uuid) const
         {
             auto it = fUUID2ClassName.find(uuid);
@@ -135,6 +178,12 @@ class MHO_ClassIdentityMap
         //is that which is associated with the uuid, if the uuid is not in the
         //factory map then nullptr is returned, memory managment is delegated to
         //the caller
+        /**
+         * @brief Generates a container from a UUID and returns a ptr to MHO_Serializable if found in factory map.
+         * 
+         * @param uuid Input UUID to search for in factory map
+         * @return Ptr to MHO_Serializable or nullptr if UUID not found
+         */
         MHO_Serializable* GenerateContainerFromUUID(const MHO_UUID& uuid)
         {
             auto it = fFactoryMap.find(uuid);
@@ -149,6 +198,12 @@ class MHO_ClassIdentityMap
         }
 
     protected:
+        /**
+         * @brief Adds an entry to the UUID-name map and its reverse.
+         * 
+         * @param type_uuid The UUID of the type to add.
+         * @param name The name associated with the given UUID.
+         */
         void AddToMap(const MHO_UUID& type_uuid, const std::string& name)
         {
             fUUID2ClassName[type_uuid] = name;

@@ -23,6 +23,9 @@ namespace hops
  * sparringly (e.g. initial or final coarse data selection)
  */
 
+/**
+ * @brief Class MHO_SelectRepack
+ */
 template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XArgType >
 {
     public:
@@ -34,8 +37,17 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
 
         virtual ~MHO_SelectRepack(){};
 
+        /**
+         * @brief Clears all entries from fAxisSelectionMap.
+         */
         void Reset() { fAxisSelectionMap.clear(); }
 
+        /**
+         * @brief Stores valid indexes for a given axis and marks selection as uninitialized.
+         * 
+         * @param axis_index Index of the axis to store valid indexes for.
+         * @param valid_indexes Vector of valid indexes for the specified axis.
+         */
         void SelectAxisItems(std::size_t axis_index, const std::vector< std::size_t >& valid_indexes)
         {
             fAxisSelectionMap[axis_index] = valid_indexes;
@@ -45,8 +57,22 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
         }
 
     protected:
+        /**
+         * @brief Initializes in-place by calling InitializeOutOfPlace with workspace.
+         * 
+         * @param in Input pointer to XArgType object
+         * @return Boolean indicating success of initialization
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(XArgType* in) override { return InitializeOutOfPlace(in, &fWorkspace); }
 
+        /**
+         * @brief Executes operation in-place by calling ExecuteOutOfPlace and copying result back to input.
+         * 
+         * @param in Input object of type XArgType* that will be modified in-place
+         * @return Status of the execution operation
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(XArgType* in) override
         {
             bool status = ExecuteOutOfPlace(in, &fWorkspace);
@@ -55,6 +81,14 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
             return status;
         }
 
+        /**
+         * @brief Initializes out-of-place processing for given input and output arguments.
+         * 
+         * @param in Const reference to input argument of type XArgType
+         * @param out Reference to output argument of type XArgType
+         * @return Boolean indicating success or failure of initialization
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) override
         {
             if(in != nullptr && out != nullptr)
@@ -71,6 +105,14 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
             }
         }
 
+        /**
+         * @brief Function ExecuteOutOfPlace
+         * 
+         * @param in (const XArgType*)
+         * @param out (XArgType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override
         {
             if(fInitialized)
@@ -142,6 +184,12 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
         }
 
     private:
+        /**
+         * @brief Determines output dimensions based on input dimensions and axis selections.
+         * 
+         * @param in Input argument type pointer.
+         * @return Output dimensions as an array of size_t.
+         */
         std::array< std::size_t, XArgType::rank::value > DetermineOutputDimensions(const XArgType* in)
         {
             std::array< std::size_t, XArgType::rank::value > out_dim;
@@ -157,6 +205,12 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
             return out_dim;
         }
 
+        /**
+         * @brief Checks and conditionally resizes output dimensions if they differ from input.
+         * 
+         * @param dims Input dimension array to compare with output.
+         * @param out (XArgType*)
+         */
         void ConditionallyResizeOutput(const std::array< std::size_t, XArgType::rank::value >& dims, XArgType* out)
         {
             auto out_dim = out->GetDimensionArray();
@@ -175,11 +229,25 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
         }
 
         //default...does nothing
+        /**
+         * @brief Applies table selection on axes for input XArgType and outputs result to another XArgType.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param !in Parameter description
+         * @param !out Parameter description
+         */
         template< typename XCheckType = XArgType >
         typename std::enable_if< !std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableSelectOnAxes(const XArgType* /*!in*/, XArgType* /*!out*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
+        /**
+         * @brief Applies selection on axes for input XArgType and outputs result to another XArgType.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param in Input XArgType data for selection
+         * @param out Output XArgType after applying selection
+         */
         template< typename XCheckType = XArgType >
         typename std::enable_if< std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableSelectOnAxes(const XArgType* in, XArgType* out)
@@ -192,6 +260,9 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
             out->CopyTags(*in); //make sure the table tags get copied
         }
 
+        /**
+         * @brief Class SelectOnAxis
+         */
         class SelectOnAxis
         {
             public:

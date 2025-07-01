@@ -24,6 +24,13 @@ class MHO_ChannelQuantity
 
     protected:
         //if the number of channel names isn't the same as the number of values, returns and empty map
+        /**
+         * @brief Maps channel names to corresponding values and returns a map.
+         * 
+         * @param chan_names Input string containing comma-separated channel names.
+         * @param values Reference to input vector of double values.
+         * @return Map with channel names as keys and corresponding values.
+         */
         std::map< std::string, double > MapChannelQuantities(std::string chan_names, std::vector< double >& values);
 };
 

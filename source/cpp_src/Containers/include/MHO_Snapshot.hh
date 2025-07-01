@@ -41,6 +41,9 @@ namespace hops
 
 //uses the singleton pattern (dumps to only one file)
 //TODO make this class thread safe
+/**
+ * @brief Class MHO_Snapshot
+ */
 class MHO_Snapshot
 {
 
@@ -52,6 +55,12 @@ class MHO_Snapshot
         MHO_Snapshot& operator=(MHO_Snapshot&&) = delete;
 
         //provide public access to the only static instance
+        /**
+         * @brief Getter for instance
+         * 
+         * @return Reference to the singleton instance of MHO_Snapshot.
+         * @note This is a static function.
+         */
         static MHO_Snapshot& GetInstance()
         {
             if(fInstance == nullptr)
@@ -61,25 +70,80 @@ class MHO_Snapshot
             return *fInstance;
         }
 
+        /**
+         * @brief Setter for executable name
+         * 
+         * @param exe_name New executable name to set
+         */
         void SetExecutableName(std::string exe_name) { fExeName = exe_name; };
 
+        /**
+         * @brief Setter for executable name
+         * 
+         * @param exe_name New executable name to set
+         */
         void SetExecutableName(const char* exe_name) { SetExecutableName(std::string(exe_name)); }
 
+        /**
+         * @brief Sets the internal flag to accept all keys.
+         */
         void AcceptAllKeys() { fAcceptAllKeys = true; }
 
+        /**
+         * @brief Sets internal flag to limit keys based on key set.
+         */
         void LimitToKeySet() { fAcceptAllKeys = false; }
 
+        /**
+         * @brief Inserts a key into the set of keys for MHO_Snapshot.
+         * 
+         * @param key The key to be inserted.
+         */
         void AddKey(const std::string& key);
+        /**
+         * @brief Inserts a key into the set of keys for MHO_Snapshot.
+         * 
+         * @param key The key to be inserted.
+         */
         void AddKey(const char* key);
+        /**
+         * @brief Removes a key-value pair from the MHO_Snapshot object's keys.
+         * 
+         * @param key Key to be removed; must exist in fKeys
+         */
         void RemoveKey(const std::string& key);
+        /**
+         * @brief Removes a key-value pair from the MHO_Snapshot object if it exists.
+         * 
+         * @param key Key to be removed from the snapshot
+         */
         void RemoveKey(const char* key);
+        /**
+         * @brief Clears all keys in the MHO_Snapshot object.
+         */
         void RemoveAllKeys();
 
+        /**
+         * @brief Converts and passes key and name parameters to DumpObject as strings.
+         * 
+         * @param obj Pointer to object of type XObjType
+         * @param key Key as a null-terminated string
+         * @param name Name as a null-terminated string
+         * @return No return value (void)
+         */
         template< typename XObjType > void DumpObject(XObjType* obj, const char* key, const char* name)
         {
             DumpObject(obj, std::string(key), std::string(name));
         }
 
+        /**
+         * @brief Dumps an object of type XObjType to a file specified by key and name.
+         * 
+         * @param obj Pointer to the object of type XObjType to be dumped
+         * @param key Key used to construct the filename for dumping snapshots
+         * @param name Name used to construct the filename for dumping snapshots
+         * @return void
+         */
         template< typename XObjType > void DumpObject(XObjType* obj, std::string key, std::string name)
         {
             if(PassSnapshot(key))
@@ -104,6 +168,16 @@ class MHO_Snapshot
             }
         }
 
+        /**
+         * @brief Dumps an object to a file with given key, name, and line number.
+         * 
+         * @tparam XObjType Template parameter XObjType
+         * @param obj Pointer to the object of type XObjType to be dumped
+         * @param key Unique identifier for the object as a string
+         * @param name Name or label associated with the object as a string
+         * @param file File path where the object is being dumped (not used in this implementation)
+         * @param line Line number where the dump occurs (not used in this implementation)
+         */
         template< typename XObjType >
         void DumpObject(XObjType* obj, std::string key, std::string name, std::string file, int line)
         {
@@ -136,6 +210,11 @@ class MHO_Snapshot
         }
 
     private:
+        /**
+         * @brief Getter for pid
+         * 
+         * @return The process ID as an integer.
+         */
         int GetPID()
         {
             pid_t pid = getpid();

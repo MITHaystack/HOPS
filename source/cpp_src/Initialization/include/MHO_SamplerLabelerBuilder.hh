@@ -14,6 +14,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_SamplerLabelerBuilder
+ */
 class MHO_SamplerLabelerBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -26,6 +29,11 @@ class MHO_SamplerLabelerBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_SamplerLabelerBuilder(){};
 
+        /**
+         * @brief Initializes and builds the MHO_SamplerLabelerBuilder object.
+         * 
+         * @return bool indicating success of initialization.
+         */
         virtual bool Build() override;
 
     private:

@@ -14,6 +14,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_PolProductSummationBuilder
+ */
 class MHO_PolProductSummationBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -27,6 +30,11 @@ class MHO_PolProductSummationBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_PolProductSummationBuilder(){};
 
+        /**
+         * @brief Constructs and initializes the PolProductSummationBuilder object.
+         * 
+         * @return True if successful, false otherwise.
+         */
         virtual bool Build() override;
 
     private:

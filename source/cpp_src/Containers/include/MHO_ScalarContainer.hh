@@ -20,6 +20,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_ScalarContainer
+ */
 template< typename XValueType >
 class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWrapper< XValueType, 0 >, public MHO_Taggable
 {
@@ -30,10 +33,28 @@ class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWra
 
         MHO_ScalarContainer(MHO_ScalarContainer& obj): MHO_NDArrayWrapper< XValueType, 0 >(obj), MHO_Taggable(obj){};
 
+        /**
+         * @brief Getter for version
+         * 
+         * @return MHO_ClassVersion version number
+         * @note This is a virtual function.
+         */
         virtual MHO_ClassVersion GetVersion() const override { return 0; };
 
+        /**
+         * @brief Getter for serialized size
+         * 
+         * @return Serialized size as a uint64_t.
+         * @note This is a virtual function.
+         */
         virtual uint64_t GetSerializedSize() const override { return ComputeSerializedSize(); }
 
+        /**
+         * @brief Calculates and returns the serialized size of an object.
+         * 
+         * @return The serialized size as a uint64_t.
+         * @note This is a virtual function.
+         */
         uint64_t ComputeSerializedSize() const
         {
             uint64_t total_size = 0;
@@ -43,14 +64,29 @@ class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWra
             return total_size;
         }
 
+        /**
+         * @brief Setter for value
+         * 
+         * @param value Input value of type const XValueType& to be assigned internally
+         */
         void SetValue(const XValueType& value) { fData = value; };
 
+        /**
+         * @brief Getter for value
+         * 
+         * @return Current value of type XValueType.
+         */
         XValueType GetValue() { return fData; };
 
         //have to make base class functions visible
         using MHO_NDArrayWrapper< XValueType, 0 >::SetData;
         using MHO_NDArrayWrapper< XValueType, 0 >::GetData;
 
+        /**
+         * @brief Getter for size
+         * 
+         * @return Size as std::size_t
+         */
         std::size_t GetSize() const { return 1; };
 
     public:
@@ -87,18 +123,36 @@ class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWra
         }
 
     private:
+        /**
+         * @brief Reads data from stream and stores it in object's fData and MHO_Taggable fields.
+         * 
+         * @param s Input stream of type XStream&
+         * @return void
+         */
         template< typename XStream > void StreamInData_V0(XStream& s)
         {
             s >> this->fData;
             s >> static_cast< MHO_Taggable& >(*this);
         };
 
+        /**
+         * @brief Serializes data and object metadata to an output stream.
+         * 
+         * @param s Output stream of type XStream&.
+         * @return No return value (void).
+         */
         template< typename XStream > void StreamOutData_V0(XStream& s) const
         {
             s << this->fData;
             s << static_cast< const MHO_Taggable& >(*this);
         };
 
+        /**
+         * @brief Generates a UUID by hashing the class name and returning it.
+         * 
+         * @return MHO_UUID representing the hashed class name.
+         * @note This is a virtual function.
+         */
         virtual MHO_UUID DetermineTypeUUID() const override
         {
             MHO_MD5HashGenerator gen;
@@ -115,6 +169,11 @@ class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWra
 
 //specialization for string elements
 //(NOTE: we need to use 'inline' to satisfy one-definiton rule, otherwise we have to stash this in a .cc file)
+/**
+ * @brief Function MHO_ScalarContainer<std::string>::ComputeSerializedSize
+ * 
+ * @return Return value (uint64_t MHO_ScalarContainer< std::string)
+ */
 template<> inline uint64_t MHO_ScalarContainer< std::string >::ComputeSerializedSize() const
 {
     uint64_t total_size = 0;

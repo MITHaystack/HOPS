@@ -18,6 +18,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_NaNMasker
+ */
 template< class XArrayType > class MHO_NaNMasker: public MHO_UnaryFunctor< XArrayType >
 {
     public:

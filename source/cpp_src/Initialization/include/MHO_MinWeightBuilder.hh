@@ -14,6 +14,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_MinWeightBuilder
+ */
 class MHO_MinWeightBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -26,6 +29,11 @@ class MHO_MinWeightBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_MinWeightBuilder(){};
 
+        /**
+         * @brief Constructs and initializes the MinWeightBuilder object.
+         * 
+         * @return True if successful build, false otherwise.
+         */
         virtual bool Build() override;
 
     private:

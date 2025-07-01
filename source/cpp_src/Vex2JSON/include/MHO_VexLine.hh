@@ -14,6 +14,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_VexLine
+ */
 struct MHO_VexLine
 {
         std::size_t fLineNumber;

@@ -25,8 +25,16 @@ class MHO_ParameterManager
 
         virtual ~MHO_ParameterManager(){};
 
+        /**
+         * @brief Setter for control statements
+         * 
+         * @param statements Control file statements of type mho_json
+         */
         void SetControlStatements(mho_json* statements) { fControl = statements; };
 
+        /**
+         * @brief Configures all parameters by iterating through control statements and processing parameter statements.
+         */
         void ConfigureAll();
 
     private:

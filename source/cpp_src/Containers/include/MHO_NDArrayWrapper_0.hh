@@ -10,6 +10,9 @@ namespace hops
 {
 
 //specialization for a RANK-0 (i.e. a scalar)
+/**
+ * @brief Class MHO_NDArrayWrapper
+ */
 template< typename XValueType >
 class MHO_NDArrayWrapper< XValueType, 0 >
     : public MHO_ExtensibleElement //any and all extensions are purely a runtime concept and do NOT get streamed for I/O
@@ -27,12 +30,32 @@ class MHO_NDArrayWrapper< XValueType, 0 >
         virtual ~MHO_NDArrayWrapper(){};
 
         //directly set/get the only value
+        /**
+         * @brief Setter for data
+         * 
+         * @param value New value to set as const XValueType&
+         */
         void SetData(const XValueType& value) { fData = value; }
 
+        /**
+         * @brief Getter for data
+         * 
+         * @return Current value of type XValueType
+         */
         XValueType GetData() { return fData; };
 
+        /**
+         * @brief Getter for rank
+         * 
+         * @return Current rank as std::size_t
+         */
         std::size_t GetRank() const { return 0; }
 
+        /**
+         * @brief Getter for size
+         * 
+         * @return Size as std::size_t
+         */
         std::size_t GetSize() const { return 1; };
 
         MHO_NDArrayWrapper& operator=(const MHO_NDArrayWrapper& rhs)
@@ -44,8 +67,16 @@ class MHO_NDArrayWrapper< XValueType, 0 >
             return *this;
         }
 
+        /**
+         * @brief Setter for array
+         * 
+         * @param obj Reference to a constant XValueType object used to update internal data
+         */
         void SetArray(const XValueType& obj) { fData = obj; }
 
+        /**
+         * @brief Sets all elements in the array to zero.
+         */
         void ZeroArray() { std::memset(&fData, 0, sizeof(XValueType)); }
 
     protected:

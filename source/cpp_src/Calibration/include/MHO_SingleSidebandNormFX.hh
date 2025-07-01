@@ -35,6 +35,9 @@ namespace hops
  since we only have a single sideband to worry about
  */
 
+/**
+ * @brief Class MHO_SingleSidebandNormFX
+ */
 class MHO_SingleSidebandNormFX: public MHO_NormFX //MHO_UnaryOperator< visibility_type >
 {
     public:
@@ -44,10 +47,40 @@ class MHO_SingleSidebandNormFX: public MHO_NormFX //MHO_UnaryOperator< visibilit
     protected:
         using XArgType = visibility_type;
 
+        /**
+         * @brief Initializes in-place by initializing out-of-place and copying back.
+         * 
+         * @param in Input argument of type XArgType* to be initialized
+         * @return Status of initialization operation as bool
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(XArgType* in) override;
+        /**
+         * @brief Initializes out-of-place processing for Single Sideband NormFX using input and output arguments.
+         * 
+         * @param in Const reference to input XArgType object
+         * @param out Reference to output XArgType object
+         * @return Boolean indicating successful initialization
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) override;
 
+        /**
+         * @brief Executes in-place operation by temporarily using out-of-place execution and copying results back.
+         * 
+         * @param in Input argument of type XArgType*
+         * @return Status of the operation as a boolean value
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(XArgType* in) override;
+        /**
+         * @brief Applies a series of operations including zero-padding, NaN filtering, FFT and cyclic rotation to input visibility data.
+         * 
+         * @param in Input visibility data
+         * @param out Output visibility data after processing
+         * @return True if all operations succeed, false otherwise
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override;
 
     private:
@@ -71,6 +104,14 @@ class MHO_SingleSidebandNormFX: public MHO_NormFX //MHO_UnaryOperator< visibilit
         MHO_SBDTableGenerator fSBDGen;
         bool fInitialized;
 
+        /**
+         * @brief Applies weights to visibility data and optionally inverts them.
+         * 
+         * @param out Output visibility_type array
+         * @param w Input weight_type array for scaling
+         * @param invert Boolean flag indicating whether to invert the weights
+         * @return Boolean indicating success or failure of operation
+         */
         bool ApplyWeights(visibility_type* out, weight_type* w, bool invert);
 };
 

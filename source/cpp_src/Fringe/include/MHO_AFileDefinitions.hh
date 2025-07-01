@@ -24,6 +24,9 @@ namespace hops
  *@brief extract useful information from .cor, .frng. and root files for afile generation
  */
 
+/**
+ * @brief Class MHO_AFileDefinitions
+ */
 class MHO_AFileDefinitions
 {
 
@@ -32,8 +35,29 @@ class MHO_AFileDefinitions
         virtual ~MHO_AFileDefinitions(){};
 
     public:
+        /**
+         * @brief Getter for format directory
+         * 
+         * @param file_type Input file type (root, frng, cor)
+         * @return Format directory as string
+         * @note This is a static function.
+         */
         static std::string GetFormatDirectory(const std::string& file_type);
+        /**
+         * @brief Getter for keyword names
+         * 
+         * @param file_type Input file type to search for keywords
+         * @return Vector of keyword names as strings
+         * @note This is a static function.
+         */
         static std::vector< std::string > GetKeywordNames(const std::string& file_type);
+        /**
+         * @brief Getter for afile format
+         * 
+         * @param file_type Input file type to retrieve formats for
+         * @return mho_json object containing combined format data
+         * @note This is a static function.
+         */
         static mho_json GetAFileFormat(const std::string& file_type);
 };
 

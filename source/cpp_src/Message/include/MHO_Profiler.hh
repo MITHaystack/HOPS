@@ -42,6 +42,9 @@ using hops::pStop;
 
 #define PROFILE_INFO_LEN 128
 
+/**
+ * @brief Class MHO_ProfileEvent
+ */
 struct MHO_ProfileEvent
 {
         int fFlag;       //indicates start/stop
@@ -53,6 +56,9 @@ struct MHO_ProfileEvent
 };
 
 //uses the singleton pattern (as we only have one terminal)
+/**
+ * @brief Class MHO_Profiler
+ */
 class MHO_Profiler
 {
 
@@ -64,6 +70,12 @@ class MHO_Profiler
         MHO_Profiler& operator=(MHO_Profiler&&) = delete;
 
         //provide public access to the only static instance
+        /**
+         * @brief Getter for instance
+         * 
+         * @return Reference to the singleton instance of MHO_Profiler
+         * @note This is a static function.
+         */
         static MHO_Profiler& GetInstance()
         {
             if(fInstance == nullptr)
@@ -73,10 +85,21 @@ class MHO_Profiler
             return *fInstance;
         }
 
+        /**
+         * @brief Sets the enabled state to true.
+         */
         void Enable() { fDisabled = false; };
 
+        /**
+         * @brief Sets HOPS_COLOR_MSG to disabled state.
+         */
         void Disable() { fDisabled = true; };
 
+        /**
+         * @brief Checks if the feature is enabled.
+         * 
+         * @return True if enabled, false otherwise.
+         */
         bool IsEnabled() const { return !fDisabled; }
 
         //TODO we need to eliminate the need for locks...which sort of interferes
@@ -84,15 +107,38 @@ class MHO_Profiler
         //probably need a lock free map implementation in order to map the
         //thread_id's to a local index and push the events into a thread-specific vector
         //so for now, mutex it is...
+        /**
+         * @brief Acquires a lock using fMutex for thread synchronization.
+         */
         void Lock() { fMutex.lock(); };
 
+        /**
+         * @brief Releases control of a mutex.
+         */
         void Unlock() { fMutex.unlock(); };
 
+        /**
+         * @brief Adds a profiling event to the internal list if not disabled.
+         * 
+         * @param flag A flag indicating the type of event (e.g., stop timer for this segment).
+         * @param thread_id The ID of the thread generating the event.
+         * @param filename The truncated filename associated with the event.
+         * @param line_num The line number in the source code where the event occurred.
+         * @param func_name The function name associated with the event.
+         */
         void AddEntry(int flag, uint64_t thread_id, std::string filename, int line_num, std::string func_name);
 
         //add end of program, retrieve and utilize the profiler events
+        /**
+         * @brief Getter for events
+         * 
+         * @param events Reference to std::vector<MHO_ProfileEvent to store retrieved events
+         */
         void GetEvents(std::vector< MHO_ProfileEvent >& events) { events = fEvents; }
 
+        /**
+         * @brief Prints all stored events along with their details.
+         */
         void DumpEvents();
 
     private:

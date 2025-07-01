@@ -20,14 +20,36 @@ class MHO_SingleToneSignal: public MHO_SimulatedSignalGenerator
         MHO_SingleToneSignal();
         ~MHO_SingleToneSignal();
 
+        /**
+         * @brief Setter for phase offset
+         * 
+         * @param phase_offset New phase offset value to be applied
+         */
         void SetPhaseOffset(double phase_offset) { fPhaseOffset = phase_offset; } //radians
 
+        /**
+         * @brief Setter for tone frequency
+         * 
+         * @param tone_freq Frequency value in Hertz
+         */
         void SetToneFrequency(double tone_freq) { fToneFrequency = tone_freq; };
 
         //implementation specific
+        /**
+         * @brief Function Initialize
+         * @note This is a virtual function.
+         */
         virtual void Initialize(){};
 
     protected:
+        /**
+         * @brief Generates a sample using sine wave formula based on input time and frequency.
+         * 
+         * @param !sample_time Parameter description
+         * @param sample (double&)
+         * @return True indicating successful generation of the sample.
+         * @note This is a virtual function.
+         */
         virtual bool GenerateSample(const double& /*!sample_time*/, double& sample) const override;
 
         double fPhaseOffset;

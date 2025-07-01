@@ -21,6 +21,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_FastFourierTransform
+ */
 template< typename XFloatType >
 class MHO_FastFourierTransform: public MHO_UnaryOperator< MHO_NDArrayWrapper< std::complex< XFloatType >, 1 > >
 {
@@ -35,14 +38,52 @@ class MHO_FastFourierTransform: public MHO_UnaryOperator< MHO_NDArrayWrapper< st
 
         virtual ~MHO_FastFourierTransform(){};
 
+        /**
+         * @brief Setter for forward
+         * @note This is a virtual function.
+         */
         virtual void SetForward() { fForward = true; };
 
+        /**
+         * @brief Setter for backward
+         * @note This is a virtual function.
+         */
         virtual void SetBackward() { fForward = false; };
 
     protected:
+        /**
+         * @brief Initializes in-place transformation and checks input array validity.
+         * 
+         * @param in Input array pointer for initialization.
+         * @return Boolean indicating successful initialization.
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(XArrayType* in) override;
+        /**
+         * @brief Function ExecuteInPlace
+         * 
+         * @param in (XArrayType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(XArrayType* in) override;
+        /**
+         * @brief Initializes out-of-place FFT by checking input/output array sizes and resizing fW if necessary.
+         * 
+         * @param in Const reference to input XArrayType
+         * @param out Reference to output XArrayType
+         * @return Boolean indicating successful initialization
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out) override;
+        /**
+         * @brief Copies input array to output and executes in-place FFT.
+         * 
+         * @param in Const reference to input array.
+         * @param out (XArrayType*)
+         * @return Boolean indicating success of ExecuteInPlace operation.
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override;
 
     private:
@@ -51,6 +92,12 @@ class MHO_FastFourierTransform: public MHO_UnaryOperator< MHO_NDArrayWrapper< st
         MHO_FastFourierTransformWorkspace< XFloatType > fW;
 };
 
+/**
+ * @brief Function MHO_FastFourierTransform<XFloatType>::InitializeInPlace
+ * 
+ * @param in (XArrayType*)
+ * @return Return value (template< typename XFloatType > bool MHO_FastFourierTransform< XFloatType)
+ */
 template< typename XFloatType > bool MHO_FastFourierTransform< XFloatType >::InitializeInPlace(XArrayType* in)
 {
     if(in != nullptr)
@@ -68,6 +115,13 @@ template< typename XFloatType > bool MHO_FastFourierTransform< XFloatType >::Ini
     return fInitialized;
 }
 
+/**
+ * @brief Function MHO_FastFourierTransform<XFloatType>::InitializeOutOfPlace
+ * 
+ * @param in (const XArrayType*)
+ * @param out (XArrayType*)
+ * @return Return value (bool MHO_FastFourierTransform< XFloatType)
+ */
 template< typename XFloatType >
 bool MHO_FastFourierTransform< XFloatType >::InitializeOutOfPlace(const XArrayType* in, XArrayType* out)
 {

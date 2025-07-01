@@ -46,6 +46,9 @@ namespace hops
  *NOTE: this wouldn't be particularly useful for hops parameters -- but would be for retrieving vex info
  */
 
+/**
+ * @brief Class MHO_ParameterStore
+ */
 class MHO_ParameterStore
 {
     public:
@@ -59,23 +62,73 @@ class MHO_ParameterStore
         ~MHO_ParameterStore(){};
 
         //TODO remove me
+        /**
+         * @brief Dumps hardware correlator data and integrates it over time.
+         */
         void Dump() { std::cout << fStore.dump(2) << std::endl; }
 
+        /**
+         * @brief Copies the parameter store from a given source.
+         * 
+         * @param copy Reference to the MHO_ParameterStore object to copy from.
+         */
         void CopyFrom(const MHO_ParameterStore& copy) { fStore = copy.fStore; }
 
+        /**
+         * @brief Copies data from internal storage to provided json object.
+         * 
+         * @param data Output parameter to store copied json data.
+         */
         void DumpData(mho_json& data) { data = fStore; }
 
+        /**
+         * @brief Stores input json data for later use.
+         * 
+         * @param data Input json data to be stored.
+         */
         void FillData(const mho_json& data) { fStore = data; }
 
+        /**
+         * @brief Clears all data from fStore.
+         */
         void ClearData() { fStore.clear(); }
 
         //returns true if no error adding value
+        /**
+         * @brief Setter for value at specified path in Measurement Set store.
+         * 
+         * @param value_path Path to the value as a string reference.
+         * @param value Value to set at the given path.
+         * @return True if value was successfully set, false otherwise.
+         */
         template< typename XValueType > bool Set(const std::string& value_path, const XValueType& value);
 
         //returns true if found
+        /**
+         * @brief Retrieves a value by path and returns it as XValueType, using default constructor if not found.
+         * 
+         * @tparam XValueType Template parameter XValueType
+         * @param value_path Path to the value to retrieve
+         * @param value (XValueType&)
+         * @return XValueType value or default constructed value if not found
+         */
         template< typename XValueType > bool Get(const std::string& value_path, XValueType& value) const;
 
         //always returns a value, if not found the value returned is XValueType()
+        /**
+         * @brief Function IsPresent
+         * 
+         * @tparam XValueType Template parameter XValueType
+         * @param value_path (const std::string&)
+         * @return Return value (bool)
+         */
+        /**
+         * @brief Getter for as
+         * 
+         * @tparam XValueType Template parameter XValueType
+         * @param value_path Path to retrieve value from
+         * @return Value of type XValueType retrieved from path or default if not found
+         */
         template< typename XValueType > XValueType GetAs(const std::string& value_path) const;
 
         bool IsPresent(const std::string& value_path) const
@@ -107,6 +160,12 @@ class MHO_ParameterStore
 
     private:
         //sanitize the value_path string -- for example a trailing '/' is no good
+        /**
+         * @brief Removes leading/trailing whitespace and trailing '/' from input path string.
+         * 
+         * @param value_path Input path string to sanitize
+         * @return Sanitized path string
+         */
         std::string SanitizePath(const std::string& value_path) const
         {
             std::string vpath = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(value_path);
@@ -125,6 +184,13 @@ class MHO_ParameterStore
         mho_json fStore;
 };
 
+/**
+ * @brief Function MHO_ParameterStore::Set
+ * 
+ * @param value_path (const std::string&)
+ * @param value (const XValueType&)
+ * @return Return value (template< typename XValueType > bool)
+ */
 template< typename XValueType > bool MHO_ParameterStore::Set(const std::string& value_path, const XValueType& value)
 {
     //first we tokenize the value path into a sequence of names
@@ -163,6 +229,13 @@ template< typename XValueType > bool MHO_ParameterStore::Set(const std::string& 
     return ok;
 }
 
+/**
+ * @brief Retrieves a value from the parameter store by path and returns it as XValueType.
+ * 
+ * @param value_path Path to the value in the parameter store
+ * @param value (XValueType&)
+ * @return True if retrieval was successful, false otherwise
+ */
 template< typename XValueType > bool MHO_ParameterStore::Get(const std::string& value_path, XValueType& value) const
 {
     //NOTE: we do not use json_pointer to access values specified by path
@@ -194,6 +267,12 @@ template< typename XValueType > bool MHO_ParameterStore::Get(const std::string& 
     return false;
 }
 
+/**
+ * @brief Retrieves and returns a value as specified type from the parameter store using the given path.
+ * 
+ * @param value_path Path to the desired value in the parameter store
+ * @return Value retrieved as specified template type or default value if retrieval fails
+ */
 template< typename XValueType > XValueType MHO_ParameterStore::GetAs(const std::string& value_path) const
 {
     XValueType v = XValueType(); //default constructor (zero for int, double, etc)

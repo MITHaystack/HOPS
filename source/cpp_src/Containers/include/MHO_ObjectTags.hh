@@ -22,6 +22,9 @@ namespace hops
  *via association with their UUID
  */
 
+/**
+ * @brief Class MHO_ObjectTags
+ */
 class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 {
     public:
@@ -30,6 +33,12 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         virtual ~MHO_ObjectTags(){};
 
         //check if a uuid is in the collection
+        /**
+         * @brief Checks if a UUID is present in the object collection.
+         * 
+         * @param uuid The UUID to search for.
+         * @return True if the UUID is found, false otherwise.
+         */
         bool IsObjectUUIDPresent(const MHO_UUID& uuid) const
         {
             auto it = fObjectUUIDSet.find(uuid);
@@ -41,8 +50,18 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         }
 
         //insert a uuid for an object to be associated with our tag collection
+        /**
+         * @brief Inserts a UUID into the object UUID set for association with tag collection.
+         * 
+         * @param uuid UUID of the object to be associated with the tag collection
+         */
         void AddObjectUUID(const MHO_UUID& uuid) { fObjectUUIDSet.insert(uuid); }
 
+        /**
+         * @brief Removes an object UUID from the set if it exists.
+         * 
+         * @param uuid The UUID of the object to remove.
+         */
         void RemoveObjectUUID(const MHO_UUID& uuid)
         {
             auto it = fObjectUUIDSet.find(uuid);
@@ -52,9 +71,19 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             }
         };
 
+        /**
+         * @brief Getter for nobject uuids
+         * 
+         * @return Number of object UUIDs as std::size_t
+         */
         std::size_t GetNObjectUUIDs() const { return fObjectUUIDSet.size(); }
 
         //grab all object uuids at once
+        /**
+         * @brief Getter for all object uuids
+         * 
+         * @return Vector of MHO_UUID representing all object UUIDs.
+         */
         std::vector< MHO_UUID > GetAllObjectUUIDs() const
         {
             std::vector< MHO_UUID > obj_uuids;
@@ -66,8 +95,20 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         }
 
         //check if a tag with the given name is present
+        /**
+         * @brief Checks if a tag with the given name is present in the container.
+         * 
+         * @param tag_name The name of the tag to search for.
+         * @return True if the tag is present, false otherwise.
+         */
         bool IsTagPresent(const std::string& tag_name) const { return this->HasKey(tag_name); }
 
+        /**
+         * @brief Checks if a tag is present in the container.
+         * 
+         * @param tag_name The name of the tag to search for.
+         * @return True if the tag is present, false otherwise.
+         */
         bool IsTagPresent(const char* tag_name) const
         {
             std::string tmp(tag_name);
@@ -75,17 +116,38 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         }
 
         //set a tag/value pair
+        /**
+         * @brief Setter for tag value
+         * 
+         * @param tag_name Name of the tag as C-style string
+         * @param tag_value Value to set for the tag
+         * @return No return value (void)
+         */
         template< typename XValueType > void SetTagValue(const char* tag_name, const XValueType& tag_value)
         {
             std::string tmp(tag_name);
             SetTagValue(tmp, tag_value);
         }
 
+        /**
+         * @brief Setter for tag value
+         * 
+         * @param tag_name Tag name as C-style string
+         * @param tag_value Value to set for the given tag
+         * @return No return value (void)
+         */
         template< typename XValueType > void SetTagValue(const std::string& tag_name, const XValueType& tag_value)
         {
             this->Insert(tag_name, tag_value);
         }
 
+        /**
+         * @brief Getter for tag value
+         * 
+         * @param tag_name Name of the tag to retrieve.
+         * @param tag_value (XValueType&)
+         * @return True if successful, false otherwise.
+         */
         template< typename XValueType > bool GetTagValue(const char* tag_name, XValueType& tag_value)
         {
             std::string tmp(tag_name);
@@ -93,12 +155,25 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         }
 
         //retrieve the value of a given tag
+        /**
+         * @brief Getter for tag value
+         * 
+         * @param tag_name The name of the tag to retrieve the value for
+         * @param tag_value Reference to store the retrieved value
+         * @return True if the tag is found and its value is successfully stored, false otherwise
+         */
         template< typename XValueType > bool GetTagValue(const std::string& tag_name, XValueType& tag_value)
         {
             return this->Retrieve(tag_name, tag_value);
         }
 
         //get the number of tags present
+        /**
+         * @brief Getter for tag value as string
+         * 
+         * @param tag_name (const std::string&)
+         * @return Return value (std::string)
+         */
         std::string GetTagValueAsString(const std::string& tag_name) const
         {
             std::stringstream ss;
@@ -171,12 +246,22 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         }
 
         //collect all of the present tag names
+        /**
+         * @brief Clears and populates tag_names vector with DumpKeys() results.
+         * 
+         * @param tag_names Reference to std::vector<std::string that will be cleared and populated.
+         */
         void DumpTags(std::vector< std::string >& tag_names) const
         {
             tag_names.clear();
             tag_names = this->DumpKeys();
         }
 
+        /**
+         * @brief Getter for tagged object uuidset
+         * 
+         * @return The current tagged object UUID set.
+         */
         std::set< MHO_UUID > GetTaggedObjectUUIDSet() const { return fObjectUUIDSet; }
 
     protected:
@@ -184,6 +269,12 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         std::set< MHO_UUID > fObjectUUIDSet;
 
     public:
+        /**
+         * @brief Getter for serialized size
+         * 
+         * @return Total serialized size as uint64_t
+         * @note This is a virtual function.
+         */
         virtual uint64_t GetSerializedSize() const override
         {
             uint64_t total_size = 0;
@@ -227,6 +318,12 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         }
 
     private:
+        /**
+         * @brief Reads and processes object UUIDs from a stream and adds them to the current tag collection.
+         * 
+         * @param s Input stream of object data.
+         * @return No return value (void)
+         */
         template< typename XStream > void StreamInData_V0(XStream& s)
         {
             //then do the number of object uuids
@@ -243,6 +340,12 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             s >> static_cast< MHO_Taggable& >(*this);
         };
 
+        /**
+         * @brief Serializes object UUIDs and taggable element to an output stream.
+         * 
+         * @param s Output stream of type XStream&.
+         * @return void
+         */
         template< typename XStream > void StreamOutData_V0(XStream& s) const
         {
             //then do the number of object uuids

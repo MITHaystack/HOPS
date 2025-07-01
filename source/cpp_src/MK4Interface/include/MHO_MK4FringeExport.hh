@@ -10,25 +10,85 @@ extern "C"
 {
 #endif
 
+    /**
+     * @brief Class type_000
+     */
     struct type_000;
+    /**
+     * @brief Class type_200
+     */
     struct type_200;
+    /**
+     * @brief Class type_201
+     */
     struct type_201;
+    /**
+     * @brief Class type_202
+     */
     struct type_202;
+    /**
+     * @brief Class type_203
+     */
     struct type_203;
+    /**
+     * @brief Class type_204
+     */
     struct type_204;
+    /**
+     * @brief Class type_205
+     */
     struct type_205;
+    /**
+     * @brief Class type_206
+     */
     struct type_206;
+    /**
+     * @brief Class type_207
+     */
     struct type_207;
+    /**
+     * @brief Class type_208
+     */
     struct type_208;
+    /**
+     * @brief Class type_210
+     */
     struct type_210;
+    /**
+     * @brief Class type_212
+     */
     struct type_212;
+    /**
+     * @brief Class type_220
+     */
     struct type_220;
+    /**
+     * @brief Class type_221
+     */
     struct type_221;
+    /**
+     * @brief Class type_222
+     */
     struct type_222;
+    /**
+     * @brief Class type_230
+     */
     struct type_230;
+    /**
+     * @brief Class mk4_fringe
+     */
     struct mk4_fringe;
+    /**
+     * @brief Class sky_coord
+     */
     struct sky_coord;
+    /**
+     * @brief Class date
+     */
     struct date;
+    /**
+     * @brief Class ch_struct
+     */
     struct ch_struct;
 
 #ifndef HOPS3_USE_CXX

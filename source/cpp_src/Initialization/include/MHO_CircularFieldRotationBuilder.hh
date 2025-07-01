@@ -14,6 +14,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_CircularFieldRotationBuilder
+ */
 class MHO_CircularFieldRotationBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -26,6 +29,11 @@ class MHO_CircularFieldRotationBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_CircularFieldRotationBuilder(){};
 
+        /**
+         * @brief Constructs and adds a new CircularFieldRotationBuilder to the toolbox's multimap.
+         * 
+         * @return No return value (void)
+         */
         virtual bool Build() override;
 
     private:

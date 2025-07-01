@@ -35,6 +35,11 @@ namespace hops
 {
 
 //generic returns empty string
+/**
+ * @brief Returns an empty string for any given type XType in MHO postprocessing system.
+ * 
+ * @return Empty std::string
+ */
 template< typename XType > std::string MHO_NumpyTypeCode()
 {
     std::string type_code = "";
@@ -42,19 +47,90 @@ template< typename XType > std::string MHO_NumpyTypeCode()
 };
 
 //only the below specializations are supported, everything else will return empty 
+/**
+ * @brief Function MHO_NumpyTypeCode<int8_t>
+ * 
+ * @return Return value (std::string)
+ */
 template<> inline std::string MHO_NumpyTypeCode< int8_t >(){  return "i1"; }
+/**
+ * @brief Function MHO_NumpyTypeCode<uint8_t>
+ * 
+ * @tparam inline Template parameter inline
+ * @return Return value (std::string)
+ */
 template<> inline std::string MHO_NumpyTypeCode< uint8_t >(){  return "u1"; }
+/**
+ * @brief Function MHO_NumpyTypeCode<int16_t>
+ * 
+ * @tparam inline Template parameter inline
+ * @return Return value (std::string)
+ */
 template<> inline std::string MHO_NumpyTypeCode< int16_t >(){  return "i2"; }
+/**
+ * @brief Function MHO_NumpyTypeCode<uint16_t>
+ * 
+ * @tparam inline Template parameter inline
+ * @return Return value (std::string)
+ */
 template<> inline std::string MHO_NumpyTypeCode< uint16_t >(){  return "u2"; }
+/**
+ * @brief Function MHO_NumpyTypeCode<int32_t>
+ * 
+ * @tparam inline Template parameter inline
+ * @return Return value (std::string)
+ */
 template<> inline std::string MHO_NumpyTypeCode< int32_t >(){  return "i4"; }
+/**
+ * @brief Function MHO_NumpyTypeCode<uint32_t>
+ * 
+ * @tparam inline Template parameter inline
+ * @return Return value (std::string)
+ */
 template<> inline std::string MHO_NumpyTypeCode< uint32_t >(){  return "u4"; }
+/**
+ * @brief Function MHO_NumpyTypeCode<int64_t>
+ * 
+ * @tparam inline Template parameter inline
+ * @return Return value (std::string)
+ */
 template<> inline std::string MHO_NumpyTypeCode< int64_t >(){  return "i8"; }
+/**
+ * @brief Function MHO_NumpyTypeCode<uint64_t>
+ * 
+ * @tparam inline Template parameter inline
+ * @return Return value (std::string)
+ */
 template<> inline std::string MHO_NumpyTypeCode< uint64_t >(){  return "u8"; }
 
+/**
+ * @brief Function MHO_NumpyTypeCode<float>
+ * 
+ * @tparam inline Template parameter inline
+ * @return Return value (std::string)
+ */
 template<> inline std::string MHO_NumpyTypeCode< float >(){  return "f4"; }
+/**
+ * @brief Function MHO_NumpyTypeCode<double>
+ * 
+ * @tparam inline Template parameter inline
+ * @return Return value (std::string)
+ */
 template<> inline std::string MHO_NumpyTypeCode< double >(){  return "f8"; }
 
+/**
+ * @brief Function MHO_NumpyTypeCode<std::complex<float>>
+ * 
+ * @tparam inline Template parameter inline
+ * @return Return value (std::string)
+ */
 template<> inline std::string MHO_NumpyTypeCode< std::complex<float> >(){  return "c8"; }
+/**
+ * @brief Function MHO_NumpyTypeCode<std::complex<double>>
+ * 
+ * @tparam inline Template parameter inline
+ * @return Return value (std::string)
+ */
 template<> inline std::string MHO_NumpyTypeCode< std::complex<double> >(){  return "c16"; }
 
 }// end namespace

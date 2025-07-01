@@ -14,6 +14,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_MixedPolYShiftBuilder
+ */
 class MHO_MixedPolYShiftBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -27,6 +30,11 @@ class MHO_MixedPolYShiftBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_MixedPolYShiftBuilder(){};
 
+        /**
+         * @brief Constructs and adds a new MixedPolYShiftBuilder to the toolbox's multimap.
+         * 
+         * @return True if construction and addition are successful, false otherwise
+         */
         virtual bool Build() override;
 
     private:

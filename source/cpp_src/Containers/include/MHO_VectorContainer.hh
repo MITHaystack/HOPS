@@ -21,6 +21,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_VectorContainer
+ */
 template< typename XValueType >
 class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWrapper< XValueType, 1 >, public MHO_Taggable
 {
@@ -35,12 +38,29 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
         MHO_VectorContainer(const MHO_VectorContainer& obj): MHO_NDArrayWrapper< XValueType, 1 >(obj), MHO_Taggable(obj){};
 
         //clone functionality
+        /**
+         * @brief Clones the current MHO_VectorContainer object.
+         * 
+         * @return A new MHO_VectorContainer object that is a deep copy of the original.
+         */
         MHO_VectorContainer* Clone() { return new MHO_VectorContainer(*this); }
 
         virtual ~MHO_VectorContainer(){};
 
+        /**
+         * @brief Getter for version
+         * 
+         * @return MHO_ClassVersion version number.
+         * @note This is a virtual function.
+         */
         virtual MHO_ClassVersion GetVersion() const override { return 0; };
 
+        /**
+         * @brief Getter for serialized size
+         * 
+         * @return Serialized size as a uint64_t.
+         * @note This is a virtual function.
+         */
         virtual uint64_t GetSerializedSize() const override { return ComputeSerializedSize(); }
 
         //have to make base class functions visible
@@ -55,6 +75,12 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
 
         //expensive copy
         //pointers to exernally managed memory are not transferred)
+        /**
+         * @brief Expensive copy constructor for MHO_VectorContainer.
+         * 
+         * @param rhs Const reference to source container for copying
+         * @note This is a virtual function.
+         */
         virtual void Copy(const MHO_VectorContainer& rhs)
         {
             if(&rhs != this)
@@ -67,6 +93,11 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
         }
 
     public:
+        /**
+         * @brief Calculates and returns the serialized size as a uint64_t.
+         * 
+         * @return Serialized size in bytes.
+         */
         uint64_t ComputeSerializedSize() const
         {
             uint64_t total_size = 0;
@@ -110,6 +141,12 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
         }
 
     private:
+        /**
+         * @brief Serializes object data into an output stream.
+         * 
+         * @param s Output stream of type XStream&.
+         * @return No return value (void).
+         */
         template< typename XStream > void StreamOutData_V0(XStream& s) const
         {
             s << static_cast< const MHO_Taggable& >(*this);
@@ -122,6 +159,12 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
             }
         }
 
+        /**
+         * @brief Reads data from stream and resizes object accordingly.
+         * 
+         * @param s Input stream of type XStream&
+         * @return void
+         */
         template< typename XStream > void StreamInData_V0(XStream& s)
         {
             s >> static_cast< MHO_Taggable& >(*this);
@@ -148,6 +191,11 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
 
 //specialization for string elements
 //(NOTE: we need to use 'inline' to satisfy one-definiton rule, otherwise we have to stash this in a .cc file)
+/**
+ * @brief Function MHO_VectorContainer<std::string>::ComputeSerializedSize
+ * 
+ * @return Return value (uint64_t MHO_VectorContainer< std::string)
+ */
 template<> inline uint64_t MHO_VectorContainer< std::string >::ComputeSerializedSize() const
 {
     uint64_t total_size = 0;

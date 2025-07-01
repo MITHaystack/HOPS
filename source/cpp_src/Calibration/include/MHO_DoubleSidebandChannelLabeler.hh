@@ -26,6 +26,9 @@ namespace hops
  *
  */
 
+/**
+ * @brief Class MHO_DoubleSidebandChannelLabeler
+ */
 template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public MHO_UnaryOperator< XArrayType >
 {
     public:
@@ -37,13 +40,40 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
         virtual ~MHO_DoubleSidebandChannelLabeler(){};
 
         //allow channel freq association to use a difference tolerance
+        /**
+         * @brief Setter for tolerance
+         * 
+         * @param tol New tolerance value to use when checking if channels share a sky frequency.
+         */
         void SetTolerance(double tol) { fEps = tol; }
 
     protected:
+        /**
+         * @brief Initializes XArrayType in-place and returns success.
+         * 
+         * @param in Pointer to XArrayType object to initialize.
+         * @return True if initialization was successful, false otherwise.
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(XArrayType* in) override { return true; }
 
+        /**
+         * @brief Initializes output array in-place from input array.
+         * 
+         * @param !in Const reference to input XArrayType
+         * @param !out Reference to output XArrayType
+         * @return Boolean indicating success of initialization
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const XArrayType* /*!in*/, XArrayType* /*!out*/) override { return true; }
 
+        /**
+         * @brief Function ExecuteInPlace
+         * 
+         * @param in (XArrayType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(XArrayType* in) override
         {
             if(in != nullptr)
@@ -95,6 +125,14 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
             return false;
         }
 
+        /**
+         * @brief Copies input array to output and executes in-place operation on output.
+         * 
+         * @param in Const reference to input XArrayType
+         * @param out Reference to output XArrayType
+         * @return Result of ExecuteInPlace operation on out
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             out->Copy(*in);
