@@ -56,7 +56,7 @@ class MHO_SingleSidebandNormFX: public MHO_NormFX //MHO_UnaryOperator< visibilit
          */
         virtual bool InitializeInPlace(XArgType* in) override;
         /**
-         * @brief Initializes out-of-place processing for Single Sideband NormFX using input and output arguments.
+         * @brief Initializes out-of-place processing for Single Sideband (all channels USB or LSB) NormFX using input and output arguments.
          * 
          * @param in Const reference to input XArgType object
          * @param out Reference to output XArgType object

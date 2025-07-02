@@ -85,7 +85,8 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
         virtual bool InitializeOutOfPlace(const XArrayType* /*!in*/, XArrayType* /*!out*/) override { return true; }
 
         /**
-         * @brief Function ExecuteInPlace
+         * @brief Function ExecuteInPlace - actual implementation, map channel label (e.g. 'a', 'b', etc.) to sampler
+         * index for both reference and remote stations, and attaches label to visibility data
          * 
          * @param in (XArrayType*)
          * @return Return value (bool)
@@ -173,10 +174,10 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
         }
 
         /**
-         * @brief Function SplitChannelLabels
+         * @brief Function SplitChannelLabels, splits the channel strings into individual channel labels
          * 
          * @param channels (std::string)
-         * @return Return value (std::string >)
+         * @return Return value (std::string)
          */
         std::vector< std::string > SplitChannelLabels(std::string channels)
         {

@@ -47,7 +47,7 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
         /**
          * @brief Setter for pol product sum label
          * 
-         * @param ppl New pol product sum label
+         * @param ppl New pol product sum label (typically 'I' for pseudo-Stokes-I)
          */
         void SetPolProductSumLabel(std::string ppl) { fSummedPolProdLabel = ppl; }
 
@@ -58,12 +58,13 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
          */
         void SetPolProductSet(std::vector< std::string >& pp_vec) { fPolProductSet = pp_vec; };
 
-        //these data objects are not used yet, but could be needed if we want to apply
-        //time-dependence to the pol-product pre-factors
+
         /**
          * @brief Setter for reference station coordinate data
          * 
          * @param ref_data Input pointer to station_coord_type structure
+         * @details this data object is not used yet, but could be needed if we want to apply/determine
+         * time-dependence in the pol-product pre-factors
          */
         void SetReferenceStationCoordinateData(station_coord_type* ref_data) { fRefData = ref_data; };
 
@@ -71,42 +72,46 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
          * @brief Setter for remote station coordinate data
          * 
          * @param rem_data Pointer to station_coord_type structure containing remote station coordinates
+         * @details this data object is not used yet, but could be needed if we want to apply/determine
+         * time-dependence in the pol-product pre-factors
          */
         void SetRemoteStationCoordinateData(station_coord_type* rem_data) { fRemData = rem_data; };
 
         //parallactic angle values for each station (expects degrees)
         /**
-         * @brief Setter for reference parallactic angle
+         * @brief Setter for reference station parallactic angle
          * 
          * @param p Input parallactic angle value in degrees
          */
         void SetReferenceParallacticAngle(double p) { fRefParAngle = p; }
 
         /**
-         * @brief Setter for remote parallactic angle
+         * @brief Setter for remote station parallactic angle
          * 
-         * @param p New value for remote parallactic angle
+         * @param p value for remote station parallactic angle in degrees
          */
         void SetRemoteParallacticAngle(double p) { fRemParAngle = p; }
 
-        //not currently used (but needed for circ-circ pol sum)
+
         /**
          * @brief Setter for reference mount type
          * 
-         * @param mt New reference mount type as string
+         * @param mt  reference station mount type as string
+         * @details  not currently used (but needed for circ-circ pol sum)!
          */
         void SetReferenceMountType(std::string mt) { fRefMountType = mt; }
 
         /**
          * @brief Setter for remote mount type
          * 
-         * @param mt New remote mount type as string
+         * @param mt  remote station mount type as string
+         * @details  not currently used (but needed for circ-circ pol sum)!
          */
         void SetRemoteMountType(std::string mt) { fRemMountType = mt; }
 
     protected:
         /**
-         * @brief Initializes reducers and checks initialization status.
+         * @brief Initializes reducer (operators) and checks initialization status.
          * 
          * @param in Input visibility_type pointer.
          * @return Boolean indicating successful initialization of both reducers.
@@ -114,7 +119,7 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
          */
         virtual bool InitializeInPlace(visibility_type* in) override;
         /**
-         * @brief Initializes reducers and checks their initialization status for out-of-place processing.
+         * @brief Initializes reducer (operators) and checks their initialization status for out-of-place processing.
          * 
          * @param in Input visibility_type data
          * @param out Output visibility_type data
@@ -144,11 +149,10 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
     private:
         weight_type* fWeights;
 
-        //class(es) which do the summation
+        //reducer operators which do the summation
         MHO_Reducer< visibility_type, MHO_CompoundSum > fReducer;
         MHO_Reducer< weight_type, MHO_CompoundSum > fWReducer;
 
-        //multiplies each pol product by the appropriate pre-factor
         /**
          * @brief Multiplies each polarization product by its appropriate pre-factor.
          * 

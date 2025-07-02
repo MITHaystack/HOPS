@@ -14,7 +14,7 @@ namespace hops
  *@class MHO_VisibilityChannelizer
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Nov 5 13:11:33 2020 -0500
- *@brief  collects unchannelized (3d) visibility data and groups by channel (but all must be of equal size) into 4d object
+ *@brief  collects unchannelized (3d) visibility data and groups by channel (but all channels must be of equal size) into 4d object
  */
 
 /**

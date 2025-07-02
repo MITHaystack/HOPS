@@ -12,7 +12,7 @@ namespace hops
  *@class MHO_StationModel
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Nov 16 11:49:39 2023 -0500
- *@brief evaluates the station a priori coordinate polynomials
+ *@brief evaluates the station a priori coordinate and/or delay spline polynomials
  */
 
 /**
@@ -25,7 +25,7 @@ class MHO_StationModel
         virtual ~MHO_StationModel();
 
         /**
-         * @brief Setter for evaluation time vex string
+         * @brief Setter for (model) evaluation time vex string
          * 
          * @param time_string Input time string to set
          */
@@ -72,23 +72,23 @@ class MHO_StationModel
         double GetParallacticAngle() { return fParAngle; };
 
         /**
-         * @brief Getter for ucoordinate
+         * @brief Getter for u coordinate
          * 
          * @return Current U-coordinate value as a double
          */
         double GetUCoordinate() { return fU; };
 
         /**
-         * @brief Getter for vcoordinate
+         * @brief Getter for v coordinate
          * 
-         * @return Current vertical coordinate as a double.
+         * @return Current V-coordinate as a double.
          */
         double GetVCoordinate() { return fV; };
 
         /**
-         * @brief Getter for wcoordinate
+         * @brief Getter for w coordinate
          * 
-         * @return Current value of wcoordinate as a double
+         * @return Current value of W-coordinate as a double
          */
         double GetWCoordinate() { return fW; };
 
