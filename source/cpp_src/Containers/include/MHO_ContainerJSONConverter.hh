@@ -26,6 +26,12 @@ namespace hops
  *@brief Converts a given ndarray-based container into a JSON representation
  * this isn't really intended for data transport/storage, but only as
  * conversion to an ascii-like representation for human inspection/debugging
+ * @details the (integer) code specifing the level-of-detail in the output is as follows:
+ * 0 = basic quantities (rank, dimensions, etc.)
+ * 1 = basic quantities plus tags
+ * 2 = basic quantities plus the axes (if the object is a table)
+ * 3 = basic quantities plus axes with interval labels
+ * 4 = everything including the main data array
  */
 
 //verbosity controlling enum
@@ -99,10 +105,9 @@ class MHO_JSONConverter
          */
         virtual void ConstructJSONRepresentation() = 0;
 
-        //for access to raw data in table containers
-        //this is a bit of a hack for 'hops2flat'
+
         /**
-         * @brief Getter for rank
+         * @brief Getter for rank, needed for access to raw data in table containers this is a bit of a hack for 'hops2flat'
          * 
          * @return Current value of fRank as std::size_t
          */
@@ -127,16 +132,9 @@ class MHO_JSONConverter
         std::string GetRawDataDescriptor() const {return fRawDataDescriptor;}
 
     protected:
-        //helper functions for generic data insertion for elements of a list
+        
         /**
-         * @brief Inserts a complex value into a JSON data array.
-         * 
-         * @tparam XValueType Template parameter XValueType
-         * @param value The complex value to insert.
-         * @param data (mho_json&)
-         */
-        /**
-         * @brief Inserts an element into a JSON data list.
+         * @brief Inserts an element into a JSON data list (helper functions for generic data insertion for elements of a list)
          * 
          * @param value The value to insert of type XValueType.
          * @param data (mho_json&)
@@ -144,7 +142,16 @@ class MHO_JSONConverter
          */
         template< typename XValueType > void InsertElement(const XValueType& value, mho_json& data) { data.push_back(value); }
 
-        //specializations for complex<> element data insertion, needed b/c mho_json doesn't have a first-class complex type
+        /**
+         * @brief Inserts a complex value into a JSON data array, 
+         * this is a specialization for complex<> element data insertion, and 
+         * is needed because mho_json doesn't have a first-class complex type
+         * 
+         * @tparam XValueType Template parameter XValueType
+         * @param value The complex value to insert.
+         * @param data (mho_json&)
+         */
+
         void InsertElement(const std::complex< long double >& value, mho_json& data)
         {
             data.push_back({value.real(), value.imag()});
@@ -219,10 +226,9 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
         XContainerType* fContainer;
 
     protected:
-        //unspecialized template doesn't do much
         /**
-         * @brief Constructs a JSON representation for an object of type XCheckType.
-         * 
+         * @brief Constructs a JSON representation for an object of type XCheckType (unspecialized template doesn't do much) 
+         * @details uses SFINAE to generate specialization for the rest of the container types
          * @param obj Pointer to the object of type XCheckType.
          * @return No return value (void)
          */
@@ -241,13 +247,8 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
             fRawDataDescriptor = "";
         };
 
-        //use SFINAE to generate specialization for the rest of the container types
-        //that we actually care about
-
-        //scalar specialization
         /**
-         * @brief Constructs a JSON representation for an XContainerType object.
-         * 
+         * @brief Constructs a JSON representation for an XContainerType object (scalar specialization)
          * @tparam XCheckType Template parameter XCheckType
          * @param obj Pointer to const XContainerType object.
          */
@@ -289,9 +290,8 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
             fRawDataDescriptor = "";
         };
 
-        //vector specialization (but not an axis!)
         /**
-         * @brief Constructs a JSON representation for an XContainerType object.
+         * @brief Constructs a JSON representation for an XContainerType object (vector specialization (but not an axis!)).
          * 
          * @tparam XCheckType Template parameter XCheckType
          * @param obj Pointer to the const XContainerType object to construct JSON from.
@@ -342,9 +342,8 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
             fRawDataDescriptor = MHO_NumpyTypeCode< typename XContainerType::value_type >();
         };
 
-        //axis specialization
         /**
-         * @brief Constructs a JSON representation for an XContainerType object.
+         * @brief Constructs a JSON representation for an XContainerType object (axis specialization)
          * 
          * @tparam XCheckType Template parameter XCheckType
          * @param obj Pointer to const XContainerType object.
@@ -393,9 +392,9 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
             fRawDataDescriptor = MHO_NumpyTypeCode< typename XContainerType::value_type >();
         };
 
-        //table specialization
+
         /**
-         * @brief Constructs a JSON representation for the given XContainerType object.
+         * @brief Constructs a JSON representation for the given XContainerType object (table specialization).
          * 
          * @tparam XCheckType Template parameter XCheckType
          * @param obj Pointer to the const XContainerType object to construct JSON from.
@@ -456,7 +455,7 @@ template< typename XContainerType > class MHO_ContainerJSONConverter: public MHO
         };
 
         /**
-         * @brief Class AxisDumper
+         * @brief Class AxisDumper - helper class needed to extract MHO_Axis objects from MHO_AxisPack objects inside MHO_TableContainer types
          */
         class AxisDumper
         {

@@ -12,7 +12,7 @@ namespace hops
  *@class MHO_AxisPack
  *@author J. Barrett - barrettj@mit.edu
  *@date Mon Aug 17 12:42:31 2020 -0400
- *@brief set of axes (XAxisTypeS are expected to be MHO_VectorContainers)
+ *@brief a packaged set of axes (XAxisTypeS are expected to inherit from MHO_Axis)
  */
 
 /**
@@ -59,11 +59,11 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
         }
 
     protected:
-        //inductive access to all elements of the tuple, so we can re-size them from an array
+
         /**
-         * @brief Inductive access to resize elements of a tuple from an array.
+         * @brief inductive access to all elements of the tuple, so we can re-size them from an array
          * 
-         * @tparam N Template parameter N
+         * @tparam N Template parameter (size of the axis pack)
          * @param !dim Parameter description
          */
         template< std::size_t N = 0 >
@@ -71,11 +71,10 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
         resize_axis_pack(const std::size_t* /*!dim*/){}; //terminating case, do nothing
 
         /**
-         * @brief Resize axis pack for PGPLOT using dimensions from dim.
+         * @brief Resize each element of the axis pack using the dimensions specified in dim.
          * 
-         * @tparam N Template parameter N
+         * @tparam N Template parameter (size of the axis pack)
          * @param dim Input dimension sizes for resizing.
-         * @return void (no return value)
          */
         template< std::size_t N = 0 >
         typename std::enable_if< (N < sizeof...(XAxisTypeS)), void >::type resize_axis_pack(const std::size_t* dim)
@@ -88,9 +87,9 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
 
         // //inductive access to all elements of the tuple, so we compute total size for streaming
         /**
-         * @brief Inductively computes and adds total serialized size of tuple elements to uint64_t&.
+         * @brief Inductively computes and adds total serialized size of tuple elements to uint64_t& (needed for streaming).
          * 
-         * @tparam N Template parameter N
+         * @tparam N Template parameter (size of the axis pack)
          * @param !total_size Parameter description
          */
         template< std::size_t N = 0 >
@@ -112,9 +111,9 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
             compute_total_size< N + 1 >(total_size);
         }
 
-        //for copying the full tuple from one axis pack to another
+
         /**
-         * @brief Copies full tuple from one axis pack to another.
+         * @brief used for copying the full tuple from one axis pack to another
          * 
          * @tparam N Template parameter N
          * @param MHO_AxisPack& Parameter description
@@ -179,13 +178,7 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
          */
         template< typename XStream > void StreamInData_V0(XStream& s) { istream_tuple(s, *this); }
 
-        /**
-         * @brief Calculates and returns a UUID representing the type of the object using its class name.
-         * 
-         * @tparam XStream Template parameter XStream
-         * @return MHO_UUID representing the object's type.
-         * @note This is a virtual function.
-         */
+
         /**
          * @brief Writes data to an output stream using tuple serialization.
          * 
@@ -195,6 +188,13 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
          */
         template< typename XStream > void StreamOutData_V0(XStream& s) const { ostream_tuple(s, *this); }
 
+        /**
+         * @brief Calculates and returns a UUID representing the type of the object using its class name.
+         * 
+         * @tparam XStream Template parameter XStream
+         * @return MHO_UUID representing the object's type.
+         * @note This is a virtual function.
+         */
         virtual MHO_UUID DetermineTypeUUID() const override
         {
             MHO_MD5HashGenerator gen;
@@ -207,11 +207,11 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-//enumerate some of the most commonly used axis-pack types here:
-//in order to keep the number of possible axis-pack types from getting out of hand
-//we limit the number of axes to <4, and only declare for the following POD types:
-//int (Int), double (Double), string (String)
-//more types are certainly possible, but they should be declared only as needed
+///enumerate some of the most commonly used axis-pack types here:
+///in order to keep the number of possible axis-pack types from getting out of hand
+///we limit the number of axes to <4, and only declare for the following POD types:
+///int (Int), double (Double), string (String)
+///more types are certainly possible, but they should be declared only as needed
 
 //TODO FIXME -- find away to loop over macro arguments so we dont need so many
 //boilerplate definitions

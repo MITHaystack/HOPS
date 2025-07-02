@@ -20,7 +20,7 @@ namespace hops
  */
 
 /**
- * @brief Class MHO_ContainerFileInterface
+ * @brief Class MHO_ContainerFileInterface - a MHO_ContainerDictionary which can read/write objects to file
  */
 class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 {
@@ -35,29 +35,29 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
          */
         void SetFilename(std::string filename);
 
-        //index file optional, if we don't have an index file, the regular file will be
-        //read in 2-passes, first to extract the keys, then to extract the objects
-        //likewise, when writing a store to file, if there is no index file specified, none will be created
+
         /**
          * @brief Setter for index file name
-         * 
+         * @details index file is optional, if we don't have an index file, the regular file will be
+         * read in 2-passes, first to extract the keys, then to extract the objects
+         * likewise, when writing a store to file, if there is no index file specified, none will be created
          * @param index_filename The new index file name to set
          */
         void SetIndexFileName(std::string index_filename);
 
-        //currently this function reads the file keys and then the all the file objects
-        //we may want to split this functionality so we can inspect the file first
-        //and then only read the objects of interest
+
         /**
          * @brief Populates a store from a file, optionally clearing it first.
-         * 
+         * @details currently this function reads the file keys and then the all the file objects
+         * note: we may want to split this functionality so we can inspect the file first
+         * and then only read the objects of interest
          * @param store Reference to MHO_ContainerStore object
          * @param do_clear_store Boolean flag indicating whether to clear the store before populating
          */
         void PopulateStoreFromFile(MHO_ContainerStore& store, bool do_clear_store = false);
 
         /**
-         * @brief Writes a ContainerStore to file using FileInterface and factory map.
+         * @brief Writes object in a MHO_ContainerStore to file using MHO_BinaryFileInterface and factory map.
          * 
          * @param store Reference to MHO_ContainerStore containing objects to write.
          */
