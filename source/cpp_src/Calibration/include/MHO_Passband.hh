@@ -21,8 +21,8 @@ namespace hops
  *@file MHO_Passband.hh
  *@class MHO_Passband
  *@author J. Barrett - barrettj@mit.edu
- *@date
- *@brief Tue Apr  2 09:41:24 AM EDT 2024
+ *@date Tue Apr  2 09:41:24 AM EDT 2024
+ *@brief Selects a chunk of frequency space for inclusion or removal
  */
 
 /**
@@ -46,6 +46,10 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
          * 
          * @param first Lower frequency limit in Hz
          * @param second Upper frequency limit in Hz
+         * @details  if second < first then this operation is an 'exclusion'
+         * which tells us this is a chunk of spectrum to cut out, otherwise 
+         * if first < second, then it is an inclusion, and everything outside will be cut
+         * (this is the legacy behavior)
          */
         void SetPassband(const double& first, const double& second)
         {
@@ -61,7 +65,7 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
             else
             {
                 //if first < second, then this chunk is the 'passed' band
-                //s,o everything outside of this range is cut
+                //so everything outside of this range is cut
                 fIsExclusion = false;
                 fLow = first;
                 fHigh = second;
