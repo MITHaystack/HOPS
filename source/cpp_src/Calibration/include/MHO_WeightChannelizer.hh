@@ -14,7 +14,7 @@ namespace hops
  *@class MHO_WeightChannelizer
  *@author J. Barrett - barrettj@mit.edu
  *@date Mon Jul 12 15:11:14 2021 -0400
- *@brief collects unchannelized (3d) weight data and groups by channel (but all must be of equal size) into 4d object
+ *@brief collects unchannelized (3d) weight data and groups by channel (but all channels must be of equal size) into 4d object
  */
 
 class MHO_WeightChannelizer: public MHO_TransformingOperator< uch_weight_store_type, weight_store_type >

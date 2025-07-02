@@ -16,7 +16,8 @@ namespace hops
  *@class MHO_NormFX
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Jul 9 11:47:00 2021 -0400
- *@brief interface for various types of norm_fx operators (unary op on visibilities that accepts weights)
+ *@brief wrapper class for the interface which provides the functionality of the original norm_fx.c operation 
+* this is a unary operator on visibilities that accepts weights
  */
 
 /**

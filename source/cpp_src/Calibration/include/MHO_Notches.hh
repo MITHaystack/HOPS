@@ -23,8 +23,8 @@ namespace hops
  *@file MHO_Notches.hh
  *@class MHO_Notches
  *@author J. Barrett - barrettj@mit.edu
- *@date
- *@brief Tue Apr  2 09:41:24 AM EDT 2024
+ *@date Tue Apr  2 09:41:24 AM EDT 2024
+ *@brief operator which 'notches' out probablatic chunks of visiblities in frequency space 
  */
 
 /**
@@ -44,9 +44,9 @@ class MHO_Notches: public MHO_UnaryOperator< visibility_type >
         void SetWeights(weight_type* weights) { fWeights = weights; };
 
         /**
-         * @brief Setter for notch boundaries
+         * @brief Setter for notch (locations along frequency axis where visibilities are zeroed out) boundaries
          * 
-         * @param notch_boundary_list Input vector of double values representing notch boundaries.
+         * @param notch_boundary_list Input vector of double values, must come in pairs of (lower, upper) representing notch boundaries.
          */
         void SetNotchBoundaries(const std::vector< double >& notch_boundary_list)
         {

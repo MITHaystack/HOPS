@@ -22,7 +22,7 @@ namespace hops
  *@class MHO_StationDelayCorrection
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Jan 27 10:36:00 2022 -0500
- *@brief
+ *@brief operator to apply a station delay to the visibilities
  */
 
 /**
@@ -37,22 +37,22 @@ class MHO_StationDelayCorrection: public MHO_UnaryOperator< visibility_type >
         /**
          * @brief Setter for reference frequency
          * 
-         * @param ref_freq New reference frequency value in Hertz
+         * @param ref_freq New reference frequency value in MHz
          */
         void SetReferenceFrequency(double ref_freq) { fRefFreq = ref_freq; }
 
-        //treated as follows:
-        //1-char => mk4 id
-        //2-char => 2char station code
         /**
          * @brief Setter for station identifier
          * 
          * @param station_id mk4 id of type std::string
+         * @details station_id is treated as follows:
+         * 1-char => mk4 id
+         * 2-char => 2char station code
          */
         void SetStationIdentifier(std::string station_id) { fStationIdentity = station_id; }
 
         /**
-         * @brief Setter for pcdelay offset
+         * @brief Setter for delay offset
          * 
          * @param pc_delay_offset Time offset between two signals being correlated
          */
@@ -78,7 +78,7 @@ class MHO_StationDelayCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
-         * @brief Applies phase correction to visibility data for reference and remote stations.
+         * @brief Applies phase correction to visibility data for reference or remote station.
          * 
          * @param in Input visibility_type* containing pol-products and channels.
          * @return bool indicating successful execution.
