@@ -17,12 +17,9 @@ namespace hops
  *@class MHO_ScalarContainer
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Oct 16 11:17:19 2020 -0400
- *@brief
+ *@brief MHO_ScalarContainer, and wrapper class for storage of a scalar object
  */
 
-/**
- * @brief Class MHO_ScalarContainer
- */
 template< typename XValueType >
 class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWrapper< XValueType, 0 >, public MHO_Taggable
 {
