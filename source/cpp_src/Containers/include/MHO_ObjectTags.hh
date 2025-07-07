@@ -51,7 +51,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         //insert a uuid for an object to be associated with our tag collection
         /**
-         * @brief Inserts a UUID into the object UUID set for association with tag collection.
+         * @brief Inserts a UUID into the object UUID set for association with this tag collection.
          * 
          * @param uuid UUID of the object to be associated with the tag collection
          */

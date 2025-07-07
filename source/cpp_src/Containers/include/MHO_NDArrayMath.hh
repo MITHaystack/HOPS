@@ -33,17 +33,10 @@ class MHO_NDArrayMath
 
 
         /**
-<<<<<<< HEAD
          * @brief Calculates offset into a multidimensional array using row-major indexing.
          * @details for a multidimensional array (using row major indexing) which has the
          * dimensions specified in DimSize, this function computes the offset from
          * the first element given the indices in the array Index
-=======
-         * @brief for a multidimensional array (using row major indexing) which has the
-         * dimensions specified in DimSize, this function computes the offset from
-         * the first element given the indices in the array Index
-         *
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * @tparam RANK Template parameter RANK
          * @param DimSize Pointer to an array containing dimension sizes.
          * @param Index Pointer to an array of indices.
@@ -64,17 +57,10 @@ class MHO_NDArrayMath
 
 
         /**
-<<<<<<< HEAD
          * @brief Calculates offset for a given index into a multidimensional array using row-major indexing/strides.
          * @details for a multidimensional array (using row major indexing) which has the
          * strides specified in Strides, this function computes the offset from
          * the first element given the indices in the array Index
-=======
-         * @brief for a multidimensional array (using row major indexing) which has the
-         * strides specified in Strides, this function computes the offset from
-         * the first element given the indices in the array Index
-         * 
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * @tparam RANK Template parameter RANK
          * @param Strides Array of strides for each dimension
          * @param Index Indices for each dimension
@@ -94,19 +80,11 @@ class MHO_NDArrayMath
 
 
         /**
-<<<<<<< HEAD
          * @brief Calculates stride for a given dimension in a row-major indexed multidimensional array.
          * @details for a multidimensional array (using row major indexing) which has the
          * dimensions specified in DimSize, this function computes the stride between
          * consecutive elements in the selected dimension given that the other indices are fixed
          * the first element given the indices in the array Index
-=======
-         * @brief for a multidimensional array (using row major indexing) which has the
-         * dimensions specified in DimSize, this function computes the stride between
-         * consecutive elements in the selected dimension given that the other indices are fixed
-         * the first element given the indices in the array Index 
-         *
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * @tparam RANK Template parameter RANK
          * @param selected_dim Selected dimension index
          * @param DimSize Array containing dimensions sizes
@@ -129,17 +107,10 @@ class MHO_NDArrayMath
 
 
         /**
-<<<<<<< HEAD
          * @brief Function RowMajorIndexFromOffset
          * @details for a multidimensional array (using row major indexing) which has the
          * dimensions specified in DimSize, this function computes the indices of
          * the elements which has the given offset from the first element
-=======
-         * @brief for a multidimensional array (using row major indexing) which has the
-         * dimensions specified in DimSize, this function computes the indices of
-         * the elements which has the given offset from the first element
-         * 
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * @tparam RANK Template parameter RANK
          * @param offset (std::size_t)
          * @param DimSize (const std::size_t*)
@@ -210,11 +181,7 @@ class MHO_NDArrayMath
         }
 
         /**
-<<<<<<< HEAD
-         * @brief enum PowerOfTwo -compute 2^N at compile time
-=======
          * @brief enum PowerOfTwo - compute 2^N at compile time
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          */
         template< std::size_t N > struct PowerOfTwo
         {
@@ -225,11 +192,7 @@ class MHO_NDArrayMath
         };
 
         /**
-<<<<<<< HEAD
          * @brief enum Divide - compute integer division at compile time
-=======
-         * @brief enum Divide -compute integer division at compile time
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          */
         template< int numerator, int denominator > struct Divide
         {
@@ -263,14 +226,8 @@ class MHO_NDArrayMath
             }
         }
 
-<<<<<<< HEAD
-        //increment the multi-dimensional indices by a memory offset of 1
-        /**
-         * @brief Increment multi-dimensional indices by offset of one (using row-major order).
-=======
         /**
          * @brief Increment multi-dimensional indices by one in row-major order, accounting for roll-over
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @param DimSize Pointer to an array containing dimension sizes
          * @param Index Pointer to an array containing current indices
@@ -295,11 +252,7 @@ class MHO_NDArrayMath
         }
 
         /**
-<<<<<<< HEAD
-         * @brief Increment multi-dimensional indices by (memory) offset specified in diff and return true if successful, false otherwise.
-=======
          * @brief Increment multi-dimensional indices by the amount in diff (accounting for roll-over) and return true if successful, false otherwise.
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @tparam RANK Template parameter RANK
          * @param DimSize Pointer to an array containing dimension sizes
@@ -323,11 +276,7 @@ class MHO_NDArrayMath
         }
 
         /**
-<<<<<<< HEAD
-         * @brief Decrements indices (by memory offset of 1) in a multidimensional array using row major indexing.
-=======
          * @brief Decrements indices in a multidimensional by one, array using row major indexing.
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @param DimSize Pointer to an array containing the dimensions of the multidimensional array.
          * @param Index Pointer to an array containing the current indices.
@@ -353,11 +302,7 @@ class MHO_NDArrayMath
         }
 
         /**
-<<<<<<< HEAD
-         * @brief Decrements indices in a multidimensional array by specified memory offset (diff) unless an underflow is reached.
-=======
          * @brief Decrements indices in a multidimensional array by amount specified in diff, or until an underflow is reached.
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @tparam RANK Template parameter RANK
          * @param DimSize Pointer to an array containing the dimensions of the multidimensional array.
@@ -381,14 +326,8 @@ class MHO_NDArrayMath
         }
 };
 
-<<<<<<< HEAD
-
 /**
  * @brief enum MHO_NDArrayMath::PowerOfTwo<0> specialization for base case of power of two
-=======
-/**
- * @brief Class MHO_NDArrayMath::PowerOfTwo<0> - specialization for base case of power of two
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
  */
 template<> struct MHO_NDArrayMath::PowerOfTwo< 0 >
 {
@@ -398,14 +337,8 @@ template<> struct MHO_NDArrayMath::PowerOfTwo< 0 >
         };
 };
 
-<<<<<<< HEAD
-
 /**
  * @brief enum MHO_NDArrayMath::Divide<numerator, 1> specialization for base case of divide
-=======
-/**
- * @brief Class MHO_NDArrayMath::Divide<numerator, 1> - specialization for base case of divide
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
  */
 template< int numerator > struct MHO_NDArrayMath::Divide< numerator, 1 >
 {
