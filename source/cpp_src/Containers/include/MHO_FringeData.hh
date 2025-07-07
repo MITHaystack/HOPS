@@ -61,16 +61,15 @@ class MHO_FringeData
          */
         mho_json GetVex() const { return fScanStore.GetRootFileData(); }
 
-        //access to the control format and parsed control statements
         /**
-         * @brief Getter for control format
+         * @brief getter for the control format 
          * 
          * @return Reference to mho_json object representing control format
          */
         mho_json& GetControlFormat() { return fControlFormat; }
 
         /**
-         * @brief Getter for control statements
+         * @brief Getter for parsed control statements
          * 
          * @return Reference to mho_json object containing control statements.
          */
