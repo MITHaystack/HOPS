@@ -36,10 +36,10 @@ namespace hops
  *@class MHO_Snapshot
  *@author J. Barrett - barrettj@mit.edu
  *@date Sun Apr 2 17:06:41 2023 -0400
- *@brief
+ *@brief MHO_Snapshot -- a debugging tool to dump an object to a snapshot file. Uses the singleton pattern (dumps to only one file)
  */
 
-//uses the singleton pattern (dumps to only one file)
+//
 //TODO make this class thread safe
 /**
  * @brief Class MHO_Snapshot
@@ -54,9 +54,8 @@ class MHO_Snapshot
         MHO_Snapshot& operator=(MHO_Snapshot const&) = delete;
         MHO_Snapshot& operator=(MHO_Snapshot&&) = delete;
 
-        //provide public access to the only static instance
         /**
-         * @brief Getter for instance
+         * @brief provides public access to the only static instance
          * 
          * @return Reference to the singleton instance of MHO_Snapshot.
          * @note This is a static function.
@@ -124,7 +123,7 @@ class MHO_Snapshot
         void RemoveAllKeys();
 
         /**
-         * @brief Converts and passes key and name parameters to DumpObject as strings.
+         * @brief Dumps an object of type XObjType to a file specified by key and name.
          * 
          * @param obj Pointer to object of type XObjType
          * @param key Key as a null-terminated string
@@ -169,7 +168,7 @@ class MHO_Snapshot
         }
 
         /**
-         * @brief Dumps an object to a file with given key, name, and line number.
+         * @brief Dumps an object to a file with given key, name, file and line number.
          * 
          * @tparam XObjType Template parameter XObjType
          * @param obj Pointer to the object of type XObjType to be dumped
@@ -211,7 +210,7 @@ class MHO_Snapshot
 
     private:
         /**
-         * @brief Getter for pid
+         * @brief Getter for the process id (pid)
          * 
          * @return The process ID as an integer.
          */
