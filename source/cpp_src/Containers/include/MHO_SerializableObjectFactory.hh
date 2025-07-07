@@ -26,7 +26,7 @@ class MHO_SerializableObjectFactory
         virtual ~MHO_SerializableObjectFactory(){};
 
         /**
-         * @brief Virtual function to build and return an instance of MHO_Serializable.
+         * @brief Virtual function to build and return an instance of a MHO_Serializable object
          * 
          * @return Pointer to MHO_Serializable object.
          * @note This is a virtual function.
@@ -71,7 +71,7 @@ class MHO_SerializableObjectFactorySpecific: public MHO_SerializableObjectFactor
         virtual ~MHO_SerializableObjectFactorySpecific(){};
 
         /**
-         * @brief Virtual function to build and return an instance of MHO_Serializable.
+         * @brief Virtual function to build and return an instance of an MHO_Serializable which points to the underlying XClassType object
          * 
          * @return Pointer to MHO_Serializable object.
          * @note This is a virtual function.
@@ -83,7 +83,7 @@ class MHO_SerializableObjectFactorySpecific: public MHO_SerializableObjectFactor
         }
 
         /**
-         * @brief Builds an MHO_Serializable object from a file interface.
+         * @brief Builds an MHO_Serializable object from a file interface, which points to the underlying XClassType object
          * 
          * @param inter Reference to an MHO_BinaryFileInterface object.
          * @return Pointer to an MHO_Serializable object or nullptr if failed.
@@ -116,7 +116,7 @@ class MHO_SerializableObjectFactorySpecific: public MHO_SerializableObjectFactor
         }
 
         /**
-         * @brief Writes an object to a binary file interface using its short name.
+         * @brief Writes an object to a binary file interface using its short name, with full knowledge of the underlying XClassType
          * 
          * @param inter Reference to MHO_BinaryFileInterface for writing operations
          * @param object Pointer to const MHO_Serializable object to be written
