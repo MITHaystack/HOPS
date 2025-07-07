@@ -46,17 +46,15 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
         //destructor
         virtual ~MHO_NDArrayView(){};
 
-        //clone functionality
         /**
-         * @brief Creates a deep copy of this MHO_NDArrayView object.
+         * @brief clone functionality - Creates a deep copy of this MHO_NDArrayView object.
          * 
          * @return A new MHO_NDArrayView instance containing the same data.
          */
         MHO_NDArrayView* Clone() { return new MHO_NDArrayView(*this); }
 
-        //copy functionality, calling array view must have same shape as rhs
         /**
-         * @brief Function Copy
+         * @brief copy functionality, calling array view must have same shape as rhs
          * 
          * @param rhs (const MHO_NDArrayView&)
          */
@@ -89,7 +87,6 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
             }
         }
 
-        //get the total size of the array
         /**
          * @brief Getter for rank
          * 
@@ -98,22 +95,21 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
         std::size_t GetRank() const { return RANK; }
 
         /**
-         * @brief Getter for size
+         * @brief get the total size of the array
          * 
          * @return Current size as std::size_t.
          */
         std::size_t GetSize() const { return fSize; };
 
-        //get the dimensions/shape of the array
         /**
-         * @brief Getter for dimensions
+         * @brief get the dimensions/shape of the array
          * 
          * @return Pointer to an array of std::size_t representing the dimensions
          */
         const std::size_t* GetDimensions() const { return &(fDims[0]); }
 
         /**
-         * @brief Getter for dimensions
+         * @brief get the dimensions/shape of the array
          * 
          * @return Pointer to std::size_t array
          */
@@ -126,32 +122,31 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
         }
 
         /**
-         * @brief Getter for dimension array
+         * @brief get the dimensions/shape of the array as std::array
          * 
          * @return index_type&: Reference to the dimension array
          */
         index_type GetDimensionArray() const { return fDims; }
 
         /**
-         * @brief Getter for dimension
+         * @brief Getter for a single dimension dimension
          * 
-         * @param param (std::size_t)
-         * @return Pointer to the first element of the dimension array.
+         * @param idx (std::size_t)
+         * @return value of the specified (idx) dimension
          */
         std::size_t GetDimension(std::size_t idx) const { return fDims[idx]; }
 
-        //get element strides
         /**
-         * @brief Getter for strides
+         * @brief get element strides
          * 
-         * @return Pointer to the first element of fStrides array
+         * @return get the array of strides for the array
          */
         const std::size_t* GetStrides() const { return &(fStrides[0]); }
 
         /**
          * @brief Getter for strides
          * 
-         * @return Pointer to the first element of strides array
+         * @return fill the given array (strd) with the stride values
          */
         void GetStrides(std::size_t* strd) const
         {
@@ -164,20 +159,25 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
         /**
          * @brief Getter for stride array
          * 
-         * @return index_type&: Reference to the stride array
+         * @return index_type: the stride array
          */
         index_type GetStrideArray() const { return fStrides; }
 
         /**
-         * @brief Getter for stride
+         * @brief Getter for stride at specified index
          * 
-         * @param param (std::size_t)
+         * @param idx (std::size_t)
          * @return Address of the first element in the fStrides array.
          */
         std::size_t GetStride(std::size_t idx) const { return fStrides[idx]; }
 
-        //access operator (,,...,) -- no bounds checking
-        //std::enable_if does a compile-time check that the number of arguments is the same as the rank of the array
+
+        /**
+         * @brief access operator, accepts multiple indices (,,...,) but does no bounds checking
+         * @details - uses std::enable_if to do a compile-time check that the number of arguments is the same as the rank of the array
+         * @param ... varargs The variable arguments (integers) representing the data element indexes
+         * @return the element at the specified indexes
+         */
         template< typename... XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), XValueType& >::type operator()(XIndexTypeS... idx)
         {
@@ -185,7 +185,12 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
             return ValueAt(fTmp);
         }
 
-        //const reference access operator()
+        /**
+         * @brief const reference access operator, accepts multiple indices (,,...,) but does no bounds checking
+         * @details - uses std::enable_if to do a compile-time check that the number of arguments is the same as the rank of the array
+         * @param ... varargs The variable arguments (integers) representing the data element indexes
+         * @return a const reference to element at the specified indexes
+         */
         template< typename... XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), const XValueType& >::type
         operator()(XIndexTypeS... idx) const
@@ -194,7 +199,12 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
             return ValueAt(fTmp);
         }
 
-        //access via at(,,,,) -- same as operator() but with bounds checking
+        /**
+         * @brief same as operator(...) but with bounds checking with bounds checking
+         * @details - uses std::enable_if to do a compile-time check that the number of arguments is the same as the rank of the array
+         * @param ... varargs The variable arguments (integers) representing the data element indexes
+         * @return  the element at the specified indexes,throws exception if it doesn't exist
+         */
         template< typename... XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), XValueType& >::type at(XIndexTypeS... idx)
         {
@@ -210,7 +220,12 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
             }
         }
 
-        //const at()
+        /**
+         * @brief same as operator(...) but with bounds checking with bounds checking
+         * @details - uses std::enable_if to do a compile-time check that the number of arguments is the same as the rank of the array
+         * @param ... varargs The variable arguments (integers) representing the data element indexes
+         * @return a const reference to element at the specified indexes, throws exception if it doesn't exist
+         */
         template< typename... XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), const XValueType& >::type at(XIndexTypeS... idx) const
         {
@@ -236,7 +251,9 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
             return *this;
         }
 
-        //set all elements in the array to a certain value
+        /**
+         * @brief set all elements in the array to a certain value
+         */
         void SetArray(const XValueType& obj)
         {
             auto bit = this->begin();
@@ -247,7 +264,9 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
             }
         }
 
-        //set all elements in the array to zero
+        /**
+         * @brief set all elements in the array to zero
+         */
         void ZeroArray()
         {
             auto bit = this->begin();
@@ -258,13 +277,17 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
             }
         }
 
-        //linear offset into the array
+        /**
+         * @brief compute (memory) offset into array from a set of indexes
+         */
         std::size_t GetOffsetForIndices(const std::size_t* index)
         {
             return MHO_NDArrayMath::OffsetFromStrideIndex< RANK >(&(fStrides[0]), index);
         }
 
-        //linear offset into the array
+        /**
+         * @brief invert (memory) offset into array to indexes of associated element
+         */
         index_type GetIndicesForOffset(std::size_t offset)
         {
             index_type index;
@@ -276,7 +299,9 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
 
         //simple in-place compound assignment operators (mult/add/sub)//////////
 
-        //in place multiplication by a scalar factor
+        /**
+         * @brief operator*= in place multiplication by a scalar factor
+         */
         template< typename T >
         typename std::enable_if< std::is_same< XValueType, T >::value or std::is_integral< T >::value or
                                      std::is_floating_point< T >::value,
@@ -292,7 +317,9 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
             return *this;
         }
 
-        //in place addition by a scalar amount
+        /**
+         * @brief operator+= in place addition by a scalar amount
+         */
         template< typename T >
         typename std::enable_if< std::is_same< XValueType, T >::value or std::is_integral< T >::value or
                                      std::is_floating_point< T >::value,
@@ -308,7 +335,9 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
             return *this;
         }
 
-        //in place subraction by a scalar amount
+        /**
+         * @brief operator-= in place subtraction by a scalar amount
+         */
         template< typename T >
         typename std::enable_if< std::is_same< XValueType, T >::value or std::is_integral< T >::value or
                                      std::is_floating_point< T >::value,
@@ -324,7 +353,9 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
             return *this;
         }
 
-        //in place point-wise multiplication by another array
+        /**
+         * @brief operator*= in place point-wise multiplication by another array
+         */
         inline MHO_NDArrayView& operator*=(const MHO_NDArrayView& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray))
@@ -344,7 +375,9 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
             return *this;
         }
 
-        //in place point-wise addition by another array
+        /**
+         * @brief operator+= in place point-wise addition by another array
+         */
         inline MHO_NDArrayView& operator+=(const MHO_NDArrayView& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray))
@@ -364,7 +397,9 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
             return *this;
         }
 
-        //in place point-wise subtraction of another array
+        /**
+         * @brief operator-= in place point-wise subtraction by another array
+         */
         inline MHO_NDArrayView& operator-=(const MHO_NDArrayView& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray))
