@@ -22,7 +22,8 @@ namespace hops
  *@class MHO_TableContainer
  *@author J. Barrett - barrettj@mit.edu
  *@date Sun Jan 24 14:03:03 2021 -0500
- *@brief
+ *@brief MHO_TableContainer - basis for large majority of data objects in HOPS4, it is an N-dimensional array object associated with 
+ * coordinate axes. Additional key:value tags can be attached to this object as well as the coordinate axies.
  */
 
 /**
@@ -44,7 +45,6 @@ class MHO_TableContainer: public MHO_TableContainerBase,
         MHO_TableContainer(const MHO_TableContainer& obj)
             : MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value >(obj), XAxisPackType(obj), MHO_Taggable(obj){};
 
-        //clone entire table, contents, axes and all
         /**
          * @brief Clones entire table including contents and axes.
          * 
@@ -52,7 +52,6 @@ class MHO_TableContainer: public MHO_TableContainerBase,
          */
         MHO_TableContainer* Clone() { return new MHO_TableContainer(*this); }
 
-        //clone table shape, but leave contents/axes empty
         /**
          * @brief Clones table container shape with empty contents and axes.
          * 
@@ -63,7 +62,7 @@ class MHO_TableContainer: public MHO_TableContainerBase,
         virtual ~MHO_TableContainer(){};
 
         /**
-         * @brief Getter for version
+         * @brief Getter for the class version
          * 
          * @return MHO_ClassVersion version number.
          * @note This is a virtual function.
@@ -87,7 +86,7 @@ class MHO_TableContainer: public MHO_TableContainerBase,
             return total_size;
         }
 
-        //modify the Resize function to also resize the axes
+
         using XAxisPackType::resize_axis_pack;
 
         /**
@@ -102,9 +101,8 @@ class MHO_TableContainer: public MHO_TableContainerBase,
             resize_axis_pack(dim);
         }
 
-        //access to axis pack type alone
         /**
-         * @brief Getter for axis pack
+         * @brief access to axis pack type alone
          * 
          * @return Pointer to XAxisPackType
          */

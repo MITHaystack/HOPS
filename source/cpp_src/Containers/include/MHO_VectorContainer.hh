@@ -18,12 +18,11 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  *
  *@date Fri Oct 16 11:17:19 2020 -0400
- *@brief
+ *@brief  MHO_VectorContainer - basis for for axis data objects in HOPS4, 
+ * it is an 1-dimensional array object, key:value data can be attached via the MHO_Taggable interface.
  */
 
-/**
- * @brief Class MHO_VectorContainer
- */
+
 template< typename XValueType >
 class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWrapper< XValueType, 1 >, public MHO_Taggable
 {
@@ -73,10 +72,9 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
         using MHO_NDArrayWrapper< XValueType, 1 >::operator();
         using MHO_NDArrayWrapper< XValueType, 1 >::operator[];
 
-        //expensive copy
-        //pointers to exernally managed memory are not transferred)
+
         /**
-         * @brief Expensive copy constructor for MHO_VectorContainer.
+         * @brief Expensive copy for MHO_VectorContainer, pointers to exernally managed memory are not transferred, but data is
          * 
          * @param rhs Const reference to source container for copying
          * @note This is a virtual function.
@@ -189,10 +187,10 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
         }
 };
 
-//specialization for string elements
-//(NOTE: we need to use 'inline' to satisfy one-definiton rule, otherwise we have to stash this in a .cc file)
+
 /**
- * @brief Function MHO_VectorContainer<std::string>::ComputeSerializedSize
+ * @brief Function MHO_VectorContainer<std::string>::ComputeSerializedSize - specialization for string elements 
+ * @note we need to use 'inline' to satisfy one-definiton rule, otherwise we have to stash this in a .cc file)
  * 
  * @return Return value (uint64_t MHO_VectorContainer< std::string)
  */

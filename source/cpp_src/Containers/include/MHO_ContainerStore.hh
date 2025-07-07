@@ -59,20 +59,7 @@ class MHO_ContainerStore
         template< typename XClassType > XClassType* GetObject(const MHO_UUID& obj_id);
 
         /**
-<<<<<<< HEAD
-         * @brief provides retrieval of an object via nickname, returns nullptr on failure
-         * 
-         * @tparam XClassType Template parameter XClassType
-         * @param obj_id UUID of the desired object
-         * @return Pointer to the object if found, nullptr otherwise
-         */
-        template< typename XClassType > XClassType* GetObject(const std::string& shortname);
-
-        /**
-         * @brief get an object of a specific type via index (returns nullptr if not present)
-=======
          * @brief provides retrieval of an object via shortname/nickname, returns nullptr on failure
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @tparam XClassType Template parameter XClassType
          * @param shortname (const std::string&)
@@ -88,31 +75,22 @@ class MHO_ContainerStore
          * @return Pointer to the retrieved object cast to XClassType, or nullptr if not found
          */
         template< typename XClassType > XClassType* GetObject(std::size_t index);
-<<<<<<< HEAD
-        /**
-         * @brief Deletes an object and removes associated entries from store, returns true if successful
-=======
 
         /**
          * @brief Deletes an object and removes associated entries from containers, returns true if successful
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @tparam XClassType Template parameter XClassType
          * @param obj_ptr Pointer to the object of type XClassType to delete.
          * @return True if deletion was successful, false otherwise.
          */
         template< typename XClassType > bool DeleteObject(XClassType* obj_ptr);
-<<<<<<< HEAD
-=======
 
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
         /**
          * @brief get the type uuid for a specific type (if it is supported) - if unsupported uuid will be zero
          * 
          * @tparam XClassType Template parameter XClassType
          * @return MHO_UUID representing the type's UUID.
          */
-
         template< typename XClassType > MHO_UUID GetTypeUUID();
 
         /**
@@ -132,11 +110,7 @@ class MHO_ContainerStore
          * @return True if the object is found, false otherwise.
          */
         bool IsObjectPresent(const MHO_UUID& obj_id) const;
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
         /**
          * @brief get an object via uuid (returns nullptr if not present)
          * 
@@ -144,15 +118,9 @@ class MHO_ContainerStore
          * @return Pointer to the object if found, nullptr otherwise
          */
         MHO_Serializable* GetObject(const MHO_UUID& obj_id);
-<<<<<<< HEAD
         
         /**
          * @brief Deletes an object from the container and removes related mappings by its UUID.
-=======
-
-        /**
-         * @brief destroy an object in the store by uuid, returns true if successful
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @param obj_id UUID of the object to delete.
          * @return True if deletion was successful, false otherwise.
@@ -160,22 +128,14 @@ class MHO_ContainerStore
         bool DeleteObject(const MHO_UUID& obj_id);
 
         /**
-<<<<<<< HEAD
-         * @brief get every type uuid present in store
-=======
-         * @brief get every type uuid present
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
+         * @brief get every type uuid that is present in store
          * 
          * @param type_ids Output parameter: vector to hold retrieved UUIDs.
          */
         void GetAllTypeUUIDs(std::vector< MHO_UUID >& type_ids);
 
         /**
-<<<<<<< HEAD
-         * @brief get every object uuid in store associated with the specified type
-=======
-         * @brief get every object uuid associated with the type UUID
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
+         * @brief get every object uuid in store associated with the specified type UUID
          * 
          * @param type_id Input type ID of MHO_UUID to filter objects
          * @param obj_ids (std::vector< MHO_UUID )&
@@ -189,14 +149,8 @@ class MHO_ContainerStore
          */
         std::size_t GetNObjects() const { return fObjectsToIds.size(); }
 
-<<<<<<< HEAD
         /**
          * @brief provide the ability to attach a nicknames to object uuids, all nicknames must be unique returns false if unsuccessful (object not present, or shortname already in use)
-=======
-
-        /**
-         * @brief provide the ability to attach a nicknames to object uuids, all nicknames must be unique
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @param obj_id Object UUID to associate with the short name
          * @param shortname Unique short name to assign to the object
@@ -205,11 +159,7 @@ class MHO_ContainerStore
         bool SetShortName(const MHO_UUID& obj_id, const std::string& shortname);
 
         /**
-<<<<<<< HEAD
-         * @brief provide retrieval of an object uuid via nickname returns zero'd uuid if none exist
-=======
-         * @brief//provide retrieval of an object uuid via shortname/nickname, returns zero'd uuid if none exist
->>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
+         * @brief provide retrieval of an object uuid via shortname/nickname, returns zero'd uuid if none exist
          * 
          * @param shortname Short name of the object
          * @return Object UUID; zero'd if none exist
