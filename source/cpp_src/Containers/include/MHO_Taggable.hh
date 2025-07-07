@@ -16,7 +16,7 @@ namespace hops
  *@class MHO_Taggable
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Oct 16 11:17:19 2020 -0400
- *@brief
+ *@brief A wrapper class for a json object, provides an interface that accepts tagging with key:value pairs
  */
 
 /**
@@ -60,7 +60,7 @@ class MHO_Taggable: public MHO_JSONWrapper, virtual public MHO_Serializable
         void ClearTags() { fObject.clear(); }
 
         /**
-         * @brief Copies the contents of fObject from another MHO_Taggable object if this object is not the same as the source.
+         * @brief Copies the contents of another MHO_Taggable object into this object.
          * 
          * @param copy_from_obj Reference to the MHO_Taggable object whose contents will be copied
          */
@@ -74,7 +74,7 @@ class MHO_Taggable: public MHO_JSONWrapper, virtual public MHO_Serializable
         }
 
         /**
-         * @brief Copies the contents of 'fObject' to another MHO_Taggable object if they are not the same.
+         * @brief Copies the contents of this object to another MHO_Taggable object if they are not the same.
          * 
          * @param copy_to_obj Reference to an MHO_Taggable object where data will be copied
          */
@@ -88,13 +88,13 @@ class MHO_Taggable: public MHO_JSONWrapper, virtual public MHO_Serializable
         }
 
         /**
-         * @brief Getter for meta data as json
+         * @brief Getter for all meta data stored in this object as a json object
          * 
          * @return JSON object containing metadata
          */
         mho_json GetMetaDataAsJSON() const { return fObject; }
 
-        //completely replaces fObject data (use with caution)
+        //completely replaces the key:value (tags) data in this object with the infomration in the passed json object (use with caution)
         /**
          * @brief Setter for meta data as json
          * 
