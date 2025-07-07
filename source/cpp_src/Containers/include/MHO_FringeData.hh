@@ -53,17 +53,15 @@ class MHO_FringeData
          */
         MHO_ScanDataStore* GetScanDataStore() { return &fScanStore; }
 
-        //should we expose these?
         /**
-         * @brief Getter for vex
+         * @brief Getter for vex data (as json object)
          * 
          * @return The root file data as an mho_json object.
          */
         mho_json GetVex() const { return fScanStore.GetRootFileData(); }
 
-        //access to the control format and parsed control statements
         /**
-         * @brief Getter for control format
+         * @brief access to the control format and parsed control statements (as json object)
          * 
          * @return Reference to mho_json object representing control format
          */
@@ -84,7 +82,6 @@ class MHO_FringeData
          */
         mho_json& GetPlotData() { return fPlotData; }
 
-        //write data objects to output file...perhaps we may want to move this elsewhere?
         /**
          * @brief Writes output data to disk with a temporary unique name and renames it afterwards.
          * 
