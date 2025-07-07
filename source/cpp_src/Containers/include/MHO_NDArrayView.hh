@@ -24,13 +24,11 @@ namespace hops
  *@class MHO_NDArrayView
  *@author J. Barrett - barrettj@mit.edu
  *@date Mon Mar 28 10:47:46 2022 -0400
- *@brief
+ *@brief MHO_NDArrayView is a class to represent a view (slice) of a n-dimensional array
  * Thu 13 Aug 2020 02:53:11 PM EDT
  */
 
-/**
- * @brief Class MHO_NDArrayView
- */
+
 template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
 {
     public:
@@ -54,9 +52,8 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
          */
         MHO_NDArrayView* Clone() { return new MHO_NDArrayView(*this); }
 
-        //copy functionality, calling array view must have same shape as rhs
         /**
-         * @brief Function Copy
+         * @brief copy functionality, calling array view must have same shape as rhs
          * 
          * @param rhs (const MHO_NDArrayView&)
          */
@@ -89,16 +86,16 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
             }
         }
 
-        //get the total size of the array
+        
         /**
-         * @brief Getter for rank
+         * @brief Getter for rank of the array view
          * 
          * @return std::size_t representing the rank (total size) of the array
          */
         std::size_t GetRank() const { return RANK; }
 
         /**
-         * @brief Getter for size
+         * @brief get the total size of the array view
          * 
          * @return Current size as std::size_t.
          */
@@ -126,32 +123,31 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
         }
 
         /**
-         * @brief Getter for dimension array
+         * @brief Getter for dimension array object (std::array)
          * 
          * @return index_type&: Reference to the dimension array
          */
         index_type GetDimensionArray() const { return fDims; }
 
         /**
-         * @brief Getter for dimension
+         * @brief Getter for dimension at index idx
          * 
-         * @param param (std::size_t)
+         * @param idx (std::size_t)
          * @return Pointer to the first element of the dimension array.
          */
         std::size_t GetDimension(std::size_t idx) const { return fDims[idx]; }
 
-        //get element strides
         /**
-         * @brief Getter for strides
+         * @brief get element strides
          * 
          * @return Pointer to the first element of fStrides array
          */
         const std::size_t* GetStrides() const { return &(fStrides[0]); }
 
         /**
-         * @brief Getter for strides
+         * @brief Getter for strides array (fills passed array)
          * 
-         * @return Pointer to the first element of strides array
+         * @param strd (std::size_t*) point to array of size RANK
          */
         void GetStrides(std::size_t* strd) const
         {
@@ -169,10 +165,10 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
         index_type GetStrideArray() const { return fStrides; }
 
         /**
-         * @brief Getter for stride
+         * @brief Getter for stride at index
          * 
-         * @param param (std::size_t)
-         * @return Address of the first element in the fStrides array.
+         * @param idx (std::size_t)
+         * @return stride of the dimensions specified by idx.
          */
         std::size_t GetStride(std::size_t idx) const { return fStrides[idx]; }
 
