@@ -198,7 +198,7 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
         }
 
         /**
-         * @brief same as operator(...) but with bounds checking with bounds checking
+         * @brief at(): same as operator(...) but with bounds checking with bounds checking
          * @details - uses std::enable_if to do a compile-time check that the number of arguments is the same as the rank of the array
          * @param ... varargs The variable arguments (integers) representing the data element indexes
          * @return  the element at the specified indexes,throws exception if it doesn't exist
@@ -219,7 +219,7 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
         }
 
         /**
-         * @brief same as operator(...) but with bounds checking with bounds checking
+         * @brief at(): same as const operator(...) but with bounds checking with bounds checking
          * @details - uses std::enable_if to do a compile-time check that the number of arguments is the same as the rank of the array
          * @param ... varargs The variable arguments (integers) representing the data element indexes
          * @return a const reference to element at the specified indexes, throws exception if it doesn't exist
@@ -284,7 +284,7 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
         }
 
         /**
-         * @brief invert (memory) offset into array to indexes of associated element
+         * @brief invert (memory) offset into array to indexes of the associated element
          */
         index_type GetIndicesForOffset(std::size_t offset)
         {

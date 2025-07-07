@@ -9,9 +9,9 @@
 namespace hops
 {
 
-//specialization for a RANK-0 (i.e. a scalar)
+
 /**
- * @brief Class MHO_NDArrayWrapper
+ * @brief Class MHO_NDArrayWrapper<XValueType, 0> specialization for a RANK-0 (i.e. a scalar)
  */
 template< typename XValueType >
 class MHO_NDArrayWrapper< XValueType, 0 >

@@ -10,7 +10,7 @@ namespace hops
 {
 
 /**
- * @brief Class MHO_NDArrayWrapper
+ * @brief Class MHO_NDArrayWrapper<XValueType, 1> specialization for a RANK-1 (i.e. a vector)
  */
 template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: public MHO_ExtensibleElement
 {
