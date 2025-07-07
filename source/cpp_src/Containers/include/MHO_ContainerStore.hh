@@ -35,16 +35,16 @@ class MHO_ContainerStore
 
         virtual ~MHO_ContainerStore() { Clear(); };
 
-        //deletes all objects in the store
         /**
          * @brief Deletes all objects in the store.
          */
         void Clear();
 
-        //add an object with specific type
+
         /**
-         * @brief Adds an object to the container store if it's non-null and can be cast to MHO_Serializable.
+         * @brief Adds an object (with specific type) to the container store if it's non-null and can be cast to MHO_Serializable.
          * 
+         * @tparam XClassType Template parameter, the object type
          * @param obj Pointer to the object to add, must not be nullptr
          * @return True if object was successfully added, false otherwise
          */
@@ -53,13 +53,13 @@ class MHO_ContainerStore
         /**
          * @brief get an object of a specific type via object uuid (returns nullptr if not present)
          * 
-         * @tparam XClassType Template parameter XClassType
          * @param obj_id UUID of the object to retrieve
          * @return Pointer to the object of type XClassType if found, nullptr otherwise
          */
         template< typename XClassType > XClassType* GetObject(const MHO_UUID& obj_id);
 
         /**
+<<<<<<< HEAD
          * @brief provides retrieval of an object via nickname, returns nullptr on failure
          * 
          * @tparam XClassType Template parameter XClassType
@@ -70,26 +70,49 @@ class MHO_ContainerStore
 
         /**
          * @brief get an object of a specific type via index (returns nullptr if not present)
+=======
+         * @brief provides retrieval of an object via shortname/nickname, returns nullptr on failure
+>>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @tparam XClassType Template parameter XClassType
          * @param shortname (const std::string&)
+         * @return Pointer to the object if found, nullptr otherwise
+         */
+        template< typename XClassType > XClassType* GetObject(const std::string& shortname);
+
+        /**
+         * @brief get an object of a specific type via integer index (returns nullptr if not present)
+         * 
+         * @tparam XClassType Template parameter XClassType
+         * @param index (std::size_t)
          * @return Pointer to the retrieved object cast to XClassType, or nullptr if not found
          */
         template< typename XClassType > XClassType* GetObject(std::size_t index);
+<<<<<<< HEAD
         /**
          * @brief Deletes an object and removes associated entries from store, returns true if successful
+=======
+
+        /**
+         * @brief Deletes an object and removes associated entries from containers, returns true if successful
+>>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @tparam XClassType Template parameter XClassType
          * @param obj_ptr Pointer to the object of type XClassType to delete.
          * @return True if deletion was successful, false otherwise.
          */
         template< typename XClassType > bool DeleteObject(XClassType* obj_ptr);
+<<<<<<< HEAD
+=======
+
+>>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
         /**
          * @brief get the type uuid for a specific type (if it is supported) - if unsupported uuid will be zero
          * 
          * @tparam XClassType Template parameter XClassType
          * @return MHO_UUID representing the type's UUID.
          */
+
         template< typename XClassType > MHO_UUID GetTypeUUID();
 
         /**
@@ -109,7 +132,11 @@ class MHO_ContainerStore
          * @return True if the object is found, false otherwise.
          */
         bool IsObjectPresent(const MHO_UUID& obj_id) const;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
         /**
          * @brief get an object via uuid (returns nullptr if not present)
          * 
@@ -117,9 +144,15 @@ class MHO_ContainerStore
          * @return Pointer to the object if found, nullptr otherwise
          */
         MHO_Serializable* GetObject(const MHO_UUID& obj_id);
+<<<<<<< HEAD
         
         /**
          * @brief Deletes an object from the container and removes related mappings by its UUID.
+=======
+
+        /**
+         * @brief destroy an object in the store by uuid, returns true if successful
+>>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @param obj_id UUID of the object to delete.
          * @return True if deletion was successful, false otherwise.
@@ -127,14 +160,22 @@ class MHO_ContainerStore
         bool DeleteObject(const MHO_UUID& obj_id);
 
         /**
+<<<<<<< HEAD
          * @brief get every type uuid present in store
+=======
+         * @brief get every type uuid present
+>>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @param type_ids Output parameter: vector to hold retrieved UUIDs.
          */
         void GetAllTypeUUIDs(std::vector< MHO_UUID >& type_ids);
 
         /**
+<<<<<<< HEAD
          * @brief get every object uuid in store associated with the specified type
+=======
+         * @brief get every object uuid associated with the type UUID
+>>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @param type_id Input type ID of MHO_UUID to filter objects
          * @param obj_ids (std::vector< MHO_UUID )&
@@ -148,17 +189,27 @@ class MHO_ContainerStore
          */
         std::size_t GetNObjects() const { return fObjectsToIds.size(); }
 
+<<<<<<< HEAD
         /**
          * @brief provide the ability to attach a nicknames to object uuids, all nicknames must be unique returns false if unsuccessful (object not present, or shortname already in use)
+=======
+
+        /**
+         * @brief provide the ability to attach a nicknames to object uuids, all nicknames must be unique
+>>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @param obj_id Object UUID to associate with the short name
          * @param shortname Unique short name to assign to the object
-         * @return True if successful, false otherwise
+         * @return True if successful, returns false if unsuccessful (object not present, or shortname already in use)
          */
         bool SetShortName(const MHO_UUID& obj_id, const std::string& shortname);
 
         /**
+<<<<<<< HEAD
          * @brief provide retrieval of an object uuid via nickname returns zero'd uuid if none exist
+=======
+         * @brief//provide retrieval of an object uuid via shortname/nickname, returns zero'd uuid if none exist
+>>>>>>> a5d573a2f3aadf84b68f9ce16d9f9d5318b45203
          * 
          * @param shortname Short name of the object
          * @return Object UUID; zero'd if none exist
@@ -181,16 +232,27 @@ class MHO_ContainerStore
          */
         std::string GetShortName(const MHO_UUID& obj_id);
 
-        //get all short names currently in use
+        /**
+         * @brief get all short names currently in use
+         * 
+         * @param reference to (std::vector< std::string>&) to be filled
+         */
         void GetAllShortNames(std::vector< std::string >& shortnames);
 
         //this is primarily here to provide a object look-up table for the python interface
         //returns a list of (object_type_uuid, object_item_uuid, shortname)
         std::vector< std::tuple< std::string, std::string, std::string > > GetAllObjectInfo();
 
-        //provides a way in which we can replace the nickname of an object
+
+        /**
+         * @brief provides a way in which we can replace the shortname/nickname of an object
+         * 
+         * @param current_shortname (std::string) the current shortname
+         * @param new_shortname (std::string) the new object shortname
+         */
         void RenameObject(const std::string& current_shortname, const std::string& new_shortname);
 
+        //debug
         void DumpShortNamesToIds()
         {
             for(auto it = fShortNameToIds.begin(); it != fShortNameToIds.end(); it++)
@@ -222,7 +284,7 @@ class MHO_ContainerStore
 };
 
 /**
- * @brief Function MHO_ContainerStore::AddObject
+ * @brief Function MHO_ContainerStore::AddObject, addes and object via pointer
  * 
  * @param obj (XClassType*)
  * @return Return value (template< typename XClassType > bool)
@@ -278,7 +340,7 @@ template< typename XClassType > XClassType* MHO_ContainerStore::GetObject(const 
 }
 
 /**
- * @brief Retrieves an object of type XClassType from the container store using its UUID.
+ * @brief Retrieves an object of type XClassType from the container store using its shortname
  * 
  * @param shortname (const std::string&)
  * @return Pointer to the retrieved object of type XClassType, or nullptr if not found
@@ -295,7 +357,7 @@ template< typename XClassType > XClassType* MHO_ContainerStore::GetObject(const 
 }
 
 /**
- * @brief Retrieves an object of type XClassType at a specific index in the container.
+ * @brief Retrieves an object of type XClassType at a specific index (for this class type) in the container.
  * 
  * @param index Index of the desired object
  * @return Pointer to the object of type XClassType if found, nullptr otherwise
@@ -329,7 +391,7 @@ template< typename XClassType > XClassType* MHO_ContainerStore::GetObject(std::s
 }
 
 /**
- * @brief Function MHO_ContainerStore::DeleteObject
+ * @brief Function MHO_ContainerStore::DeleteObject - removes an object via pointer
  * 
  * @param obj_ptr (XClassType*)
  * @return Return value (template< typename XClassType > bool)
@@ -377,7 +439,7 @@ template< typename XClassType > bool MHO_ContainerStore::DeleteObject(XClassType
 }
 
 /**
- * @brief Retrieves the UUID for a given class type from the internal dictionary.
+ * @brief Retrieves the UUID for a given class type from the internal dictionary, given the class XClassType template parameter
  * 
  * @return MHO_UUID representing the type's UUID.
  */
