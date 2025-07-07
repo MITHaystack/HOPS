@@ -21,13 +21,9 @@ namespace hops
 *@class MHO_ScanDataStore
 *@author J. Barrett - barrettj@mit.edu
 *@date Fri Jan 27 16:41:52 2023 -0500
-*@brief Class to catalog and organize data files
- associated with a single scan, and handle retrieval for specific baselilnes
+*@brief Class to catalog and organize data files that are associated with a single scan, and handle retrieval for specific baselilnes
 */
 
-/**
- * @brief Class MHO_ScanDataStore
- */
 class MHO_ScanDataStore
 {
     public:
@@ -35,7 +31,7 @@ class MHO_ScanDataStore
         virtual ~MHO_ScanDataStore();
 
         /**
-         * @brief Setter for directory
+         * @brief Setter for (scan) directory
          * 
          * @param dir New directory path as std::string
          */
@@ -47,12 +43,14 @@ class MHO_ScanDataStore
          * @return True if initialization is successful, false otherwise.
          */
         bool Initialize();                                //load the directory
+
         /**
          * @brief Checks if root file and baseline/station files exist for valid data processing.
          * 
          * @return True if all required files are present, false otherwise.
          */
         bool IsValid();                                   //scan dir contains root file, and data
+
         /**
          * @brief Checks if a baseline code is present in the internal list.
          * 
@@ -60,15 +58,18 @@ class MHO_ScanDataStore
          * @return True if the baseline code is found, false otherwise.
          */
         bool IsBaselinePresent(std::string bl) const;     //check if a particular baseline is present in this scan
+
         /**
          * @brief Checks if a station is present in the list of station codes.
          * 
          * @param st The station name to search for.
          * @return True if the station is found, false otherwise.
          */
+
         bool IsStationPresent(std::string st) const;      //check if a particular station is present
+
         /**
-         * @brief Checks if a fringe is present in the fringe codes map using its basename.
+         * @brief Checks if a fringe file is present for a given using its basename.
          * 
          * @param basename Input basename string to search for in fringe codes
          * @return Boolean indicating whether the fringe with the given basename is present
@@ -76,21 +77,21 @@ class MHO_ScanDataStore
         bool IsFringePresent(std::string basename) const; //check if a fringe file is present
 
         /**
-         * @brief Getter for nbaselines
+         * @brief Getter for number of baselines
          * 
          * @return Size of fBaselineCodes vector
          */
         std::size_t GetNBaselines() { return fBaselineCodes.size(); };
 
         /**
-         * @brief Getter for nstations
+         * @brief Getter for number of stations
          * 
          * @return Number of stations as std::size_t.
          */
         std::size_t GetNStations() { return fStationCodes.size(); };
 
         /**
-         * @brief Getter for nfringes
+         * @brief Getter for number of fringes
          * 
          * @return Size of fringe codes vector as std::size_t
          */
@@ -117,9 +118,8 @@ class MHO_ScanDataStore
          */
         std::vector< std::string > GetFringesPresent() const { return fFringeCodes; }
 
-        //retieve file data (root, baseline, station)
         /**
-         * @brief Getter for root file data
+         * @brief Getter for root file data (as json)
          * 
          * @return JSON object containing root file data
          */
@@ -141,6 +141,7 @@ class MHO_ScanDataStore
          * @return True if loaded successfully, false otherwise
          */
         bool LoadBaseline(std::string baseline, MHO_ContainerStore* store);
+
         /**
          * @brief Getter for baseline filename
          * 
@@ -148,6 +149,7 @@ class MHO_ScanDataStore
          * @return The filename associated with the input baseline or an empty string if not found.
          */
         std::string GetBaselineFilename(std::string baseline) const;
+
 
         //true if loaded, false if unsuccessful
         /**
@@ -158,6 +160,7 @@ class MHO_ScanDataStore
          * @return True if loaded successfully, false otherwise.
          */
         bool LoadStation(std::string station, MHO_ContainerStore* store);
+
         /**
          * @brief Getter for station filename
          * 

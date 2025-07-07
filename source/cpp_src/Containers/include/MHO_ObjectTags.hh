@@ -18,8 +18,7 @@ namespace hops
  *@class MHO_ObjectTags
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu May 13 10:44:24 2021 -0400
- *@brief container for tag/value meta-data to be attached to objects
- *via association with their UUID
+ *@brief A container object which is intended to associate key/value meta-data with other objects via a list of their UUIDs
  */
 
 /**
@@ -32,7 +31,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         virtual ~MHO_ObjectTags(){};
 
-        //check if a uuid is in the collection
+
         /**
          * @brief Checks if a UUID is present in the object collection.
          * 
@@ -49,7 +48,6 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             return false;
         }
 
-        //insert a uuid for an object to be associated with our tag collection
         /**
          * @brief Inserts a UUID into the object UUID set for association with this tag collection.
          * 
@@ -72,15 +70,14 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         };
 
         /**
-         * @brief Getter for nobject uuids
+         * @brief Getter for the number of object uuids
          * 
          * @return Number of object UUIDs as std::size_t
          */
         std::size_t GetNObjectUUIDs() const { return fObjectUUIDSet.size(); }
 
-        //grab all object uuids at once
         /**
-         * @brief Getter for all object uuids
+         * @brief Getter for all object uuids at once
          * 
          * @return Vector of MHO_UUID representing all object UUIDs.
          */
@@ -94,9 +91,8 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             return obj_uuids;
         }
 
-        //check if a tag with the given name is present
         /**
-         * @brief Checks if a tag with the given name is present in the container.
+         * @brief Checks if a tag with the given name (key) is present in the container.
          * 
          * @param tag_name The name of the tag to search for.
          * @return True if the tag is present, false otherwise.
@@ -104,7 +100,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         bool IsTagPresent(const std::string& tag_name) const { return this->HasKey(tag_name); }
 
         /**
-         * @brief Checks if a tag is present in the container.
+         * @brief Checks if a tag (key) is present in the container.
          * 
          * @param tag_name The name of the tag to search for.
          * @return True if the tag is present, false otherwise.
@@ -115,9 +111,8 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             return IsTagPresent(tmp);
         }
 
-        //set a tag/value pair
         /**
-         * @brief Setter for tag value
+         * @brief Setter for tag/value (key:value pair)
          * 
          * @param tag_name Name of the tag as C-style string
          * @param tag_value Value to set for the tag
@@ -130,9 +125,9 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         }
 
         /**
-         * @brief Setter for tag value
+         * @brief Setter for tag/value (key:value pair)
          * 
-         * @param tag_name Tag name as C-style string
+         * @param tag_name Tag name as std::string string
          * @param tag_value Value to set for the given tag
          * @return No return value (void)
          */
@@ -142,7 +137,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         }
 
         /**
-         * @brief Getter for tag value
+         * @brief Getter for a tag's value
          * 
          * @param tag_name Name of the tag to retrieve.
          * @param tag_value (XValueType&)
@@ -154,9 +149,8 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             return GetTagValue(tmp, tag_value);
         }
 
-        //retrieve the value of a given tag
         /**
-         * @brief Getter for tag value
+         * @brief retrieve the value of a given tag
          * 
          * @param tag_name The name of the tag to retrieve the value for
          * @param tag_value Reference to store the retrieved value
@@ -167,9 +161,8 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             return this->Retrieve(tag_name, tag_value);
         }
 
-        //get the number of tags present
         /**
-         * @brief Getter for tag value as string
+         * @brief Getter for a tag's value, with forced conversion to a string
          * 
          * @param tag_name (const std::string&)
          * @return Return value (std::string)
@@ -245,11 +238,10 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             return std::string("");
         }
 
-        //collect all of the present tag names
         /**
-         * @brief Clears and populates tag_names vector with DumpKeys() results.
+         * @brief collect all of the present tag names, and fill the passed reference
          * 
-         * @param tag_names Reference to std::vector<std::string that will be cleared and populated.
+         * @param tag_names Reference to std::vector<std::string> that will be cleared and populated with current tag names
          */
         void DumpTags(std::vector< std::string >& tag_names) const
         {
@@ -258,7 +250,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         }
 
         /**
-         * @brief Getter for tagged object uuidset
+         * @brief Getter for tagged object uuid set
          * 
          * @return The current tagged object UUID set.
          */
