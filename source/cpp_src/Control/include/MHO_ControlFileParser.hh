@@ -35,7 +35,7 @@ class MHO_ControlFileParser
         virtual ~MHO_ControlFileParser();
 
         /**
-         * @brief Sets the global set_string variable.
+         * @brief Sets the global set_string (control statement) variable.
          * 
          * @param set_string The new value to be assigned to the global set_string.
          */
@@ -55,18 +55,16 @@ class MHO_ControlFileParser
          */
         mho_json ParseControl();
 
-        //all of the tokens that make it into the control flow
         /**
-         * @brief Getter for processed control file text
+         * @brief Getter for processed control file text (i.e. all of the tokens that make it into the control flow)
          * 
          * @return Processed control file text as std::string
          */
         std::string GetProcessedControlFileText() const { return fProcessedControlFileText; }
 
-        //just the control file tokens without set-string additions
-        //needed for backwards compatible type_222 records
         /**
-         * @brief Getter for legacy processed control file text
+         * @brief Getter for legacy processed control file text 
+         * (just the control file tokens without set-string additions, needed for backwards compatible type_222 records)
          * 
          * @return std::string containing legacy processed control file text
          */
