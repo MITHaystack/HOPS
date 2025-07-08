@@ -28,25 +28,23 @@ class MHO_ControlConditionEvaluator
         virtual ~MHO_ControlConditionEvaluator();
 
         /**
-         * @brief Setter for pass information
+         * @brief Setter for pass (baseline, source, frequency group, scan) information
          * 
          * @param baseline Baseline string
          * @param source Source string
-         * @param fgroup FGroup string
-         * @param scan_time Scan time string
+         * @param fgroup Frequency Group string
+         * @param scan_time Scan-time/name string
          */
         void SetPassInformation(std::string baseline, std::string source, std::string fgroup, std::string scan_time);
 
-        //reduces the contents of a control file to only those statements which are applicable for this pass
         /**
-         * @brief Getter for applicable statements
+         * @brief reduces the contents of a control file to only those statements which are applicable for this pass
          * 
          * @param control_contents Reference to input mho_json containing control conditions
          * @return mho_json containing applicable conditional statements
          */
         mho_json GetApplicableStatements(mho_json& control_contents);
 
-        //evaluates a single condition
         /**
          * @brief Evaluates a single condition from an mho_json object and returns the result as a boolean.
          * 
@@ -68,7 +66,7 @@ class MHO_ControlConditionEvaluator
         int ProcessToken(token_iter& it, token_iter& it_end);
 
         /**
-         * @brief Evaluates station condition and returns TRUE_STATE if it matches reference or remove stations or wildcard.
+         * @brief Evaluates station condition and returns TRUE_STATE if it matches reference or remote stations or wildcard.
          * 
          * @param it Input iterator to token sequence.
          * @return TRUE_STATE if station matches reference/remove/wildcard, FALSE_STATE otherwise.
