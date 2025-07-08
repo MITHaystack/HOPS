@@ -37,7 +37,7 @@ class MHO_DiFXInterface
         virtual ~MHO_DiFXInterface();
 
         /**
-         * @brief Setter for input directory
+         * @brief Setter for (data) input directory
          * 
          * @param dir Input directory path as std::string.
          */
@@ -50,7 +50,7 @@ class MHO_DiFXInterface
         void SetOutputDirectory(std::string dir);
 
         /**
-         * @brief Setter for station codes
+         * @brief Setter for station codes map
          * 
          * @param code_map Input pointer to an MHO_StationCodeMap containing station codes
          */
@@ -64,53 +64,53 @@ class MHO_DiFXInterface
         void SetExperimentNumber(int num) { fExperNum = num; }
 
         /**
-         * @brief Setter for normalize false
+         * @brief Setter for normalize false - Do NOT apply mk4 style visibility normalization
          */
         void SetNormalizeFalse() { fNormalize = false; }
 
         /**
-         * @brief Setter for normalize true
+         * @brief Setter for normalize true - apply mk4 style visibility normalization
          */
         void SetNormalizeTrue() { fNormalize = true; }
         
         /**
-         * @brief Setter for attach di fxinput true
+         * @brief Setter for attach difx .input true
          */
         void SetAttachDiFXInputTrue() {fAttachDiFXInput = true; }
         
         /**
-         * @brief Setter for attach di fxinput false
+         * @brief Setter for attach difx .input false
          */
         void SetAttachDiFXInputFalse() {fAttachDiFXInput = false; }
 
         /**
-         * @brief Setter for preserve di fxscan names true
+         * @brief Setter for preserve difx scan names true
          */
         void SetPreserveDiFXScanNamesTrue() { fPreserveDiFXScanNames = true; }
 
         /**
-         * @brief Setter for preserve di fxscan names false
+         * @brief Setter for preserve difx scan names false
          */
         void SetPreserveDiFXScanNamesFalse() { fPreserveDiFXScanNames = false; };
 
         /**
-         * @brief Setter for frequency bands
+         * @brief Setter for frequency bands (label, frequency limits)
          * 
          * @param fbands Vector of tuples containing band name, start freq, and end freq
          */
         void SetFrequencyBands(std::vector< std::tuple< std::string, double, double > > fbands) { fFreqBands = fbands; }
 
         /**
-         * @brief Setter for freq groups
+         * @brief Setter for freq groups - only consider data from these frequency groups
          * 
          * @param fgroups Vector of strings representing frequency groups
          */
         void SetFreqGroups(std::vector< std::string > fgroups) { fFreqGroups = fgroups; }
 
         /**
-         * @brief Setter for only bandwidth
+         * @brief Setter for only bandwidth - only consider channels with matching bandwidth
          * 
-         * @param bw The new bandwidth value.
+         * @param bw The allowed channel bandwidth value.
          */
         void SetOnlyBandwidth(double bw)
         {
@@ -122,6 +122,7 @@ class MHO_DiFXInterface
          * @brief Initializes MHO_DiFXInterface based on input directory type (single scan or whole experiment).
          */
         void Initialize();   //read the directory and construct the scan file-lists
+        
         /**
          * @brief Generates root codes and processes scans using MHO_LegacyRootCodeGenerator and MHO_ScanProcessor.
          */
@@ -130,13 +131,14 @@ class MHO_DiFXInterface
     private:
 
         /**
-         * @brief Initializes MHO_DiFXInterface from experiment directory files and sets up VEX file.
+         * @brief Initializes MHO_DiFXInterface from experiment directory files (batch mode)
          * 
          * @param input_dir Input directory path containing experiment data
          */
         void InitializeFromExperimentDir(const std::string& input_dir); //for when we are processing a whole experiment in batch mode
+        
         /**
-         * @brief Initializes DiFX interface from scan directory and filters scans by input directory.
+         * @brief Initializes DiFX interface from scan directory and filters specific scans by input directory.
          * 
          * @param input_dir Input directory path to initialize from.
          */
