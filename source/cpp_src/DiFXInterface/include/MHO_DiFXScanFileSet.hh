@@ -13,10 +13,9 @@ namespace hops
  *@class  MHO_DiFXScanFileSet
  *@author  J. Barrett - barrettj@mit.edu
  *@date Mon Jan 31 15:48:42 2022 -0500
- *@brief
+ *@brief stores the names of all the assorted files related to a difx scan
  */
 
-//stores the names of all the assorted files related to a difx scan
 /**
  * @brief Class MHO_DiFXScanFileSet
  */
