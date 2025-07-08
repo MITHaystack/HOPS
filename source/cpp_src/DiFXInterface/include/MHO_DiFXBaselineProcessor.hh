@@ -32,9 +32,8 @@ class MHO_DiFXBaselineProcessor
         MHO_DiFXBaselineProcessor();
         virtual ~MHO_DiFXBaselineProcessor();
 
-        //needed for processing!
         /**
-         * @brief Setter for di fxinput data
+         * @brief Setter for difx .input data (needed for processing visibilities)
          * 
          * @param input Input mho_json object containing DiFX data
          */
@@ -48,14 +47,14 @@ class MHO_DiFXBaselineProcessor
         void SetScanIndex(std::size_t idx){fIndex = idx;}
 
         /**
-         * @brief Getter for baseline id
+         * @brief Getter for (difx) baseline id
          * 
          * @return The current baseline ID as an integer.
          */
         int GetBaselineID() const { return fBaselineID; };
 
         /**
-         * @brief Setter for root code
+         * @brief Setter for (hops) root code
          * 
          * @param rcode New root code as string
          */
@@ -68,50 +67,49 @@ class MHO_DiFXBaselineProcessor
          */
         void SetCorrelationDate(std::string corrdate) { fCorrDate = corrdate; }
 
-        //apply mk4 style visibility normalization
         /**
-         * @brief Setter for rescale false
+         * @brief Setter for rescale false - Do NOT apply mk4 style visibility normalization
          */
         void SetRescaleFalse() { fRescale = false; }
 
         /**
-         * @brief Setter for rescale true
+         * @brief Setter for rescale true - apply mk4 style visibility normalization
          */
         void SetRescaleTrue() { fRescale = true; }
         
         /**
-         * @brief Setter for attach di fxinput true
+         * @brief Setter for attach difx .input true (attaches json object containing difx .input info to visibilities)
          */
         void SetAttachDiFXInputTrue() {fAttachDiFXInput = true; }
         
         /**
-         * @brief Setter for attach di fxinput false
+         * @brief Setter for attach difx input false (do not attach difx .input info to visibilities)
          */
         void SetAttachDiFXInputFalse() {fAttachDiFXInput = false; }
 
         /**
-         * @brief Adds a visibility record to the processor if it matches baseline and selection criteria.
+         * @brief Adds a visibility record (chunk of difx data) to the processor if it matches baseline and selection criteria.
          * 
          * @param record Input MHO_DiFXVisibilityRecord to be added
          */
         void AddRecord(MHO_DiFXVisibilityRecord* record);
 
         /**
-         * @brief Setter for station codes
+         * @brief Setter for station codes (2 characater -> 1 character)
          * 
          * @param code_map Pointer to an MHO_StationCodeMap object containing station codes.
          */
         void SetStationCodes(MHO_StationCodeMap* code_map);
 
         /**
-         * @brief Setter for di fxcodes2vex codes
+         * @brief Setter for difx station codes to vex codes (2 char -> 2 char), but difx uses all caps
          * 
          * @param d2v_map Input map of DiFX to Vex station codes
          */
         void SetDiFXCodes2VexCodes(const std::map< std::string, std::string >& d2v_map) { fDiFX2VexStationCodes = d2v_map; };
 
         /**
-         * @brief Setter for di fxcodes2vex names
+         * @brief Setter for difx codes to vex names (difx 2 char code to canonical station names (8 char))
          * 
          * @param d2v_map Input map of DiFX codes to Vex names
          */
@@ -122,7 +120,7 @@ class MHO_DiFXBaselineProcessor
          */
         void ConstructVisibilityFileObjects();
         /**
-         * @brief Writes visibility objects in DiFX format to an output directory.
+         * @brief Writes visibility objects in HOPS4 format to an output directory.
          * 
          * @param output_dir Output directory path for writing files.
          */
@@ -143,14 +141,14 @@ class MHO_DiFXBaselineProcessor
         };
 
         /**
-         * @brief Getter for ref station mk4id
+         * @brief Getter for reference station mk4id
          * 
          * @return Reference station Mk4 ID as a std::string.
          */
         std::string GetRefStationMk4Id() const { return fRefStationMk4Id; }
 
         /**
-         * @brief Getter for rem station mk4id
+         * @brief Getter for remote station mk4id
          * 
          * @return The Mk4 ID of the remote station as a string.
          */
