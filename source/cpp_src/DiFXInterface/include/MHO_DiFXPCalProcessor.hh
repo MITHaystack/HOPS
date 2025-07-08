@@ -31,16 +31,16 @@ class MHO_DiFXPCalProcessor
         virtual ~MHO_DiFXPCalProcessor();
 
         /**
-         * @brief Setter for filename
+         * @brief Setter for  (PCAL) filename
          * 
          * @param filename Input filename to set and validate
          */
         void SetFilename(std::string filename);
 
         /**
-         * @brief Setter for accumulation period
+         * @brief Setter for pcal accumulation period
          * 
-         * @param ap_sec New accumulation period duration in seconds
+         * @param ap_sec pcal accumulation period duration in seconds
          */
         void SetAccumulationPeriod(double ap_sec) { fAPLength = ap_sec; }
 
@@ -52,32 +52,36 @@ class MHO_DiFXPCalProcessor
         std::string GetStationCode() const { return fStationCode; }
 
         /**
-         * @brief Reads and processes a PCal file for MHO_DiFXPCalProcessor.
+         * @brief Reads and processes a PCal file 
          */
         void ReadPCalFile();
+        
         /**
          * @brief Organizes p-cal data by merging tone/phasor data from the same time period and stores them in a table container.
          */
         void Organize();
 
         /**
-         * @brief Getter for pcal data
+         * @brief Getter for (organized) pcal data
          * 
          * @return Pointer to multitone_pcal_type
          */
         multitone_pcal_type* GetPCalData() { return &fPCal; }
 
     private:
+        
         /**
          * @brief Checks if the first character of fLine is '#', indicating a comment.
          * 
          * @return True if fLine starts with '#', false otherwise.
          */
         bool IsComment();
+        
         /**
          * @brief Clears and populates fTokens by tokenizing fLine using fTokenizer.
          */
         void TokenizeLine();
+        
         /**
          * @brief Processes token data and pushes parsed p-cal periods to fPCalData.
          */
