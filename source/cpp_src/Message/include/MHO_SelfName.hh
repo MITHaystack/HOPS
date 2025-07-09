@@ -12,7 +12,7 @@ namespace selfname
 {
 /*!*
  *@file MHO_SelfName.hh
- *@brief constexpr to stip path prefix from __FILE__ macros
+ *@brief constexpr to strip path prefix from __FILE__ macros
  *@author J. Barrett - barrettj@mit.edu
  */
 

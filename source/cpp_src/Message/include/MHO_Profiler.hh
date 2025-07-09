@@ -23,6 +23,12 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  *@date Sat Feb 10 11:17:05 2024 -0500
  *@brief class for running time/performance profiling
+ * when the profile is enabled, a section of code can be profiled by 
+ * wrapping it between a call to profiler_start() and profiler_stop(), for example:
+ *
+ * profiler_start();
+ * function_to_profile();
+ * profiler_stop();
  */
 
 namespace sn = selfname;
@@ -55,9 +61,9 @@ struct MHO_ProfileEvent
         char fFuncname[PROFILE_INFO_LEN]; //truncated function name
 };
 
-//uses the singleton pattern (as we only have one terminal)
+
 /**
- * @brief Class MHO_Profiler
+ * @brief Class MHO_Profiler - uses the singleton pattern
  */
 class MHO_Profiler
 {
@@ -69,9 +75,8 @@ class MHO_Profiler
         MHO_Profiler& operator=(MHO_Profiler const&) = delete;
         MHO_Profiler& operator=(MHO_Profiler&&) = delete;
 
-        //provide public access to the only static instance
         /**
-         * @brief Getter for instance
+         * @brief provide public access to the only static instance
          * 
          * @return Reference to the singleton instance of MHO_Profiler
          * @note This is a static function.
@@ -102,18 +107,19 @@ class MHO_Profiler
          */
         bool IsEnabled() const { return !fDisabled; }
 
-        //TODO we need to eliminate the need for locks...which sort of interferes
-        //with the objective of profiling. However, to do that we would
-        //probably need a lock free map implementation in order to map the
-        //thread_id's to a local index and push the events into a thread-specific vector
-        //so for now, mutex it is...
+
         /**
          * @brief Acquires a lock using fMutex for thread synchronization.
+         * TODO we need to eliminate the need for locks...which sort of interferes
+         * with the objective of profiling. However, to do that we would
+         * probably need a lock free map implementation in order to map the
+         * thread_id's to a local index and push the events into a thread-specific vector
+         * so for now, mutex it is...
          */
         void Lock() { fMutex.lock(); };
 
         /**
-         * @brief Releases control of a mutex.
+         * @brief Releases control of the mutex.
          */
         void Unlock() { fMutex.unlock(); };
 
@@ -128,9 +134,8 @@ class MHO_Profiler
          */
         void AddEntry(int flag, uint64_t thread_id, std::string filename, int line_num, std::string func_name);
 
-        //add end of program, retrieve and utilize the profiler events
         /**
-         * @brief Getter for events
+         * @brief Getter for events - at end of program, retrieve and utilize the profiler events
          * 
          * @param events Reference to std::vector<MHO_ProfileEvent to store retrieved events
          */
