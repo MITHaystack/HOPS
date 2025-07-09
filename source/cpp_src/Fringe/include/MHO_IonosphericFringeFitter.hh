@@ -26,10 +26,11 @@ class MHO_IonosphericFringeFitter: public MHO_BasicFringeFitter
         virtual ~MHO_IonosphericFringeFitter();
 
         /**
-         * @brief Runs fringe fitting process with optional smoothing and logging.
+         * @brief Runs fringe fitting process with additial search over dTEC (with optional smoothing)
          * @note This is a virtual function.
          */
         virtual void Run() override;
+        
         /**
          * @brief Finalizes fringe fitting process by storing search windows and generating plot data.
          */
@@ -48,26 +49,29 @@ class MHO_IonosphericFringeFitter: public MHO_BasicFringeFitter
 
     protected:
         /**
-         * @brief Searches for ionospheric fringes in delay/delay-rate space.
+         * @brief Searches for fringe peak in dtec/delay/delay-rate space.
          * 
          * @return 0 on success, 1 on failure.
          */
         int rjc_ion_search();
+        
         /**
          * @brief Sorts TEC arrays and stores them in parameter store.
          * 
-         * @param nion Number of ionospheric layers
+         * @param nion Number of ionospheric search points
          * @param dtec Reference to vector of vectors containing TEC values
          */
         void sort_tecs(int nion, std::vector< std::vector< double > >& dtec);
+        
         /**
-         * @brief Searches for ionospheric fringes using a smooth approach.
+         * @brief Searches for fringe peak while applying smoothing function (convolution w/ half-cosine).
          * 
          * @return 0 if successful, 1 otherwise.
          */
         int ion_search_smooth();
+        
         /**
-         * @brief Applies a smoothing curve to input data array for fringe finding in ionospheric processing.
+         * @brief Applies a smoothing curve (half-cosine) to input data array for fringe finding in ionospheric processing.
          * 
          * @param f Input data array with arbitrary positive length
          * @param g Output data array with fourfold interpolation

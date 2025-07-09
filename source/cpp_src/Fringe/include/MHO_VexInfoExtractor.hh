@@ -51,6 +51,7 @@ class MHO_VexInfoExtractor
         static void extract_clock_early(const mho_json& clk, double& clock_early, std::string& clock_early_units,
                                         double& clock_rate, std::string& clock_rate_units, std::string& origin,
                                         std::string& validity);
+
         /**
          * @brief Extracts clock model information from vexInfo and stores it in paramStore for reference and remote stations.
          * 
@@ -59,22 +60,25 @@ class MHO_VexInfoExtractor
          * @note This is a static function.
          */
         static void extract_clock_model(const mho_json& vexInfo, MHO_ParameterStore* paramStore);
+        
         /**
-         * @brief Extracts and stores sample bits used at reference and remote stations from vexInfo.
+         * @brief Extracts and stores N sampler bits used at reference and remote stations from vexInfo.
          * 
          * @param vexInfo Input mho_json containing vex information
          * @param paramStore MHO_ParameterStore to store extracted sample bits
          * @note This is a static function.
          */
         static void extract_sampler_bits(const mho_json& vexInfo, MHO_ParameterStore* paramStore);
+        
         /**
-         * @brief Extracts and sets sample rates for reference and remote stations from VEX info.
+         * @brief Extracts sample rates for reference and remote stations from VEX info.
          * 
          * @param vexInfo Input VEX info as mho_json object
          * @param paramStore Output parameter store for sample rate values and units
          * @note This is a static function.
          */
         static void extract_sample_rate(const mho_json& vexInfo, MHO_ParameterStore* paramStore);
+        
         /**
          * @brief Extracts VEX info from JSON and stores relevant parameters in MHO_ParameterStore.
          * 
@@ -92,6 +96,7 @@ class MHO_VexInfoExtractor
          * @note This is a static function.
          */
         static double calculate_ra_hrs(std::string ra);
+        
         /**
          * @brief Calculates declination in decimal degrees from a string representation containing degrees, minutes, and seconds.
          * 
