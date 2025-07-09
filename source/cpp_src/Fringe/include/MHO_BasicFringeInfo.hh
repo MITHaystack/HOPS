@@ -92,7 +92,7 @@ class MHO_BasicFringeInfo
          * 
          * @param sbd_sep Single Band Delay separation
          * @param snr Signal to Noise Ratio
-         * @param sbavg Average Single Band Delay
+         * @param sbavg Average sideband
          * @return Calculated SBD error
          * @note This is a static function.
          */
@@ -132,9 +132,9 @@ class MHO_BasicFringeInfo
         static double calculate_pfd(double snr, double pts_searched);
         
         /**
-         * @brief Calculates phase error given single-band delay average and signal-to-noise ratio.
+         * @brief Calculates phase error given sideband average and signal-to-noise ratio.
          * 
-         * @param sbavg Average single band delay
+         * @param sbavg Average sideband
          * @param snr Signal to Noise Ratio
          * @return Phase error in degrees
          * @note This is a static function.
@@ -144,7 +144,7 @@ class MHO_BasicFringeInfo
         /**
          * @brief Calculates phase delay error given sbavg, snr and reference frequency.
          * 
-         * @param sbavg Average single band delay
+         * @param sbavg Average sideband
          * @param snr Signal to Noise Ratio
          * @param ref_freq Reference frequency
          * @return Phase delay error as a double value
@@ -206,17 +206,17 @@ class MHO_BasicFringeInfo
         static void correct_phases_mbd_anchor_sbd(double ref_freq, double freq0, double frequency_spacing, double delta_mbd,
                                                   double& totphase_deg, double& resphase_deg);
 
-        //only used by MHO_IonosphericFringeFitter...for computing the ionosphere dTEC covariance
+        //
         /**
-         * @brief Computes ionospheric delay (MBD) time error covariance for fringe fitting.
+         * @brief Only used by MHO_IonosphericFringeFitter, for computing the ionosphere dTEC/MBD covariance
          * 
          * @param nfreq Number of frequency channels.
-         * @param famp Amplitude factor for ionospheric delay calculation.
+         * @param famp Amplitude of fringe
          * @param snr Signal-to-noise ratio for ionospheric delay calculation.
          * @param ref_freq Reference frequency in MHz.
          * @param chan_freqs Vector of channel frequencies in MHz.
          * @param chan_phasors Vector of complex phasor values.
-         * @param ion_sigmas Output vector of ionospheric delay standard deviations.
+         * @param ion_sigmas Output vector of ion sigams
          * @note This is a static function.
          */
         static void ion_covariance(int nfreq, double famp, double snr, double ref_freq, const std::vector< double >& chan_freqs,
