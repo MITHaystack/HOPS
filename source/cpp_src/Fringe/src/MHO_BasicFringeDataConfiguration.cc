@@ -168,7 +168,6 @@ int MHO_BasicFringeDataConfiguration::sanity_check(MHO_ParameterStore* paramStor
     //std::string refringe_alist_file = ""; // '-r' alist file for refringing - not yet enabled
     int ap_per_seg = paramStore->GetAs< int >("/cmdline/ap_per_seg");
     bool test_mode = paramStore->GetAs< bool >("/cmdline/test_mode");
-    //bool update_mode = false; //'-u' not yet enabled
     std::string polprod = paramStore->GetAs< std::string >("/cmdline/polprod");
     //std::string reftime = "";
     //bool xpower_output = false;
@@ -209,7 +208,6 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     std::string refringe_alist_file = "";          // '-r' alist file for refringing - not yet enabled
     int ap_per_seg = 0;                            //'-s' specify the APs to be averaged per plot-segment
     bool test_mode = false;                        //'-t' if true, then no output is written
-    bool update_mode = false;                      //'-u' not yet enabled
     std::string polprod = "??";                    //'-P' polarization product argument (e.g XX or I or RR+LL)
     std::string reftime = "";                      //'-T' specify the fourfit reference time - not yet enabled
     //bool xwindows; //'-x' same as option '-p' we no long use pgplot/xwindows
@@ -251,7 +249,6 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     app.add_option("-r,--refringe-alist", refringe_alist_file, "alist file for refringing (ignored, not yet implemented)");
     app.add_option("-s,--ap-per-segment", ap_per_seg, "specify the APs to be averaged per plot-segment");
     app.add_flag("-t,--test-mode", test_mode, "if passed, then no output is written");
-    app.add_flag("-u,--update-mode", update_mode, "(ignored, not yet implemented)");
     app.add_option("-P,--polprod", polprod, "polarization product argument (e.g XX or I or RR+LL, etc.)");
     app.add_option("-T,--reftime", reftime, "specify the fourfit reference time (ignored, not yet implemented)");
     //app.add_flag("-x,--xwindows", xwindows, "display plot using xwindows (ignored, deprecated)");
@@ -359,7 +356,6 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     //refringe_alist_file = ""; //not implemented
     paramStore->Set("/cmdline/ap_per_seg", ap_per_seg);
     paramStore->Set("/cmdline/test_mode", test_mode); //TODO
-    //update_mode = false; //not implemented
     paramStore->Set("/cmdline/polprod", polprod);
     //reftime = ""; //not implemented
     paramStore->Set("/cmdline/xpower_output", xpower_output);
