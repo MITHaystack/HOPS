@@ -18,7 +18,7 @@ namespace hops
  *@class MHO_FastFourierTransform.hh
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Oct 23 12:02:01 2020 -0400
- *@brief
+ *@brief Wrapper class for the native FFT implementation
  */
 
 /**
