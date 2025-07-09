@@ -11,7 +11,7 @@ namespace hops
  *@class MHO_SamplerLabelerBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Dec 14 11:49:02 2023 -0500
- *@brief
+ *@brief Builds a MHO_SamplerLabeler operator
  */
 
 /**
@@ -30,7 +30,7 @@ class MHO_SamplerLabelerBuilder: public MHO_OperatorBuilder
         virtual ~MHO_SamplerLabelerBuilder(){};
 
         /**
-         * @brief Initializes and builds the MHO_SamplerLabelerBuilder object.
+         * @brief Initializes and builds the MHO_SamplerLabeler operator (groups channels by sampler), and adds to toolbox
          * 
          * @return bool indicating success of initialization.
          */

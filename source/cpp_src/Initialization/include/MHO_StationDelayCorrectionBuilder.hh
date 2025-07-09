@@ -11,7 +11,7 @@ namespace hops
  *@class MHO_StationDelayCorrectionBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Jun 20 12:35:56 2023 -0400
- *@brief
+ *@brief Builds a station delay operator
  */
 
 /**
@@ -30,7 +30,7 @@ class MHO_StationDelayCorrectionBuilder: public MHO_OperatorBuilder
         virtual ~MHO_StationDelayCorrectionBuilder(){};
 
         /**
-         * @brief Constructs and initializes the MHO_StationDelayCorrectionBuilder object.
+         * @brief Constructs and initializes the MHO_StationDelayCorrection operator, and adds to toolbox
          * 
          * @return bool indicating success of construction
          */
