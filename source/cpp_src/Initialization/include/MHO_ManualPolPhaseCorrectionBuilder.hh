@@ -11,7 +11,7 @@ namespace hops
  *@class MHO_ManualPolPhaseCorrectionBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Jun 20 12:35:56 2023 -0400
- *@brief
+ *@brief build a manual per-polarization pc_delay operator
  */
 
 /**
@@ -31,7 +31,7 @@ class MHO_ManualPolPhaseCorrectionBuilder: public MHO_OperatorBuilder
         virtual ~MHO_ManualPolPhaseCorrectionBuilder(){};
 
         /**
-         * @brief Constructs and adds a new Manual Phase Correction Builder to the toolbox's multimap.
+         * @brief Constructs and adds a new MHO_ManualPolPhaseCorrection operator to the toolbox
          * 
          * @return bool indicating success
          */

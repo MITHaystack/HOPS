@@ -11,7 +11,7 @@ namespace hops
  *@class MHO_NotchesBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Jun 20 12:35:56 2023 -0400
- *@brief
+ *@brief builds a notches (frequency cut) operator
  */
 
 /**
@@ -31,7 +31,7 @@ class MHO_NotchesBuilder: public MHO_OperatorBuilder
         virtual ~MHO_NotchesBuilder(){};
 
         /**
-         * @brief Constructs and adds a new builder to the toolbox's multimap.
+         * @brief Constructs and adds a new MHO_Notches operator to the toolbox
          * 
          * @return True if successful, false otherwise.
          */

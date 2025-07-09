@@ -19,7 +19,7 @@ namespace hops
  *@file MHO_OperatorBuilder.hh
  *@class MHO_OperatorBuilder
  *@date Wed May 31 17:11:03 2023 -0400
- *@brief
+ *@brief Abtract base class for a builder object (creates an operator for later use)
  *@author J. Barrett - barrettj@mit.edu
  */
 
@@ -87,7 +87,7 @@ class MHO_OperatorBuilder
         virtual void SetFormat(const mho_json& format) { fFormat = format; } //operator format
 
         /**
-         * @brief Setter for conditions
+         * @brief Setter for applicability conditions
          * 
          * @param cond Input conditions of type const mho_json&
          * @note This is a virtual function.
@@ -102,8 +102,6 @@ class MHO_OperatorBuilder
          */
         virtual void SetAttributes(const mho_json& attr) { fAttributes = attr; } //configuration parameters
 
-        //builds the object, if successful passes to toolbox and returns true
-        //otherwise returns false and operator is not b
         /**
          * @brief Builds the object and passes it to toolbox if successful, otherwise returns false.
          * 
@@ -113,11 +111,12 @@ class MHO_OperatorBuilder
         virtual bool Build() = 0;
 
     protected:
-        //provided for derived class to validate fAttributes against fFormat and/or fConditions
-        //but the default tries to check a few things
+        
+
         /**
          * @brief Function IsConfigurationOk
-         * 
+         * provided for derived class to validate fAttributes against fFormat and/or fConditions
+         * but the default implementation tries to check a few things
          * @return Return value (bool)
          * @note This is a virtual function.
          */

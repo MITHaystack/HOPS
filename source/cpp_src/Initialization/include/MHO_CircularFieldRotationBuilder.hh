@@ -11,7 +11,7 @@ namespace hops
  *@class MHO_CircularFieldRotationBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Mon Jan 15 11:23:36 2024 -0500
- *@brief
+ *@brief builds a MHO_CircularFieldRotationCorrection operator (station mount types must be known)
  */
 
 /**
