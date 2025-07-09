@@ -32,28 +32,28 @@ template< class XArgType > class MHO_ExtremaSearch: public MHO_InspectingOperato
         virtual ~MHO_ExtremaSearch(){};
 
         /**
-         * @brief Getter for max
+         * @brief Getter for maximum value across the array
          * 
          * @return The current maximum value as a double.
          */
         double GetMax() { return fMax; }
 
         /**
-         * @brief Getter for min
+         * @brief Getter for minimum value across the
          * 
          * @return The minimum value as a double.
          */
         double GetMin() { return fMin; }
 
         /**
-         * @brief Getter for max location
+         * @brief Getter for max location (offset into the array)
          * 
          * @return std::size_t - Maximum location value
          */
         std::size_t GetMaxLocation() { return fMaxLocation; }
 
         /**
-         * @brief Getter for min location
+         * @brief Getter for min location (offset into the array)
          * 
          * @return std::size_t representing the minimum location.
          */
@@ -61,9 +61,9 @@ template< class XArgType > class MHO_ExtremaSearch: public MHO_InspectingOperato
 
     protected:
         /**
-         * @brief Initializes the system using input arguments.
+         * @brief Initializes the operator 
          * 
-         * @param !in Pointer to constant XArgType containing initialization parameters.
+         * @param !in Pointer to constant XArgType
          * @return True if initialization is successful, false otherwise.
          * @note This is a virtual function.
          */
@@ -85,7 +85,7 @@ template< class XArgType > class MHO_ExtremaSearch: public MHO_InspectingOperato
     private:
         // basic floating point types
         /**
-         * @brief Function Search
+         * @brief Function Search - does the actual search, templated on value type
          * 
          * @tparam XCheckType Template parameter XCheckType
          * @param in (const XArgType*)
