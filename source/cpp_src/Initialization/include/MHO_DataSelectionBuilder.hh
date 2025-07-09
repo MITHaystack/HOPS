@@ -13,7 +13,7 @@ namespace hops
  *@class MHO_DataSelectionBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Jun 9 15:01:13 2023 -0400
- *@brief
+ *@brief builds a data selction operator
  */
 
 /**
@@ -33,7 +33,7 @@ class MHO_DataSelectionBuilder: public MHO_OperatorBuilder
         virtual ~MHO_DataSelectionBuilder(){};
 
         /**
-         * @brief Constructs and initializes the data selection builder using provided toolbox and fringe data.
+         * @brief Constructs and initializes the data selection operator to act on fringe data.
          * 
          * @return Return value (bool)
          */

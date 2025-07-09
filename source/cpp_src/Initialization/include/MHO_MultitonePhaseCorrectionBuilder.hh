@@ -12,7 +12,7 @@ namespace hops
  *@class MHO_MultitonePhaseCorrectionBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Dec 7 13:29:58 2023 -0500
- *@brief
+ *@brief builds a multitone phase-cal correction operator
  */
 
 /**
@@ -40,7 +40,7 @@ class MHO_MultitonePhaseCorrectionBuilder: public MHO_OperatorBuilder
         virtual ~MHO_MultitonePhaseCorrectionBuilder(){};
 
         /**
-         * @brief Initializes a MultitonePhaseCorrectionBuilder object with toolbox and fringe data.
+         * @brief Builds and initializes a multitone phase-cal correction operator and adds to the toolbox
          * 
          * @return Return value (bool)
          */
@@ -77,7 +77,7 @@ class MHO_MultitonePhaseCorrectionBuilder: public MHO_OperatorBuilder
         void AttachPCToneMask(multitone_pcal_type* pcal_data,
                               std::string mk4id); //attaches pc_tonemask infor to pcal data (if present)
         /**
-         * @brief Getter for sampler delay key
+         * @brief Getter for sampler delay key (i.e. control statement)
          * 
          * @param pol Input polarization string ('X', 'Y', 'R', 'L', 'H', 'V')
          * @return Sampler delay key string

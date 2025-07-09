@@ -11,7 +11,7 @@ namespace hops
  *@class MHO_LinearDParCorrectionBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Mon Jan 15 11:23:36 2024 -0500
- *@brief
+ *@brief builds a delta-parallactic angle correciton operator
  */
 
 /**
@@ -30,7 +30,7 @@ class MHO_LinearDParCorrectionBuilder: public MHO_OperatorBuilder
         virtual ~MHO_LinearDParCorrectionBuilder(){};
 
         /**
-         * @brief Constructs and initializes the linear DPar correction builder.
+         * @brief Constructs and initializes the linear-pol DPar (delta parallactic angle) correction operator.
          * 
          * @return True if construction is successful, false otherwise.
          */

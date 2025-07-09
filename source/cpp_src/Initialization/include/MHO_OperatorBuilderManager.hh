@@ -16,7 +16,7 @@ namespace hops
  *@file MHO_OperatorBuilderManager.hh
  *@class MHO_OperatorBuilderManager
  *@date Thu Jun 8 17:05:29 2023 -0400
- *@brief
+ *@brief Manages all the various operator builders
  *@author J. Barrett - barrettj@mit.edu
  */
 
@@ -45,16 +45,16 @@ class MHO_OperatorBuilderManager
             fCategoryToBuilderMap.clear();
         }
 
-        //pass in parsed control file elements
         /**
-         * @brief Setter for control statements
+         * @brief pass in parsed control file elements
          * 
          * @param statements Input mho_json object containing control file statements
          */
         void SetControlStatements(mho_json* statements) { fControl = statements; };
 
         /**
-         * @brief Registers default operator builders for various purposes such as channel labeling, phase and delay corrections, flagging operators, etc.
+         * @brief Registers default operator builders for various purposes such as channel labeling, 
+         * phase and delay corrections, pol-product summation, flagging operators, etc.
          */
         void CreateDefaultBuilders();
 
@@ -77,8 +77,9 @@ class MHO_OperatorBuilderManager
         void BuildOperatorCategory(const std::string& cat);
 
         //void AddBuilderType(const std::string& builder_name, const mho_json& format)
+        
         /**
-         * @brief Adds a new builder type with format to maps and vectors.
+         * @brief Adds a new builder type with specified format, inserted into (builder) map for later use.
          * 
          * @param builder_name Name of the builder type as string
          * @param format_key (const std::string&)
