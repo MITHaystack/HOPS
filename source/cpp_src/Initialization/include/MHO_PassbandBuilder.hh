@@ -11,7 +11,7 @@ namespace hops
  *@class MHO_PassbandBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Jun 20 12:35:56 2023 -0400
- *@brief Builds a passband operator
+ *@brief Builds a passband (frequency chunk excision) operator
  */
 
 /**
