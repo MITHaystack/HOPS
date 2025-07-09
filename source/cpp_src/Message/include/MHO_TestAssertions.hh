@@ -6,7 +6,7 @@
  *@class MHO_TestAssertions
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Jul 15 11:30:15 2021 -0400
- *@brief
+ *@brief some run time assertions
  */
 
 #include "MHO_Message.hh"
