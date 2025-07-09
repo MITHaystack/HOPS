@@ -18,7 +18,7 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  *@date Mon Aug 23 15:27:52 2021 -0400
  *@brief
- * Applies a cyclic rotation on the contents on a multidimensional array
+ * Applies a cyclic rotation to the contents on a multidimensional array
  * by some specified offset for each dimension.
  */
 
@@ -40,17 +40,17 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
 
         virtual ~MHO_CyclicRotator(){};
 
-        //set the offset for the cyclic rotation in each dimension (default is zero...do nothing)
         /**
-         * @brief Setter for offset
+         * @brief set the offset for the cyclic rotation in each dimension (default is zero...do nothing)
          * 
          * @param dimension_index Index of the dimension to set the offset for
          * @param offset_value (int64_t)
+         * @details 
+         * A negative offset_value results in a "right" rotation: e.g. rot by  1: [0 1 2 3] -> [3 0 1 2]
+         * A positive offset_value results in a "left" rotation: e.g. rot by -1: [0 1 2 3] -> [1 2 3 0]
          */
         void SetOffset(std::size_t dimension_index, int64_t offset_value)
         {
-            //A negative offset_value results in a "right" rotation: rot by  1: [0 1 2 3] -> [3 0 1 2]
-            //A positive offset_value results in a "left" rotation: rot by -1: [0 1 2 3] -> [1 2 3 0]
             if(dimension_index < XArrayType::rank::value)
             {
                 fOffsets[dimension_index] = offset_value;
@@ -82,7 +82,7 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
         }
 
         /**
-         * @brief Function ExecuteInPlace
+         * @brief Function ExecuteInPlace - executes the rotation
          * 
          * @param in (XArrayType*)
          * @return Return value (bool)
@@ -167,7 +167,7 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
         }
 
         /**
-         * @brief Function InitializeOutOfPlace
+         * @brief Function InitializeOutOfPlace - executes the rotation
          * 
          * @param in (const XArrayType*)
          * @param out (XArrayType*)
@@ -209,7 +209,7 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
         }
 
         /**
-         * @brief Function ExecuteOutOfPlace
+         * @brief Function ExecuteOutOfPlace - executes the rotation
          * 
          * @param in (const XArrayType*)
          * @param out (XArrayType*)
@@ -252,9 +252,9 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
         }
 
     private:
-        //default...does nothing
+
         /**
-         * @brief Rotates an input XArrayType along a specified axis and stores the result in output.
+         * @brief use SFINAE to generate specialization for MHO_TableContainer types
          * 
          * @tparam XCheckType Template parameter XCheckType
          * @param !in Parameter description
@@ -265,9 +265,10 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
         typename std::enable_if< !std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableRotateAxis(const XArrayType* /*!in*/, XArrayType* /*!out*/, std::size_t /*!dim*/){};
 
-        //use SFINAE to generate specialization for MHO_TableContainer types
+        
         /**
-         * @brief Rotates an input array along a specified axis and dimension using cyclic rotation offsets.
+         * @brief Rotates an input array along a specified axis and dimension using cyclic rotation offsets, and also
+         * applies the same cyclic rotation to each respective axis object if the underlying XArrayType is a MHO_TableContainer
          * 
          * @tparam XCheckType Template parameter XCheckType
          * @param in Input array to rotate
@@ -283,7 +284,7 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
         }
 
         /**
-         * @brief Class RotateAxis
+         * @brief Class RotateAxis - applies cyclic rotation to the axes of a MHO_TableContainer
          */
         class RotateAxis
         {
