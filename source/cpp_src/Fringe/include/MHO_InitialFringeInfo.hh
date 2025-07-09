@@ -48,6 +48,7 @@ class MHO_InitialFringeInfo
          * @note This is a static function.
          */
         static void configure_reference_frequency(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
+        
         /**
          * @brief Calculates frequency space and stores fringe parameters in paramStore.
          * 
@@ -56,6 +57,7 @@ class MHO_InitialFringeInfo
          * @note This is a static function.
          */
         static void calculate_freq_space(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
+        
         /**
          * @brief Calculates clock model for reference and remote stations using parameters from MHO_ParameterStore.
          * 
@@ -63,6 +65,7 @@ class MHO_InitialFringeInfo
          * @note This is a static function.
          */
         static void calculate_clock_model(MHO_ParameterStore* paramStore);
+        
         /**
          * @brief Precalculates and stores relevant quantities from visibility data into parameter store.
          * 
@@ -71,6 +74,7 @@ class MHO_InitialFringeInfo
          * @note This is a static function.
          */
         static void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
+        
         /**
          * @brief Calculates and stores total summed weights from container store.
          * 
@@ -79,6 +83,7 @@ class MHO_InitialFringeInfo
          * @note This is a static function.
          */
         static void compute_total_summed_weights(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
+        
         /**
          * @brief Counts and stores the number of active channels in MHO_ContainerStore based on weight.
          * 
