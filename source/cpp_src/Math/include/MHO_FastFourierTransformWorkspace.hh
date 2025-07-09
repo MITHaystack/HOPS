@@ -80,9 +80,9 @@ template< typename XFloatType > class MHO_FastFourierTransformWorkspace
         }
 
         /**
-         * @brief Checks if the current radix is 2.
+         * @brief Checks if the current workspace is for radix-2 FFT
          * 
-         * @return True if radix is 2, false otherwise.
+         * @return True if radix is 2, false otherwise (Bluestein).
          */
         bool IsRadix2() { return (fM == 0); }
 

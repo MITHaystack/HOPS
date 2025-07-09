@@ -6,7 +6,7 @@
  *@class MHO_CheckForNaN
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Aug 12 11:16:36 2021 -0400
- *@brief
+ *@brief checks if a value is NaN for various numerical types
  */
 
 #include <cmath>
@@ -21,10 +21,10 @@ template< typename XNumericalType > class MHO_CheckForNaN
         MHO_CheckForNaN();
         virtual ~MHO_CheckForNaN();
 
-        //note this primitive != comparison will not detect "INF" (only NAN)
+
         /**
          * @brief Checks if a numerical value is NaN by comparing it to itself.
-         * 
+         * note that this primitive (X != X) comparison will not detect "INF" (only NAN)
          * @param value Input value of type XNumericalType& to check for NaN.
          * @return True if value is NaN, false otherwise.
          * @note This is a static function.
