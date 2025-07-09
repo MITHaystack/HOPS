@@ -37,6 +37,7 @@ class MHO_FringeControlInitialization
 
     public:
         //control format and control_statements objects should reference the MHO_FringeData object
+        
         /**
          * @brief Process control file and populate applicable statements in parameter store.
          * 
@@ -47,6 +48,7 @@ class MHO_FringeControlInitialization
          */
         static void process_control_file(MHO_ParameterStore* paramStore, mho_json& control_format,
                                          mho_json& control_statements);
+
         /**
          * @brief Adds default operator format definitions to an mho_json object for fringe control initialization.
          * 
@@ -54,6 +56,7 @@ class MHO_FringeControlInitialization
          * @note This is a static function.
          */
         static void add_default_operator_format_def(mho_json& format);
+        
         /**
          * @brief Adds default operators to control statements for MHO fringe control initialization.
          * 
@@ -61,6 +64,7 @@ class MHO_FringeControlInitialization
          * @note This is a static function.
          */
         static void add_default_operators(mho_json& statements);
+        
         /**
          * @brief Adds a default polarization product sum operator to the given statements.
          * 
@@ -77,8 +81,9 @@ class MHO_FringeControlInitialization
          * @note This is a static function.
          */
         static bool is_linear_polprod(std::string pp);
+        
         /**
-         * @brief Adds a default correction operator for dpar to the given statements.
+         * @brief Adds a default correction operator for dpar (delta parallactic angle) to the given statements.
          * 
          * @param statements Reference to mho_json object containing control statements
          * @note This is a static function.
@@ -93,8 +98,9 @@ class MHO_FringeControlInitialization
          * @note This is a static function.
          */
         static bool is_circular_polprod(std::string pp);
+        
         /**
-         * @brief Adds a predefined correction operator for circular field rotation to the given statements.
+         * @brief Adds a predefined correction operator for circular-pol field rotation to the given statements.
          * 
          * @param statements Reference to a list of JSON statements where the correction operator will be added.
          * @note This is a static function.
