@@ -49,19 +49,19 @@ class MHO_ComputePlotData
         virtual ~MHO_ComputePlotData(){};
 
         /**
-         * @brief Sets optimize closure to true using fRot object.
+         * @brief Sets optimize closure to true in underlying MHO_FringeRotation (fRot) object.
          */
         void EnableOptimizeClosure() { fRot.SetOptimizeClosureTrue(); }
 
         /**
-         * @brief Disables optimize closure by setting fRot's optimizeClosure to false.
+         * @brief Disables optimize closure by setting underlying MHO_FringeRotation (fRot) optimizeClosure to false.
          */
         void DisableOptimizeClosure() { fRot.SetOptimizeClosureFalse(); }
 
         /**
-         * @brief Setter for mbdanchor
+         * @brief Setter for mbd anchor (either: 'sbd' or 'model')
          * 
-         * @param flag Flag indicating station type (0 = reference, 1 = remote)
+         * @param flag Flag indicating the MBD anchor type
          */
         void SetMBDAnchor(std::string flag) { fMBDAnchor = flag; }
 
@@ -89,7 +89,7 @@ class MHO_ComputePlotData
         /**
          * @brief Setter for vex info
          * 
-         * @param vex_info Const reference to mho_json object containing VEX information
+         * @param vex_info Const reference to mho_json object containing VEX information (from root file)
          */
         void SetVexInfo(const mho_json& vex_info) { fVexInfo = vex_info; }
 
@@ -99,7 +99,7 @@ class MHO_ComputePlotData
         void Initialize();
 
         /**
-         * @brief Dumps fringe plot data into a JSON object for visualization.
+         * @brief Dumps fringe plot data into a JSON object for visualization/consumption by plotting routine.
          * 
          * @param plot_dict JSON object to store fringe plot data.
          */
@@ -109,19 +109,19 @@ class MHO_ComputePlotData
 
         TODO_FIXME_MSG("TODO FIXME, temporary kludge to pass sbd amp data for test")
         /**
-         * @brief Calculates Multi-Band Delay (MBD) for each channel in the given SBD array.
+         * @brief Calculates Multi-Band Delay (MBD) function (amplitude vs. mbd)
          * 
          * @return xpower_amp_type representing the calculated MBD.
          */
         xpower_amp_type calc_mbd();
         /**
-         * @brief Calculates Single Band Delay (SBD) power spectrum for fringe tracking.
+         * @brief Calculates Single Band Delay (SBD) function (amplitude vs. sbd)
          * 
          * @return xpower_amp_type containing SBD power spectrum
          */
         xpower_amp_type calc_sbd();
         /**
-         * @brief Calculates and returns phasor segments for each channel and average point.
+         * @brief Calculates and returns time-averaged phasor segments for each channel
          * 
          * @return phasor_type containing calculated phasor segments.
          */
@@ -133,7 +133,7 @@ class MHO_ComputePlotData
          */
         xpower_type calc_xpower_spec();
         /**
-         * @brief Calculates delay-rate (dr) for MHO_ComputePlotData.
+         * @brief Calculates delay-rate (dr) function (amplitude vs delay rate)
          * 
          * @return xpower_amp_type representing calculated delay-rate
          */
@@ -141,14 +141,14 @@ class MHO_ComputePlotData
 
         // visibility_type* calc_corrected_vis();
         /**
-         * @brief Corrects visibility data by summing over channels and applying frequency rotation.
+         * @brief Corrects visibility data by applying fringe solution.
          */
         void correct_vis();
 
         /**
-         * @brief Calculates phase for MHO_ComputePlotData using weighted sum and fitted delay-rate rotation.
+         * @brief Calculates fringe phase using weighted sum and fitted (delay, delay-rate) rotation.
          * 
-         * @return Phase as a double value.
+         * @return fringe phase as a double value.
          */
         double calc_phase();
 
@@ -162,7 +162,7 @@ class MHO_ComputePlotData
          * @param snr Signal-to-noise ratio
          * @param freqrms_phase Output: Frequency RMS phase
          * @param freqrms_amp Output: Frequency RMS amplitude
-         * @param inc_avg_amp_freq Output: Incremental average amplitude frequency
+         * @param inc_avg_amp_freq Output: incoherent average amplitude (over frequency)
          */
         void calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp, double total_summed_weights,
                           double snr, double& freqrms_phase, double& freqrms_amp, double& inc_avg_amp_freq);
@@ -177,9 +177,9 @@ class MHO_ComputePlotData
          * @param fringe_amp Fringe amplitude
          * @param total_summed_weights Total summed weights
          * @param snr Signal to Noise Ratio
-         * @param timerms_phase Output: Time-domain measurements phase
-         * @param timerms_amp Output: Time-domain measurements amplitude
-         * @param inc_avg_amp Output: Incremental average amplitude
+         * @param timerms_phase Output: Time RMS phase
+         * @param timerms_amp Output: Time RMS amplitude
+         * @param inc_avg_amp Output: incoherent average amplitude (over time)
          */
         void calc_timerms(phasor_type& phasors, std::size_t nseg, std::size_t apseg, double coh_avg_phase, double fringe_amp,
                           double total_summed_weights, double snr, double& timerms_phase, double& timerms_amp,
@@ -199,17 +199,15 @@ class MHO_ComputePlotData
                                  std::string pol   //single char string
         );
 
+        /**
+         * @brief calcuates the fringe quality code
+         */
         std::string calc_quality_code(); //quality only, not error
+        
+        /**
+         * @brief calcuates the fringe error code
+         */
         std::string calc_error_code(const mho_json& plot_dict);
-
-        // //these functions copied from ffmath and minmax.c -- TODO move to MHO_Math library
-        // int parabola(double y[3], double lower, double upper, double* x_max, double* amp_max, double q[3]);
-        // double dwin(double value, double lower, double upper)
-        // {
-        //     if (value < lower) return (lower);
-        //     else if (value > upper) return (upper);
-        //     else return (value);
-        // }
 
         double fRefFreq;
         double fTotalSummedWeights;
