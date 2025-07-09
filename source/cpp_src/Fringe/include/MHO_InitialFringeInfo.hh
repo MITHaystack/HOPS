@@ -18,7 +18,7 @@ namespace hops
  *@author J. Barrettj - barrettj@mit.edu
  *@date Wed Sep 20 16:12:23 2023 -0400
  *@brief collection of helper functions to populate the parameter store
- * with a priori information know before fringe fitting
+ * with a priori information known before fringe fitting
  */
 
 /**
@@ -39,8 +39,9 @@ class MHO_InitialFringeInfo
          * @note This is a static function.
          */
         static void set_default_parameters_minimal(MHO_ParameterStore* paramStore);
+        
         /**
-         * @brief Sets default reference frequency if not already set in parameter store.
+         * @brief Sets default reference frequency (determined from visibility data) if not already set in parameter store.
          * 
          * @param conStore Pointer to MHO_ContainerStore for accessing visibility data.
          * @param paramStore Pointer to MHO_ParameterStore for managing parameters.

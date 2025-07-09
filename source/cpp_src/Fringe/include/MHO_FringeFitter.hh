@@ -82,7 +82,7 @@ class MHO_FringeFitter
 
         //should we expose these?
         /**
-         * @brief Getter for vex
+         * @brief Getter for vex (ovex) data as JSON object
          * 
          * @return mho_json containing root file data
          */
@@ -95,9 +95,8 @@ class MHO_FringeFitter
          */
         MHO_ScanDataStore* GetScanDataStore() { return fScanStore; }
 
-        //only valid after 'Configure' is called
         /**
-         * @brief Getter for operator build manager
+         * @brief Getter for ther operator build manager - only valid after 'Configure' is called
          * 
          * @return MHO_OperatorBuilderManager*
          */
@@ -109,17 +108,20 @@ class MHO_FringeFitter
          * @note This is a virtual function.
          */
         virtual void Configure() = 0;
+        
         //TODO add a 'configure extension' function using visitor pattern to add things like pybind11/opencl etc.
         /**
          * @brief Function Initialize
          * @note This is a virtual function.
          */
         virtual void Initialize() = 0;
+        
         /**
          * @brief Function PreRun
          * @note This is a virtual function.
          */
         virtual void PreRun() = 0;
+        
         /**
          * @brief Function Run
          * 
@@ -127,11 +129,13 @@ class MHO_FringeFitter
          * @note This is a virtual function.
          */
         virtual void Run() = 0;
+        
         /**
          * @brief Function PostRun
          * @note This is a virtual function.
          */
         virtual void PostRun() = 0;
+        
         /**
          * @brief Function IsFinished
          * 
@@ -139,18 +143,18 @@ class MHO_FringeFitter
          * @note This is a virtual function.
          */
         virtual bool IsFinished() = 0;
+        
         /**
          * @brief Function Finalize
          * @note This is a virtual function.
          */
         virtual void Finalize() = 0;
 
-        //accept a visitor...pure virtual, must implement
         /**
-         * @brief Function Accept
+         * @brief Function Accept: accept a visitor...pure virtual, must be implemented in derived class
          * 
          * @param visitor (MHO_FringeFitterVisitor*)
-         * @note This is a virtual function.
+         * @note This is a (pure) virtual function.
          */
         virtual void Accept(MHO_FringeFitterVisitor* visitor) = 0;
 
@@ -183,7 +187,7 @@ class MHO_FringeFitterVisitor
          * @brief Function Visit
          * 
          * @param fitter (MHO_FringeFitter*)
-         * @note This is a virtual function.
+         * @note This is a (pure) virtual function.
          */
         virtual void Visit(MHO_FringeFitter* fitter) = 0;
 };
