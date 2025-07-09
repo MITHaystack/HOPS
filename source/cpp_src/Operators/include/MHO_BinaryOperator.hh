@@ -13,7 +13,7 @@ namespace hops
  *@class MHO_BinaryOperator
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Oct 15 12:58:01 2021 -0400
- *@brief
+ *@brief an operator which takes to array types as input (XArgType1 and XArgType2), and writes to a single type as output (XArgType3)
  */
 
 /**
@@ -32,9 +32,8 @@ class MHO_BinaryOperator: public MHO_Operator
 
         virtual ~MHO_BinaryOperator(){};
 
-        //out-of-place operation, in1/in2 unmodified, result stored in out
         /**
-         * @brief Setter for args
+         * @brief Setter for args, out-of-place operation, in1/in2 unmodified, result stored in out
          * 
          * @param in1 Input argument of type XArgType1
          * @param in2 Input argument of type XArgType2
@@ -58,7 +57,7 @@ class MHO_BinaryOperator: public MHO_Operator
         }
 
         /**
-         * @brief Executes FFTW plan using provided arguments and returns result.
+         * @brief Executes operation using provided arguments and returns result.
          * 
          * @return bool indicating success/failure of execution.
          * @note This is a virtual function.
@@ -76,9 +75,9 @@ class MHO_BinaryOperator: public MHO_Operator
         /**
          * @brief Function InitializeImpl
          * 
-         * @param !in1 Parameter description
-         * @param !in2 Parameter description
-         * @param !out Parameter description
+         * @param !in1 input paratmer 1
+         * @param !in2 input parameter 2
+         * @param !out output parameter
          * @return Return value (bool)
          * @note This is a virtual function.
          */
@@ -86,16 +85,16 @@ class MHO_BinaryOperator: public MHO_Operator
         /**
          * @brief Function ExecuteImpl
          * 
-         * @param !in1 Parameter description
-         * @param !in2 Parameter description
-         * @param !out Parameter description
+         * @param !in1 input paratmer 1
+         * @param !in2 input parameter 2
+         * @param !out output parameter
          * @return Return value (bool)
          * @note This is a virtual function.
          */
         virtual bool ExecuteImpl(const XArgType1* /*!in1*/, const XArgType2* /*!in2*/, XArgType3* /*!out*/) = 0;
 
     protected:
-        //place for args to be store for derived class to pick them up/modify
+        //place for args to be store for the derived class to pick them up/modify
         std::tuple< const XArgType1*, const XArgType2*, XArgType3* > fArgs;
 };
 

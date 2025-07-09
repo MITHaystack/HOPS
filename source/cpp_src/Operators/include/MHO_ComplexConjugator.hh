@@ -14,7 +14,7 @@ namespace hops
  *@class MHO_ComplexConjugator
  *@author J. Barrett - barrettj@mit.edu
  *@date Wed Aug 18 12:02:32 2021 -0400
- *@brief
+ *@brief applies complex conjugation to every element of the array (XArrayType)
  */
 
 /**

@@ -14,7 +14,7 @@ namespace hops
  *@class MHO_AbsoluteValue
  *@author J. Barrett - barrettj@mit.edu
  *@date Wed Aug 18 12:02:32 2021 -0400
- *@brief
+ *@brief takes the absolute value of every element in the XArrayType
  */
 
 /**
