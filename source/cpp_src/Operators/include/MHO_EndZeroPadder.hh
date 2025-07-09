@@ -19,7 +19,7 @@ namespace hops
  *@class MHO_EndZeroPadder
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Aug 11 13:35:43 2023 -0400
- *@brief
+ *@brief Pads out the end of a multidimensional array with zeros
  */
 
 /**
@@ -50,18 +50,18 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
 
         virtual ~MHO_EndZeroPadder() { delete fTmpWorkspace; };
 
-        //factor M by which the new array will be extended (original array, length N, new array length NM)
         /**
-         * @brief Setter for padding factor
+         * @brief Setter for padding factor, the factor M by which the new array will be extended 
+         * (original array, length N, new array length NM)
          * 
          * @param factor New length factor for extended array
          * @note This is a virtual function.
          */
         virtual void SetPaddingFactor(std::size_t factor) { fPaddingFactor = factor; };
 
-        //instead of a multiplicative factor, the original array, length N is padded out ot the new specified length M
         /**
-         * @brief Setter for padded size
+         * @brief Setter for padded size, instead of a multiplicative factor, 
+         * the original array, length N is padded out ot the new specified length M
          * 
          * @param new_size New padded size of type std::size_t
          * @note This is a virtual function.
@@ -73,25 +73,25 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
         }
 
         /**
-         * @brief Setter for end padded
+         * @brief Setter for end padded, zero padding from end of data out to end of the array
          * @note This is a virtual function.
          */
-        virtual void SetEndPadded() { fFlipped = false; }; //zero padding from end of signal out to end of the array
+        virtual void SetEndPadded() { fFlipped = false; }; //
 
         /**
-         * @brief Setter for reverse end padded
+         * @brief Setter for reverse end padded, place data at end of array and zero pad out to start
          * @note This is a virtual function.
          */
-        virtual void SetReverseEndPadded() { fFlipped = true; }; //place signal at end of array and zero pad out to start
+        virtual void SetReverseEndPadded() { fFlipped = true; };
 
         /**
-         * @brief Disables Normal Mapping FX Mode by setting fNormFXMode to false.
+         * @brief Disables Normal Mapping FX Mode by setting fNormFXMode to false. UNUSED - TODO REMOVE ME!
          * @note This is a virtual function.
          */
         virtual void DisableNormFXMode() { fNormFXMode = false; };
 
         /**
-         * @brief Enables Normalized FX Mode by setting fNormFXMode to true.
+         * @brief Enables Normalized FX Mode by setting fNormFXMode to true. UNUSED - TODO REMOVE ME!
          * @note This is a virtual function.
          */
         virtual void EnableNormFXMode() { fNormFXMode = true; };
@@ -106,10 +106,10 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
         } //keep the memory reserved for the workspace around after exectution
 
         /**
-         * @brief Sets preserve workspace flag to false.
+         * @brief Sets preserve workspace flag to false, delete memory after execution
          * @note This is a virtual function.
          */
-        virtual void DoNotPreserveWorkspace() { fPreserveWorkspace = false; } //delete memory after execution
+        virtual void DoNotPreserveWorkspace() { fPreserveWorkspace = false; }
 
         /**
          * @brief Disables copying tags by setting fCopyTags to false.
@@ -123,10 +123,11 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
          */
         virtual void EnableTagCopy() { fCopyTags = true; }
 
-        //sometimes we may want to select/deselect particular dimensions of the x-form
-        //default is to transform along every dimension, but that may not always be needed
+
         /**
          * @brief Selects all axes for transformation.
+         * sometimes we may want to select/deselect particular dimensions of the x-form
+         * default is to transform along every dimension, but that may not always be needed
          */
         void SelectAllAxes()
         {
@@ -148,7 +149,7 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
         }
 
         /**
-         * @brief Selects an axis for transformation if its index is within array rank.
+         * @brief Selects an axis for transformation if its index is within the array rank.
          * 
          * @param axis_index Index of the axis to select.
          */

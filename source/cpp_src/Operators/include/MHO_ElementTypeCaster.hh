@@ -70,7 +70,7 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
     private:
         //default...does nothing
         /**
-         * @brief Copies axes and tags from an input XArrayType1 to an output XArrayType2.
+         * @brief use SFINAE to generate specialization for MHO_TableContainer types
          * 
          * @tparam XArrayType1 Template parameter XArrayType1
          * @tparam XArrayType2 Template parameter XArrayType2
@@ -83,7 +83,6 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
                                  void >::type
         IfTableCopyAxesAndTags(const XArrayType1* /*!in*/, XArrayType2* /*!out*/){};
 
-        //use SFINAE to generate specialization for MHO_TableContainer types
         /**
          * @brief Copies axes and tags from input XArrayType1 to output XArrayType2 if they inherit from MHO_TableContainer.
          * 
