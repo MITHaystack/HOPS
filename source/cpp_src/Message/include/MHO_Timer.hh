@@ -11,15 +11,12 @@ namespace hops
  *@file MHO_Timer.hh
  *@class MHO_Timer
  *@author J. Barrett - barrettj@mit.edu
- * A timer class responsible for thread and process benchmarking
+ *@brief Class MHO_Timer - A timer class responsible for thread and process benchmarking
  * For more information on the linux system variables and functions that were leveraged see:
- *https://linux.die.net/man/3/clock_gettime
+ * https://linux.die.net/man/3/clock_gettime
  * TODO -- detect if system actually has a realtime clock and disable if not present
  */
 
-/**
- * @brief Class MHO_Timer
- */
 class MHO_Timer
 {
     public:
