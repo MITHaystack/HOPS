@@ -15,12 +15,9 @@ namespace hops
  *@class MHO_MK4VexInterface
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue May 19 01:47:28 2020 -0400
- *@brief
+ *@brief MHO_MK4VexInterface convers root (ovex) file to json file for HOPS4 consumption
  */
 
-/**
- * @brief Class MHO_MK4VexInterface
- */
 class MHO_MK4VexInterface
 {
     public:
@@ -28,13 +25,13 @@ class MHO_MK4VexInterface
         virtual ~MHO_MK4VexInterface();
 
         /**
-         * @brief Opens a VEX file and parses its contents into an internal representation.
+         * @brief Opens a VEX file and parses its contents into an internal JSON representation.
          * 
          * @param file_path Path to the VEX file to be opened and parsed
          */
         void OpenVexFile(std::string file_path);
         /**
-         * @brief Getter for vex
+         * @brief Getter for vex as JSON object
          * 
          * @return mho_json containing vex data or an empty json object.
          */

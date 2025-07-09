@@ -37,23 +37,21 @@ namespace hops
  *@class MHO_MK4CorelInterface
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu May 28 19:47:51 2020 -0400
- *@brief This class implicitly assumes that the frequency/channel configuration
+ *@brief MHO_MK4CorelInterface - Needed to import data from mk4_corel file objects (type_1xx) to HOPS4 format.
+ * This class implicitly assumes that the frequency/channel configuration
  * is shared among all polarization products (i.e. nlags), we may want to loosen this restriction
  * in the future
  */
 
-/**
- * @brief Class MHO_MK4CorelInterface
- */
+
 class MHO_MK4CorelInterface
 {
     public:
         MHO_MK4CorelInterface();
         virtual ~MHO_MK4CorelInterface();
 
-        //need both the vex (root) file and corel file to extract the data
         /**
-         * @brief Setter for vex file
+         * @brief Setter for vex file, we need both the vex (root) file and corel file to extract the data
          * 
          * @param vex Path to the VEX file
          */
@@ -66,9 +64,8 @@ class MHO_MK4CorelInterface
          */
         void SetCorelFile(const std::string& corel) { fCorelFile = corel; }
 
-        //get raw mk4 corel data
         /**
-         * @brief Getter for corel data
+         * @brief Getter for raw mk4 corel data struct
          * 
          * @return Pointer to struct mk4_corel
          */
