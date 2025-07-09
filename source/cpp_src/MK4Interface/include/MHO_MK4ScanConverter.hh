@@ -49,7 +49,7 @@ namespace hops
  *@class MHO_MK4ScanConverter
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Feb 8 13:15:14 2024 -0500
- *@brief
+ *@brief Converts an entire Mark4 directory to HOPS4 format (station, corel and ovex data)
  */
 
 /**
@@ -70,7 +70,7 @@ class MHO_MK4ScanConverter
          */
         static int DetermineDirectoryType(const std::string& in_dir);
         /**
-         * @brief Processes scan data from input directory to output directory in SWIN format.
+         * @brief Processes scan data from input directory (MK4 format) to output directory (HOPS4 format)
          * 
          * @param input_dir Input directory containing scan files
          * @param output_dir Output directory for processed files
@@ -81,7 +81,7 @@ class MHO_MK4ScanConverter
     private:
         //convert a corel file
         /**
-         * @brief Converts Corel input file to MK4ScanConverter format and writes output.
+         * @brief Converts Corel input file to HOPS4 format and writes output.
          * 
          * @param root_file Path to root VEX file
          * @param input_file Input Corel file path
@@ -92,7 +92,7 @@ class MHO_MK4ScanConverter
 
         //convert a station file
         /**
-         * @brief Converts a station input file to an output file in SWIN format.
+         * @brief Converts a station input file to an output file HOPS4 format.
          * 
          * @param root_file Path to the root VEX file
          * @param input_file Path to the input station file

@@ -117,7 +117,7 @@ namespace hops
  *@class MHO_MK4FringeExport
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Jan 25 21:05:22 2024 -0500
- *@brief
+ *@brief Exports HOPS4 fringe data to mark4 type_2xx file data
  */
 
 class MHO_MK4FringeExport

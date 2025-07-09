@@ -41,14 +41,10 @@ namespace hops
  *@class MHO_MK4StationInterface
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Nov 13 10:58:21 2020 -0500
- *@brief This class implicitly assumes that the frequency/channel configuration
- * is shared among all polarization products, we may want to loosen this restriction
- * in the future
+ *@brief MHO_MK4StationInterface converts a mk4 station file (type_3xx) to HOPS4 format
  */
 
-/**
- * @brief Class MHO_MK4StationInterface
- */
+
 class MHO_MK4StationInterface
 {
     public:
