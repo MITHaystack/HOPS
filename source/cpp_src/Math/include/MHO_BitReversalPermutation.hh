@@ -34,14 +34,16 @@ class MHO_BitReversalPermutation
          * @note This is a static function.
          */
         static bool IsPowerOfTwo(unsigned int N);
+        
         /**
          * @brief Calculates 2 raised to the power of N using bit shifting.
          * 
-         * @param N Input exponent for the calculation.
+         * @param N Input exponent for the calculation (N must be >= 0 and <=31)
          * @return Result of 2^N as an unsigned integer.
          * @note This is a static function.
          */
-        static unsigned int TwoToThePowerOf(unsigned int N); //N must be >= 0 and <=31
+        static unsigned int TwoToThePowerOf(unsigned int N); 
+        
         /**
          * @brief Calculates the logarithm base two of an unsigned integer N using bitwise operations.
          * 
@@ -50,6 +52,7 @@ class MHO_BitReversalPermutation
          * @note This is a static function.
          */
         static unsigned int LogBaseTwo(unsigned int N);
+        
         /**
          * @brief Calculates the next lowest power of two for a given unsigned integer.
          * 
@@ -58,6 +61,7 @@ class MHO_BitReversalPermutation
          * @note This is a static function.
          */
         static unsigned int NextLowestPowerOfTwo(unsigned int N);
+        
         /**
          * @brief Reverses the bit indices of a given unsigned integer.
          * 
@@ -77,15 +81,17 @@ class MHO_BitReversalPermutation
          * @note This is a static function.
          */
         static bool IsPowerOfBase(unsigned int N, unsigned int B);
+        
         /**
          * @brief Calculates B raised to the power N.
          * 
          * @param B Base number to be raised
-         * @param N Power to which base is raised
+         * @param N Power to which base is raised (N must be >= 0)
          * @return Result of B^N
          * @note This is a static function.
          */
-        static unsigned int RaiseBaseToThePower(unsigned int B, unsigned int N); //N must be >= 0
+        static unsigned int RaiseBaseToThePower(unsigned int B, unsigned int N);
+        
         /**
          * @brief Calculates the logarithm base B of N, assuming N is a perfect power of B.
          * 
@@ -96,9 +102,8 @@ class MHO_BitReversalPermutation
          */
         static unsigned int LogBaseB(unsigned int N, unsigned int B);
 
-        //must have N = 2^P, with P an integer
         /**
-         * @brief Computes bit-reversed indices using Buneman algorithm for input size N = 2^P.
+         * @brief Computes bit-reversed indices using Buneman algorithm for input N, must have N = 2^P, with P an integer
          * 
          * @param N Input size, must be a power of two
          * @param index_arr Output array to store permutated indices
@@ -106,9 +111,8 @@ class MHO_BitReversalPermutation
          */
         static void ComputeBitReversedIndicesBaseTwo(unsigned int N, unsigned int* index_arr);
 
-        //non-strided data access pattern
         /**
-         * @brief Permutes an array using a given permutation index array.
+         * @brief Permutes an array using a given permutation index array (non-strided data access pattern).
          * 
          * @tparam DataType Template parameter DataType
          * @param N Size of the array and permutation index array.
@@ -138,15 +142,14 @@ class MHO_BitReversalPermutation
             }
         }
 
-        //strided data access version
         /**
-         * @brief Permutes a DataType array using an index permutation.
+         * @brief Permutes a DataType array using an index permutation (strided data access version)
          * 
          * @tparam DataType Template parameter DataType
          * @param N Size of the array and permutation index array.
          * @param permutation_index_arr Array containing the permutation indices.
          * @param arr DataType array to be permuted.
-         * @param stride (unsigned int)
+         * @param stride (unsigned int), memory stride between adjacent elements in the array
          * @note This is a static function.
          */
         template< typename DataType >
@@ -171,10 +174,11 @@ class MHO_BitReversalPermutation
             }
         }
 
-        //non-strided data access pattern
-        //branch free (this is actually slower on CPU, but we preserve it here for comparison as this method is used on GPU)
+
         /**
          * @brief Function PermuteArrayBranchFree
+         * non-strided data access pattern
+         * branch free (this is actually slower on CPU, but we preserve it here for comparison as this method is used on GPU)
          * 
          * @tparam DataType Template parameter DataType
          * @param N (unsigned int)
@@ -207,16 +211,16 @@ class MHO_BitReversalPermutation
             }
         }
 
-        //strided data access version
-        //branch free (this is actually slower on CPU, but we preserve it here for comparison as this method is used on GPU)
+
         /**
          * @brief Function PermuteArrayBranchFree
-         * 
+         * strided data access version
+         * branch free (this is actually slower on CPU, but we preserve it here for comparison as this method is used on GPU)
          * @tparam DataType Template parameter DataType
          * @param N (unsigned int)
          * @param permutation_index_arr (const unsigned int*)
          * @param arr (DataType*)
-         * @param stride (unsigned int)
+         * @param stride (unsigned int), memory stride between adjacent elements in the array
          * @note This is a static function.
          */
         template< typename DataType >
