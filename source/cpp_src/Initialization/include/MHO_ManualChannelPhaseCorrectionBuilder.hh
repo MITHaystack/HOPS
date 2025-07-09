@@ -12,7 +12,7 @@ namespace hops
  *@class MHO_ManualChannelPhaseCorrectionBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Wed May 31 17:11:03 2023 -0400
- *@brief
+ *@brief build a manual per-channel pc_phase operator
  */
 
 /**
@@ -31,7 +31,7 @@ class MHO_ManualChannelPhaseCorrectionBuilder: public MHO_OperatorBuilder, publi
         virtual ~MHO_ManualChannelPhaseCorrectionBuilder(){};
 
         /**
-         * @brief Constructs and initializes an instance of MHO_ManualChannelPhaseCorrectionBuilder.
+         * @brief Constructs and initializes a MHO_ManualChannelPhaseCorrection operator instance
          * 
          * @return bool indicating success/failure of construction
          */

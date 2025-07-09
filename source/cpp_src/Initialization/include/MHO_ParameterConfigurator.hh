@@ -16,7 +16,7 @@ namespace hops
  *@file MHO_ParameterConfigurator.hh
  *@class MHO_ParameterConfigurator
  *@date Mon Jun 12 12:51:32 2023 -0400
- *@brief
+ *@brief some control statements simply trigger a parameter value to be set to a certain value, this class handles this special case
  *@author J. Barrett - barrettj@mit.edu
  */
 
@@ -31,9 +31,8 @@ class MHO_ParameterConfigurator
 
         virtual ~MHO_ParameterConfigurator(){};
 
-        //json config for this parameter (parsed from the control file)
         /**
-         * @brief Setter for conditions
+         * @brief set conditions for this parameter (parsed from the control file)
          * 
          * @param cond Input conditions of type mho_json
          * @note This is a virtual function.
@@ -41,7 +40,7 @@ class MHO_ParameterConfigurator
         virtual void SetConditions(const mho_json& cond) { fConditions = cond; } //conditional statements
 
         /**
-         * @brief Setter for attributes
+         * @brief Setter for (current) data attributes
          * 
          * @param attr Input attribute object to set
          * @note This is a virtual function.
@@ -49,7 +48,7 @@ class MHO_ParameterConfigurator
         virtual void SetAttributes(const mho_json& attr) { fAttributes = attr; }; //configuration parameters
 
         /**
-         * @brief Configures weight channel frequencies by parsing attributes and determining parameter types.
+         * @brief Configures parameter value by evaluating conditions and attributes
          * 
          * @return bool indicating success (true) or failure (false)
          * @note This is a virtual function.
@@ -93,6 +92,7 @@ class MHO_ParameterConfigurator
          * @return Parameter type enum based on input string.
          */
         ParamType DetermineParamType(const std::string& par_type) const;
+        
         /**
          * @brief Determines the parameter value type from a given string representation.
          * 
@@ -109,6 +109,7 @@ class MHO_ParameterConfigurator
          * @return void
          */
         template< typename XValueType > void SetScalarParameter(std::string path, const XValueType& value);
+        
         /**
          * @brief Getter for scalar parameter
          * 
@@ -122,35 +123,35 @@ class MHO_ParameterConfigurator
         /**
          * @brief Setter for vector parameter
          * 
-         * @tparam XValueType Template parameter XValueType
+          * @tparam XValueType Template parameter (used in std::vector< XValueType >&)
          * @param path Parameter path as std::string
          * @param values Vector of values to set at given path
          * @return void
          */
         template< typename XValueType > void SetVectorParameter(std::string path, const std::vector< XValueType >& values);
-        /**
-         * @brief Getter for vector parameter
-         * 
-         * @tparam XValueType Template parameter XValueType
-         * @tparam std::vector< Template parameter std::vector<
-         * @param path The path to the parameter in the parameter store.
-         * @param values (std::vector< XValueType )&
-         * @return void
-         */
+        
+
+
+         /**
+          * @brief Getter for vector parameter
+          * 
+          * @tparam XValueType Template parameter (used in std::vector< XValueType >&)
+          * @param path The path to the parameter in the parameter store.
+          * @param values (std::vector< XValueType )&
+          * @return void
+          */
+        template< typename XValueType > void GetVectorParameter(std::string path, std::vector< XValueType >& values);
+
         /**
          * @brief Setter for compound parameter
          * 
-         * @tparam XValueType Template parameter XValueType
-         * @tparam XValueType Template parameter XValueType
          * @param path Path to the compound parameter as a std::string.
          * @param values JSON values to set for the compound parameter.
          */
-        template< typename XValueType > void GetVectorParameter(std::string path, std::vector< XValueType >& values);
-
         void SetCompoundParameter(std::string path, const mho_json& values);
 
         /**
-         * @brief Calculates logical intersection of two sorted string vectors using a labeler.
+         * @brief Calculates logical intersection of two sorted string vectors
          * 
          * @param values1 First vector of strings to find intersection.
          * @param values2 Second vector of strings to find intersection.
@@ -167,7 +168,7 @@ class MHO_ParameterConfigurator
 };
 
 /**
- * @brief Sets a scalar parameter in the MHO system using a given path and value.
+ * @brief Sets a scalar parameter in the MHO_ParameterStore using a given path and value.
  * 
  * @param path The path to the parameter as a string.
  * @param value The new value for the parameter of type XValueType.

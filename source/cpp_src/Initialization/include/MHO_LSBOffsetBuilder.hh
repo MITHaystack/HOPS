@@ -11,7 +11,7 @@ namespace hops
  *@class MHO_LSBOffsetBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Jun 20 12:35:56 2023 -0400
- *@brief
+ *@brief builds a LSB (lower side band) offset operator
  */
 
 /**
@@ -31,7 +31,7 @@ class MHO_LSBOffsetBuilder: public MHO_OperatorBuilder
         virtual ~MHO_LSBOffsetBuilder(){};
 
         /**
-         * @brief Constructs and initializes the LSBOffsetBuilder object.
+         * @brief Constructs and initializes a MHO_LSBOffset operator.
          * 
          * @return True if successful, false otherwise.
          */

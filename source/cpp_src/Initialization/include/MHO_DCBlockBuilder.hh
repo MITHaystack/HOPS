@@ -11,7 +11,7 @@ namespace hops
  *@class MHO_DCBlockBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Jun 20 12:35:56 2023 -0400
- *@brief
+ *@brief builds a DC block operator
  */
 
 /**
@@ -31,7 +31,7 @@ class MHO_DCBlockBuilder: public MHO_OperatorBuilder
         virtual ~MHO_DCBlockBuilder(){};
 
         /**
-         * @brief Constructs and adds an operator builder to the toolbox's multimap.
+         * @brief Constructs and adds MHO_DCBlock operator to the toolbox.
          * 
          * @return No return value.
          */
