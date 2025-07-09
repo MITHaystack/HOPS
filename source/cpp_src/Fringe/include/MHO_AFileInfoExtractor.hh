@@ -46,11 +46,9 @@ class MHO_AFileInfoExtractor
         virtual ~MHO_AFileInfoExtractor(){};
 
     public:
-        // static mho_json summarize_root_file(std::string filename);
-        // static mho_json summarize_corel_file(std::string filename);
-        // static mho_json summarize_station_file(std::string filename);
+
         /**
-         * @brief Summarizes a fringe file and populates fsum with its data.
+         * @brief Summarizes a fringe file and populates the json object fsum with its data.
          * 
          * @param filename The path to the fringe file to summarize.
          * @param fsum (mho_json&)
@@ -60,7 +58,7 @@ class MHO_AFileInfoExtractor
 
         //version 5 or 6 only
         /**
-         * @brief Converts mho_json data to ALIST row string for versions 5 or 6.
+         * @brief Converts mho_json data to alist row string for versions 5 or 6.
          * 
          * @param data Input mho_json data object
          * @param version ALIST format version (5 or 6)
@@ -69,7 +67,7 @@ class MHO_AFileInfoExtractor
         std::string ConvertToAlistRow(const mho_json& data, int version);
 
         /**
-         * @brief Getter for alist header
+         * @brief Getter for alist header (row text)
          * 
          * @param version Version number for which to retrieve the header
          * @param type Type of header to retrieve
@@ -79,7 +77,6 @@ class MHO_AFileInfoExtractor
         std::string GetAlistHeader(int version, int type, char comment_char);
 
     protected:
-        //retrieve from the parameter store
         /**
          * @brief Retrieves a parameter from the store and populates it into a json object.
          * 
@@ -92,7 +89,6 @@ class MHO_AFileInfoExtractor
         void RetrieveParameter(mho_json& obj, const std::string& name, const MHO_ParameterStore& paramStore,
                                const std::string& path, const std::string& type);
 
-        //retrieve from a json object, convert to string
         /**
          * @brief Retrieve and convert a parameter from a json object to string based on its type.
          * 
@@ -113,7 +109,6 @@ class MHO_AFileInfoExtractor
          */
         par_type DetermineParameterType(std::string etype);
 
-        //convert a type to a string using the specified pformat
         /**
          * @brief Converts a value to string using specified format or default precision.
          * 
