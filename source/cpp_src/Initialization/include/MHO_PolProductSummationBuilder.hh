@@ -11,7 +11,7 @@ namespace hops
  *@class MHO_PolProductSummationBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Mon Jan 15 11:23:36 2024 -0500
- *@brief
+ *@brief Builds an operator to perform a summation over specified pol-products (or pseudo-Stokes-I)
  */
 
 /**
@@ -31,7 +31,7 @@ class MHO_PolProductSummationBuilder: public MHO_OperatorBuilder
         virtual ~MHO_PolProductSummationBuilder(){};
 
         /**
-         * @brief Constructs and initializes the PolProductSummationBuilder object.
+         * @brief Constructs and initializes the PolProductSummation operator, and adds to toolbox
          * 
          * @return True if successful, false otherwise.
          */
