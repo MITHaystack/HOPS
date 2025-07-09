@@ -19,7 +19,8 @@ namespace hops
  *@class MHO_BasicFringeFitter
  *@author J. Barrettj - barrettj@mit.edu
  *@date Wed Sep 20 15:37:46 2023 -0400
- *@brief basic single-baseline fringe fitter, no bells or whistles
+ *@brief basic single-baseline single-polproduct (or sum) fringe fitter, no bells or whistles
+ * basic run scheme: configure, init, then: while(!IsFinished() ){ pre-run, run, post-run }
  */
 
 /**
@@ -32,39 +33,44 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         MHO_BasicFringeFitter(MHO_FringeData* data);
         virtual ~MHO_BasicFringeFitter();
 
-        //basic run scheme: configure, init, then while(!IsFinished() ){ pre-run, run, post-run }
         /**
          * @brief Configures fringe data and initializes operator build manager.
          * @note This is a virtual function.
          */
         virtual void Configure() override;
+        
         /**
          * @brief Initializes fringe search operators and loads necessary data.
          * @note This is a virtual function.
          */
         virtual void Initialize() override;
+        
         /**
          * @brief Executes user-specified scripts before running fringe fitting.
          * @note This is a virtual function.
          */
         virtual void PreRun() override;
+        
         /**
-         * @brief Runs fringe fitting algorithm if not finished and not skipped.
+         * @brief Runs fringe fitting algorithm if this pass is not finished and not skipped.
          * 
          * @return void
          * @note This is a virtual function.
          */
         virtual void Run() override;
+        
         /**
          * @brief Executes user-specified scripts after fringe fitting if not skipped.
          * @note This is a virtual function.
          */
         virtual void PostRun() override;
+        
         /**
-         * @brief Finalizes fringe fitting process by plotting data and executing operators.
+         * @brief Finalizes fringe fitting process by plotting data and executing final operators.
          * @note This is a virtual function.
          */
         virtual void Finalize() override;
+        
         /**
          * @brief Checks if the fringe fitting process is finished.
          * 
@@ -73,7 +79,6 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
          */
         virtual bool IsFinished() override;
 
-        //accept a visitor
         /**
          * @brief Accepts and invokes a visitor to visit this object.
          * 
@@ -87,12 +92,14 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
 
     protected:
         //main work functions, operators and works space for basic fringe search function
+        
         /**
          * @brief Performs coarse search in delay/delay-rate space for fringe fitting.
          * 
          * @param set_windows Flag to set windows for SBD/MBD/DR searches.
          */
         void coarse_fringe_search(bool set_windows = true);
+        
         /**
          * @brief Performs fine interpolation step to search for peak over a 5x5x5 grid around the peak.
          */
@@ -100,7 +107,7 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
 
         /**
          * @brief Checks if visibility data contains mixed sideband channels (USB and LSB).
-         * 
+         * we switch the MHO_NormFX* object depending on the type of freq setup (single or mixed sideband)
          * @param vis Input visibility_type pointer
          * @return True if mixed sidebands are present, false otherwise
          */
