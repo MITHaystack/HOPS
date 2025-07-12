@@ -15,7 +15,7 @@ namespace hops
  *@class  MHO_VexElementLineGenerator
  *@author  J. Barrett - barrettj@mit.edu
  *@date Fri Jun 17 10:45:26 2022 -0400
- *@brief
+ *@brief Constructs a formatted line for an data element in VEX format - needed to reconstruct VEX files from json representation
  */
 
 /**
@@ -131,7 +131,7 @@ class MHO_VexElementLineGenerator
         std::string fSpace;
 
         /**
-         * @brief Checks if a field is the last optional field in the given fields.
+         * @brief Checks if a field is the last optional field in the given format fields.
          * 
          * @param field_name Name of the field to check.
          * @param fields (mho_json&)

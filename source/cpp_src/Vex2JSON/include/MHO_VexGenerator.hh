@@ -82,12 +82,14 @@ class MHO_VexGenerator
         std::string fIndentPad; //indentation "character"
         bool fBlockFormatLoaded;
         mho_json fBlockFormat;
+
         /**
          * @brief Loads block format from file using given block name.
          * 
          * @param block_name Name of the block to load format for.
          */
         void LoadBlockFormat(std::string block_name);
+
         /**
          * @brief Getter for block format file name
          * 

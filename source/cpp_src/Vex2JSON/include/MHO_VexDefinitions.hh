@@ -6,7 +6,7 @@
  *@class  MHO_VexDefinitions
  *@author  J. Barrett - barrettj@mit.edu
  *@date Tue Jun 21 11:08:31 2022 -0400
- *@brief  Basic definitions of various tokens and utilities
+ *@brief  Basic definitions of various tokens and and patterns special for parsing VEX files
  */
 
 #include "MHO_Message.hh"
@@ -120,8 +120,7 @@ class MHO_VexDefinitions
         /**
          * @brief Returns a string containing whitespace characters.
          * 
-         * @return A std::string containing space ("), tab (	), carriage return (), and newline (
-) characters.
+         * @return A std::string containing space (' '), tab (\t), carriage return (\r), and newline (\n) characters.
          * @note This is a static function.
          */
         static std::string WhitespaceDelim() { return std::string(" \t\r\n"); };
@@ -145,8 +144,7 @@ class MHO_VexDefinitions
         /**
          * @brief Returns a string containing whitespace characters.
          * 
-         * @return A std::string containing " 	
-;"
+         * @return A std::string containing whitespace
          * @note This is a static function.
          */
         static std::string StartTagDelim() { return std::string(" \t\r\n;"); };
