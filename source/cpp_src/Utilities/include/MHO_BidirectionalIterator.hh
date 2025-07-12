@@ -12,7 +12,7 @@ namespace hops
  *@class  MHO_BidirectionalIterator
  *@author  J. Barrett - barrettj@mit.edu
  *@date Sat Oct 2 04:34:18 2021 -0400
- *@brief
+ *@brief provides an iterator over a object in either increasing or decreasing index direction
  */
 
 /**
