@@ -13,7 +13,7 @@ namespace hops
  *@class MHO_TransformingOperator
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Oct 15 12:58:01 2021 -0400
- *@brief
+ *@brief Operator which changes one N-D array type into a different N-D array type
  */
 
 /**
@@ -30,9 +30,8 @@ template< class XArgType1, class XArgType2 > class MHO_TransformingOperator: pub
 
         virtual ~MHO_TransformingOperator(){};
 
-        //operation transforms the original type into another
         /**
-         * @brief Setter for args
+         * @brief Setter for args (operation transforms the original type into another)
          * 
          * @param in Pointer to constant XArgType1
          * @param out Pointer to XArgType2
@@ -49,7 +48,7 @@ template< class XArgType1, class XArgType2 > class MHO_TransformingOperator: pub
         virtual bool Initialize() override { return InitializeImpl(std::get< 0 >(fArgs), std::get< 1 >(fArgs)); }
 
         /**
-         * @brief Executes FFTW/DFT function using provided arguments.
+         * @brief Executes transformation using provided arguments.
          * 
          * @return bool indicating success/failure of execution.
          * @note This is a virtual function.
@@ -66,6 +65,7 @@ template< class XArgType1, class XArgType2 > class MHO_TransformingOperator: pub
          * @note This is a virtual function.
          */
         virtual bool InitializeImpl(const XArgType1* in, XArgType2* out) = 0;
+
         /**
          * @brief Executes an operation transforming input type to output type.
          * 

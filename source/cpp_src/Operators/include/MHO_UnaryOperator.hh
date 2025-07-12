@@ -13,10 +13,10 @@ namespace hops
  *@class MHO_UnaryOperator
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Oct 15 12:58:01 2021 -0400
- *@brief
+ *@brief operator which only operates on a single array, input = ouput, but the output can be a different object
  */
 
-//only operates on a single array, input = ouput
+//
 /**
  * @brief Class MHO_UnaryOperator
  */
@@ -78,7 +78,7 @@ template< class XArgType > class MHO_UnaryOperator: public MHO_Operator
         }
 
         /**
-         * @brief Executes FFTW transform using provided arguments and return type.
+         * @brief Executes operation using provided arguments and return type.
          * 
          * @return bool indicating success of execution.
          * @note This is a virtual function.
