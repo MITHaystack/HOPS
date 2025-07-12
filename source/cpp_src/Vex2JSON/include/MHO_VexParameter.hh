@@ -11,7 +11,7 @@ namespace hops
  *@class  MHO_VexParameter
  *@author  J. Barrett - barrettj@mit.edu
  *@date Thu May 26 16:55:16 2022 -0400
- *@brief
+ *@brief Stores a vex parameter value token (with associated units)
  */
 
 /**

@@ -23,7 +23,7 @@ namespace hops
  *@class  MHO_VexParser
  *@author  J. Barrett - barrettj@mit.edu
  *@date Wed May 25 17:04:24 2022 -0400
- *@brief
+ *@brief Parser for a vex file (stores results in a JSON object)
  */
 
 /**

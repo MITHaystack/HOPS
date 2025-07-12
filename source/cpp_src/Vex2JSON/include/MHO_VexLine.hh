@@ -11,7 +11,7 @@ namespace hops
  *@class  MHO_VexLine
  *@author  J. Barrett - barrettj@mit.edu
  *@date Fri May 27 12:45:21 2022 -0400
- *@brief
+ *@brief data structure to store a line from a vex file (for parsing/manipulation)
  */
 
 /**

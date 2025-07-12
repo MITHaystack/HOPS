@@ -17,7 +17,7 @@ namespace hops
  *@class  MHO_VexTokenProcessor
  *@author  J. Barrett - barrettj@mit.edu
  *@date Mon Jun 13 22:27:21 2022 -0400
- *@brief
+ *@brief Converts vex tokens (strings) into values of a specific type
  */
 
 /**
@@ -38,6 +38,7 @@ class MHO_VexTokenProcessor
          * @return First token converted to integer as mho_json
          */
         mho_json ProcessInt(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
+
         /**
          * @brief Converts a list of string tokens into integers and stores them in an mho_json object.
          * 
@@ -47,6 +48,7 @@ class MHO_VexTokenProcessor
          * @return mho_json object containing the converted integers as a vector of ints
          */
         mho_json ProcessListInt(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
+
         /**
          * @brief Processes a list string into a JSON object and stores tokens.
          * 
@@ -56,6 +58,7 @@ class MHO_VexTokenProcessor
          * @return A JSON object containing the processed list string.
          */
         mho_json ProcessListString(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
+
         /**
          * @brief Processes a real number value from tokens and returns it as an mho_json object.
          * 
@@ -65,6 +68,7 @@ class MHO_VexTokenProcessor
          * @return mho_json object containing 'value' and optionally 'units'
          */
         mho_json ProcessReal(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
+
         /**
          * @brief Processes a list of real numbers as strings and converts them into a JSON object with values and optional units.
          * 
