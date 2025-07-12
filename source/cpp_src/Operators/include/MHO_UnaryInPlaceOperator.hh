@@ -13,10 +13,9 @@ namespace hops
  *@class MHO_UnaryInPlaceOperator
  *@author J. Barrett - barrettj@mit.edu
  *@date Mon Jul 31 14:54:52 2023 -0400
- *@brief
+ *@brief operator which only operates on a single array, input = ouput, but does the work in place without copying
  */
 
-//only operates on a single array, input = ouput
 /**
  * @brief Class MHO_UnaryInPlaceOperator
  */
@@ -44,7 +43,7 @@ template< class XArgType > class MHO_UnaryInPlaceOperator: public MHO_Operator
         virtual bool Initialize() override { return InitializeInPlace(std::get< 0 >(fInPlaceArgs)); }
 
         /**
-         * @brief Executes FFTW plan in-place using provided arguments.
+         * @brief Executes operation in place using provided argument.
          * 
          * @return bool indicating success of execution.
          * @note This is a virtual function.
@@ -61,7 +60,7 @@ template< class XArgType > class MHO_UnaryInPlaceOperator: public MHO_Operator
          */
         virtual bool InitializeInPlace(XArgType* in) = 0;
         /**
-         * @brief Executes an operation in-place using input arguments.
+         * @brief Executes an operation in-place using input argument.
          * 
          * @param in Input argument for executing operation.
          * @return True if execution is successful, false otherwise.
