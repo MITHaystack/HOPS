@@ -25,7 +25,7 @@ namespace hops
  *@class MHO_MultidimensionalFastFourierTransformFFTW
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Oct 23 12:02:01 2020 -0400
- *@brief
+ *@brief Operator for multidimensional FFTs (FFTW3 implementation)
  */
 
 /**

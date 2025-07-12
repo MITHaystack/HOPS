@@ -9,27 +9,33 @@
 
 #include <fftw3.h>
 
-//specifying the weak attribute avoids 
-//"no-args depending on template parameter error"
-//note: these functions are only available for FFTW version > 3.3.4
+
 /**
  * @brief Returns alignment requirement for FFTW float input.
  * 
  * @param param1 Input float pointer
+ * @details specifying the weak attribute avoids the "no-args depending on template parameter error"
+ * @note these functions are only available for FFTW version > 3.3.4
  * @return Alignment requirement as integer
  */
 int fftwf_alignment_of(float*) __attribute__((weak));
+
 /**
  * @brief Returns alignment requirement for FFTW double precision data type.
  * 
  * @param param1 Pointer to double precision floating point number.
+ * @details specifying the weak attribute avoids the "no-args depending on template parameter error"
+ * @note these functions are only available for FFTW version > 3.3.4
  * @return Alignment requirement as an integer.
  */
 int fftw_alignment_of(double*) __attribute__((weak));
+
 /**
  * @brief Returns alignment requirement for FFTW long double data type.
  * 
  * @param double* Parameter description
+ * @details specifying the weak attribute avoids the "no-args depending on template parameter error"
+ * @note these functions are only available for FFTW version > 3.3.4
  * @return Alignment requirement as an integer
  */
 int fftwl_alignment_of(long double*) __attribute__((weak));
@@ -169,7 +175,7 @@ class MHO_FFTWTypeInfo
     }
     
     /**
-     * @brief Splits a version string into components using a delimiter.
+     * @brief Splits a FFTW3 version string into components using a delimiter.
      * 
      * @param vstr Input version string to split
      * @param delim Delimiter character used for splitting
@@ -193,7 +199,7 @@ class MHO_FFTWTypeInfo
     /**
      * @brief Retrieves the numeric version string from FFTW3.
      * 
-     * @return Numeric version string of FFTW3.
+     * @return Numeric version string of FFTW3, returns 0.0.0 if retrieval fails
      * @note This is a static function.
      */
     static std::string get_fftw_version_numeric()

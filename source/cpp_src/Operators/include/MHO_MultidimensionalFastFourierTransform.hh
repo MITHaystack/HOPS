@@ -23,7 +23,7 @@ namespace hops
  *@class MHO_MultidimensionalFastFourierTransform
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Oct 23 12:02:01 2020 -0400
- *@brief
+ *@brief Operator for multidimensional FFTS (native implementation)
  */
 
 /**
@@ -106,7 +106,7 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
         }
 
         /**
-         * @brief Function ExecuteInPlace
+         * @brief Function ExecuteInPlace, does FFT in-place
          * 
          * @param in (XArgType*)
          * @return Return value (bool)
@@ -196,7 +196,7 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
         }
 
         /**
-         * @brief Copies input data to output if they're not the same array and executes in-place.
+         * @brief Copies input data to output if they're not the same array and executes FFT in-place on output.
          * 
          * @param in Input data of type XArgType
          * @param out Output data of type XArgType
@@ -215,7 +215,7 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
 
     private:
         /**
-         * @brief Resizes workspace arrays if their sizes don't match current dimension sizes.
+         * @brief Resizes workspace arrays if their sizes don't match the current dimension sizes.
          */
         void AllocateWorkspace()
         {
