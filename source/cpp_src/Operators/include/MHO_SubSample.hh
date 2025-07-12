@@ -38,9 +38,8 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
 
         virtual ~MHO_SubSample(){};
 
-        //set the axis to sub sample, and the stride at which samples are selected
         /**
-         * @brief Setter for dimension and stride
+         * @brief set the axis to sub sample, and the stride at which samples are selected
          * 
          * @param dimension_index Index of the dimension to set (must be less than array rank).
          * @param stride Stride at which samples are selected along the specified dimension.
@@ -60,6 +59,7 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
         }
 
     protected:
+
         /**
          * @brief Initializes in-place execution by calling InitializeOutOfPlace with workspace and returning its result.
          * 
@@ -191,6 +191,7 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
         }
 
     private:
+
         /**
          * @brief Calculates output dimensions by dividing the specified dimension index by stride and returning the modified dimension array.
          * 
@@ -239,9 +240,9 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
         typename std::enable_if< !std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableSubSampleAxis(const XArrayType* /*!in*/, XArrayType* /*!out*/){};
 
-        //use SFINAE to generate specialization for MHO_TableContainer types
         /**
-         * @brief Sub-samples a specified axis of an input XArrayType and stores the result in output.
+         * @brief Sub-samples a specified axis of an input XArrayType and stores the result in output
+         * uses SFINAE to generate specialization for MHO_TableContainer types
          * 
          * @tparam XCheckType Template parameter XCheckType
          * @param in Input XArrayType to be sub-sampled
