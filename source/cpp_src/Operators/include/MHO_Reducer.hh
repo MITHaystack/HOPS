@@ -43,15 +43,15 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
 
         virtual ~MHO_Reducer(){};
 
-        //set the indices of the axes over which we run the reduction.
-        //This must be set before we can initialize/execute
-        //for example for a 3D array, if we wanted to reduce along the
-        //last axis only we would call this->ReduceAxis(2), or alternatively if we
-        //wanted to reduce along both the first and last axis
-        //we would call this->ReduceAxis(0), this->ReduceAxis(2)
+
         /**
-         * @brief Sets axis index for reduction operation.
-         * 
+         * @brief Sets axis index for reduction operation
+         * @details set the indices of the axes over which we run the reduction.
+         * This must be set before we can initialize/execute
+         * for example for a 3D array, if we wanted to reduce along the
+         * last axis only we would call this->ReduceAxis(2), or alternatively if we
+         * wanted to reduce along both the first and last axis
+         * we would call this->ReduceAxis(0), this->ReduceAxis(2)
          * @param axis_index Index of the axis to reduce.
          */
         void ReduceAxis(std::size_t axis_index)
@@ -70,7 +70,7 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
 
         //de-select all axes
         /**
-         * @brief De-selects all axes by setting internal flags and arrays to default values.
+         * @brief De-selects all axes by setting internal flags and arrays to default values (no reduction)
          */
         void ClearAxisSelection()
         {
@@ -82,6 +82,7 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
         }
 
     protected:
+
         /**
          * @brief Initializes XArrayType in-place by calling InitializeOutOfPlace with given workspace.
          * 
@@ -92,7 +93,7 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
         virtual bool InitializeInPlace(XArrayType* in) override { return InitializeOutOfPlace(in, &fWorkspace); }
 
         /**
-         * @brief Executes operation in-place by calling ExecuteOutOfPlace and copying result back to input.
+         * @brief Executes operation in-place by calling ExecuteOutOfPlace and copying result back to input
          * 
          * @param in Input array of type XArrayType*
          * @return Status of execution as boolean
@@ -162,7 +163,7 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
         }
 
         /**
-         * @brief Function ExecuteOutOfPlace
+         * @brief Function ExecuteOutOfPlace - carries out the array reduction 
          * 
          * @param in (const XArrayType*)
          * @param out (XArrayType*)
@@ -214,7 +215,7 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
 
     private:
         /**
-         * @brief Class AxisReducer
+         * @brief Class AxisReducer - handles special treament of axes objects for a MHO_TableContainer input
          */
         class AxisReducer
         {

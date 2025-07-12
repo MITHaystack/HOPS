@@ -16,7 +16,7 @@ namespace hops
  *@class MHO_OperatorToolbox
  *@author J. Barrett - barrettj@mit.edu
  *@date Sun Jun 4 17:43:54 2023 -0400
- *@brief
+ *@brief The toolbox class stores all operator objects as points to the MHO_Operator base class
  */
 
 /**
@@ -53,9 +53,8 @@ class MHO_OperatorToolbox
             fOperators.insert(op);
         }
 
-        //retrieval by name as generic operator, returns nullptr if missing
         /**
-         * @brief Getter for operator
+         * @brief Getter for operator - retrieval by name as generic operator, returns nullptr if missing
          * 
          * @param name Operator name to search for in the map
          * @return Pointer to MHO_Operator or nullptr if not found
@@ -72,7 +71,7 @@ class MHO_OperatorToolbox
         }
 
         /**
-         * @brief Getter for operator
+         * @brief Getter for an operator by name
          * 
          * @param name Operator name to search for in the map
          * @return Pointer to MHO_Operator or nullptr if not found
@@ -83,9 +82,8 @@ class MHO_OperatorToolbox
             return GetOperator(sname);
         }
 
-        //retrieval by name, with cast to specific type, if missing returns nullptr
         /**
-         * @brief Getter for operator as
+         * @brief Getter for operator, retrieval by name, with cast to specified type (XOperatorType), if missing returns nullptr
          * 
          * @param name Operator name to retrieve
          * @return Pointer to operator cast as XOperatorType or nullptr if not found/cannot be cast
@@ -102,7 +100,7 @@ class MHO_OperatorToolbox
         }
 
         /**
-         * @brief Getter for noperators
+         * @brief Getter for number of operators
          * 
          * @return Size of fOperators vector as std::size_t
          */
@@ -110,7 +108,7 @@ class MHO_OperatorToolbox
 
         //get all operators in the toolbox
         /**
-         * @brief Getter for all operators
+         * @brief Getter for all operators (vector of pointers)
          * 
          * @return std::vector<MHO_Operator* sorted list of operators
          */
@@ -127,9 +125,8 @@ class MHO_OperatorToolbox
             return ops;
         }
 
-        //get all operators within the priority range [low,high)
         /**
-         * @brief Getter for operators by priority range
+         * @brief Getter for operators by priority range - get all operators within the priority range [low,high)
          * 
          * @param lower_limit Lower bound of priority range
          * @param upper_limit Upper bound of priority range
@@ -180,7 +177,7 @@ class MHO_OperatorToolbox
 
     private:
         /**
-         * @brief Function RemoveOperator
+         * @brief Function RemoveOperator - removes operator from the toolbox
          * 
          * @param name (const std::string&)
          */
@@ -216,7 +213,7 @@ class MHO_OperatorToolbox
         }
 
         /**
-         * @brief Clears the current state or data.
+         * @brief Clears the current collection of operators
          */
         void Clear()
         {

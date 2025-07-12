@@ -39,13 +39,13 @@ class MHO_FastFourierTransform: public MHO_UnaryOperator< MHO_NDArrayWrapper< st
         virtual ~MHO_FastFourierTransform(){};
 
         /**
-         * @brief Setter for forward
+         * @brief Setter for forward flag (FFT direction)
          * @note This is a virtual function.
          */
         virtual void SetForward() { fForward = true; };
 
         /**
-         * @brief Setter for backward
+         * @brief Setter for backward flag (FFT direction)
          * @note This is a virtual function.
          */
         virtual void SetBackward() { fForward = false; };
@@ -60,7 +60,7 @@ class MHO_FastFourierTransform: public MHO_UnaryOperator< MHO_NDArrayWrapper< st
          */
         virtual bool InitializeInPlace(XArrayType* in) override;
         /**
-         * @brief Function ExecuteInPlace
+         * @brief Function ExecuteInPlace, does the FFT on the array in-place
          * 
          * @param in (XArrayType*)
          * @return Return value (bool)
@@ -68,7 +68,7 @@ class MHO_FastFourierTransform: public MHO_UnaryOperator< MHO_NDArrayWrapper< st
          */
         virtual bool ExecuteInPlace(XArrayType* in) override;
         /**
-         * @brief Initializes out-of-place FFT by checking input/output array sizes and resizing fW if necessary.
+         * @brief Initializes out-of-place FFT by checking input/output array sizes and resizing if necessary.
          * 
          * @param in Const reference to input XArrayType
          * @param out Reference to output XArrayType
@@ -77,7 +77,7 @@ class MHO_FastFourierTransform: public MHO_UnaryOperator< MHO_NDArrayWrapper< st
          */
         virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out) override;
         /**
-         * @brief Copies input array to output and executes in-place FFT.
+         * @brief Copies input array to output and executes in-place FFT in the output array
          * 
          * @param in Const reference to input array.
          * @param out (XArrayType*)

@@ -15,7 +15,7 @@ namespace hops
  *@class MHO_FunctorBroadcaster
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Nov 20 17:44:28 2020 -0500
- *@brief
+ *@brief Applys a functor (XFunctorType) across all the elements of a multidimensional array
  */
 
 /**
@@ -30,7 +30,7 @@ template< class XArrayType, class XFunctorType > class MHO_FunctorBroadcaster: p
 
         //access for configuration
         /**
-         * @brief Getter for functor
+         * @brief Getter for functor class object
          * 
          * @return Pointer to XFunctorType
          */
@@ -78,7 +78,7 @@ template< class XArrayType, class XFunctorType > class MHO_FunctorBroadcaster: p
         }
 
         /**
-         * @brief Function InitializeOutOfPlace
+         * @brief Function InitializeOutOfPlace - initialization for out-of-place transformation
          * 
          * @param in (const XArrayType*)
          * @param out (XArrayType*)
