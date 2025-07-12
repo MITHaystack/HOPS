@@ -24,7 +24,7 @@ namespace hops
  *@class  MHO_VexBlockParser
  *@author  J. Barrett - barrettj@mit.edu
  *@date Thu May 26 16:55:16 2022 -0400
- *@brief
+ *@brief Parses information in a named vex block (e.g. $FREQ, $SOURCE, etc)
  */
 
 /**
@@ -59,6 +59,7 @@ class MHO_VexBlockParser
          * @param block_name Name of the block to load format for.
          */
         void LoadBlockFormat(std::string block_name);
+
         /**
          * @brief Getter for block format file name
          * 
@@ -73,6 +74,7 @@ class MHO_VexBlockParser
          * @return The parsed block as an mho_json object.
          */
         mho_json ParseBlock();
+
         /**
          * @brief Parses global block and returns its JSON representation.
          * 
@@ -87,6 +89,7 @@ class MHO_VexBlockParser
          * @return True if line starts with the expected start tag, false otherwise.
          */
         bool IsStartTag(const MHO_VexLine& line);
+
         /**
          * @brief Checks if a given line contains the stop tag.
          * 
@@ -94,6 +97,7 @@ class MHO_VexBlockParser
          * @return True if stop tag is found, false otherwise.
          */
         bool IsStopTag(const MHO_VexLine& line);
+
         /**
          * @brief Checks if a given line is a reference tag.
          * 
