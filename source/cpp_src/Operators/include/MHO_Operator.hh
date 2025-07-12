@@ -11,7 +11,7 @@ namespace hops
  *@class  MHO_Operator
  *@author  J. Barrett - barrettj@mit.edu
  *@date Thu Sep 23 16:03:48 2021 -0400
- *@brief
+ *@brief abstract base class for operators
  */
 
 /**
@@ -39,14 +39,14 @@ class MHO_Operator
         virtual bool Execute() = 0;
 
         /**
-         * @brief Setter for name
+         * @brief Setter for operator name
          * 
          * @param name New name to set
          */
         void SetName(std::string name) { fName = name; }
 
         /**
-         * @brief Getter for name
+         * @brief Getter for operator name
          * 
          * @return The stored name as a std::string
          */
@@ -54,17 +54,18 @@ class MHO_Operator
 
         //allow priority to vary
         /**
-         * @brief Setter for priority
+         * @brief Setter for operator priority (determines order of execution within a operator category)
          * 
-         * @param priority New priority value to be assigned to fPriority field.
+         * @param priority New priority value to be assigned to fPriority field (double)
          * @note This is a virtual function.
+         * @details a higher value for the fPriority field implies this operator should happend after other operators with lower priority values
+         * order of execution goes from low to high
          */
         virtual void SetPriority(const double& priority) { fPriority = priority; }
 
-        //a higher value for the fPriority field implies a lower priority
-        //for this operator in the order of execution
+
         /**
-         * @brief Sets the priority field with a higher value implying lower priority.
+         * @brief Get the the priority field value
          * 
          * @return Return value (double)
          * @note This is a virtual function.

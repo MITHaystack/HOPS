@@ -85,7 +85,7 @@ template< class XArgType > class MHO_ExtremaSearch: public MHO_InspectingOperato
     private:
         // basic floating point types
         /**
-         * @brief Function Search - does the actual search, templated on value type
+         * @brief Function Search - does the actual min/max search, templated on value type
          * 
          * @tparam XCheckType Template parameter XCheckType
          * @param in (const XArgType*)
@@ -122,7 +122,7 @@ template< class XArgType > class MHO_ExtremaSearch: public MHO_InspectingOperato
 
         //specialization for complex types
         /**
-         * @brief Function Search
+         * @brief Function Search  - does the actual min/max search for abs() (magnitude) of complex types
          * 
          * @tparam XCheckType Template parameter XCheckType
          * @param in (const XArgType*)
