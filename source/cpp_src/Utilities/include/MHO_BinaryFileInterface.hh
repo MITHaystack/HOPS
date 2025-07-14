@@ -31,7 +31,7 @@ class MHO_BinaryFileInterface
         virtual ~MHO_BinaryFileInterface(){};
 
         /**
-         * @brief Checks if both object and key streamers are open for write when fCollectKeys is true, otherwise checks only object streamer.
+         * @brief Checks if both object and key streamers are open for writing when fCollectKeys is true, otherwise checks only the object streamer.
          * 
          * @return True if both streamers are open (when fCollectKeys is true), or if the object streamer is open; false otherwise.
          */
@@ -48,7 +48,7 @@ class MHO_BinaryFileInterface
         }
 
         /**
-         * @brief Checks if an object streamer is open for reading.
+         * @brief Checks if the object streamer is open for reading.
          * 
          * @return True if open for read, false otherwise.
          */
@@ -130,7 +130,7 @@ class MHO_BinaryFileInterface
         }
 
         /**
-         * @brief Function ExtractIndexFileObjectKeys
+         * @brief reads an index file and extracts the object file keys (cannot be actively streaming to another open file when called)
          * 
          * @param index_filename (const std::string&)
          * @param keys (std::vector< MHO_FileKey >&)
@@ -174,7 +174,8 @@ class MHO_BinaryFileInterface
         }
 
         /**
-         * @brief Function ExtractFileObjectKeys
+         * @brief reads an object file and extracts the object file keys while skipping over the object data
+         * (cannot be actively streaming to another open file when called)
          * 
          * @param filename (const std::string&)
          * @param keys (std::vector< MHO_FileKey >&)
@@ -240,9 +241,8 @@ class MHO_BinaryFileInterface
             Close();
         }
 
-        //pulls out the object keys and the bytes offsets to the key entry of each object from the start of the file
         /**
-         * @brief Function ExtractFileObjectKeysAndOffsets
+         * @brief pulls out the object keys and the bytes offsets to the key entry of each object from the start of the file (skipping over object data)
          * 
          * @param filename (const std::string&)
          * @param keys (std::vector< MHO_FileKey >&)
@@ -336,11 +336,12 @@ class MHO_BinaryFileInterface
         }
 
         /**
-         * @brief Checks if both object and key streamers are open for write if fCollectKeys is true, otherwise checks only object streamer.
+         * @brief Writes an object (must inherit from MHO_Serializable) to a file (with optional shortname string). 
+         *  Checks if both object and key streamers are open for write if fCollectKeys is true, otherwise checks only object streamer.
          * 
-         * @param param Input parameter of type const XWriteType &
-         * @param str2 Input string parameter of type const std::string &
-         * @return Boolean indicating whether writing is open or not
+         * @param the object to be written of type (const XWriteType &)
+         * @param shortname - optional discriptive string
+         * @return Boolean indicating whether writing was successful or not
          */
         template< class XWriteType > bool Write(const XWriteType& obj, const std::string& shortname = "")
         {
@@ -375,13 +376,14 @@ class MHO_BinaryFileInterface
             }
         }
 
-        //overload for char array name
+        //
         /**
-         * @brief Checks if both object and key streamers are open for write, considering fCollectKeys.
+         * @brief Writes an object (must inherit from MHO_Serializable) to a file (with optional shortname string - overloaded for char array name). 
+         *  Checks if both object and key streamers are open for write if fCollectKeys is true, otherwise checks only object streamer.
          * 
-         * @param param Input parameter of type const XWriteType &
-         * @param ch2 (const char *)
-         * @return Boolean indicating whether writing is possible
+         * @param the object to be written of type (const XWriteType &)
+         * @param shortname - optional discriptive char array (C-string)
+         * @return Boolean indicating whether writing was successful or not
          */
         template< class XWriteType > bool Write(const XWriteType& obj, const char* shortname)
         {
@@ -390,10 +392,10 @@ class MHO_BinaryFileInterface
         }
 
         /**
-         * @brief Checks if file is open for reading.
+         * @brief Reads the object (XReadType) specified by the object file key from the file
          * 
-         * @param param Ignored input parameter
-         * @param param2 File key reference (ignored)
+         * @param obj reference to the object to be filled with data (XReadType&)
+         * @param the File key which points to the object to be read
          * @return True if file is open for read, false otherwise
          */
         template< class XReadType > bool Read(XReadType& obj, MHO_FileKey& obj_key)
@@ -469,7 +471,6 @@ class MHO_BinaryFileInterface
         MHO_UUIDGenerator fUUIDGenerator;
         MHO_MD5HashGenerator fMD5Generator;
 
-        //generate the file object key
         /**
          * @brief Generates a file key for an object using its type and UUID.
          * 
