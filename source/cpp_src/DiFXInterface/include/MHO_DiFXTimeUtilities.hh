@@ -15,6 +15,20 @@ namespace hops
 {
 
 //given a mjd date and number of seconds, compute the vex string representation
+/**
+ * @brief Calculates and returns VEX timestamp for given MJD and seconds.
+ * 
+ * @param mjd Modified Julian Date (MJD) in double precision.
+ * @param sec Seconds to add to MJD in double precision.
+ * @return VEX formatted string representing the calculated timestamp.
+ * @note The nominal DiFX MJD epoch start is 2000-01-01T12:00:00.000000000Z (MJD = 51544.50000).
+ * However, it will be off by however
+ * many leap seconds have been inserted between this time and the time point of
+ * interest...so when UTC times are calculated from DiFX MJD values, this epoch
+ * start must be corrected by the number of leap seconds inserted since year 2000.
+ * There has been a total of 5 as of 2025.
+ */
+ 
 static std::string get_vexdate_from_mjd_sec(double mjd, double sec)
 {
     double total_mjd = (double)mjd + (double)sec / 86400.0;

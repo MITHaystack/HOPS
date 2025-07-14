@@ -21,6 +21,9 @@ namespace hops
  *@brief
  */
 
+/**
+ * @brief Class MHO_ContainerDictionary
+ */
 class MHO_ContainerDictionary: public MHO_ClassIdentityMap
 {
     public:

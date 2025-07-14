@@ -11,9 +11,12 @@ namespace hops
  *@class MHO_DCBlockBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Jun 20 12:35:56 2023 -0400
- *@brief
+ *@brief builds a DC block operator
  */
 
+/**
+ * @brief Class MHO_DCBlockBuilder
+ */
 class MHO_DCBlockBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -27,6 +30,11 @@ class MHO_DCBlockBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_DCBlockBuilder(){};
 
+        /**
+         * @brief Constructs and adds MHO_DCBlock operator to the toolbox.
+         * 
+         * @return No return value.
+         */
         virtual bool Build() override;
 
     private:

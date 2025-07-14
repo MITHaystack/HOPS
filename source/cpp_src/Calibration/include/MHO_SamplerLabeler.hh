@@ -28,6 +28,9 @@ namespace hops
  * samplers 4 abcdefgh ijklmnop qrstuvwx yzABCDEF
  */
 
+/**
+ * @brief Class MHO_SamplerLabeler
+ */
 template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
 {
     public:
@@ -41,21 +44,54 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
 
         virtual ~MHO_SamplerLabeler(){};
 
+        /**
+         * @brief Setter for reference station sampler channel sets
+         * 
+         * @param channel_sets Input vector of string channel set names
+         */
         void SetReferenceStationSamplerChannelSets(const std::vector< std::string >& channel_sets)
         {
             fRefSamplerChanSets = channel_sets;
         }
 
+        /**
+         * @brief Setter for remote station sampler channel sets
+         * 
+         * @param channel_sets Input vector of strings representing channel sets
+         */
         void SetRemoteStationSamplerChannelSets(const std::vector< std::string >& channel_sets)
         {
             fRemSamplerChanSets = channel_sets;
         }
 
     protected:
+        /**
+         * @brief Initializes in-place mapping for channel labels to sampler indices.
+         * 
+         * @param in Input XArrayType pointer for initializing in-place.
+         * @return True if initialization is successful, false otherwise.
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(XArrayType* in) override { return true; }
 
+        /**
+         * @brief Initializes output array in-place from input array.
+         * 
+         * @param !in Const reference to input XArrayType
+         * @param !out Reference to output XArrayType
+         * @return Boolean indicating success of initialization
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const XArrayType* /*!in*/, XArrayType* /*!out*/) override { return true; }
 
+        /**
+         * @brief Function ExecuteInPlace - actual implementation, map channel label (e.g. 'a', 'b', etc.) to sampler
+         * index for both reference and remote stations, and attaches label to visibility data
+         * 
+         * @param in (XArrayType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(XArrayType* in) override
         {
             //map channel label (e.g. 'a', 'b', etc.) to sampler index for both reference and remote stations
@@ -90,6 +126,14 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
             return false;
         }
 
+        /**
+         * @brief Copies input array and executes in-place operation on output.
+         * 
+         * @param in Const reference to input XArrayType
+         * @param out Reference to output XArrayType
+         * @return Result of ExecuteInPlace operation on out
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             out->Copy(*in);
@@ -109,6 +153,12 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
         std::string fRemSamplerIndexKey;
         MHO_Tokenizer fTokenizer;
 
+        /**
+         * @brief Constructs a map from channel labels to sampler IDs.
+         * 
+         * @param chan_set Input vector of channel label strings.
+         * @param chan2id Output map assigning each channel label an integer ID.
+         */
         void ConstructChannelToSamplerIDMap(std::vector< std::string >& chan_set, std::map< std::string, int >& chan2id)
         {
             //figure out which sampler index each channel has been assigned to
@@ -123,6 +173,12 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
             }
         }
 
+        /**
+         * @brief Function SplitChannelLabels, splits the channel strings into individual channel labels
+         * 
+         * @param channels (std::string)
+         * @return Return value (std::string)
+         */
         std::vector< std::string > SplitChannelLabels(std::string channels)
         {
             std::vector< std::string > split_chans;

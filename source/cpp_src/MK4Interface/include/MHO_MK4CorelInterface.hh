@@ -20,6 +20,9 @@ extern "C"
 {
 #endif
 
+    /**
+     * @brief Class mk4_corel
+     */
     struct mk4_corel;
 
 #ifndef HOPS3_USE_CXX
@@ -34,10 +37,12 @@ namespace hops
  *@class MHO_MK4CorelInterface
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu May 28 19:47:51 2020 -0400
- *@brief This class implicitly assumes that the frequency/channel configuration
+ *@brief MHO_MK4CorelInterface - Needed to import data from mk4_corel file objects (type_1xx) to HOPS4 format.
+ * This class implicitly assumes that the frequency/channel configuration
  * is shared among all polarization products (i.e. nlags), we may want to loosen this restriction
  * in the future
  */
+
 
 class MHO_MK4CorelInterface
 {
@@ -45,15 +50,31 @@ class MHO_MK4CorelInterface
         MHO_MK4CorelInterface();
         virtual ~MHO_MK4CorelInterface();
 
-        //need both the vex (root) file and corel file to extract the data
+        /**
+         * @brief Setter for vex file, we need both the vex (root) file and corel file to extract the data
+         * 
+         * @param vex Path to the VEX file
+         */
         void SetVexFile(const std::string& vex) { fVexFile = vex; }
 
+        /**
+         * @brief Setter for corel file
+         * 
+         * @param corel Input corel file path as string reference
+         */
         void SetCorelFile(const std::string& corel) { fCorelFile = corel; }
 
-        //get raw mk4 corel data
+        /**
+         * @brief Getter for raw mk4 corel data struct
+         * 
+         * @return Pointer to struct mk4_corel
+         */
         struct mk4_corel* GetCorelData() { return fCorel; };
 
         //read the vex and corel files and dump into new format
+        /**
+         * @brief Extracts Corel file data and stores it in visibility and weight containers.
+         */
         void ExtractCorelFile();
 
         //TODO FIXME:
@@ -63,13 +84,29 @@ class MHO_MK4CorelInterface
         //For now we assume the caller will handle clean-up/deletion, so we do
         //not attempt to delete fExtractedVisibilities/fExtractedWeights in the
         //destructor of this interface class.
+        /**
+         * @brief Getter for extracted visibilities
+         * 
+         * @return uch_visibility_store_type* fExtractedVisibilities
+         */
         uch_visibility_store_type* GetExtractedVisibilities() { return fExtractedVisibilities; };
 
+        /**
+         * @brief Getter for extracted weights
+         * 
+         * @return uch_weight_store_type* Pointer to the extracted weights.
+         */
         uch_weight_store_type* GetExtractedWeights() { return fExtractedWeights; };
 
     private:
         //corel and vex file members
+        /**
+         * @brief Reads a Corel file and populates the mk4corel struct.
+         */
         void ReadCorelFile();
+        /**
+         * @brief Reads a VEX file and sets fHaveVex if successful.
+         */
         void ReadVexFile();
         bool fHaveCorel;
         bool fHaveVex;
@@ -80,6 +117,9 @@ class MHO_MK4CorelInterface
         std::string fRootCode; //derived from corel file name
 
         //data dimensions related members
+        /**
+         * @brief Determines data dimensions for MK4 Corel interface by iterating through indices and channels.
+         */
         void DetermineDataDimensions();
         std::size_t fNPPs;
         std::size_t fNAPs;

@@ -12,9 +12,12 @@ namespace hops
  *@class MHO_AxisPack
  *@author J. Barrett - barrettj@mit.edu
  *@date Mon Aug 17 12:42:31 2020 -0400
- *@brief set of axes (XAxisTypeS are expected to be MHO_VectorContainers)
+ *@brief a packaged set of axes (XAxisTypeS are expected to inherit from MHO_Axis)
  */
 
+/**
+ * @brief Class MHO_AxisPack
+ */
 template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisTypeS... >, virtual public MHO_Serializable
 {
     public:
@@ -31,6 +34,12 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
         typedef std::integral_constant< std::size_t, sizeof...(XAxisTypeS) > NAXES;
         typedef std::tuple< XAxisTypeS... > axis_pack_tuple_type;
 
+        /**
+         * @brief Getter for serialized size
+         * 
+         * @return Total serialized size as uint64_t.
+         * @note This is a virtual function.
+         */
         virtual uint64_t GetSerializedSize() const override
         {
             uint64_t total_size = 0;
@@ -50,11 +59,23 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
         }
 
     protected:
-        //inductive access to all elements of the tuple, so we can re-size them from an array
+
+        /**
+         * @brief inductive access to all elements of the tuple, so we can re-size them from an array
+         * 
+         * @tparam N Template parameter (size of the axis pack)
+         * @param !dim Parameter description
+         */
         template< std::size_t N = 0 >
         typename std::enable_if< (N == sizeof...(XAxisTypeS)), void >::type
         resize_axis_pack(const std::size_t* /*!dim*/){}; //terminating case, do nothing
 
+        /**
+         * @brief Resize each element of the axis pack using the dimensions specified in dim.
+         * 
+         * @tparam N Template parameter (size of the axis pack)
+         * @param dim Input dimension sizes for resizing.
+         */
         template< std::size_t N = 0 >
         typename std::enable_if< (N < sizeof...(XAxisTypeS)), void >::type resize_axis_pack(const std::size_t* dim)
         {
@@ -65,10 +86,23 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
         }
 
         // //inductive access to all elements of the tuple, so we compute total size for streaming
+        /**
+         * @brief Inductively computes and adds total serialized size of tuple elements to uint64_t& (needed for streaming).
+         * 
+         * @tparam N Template parameter (size of the axis pack)
+         * @param !total_size Parameter description
+         */
         template< std::size_t N = 0 >
         typename std::enable_if< (N == sizeof...(XAxisTypeS)), void >::type
         compute_total_size(uint64_t& /*!total_size*/) const {}; //terminating case, do nothing
 
+        /**
+         * @brief Recursively computes and adds serialized size of Nth XAxisTypeS element to total_size.
+         * 
+         * @tparam N Template parameter N
+         * @param total_size Reference to uint64_t accumulating total serialized size
+         * @return void
+         */
         template< std::size_t N = 0 >
         typename std::enable_if< (N < sizeof...(XAxisTypeS)), void >::type compute_total_size(uint64_t& total_size) const
         {
@@ -77,11 +111,24 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
             compute_total_size< N + 1 >(total_size);
         }
 
-        //for copying the full tuple from one axis pack to another
+
+        /**
+         * @brief used for copying the full tuple from one axis pack to another
+         * 
+         * @tparam N Template parameter N
+         * @param MHO_AxisPack& Parameter description
+         */
         template< std::size_t N = 0 >
         typename std::enable_if< (N == sizeof...(XAxisTypeS)), void >::type
         copy(const MHO_AxisPack&) const {}; //terminating case, do nothing
 
+        /**
+         * @brief Copies an axis pack recursively using template meta-programming.
+         * 
+         * @tparam N Template parameter N
+         * @param rhs The source axis pack to copy from.
+         * @return void (not explicitly returned)
+         */
         template< std::size_t N = 0 >
         typename std::enable_if< (N < sizeof...(XAxisTypeS)), void >::type copy(const MHO_AxisPack& rhs)
         {
@@ -123,10 +170,31 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
         }
 
     private:
+        /**
+         * @brief Reads data from input stream and stores it in the object.
+         * 
+         * @param s Input stream of type XStream&.
+         * @return No return value (void).
+         */
         template< typename XStream > void StreamInData_V0(XStream& s) { istream_tuple(s, *this); }
 
+
+        /**
+         * @brief Writes data to an output stream using tuple serialization.
+         * 
+         * @tparam XStream Template parameter XStream
+         * @param s Output stream of type XStream&
+         * @return No return value (void)
+         */
         template< typename XStream > void StreamOutData_V0(XStream& s) const { ostream_tuple(s, *this); }
 
+        /**
+         * @brief Calculates and returns a UUID representing the type of the object using its class name.
+         * 
+         * @tparam XStream Template parameter XStream
+         * @return MHO_UUID representing the object's type.
+         * @note This is a virtual function.
+         */
         virtual MHO_UUID DetermineTypeUUID() const override
         {
             MHO_MD5HashGenerator gen;
@@ -139,11 +207,11 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-//enumerate some of the most commonly used axis-pack types here:
-//in order to keep the number of possible axis-pack types from getting out of hand
-//we limit the number of axes to <4, and only declare for the following POD types:
-//int (Int), double (Double), string (String)
-//more types are certainly possible, but they should be declared only as needed
+///enumerate some of the most commonly used axis-pack types here:
+///in order to keep the number of possible axis-pack types from getting out of hand
+///we limit the number of axes to <4, and only declare for the following POD types:
+///int (Int), double (Double), string (String)
+///more types are certainly possible, but they should be declared only as needed
 
 //TODO FIXME -- find away to loop over macro arguments so we dont need so many
 //boilerplate definitions

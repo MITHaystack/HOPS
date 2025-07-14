@@ -21,7 +21,13 @@
 extern "C"
 {
 #endif
+    /**
+     * @brief Class mk4_sdata
+     */
     struct mk4_sdata;
+    /**
+     * @brief Class type_309
+     */
     struct type_309;
 #ifndef HOPS3_USE_CXX
 }
@@ -35,10 +41,9 @@ namespace hops
  *@class MHO_MK4StationInterface
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Nov 13 10:58:21 2020 -0500
- *@brief This class implicitly assumes that the frequency/channel configuration
- * is shared among all polarization products, we may want to loosen this restriction
- * in the future
+ *@brief MHO_MK4StationInterface converts a mk4 station file (type_3xx) to HOPS4 format
  */
+
 
 class MHO_MK4StationInterface
 {
@@ -46,42 +51,148 @@ class MHO_MK4StationInterface
         MHO_MK4StationInterface();
         virtual ~MHO_MK4StationInterface();
 
+        /**
+         * @brief Setter for vex file
+         * 
+         * @param vex Path to the VEX file
+         */
         void SetVexFile(const std::string& vex) { fVexFile = vex; }
 
+        /**
+         * @brief Setter for station file
+         * 
+         * @param station Reference to input station file string
+         */
         void SetStationFile(const std::string& station) { fStationFile = station; }
 
+        /**
+         * @brief Getter for station data
+         * 
+         * @return Pointer to mk4_sdata containing station data
+         */
         mk4_sdata* GetStationData() { return fStation; };
 
+        /**
+         * @brief Extracts station coordinate data from files and allocates memory for it.
+         * 
+         * @return Pointer to allocated station_coord_type object containing extracted data.
+         */
         station_coord_type* ExtractStationFile();
 
+        /**
+         * @brief Getter for pcal object
+         * 
+         * @return Pointer to multitone_pcal_type object
+         */
         multitone_pcal_type* GetPCalObject() { return &fAllPCalData; }
 
     private:
+        /**
+         * @brief Returns a string from a character array up to max_size.
+         * 
+         * @param char_array Input character array.
+         * @param max_size (std::size_t)
+         * @return String representation of input character array up to max_size.
+         */
         std::string getstr(const char* char_array, std::size_t max_size)
         {
             return std::string(char_array, std::min(strlen(char_array), max_size));
         }
 
+        /**
+         * @brief Reads and processes a station data file.
+         */
         void ReadStationFile();
+        /**
+         * @brief Reads a VEX file and sets fHaveVex if successful.
+         */
         void ReadVexFile();
 
         //pcal stuff
+        /**
+         * @brief Extracts and constructs PCal data from type_309s.
+         * 
+         * @param n309 Number of APs (Antennas)
+         * @param t309 Array of type_309 pointers
+         */
         void ExtractPCal(int n309, type_309** t309);
+        /**
+         * @brief Fills PCAL array with channel info and calculates delay spline coefficients.
+         * 
+         * @param pol Polarization string reference
+         * @param pol_idx Polarization index
+         * @param pc Multitone PCAL type pointer
+         * @param n309 Number of T309 structures
+         * @param t309 Array of T309 pointers
+         */
         void FillPCalArray(const std::string& pol, int pol_idx, multitone_pcal_type* pc, int n309, type_309** t309);
 
         //builds a visibility channel axis from the ovex info for each pol
+        /**
+         * @brief Function ConstructPerPolChannelAxis
+         * 
+         * @return Return value (std::string, channel_axis_type >)
+         */
         std::map< std::string, channel_axis_type > ConstructPerPolChannelAxis();
 
+        /**
+         * @brief Constructs channel info for MHO MK4StationInterface.
+         * 
+         * @return std::map<std::string, std::vector<mho_json
+         */
         std::map< std::string, std::vector< mho_json > > ConstructChannelInfo();
 
         //converts a mk4 channel id into its components, returns true if successful
+        /**
+         * @brief Extracts channel info from MK4 channel ID and populates frequency group, sideband, polarization, and index.
+         * 
+         * @param ch_name Input MK4 channel ID
+         * @param fgroup Output frequency group
+         * @param sb Output sideband
+         * @param pol Output polarization
+         * @param index Output channel index
+         * @return True if extraction successful, false otherwise
+         */
         bool ExtractChannelInfo(const std::string& ch_name, std::string& fgroup, std::string& sb, std::string& pol, int& index);
+        /**
+         * @brief Extracts frequency group from MK4 channel ID string.
+         * 
+         * @param id MK4 channel ID string.
+         * @return Frequency group as a string.
+         */
         std::string FreqGroupFromMK4ChannelID(std::string id) const;
+        /**
+         * @brief Extracts polarization from a given MK4 channel ID string.
+         * 
+         * @param id Input MK4 channel ID string.
+         * @return Polarization as a string ('R', 'L', 'X', 'Y', 'H', or 'V').
+         */
         std::string PolFromMK4ChannelID(std::string id) const;
+        /**
+         * @brief Extracts sideband from MK4 channel ID string.
+         * 
+         * @param id Input MK4 channel ID string
+         * @return Extracted sideband as a string ('L', 'U', or 'D') or empty string if invalid
+         */
         std::string SidebandFromMK4ChannelId(std::string id) const;
+        /**
+         * @brief Extracts and converts channel index from MK4 channel ID string.
+         * 
+         * @param id MK4 channel ID string (e.g., 'X22LY')
+         * @return Channel index as integer (-1 if invalid)
+         */
         int IndexFromMK4ChannelId(std::string id) const;
 
         //converts uint32_t counts to complex double
+        /**
+         * @brief Converts uint32_t counts to complex double for phasor computation.
+         * 
+         * @param real Real component of input count
+         * @param imag Imaginary component of input count
+         * @param acc_period Accumulation period in seconds
+         * @param sample_period Sample period in seconds
+         * @return Complex double representing the computed phasor
+         */
         std::complex< double > ComputePhasor(uint32_t real, uint32_t imag, double acc_period, double sample_period);
 
         //returns a vector of freq group codes found in the 309 data

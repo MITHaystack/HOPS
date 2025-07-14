@@ -11,9 +11,12 @@ namespace hops
  *@class MHO_ManualPolDelayCorrectionBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Jun 20 12:35:56 2023 -0400
- *@brief
+ *@brief build a manual per-polarization pc_delay operator
  */
 
+/**
+ * @brief Class MHO_ManualPolDelayCorrectionBuilder
+ */
 class MHO_ManualPolDelayCorrectionBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -26,10 +29,26 @@ class MHO_ManualPolDelayCorrectionBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_ManualPolDelayCorrectionBuilder(){};
 
+        /**
+         * @brief Constructs and adds a per-polarization manual delay correction operator to the toolbox.
+         * 
+         * @return bool indicating success
+         */
         virtual bool Build() override;
 
     private:
+        /**
+         * @brief Parses polarisation from name and returns corresponding string.
+         * 
+         * @param name Input polarisation name to parse
+         * @return Corresponding string for polarisation ('X', 'Y', 'R', 'L' or '?')
+         */
         std::string ParsePolFromName(const std::string& name);
+        /**
+         * @brief Extracts and returns the station identifier from the conditions vector.
+         * 
+         * @return The extracted station identifier as a string.
+         */
         std::string ExtractStationIdentifier();
 };
 

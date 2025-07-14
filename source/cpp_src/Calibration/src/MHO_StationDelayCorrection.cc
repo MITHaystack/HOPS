@@ -35,7 +35,7 @@ bool MHO_StationDelayCorrection::ExecuteInPlace(visibility_type* in)
     {
         if(IsApplicable(st_idx, in))
         {
-            //loop over pol-products and apply pc-phases to the appropriate pol/channel/freq
+            //loop over pol-products and apply phase rotation to the appropriate pol/channel/freq
             auto pp_ax = &(std::get< POLPROD_AXIS >(*in));
             auto chan_ax = &(std::get< CHANNEL_AXIS >(*in));
             std::string pp_label;

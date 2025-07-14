@@ -15,9 +15,12 @@ namespace hops
  *@class MHO_FunctorBroadcaster
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Nov 20 17:44:28 2020 -0500
- *@brief
+ *@brief Applys a functor (XFunctorType) across all the elements of a multidimensional array
  */
 
+/**
+ * @brief Class MHO_FunctorBroadcaster
+ */
 template< class XArrayType, class XFunctorType > class MHO_FunctorBroadcaster: public MHO_UnaryOperator< XArrayType >
 {
     public:
@@ -26,9 +29,21 @@ template< class XArrayType, class XFunctorType > class MHO_FunctorBroadcaster: p
         virtual ~MHO_FunctorBroadcaster(){};
 
         //access for configuration
+        /**
+         * @brief Getter for functor class object
+         * 
+         * @return Pointer to XFunctorType
+         */
         XFunctorType* GetFunctor() { return &fFunctor; };
 
     protected:
+        /**
+         * @brief Initializes in-place operation flag if input is not nullptr.
+         * 
+         * @param in Input XArrayType pointer for initialization.
+         * @return Current state of fInitialized boolean.
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(XArrayType* in) override
         {
             if(in != nullptr)
@@ -38,6 +53,13 @@ template< class XArrayType, class XFunctorType > class MHO_FunctorBroadcaster: p
             return fInitialized;
         }
 
+        /**
+         * @brief Applies functor to input array in-place if initialized.
+         * 
+         * @param in Input array of type XArrayType*
+         * @return Boolean indicating whether processing was successful.
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(XArrayType* in) override
         {
             if(fInitialized)
@@ -55,6 +77,14 @@ template< class XArrayType, class XFunctorType > class MHO_FunctorBroadcaster: p
             return fInitialized;
         }
 
+        /**
+         * @brief Function InitializeOutOfPlace - initialization for out-of-place transformation
+         * 
+         * @param in (const XArrayType*)
+         * @param out (XArrayType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             if(in != nullptr && out != nullptr)
@@ -87,6 +117,14 @@ template< class XArrayType, class XFunctorType > class MHO_FunctorBroadcaster: p
             return fInitialized;
         }
 
+        /**
+         * @brief Executes an out-of-place operation using a functor and input/output iterators.
+         * 
+         * @param in Const input array of type XArrayType
+         * @param out Output array of type XArrayType
+         * @return True if operation is successful, false otherwise.
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             //note: this implicitly assumes both intput/output are the same total size

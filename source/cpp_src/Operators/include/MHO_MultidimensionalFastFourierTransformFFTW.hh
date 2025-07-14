@@ -25,9 +25,12 @@ namespace hops
  *@class MHO_MultidimensionalFastFourierTransformFFTW
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Oct 23 12:02:01 2020 -0400
- *@brief
+ *@brief Operator for multidimensional FFTs (FFTW3 implementation)
  */
 
+/**
+ * @brief Class MHO_MultidimensionalFastFourierTransformFFTW
+ */
 template< typename XArgType >
 class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XArgType >,
                                                     public MHO_MultidimensionalFastFourierTransformInterface< XArgType >
@@ -78,6 +81,13 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
         };
 
     protected:
+        /**
+         * @brief Function InitializeInPlace
+         * 
+         * @param in (XArgType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(XArgType* in) override
         {
             if(in != nullptr)
@@ -130,6 +140,14 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
             return (this->fInitialized && this->fIsValid);
         }
 
+        /**
+         * @brief Function InitializeOutOfPlace
+         * 
+         * @param in (const XArgType*)
+         * @param out (XArgType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) override
         {
             if(in != nullptr && out != nullptr)
@@ -184,6 +202,13 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
             return (this->fInitialized && this->fIsValid);
         }
 
+        /**
+         * @brief Function ExecuteInPlace
+         * 
+         * @param in (XArgType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(XArgType* in) override
         {
             if(!this->fIsValid || !this->fInitialized)
@@ -250,6 +275,14 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
             return true;
         }
 
+        /**
+         * @brief Copies input data to output and executes in-place if input/output are different.
+         * 
+         * @param in Input data of type XArgType*
+         * @param out Output data of type XArgType*
+         * @return Result of ExecuteInPlace function call
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override
         {
             //if input and output point to the same array, don't bother copying data over
@@ -261,6 +294,12 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
         }
 
     private:
+        /**
+         * @brief Allocate workspace memory for FFTW operations.
+         * 
+         * @param total_array_size Size of arrays to allocate.
+         * @note This is a virtual function.
+         */
         virtual void AllocateWorkspace(std::size_t total_array_size)
         {
             fInPtr = MHO_FFTWTypes< floating_point_value_type >::alloc_func(total_array_size);
@@ -268,6 +307,10 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
             fInPlacePtr = MHO_FFTWTypes< floating_point_value_type >::alloc_func(total_array_size);
         }
 
+        /**
+         * @brief Frees allocated workspace pointers using MHO_FFTWTypes free_func.
+         * @note This is a virtual function.
+         */
         virtual void DeallocateWorkspace()
         {
             MHO_FFTWTypes< floating_point_value_type >::free_func(fInPtr);
@@ -275,6 +318,9 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
             MHO_FFTWTypes< floating_point_value_type >::free_func(fInPlacePtr);
         }
 
+        /**
+         * @brief Destroys all initialized FFTW plans and sets them to NULL.
+         */
         void DestructPlan()
         {
             if(this->fInitialized)
@@ -290,6 +336,11 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
             }
         }
 
+        /**
+         * @brief Function ConstructPlan
+         * 
+         * @return Return value (bool)
+         */
         bool ConstructPlan()
         {
             if(fInPtr == NULL || fOutPtr == NULL || fInPlacePtr == NULL)
@@ -367,6 +418,13 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
             }
         }
 
+        /**
+         * @brief Checks if two pointers have the same memory alignment.
+         * 
+         * @param ptr1 Pointer to first data block
+         * @param ptr2 Pointer to second data block
+         * @return Boolean indicating whether pointers have the same alignment
+         */
         template< typename XPtrType1, typename XPtrType2 > bool HaveSameAlignment(XPtrType1 ptr1, XPtrType2 ptr2)
         {
             if(!fHaveAlignmentFuncs){return false;}

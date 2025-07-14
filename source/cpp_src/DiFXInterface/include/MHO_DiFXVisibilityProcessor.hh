@@ -25,25 +25,58 @@ namespace hops
  * seen on each baseline
  */
 
+/**
+ * @brief Class MHO_DiFXVisibilityProcessor
+ */
 class MHO_DiFXVisibilityProcessor
 {
     public:
         MHO_DiFXVisibilityProcessor();
         virtual ~MHO_DiFXVisibilityProcessor(){};
 
+        /**
+         * @brief Setter for filename
+         * 
+         * @param filename The new filename to set.
+         */
         void SetFilename(std::string filename) { fFilename = filename.c_str(); }
 
         //needed for processing!
+        /**
+         * @brief Setter for difx .input data
+         * 
+         * @param input Input mho_json object containing DiFX data
+         */
         void SetDiFXInputData(const mho_json* input) { fInput = input; }
 
-        //read the visibilities from Swinburne file and allocate memory to store them as we go
-        //memory management of the visibility records is delegated to the caller
+
+        /**
+         * @brief read the visibilities from Swinburne file and allocate memory to store them as we go
+         * memory management of the visibility records is delegated to the caller
+         * 
+         * @param allBaselineVisibilities Reference to std::map containing baseline visibilities
+         */
         void ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities);
 
+        /**
+         * @brief Setter for frequency bands (label, limits)
+         * 
+         * @param fbands Vector of tuples containing band name, lower and upper frequencies
+         */
         void SetFrequencyBands(std::vector< std::tuple< std::string, double, double > > fbands) { fFreqBands = fbands; }
 
+        /**
+         * @brief Setter for (allowed) freq groups/bands
+         * 
+         * @param fgroups Input vector of frequency group strings
+         */
         void SetFreqGroups(std::vector< std::string > fgroups) { fOnlyFreqGroups = fgroups; }
 
+        /**
+         * @brief Setter for allow channel bandwidth (only channels with this bandwidth will be kept)
+         * 
+         * @param bw The allowed channel bandwidth value.
+         */
         void SetOnlyBandwidth(double bw)
         {
             fOnlyBandwidth = bw;

@@ -12,9 +12,12 @@ namespace hops
  *@class MHO_ManualChannelPhaseCorrectionBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Wed May 31 17:11:03 2023 -0400
- *@brief
+ *@brief build a manual per-channel pc_phase operator
  */
 
+/**
+ * @brief Class MHO_ManualChannelPhaseCorrectionBuilder
+ */
 class MHO_ManualChannelPhaseCorrectionBuilder: public MHO_OperatorBuilder, public MHO_ChannelQuantity
 {
     public:
@@ -27,10 +30,26 @@ class MHO_ManualChannelPhaseCorrectionBuilder: public MHO_OperatorBuilder, publi
 
         virtual ~MHO_ManualChannelPhaseCorrectionBuilder(){};
 
+        /**
+         * @brief Constructs and initializes a MHO_ManualChannelPhaseCorrection operator instance
+         * 
+         * @return bool indicating success/failure of construction
+         */
         virtual bool Build() override;
 
     private:
+        /**
+         * @brief Parses a polarization string from a given name.
+         * 
+         * @param name Input name to parse.
+         * @return Polarization string ('X', 'Y', 'R', 'L' or '?').
+         */
         std::string ParsePolFromName(const std::string& name);
+        /**
+         * @brief Extracts and returns the station identifier from the conditions vector.
+         * 
+         * @return The extracted station identifier as a string.
+         */
         std::string ExtractStationIdentifier();
 };
 

@@ -36,6 +36,9 @@ namespace hops
  *this extra computation appears to be lost.
  */
 
+/**
+ * @brief Class MHO_MixedSidebandNormFX
+ */
 class MHO_MixedSidebandNormFX: public MHO_NormFX //public MHO_UnaryOperator< visibility_type >
 {
     public:
@@ -45,10 +48,40 @@ class MHO_MixedSidebandNormFX: public MHO_NormFX //public MHO_UnaryOperator< vis
     protected:
         using XArgType = visibility_type;
 
+        /**
+         * @brief Initializes in-place data by copying from temporary out-of-place data.
+         * 
+         * @param in Input pointer to XArgType object.
+         * @return Boolean indicating success of initialization.
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(XArgType* in) override;
+        /**
+         * @brief Initializes out-of-place processing for mixed sideband data.
+         * 
+         * @param in Input data buffer
+         * @param out Output data buffer
+         * @return True if initialization is successful, false otherwise
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) override;
 
+        /**
+         * @brief Executes in-place operation using ExecuteOutOfPlace and copies result back to input.
+         * 
+         * @param in Input data of type XArgType*
+         * @return Status of execution as bool
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(XArgType* in) override;
+        /**
+         * @brief Executes out-of-place processing for mixed sideband data.
+         * 
+         * @param in Input data buffer of type XArgType
+         * @param out Output data buffer of type XArgType
+         * @return Boolean indicating success or failure of the operation.
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override;
 
         // virtual bool InitializeInPlace(const XArgType* in, XArgType* out) override;

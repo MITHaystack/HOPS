@@ -19,7 +19,7 @@ namespace hops
  *@class  MHO_HDF5ContainerFileInterface
  *@author  J. Barrett - barrettj@mit.edu
  *@date Fri May 16 10:42:52 AM EDT 2025
- *@brief
+ *@brief Class to convert a HOPS4 file to HDF5
  */
 
 class MHO_HDF5ContainerFileInterface: 
