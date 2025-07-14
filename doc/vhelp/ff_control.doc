@@ -1,0 +1,130 @@
+* Current syntax for fourfit control file  - last modified 93.12.28
+
+max_parity 0.001                       * global commands come first
+ref_freq  8213.15 
+x_crc       discard 
+x_slip_sync keep  
+y_slip_sync discard
+
+if station L and f_group X
+   freqs a b c d e f g h
+   pc_phases abcdefgh 5 -11 12 38 -56 13.2 11 -29
+   pc_mode ap_by_ap
+
+if station L and f_group S
+   pc_phases ijkmn 4.5 -78 39 +12 0
+   pc_mode normal
+
+if (station V or baseline KT) and source 3C279
+   sb_win -0.5 0.5    mb_win 0.02 0.02  dr_win -1.0E-6 0.5E-6
+
+else
+   sb_win 0.0 0.0     mb_win 0.02 0.02  dr_win -1.0E-6 0.5E-6
+
+if scan 288:210210
+   sb_win .37 .37
+
+if scan > 289:132510.
+   skip
+
+if baseline K?
+   switched scan_start
+   period 30
+   gates abcfgh  0 30  0 10  15 25     0 10  15 25  0 30
+
+
+* End of sample control file
+
+
+
+SELECTOR KEYWORDS       VALUES
+   station            1 character
+   baseline           2 characters
+   source             string
+   scan               time-value (special format)
+   f_group            1 character
+
+
+
+SYNTACTIC KEYWORDS
+   if
+   else   (NYI)
+   and
+   or
+   not
+   ()     (NYI)
+   <>     (NYI)
+   ?
+
+ACTION KEYWORDS         VALUES
+   max_parity         float
+   x_slip_sync        `keep' or `discard'        
+   y_slip_sync          "        "          
+   x_crc              `keep', `discard', or integer
+   y_crc                "      "           "
+   freqs              n chars
+   index              n ints
+   pc_phases          n char string, followed by n floats
+   lsb_offset            "        "      "     "
+   ref_freq           float
+   pc_mode            `normal', `ap_by_ap', or `manual'
+   sb_win             2 floats
+   mb_win             "   "
+   dr_win             "   "
+   start              time-value
+   stop                "     "
+   skip               `true' or `false'(NYI) - for now use 1 or 0
+   switched           `scan_start' or `each_minute'
+   period             int
+   gates              n char string, followed by 2n floats
+
+
+
+SPECIAL KEYWORD VALUES
+   ?         wild card character
+   keep      32767
+   discard       0
+   
+
+
+FORMATS
+   Time-values: 
+    (NYI)Absolute times are in the format ddd:hhmmss.mmm, where the colon
+         or decimal point can "anchor" surrounding numbers. If both
+         are absent, then there is an implied decimal to the right of
+         the last number. If both are present, there must be 6 intervening
+         characters (dddhhmmss). Examples:
+
+              field           ddd hh mm ss mmm
+              -----           --- -- -- -- ---
+               208:           208 00 00 00 000
+               208            000 00 02 08 000
+              :1432           000 14 32 00 000
+          :8123456.            ** invalid **
+
+         Relative times are depicted by a leading + or -. The rest of the
+         format is the same as for absolute times.
+
+	 As of 93.5.21 a cruder method of entering times is all that is supported.
+	 Arguments of start and stop are integers with an optional minus sign. A
+	 positive integer is interpreted as an absolute time in seconds past the
+	 hour (of the scan start time). When a minus sign precedes the start time
+	 it is considered to be a time relative to, and later than, the
+	 scheduled scan start. Similarly, a negative stop time precedes the
+	 scheduled scan stop time, by the indicated number of seconds.
+
+
+GENERAL GUIDELINES
+
+   1) White space is ignored; i.e., multiple spaces and line feeds all
+      collapse to a single space.
+   2) Multiple commands per line are fine.
+   3) Comments: anything from an asterisk through the end of the line
+      is ignored.
+   4) Nested ifs are not allowed (or necessary). Nested parentheses in
+      an if condition are fine.
+   5) Wildcard "?" matches any single character for f_group, station, or
+      baseline, any string (of up to 8 characters) for source, and any
+      time-value for scan.
+   6) Phase cal is normally treated station by station. Only freqs that are
+      chosen for both stations in a baseline are present in the fit.

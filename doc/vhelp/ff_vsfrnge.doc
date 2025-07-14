@@ -1,0 +1,100 @@
+Principal differences between FRNGE plots and fourfit plots (CJL 4/11/94)
+-------------------------------------------------------------------------
+
+1. Frequencies are labelled with alphabetic characters instead of numbers.
+   This scheme follows through to the channel-by-channel plots and
+   information on the lower half of the page.  These frequency identifiers
+   are tied to the LO frequencies, and are used to identify the sideband
+   pairs in the fourfit control file (keywords "freqs", "pcal_phases", etc.).
+   They are ordered the same way as the LO frequencies in the type 2400
+   record of the root.
+
+2. The L, A, U indicators for lower, dual and upper sideband data in the 
+   segmented amplitude plots on the lower page are replaced by -, * and +.
+   This avoids possible confusion with the alphabetic phase indicators, with
+   better visual separation of amplitude and phase.
+
+3. The T character in the all-channel segmented amplitude plot on the lower
+   page is replaced by 'A', to denote amplitude.  The 'P' remains, to denote
+   phase.
+
+4. The phasecal phase plots on the lower page are keyed by the frequency code
+   letter.  Upper case means reference station, lower case means remote
+   station.
+
+5. The FMGR file name on the 5th line of top and bottom pages is replaced by
+   the unix root extension code.
+
+6. The start and stop times are calculated slightly differently.  There is no
+   important consequence of this change, but see item 9 below.
+
+7. Counts of CRC errors, time discards, slip syncs and so on are slightly 
+   different, due to the order in which operations are done in fourfit versus
+   FRNGE.  None of these differences are thought to be of any consequence.
+   In fourfit, some of the records are discarded early, before errors other
+   than bad time tags can be detected.
+
+8. The MODE quantity (next to SNR on the upper page) has a completely
+   different meaning to the FRNGE number.  The pc mode indicators are a
+   single character for the reference station, followed by one for the
+   remote station. The possible characters are N (normal), A (ap_by_ap
+   mode), and M (manual).
+
+9. On the segmented plots on the lower page, the time span of the data is
+   defined to be the interval between the first and last APs with
+   valid time tags.  This definition differs slightly from FRNGE, so
+   that the segmenting is somewhat different.  In particular, fourfit
+   will tend to have more segments with no gap at the beginning or end,
+   compared to FRNGE, on a dataset that starts producing good data late
+   (or stops early).
+
+10. The fringe rate spectrum on the upper plot is gridded onto the page in a
+    slightly different fashion to FRNGE.  The changes are cosmetic only.
+    The logic that dictates which points in other singleband delay boxes
+    make it onto the fringe rate plot also differs slightly from FRNGE.
+    The new algorithm is believed to be more accurate.
+
+11. The horizontal axes of the plots on both pages are not yet labelled.
+
+12. When less than 14 channels are present, fourfit leaves blank space on the
+    lower page, below the segmented data plots.  FRNGE puts zeroes in this
+    location.
+
+13. Quality factors A, C and F are not supported yet (and may never be,
+    depending on postprocessing strategy decisions to be taken).
+
+14. At the bottom of the lower page, fourfit places the names of the control
+    file used, and the full unix pathname of the output fringe file.
+    These replace the HP-1000 specific equivalent information found at
+    slightly different locations on a FRNGE plot.
+
+15. Fourfit does not separately list the manual phasecal values if used.
+    They can be found from the MODE value (item 8 above) and the channel
+    PCALPH1 and 2 numbers below the plot on the lower page.
+
+16. When plotting the cross-power spectrum in the right-hand portion of the
+    upper plot, fourfit overwrites any existing characters (i.e. unlike
+    FRNGE, the entire cross-power spectrum is always visible).  Also, all
+    phase points are plotted, regardless of the amplitude at that point.
+    By default, cross-power spectra are plotted when the scan SNR exceeds
+    100, rather than when the amplitude exceeds 1 percent as in FRNGE.
+    Forced plotting of the spectrum is available through the -s option
+    in fourfit.
+
+17. OPT and SG in the extreme bottom right of the lower page are not filled
+    in by fourfit (they are specific to FRNGE special modes).
+
+18. The special 'B' error code expanded fringe-rate plot is not supported by 
+    fourfit.
+
+19. The STAT field just above the SNR on the upper page is not filled in
+    by fourfit.  There is a new field, "bc" just to the right of "me"
+    on the right side of the lower page.  This is a count of the number
+    of AP's discarded due to a small number of bits processed through the
+    sine or cosine channels of the correlator, normally a consequence of
+    very low fringe rates (it stands for "bad count").
+
+20. For the most part, FRNGE and fourfit results agree numerically to high
+    accuracy.  Phases are normally within 0.1 degrees, and overall fringe
+    amplitudes agree to typically 0.1 percent.  Algorithmic differences
+    may produce larger discrepancies in cases dominated by noise.

@@ -1,0 +1,472 @@
+		Fringe Search 
+	   Algorithm and Implementation
+
+For each sideband of each Accumulation Record :
+
+  1. Normalize correlation coefficients.
+     (10,000 = 100% correlated)
+
+     CosC(j) = c * (2*cosbits - #bits) / # bits
+     SinC(j) = dr_sign * c *(2*sinbits - #bits) / #bits
+
+     c = 
+     j = correlation lag index (0 - 7)
+     # bits = total # of bits correlated in AP
+     dr_sign = sign of delay rate rotation 
+     (special option - on lower sideband data, reverse sign of Sin correlation)
+
+  2.  FFT to Cross-Power spectrum
+	      7
+      S(w) = SUM (CosC(j) + SinC(j)*i ) * exp(-2*PI*i*(j-4)*w/16)
+     	     j=0 
+      w = video frequency index
+      
+      16 point FFT, with correlation data sorted so that
+      delay offset = 0 is first.
+
+  3.  Adjust for Fractional Bitshift
+
+      S(w) = S(w) * exp(-2*PI*i*theta)
+      theta = (FB + dd) * (1 - int(SH)/SH ) * (w-4) / 16
+
+      FB = Fractional part of bitshift (type_corel.fbit)
+      SH = total bitshift * length of AP
+      dd = 0 if int(SH) is even
+	   +.5 if int(SH) is odd and FB > 0
+	   -.5 if int(SH) is odd and FB < 0
+
+  4. If phasecal is on this sideband:
+
+     CosPcal(st) = (2 * pcosbits - #pbits) / #pbits
+     SinPcal(st) = (2 * psinbits - #pbits) / #pbits
+     Pcal(st) = (CosPcal[st] + SinPcal[st] * i) * exp(-2 * PI *i* theta)
+
+     theta = 160 * s.p. * pcal_freq     		        (station 1)
+	   = (160 + prt_offset + delayz) * s.p. * pcal_freq     (station 2)
+
+     s.p. = sample period
+     prt_offset = reference time offset from start time
+     delayz = correlator offset
+
+For each Accumulation Period
+  
+  1. Combine sidebands
+
+     SC[w] = S[w]     : upper sideband (w=1 to 7) 
+     SC[32-w] = S[w]  : lower sideband (w=1 to 7)
+     SC[w] = 0        : w = 0 and w>7 and w<-7
+
+     SC = combined cross-power spectrum
+
+  2. FFT to Single Band Delay
+	     7
+     D[sbd] = SUM SC[w] * exp(-2 * PI * i*w * (sbd-8) / 32) / 7.
+	    w=-7
+
+     sbd= single band delay index (0 to 15)
+     32 point FFT, with single band data resorted so that sbd=8
+     is the central lag, and normalized by dividing by 7.
+
+
+1. (special option - phasecal AP by AP)
+
+   D[sbd] = D[sbd] *  exp((pcal[fr,t,rem] - pcal[fr,t,ref]) - (avgpcal[fr,rem] - avgpcal[fr,ref]))
+   
+   pcal = phase cal phase for freq fr at time t
+   avgpcal = phasecal for freq fr averaged over all times
+
+   
+For each delay channel : 
+
+    For each frequency :
+
+       1. FFT across time to fringe rate spectrum
+		      tmax
+	  D[fr,L,sbd] = SUM D[t,sbd] * exp(-2 * pi * i * (L - Lsize/2) * t / Lsize)
+		      t=0
+	  fr= frequency index (0 to # of freqs)
+	  L= fringe rate index (0 to Lsize -1)
+	  t = time index
+	  Lsize = size of FFT
+		= 4 * number of AP's but less than 1024
+		(special option - cut Lsize to 2 * num. of APs)
+          data is resorted after FFT so that L = Lsize/2 corresponds to 0 fringe rate
+
+       2. Grid fringe rate spectrum into delay rate spectrum
+
+	  D[fr,dr,sbd] = ( D[fr,L,sbd]*(1 - (a-L)) + D[fr,L,sbd]*(a-L) ) * exp(-2*pi*i*theta) / Lsize
+         
+	  dr = delay rate index (0 to drsize-1)
+	  drsize = size of delay rate spectrum 
+		 = 2 * number of AP's
+          a = fringe rate index corresponding to delay rate index dr
+	    = ((dr-drsize/2) * (freq[fr]/freq[0]) * (drsize/Lsize) + Lsize/2)  mod Lsize 
+          L = int(a)
+	  theta = pcal_phase[reference] - pcal_phase[remote]
+
+    For each delay rate index
+
+       1. FFT across frequency to multiband delay spectrum
+         		nfreq 
+	  D[mbd,dr,sbd] = SUM D[fr,dr,sbd] * exp (-2 * PI  * i * FS[fr] * (mbd - mbdsize/2) / mbdsize)
+			fr=0
+
+	  mbd= multiband delay index
+	  mbdsize = size of multiband delay spectrum
+		  = # of points necessary to cover all frequencies (calculated in freq_spacing() )
+	  FS[fr] = index in FFT for freq fr
+		 = (freq[fr] - freq[0]) / largest common denominator in frequency spacings
+          
+       2. Renormalize D[mbd,dr,d] 
+
+	  D[mbd,dr,d] = D[mbd,dr,d] / total # of Accumulation records
+
+       3. 3-dimensional search for mbd, dr, and d which give maximum value of D 
+	 
+
+Interpolation :
+
+	1. Interpolate to find phasecal rate by maximizing the amplitude of :
+
+	   PC[pc_rate] = SUM SUM exp(theta)
+			fr=0 t=0
+
+	  theta = pcal_phase[fr,t] - avg_pcal[fr] - 2 * PI * freq[fr] * pc_rate * A.P. * t
+
+	  pcal_phase = phasecal phase for freq fr at time t
+	  avg_pcal = phasecal phase for freq fr averaged over time
+	  pc_rate = phasecal rate
+	  A.P. = length of accumulation period
+
+	  PC is evaluated at 3 equally spaced values of pc_rate, and a parabolic
+	  interpolation is performed to find the peak.
+
+	  This process is performed twice for each station, with the 
+	  pc_rate spacing = 1. and .5  
+
+	  Parabolic interpolation :
+
+	  X = ( Y2 - Y0 ) / (2 * (2*Y1 - Y0 - Y2))
+
+	  Y = Y1 + D*(Y2 - Y0)/4
+
+
+	  2. Interpolate for precise values of residuals
+
+	    Evaluate multiband delay function by direct summation
+
+	    D[G,R,sbd] = SUM  SUM  D[fr,t,sbd] * VROT(t,R,G,fr,sb)
+			 fr=0 t=0
+
+	    VROT(t,R,G,fr,sb) = exp(-2 * PI * i * (
+				(freq[fr] * R * (A.P. * (t + .5) +E)) +
+				pc_phase[fr,rem] -pc_phase[fr,ref] +
+				(freq[fr] - freq[0]) * G +
+				(sbd' - sbd) * sb ))
+				
+	   R = Delay rate (us /s)
+	   E = Offset of reference time from start of data
+	   G = Group delay (us)
+	   sbd' = interpolated single band delay index
+	   sb = +1 upper sideband  -1 lower sideband 0 both
+
+	   D is evaluated at three points centered on the current best estimate.
+	   A parabolic interpolation of the magnitude of D to improve these estimates.
+
+	   Interpolation is peformed first for delay rate, then group delay, then singleband delay.
+	   The process is repeated three times, with the spacing halved on the third iteration.
+	   
+	   3. Corrections
+
+	   a) amplitude correction due to fringe rate
+	    
+	    D_max = D_max * theta / sin(theta)
+
+	    theta = R * freq[0] * A.P. * PI
+
+	   b) if pcal not AP by AP, adjust for  phasecal rate
+
+	   R = R + (pc_rate[rem] - pc_rate[ref])
+
+
+
+
+			IMPLEMENTATION
+
+
+	The actual fringe searching is controlled by the search() subroutine
+	which is called from fourfit(). Search initializes several settings, then processes
+	through the data calling upon other subroutines to do major computations.
+
+	Search() summary :
+	------------------
+
+	Initialize variables;
+
+	for (fr=0;fr < number of frequencies; frequency ++)
+	   for (ap=0; ap< number of aps ap ++)
+	       norm();    
+
+	rotate_pcal();   
+	freq_spacing(); 
+	search_windows();
+
+	for (lag =0; lag < 15 ; lag ++)
+	   {
+	   for (fr=0 ; fr < number of frequencies; fr ++)
+	      delay_rate();
+
+	   for (dr = 0; dr < dr spectrum size ; dr ++)  /* dr = delay rate */
+	       {
+	       fill data array;
+	       FFT();   /* to multiband spectrum */
+		for (mbd =0 ; mbd < mbd spectrum size ; mbd ++)
+		    find maximum & update();
+		}
+	    }
+	interp();
+
+	Catalog of other subroutines :
+	-----------------------------
+
+        FFT1()  -- FFT based on FOUR1 in Numerical Recipes 
+	
+	norm() -- performs calculations required for every accumulation record.
+		  calculates everything up to single band delay function.
+
+		Norm() summary :
+
+		for (sideband=0; sideband<2 ; sideband++)
+		    {
+		    normalize correlations;
+		    FFT to XPower spectrum;
+		    Correct for fractional bitshift;
+		    extract phasecal;
+		    }
+		combine sidebands;
+		FFT to singleband delay;
+
+
+	rotate_pcal() -- counter-rotates for phasecal if desired.
+
+	freq_spacing() -- calculates spacing of frequencies in FFT to multiband delay
+
+	search_windows() -- determines size of spectra and search boundaries;
+
+	delay_rate() -- calculates fringe rate spectrum and grids it into delay rate spectrum
+
+	update() -- calculates residual values from delay rate, sbd and mbd indices
+
+	interp() -- interpolates phasecal rate and residuals & performs several corrections to results
+
+		Interp() summary :
+
+		for (interp=1; interp<=2; interp++)
+		    {
+		    for(index=1;index<=3;index ++)  /* evaluate PC at three points */
+		         PC[index] = sum over time & freq of exp(-2 *pi *i *theta);
+	    	    parabola(PC[3]);
+		    }
+
+		for (interp=1; interp<=3; interp ++)
+		    for (var=1;var;<=3;var++)  /* interpolate for 3 variables */
+			{
+			for(index=1;index<=3;index ++)
+			    {
+			    for(fr=0;fr<number of frequencies; fr++)
+			       for(ap=0;ap<number of ap's ; ap++)
+				  D[index] += D[fr,ap,sbd] * VROT(); 
+			    }
+			parabola(D[3]);
+			update residuals;
+			}
+		amplitude & delay rate corrections;
+
+
+	vrot() -- calculates complex rotator used in evaluating delay resolution function
+
+	parabola() -- performs parabolic interpolation of 3 equally spaced points, returning the peak
+
+       
+       Getting data in and out of Search()
+       ----------------------------------
+
+       Search has two main data parameter structures - param and status. Param consists of values which
+       should be determined before search is called, such as special options & restrictions and parameters 
+       such as sample rate or number of frequencies to be processed. Status contains the values which
+       search generates itself and needs to remember. Included in status are values which must be printed
+       on the fringe output but are not contained in the type fringe record.
+
+       Corelator data is passed to search via the corel[] structure. Corel[] is an array of freq_corel structures,
+       each corresponding to one frequency. Each freq_corel structure contains information specific to that frequency,
+       as well as an array of data_corel accumlation records. Each accumulation record contains  a pointer to
+       a Type 51 record for each sideband, as well as arrays to hold the singleband delay spectrum and extracted
+       phasecal as these are calculated. Presence of data in all of these structures is indicated by a non-null
+       pointer.
+
+       Search examines all data that is passed to it. Therefore selection of certain frequencies
+       or time ranges should be done by not placing these records in the data structure. Individual accumulation 
+       records can be ignored by setting their pointer null.
+
+
+	Parameter structures
+	--------------------
+	
+	struct type_param {
+		double 		cor_limit;     	/* Maximum correlation amplitude */
+		int		corel_offset;   /* Corelator offset (bits)	*/
+		int		nfreq;	       	/* Number of frequency channels   */
+		double		acc_period;   	/* Length of accumulation period (sec)  */
+		int		num_ap;		/* Number of Accumulation Periods */
+		double		samp_period;	/* Length of sample period	*/
+		short		pc_ap;	       	/* Use pcal per AP = 1 		*/
+		short		lsb_reverse;   	/* Reverse lower sideband = 1 */
+		short		pulsar;		/* Pulsar mode = 1 */
+		short 		man_pcal;	/* Manual phasecal = 1 */
+		short		fast_dr;	/* Reduce size of fringe rate FFT =1 */
+		double 		prt_offset;     /* offset from reference time */	
+		double		win_sb[2];	/* Single band search window microsec */
+		double 		win_dr[2];	/* Delay rate search window microsec per sec */
+		double 		win_mb[2];	/* Multi band search window  microsec */
+		double 		inv_sigma;	/* 1 / (1 sigma noise) */
+		double		LO2_hi_phs;	/* LO2 HI phase */
+		double		LO2_hi_freq;	/* LO2 HI freq */
+		double		start;		/* start time */
+		double		stop;		/* stop time */
+		double		epoch_time;	/* Epoch time */
+		double		ref_st_epoch;   /* Ref. station epoch  ms */
+	};
+
+	struct type_status {
+		double		freq_space;		/* Freq spacing in FFT to MBdelay */
+		int		grid_points;		/* # of points in FFT to MBdelay */
+		double		freq_spread;		/* Sum of (Freq - avg freq) squared */
+		int		large_errors;  		/* # of large errrors */
+		long		total_ap;		/* Total number of ap records processed (both sb's )*/
+		int		ap_num[2][MAXFREQ];	/* # of aps for each sideband & freq */
+		double		epoch_err[MAXFREQ];     /* Epoch error  (offset from reference time)  */
+		double		epoch_off_cent;  	/* Epoch offset from center  */
+		int		mb_index[MAXFREQ];	/* index for freq in FFT to MBdelay */
+		double		pc_phase[MAXFREQ][2];  	/* phase-cal phase */
+		double		pc_amp[MAXFREQ][2];    	/* phase-cal magnitude */
+		double		pcals_accum;	  	/* # of phase-cals for current channel */
+		int		space_err;		/* =1 if error if freq spacing is too large */
+		int		drsp_size;		/* # of points in delay rate spectrum   */
+		int		f_rate_size;		/* # of points in FFT to Fringe rate */
+		int		freq;			/* Current frequency  */
+		int		lag;			/* Current lag #  */
+		int		dr;			/* Current delay rate #  */
+		int		mbd;			/* Current multi band delay #  */
+		int		ap;			/* Current acc per */
+		double		dr_max;			/* Delay rate at max */
+		double		corr_dr_max;		/* Delay rate max corrected for pcal rate */
+		double 		sbd_max;		/* single band delay at max*/
+		double		mbd_max;		/* multi band delay at max */
+		int		max_delchan;		/* Single band delay channel at max */
+		double		delres_max;		/* max value of delay resolution function */
+		double		rate_sep;		/* Rate separation of FFT points for freq #1 */
+		double		mbd_sep;		/* Multi band delay separation of FFt points */
+		double		sbd_sep;		/* Single band delay separation  microsec */
+		double		search_amp;		/* Cor. amplitude after initial search */
+		double		interp_amp;		/* Amplitude after 1st interpolation */
+		double		pc_rate[2];    		/* Interpolated phasecal rate */
+		double		int_pc_amp[2];          /* Interpolated phasecal amplitude */
+		double		amp_corr_fact;		/* Amplitude correction factor for interpolation */
+		double		amp_rate_corr;		/* Rate correction to amplitude */
+		int		interp_err;		/* =1 if error in interpolation */
+		double		AN;			/* Normalization from FFT (from FRNGE) */
+		int		win_sb[2];		/* Single band search indices */
+		int 		win_dr[2];		/* Delay rate search indices */
+		int 		win_mb[2];		/* Multi band search indices */
+		int		pts_searched;		/* Number of points searched */
+		complex		fringe[MAXFREQ+1];	/* Fringe phase & amp for each freq */
+		double		sbdbox[MAXFREQ+1];	/* Single band delay box for each freq */
+		double		snr;			/* Signal to Noise ratio */
+		double		false_det;		/* Probability of false detection */
+		
+		double		th_timerms_phase;	/*  theoretical RMS phase with time */
+		double		th_timerms_amp;		/* theoretical RMS amp with time */
+		double		th_freqrms_phase;	/*  theoretical RMS phase with freq */
+		double		th_freqrms_amp;		/* theoretical RMS amp with freq */
+		double		timerms_phase;		/* RMS phase with time */
+		double		timerms_amp;		/* RMS amp with time */
+		double		freqrms_phase;		/* RMS phase with freq */
+		double		freqrms_amp;		/* RMS amp with freq */
+	   
+		double		integ_time;		/* Total integration time */
+
+		double		inc_avg_phase;		/* Fringe phase for incoh. avg. over freq*/
+		double 		inc_avg_amp;		/* Fringe amp. from inc. sum   of all points */
+		double		coh_avg_phase;		/* Fringe phase from coh. sum over freq */
+		double		inc_avg_amp_freq;	/* Fringe amp from incoh sum over freq */
+		
+		double		GHA;			/* Greenwich hour angle (hrs) */
+		double		apdelay;		/* Adjusted apriori delay */
+		double		amp_err;		/* Error in fringe amplitude */
+		double		apphase;		/* Apriori phase */
+		double		resid_phase;		/* Residual phase */
+		double		mod_resid_phase;	/* Modified residual phase */
+		double		phase_err;		/* Error in fringe phase */
+		double		resid_ph_delay;		/* Residual phase delay */
+		double 		ph_delay_err;		/* Error in phase delay */
+		
+		double		rate_ra_width;   	/* Delay rate width (RA) */
+		double		rate_dec_width;		/* Delay rate width (dec) */
+		double		sbd_ra_width;		/* Single band delay width (RA) */
+		double		sbd_dec_width;		/* Single band delay width (dec) */
+		};
+
+
+
+	Data structures
+	---------------
+	
+	extern struct freq_corel corel[MAXFREQ]
+	
+	struct freq_corel {
+		double frequency;
+		int sband;
+		int pcal_location;
+		double pcal_freq;
+		struct data_corel *data;
+	};
+	
+	struct data_corel {
+		int flag;
+		struct type_corel *apdata[2];
+		complex sbdelay[16];
+		complex phasecal[2];
+	};
+
+
+	union pos7_8 {
+		long		fphase;			/* MkIII rotator phase end of AP */
+		short		frame_cnt[2];		/* MkIIIA #x/y discards/resyncs */
+	};
+
+	struct cor {
+		long		coscor;			/* Cosine correlation */
+		long		sincor;			/* Sine correlation */
+	};
+
+	struct pcals {
+		long		cos;			/* pcal cosine correlation */
+		long		sin;			/* pcal sine correlation */
+		long		bits;			/* pcal bits correlated */
+		long		err;			/* # bytes with parity error */
+	};
+
+	struct type_corel {	/* NOTE: this is 128 bytes, half a record */
+		unsigned short	base_index;		/* baseline # and index # encoded */
+		short		flags;			/* lots of flag bits */
+		short		status;			/* General status */
+		unsigned short	bitshift;		/* Bit shift rate (absolute) */
+		long		time;			/* Time at end of last PP in AP */
+		union pos7_8	x;			/* Fphase or frame_cnt */
+		long		delayz;			/* Delay (bits) */
+		float 		fbit;			/* fractional bitshift center of AP */
+		struct cor	xcor[8];		/* actual correlation results */
+		long		cosbits;		/* cosine bits correlated */
+		long		sinbits;		/* sine bits correlated */
+		struct pcals	xypcals[2];		/* Pcal info, X then Y */
+	};
