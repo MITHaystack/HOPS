@@ -6,6 +6,9 @@
 namespace hops 
 {
 
+/**
+ * @brief Class MHO_DefaultPythonPlotVisitor
+ */
 class MHO_DefaultPythonPlotVisitor: public MHO_FringePlotVisitor
 {
     public:
@@ -17,6 +20,12 @@ class MHO_DefaultPythonPlotVisitor: public MHO_FringePlotVisitor
 
     protected:
 
+        /**
+         * @brief Plots fringe data using default Python plotting utility.
+         * 
+         * @param data Input MHO_FringeData for plotting.
+         * @note This is a virtual function.
+         */
         virtual void Plot(MHO_FringeData* data) override;
 };
 

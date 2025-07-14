@@ -34,6 +34,9 @@ using mbd_type = MHO_TableContainer< visibility_element_type, mbd_axis_pack >;
 using mbd_amp_type = MHO_TableContainer< double, mbd_axis_pack >;
 using mbd_dr_type = MHO_TableContainer< visibility_element_type, mbd_dr_axis_pack >;
 
+/**
+ * @brief Class MHO_MBDelaySearchCUDA
+ */
 class MHO_MBDelaySearchCUDA: public MHO_MBDelaySearch //public MHO_InspectingOperator< visibility_type >
 {
     public:
@@ -43,7 +46,21 @@ class MHO_MBDelaySearchCUDA: public MHO_MBDelaySearch //public MHO_InspectingOpe
     protected:
         using XArgType = visibility_type;
 
+        /**
+         * @brief Initializes MHO_MBDelaySearchCUDA with input arguments and calculates frequency grid for MBD search.
+         * 
+         * @param in Input argument of type const XArgType* containing channel axis data
+         * @return True if initialization is successful, false otherwise
+         * @note This is a virtual function.
+         */
         virtual bool InitializeImpl(const XArgType* in) override;
+        /**
+         * @brief Executes MBDelaySearch algorithm using provided input arguments.
+         * 
+         * @param in Input argument of type const XArgType* containing frequency axis and delay rate workspace.
+         * @return Boolean indicating whether the execution was successful or not.
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteImpl(const XArgType* in) override;
 
     private:

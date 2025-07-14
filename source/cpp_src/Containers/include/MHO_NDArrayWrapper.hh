@@ -28,10 +28,14 @@ namespace hops
  *@class MHO_NDArrayWrapper
  *@author J. Barrett - barrettj@mit.edu
  *@date Mon May 11 15:51:26 2020 -0400
- *@brief
+ *@brief MHO_NDArrayWrapper is a class to represent a n-dimensional array (implemented around a 1-d memory array)
+ *
  * Thu 13 Aug 2020 02:53:11 PM EDT
  */
 
+/**
+ * @brief Class MHO_NDArrayWrapper
+ */
 template< typename XValueType, std::size_t RANK >
 class MHO_NDArrayWrapper
     : public MHO_ExtensibleElement //any and all extensions are purely a runtime concept and do NOT get streamed for I/O
@@ -62,12 +66,29 @@ class MHO_NDArrayWrapper
         //destructor
         virtual ~MHO_NDArrayWrapper(){};
 
-        //clone functionality
+        /**
+         * @brief clone functionality - creates a deep copy of this MHO_NDArrayWrapper object.
+         * 
+         * @return A new MHO_NDArrayWrapper instance containing a clone of this object's data.
+         */
         MHO_NDArrayWrapper* Clone() { return new MHO_NDArrayWrapper(*this); }
 
         //resize function -- destroys contents
+        /**
+         * @brief Destroys contents and resizes using passed dimensions.
+         * 
+         * @param dim Pointer to external dimension array.
+         * @note This is a virtual function.
+         */
         virtual void Resize(const std::size_t* dim) { Construct(nullptr, dim); }
 
+        /**
+         * @brief Resize function that destroys contents and resizes according to dimension arguments
+         * 
+         * @tparam XDimSizeTypeS Template parameter XDimSizeTypeS
+         * @param dim Input dimensions as variadic template XDimSizeTypeS...
+         * @return void
+         */
         template< typename... XDimSizeTypeS >
         typename std::enable_if< (sizeof...(XDimSizeTypeS) == RANK), void >::type Resize(XDimSizeTypeS... dim)
         {
@@ -75,17 +96,40 @@ class MHO_NDArrayWrapper
             Resize(&(fTmp[0]));
         }
 
-        //set pointer to externally managed array with associated dimensions
+        /**
+         * @brief set data pointer to externally managed array with associated dimensions
+         * 
+         * @param ptr Pointer to externally managed XValueType array
+         * @param dim Array of dimension sizes
+         */
         void SetExternalData(XValueType* ptr, const std::size_t* dim) { Construct(ptr, dim); }
 
-        //get the total size of the array
+        /**
+         * @brief Getter for the rank (dimensionality) of the array
+         * 
+         * @return std::size_t representing the rank of the array
+         */
         std::size_t GetRank() const { return RANK; }
 
+        /**
+         * @brief get the total size of the array
+         * 
+         * @return The number of elements in the data.
+         */
         std::size_t GetSize() const { return fData.size(); };
 
-        //get the dimensions/shape of the array
+        /**
+         * @brief get the dimensions/shape of the array
+         * 
+         * @return Pointer to std::size_t array representing dimensions
+         */
         const std::size_t* GetDimensions() const { return &(fDims[0]); }
 
+        /**
+         * @brief Getter for dimensions, fills passed array
+         * 
+         * @return Pointer to std::size_t array
+         */
         void GetDimensions(std::size_t* dim) const
         {
             for(std::size_t i = 0; i < RANK; i++)
@@ -94,8 +138,19 @@ class MHO_NDArrayWrapper
             }
         }
 
+        /**
+         * @brief Getter for dimension array
+         * 
+         * @return index_type&: Reference to the dimension array.
+         */
         index_type GetDimensionArray() const { return fDims; }
 
+        /**
+         * @brief Getter for dimension
+         * 
+         * @param param (std::size_t)
+         * @return Pointer to the first element of the dimension array.
+         */
         std::size_t GetDimension(std::size_t idx) const
         {
             if(idx < RANK)
@@ -108,9 +163,18 @@ class MHO_NDArrayWrapper
             }
         }
 
-        //get element strides
+        /**
+         * @brief Getter for element strides (along each dimension)
+         * 
+         * @return Pointer to the first element of fStrides array
+         */
         const std::size_t* GetStrides() const { return &(fStrides[0]); }
 
+        /**
+         * @brief Getter for strides (along each dimension), fills passed array
+         * 
+         * @return Pointer to std::size_t array
+         */
         void GetStrides(std::size_t* strd) const
         {
             for(std::size_t i = 0; i < RANK; i++)
@@ -123,8 +187,12 @@ class MHO_NDArrayWrapper
 
         std::size_t GetStride(std::size_t idx) const { return fStrides[idx]; }
 
-        //access operator (,,...,) -- no bounds checking
-        //std::enable_if does a compile-time check that the number of arguments is the same as the rank of the array
+        /**
+         * @brief access operator, accepts multiple indices (,,...,) but does no bounds checking
+         * @details - uses std::enable_if to do a compile-time check that the number of arguments is the same as the rank of the array
+         * @param ... varargs The variable arguments (integers) representing the data element indexes
+         * @return the element at the specified indexes
+         */
         template< typename... XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), XValueType& >::type operator()(XIndexTypeS... idx)
         {
@@ -132,7 +200,12 @@ class MHO_NDArrayWrapper
             return ValueAt(fTmp);
         }
 
-        //const reference access operator()
+        /**
+         * @brief const reference access operator, accepts multiple indices (,,...,) but does no bounds checking
+         * @details - uses std::enable_if to do a compile-time check that the number of arguments is the same as the rank of the array
+         * @param ... varargs The variable arguments (integers) representing the data element indexes
+         * @return a const reference to element at the specified indexes
+         */
         template< typename... XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), const XValueType& >::type
         operator()(XIndexTypeS... idx) const
@@ -141,7 +214,12 @@ class MHO_NDArrayWrapper
             return ValueAt(fTmp);
         }
 
-        //access via at(,,,,) -- same as operator() but with bounds checking
+        /**
+         * @brief at(): same as operator(...) but with bounds checking with bounds checking
+         * @details - uses std::enable_if to do a compile-time check that the number of arguments is the same as the rank of the array
+         * @param ... varargs The variable arguments (integers) representing the data element indexes
+         * @return  the element at the specified indexes,throws exception if it doesn't exist
+         */
         template< typename... XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), XValueType& >::type at(XIndexTypeS... idx)
         {
@@ -157,7 +235,12 @@ class MHO_NDArrayWrapper
             }
         }
 
-        //const at()
+        /**
+         * @brief at(): same as const operator(...) but with bounds checking with bounds checking
+         * @details - uses std::enable_if to do a compile-time check that the number of arguments is the same as the rank of the array
+         * @param ... varargs The variable arguments (integers) representing the data element indexes
+         * @return a const reference to element at the specified indexes, throws exception if it doesn't exist
+         */
         template< typename... XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), const XValueType& >::type at(XIndexTypeS... idx) const
         {
@@ -173,7 +256,9 @@ class MHO_NDArrayWrapper
             }
         }
 
-        //access to underlying data pointer, this can be used unsafely
+        /**
+         * @brief access to underlying data pointer (unsafe)
+         */
         XValueType* GetData() { return &(fData[0]); };
 
         const XValueType* GetData() const { return &(fData[0]); };
@@ -196,7 +281,9 @@ class MHO_NDArrayWrapper
             return *this;
         }
 
-        //set all elements in the array to a certain value
+        /**
+         * @brief set all elements in the array to a certain value
+         */
         void SetArray(const XValueType& obj)
         {
             for(auto it = fData.begin(); it != fData.end(); it++)
@@ -205,7 +292,9 @@ class MHO_NDArrayWrapper
             }
         }
 
-        //set memory of elements in the array to zero
+        /**
+         * @brief set all elements in the array to zero
+         */
         void ZeroArray() { std::memset(&(fData[0]), 0, (fData.size()) * sizeof(XValueType)); }
 
         //copy, effectively the same as assignment operator
@@ -226,13 +315,17 @@ class MHO_NDArrayWrapper
             std::copy(rhs.cbegin(), rhs.cend(), this->fData.begin());
         }
 
-        //linear offset into the array
+        /**
+         * @brief compute (memory) offset into array from a set of indexes
+         */
         std::size_t GetOffsetForIndices(const std::size_t* index)
         {
             return MHO_NDArrayMath::OffsetFromStrideIndex< RANK >(&(fStrides[0]), index);
         }
 
-        //linear offset into the array
+        /**
+         * @brief invert (memory) offset into array to indexes of the associated element
+         */
         index_type GetIndicesForOffset(std::size_t offset)
         {
             index_type index;
@@ -240,11 +333,14 @@ class MHO_NDArrayWrapper
             return index;
         }
 
-        //sub-view of the array (given n < RANK leading indexes), return the remaining
-        //chunk of the array with freely spanning indexes
-        //for example: a ndarray X of RANK=3, and sizes [4,12,32], then SubView(2)
-        //returns an ndarray of RANK=2, and dimensions [12,32] starting at the
-        //location of X(2,0,0). Data of the subview points to data owned by X
+
+        /**
+         * @brief creates a sub-view of the array (given n < RANK leading indexes), return the remaining
+         * chunk of the array with freely spanning indexes
+         * for example: a ndarray X of RANK=3, and sizes [4,12,32], then SubView(2)
+         * returns an MHO_NDArrayView of RANK=2, and dimensions [12,32] starting at the
+         * location of X(2,0,0). Data of the subview points to data owned by X
+         */
         template< typename... XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) < RANK),
                                  MHO_NDArrayView< XValueType, RANK - (sizeof...(XIndexTypeS)) > >::type
@@ -267,13 +363,17 @@ class MHO_NDArrayWrapper
 
         ////////////////////////////////////////////////////////////////////////////////
 
-        //slice-view of the array (given n < RANK indexes), return the remaining
-        //chunk of the array with freely spanning indexes
-        //the placeholder for the free-spanning indexes is the char ":"
-        //for example: a ndarray X of RANK=3, and sizes [4,12,32], then SliceView(":",3,":")
-        //returns an ndarray of RANK=2, and dimensions [4,32] starting at the
-        //location of X(0,3,0), and spanning the data covered by X(":",3,":")
-        //Data of the slice-view points to data owned by original array X
+
+
+        /**
+         * @brief creates a slice-view of the array (given n < RANK indexes), return the remaining
+         * chunk of the array with freely spanning indexes
+         * the placeholder for the free-spanning indexes is the character ":"
+         * for example: a ndarray X of RANK=3, and sizes [4,12,32], then SliceView(":",3,":")
+         * returns an MHO_NDArrayView of RANK=2, and dimensions [4,32] starting at the
+         * location of X(0,3,0), and spanning the data covered by X(":",3,":")
+         * Data of the slice-view points to data owned by original array X
+         */
         template< typename... XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK),
                                  MHO_NDArrayView< XValueType, count_instances_of_type< const char*, sizeof...(XIndexTypeS) - 1,
@@ -346,7 +446,9 @@ class MHO_NDArrayWrapper
 
         //simple in-place compound assignment operators (mult/add/sub)//////////
 
-        //in place multiplication by a scalar factor
+        /**
+         * @brief operator*= in place multiplication by a scalar factor
+         */
         template< typename T >
         typename std::enable_if< std::is_same< XValueType, T >::value or std::is_integral< T >::value or
                                      std::is_floating_point< T >::value,
@@ -361,7 +463,9 @@ class MHO_NDArrayWrapper
             return *this;
         }
 
-        //in place addition by a scalar amount
+        /**
+         * @brief operator+= in place addition by a scalar amount
+         */
         template< typename T >
         typename std::enable_if< std::is_same< XValueType, T >::value or std::is_integral< T >::value or
                                      std::is_floating_point< T >::value,
@@ -376,7 +480,9 @@ class MHO_NDArrayWrapper
             return *this;
         }
 
-        //in place subraction by a scalar amount
+        /**
+         * @brief operator+= in place addition by a scalar amount
+         */
         template< typename T >
         typename std::enable_if< std::is_same< XValueType, T >::value or std::is_integral< T >::value or
                                      std::is_floating_point< T >::value,
@@ -391,7 +497,9 @@ class MHO_NDArrayWrapper
             return *this;
         }
 
-        //in place point-wise multiplication by another array
+        /**
+         * @brief operator*= in place point-wise multiplication by another array
+         */
         inline MHO_NDArrayWrapper& operator*=(const MHO_NDArrayWrapper& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray))
@@ -406,7 +514,9 @@ class MHO_NDArrayWrapper
             return *this;
         }
 
-        //in place point-wise addition by another array of the same type
+        /**
+         * @brief operator+= in place point-wise addition by another array
+         */
         inline MHO_NDArrayWrapper& operator+=(const MHO_NDArrayWrapper& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray))
@@ -419,9 +529,12 @@ class MHO_NDArrayWrapper
                 fData[i] += anArray.fData[i];
             }
             return *this;
+
         }
 
-        //in place point-wise subtraction of another array
+        /**
+         * @brief operator-= in place point-wise subtraction by another array
+         */
         inline MHO_NDArrayWrapper& operator-=(const MHO_NDArrayWrapper& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray))
@@ -571,18 +684,48 @@ namespace hops
 {
 
 //utilities ////////////////////////////////////////////////////////////////////
+/**
+ * @brief Checks if two arrays have the same rank.
+ * 
+ * @tparam XArrayType1 Template parameter XArrayType1
+ * @tparam XArrayType2 Template parameter XArrayType2
+ * @param !arr1 Parameter description
+ * @param !arr2 Parameter description
+ * @return True if both arrays have the same rank, false otherwise.
+ * @note This is a static function.
+ */
 template< class XArrayType1, class XArrayType2 >
 static bool HaveSameRank(const XArrayType1* /*!arr1*/, const XArrayType2* /*!arr2*/)
 {
     return (XArrayType1::rank::value == XArrayType2::rank::value);
 }
 
+/**
+ * @brief Checks if two arrays have the same number of elements.
+ * 
+ * @tparam XArrayType1 Template parameter XArrayType1
+ * @tparam XArrayType2 Template parameter XArrayType2
+ * @param arr1 First array to compare
+ * @param arr2 Second array to compare
+ * @return True if both arrays have the same size, false otherwise.
+ * @note This is a static function.
+ */
 template< class XArrayType1, class XArrayType2 >
 static bool HaveSameNumberOfElements(const XArrayType1* arr1, const XArrayType2* arr2)
 {
     return (arr1->GetSize() == arr2->GetSize());
 }
 
+/**
+ * @brief Function HaveSameDimensions
+ * 
+ * @tparam XArrayType1 Template parameter XArrayType1
+ * @tparam XArrayType2 Template parameter XArrayType2
+ * @param arr1 (const XArrayType1*)
+ * @param arr2 (const XArrayType2*)
+ * @return Return value (bool)
+ * @note This is a static function.
+ */
 template< class XArrayType1, class XArrayType2 >
 static bool HaveSameDimensions(const XArrayType1* arr1, const XArrayType2* arr2)
 {

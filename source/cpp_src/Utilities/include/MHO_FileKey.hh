@@ -30,7 +30,9 @@ static constexpr uint16_t MHO_FileKeySize = MHO_FileKeySize_v0;
 //reserved label
 static constexpr uint32_t MHO_FileKeyVersionReserved = 0xFFFFFFFF;
 
-//this union allows us to store the file key version and size info into a 4 byte integer
+/**
+ * @brief union MHO_FileKeyVersionInfo - this union allows us to store the file key version and size info into a 4 byte integer
+ */
 union MHO_FileKeyVersionInfo
 {
         uint32_t fLabel;
@@ -40,13 +42,17 @@ union MHO_FileKeyVersionInfo
         //2nd uint16_t is the size of the file key, (cannot exceed UINT16_MAX)
 };
 
-//the version-0 size of the file key is 64bytes, and all of the version-0 data fields must
-//be present and structure unchanged in any future versions.
-//A future version X of MHO_FileKey may extend the file key by N bytes of arbitrarily structured data to
-//be inserted (after the end of the V0 key and before the file object it describes,
-//so long as N+64 < UINT16_MAX, and the appropriate StreamInData_VX/StreamOutData_VX and ByteSize functions are defined
 
-//total size 512 bits / 64 bytes
+
+
+/**
+ * @brief Class MHO_FileKey
+ * the version-0 size of the file key is (512 bits / 64 bytes), and all of the version-0 data fields must
+ * be present and structure unchanged in any future versions.
+ * A future version X of MHO_FileKey may extend the file key by N bytes of arbitrarily structured data to
+ * be inserted (after the end of the V0 key and before the file object it describes,
+ * so long as N+64 < UINT16_MAX, and the appropriate StreamInData_VX/StreamOutData_VX and ByteSize functions are defined
+ */
 class MHO_FileKey
 {
     public:
@@ -135,9 +141,16 @@ class MHO_FileKey
             return *this;
         }
 
-        //this is the size of a MHO_FileKey on disk
-        //DO NOT USE sizeof(MHO_FileKey), as that is the size of the object in memory
-        //which includes compiler dependent padding!!
+
+        /**
+         * @brief Returns the size of MHO_FileKey in bytes.
+         * this is the size of a MHO_FileKey on disk
+         * DO NOT USE sizeof(MHO_FileKey), as that is the size of the object in memory
+         * which may include compiler dependent padding!!
+         * 
+         * @return Size of MHO_FileKey as uint64_t.
+         * @note This is a static function.
+         */
         static uint64_t ByteSize() { return MHO_FileKeySize_v0; };
 
         //public access to members:
@@ -228,6 +241,12 @@ class MHO_FileKey
         }
 
     private:
+        /**
+         * @brief Serializes object data into an output stream.
+         * 
+         * @param s Output stream of type XStream&.
+         * @return void
+         */
         template< typename XStream > void StreamOutData_V0(XStream& s) const
         {
             // s << aKey.fSync;
@@ -241,6 +260,12 @@ class MHO_FileKey
             s << this->fSize;
         }
 
+        /**
+         * @brief Reads and assigns object ID, type ID, name, size from input stream.
+         * 
+         * @param s Input stream of type XStream&
+         * @return void
+         */
         template< typename XStream > void StreamInData_V0(XStream& s)
         {
             // s >> aKey.fSync;

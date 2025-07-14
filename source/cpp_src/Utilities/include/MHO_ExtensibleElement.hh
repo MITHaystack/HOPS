@@ -25,6 +25,9 @@ class MHO_ExtensibleElement;
 template< class XExtensionType > class MHO_ExtendedElement;
 
 //visitor interface
+/**
+ * @brief Class MHO_Visitor
+ */
 class MHO_Visitor
 {
     public:
@@ -32,15 +35,27 @@ class MHO_Visitor
         virtual ~MHO_Visitor(){};
 };
 
+/**
+ * @brief Class MHO_Element
+ */
 class MHO_Element
 {
     public:
         MHO_Element(){};
         virtual ~MHO_Element(){};
 
+        /**
+         * @brief Visits all extensions of this extensible element using the given visitor.
+         * 
+         * @param aVisitor MHO_Visitor used to visit each extension.
+         * @note This is a virtual function.
+         */
         virtual void Accept(MHO_Visitor* aVisitor) = 0;
 };
 
+/**
+ * @brief Class MHO_ExtensibleElement
+ */
 class MHO_ExtensibleElement: public MHO_Element
 {
     public:
@@ -56,6 +71,11 @@ class MHO_ExtensibleElement: public MHO_Element
             fExtensions.clear();
         }
 
+        /**
+         * @brief Visits all extensions of MHO_ExtensibleElement using given visitor.
+         * 
+         * @param aVisitor MHO_Visitor to traverse and operate on extensions
+         */
         void Accept(MHO_Visitor* aVisitor) override
         {
             //the MHO_ExtensibleElement class by-itself is just a container,
@@ -67,8 +87,25 @@ class MHO_ExtensibleElement: public MHO_Element
         }
 
     public:
+        /**
+         * @brief Checks if an extensible element has a specific extension type.
+         * 
+         * @return True if the element has the specified extension type, false otherwise.
+         */
         template< class XExtensionType > bool HasExtension() const;
+        /**
+         * @brief Creates and adds a new extension of type XExtensionType to the list of extensions.
+         * 
+         * @tparam XExtensionType Template parameter XExtensionType
+         * @return Pointer to the newly created MHO_ExtendedElement<XExtensionType
+         */
         template< class XExtensionType > MHO_ExtendedElement< XExtensionType >* MakeExtension();
+        /**
+         * @brief Returns an extension of type XExtensionType if found in the list of extensions.
+         * 
+         * @tparam XExtensionType Template parameter XExtensionType
+         * @return Pointer to MHO_ExtendedElement<XExtensionType or nullptr if not found
+         */
         template< class XExtensionType > MHO_ExtendedElement< XExtensionType >* AsExtension();
 
     protected:
@@ -78,6 +115,11 @@ class MHO_ExtensibleElement: public MHO_Element
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @brief Checks if an extensible element has a specific extension type.
+ * 
+ * @return True if extension exists, false otherwise.
+ */
 template< class XExtensionType > inline bool MHO_ExtensibleElement::HasExtension() const
 {
     MHO_ExtendedElement< XExtensionType >* extention;
@@ -92,6 +134,11 @@ template< class XExtensionType > inline bool MHO_ExtensibleElement::HasExtension
     return false;
 }
 
+/**
+ * @brief Creates and adds a new extension of type XExtensionType to the extensible element.
+ * 
+ * @return Pointer to the newly created MHO_ExtendedElement<XExtensionType
+ */
 template< class XExtensionType > inline MHO_ExtendedElement< XExtensionType >* MHO_ExtensibleElement::MakeExtension()
 {
     MHO_ExtendedElement< XExtensionType >* extention;
@@ -110,6 +157,11 @@ template< class XExtensionType > inline MHO_ExtendedElement< XExtensionType >* M
     return extention;
 }
 
+/**
+ * @brief Returns a dynamically casted extension of type XExtensionType if found among stored extensions.
+ * 
+ * @return Pointer to MHO_ExtendedElement<XExtensionType or nullptr if not found
+ */
 template< class XExtensionType > inline MHO_ExtendedElement< XExtensionType >* MHO_ExtensibleElement::AsExtension()
 {
     MHO_ExtendedElement< XExtensionType >* extention;
@@ -127,6 +179,9 @@ template< class XExtensionType > inline MHO_ExtendedElement< XExtensionType >* M
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @brief Class MHO_ExtendedElement
+ */
 template< class XExtensionType > class MHO_ExtendedElement: public MHO_Element, public XExtensionType
 {
     public:
@@ -135,15 +190,31 @@ template< class XExtensionType > class MHO_ExtendedElement: public MHO_Element, 
         virtual ~MHO_ExtendedElement(){};
 
     public:
+        /**
+         * @brief Class ExtendedVisitor
+         */
         class ExtendedVisitor: public MHO_Visitor
         {
             public:
                 ExtendedVisitor(){};
                 virtual ~ExtendedVisitor(){};
+
+                /**
+                 * @brief Function VisitExtendedElement
+                 * 
+                 * @param anElement (MHO_ExtendedElement< XExtensionType >*)
+                 * @note This is a virtual function.
+                 */
                 virtual void VisitExtendedElement(MHO_ExtendedElement< XExtensionType >* anElement) = 0;
         };
 
     public:
+        /**
+         * @brief Visits all extensions of this extensible element using the given visitor.
+         * 
+         * @param aVisitor MHO_Visitor used to visit each extension.
+         * @note This is a virtual function.
+         */
         virtual void Accept(MHO_Visitor* aVisitor) override
         {
             //visit this extension

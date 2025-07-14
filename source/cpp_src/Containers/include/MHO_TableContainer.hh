@@ -9,7 +9,6 @@
 #include "MHO_AxisPack.hh"
 #include "MHO_Meta.hh"
 #include "MHO_NDArrayWrapper.hh"
-#include "MHO_Units.hh"
 #include "MHO_VectorContainer.hh"
 
 #include "MHO_FileStreamer.hh"
@@ -22,9 +21,13 @@ namespace hops
  *@class MHO_TableContainer
  *@author J. Barrett - barrettj@mit.edu
  *@date Sun Jan 24 14:03:03 2021 -0500
- *@brief
+ *@brief MHO_TableContainer - basis for large majority of data objects in HOPS4, it is an N-dimensional array object associated with 
+ * coordinate axes. Additional key:value tags can be attached to this object as well as the coordinate axies.
  */
 
+/**
+ * @brief Class MHO_TableContainer
+ */
 template< typename XValueType, typename XAxisPackType >
 class MHO_TableContainer: public MHO_TableContainerBase,
                           public MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value >,
@@ -41,16 +44,36 @@ class MHO_TableContainer: public MHO_TableContainerBase,
         MHO_TableContainer(const MHO_TableContainer& obj)
             : MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value >(obj), XAxisPackType(obj), MHO_Taggable(obj){};
 
-        //clone entire table, contents, axes and all
+        /**
+         * @brief Clones entire table including contents and axes.
+         * 
+         * @return Pointer to cloned MHO_TableContainer object.
+         */
         MHO_TableContainer* Clone() { return new MHO_TableContainer(*this); }
 
-        //clone table shape, but leave contents/axes empty
+        /**
+         * @brief Clones table container shape with empty contents and axes.
+         * 
+         * @return New MHO_TableContainer instance with cloned dimensions.
+         */
         MHO_TableContainer* CloneEmpty() { return new MHO_TableContainer(this->GetDimensions()); }
 
         virtual ~MHO_TableContainer(){};
 
+        /**
+         * @brief Getter for the class version
+         * 
+         * @return MHO_ClassVersion version number.
+         * @note This is a virtual function.
+         */
         virtual MHO_ClassVersion GetVersion() const override { return 0; };
 
+        /**
+         * @brief Getter for serialized size
+         * 
+         * @return Total serialized size as uint64_t
+         * @note This is a virtual function.
+         */
         virtual uint64_t GetSerializedSize() const override
         {
             uint64_t total_size = 0;
@@ -62,18 +85,33 @@ class MHO_TableContainer: public MHO_TableContainerBase,
             return total_size;
         }
 
-        //modify the Resize function to also resize the axes
+
         using XAxisPackType::resize_axis_pack;
 
+        /**
+         * @brief Resize the multidimensional array and axes according to given dimensions.
+         * 
+         * @param dim Pointer to a size_t array representing new dimensions.
+         * @note This is a virtual function.
+         */
         virtual void Resize(const std::size_t* dim) override
         {
             MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value >::Resize(dim);
             resize_axis_pack(dim);
         }
 
-        //access to axis pack type alone
+        /**
+         * @brief access to axis pack type alone
+         * 
+         * @return Pointer to XAxisPackType
+         */
         XAxisPackType* GetAxisPack() { return this; }
 
+        /**
+         * @brief Getter for axis pack
+         * 
+         * @return Current instance of XAxisPackType
+         */
         const XAxisPackType* GetAxisPack() const { return this; }
 
         //have to make base class functions visible

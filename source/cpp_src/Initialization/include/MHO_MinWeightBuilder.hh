@@ -11,9 +11,12 @@ namespace hops
  *@class MHO_MinWeightBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Jun 20 12:35:56 2023 -0400
- *@brief
+ *@brief builds MHO_MinWeight operator (cuts data with weight less than threshold)
  */
 
+/**
+ * @brief Class MHO_MinWeightBuilder
+ */
 class MHO_MinWeightBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -26,6 +29,11 @@ class MHO_MinWeightBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_MinWeightBuilder(){};
 
+        /**
+         * @brief Constructs and adds a MHO_MinWeight operator object to toolbox
+         * 
+         * @return True if successful build, false otherwise.
+         */
         virtual bool Build() override;
 
     private:

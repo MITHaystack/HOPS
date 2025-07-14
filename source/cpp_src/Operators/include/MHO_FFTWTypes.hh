@@ -9,11 +9,35 @@
 
 #include <fftw3.h>
 
-//specifying the weak attribute avoids 
-//"no-args depending on template parameter error"
-//note: these functions are only available for FFTW version > 3.3.4
+
+/**
+ * @brief Returns alignment requirement for FFTW float input.
+ * 
+ * @param param1 Input float pointer
+ * @details specifying the weak attribute avoids the "no-args depending on template parameter error"
+ * @note these functions are only available for FFTW version > 3.3.4
+ * @return Alignment requirement as integer
+ */
 int fftwf_alignment_of(float*) __attribute__((weak));
+
+/**
+ * @brief Returns alignment requirement for FFTW double precision data type.
+ * 
+ * @param param1 Pointer to double precision floating point number.
+ * @details specifying the weak attribute avoids the "no-args depending on template parameter error"
+ * @note these functions are only available for FFTW version > 3.3.4
+ * @return Alignment requirement as an integer.
+ */
 int fftw_alignment_of(double*) __attribute__((weak));
+
+/**
+ * @brief Returns alignment requirement for FFTW long double data type.
+ * 
+ * @param double* Parameter description
+ * @details specifying the weak attribute avoids the "no-args depending on template parameter error"
+ * @note these functions are only available for FFTW version > 3.3.4
+ * @return Alignment requirement as an integer
+ */
 int fftwl_alignment_of(long double*) __attribute__((weak));
 
 namespace hops
@@ -29,8 +53,16 @@ namespace hops
  * These are necessary to get around partial template specialization in the FFT x-form classes
  */
 
+/**
+ * @brief Class MHO_FFTWTypes
+ */
 template< typename XFloatType = void > struct MHO_FFTWTypes;
 
+/**
+ * @brief Class MHO_FFTWTypes<float>
+ * 
+ * @tparam XFloatType Template parameter XFloatType
+ */
 template<> struct MHO_FFTWTypes< float >
 {
         using complex_type = std::complex< float >;
@@ -57,6 +89,9 @@ template<> struct MHO_FFTWTypes< float >
         // static constexpr auto plan_guru_func = fftwf_plan_guru_dft;
 };
 
+/**
+ * @brief Class MHO_FFTWTypes<double>
+ */
 template<> struct MHO_FFTWTypes< double >
 {
         using complex_type = std::complex< double >;
@@ -83,6 +118,9 @@ template<> struct MHO_FFTWTypes< double >
         // static constexpr auto plan_guru_func = fftw_plan_guru_dft;
 };
 
+/**
+ * @brief Class MHO_FFTWTypes<long double>
+ */
 template<> struct MHO_FFTWTypes< long double >
 {
         using complex_type = std::complex< long double >;
@@ -111,6 +149,9 @@ template<> struct MHO_FFTWTypes< long double >
 
 
 //version info
+/**
+ * @brief Class MHO_FFTWTypeInfo
+ */
 class MHO_FFTWTypeInfo
 {
     public:
@@ -118,6 +159,12 @@ class MHO_FFTWTypeInfo
         virtual ~MHO_FFTWTypeInfo();
         
         
+    /**
+     * @brief Retrieves the raw FFTW version string.
+     * 
+     * @return std::string containing the raw FFTW version.
+     * @note This is a static function.
+     */
     static std::string get_fftw_version_raw()
     {
         //examples:
@@ -127,6 +174,14 @@ class MHO_FFTWTypeInfo
         return vstr;
     }
     
+    /**
+     * @brief Splits a FFTW3 version string into components using a delimiter.
+     * 
+     * @param vstr Input version string to split
+     * @param delim Delimiter character used for splitting
+     * @return Vector of strings representing the split version components
+     * @note This is a static function.
+     */
     static std::vector< std::string > split_version_string(std::string vstr, char delim)
     {
         std::vector<std::string> parts;
@@ -141,6 +196,12 @@ class MHO_FFTWTypeInfo
         return parts;
     }
     
+    /**
+     * @brief Retrieves the numeric version string from FFTW3.
+     * 
+     * @return Numeric version string of FFTW3, returns 0.0.0 if retrieval fails
+     * @note This is a static function.
+     */
     static std::string get_fftw_version_numeric()
     {
         std::string vstr = fftw_version;
@@ -158,6 +219,12 @@ class MHO_FFTWTypeInfo
         return vstr;
     }
 
+    /**
+     * @brief Retrieves the major version number of FFTW3.
+     * 
+     * @return Major version number as an integer.
+     * @note This is a static function.
+     */
     static int get_fftw_version_major()
     {
         std::string vstr = get_fftw_version_numeric();
@@ -170,6 +237,12 @@ class MHO_FFTWTypeInfo
         return value;
     }
     
+    /**
+     * @brief Retrieves the minor version number of FFTW3.
+     * 
+     * @return Minor version number as an integer.
+     * @note This is a static function.
+     */
     static int get_fftw_version_minor()
     {
         std::string vstr = get_fftw_version_numeric();
@@ -182,6 +255,12 @@ class MHO_FFTWTypeInfo
         return value;
     }
     
+    /**
+     * @brief Retrieves the patch version number from FFTW library.
+     * 
+     * @return Patch version number as an integer.
+     * @note This is a static function.
+     */
     static int get_fftw_version_patch()
     {
         std::string vstr = get_fftw_version_numeric();

@@ -3,11 +3,6 @@
 Operators
 =========
 
-
-
-Data operators
---------------
-
 The data operator classes are meant to organize the mathematic
 manipulations which are to be performed on the data containers. For
 example, many of the operations performed in the existing HOPS3
@@ -15,13 +10,13 @@ code-base (such as the application of a priori phase calibration) are
 relatively trivial linear transformations applied to the visibility
 data. However, they are currently intertwined with a large amount of
 control logic which obscures the basic data pathway (e.g see
-postproc/fourfit/norm_fx.c)
+source/c_src/fourfit_libs/ffsearch/src/norm_fx.c)
 
 Most unary or binary operations that are to applied to visibility or
-other data residing in an ``HO_TableContainers`` such as scaling,
+other data residing in a ``MHO_TableContainers`` object such as scaling,
 multiplication, transposition, summation, Fourier transformation, etc.
-will be made available as individual classes inheriting from the same
-interface. A uniform class interface will allow these data operators to
+have been made available as individual classes inheriting from the same
+interface. A uniform class interface allows these data operators to
 be composed or modified to create more complicated composite operators
 or strung together and called in an ordered fashion in order to
 accomplish data pipelines of arbitrary complexity. An additional
@@ -29,14 +24,45 @@ advantage of encapsulating individual operations is that (coupled with
 the data container extensions) any SIMD parallel-processing extension
 used to accelerate data processing can be made opaque to the user.
 
-Listing `[lst:operators] <#lst:operators>`__ gives a brief sketch of the
-class templates generalizing the data operators. The common inheritance
-from the base class ``MHO_Operator`` allows them all to be stored in an
+The following code gives a brief sketch of the
+class templates generalizing the data operators.
+
+.. code:: cpp
+
+   class MHO_Operator
+   {
+       public:
+           MHO_Operator();
+           virtual ~MHO_Operator();
+           virtual bool Initialize() = 0;
+           virtual bool Execute() = 0;
+   };
+
+   template<class XArgType>
+   class MHO_UnaryOperator: public MHO_Operator
+   {
+       public:
+           MHO_UnaryOperator();
+           virtual ~MHO_UnaryOperator();
+           virtual void SetArgs(XArgType* in); //in-place
+           virtual void SetArgs(const XArgType* in, XArgType* out); //out-of-place
+   };
+
+   template<class XArgType1, class XArgType2 = XArgType1, class XArgType3 = XArgType2>
+   class MHO_BinaryOperator: public MHO_Operator
+   {
+      public:
+          MHO_BinaryOperator();
+          virtual ~MHO_BinaryOperator();
+          virtual void SetArgs(const XArgType1* in1, const XArgType2* in2, XArgType3* out) //out-of-place
+   };
+
+
+The common inheritance from the base class :hops:`hops::MHO_Operator` allows them all to be stored in an
 common container (e.g. ``std::vector<MHO_Operator*>``) so that once they
 are constructed and configured they may be retrieved and
-intialized/executed in the appropriate order. Listing
-`[lst:operator-use] <#lst:operator-use>`__ shows a brief code sketch
-demonstrating how two simple operators would be constructed, assigned
+intialized/executed in the appropriate order. The following code 
+shows a brief code sketch demonstrating how two simple operators would be constructed, assigned
 arguments and then initialized and executed in order.
 
 .. code:: c++
@@ -84,51 +110,6 @@ with one or two data containers upon which they operate as inputs.
 However, any number of arguments is possible so long as the underlying
 implementation provides the appropriate overload.
 
-One aspect of the data operators which is not yet detailed here is a
-notion of what pieces of meta-data each operator may need in order to
-complete its function. Some of the more primitive operations (e.g.
-complex conjugation) may not need any meta-data, while certain specific
-calibration routines may need station related meta-data (e.g. channel
-specific phase-cal). While some meta-data items could be exposed
-directly via external setter/getters, a possibly preferable option which
-would preserve encapsulation might be for each operator to define an
-internal schema, listing the keys and type of the parameters it needs to
-retrieve from a single meta-data container (populated from the vex), or
-what sort of labels it expects to be attached to the data containers on
-which it operates. In addition, a mechanism for filtering operations
-(e.g. if station = Xx, then apply this operator) also needs to be
-established independent of the previous control-block structure of
-HOPS3.
-
-.. code:: c++
-
-   class MHO_Operator
-   {
-       public:
-           MHO_Operator();
-           virtual ~MHO_Operator();
-           virtual bool Initialize() = 0;
-           virtual bool Execute() = 0;
-   };
-
-   template<class XArgType>
-   class MHO_UnaryOperator: public MHO_Operator
-   {
-       public:
-           MHO_UnaryOperator();
-           virtual ~MHO_UnaryOperator();
-           virtual void SetArgs(XArgType* in); //in-place
-           virtual void SetArgs(const XArgType* in, XArgType* out); //out-of-place
-   };
-
-   template<class XArgType1, class XArgType2 = XArgType1, class XArgType3 = XArgType2>
-   class MHO_BinaryOperator: public MHO_Operator
-   {
-      public:
-          MHO_BinaryOperator();
-          virtual ~MHO_BinaryOperator();
-          virtual void SetArgs(const XArgType1* in1, const XArgType2* in2, XArgType3* out) //out-of-place
-   };
 
 Specific data operations
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -208,6 +189,9 @@ specification of each operation is detailed in the subsequent pages.
   array size is a power of two, then either a Cooley-Tukey or
   Gentleman-Sande radix-2 algorithm will be applied. For all other
   sizes, the Bluestein/Chirp-Z algorithm is used.
+  
+  
+  
 | **Name:** MHO_FunctorBroadcaster
 | **Type:** Unary, both in-place and out-of-place.
 | **Configuration Parameters:** The unary functor class to be applied to
@@ -219,6 +203,10 @@ specification of each operation is detailed in the subsequent pages.
 | **Description:** For every element in the array the functor operation
   will be applied. In the case of an out-of-place operation a copy will
   take place.
+  
+  
+  
+  
 | **Name:** MHO_MultidimensionalFastFourierTransform
 | **Type:** Unary, both in-place and out-of-place.
 | **Configuration Parameters:** The indices of the dimensions which are
@@ -230,6 +218,9 @@ specification of each operation is detailed in the subsequent pages.
   type
 | **Description:** Executes a Fourier transform on the selected
   dimensions of the array using the native FFT calculator.
+  
+  
+  
 | **Name:** MHO_MultidimensionalFastFourierTransformFFTW
 | **Type:** Unary, both in-place and out-of-place.
 | **Configuration Parameters:** The indices of the dimensions which are
@@ -242,6 +233,10 @@ specification of each operation is detailed in the subsequent pages.
 | **Description:** Executes a Fourier transform on the selected
   dimensions of the array using the FFTW library, the precise algorithm
   selected is determined by FFTW.
+  
+  
+  
+  
 | **Name:** MHO_MultidimensionalPaddedFastFourierTransform
 | **Type:** Unary, both in-place and out-of-place.
 | **Configuration Parameters:** The indices of the dimensions which are
@@ -260,6 +255,10 @@ specification of each operation is detailed in the subsequent pages.
   resulting padded array will then be transformed using the native FFT
   calculator. The primary use case of this padded FFT is for
   interpolation.
+  
+  
+  
+  
 | **Name:** MHO_Reducer
 | **Type:** Unary, both in-place (requires copy and resize) and
   out-of-place.
@@ -272,6 +271,10 @@ specification of each operation is detailed in the subsequent pages.
   axes, and depending on the operation (addition or multiplication), the
   contents will be resized and replaced by the sum or product of the
   elements along that axis.
+  
+  
+  
+  
 | **Name:** MHO_SubSample
 | **Type:** Unary, both in-place and out-of-place.
 | **Configuration Parameters:** The index of the dimension along which

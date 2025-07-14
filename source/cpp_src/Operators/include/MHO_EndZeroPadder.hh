@@ -19,9 +19,12 @@ namespace hops
  *@class MHO_EndZeroPadder
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Aug 11 13:35:43 2023 -0400
- *@brief
+ *@brief Pads out the end of a multidimensional array with zeros
  */
 
+/**
+ * @brief Class MHO_EndZeroPadder
+ */
 template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator< XArgType >
 {
     public:
@@ -47,37 +50,85 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
 
         virtual ~MHO_EndZeroPadder() { delete fTmpWorkspace; };
 
-        //factor M by which the new array will be extended (original array, length N, new array length NM)
+        /**
+         * @brief Setter for padding factor, the factor M by which the new array will be extended 
+         * (original array, length N, new array length NM)
+         * 
+         * @param factor New length factor for extended array
+         * @note This is a virtual function.
+         */
         virtual void SetPaddingFactor(std::size_t factor) { fPaddingFactor = factor; };
 
-        //instead of a multiplicative factor, the original array, length N is padded out ot the new specified length M
+        /**
+         * @brief Setter for padded size, instead of a multiplicative factor, 
+         * the original array, length N is padded out ot the new specified length M
+         * 
+         * @param new_size New padded size of type std::size_t
+         * @note This is a virtual function.
+         */
         virtual void SetPaddedSize(std::size_t new_size)
         {
             fPaddedSize = new_size;
             fPaddingFactor = 1;
         }
 
-        virtual void SetEndPadded() { fFlipped = false; }; //zero padding from end of signal out to end of the array
+        /**
+         * @brief Setter for end padded, zero padding from end of data out to end of the array
+         * @note This is a virtual function.
+         */
+        virtual void SetEndPadded() { fFlipped = false; }; //
 
-        virtual void SetReverseEndPadded() { fFlipped = true; }; //place signal at end of array and zero pad out to start
+        /**
+         * @brief Setter for reverse end padded, place data at end of array and zero pad out to start
+         * @note This is a virtual function.
+         */
+        virtual void SetReverseEndPadded() { fFlipped = true; };
 
+        /**
+         * @brief Disables Normal Mapping FX Mode by setting fNormFXMode to false. UNUSED - TODO REMOVE ME!
+         * @note This is a virtual function.
+         */
         virtual void DisableNormFXMode() { fNormFXMode = false; };
 
+        /**
+         * @brief Enables Normalized FX Mode by setting fNormFXMode to true. UNUSED - TODO REMOVE ME!
+         * @note This is a virtual function.
+         */
         virtual void EnableNormFXMode() { fNormFXMode = true; };
 
+        /**
+         * @brief Sets a flag to preserve workspace memory after execution.
+         * @note This is a virtual function.
+         */
         virtual void PreserveWorkspace()
         {
             fPreserveWorkspace = true;
         } //keep the memory reserved for the workspace around after exectution
 
-        virtual void DoNotPreserveWorkspace() { fPreserveWorkspace = false; } //delete memory after execution
+        /**
+         * @brief Sets preserve workspace flag to false, delete memory after execution
+         * @note This is a virtual function.
+         */
+        virtual void DoNotPreserveWorkspace() { fPreserveWorkspace = false; }
 
+        /**
+         * @brief Disables copying tags by setting fCopyTags to false.
+         * @note This is a virtual function.
+         */
         virtual void DisableTagCopy() { fCopyTags = false; }
 
+        /**
+         * @brief Enables copying of tags.
+         * @note This is a virtual function.
+         */
         virtual void EnableTagCopy() { fCopyTags = true; }
 
-        //sometimes we may want to select/deselect particular dimensions of the x-form
-        //default is to transform along every dimension, but that may not always be needed
+
+        /**
+         * @brief Selects all axes for transformation.
+         * sometimes we may want to select/deselect particular dimensions of the x-form
+         * default is to transform along every dimension, but that may not always be needed
+         */
         void SelectAllAxes()
         {
             for(std::size_t i = 0; i < XArgType::rank::value; i++)
@@ -86,6 +137,9 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
             }
         }
 
+        /**
+         * @brief Deselects all axes by setting each axis to false.
+         */
         void DeselectAllAxes()
         {
             for(std::size_t i = 0; i < XArgType::rank::value; i++)
@@ -94,6 +148,11 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
             }
         }
 
+        /**
+         * @brief Selects an axis for transformation if its index is within the array rank.
+         * 
+         * @param axis_index Index of the axis to select.
+         */
         void SelectAxis(std::size_t axis_index)
         {
             if(axis_index < XArgType::rank::value)
@@ -108,6 +167,13 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
         }
 
     protected:
+        /**
+         * @brief Initializes in-place by creating a temporary workspace and calling InitializeOutOfPlace.
+         * 
+         * @param in Input argument of type XArgType*
+         * @return Result of InitializeOutOfPlace function call
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(XArgType* in)
         {
             if(fTmpWorkspace == nullptr)
@@ -117,6 +183,13 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
             return InitializeOutOfPlace(in, fTmpWorkspace);
         }
 
+        /**
+         * @brief Executes operation in-place by copying temporary workspace back to input object.
+         * 
+         * @param in Input object of type XArgType* that will be modified in-place.
+         * @return Boolean status indicating success or failure of the operation.
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(XArgType* in)
         {
             bool status = ExecuteOutOfPlace(in, fTmpWorkspace);
@@ -131,6 +204,14 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
             return status;
         }
 
+        /**
+         * @brief Initializes out-of-place processing for input and output arrays.
+         * 
+         * @param in Pointer to constant input array of type XArgType
+         * @param out Pointer to output array of type XArgType
+         * @return Boolean indicating successful initialization
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out)
         {
             if(in != nullptr && out != nullptr && in != out)
@@ -149,6 +230,14 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
             return (fInitialized && fIsValid);
         }
 
+        /**
+         * @brief Function ExecuteOutOfPlace
+         * 
+         * @param in (const XArgType*)
+         * @param out (XArgType*)
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out)
         {
             if(fIsValid && fInitialized)
@@ -229,6 +318,13 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
 
     private:
         //default...does nothing
+        /**
+         * @brief Applies transformations to all axes of an input XArgType table and copies tags.
+         * 
+         * @tparam XCheckType Template parameter XCheckType
+         * @param !in Parameter description
+         * @param !out Parameter description
+         */
         template< typename XCheckType = XArgType >
         typename std::enable_if< !std::is_base_of< MHO_TableContainerBase, XCheckType >::value, void >::type
         IfTableTransformAxis(const XArgType* /*!in*/, XArgType* /*!out*/){};

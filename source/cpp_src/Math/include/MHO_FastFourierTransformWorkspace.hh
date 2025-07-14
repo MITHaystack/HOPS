@@ -64,6 +64,11 @@ template< typename XFloatType > class MHO_FastFourierTransformWorkspace
 
         virtual ~MHO_FastFourierTransformWorkspace() { Deallocate(); };
 
+        /**
+         * @brief Resizes the internal data structure to a new size and fills it.
+         * 
+         * @param n New size for the data structure.
+         */
         void Resize(unsigned int n)
         {
             if(fN != n)
@@ -74,22 +79,67 @@ template< typename XFloatType > class MHO_FastFourierTransformWorkspace
             }
         }
 
+        /**
+         * @brief Checks if the current workspace is for radix-2 FFT
+         * 
+         * @return True if radix is 2, false otherwise (Bluestein).
+         */
         bool IsRadix2() { return (fM == 0); }
 
+        /**
+         * @brief Getter for n
+         * 
+         * @return Current value of unsigned integer n
+         */
         unsigned int GetN() { return fN; }
 
+        /**
+         * @brief Getter for m
+         * 
+         * @return unsigned int value of fM
+         */
         unsigned int GetM() { return fM; }
 
+        /**
+         * @brief Getter for permutation
+         * 
+         * @return Pointer to unsigned integer containing the permutation value.
+         */
         const unsigned int* GetPermutation() const { return fPermutation; }
 
+        /**
+         * @brief Getter for twiddle
+         * 
+         * @return Current value of twiddle as XFloatType pointer
+         */
         const std::complex< XFloatType >* GetTwiddle() const { return fTwiddle; }
 
+        /**
+         * @brief Getter for conj twiddle
+         * 
+         * @return Conjugate twiddle value of type XFloatType*
+         */
         const std::complex< XFloatType >* GetConjTwiddle() const { return fConjugateTwiddle; }
 
+        /**
+         * @brief Getter for scale
+         * 
+         * @return Pointer to XFloatType representing the current scale.
+         */
         const std::complex< XFloatType >* GetScale() const { return fScale; } //unused for radix-2 (nullptr)
 
+        /**
+         * @brief Getter for circulant
+         * 
+         * @return Current circulant value of type XFloatType
+         */
         const std::complex< XFloatType >* GetCirculant() const { return fCirculant; } //unused for radix-2 (nullptr)
 
+        /**
+         * @brief Getter for workspace
+         * 
+         * @return Pointer to XFloatType workspace
+         */
         std::complex< XFloatType >* GetWorkspace() const { return fWorkspace; } //unused for radix-2 (nullptr)
 
         //data is publicly accessible (for now -- eventually re-work FFT classes to access data via getters)

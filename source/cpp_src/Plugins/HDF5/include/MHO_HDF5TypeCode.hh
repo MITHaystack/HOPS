@@ -13,7 +13,7 @@
 *@class
 *@author J. Barrett - barrettj@mit.edu
 *@date Thu May 15 02:13:28 PM UTC 2025
-*@brief
+*@brief template class to determine the HDF5 type of the corresponding class
 */
 
 // Datatype 	Description 

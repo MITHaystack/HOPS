@@ -1,0 +1,309 @@
+INFO: Found 23 header file(s) to process
+INFO: Starting clangd LSP client...
+INFO: Initializing LLM enhancement with endpoint: http://localhost:11434/v1
+INFO: Collecting project context from directory: source/cpp_src/Initialization
+INFO: Collecting project context from directory: source/cpp_src/Initialization
+INFO: Found 47 source files to analyze
+INFO: Context collection complete: 338 comments, 228 variables, 0 acronyms
+INFO: Loading extra context from file: acronyms.txt
+INFO: Loading extra context from: acronyms.txt
+INFO: Loaded 100 extra context entries
+INFO: Project context loaded for LLM enhancement
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ChannelLabelerBuilder.hh
+WARNING: No hover info for function Build at 31:8
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ChannelLabelerBuilder.hh
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ChannelLabelerBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ChannelLabelerBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ChannelLabelerBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ChannelQuantity.hh
+WARNING: No hover info for function MapChannelQuantities at 26:8
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ChannelQuantity.hh
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ChannelQuantity.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for MapChannelQuantities using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ChannelQuantity.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ChannelQuantity.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_CircularFieldRotationBuilder.hh
+WARNING: No hover info for function Build at 28:8
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_CircularFieldRotationBuilder.hh
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_CircularFieldRotationBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_CircularFieldRotationBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_CircularFieldRotationBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_DCBlockBuilder.hh
+WARNING: No hover info for function Build at 29:8
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_DCBlockBuilder.hh
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_DCBlockBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_DCBlockBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_DCBlockBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_DataSelectionBuilder.hh
+WARNING: No hover info for function Build at 31:8
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_DataSelectionBuilder.hh
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_DataSelectionBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_DataSelectionBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_DataSelectionBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_LSBOffsetBuilder.hh
+WARNING: No hover info for function Build at 29:8
+WARNING: No hover info for function ExtractStationIdentifier at 32:8
+INFO: Found 2 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_LSBOffsetBuilder.hh
+INFO: Found 2 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_LSBOffsetBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for ExtractStationIdentifier using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_LSBOffsetBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_LSBOffsetBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_LinearDParCorrectionBuilder.hh
+WARNING: No hover info for function Build at 28:8
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_LinearDParCorrectionBuilder.hh
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_LinearDParCorrectionBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_LinearDParCorrectionBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_LinearDParCorrectionBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualChannelDelayCorrectionBuilder.hh
+WARNING: No hover info for function Build at 30:8
+WARNING: No hover info for function ParsePolFromName at 33:8
+WARNING: No hover info for function ExtractStationIdentifier at 34:8
+INFO: Found 3 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualChannelDelayCorrectionBuilder.hh
+INFO: Found 3 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualChannelDelayCorrectionBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for ParsePolFromName using LLM...
+INFO: Enhancing comment for ExtractStationIdentifier using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualChannelDelayCorrectionBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualChannelDelayCorrectionBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualChannelPhaseCorrectionBuilder.hh
+WARNING: No hover info for function Build at 29:8
+WARNING: No hover info for function ParsePolFromName at 32:8
+WARNING: No hover info for function ExtractStationIdentifier at 33:8
+INFO: Found 3 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualChannelPhaseCorrectionBuilder.hh
+INFO: Found 3 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualChannelPhaseCorrectionBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for ParsePolFromName using LLM...
+INFO: Enhancing comment for ExtractStationIdentifier using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualChannelPhaseCorrectionBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualChannelPhaseCorrectionBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualPolDelayCorrectionBuilder.hh
+WARNING: No hover info for function Build at 28:8
+WARNING: No hover info for function ParsePolFromName at 31:8
+WARNING: No hover info for function ExtractStationIdentifier at 32:8
+INFO: Found 3 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualPolDelayCorrectionBuilder.hh
+INFO: Found 3 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualPolDelayCorrectionBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for ParsePolFromName using LLM...
+INFO: Enhancing comment for ExtractStationIdentifier using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualPolDelayCorrectionBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualPolDelayCorrectionBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualPolPhaseCorrectionBuilder.hh
+WARNING: No hover info for function Build at 29:8
+WARNING: No hover info for function ParsePolFromName at 32:8
+WARNING: No hover info for function ExtractStationIdentifier at 33:8
+INFO: Found 3 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualPolPhaseCorrectionBuilder.hh
+INFO: Found 3 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualPolPhaseCorrectionBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for ParsePolFromName using LLM...
+INFO: Enhancing comment for ExtractStationIdentifier using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualPolPhaseCorrectionBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ManualPolPhaseCorrectionBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MinWeightBuilder.hh
+WARNING: No hover info for function Build at 28:8
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MinWeightBuilder.hh
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MinWeightBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MinWeightBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MinWeightBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MixedPolYShiftBuilder.hh
+WARNING: No hover info for function Build at 29:8
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MixedPolYShiftBuilder.hh
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MixedPolYShiftBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MixedPolYShiftBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MixedPolYShiftBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MultitonePhaseCorrectionBuilder.hh
+WARNING: No hover info for function Build at 38:8
+WARNING: No hover info for function ExtractStationMk4ID at 41:8
+WARNING: No hover info for function ExtractPCPeriod at 42:8
+WARNING: No hover info for function AttachSamplerDelays at 43:8
+WARNING: No hover info for function AttachPCToneMask at 44:8
+WARNING: No hover info for function GetSamplerDelayKey at 46:8
+INFO: Found 6 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MultitonePhaseCorrectionBuilder.hh
+INFO: Found 6 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MultitonePhaseCorrectionBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for ExtractStationMk4ID using LLM...
+INFO: Enhancing comment for ExtractPCPeriod using LLM...
+INFO: Enhancing comment for AttachSamplerDelays using LLM...
+INFO: Enhancing comment for AttachPCToneMask using LLM...
+INFO: Enhancing comment for GetSamplerDelayKey using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MultitonePhaseCorrectionBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_MultitonePhaseCorrectionBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_NotchesBuilder.hh
+WARNING: No hover info for function Build at 29:8
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_NotchesBuilder.hh
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_NotchesBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_NotchesBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_NotchesBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh
+WARNING: No hover info for function SetToolbox at 47:8
+WARNING: No hover info for function SetFringeData at 49:8
+WARNING: No hover info for function SetParameterStore at 51:8
+WARNING: No hover info for function SetContainerStore at 53:8
+WARNING: No hover info for function SetFormat at 56:8
+WARNING: No hover info for function SetConditions at 58:8
+WARNING: No hover info for function SetAttributes at 60:8
+WARNING: No hover info for function Build at 64:8
+WARNING: No hover info for function IsConfigurationOk at 69:8
+INFO: Found 9 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh
+INFO: Found 9 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetToolbox using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for SetFringeData using LLM...
+INFO: Enhancing comment for SetParameterStore using LLM...
+INFO: Enhancing comment for SetContainerStore using LLM...
+INFO: Enhancing comment for SetFormat using LLM...
+INFO: Enhancing comment for SetConditions using LLM...
+INFO: Enhancing comment for SetAttributes using LLM...
+INFO: Enhancing comment for Build using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh
+WARNING: No hover info for function SetControlStatements at 48:8
+WARNING: No hover info for function CreateDefaultBuilders at 50:8
+WARNING: No hover info for function BuildOperatorCategory at 52:8
+WARNING: No hover info for function BuildOperatorCategory at 58:8
+WARNING: No hover info for function AddBuilderType at 61:42
+WARNING: No hover info for function CreateNullFormatBuilders at 91:8
+WARNING: No hover info for function AddBuilderTypeWithFormat at 93:42
+INFO: Found 7 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh
+INFO: Found 7 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetControlStatements using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for CreateDefaultBuilders using LLM...
+INFO: Enhancing comment for BuildOperatorCategory using LLM...
+INFO: Enhancing comment for BuildOperatorCategory using LLM...
+INFO: Enhancing comment for AddBuilderType using LLM...
+INFO: Enhancing comment for CreateNullFormatBuilders using LLM...
+INFO: Enhancing comment for AddBuilderTypeWithFormat using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh
+WARNING: No hover info for function SetConditions at 34:8
+WARNING: No hover info for function SetAttributes at 36:8
+WARNING: No hover info for function Configure at 38:8
+WARNING: No hover info for function DetermineParamType at 70:8
+WARNING: No hover info for function DetermineParamValueType at 71:8
+WARNING: No hover info for function SetScalarParameter at 73:40
+WARNING: No hover info for function GetScalarParameter at 74:40
+WARNING: No hover info for function SetVectorParameter at 76:40
+WARNING: No hover info for function GetVectorParameter at 77:40
+WARNING: No hover info for function SetCompoundParameter at 79:8
+WARNING: No hover info for function LogicalIntersection at 81:8
+WARNING: Reached maximum symbol limit (20), stopping
+WARNING: No hover info for function MHO_ParameterConfigurator::SetScalarParameter at 91:32
+WARNING: No hover info for function MHO_ParameterConfigurator::GetScalarParameter at 100:32
+WARNING: No hover info for function MHO_ParameterConfigurator::SetVectorParameter at 110:0
+WARNING: No hover info for function MHO_ParameterConfigurator::GetVectorParameter at 120:0
+INFO: Found 15 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh
+INFO: Found 15 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetConditions using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for SetAttributes using LLM...
+INFO: Enhancing comment for Configure using LLM...
+INFO: Enhancing comment for DetermineParamType using LLM...
+INFO: Enhancing comment for DetermineParamValueType using LLM...
+INFO: Enhancing comment for SetScalarParameter using LLM...
+INFO: Enhancing comment for GetScalarParameter using LLM...
+INFO: Enhancing comment for SetVectorParameter using LLM...
+INFO: Enhancing comment for GetVectorParameter using LLM...
+INFO: Enhancing comment for SetCompoundParameter using LLM...
+INFO: Enhancing comment for LogicalIntersection using LLM...
+INFO: Enhancing comment for MHO_ParameterConfigurator::SetScalarParameter using LLM...
+INFO: Enhancing comment for MHO_ParameterConfigurator::GetScalarParameter using LLM...
+INFO: Enhancing comment for MHO_ParameterConfigurator::SetVectorParameter using LLM...
+INFO: Enhancing comment for MHO_ParameterConfigurator::GetVectorParameter using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh
+WARNING: No hover info for function SetControlStatements at 27:8
+WARNING: No hover info for function ConfigureAll at 29:8
+INFO: Found 2 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh
+INFO: Found 2 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetControlStatements using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for ConfigureAll using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_PassbandBuilder.hh
+WARNING: No hover info for function Build at 29:8
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_PassbandBuilder.hh
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_PassbandBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_PassbandBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_PassbandBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_PolProductSummationBuilder.hh
+WARNING: No hover info for function Build at 29:8
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_PolProductSummationBuilder.hh
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_PolProductSummationBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_PolProductSummationBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_PolProductSummationBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_SamplerLabelerBuilder.hh
+WARNING: No hover info for function Build at 28:8
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_SamplerLabelerBuilder.hh
+INFO: Found 1 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_SamplerLabelerBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_SamplerLabelerBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_SamplerLabelerBuilder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_StationDelayCorrectionBuilder.hh
+WARNING: No hover info for function Build at 28:8
+WARNING: No hover info for function ParsePolFromName at 31:8
+WARNING: No hover info for function ExtractStationIdentifier at 32:8
+INFO: Found 3 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_StationDelayCorrectionBuilder.hh
+INFO: Found 3 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_StationDelayCorrectionBuilder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Build using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for ExtractStationIdentifier using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_StationDelayCorrectionBuilder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Initialization/include/MHO_StationDelayCorrectionBuilder.hh.bak
+
+Processed 23/23 header files successfully

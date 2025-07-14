@@ -49,23 +49,56 @@ namespace hops
  *@class MHO_MK4ScanConverter
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Feb 8 13:15:14 2024 -0500
- *@brief
+ *@brief Converts an entire Mark4 directory to HOPS4 format (station, corel and ovex data)
  */
 
+/**
+ * @brief Class MHO_MK4ScanConverter
+ */
 class MHO_MK4ScanConverter
 {
     public:
         MHO_MK4ScanConverter();
         virtual ~MHO_MK4ScanConverter();
 
+        /**
+         * @brief Determines the type of a given directory (scan, experiment, unknown).
+         * 
+         * @param in_dir Input directory path to analyze
+         * @return Directory type as an integer (MK4_SCANDIR, MK4_EXPDIR, MK4_UNKNOWNDIR)
+         * @note This is a static function.
+         */
         static int DetermineDirectoryType(const std::string& in_dir);
+        /**
+         * @brief Processes scan data from input directory (MK4 format) to output directory (HOPS4 format)
+         * 
+         * @param input_dir Input directory containing scan files
+         * @param output_dir Output directory for processed files
+         * @note This is a static function.
+         */
         static void ProcessScan(const std::string& input_dir, const std::string& output_dir);
 
     private:
         //convert a corel file
+        /**
+         * @brief Converts Corel input file to HOPS4 format and writes output.
+         * 
+         * @param root_file Path to root VEX file
+         * @param input_file Input Corel file path
+         * @param output_file Output file path
+         * @note This is a static function.
+         */
         static void ConvertCorel(const std::string& root_file, const std::string& input_file, const std::string& output_file);
 
         //convert a station file
+        /**
+         * @brief Converts a station input file to an output file HOPS4 format.
+         * 
+         * @param root_file Path to the root VEX file
+         * @param input_file Path to the input station file
+         * @param output_file Path to the output SWIN file
+         * @note This is a static function.
+         */
         static void ConvertStation(const std::string& root_file, const std::string& input_file, const std::string& output_file);
 };
 

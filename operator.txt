@@ -1,0 +1,509 @@
+INFO: Found 25 header file(s) to process
+INFO: Starting clangd LSP client...
+INFO: Initializing LLM enhancement with endpoint: http://localhost:11434/v1
+INFO: Collecting project context from directory: source/cpp_src/Operators
+INFO: Collecting project context from directory: source/cpp_src/Operators
+INFO: Found 40 source files to analyze
+INFO: Context collection complete: 403 comments, 291 variables, 1 acronyms
+INFO: Loading extra context from file: acronyms.txt
+INFO: Loading extra context from: acronyms.txt
+INFO: Loaded 100 extra context entries
+INFO: Project context loaded for LLM enhancement
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_AbsoluteValue.hh
+INFO: Found 0 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_AbsoluteValue.hh
+INFO: Found 0 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_AbsoluteValue.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_AbsoluteValue.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_AbsoluteValue.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh
+WARNING: No hover info for function SetArgs at 32:8
+WARNING: No hover info for function Initialize at 37:8
+WARNING: No hover info for function Execute at 42:8
+WARNING: No hover info for function InitializeImpl at 52:8
+WARNING: No hover info for function ExecuteImpl at 53:8
+INFO: Found 5 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh
+INFO: Found 5 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetArgs using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for Initialize using LLM...
+INFO: Enhancing comment for Execute using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh
+INFO: Found 0 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh
+INFO: Found 0 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh
+WARNING: No hover info for function value at 16:8
+WARNING: No hover info for function value at 22:8
+WARNING: No hover info for function value at 27:8
+WARNING: No hover info for function value at 32:8
+WARNING: No hover info for function value at 37:8
+WARNING: No hover info for function value at 42:8
+WARNING: No hover info for function value at 47:8
+WARNING: No hover info for function value at 52:8
+WARNING: No hover info for function value at 57:8
+WARNING: No hover info for function value at 62:8
+WARNING: No hover info for function value at 67:8
+WARNING: No hover info for function value at 72:8
+WARNING: No hover info for function value at 77:8
+WARNING: No hover info for function value at 83:8
+WARNING: No hover info for function value at 88:8
+WARNING: No hover info for function value at 93:8
+WARNING: No hover info for function value at 98:8
+WARNING: No hover info for function value at 103:8
+WARNING: No hover info for function value at 108:8
+WARNING: No hover info for function value at 113:8
+WARNING: Reached maximum symbol limit (20), stopping
+INFO: Found 20 functions and 20 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh
+INFO: Found 20 functions and 20 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for value using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Enhancing comment for value using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh
+WARNING: No hover info for function SetOffset at 40:8
+WARNING: No hover info for function InitializeInPlace at 57:8
+WARNING: No hover info for function ExecuteInPlace at 67:8
+WARNING: No hover info for function InitializeOutOfPlace at 145:8
+WARNING: No hover info for function ExecuteOutOfPlace at 179:8
+WARNING: No hover info for function IfTableRotateAxis at 217:8
+WARNING: No hover info for function IfTableRotateAxis at 222:8
+WARNING: No hover info for function positive_modulo at 266:8
+INFO: Found 8 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh
+INFO: Found 8 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetOffset using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for InitializeInPlace using LLM...
+INFO: Enhancing comment for IfTableRotateAxis using LLM...
+INFO: Enhancing comment for IfTableRotateAxis using LLM...
+INFO: Enhancing comment for positive_modulo using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh
+WARNING: No hover info for function InitializeImpl at 28:8
+WARNING: No hover info for function ExecuteImpl at 30:8
+WARNING: No hover info for function IfTableCopyAxesAndTags at 53:8
+WARNING: No hover info for function IfTableCopyAxesAndTags at 60:8
+INFO: Found 4 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh
+INFO: Found 4 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for InitializeImpl using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for ExecuteImpl using LLM...
+INFO: Enhancing comment for IfTableCopyAxesAndTags using LLM...
+INFO: Enhancing comment for IfTableCopyAxesAndTags using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_EndZeroPadder.hh
+WARNING: No hover info for function SetPaddingFactor at 50:8
+WARNING: No hover info for function SetPaddedSize at 53:8
+WARNING: No hover info for function SetEndPadded at 59:8
+WARNING: No hover info for function SetReverseEndPadded at 61:8
+WARNING: No hover info for function DisableNormFXMode at 63:8
+WARNING: No hover info for function EnableNormFXMode at 65:8
+WARNING: No hover info for function PreserveWorkspace at 67:8
+WARNING: No hover info for function DoNotPreserveWorkspace at 72:8
+WARNING: No hover info for function DisableTagCopy at 74:8
+WARNING: No hover info for function EnableTagCopy at 76:8
+WARNING: No hover info for function SelectAllAxes at 80:8
+WARNING: No hover info for function DeselectAllAxes at 88:8
+WARNING: No hover info for function SelectAxis at 96:8
+WARNING: No hover info for function InitializeInPlace at 110:8
+WARNING: No hover info for function ExecuteInPlace at 119:8
+WARNING: No hover info for function InitializeOutOfPlace at 133:8
+WARNING: No hover info for function ExecuteOutOfPlace at 151:8
+WARNING: No hover info for function IfTableTransformAxis at 232:8
+WARNING: Reached maximum symbol limit (20), stopping
+INFO: Found 18 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_EndZeroPadder.hh
+INFO: Found 18 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_EndZeroPadder.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetPaddingFactor using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for SetPaddedSize using LLM...
+INFO: Enhancing comment for SetEndPadded using LLM...
+INFO: Enhancing comment for SetReverseEndPadded using LLM...
+INFO: Enhancing comment for DisableNormFXMode using LLM...
+INFO: Enhancing comment for EnableNormFXMode using LLM...
+INFO: Enhancing comment for PreserveWorkspace using LLM...
+INFO: Enhancing comment for DoNotPreserveWorkspace using LLM...
+INFO: Enhancing comment for DisableTagCopy using LLM...
+INFO: Enhancing comment for EnableTagCopy using LLM...
+INFO: Enhancing comment for SelectAllAxes using LLM...
+INFO: Enhancing comment for DeselectAllAxes using LLM...
+INFO: Enhancing comment for SelectAxis using LLM...
+INFO: Enhancing comment for InitializeInPlace using LLM...
+INFO: Enhancing comment for ExecuteInPlace using LLM...
+INFO: Enhancing comment for InitializeOutOfPlace using LLM...
+INFO: Enhancing comment for IfTableTransformAxis using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_EndZeroPadder.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_EndZeroPadder.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ExtremaSearch.hh
+WARNING: No hover info for function GetMax at 30:8
+WARNING: No hover info for function GetMin at 32:8
+WARNING: No hover info for function GetMaxLocation at 34:8
+WARNING: No hover info for function GetMinLocation at 36:8
+WARNING: No hover info for function InitializeImpl at 39:8
+WARNING: No hover info for function ExecuteImpl at 41:8
+WARNING: No hover info for function Search at 50:8
+WARNING: No hover info for function Search at 80:8
+INFO: Found 8 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ExtremaSearch.hh
+INFO: Found 8 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ExtremaSearch.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for GetMax using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for GetMin using LLM...
+INFO: Enhancing comment for GetMaxLocation using LLM...
+INFO: Enhancing comment for GetMinLocation using LLM...
+INFO: Enhancing comment for InitializeImpl using LLM...
+INFO: Enhancing comment for ExecuteImpl using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ExtremaSearch.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_ExtremaSearch.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh
+WARNING: No hover info for function fftwf_alignment_of at 14:0
+WARNING: No hover info for function fftw_alignment_of at 15:0
+WARNING: No hover info for function fftwl_alignment_of at 16:0
+WARNING: No hover info for function get_fftw_version_raw at 120:4
+WARNING: No hover info for function split_version_string at 129:4
+WARNING: No hover info for function get_fftw_version_numeric at 143:4
+WARNING: No hover info for function get_fftw_version_major at 160:4
+WARNING: No hover info for function get_fftw_version_minor at 172:4
+WARNING: No hover info for function get_fftw_version_patch at 184:4
+INFO: Found 9 functions and 5 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh
+INFO: Found 9 functions and 5 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for fftwf_alignment_of using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for fftw_alignment_of using LLM...
+INFO: Enhancing comment for fftwl_alignment_of using LLM...
+INFO: Enhancing comment for get_fftw_version_raw using LLM...
+INFO: Enhancing comment for split_version_string using LLM...
+INFO: Enhancing comment for get_fftw_version_numeric using LLM...
+INFO: Enhancing comment for get_fftw_version_major using LLM...
+INFO: Enhancing comment for get_fftw_version_minor using LLM...
+INFO: Enhancing comment for get_fftw_version_patch using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh
+WARNING: No hover info for function SetForward at 37:8
+WARNING: No hover info for function SetBackward at 39:8
+WARNING: No hover info for function InitializeInPlace at 42:8
+WARNING: No hover info for function ExecuteInPlace at 43:8
+WARNING: No hover info for function InitializeOutOfPlace at 44:8
+WARNING: No hover info for function ExecuteOutOfPlace at 45:8
+WARNING: No hover info for function MHO_FastFourierTransform<XFloatType>::InitializeInPlace at 53:0
+WARNING: No hover info for function MHO_FastFourierTransform<XFloatType>::InitializeOutOfPlace at 70:0
+WARNING: No hover info for function MHO_FastFourierTransform<XFloatType>::ExecuteInPlace at 89:0
+WARNING: No hover info for function MHO_FastFourierTransform<XFloatType>::ExecuteOutOfPlace at 113:0
+INFO: Found 10 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh
+INFO: Found 10 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetForward using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for SetBackward using LLM...
+INFO: Enhancing comment for InitializeInPlace using LLM...
+INFO: Enhancing comment for InitializeOutOfPlace using LLM...
+INFO: Enhancing comment for ExecuteOutOfPlace using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FunctorBroadcaster.hh
+WARNING: No hover info for function GetFunctor at 28:8
+WARNING: No hover info for function InitializeInPlace at 31:8
+WARNING: No hover info for function ExecuteInPlace at 40:8
+WARNING: No hover info for function InitializeOutOfPlace at 57:8
+WARNING: No hover info for function ExecuteOutOfPlace at 89:8
+INFO: Found 5 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FunctorBroadcaster.hh
+INFO: Found 5 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FunctorBroadcaster.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for GetFunctor using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for InitializeInPlace using LLM...
+INFO: Enhancing comment for ExecuteInPlace using LLM...
+INFO: Enhancing comment for ExecuteOutOfPlace using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FunctorBroadcaster.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_FunctorBroadcaster.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh
+WARNING: No hover info for function SetArgs at 23:8
+WARNING: No hover info for function Initialize at 25:8
+WARNING: No hover info for function Execute at 27:8
+WARNING: No hover info for function InitializeImpl at 30:8
+WARNING: No hover info for function ExecuteImpl at 31:8
+INFO: Found 5 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh
+INFO: Found 5 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetArgs using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for Initialize using LLM...
+INFO: Enhancing comment for Execute using LLM...
+INFO: Enhancing comment for InitializeImpl using LLM...
+INFO: Enhancing comment for ExecuteImpl using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransform.hh
+WARNING: No hover info for function InitializeInPlace at 43:8
+WARNING: No hover info for function InitializeOutOfPlace at 64:8
+WARNING: No hover info for function ExecuteInPlace at 89:8
+WARNING: No hover info for function ExecuteOutOfPlace at 172:8
+WARNING: No hover info for function AllocateWorkspace at 183:8
+INFO: Found 5 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransform.hh
+INFO: Found 5 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransform.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for InitializeInPlace using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for ExecuteOutOfPlace using LLM...
+INFO: Enhancing comment for AllocateWorkspace using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransform.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransform.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh
+WARNING: No hover info for function InitializeInPlace at 80:8
+WARNING: No hover info for function InitializeOutOfPlace at 132:8
+WARNING: No hover info for function ExecuteInPlace at 186:8
+WARNING: No hover info for function ExecuteOutOfPlace at 252:8
+WARNING: No hover info for function AllocateWorkspace at 263:8
+WARNING: No hover info for function DeallocateWorkspace at 270:8
+WARNING: No hover info for function DestructPlan at 277:8
+WARNING: No hover info for function ConstructPlan at 292:8
+WARNING: No hover info for function HaveSameAlignment at 369:59
+WARNING: Reached maximum symbol limit (20), stopping
+INFO: Found 9 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh
+INFO: Found 9 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for ExecuteOutOfPlace using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for AllocateWorkspace using LLM...
+INFO: Enhancing comment for DeallocateWorkspace using LLM...
+INFO: Enhancing comment for DestructPlan using LLM...
+INFO: Enhancing comment for HaveSameAlignment using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh
+WARNING: No hover info for function SetForward at 44:8
+WARNING: No hover info for function SetBackward at 46:8
+WARNING: No hover info for function SelectAllAxes at 50:8
+WARNING: No hover info for function DeselectAllAxes at 59:8
+WARNING: No hover info for function SelectAxis at 68:8
+WARNING: No hover info for function EnableAxisLabelTransformation at 82:8
+WARNING: No hover info for function DisableAxisLabelTransformation at 84:8
+WARNING: No hover info for function IfTableTransformAxis at 89:8
+WARNING: No hover info for function IfTableTransformAxis at 94:8
+INFO: Found 9 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh
+INFO: Found 9 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetForward using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for SetBackward using LLM...
+INFO: Enhancing comment for SelectAllAxes using LLM...
+INFO: Enhancing comment for DeselectAllAxes using LLM...
+INFO: Enhancing comment for SelectAxis using LLM...
+INFO: Enhancing comment for EnableAxisLabelTransformation using LLM...
+INFO: Enhancing comment for DisableAxisLabelTransformation using LLM...
+INFO: Enhancing comment for IfTableTransformAxis using LLM...
+INFO: Enhancing comment for IfTableTransformAxis using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_NaNMasker.hh
+INFO: Found 0 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_NaNMasker.hh
+INFO: Found 0 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_NaNMasker.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_NaNMasker.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_NaNMasker.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_Operator.hh
+WARNING: No hover info for function Initialize at 22:8
+WARNING: No hover info for function Execute at 23:8
+WARNING: No hover info for function SetName at 25:8
+WARNING: No hover info for function GetName at 27:8
+WARNING: No hover info for function SetPriority at 30:8
+WARNING: No hover info for function Priority at 34:8
+INFO: Found 6 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_Operator.hh
+INFO: Found 6 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_Operator.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetName using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for GetName using LLM...
+INFO: Enhancing comment for SetPriority using LLM...
+INFO: Enhancing comment for Priority using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_Operator.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_Operator.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_OperatorToolbox.hh
+WARNING: No hover info for function AddOperator at 29:8
+WARNING: No hover info for function GetOperator at 45:8
+WARNING: No hover info for function GetOperator at 56:8
+WARNING: No hover info for function GetOperatorAs at 63:43
+WARNING: No hover info for function GetNOperators at 74:8
+WARNING: No hover info for function GetAllOperators at 77:8
+WARNING: No hover info for function GetOperatorsByPriorityRange at 91:8
+WARNING: No hover info for function GetOperatorsByCategory at 109:8
+WARNING: No hover info for function RemoveOperator at 129:8
+WARNING: No hover info for function Clear at 160:8
+INFO: Found 10 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_OperatorToolbox.hh
+INFO: Found 10 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_OperatorToolbox.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for AddOperator using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for GetOperator using LLM...
+INFO: Enhancing comment for GetOperator using LLM...
+INFO: Enhancing comment for GetOperatorAs using LLM...
+INFO: Enhancing comment for GetNOperators using LLM...
+INFO: Enhancing comment for GetAllOperators using LLM...
+INFO: Enhancing comment for GetOperatorsByPriorityRange using LLM...
+INFO: Enhancing comment for GetOperatorsByCategory using LLM...
+INFO: Enhancing comment for Clear using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_OperatorToolbox.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_OperatorToolbox.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh
+WARNING: No hover info for function ReduceAxis at 48:8
+WARNING: No hover info for function ClearAxisSelection at 63:8
+WARNING: No hover info for function InitializeInPlace at 73:8
+WARNING: No hover info for function ExecuteInPlace at 75:8
+WARNING: No hover info for function InitializeOutOfPlace at 83:8
+WARNING: No hover info for function ExecuteOutOfPlace at 130:8
+WARNING: No hover info for function IfTableReduceAxis at 212:8
+WARNING: No hover info for function IfTableReduceAxis at 217:8
+INFO: Found 8 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh
+INFO: Found 8 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for ReduceAxis using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for ClearAxisSelection using LLM...
+INFO: Enhancing comment for InitializeInPlace using LLM...
+INFO: Enhancing comment for ExecuteInPlace using LLM...
+INFO: Enhancing comment for InitializeOutOfPlace using LLM...
+INFO: Enhancing comment for IfTableReduceAxis using LLM...
+INFO: Enhancing comment for IfTableReduceAxis using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh
+WARNING: No hover info for function Reset at 36:8
+WARNING: No hover info for function SelectAxisItems at 38:8
+WARNING: No hover info for function InitializeInPlace at 47:8
+WARNING: No hover info for function ExecuteInPlace at 49:8
+WARNING: No hover info for function InitializeOutOfPlace at 57:8
+WARNING: No hover info for function ExecuteOutOfPlace at 73:8
+WARNING: No hover info for function DetermineOutputDimensions at 144:8
+WARNING: No hover info for function ConditionallyResizeOutput at 159:8
+WARNING: No hover info for function IfTableSelectOnAxes at 178:8
+WARNING: No hover info for function IfTableSelectOnAxes at 183:8
+INFO: Found 10 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh
+INFO: Found 10 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for Reset using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for SelectAxisItems using LLM...
+INFO: Enhancing comment for InitializeInPlace using LLM...
+INFO: Enhancing comment for ExecuteInPlace using LLM...
+INFO: Enhancing comment for InitializeOutOfPlace using LLM...
+INFO: Enhancing comment for DetermineOutputDimensions using LLM...
+INFO: Enhancing comment for ConditionallyResizeOutput using LLM...
+INFO: Enhancing comment for IfTableSelectOnAxes using LLM...
+INFO: Enhancing comment for IfTableSelectOnAxes using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh
+WARNING: No hover info for function SetDimensionAndStride at 38:8
+WARNING: No hover info for function InitializeInPlace at 53:8
+WARNING: No hover info for function ExecuteInPlace at 55:8
+WARNING: No hover info for function InitializeOutOfPlace at 68:8
+WARNING: No hover info for function ExecuteOutOfPlace at 85:8
+WARNING: No hover info for function DetermineOutputDimensions at 154:8
+WARNING: No hover info for function ConditionallyResizeOutput at 161:8
+WARNING: No hover info for function IfTableSubSampleAxis at 180:8
+WARNING: No hover info for function IfTableSubSampleAxis at 185:8
+INFO: Found 9 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh
+INFO: Found 9 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetDimensionAndStride using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for InitializeInPlace using LLM...
+INFO: Enhancing comment for ExecuteInPlace using LLM...
+INFO: Enhancing comment for InitializeOutOfPlace using LLM...
+INFO: Enhancing comment for DetermineOutputDimensions using LLM...
+INFO: Enhancing comment for ConditionallyResizeOutput using LLM...
+INFO: Enhancing comment for IfTableSubSampleAxis using LLM...
+INFO: Enhancing comment for IfTableSubSampleAxis using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh
+WARNING: No hover info for function SetArgs at 30:8
+WARNING: No hover info for function Initialize at 32:8
+WARNING: No hover info for function Execute at 34:8
+WARNING: No hover info for function InitializeImpl at 37:8
+WARNING: No hover info for function ExecuteImpl at 38:8
+INFO: Found 5 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh
+INFO: Found 5 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetArgs using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for Initialize using LLM...
+INFO: Enhancing comment for Execute using LLM...
+INFO: Enhancing comment for InitializeImpl using LLM...
+INFO: Enhancing comment for ExecuteImpl using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryFunctor.hh
+INFO: Found 0 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryFunctor.hh
+INFO: Found 0 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryFunctor.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryFunctor.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryFunctor.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh
+WARNING: No hover info for function SetArgs at 26:8
+WARNING: No hover info for function Initialize at 28:8
+WARNING: No hover info for function Execute at 30:8
+WARNING: No hover info for function InitializeInPlace at 33:8
+WARNING: No hover info for function ExecuteInPlace at 34:8
+INFO: Found 5 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh
+INFO: Found 5 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetArgs using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for Initialize using LLM...
+INFO: Enhancing comment for Execute using LLM...
+INFO: Enhancing comment for InitializeInPlace using LLM...
+INFO: Enhancing comment for ExecuteInPlace using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh
+WARNING: No hover info for function SetArgs at 32:8
+WARNING: No hover info for function SetArgs at 39:8
+WARNING: No hover info for function Initialize at 45:8
+WARNING: No hover info for function Execute at 57:8
+WARNING: No hover info for function InitializeInPlace at 70:8
+WARNING: No hover info for function InitializeOutOfPlace at 71:8
+WARNING: No hover info for function ExecuteInPlace at 73:8
+WARNING: No hover info for function ExecuteOutOfPlace at 74:8
+INFO: Found 8 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh
+INFO: Found 8 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetArgs using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for SetArgs using LLM...
+INFO: Enhancing comment for Initialize using LLM...
+INFO: Enhancing comment for Execute using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh.bak
+
+Processed 25/25 header files successfully

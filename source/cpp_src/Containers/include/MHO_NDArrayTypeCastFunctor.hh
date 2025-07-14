@@ -15,6 +15,9 @@ namespace hops
  *@brief functor to cast array items from one type to another
  */
 
+/**
+ * @brief Class MHO_NDArrayTypeCastFunctor
+ */
 template< class XInputArrayType, class XOutputArrayType > class MHO_NDArrayTypeCastFunctor
 {
     public:
