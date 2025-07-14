@@ -23,7 +23,7 @@ namespace hops
  *@class MHO_HDF5ConverterDictionary
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri May 16 10:42:52 AM EDT 2025
- *@brief
+ *@brief Dictionary of objects which do the conversion to HDF5 for each type
  */
 
 class MHO_HDF5ConverterDictionary
