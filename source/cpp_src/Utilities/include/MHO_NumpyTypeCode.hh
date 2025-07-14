@@ -12,24 +12,21 @@
 *@author J. Barrett - barrettj@mit.edu
 *@date Thu May 15 02:13:28 PM UTC 2025
 *@brief
+*  Type                                 Type code                     Description
+*  int8, uint8                          i1, u1      Signed and unsigned 8-bit (1-byte) integer types
+*  int16, uint16                        i2, u2      Signed and unsigned 16-Bit (2 Byte) integer types
+*  int32, uint32                        i4, u4      Signed and unsigned 32-Bit (4 Byte) integer types
+*  int64, uint64                        i8, u8      Signed and unsigned 64-Bit (8 Byte) integer types
+*  float32                              f4 or f     Standard floating point with single precision; compatible with C float
+*  float64                              f8 or d     Standard floating point with double precision; compatible with C double and Python float object
+*  complex64, complex128,               c8, c16     Complex numbers represented by two 32, 64 or 128 floating point numbers respectively
+* UNSUPPORTED:
+*  bool             ?    Boolean type that stores the values True and False
+*  object           O    Python object type; a value can be any Python object
+*  string_          S    ASCII string type with fixed length (1 byte per character); to create a string type with length 7, for example, use S7; longer inputs are truncated without warning
+*  unicode_         U    Unicode type with fixed length where the number of bytes is platform-specific; uses the same specification semantics as string_, e.g. U7
+*  float16          f2   Standard floating point with half precision
 */
-
-// Type                                 Type code                     Description
-// int8, uint8                          i1, u1      Signed and unsigned 8-bit (1-byte) integer types
-// int16, uint16                        i2, u2      Signed and unsigned 16-Bit (2 Byte) integer types
-// int32, uint32                        i4, u4      Signed and unsigned 32-Bit (4 Byte) integer types
-// int64, uint64                        i8, u8      Signed and unsigned 64-Bit (8 Byte) integer types
-
-// float32                              f4 or f     Standard floating point with single precision; compatible with C float
-// float64                              f8 or d     Standard floating point with double precision; compatible with C double and Python float object
-// complex64, complex128,               c8, c16     Complex numbers represented by two 32, 64 or 128 floating point numbers respectively
-
-//UNSUPPORTED:
-// bool             ?    Boolean type that stores the values True and False
-// object           O    Python object type; a value can be any Python object
-// string_          S    ASCII string type with fixed length (1 byte per character); to create a string type with length 7, for example, use S7; longer inputs are truncated without warning
-// unicode_         U    Unicode type with fixed length where the number of bytes is platform-specific; uses the same specification semantics as string_, e.g. U7
-// float16          f2   Standard floating point with half precision
 
 namespace hops 
 {

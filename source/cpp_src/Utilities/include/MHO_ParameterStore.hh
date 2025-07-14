@@ -43,7 +43,6 @@ namespace hops
  *Then a useful construction to retrieve this would be something like the following (with the variable key's location within braces):
  *std::string vpath = "/item1/{/item0/key2}/key3"  --> this gets translated into "/item1/kvalue2/key3" before retrieval
  *auto value = params.Get<std::string>(vpath);
- *NOTE: this wouldn't be particularly useful for hops parameters -- but would be for retrieving vex info
  */
 
 /**
@@ -61,9 +60,8 @@ class MHO_ParameterStore
 
         ~MHO_ParameterStore(){};
 
-        //TODO remove me
         /**
-         * @brief Dumps hardware correlator data and integrates it over time.
+         * @brief Dumps the store JSON data to std:cout (for debugging)
          */
         void Dump() { std::cout << fStore.dump(2) << std::endl; }
 
@@ -95,7 +93,7 @@ class MHO_ParameterStore
 
         //returns true if no error adding value
         /**
-         * @brief Setter for value at specified path in Measurement Set store.
+         * @brief Setter for value at specified path in the parameter store.
          * 
          * @param value_path Path to the value as a string reference.
          * @param value Value to set at the given path.
@@ -159,6 +157,7 @@ class MHO_ParameterStore
         }
 
     private:
+
         //sanitize the value_path string -- for example a trailing '/' is no good
         /**
          * @brief Removes leading/trailing whitespace and trailing '/' from input path string.

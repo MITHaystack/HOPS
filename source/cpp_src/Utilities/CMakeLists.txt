@@ -18,7 +18,6 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FileStreamer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UUID.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FileKey.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Units.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Tokenizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TimeStampConverter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Interval.hh

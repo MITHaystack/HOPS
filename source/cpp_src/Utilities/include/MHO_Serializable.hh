@@ -16,7 +16,7 @@ namespace hops
  *@class MHO_Serializable
  *@author J. Barrett - barrettj@mit.edu
  *@date Wed Apr 21 13:40:18 2021 -0400
- *@brief
+ *@brief Abstract base class for all serializable objects
  */
 
 /**
