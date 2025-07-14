@@ -30,11 +30,15 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Jan 30 23:48:59 2024 -0500
  *@brief ported version of fourfit write lock mechanism
+ * the only three functions user needs to call via the instance:
+ * (1) enable/disable legacy mode
+ * (2) wait for lock
+ * - write out the data file
+ * (3) remove lock
  */
 
-//struct for holding data about the lock file's creation
 /**
- * @brief Class lockfile_data
+ * @brief struct lockfile_data - struct for holding data about the lock file's creation
  */
 struct lockfile_data
 {
@@ -48,9 +52,9 @@ struct lockfile_data
         char lockfile_name[MAX_LOCKNAME_LEN];
 };
 
-//uses the singleton pattern
+
 /**
- * @brief Class MHO_LockFileHandler
+ * @brief Class MHO_LockFileHandler uses the singleton pattern
  */
 class MHO_LockFileHandler
 {
@@ -61,9 +65,8 @@ class MHO_LockFileHandler
         MHO_LockFileHandler& operator=(MHO_LockFileHandler const&) = delete;
         MHO_LockFileHandler& operator=(MHO_LockFileHandler&&) = delete;
 
-        //provide public access to the only static instance
         /**
-         * @brief Getter for instance
+         * @brief provide public access to the only static instance
          * 
          * @return Reference to the singleton instance of MHO_LockFileHandler
          * @note This is a static function.
@@ -77,11 +80,11 @@ class MHO_LockFileHandler
             return *fInstance;
         }
 
-        //configure the lock handler to write legacy type_2xx files (e.g. GE.X.1.ABCDEF)
-        //or to use the new file naming convention (.frng extension)
-        //legacy mode is enabled by default
+
         /**
-         * @brief Enables legacy mode for writing type_2xx files using GE.X.1.ABCDEF naming convention.
+         * @brief configure the lock handler to write legacy type_2xx file (e.g. GE.X.1.ABCDEF) naming convention.
+         * or to use the new file naming convention (.frng extension)
+         * legacy mode is enabled by default
          */
         void EnableLegacyMode() { fEnableLegacyMode = true; };
 
@@ -90,11 +93,7 @@ class MHO_LockFileHandler
          */
         void DisableLegacyMode() { fEnableLegacyMode = false; };
 
-        //the only three functions user needs to call via the instance:
-        //(1) enable/disable legacy mode
-        //(2) wait for lock
-        // write out the data file
-        //(3) remove lock
+
         /**
          * @brief Waits for and acquires a write lock on the specified directory, setting it as the current directory.
          * 
@@ -124,6 +123,7 @@ class MHO_LockFileHandler
          * @note This is a static function.
          */
         static void init_lockfile_data(lockfile_data* data);
+
         /**
          * @brief Parses a lockfile name into its constituent components and stores them in result.
          * 
@@ -133,6 +133,7 @@ class MHO_LockFileHandler
          * @note This is a static function.
          */
         static int parse_lockfile_name(char* lockfile_name_base, lockfile_data* result);
+
         /**
          * @brief Creates a lockfile in the specified directory with given name and data, using current process ID, hostname, and timestamp.
          * 
@@ -144,6 +145,7 @@ class MHO_LockFileHandler
          * @note This is a static function.
          */
         static int create_lockfile(const char* directory, char* lockfile_name, lockfile_data* lock_data, int max_seq_no);
+
         /**
          * @brief Checks if another lockfile is stale and returns appropriate status.
          * 
@@ -152,6 +154,7 @@ class MHO_LockFileHandler
          * @note This is a static function.
          */
         static int check_stale(lockfile_data* other);
+
         /**
          * @brief Determines priority between two lock processes based on PID and timestamps.
          * 
@@ -172,6 +175,7 @@ class MHO_LockFileHandler
          * @note This is a static function.
          */
         static int at_front(const char* directory, char* lockfile_name, lockfile_data* lock_data, int cand_seq_no);
+
         /**
          * @brief Removes a lockfile if it's valid and outputs debug message.
          * 
@@ -187,6 +191,7 @@ class MHO_LockFileHandler
          * @return LOCK_STATUS_OK on success, error codes otherwise
          */
         int wait_for_write_lock(int& next_seq_no);
+
         /**
          * @brief Finds and returns the maximum sequence number among fringe files in the given directory.
          * 

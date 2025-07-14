@@ -16,7 +16,7 @@ namespace hops
  *@file MHO_MPIInterface.hh
  *@class MHO_MPIInterface
  *@date Sat Mar 11 18:35:02 2023 -0500
- *@brief
+ *@brief interface functions for initialization of a MPI environment
  *@author J. Barrett - barrettj@mit.edu
  */
 
@@ -60,7 +60,7 @@ class MHO_MPIInterface
         int GetGlobalProcessID() const { return fGlobalProcessID; }
 
         /**
-         * @brief Getter for nprocesses
+         * @brief Getter for N processes
          * 
          * @return The number of processes as an integer.
          */
@@ -96,11 +96,12 @@ class MHO_MPIInterface
          */
         void GlobalBarrier() const { MPI_Barrier(MPI_COMM_WORLD); }
 
-        //when called, this function must be encountered by all processes
-        //or the program will lock up, treat as a global barrier
-        //use to safely print messages from each process without clobbering
+
         /**
-         * @brief Collects and prints messages from all processes in a parallel environment.
+         * @brief Collects and prints messages from all processes in a MPI parallel environment.
+         * when called, this function must be encountered by all processes
+         * or the program will lock up, treat it as a global barrier
+         * use it to safely print messages from each process without clobbering the ouput
          * 
          * @param msg Message to be printed by all processes.
          */
@@ -124,7 +125,7 @@ class MHO_MPIInterface
         bool SplitMode() { return fSplitMode; };
 
         /**
-         * @brief Checks if split is valid.
+         * @brief Checks if even/odd split is valid.
          * 
          * @return True if split is valid, false otherwise.
          */
