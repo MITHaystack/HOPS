@@ -19,27 +19,15 @@ namespace hops
  */
 
 //forward declare these types
-/**
- * @brief Class MHO_Visitor
- */
 class MHO_Visitor;
-/**
- * @brief Class MHO_Element
- */
 class MHO_Element;
-/**
- * @brief Class MHO_ExtensibleElement
- */
 class MHO_ExtensibleElement;
-/**
- * @brief Class MHO_ExtendedElement
- */
-/**
- * @brief Class MHO_Visitor
- */
 template< class XExtensionType > class MHO_ExtendedElement;
 
 //visitor interface
+/**
+ * @brief Class MHO_Visitor
+ */
 class MHO_Visitor
 {
     public:
@@ -210,6 +198,7 @@ template< class XExtensionType > class MHO_ExtendedElement: public MHO_Element, 
             public:
                 ExtendedVisitor(){};
                 virtual ~ExtendedVisitor(){};
+
                 /**
                  * @brief Function VisitExtendedElement
                  * 
