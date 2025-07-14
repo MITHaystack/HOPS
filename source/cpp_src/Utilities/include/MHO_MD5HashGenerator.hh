@@ -21,19 +21,15 @@ namespace hops
  *@class MHO_MD5HashGenerator
  *@author J. Barrett - barrettj@mit.edu
  *@date Wed Apr 21 13:40:18 2021 -0400
- *@brief
+ * @brief Class MHO_MD5HashGenerator, uses picohash library to create MD5 hashes of stream data
  */
 
 //forward declare our md5 hashing streamer (for plain old data types ((POD))
-/**
- * @brief Class MHO_MD5HashGenerator
- */
 class MHO_MD5HashGenerator;
 
-//template class for a single-type streamer, generic for most POD types
 /**
- * @brief Class MHO_MD5HashGeneratorSingleType
- */
+ * @brief Class MHO_MD5HashGeneratorSingleType - template class for a single-type streamer, generic for most POD types
+*/
 template< typename XValueType > class MHO_MD5HashGeneratorSingleType
 {
     public:
@@ -64,9 +60,9 @@ template< typename XValueType > class MHO_MD5HashGeneratorSingleType
         virtual MHO_MD5HashGenerator& Self() = 0;
 };
 
-//specialization for string type
+
 /**
- * @brief Class MHO_MD5HashGeneratorSingleType<std::string>
+ * @brief Class MHO_MD5HashGeneratorSingleType<std::string> specialization for string type
  */
 template<> class MHO_MD5HashGeneratorSingleType< std::string >
 {
@@ -102,15 +98,15 @@ template<> class MHO_MD5HashGeneratorSingleType< std::string >
         virtual MHO_MD5HashGenerator& Self() = 0;
 };
 
-//now declare a multi-type streamer with a variadic template parameter for the types to be streamed
 /**
- * @brief Class MHO_MD5HashGeneratorMultiType
+ * @brief Class MHO_MD5HashGeneratorMultiType 
+ * declares a multi-type streamer with a variadic template parameter for the types to be streamed
  */
 template< typename... XValueTypeS > class MHO_MD5HashGeneratorMultiType;
 
-//declare the specialization for the base case of the recursion (in which the parameter XValueType is just a single type)
 /**
- * @brief Class MHO_MD5HashGeneratorMultiType<XValueType>
+ * @brief Class MHO_MD5HashGeneratorMultiType<XValueType> 
+ * declares the specialization for the base case of the recursion (in which the parameter XValueType is just a single type)
  * 
  * @tparam XValueTypeS Template parameter XValueTypeS
  */
@@ -120,6 +116,7 @@ class MHO_MD5HashGeneratorMultiType< XValueType >: public MHO_MD5HashGeneratorSi
 
 /**
  * @brief Class MHO_MD5HashGeneratorMultiType<XValueType, XValueTypeS...>
+ * carry out the typelist recursion
  */
 template< typename XValueType, typename... XValueTypeS >
 class MHO_MD5HashGeneratorMultiType< XValueType, XValueTypeS... >: public MHO_MD5HashGeneratorMultiType< XValueType >,
@@ -131,9 +128,8 @@ typedef MHO_MD5HashGeneratorMultiType< bool, char, unsigned char, short, unsigne
                                        long long, unsigned long long, float, double, long double, std::string >
     MHO_MD5HashGeneratorBasicTypes;
 
-//now declare the concrete class which does the work for file streams
 /**
- * @brief Class MHO_MD5HashGenerator
+ * @brief Class MHO_MD5HashGenerator  declares the concrete class which does the work for file streams
  */
 class MHO_MD5HashGenerator: public MHO_MD5HashGeneratorBasicTypes
 {
