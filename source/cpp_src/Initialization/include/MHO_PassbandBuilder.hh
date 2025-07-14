@@ -11,9 +11,12 @@ namespace hops
  *@class MHO_PassbandBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Jun 20 12:35:56 2023 -0400
- *@brief
+ *@brief Builds a passband (frequency chunk excision) operator
  */
 
+/**
+ * @brief Class MHO_PassbandBuilder
+ */
 class MHO_PassbandBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -27,6 +30,11 @@ class MHO_PassbandBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_PassbandBuilder(){};
 
+        /**
+         * @brief Constructs and initializes the passband operator and adds to the toolbox
+         * 
+         * @return bool indicating success/failure
+         */
         virtual bool Build() override;
 
     private:

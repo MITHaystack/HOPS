@@ -62,18 +62,29 @@ html_theme = 'sphinx_rtd_theme'
 html_css_files = ['custom.css']
 
 # Doxylink tag files to pull in doxygen generated API
-# to make this work we need to doxylink 
+# to make this work we need doxylink 
 breathe_projects = {
   "hops": "@REF_BUILD_DIR@/_static/doxygen/xml"
 }
 
+# # Define where Doxylink can find the tag file for Doxygen docs
+# doxylink = {
+#     'hops': (
+#         '@REF_BUILD_DIR@/_static/doxygen/common.tag', 
+#         '@MIT_BASE_URL@/_static/doxygen/html'  
+#     )
+# }
+
+
 # Define where Doxylink can find the tag file for Doxygen docs
+# as well as where the doxygen html pages are to be found
 doxylink = {
     'hops': (
         '@REF_BUILD_DIR@/_static/doxygen/common.tag', 
-        '@MIT_BASE_URL@/_static/doxygen/html'  
+        '@DOC_BASE_URL@/_static/doxygen/html'  
     )
 }
+
 
 
 # Add any paths that contain custom static files (such as style sheets) here,

@@ -20,40 +20,70 @@ namespace hops
 class MHO_NullType
 {};
 
+/**
+ * @brief Class MHO_EmptyType
+ */
 struct MHO_EmptyType
 {};
 
 //typelist
+/**
+ * @brief Class MHO_Typelist
+ */
 template< typename... T > struct MHO_Typelist
 {};
 
 //typelist size
+/**
+ * @brief Class MHO_TypelistSizeImpl
+ */
 template< typename L > struct MHO_TypelistSizeImpl;
 
 //specialization for typelist
+/**
+ * @brief Class MHO_TypelistSizeImpl<MHO_Typelist<T...>>
+ * 
+ * @tparam L Template parameter L
+ */
 template< class... T > struct MHO_TypelistSizeImpl< MHO_Typelist< T... > >
 {
         using type = std::integral_constant< size_t, sizeof...(T) >;
 };
-//alias to MHO_TypelistSize, retrieve the value itself with ::value (element of std::integral_constant)
+
+/**
+ * @brief Class MHO_TypelistSize - alias to MHO_TypelistSize, retrieve the value itself with ::value (element of std::integral_constant)
+ */
 template< class L > using MHO_TypelistSize = typename MHO_TypelistSizeImpl< L >::type;
 
-//utility to return 1 if two types are the same, zero otherwise
-
+/**
+ * @brief Class is_same_count - utility to return 1 if two types are the same, zero otherwise
+ */
 template< class T, class U > struct is_same_count
 {
         constexpr static size_t value = 0;
 };
 
+/**
+ * @brief Class is_same_count<T, T>
+ */
 template< class T > struct is_same_count< T, T >
 {
         constexpr static size_t value = 1;
 };
 
-//utility to count the instances of a particular type in a parameter pack //////
+/**
+ * @brief Class count_instances_of_type - utility to count the instances of a particular type in a parameter pack
+ */
 template< typename XCheckType, size_t N, typename... T > struct count_instances_of_type;
 
 //terminating case is N=0
+/**
+ * @brief Class count_instances_of_type<XCheckType, 0, T...>
+ * 
+ * @tparam XCheckType Template parameter XCheckType
+ * @tparam N Template parameter N
+ * @tparam T Template parameter T
+ */
 template< typename XCheckType, typename... T > struct count_instances_of_type< XCheckType, 0, T... >
 {
         using current_type = typename std::tuple_element< 0, std::tuple< T... > >::type;
@@ -61,6 +91,9 @@ template< typename XCheckType, typename... T > struct count_instances_of_type< X
 };
 
 //N = sizeof...(T) - 1
+/**
+ * @brief Class count_instances_of_type
+ */
 template< typename XCheckType, size_t N, typename... T > struct count_instances_of_type
 {
         using current_type = typename std::tuple_element< N, std::tuple< T... > >::type;
@@ -71,6 +104,16 @@ template< typename XCheckType, size_t N, typename... T > struct count_instances_
 ////////////////////////////////////////////////////////////////////////////////
 
 //functions needed to stream tuples/////////////////////////////////////////////
+/**
+ * @brief Terminating case for ostream_tuple, does nothing and returns s.
+ * 
+ * @tparam N Template parameter N
+ * @tparam XStream Template parameter XStream
+ * @tparam T Template parameter T
+ * @param s Input XStream& object
+ * @param & Parameter & of type const std::tuple< T...
+ * @return XStream& object
+ */
 template< size_t N = 0, typename XStream, typename... T >
 typename std::enable_if< (N >= sizeof...(T)), XStream& >::type ostream_tuple(XStream& s, const std::tuple< T... >&)
 {
@@ -78,6 +121,16 @@ typename std::enable_if< (N >= sizeof...(T)), XStream& >::type ostream_tuple(XSt
     return s;
 }
 
+/**
+ * @brief Terminating case for ostream_tuple:  returns s.
+ * 
+ * @tparam N Template parameter N
+ * @tparam XStream Template parameter XStream
+ * @tparam T Template parameter T
+ * @param s Input XStream& object
+ * @param t Input const std::tuple<T...& object
+ * @return XStream& object, unchanged
+ */
 template< size_t N = 0, typename XStream, typename... T >
 typename std::enable_if< (N < sizeof...(T)), XStream& >::type ostream_tuple(XStream& s, const std::tuple< T... >& t)
 {
@@ -88,6 +141,16 @@ typename std::enable_if< (N < sizeof...(T)), XStream& >::type ostream_tuple(XStr
 }
 
 //functions needed to stream tuples
+/**
+ * @brief Returns an XStream& without modification for terminating case.
+ * 
+ * @tparam N Template parameter N
+ * @tparam XStream Template parameter XStream
+ * @tparam T Template parameter T
+ * @param s Input/output stream reference
+ * @param & Parameter & of type std::tuple< T...
+ * @return XStream& unchanged
+ */
 template< size_t N = 0, typename XStream, typename... T >
 typename std::enable_if< (N >= sizeof...(T)), XStream& >::type istream_tuple(XStream& s, std::tuple< T... >&)
 {
@@ -95,6 +158,16 @@ typename std::enable_if< (N >= sizeof...(T)), XStream& >::type istream_tuple(XSt
     return s;
 }
 
+/**
+ * @brief Terminating case for istream_tuple, returns s.
+ * 
+ * @tparam N Template parameter N
+ * @tparam XStream Template parameter XStream
+ * @tparam T Template parameter T
+ * @param s Input XStream& object
+ * @param t Input std::tuple<T...& object
+ * @return XStream& object
+ */
 template< size_t N = 0, typename XStream, typename... T >
 typename std::enable_if< (N < sizeof...(T)), XStream& >::type istream_tuple(XStream& s, std::tuple< T... >& t)
 {
@@ -106,9 +179,17 @@ typename std::enable_if< (N < sizeof...(T)), XStream& >::type istream_tuple(XStr
 
 ////////////////////////////////////////////////////////////////////////////////
 
-//generic apply functor (which takes and index value!) to all elements of a tuple
+/**
+ * @brief Class indexed_tuple_visit - generic apply functor (which takes and index value!) to all elements of a tuple
+ */
 template< size_t NTypes > struct indexed_tuple_visit
 {
+        /**
+         * @brief Applies a functor to all elements of an XTupleType tuple and recursively visits the next type.
+         * 
+         * @param param Input tuple of type XTupleType&
+         * @param param2 Functor of type XFunctorType&
+         */
         template< typename XTupleType, typename XFunctorType > static void visit(XTupleType& tup, XFunctorType& functor)
         {
             //apply here and then recurse to the next type
@@ -118,16 +199,38 @@ template< size_t NTypes > struct indexed_tuple_visit
 };
 
 //base case, terminates the recursion
+/**
+ * @brief Class indexed_tuple_visit<0>
+ */
 template<> struct indexed_tuple_visit< 0 >
 {
+        /**
+         * @brief Recursively applies functor to tuple elements and then itself.
+         * 
+         * @param param Input tuple of type XTupleType&
+         * @param param2 Functor of type XFunctorType&
+         */
         template< typename XTupleType, typename XFunctorType > static void visit(XTupleType& tup, XFunctorType& functor) {}
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 
-//generic apply functor to tuple element (for runtime-indexed access)
+
+/**
+ * @brief Class apply_to_tuple - generic apply functor to tuple element (for runtime-indexed access)
+ */
 template< size_t NTypes > struct apply_to_tuple
 {
+        /**
+         * @brief Applies a functor to an element of a tuple at a specified index.
+         * 
+         * @tparam XTupleType Template parameter XTupleType
+         * @tparam XFunctorType Template parameter XFunctorType
+         * @param tup Tuple of type XTupleType&
+         * @param index Index of type size_t
+         * @param functor Functor of type XFunctorType&
+         * @note This is a static function.
+         */
         template< typename XTupleType, typename XFunctorType >
         static void apply(XTupleType& tup, size_t index, XFunctorType& functor)
         {
@@ -145,14 +248,35 @@ template< size_t NTypes > struct apply_to_tuple
 };
 
 //base case, empty tuple with no elements (should never happen)
+/**
+ * @brief Class apply_to_tuple<0>
+ */
 template<> struct apply_to_tuple< 0 >
 {
+        /**
+         * @brief Applies a functor to an element of a tuple at a given index.
+         * 
+         * @tparam XTupleType Template parameter XTupleType
+         * @tparam XFunctorType Template parameter XFunctorType
+         * @param tup Tuple to apply functor on
+         * @param index Index of the tuple's element to operate on
+         * @param functor Functor to apply
+         * @note This is a static function.
+         */
         template< typename XTupleType, typename XFunctorType >
         static void apply(XTupleType& tup, size_t index, XFunctorType& functor)
         {}
 };
 
 //const access
+/**
+ * @brief Applies a functor to an element at a specified index in a tuple.
+ * 
+ * @param tup Input tuple of type XTupleType
+ * @param index Index of the tuple element to apply the functor to
+ * @param functor Functor of type XFunctorType& to apply to the tuple element
+ * @return void
+ */
 template< typename XTupleType, typename XFunctorType > void apply_at(const XTupleType& tup, size_t index, XFunctorType& functor)
 {
     apply_to_tuple< std::tuple_size< XTupleType >::value >::apply(tup, index, functor);
@@ -225,11 +349,12 @@ template<> struct is_complex< std::complex< double > >: std::true_type
 template<> struct is_complex< std::complex< long double > >: std::true_type
 {};
 
-////////////////////////////////////////////////////////////////////////////////
-//zip elements of two iterable (probably STL) containers (which define a value_type)
-//into a map which takes the i-th element of the 1st container to the i-th element
-//of the 2nd container. Terminates at the end of whatever container stops first.
 
+/**
+ * @brief zip elements of two iterable (probably STL) containers (which define a value_type)
+ * into a map which takes the i-th element of the 1st container to the i-th element
+ * of the 2nd container. Terminates at the end of whatever container stops first.
+ */
 template< typename XContainer1, typename XContainer2 >
 std::map< typename XContainer1::value_type, typename XContainer2::value_type > zip_into_map(const XContainer1& c1,
                                                                                             const XContainer2& c2)

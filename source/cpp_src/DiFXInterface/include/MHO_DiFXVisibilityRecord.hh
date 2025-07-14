@@ -14,9 +14,12 @@ namespace hops
  *@class MHO_DiFXVisibilityRecord
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Feb 3 11:15:07 2022 -0500
- *@brief
+ *@brief Wrapper class for the smallest discrete chunk of data from a DiFX Swinburne file (see DifxVisRecord)
  */
 
+/**
+ * @brief Class MHO_DiFXVisibilityRecord
+ */
 class MHO_DiFXVisibilityRecord
 {
     public:
@@ -48,6 +51,9 @@ class MHO_DiFXVisibilityRecord
 
         virtual ~MHO_DiFXVisibilityRecord(){};
 
+        /**
+         * @brief Resets the state of the object to its initial values.
+         */
         void Reset()
         {
             nchan = 0;
@@ -102,8 +108,11 @@ class MHO_DiFXVisibilityRecord
         std::string net_sideband;
 };
 
-//helper union used for reading in visibility records
-//to catch over-runs with sync word
+
+/**
+ * @brief Class (anonymous union) - helper union used for reading in visibility records
+ * to catch over-runs with sync word
+ */
 typedef union
 {
         float values[2];

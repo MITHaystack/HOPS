@@ -17,9 +17,12 @@ namespace hops
  *@class MHO_Axis
  *@author J. Barrett - barrettj@mit.edu
  *@date Mon Oct 19 11:34:27 2020 -0400
- *@brief
+ *@brief A class representing a coordinate axis, inherits from MHO_VectorContainer
  */
 
+/**
+ * @brief Class MHO_Axis
+ */
 template< typename XValueType >
 class MHO_Axis: public MHO_AxisBase,
                 public MHO_VectorContainer< XValueType >,
@@ -73,6 +76,12 @@ class MHO_Axis: public MHO_AxisBase,
         virtual ~MHO_Axis(){};
 
         //overload the CopyTags function to get special treatment of the index/interval labels
+        /**
+         * @brief Copies tags from rhs MHO_Axis object, handling index/interval labels specially.
+         * 
+         * @param rhs Reference to the source MHO_Axis object
+         * @note This is a virtual function.
+         */
         virtual void CopyTags(const MHO_Axis& rhs)
         {
             if(this != &rhs && !(rhs.fObject.empty()))
@@ -99,6 +108,12 @@ class MHO_Axis: public MHO_AxisBase,
         using MHO_VectorContainer< XValueType >::operator[];
 
         //index selection from matching axis values
+        /**
+         * @brief Selects indexes from axis where the label values match the provided labels, dumb brute force search.
+         * 
+         * @param label_values Set of label values to match against axis elements
+         * @return Vector of matching indexes
+         */
         std::vector< std::size_t > SelectMatchingIndexes(const std::set< XValueType > label_values)
         {
             std::vector< std::size_t > selected_idx;
@@ -117,7 +132,12 @@ class MHO_Axis: public MHO_AxisBase,
             return selected_idx;
         }
 
-        //index selection for matching axis values (given a single value)
+        /**
+         * @brief Selects indexes for matching axis values (given a single value)
+         * 
+         * @param label_value (const XValueType&)
+         * @return Vector of selected indexes where axis element matches the label value
+         */
         std::vector< std::size_t > SelectMatchingIndexes(const XValueType& label_value)
         {
             std::vector< std::size_t > selected_idx;
@@ -134,6 +154,13 @@ class MHO_Axis: public MHO_AxisBase,
         }
 
         //index selection for first matching axis values (given a single value)
+        /**
+         * @brief Selects first matching index for a given label value in axis values.
+         * 
+         * @param label_value Input label value to match.
+         * @param result (std::size_t&)
+         * @return True if a match is found, false otherwise. Result contains matched index.
+         */
         bool SelectFirstMatchingIndex(const XValueType& label_value, std::size_t& result)
         {
             result = 0;
@@ -148,6 +175,12 @@ class MHO_Axis: public MHO_AxisBase,
             return false;
         }
 
+        /**
+         * @brief Getter for serialized size of axis object
+         * 
+         * @return Total serialized size as uint64_t
+         * @note This is a virtual function.
+         */
         virtual uint64_t GetSerializedSize() const override
         {
             uint64_t total_size = 0;
@@ -156,8 +189,16 @@ class MHO_Axis: public MHO_AxisBase,
             return total_size;
         }
 
-        //expensive copy (as opposed to the assignment operator,
-        //pointers to exernally managed memory are not transferred)
+        
+
+        /**
+         * @brief Expensive copy for MHO_Axis that handles special treatment of index/interval labels.
+         * 
+         * @param rhs Const reference to source MHO_Axis object
+         * @note This is a virtual function.
+         * @details expensive copy (as opposed to the assignment operator),
+         * pointers to exernally managed memory are not transferred
+         */
         virtual void Copy(const MHO_Axis& rhs)
         {
             if(&rhs != this)
@@ -214,6 +255,12 @@ class MHO_Axis: public MHO_AxisBase,
         }
 
     private:
+        /**
+         * @brief Reads data from stream and sets index/interval label objects.
+         * 
+         * @param s Input stream of type XStream&
+         * @return void
+         */
         template< typename XStream > void StreamInData_V0(XStream& s)
         {
             s >> static_cast< MHO_VectorContainer< XValueType >& >(*this);
@@ -228,6 +275,12 @@ class MHO_Axis: public MHO_AxisBase,
             }
         }
 
+        /**
+         * @brief Serializes the vector container data to an output stream.
+         * 
+         * @param s Reference to the output stream.
+         * @return No return value (void)
+         */
         template< typename XStream > void StreamOutData_V0(XStream& s) const
         {
             s << static_cast< const MHO_VectorContainer< XValueType >& >(*this);

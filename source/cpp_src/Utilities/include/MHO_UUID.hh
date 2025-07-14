@@ -18,7 +18,7 @@ namespace hops
  *@class MHO_UUID
  *@author J. Barrett - barrettj@mit.edu
  *@date Wed Apr 21 13:40:18 2021 -0400
- *@brief
+ *@brief Class MHO_UUID - a class for a 16 byte UUID (for object and type identification)
  */
 
 #define MHO_UUID_LENGTH 16

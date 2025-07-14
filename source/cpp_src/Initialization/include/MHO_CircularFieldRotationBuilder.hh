@@ -11,9 +11,12 @@ namespace hops
  *@class MHO_CircularFieldRotationBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Mon Jan 15 11:23:36 2024 -0500
- *@brief
+ *@brief builds a MHO_CircularFieldRotationCorrection operator (station mount types must be known)
  */
 
+/**
+ * @brief Class MHO_CircularFieldRotationBuilder
+ */
 class MHO_CircularFieldRotationBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -26,6 +29,11 @@ class MHO_CircularFieldRotationBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_CircularFieldRotationBuilder(){};
 
+        /**
+         * @brief Constructs and adds a new CircularFieldRotationBuilder to the toolbox's multimap.
+         * 
+         * @return No return value (void)
+         */
         virtual bool Build() override;
 
     private:

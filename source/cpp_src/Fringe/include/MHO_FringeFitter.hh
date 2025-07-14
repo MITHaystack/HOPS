@@ -31,8 +31,14 @@ namespace hops
  */
 
 //forward declare visitor
+/**
+ * @brief Class MHO_FringeFitterVisitor
+ */
 class MHO_FringeFitterVisitor;
 
+/**
+ * @brief Class MHO_FringeFitter
+ */
 class MHO_FringeFitter
 {
     public:
@@ -46,33 +52,110 @@ class MHO_FringeFitter
 
         virtual ~MHO_FringeFitter() { delete fOperatorBuildManager; };
 
+        /**
+         * @brief Getter for fringe data
+         * 
+         * @return MHO_FringeData* - Pointer to the fringe data.
+         */
         MHO_FringeData* GetFringeData() { return fFringeData; }
 
+        /**
+         * @brief Getter for parameter store
+         * 
+         * @return Pointer to the MHO_ParameterStore object
+         */
         MHO_ParameterStore* GetParameterStore() { return fParameterStore; }
 
+        /**
+         * @brief Getter for container store
+         * 
+         * @return MHO_ContainerStore*
+         */
         MHO_ContainerStore* GetContainerStore() { return fContainerStore; }
 
+        /**
+         * @brief Getter for operator toolbox
+         * 
+         * @return Pointer to MHO_OperatorToolbox
+         */
         MHO_OperatorToolbox* GetOperatorToolbox() { return &fOperatorToolbox; }
 
         //should we expose these?
+        /**
+         * @brief Getter for vex (ovex) data as JSON object
+         * 
+         * @return mho_json containing root file data
+         */
         mho_json GetVex() { return fScanStore->GetRootFileData(); }
 
+        /**
+         * @brief Getter for scan data store
+         * 
+         * @return MHO_ScanDataStore* - Pointer to the scan data store.
+         */
         MHO_ScanDataStore* GetScanDataStore() { return fScanStore; }
 
-        //only valid after 'Configure' is called
+        /**
+         * @brief Getter for ther operator build manager - only valid after 'Configure' is called
+         * 
+         * @return MHO_OperatorBuilderManager*
+         */
         MHO_OperatorBuilderManager* GetOperatorBuildManager() { return fOperatorBuildManager; }
 
         //basic run scheme: configure, init, then while(!IsFinished() ){ pre-run, run, post-run }, then finalize
+        /**
+         * @brief Function Configure
+         * @note This is a virtual function.
+         */
         virtual void Configure() = 0;
+        
         //TODO add a 'configure extension' function using visitor pattern to add things like pybind11/opencl etc.
+        /**
+         * @brief Function Initialize
+         * @note This is a virtual function.
+         */
         virtual void Initialize() = 0;
+        
+        /**
+         * @brief Function PreRun
+         * @note This is a virtual function.
+         */
         virtual void PreRun() = 0;
+        
+        /**
+         * @brief Function Run
+         * 
+         * @return Return value (void Pre)
+         * @note This is a virtual function.
+         */
         virtual void Run() = 0;
+        
+        /**
+         * @brief Function PostRun
+         * @note This is a virtual function.
+         */
         virtual void PostRun() = 0;
+        
+        /**
+         * @brief Function IsFinished
+         * 
+         * @return Return value (bool)
+         * @note This is a virtual function.
+         */
         virtual bool IsFinished() = 0;
+        
+        /**
+         * @brief Function Finalize
+         * @note This is a virtual function.
+         */
         virtual void Finalize() = 0;
 
-        //accept a visitor...pure virtual, must implement
+        /**
+         * @brief Function Accept: accept a visitor...pure virtual, must be implemented in derived class
+         * 
+         * @param visitor (MHO_FringeFitterVisitor*)
+         * @note This is a (pure) virtual function.
+         */
         virtual void Accept(MHO_FringeFitterVisitor* visitor) = 0;
 
     protected:
@@ -90,6 +173,9 @@ class MHO_FringeFitter
 };
 
 
+/**
+ * @brief Class MHO_FringeFitterVisitor
+ */
 class MHO_FringeFitterVisitor
 {
     public:
@@ -97,6 +183,12 @@ class MHO_FringeFitterVisitor
         virtual ~MHO_FringeFitterVisitor(){};
 
         //pure virtual
+        /**
+         * @brief Function Visit
+         * 
+         * @param fitter (MHO_FringeFitter*)
+         * @note This is a (pure) virtual function.
+         */
         virtual void Visit(MHO_FringeFitter* fitter) = 0;
 };
 

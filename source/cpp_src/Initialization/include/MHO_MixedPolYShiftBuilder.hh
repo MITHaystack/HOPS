@@ -11,9 +11,12 @@ namespace hops
  *@class MHO_MixedPolYShiftBuilder
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Jun 20 12:35:56 2023 -0400
- *@brief
+ *@brief build an operator to apply (90 deg) phase shift to Y pol in mixed linear-circular fringes
  */
 
+/**
+ * @brief Class MHO_MixedPolYShiftBuilder
+ */
 class MHO_MixedPolYShiftBuilder: public MHO_OperatorBuilder
 {
     public:
@@ -27,6 +30,11 @@ class MHO_MixedPolYShiftBuilder: public MHO_OperatorBuilder
 
         virtual ~MHO_MixedPolYShiftBuilder(){};
 
+        /**
+         * @brief Constructs and adds a new MHO_MixedPolYShift operator to the toolbox
+         * 
+         * @return True if construction and addition are successful, false otherwise
+         */
         virtual bool Build() override;
 
     private:

@@ -15,17 +15,24 @@ namespace hops
  *@class
  *@date Fri Jun 2 11:19:07 2023 -0400
  *@brief functions to encode/decode an unsigned base-10 integer value in and out of
- *another base, represented by the single-character symbols present in
- *the specified character_set.
- *for example, to encode a value, x, in standard base-16, one would call:
- *std::string eval = encode_value(x, std::string("0123456789ABCDEF") );
- *similarly to decode a base-16 encoded string, y, to a unsigned base-10 integer,
- *one would call:
- *uint64_t value = decode_value(y, std::string("0123456789ABCDEF") );
- *these functions are not particularly performant
+ * another base, represented by the single-character symbols present in
+ * the specified character_set.
+ * for example, to encode a value, x, in standard base-16, one would call:
+ * std::string eval = encode_value(x, std::string("0123456789ABCDEF") );
+ * similarly to decode a base-16 encoded string, y, to a unsigned base-10 integer,
+ * one would call:
+ * uint64_t value = decode_value(y, std::string("0123456789ABCDEF") );
+ * these functions are not particularly performant
  *@author J. Barrett - barrettj@mit.edu
  */
 
+/**
+ * @brief Function encode_value
+ * 
+ * @param value (const uint64_t&)
+ * @param character_set (const std::string&)
+ * @return Return value (std::string)
+ */
 inline std::string encode_value(const uint64_t& value, const std::string& character_set)
 {
     std::string encoded_value = "";
@@ -52,6 +59,13 @@ inline std::string encode_value(const uint64_t& value, const std::string& charac
     return encoded_value;
 }
 
+/**
+ * @brief Function decode_value
+ * 
+ * @param code (const std::string&)
+ * @param character_set (const std::string&)
+ * @return Return value (uint64_t)
+ */
 inline uint64_t decode_value(const std::string& code, const std::string& character_set)
 {
     uint64_t decoded_value = 0;
@@ -75,6 +89,9 @@ inline uint64_t decode_value(const std::string& code, const std::string& charact
     return decoded_value;
 }
 
+/**
+ * @brief Class MHO_ChannelIndexLabeler
+ */
 class MHO_ChannelIndexLabeler
 {
     public:
@@ -89,11 +106,27 @@ class MHO_ChannelIndexLabeler
 
         virtual ~MHO_ChannelIndexLabeler(){};
 
-        //provide the option to use different character sets
+        /**
+         * @brief Setter for channel chars - provides the option to use different character sets
+         * 
+         * @param ch_set Input character set to use as defaults
+         */
         void SetDefaultChannelChars(const std::string& ch_set) { fDefaultChannelChars = ch_set; }
+
+        /**
+         * @brief Setter for extended channel chars
+         * 
+         * @param ex_set New set of extended channel characters
+         */
         void SetExtendedChannelChars(const std::string& ex_set) { fExtendedChannelChars = ex_set; }
 
         //default encoding/decoding scheme
+        /**
+         * @brief Encodes a uint64_t value into a label string using default and extended encoding schemes.
+         * 
+         * @param value Input value to be encoded as a label.
+         * @return Encoded label string representation of the input value.
+         */
         std::string EncodeValueToLabel(const uint64_t& value) const
         {
             if(value < fDefaultChannelChars.size())
@@ -105,6 +138,12 @@ class MHO_ChannelIndexLabeler
             return encode_value(j, fExtendedChannelChars);
         }
 
+        /**
+         * @brief Decodes a channel label to its corresponding value.
+         * 
+         * @param label Input channel label string.
+         * @return Decoded channel value as uint64_t.
+         */
         uint64_t DecodeLabelToValue(const std::string& label) const
         {
             if(label.size() == 1)

@@ -11,9 +11,12 @@ namespace hops
  *@class  MHO_VexParameter
  *@author  J. Barrett - barrettj@mit.edu
  *@date Thu May 26 16:55:16 2022 -0400
- *@brief
+ *@brief Stores a vex parameter value token (with associated units)
  */
 
+/**
+ * @brief Class MHO_VexParameter
+ */
 class MHO_VexParameter
 {
     public:
@@ -25,8 +28,18 @@ class MHO_VexParameter
 
         virtual ~MHO_VexParameter();
 
+        /**
+         * @brief Setter for token string
+         * 
+         * @param token Input token string to set
+         */
         void SetTokenString(std::string token) { fToken = token; }
 
+        /**
+         * @brief Setter for units string
+         * 
+         * @param units New units string to set
+         */
         void SetUnitsString(std::string units) { fUnits = unit; };
 
     private:

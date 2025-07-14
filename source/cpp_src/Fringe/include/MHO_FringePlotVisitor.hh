@@ -6,6 +6,9 @@
 namespace hops 
 {
 
+/**
+ * @brief Class MHO_FringePlotVisitor
+ */
 class MHO_FringePlotVisitor: public MHO_FringeFitterVisitor
 {
     public:
@@ -13,6 +16,12 @@ class MHO_FringePlotVisitor: public MHO_FringeFitterVisitor
         virtual ~MHO_FringePlotVisitor(){};
 
         //default behavior
+        /**
+         * @brief Visits a fringe fitter and plots its data.
+         * 
+         * @param fitter The MHO_FringeFitter to visit and plot.
+         * @note This is a virtual function.
+         */
         virtual void Visit(MHO_FringeFitter* fitter) override
         {
             MHO_FringeData* data = fitter->GetFringeData();
@@ -23,6 +32,12 @@ class MHO_FringePlotVisitor: public MHO_FringeFitterVisitor
 
     protected:
 
+        /**
+         * @brief Function Plot
+         * 
+         * @param data (MHO_FringeData*)
+         * @note This is a virtual function.
+         */
         virtual void Plot(MHO_FringeData* data) = 0;
 };
 

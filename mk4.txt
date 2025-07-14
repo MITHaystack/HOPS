@@ -1,0 +1,119 @@
+INFO: Found 5 header file(s) to process
+INFO: Starting clangd LSP client...
+INFO: Initializing LLM enhancement with endpoint: http://localhost:11434/v1
+INFO: Collecting project context from directory: source/cpp_src/MK4Interface
+INFO: Collecting project context from directory: source/cpp_src/MK4Interface
+INFO: Found 14 source files to analyze
+INFO: Context collection complete: 502 comments, 551 variables, 3 acronyms
+INFO: Loading extra context from file: acronyms.txt
+INFO: Loading extra context from: acronyms.txt
+INFO: Loaded 100 extra context entries
+INFO: Project context loaded for LLM enhancement
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh
+WARNING: No hover info for function SetVexFile at 48:8
+WARNING: No hover info for function SetCorelFile at 50:8
+WARNING: No hover info for function GetCorelData at 53:8
+WARNING: No hover info for function ExtractCorelFile at 56:8
+WARNING: No hover info for function GetExtractedVisibilities at 65:8
+WARNING: No hover info for function GetExtractedWeights at 67:8
+WARNING: No hover info for function ReadCorelFile at 71:8
+WARNING: No hover info for function ReadVexFile at 72:8
+WARNING: No hover info for function DetermineDataDimensions at 82:8
+WARNING: Reached maximum symbol limit (20), stopping
+INFO: Found 9 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh
+INFO: Found 9 functions and 2 classes in /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetVexFile using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for SetCorelFile using LLM...
+INFO: Enhancing comment for GetCorelData using LLM...
+WARNING: Function body too large, truncating at 200 lines
+INFO: Enhancing comment for ExtractCorelFile using LLM...
+INFO: Enhancing comment for GetExtractedVisibilities using LLM...
+INFO: Enhancing comment for GetExtractedWeights using LLM...
+INFO: Enhancing comment for ReadCorelFile using LLM...
+INFO: Enhancing comment for ReadVexFile using LLM...
+WARNING: Function body too large, truncating at 200 lines
+INFO: Enhancing comment for DetermineDataDimensions using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4FringeExport.hh
+WARNING: Reached maximum symbol limit (20), stopping
+INFO: Found 0 functions and 20 classes in /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4FringeExport.hh
+INFO: Found 0 functions and 20 classes in /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4FringeExport.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4FringeExport.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4FringeExport.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverter.hh
+WARNING: No hover info for function DetermineDirectoryType at 60:8
+WARNING: No hover info for function ProcessScan at 61:8
+WARNING: No hover info for function ConvertCorel at 65:8
+WARNING: No hover info for function ConvertStation at 68:8
+INFO: Found 4 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverter.hh
+INFO: Found 4 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverter.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for DetermineDirectoryType using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for ProcessScan using LLM...
+INFO: Enhancing comment for ConvertCorel using LLM...
+INFO: Enhancing comment for ConvertStation using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverter.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverter.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh
+WARNING: No hover info for function SetVexFile at 48:8
+WARNING: No hover info for function SetStationFile at 50:8
+WARNING: No hover info for function GetStationData at 52:8
+WARNING: No hover info for function ExtractStationFile at 54:8
+WARNING: No hover info for function GetPCalObject at 56:8
+WARNING: No hover info for function getstr at 59:8
+WARNING: No hover info for function ReadStationFile at 64:8
+WARNING: No hover info for function ReadVexFile at 65:8
+WARNING: No hover info for function ExtractPCal at 68:8
+WARNING: No hover info for function FillPCalArray at 69:8
+WARNING: No hover info for function ConstructPerPolChannelAxis at 72:8
+WARNING: No hover info for function ConstructChannelInfo at 74:8
+WARNING: No hover info for function ExtractChannelInfo at 77:8
+WARNING: No hover info for function FreqGroupFromMK4ChannelID at 78:8
+WARNING: No hover info for function PolFromMK4ChannelID at 79:8
+WARNING: No hover info for function SidebandFromMK4ChannelId at 80:8
+WARNING: No hover info for function IndexFromMK4ChannelId at 81:8
+WARNING: No hover info for function ComputePhasor at 84:8
+WARNING: Reached maximum symbol limit (20), stopping
+INFO: Found 18 functions and 3 classes in /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh
+INFO: Found 18 functions and 3 classes in /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for SetVexFile using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for SetStationFile using LLM...
+INFO: Enhancing comment for GetStationData using LLM...
+INFO: Enhancing comment for ExtractStationFile using LLM...
+INFO: Enhancing comment for GetPCalObject using LLM...
+INFO: Enhancing comment for getstr using LLM...
+INFO: Enhancing comment for ReadStationFile using LLM...
+INFO: Enhancing comment for ReadVexFile using LLM...
+INFO: Enhancing comment for ExtractPCal using LLM...
+INFO: Enhancing comment for FillPCalArray using LLM...
+INFO: Enhancing comment for ConstructChannelInfo using LLM...
+INFO: Enhancing comment for ExtractChannelInfo using LLM...
+INFO: Enhancing comment for FreqGroupFromMK4ChannelID using LLM...
+INFO: Enhancing comment for PolFromMK4ChannelID using LLM...
+INFO: Enhancing comment for SidebandFromMK4ChannelId using LLM...
+INFO: Enhancing comment for IndexFromMK4ChannelId using LLM...
+INFO: Enhancing comment for ComputePhasor using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh.bak
+INFO: Analyzing header file: /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh
+WARNING: No hover info for function OpenVexFile at 26:8
+WARNING: No hover info for function GetVex at 27:8
+WARNING: No hover info for function ExportVexFileToJSON at 29:8
+INFO: Found 3 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh
+INFO: Found 3 functions and 1 classes in /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh
+INFO: Project context loaded for LLM enhancement
+INFO: Enhancing comment for OpenVexFile using LLM...
+INFO: Detected model context window: 1,024,000 tokens
+INFO: Enhancing comment for GetVex using LLM...
+INFO: Enhancing comment for ExportVexFileToJSON using LLM...
+INFO: Comments inserted into /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh
+INFO: Backup created: /home/barrettj/software/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh.bak
+
+Processed 5/5 header files successfully

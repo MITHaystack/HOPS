@@ -23,18 +23,31 @@ namespace hops
  *@file MHO_Notches.hh
  *@class MHO_Notches
  *@author J. Barrett - barrettj@mit.edu
- *@date
- *@brief Tue Apr  2 09:41:24 AM EDT 2024
+ *@date Tue Apr  2 09:41:24 AM EDT 2024
+ *@brief operator which 'notches' out probablatic chunks of visiblities in frequency space 
  */
 
+/**
+ * @brief Class MHO_Notches
+ */
 class MHO_Notches: public MHO_UnaryOperator< visibility_type >
 {
     public:
         MHO_Notches();
         virtual ~MHO_Notches();
 
+        /**
+         * @brief Setter for weights
+         * 
+         * @param weights Input weight values of type weight_type
+         */
         void SetWeights(weight_type* weights) { fWeights = weights; };
 
+        /**
+         * @brief Setter for notch (locations along frequency axis where visibilities are zeroed out) boundaries
+         * 
+         * @param notch_boundary_list Input vector of double values, must come in pairs of (lower, upper) representing notch boundaries.
+         */
         void SetNotchBoundaries(const std::vector< double >& notch_boundary_list)
         {
             fNotchBoundaries = notch_boundary_list;
@@ -57,10 +70,40 @@ class MHO_Notches: public MHO_UnaryOperator< visibility_type >
         }
 
     protected:
+        /**
+         * @brief Initializes MHO_Notches in-place using provided visibility_type pointer.
+         * 
+         * @param in Pointer to visibility_type for initialization.
+         * @return True if initialization is successful.
+         * @note This is a virtual function.
+         */
         virtual bool InitializeInPlace(visibility_type* in) override;
+        /**
+         * @brief Initializes out-of-place visibility data from input pointer.
+         * 
+         * @param in Const pointer to input visibility_type data.
+         * @param out (visibility_type*)
+         * @return Boolean indicating successful initialization.
+         * @note This is a virtual function.
+         */
         virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
+        /**
+         * @brief Applies filter to channels and spectral points based on defined notches.
+         * 
+         * @param in Input visibility data containing channel axis and frequency axis.
+         * @return True if execution is successful, false otherwise.
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteInPlace(visibility_type* in) override;
+        /**
+         * @brief Copies input visibility data and executes in-place processing.
+         * 
+         * @param in Const reference to input visibility_type data.
+         * @param out (visibility_type*)
+         * @return Boolean result of ExecuteInPlace operation on copied output data.
+         * @note This is a virtual function.
+         */
         virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
