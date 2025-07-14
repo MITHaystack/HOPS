@@ -40,19 +40,18 @@ class MHO_TimeStamp
          */
         virtual void ToTimeStamp()
 
-            virtual std::string to_iso8601_format(); //
+        virtual std::string to_iso8601_format();
+
         /**
          * @brief Function to_vex_format
          * 
          * @return Return value (std::string)
          * @note This is a virtual function.
          */
-        virtual std::string to_vex_format();         //
+        virtual std::string to_vex_format();
 
     private:
-        // std::string vex_to_iso8601(std::string vex_date_time);
-        //
-        // std::string iso8601_to_vex(std::string )
+
 
         hops_clock::time_point fTimePoint;
 };
