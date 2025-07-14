@@ -34,6 +34,7 @@ class MHO_DirectoryInterface
          * @note This is a static function.
          */
         static std::string GetDirectoryFullPath(const std::string& dirname);
+
         /**
          * @brief Getter for directory full path preserve symlinks
          * 
@@ -42,6 +43,7 @@ class MHO_DirectoryInterface
          * @note This is a static function.
          */
         static std::string GetDirectoryFullPathPreserveSymlinks(const std::string& dirname);
+
         /**
          * @brief Checks if a directory exists by attempting to open it.
          * 
@@ -59,6 +61,7 @@ class MHO_DirectoryInterface
          * @note This is a static function.
          */
         static bool IsDirectory(const std::string& name);
+
         /**
          * @brief Checks if a given path is a regular file.
          * 
@@ -67,6 +70,7 @@ class MHO_DirectoryInterface
          * @note This is a static function.
          */
         static bool IsFile(const std::string& name);
+
         /**
          * @brief Getter for file modifcation time
          * 
@@ -90,12 +94,14 @@ class MHO_DirectoryInterface
          * @param dirname The new directory path to set.
          */
         void SetCurrentDirectory(const std::string& dirname);
+
         /**
          * @brief Getter for current directory
          * 
          * @return The full path of the current directory as a std::string.
          */
         std::string GetCurrentDirectory() const;
+
         /**
          * @brief Getter for current parent directory
          * 
@@ -116,6 +122,7 @@ class MHO_DirectoryInterface
          * @param aFileList Output parameter: vector of strings to store file list
          */
         void GetFileList(std::vector< std::string >& aFileList) const;
+
         /**
          * @brief Getter for sub directory list
          * 
@@ -130,6 +137,7 @@ class MHO_DirectoryInterface
          * @param anExt Extension pattern to match.
          */
         void GetFilesMatchingExtention(std::vector< std::string >& aFileList, const std::string& anExt) const;
+
         /**
          * @brief Getter for files matching extention
          * 
@@ -145,6 +153,7 @@ class MHO_DirectoryInterface
          * @param aPrefix Input string prefix to match against file names
          */
         void GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const std::string& aPrefix) const;
+
         /**
          * @brief Getter for files matching prefix
          * 
@@ -163,16 +172,54 @@ class MHO_DirectoryInterface
         void GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const char* anExt) const;
 
         //utility functions for old mk4 format files
+
+        /**
+         * @brief extracts legacy mk4 root file from list of files
+         */
         void GetRootFile(const std::vector< std::string >& files, std::string& root_file) const;
+
+
+        /**
+         * @brief extracts legacy mk4 corel files from list of files
+         */
         void GetCorelFiles(const std::vector< std::string >& files, std::vector< std::string >& corel_files) const;
+
+        /**
+         * @brief extracts legacy mk4 station files from list of files
+         */
         void GetStationFiles(const std::vector< std::string >& files, std::vector< std::string >& station_files) const;
+
+
+        /**
+         * @brief extracts legacy mk4 fringe files from list of files
+         */
         void GetFringeFiles(const std::vector< std::string >& files, std::vector< std::string >& fringe_files,
                             int& max_sequence_num) const;
+
+
+        /**
+         * @brief splits out baseline and root code from basename of a legacy mk4 corel file
+         */
         void SplitCorelFileBasename(const std::string& corel_basename, std::string& st_pair, std::string& root_code) const;
+
+        /**
+         * @brief splits out station char and root code from basename of a legacy mk4 station file
+         */
         void SplitStationFileBasename(const std::string& station_basename, std::string& st, std::string& root_code) const;
 
+        /**
+         * @brief gets the file name from a path to a file
+         */
         static std::string GetBasename(const std::string& filename);
+
+        /**
+         * @brief gets the directory prefix from a full path to a file
+         */
         static std::string GetPrefix(const std::string& filename);
+
+        /**
+         * @brief removes the extention (anything after last '.') from a file (base) name
+         */
         static std::string StripExtensionFromBasename(const std::string& file_basename);
 
     private:
