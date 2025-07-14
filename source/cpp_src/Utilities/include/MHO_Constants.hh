@@ -11,7 +11,7 @@ namespace hops
  *@file MHO_Constants.hh
  *@class MHO_Constants
  *@date Thu Jun 1 13:05:18 2023 -0400
- *@brief
+ *@brief a namespace class for storing constants
  *@author J. Barrett - barrettj@mit.edu
  */
 
