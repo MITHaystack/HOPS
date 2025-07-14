@@ -3,6 +3,12 @@
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/fourfit.doc )
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/alist.doc )
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/aedit.doc )
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/fplot.doc )
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/adump.doc )
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/average.doc )
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/fourmer.doc )
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/fringex.doc )
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/search.doc )
 
 option(BUILD_DOCS "Build documentation with doxygen/sphinx" OFF)
 option(DEPLOY_DOCS "Configure documentation to deploy html pages on github" OFF)

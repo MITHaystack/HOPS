@@ -1,0 +1,31 @@
+Documentation for the program "????"
+------------------------------------
+
+COMMAND NAME:   ????
+
+SYNOPSIS:  One line description of program/script function
+
+SYNTAX:  Multiline summary of call sequence, printed out on input error
+		condition
+
+OPTION FLAGS:	-x xarg
+			Option flags must immediately follow syntax.  This
+			is a description of all unix-style options
+		-y
+			Not all option flags have arguments
+
+ARGUMENTS:	arga
+			Description of regular arguments
+		argb
+			There may be more than one
+
+ENVIRONMENT:	ENV1 ENV2 (list of all environment varibles which affect the
+		functioning of the program)
+
+
+DESCRIPTION:
+
+Arbitrarily detailed description of any and all aspects of the program/script.
+The more the better.
+
+The section headings above are examined by software.  DO NOT CHANGE THEM.

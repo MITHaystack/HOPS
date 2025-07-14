@@ -1,0 +1,57 @@
+Documentation for the program "bispec"
+--------------------------------------
+
+COMMAND NAME:   bispec
+
+SYNOPSIS:  Forms segmented and averaged bispectra
+
+SYNTAX:  bispec [-m msglevel] [-o outfile] baselinefile trianglefile
+
+OPTION FLAGS:	-m msglevel
+			Verbosity control parameter, ranging from -3 to +3,
+			with lower numbers being more verbose.  The default
+			value is 1.
+		-o outfile
+			If specified, this flag directs the A-file output
+			of bispec to the named file.  If omitted, bispec
+			writes its output to stdout.
+
+ARGUMENTS:	baselinefile
+			An A-file containing baseline data with the best
+			possible estimates of rate, delay and coherence time
+			filled in (typically the fmlistf file from the
+			mmreduce script).
+		trianglefile
+			An A-file containing triangle records derived from the
+			above baseline file.  This file tells bispec which
+			triangles should be processed.  An error will result
+			if a triangle does not have corresponding baselines
+			present in the baseline file.
+
+ENVIRONMENT:	None
+
+
+DESCRIPTION:
+
+This program takes the drudgery out of generating averaged bispectra for
+mm-VLBI datasets.  Each triangle record in the trianglefile is treated
+individually.  First, all three contributing baselines are segmented with
+the same segmentation interval, using fringex.  The segments will all be
+synchronized in time by this method.  The segmentation time to be used
+is determined by aedit when the original triangle file is created.  It is
+therefore crucial that the triangle file be generated from data that has
+good coherence information in it.  Next, aedit is invoked to form
+segmented bispectra from the fringex output.  Finally, these segmented
+bispectra are averaged using the average program, resulting in a new
+triangle record, but one which has meaningful bispectral phase and SNR.
+The supporting programs, fringex, aedit and average, are called from within
+the bispec program, which merely orchestrates the sequence and manner of
+their execution.
+
+In general, this "brute force" approach to ensuring appropriate segmentation
+times for each triangle will be wasteful of CPU time, since each baseline
+will be re-segmented for each occurrence in a triangle.  In many cases, if
+the required segmentation time is the same as that used by a previous
+triangle, the re-segmenting could be avoided.  However, the bispec process is
+quite fast, and the complexity of an efficient algorithm would be high, so
+the current approach is deemed adequate.

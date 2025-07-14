@@ -1,0 +1,60 @@
+Documentation for the program "calamp"
+--------------------------------------
+
+COMMAND NAME:   calamp
+
+SYNOPSIS:  Applies calibration data to A-file amplitudes
+
+SYNTAX:  calamp [-c caltime] [-m msglev] [-o outfile] [-s] afilename calfilename
+		-c allows control over required proximity of cal time
+		-m controls verbosity
+		-o overrides stdout default for output A-file
+		-s forces program to use cal only on same source
+		-t forces program to ignore Tant information
+		afilename is the uncalibrated A-file input
+		calfilename is file containing all cal info
+
+OPTION FLAGS:	-c caltime
+			For each VLBI scan, calamp will accept cals within
+			caltime seconds of the start and end of the scan
+			(more precisely, any cal after start-caltime and
+			before end+caltime), and will simply average the
+			cal values it finds.  The default is 600 seconds.
+		-m msglev
+			Verbosity control parameter, ranging from -3 to +3,
+                        with lower numbers being more verbose.  The default
+                        value is 1.
+		-o outfile
+			If specified, this flag directs the A-file output
+                        of calamp to the named file.  If omitted, calamp
+                        writes its output to stdout.
+		-s
+			Normally, calamp uses all cal scans within the allowed
+			time range, issuing only a warning at message level 1
+			when the cal source does not match the VLBI source 
+			(message level -1 gives more details).  This flag turns
+			the non-matching source condition into a non-valid
+			cal, which then gets completely ignored (with no
+			messages).
+		-t
+			Normally, when a 6-token line is encountered in the
+			cal file, calamp performs a Ta/source flux calculation.  
+			This flag suppresses this behaviour, and forces a
+			Tsys/gain curve calculation.
+
+ARGUMENTS:	afilename
+			This is normally the final output of the fringe
+			searching software, with amplitudes in units of
+			10**-4 correlation coefficient calfilename This
+			is a file containing calibration information
+			feels like for all stations.  It is normally the
+			output of the RCal program, written by John Ball,
+			modified by hand editing in most cases.
+
+ENVIRONMENT:	None.
+
+
+DESCRIPTION:
+
+Description deferred until someone other than the authors finally finishes it.
+

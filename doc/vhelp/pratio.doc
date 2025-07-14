@@ -1,0 +1,52 @@
+Documentation for the program "pratio"
+--------------------------------------
+
+COMMAND NAME:   pratio
+
+SYNOPSIS:  Computes scan-averaged ratios of cross and parallel hands
+
+SYNTAX:  pratio [-m msglevel] filename
+
+OPTION FLAGS:	-m msglevel
+			Verbosity control parameter, ranging from -3 to +3,
+			with lower numbers being more verbose.  The default
+			value is 1.
+
+ARGUMENTS:	filename
+			This argument specifies the input dataset.  The name
+			given is the root name of a set of up to four A-files,
+			which contain scan-summaries of the four polarization
+			correlation products.  The program will look for the
+			four files "filename.xx", where "xx" is "RR", "LL",
+			"RL" and "LR".  One or both of the parallel hand files
+			should have the coherence time fields filled in, which
+			will be propagated to the other polarizations.  The 
+			program cannot check that the contents of the four
+			files actually are the stated polarizations, so the
+			input files must be carefully prepared.
+
+ENVIRONMENT:	None
+
+
+DESCRIPTION:
+
+This program is responsible for forming various polarization ratios for 
+polarization-sensitive mm-VLBI datasets.  The sequence of operations that
+must be performed is (1) segment each correlation product to the same
+coherence time, (2) form rl/ll, lr/ll, rl/rr, lr/rr, rr/ll ratios for each
+segment, (3) compute vector scan averages for each ratio, and (4) write the
+results out into a new A-file.  In order to process large datasets, it is
+necessary to do a lot of sorting, to match up scans and segments, so pratio
+makes multiple external calls to aedit, and keeps scratch files around on
+disk.  It also must do the segmenting, which is handed off to fringex.  A
+modest amount of computation is done internally, but the main function of
+pratio is to automate a highly repetitive process that would be very 
+time-consuming to do by hand, or via shell scripts constructed on an
+experiment by experiment basis.  
+
+In principle, the program should handle missing data in different
+polarizations, and multiple experiment numbers, gracefully.
+
+There is a lot of computation involved, and considerable file IO which could
+be eliminated at the cost of increased complexity.  However, execution
+times are not considered to be a major issue.

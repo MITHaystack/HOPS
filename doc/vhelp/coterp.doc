@@ -1,0 +1,81 @@
+Documentation for the program "coterp"
+--------------------------------------
+
+COMMAND NAME:   coterp
+
+SYNOPSIS:  Finds coherence times for coherently undetected scans
+
+SYNTAX:  coterp [-x] [-d device] [-o outfile] [-m msglevel] fitlist masterlist
+          
+		-x	open x-window for graphics display
+		-d	select graphics device
+		-o	specify output file
+		-m	set message level
+
+OPTION FLAGS:	-d device  [Not yet implemented]
+			Specifies the output graphics device for the plots
+			of station coherence time.
+			The specification is in the standard PGPLOT form
+			of filename/devicetype (e.g. test.ps/ps)
+
+		-m msglevel
+			Verbosity control parameter, ranging from -3 to +3,
+			with lower numbers being more verbose.  The default
+			value is 1.
+
+		-o outfile
+			If specified, this flag directs the A-file output
+			of cofit to the named file.  If omitted, coterp
+			writes its output to stdout.
+
+		-x
+			Shorthand for "-d /xw", the xwindow display.
+
+ARGUMENTS:	fitlist
+			A-list of coherence fitted scans as output by cofit.
+			Scans in this file are assumed to have already been
+			processed by cofit which will have filled in no-loss
+			and search coherence time fields.  These scans should
+			be firm coherent detections since they will be used
+			to find coherence times for non-detection scans.
+
+		masterlist
+			An A-list of all scans to be processed which includes
+			not only the detections but also non-detections.
+			The scans originally processed by cofit to produce
+			the fitlist are included in masterlist.
+
+ENVIRONMENT:	None.
+
+
+DESCRIPTION:	For purposes of fringe searching and for evaluating
+		visibility amplitude, one needs to know the coherence
+		time of the data.  The program COFIT determines these
+		times for scans which have already been detected by
+		coherent averaging methods (such as the program FOURFIT).
+		COTERP uses the values determined in COFIT to interpolate
+		coherence times on baselines for which fringes are not yet
+		detected.  To do this, COTERP first uses a least squares
+		algorithm to 'stationize' the baseline based coherence
+		times from COFIT.  For a given scan time, this results
+		in a coherence time for each station which is descriptive
+		of the atmospheric turbulence above a given station at a
+		given elevation.  The algorithm to stationize the coherence
+		times makes the assumption that the inverse square of a
+		baseline coherence time is equal to the sum of inverse
+		squares of the station coherence times.
+
+		Each station coherence time is then adjusted using a
+		theoretical elevation dependence to take into account
+		the coherence change with time.  Once this is done, the
+		adjusted station coherence times are interpolated for
+		the unfitted scans in the masterlist.  The final step
+		inverts the coherence time relation above to calculate
+		baseline coherence times from the interpolated station
+		based times.  All scans in the resulting output file will
+		have either coherence times determined by COFIT (previous
+		detections) or coherence times interpolated by COTERP
+		(previous non-detections).
+
+
+
