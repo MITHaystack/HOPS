@@ -49,16 +49,14 @@ template< class... T > struct MHO_TypelistSizeImpl< MHO_Typelist< T... > >
 {
         using type = std::integral_constant< size_t, sizeof...(T) >;
 };
-//alias to MHO_TypelistSize, retrieve the value itself with ::value (element of std::integral_constant)
+
 /**
- * @brief Class MHO_TypelistSize
+ * @brief Class MHO_TypelistSize - alias to MHO_TypelistSize, retrieve the value itself with ::value (element of std::integral_constant)
  */
 template< class L > using MHO_TypelistSize = typename MHO_TypelistSizeImpl< L >::type;
 
-//utility to return 1 if two types are the same, zero otherwise
-
 /**
- * @brief Class is_same_count
+ * @brief Class is_same_count - utility to return 1 if two types are the same, zero otherwise
  */
 template< class T, class U > struct is_same_count
 {
@@ -73,9 +71,8 @@ template< class T > struct is_same_count< T, T >
         constexpr static size_t value = 1;
 };
 
-//utility to count the instances of a particular type in a parameter pack //////
 /**
- * @brief Class count_instances_of_type
+ * @brief Class count_instances_of_type - utility to count the instances of a particular type in a parameter pack
  */
 template< typename XCheckType, size_t N, typename... T > struct count_instances_of_type;
 
@@ -125,7 +122,7 @@ typename std::enable_if< (N >= sizeof...(T)), XStream& >::type ostream_tuple(XSt
 }
 
 /**
- * @brief Terminating case for ostream_tuple: does nothing and returns s.
+ * @brief Terminating case for ostream_tuple:  returns s.
  * 
  * @tparam N Template parameter N
  * @tparam XStream Template parameter XStream
@@ -162,7 +159,7 @@ typename std::enable_if< (N >= sizeof...(T)), XStream& >::type istream_tuple(XSt
 }
 
 /**
- * @brief Terminating case for istream_tuple, does nothing and returns s.
+ * @brief Terminating case for istream_tuple, returns s.
  * 
  * @tparam N Template parameter N
  * @tparam XStream Template parameter XStream
@@ -182,9 +179,8 @@ typename std::enable_if< (N < sizeof...(T)), XStream& >::type istream_tuple(XStr
 
 ////////////////////////////////////////////////////////////////////////////////
 
-//generic apply functor (which takes and index value!) to all elements of a tuple
 /**
- * @brief Class indexed_tuple_visit
+ * @brief Class indexed_tuple_visit - generic apply functor (which takes and index value!) to all elements of a tuple
  */
 template< size_t NTypes > struct indexed_tuple_visit
 {
@@ -219,9 +215,9 @@ template<> struct indexed_tuple_visit< 0 >
 
 ////////////////////////////////////////////////////////////////////////////////
 
-//generic apply functor to tuple element (for runtime-indexed access)
+
 /**
- * @brief Class apply_to_tuple
+ * @brief Class apply_to_tuple - generic apply functor to tuple element (for runtime-indexed access)
  */
 template< size_t NTypes > struct apply_to_tuple
 {
@@ -353,11 +349,12 @@ template<> struct is_complex< std::complex< double > >: std::true_type
 template<> struct is_complex< std::complex< long double > >: std::true_type
 {};
 
-////////////////////////////////////////////////////////////////////////////////
-//zip elements of two iterable (probably STL) containers (which define a value_type)
-//into a map which takes the i-th element of the 1st container to the i-th element
-//of the 2nd container. Terminates at the end of whatever container stops first.
 
+/**
+ * @brief zip elements of two iterable (probably STL) containers (which define a value_type)
+ * into a map which takes the i-th element of the 1st container to the i-th element
+ * of the 2nd container. Terminates at the end of whatever container stops first.
+ */
 template< typename XContainer1, typename XContainer2 >
 std::map< typename XContainer1::value_type, typename XContainer2::value_type > zip_into_map(const XContainer1& c1,
                                                                                             const XContainer2& c2)
