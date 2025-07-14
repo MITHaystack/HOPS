@@ -15,14 +15,14 @@ namespace hops
  *@class
  *@date Fri Jun 2 11:19:07 2023 -0400
  *@brief functions to encode/decode an unsigned base-10 integer value in and out of
- *another base, represented by the single-character symbols present in
- *the specified character_set.
- *for example, to encode a value, x, in standard base-16, one would call:
- *std::string eval = encode_value(x, std::string("0123456789ABCDEF") );
- *similarly to decode a base-16 encoded string, y, to a unsigned base-10 integer,
- *one would call:
- *uint64_t value = decode_value(y, std::string("0123456789ABCDEF") );
- *these functions are not particularly performant
+ * another base, represented by the single-character symbols present in
+ * the specified character_set.
+ * for example, to encode a value, x, in standard base-16, one would call:
+ * std::string eval = encode_value(x, std::string("0123456789ABCDEF") );
+ * similarly to decode a base-16 encoded string, y, to a unsigned base-10 integer,
+ * one would call:
+ * uint64_t value = decode_value(y, std::string("0123456789ABCDEF") );
+ * these functions are not particularly performant
  *@author J. Barrett - barrettj@mit.edu
  */
 
@@ -106,13 +106,13 @@ class MHO_ChannelIndexLabeler
 
         virtual ~MHO_ChannelIndexLabeler(){};
 
-        //provide the option to use different character sets
         /**
-         * @brief Setter for default channel chars
+         * @brief Setter for channel chars - provides the option to use different character sets
          * 
          * @param ch_set Input character set to use as defaults
          */
         void SetDefaultChannelChars(const std::string& ch_set) { fDefaultChannelChars = ch_set; }
+
         /**
          * @brief Setter for extended channel chars
          * 

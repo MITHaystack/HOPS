@@ -10,17 +10,15 @@ namespace hops
  *@file MHO_IntervalLabelInterface.hh
  *@class MHO_IntervalLabelInterface
  *@date Sun Feb 4 17:21:38 2024 -0500
- *@brief
+ *@brief Class MHO_IntervalLabelInterface - adds intervals with associated key:value pairs (used by MHO_Axis)
+ * constructor is protected
+ * this class is only intended to provide an interface that derived classes may inherit
+ * this interface is to enforce a specific access pattern associated with modifying
+ * meta data attached to a vector/axis like object that is in the form of a mho_json::array_t
  *@author J. Barrett - barrettj@mit.edu
  */
 
-//constructor is protected
-//this class is only intended to provide an interface that derived classes may inherit
-//this interface is to enforce a specific access pattern associated with modifying
-//meta data attached to a vector/axis like object that is in the form of a mho_json::array_t
-/**
- * @brief Class MHO_IntervalLabelInterface
- */
+
 class MHO_IntervalLabelInterface
 {
     protected:
@@ -103,9 +101,8 @@ class MHO_IntervalLabelInterface
             return false;
         }
 
-        //get a reference to the dictionary object associated with this index
         /**
-         * @brief Getter for interval label object
+         * @brief Get a reference to the dictionary object associated with this index
          * 
          * @param lower_index Lower index for interval
          * @param upper_index Upper index for interval
@@ -141,9 +138,8 @@ class MHO_IntervalLabelInterface
             // (*fIntervalLabelObjectPtr).emplace(ikey,obj);
         }
 
-        //get a vector of interval labels which contain a key with the same name
         /**
-         * @brief Getter for matching interval labels
+         * @brief get a vector of interval labels which contain a key with the same name
          * 
          * @param key Key to search for within interval labels
          * @return Vector of matching mho_json objects

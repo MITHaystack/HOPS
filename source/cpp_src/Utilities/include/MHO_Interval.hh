@@ -54,7 +54,7 @@ template< typename XIntegerType = std::size_t > class MHO_Interval
         }
 
         /**
-         * @brief Getter for interval
+         * @brief Getter for interval bounds
          * 
          * @return A pair of XIntegerType representing the current interval's lower and upper bounds.
          */

@@ -19,7 +19,7 @@ namespace hops
  *@file MHO_JSONHeaderWrapper.hh
  *@class MHO_JSONHeaderWrapper
  *@date Thu May 27 13:13:02 2021 -0400
- *@brief
+ *@brief Class MHO_JSONHeaderWrapper - wrapper for nlohmann::json library
  *@author J. Barrett - barrettj@mit.edu
  */
 
