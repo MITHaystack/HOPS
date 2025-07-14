@@ -24,7 +24,7 @@ namespace hops
  *@class MHO_Notches
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Apr  2 09:41:24 AM EDT 2024
- *@brief operator which 'notches' out probablatic chunks of visiblities in frequency space 
+ *@brief operator which 'notches' out problematic chunks of visiblities in frequency space 
  */
 
 /**
