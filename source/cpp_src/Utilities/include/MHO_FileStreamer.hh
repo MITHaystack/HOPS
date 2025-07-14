@@ -13,7 +13,7 @@ namespace hops
  *@class MHO_FileStreamer
  *@author J. Barrett - barrettj@mit.edu
  *@date Wed Apr 21 13:40:18 2021 -0400
- *@brief
+ *@brief Streams objects to/from a file, uses a 2MB buffer
  */
 
 /**
@@ -51,22 +51,24 @@ class MHO_FileStreamer
          */
         std::string GetFilename() { return fFilename; };
 
-        //let derived class specify the exact handling of file
         /**
-         * @brief Function OpenToRead
+         * @brief Function OpenToRead - let derived class specify the exact handling of file
          * @note This is a virtual function.
          */
         virtual void OpenToRead() = 0;
+
         /**
          * @brief Function OpenToAppend
          * @note This is a virtual function.
          */
         virtual void OpenToAppend() = 0;
+
         /**
          * @brief Function OpenToWrite
          * @note This is a virtual function.
          */
         virtual void OpenToWrite() = 0;
+
         /**
          * @brief Checks if file is closed.
          * @note This is a virtual function.
@@ -118,10 +120,11 @@ class MHO_FileStreamer
             return false;
         }
 
-        //if an unrecognized object is encountered in streaming, flag this object
-        //by changing the 'object' state
+
         /**
-         * @brief Setter for object unknown
+         * @brief Setter for object state - 
+         * if an unrecognized object is encountered in streaming, flag this object
+         * by changing the 'object' state to 'unknown'
          * @note This is a virtual function.
          */
         virtual void SetObjectUnknown() { fObjectState = ObjectState::unknown; }

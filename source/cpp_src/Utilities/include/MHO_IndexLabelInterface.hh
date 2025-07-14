@@ -10,17 +10,15 @@ namespace hops
  *@file MHO_IndexLabelInterface.hh
  *@class MHO_IndexLabelInterface
  *@date Sun Feb 4 17:21:38 2024 -0500
- *@brief
+ *@brief Class MHO_IndexLabelInterface - adds indexes associated with key:value pairs (used by MHO_Axis)
+ * constructor is protected
+ * this class is only intended to provide an interface that derived classes may inherit
+ * this interface is to enforce a specific access pattern associated with modifying
+ * meta data attached to a vector/axis like object that is in the form of a mho_json::array_t
  *@author J. Barrett - barrettj@mit.edu
  */
 
-//constructor is protected
-//this class is only intended to provide an interface that derived classes may inherit
-//this interface is to enforce a specific access pattern associated with modifying
-//meta data attached to a vector/axis like object that is in the form of a mho_json::array_t
-/**
- * @brief Class MHO_IndexLabelInterface
- */
+
 class MHO_IndexLabelInterface
 {
 
@@ -117,9 +115,8 @@ class MHO_IndexLabelInterface
             return false;
         }
 
-        //get a reference to the dictionary object associated with this index
         /**
-         * @brief Setter for label object
+         * @brief get a reference to the dictionary object associated with this index
          * 
          * @param obj (mho_json&)
          * @param index (std::size_t)
@@ -155,9 +152,8 @@ class MHO_IndexLabelInterface
             }
         }
 
-        //get a reference to the dictionary object associated with this index
         /**
-         * @brief Getter for label object
+         * @brief get a reference to the dictionary object associated with this index
          * 
          * @param index Index of type std::size_t used to locate the label object.
          * @return Reference to the mho_json object associated with the given index, or a dummy object if the index label interface is missing.
@@ -196,9 +192,8 @@ class MHO_IndexLabelInterface
             }
         }
 
-        //get a vector of indexes which contain a key with the same name
         /**
-         * @brief Getter for matching indexes
+         * @brief get a vector of indexes which contain a key with the same name
          * 
          * @param key Input key to search for
          * @return Vector of matching indexes
@@ -224,9 +219,8 @@ class MHO_IndexLabelInterface
             return idx;
         }
 
-        //get a vector of indexes which contain a key with a value which matches the passed value
         /**
-         * @brief Getter for matching indexes
+         * @brief Get a vector of indexes which contain a key with a value which matches the passed value
          * 
          * @tparam XValueType Template parameter XValueType
          * @param key Input key string to match
@@ -260,6 +254,7 @@ class MHO_IndexLabelInterface
         }
 
     private:
+
         /**
          * @brief Converts an index to a string key.
          * 
