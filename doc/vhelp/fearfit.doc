@@ -1,0 +1,134 @@
+Documentation for the program "fearfit"
+---------------------------------------
+
+COMMAND NAME:   fearfit
+
+SYNOPSIS:  A deviant for of fourfit, intended for testing/development
+
+SYNTAX:  See fourfit
+
+OPTION FLAGS:	See fourfit
+
+ARGUMENTS:	See fourfit
+
+ENVIRONMENT:	See fourfit; also HOPS_FEARFIT_* as explained below.
+
+DESCRIPTION:
+
+Fearfit is a (at present a) minimally hacked version of fourfit which
+contains a few extra bits of functionality which is entirely triggered
+by the setting of certain environment variables.  Their names and use
+is as follows:
+
+    HOPS_FEARFIT_XPSPEC
+        If set to an integer greater than zero, the cross-power
+        spectrum is output to a file named "fearfit.spec".  Used
+        to export the spectral data to an external program, such
+        as gnuplot.
+
+    HOPS_FEARFIT_SDELAY
+        If set to an integer greater than zero, the single-band
+        delay data is output to a file named "fearfit.sdly".  This
+        is used to export the SBD data to an external program, such
+        as gnuplot.
+
+    HOPS_FEARFIT_BEFORE
+    HOPS_FEARFIT_AFTER
+    HOPS_FEARFIT_FACTOR
+    HOPS_FEARFIT_FREQLO
+        Collectively control the rotation of the spectrum by
+        an arbitrary angle.  When HOPS_FEARFIT_BEFORE and/or
+        HOPS_FEARFIT_AFTER are set, the spectrum is output to a
+        file "fearfit.data" either before or after the rotation.
+        The HOPS_FEARFIT_FACTOR should be a double giving us/s
+        of drift, and HOPS_FEARFIT_FREQLO (if set) provides a
+        replacement for the reference frequency (which is the
+        default).
+
+    HOPS_FEARFIT_PCPHASE_VERB
+    HOPS_FEARFIT_PCPHASE_NOMAST
+    HOPS_FEARFIT_PCPHASE_SWAP
+    HOPS_FEARFIT_PCPHASE_MEDFR
+    HOPS_FEARFIT_PCPHASE_POLICY
+    HOPS_FEARFIT_PCPHASE_NCHAN
+    HOPS_FEARFIT_PCPHASE_DERATE
+    HOPS_FEARFIT_PCPHASE_DELTA
+    HOPS_FEARFIT_PCPHASE_ZPHS
+        These control a diagnositic message that is output when the
+        pc mode is manual.  The normal fourfit (-m1) calculates the
+        pc_phases required to bring the multiband delay to zero.
+        This version does that, and additionally calculates delay
+        offsets (used with delay_offs) to adjust the single band delays.
+
+        The output format is suitable for inclusion in a control file,
+        and comments are generated to provide more informative details.
+        You may use the "samplers" keyword to define bands that should
+        be delayed collectively (which is what makes the most sense).
+        The current implementation does the math independently of the
+        plot, but still respects the -f and -n command line options.
+
+        HOPS_FEARFIT_PCPHASE_VERB functions as a msg level for this
+        output (the default is 2, raise it for less output, lower it
+        for more ouput; 3 or higher makes this mode fall silent).
+
+        HOPS_FEARFIT_PCPHASE_NOMAST controls some of the initial
+        output: set this to 1 to turn off the zero spewage on the
+        station not getting phases or delays, and set it to 2 to
+        to turn off the file, baseline and snr commentary as well.
+
+        HOPS_FEARFIT_PCPHASE_SWAP (if set) flips the signs on the
+        phases and delays and assigns these to the remote, rather
+        than to the reference station.  A no-phase, no-delay report
+        is made for the other station.
+
+        HOPS_FEARFIT_PCPHASE_MEDFR allows you to set a fraction of the
+        channels which are considered to be reliable for setting the
+        delay_offs values.  That fraction about the median is used to
+        estimate an averaged delay for the sampler group, those outside
+        the median are assigned the median value and in any case the
+        average of all channels is suggested.
+
+        Typically you will find some gap between these delays that you
+        want to try to close.  The following variables address attempts
+        to try to do that--they give you tools, but no sure solution.
+
+        HOPS_FEARFIT_PCPHASE_POLICY can be set to 0, 1 or 2 to specify
+        that the upper band is to be shifted, the lower band is to be
+        shifted, or both are to be brought together (the default),
+        respectively.  You can also specify policy 3 which does nothing.
+        (You will end up in this case if the following inputs are illegal.)
+        There is a gap estimation process that attempts to determine
+        the size of the gap (in degrees).  Normally the two channels on
+        either side of the gap are used to extrapolate to the midpoint
+        between the samplers using a linear fit.
+
+        HOPS_FEARFIT_PCPHASE_NCHAN can be set to 3 or more to give up
+        on this linear fit near the gap and merely substitute an average
+        of the channels on each side.  This is better for noisy phases.
+
+        HOPS_FEARFIT_PCPHASE_DERATE may be used as a multiplier on the
+        result.  (I.e. it may be that the automatic method systematically
+        over- or under- estimates the size of the gap.)
+
+        HOPS_FEARFIT_PCPHASE_DELTA is available as a final increment to
+        the gap adjustment.  You need to set this to 0.0 to activate
+        the gap closing machinery.  (Otherwise you'll be left with the
+        pc phases such as fourfit would have given you.)
+
+        HOPS_FEARFIT_PCPHASE_ZPHS adjusts all phases by this amount.
+
+    HOPS_FEARFIT_MBDGRID
+    HOPS_FEARFIT_MBDTOL
+        The former is presently not connected (but present for tracking).
+        The latter may be set to specify a tolerance for matching
+        frequencies to the grid.  The default is 0.001 (i.e. 1 kHz),
+        and with normally spaced channels works in most cases.  If the
+        frequency spacing is irregular, this may result in an inordinately
+        large number of points in the MBD search grid.  You can relax
+        this by setting HOPS_FEARFIT_MBDTOL to a larger value.  Note
+        that the original method is still used, and only tries again
+        if HOPS_FEARFIT_MBDTOL is nonzero.
+
+None of the fearfit features are guaranteed to survive, or to perform
+consistently.  However, inertia is your friend....
+

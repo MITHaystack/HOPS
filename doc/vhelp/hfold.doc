@@ -1,0 +1,73 @@
+Documentation for the program "hfold"
+------------------------------------
+
+COMMAND NAME:   hfold
+
+SYNOPSIS:  Assigns closure-consistent baseline phases
+
+SYNTAX:  	hfold ampfile clsphfile <window>
+          
+OPTION FLAGS:	None.
+
+ARGUMENTS:	ampfile
+			A-list of all 'type 2' baseline summary lines which,
+			at this point, should have best estimates of amplitude
+			but random phases.  This file must be time ordered -
+			early dates first (this requirement will be relaxed
+			in later versions.
+
+		clsphfile
+			A-list of all 'type 3' triangle summary lines which
+			correspond to the baseline entries in ampfile.  Or,
+			the user can specify 'none' here which will still
+			output all a-file lines in caltech format, but with
+			interferometric phase as found in the input data
+			(instead of finding a least squares fit).
+
+		<window>
+			Specifies the number of seconds to be interpreted as
+			a time gap between scans.  Default is 190 seconds.
+			This limits the use of Fold to scan averages but
+			will be modified to handle more delicately parsed
+			data in later versions.
+
+ENVIRONMENT:	None.
+
+
+DESCRIPTION:	Typically, the visibility amplitudes and phases are calculated
+		at different times when reducing mm-VLBI data.  This comes
+		about since the most sensitive fringe searches neglect phase
+		entirely and use incoherent averages.  Closure phase gets
+		calculated in a later step by averaging the bispectrum
+		(triple product of complex visibility) and taking its
+		argument.  In cm-wavelength VLBI where the closure phase
+		is not averaged, one needs only to calculate the closure
+		phase around independent station triangles.  Recall that a
+		station triangle can be formed with a linear combination of
+		three others.  When the bispectrum is averaged this linear
+		property is lost and ALL triangles must be kept.
+
+		Some imaging software packages, most notably the Caltech
+		package, calculate the closure phase from baseline based phase.
+		For this reason, a program (Fold) is needed to take the
+		closure phase data for ALL triangles and find the optimum
+		decomposition into baseline based phase.  Fold does this
+		using a least squares routine that preserves as best it can,
+		the original closure phase.  Since it is a global routine,
+		there will nearly always be some discrepancies.  If the name
+		of the closure phase file is 'none' then hfold acts only as
+		a translator from afile format to caltech format preserving
+		the phases as found by fringex, fourfit, fringe, etc...
+
+		Note that Fold is still in development and does not have all
+		the features one might want.  Currently, it is only able to
+		output a format acceptable to the Caltech package.  Also it
+		may fail if it finds foreign characters in the input file.
+		One should sanitize the input files by making sure that only
+		the A-summary lines are present - this means no headers from
+		Aedit, or 'end of scan' markers from average.  Order is
+		important for hfold input : both amplitude and bispectrum
+		files must be in time order with the closure phase time
+		range being a subset of the amplitude time range (i.e. no
+		closure phases at times before amplitude data).
+
