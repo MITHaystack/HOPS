@@ -23,7 +23,7 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  *@date Wed Apr 21 13:40:18 2021 -0400
  *@brief variadic template parameter implemenation
- * of a gen scatter hierarchy streamer for POD and JSON types to a file stream
+ * of a gen scatter hierarchy streamer for POD (plain-old-data) and JSON types to a file stream
  */
 
 //forward declare our binary data streamer (for plain old data types ((POD))
@@ -32,9 +32,9 @@ namespace hops
  */
 class MHO_BinaryFileStreamer;
 
-//template class for a single-type streamer, generic for most POD types
+
 /**
- * @brief Class MHO_BinaryFileStreamerSingleType
+ * @brief Class MHO_BinaryFileStreamerSingleType - template class for a single-type streamer, generic for most POD types
  */
 template< typename XValueType > class MHO_BinaryFileStreamerSingleType
 {
@@ -59,7 +59,7 @@ template< typename XValueType > class MHO_BinaryFileStreamerSingleType
         }
 
         /**
-         * @brief Getter for stream
+         * @brief Getter for stream (std::fstream) object
          * 
          * @return Reference to std::fstream object.
          * @note This is a virtual function.
@@ -71,13 +71,15 @@ template< typename XValueType > class MHO_BinaryFileStreamerSingleType
          * @note This is a virtual function.
          */
         virtual void ResetByteCount() = 0;
+
         /**
          * @brief Increments the total bytes written by the provided value.
          * 
-         * @param param1 Value to add to the total bytes written.
+         * @param Value to add to the total bytes written (uint64_t)
          * @note This is a virtual function.
          */
         virtual void AddBytesWritten(uint64_t) = 0;
+
         /**
          * @brief Getter for nbytes written
          * 
@@ -96,9 +98,10 @@ template< typename XValueType > class MHO_BinaryFileStreamerSingleType
         virtual MHO_BinaryFileStreamer& Self() = 0;
 };
 
-//specialization for string type (special among the basic POD types because it needs a size parameter)
+
 /**
  * @brief Class MHO_BinaryFileStreamerSingleType<std::string>
+ * specialization for string type (special among the basic POD types because it needs a size parameter)
  */
 template<> class MHO_BinaryFileStreamerSingleType< std::string >
 {
@@ -130,7 +133,7 @@ template<> class MHO_BinaryFileStreamerSingleType< std::string >
         }
 
         /**
-         * @brief Getter for stream
+         * @brief Getter for fstream object
          * 
          * @return Reference to std::fstream object
          * @note This is a virtual function.
@@ -143,7 +146,7 @@ template<> class MHO_BinaryFileStreamerSingleType< std::string >
          */
         virtual void ResetByteCount() = 0;
         /**
-         * @brief Increments fNBytesWritten by param1.
+         * @brief Increments fNBytesWritten.
          * 
          * @param param1 Number of bytes to add to fNBytesWritten.
          * @note This is a virtual function.
@@ -167,9 +170,10 @@ template<> class MHO_BinaryFileStreamerSingleType< std::string >
         virtual MHO_BinaryFileStreamer& Self() = 0;
 };
 
-//specialization for mho_json type (special, because it needs to be encoded and gets a size parameter)
+
 /**
  * @brief Class MHO_BinaryFileStreamerSingleType<mho_json>
+ * specialization for mho_json type (special, because it needs to be encoded and gets a size parameter)
  */
 template<> class MHO_BinaryFileStreamerSingleType< mho_json >
 {
@@ -215,7 +219,7 @@ template<> class MHO_BinaryFileStreamerSingleType< mho_json >
         }
 
         /**
-         * @brief Getter for stream
+         * @brief Getter for fstream object
          * 
          * @return Reference to std::fstream object.
          * @note This is a virtual function.
@@ -228,7 +232,7 @@ template<> class MHO_BinaryFileStreamerSingleType< mho_json >
          */
         virtual void ResetByteCount() = 0;
         /**
-         * @brief Increments fNBytesWritten by param1.
+         * @brief Increments fNBytesWritten
          * 
          * @param param1 Number of bytes to add to fNBytesWritten.
          * @note This is a virtual function.
@@ -252,15 +256,16 @@ template<> class MHO_BinaryFileStreamerSingleType< mho_json >
         virtual MHO_BinaryFileStreamer& Self() = 0;
 };
 
-//now declare a multi-type streamer with a variadic template parameter for the types to be streamed
 /**
  * @brief Class MHO_BinaryFileStreamerMultiType
+ * declares a multi-type streamer with a variadic template parameter for the types to be streamed
  */
 template< typename... XValueTypeS > class MHO_BinaryFileStreamerMultiType;
 
-//declare the specialization for the base case of the recursion (in which the parameter XValueType is just a single type)
+
 /**
  * @brief Class MHO_BinaryFileStreamerMultiType<XValueType>
+ * declare the specialization for the base case of the recursion (in which the parameter XValueType is just a single type)
  * 
  * @tparam XValueTypeS Template parameter XValueTypeS
  */
@@ -270,6 +275,7 @@ class MHO_BinaryFileStreamerMultiType< XValueType >: public MHO_BinaryFileStream
 
 /**
  * @brief Class MHO_BinaryFileStreamerMultiType<XValueType, XValueTypeS...>
+ * sets up the typelist recursion
  */
 template< typename XValueType, typename... XValueTypeS >
 class MHO_BinaryFileStreamerMultiType< XValueType, XValueTypeS... >: public MHO_BinaryFileStreamerMultiType< XValueType >,
@@ -283,9 +289,10 @@ typedef MHO_BinaryFileStreamerMultiType< bool, char, unsigned char, short, unsig
                                          std::string, mho_json >
     MHO_BinaryFileStreamerBasicTypes;
 
-//now declare the concrete class which does the work for file streams
+
 /**
  * @brief Class MHO_BinaryFileStreamer
+ * declare the concrete class which does the work for file streams
  */
 class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStreamerBasicTypes
 {
@@ -299,16 +306,19 @@ class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStre
          * @note This is a virtual function.
          */
         virtual void OpenToRead() override;
+
         /**
          * @brief Opens a file for binary writing and sets appropriate state.
          * @note This is a virtual function.
          */
         virtual void OpenToWrite() override;
+
         /**
          * @brief Opens a binary file for appending and sets appropriate file state.
          * @note This is a virtual function.
          */
         virtual void OpenToAppend() override;
+
         /**
          * @brief Closes the open file if it exists and sets the file state to closed.
          * @note This is a virtual function.
@@ -316,7 +326,7 @@ class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStre
         virtual void Close() override;
 
         /**
-         * @brief Getter for stream
+         * @brief Getter for fstream object
          * 
          * @return Reference to std::fstream& representing the current file stream.
          * @note This is a virtual function.
@@ -324,7 +334,7 @@ class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStre
         virtual std::fstream& GetStream() override { return MHO_FileStreamer::GetStream(); }
 
         /**
-         * @brief Getter for stream
+         * @brief Getter for fstream object
          * 
          * @return Reference to std::fstream object.
          * @note This is a virtual function.
@@ -346,7 +356,7 @@ class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStre
         virtual void AddBytesWritten(uint64_t b) override { fNBytesWritten += b; }
 
         /**
-         * @brief Getter for nbytes written
+         * @brief Getter for N bytes written
          * 
          * @return The total number of bytes written as a uint64_t.
          * @note This is a virtual function.
