@@ -10,6 +10,24 @@ hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/fourmer.doc )
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/fringex.doc )
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/search.doc )
 
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/ff_control.doc )
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/ff_output.doc )
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/ff_search.doc )
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/ff_vsfrnge.doc )
+
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/general.doc )
+
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/libafio.doc )
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/libdfio.doc )
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/libutil.doc )
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/linkdata.doc )
+
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/scripts.doc )
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/vhelp.doc )
+
+
+
+
 option(BUILD_DOCS "Build documentation with doxygen/sphinx" OFF)
 option(DEPLOY_DOCS "Configure documentation to deploy html pages on github" OFF)
 
