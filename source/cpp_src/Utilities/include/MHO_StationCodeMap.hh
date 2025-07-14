@@ -17,16 +17,12 @@ namespace hops
 *@class  MHO_StationCodeMap
 *@author  J. Barrett - barrettj@mit.edu
 *@date Thu Apr 28 12:25:09 2022 -0400
-*@brief
-    Handles the mapping of two character and one character station representation.
-    This class can be initialized from a file, otherwise it assigns free 1-char codes
-    based on the order in which stations are encountered. Optionally, we can enable
-    some legacy station code assignments inherited from difx2mark4
+*@brief Class MHO_StationCodeMap Handles the mapping of two character and one character station representation.
+* This class can be initialized from a file, otherwise it assigns free 1-char codes
+* based on the order in which stations are encountered. Optionally, we can enable
+* some legacy station code assignments inherited from difx2mark4
 */
 
-/**
- * @brief Class MHO_StationCodeMap
- */
 class MHO_StationCodeMap
 {
     public:
@@ -84,10 +80,12 @@ class MHO_StationCodeMap
          * @return True if tokens are valid, false otherwise.
          */
         bool TokensAreValid();
+
         /**
          * @brief Processes a line containing station codes and inserts them into a map if valid.
          */
         void ProcessLine();
+
         /**
          * @brief Inserts a pair of station_code and mk4id into maps and updates free Mk4Ids.
          * 
@@ -103,6 +101,7 @@ class MHO_StationCodeMap
          * @return Uppercase version of the input string, preserving non-alphabetic characters.
          */
         std::string ToUpperCase(std::string token);     //AA
+
         /**
          * @brief Converts a given string to lowercase while preserving non-alphabetic characters.
          * 
@@ -110,8 +109,9 @@ class MHO_StationCodeMap
          * @return The input string converted to lowercase.
          */
         std::string ToLowerCase(std::string token);     //aa
+
         /**
-         * @brief Converts a given string token to canonical case (first character uppercase, rest lowercase).
+         * @brief Converts a given string token to canonical case (first character uppercase, second lowercase).
          * 
          * @param token Input string token to be converted
          * @return String token in canonical case
