@@ -26,7 +26,7 @@ HOPS4 Applications and Libraries
     libraries/Utilities
     libraries/containers/Containers
     libraries/Operators
-    libraries/Calibration
+    libraries/calibration/Calibration
     libraries/Initialization
     libraries/Fringe
     libraries/Plugins
