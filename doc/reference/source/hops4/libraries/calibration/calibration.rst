@@ -120,6 +120,7 @@ Class                   :hops:`MHO_MultitonePhaseCorrection`
 Operator Type           Unary
 Operator Category       calibration
 Argument Data Type      :hops:`visibility_type`
+Required Input          :hops:`multitone_pcal_type`
 Priority Value          3.1
 Control File Keyword    ``pc_mode multitone``
 ======================= ======================================================
@@ -142,7 +143,7 @@ Priority Value          3.99
 Performs polarization product summation with support for parallactic angle 
 corrections for both reference and remote stations to form the 
 pseudo Stokes-I polarization product (VGOS geodesy). Triggered by the command line 
-syntax "-P I".
+syntax ``-P I``.
 
 
 MHO_StationDelayCorrection
