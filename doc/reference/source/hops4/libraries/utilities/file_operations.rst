@@ -109,7 +109,7 @@ binary file data, and allows the file I/O mechanism to skip over unrecognized ob
 
 
 :hops:`MHO_Serializable`
------------------------- - 
+------------------------
 
 =============================================== ====================================================================
 Class                                           :hops:`MHO_Serializable`
