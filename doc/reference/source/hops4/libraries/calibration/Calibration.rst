@@ -15,3 +15,4 @@ The calibration library contains operators organized by category based on their 
     selection
     finalize
     non_configurable
+    non_operator
