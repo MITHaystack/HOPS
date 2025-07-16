@@ -23,9 +23,9 @@ HOPS4 Applications and Libraries
 
     libraries/Message
     libraries/Math
-    libraries/Utilities
+    libraries/utilities/Utilities
     libraries/containers/Containers
-    libraries/Operators
+    libraries/operators/Operators
     libraries/calibration/Calibration
     libraries/Initialization
     libraries/Fringe
