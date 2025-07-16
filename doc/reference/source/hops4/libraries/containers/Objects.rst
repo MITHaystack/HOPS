@@ -288,7 +288,11 @@ The coordinate axis packs (collections of axes applied to each dimention of a ta
      - ``MHO_AxisPack< pol_axis_type, time_axis_type, frequency_axis_type >``
      - axis pack used with multi-tone phase-cal table data
 
-Finally, the table container types are declared as follows:
+Finally, the table container types are declared by combining and element type 
+with an axis pack tuple as a pair of template parameters. This allows for a 
+wide variety of table types to be declared easily and with re-use of similar
+coordinate axes. Some examples of these table container declarations are as
+follows:
 
 .. list-table:: Table Container Types
    :header-rows: 1
