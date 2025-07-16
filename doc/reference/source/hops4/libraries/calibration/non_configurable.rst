@@ -1,29 +1,17 @@
 Non-configurable Operators
 ===========================
 
-MHO_DelayModel
---------------
-
-======================= ======================================================
-Class                   :hops:`MHO_DelayModel`
-Operator Type           Standalone
-Operator Category       Non-configurable (utility)
-Argument Data Type      :hops:`visibility_type`
-======================= ======================================================
-
-Evaluates the station a priori delay model polynomials for both reference and 
-remote stations.
-
 
 MHO_DelayRate
 -------------
 
-======================= ======================================================
-Class                   :hops:`MHO_DelayRate`
-Operator Type           Binary
-Operator Category       Non-configurable (search)
-Argument Data Type      :hops:`visibility_type`, :hops:`weight_type` → :hops:`sbd_type`
-======================= ======================================================
+=========================== ======================================================
+Class                       :hops:`MHO_DelayRate`
+Operator Type               Binary
+Operator Category           Non-configurable (search)
+Input Argument Data Types   :hops:`visibility_type`, :hops:`weight_type`
+Output Argument Data Type   :hops:`sbd_type`
+=========================== ======================================================
 
 Performs the transform to the delay-rate space by applying a FFT. This operator 
 also applies the data-weights. The FFT is done with zero-padding and a cyclic rotation
@@ -38,8 +26,6 @@ Class                   :hops:`MHO_DoubleSidebandChannelLabeler`
 Operator Type           Unary
 Operator Category       Non-configurable (labeling)
 Argument Data Type      :hops:`visibility_type` or :hops:`weight_type`
-Priority Value          0.1
-
 ======================= ======================================================
 
 Detects adjacent LSB/USB channels pairs which share the same sky-frequency and 
@@ -69,7 +55,6 @@ Class                   :hops:`MHO_IonosphericPhaseCorrection`
 Operator Type           Unary
 Operator Category       Non-configurable (search)
 Argument Data Type      :hops:`visibility_type`
-Priority Value          N/A
 Control File Keyword    ``ion_n_pts``, ``ion_smooth``, ``ion_win``, ``ionosphere``
 ======================= ======================================================
 
@@ -128,8 +113,6 @@ Class                   :hops:`MHO_SingleSidebandNormFX`
 Operator Type           Unary
 Operator Category       Non-configurable (search)
 Argument Data Type      :hops:`visibility_type`
-Priority Value          0.1
-Control File Keyword    ``single_sideband_norm``
 ======================= ======================================================
 
 Implements a subset of the functionality found in norm_fx.c, mainly the transform 
@@ -145,6 +128,7 @@ Class                   :hops:`MHO_PhaseCalibrationTrim`
 Operator Type           Unary
 Operator Category       Non-configurable (selection)
 Argument Data Type      :hops:`multitone_pcal_type`
+Required Input          :hops:`visibility_type`
 ======================= ======================================================
 
 Trims the time range of the pcal data to match that of the visibilities. If the 
@@ -155,41 +139,28 @@ to be the same.
 MHO_SBDTableGenerator
 ---------------------
 
-======================= ======================================================
-Class                   :hops:`MHO_SBDTableGenerator`
-Operator Type           Transforming
-Operator Category       Non-configurable (utility)
-Argument Data Type      :hops:`visibility_type` → :hops:`sbd_type`
-====================== ======================================================
+========================== ======================================================
+Class                      :hops:`MHO_SBDTableGenerator`
+Operator Type              Transforming
+Operator Category          Non-configurable (utility)
+Input Argument Data Type   :hops:`visibility_type`
+Output Argument Data Type  :hops:`sbd_type`
+========================== ======================================================
 
 Implements the conversion of the input visibility array into a data object which can
 be transformed into single-band delay space (via the NormFX operators).
 
 
-MHO_StationModel
-----------------
-
-======================= ======================================================
-Class                   :hops:`MHO_StationModel`
-Operator Type           Standalone
-Operator Category       Non-configurable (utility)
-Argument Data Type      :hops:`station_coord_type`
-======================= ======================================================
-
-Evaluates the station a priori coordinate and/or delay spline polynomials to 
-compute station model parameters including delay, azimuth, elevation, and 
-parallactic angle.
-
-
 MHO_VisibilityChannelizer
 -------------------------
 
-======================= ======================================================
-Class                   :hops:`MHO_VisibilityChannelizer`
-Operator Type           Transforming
-Operator Category       Non-configurable (utility)
-Argument Data Type      :hops:`uch_visibility_store_type` → :hops:`visibility_store_type`
-======================= ======================================================
+========================== ======================================================
+Class                      :hops:`MHO_VisibilityChannelizer`
+Operator Type              Transforming
+Operator Category          Non-configurable (utility)
+Input Argument Data Type   :hops:`uch_visibility_store_type`
+Output Argument Data Type  :hops:`visibility_store_type`
+========================== ======================================================
 
 Collects unchannelized (3d) visibility data and groups by channel into 4d object.
 All channels must be of equal size. This is a utility operator only used by the 
@@ -198,12 +169,13 @@ MK4Interface library when converting Mark4 visibility objects to HOPS4 format.
 MHO_WeightChannelizer
 ---------------------
 
-======================= ======================================================
-Class                   :hops:`MHO_WeightChannelizer`
-Operator Type           Transforming
-Operator Category       Non-configurable (utility)
-Argument Data Type      :hops:`uch_weight_store_type` → :hops:`weight_store_type`
-======================= ======================================================
+========================== ======================================================
+Class                      :hops:`MHO_WeightChannelizer`
+Operator Type              Transforming
+Operator Category          Non-configurable (utility)
+Input Argument Data Type   :hops:`uch_weight_store_type`
+Output Argument Data Type  :hops:`weight_store_type`
+========================== ======================================================
 
 Collects unchannelized (3d) weight data and groups by channel into 4d object.
 All channels must be of equal size. This is a utility operator only used by the 
