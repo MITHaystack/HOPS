@@ -158,7 +158,7 @@ Argument Data Type         N dimensional array with arbitrary trivially copyable
 Performs cyclic rotation upon the requested axis for the specified offset. 
 A positive value of the rotation offset results in a right shift cyclic 
 rotation, while a negative value results in a left shift cyclic rotation.
-Template class supporting both in-place and out-of-place operations.
+This is a template class supporting both in-place and out-of-place operations.
 
 MHO_FastFourierTransform
 ------------------------
@@ -175,7 +175,7 @@ Argument Data Type         One dimensional array with complex double/float value
 Performs a Fourier transform (or inverse transform) on the input array using 
 an FFT algorithm. If the array size is a power of two, then either a Cooley-Tukey 
 or Gentleman-Sande radix-2 algorithm will be applied. For all other sizes, the 
-Bluestein/Chirp-Z algorithm is used. Template class supporting both in-place and 
+Bluestein/Chirp-Z algorithm is used. This is a template class supporting both in-place and 
 out-of-place operations.
 
 MHO_FunctorBroadcaster
@@ -191,7 +191,7 @@ Argument Data Type         | N dimensional array with any value type (must be
 ========================== ====================================================================
 
 For every element in the array the functor operation will be applied. In the 
-case of an out-of-place operation a copy will take place. Template class 
+case of an out-of-place operation a copy will take place. This is a template class 
 supporting both in-place and out-of-place operations.
 
 
@@ -209,7 +209,7 @@ Argument Data Type         N dimensional array with complex double/float value t
 
 Executes a Fourier transform on the selected dimensions of the array using 
 the native FFT calculator. The direction follows the convention of FFTW.
-Template class supporting both in-place and out-of-place operations.
+This is a template class supporting both in-place and out-of-place operations.
 
 MHO_MultidimensionalFastFourierTransformFFTW
 --------------------------------------------
@@ -225,7 +225,7 @@ Argument Data Type         N dimensional array with complex double/float value t
 
 Executes a Fourier transform on the selected dimensions of the array using 
 the FFTW library. The precise algorithm selected is determined by FFTW. The 
-direction follows the convention of FFTW. Template class supporting both 
+direction follows the convention of FFTW. This is a template class supporting both 
 in-place and out-of-place operations.
 
 
@@ -262,7 +262,7 @@ Argument Data Type         N dimensional array with any value type
 
 For a stride value of k, and dimension index j, the output array will be 
 resized and populated in such a way that only every k-th element (along the 
-j-th dimension) from the original array will remain. Template class supporting 
+j-th dimension) from the original array will remain. This is a template class supporting 
 both in-place and out-of-place operations.
 
 MHO_AbsoluteValue
@@ -277,7 +277,7 @@ Argument Data Type         N dimensional array with numerical value type
 ========================== ====================================================================
 
 Applies the absolute value operation to every element of the input array.
-Template class supporting both in-place and out-of-place operations.
+This is a template class supporting both in-place and out-of-place operations.
 
 MHO_ElementTypeCaster
 ---------------------
@@ -304,7 +304,7 @@ Configuration Parameters   Dimension index and padding size
 Argument Data Type         N dimensional array with numerical value type
 ========================== ====================================================================
 
-Pads the end of the specified dimension with zeros. Template class supporting 
+Pads the end of the specified dimension with zeros. This is a template class supporting 
 both in-place and out-of-place operations.
 
 MHO_ExtremaSearch
@@ -319,7 +319,7 @@ Argument Data Type         N dimensional array with numerical value type
 ========================== ====================================================================
 
 Searches for the minimum or maximum value in the input array and returns 
-the value and its location. Template class for inspecting array contents.
+the value and its location. This is a template class for inspecting array contents.
 
 MHO_NaNMasker
 -------------
@@ -347,7 +347,7 @@ Argument Data Type         N dimensional array with any value type
 ========================== ====================================================================
 
 Selects elements from the input array based on specified criteria and repacks 
-them into a new array structure. Template class supporting data reorganization.
+them into a new array structure. This is a template class supporting data reorganization.
 
 Compound data operations
 ~~~~~~~~~~~~~~~~~~~~~~~~
