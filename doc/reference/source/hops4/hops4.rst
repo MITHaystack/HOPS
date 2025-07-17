@@ -22,11 +22,11 @@ HOPS4 Applications and Libraries
     :caption: Libraries
 
     libraries/Message
-    libraries/Math
+    libraries/math/Math
     libraries/utilities/Utilities
     libraries/containers/Containers
     libraries/operators/Operators
     libraries/calibration/Calibration
-    libraries/Initialization
-    libraries/Fringe
-    libraries/Plugins
+    libraries/initialization/Initialization
+    libraries/fringe/Fringe
+    libraries/plugins/Plugins
