@@ -83,7 +83,7 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp)
 
             case '?':
             default:
-                syntax("$HeadURL: https://vault.haystack.mit.edu/svn/hops/trunk/postproc/search/parse_cmdline.c $");
+                syntax("search/parse_cmdline.c");
                 return (1);
             }
         }
