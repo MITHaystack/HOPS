@@ -59,12 +59,12 @@ mv $cf $cf.got
 export HOPS_PLOT_DATA_MASK=0x87FFFFFF
 rm -rf $pdd
 $verb && echo \
-    fourfit3 -t -c $cf.not -d diskfile:ff-3727-DA.not.ps -b DA -P LL $root
-    fourfit3 -t -c $cf.not -d diskfile:ff-3727-DA.not.ps -b DA -P LL $root
+    $fourfit -t -c $cf.not -d diskfile:ff-3727-DA.not.ps -b DA -P LL $root
+    $fourfit -t -c $cf.not -d diskfile:ff-3727-DA.not.ps -b DA -P LL $root
 for o in `ls $pdd/*` ; do mv $o $o.not ; done
 $verb && echo \
-    fourfit3 -t -c $cf.got -d diskfile:ff-3727-DA.got.ps -b DA -P LL $root
-    fourfit3 -t -c $cf.got -d diskfile:ff-3727-DA.got.ps -b DA -P LL $root
+    $fourfit -t -c $cf.got -d diskfile:ff-3727-DA.got.ps -b DA -P LL $root
+    $fourfit -t -c $cf.got -d diskfile:ff-3727-DA.got.ps -b DA -P LL $root
 for o in `ls $pdd/* | grep -a -v not` ; do mv $o $o.got ; done
 
 [ -s ff-3727-DA.not.ps -a -s ff-3727-DA.got.ps ] && second=true || second=false

@@ -13,7 +13,6 @@ export DATADIR=`cd $srcdir/testdata; pwd`
 [ -n "$PS2PDF" ] || { echo ps2pdf not defined; exit 127; }
 [ "$PS2PDF" = '/bin/false' ] && { echo ps2pdf not available--punt; exit 127; }
 [ -x "$PS2PDF" ] || { echo bogus PS2PDF $PS2PDF; exit 127; }
-
 [ -d 2843 ] || { echo chk_ff_2843.sh has not been run--punt; exit 127; }
 
 $verb && echo \
@@ -21,10 +20,10 @@ fplot -p fplot-2843-%02d.ps 2843/321-1701_0552+398/*X*
 fplot -p fplot-2843-%02d.ps 2843/321-1701_0552+398/*X*
 
 $verb && echo \
-fourfit3 -pt -d ps2pdf:ps2pdf-ff-2843-%02d.ps -b AI:S \\ && echo \
+$fourfit -pt -d ps2pdf:ps2pdf-ff-2843-%02d.ps -b AI:S \\ && echo \
     $DATADIR/2843/321-1701_0552+398/0552+398.oifhak \\ && echo \
     set start -3
-fourfit3 -pt -d ps2pdf:ps2pdf-ff-2843-%02d.ps -b AI:S \
+$fourfit -pt -d ps2pdf:ps2pdf-ff-2843-%02d.ps -b AI:S \
     $DATADIR/2843/321-1701_0552+398/0552+398.oifhak \
     set start -3 2>/dev/null 1>&2
 

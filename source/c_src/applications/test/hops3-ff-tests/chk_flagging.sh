@@ -43,11 +43,11 @@ $verb && msg=$((2 - $testverb)) || msg=2
 
 rm -f ff-3372df.ps
 $verb && echo \
-fourfit3 -m$msg -t -d diskfile:ff-3372df.ps -b TV:X \\ && echo \
+$fourfit -m$msg -t -d diskfile:ff-3372df.ps -b TV:X \\ && echo \
     -c ./cf3372df \\ && echo \
     $DATADIR/3372/193-1757/0529+483.vtqbsq
 
-fourfit3 -m$msg -t -d diskfile:ff-3372df.ps -b TV:X \
+$fourfit -m$msg -t -d diskfile:ff-3372df.ps -b TV:X \
     -c ./cf3372df \
     $DATADIR/3372/193-1757/0529+483.vtqbsq 2>ff-3372df.out 1>&2
 [ -f ./ff-3372df.ps ] || { echo ./ff-3372df.ps missing && exit 2 ; }

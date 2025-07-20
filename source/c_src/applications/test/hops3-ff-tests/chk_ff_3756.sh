@@ -14,11 +14,11 @@ export DATADIR=`cd $srcdir/testdata; pwd`
 
 rm -f ff-3756*.ps
 $verb && echo \
-fourfit3 -t -d diskfile:ff-3756-%d.ps -b HT \\ && echo \
+$fourfit -t -d diskfile:ff-3756-%d.ps -b HT \\ && echo \
     -c $DATADIR/3756/cf_3758_GEHIMSTVY_pstokes4 \\ && echo \
     $DATADIR/3756/328-1800/1803+784.1TDGBD
 
-fourfit3 -t -d diskfile:ff-3756-%d.ps -b HT \
+$fourfit -t -d diskfile:ff-3756-%d.ps -b HT \
     -c $DATADIR/3756/cf_3758_GEHIMSTVY_pstokes4 \
     $DATADIR/3756/328-1800/1803+784.1TDGBD 1>&2
 

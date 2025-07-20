@@ -17,11 +17,11 @@ grep -v $os $DATADIR/3372/cf3372 > ./cf3372
 
 rm -f ff-3372.ps
 $verb && echo \
-fourfit3 -t -d diskfile:ff-3372.ps -b TV:X \\ && echo \
+$fourfit -t -d diskfile:ff-3372.ps -b TV:X \\ && echo \
     -c ./cf3372 \\ && echo \
     $DATADIR/3372/193-1757/0529+483.vtqbsq
 
-fourfit3 -t -d diskfile:ff-3372.ps -b TV:X \
+$fourfit -t -d diskfile:ff-3372.ps -b TV:X \
     -c ./cf3372 \
     $DATADIR/3372/193-1757/0529+483.vtqbsq 2>/dev/null 1>&2
 [ -f ./ff-3372.ps ] || { echo ./ff-3372.ps missing && exit 2 ; }
