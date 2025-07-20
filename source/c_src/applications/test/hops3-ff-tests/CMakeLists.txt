@@ -40,7 +40,7 @@ if(BASH_PROGRAM)
             configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/${BASENAME}.sh ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh @ONLY)
             add_test(NAME ${BASENAME}_test COMMAND ${BASH_PROGRAM} ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh )
             set_tests_properties(${BASENAME}_test PROPERTIES DEPENDS TESTDATA_UNPACK)
-            set_tests_properties(${BASENAME}_test PROPERTIES ENVIRONMENT "srcdir=${HOPS_TEST_DATA_DIR}")
+            set_tests_properties(${BASENAME}_test PROPERTIES ENVIRONMENT "fourfit=fourfit3;srcdir=${HOPS_TEST_DATA_DIR}")
         endforeach( BASENAME )
         
         
