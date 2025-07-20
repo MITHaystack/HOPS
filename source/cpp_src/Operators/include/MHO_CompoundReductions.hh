@@ -13,6 +13,9 @@
 #include <complex>
 #include <cstddef>
 
+namespace hops 
+{
+
 /**
  * @brief Class MHO_SumIdentity
  */
@@ -337,6 +340,8 @@ template< typename XValueType > struct MHO_CompoundMultiply
         const XValueType identity = MHO_MultiplyIdentity< XValueType >::value();
 };
 
-//TODO -- Can we think of any other useful reduction operations to put here?
+
+}//end of namespace 
+
 
 #endif /*! end of include guard: MHO_CompoundReductions */
