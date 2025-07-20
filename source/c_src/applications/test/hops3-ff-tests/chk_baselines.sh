@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: chk_baselines.sh 3326 2021-09-04 13:05:05Z gbc $
+# $Id: chk_baselines.sh 4352 2025-04-22 16:15:13Z gbc $
 #
 # test to verify local data processing
 #
@@ -39,10 +39,10 @@ $verb && ls -l $rdir
 for bs in AI AT IT
 do
     $verb && echo \
-    fourfit3 -b $bs $rdir/$targ.$time
+    $fourfit -b $bs $rdir/$targ.$time
 
     # AIT
-    fourfit3 -b $bs $rdir/$targ.$time
+    $fourfit -b $bs $rdir/$targ.$time
     mv $rdir/$bs.*.*.$time .
 done
 chgrp $grp ??.*.*.$time
@@ -74,6 +74,7 @@ do
     chmod 664 $f
 done
 
+$verb && echo time is $time, checking "??.?.?.$time.ps"
 files=`ls ??.?.?.$time.ps | wc -l`
 bytes=`ls -s ??.?.?.$time.ps | awk '{s+=$1}END{print s}'`
 

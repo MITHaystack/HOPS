@@ -73,16 +73,16 @@ for bl in SP SO OP
 do
     rm -f $bl-{ff,fx}.out
     $verb && echo \
-    fourfit3 -m 1 -b $bl -t $wdir/$root \\ && echo \
+    $fourfit -m 1 -b $bl -t $wdir/$root \\ && echo \
 	set freqs $freqlist pc_mode manual
-    fourfit3 -m 1 -b $bl -t $wdir/$root \
+    $fourfit -m 1 -b $bl -t $wdir/$root \
 	set freqs $freqlist pc_mode manual >$bl-ff.out 2>&1
     pcp=`grep pc_phases $bl-ff.out`
     [ -n "$pcp" ] || { echo no pc_phases in $bl-ff.out; continue ; }
     $verb && echo \
-    fourfit3 -m 1 -b $bl $wdir/$root \\ && echo \
+    $fourfit -m 1 -b $bl $wdir/$root \\ && echo \
 	set freqs $freqlist pc_mode manual $pcp
-    fourfit3 -m 1 -b $bl $wdir/$root \
+    $fourfit -m 1 -b $bl $wdir/$root \
 	set freqs $freqlist pc_mode manual $pcp >$bl-fx.out 2>&1
 done
 

@@ -36,8 +36,8 @@ ADD=$ALTDDIR/3772
 rm -f ff-3772.out
 echo '8 chan b c d e f g h i' >> ff-3772.out
 echo \
-fourfit3 -pt -c cf3772 -b AB -d $df $ADD/No0001/1055+018.1T8DS3 \# 2\>\>ff-3772.out
-fourfit3 -pt -c cf3772 -b AB -d $df $ADD/No0001/1055+018.1T8DS3    2>> ff-3772.out
+$fourfit -pt -c cf3772 -b AB -d $df $ADD/No0001/1055+018.1T8DS3 \# 2\>\>ff-3772.out
+$fourfit -pt -c cf3772 -b AB -d $df $ADD/No0001/1055+018.1T8DS3    2>> ff-3772.out
 
 while read line
 do
@@ -45,9 +45,9 @@ do
     [ x$1 = xx ] && continue
     echo $# chan $* >> ff-3772.out
     echo \
-    fourfit3 -pt -c cf3772 -b AB $ADD/No0001/1055+018.1T8DS3 \
+    $fourfit -pt -c cf3772 -b AB $ADD/No0001/1055+018.1T8DS3 \
         set freqs $* \# 2\>\> ff-3772.out \# $# $*
-    fourfit3  -t -c cf3772 -b AB $ADD/No0001/1055+018.1T8DS3 \
+    $fourfit  -t -c cf3772 -b AB $ADD/No0001/1055+018.1T8DS3 \
         set freqs $*    2>>   ff-3772.out
 done <<EOF
     b c d e f g h
@@ -101,9 +101,9 @@ do
     [ x$1 = xx ] && continue
     echo $1 passband $2 $3 >> ff-3772.out
     echo \
-    fourfit3 -pt -c cf3772 -b AB $ADD/No0001/1055+018.1T8DS3 \
+    $fourfit -pt -c cf3772 -b AB $ADD/No0001/1055+018.1T8DS3 \
         set passband $2 $3 \# 2\>\> ff-3772.out \# $1
-    fourfit3  -t -c cf3772 -b AB $ADD/No0001/1055+018.1T8DS3 \
+    $fourfit  -t -c cf3772 -b AB $ADD/No0001/1055+018.1T8DS3 \
         set passband $2 $3    2>>   ff-3772.out
 done <<EOF
 x 86045.0 86105.0 86165.0 86227.0 86295.0 86355.0 86415.0 86465.0
@@ -242,6 +242,12 @@ LLst=`echo "6.800 < $LLamp && $LLamp < 6.820" | bc -lq`
 RRst=`echo "8.400 < $RRamp && $RRamp < 8.420" | bc -lq`
 LRst=`echo "3.500 < $LRamp && $LRamp < 3.520" | bc -lq`
 RLst=`echo "6.910 < $RLamp && $RLamp < 6.930" | bc -lq`
+
+echo "6.800 < LLamp=$LLamp < 6.820"
+echo "8.400 < RRamp=$RRamp < 8.420"
+echo "3.500 < LRamp=$LRamp < 3.520"
+echo "6.910 < RLamp=$RLamp < 6.930"
+ls -l ff_3772_awksep.pdf
 
 # final exit status
 [ -f 'ff_3772_awksep.pdf' -a "$LLst$RRst$LRst$RLst" = '1111' ]
