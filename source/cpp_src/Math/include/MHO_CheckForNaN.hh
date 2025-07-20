@@ -12,6 +12,9 @@
 #include <cmath>
 #include <complex>
 
+namespace hops 
+{
+
 /**
  * @brief Class MHO_CheckForNaN
  */
@@ -101,5 +104,8 @@ template<> inline bool MHO_CheckForNaN< std::complex< long double > >::isnan(con
 {
     return std::isnan(value.real()) || std::isnan(value.imag());
 }
+
+
+}//end of namespace
 
 #endif /*! end of include guard: MHO_CheckForNaN */
