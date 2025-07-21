@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# $Id: chk_flagging.sh 3995 2023-06-09 20:39:39Z gbc $
+# $Id: chk_flagging.sh 4383 2025-07-20 21:38:08Z gbc $
 #
 # modified version of chk_ff_3372.sh which turns off some data
 #
