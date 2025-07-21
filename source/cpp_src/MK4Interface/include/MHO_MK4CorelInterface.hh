@@ -20,9 +20,6 @@ extern "C"
 {
 #endif
 
-    /**
-     * @brief Class mk4_corel
-     */
     struct mk4_corel;
 
 #ifndef HOPS3_USE_CXX
