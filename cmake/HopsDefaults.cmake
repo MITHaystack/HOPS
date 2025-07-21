@@ -67,6 +67,10 @@ macro(hops_install_share_vhelp)
     install(FILES ${ARGN} DESTINATION ${SHARE_VHELP_INSTALL_DIR})
 endmacro()
 
+macro(hops_install_share_vhelp_aedit)
+    install(FILES ${ARGN} DESTINATION ${SHARE_VHELP_AEDIT_INSTALL_DIR})
+endmacro()
+
 #for explicitly setting options for extern submodules
 macro(set_option OPT VAL)
   set("${OPT}" "${VAL}" CACHE INTERNAL "Setting ${OPT}" FORCE)
