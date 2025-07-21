@@ -16,7 +16,7 @@
 //
 // these were moved to fstruct.h
 //extern int  check_name (char *, fstruct *);
-//extern void clear_fstruct (fstruct *);
+//extern void clear _ fstruct (fstruct *);
 //extern int  get_filelist (int, char **, int, fstruct **);
 // extern int extract_filenames (char *, int, fstruct **, int *, int *, int *);
 //
