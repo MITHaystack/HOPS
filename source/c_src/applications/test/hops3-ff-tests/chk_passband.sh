@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# $Id: chk_passband.sh 3332 2021-09-07 18:13:41Z gbc $
+# $Id: chk_passband.sh 4383 2025-07-20 21:38:08Z gbc $
 #
 # Something to check passband with the geodetic 3372 sample
 #

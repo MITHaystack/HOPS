@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: chk_baselines.sh 4352 2025-04-22 16:15:13Z gbc $
+# $Id: chk_baselines.sh 4383 2025-07-20 21:38:08Z gbc $
 #
 # test to verify local data processing
 #
