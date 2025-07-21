@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# $Id: chk_ff_dump.sh 2430 2018-07-05 13:53:31Z gbc $
+# $Id: chk_ff_dump.sh 4383 2025-07-20 21:38:08Z gbc $
 #
 # canonical test suite for fourfit3
 #

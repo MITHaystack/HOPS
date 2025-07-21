@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# $Id: chk_notches.sh 3333 2021-09-07 20:30:41Z gbc $
+# $Id: chk_notches.sh 4383 2025-07-20 21:38:08Z gbc $
 #
 # Something to check notches using the some ALMA test data
 # (The original version of this test used Mk4/hdw data and
