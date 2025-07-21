@@ -106,13 +106,17 @@ extract_filenames (char *directory, int type,
                                 /* to the files structure array */
         else
             {
+            int err;
                                 /* Is this a valid filename? */
-            if (check_name (ds->d_name, (*files)+(*filenum)) != 0) continue;
+            prep_fstruct((*files)+(*filenum));
+            err = check_name (ds->d_name, (*files)+(*filenum));
+            // msg("returned %03X on %s", 3, err, ds->d_name);
+            if (err) continue;
+
                                 /* Is it of the desired type? */
             if (((*files)[*filenum].type != type) && (type != -1)) continue;
                                 /* fill in filename */
-            (*files)[*filenum].nalloc = strlen(fulnam) + 1;
-            (*files)[*filenum].name= (char *)malloc((*files)[*filenum].nalloc);
+            (*files)[*filenum].name= (char *)malloc(strlen(fulnam) + 1);
             if ((*files)[*filenum].name == NULL)
                 {
                 msg ("Unable to allocate space for file names", 2);
@@ -120,8 +124,9 @@ extract_filenames (char *directory, int type,
                 return (1);
                 }
             strcpy ((*files)[*filenum].name, fulnam);
+            (*files)[*filenum].namealloc = strlen((*files)[*filenum].name) + 1;
                                 /* OK, this one is accepted and */
-                                /* nalloc registers a later free */
+                                /* namealloc registers a later free */
             *filenum += 1;
             }
         }

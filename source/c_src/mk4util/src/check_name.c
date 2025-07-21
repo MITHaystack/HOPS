@@ -18,27 +18,76 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
 #include <string.h>
 #include "fstruct.h"
 #include "mk4_util.h"
 
+/* this can be used by the caller to make wipe_fstruct() safe */
+void prep_fstruct(fstruct *f_info)
+{
+    if (!f_info) return;
+    f_info->type = -1;
+    f_info->name = NULL;
+    f_info->namealloc = 0;
+}
+
+/* most of the defines come from fstruct.h */
+
+/* a replacement for clear _ fstruct() which is really only used here */
+inline void wipe_fstruct(fstruct *f_info)
+{
+    int i;
+    /* One presumes the name came from a struct dirent which is [256]
+     * for the name component. However if the caller created the f_info
+     * variable on the stack or malloc'd it, namealloc might be some
+     * random, legal length.  prep_fstruct() is the best protection.
+     * The code here only makes catastrophic failure less likely. */
+    if (f_info->name) {
+        if (f_info->namealloc > 0 && f_info->namealloc < 256) {
+            if (f_info->type > 0 && f_info->type < 5 &&
+                f_info->rootcode[6] == 0) {
+                free(f_info->name);
+                f_info->name = NULL;
+            }
+        }
+    }
+    f_info->order = -1;
+    f_info->type = -1;
+    f_info->source[0] = '\0';
+    f_info->baseline[0] = '\0';
+    f_info->station = ' ';
+    f_info->freq_code = ' ';
+    f_info->filenum = -1;
+    f_info->rootcode[0] = '\0';
+    f_info->done = FALSE;
+    for (i=0; i<4; i++)
+        {
+        f_info->intparm[i] = 0;
+        f_info->floatparm[i] = 0.0;
+        }
+    f_info->namealloc = 0;
+    for (i=0; i<2; i++)
+        f_info->poln[i] = ' ';
+    f_info->poln[i] = 0;
+}
+
 int
 check_name(char *name, fstruct *f_info)
     {
-    char buf[256], *field1, *field2, *field3, *field4;
+    char *buf, *field1, *field2, *field3, *field4;
     char *baseline, *filenum, *rootcode, *freq, *poln, *pp;
     int i, len, nfield, errcode, l;
                                     /* Init */
-    clear_fstruct (f_info);
-                                    /* optimism */
+    wipe_fstruct(f_info);
     errcode = 0;
                                     /* Parsing below corrupts argument */
+    buf = malloc(strlen(name)+1);
+    if (!buf) { perror("malloc") ; return(BADMALLOC); }
     strcpy (buf, name);
-                                    /* Can't use strtok because it doesn't */
-                                    /* handle null fields, and can't use */
-                                    /* strsep because HP doesn't supply it */
-                                    /* with their C library, so we must do */
-                                    /* this manually */
+    // just in case...
+    field1 = field2 = field3 = field4 = "undefined";
+                                    /* strtok() doesn't work: .. disappears */
     // why would one want to?
     len = strlen (buf);
     field1 = buf;
@@ -67,26 +116,36 @@ check_name(char *name, fstruct *f_info)
                 for (; i<len; i++) if (buf[i] == '.') break;
                 if (buf[i] == '.')  /* one '.' too many */
                     {
+                    free(buf);
                     return (BADSTRING);
                     }
                 }
             }
         }
 
+    // msg("%s -> %s %s %s %s", 3, name, field1, field2, field3, field4);
+
     // field1.field2.field3.field4 -> field1 field2 field3 field4
     switch (nfield)
         {
         case 1:
+            free(buf);
             return (BADSTRING);     /* too short */
 
                                     /* root file, e.g. "3C205.abcdef" */
                                     /* If source name is "log", */
                                     /* this is actually mk4 log file */
         case 2:
-            if (strcmp (field1, "log") == 0) f_info->type = 4;
+            if (strcmp (field1, "log") == 0)
+                {
+                                    /* provide a bogus root code: */
+                                    /* we don't use this case, anyway. */
+                f_info->type = 4;
+                rootcode = "aaaaaa";
+                }
+            else
                                     /* Check source name ... should be */
                                     /* up to 31 printable characters */
-            else
                 {
                 l = strlen (field1);
                 if ((l == 0) || (l > 31)) errcode |= BADSRC; 
@@ -133,6 +192,7 @@ check_name(char *name, fstruct *f_info)
             break;
 
         default:
+            free(buf);
             return (BADFORM);
         }
 
@@ -187,5 +247,6 @@ check_name(char *name, fstruct *f_info)
         }
     if ((errcode & BADROOT) == 0) strcpy (f_info->rootcode, rootcode);
 
+    if (nfield >= 2 && nfield <= 4) free(buf);
     return (errcode);
     }
