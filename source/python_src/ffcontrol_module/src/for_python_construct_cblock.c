@@ -12,7 +12,7 @@ int for_python_construct_cblock(char* filename, struct c_block* cb_out, char bas
     extern void default_cblock (struct c_block* );
     extern int criteria_match (struct c_block* , char[2], char[31], char, int );
     extern int copy_cblock_parts ( struct c_block* , struct c_block* );
-    extern int parse_control_file (char*, char**, char**);
+    extern int parse_control_file (char*, char**, char**, int);
 
     //init control record buffers
     char* control_file_buff = NULL;
@@ -23,7 +23,7 @@ int for_python_construct_cblock(char* filename, struct c_block* cb_out, char bas
     cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
 
     nullify_cblock (cb_head);
-    parse_control_file(filename, &control_file_buff, &set_string_buff);
+    parse_control_file(filename, &control_file_buff, &set_string_buff, 4);
     cb_ptr = cb_head;
 
     nullify_cblock( cb_out );
