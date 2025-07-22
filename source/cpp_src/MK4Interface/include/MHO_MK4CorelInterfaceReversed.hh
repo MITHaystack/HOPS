@@ -5,7 +5,6 @@
 #include <cstring>
 #include <string>
 #include <vector>
-#include <map>
 
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_Message.hh"
