@@ -79,7 +79,7 @@ struct mk4_sdata* MHO_MK4StationInterfaceReversed::GenerateStationStructure()
 {
     if(!fStationCoordData)
     {
-        msg_error("mk4interface_reversed", "Station coordinate data not provided" << eom);
+        msg_error("mk4interface", "Station coordinate data not provided" << eom);
         return nullptr;
     }
 
@@ -88,7 +88,7 @@ struct mk4_sdata* MHO_MK4StationInterfaceReversed::GenerateStationStructure()
     fNIntervals = fStationCoordData->GetDimension(INTERVAL_AXIS); 
     fNCoeffs = fStationCoordData->GetDimension(COEFF_AXIS);
 
-    msg_debug("mk4interface_reversed", "Station coord dimensions: " << fNCoord << " coordinates, " 
+    msg_debug("mk4interface", "Station coord dimensions: " << fNCoord << " coordinates, " 
               << fNIntervals << " intervals, " << fNCoeffs << " coefficients" << eom);
 
     // Extract metadata from container tags, so we can create the output file name
@@ -119,7 +119,7 @@ struct mk4_sdata* MHO_MK4StationInterfaceReversed::GenerateStationStructure()
         fNAPs = fPCalData->GetDimension(MTPCAL_TIME_AXIS);
         fNTones = fPCalData->GetDimension(MTPCAL_FREQ_AXIS);
         
-        msg_debug("mk4interface_reversed", "PCal dimensions: " << fNPols << " polarizations, " 
+        msg_debug("mk4interface", "PCal dimensions: " << fNPols << " polarizations, " 
                   << fNAPs << " APs, " << fNTones << " tones" << eom);
 
         ExtractPCalChannelInfo();
@@ -240,7 +240,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType300()
     // Set default SU number
     t300->SU_number = 0;
 
-    msg_debug("mk4interface_reversed", "Generated type_300 record for station " << station_name << eom);
+    msg_debug("mk4interface", "Generated type_300 record for station " << station_name << eom);
 }
 
 
@@ -251,13 +251,13 @@ void MHO_MK4StationInterfaceReversed::GenerateType301Records()
     if(!fGeneratedStation || !fStationCoordData) return;
 
     //FIXME
-    std::size_t fNChannels = 0;
+    std::size_t fNChannels = 32;
 
     for(std::size_t ch =0; ch < fNChannels; ch++)
     {
         //loop over every channel -- the information in the type_301 and type_303s is entirely redudant 
         //across every channel, only type_302 (phase spline is different, but that is only because it is delay model * channel_freq
-        std::string chan_id;
+        std::string chan_id = "dummy";
 
         for(std::size_t sp = 0; sp < fNIntervals; sp++)
         {
@@ -285,7 +285,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType301Records()
         }
     }
 
-    msg_debug("mk4interface_reversed", "Generated " << fNIntervals << " type_301 records" << eom);
+    msg_debug("mk4interface", "Generated " << fNChannels*fNIntervals << " type_301 records" << eom);
 }
 
 void MHO_MK4StationInterfaceReversed::GenerateType303Records()
@@ -294,13 +294,13 @@ void MHO_MK4StationInterfaceReversed::GenerateType303Records()
 
     
     //FIXME
-    std::size_t fNChannels = 0;
+    std::size_t fNChannels = 32;
 
     for(std::size_t ch = 0; ch < fNChannels; ch++)
     {
         //loop over every channel -- the information in the type_301 and type_303s is entirely redudant 
         //across every channel, only type_302 (phase spline is different, but that is only because it is delay model * channel_freq
-        std::string chan_id;
+        std::string chan_id = "dummy";
 
         for(std::size_t sp = 0; sp < fNIntervals; sp++)
         {
@@ -339,7 +339,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType303Records()
         }
     }
 
-    msg_debug("mk4interface_reversed", "Generated " << fNIntervals << " type_303 records" << eom);
+    msg_debug("mk4interface", "Generated " << fNChannels*fNIntervals << " type_303 records" << eom);
 }
 
 
@@ -443,7 +443,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
         }
     }
 
-    msg_debug("mk4interface_reversed", "Generated " << fNAPs << " type_309 records" << eom);
+    msg_debug("mk4interface", "Generated " << fNAPs << " type_309 records" << eom);
 }
 
 
@@ -490,7 +490,7 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
                 fPCalChannelList.push_back(ch_info);
                 fPolToChannelMap[pol].push_back(fPCalChannelList.size() - 1);
                 
-                msg_debug("mk4interface_reversed", "Extracted PCal channel: " << ch_info.channel_name 
+                msg_debug("mk4interface", "Extracted PCal channel: " << ch_info.channel_name 
                           << " pol=" << pol << " idx=" << ch_info.channel_index 
                           << " tones=" << ch_info.ntones << eom);
             }
@@ -502,19 +502,21 @@ int MHO_MK4StationInterfaceReversed::WriteStationFile()
 {
     if(!fGeneratedStation || fOutputFile.empty())
     {
-        msg_error("mk4interface_reversed", "No station structure generated or output file not specified" << eom);
+        msg_error("mk4interface", "No station structure generated or output file not specified" << eom);
         return -1;
     }
 
-    int retval = write_mk4sdata(fGeneratedStation, const_cast<char*>(fOutputFile.c_str()));
-    if(retval != 0)
+    std::string outfile = fOutputDir + "/" + fOutputFile;
+
+    int retval = write_mk4sdata(fGeneratedStation, const_cast<char*>(outfile.c_str()));
+    if(retval < 0)
     {
-        msg_error("mk4interface_reversed", "Failed to write station file: " << fOutputFile 
+        msg_error("mk4interface", "Failed to write station file: " << outfile 
                   << ", error code: " << retval << eom);
     }
     else
     {
-        msg_debug("mk4interface_reversed", "Successfully wrote station file: " << fOutputFile << eom);
+        msg_debug("mk4interface", "Successfully wrote: "<<retval<<" bytes to station file: " << outfile << eom);
     }
 
     return retval;
