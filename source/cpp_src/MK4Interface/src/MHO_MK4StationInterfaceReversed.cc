@@ -26,6 +26,8 @@ extern "C"
 #define TWO31 2147483648.0
 #define TWO32 4294967296.0
 
+#define MK4_MAX_COEFF 6
+
 namespace hops
 {
 
@@ -248,32 +250,38 @@ void MHO_MK4StationInterfaceReversed::GenerateType301Records()
 {
     if(!fGeneratedStation || !fStationCoordData) return;
 
-    for(std::size_t sp = 0; sp < fNIntervals; sp++)
+    //FIXME
+    std::size_t fNChannels = 0;
+
+    for(std::size_t ch =0; ch < fNChannels; ch++)
     {
-        // Allocate type_301 record
-        fGeneratedStation->model[0].t301[sp] = (struct type_301*)calloc(1, sizeof(struct type_301));
-        struct type_301* t301 = fGeneratedStation->model[0].t301[sp];
+        //loop over every channel -- the information in the type_301 and type_303s is entirely redudant 
+        //across every channel, only type_302 (phase spline is different, but that is only because it is delay model * channel_freq
+        std::string chan_id;
 
-        // Set record ID and version
-        setstr("301", t301->record_id, 3);
-        setstr("00", t301->version_no, 2);
-
-        // Set interval number
-        t301->interval = sp;
-
-        // Set channel ID (default for coordinate data)
-        setstr("delay", t301->chan_id, 32);
-
-        // Extract delay spline coefficients (coordinate index 0 = delay)
-        for(std::size_t cf = 0; cf < std::min(fNCoeffs, (std::size_t)6); cf++)
+        for(std::size_t sp = 0; sp < fNIntervals; sp++)
         {
-            t301->delay_spline[cf] = fStationCoordData->at(0, sp, cf);  // coord=0 is delay
-        }
+            // Allocate type_301 record
+            fGeneratedStation->model[ch].t301[sp] = (struct type_301*)calloc(1, sizeof(struct type_301));
+            struct type_301* t301 = fGeneratedStation->model[ch].t301[sp];
+            clear_301(t301);
 
-        // Zero remaining coefficients if needed
-        for(std::size_t cf = fNCoeffs; cf < 6; cf++)
-        {
-            t301->delay_spline[cf] = 0.0;
+            // Set interval number
+            t301->interval = sp;
+            //set the channel id
+            setstr(chan_id, t301->chan_id, 32);
+
+            // Extract delay spline coefficients (coordinate index 0 = delay)
+            for(std::size_t cf = 0; cf < std::min(fNCoeffs, (std::size_t) MK4_MAX_COEFF); cf++)
+            {
+                t301->delay_spline[cf] = fStationCoordData->at(0, sp, cf);  // coord=0 is delay
+            }
+
+            // Zero remaining coefficients if needed
+            for(std::size_t cf = fNCoeffs; cf < MK4_MAX_COEFF; cf++)
+            {
+                t301->delay_spline[cf] = 0.0;
+            }
         }
     }
 
@@ -284,40 +292,50 @@ void MHO_MK4StationInterfaceReversed::GenerateType303Records()
 {
     if(!fGeneratedStation || !fStationCoordData) return;
 
-    for(std::size_t sp = 0; sp < fNIntervals; sp++)
+    
+    //FIXME
+    std::size_t fNChannels = 0;
+
+    for(std::size_t ch = 0; ch < fNChannels; ch++)
     {
-        // Allocate type_303 record
-        fGeneratedStation->model[0].t303[sp] = (struct type_303*)calloc(1, sizeof(struct type_303));
-        struct type_303* t303 = fGeneratedStation->model[0].t303[sp];
+        //loop over every channel -- the information in the type_301 and type_303s is entirely redudant 
+        //across every channel, only type_302 (phase spline is different, but that is only because it is delay model * channel_freq
+        std::string chan_id;
 
-        // Set record ID and version
-        setstr("303", t303->record_id, 3);
-        setstr("00", t303->version_no, 2);
-
-        // Set interval number
-        t303->interval = sp;
-
-        // Extract coordinate spline coefficients
-        // Order: delay(0), azimuth(1), elevation(2), parallactic_angle(3), u(4), v(5), w(6)
-        for(std::size_t cf = 0; cf < std::min(fNCoeffs, (std::size_t)6); cf++)
+        for(std::size_t sp = 0; sp < fNIntervals; sp++)
         {
-            if(fNCoord > 1) t303->azimuth[cf] = fStationCoordData->at(1, sp, cf);
-            if(fNCoord > 2) t303->elevation[cf] = fStationCoordData->at(2, sp, cf);
-            if(fNCoord > 3) t303->parallactic_angle[cf] = fStationCoordData->at(3, sp, cf);
-            if(fNCoord > 4) t303->u[cf] = fStationCoordData->at(4, sp, cf);
-            if(fNCoord > 5) t303->v[cf] = fStationCoordData->at(5, sp, cf);
-            if(fNCoord > 6) t303->w[cf] = fStationCoordData->at(6, sp, cf);
-        }
+            //allocate type_303 record
+            fGeneratedStation->model[ch].t303[sp] = (struct type_303*)calloc(1, sizeof(struct type_303));
+            struct type_303* t303 = fGeneratedStation->model[ch].t303[sp];
+            clear_303(t303);
 
-        // Zero remaining coefficients if needed
-        for(std::size_t cf = fNCoeffs; cf < 6; cf++)
-        {
-            t303->azimuth[cf] = 0.0;
-            t303->elevation[cf] = 0.0;
-            t303->parallactic_angle[cf] = 0.0;
-            t303->u[cf] = 0.0;
-            t303->v[cf] = 0.0;
-            t303->w[cf] = 0.0;
+            // Set interval number
+            t303->interval = sp;
+            //set the channel id
+            setstr(chan_id, t303->chan_id, 32);
+
+            // Extract coordinate spline coefficients
+            // Order: delay(0), azimuth(1), elevation(2), parallactic_angle(3), u(4), v(5), w(6)
+            for(std::size_t cf = 0; cf < std::min(fNCoeffs, (std::size_t) MK4_MAX_COEFF); cf++)
+            {
+                if(fNCoord > 1) t303->azimuth[cf] = fStationCoordData->at(1, sp, cf);
+                if(fNCoord > 2) t303->elevation[cf] = fStationCoordData->at(2, sp, cf);
+                if(fNCoord > 3) t303->parallactic_angle[cf] = fStationCoordData->at(3, sp, cf);
+                if(fNCoord > 4) t303->u[cf] = fStationCoordData->at(4, sp, cf);
+                if(fNCoord > 5) t303->v[cf] = fStationCoordData->at(5, sp, cf);
+                if(fNCoord > 6) t303->w[cf] = fStationCoordData->at(6, sp, cf);
+            }
+
+            // Zero remaining coefficients if needed
+            for(std::size_t cf = fNCoeffs; cf < MK4_MAX_COEFF; cf++)
+            {
+                t303->azimuth[cf] = 0.0;
+                t303->elevation[cf] = 0.0;
+                t303->parallactic_angle[cf] = 0.0;
+                t303->u[cf] = 0.0;
+                t303->v[cf] = 0.0;
+                t303->w[cf] = 0.0;
+            }
         }
     }
 
