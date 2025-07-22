@@ -291,7 +291,7 @@ static void est_delays(struct type_pass *pass,
                 : pass->control.delay_offs[ch].rem
                 + pass->control.delay_offs_pol[ch][stnpol[1][pass->pol]].rem;
     }
-
+    
     /* make sense of it */
     adj_delays(sbd, esd, delta_delay, first, final, rr, how);
 
@@ -309,7 +309,7 @@ static void est_delays(struct type_pass *pass,
         if (fabs(esd[ch] - rdy[ch]) > 0.01) nd ++;
         snprintf(tmp, sizeof(tmp), " %+8.3f", esd[ch]);
         strncat(buf, tmp, sizeof(buf)-1);
-
+  
         /* eight delays per line for a line length of 73 */
         if (++ss == 8) {
             msg(buf, 3);
@@ -354,7 +354,7 @@ void est_pc_manual(int mode, char *rootfile, struct type_pass *pass)
     first_ch = (param.first_plot == 0) ? 0 : param.first_plot;
     final_ch = (param.nplot_chans == 0) ? pass->nfreq : param.nplot_chans;
     final_ch += first_ch - 1;
-
+    
     masthead(mode, rootfile, pass, first_ch, final_ch);
     if (dophs) est_phases(pass, first_ch, final_ch, doref, domrp);
     if (dodly) est_delays(pass, first_ch, final_ch, doref, dodly);
