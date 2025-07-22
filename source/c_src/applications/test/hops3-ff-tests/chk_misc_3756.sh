@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# $Id: chk_misc_3756.sh 3995 2023-06-09 20:39:39Z gbc $
+# $Id: chk_misc_3756.sh 4383 2025-07-20 21:38:08Z gbc $
 #
-# canonical test suite for fourfit3
+# canonical test suite for fourfit
 #
 
 verb=false
@@ -13,9 +13,11 @@ ${HOPS_SETUP-'false'} || . $srcdir/chk_env.sh
 export DATADIR=`cd $srcdir/testdata; pwd`
 
 cat > cf3756.misc <<EOF
-* three new features
+* four new features
   noautofringes true
   mod4numbering true
+  polfringnames true
+  fringeout_dir `pwd`/fringes3756
   mbdrplopt 1 3 5
   sb_win -0.3 0.3
 *
@@ -27,13 +29,13 @@ cat $DATADIR/3756/cf_3758_GEHIMSTVY_pstokes4 >> cf3756.misc
 
 rm -f ff-misc-3756*.ps
 $verb && echo \
-fourfit3 -t -d diskfile:ff-misc-3756-%d.ps \\ && echo \
+$fourfit -d diskfile:ff-misc-3756-%d.ps \\ && echo \
     -c cf3756.misc \\ && echo \
     $DATADIR/3756/328-1800/1803+784.1TDGBD
 
-fourfit3 -t -d diskfile:ff-misc-3756-%d.ps \
+$fourfit -d diskfile:ff-misc-3756-%d.ps \
     -c cf3756.misc \
-    $DATADIR/3756/328-1800/1803+784.1TDGBD 1>&2
+    $DATADIR/3756/328-1800/1803+784.1TDGBD # 1>&2
 
 # pluck out lines containing the snr and amp, parse and check
 filecnt=0
