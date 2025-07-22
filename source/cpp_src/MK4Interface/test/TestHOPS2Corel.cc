@@ -21,14 +21,16 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-    std::string usage = "TestHOPS2Corel -f <hops .cor file>";
+    std::string usage = "TestHOPS2Corel -r <root_file> -f <hops .cor file>";
 
     std::string cor_filename;
+    std::string root_filename;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
+                                          {"hops root file", required_argument, 0, 'r'},
                                           {"hops .cor file", required_argument, 0, 'f'}};
 
-    static const char* optString = "hf:";
+    static const char* optString = "hr:f:";
 
     while(true)
     {
@@ -40,6 +42,9 @@ int main(int argc, char** argv)
             case ('h'):  // help
                 std::cout << usage << std::endl;
                 return 0;
+            case ('r'):
+                root_filename = std::string(optarg);
+                break;
             case ('f'):
                 cor_filename = std::string(optarg);
                 break;
@@ -72,12 +77,15 @@ int main(int argc, char** argv)
 
     MHO_MK4CorelInterfaceReversed mk4inter;
 
+    mk4inter.SetRootFileName(root_filename);
     mk4inter.SetVisibilityData(vis_store_data);
     mk4inter.SetWeightData(wt_store_data);
+    mk4inter.SetOutputDirectory(".");
+
 
     struct mk4_corel* mk4c = mk4inter.GenerateCorelStructure();
 
-    mk4inter.SetOutputFile("GE..0VSI1M");
+
     mk4inter.WriteCorelFile();
 
     return 0;
