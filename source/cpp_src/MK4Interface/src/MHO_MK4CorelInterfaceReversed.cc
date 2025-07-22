@@ -2,12 +2,9 @@
 #include "MHO_LegacyDateConverter.hh"
 #include "MHO_DirectoryInterface.hh"
 
-#include <algorithm>
-#include <complex>
 #include <cstdlib>
 #include <cstring>
 #include <sstream>
-#include <iomanip>
 
 #ifndef HOPS3_USE_CXX
 extern "C"
@@ -103,11 +100,11 @@ MHO_MK4CorelInterfaceReversed::GenerateCorelStructure()
             return nullptr;
         }
     
-        msg_debug("mk4interface_reversed", "Using  data: " << fNPPs << " pol products, " 
+        msg_debug("mk4interface", "Using  data: " << fNPPs << " pol products, " 
                   << fNAPs << " APs, " << fNChannels << " channels, " << fNSpectral << " spectral points per channel" << eom);
         
         // Debug: Print actual container dimensions
-        msg_debug("mk4interface_reversed", "Visibility container dimensions: " 
+        msg_debug("mk4interface", "Visibility container dimensions: " 
                   << fVisibilityData->GetDimension(POLPROD_AXIS) << "x"
                   << fVisibilityData->GetDimension(TIME_AXIS) << "x"
                   << fVisibilityData->GetDimension(CHANNEL_AXIS) << "x"
@@ -115,11 +112,11 @@ MHO_MK4CorelInterfaceReversed::GenerateCorelStructure()
     }
     else
     {
-        msg_error("mk4interface_reversed", "No visibility or weight data provided" << eom);
+        msg_error("mk4interface", "No visibility or weight data provided" << eom);
         return nullptr;
     }
 
-    msg_debug("mk4interface_reversed", "Extracted " << fNChannels << " channels with " 
+    msg_debug("mk4interface", "Extracted " << fNChannels << " channels with " 
               << fNSpectral << " spectral points each" << eom);
 
     InitializeCorelStructure();
@@ -159,7 +156,7 @@ void MHO_MK4CorelInterfaceReversed::GenerateType000()
     //TODO FIXME - construct this name, for now we just add a preceeding slash (to pass the check in open_datafile.c line 109)
 
     std::string output_name = ConstructType000FileName();
-    std::cout<<"OUTNAME = "<<output_name<<std::endl;
+    msg_debug("mk4interface", "output file name for type_000 is: " << output_name << eom);
 
     int retval = init_000(id, const_cast<char*>(output_name.c_str()) );
     if(retval != 0)
@@ -238,7 +235,7 @@ void MHO_MK4CorelInterfaceReversed::GenerateType100()
     t100->nlags = fNSpectral;          // Number of spectral points
     t100->nblocks = 1;                 // Assuming single block per index
 
-    msg_debug("mk4interface_reversed", "Generated type_100 record for baseline " << baseline_short << eom);
+    msg_debug("mk4interface", "Generated type_100 record for baseline " << baseline_short << eom);
 } 
 
 void MHO_MK4CorelInterfaceReversed::GenerateType101Records()
@@ -266,7 +263,7 @@ void MHO_MK4CorelInterfaceReversed::GenerateType101Records()
         }
         else 
         {
-            std::cout<<"ERROR!"<<std::endl;
+            msg_error("mk4interface", "mis-labeled pol-product is not a 2-character code: "<< pprod << eom);
             break;
         }
 
@@ -307,7 +304,7 @@ void MHO_MK4CorelInterfaceReversed::GenerateType101Records()
             fGeneratedCorel->index[count].ap_space = fNAPs;
             fGeneratedCorel->index[count].t120 = (struct type_120**) calloc(fNAPs, sizeof(struct type_120*) );
 
-            msg_debug("mk4interface_reversed", "Generated type_101 record " << count
+            msg_debug("mk4interface", "Generated type_101 record " << count
                       << " for channels " << ref_chan_id << ":" << rem_chan_id << eom);
 
             count++;
@@ -379,8 +376,7 @@ void MHO_MK4CorelInterfaceReversed::GenerateType120Records()
         }
     }
 
-    msg_debug("mk4interface_reversed", "Generated " << (fNChannels * fNAPs) 
-              << " type_120 records" << eom);
+    msg_debug("mk4interface", "Generated " << (fNChannels * fNAPs) << " type_120 records" << eom);
 }
 
 
@@ -388,7 +384,7 @@ int MHO_MK4CorelInterfaceReversed::WriteCorelFile()
 {
     if(!fGeneratedCorel || fOutputFile.empty())
     {
-        msg_error("mk4interface_reversed", "No corel structure generated or output file not specified" << eom);
+        msg_error("mk4interface", "No corel structure generated or output file not specified" << eom);
         return -1;
     }
     
@@ -397,12 +393,12 @@ int MHO_MK4CorelInterfaceReversed::WriteCorelFile()
     int retval = write_mk4corel(fGeneratedCorel, const_cast<char*>(outfile.c_str()));
     if(retval <= 0)
     {
-        msg_error("mk4interface_reversed", "Failed to write corel file: " << outfile 
+        msg_error("mk4interface", "Failed to write corel file: " << outfile 
                   << ", error code: " << retval << eom);
     }
     else
     {
-        msg_debug("mk4interface_reversed", "Successfully wrote: "<<retval<<" bytes, to corel file: " << fOutputFile << eom);
+        msg_debug("mk4interface", "Successfully wrote: "<<retval<<" bytes, to corel file: " << fOutputFile << eom);
     }
 
     return retval;
@@ -434,7 +430,7 @@ std::string MHO_MK4CorelInterfaceReversed::ConstructMK4ChannelID(std::string fgr
 std::string MHO_MK4CorelInterfaceReversed::ConstructType000FileName()
 {
     //type_000 expects the file name in the format:
-    // 'exp_number/scan_name/filename'
+    // '/exp_number/scan_name/filename'
 
     std::vector< std::string > tokens;
     MHO_Tokenizer tokenizer;
@@ -455,7 +451,12 @@ std::string MHO_MK4CorelInterfaceReversed::ConstructType000FileName()
         if(count > 1){break;}
     }
 
-    //TOOD check if exp_num is actually a 4-digit number
+    //warn the user if exp_num is not actually a 4-digit number
+    if(exp_num.size() != 4)
+    {
+        msg_warn("mk4interface", "the experiment directory is: "<< exp_num << 
+            ", this is not a mark4 style 4-digit code, and may break downstream processing." << eom);
+    }
 
     std::string output_name = "/" + exp_num + "/" + scan_name + "/" + fOutputFile;
     return output_name;
