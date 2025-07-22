@@ -3,14 +3,13 @@
 #include <string.h>
 #include "ffcontrol.h"
 
-//same basic fuctionality as generate_cblock but without dependence on pass/param struct
-int construct_cblock (char* filename, 
-                      struct c_block* cb_head,
-                      struct c_block* cb_out,
-                      char* baseline,//[2], 
-                      char* source,//[31],
-                      char fgroup,
-                      int time)
+//same basic fuctionality as generate_cblock but
+//without dependence on pass/param struct
+int construct_cblock (char* filename,
+    struct c_block* cb_head, struct c_block* cb_out,
+    char* baseline,//[2],
+    char* source,//[31],
+    char fgroup, int time)
 {
     printf("flag0\n");
     
