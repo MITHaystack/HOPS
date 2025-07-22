@@ -28,7 +28,7 @@ int construct_cblock (char* filename,
     nullify_cblock( cb_out );
     default_cblock( cb_out );
     printf("flag2\n");
-    parse_control_file(filename, &control_file_buff, &set_string_buff);
+    parse_control_file(filename, &control_file_buff, &set_string_buff, 2);
     cb_ptr = cb_head;
 
     printf("flag3\n");
