@@ -5,7 +5,7 @@ if(BASH_PROGRAM)
     set(TEST_SCRIPT_BASENAMES "")
     list(APPEND TEST_SCRIPT_BASENAMES
         chk_aedit_help
-        #chk_fsumm
+        chk_fsumm
     )
 
     foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )

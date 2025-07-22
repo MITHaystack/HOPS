@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# $Id: chk_misc_3372.sh 3995 2023-06-09 20:39:39Z gbc $
+# $Id: chk_misc_3372.sh 4383 2025-07-20 21:38:08Z gbc $
 #
-# canonical test suite for fourfit3
+# canonical test suite for fourfit
 #
 
 verb=false
@@ -13,9 +13,11 @@ ${HOPS_SETUP-'false'} || . $srcdir/chk_env.sh
 export DATADIR=`cd $srcdir/testdata; pwd`
 
 cat > ./cf3372.misc <<EOF
-* three new features
+* four new features
   noautofringes true
   mod4numbering true
+  polfringnames true
+  fringeout_dir `pwd`/fringes3772
   mbdrplopt 1 3 5
   sb_win -0.3 0.3
 *
@@ -28,13 +30,13 @@ grep -v $os $DATADIR/3372/cf3372 >> ./cf3372.misc
 
 rm -f ff-misc-3372-*.ps
 $verb && echo \
-fourfit3 -t -d diskfile:ff-misc-3372-%02d.ps -b \\?\\?:X \\ && echo \
+$fourfit -d diskfile:ff-misc-3372-%02d.ps -b \\?\\?:X \\ && echo \
     -c ./cf3372.misc \\ && echo \
     $DATADIR/3372/193-1757/0529+483.vtqbsq
 
-fourfit3 -t -d diskfile:ff-misc-3372-%02d.ps -b \?\?:X \
+$fourfit -d diskfile:ff-misc-3372-%02d.ps -b \?\?:X \
     -c ./cf3372.misc \
-    $DATADIR/3372/193-1757/0529+483.vtqbsq 2>/dev/null 1>&2
+    $DATADIR/3372/193-1757/0529+483.vtqbsq # 2>/dev/null 1>&2
 
 # pluck out lines containing the snr and amp, parse and check
 
