@@ -28,11 +28,18 @@ void free_tokens(int where)
     msg("free_tokens @ %d",-2,where);
     }
 
-// Note that the caller, parse_control_file() is called from 3 places:
-//  1: set_defaults       -- on default_cfile (from fourfit)
-//  2: parse_control_file -- on control_filename (from parse_cmdline on -c arg)
-//  3: parse_control_file -- on control_string (from parse_cmdline after set)
-
+// Note that the caller, parse_control_file() is called from 5 places:
+//  where=3: set_defaults.c (hops & chops)
+//      for the default default_cfile (called from top-level fourfit)
+//  where=0: parse_control_file..c (hops & chops)
+//      on control_filename (from parse_cmdline on -c arg)
+//  where=1: parse_control_file.c (hops & chops)
+//      on control_string (from parse_cmdline after a set option)
+//  where=2: construct_cblock.c (chops)
+//      after nullify_cblock()
+//  where=4: for_python_construct_cblock.c (HOPS4)
+//      after nullify_cblock()
+// and a msgs are emitted at init_tokens() and free_tokens().
 void init_tokens (int where)
     {
     int i;
