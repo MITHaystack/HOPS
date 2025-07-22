@@ -23,6 +23,16 @@ extern "C"
 namespace hops
 {
 
+
+void FillDate(struct date* destination, struct legacy_hops_date& a_date)
+{
+    destination->year = a_date.year;
+    destination->day = a_date.day;
+    destination->hour = a_date.hour;
+    destination->minute = a_date.minute;
+    destination->second = a_date.second;
+}
+
 MHO_MK4CorelInterfaceReversed::MHO_MK4CorelInterfaceReversed():
     fVisibilityData(nullptr), 
     fWeightData(nullptr), 
@@ -153,7 +163,7 @@ void MHO_MK4CorelInterfaceReversed::GenerateType100()
     std::string source_name = "dummy_src";
     if(!root_code.empty())
     {
-        std::string rootname = source_name + ".." + root_code;
+        std::string rootname = source_name + "." + root_code;
         setstr(rootname, t100->rootname, 34);
     }
 
@@ -164,18 +174,21 @@ void MHO_MK4CorelInterfaceReversed::GenerateType100()
     t100->pct_done = 0.0;
 
     // // Convert date strings to mk4 date structures
-    // if(!start_time.empty())
-    // {
-    //     t100->start = ConvertDateString(start_time);
-    // }
-    // if(!stop_time.empty())
-    // {
-    //     t100->stop = ConvertDateString(stop_time);
-    // }
-    // if(!corr_date.empty())
-    // {
-    //     t100->procdate = ConvertDateString(corr_date);
-    // }
+    if(!start_time.empty())
+    {
+        legacy_hops_date tmp = MHO_LegacyDateConverter::ConvertFromVexFormat(start_time);
+        FillDate( &(t100->start), tmp);
+    }
+    if(!stop_time.empty())
+    {
+        legacy_hops_date tmp = MHO_LegacyDateConverter::ConvertFromVexFormat(stop_time);
+        FillDate( &(t100->stop), tmp);
+    }
+    if(!corr_date.empty())
+    {
+        legacy_hops_date tmp = MHO_LegacyDateConverter::ConvertFromVexFormat(corr_date);
+        FillDate( &(t100->procdate), tmp);
+    }
 
     // Set data record counts
     t100->ndrec = fNPPs * fNChannels * fNAPs;  // Total number of type_120 records
@@ -334,14 +347,14 @@ int MHO_MK4CorelInterfaceReversed::WriteCorelFile()
     }
 
     int retval = write_mk4corel(fGeneratedCorel, const_cast<char*>(fOutputFile.c_str()));
-    if(retval != 0)
+    if(retval <= 0)
     {
         msg_error("mk4interface_reversed", "Failed to write corel file: " << fOutputFile 
                   << ", error code: " << retval << eom);
     }
     else
     {
-        msg_debug("mk4interface_reversed", "Successfully wrote corel file: " << fOutputFile << eom);
+        msg_debug("mk4interface_reversed", "Successfully wrote: "<<retval<<" bytes, to corel file: " << fOutputFile << eom);
     }
 
     return retval;
@@ -353,16 +366,6 @@ void MHO_MK4CorelInterfaceReversed::setstr(const std::string& str, char* char_ar
     std::memset(char_array, 0, max_size);
     std::memcpy(char_array, str.c_str(), copy_size);
 }
-
-// struct date MHO_MK4CorelInterfaceReversed::ConvertDateString(const std::string& date_str)
-// {
-//     struct date mk4_date;
-//     std::memset(&mk4_date, 0, sizeof(struct date));
-// 
-//     //TODO FIXME!
-// 
-//     return mk4_date;
-// }
 
 
 } // namespace hops
