@@ -153,8 +153,6 @@ void MHO_MK4CorelInterfaceReversed::GenerateType000()
 
     //type_000 expects the file name in the format:
     // '/exp_number/scan/filename'
-    //TODO FIXME - construct this name, for now we just add a preceeding slash (to pass the check in open_datafile.c line 109)
-
     std::string output_name = ConstructType000FileName();
     msg_debug("mk4interface", "output file name for type_000 is: " << output_name << eom);
 
