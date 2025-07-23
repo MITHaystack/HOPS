@@ -31,7 +31,7 @@
                 "bandwidth",
                 "channel_id",
                 "bbc_id",
-                "phase_cal_id",
+                "!phase_cal_id",
                 "!freq_state"
             ]
         },
