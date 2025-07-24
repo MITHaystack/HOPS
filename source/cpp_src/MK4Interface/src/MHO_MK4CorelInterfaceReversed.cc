@@ -154,6 +154,7 @@ void MHO_MK4CorelInterfaceReversed::InitializeCorelStructure()
     
     // Allocate space for index records
     fGeneratedCorel->index_space = fNChannels*fNPPs;
+    std::cout<<"setting index space to: "<< fNChannels*fNPPs <<std::endl;
     fGeneratedCorel->index = (struct index_tag*) calloc(fNChannels*fNPPs, sizeof(struct index_tag));
     //fAllocated.push_back( reinterpret_cast<void*>( fGeneratedCorel->index) );
 }
@@ -291,7 +292,7 @@ void MHO_MK4CorelInterfaceReversed::GenerateType101Records()
 
             // Set index information
             t101->index = count;
-            t101->primary = count;
+            t101->primary = 0;
             t101->nblocks = 1;
 
             //construct the reference/remote station channel names
@@ -309,8 +310,13 @@ void MHO_MK4CorelInterfaceReversed::GenerateType101Records()
             // Set correlator board and slot (default values)
             t101->corr_board = 0;
             t101->corr_slot = 0;
-            t101->ref_chan = ch;
-            t101->rem_chan = ch;
+
+
+            //logically we should set these to 'ch', but difx2mark4 just sets them to zero
+            // t101->ref_chan = ch;
+            // t101->rem_chan = ch;
+            t101->ref_chan = 0;
+            t101->rem_chan = 0;
 
             // Initialize post_mortem flags
             t101->post_mortem = 0;
@@ -336,19 +342,20 @@ void MHO_MK4CorelInterfaceReversed::GenerateType120Records()
     {
         for(std::size_t pol_idx = 0; pol_idx < fNPPs; pol_idx++)
         {
+            std::cout<<"POL: " << std::get<POLPROD_AXIS>(*fVisibilityData).at(pol_idx) << std::endl;
             for(std::size_t ch_idx = 0; ch_idx < fNChannels; ch_idx++)
             {
+                std::size_t record_idx = pol_idx * fNChannels + ch_idx; //index into record
+                std::cout<<"CHAN: "<< std::get<CHANNEL_AXIS>(*fVisibilityData).at(ch_idx) << std::endl;
                 for(std::size_t ap = 0; ap < fNAPs; ap++)
                 {
+                    //std::cout<<"AP = "<<ap<<std::endl;
                     // Allocate type_120 record with variable size for spectral data
                     size_t spec_size = fNSpectral * sizeof(struct spectral);
                     size_t total_size = sizeof(struct type_120) - sizeof(union lag_data) + spec_size;
                     struct type_120* t120 = (struct type_120*) calloc(1, total_size);
                     clear_120(t120);
                     fAllocated.push_back( reinterpret_cast<void*>(t120) );
-
-                    // Calculate the correct index in the mk4_corel structure
-                    std::size_t record_idx = pol_idx * fNChannels + ch_idx;
                     fGeneratedCorel->index[record_idx].t120[ap] = t120;
 
                     // Set type to SPECTRAL
@@ -386,7 +393,7 @@ void MHO_MK4CorelInterfaceReversed::GenerateType120Records()
                         t120->ld.spec[sp].im = vis.imag();
                     }
                     
-                    // Set weight (use first spectral point weight)
+                    // Set weight
                     t120->fw.weight = fWeightData->at(pol_idx, ch_idx, ap, 0);
                 }
             }
