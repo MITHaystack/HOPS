@@ -28,9 +28,17 @@ class MHO_MK4ScanConverterReversed
 
     private:
 
+        void ProcessVex();
+        void ProcessCorel();
+        void ProcessStation();
+
         //data  
         MHO_ScanDataStore fStore;
-
+        MHO_DirectoryInterface fDirInterface;
+        std::string fInputDir;
+        std::string fOutputDir;
+        std::string fOutputVexFile;
+    
 
 };
 
