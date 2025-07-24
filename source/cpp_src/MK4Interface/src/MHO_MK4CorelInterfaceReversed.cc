@@ -153,9 +153,9 @@ void MHO_MK4CorelInterfaceReversed::InitializeCorelStructure()
     clear_mk4corel(fGeneratedCorel);
     
     // Allocate space for index records
-    fGeneratedCorel->index_space = fNChannels*fNPPs;
-    std::cout<<"setting index space to: "<< fNChannels*fNPPs <<std::endl;
-    fGeneratedCorel->index = (struct index_tag*) calloc(fNChannels*fNPPs, sizeof(struct index_tag));
+    fGeneratedCorel->index_space = fNChannels*fNPPs + 1;
+    std::cout<<"setting index space to: "<< fGeneratedCorel->index_space <<std::endl;
+    fGeneratedCorel->index = (struct index_tag*) calloc(fGeneratedCorel->index_space , sizeof(struct index_tag));
     //fAllocated.push_back( reinterpret_cast<void*>( fGeneratedCorel->index) );
 }
 
@@ -264,7 +264,60 @@ void MHO_MK4CorelInterfaceReversed::GenerateType101Records()
     tokenizer.SetDelimiter(":");
     std::vector< std::string> tokens;
 
-    int count = 0;
+    //Allocate unused space in the 0-th index -- TERRIBLE HACK
+    //We cannot use the space in the [0] location. This is because the type_120.index value
+    //which is used to refer to the related type_101 record (channel record), also does double-duty as a condition by
+    //which to "flag" the presence of the visibility data (see apply_filter.c line 102).
+    //The related filtering appears to have been done under the idiotic assumption that if type_120.index == 0,
+    //then there is no data there and it should be discarded 
+    {
+        fGeneratedCorel->index[0].ap_space = fNAPs;
+        fGeneratedCorel->index[0].t120 = (struct type_120**) calloc(fNAPs, sizeof(struct type_120*) );
+        fGeneratedCorel->index[0].t101 = (struct type_101*) calloc(1, sizeof(struct type_101));
+        struct type_101* t101 = fGeneratedCorel->index[0].t101;
+        clear_101(t101);
+        fAllocated.push_back( reinterpret_cast<void*>(t101) );
+
+        // Set index information
+        t101->index = 0;
+        t101->primary = 0;
+        t101->nblocks = 1;
+
+        std::string pprod = pp_ax->at(0);
+        char ref_pol;
+        char rem_pol; 
+        if(pprod.size() == 2)
+        {
+            ref_pol = pprod[0];
+            rem_pol = pprod[1];
+        }
+
+        //construct the reference/remote station channel names (borrow the first one)
+        std::string fgroup;
+        std::string sideband;
+        bool fgroup_present = chan_ax->RetrieveIndexLabelKeyValue(0, "frequency_band", fgroup);
+        bool sb_present = chan_ax->RetrieveIndexLabelKeyValue(0, "net_sideband", sideband);
+        std::string ref_chan_id = ConstructMK4ChannelID(fgroup, 0, sideband, ref_pol);
+        std::string rem_chan_id = ConstructMK4ChannelID(fgroup, 0, sideband, rem_pol);
+
+        // Set channel IDs from extracted channel info
+        setstr(ref_chan_id, t101->ref_chan_id, 8);
+        setstr(rem_chan_id, t101->rem_chan_id, 8);
+
+        // Set correlator board and slot (default values)
+        t101->corr_board = 0;
+        t101->corr_slot = 0;
+        t101->ref_chan = 0;
+        t101->rem_chan = 0;
+        t101->post_mortem = 0;
+
+        // Allocate space for APs in this index
+        fGeneratedCorel->index[0].ap_space = fNAPs;
+        fGeneratedCorel->index[0].t120 = (struct type_120**) calloc(fNAPs, sizeof(struct type_120*) );
+    }
+
+    int count = 1; //start count at 1 due to aformentioned idiocy
+
     for(std::size_t pp = 0; pp < fNPPs; pp++)
     {
         std::string pprod = pp_ax->at(pp);
@@ -289,6 +342,8 @@ void MHO_MK4CorelInterfaceReversed::GenerateType101Records()
             struct type_101* t101 = fGeneratedCorel->index[count].t101;
             clear_101(t101);
             fAllocated.push_back( reinterpret_cast<void*>(t101) );
+
+            
 
             // Set index information
             t101->index = count;
@@ -332,6 +387,9 @@ void MHO_MK4CorelInterfaceReversed::GenerateType101Records()
             count++;
         }
     }
+
+
+
 }
 
 void MHO_MK4CorelInterfaceReversed::GenerateType120Records()
@@ -345,7 +403,7 @@ void MHO_MK4CorelInterfaceReversed::GenerateType120Records()
             std::cout<<"POL: " << std::get<POLPROD_AXIS>(*fVisibilityData).at(pol_idx) << std::endl;
             for(std::size_t ch_idx = 0; ch_idx < fNChannels; ch_idx++)
             {
-                std::size_t record_idx = pol_idx * fNChannels + ch_idx; //index into record
+                std::size_t record_idx = pol_idx * fNChannels + ch_idx + 1; //index into record
                 std::cout<<"CHAN: "<< std::get<CHANNEL_AXIS>(*fVisibilityData).at(ch_idx) << std::endl;
                 for(std::size_t ap = 0; ap < fNAPs; ap++)
                 {
