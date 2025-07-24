@@ -60,13 +60,26 @@ MHO_MK4StationInterfaceReversed::MHO_MK4StationInterfaceReversed():
 
 MHO_MK4StationInterfaceReversed::~MHO_MK4StationInterfaceReversed()
 {
+    FreeAllocated();
     if(fGeneratedStation)
     {
         clear_mk4sdata(fGeneratedStation);
         free(fGeneratedStation);
+        fGeneratedStation = nullptr;
     }
 }
 
+
+void
+MHO_MK4StationInterfaceReversed::FreeAllocated()
+{
+    for(std::size_t i=0; i<fAllocated.size(); i++)
+    {
+        free( fAllocated[i] );
+        fAllocated[i] = nullptr;
+    }
+    fAllocated.clear();
+};
 
 void 
 MHO_MK4StationInterfaceReversed::SetOutputDirectory(const std::string& output_dir)
@@ -74,13 +87,13 @@ MHO_MK4StationInterfaceReversed::SetOutputDirectory(const std::string& output_di
     fOutputDir = MHO_DirectoryInterface::GetDirectoryFullPath(output_dir); 
 }
 
-
-struct mk4_sdata* MHO_MK4StationInterfaceReversed::GenerateStationStructure()
+void
+MHO_MK4StationInterfaceReversed::GenerateStationStructure()
 {
     if(!fStationCoordData)
     {
         msg_error("mk4interface", "Station coordinate data not provided" << eom);
-        return nullptr;
+        return;
     }
 
     // Extract dimensions from station coordinate container
@@ -109,7 +122,7 @@ struct mk4_sdata* MHO_MK4StationInterfaceReversed::GenerateStationStructure()
     else 
     {
         msg_error("mk4interface", "failed to construct output file name, station mk4id and root_code tags missing from station coordinate data" << eom);
-        return nullptr;
+        return;
     }
 
     // Extract PCal dimensions if provided
@@ -125,22 +138,17 @@ struct mk4_sdata* MHO_MK4StationInterfaceReversed::GenerateStationStructure()
         ExtractPCalChannelInfo();
     }
 
-
-    // Initialize the station structure
     InitializeStationStructure();
-    
-    // Generate the various record types
     GenerateType000();
     GenerateType300();
     GenerateType301Records();
+    //do not bother generating type_302 records...they are entirely unused in fourfit
     GenerateType303Records();
     
     if(fPCalData)
     {
         GenerateType309Records();
     }
-
-    return fGeneratedStation;
 }
 
 void MHO_MK4StationInterfaceReversed::InitializeStationStructure()
@@ -149,6 +157,7 @@ void MHO_MK4StationInterfaceReversed::InitializeStationStructure()
     {
         clear_mk4sdata(fGeneratedStation);
         free(fGeneratedStation);
+        fGeneratedStation = nullptr;
     }
 
     fGeneratedStation = (struct mk4_sdata*) calloc(1, sizeof(struct mk4_sdata));
@@ -167,6 +176,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType000()
     if(!fGeneratedStation) return;
     fGeneratedStation->id = (struct type_000*) calloc(1, sizeof(struct type_000));
     struct type_000* id = fGeneratedStation->id;
+    fAllocated.push_back( reinterpret_cast<void*>(id) );
 
     //type_000 expects the file name in the format:
     // '/exp_number/scan/filename'
@@ -189,6 +199,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType300()
     fGeneratedStation->t300 = (struct type_300*) calloc(1, sizeof(struct type_300));
     struct type_300* t300 = fGeneratedStation->t300;
     clear_300(t300);
+    fAllocated.push_back( reinterpret_cast<void*>(t300) );
 
     // Extract metadata from container tags
     std::string station_name = "";
@@ -250,96 +261,88 @@ void MHO_MK4StationInterfaceReversed::GenerateType301Records()
 {
     if(!fGeneratedStation || !fStationCoordData) return;
 
-    //FIXME
-    std::size_t fNChannels = 1; //32;
+    //we do not loop over every channel (index of fGeneratedStation->model[] array)
+    //because the fourfit c-code only uses the information in the very first element
+    //the information in the rest of type_301 and type_303s (as populated by difx2mark4) is entirely redudant for every channel
 
-    for(std::size_t ch =0; ch < fNChannels; ch++)
+    std::string chan_id = "dummy";
+    std::size_t ch = 0;
+    for(std::size_t sp = 0; sp < fNIntervals; sp++)
     {
-        //loop over every channel -- the information in the type_301 and type_303s is entirely redudant 
-        //across every channel, only type_302 (phase spline is different, but that is only because it is delay model * channel_freq
-        std::string chan_id = "dummy";
+        // Allocate type_301 record
+        fGeneratedStation->model[ch].t301[sp] = (struct type_301*)calloc(1, sizeof(struct type_301));
+        struct type_301* t301 = fGeneratedStation->model[ch].t301[sp];
+        clear_301(t301);
+        fAllocated.push_back( reinterpret_cast<void*>(t301) );
 
-        for(std::size_t sp = 0; sp < fNIntervals; sp++)
+        // Set interval number
+        t301->interval = sp;
+        //set the channel id
+        setstr(chan_id, t301->chan_id, 32);
+
+        // Extract delay spline coefficients (coordinate index 0 = delay)
+        for(std::size_t cf = 0; cf < std::min(fNCoeffs, (std::size_t) MK4_MAX_COEFF); cf++)
         {
-            // Allocate type_301 record
-            fGeneratedStation->model[ch].t301[sp] = (struct type_301*)calloc(1, sizeof(struct type_301));
-            struct type_301* t301 = fGeneratedStation->model[ch].t301[sp];
-            clear_301(t301);
+            t301->delay_spline[cf] = fStationCoordData->at(0, sp, cf);  // coord=0 is delay
+        }
 
-            // Set interval number
-            t301->interval = sp;
-            //set the channel id
-            setstr(chan_id, t301->chan_id, 32);
-
-            // Extract delay spline coefficients (coordinate index 0 = delay)
-            for(std::size_t cf = 0; cf < std::min(fNCoeffs, (std::size_t) MK4_MAX_COEFF); cf++)
-            {
-                t301->delay_spline[cf] = fStationCoordData->at(0, sp, cf);  // coord=0 is delay
-            }
-
-            // Zero remaining coefficients if needed
-            for(std::size_t cf = fNCoeffs; cf < MK4_MAX_COEFF; cf++)
-            {
-                t301->delay_spline[cf] = 0.0;
-            }
+        // Zero remaining coefficients if needed
+        for(std::size_t cf = fNCoeffs; cf < MK4_MAX_COEFF; cf++)
+        {
+            t301->delay_spline[cf] = 0.0;
         }
     }
 
-    msg_debug("mk4interface", "Generated " << fNChannels*fNIntervals << " type_301 records" << eom);
+    msg_debug("mk4interface", "Generated " << fNIntervals << " type_301 records" << eom);
 }
 
 void MHO_MK4StationInterfaceReversed::GenerateType303Records()
 {
     if(!fGeneratedStation || !fStationCoordData) return;
 
-    
-    //FIXME
-    std::size_t fNChannels = 1;//32;
 
-    for(std::size_t ch = 0; ch < fNChannels; ch++)
+    //we do not loop over every channel (index of fGeneratedStation->model[] array)
+    //because the fourfit c-code only uses the information in the very first element
+    std::size_t ch = 0;
+    std::string chan_id = "dummy";
+    for(std::size_t sp = 0; sp < fNIntervals; sp++)
     {
-        //loop over every channel -- the information in the type_301 and type_303s is entirely redudant 
-        //across every channel, only type_302 (phase spline is different, but that is only because it is delay model * channel_freq
-        std::string chan_id = "dummy";
+        //allocate type_303 record
+        fGeneratedStation->model[ch].t303[sp] = (struct type_303*)calloc(1, sizeof(struct type_303));
+        struct type_303* t303 = fGeneratedStation->model[ch].t303[sp];
+        clear_303(t303);
+        fAllocated.push_back( reinterpret_cast<void*>(t303) );
 
-        for(std::size_t sp = 0; sp < fNIntervals; sp++)
+        // Set interval number
+        t303->interval = sp;
+        //set the channel id
+        setstr(chan_id, t303->chan_id, 32);
+
+        // Extract coordinate spline coefficients
+        // Order: delay(0), azimuth(1), elevation(2), parallactic_angle(3), u(4), v(5), w(6)
+        for(std::size_t cf = 0; cf < std::min(fNCoeffs, (std::size_t) MK4_MAX_COEFF); cf++)
         {
-            //allocate type_303 record
-            fGeneratedStation->model[ch].t303[sp] = (struct type_303*)calloc(1, sizeof(struct type_303));
-            struct type_303* t303 = fGeneratedStation->model[ch].t303[sp];
-            clear_303(t303);
+            if(fNCoord > 1) t303->azimuth[cf] = fStationCoordData->at(1, sp, cf);
+            if(fNCoord > 2) t303->elevation[cf] = fStationCoordData->at(2, sp, cf);
+            if(fNCoord > 3) t303->parallactic_angle[cf] = fStationCoordData->at(3, sp, cf);
+            if(fNCoord > 4) t303->u[cf] = fStationCoordData->at(4, sp, cf);
+            if(fNCoord > 5) t303->v[cf] = fStationCoordData->at(5, sp, cf);
+            if(fNCoord > 6) t303->w[cf] = fStationCoordData->at(6, sp, cf);
+        }
 
-            // Set interval number
-            t303->interval = sp;
-            //set the channel id
-            setstr(chan_id, t303->chan_id, 32);
-
-            // Extract coordinate spline coefficients
-            // Order: delay(0), azimuth(1), elevation(2), parallactic_angle(3), u(4), v(5), w(6)
-            for(std::size_t cf = 0; cf < std::min(fNCoeffs, (std::size_t) MK4_MAX_COEFF); cf++)
-            {
-                if(fNCoord > 1) t303->azimuth[cf] = fStationCoordData->at(1, sp, cf);
-                if(fNCoord > 2) t303->elevation[cf] = fStationCoordData->at(2, sp, cf);
-                if(fNCoord > 3) t303->parallactic_angle[cf] = fStationCoordData->at(3, sp, cf);
-                if(fNCoord > 4) t303->u[cf] = fStationCoordData->at(4, sp, cf);
-                if(fNCoord > 5) t303->v[cf] = fStationCoordData->at(5, sp, cf);
-                if(fNCoord > 6) t303->w[cf] = fStationCoordData->at(6, sp, cf);
-            }
-
-            // Zero remaining coefficients if needed
-            for(std::size_t cf = fNCoeffs; cf < MK4_MAX_COEFF; cf++)
-            {
-                t303->azimuth[cf] = 0.0;
-                t303->elevation[cf] = 0.0;
-                t303->parallactic_angle[cf] = 0.0;
-                t303->u[cf] = 0.0;
-                t303->v[cf] = 0.0;
-                t303->w[cf] = 0.0;
-            }
+        // Zero remaining coefficients if needed
+        for(std::size_t cf = fNCoeffs; cf < MK4_MAX_COEFF; cf++)
+        {
+            t303->azimuth[cf] = 0.0;
+            t303->elevation[cf] = 0.0;
+            t303->parallactic_angle[cf] = 0.0;
+            t303->u[cf] = 0.0;
+            t303->v[cf] = 0.0;
+            t303->w[cf] = 0.0;
         }
     }
 
-    msg_debug("mk4interface", "Generated " << fNChannels*fNIntervals << " type_303 records" << eom);
+    msg_debug("mk4interface", "Generated " << fNIntervals << " type_303 records" << eom);
 }
 
 

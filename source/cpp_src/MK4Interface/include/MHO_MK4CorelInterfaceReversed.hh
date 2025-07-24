@@ -48,10 +48,13 @@ class MHO_MK4CorelInterfaceReversed
         void SetVisibilityData(visibility_store_type* vis_data) { fVisibilityData = vis_data; }
         void SetWeightData(weight_store_type* weight_data) { fWeightData = weight_data; }
 
-        struct mk4_corel* GenerateCorelStructure();
+        void GenerateCorelStructure();
+
         int WriteCorelFile();
 
         struct mk4_corel* GetCorelStructure() { return fGeneratedCorel; }
+
+        void FreeAllocated();
 
     private:
 
@@ -83,6 +86,11 @@ class MHO_MK4CorelInterfaceReversed
         std::size_t fNAPs;
         std::size_t fNChannels;
         std::size_t fNSpectral;
+
+        //keep track of allocated memory (outside of mark4 mechanism)
+        std::vector< void* > fAllocated;
+
+
 };
 
 } // namespace hops

@@ -81,12 +81,9 @@ int main(int argc, char** argv)
     mk4inter.SetVisibilityData(vis_store_data);
     mk4inter.SetWeightData(wt_store_data);
     mk4inter.SetOutputDirectory(".");
-
-
-    struct mk4_corel* mk4c = mk4inter.GenerateCorelStructure();
-
-
+    mk4inter.GenerateCorelStructure();
     mk4inter.WriteCorelFile();
+    mk4inter.FreeAllocated();
 
     return 0;
 }

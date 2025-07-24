@@ -92,10 +92,9 @@ int main(int argc, char** argv)
     mk4inter.SetStationCoordData(sta_data);
     //mk4inter.SetPCalData(pcal_data);
     mk4inter.SetOutputDirectory(".");
-
-    struct mk4_sdata* mk4s = mk4inter.GenerateStationStructure();
-
+    mk4inter.GenerateStationStructure();
     mk4inter.WriteStationFile();
+    mk4inter.FreeAllocated();
 
     return 0;
 }
