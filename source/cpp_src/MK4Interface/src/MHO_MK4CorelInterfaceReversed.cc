@@ -48,12 +48,26 @@ MHO_MK4CorelInterfaceReversed::MHO_MK4CorelInterfaceReversed():
 
 MHO_MK4CorelInterfaceReversed::~MHO_MK4CorelInterfaceReversed()
 {
+    FreeAllocated();
     if(fGeneratedCorel)
     {
         clear_mk4corel(fGeneratedCorel);
         free(fGeneratedCorel);
+        fGeneratedCorel = nullptr;
     }
 }
+
+void
+MHO_MK4CorelInterfaceReversed::FreeAllocated()
+{
+    for(std::size_t i=0; i<fAllocated.size(); i++)
+    {
+        free( fAllocated[i] );
+        fAllocated[i] = nullptr;
+    }
+    fAllocated.clear();
+};
+
 
 void MHO_MK4CorelInterfaceReversed::SetRootFileName(std::string root_filename)
 {
@@ -69,7 +83,7 @@ MHO_MK4CorelInterfaceReversed::SetOutputDirectory(const std::string& output_dir)
 }
 
 
-struct mk4_corel* 
+void
 MHO_MK4CorelInterfaceReversed::GenerateCorelStructure()
 {
     if(fVisibilityData && fWeightData)
@@ -97,7 +111,7 @@ MHO_MK4CorelInterfaceReversed::GenerateCorelStructure()
         else 
         {
             msg_error("mk4interface", "failed to construct output file name, baseline_shortname and root_code tags missing from visibility data" << eom);
-            return nullptr;
+            return;
         }
     
         msg_debug("mk4interface", "Using  data: " << fNPPs << " pol products, " 
@@ -113,7 +127,7 @@ MHO_MK4CorelInterfaceReversed::GenerateCorelStructure()
     else
     {
         msg_error("mk4interface", "No visibility or weight data provided" << eom);
-        return nullptr;
+        return;
     }
 
     msg_debug("mk4interface", "Extracted " << fNChannels << " channels with " 
@@ -124,8 +138,6 @@ MHO_MK4CorelInterfaceReversed::GenerateCorelStructure()
     GenerateType100();
     GenerateType101Records();
     GenerateType120Records();
-
-    return fGeneratedCorel;
 }
 
 void MHO_MK4CorelInterfaceReversed::InitializeCorelStructure()
@@ -134,6 +146,7 @@ void MHO_MK4CorelInterfaceReversed::InitializeCorelStructure()
     {
         clear_mk4corel(fGeneratedCorel);
         free(fGeneratedCorel);
+        fGeneratedCorel = nullptr;
     }
 
     fGeneratedCorel = (struct mk4_corel*) calloc(1, sizeof(struct mk4_corel));
@@ -142,6 +155,7 @@ void MHO_MK4CorelInterfaceReversed::InitializeCorelStructure()
     // Allocate space for index records
     fGeneratedCorel->index_space = fNChannels*fNPPs;
     fGeneratedCorel->index = (struct index_tag*) calloc(fNChannels*fNPPs, sizeof(struct index_tag));
+    //fAllocated.push_back( reinterpret_cast<void*>( fGeneratedCorel->index) );
 }
 
 
@@ -150,6 +164,7 @@ void MHO_MK4CorelInterfaceReversed::GenerateType000()
     if(!fGeneratedCorel) return;
     fGeneratedCorel->id = (struct type_000*) calloc(1, sizeof(struct type_000));
     struct type_000* id = fGeneratedCorel->id;
+    fAllocated.push_back( reinterpret_cast<void*>( fGeneratedCorel->id ) );
 
     //type_000 expects the file name in the format:
     // '/exp_number/scan/filename'
@@ -171,6 +186,7 @@ void MHO_MK4CorelInterfaceReversed::GenerateType100()
     fGeneratedCorel->t100 = (struct type_100*) calloc(1, sizeof(struct type_100));
     struct type_100* t100 = fGeneratedCorel->t100;
     clear_100(t100);
+    fAllocated.push_back( reinterpret_cast<void*>(t100) );
 
     // Extract metadata from container tags
     std::string baseline_short = "";
@@ -271,6 +287,7 @@ void MHO_MK4CorelInterfaceReversed::GenerateType101Records()
             fGeneratedCorel->index[count].t101 = (struct type_101*) calloc(1, sizeof(struct type_101));
             struct type_101* t101 = fGeneratedCorel->index[count].t101;
             clear_101(t101);
+            fAllocated.push_back( reinterpret_cast<void*>(t101) );
 
             // Set index information
             t101->index = count;
@@ -301,7 +318,8 @@ void MHO_MK4CorelInterfaceReversed::GenerateType101Records()
             // Allocate space for APs in this index
             fGeneratedCorel->index[count].ap_space = fNAPs;
             fGeneratedCorel->index[count].t120 = (struct type_120**) calloc(fNAPs, sizeof(struct type_120*) );
-
+            //fAllocated.push_back( reinterpret_cast<void*>( &(fGeneratedCorel->index[count].t120)) );
+    
             msg_debug("mk4interface", "Generated type_101 record " << count
                       << " for channels " << ref_chan_id << ":" << rem_chan_id << eom);
 
@@ -327,7 +345,8 @@ void MHO_MK4CorelInterfaceReversed::GenerateType120Records()
                     size_t total_size = sizeof(struct type_120) - sizeof(union lag_data) + spec_size;
                     struct type_120* t120 = (struct type_120*) calloc(1, total_size);
                     clear_120(t120);
-                    
+                    fAllocated.push_back( reinterpret_cast<void*>(t120) );
+
                     // Calculate the correct index in the mk4_corel structure
                     std::size_t record_idx = pol_idx * fNChannels + ch_idx;
                     fGeneratedCorel->index[record_idx].t120[ap] = t120;

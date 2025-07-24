@@ -50,11 +50,13 @@ class MHO_MK4StationInterfaceReversed
         void SetPCalData(multitone_pcal_type* pcal_data) { fPCalData = pcal_data; }
         void SetOutputFile(const std::string& output_file) { fOutputFile = output_file; }
 
-        struct mk4_sdata* GenerateStationStructure();
+        void GenerateStationStructure();
 
         int WriteStationFile();
 
         struct mk4_sdata* GetStationStructure() { return fGeneratedStation; }
+
+        void FreeAllocated();
 
     private:
 
@@ -112,6 +114,8 @@ class MHO_MK4StationInterfaceReversed
 
         std::vector<PCalChannelInfo> fPCalChannelList;
         std::map<std::string, std::vector<int>> fPolToChannelMap;  // pol -> vector of channel indices
+
+        std::vector< void* > fAllocated;
 };
 
 } // namespace hops

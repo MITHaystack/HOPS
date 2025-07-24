@@ -85,9 +85,9 @@ void MHO_MK4ScanConverterReversed::ProcessScan(const std::string& in_dir, const 
         converter.SetRootFileName(output_vex_file);
         converter.SetVisibilityData(vis_store_data);
         converter.SetWeightData(wt_store_data);
-        struct mk4_corel* mk4c = converter.GenerateCorelStructure();
+        converter.GenerateCorelStructure();
         converter.WriteCorelFile();
-        //clear_mk4corel(mk4c); //TODO FIXME -- MEMORY LEAK
+        converter.FreeAllocated();
     }
 
     //loop over stations and convert .sta files 
@@ -111,9 +111,9 @@ void MHO_MK4ScanConverterReversed::ProcessScan(const std::string& in_dir, const 
         converter.SetOutputDirectory(output_dir);
         converter.SetStationCoordData(sta_data);
         converter.SetPCalData(pcal_data);
-        struct mk4_sdata* mk4s = converter.GenerateStationStructure();
+        converter.GenerateStationStructure();
         converter.WriteStationFile();
-        //clear_mk4sdata(mk4s); //TODO FIXME -- MEMORY LEAK
+        converter.FreeAllocated();
     }
 }
 
