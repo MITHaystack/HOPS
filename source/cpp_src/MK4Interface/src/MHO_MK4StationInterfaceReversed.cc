@@ -251,7 +251,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType301Records()
     if(!fGeneratedStation || !fStationCoordData) return;
 
     //FIXME
-    std::size_t fNChannels = 32;
+    std::size_t fNChannels = 1; //32;
 
     for(std::size_t ch =0; ch < fNChannels; ch++)
     {
@@ -294,7 +294,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType303Records()
 
     
     //FIXME
-    std::size_t fNChannels = 32;
+    std::size_t fNChannels = 1;//32;
 
     for(std::size_t ch = 0; ch < fNChannels; ch++)
     {
