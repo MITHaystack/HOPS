@@ -70,7 +70,9 @@ class MHO_MK4StationInterfaceReversed
         void GenerateType309Records();
         void setstr(const std::string& str, char* char_array, std::size_t max_size);
 
-        double ComputeType309Rot(double ap_offset);
+        double ComputeType309Rot(double ap_offset, std::string start_time, double start_time_mjd);
+
+        double ComputeType309RotFallback(double ap_offset);
 
         /**
          * @brief Convert multitone PCal phasor back to uint32_t counts
@@ -112,6 +114,7 @@ class MHO_MK4StationInterfaceReversed
             int channel_index;
             int tone_start;
             int ntones;
+            int accumulator_start_index;
             double sky_freq;
             double bandwidth;
             double sample_period;
