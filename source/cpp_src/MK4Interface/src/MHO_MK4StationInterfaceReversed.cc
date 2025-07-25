@@ -362,10 +362,11 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
         default_acc_period = time_axis.at(1) - time_axis.at(0);
     }
 
-    //figure out the pcal start time info 
+    //figure out the pcal start time info -- this information may not exist 
+    //if the hops file was generated originally from mark4-type data
+    //in that case we will fall back to using the 'model_start' time in the type_300
     std::string start_time = "";
     double start_time_mjd = 0;
-
     if(fPCalData->HasKey("start"))
     {
         fPCalData->Retrieve("start", start_time);
@@ -382,13 +383,10 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
         fGeneratedStation->t309[ap] = t309;
         clear_309(t309);
         fAllocated.push_back( reinterpret_cast<void*>(t309) );
-        //grab the current AP time since start
-        double ap_start = time_axis.at(ap);
+        double ap_start = time_axis.at(ap); //grap the ap start time
+        t309->rot = ComputeType309Rot(ap_start, start_time, start_time_mjd); //time parameter
 
-        // Set ROT (default to 0)
-        t309->rot = ComputeType309Rot(ap_start);//, start_time, start_time_mjd);
-
-// 
+//      
 // struct type_309
 //   { 
 //   char        record_id[3];           // Standard 3-digit id
@@ -458,7 +456,8 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
                 ConvertPhasorToCounts(phasor, t309->acc_period, ch_info.sample_period, 
                                       real_count, imag_count);
                 
-                int acc_idx = ch_info.tone_start + tone;
+                //need to know the offset into the accumulation array for this channel/tone-set 
+                int acc_idx = ch_info.accumulator_start_index + tone;
                 t309->chan[ch_idx].acc[acc_idx][0] = real_count;
                 t309->chan[ch_idx].acc[acc_idx][1] = imag_count;
             }
@@ -493,7 +492,7 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
         
         for(const auto& label : matching_labels)
         {
-            std::cout<<"dump: "<<label.dump(2)<<std::endl;
+            //std::cout<<"dump: "<<label.dump(2)<<std::endl;
 
             std::string index_key = "channel_index";
             
@@ -504,6 +503,7 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
                 ch_info.net_sideband = label["net_sideband"].get<std::string>();
                 ch_info.sky_freq = label["sky_freq"].get<double>();
                 ch_info.bandwidth = label["bandwidth"].get<double>();
+                ch_info.accumulator_start_index = label["accumulator_start_index"].get<int>();
 
                 ch_info.polarization = pol;
                 ch_info.channel_index = label[index_key].get<int>();
@@ -625,19 +625,56 @@ std::string MHO_MK4StationInterfaceReversed::ConstructType000FileName()
 
 
 double 
-MHO_MK4StationInterfaceReversed::ComputeType309Rot(double ap_offset) //, const std::string start_time_vex, double start_time_mjd)
+MHO_MK4StationInterfaceReversed::ComputeType309Rot(double ap_offset, std::string start_time, double start_time_mjd) //, const std::string start_time_vex, double start_time_mjd)
 {
-    double magic_number = 3.2e7;
+    double magic_number = 3.2e7; //also known as SYSCLK in CorAsc2.c
     double seconds_per_day = 86400.0;
-    double t = ap_offset/seconds_per_day;
 
-    // double ref_day = std::floor(start_time_mjd);
-    // double frac_day = start_time_mjd - ref_day;
-    //t = mjd + refDay - (int)(D->mjdStart); //difx2mark4 (huh?)
+    //figure out the fractional part of the day since the start of this scan
+    double ref_day = std::floor(start_time_mjd);
+    double frac_day = start_time_mjd - ref_day;
+    frac_day += ap_offset/seconds_per_day; //add the time offset into the scan
 
-    double rot = magic_number * seconds_per_day * t;
+    //start_time is in vex format, so figure out the integer day-of-year 
+    size_t y_pos = start_time.find('y');
+    size_t d_pos = start_time.find('d');
+    int doy = 0;
+    if (y_pos != std::string::npos && d_pos != std::string::npos && d_pos > y_pos && start_time_mjd != 0.) 
+    {
+        std::string doy_str = start_time.substr(y_pos + 1, d_pos - y_pos - 1);
+        doy = std::stoi(doy_str);
+    }
+    else 
+    {
+        //fall back to type_300 model_start to figure out the scan start time
+        //if we dont have the MJD start or vex time
+        return ComputeType309RotFallback(ap_offset);
+    }
+
+    //finally, add the integer days since the start of the year (this is 1 indexed)
+    double t = doy + frac_day;
+    double rot = magic_number * seconds_per_day * (t - 1.0); //subtract off 1 because day-of-year is 1-indexed
     return rot;
 }
 
+
+double 
+MHO_MK4StationInterfaceReversed::ComputeType309RotFallback(double ap_offset)
+{
+    double magic_number = 3.2e7; //also known as SYSCLK in CorAsc2.c
+    double seconds_per_day = 86400.0;
+    int doy = fGeneratedStation->t300->model_start.day;
+    int hour = fGeneratedStation->t300->model_start.hour;
+    int minute = fGeneratedStation->t300->model_start.minute;
+    float second = fGeneratedStation->t300->model_start.second;
+
+    double frac_day = ( second +  60*( minute + 60*hour) )/seconds_per_day;
+    frac_day += ap_offset/seconds_per_day;
+
+    //finally, add the integer days since the start of the year (this is 1 indexed)
+    double t = doy + frac_day;
+    double rot = magic_number * seconds_per_day * (t - 1.0); //subtract off 1 because day-of-year is 1-indexed
+    return rot;
+}
 
 } // namespace hops
