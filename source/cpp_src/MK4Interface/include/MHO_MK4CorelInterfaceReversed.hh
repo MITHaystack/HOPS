@@ -66,6 +66,8 @@ class MHO_MK4CorelInterfaceReversed
         void GenerateType120Records();
         void InitializeCorelStructure();
 
+        void CreateType101Record(int count, std::size_t ch, char ref_pol, char rem_pol);
+
         std::string ConstructType000FileName();
 
         void setstr(const std::string& str, char* char_array, std::size_t max_size);
