@@ -355,49 +355,68 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
     double default_acc_period = 1.0;  // Default 1 second accumulation period
     double default_sample_period = 1.0/32e6;
 
+    // Get accumulation period from time axis if available -- assume same AP across entire array
+    auto& time_axis = std::get<MTPCAL_TIME_AXIS>(*fPCalData);
+    if(time_axis.GetSize() >= 1)
+    {
+        default_acc_period = time_axis.at(1) - time_axis.at(0);
+    }
+
+    //figure out the pcal start time info 
+    std::string start_time = "";
+    double start_time_mjd = 0;
+
+    if(fPCalData->HasKey("start"))
+    {
+        fPCalData->Retrieve("start", start_time);
+    }
+    if(fPCalData->HasKey("start_time_mjd"))
+    {
+        fPCalData->Retrieve("start_time_mjd", start_time_mjd);
+    }
+
     for(std::size_t ap = 0; ap < fNAPs; ap++)
     {
         // Allocate type_309 record
         struct type_309* t309 = (struct type_309*)calloc(1, sizeof(struct type_309));
         fGeneratedStation->t309[ap] = t309;
+        clear_309(t309);
+        fAllocated.push_back( reinterpret_cast<void*>(t309) );
+        //grab the current AP time since start
+        double ap_start = time_axis.at(ap);
 
-        // Set record ID and version  
-        setstr("309", t309->record_id, 3);
-        setstr("01", t309->version_no, 2);  // Version 1 for 64 channel support
+        // Set ROT (default to 0)
+        t309->rot = ComputeType309Rot(ap_start);//, start_time, start_time_mjd);
+
+// 
+// struct type_309
+//   { 
+//   char        record_id[3];           // Standard 3-digit id
+//   char        version_no[2];          // Standard 2-digit version #
+//   char        unused1[3]; 
+//   int         su;                     // SU
+//   int         ntones;                 // number of tones [0..64]
+//   double      rot;                    // ROT at start of AP
+//   double      acc_period;             // in secs
+//   struct ch1_tag
+//     {
+//     char      chan_name[8];
+//     double    freq;                   // tone frequency in Hz
+//     U32       acc[64][2];             // accumulators for 64 freqs x 2 quads (C..S)
+//     } chan[64];
+//   };
 
         // Set SU number and accumulation parameters
         t309->su = 0;  // Default SU
         t309->ntones = std::min((int)fNTones, T309_MAX_PHASOR);
+        t309->acc_period = default_acc_period;
 
-        // Get accumulation period from time axis if available
-        auto& time_axis = std::get<MTPCAL_TIME_AXIS>(*fPCalData);
-        if(ap < time_axis.GetSize())
-        {
-            if(ap > 0)
-            {
-                t309->acc_period = time_axis.at(ap) - time_axis.at(ap-1);
-            }
-            else
-            {
-                t309->acc_period = default_acc_period;
-            }
-        }
-        else
-        {
-            t309->acc_period = default_acc_period;
-        }
 
-        // Set ROT (default to 0)
-        t309->rot = 0.0;
-
-        // Initialize all channels
+        // initialize all tone phasor space
         for(int ch = 0; ch < T309_MAX_CHAN; ch++)
         {
-            // Clear channel name
             std::memset(t309->chan[ch].chan_name, 0, 8);
             t309->chan[ch].freq = 0.0;
-            
-            // Clear all accumulators
             for(int tone = 0; tone < T309_MAX_PHASOR; tone++)
             {
                 t309->chan[ch].acc[tone][0] = 0;
@@ -469,15 +488,23 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
         
         // Get all interval labels that contain this polarization's channel info
         auto matching_labels = freq_axis.GetMatchingIntervalLabels(name_key);
+
+        std::cout<<"labels matching: "<<name_key<<std::endl;
         
         for(const auto& label : matching_labels)
         {
+            std::cout<<"dump: "<<label.dump(2)<<std::endl;
+
             std::string index_key = "channel_index";
             
             if(label.contains(name_key) && label.contains(index_key))
             {
                 PCalChannelInfo ch_info;
                 ch_info.channel_name = label[name_key].get<std::string>();
+                ch_info.net_sideband = label["net_sideband"].get<std::string>();
+                ch_info.sky_freq = label["sky_freq"].get<double>();
+                ch_info.bandwidth = label["bandwidth"].get<double>();
+
                 ch_info.polarization = pol;
                 ch_info.channel_index = label[index_key].get<int>();
                 
@@ -488,7 +515,7 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
                 ch_info.tone_start = lower;
                 
                 // Default sample period (could be extracted from bandwidth if available)
-                ch_info.sample_period = 1.0/32.0e6;
+                ch_info.sample_period = label["sample_period"].get<double>();
                 
                 fPCalChannelList.push_back(ch_info);
                 fPolToChannelMap[pol].push_back(fPCalChannelList.size() - 1);
@@ -597,7 +624,20 @@ std::string MHO_MK4StationInterfaceReversed::ConstructType000FileName()
 }
 
 
+double 
+MHO_MK4StationInterfaceReversed::ComputeType309Rot(double ap_offset) //, const std::string start_time_vex, double start_time_mjd)
+{
+    double magic_number = 3.2e7;
+    double seconds_per_day = 86400.0;
+    double t = ap_offset/seconds_per_day;
 
+    // double ref_day = std::floor(start_time_mjd);
+    // double frac_day = start_time_mjd - ref_day;
+    //t = mjd + refDay - (int)(D->mjdStart); //difx2mark4 (huh?)
+
+    double rot = magic_number * seconds_per_day * t;
+    return rot;
+}
 
 
 } // namespace hops
