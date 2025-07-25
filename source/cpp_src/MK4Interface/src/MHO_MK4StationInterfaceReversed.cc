@@ -384,7 +384,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
         clear_309(t309);
         fAllocated.push_back( reinterpret_cast<void*>(t309) );
         double ap_start = time_axis.at(ap); //grap the ap start time
-        t309->rot = ComputeType309Rot(ap_start, start_time, start_time_mjd); //time parameter
+        t309->rot = ComputeType309Rot(ap_start, start_time, start_time_mjd); //t309 proxy time parameter
 
 //      
 // struct type_309
@@ -409,7 +409,6 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
         t309->ntones = std::min((int)fNTones, T309_MAX_PHASOR);
         t309->acc_period = default_acc_period;
 
-
         // initialize all tone phasor space
         for(int ch = 0; ch < T309_MAX_CHAN; ch++)
         {
@@ -421,6 +420,11 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
                 t309->chan[ch].acc[tone][1] = 0;
             }
         }
+
+        //fill the tone frequency offsets (stored in chan[ch].freq) where tone index and chan index are completely 
+        //mixed up for no particular reason
+        
+
 
         // Fill channel data from PCal container
         for(const auto& ch_info : fPCalChannelList)
