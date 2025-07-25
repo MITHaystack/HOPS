@@ -93,6 +93,16 @@ MHO_MK4CorelInterfaceReversed::GenerateCorelStructure()
         fNChannels = fVisibilityData->GetDimension(CHANNEL_AXIS);
         fNSpectral = fVisibilityData->GetDimension(FREQ_AXIS);
 
+        msg_debug("mk4interface", "visibility data dimensions are: " << fNPPs << " pol products, " 
+                  << fNAPs << " APs, " << fNChannels << " channels, " << fNSpectral << " spectral points per channel" << eom);
+
+        if(fNChannels > MAXFREQ)
+        {
+            msg_warn("mk4interface", "the visibility data has: "<< fNChannels<<
+                " channels, but the mark4 dfio library does not support more than " << MAXFREQ << 
+                " channels." << eom);
+        }
+
         // Extract metadata from container tags, so we can create the output file name
         std::string baseline_short = "";
         std::string root_code = "";
@@ -113,31 +123,21 @@ MHO_MK4CorelInterfaceReversed::GenerateCorelStructure()
             msg_error("mk4interface", "failed to construct output file name, baseline_shortname and root_code tags missing from visibility data" << eom);
             return;
         }
-    
-        msg_debug("mk4interface", "Using  data: " << fNPPs << " pol products, " 
-                  << fNAPs << " APs, " << fNChannels << " channels, " << fNSpectral << " spectral points per channel" << eom);
-        
-        // Debug: Print actual container dimensions
-        msg_debug("mk4interface", "Visibility container dimensions: " 
-                  << fVisibilityData->GetDimension(POLPROD_AXIS) << "x"
-                  << fVisibilityData->GetDimension(TIME_AXIS) << "x"
-                  << fVisibilityData->GetDimension(CHANNEL_AXIS) << "x"
-                  << fVisibilityData->GetDimension(FREQ_AXIS) << eom);
+
     }
     else
     {
-        msg_error("mk4interface", "No visibility or weight data provided" << eom);
+        msg_error("mk4interface", "no visibility or weight data provided" << eom);
         return;
     }
 
-    msg_debug("mk4interface", "Extracted " << fNChannels << " channels with " 
-              << fNSpectral << " spectral points each" << eom);
-
+    //create the mk4 data structures
     InitializeCorelStructure();
     GenerateType000();
     GenerateType100();
     GenerateType101Records();
     GenerateType120Records();
+
 }
 
 void MHO_MK4CorelInterfaceReversed::InitializeCorelStructure()
@@ -152,11 +152,10 @@ void MHO_MK4CorelInterfaceReversed::InitializeCorelStructure()
     fGeneratedCorel = (struct mk4_corel*) calloc(1, sizeof(struct mk4_corel));
     clear_mk4corel(fGeneratedCorel);
     
-    // Allocate space for index records
+    //allocate space for index records (free'd in clear_mk4corel)
     fGeneratedCorel->index_space = fNChannels*fNPPs + 1;
-    std::cout<<"setting index space to: "<< fGeneratedCorel->index_space <<std::endl;
+    msg_debug("mk4interface", "the mk4_corel index space size is: "<< fGeneratedCorel->index_space << eom);
     fGeneratedCorel->index = (struct index_tag*) calloc(fGeneratedCorel->index_space , sizeof(struct index_tag));
-    //fAllocated.push_back( reinterpret_cast<void*>( fGeneratedCorel->index) );
 }
 
 
@@ -234,7 +233,6 @@ void MHO_MK4CorelInterfaceReversed::GenerateType100()
     if(!start_time.empty())
     {
         //TODO FIXME --- calculate the correct stop time
-
         legacy_hops_date tmp = MHO_LegacyDateConverter::ConvertFromVexFormat(start_time);
         FillDate( &(t100->stop), tmp);
     }
@@ -256,140 +254,84 @@ void MHO_MK4CorelInterfaceReversed::GenerateType100()
 void MHO_MK4CorelInterfaceReversed::GenerateType101Records()
 {
     if(!fGeneratedCorel || !fGeneratedCorel->index) return;
-
     auto pp_ax = &(std::get<POLPROD_AXIS>(*fVisibilityData));
-    auto chan_ax = &(std::get<CHANNEL_AXIS>(*fVisibilityData));
 
-    MHO_Tokenizer tokenizer;
-    tokenizer.SetDelimiter(":");
-    std::vector< std::string> tokens;
-
-    //Allocate unused space in the 0-th index -- TERRIBLE HACK
-    //We cannot use the space in the [0] location. This is because the type_120.index value
-    //which is used to refer to the related type_101 record (channel record), also does double-duty as a condition by
-    //which to "flag" the presence of the visibility data (see apply_filter.c line 102).
-    //The related filtering appears to have been done under the idiotic assumption that if type_120.index == 0,
-    //then there is no data there and it should be discarded 
-    {
-        fGeneratedCorel->index[0].ap_space = fNAPs;
-        fGeneratedCorel->index[0].t120 = (struct type_120**) calloc(fNAPs, sizeof(struct type_120*) );
-        fGeneratedCorel->index[0].t101 = (struct type_101*) calloc(1, sizeof(struct type_101));
-        struct type_101* t101 = fGeneratedCorel->index[0].t101;
-        clear_101(t101);
-        fAllocated.push_back( reinterpret_cast<void*>(t101) );
-
-        // Set index information
-        t101->index = 0;
-        t101->primary = 0;
-        t101->nblocks = 1;
-
-        std::string pprod = pp_ax->at(0);
-        char ref_pol;
-        char rem_pol; 
-        if(pprod.size() == 2)
-        {
-            ref_pol = pprod[0];
-            rem_pol = pprod[1];
-        }
-
-        //construct the reference/remote station channel names (borrow the first one)
-        std::string fgroup;
-        std::string sideband;
-        bool fgroup_present = chan_ax->RetrieveIndexLabelKeyValue(0, "frequency_band", fgroup);
-        bool sb_present = chan_ax->RetrieveIndexLabelKeyValue(0, "net_sideband", sideband);
-        std::string ref_chan_id = ConstructMK4ChannelID(fgroup, 0, sideband, ref_pol);
-        std::string rem_chan_id = ConstructMK4ChannelID(fgroup, 0, sideband, rem_pol);
-
-        // Set channel IDs from extracted channel info
-        setstr(ref_chan_id, t101->ref_chan_id, 8);
-        setstr(rem_chan_id, t101->rem_chan_id, 8);
-
-        // Set correlator board and slot (default values)
-        t101->corr_board = 0;
-        t101->corr_slot = 0;
-        t101->ref_chan = 0;
-        t101->rem_chan = 0;
-        t101->post_mortem = 0;
-
-        // Allocate space for APs in this index
-        fGeneratedCorel->index[0].ap_space = fNAPs;
-        fGeneratedCorel->index[0].t120 = (struct type_120**) calloc(fNAPs, sizeof(struct type_120*) );
-    }
-
-    int count = 1; //start count at 1 due to aformentioned idiocy
-
+    int count = 0;
     for(std::size_t pp = 0; pp < fNPPs; pp++)
     {
         std::string pprod = pp_ax->at(pp);
         char ref_pol;
         char rem_pol; 
-
         if(pprod.size() == 2)
         {
             ref_pol = pprod[0];
             rem_pol = pprod[1];
+            //Allocate unused space in the 0-th index -- TERRIBLE HACK
+            //We cannot use the data in the fGeneratedCorel->index[0] location. This is because the type_120.index value
+            //which is used to refer to the related type_101 record (channel record), also does double-duty as a condition by
+            //which to "flag" the presence of the visibility data (see apply_filter.c line 102).
+            //The related filtering appears to have been done under the idiotic assumption that if type_120.index == 0,
+            //then there is no data there and it should be discarded 
+            //so to deal with this, we create an dummy (extra) copy of the very first element of the array at index 0 here
+            //and increment the count count:
+            if(count == 0){ CreateType101Record(0, 0, ref_pol, rem_pol); count++;}
+            for(std::size_t ch = 0; ch < fNChannels; ch++)
+            {
+                CreateType101Record(count, ch, ref_pol, rem_pol);
+                count++;
+            }
         }
         else 
         {
             msg_error("mk4interface", "mis-labeled pol-product is not a 2-character code: "<< pprod << eom);
-            break;
-        }
-
-        for(std::size_t ch = 0; ch < fNChannels; ch++)
-        {
-            // Allocate type_101 record
-            fGeneratedCorel->index[count].t101 = (struct type_101*) calloc(1, sizeof(struct type_101));
-            struct type_101* t101 = fGeneratedCorel->index[count].t101;
-            clear_101(t101);
-            fAllocated.push_back( reinterpret_cast<void*>(t101) );
-
-            
-
-            // Set index information
-            t101->index = count;
-            t101->primary = 0;
-            t101->nblocks = 1;
-
-            //construct the reference/remote station channel names
-            std::string fgroup;
-            std::string sideband;
-            bool fgroup_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "frequency_band", fgroup);
-            bool sb_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", sideband);
-            std::string ref_chan_id = ConstructMK4ChannelID(fgroup, ch, sideband, ref_pol);
-            std::string rem_chan_id = ConstructMK4ChannelID(fgroup, ch, sideband, rem_pol);
-
-            // Set channel IDs from extracted channel info
-            setstr(ref_chan_id, t101->ref_chan_id, 8);
-            setstr(rem_chan_id, t101->rem_chan_id, 8);
-
-            // Set correlator board and slot (default values)
-            t101->corr_board = 0;
-            t101->corr_slot = 0;
-
-
-            //logically we should set these to 'ch', but difx2mark4 just sets them to zero
-            // t101->ref_chan = ch;
-            // t101->rem_chan = ch;
-            t101->ref_chan = 0;
-            t101->rem_chan = 0;
-
-            // Initialize post_mortem flags
-            t101->post_mortem = 0;
-
-            // Allocate space for APs in this index
-            fGeneratedCorel->index[count].ap_space = fNAPs;
-            fGeneratedCorel->index[count].t120 = (struct type_120**) calloc(fNAPs, sizeof(struct type_120*) );
-            //fAllocated.push_back( reinterpret_cast<void*>( &(fGeneratedCorel->index[count].t120)) );
-    
-            msg_debug("mk4interface", "Generated type_101 record " << count
-                      << " for channels " << ref_chan_id << ":" << rem_chan_id << eom);
-
-            count++;
         }
     }
+}
 
 
+void 
+MHO_MK4CorelInterfaceReversed::CreateType101Record(int count, std::size_t ch, char ref_pol, char rem_pol)
+{
+    auto chan_ax = &(std::get<CHANNEL_AXIS>(*fVisibilityData));
 
+    // Allocate type_101 record
+    fGeneratedCorel->index[count].t101 = (struct type_101*) calloc(1, sizeof(struct type_101));
+    struct type_101* t101 = fGeneratedCorel->index[count].t101;
+    clear_101(t101);
+    fAllocated.push_back( reinterpret_cast<void*>(t101) );
+
+    // Set index information
+    t101->index = count;
+    t101->primary = 0;
+    t101->nblocks = 1;
+
+    //construct the reference/remote station channel names
+    std::string fgroup;
+    std::string sideband;
+    bool fgroup_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "frequency_band", fgroup);
+    bool sb_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", sideband);
+    std::string ref_chan_id = ConstructMK4ChannelID(fgroup, ch, sideband, ref_pol);
+    std::string rem_chan_id = ConstructMK4ChannelID(fgroup, ch, sideband, rem_pol);
+
+    // Set channel IDs from extracted channel info
+    setstr(ref_chan_id, t101->ref_chan_id, 8);
+    setstr(rem_chan_id, t101->rem_chan_id, 8);
+
+    // Set correlator board and slot (default values)
+    t101->corr_board = 0;
+    t101->corr_slot = 0;
+    //logically we should set these to 'ch', but difx2mark4 just sets them to zero
+    t101->ref_chan = 0;
+    t101->rem_chan = 0;
+    //not used
+    t101->post_mortem = 0;
+
+    // Allocate space for APs in this index (these are deleted in clear_mk4corel)
+    fGeneratedCorel->index[count].ap_space = fNAPs;
+    fGeneratedCorel->index[count].t120 = (struct type_120**) calloc(fNAPs, sizeof(struct type_120*) );
+
+    msg_debug("mk4interface", "Generated type_101 record " << count
+              << " for channels " << ref_chan_id << ":" << rem_chan_id << eom);
 }
 
 void MHO_MK4CorelInterfaceReversed::GenerateType120Records()
@@ -400,14 +342,12 @@ void MHO_MK4CorelInterfaceReversed::GenerateType120Records()
     {
         for(std::size_t pol_idx = 0; pol_idx < fNPPs; pol_idx++)
         {
-            std::cout<<"POL: " << std::get<POLPROD_AXIS>(*fVisibilityData).at(pol_idx) << std::endl;
             for(std::size_t ch_idx = 0; ch_idx < fNChannels; ch_idx++)
             {
-                std::size_t record_idx = pol_idx * fNChannels + ch_idx + 1; //index into record
-                std::cout<<"CHAN: "<< std::get<CHANNEL_AXIS>(*fVisibilityData).at(ch_idx) << std::endl;
+                //index into record, note the offset of '1' to account for the dummy entry at index 0
+                std::size_t record_idx = pol_idx * fNChannels + ch_idx + 1; 
                 for(std::size_t ap = 0; ap < fNAPs; ap++)
                 {
-                    //std::cout<<"AP = "<<ap<<std::endl;
                     // Allocate type_120 record with variable size for spectral data
                     size_t spec_size = fNSpectral * sizeof(struct spectral);
                     size_t total_size = sizeof(struct type_120) - sizeof(union lag_data) + spec_size;
@@ -457,8 +397,6 @@ void MHO_MK4CorelInterfaceReversed::GenerateType120Records()
             }
         }
     }
-
-    msg_debug("mk4interface", "Generated " << (fNChannels * fNAPs) << " type_120 records" << eom);
 }
 
 
@@ -466,7 +404,7 @@ int MHO_MK4CorelInterfaceReversed::WriteCorelFile()
 {
     if(!fGeneratedCorel || fOutputFile.empty())
     {
-        msg_error("mk4interface", "No corel structure generated or output file not specified" << eom);
+        msg_error("mk4interface", "no corel structure generated or output file not specified" << eom);
         return -1;
     }
     
@@ -475,12 +413,12 @@ int MHO_MK4CorelInterfaceReversed::WriteCorelFile()
     int retval = write_mk4corel(fGeneratedCorel, const_cast<char*>(outfile.c_str()));
     if(retval <= 0)
     {
-        msg_error("mk4interface", "Failed to write corel file: " << outfile 
+        msg_error("mk4interface", "failed to write corel file: " << outfile 
                   << ", error code: " << retval << eom);
     }
     else
     {
-        msg_debug("mk4interface", "Successfully wrote: "<<retval<<" bytes, to corel file: " << fOutputFile << eom);
+        msg_debug("mk4interface", "successfully wrote: "<<retval<<" bytes, to corel file: " << fOutputFile << eom);
     }
 
     return retval;
