@@ -28,6 +28,8 @@ extern "C"
 
 #define MK4_MAX_COEFF 6
 
+#define MHZ_TO_HZ 1000000.0
+
 namespace hops
 {
 
@@ -357,6 +359,8 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
 
     // Get accumulation period from time axis if available -- assume same AP across entire array
     auto& time_axis = std::get<MTPCAL_TIME_AXIS>(*fPCalData);
+    auto& freq_axis = std::get<MTPCAL_FREQ_AXIS>(*fPCalData);
+
     if(time_axis.GetSize() >= 1)
     {
         default_acc_period = time_axis.at(1) - time_axis.at(0);
@@ -421,11 +425,6 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
             }
         }
 
-        //fill the tone frequency offsets (stored in chan[ch].freq) where tone index and chan index are completely 
-        //mixed up for no particular reason
-        
-
-
         // Fill channel data from PCal container
         for(const auto& ch_info : fPCalChannelList)
         {
@@ -453,15 +452,39 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
             {
                 int tone_idx = ch_info.tone_start + tone;
                 if(tone_idx >= (int)fNTones) break;
+                //need to know the offset into the accumulation array for this channel/tone-set, assume USB
+                int acc_idx = ch_info.accumulator_start_index + tone;
+                //tone order for LSB channels is backwards....but possibly also for USB channels that were created from LSB channels (zoom-bands)?
+                //how can we detect the zoom-bands issue?
+                if(ch_info.net_sideband == "L")
+                {
+                    acc_idx = (ch_info.accumulator_start_index + ch_info.ntones - 1) - tone;
+                }
                 
                 std::complex<double> phasor = fPCalData->at(pol_idx, ap, tone_idx);
+                double tone_freq = freq_axis.at(tone_idx);
+
+                //LSB tone's are flipped and conjugated (we ignore 2012 sign flip)
+                if(ch_info.net_sideband == "L")
+                {
+                    phasor = -1.0 * std::conj(phasor);
+                }
+
+                //calculate offset from the channel edge
+                double ch_freq = ch_info.sky_freq;
+                double freq_delta = tone_freq - ch_freq;  //TODO FIXME LSB & USB
+                freq_delta *= MHZ_TO_HZ; //stored as Hz 
+
+                //set this freq offset value in the type_309 array
+                //the tone frequency offsets are stored in chan[ch].freq)
+                //this is because the tone accumulator index and channel index are 
+                //inexplicably mixed up for no particular reason
+                t309->chan[acc_idx].freq = freq_delta;
                 
                 uint32_t real_count, imag_count;
                 ConvertPhasorToCounts(phasor, t309->acc_period, ch_info.sample_period, 
                                       real_count, imag_count);
-                
-                //need to know the offset into the accumulation array for this channel/tone-set 
-                int acc_idx = ch_info.accumulator_start_index + tone;
+
                 t309->chan[ch_idx].acc[acc_idx][0] = real_count;
                 t309->chan[ch_idx].acc[acc_idx][1] = imag_count;
             }
