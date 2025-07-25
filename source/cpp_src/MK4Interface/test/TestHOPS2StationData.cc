@@ -79,18 +79,21 @@ int main(int argc, char** argv)
 
     //evidently there are no double precision objects, so we look for the single-precision 'storage types'
     std::size_t n_stc = conStore.GetNObjects< station_coord_type >();
+    std::size_t n_pcal = conStore.GetNObjects< multitone_pcal_type >();
 
     //retrieve the (first) visibility and weight objects
     //(currently assuming there is only one object per type)
     station_coord_type* sta_data = nullptr;
-
     sta_data = conStore.GetObject< station_coord_type >(0);
+
+    multitone_pcal_type* pcal_data = nullptr;
+    if(n_pcal){pcal_data = conStore.GetObject< multitone_pcal_type >(0);}
 
     MHO_MK4StationInterfaceReversed mk4inter;
 
     //mk4inter.SetRootFileName(root_filename);
     mk4inter.SetStationCoordData(sta_data);
-    //mk4inter.SetPCalData(pcal_data);
+    mk4inter.SetPCalData(pcal_data);
     mk4inter.SetOutputDirectory(".");
     mk4inter.GenerateStationStructure();
     mk4inter.WriteStationFile();
