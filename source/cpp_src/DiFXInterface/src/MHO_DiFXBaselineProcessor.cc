@@ -272,7 +272,7 @@ void MHO_DiFXBaselineProcessor::Organize()
     fStartMJD = (*fInput)["scan"][fIndex]["mjdStart"].get<double>();
     fStartTime = get_vexdate_from_mjd_sec(fStartMJD, 0.0); //zero implies no second-offset
     auto start_tp = hops_clock::from_vex_format(fStartTime);
-    int64_t duration_ns = fAPLength*fNAPs*1e9;
+    int64_t duration_ns = fAPLength*fNAPs*SEC_TO_NANOSEC;
     auto stop_tp = start_tp + hops_clock::duration( duration_ns );
     fStopTime = hops_clock::to_vex_format(stop_tp);
 
