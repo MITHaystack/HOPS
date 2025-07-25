@@ -145,7 +145,7 @@ MHO_MK4StationInterfaceReversed::GenerateStationStructure()
     //do not bother generating type_302 records...they are entirely unused in fourfit
     GenerateType303Records();
     
-    if(fPCalData)
+    if(fPCalData != nullptr)
     {
         GenerateType309Records();
     }
@@ -163,12 +163,12 @@ void MHO_MK4StationInterfaceReversed::InitializeStationStructure()
     fGeneratedStation = (struct mk4_sdata*) calloc(1, sizeof(struct mk4_sdata));
     clear_mk4sdata(fGeneratedStation);
 
-    // // Set PCal record count
-    // if(fPCalData && fNAPs > 0)
-    // {
-    //     fGeneratedStation->n309 = fNAPs;
-    //     // Note: t309 is a fixed-size array in mk4_sdata, no need to allocate
-    // }
+    // Set PCal record count
+    if(fPCalData && fNAPs > 0)
+    {
+        fGeneratedStation->n309 = fNAPs;
+        // Note: t309 is a fixed-size array in mk4_sdata, no need to allocate
+    }
 }
 
 void MHO_MK4StationInterfaceReversed::GenerateType000()
@@ -353,7 +353,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
     if(!fGeneratedStation || !fPCalData) return;
 
     double default_acc_period = 1.0;  // Default 1 second accumulation period
-    double default_sample_period = 1e-6;  // Default 1 microsecond sample period
+    double default_sample_period = 1.0/32e6;
 
     for(std::size_t ap = 0; ap < fNAPs; ap++)
     {
@@ -488,7 +488,7 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
                 ch_info.tone_start = lower;
                 
                 // Default sample period (could be extracted from bandwidth if available)
-                ch_info.sample_period = 1e-6;  // 1 microsecond default
+                ch_info.sample_period = 1.0/32.0e6;
                 
                 fPCalChannelList.push_back(ch_info);
                 fPolToChannelMap[pol].push_back(fPCalChannelList.size() - 1);
