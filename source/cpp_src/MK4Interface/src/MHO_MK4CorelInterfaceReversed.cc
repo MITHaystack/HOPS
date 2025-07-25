@@ -203,6 +203,10 @@ void MHO_MK4CorelInterfaceReversed::GenerateType100()
     {
         fVisibilityData->Retrieve("start", start_time);
     }
+    if(fVisibilityData->HasKey("stop"))
+    {
+        fVisibilityData->Retrieve("stop", stop_time);
+    }
     if(fVisibilityData->HasKey("correlation_date"))
     {
         fVisibilityData->Retrieve("correlation_date", corr_date);
@@ -230,10 +234,9 @@ void MHO_MK4CorelInterfaceReversed::GenerateType100()
         legacy_hops_date tmp = MHO_LegacyDateConverter::ConvertFromVexFormat(start_time);
         FillDate( &(t100->start), tmp);
     }
-    if(!start_time.empty())
+    if(!stop_time.empty())
     {
-        //TODO FIXME --- calculate the correct stop time
-        legacy_hops_date tmp = MHO_LegacyDateConverter::ConvertFromVexFormat(start_time);
+        legacy_hops_date tmp = MHO_LegacyDateConverter::ConvertFromVexFormat(stop_time);
         FillDate( &(t100->stop), tmp);
     }
     if(!corr_date.empty())
