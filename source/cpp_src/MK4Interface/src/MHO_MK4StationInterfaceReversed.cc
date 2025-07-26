@@ -390,24 +390,6 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
         double ap_start = time_axis.at(ap); //grap the ap start time
         t309->rot = ComputeType309Rot(ap_start, start_time, start_time_mjd); //t309 proxy time parameter
 
-//      
-// struct type_309
-//   { 
-//   char        record_id[3];           // Standard 3-digit id
-//   char        version_no[2];          // Standard 2-digit version #
-//   char        unused1[3]; 
-//   int         su;                     // SU
-//   int         ntones;                 // number of tones [0..64]
-//   double      rot;                    // ROT at start of AP
-//   double      acc_period;             // in secs
-//   struct ch1_tag
-//     {
-//     char      chan_name[8];
-//     double    freq;                   // tone frequency in Hz
-//     U32       acc[64][2];             // accumulators for 64 freqs x 2 quads (C..S)
-//     } chan[64];
-//   };
-
         // Set SU number and accumulation parameters
         t309->su = 0;  // Default SU
         t309->ntones = std::min((int)fNTones, T309_MAX_PHASOR);
