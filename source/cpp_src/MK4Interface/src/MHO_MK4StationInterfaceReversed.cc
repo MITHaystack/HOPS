@@ -426,12 +426,12 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
         }
 
         // Fill channel data from PCal container
-        for(const auto& ch_info : fPCalChannelList)
+        for(std::size_t ch=0; ch < fPCalChannelList.size(); ch++)
         {
-            if(ch_info.channel_index >= T309_MAX_CHAN) continue;
-            
-            int ch_idx = ch_info.channel_index;
-            
+            auto ch_info = fPCalChannelList[ch];
+            int ch_idx = ch;
+            if(ch_idx >= T309_MAX_CHAN){ break;}
+
             // Set channel name
             setstr(ch_info.channel_name, t309->chan[ch_idx].chan_name, 8);
             
