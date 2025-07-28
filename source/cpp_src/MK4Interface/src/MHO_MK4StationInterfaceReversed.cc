@@ -593,6 +593,7 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
 
     double pcal_spacing = 5.0;// TODO FIXME
     auto tone_freq_ax = &(std::get< MTPCAL_FREQ_AXIS >(*fPCalData));
+    std::vector< double > tone_freq_offsets;
 
     if( fVexData["$FREQ"].contains(mode) )
     {
@@ -634,26 +635,43 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
             {
                 std::size_t idx = start_idx + j;
                 double tone_freq = tone_freq_ax->at(idx);
-                std::cout<<"tone freq = "<<tone_freq<<std::endl;
-                std::cout<<"sky freq = "<< ch_info.sky_freq <<std::endl;
+                //std::cout<<"tone freq = "<<tone_freq<<std::endl;
+                //std::cout<<"sky freq = "<< ch_info.sky_freq <<std::endl;
                 double freq_delta = tone_freq - ch_info.sky_freq;  //TODO FIXME LSB & USB
-                std::cout<<"freq delta = "<<freq_delta<<std::endl;
+                //std::cout<<"freq delta = "<<freq_delta<<std::endl;
                 freq_delta *= MHZ_TO_HZ; //offsets are calculated/stored as Hz
+
+                //dumb brute force search 
+                double tol = 1e-3;
+                bool found = false;
+                for(std::size_t i = 0; i < tone_freq_offsets.size(); i++)
+                {
+                    if( std::fabs(freq_delta - tone_freq_offsets[i]) < tol)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found)
+                {
+                    //store the index of this offset if we are on the first tone
+                    if(j == 0){ch_info.accumulator_start_index = tone_freq_offsets.size();}
+                    std::cout<<"adding new freq off = "<<freq_delta<<std::endl;
+                    tone_freq_offsets.push_back(freq_delta);
+                }
             }
 
             //set to zero because don't yet know
-            ch_info.accumulator_start_index =  0;
             ch_info.polarization = "?";
             ch_info.channel_index = 0;
 
-            
 
             // Default sample period (could be extracted from bandwidth if available)
             ch_info.sample_period = 1.0/(2.0*ch_info.bandwidth*MHZ_TO_HZ); //assuming bandwidth is in MHz
             
             fPCalChannelList.push_back(ch_info);
             
-            msg_debug("mk4interface", "Extracted PCal channel: " << ch_info.channel_name 
+            msg_debug("mk4interface", "Extracted PCal channel: " << ch_info.channel_name << " acc idx: "<< ch_info.accumulator_start_index
                       << " pol=" << ch_info.polarization << " idx=" << ch_info.channel_index 
                       << " tones=" << ch_info.ntones << eom);
         }
