@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <sstream>
+#include <algorithm>
 
 #ifndef HOPS3_USE_CXX
 extern "C"
@@ -149,6 +150,10 @@ MHO_MK4StationInterfaceReversed::GenerateStationStructure()
 
         ExtractPCalChannelInfo(); //need the station channel setup in order to contruct type_309s
 
+        chan_predicate sort_pred;
+
+        std::sort( fPCalChannelList.begin(), fPCalChannelList.end(), sort_pred);
+
         for(std::size_t i=0; i<fPCalChannelList.size(); i++)
         {
             std::cout<<" ------------------ channel info @ "<<i <<std::endl;
@@ -164,6 +169,8 @@ MHO_MK4StationInterfaceReversed::GenerateStationStructure()
             std::cout<<"speriod: "<<fPCalChannelList[i].sample_period<<std::endl;
     
         }
+
+        
 
 
         GenerateType309Records();
@@ -539,7 +546,6 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
                 ch_info.sky_freq = label["sky_freq"].get<double>();
                 ch_info.bandwidth = label["bandwidth"].get<double>();
                 ch_info.accumulator_start_index = label["accumulator_start_index"].get<int>();
-
                 ch_info.polarization = pol;
                 //ch_info.channel_index = label[index_key].get<int>();
                 
@@ -674,6 +680,7 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
                 {
                     if( std::fabs(freq_delta - tone_freq_offsets[i]) < tol)
                     {
+                        if(j == 0){ch_info.accumulator_start_index = i;}
                         found = true;
                         break;
                     }
@@ -687,8 +694,8 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
                 }
             }
 
-            //set to zero because don't yet know
-            ch_info.polarization = "?";
+            //cannot rely on the channel name for this info...ought to extract it from the vex file
+            ch_info.polarization = std::string(1, ch_info.channel_name[ ch_info.channel_name.size() - 1 ] );
             ch_info.channel_index = 0;
 
             // Default sample period (could be extracted from bandwidth if available)
