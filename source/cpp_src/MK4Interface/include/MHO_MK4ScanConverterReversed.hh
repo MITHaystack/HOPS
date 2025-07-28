@@ -35,6 +35,7 @@ class MHO_MK4ScanConverterReversed
         //data  
         MHO_ScanDataStore fStore;
         MHO_DirectoryInterface fDirInterface;
+        mho_json fRootJSON;
         std::string fInputDir;
         std::string fOutputDir;
         std::string fOutputVexFile;
