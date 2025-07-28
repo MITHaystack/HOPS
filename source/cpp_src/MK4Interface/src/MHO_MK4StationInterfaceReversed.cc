@@ -236,6 +236,8 @@ void MHO_MK4StationInterfaceReversed::GenerateType300()
     {
         t300->id = station_mk4id[0];
     }
+    //keep a local variable with this info around
+    fStationCode = station_code;
 
     // Set model parameters
     t300->model_interval = model_interval;
@@ -527,7 +529,7 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
                 fPCalChannelList.push_back(ch_info);
                 
                 msg_debug("mk4interface", "Extracted PCal channel: " << ch_info.channel_name 
-                          << " pol=" << pol << " idx=" << ch_info.channel_index 
+                          << " pol=" << ch_info.polarization << " idx=" << ch_info.channel_index 
                           << " tones=" << ch_info.ntones << eom);
             }
         }
@@ -539,8 +541,32 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
         msg_debug("mk4interface", "there is no station channel data attached to the pcal data object, falling back to vex info" << eom );
         ExtractPCalChannelInfoFromVex();
     }
-
 }
+
+std::string MHO_MK4StationInterfaceReversed::GetStationMode()
+{
+    std::string mode = "";
+    for(auto it = fVexData["$SCHED"].begin(); it != fVexData["$SCHED"].end(); ++it)
+    {
+        mode = (*it)["mode"].get<std::string>();
+        for(auto it = fVexData["$MODE"][mode]["$FREQ"].begin(); it != fVexData["$MODE"][mode]["$FREQ"].end(); it++)
+        {
+            for( auto qit = (*it)["qualifiers"].begin(); qit != (*it)["qualifiers"].end(); qit++)
+            {
+                std::string station_id = (*qit).get<std::string>();
+                if(station_id == fStationCode) 
+                {
+                    //this mode's freq config matches this station
+                    mode = (*it)["keyword"].get<std::string>();
+                    return mode;
+                }
+            }
+        }
+    }
+    mode == "";
+    return mode;
+}
+
 
 void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
 {
@@ -548,10 +574,12 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
     //this is because the pcal-data object will not already have station channel 
     //meta-data attached if we are coming directly from DiFX
 
-    std::cout<< fVexData["$FREQ"].dump(2) << std::endl;
+    // std::cout<< fVexData["$FREQ"].dump(2) << std::endl;
+    // std::cout<< fVexData["$SCHED"].dump(2) << std::endl;
 
-    std::cout<< fVexData["$SCHED"].dump(2) << std::endl;
-
+    std::string mode = GetStationMode();
+    std::cout<<"MODE = "<<mode<<std::endl;
+    if(mode == ""){msg_error("mk4interface", "could not located mode information in vex file $SCHED block"<<eom);}
 
     // SCHED -> [0] -> mode
     // 
@@ -561,6 +589,65 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
     // 
     // FREQ[ mode ] where mode matches the station
 
+
+    if( fVexData["$FREQ"].contains(mode) )
+    {
+        //loop over all channels and collect the information
+        for(auto it = fVexData["$FREQ"][mode]["chan_def"].begin(); it != fVexData["$FREQ"][mode]["chan_def"].end(); ++it)
+        {
+            std::cout<< (*it).dump(2) << std::endl;
+
+            // 
+            // chan_def": [
+            //       {
+            //         "band_id": "&X",
+            //         "bandwidth": {
+            //           "units": "MHz",
+            //           "value": 32.0
+            //         },
+            //         "bbc_id": "&BBC01",
+            //         "channel_id": "&Ch01",
+            //         "channel_name": "X07LX",
+            //         "net_sideband": "L",
+            //         "phase_cal_id": "&L_cal",
+            //         "sky_frequency": {
+            //           "units": "MHz",
+            //           "value": 3480.4
+            //         }
+            //       },
+
+
+
+            PCalChannelInfo ch_info;
+            ch_info.channel_name = (*it)["channel_name"].get<std::string>();
+            ch_info.net_sideband = (*it)["net_sideband"].get<std::string>();
+            ch_info.sky_freq = (*it)["sky_frequency"]["value"].get<double>();
+            std::string fr_units = (*it)["sky_frequency"]["units"].get<std::string>();
+            ch_info.bandwidth = (*it)["bandwidth"]["value"].get<double>();
+            std::string bw_units = (*it)["bandwidth"]["units"].get<std::string>();
+            if(bw_units != "MHz"){msg_error("mk4interface", "error bandwidth units not supported" << eom);}
+
+            //set to zero because don't yet know
+            ch_info.accumulator_start_index =  0;
+            ch_info.polarization = "?";
+            ch_info.channel_index = 0;
+            
+            // Calculate number of tones in this channel from interval bounds
+            // int lower = label["lower_index"].get<int>();
+            // int upper = label["upper_index"].get<int>();
+            ch_info.ntones = 0; //upper - lower;
+            ch_info.tone_start = 0;// lower;
+            
+            // Default sample period (could be extracted from bandwidth if available)
+            ch_info.sample_period = 1.0/(2.0*ch_info.bandwidth*1.0e6); //assuming MHz
+            
+            fPCalChannelList.push_back(ch_info);
+            
+            msg_debug("mk4interface", "Extracted PCal channel: " << ch_info.channel_name 
+                      << " pol=" << ch_info.polarization << " idx=" << ch_info.channel_index 
+                      << " tones=" << ch_info.ntones << eom);
+        }
+    }
 
 }
 
