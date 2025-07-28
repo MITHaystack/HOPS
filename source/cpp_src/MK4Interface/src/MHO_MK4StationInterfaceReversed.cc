@@ -150,6 +150,10 @@ MHO_MK4StationInterfaceReversed::GenerateStationStructure()
         ExtractPCalChannelInfo(); //need the station channel setup in order to contruct type_309s
         GenerateType309Records();
     }
+    else 
+    {
+        std::cout<<"NO PCAL DATA"<<std::endl;
+    }
 
 }
 
@@ -382,6 +386,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
         fPCalData->Retrieve("start_time_mjd", start_time_mjd);
     }
 
+    std::size_t count309items = 0;
     for(std::size_t ap = 0; ap < fNAPs; ap++)
     {
         // Allocate type_309 record
@@ -391,6 +396,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
         fAllocated.push_back( reinterpret_cast<void*>(t309) );
         double ap_start = time_axis.at(ap); //grap the ap start time
         t309->rot = ComputeType309Rot(ap_start, start_time, start_time_mjd); //t309 proxy time parameter
+        count309items++;
 
         // Set SU number and accumulation parameters
         t309->su = 0;  // Default SU
@@ -469,13 +475,14 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
                 ConvertPhasorToCounts(phasor, t309->acc_period, ch_info.sample_period, 
                                       real_count, imag_count);
 
+                std::cout<<"adding phasor = "<<real_count<<", "<<imag_count<<std::endl;
                 t309->chan[ch_idx].acc[acc_idx][0] = real_count;
                 t309->chan[ch_idx].acc[acc_idx][1] = imag_count;
             }
         }
     }
 
-    msg_debug("mk4interface", "Generated " << fNAPs << " type_309 records" << eom);
+    msg_debug("mk4interface", "Generated " << count309items << " type_309 records" << eom);
 }
 
 
@@ -504,10 +511,9 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
         for(const auto& label : matching_labels)
         {
             //std::cout<<"dump: "<<label.dump(2)<<std::endl;
-
             std::string index_key = "channel_index";
             
-            if(label.contains(name_key) && label.contains(index_key))
+            if(label.contains(name_key) )
             {
                 PCalChannelInfo ch_info;
                 ch_info.channel_name = label[name_key].get<std::string>();
@@ -517,7 +523,7 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
                 ch_info.accumulator_start_index = label["accumulator_start_index"].get<int>();
 
                 ch_info.polarization = pol;
-                ch_info.channel_index = label[index_key].get<int>();
+                //ch_info.channel_index = label[index_key].get<int>();
                 
                 // Calculate number of tones in this channel from interval bounds
                 int lower = label["lower_index"].get<int>();
@@ -531,7 +537,7 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
                 fPCalChannelList.push_back(ch_info);
                 
                 msg_debug("mk4interface", "Extracted PCal channel: " << ch_info.channel_name 
-                          << " pol=" << ch_info.polarization << " idx=" << ch_info.channel_index 
+                          << " pol=" << ch_info.polarization
                           << " tones=" << ch_info.ntones << eom);
             }
         }
@@ -543,6 +549,8 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
         msg_debug("mk4interface", "there is no station channel data attached to the pcal data object, falling back to vex info" << eom );
         ExtractPCalChannelInfoFromVex();
     }
+
+    std::cout<<"channel info size ="<<fPCalChannelList.size()<<std::endl;
 }
 
 std::string MHO_MK4StationInterfaceReversed::GetStationMode()
