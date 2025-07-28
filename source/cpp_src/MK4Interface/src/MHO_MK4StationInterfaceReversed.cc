@@ -169,12 +169,7 @@ void MHO_MK4StationInterfaceReversed::InitializeStationStructure()
     fGeneratedStation = (struct mk4_sdata*) calloc(1, sizeof(struct mk4_sdata));
     clear_mk4sdata(fGeneratedStation);
 
-    // Set PCal record count
-    if(fPCalData && fNAPs > 0)
-    {
-        fGeneratedStation->n309 = fNAPs;
-        // Note: t309 is a fixed-size array in mk4_sdata, no need to allocate
-    }
+    //std::cout<<"generated pcal size = "<<fGeneratedStation->n309<<std::endl;
 }
 
 void MHO_MK4StationInterfaceReversed::GenerateType000()
@@ -360,6 +355,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
 {
     if(!fGeneratedStation || !fPCalData) return;
 
+    std::size_t count309items = 0;
     double default_acc_period = 1.0;  // Default 1 second accumulation period
     double default_sample_period = 1.0/32e6;
 
@@ -386,7 +382,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
         fPCalData->Retrieve("start_time_mjd", start_time_mjd);
     }
 
-    std::size_t count309items = 0;
+
     for(std::size_t ap = 0; ap < fNAPs; ap++)
     {
         // Allocate type_309 record
@@ -394,6 +390,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
         fGeneratedStation->t309[ap] = t309;
         clear_309(t309);
         fAllocated.push_back( reinterpret_cast<void*>(t309) );
+        std::cout<<"t309 = "<<t309<<std::endl;
         double ap_start = time_axis.at(ap); //grap the ap start time
         t309->rot = ComputeType309Rot(ap_start, start_time, start_time_mjd); //t309 proxy time parameter
         count309items++;
@@ -437,6 +434,8 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
                 }
             }
 
+            //std::cout<<"acc start IDX = "<<ch_info.accumulator_start_index<<std::endl;
+
             // Fill tone data for this channel
             for(int tone = 0; tone < ch_info.ntones && tone < T309_MAX_PHASOR; tone++)
             {
@@ -475,12 +474,14 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
                 ConvertPhasorToCounts(phasor, t309->acc_period, ch_info.sample_period, 
                                       real_count, imag_count);
 
-                std::cout<<"adding phasor = "<<real_count<<", "<<imag_count<<std::endl;
+                //std::cout<<"adding phasor = "<<real_count<<", "<<imag_count<<std::endl;
                 t309->chan[ch_idx].acc[acc_idx][0] = real_count;
                 t309->chan[ch_idx].acc[acc_idx][1] = imag_count;
             }
         }
     }
+
+    fGeneratedStation->n309 = count309items;
 
     msg_debug("mk4interface", "Generated " << count309items << " type_309 records" << eom);
 }
@@ -629,14 +630,14 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
             double lower_freq, upper_freq;
             MHO_MathUtilities::DetermineChannelFrequencyLimits(ch_info.sky_freq, ch_info.bandwidth, 
                                                                ch_info.net_sideband, lower_freq, upper_freq);
-            std::cout<<"low freq, upper freq = "<<lower_freq<<", "<<upper_freq<<std::endl;
+            //std::cout<<"low freq, upper freq = "<<lower_freq<<", "<<upper_freq<<std::endl;
 
             std::size_t start_idx, ntones;
             DetermineChannelToneIndexes(lower_freq, upper_freq, start_idx, ntones);
             // Calculate number of tones in this channel from interval bounds
             ch_info.tone_start = start_idx;
             ch_info.ntones = ntones;
-            std::cout<<"start idx, ntones = "<<start_idx<<", "<<ntones<<std::endl;
+            //std::cout<<"start idx, ntones = "<<start_idx<<", "<<ntones<<std::endl;
 
             //figure out the accumulator index (need to compute the tone offset frequencies for each tone in this channel 
             for(std::size_t j = 0; j < ntones; j++)
@@ -672,7 +673,6 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
             //set to zero because don't yet know
             ch_info.polarization = "?";
             ch_info.channel_index = 0;
-
 
             // Default sample period (could be extracted from bandwidth if available)
             ch_info.sample_period = 1.0/(2.0*ch_info.bandwidth*MHZ_TO_HZ); //assuming bandwidth is in MHz

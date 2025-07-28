@@ -5,7 +5,18 @@
 #include <iostream>
 #include <string>
 
+#ifndef HOPS3_USE_CXX
+extern "C"
+{
+#endif
+    #include "msg.h"
+#ifndef HOPS3_USE_CXX
+}
+#endif
+
+
 using namespace hops;
+
 
 void print_usage()
 {
@@ -16,6 +27,9 @@ void print_usage()
 
 int main(int argc, char** argv)
 {
+    set_msglev(-2);
+
+
     std::string in_dir = "";
     std::string out_dir = "";
 
