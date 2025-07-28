@@ -460,9 +460,9 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 
             //loop through baseline freqs in order, grabbing the associated channel
             //and populating the visibility container
+            //loop though in freq (low -> high) order
             int chidx = 0;
-            for(auto fqit = fBaselineFreqs.begin(); fqit != fBaselineFreqs.end();
-                fqit++) //loop though in freq (low -> high) order
+            for(auto fqit = fBaselineFreqs.begin(); fqit != fBaselineFreqs.end(); fqit++) 
             {
                 int freqidx = fqit->first;
                 mho_json dfreq = fqit->second;
