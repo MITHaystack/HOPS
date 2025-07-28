@@ -152,16 +152,16 @@ MHO_MK4StationInterfaceReversed::GenerateStationStructure()
         for(std::size_t i=0; i<fPCalChannelList.size(); i++)
         {
             std::cout<<" ------------------ channel info @ "<<i <<std::endl;
-            std::cout<<fPCalChannelList[i].channel_name<<std::endl;
-            std::cout<<fPCalChannelList[i].polarization<<std::endl;
-            std::cout<<fPCalChannelList[i].net_sideband<<std::endl;
-            std::cout<<fPCalChannelList[i].channel_index<<std::endl;
-            std::cout<<fPCalChannelList[i].tone_start<<std::endl;
-            std::cout<<fPCalChannelList[i].ntones<<std::endl;
-            std::cout<<fPCalChannelList[i].accumulator_start_index<<std::endl;
-            std::cout<<fPCalChannelList[i].sky_freq<<std::endl;
-            std::cout<<fPCalChannelList[i].bandwidth<<std::endl;
-            std::cout<<fPCalChannelList[i].sample_period<<std::endl;
+            std::cout<<"name: "<<fPCalChannelList[i].channel_name<<std::endl;
+            std::cout<<"pol: "<<fPCalChannelList[i].polarization<<std::endl;
+            std::cout<<"net sb: "<<fPCalChannelList[i].net_sideband<<std::endl;
+            std::cout<<"chan idx: "<<fPCalChannelList[i].channel_index<<std::endl;
+            std::cout<<"tone start: "<<fPCalChannelList[i].tone_start<<std::endl;
+            std::cout<<"ntones: "<<fPCalChannelList[i].ntones<<std::endl;
+            std::cout<<"accumulator idx: "<<fPCalChannelList[i].accumulator_start_index<<std::endl;
+            std::cout<<"sky freq: "<<fPCalChannelList[i].sky_freq<<std::endl;
+            std::cout<<"bw: "<<fPCalChannelList[i].bandwidth<<std::endl;
+            std::cout<<"speriod: "<<fPCalChannelList[i].sample_period<<std::endl;
     
         }
 
