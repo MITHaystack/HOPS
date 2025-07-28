@@ -45,6 +45,10 @@ class MHO_MK4StationInterfaceReversed
         MHO_MK4StationInterfaceReversed();
         virtual ~MHO_MK4StationInterfaceReversed();
 
+        //we don't strictly need the vex file data unless we are doing a direct conversion from difx 
+        //since in order to fill out the type_309s, we need to know the station channel/freq set-up
+        void SetVexData(const mho_json& vex_data){fVexData = vex_data;};
+
         void SetOutputDirectory(const std::string& output_dir);
         void SetStationCoordData(station_coord_type* coord_data) { fStationCoordData = coord_data; }
         void SetPCalData(multitone_pcal_type* pcal_data) { fPCalData = pcal_data; }
@@ -90,12 +94,16 @@ class MHO_MK4StationInterfaceReversed
          * @brief Extract channel information from PCal frequency axis
          */
         void ExtractPCalChannelInfo();
+        void ExtractPCalChannelInfoFromVex();
 
         station_coord_type* fStationCoordData;
         multitone_pcal_type* fPCalData;
         struct mk4_sdata* fGeneratedStation;
         std::string fOutputDir;
         std::string fOutputFile;
+
+        //copy of vex data
+        mho_json fVexData;
 
         // Container dimensions
         std::size_t fNCoord;

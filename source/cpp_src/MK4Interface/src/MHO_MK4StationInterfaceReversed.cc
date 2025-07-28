@@ -127,18 +127,7 @@ MHO_MK4StationInterfaceReversed::GenerateStationStructure()
         return;
     }
 
-    // Extract PCal dimensions if provided
-    if(fPCalData)
-    {
-        fNPols = fPCalData->GetDimension(MTPCAL_POL_AXIS);
-        fNAPs = fPCalData->GetDimension(MTPCAL_TIME_AXIS);
-        fNTones = fPCalData->GetDimension(MTPCAL_FREQ_AXIS);
-        
-        msg_debug("mk4interface", "PCal dimensions: " << fNPols << " polarizations, " 
-                  << fNAPs << " APs, " << fNTones << " tones" << eom);
 
-        ExtractPCalChannelInfo();
-    }
 
     InitializeStationStructure();
     GenerateType000();
@@ -146,11 +135,21 @@ MHO_MK4StationInterfaceReversed::GenerateStationStructure()
     GenerateType301Records();
     //do not bother generating type_302 records...they are entirely unused in fourfit
     GenerateType303Records();
-    
+
     if(fPCalData != nullptr)
     {
+        // extract PCal dimensions first if provided
+        fNPols = fPCalData->GetDimension(MTPCAL_POL_AXIS);
+        fNAPs = fPCalData->GetDimension(MTPCAL_TIME_AXIS);
+        fNTones = fPCalData->GetDimension(MTPCAL_FREQ_AXIS);
+        
+        msg_debug("mk4interface", "PCal dimensions: " << fNPols << " polarizations, " 
+                  << fNAPs << " APs, " << fNTones << " tones" << eom);
+
+        ExtractPCalChannelInfo(); //need the station channel setup in order to contruct type_309s
         GenerateType309Records();
     }
+
 }
 
 void MHO_MK4StationInterfaceReversed::InitializeStationStructure()
@@ -480,6 +479,9 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
 
 void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
 {
+    //this method is used is we are converting data back to mark4 format, that originally came from mark4 
+    //in that case, the station channel set-up is already attached to the pcal data object
+
     if(!fPCalData) return;
 
     fPCalChannelList.clear();
@@ -536,6 +538,17 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
         }
     }
 }
+
+void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
+{
+    //this method is used if we are trying to do a conversion directly from DiFX 
+    //this is because the pcal-data object will not already have station channel 
+    //meta-data attached if we are coming directly from DiFX
+
+
+}
+
+
 
 int MHO_MK4StationInterfaceReversed::WriteStationFile()
 {
