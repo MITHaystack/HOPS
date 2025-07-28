@@ -2,6 +2,8 @@
 #include "MHO_LegacyDateConverter.hh"
 #include "MHO_DirectoryInterface.hh"
 
+#include "MHO_MathUtilities.hh"
+
 
 #include <complex>
 #include <cstdlib>
@@ -589,57 +591,65 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
     // 
     // FREQ[ mode ] where mode matches the station
 
+    double pcal_spacing = 5.0;// TODO FIXME
+    auto tone_freq_ax = &(std::get< MTPCAL_FREQ_AXIS >(*fPCalData));
 
     if( fVexData["$FREQ"].contains(mode) )
     {
         //loop over all channels and collect the information
         for(auto it = fVexData["$FREQ"][mode]["chan_def"].begin(); it != fVexData["$FREQ"][mode]["chan_def"].end(); ++it)
         {
-            std::cout<< (*it).dump(2) << std::endl;
+            //std::cout<< (*it).dump(2) << std::endl;
 
-            // 
-            // chan_def": [
-            //       {
-            //         "band_id": "&X",
-            //         "bandwidth": {
-            //           "units": "MHz",
-            //           "value": 32.0
-            //         },
-            //         "bbc_id": "&BBC01",
-            //         "channel_id": "&Ch01",
-            //         "channel_name": "X07LX",
-            //         "net_sideband": "L",
-            //         "phase_cal_id": "&L_cal",
-            //         "sky_frequency": {
-            //           "units": "MHz",
-            //           "value": 3480.4
-            //         }
-            //       },
-
-
-
+            double factor = 1.0;
             PCalChannelInfo ch_info;
             ch_info.channel_name = (*it)["channel_name"].get<std::string>();
             ch_info.net_sideband = (*it)["net_sideband"].get<std::string>();
+
             ch_info.sky_freq = (*it)["sky_frequency"]["value"].get<double>();
             std::string fr_units = (*it)["sky_frequency"]["units"].get<std::string>();
+            factor = FactorConvertToMHz(fr_units);
+            ch_info.sky_freq *= factor; //convert to MHz
+
             ch_info.bandwidth = (*it)["bandwidth"]["value"].get<double>();
             std::string bw_units = (*it)["bandwidth"]["units"].get<std::string>();
-            if(bw_units != "MHz"){msg_error("mk4interface", "error bandwidth units not supported" << eom);}
+            factor = FactorConvertToMHz(bw_units);
+            ch_info.bandwidth *= factor; //convert to MHz
+
+            //figure out the upper/lower frequency limits for this channel
+            double lower_freq, upper_freq;
+            MHO_MathUtilities::DetermineChannelFrequencyLimits(ch_info.sky_freq, ch_info.bandwidth, 
+                                                               ch_info.net_sideband, lower_freq, upper_freq);
+            std::cout<<"low freq, upper freq = "<<lower_freq<<", "<<upper_freq<<std::endl;
+
+            std::size_t start_idx, ntones;
+            DetermineChannelToneIndexes(lower_freq, upper_freq, start_idx, ntones);
+            // Calculate number of tones in this channel from interval bounds
+            ch_info.tone_start = start_idx;
+            ch_info.ntones = ntones;
+            std::cout<<"start idx, ntones = "<<start_idx<<", "<<ntones<<std::endl;
+
+            //figure out the accumulator index (need to compute the tone offset frequencies for each tone in this channel 
+            for(std::size_t j = 0; j < ntones; j++)
+            {
+                std::size_t idx = start_idx + j;
+                double tone_freq = tone_freq_ax->at(idx);
+                std::cout<<"tone freq = "<<tone_freq<<std::endl;
+                std::cout<<"sky freq = "<< ch_info.sky_freq <<std::endl;
+                double freq_delta = tone_freq - ch_info.sky_freq;  //TODO FIXME LSB & USB
+                std::cout<<"freq delta = "<<freq_delta<<std::endl;
+                freq_delta *= MHZ_TO_HZ; //offsets are calculated/stored as Hz
+            }
 
             //set to zero because don't yet know
             ch_info.accumulator_start_index =  0;
             ch_info.polarization = "?";
             ch_info.channel_index = 0;
+
             
-            // Calculate number of tones in this channel from interval bounds
-            // int lower = label["lower_index"].get<int>();
-            // int upper = label["upper_index"].get<int>();
-            ch_info.ntones = 0; //upper - lower;
-            ch_info.tone_start = 0;// lower;
-            
+
             // Default sample period (could be extracted from bandwidth if available)
-            ch_info.sample_period = 1.0/(2.0*ch_info.bandwidth*1.0e6); //assuming MHz
+            ch_info.sample_period = 1.0/(2.0*ch_info.bandwidth*MHZ_TO_HZ); //assuming bandwidth is in MHz
             
             fPCalChannelList.push_back(ch_info);
             
@@ -801,5 +811,44 @@ MHO_MK4StationInterfaceReversed::ComputeType309RotFallback(double ap_offset)
     double rot = magic_number * seconds_per_day * (t - 1.0); //subtract off 1 because day-of-year is 1-indexed
     return rot;
 }
+
+
+double MHO_MK4StationInterfaceReversed::FactorConvertToMHz(std::string units)
+{
+    //currently only support Ms/sec --> we need to implement units support throughout for proper support
+    double factor = 1.0;
+    if(units == "MHz"){factor = 1.0;}
+    if(units == "GHz"){factor = 1000.0;}
+    if(units == "KHz" || units == "kHz"){factor = 1e-3;}
+    if(units == "Hz"){factor = 1e-6;}
+    return factor;
+}
+
+void MHO_MK4StationInterfaceReversed::DetermineChannelToneIndexes(double lower_freq, 
+                                                               double upper_freq, 
+                                                               std::size_t& start_idx,
+                                                               std::size_t& ntones)
+{
+    auto tone_freq_ax = &(std::get< MTPCAL_FREQ_AXIS >(*fPCalData));
+
+    double start_tone_frequency = 0;
+    start_idx = 0;
+    ntones = 0;
+
+    for(std::size_t j = 0; j < tone_freq_ax->GetSize(); j++)
+    {
+        if(lower_freq <= tone_freq_ax->at(j) && tone_freq_ax->at(j) < upper_freq)
+        {
+            if(ntones == 0)
+            {
+                start_tone_frequency = tone_freq_ax->at(j);
+                start_idx = j;
+            }
+            ntones++;
+        }
+    }
+}
+
+
 
 } // namespace hops
