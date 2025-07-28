@@ -548,7 +548,9 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
     //this is because the pcal-data object will not already have station channel 
     //meta-data attached if we are coming directly from DiFX
 
-    std::cout<< fVexData.dump(2) << std::endl;
+    std::cout<< fVexData["$FREQ"].dump(2) << std::endl;
+
+    std::cout<< fVexData["$SCHED"].dump(2) << std::endl;
 
 
     // SCHED -> [0] -> mode
