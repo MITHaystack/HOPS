@@ -96,6 +96,9 @@ class MHO_MK4StationInterfaceReversed
         void ExtractPCalChannelInfo();
         void ExtractPCalChannelInfoFromVex();
 
+        double FactorConvertToMHz(std::string units);
+        void DetermineChannelToneIndexes(double lower_freq, double upper_freq, std::size_t& start_idx, std::size_t& ntones);
+
         std::string GetStationMode();
 
         station_coord_type* fStationCoordData;
