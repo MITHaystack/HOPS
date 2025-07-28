@@ -129,7 +129,6 @@ class MHO_MK4StationInterfaceReversed
         };
 
         std::vector<PCalChannelInfo> fPCalChannelList;
-        std::map<std::string, std::vector<int>> fPolToChannelMap;  // pol -> vector of channel indices
 
         std::vector< void* > fAllocated;
 };

@@ -57,7 +57,6 @@ MHO_MK4StationInterfaceReversed::MHO_MK4StationInterfaceReversed():
     fNAPs = 0;
     fNTones = 0;
     fPCalChannelList.clear();
-    fPolToChannelMap.clear();
 }
 
 MHO_MK4StationInterfaceReversed::~MHO_MK4StationInterfaceReversed()
@@ -481,11 +480,8 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
 {
     //this method is used is we are converting data back to mark4 format, that originally came from mark4 
     //in that case, the station channel set-up is already attached to the pcal data object
-
     if(!fPCalData) return;
-
     fPCalChannelList.clear();
-    fPolToChannelMap.clear();
 
     // Extract channel information from frequency axis interval labels
     auto& freq_axis = std::get<MTPCAL_FREQ_AXIS>(*fPCalData);
@@ -529,7 +525,6 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
                 ch_info.sample_period = label["sample_period"].get<double>();
                 
                 fPCalChannelList.push_back(ch_info);
-                fPolToChannelMap[pol].push_back(fPCalChannelList.size() - 1);
                 
                 msg_debug("mk4interface", "Extracted PCal channel: " << ch_info.channel_name 
                           << " pol=" << pol << " idx=" << ch_info.channel_index 
@@ -537,6 +532,14 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
             }
         }
     }
+
+    //pcal data did not have any channel info attached (so extract it from the VEX file)
+    if( fPCalChannelList.size() == 0)
+    {
+        msg_debug("mk4interface", "there is no station channel data attached to the pcal data object, falling back to vex info" << eom );
+        ExtractPCalChannelInfoFromVex();
+    }
+
 }
 
 void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
@@ -544,6 +547,17 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
     //this method is used if we are trying to do a conversion directly from DiFX 
     //this is because the pcal-data object will not already have station channel 
     //meta-data attached if we are coming directly from DiFX
+
+    std::cout<< fVexData.dump(2) << std::endl;
+
+
+    // SCHED -> [0] -> mode
+    // 
+    // MODE[mode] -> FREQ [?]  where station code (2-char) is present
+    // 
+    // SITE[?] -> site_ID (2-char code)
+    // 
+    // FREQ[ mode ] where mode matches the station
 
 
 }

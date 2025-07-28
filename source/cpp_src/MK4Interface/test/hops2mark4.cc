@@ -29,7 +29,7 @@ int main(int argc, char** argv)
     if(argc >= 3){out_dir = argv[2];}
 
     MHO_Message::GetInstance().AcceptAllKeys();
-    MHO_Message::GetInstance().SetLegacyMessageLevel(eDebug);
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
     if(out_dir == "")
     {
