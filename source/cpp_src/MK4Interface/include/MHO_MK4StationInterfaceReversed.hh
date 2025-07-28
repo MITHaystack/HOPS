@@ -3,7 +3,7 @@
 
 #include <cstdlib>
 #include <cstring>
-#include <map>
+
 #include <set>
 #include <string>
 #include <vector>
@@ -96,6 +96,8 @@ class MHO_MK4StationInterfaceReversed
         void ExtractPCalChannelInfo();
         void ExtractPCalChannelInfoFromVex();
 
+        std::string GetStationMode();
+
         station_coord_type* fStationCoordData;
         multitone_pcal_type* fPCalData;
         struct mk4_sdata* fGeneratedStation;
@@ -104,6 +106,9 @@ class MHO_MK4StationInterfaceReversed
 
         //copy of vex data
         mho_json fVexData;
+        std::string fStationCode;
+        std::string fMode;
+        std::string fFreqSetupName;
 
         // Container dimensions
         std::size_t fNCoord;
