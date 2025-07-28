@@ -136,6 +136,23 @@ class MHO_MK4StationInterfaceReversed
             double sample_period;
         };
 
+    //the ordering operator for channel info, sort by frequency and pol
+    class chan_predicate
+    {
+        public:
+            chan_predicate(){};
+            virtual ~chan_predicate(){};
+
+            virtual bool operator()(const PCalChannelInfo& a, const PCalChannelInfo& b)
+            {
+                if(a.sky_freq == b.sky_freq){return a.polarization < b.polarization;}
+                return a.sky_freq < b.sky_freq;
+            }
+    };
+        
+
+
+
         std::vector<PCalChannelInfo> fPCalChannelList;
 
         std::vector< void* > fAllocated;
