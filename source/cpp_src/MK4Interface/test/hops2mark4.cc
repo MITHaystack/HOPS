@@ -27,7 +27,7 @@ void print_usage()
 
 int main(int argc, char** argv)
 {
-    set_msglev(-2);
+    //set_msglev(-2);
 
 
     std::string in_dir = "";
