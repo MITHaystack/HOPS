@@ -67,14 +67,14 @@ MHO_MK4ScanConverterReversed::ProcessVex()
 {
     //first convert the json ovex back to traditional ovex 
     MHO_VexGenerator vex_generator;
-    mho_json root_json = fStore.GetRootFileData();
+    fRootJSON = fStore.GetRootFileData();
     std::string root_json_basename = fStore.GetRootFileBasename();
     root_json_basename = fDirInterface.StripExtensionFromBasename(root_json_basename); //strips .json
     std::string ovex_basename = fDirInterface.StripExtensionFromBasename(root_json_basename); //strips .root
     std::string output_vex_file = fOutputDir + "/" + ovex_basename;
     fOutputVexFile = output_vex_file;
     vex_generator.SetFilename(output_vex_file);
-    vex_generator.GenerateVex(root_json);
+    vex_generator.GenerateVex(fRootJSON);
 }
 
 void 
@@ -143,6 +143,7 @@ MHO_MK4ScanConverterReversed::ProcessStation()
         if(npcal >= 1){ pcal_data = cStore.GetObject< multitone_pcal_type >(0); }
 
         MHO_MK4StationInterfaceReversed converter;
+        converter.SetVexData(fRootJSON);
         converter.SetOutputDirectory(fOutputDir);
         converter.SetStationCoordData(sta_data);
         converter.SetPCalData(pcal_data);
