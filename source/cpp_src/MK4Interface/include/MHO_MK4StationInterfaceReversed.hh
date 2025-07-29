@@ -75,7 +75,6 @@ class MHO_MK4StationInterfaceReversed
         void setstr(const std::string& str, char* char_array, std::size_t max_size);
 
         double ComputeType309Rot(double ap_offset, std::string start_time, double start_time_mjd);
-
         double ComputeType309RotFallback(double ap_offset);
 
         /**
@@ -95,6 +94,7 @@ class MHO_MK4StationInterfaceReversed
          */
         void ExtractPCalChannelInfo();
         void ExtractPCalChannelInfoFromVex();
+        double DeterminePCalToneSpacing();
 
         double FactorConvertToMHz(std::string units);
         void DetermineChannelToneIndexes(double lower_freq, double upper_freq, std::size_t& start_idx, std::size_t& ntones);

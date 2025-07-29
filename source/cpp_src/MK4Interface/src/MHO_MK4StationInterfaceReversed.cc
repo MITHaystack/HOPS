@@ -150,34 +150,21 @@ MHO_MK4StationInterfaceReversed::GenerateStationStructure()
 
         ExtractPCalChannelInfo(); //need the station channel setup in order to contruct type_309s
 
-        chan_predicate sort_pred;
-
-        std::sort( fPCalChannelList.begin(), fPCalChannelList.end(), sort_pred);
-
-        for(std::size_t i=0; i<fPCalChannelList.size(); i++)
-        {
-            std::cout<<" ------------------ channel info @ "<<i <<std::endl;
-            std::cout<<"name: "<<fPCalChannelList[i].channel_name<<std::endl;
-            std::cout<<"pol: "<<fPCalChannelList[i].polarization<<std::endl;
-            std::cout<<"net sb: "<<fPCalChannelList[i].net_sideband<<std::endl;
-            std::cout<<"chan idx: "<<fPCalChannelList[i].channel_index<<std::endl;
-            std::cout<<"tone start: "<<fPCalChannelList[i].tone_start<<std::endl;
-            std::cout<<"ntones: "<<fPCalChannelList[i].ntones<<std::endl;
-            std::cout<<"accumulator idx: "<<fPCalChannelList[i].accumulator_start_index<<std::endl;
-            std::cout<<"sky freq: "<<fPCalChannelList[i].sky_freq<<std::endl;
-            std::cout<<"bw: "<<fPCalChannelList[i].bandwidth<<std::endl;
-            std::cout<<"speriod: "<<fPCalChannelList[i].sample_period<<std::endl;
-    
-        }
-
-        
-
-
+        // for(std::size_t i=0; i<fPCalChannelList.size(); i++)
+        // {
+        //     std::cout<<" ------------------ channel info @ "<<i <<std::endl;
+        //     std::cout<<"name: "<<fPCalChannelList[i].channel_name<<std::endl;
+        //     std::cout<<"pol: "<<fPCalChannelList[i].polarization<<std::endl;
+        //     std::cout<<"net sb: "<<fPCalChannelList[i].net_sideband<<std::endl;
+        //     std::cout<<"chan idx: "<<fPCalChannelList[i].channel_index<<std::endl;
+        //     std::cout<<"tone start: "<<fPCalChannelList[i].tone_start<<std::endl;
+        //     std::cout<<"ntones: "<<fPCalChannelList[i].ntones<<std::endl;
+        //     std::cout<<"accumulator idx: "<<fPCalChannelList[i].accumulator_start_index<<std::endl;
+        //     std::cout<<"sky freq: "<<fPCalChannelList[i].sky_freq<<std::endl;
+        //     std::cout<<"bw: "<<fPCalChannelList[i].bandwidth<<std::endl;
+        //     std::cout<<"speriod: "<<fPCalChannelList[i].sample_period<<std::endl;
+        // }
         GenerateType309Records();
-    }
-    else 
-    {
-        std::cout<<"NO PCAL DATA"<<std::endl;
     }
 
 }
@@ -194,7 +181,6 @@ void MHO_MK4StationInterfaceReversed::InitializeStationStructure()
     fGeneratedStation = (struct mk4_sdata*) calloc(1, sizeof(struct mk4_sdata));
     clear_mk4sdata(fGeneratedStation);
 
-    //std::cout<<"generated pcal size = "<<fGeneratedStation->n309<<std::endl;
 }
 
 void MHO_MK4StationInterfaceReversed::GenerateType000()
@@ -291,7 +277,8 @@ void MHO_MK4StationInterfaceReversed::GenerateType301Records()
 
     //we do not loop over every channel (index of fGeneratedStation->model[] array)
     //because the fourfit c-code only uses the information in the very first element
-    //the information in the rest of type_301 and type_303s (as populated by difx2mark4) is entirely redudant for every channel
+    //the information in the rest of type_301 and type_303s (as populated by difx2mark4)
+    //is entirely redudant for every channel, so we only output one record
 
     std::string chan_id = "dummy";
     std::size_t ch = 0;
@@ -327,7 +314,6 @@ void MHO_MK4StationInterfaceReversed::GenerateType301Records()
 void MHO_MK4StationInterfaceReversed::GenerateType303Records()
 {
     if(!fGeneratedStation || !fStationCoordData) return;
-
 
     //we do not loop over every channel (index of fGeneratedStation->model[] array)
     //because the fourfit c-code only uses the information in the very first element
@@ -373,9 +359,6 @@ void MHO_MK4StationInterfaceReversed::GenerateType303Records()
     msg_debug("mk4interface", "Generated " << fNIntervals << " type_303 records" << eom);
 }
 
-
-
-
 void MHO_MK4StationInterfaceReversed::GenerateType309Records()
 {
     if(!fGeneratedStation || !fPCalData) return;
@@ -410,6 +393,11 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
 
     for(std::size_t ap = 0; ap < fNAPs; ap++)
     {
+        if(ap >= MAXSTATPER)
+        {
+            msg_error("mk4interface", "the mark4 library only supports a maximum of: "<< MAXSTATPER << "type_309 pcal records, will truncate excess." << eom);
+            break;
+        }
         // Allocate type_309 record
         struct type_309* t309 = (struct type_309*)calloc(1, sizeof(struct type_309));
         fGeneratedStation->t309[ap] = t309;
@@ -441,7 +429,11 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
         {
             auto ch_info = fPCalChannelList[ch];
             int ch_idx = ch;
-            if(ch_idx >= T309_MAX_CHAN){ break;}
+            if(ch_idx >= T309_MAX_CHAN)
+            {
+                msg_error("mk4interface", "the mark4 library only supports a maximum of: "<< T309_MAX_CHAN << "channels." << eom);
+                break;
+            }
 
             // Set channel name
             setstr(ch_info.channel_name, t309->chan[ch_idx].chan_name, 8);
@@ -457,8 +449,6 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
                     break;
                 }
             }
-
-            //std::cout<<"acc start IDX = "<<ch_info.accumulator_start_index<<std::endl;
 
             // Fill tone data for this channel
             for(int tone = 0; tone < ch_info.ntones && tone < T309_MAX_PHASOR; tone++)
@@ -498,7 +488,6 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
                 ConvertPhasorToCounts(phasor, t309->acc_period, ch_info.sample_period, 
                                       real_count, imag_count);
 
-                //std::cout<<"adding phasor = "<<real_count<<", "<<imag_count<<std::endl;
                 t309->chan[ch_idx].acc[acc_idx][0] = real_count;
                 t309->chan[ch_idx].acc[acc_idx][1] = imag_count;
             }
@@ -531,11 +520,8 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
         // Get all interval labels that contain this polarization's channel info
         auto matching_labels = freq_axis.GetMatchingIntervalLabels(name_key);
 
-        //std::cout<<"labels matching: "<<name_key<<std::endl;
-        
         for(const auto& label : matching_labels)
         {
-            //std::cout<<"dump: "<<label.dump(2)<<std::endl;
             std::string index_key = "channel_index";
             
             if(label.contains(name_key) )
@@ -547,8 +533,7 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
                 ch_info.bandwidth = label["bandwidth"].get<double>();
                 ch_info.accumulator_start_index = label["accumulator_start_index"].get<int>();
                 ch_info.polarization = pol;
-                //ch_info.channel_index = label[index_key].get<int>();
-                
+
                 // Calculate number of tones in this channel from interval bounds
                 int lower = label["lower_index"].get<int>();
                 int upper = label["upper_index"].get<int>();
@@ -573,8 +558,10 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
         msg_debug("mk4interface", "there is no station channel data attached to the pcal data object, falling back to vex info" << eom );
         ExtractPCalChannelInfoFromVex();
     }
-
-    //std::cout<<"channel info size ="<<fPCalChannelList.size()<<std::endl;
+    
+    //sort the channel info by frequency, pol
+    chan_predicate sort_pred;
+    std::sort( fPCalChannelList.begin(), fPCalChannelList.end(), sort_pred);
 }
 
 std::string MHO_MK4StationInterfaceReversed::GetStationMode()
@@ -607,23 +594,17 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
     //this method is used if we are trying to do a conversion directly from DiFX 
     //this is because the pcal-data object will not already have station channel 
     //meta-data attached if we are coming directly from DiFX
-
-    // std::cout<< fVexData["$FREQ"].dump(2) << std::endl;
-    // std::cout<< fVexData["$SCHED"].dump(2) << std::endl;
+    //and all the other associated indexing values needed for the type_309s
 
     std::string mode = GetStationMode();
-    //std::cout<<"MODE = "<<mode<<std::endl;
-    if(mode == ""){msg_error("mk4interface", "could not located mode information in vex file $SCHED block"<<eom);}
+    if(mode == ""){msg_error("mk4interface", "could not located mode information in vex file $SCHED block"<<eom); return;}
 
     // SCHED -> [0] -> mode
-    // 
     // MODE[mode] -> FREQ [?]  where station code (2-char) is present
-    // 
     // SITE[?] -> site_ID (2-char code)
-    // 
     // FREQ[ mode ] where mode matches the station
 
-    double pcal_spacing = 5.0;// TODO FIXME
+    double pcal_spacing = DeterminePCalToneSpacing();
     auto tone_freq_ax = &(std::get< MTPCAL_FREQ_AXIS >(*fPCalData));
     std::vector< double > tone_freq_offsets;
 
@@ -632,8 +613,6 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
         //loop over all channels and collect the information
         for(auto it = fVexData["$FREQ"][mode]["chan_def"].begin(); it != fVexData["$FREQ"][mode]["chan_def"].end(); ++it)
         {
-            //std::cout<< (*it).dump(2) << std::endl;
-
             double factor = 1.0;
             PCalChannelInfo ch_info;
             ch_info.channel_name = (*it)["channel_name"].get<std::string>();
@@ -653,24 +632,19 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
             double lower_freq, upper_freq;
             MHO_MathUtilities::DetermineChannelFrequencyLimits(ch_info.sky_freq, ch_info.bandwidth, 
                                                                ch_info.net_sideband, lower_freq, upper_freq);
-            //std::cout<<"low freq, upper freq = "<<lower_freq<<", "<<upper_freq<<std::endl;
 
             std::size_t start_idx, ntones;
             DetermineChannelToneIndexes(lower_freq, upper_freq, start_idx, ntones);
-            // Calculate number of tones in this channel from interval bounds
+            //calculate number of tones in this channel from interval bounds
             ch_info.tone_start = start_idx;
             ch_info.ntones = ntones;
-            //std::cout<<"start idx, ntones = "<<start_idx<<", "<<ntones<<std::endl;
 
             //figure out the accumulator index (need to compute the tone offset frequencies for each tone in this channel 
             for(std::size_t j = 0; j < ntones; j++)
             {
                 std::size_t idx = start_idx + j;
                 double tone_freq = tone_freq_ax->at(idx);
-                //std::cout<<"tone freq = "<<tone_freq<<std::endl;
-                //std::cout<<"sky freq = "<< ch_info.sky_freq <<std::endl;
                 double freq_delta = tone_freq - ch_info.sky_freq;  //TODO FIXME LSB & USB
-                //std::cout<<"freq delta = "<<freq_delta<<std::endl;
                 freq_delta *= MHZ_TO_HZ; //offsets are calculated/stored as Hz
 
                 //dumb brute force search 
@@ -689,7 +663,6 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
                 {
                     //store the index of this offset if we are on the first tone
                     if(j == 0){ch_info.accumulator_start_index = tone_freq_offsets.size();}
-                    //std::cout<<"adding new freq off = "<<freq_delta<<std::endl;
                     tone_freq_offsets.push_back(freq_delta);
                 }
             }
@@ -741,9 +714,9 @@ void MHO_MK4StationInterfaceReversed::ConvertPhasorToCounts(const std::complex<d
                                                             double acc_period, double sample_period,
                                                             uint32_t& real_count, uint32_t& imag_count)
 {
-    // Reverse the computation from ComputePhasor in the original interface
-    // Original: pc_real = (u * sample_period) / (-128.0 * acc_period)
-    // Reverse: u = pc_real * (-128.0 * acc_period) / sample_period
+    //invert the phasor computation from ComputePhasor in MHO_StationInterface
+    //original: pc_real = (u * sample_period) / (-128.0 * acc_period)
+    //inverted: u = pc_real * (-128.0 * acc_period) / sample_period
     
     double pc_real = phasor.real();
     double pc_imag = phasor.imag();
@@ -899,6 +872,34 @@ void MHO_MK4StationInterfaceReversed::DetermineChannelToneIndexes(double lower_f
     }
 }
 
+double 
+MHO_MK4StationInterfaceReversed::DeterminePCalToneSpacing()
+{
+    //return the pcal tone spacing in MHz
+    
+    //probably the proper way to do this is to follow the full multi-level 
+    //indirection in the vex file to extract pcal spacing and offset, as:
+    //$SCHED -> MODE 
+    //-> $FREQ/[MODE]/[0...]/BBC_ID 
+    //-> $BBC/[MODE]/[BBC_ID]/IF_ID 
+    //-> $IF/[0...]/pcal_spacing where IF == [IF_ID]
+    //but this scheme is really overly complex.
+    //Instead we are just going to find the minimimum spacing 
+    //adjacent between tones in the pcal data array
 
+    double spacing = 1e30;
+    if(fPCalData != nullptr)
+    {
+        auto freq_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCalData));
+        for(std::size_t i=1; i<freq_ax->GetSize(); i++)
+        {
+            double fval = freq_ax->at(i-1);
+            double fval2 = freq_ax->at(i);
+            double delta = std::fabs(fval2 - fval);
+            if(delta < spacing){spacing == delta;}
+        }
+    }
+    return spacing;
+}
 
 } // namespace hops
