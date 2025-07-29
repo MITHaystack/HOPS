@@ -249,10 +249,17 @@ std::string MHO_VexElementLineGenerator::GenerateCompound(std::string element_na
             }
             components.push_back(ret_val);
         }
-        else if(MHO_VexDefinitions::IsOptionalField(raw_field_name) &&
-                !IsTrailingOptionalField(raw_field_name, format["fields"]))
+        else if(MHO_VexDefinitions::IsOptionalField(raw_field_name) && !IsTrailingOptionalField(raw_field_name, format["fields"]))
         {
+            //std::cout<<"raw_field_name = "<<raw_field_name<<std::endl;
             //add and empty space for optional fields which are not trailing elements
+            std::string ret_val = fSpace;
+            components.push_back(ret_val);
+        }
+        else if( !MHO_VexDefinitions::IsOptionalField(raw_field_name) )
+        {
+            //std::cout<<"encountered empty not-optional field: raw_field_name = "<<raw_field_name<<std::endl;
+            //add and empty space for non-optional files which are missing
             std::string ret_val = fSpace;
             components.push_back(ret_val);
         }

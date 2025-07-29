@@ -288,7 +288,7 @@ void MHO_MK4CorelInterface::DetermineDataDimensions()
 
     // //now we need to fill in the channel labels with information from the vex
     // TODO FIXME -- refactor the following section --
-    //the ovex data retrieval (just to get the channel polariztaion!!!) is rather convoluted
+    //the ovex data retrieval (just to get the channel polarization!!!) is rather convoluted
     // we may want to add a feature to resolve vex link-words to json objects or json paths
     //which would simplfy this mess
     std::string ref_st = std::string(&(baseline[0]), 1);

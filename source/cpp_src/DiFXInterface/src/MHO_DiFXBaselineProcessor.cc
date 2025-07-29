@@ -153,10 +153,6 @@ void MHO_DiFXBaselineProcessor::Organize()
         return;
     }
 
-    fStartMJD = (*fInput)["scan"][fIndex]["mjdStart"].get<double>();
-    fStartTime = get_vexdate_from_mjd_sec(fStartMJD, 0.0); //zero implies no second-offset
-    msg_debug("difx_interface", "scan start time is: " << fStartTime << eom);
-
     //first figure out the baseline name (CHECK THIS)
     /* The baseline number (256*A1 + A2, 1 indexed) */
     int ant1 = (fBaselineID / DIFX_BASE2ANT) - 1;
@@ -272,6 +268,17 @@ void MHO_DiFXBaselineProcessor::Organize()
                                         << " truncating to lowest common number of APs: " << fNAPs << "." << eom);
     }
 
+
+    fStartMJD = (*fInput)["scan"][fIndex]["mjdStart"].get<double>();
+    fStartTime = get_vexdate_from_mjd_sec(fStartMJD, 0.0); //zero implies no second-offset
+    auto start_tp = hops_clock::from_vex_format(fStartTime);
+    int64_t duration_ns = fAPLength*fNAPs*SEC_TO_NANOSEC;
+    auto stop_tp = start_tp + hops_clock::duration( duration_ns );
+    fStopTime = hops_clock::to_vex_format(stop_tp);
+
+    msg_debug("difx_interface", "scan start time is: " << fStartTime << eom);
+
+
     //construct the table of frequencies for this baseline and sort in asscending order
     fNChannels = fFreqIndexSet.size();
     for(auto it = fFreqIndexSet.begin(); it != fFreqIndexSet.end(); it++)
@@ -368,6 +375,8 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fTags.SetTagValue("root_code", fRootCode);
         fTags.SetTagValue("origin", "difx");
         fTags.SetTagValue("name", "object_tags");
+        fTags.SetTagValue("start", fStartTime);
+        fTags.SetTagValue("stop", fStopTime);
 
         fV = new visibility_store_type();
         fW = new weight_store_type();
@@ -389,6 +398,7 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fV->Insert(std::string("root_code"), fRootCode);
         fV->Insert(std::string("origin"), "difx");
         fV->Insert(std::string("start"), fStartTime);
+        fV->Insert(std::string("stop"), fStopTime);
 
         //tags for the weights
         //fNSpectralPoints -- we only have 1 weight value for each AP, so set dimension along the spectral point axis to 1
@@ -408,6 +418,7 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fW->Insert(std::string("root_code"), fRootCode);
         fW->Insert(std::string("origin"), "difx");
         fW->Insert(std::string("start"), fStartTime);
+        fW->Insert(std::string("stop"), fStopTime);
 
         //polarization product axis
         auto* polprod_axis = &(std::get< POLPROD_AXIS >(*fV));
@@ -449,9 +460,9 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 
             //loop through baseline freqs in order, grabbing the associated channel
             //and populating the visibility container
+            //loop though in freq (low -> high) order
             int chidx = 0;
-            for(auto fqit = fBaselineFreqs.begin(); fqit != fBaselineFreqs.end();
-                fqit++) //loop though in freq (low -> high) order
+            for(auto fqit = fBaselineFreqs.begin(); fqit != fBaselineFreqs.end(); fqit++) 
             {
                 int freqidx = fqit->first;
                 mho_json dfreq = fqit->second;

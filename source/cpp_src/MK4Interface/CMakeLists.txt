@@ -6,6 +6,9 @@ set (MK4INTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4StationInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4FringeExport.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4ScanConverter.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4CorelInterfaceReversed.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4StationInterfaceReversed.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4ScanConverterReversed.hh
 )
 
 #list source files #############################################################
@@ -16,6 +19,9 @@ set( MK4INTERFACE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4StationInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4FringeExport.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4ScanConverter.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4CorelInterfaceReversed.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4StationInterfaceReversed.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4ScanConverterReversed.cc
 )
 
 #declare header paths ##########################################################

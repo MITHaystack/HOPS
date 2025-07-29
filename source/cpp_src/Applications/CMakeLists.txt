@@ -19,6 +19,7 @@ set(HOPS_APP_LIBS
 set(SOURCE_BASENAMES
     hops2keys
     mark42hops
+    hops2mark4
     hops2json
     hops2flat
     CompareCorFiles
