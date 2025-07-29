@@ -221,6 +221,7 @@ class MHO_DiFXBaselineProcessor
         std::size_t fNSpectralPoints;
         double fStartMJD; //scan start time in MJD
         std::string fStartTime;
+        std::string fStopTime;
         bool fCanChannelize;
         bool fHaveBaselineData;
 

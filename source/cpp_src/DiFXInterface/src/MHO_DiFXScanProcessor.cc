@@ -448,6 +448,7 @@ void MHO_DiFXScanProcessor::ConvertStationFileObjects()
             pcal_data_ptr->Insert(std::string("station_code"), vex_station_code);
             pcal_data_ptr->Insert(std::string("station_mk4id"), station_mk4id);
             pcal_data_ptr->Insert(std::string("station_name"), vex_station_name);
+            pcal_data_ptr->Insert(std::string("root_code"), fRootCode);
             pcal_data_ptr->Insert(std::string("name"), std::string("pcal"));
         }
 
@@ -456,6 +457,7 @@ void MHO_DiFXScanProcessor::ConvertStationFileObjects()
         station_coord_data_ptr->Insert(std::string("station_code"), vex_station_code);
         station_coord_data_ptr->Insert(std::string("station_mk4id"), station_mk4id);
         station_coord_data_ptr->Insert(std::string("station_name"), vex_station_name);
+        station_coord_data_ptr->Insert(std::string("root_code"), fRootCode);
         station_coord_data_ptr->Insert(std::string("name"), std::string("station_data"));
 
         //figure out the output file name
