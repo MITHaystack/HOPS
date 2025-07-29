@@ -21,6 +21,14 @@ else
     wget -q http://www.mit.edu/~barrettj/hops/hops4_testdata.tar.gz -O $DATA_TARBALL
 fi
 
+DATA_TARBALL=ae_testdata.tar.gz
+if [ -f "$DATA_TARBALL" ]; then
+    echo "$DATA_TARBALL exists."
+else
+    echo "Dowloading ${DATA_TARBALL} (97K) to ${DATA_DIR}"
+    wget -q http://www.mit.edu/~barrettj/hops/ae_testdata.tar.gz -O $DATA_TARBALL
+fi
+
 DATA_TARBALL=vt9105.tar.gz
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."

@@ -1,23 +1,32 @@
 
 set(MK4UTIL_RELPATH "../../../c_src/mk4util/include")
+set(MSG_RELPATH "../../../c_src/msg/include")
 set(DFIO_RELPATH "../../../c_src/dfio/include")
 set(VEX_RELPATH "../../../c_src/vex/include")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${MK4UTIL_RELPATH})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${DFIO_RELPATH})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${VEX_RELPATH})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${MSG_RELPATH})
+
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Message/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Containers/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Utilities/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Math/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Vex2JSON/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
-set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Math MHO_Containers MHO_MK4Interface mk4util dfio vex )
+# Include CLI11 for command line 
+# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../extern/cli11)
+
+set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Math MHO_Containers MHO_MK4Interface MHO_Vex2JSON mk4util dfio vex msg)
 
 set(SOURCE_BASENAMES
     TestMK4VexInterface
     TestMK4Import
+    TestHOPS2Corel
+    TestHOPS2StationData
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
