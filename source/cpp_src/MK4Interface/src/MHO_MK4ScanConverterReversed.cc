@@ -68,6 +68,7 @@ MHO_MK4ScanConverterReversed::ProcessVex()
     //first convert the json ovex back to traditional ovex 
     MHO_VexGenerator vex_generator;
     fRootJSON = fStore.GetRootFileData();
+    
     std::string root_json_basename = fStore.GetRootFileBasename();
     root_json_basename = fDirInterface.StripExtensionFromBasename(root_json_basename); //strips .json
     std::string ovex_basename = fDirInterface.StripExtensionFromBasename(root_json_basename); //strips .root
